@@ -47,8 +47,7 @@ public abstract class GenericIdentifiable implements Identifiable {
 
         GenericIdentifiable encaps = (GenericIdentifiable) obj;
 
-        return (getId() == encaps.getId()) && Arrays.equals(getData(), encaps
-                .getData());
+        return (getId() == encaps.getId()) && Arrays.equals(getData(), encaps.getData());
     }
 
     public int hashCode() {

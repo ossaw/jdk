@@ -8,5 +8,5 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public interface InitialNameService extends InitialNameServiceOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface InitialNameService
+public interface InitialNameService extends InitialNameServiceOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface InitialNameService

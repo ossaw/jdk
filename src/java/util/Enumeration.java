@@ -34,7 +34,6 @@ package java.util;
  * @see java.util.Hashtable#keys()
  * @see java.util.Vector
  * @see java.util.Vector#elements()
- *
  * @author Lee Boynton
  * @since JDK1.0
  */
@@ -54,7 +53,7 @@ public interface Enumeration<E> {
      *
      * @return the next element of this enumeration.
      * @exception NoSuchElementException
-     *                                   if no more elements exist.
+     *            if no more elements exist.
      */
     E nextElement();
 }

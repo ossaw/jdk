@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,8 +37,7 @@ import com.sun.org.apache.xml.internal.security.utils.XMLUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class RSAKeyValue extends SignatureElementProxy implements
-        KeyValueContent {
+public class RSAKeyValue extends SignatureElementProxy implements KeyValueContent {
 
     /**
      * Constructor RSAKeyValue
@@ -49,8 +46,7 @@ public class RSAKeyValue extends SignatureElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public RSAKeyValue(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public RSAKeyValue(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -82,16 +78,12 @@ public class RSAKeyValue extends SignatureElementProxy implements
         XMLUtils.addReturnToElement(this.constructionElement);
 
         if (key instanceof java.security.interfaces.RSAPublicKey) {
-            this.addBigIntegerElement(((RSAPublicKey) key).getModulus(),
-                    Constants._TAG_MODULUS);
-            this.addBigIntegerElement(((RSAPublicKey) key).getPublicExponent(),
-                    Constants._TAG_EXPONENT);
+            this.addBigIntegerElement(((RSAPublicKey) key).getModulus(), Constants._TAG_MODULUS);
+            this.addBigIntegerElement(((RSAPublicKey) key).getPublicExponent(), Constants._TAG_EXPONENT);
         } else {
-            Object exArgs[] = { Constants._TAG_RSAKEYVALUE, key.getClass()
-                    .getName() };
+            Object exArgs[] = { Constants._TAG_RSAKEYVALUE, key.getClass().getName() };
 
-            throw new IllegalArgumentException(I18n.translate(
-                    "KeyValue.IllegalArgument", exArgs));
+            throw new IllegalArgumentException(I18n.translate("KeyValue.IllegalArgument", exArgs));
         }
     }
 
@@ -100,12 +92,9 @@ public class RSAKeyValue extends SignatureElementProxy implements
         try {
             KeyFactory rsaFactory = KeyFactory.getInstance("RSA");
 
-            RSAPublicKeySpec rsaKeyspec = new RSAPublicKeySpec(this
-                    .getBigIntegerFromChildElement(Constants._TAG_MODULUS,
-                            Constants.SignatureSpecNS), this
-                                    .getBigIntegerFromChildElement(
-                                            Constants._TAG_EXPONENT,
-                                            Constants.SignatureSpecNS));
+            RSAPublicKeySpec rsaKeyspec = new RSAPublicKeySpec(this.getBigIntegerFromChildElement(
+                    Constants._TAG_MODULUS, Constants.SignatureSpecNS), this.getBigIntegerFromChildElement(
+                            Constants._TAG_EXPONENT, Constants.SignatureSpecNS));
             PublicKey pk = rsaFactory.generatePublic(rsaKeyspec);
 
             return pk;

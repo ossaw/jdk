@@ -16,7 +16,6 @@ import java.util.Enumeration;
 /**
  * This class reads a file containing the property list defined for Java DMK and
  * adds all the read properties to the list of system properties.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>

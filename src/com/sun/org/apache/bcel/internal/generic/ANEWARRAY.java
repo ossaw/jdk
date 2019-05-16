@@ -60,8 +60,8 @@ import com.sun.org.apache.bcel.internal.ExceptionConstants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ANEWARRAY extends CPInstruction implements LoadClass,
-        AllocationInstruction, ExceptionThrower, StackProducer {
+public class ANEWARRAY extends CPInstruction implements LoadClass, AllocationInstruction, ExceptionThrower,
+        StackProducer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -73,11 +73,9 @@ public class ANEWARRAY extends CPInstruction implements LoadClass,
     }
 
     public Class[] getExceptions() {
-        Class[] cs = new Class[1
-                + ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length];
+        Class[] cs = new Class[1 + ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length];
 
-        System.arraycopy(ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION,
-                0, cs, 0,
+        System.arraycopy(ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION, 0, cs, 0,
                 ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length);
         cs[ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length] = ExceptionConstants.NEGATIVE_ARRAY_SIZE_EXCEPTION;
         return cs;
@@ -90,7 +88,7 @@ public class ANEWARRAY extends CPInstruction implements LoadClass,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLoadClass(this);

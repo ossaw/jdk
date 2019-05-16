@@ -19,7 +19,6 @@ package com.sun.org.apache.xerces.internal.util;
 
 /**
  * Synchronized symbol table.
- *
  * This class moved into the util package since it's needed by multiple other
  * classes (CachingParserPool, XMLGrammarCachingConfiguration).
  *
@@ -65,7 +64,7 @@ public final class SynchronizedSymbolTable extends SymbolTable {
      * remain unique.
      *
      * @param symbol
-     *               The new symbol.
+     *        The new symbol.
      */
     public String addSymbol(String symbol) {
 
@@ -82,11 +81,11 @@ public final class SynchronizedSymbolTable extends SymbolTable {
      * remain unique.
      *
      * @param buffer
-     *               The buffer containing the new symbol.
+     *        The buffer containing the new symbol.
      * @param offset
-     *               The offset into the buffer of the new symbol.
+     *        The offset into the buffer of the new symbol.
      * @param length
-     *               The length of the new symbol in the buffer.
+     *        The length of the new symbol in the buffer.
      */
     public String addSymbol(char[] buffer, int offset, int length) {
 
@@ -100,7 +99,7 @@ public final class SynchronizedSymbolTable extends SymbolTable {
      * Returns true if the symbol table already contains the specified symbol.
      *
      * @param symbol
-     *               The symbol to look for.
+     *        The symbol to look for.
      */
     public boolean containsSymbol(String symbol) {
 
@@ -114,11 +113,11 @@ public final class SynchronizedSymbolTable extends SymbolTable {
      * Returns true if the symbol table already contains the specified symbol.
      *
      * @param buffer
-     *               The buffer containing the symbol to look for.
+     *        The buffer containing the symbol to look for.
      * @param offset
-     *               The offset into the buffer.
+     *        The offset into the buffer.
      * @param length
-     *               The length of the symbol in the buffer.
+     *        The length of the symbol in the buffer.
      */
     public boolean containsSymbol(char[] buffer, int offset, int length) {
 

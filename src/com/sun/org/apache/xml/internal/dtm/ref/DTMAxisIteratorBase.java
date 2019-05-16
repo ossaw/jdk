@@ -97,7 +97,6 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
     /**
      * Set the flag to include the start node in the iteration.
      *
-     *
      * @return This default method returns just returns this DTMAxisIterator,
      *         after setting the flag. (Returning "this" permits C++-style
      *         chaining of method calls into a single expression.)
@@ -114,7 +113,6 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
      * XPath. In a forward iterator, I believe this equals the number of nodes
      * which this iterator will yield. In a reverse iterator, I believe it
      * should return 1 (since the "last" is the first produced.)
-     *
      * This may be an expensive operation when called the first time, since it
      * may have to iterate through a large part of the document to produce its
      * answer.
@@ -179,8 +177,7 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
             // return clone.reset();
             return clone;
         } catch (CloneNotSupportedException e) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    e);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(e);
         }
     }
 
@@ -188,7 +185,6 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
      * Do any final cleanup that is required before returning the node that was
      * passed in, and then return it. The intended use is <br />
      * <code>return returnNode(node);</code>
-     *
      * %REVIEW% If we're calling it purely for side effects, should we really be
      * bothering with a return value? Something like <br />
      * <code> accept(node); return node; </code> <br />
@@ -196,8 +192,7 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
      * whether what's returned could ever be different from what's passed in.
      *
      * @param node
-     *             Node handle which iteration is about to yield.
-     *
+     *        Node handle which iteration is about to yield.
      * @return The node handle passed in.
      */
     protected final int returnNode(final int node) {
@@ -209,7 +204,6 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
     /**
      * Reset the position to zero. NOTE that this does not change the iteration
      * state, only the position number associated with that state.
-     *
      * %REVIEW% Document when this would be used?
      *
      * @return This instance.
@@ -249,7 +243,7 @@ public abstract class DTMAxisIteratorBase implements DTMAxisIterator {
      * Return the node at the given position.
      *
      * @param position
-     *                 The position
+     *        The position
      * @return The node at the given position.
      */
     public int getNodeByPosition(int position) {

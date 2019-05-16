@@ -13,7 +13,6 @@ package org.omg.CosNaming;
  * each name is unique. Different names can be bound to an object in the same or
  * different contexts at the same time.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
@@ -21,8 +20,7 @@ package org.omg.CosNaming;
 abstract public class NamingContextHelper {
     private static String _id = "IDL:omg.org/CosNaming/NamingContext:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CosNaming.NamingContext that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CosNaming.NamingContext that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -37,9 +35,8 @@ abstract public class NamingContextHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.CosNaming.NamingContextHelper.id(),
-                    "NamingContext");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.CosNaming.NamingContextHelper
+                    .id(), "NamingContext");
         }
         return __typeCode;
     }
@@ -48,8 +45,7 @@ abstract public class NamingContextHelper {
         return _id;
     }
 
-    public static org.omg.CosNaming.NamingContext read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CosNaming.NamingContext read(org.omg.CORBA.portable.InputStream istream) {
         return narrow(istream.read_Object(_NamingContextStub.class));
     }
 
@@ -58,8 +54,7 @@ abstract public class NamingContextHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static org.omg.CosNaming.NamingContext narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.CosNaming.NamingContext narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.CosNaming.NamingContext)
@@ -75,8 +70,7 @@ abstract public class NamingContextHelper {
         }
     }
 
-    public static org.omg.CosNaming.NamingContext unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.CosNaming.NamingContext unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.CosNaming.NamingContext)

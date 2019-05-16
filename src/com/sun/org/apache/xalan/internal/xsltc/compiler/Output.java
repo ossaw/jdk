@@ -119,9 +119,8 @@ final class Output extends TopLevelElement {
         // Merge cdata-section-elements
         if (previous.hasAttribute("cdata-section-elements")) {
             // addAttribute works as a setter if it already exists
-            addAttribute("cdata-section-elements", previous.getAttribute(
-                    "cdata-section-elements") + ' ' + getAttribute(
-                            "cdata-section-elements"));
+            addAttribute("cdata-section-elements", previous.getAttribute("cdata-section-elements") + ' '
+                    + getAttribute("cdata-section-elements"));
         }
 
         // Transfer non-standard attributes as well
@@ -166,13 +165,11 @@ final class Output extends TopLevelElement {
         }
         if (_method != null) {
             _method = _method.toLowerCase();
-            if ((_method.equals("xml")) || (_method.equals("html")) || (_method
-                    .equals("text")) || ((XML11Char.isXML11ValidQName(_method)
-                            && (_method.indexOf(":") > 0)))) {
+            if ((_method.equals("xml")) || (_method.equals("html")) || (_method.equals("text")) || ((XML11Char
+                    .isXML11ValidQName(_method) && (_method.indexOf(":") > 0)))) {
                 outputProperties.setProperty(OutputKeys.METHOD, _method);
             } else {
-                reportError(this, parser, ErrorMsg.INVALID_METHOD_IN_OUTPUT,
-                        _method);
+                reportError(this, parser, ErrorMsg.INVALID_METHOD_IN_OUTPUT, _method);
             }
         }
 
@@ -184,13 +181,10 @@ final class Output extends TopLevelElement {
             try {
                 // Create a write to verify encoding support
                 String canonicalEncoding;
-                canonicalEncoding = Encodings.convertMime2JavaEncoding(
-                        _encoding);
-                OutputStreamWriter writer = new OutputStreamWriter(System.out,
-                        canonicalEncoding);
+                canonicalEncoding = Encodings.convertMime2JavaEncoding(_encoding);
+                OutputStreamWriter writer = new OutputStreamWriter(System.out, canonicalEncoding);
             } catch (java.io.UnsupportedEncodingException e) {
-                ErrorMsg msg = new ErrorMsg(ErrorMsg.UNSUPPORTED_ENCODING,
-                        _encoding, this);
+                ErrorMsg msg = new ErrorMsg(ErrorMsg.UNSUPPORTED_ENCODING, _encoding, this);
                 parser.reportError(Constants.WARNING, msg);
             }
             outputProperties.setProperty(OutputKeys.ENCODING, _encoding);
@@ -202,8 +196,7 @@ final class Output extends TopLevelElement {
             if (attrib.equals("yes")) {
                 _omitHeader = true;
             }
-            outputProperties.setProperty(OutputKeys.OMIT_XML_DECLARATION,
-                    attrib);
+            outputProperties.setProperty(OutputKeys.OMIT_XML_DECLARATION, attrib);
         }
 
         // Add 'standalone' decaration to output - use text as is
@@ -219,16 +212,14 @@ final class Output extends TopLevelElement {
         if (_doctypeSystem.equals(Constants.EMPTYSTRING)) {
             _doctypeSystem = null;
         } else {
-            outputProperties.setProperty(OutputKeys.DOCTYPE_SYSTEM,
-                    _doctypeSystem);
+            outputProperties.setProperty(OutputKeys.DOCTYPE_SYSTEM, _doctypeSystem);
         }
 
         _doctypePublic = getAttribute("doctype-public");
         if (_doctypePublic.equals(Constants.EMPTYSTRING)) {
             _doctypePublic = null;
         } else {
-            outputProperties.setProperty(OutputKeys.DOCTYPE_PUBLIC,
-                    _doctypePublic);
+            outputProperties.setProperty(OutputKeys.DOCTYPE_PUBLIC, _doctypePublic);
         }
 
         // Names the elements of whose text contents should be output as CDATA
@@ -243,16 +234,13 @@ final class Output extends TopLevelElement {
             while (tokens.hasMoreTokens()) {
                 String qname = tokens.nextToken();
                 if (!XML11Char.isXML11ValidQName(qname)) {
-                    ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR,
-                            qname, this);
+                    ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, qname, this);
                     parser.reportError(Constants.ERROR, err);
                 }
-                expandedNames.append(parser.getQName(qname).toString()).append(
-                        ' ');
+                expandedNames.append(parser.getQName(qname).toString()).append(' ');
             }
             _cdata = expandedNames.toString();
-            outputProperties.setProperty(OutputKeys.CDATA_SECTION_ELEMENTS,
-                    _cdata);
+            outputProperties.setProperty(OutputKeys.CDATA_SECTION_ELEMENTS, _cdata);
         }
 
         // Get the indent setting - only has effect for xml and html output
@@ -267,12 +255,10 @@ final class Output extends TopLevelElement {
         }
 
         // indent-amount: extension attribute of xsl:output
-        _indentamount = getAttribute(lookupPrefix(
-                "http://xml.apache.org/xalan"), "indent-amount");
+        _indentamount = getAttribute(lookupPrefix("http://xml.apache.org/xalan"), "indent-amount");
         // Hack for supporting Old Namespace URI.
         if (_indentamount.equals(EMPTYSTRING)) {
-            _indentamount = getAttribute(lookupPrefix(
-                    "http://xml.apache.org/xslt"), "indent-amount");
+            _indentamount = getAttribute(lookupPrefix("http://xml.apache.org/xslt"), "indent-amount");
         }
         if (!_indentamount.equals(EMPTYSTRING)) {
             outputProperties.setProperty("indent_amount", _indentamount);
@@ -398,8 +384,7 @@ final class Output extends TopLevelElement {
 
         // Forward to the translet any elements that should be output as CDATA
         if (_cdata != null) {
-            int index = cpg.addMethodref(TRANSLET_CLASS, "addCdataElement",
-                    "(Ljava/lang/String;)V");
+            int index = cpg.addMethodref(TRANSLET_CLASS, "addCdataElement", "(Ljava/lang/String;)V");
 
             StringTokenizer tokens = new StringTokenizer(_cdata);
             while (tokens.hasMoreTokens()) {

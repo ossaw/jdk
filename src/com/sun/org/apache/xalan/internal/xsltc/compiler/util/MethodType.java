@@ -98,8 +98,7 @@ public final class MethodType extends Type {
                 buffer.append(((Type) _argsType.elementAt(i)).toSignature());
             }
         }
-        return buffer.append(lastArgSig).append(')').append(_resultType
-                .toSignature()).toString();
+        return buffer.append(lastArgSig).append(')').append(_resultType.toSignature()).toString();
     }
 
     public com.sun.org.apache.bcel.internal.generic.Type toJCType() {

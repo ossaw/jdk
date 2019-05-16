@@ -50,7 +50,6 @@ public class ListDataEvent extends EventObject {
      * Returns the lower index of the range. For a single element, this value is
      * the same as that returned by {@link #getIndex1}.
      *
-     * 
      * @return an int representing the lower index value
      */
     public int getIndex0() {
@@ -72,14 +71,14 @@ public class ListDataEvent extends EventObject {
      * index1 will be swapped such that index0 will always be &lt;= index1.
      *
      * @param source
-     *               the source Object (typically <code>this</code>)
+     *        the source Object (typically <code>this</code>)
      * @param type
-     *               an int specifying {@link #CONTENTS_CHANGED},
-     *               {@link #INTERVAL_ADDED}, or {@link #INTERVAL_REMOVED}
+     *        an int specifying {@link #CONTENTS_CHANGED},
+     *        {@link #INTERVAL_ADDED}, or {@link #INTERVAL_REMOVED}
      * @param index0
-     *               one end of the new interval
+     *        one end of the new interval
      * @param index1
-     *               the other end of the new interval
+     *        the other end of the new interval
      */
     public ListDataEvent(Object source, int type, int index0, int index1) {
         super(source);
@@ -98,7 +97,6 @@ public class ListDataEvent extends EventObject {
      * @return a string representation of this ListDataEvent.
      */
     public String toString() {
-        return getClass().getName() + "[type=" + type + ",index0=" + index0
-                + ",index1=" + index1 + "]";
+        return getClass().getName() + "[type=" + type + ",index0=" + index0 + ",index1=" + index1 + "]";
     }
 }

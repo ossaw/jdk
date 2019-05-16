@@ -15,7 +15,6 @@ import org.xml.sax.XMLReader;
  * <p>
  * Acts as an holder for SAX-style Source.
  * </p>
- *
  * <p>
  * Note that XSLT requires namespace support. Attempting to transform an input
  * source that is not generated with a namespace-aware parser may result in
@@ -57,11 +56,11 @@ public class SAXSource implements Source {
      * reader.parse(inputSource).
      *
      * @param reader
-     *                    An XMLReader to be used for the parse.
+     *        An XMLReader to be used for the parse.
      * @param inputSource
-     *                    A SAX input source reference that must be non-null and
-     *                    that
-     *                    will be passed to the reader parse method.
+     *        A SAX input source reference that must be non-null and
+     *        that
+     *        will be passed to the reader parse method.
      */
     public SAXSource(XMLReader reader, InputSource inputSource) {
         this.reader = reader;
@@ -77,9 +76,9 @@ public class SAXSource implements Source {
      * and calls reader.parse(inputSource).
      *
      * @param inputSource
-     *                    An input source reference that must be non-null and
-     *                    that will
-     *                    be passed to the parse method of the reader.
+     *        An input source reference that must be non-null and
+     *        that will
+     *        be passed to the parse method of the reader.
      */
     public SAXSource(InputSource inputSource) {
         this.inputSource = inputSource;
@@ -89,7 +88,7 @@ public class SAXSource implements Source {
      * Set the XMLReader to be used for the Source.
      *
      * @param reader
-     *               A valid XMLReader or XMLFilter reference.
+     *        A valid XMLReader or XMLFilter reference.
      */
     public void setXMLReader(XMLReader reader) {
         this.reader = reader;
@@ -108,7 +107,7 @@ public class SAXSource implements Source {
      * Set the SAX InputSource to be used for the Source.
      *
      * @param inputSource
-     *                    A valid InputSource reference.
+     *        A valid InputSource reference.
      */
     public void setInputSource(InputSource inputSource) {
         this.inputSource = inputSource;
@@ -127,7 +126,6 @@ public class SAXSource implements Source {
      * Set the system identifier for this Source. If an input source has already
      * been set, it will set the system ID or that input source, otherwise it
      * will create a new input source.
-     *
      * <p>
      * The system identifier is optional if there is a byte stream or a
      * character stream, but it is still useful to provide one, since the
@@ -137,7 +135,7 @@ public class SAXSource implements Source {
      * </p>
      *
      * @param systemId
-     *                 The system identifier as a URI string.
+     *        The system identifier as a URI string.
      */
     public void setSystemId(String systemId) {
 
@@ -181,8 +179,7 @@ public class SAXSource implements Source {
      * Attempt to obtain a SAX InputSource object from a Source object.
      *
      * @param source
-     *               Must be a non-null Source reference.
-     *
+     *        Must be a non-null Source reference.
      * @return An InputSource, or null if Source can not be converted.
      */
     public static InputSource sourceToInputSource(Source source) {

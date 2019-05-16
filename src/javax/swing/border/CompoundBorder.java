@@ -13,7 +13,6 @@ import java.beans.ConstructorProperties;
  * A composite Border class used to compose two Border objects into a single
  * border by nesting an inside Border object within the insets of an outside
  * Border object.
- *
  * For example, this class may be used to add blank margin space to a component
  * with an existing decorative border:
  *
@@ -50,9 +49,9 @@ public class CompoundBorder extends AbstractBorder {
      * Either border may be null.
      * 
      * @param outsideBorder
-     *                      the outside border
+     *        the outside border
      * @param insideBorder
-     *                      the inside border to be nested
+     *        the inside border to be nested
      */
     @ConstructorProperties({ "outsideBorder", "insideBorder" })
     public CompoundBorder(Border outsideBorder, Border insideBorder) {
@@ -68,8 +67,8 @@ public class CompoundBorder extends AbstractBorder {
      */
     @Override
     public boolean isBorderOpaque() {
-        return (outsideBorder == null || outsideBorder.isBorderOpaque())
-                && (insideBorder == null || insideBorder.isBorderOpaque());
+        return (outsideBorder == null || outsideBorder.isBorderOpaque()) && (insideBorder == null
+                || insideBorder.isBorderOpaque());
     }
 
     /**
@@ -78,20 +77,19 @@ public class CompoundBorder extends AbstractBorder {
      * specified position and size offset by the insets of the outside border.
      * 
      * @param c
-     *               the component for which this border is being painted
+     *        the component for which this border is being painted
      * @param g
-     *               the paint graphics
+     *        the paint graphics
      * @param x
-     *               the x position of the painted border
+     *        the x position of the painted border
      * @param y
-     *               the y position of the painted border
+     *        the y position of the painted border
      * @param width
-     *               the width of the painted border
+     *        the width of the painted border
      * @param height
-     *               the height of the painted border
+     *        the height of the painted border
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         Insets nextInsets;
         int px, py, pw, ph;
 
@@ -118,9 +116,9 @@ public class CompoundBorder extends AbstractBorder {
      * Reinitialize the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         Insets nextInsets;

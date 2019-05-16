@@ -32,8 +32,7 @@ public class BasicToggleButtonUI extends BasicButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent b) {
         AppContext appContext = AppContext.getAppContext();
-        BasicToggleButtonUI toggleButtonUI = (BasicToggleButtonUI) appContext
-                .get(BASIC_TOGGLE_BUTTON_UI_KEY);
+        BasicToggleButtonUI toggleButtonUI = (BasicToggleButtonUI) appContext.get(BASIC_TOGGLE_BUTTON_UI_KEY);
         if (toggleButtonUI == null) {
             toggleButtonUI = new BasicToggleButtonUI();
             appContext.put(BASIC_TOGGLE_BUTTON_UI_KEY, toggleButtonUI);
@@ -71,11 +70,10 @@ public class BasicToggleButtonUI extends BasicButtonUI {
         g.setFont(f);
 
         // layout the text and icon
-        String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(), b
-                .getIcon(), b.getVerticalAlignment(), b
-                        .getHorizontalAlignment(), b.getVerticalTextPosition(),
-                b.getHorizontalTextPosition(), viewRect, iconRect, textRect, b
-                        .getText() == null ? 0 : b.getIconTextGap());
+        String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(), b.getIcon(), b
+                .getVerticalAlignment(), b.getHorizontalAlignment(), b.getVerticalTextPosition(), b
+                        .getHorizontalTextPosition(), viewRect, iconRect, textRect, b.getText() == null ? 0
+                                : b.getIconTextGap());
 
         g.setColor(b.getBackground());
 

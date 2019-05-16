@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for an @deprecated block tag.
- *
  * <p>
  * &#064;deprecated deprecated text.
  *

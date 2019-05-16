@@ -19,7 +19,6 @@ import javax.imageio.spi.ServiceRegistry;
  * @see javax.imageio.spi.ImageWriterSpi
  * @see javax.imageio.spi.ImageTranscoderSpi
  * @see javax.imageio.spi.ImageInputStreamSpi
- *
  */
 public abstract class IIOServiceProvider implements RegisterableService {
 
@@ -42,16 +41,15 @@ public abstract class IIOServiceProvider implements RegisterableService {
      * and version identifier.
      *
      * @param vendorName
-     *                   the vendor name.
+     *        the vendor name.
      * @param version
-     *                   a version identifier.
-     *
+     *        a version identifier.
      * @exception IllegalArgumentException
-     *                                     if <code>vendorName</code> is
-     *                                     <code>null</code>.
+     *            if <code>vendorName</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if <code>version</code> is
-     *                                     <code>null</code>.
+     *            if <code>version</code> is
+     *            <code>null</code>.
      */
     public IIOServiceProvider(String vendorName, String version) {
         if (vendorName == null) {
@@ -80,10 +78,8 @@ public abstract class IIOServiceProvider implements RegisterableService {
      * example that native libraries can be loaded. If the service cannot
      * function in the environment where it finds itself, it should deregister
      * itself from the registry.
-     *
      * <p>
      * Only the registry should call this method.
-     *
      * <p>
      * The default implementation does nothing.
      *
@@ -94,10 +90,8 @@ public abstract class IIOServiceProvider implements RegisterableService {
     /**
      * A callback that will be whenever the Spi class has been deregistered from
      * a <code>ServiceRegistry</code>.
-     *
      * <p>
      * Only the registry should call this method.
-     *
      * <p>
      * The default implementation does nothing.
      *
@@ -109,7 +103,6 @@ public abstract class IIOServiceProvider implements RegisterableService {
      * Returns the name of the vendor responsible for creating this service
      * provider and its associated implementation. Because the vendor name may
      * be used to select a service provider, it is not localized.
-     *
      * <p>
      * The default implementation returns the value of the
      * <code>vendorName</code> instance variable.
@@ -126,7 +119,6 @@ public abstract class IIOServiceProvider implements RegisterableService {
      * and its associated implementation. Because the version may be used by
      * transcoders to identify the service providers they understand, this
      * method is not localized.
-     *
      * <p>
      * The default implementation returns the value of the <code>version</code>
      * instance variable.
@@ -144,9 +136,8 @@ public abstract class IIOServiceProvider implements RegisterableService {
      * for the supplied <code>Locale</code>, if possible.
      *
      * @param locale
-     *               a <code>Locale</code> for which the return value should be
-     *               localized.
-     *
+     *        a <code>Locale</code> for which the return value should be
+     *        localized.
      * @return a <code>String</code> containing a description of this service
      *         provider.
      */

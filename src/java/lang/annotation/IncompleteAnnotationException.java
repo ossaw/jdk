@@ -28,16 +28,14 @@ public class IncompleteAnnotationException extends RuntimeException {
      * element was missing from the specified annotation type.
      *
      * @param annotationType
-     *                       the Class object for the annotation type
+     *        the Class object for the annotation type
      * @param elementName
-     *                       the name of the missing element
+     *        the name of the missing element
      * @throws NullPointerException
-     *                              if either parameter is {@code null}
+     *         if either parameter is {@code null}
      */
-    public IncompleteAnnotationException(
-            Class<? extends Annotation> annotationType, String elementName) {
-        super(annotationType.getName() + " missing element " + elementName
-                .toString());
+    public IncompleteAnnotationException(Class<? extends Annotation> annotationType, String elementName) {
+        super(annotationType.getName() + " missing element " + elementName.toString());
 
         this.annotationType = annotationType;
         this.elementName = elementName;

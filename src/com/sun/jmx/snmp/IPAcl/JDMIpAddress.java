@@ -35,8 +35,7 @@ class JDMIpAddress extends Host {
         return address.toString();
     }
 
-    protected PrincipalImpl createAssociatedPrincipal()
-            throws UnknownHostException {
+    protected PrincipalImpl createAssociatedPrincipal() throws UnknownHostException {
         return new PrincipalImpl(address.toString());
     }
 }

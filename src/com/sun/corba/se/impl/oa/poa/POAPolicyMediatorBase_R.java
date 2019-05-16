@@ -57,13 +57,11 @@ public abstract class POAPolicyMediatorBase_R extends POAPolicyMediatorBase {
         return internalKeyToServant(key);
     }
 
-    protected void activateServant(ActiveObjectMap.Key key, AOMEntry entry,
-            Servant servant) {
+    protected void activateServant(ActiveObjectMap.Key key, AOMEntry entry, Servant servant) {
         setDelegate(servant, key.id);
 
         if (orb.shutdownDebugFlag) {
-            System.out.println("Activating object " + servant + " with POA "
-                    + poa);
+            System.out.println("Activating object " + servant + " with POA " + poa);
         }
 
         activeObjectMap.putServant(servant, entry);
@@ -75,8 +73,8 @@ public abstract class POAPolicyMediatorBase_R extends POAPolicyMediatorBase {
         }
     }
 
-    public final void activateObject(byte[] id, Servant servant)
-            throws WrongPolicy, ServantAlreadyActive, ObjectAlreadyActive {
+    public final void activateObject(byte[] id, Servant servant) throws WrongPolicy, ServantAlreadyActive,
+            ObjectAlreadyActive {
         if (isUnique && activeObjectMap.contains(servant))
             throw new ServantAlreadyActive();
         ActiveObjectMap.Key key = new ActiveObjectMap.Key(id);
@@ -88,14 +86,13 @@ public abstract class POAPolicyMediatorBase_R extends POAPolicyMediatorBase {
         activateServant(key, entry, servant);
     }
 
-    public Servant deactivateObject(byte[] id) throws ObjectNotActive,
-            WrongPolicy {
+    public Servant deactivateObject(byte[] id) throws ObjectNotActive, WrongPolicy {
         ActiveObjectMap.Key key = new ActiveObjectMap.Key(id);
         return deactivateObject(key);
     }
 
-    protected void deactivateHelper(ActiveObjectMap.Key key, AOMEntry entry,
-            Servant s) throws ObjectNotActive, WrongPolicy {
+    protected void deactivateHelper(ActiveObjectMap.Key key, AOMEntry entry, Servant s)
+            throws ObjectNotActive, WrongPolicy {
         // Default does nothing, but the USE_SERVANT_MANAGER case
         // must handle etherealization
 
@@ -108,8 +105,7 @@ public abstract class POAPolicyMediatorBase_R extends POAPolicyMediatorBase {
         }
     }
 
-    public Servant deactivateObject(ActiveObjectMap.Key key)
-            throws ObjectNotActive, WrongPolicy {
+    public Servant deactivateObject(ActiveObjectMap.Key key) throws ObjectNotActive, WrongPolicy {
         if (orb.poaDebugFlag) {
             ORBUtility.dprint(this, "Calling deactivateObject for key " + key);
         }
@@ -124,8 +120,7 @@ public abstract class POAPolicyMediatorBase_R extends POAPolicyMediatorBase {
                 throw new ObjectNotActive();
 
             if (orb.poaDebugFlag) {
-                System.out.println("Deactivating object " + s + " with POA "
-                        + poa);
+                System.out.println("Deactivating object " + s + " with POA " + poa);
             }
 
             deactivateHelper(key, entry, s);
@@ -138,8 +133,7 @@ public abstract class POAPolicyMediatorBase_R extends POAPolicyMediatorBase {
         }
     }
 
-    public byte[] servantToId(Servant servant) throws ServantNotActive,
-            WrongPolicy {
+    public byte[] servantToId(Servant servant) throws ServantNotActive, WrongPolicy {
         // XXX needs to handle call from an invocation on this POA
 
         if (!isUnique && !isImplicit)

@@ -22,8 +22,8 @@ public interface PreferenceChangeListener extends java.util.EventListener {
      * <p>
      * 
      * @param evt
-     *            A PreferenceChangeEvent object describing the event source and
-     *            the preference that has changed.
+     *        A PreferenceChangeEvent object describing the event source and
+     *        the preference that has changed.
      */
     void preferenceChange(PreferenceChangeEvent evt);
 }

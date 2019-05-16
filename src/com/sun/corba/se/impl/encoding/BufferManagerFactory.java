@@ -31,8 +31,7 @@ public class BufferManagerFactory {
     // version.
     // We may want more criteria to be involved in this decision.
     // These are only used for sending messages (so could be fragmenting)
-    public static BufferManagerRead newBufferManagerRead(GIOPVersion version,
-            byte encodingVersion, ORB orb) {
+    public static BufferManagerRead newBufferManagerRead(GIOPVersion version, byte encodingVersion, ORB orb) {
 
         // REVISIT - On the reading side, shouldn't we monitor the incoming
         // fragments on a given connection to determine what fragment size
@@ -56,13 +55,12 @@ public class BufferManagerFactory {
         }
     }
 
-    public static BufferManagerRead newBufferManagerRead(int strategy,
-            byte encodingVersion, ORB orb) {
+    public static BufferManagerRead newBufferManagerRead(int strategy, byte encodingVersion, ORB orb) {
 
         if (encodingVersion != Message.CDR_ENC_VERSION) {
             if (strategy != BufferManagerFactory.GROW) {
-                ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                        (ORB) orb, CORBALogDomains.RPC_ENCODING);
+                ORBUtilSystemException wrapper = ORBUtilSystemException.get((ORB) orb,
+                        CORBALogDomains.RPC_ENCODING);
                 throw wrapper.invalidBuffMgrStrategy("newBufferManagerRead");
             }
             return new BufferManagerReadGrow(orb);
@@ -75,17 +73,15 @@ public class BufferManagerFactory {
             case BufferManagerFactory.STREAM:
                 return new BufferManagerReadStream(orb);
             default:
-                throw new INTERNAL("Unknown buffer manager read strategy: "
-                        + strategy);
+                throw new INTERNAL("Unknown buffer manager read strategy: " + strategy);
         }
     }
 
-    public static BufferManagerWrite newBufferManagerWrite(int strategy,
-            byte encodingVersion, ORB orb) {
+    public static BufferManagerWrite newBufferManagerWrite(int strategy, byte encodingVersion, ORB orb) {
         if (encodingVersion != Message.CDR_ENC_VERSION) {
             if (strategy != BufferManagerFactory.GROW) {
-                ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                        (ORB) orb, CORBALogDomains.RPC_ENCODING);
+                ORBUtilSystemException wrapper = ORBUtilSystemException.get((ORB) orb,
+                        CORBALogDomains.RPC_ENCODING);
                 throw wrapper.invalidBuffMgrStrategy("newBufferManagerWrite");
             }
             return new BufferManagerWriteGrow(orb);
@@ -98,18 +94,17 @@ public class BufferManagerFactory {
             case BufferManagerFactory.STREAM:
                 return new BufferManagerWriteStream(orb);
             default:
-                throw new INTERNAL("Unknown buffer manager write strategy: "
-                        + strategy);
+                throw new INTERNAL("Unknown buffer manager write strategy: " + strategy);
         }
     }
 
-    public static BufferManagerWrite newBufferManagerWrite(GIOPVersion version,
-            byte encodingVersion, ORB orb) {
+    public static BufferManagerWrite newBufferManagerWrite(GIOPVersion version, byte encodingVersion,
+            ORB orb) {
         if (encodingVersion != Message.CDR_ENC_VERSION) {
             return new BufferManagerWriteGrow(orb);
         }
-        return BufferManagerFactory.newBufferManagerWrite(orb.getORBData()
-                .getGIOPBuffMgrStrategy(version), encodingVersion, orb);
+        return BufferManagerFactory.newBufferManagerWrite(orb.getORBData().getGIOPBuffMgrStrategy(version),
+                encodingVersion, orb);
     }
 
     public static BufferManagerRead defaultBufferManagerRead(ORB orb) {

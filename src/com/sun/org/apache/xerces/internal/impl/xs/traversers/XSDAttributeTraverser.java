@@ -38,14 +38,12 @@ import org.w3c.dom.Element;
 
 /**
  * The attribute declaration schema component traverser.
- *
  * <attribute default = string fixed = string form = (qualified | unqualified)
  * id = ID name = NCName ref = QName type = QName use = (optional | prohibited |
  * required) : optional {any attributes with non-schema namespace . . .}>
  * Content: (annotation?, (simpleType?)) </attribute>
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @version $Id: XSDAttributeTraverser.java,v 1.7 2010-11-01 04:40:02 joehw Exp
@@ -53,18 +51,15 @@ import org.w3c.dom.Element;
  */
 class XSDAttributeTraverser extends XSDAbstractTraverser {
 
-    public XSDAttributeTraverser(XSDHandler handler,
-            XSAttributeChecker gAttrCheck) {
+    public XSDAttributeTraverser(XSDHandler handler, XSAttributeChecker gAttrCheck) {
         super(handler, gAttrCheck);
     }
 
-    protected XSAttributeUseImpl traverseLocal(Element attrDecl,
-            XSDocumentInfo schemaDoc, SchemaGrammar grammar,
-            XSComplexTypeDecl enclosingCT) {
+    protected XSAttributeUseImpl traverseLocal(Element attrDecl, XSDocumentInfo schemaDoc,
+            SchemaGrammar grammar, XSComplexTypeDecl enclosingCT) {
 
         // General Attribute Checking
-        Object[] attrValues = fAttrChecker.checkAttributes(attrDecl, false,
-                schemaDoc);
+        Object[] attrValues = fAttrChecker.checkAttributes(attrDecl, false, schemaDoc);
 
         String defaultAtt = (String) attrValues[XSAttributeChecker.ATTIDX_DEFAULT];
         String fixedAtt = (String) attrValues[XSAttributeChecker.ATTIDX_FIXED];
@@ -77,26 +72,23 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
         XSAnnotationImpl annotation = null;
         if (attrDecl.getAttributeNode(SchemaSymbols.ATT_REF) != null) {
             if (refAtt != null) {
-                attribute = (XSAttributeDecl) fSchemaHandler.getGlobalDecl(
-                        schemaDoc, XSDHandler.ATTRIBUTE_TYPE, refAtt, attrDecl);
+                attribute = (XSAttributeDecl) fSchemaHandler.getGlobalDecl(schemaDoc,
+                        XSDHandler.ATTRIBUTE_TYPE, refAtt, attrDecl);
 
                 Element child = DOMUtil.getFirstChildElement(attrDecl);
-                if (child != null && DOMUtil.getLocalName(child).equals(
-                        SchemaSymbols.ELT_ANNOTATION)) {
-                    annotation = traverseAnnotationDecl(child, attrValues,
-                            false, schemaDoc);
+                if (child != null && DOMUtil.getLocalName(child).equals(SchemaSymbols.ELT_ANNOTATION)) {
+                    annotation = traverseAnnotationDecl(child, attrValues, false, schemaDoc);
                     child = DOMUtil.getNextSiblingElement(child);
                 } else {
                     String text = DOMUtil.getSyntheticAnnotation(attrDecl);
                     if (text != null) {
-                        annotation = traverseSyntheticAnnotation(attrDecl, text,
-                                attrValues, false, schemaDoc);
+                        annotation = traverseSyntheticAnnotation(attrDecl, text, attrValues, false,
+                                schemaDoc);
                     }
                 }
 
                 if (child != null) {
-                    reportSchemaError("src-attribute.3.2", new Object[] {
-                            refAtt.rawname }, child);
+                    reportSchemaError("src-attribute.3.2", new Object[] { refAtt.rawname }, child);
                 }
                 // for error reporting
                 nameAtt = refAtt.localpart;
@@ -104,8 +96,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
                 attribute = null;
             }
         } else {
-            attribute = traverseNamedAttr(attrDecl, attrValues, schemaDoc,
-                    grammar, false, enclosingCT);
+            attribute = traverseNamedAttr(attrDecl, attrValues, schemaDoc, grammar, false, enclosingCT);
         }
 
         // get 'value constraint'
@@ -151,16 +142,14 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
 
         // 1 default and fixed must not both be present.
         if (defaultAtt != null && fixedAtt != null) {
-            reportSchemaError("src-attribute.1", new Object[] { nameAtt },
-                    attrDecl);
+            reportSchemaError("src-attribute.1", new Object[] { nameAtt }, attrDecl);
         }
 
         // 2 If default and use are both present, use must have the actual value
         // optional.
         if (consType == XSConstants.VC_DEFAULT && useAtt != null && useAtt
                 .intValue() != SchemaSymbols.USE_OPTIONAL) {
-            reportSchemaError("src-attribute.2", new Object[] { nameAtt },
-                    attrDecl);
+            reportSchemaError("src-attribute.2", new Object[] { nameAtt }, attrDecl);
             // Recover by honouring the default value
             attrUse.fUse = SchemaSymbols.USE_OPTIONAL;
         }
@@ -176,8 +165,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
                 checkDefaultValid(attrUse);
             } catch (InvalidDatatypeValueException ide) {
                 reportSchemaError(ide.getKey(), ide.getArgs(), attrDecl);
-                reportSchemaError("a-props-correct.2", new Object[] { nameAtt,
-                        defaultAtt }, attrDecl);
+                reportSchemaError("a-props-correct.2", new Object[] { nameAtt, defaultAtt }, attrDecl);
                 // Recover by removing the default value
                 attrUse.fDefault = null;
                 attrUse.fConstraintType = XSConstants.VC_NONE;
@@ -186,8 +174,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
             // 3 If the {type definition} is or is derived from ID then there
             // must not be a {value constraint}.
             if (((XSSimpleType) attribute.getTypeDefinition()).isIDType()) {
-                reportSchemaError("a-props-correct.3", new Object[] { nameAtt },
-                        attrDecl);
+                reportSchemaError("a-props-correct.3", new Object[] { nameAtt }, attrDecl);
                 // Recover by removing the default value
                 attrUse.fDefault = null;
                 attrUse.fConstraintType = XSConstants.VC_NONE;
@@ -201,12 +188,10 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
             // {attribute declaration}'s {value constraint}.
             if (attrUse.fAttrDecl.getConstraintType() == XSConstants.VC_FIXED
                     && attrUse.fConstraintType != XSConstants.VC_NONE) {
-                if (attrUse.fConstraintType != XSConstants.VC_FIXED
-                        || !attrUse.fAttrDecl.getValInfo().actualValue.equals(
-                                attrUse.fDefault.actualValue)) {
-                    reportSchemaError("au-props-correct.2", new Object[] {
-                            nameAtt, attrUse.fAttrDecl.getValInfo()
-                                    .stringValue() }, attrDecl);
+                if (attrUse.fConstraintType != XSConstants.VC_FIXED || !attrUse.fAttrDecl
+                        .getValInfo().actualValue.equals(attrUse.fDefault.actualValue)) {
+                    reportSchemaError("au-props-correct.2", new Object[] { nameAtt, attrUse.fAttrDecl
+                            .getValInfo().stringValue() }, attrDecl);
                     // Recover by using the decl's {value constraint}
                     attrUse.fDefault = attrUse.fAttrDecl.getValInfo();
                     attrUse.fConstraintType = XSConstants.VC_FIXED;
@@ -218,14 +203,12 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
         return attrUse;
     }
 
-    protected XSAttributeDecl traverseGlobal(Element attrDecl,
-            XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
+    protected XSAttributeDecl traverseGlobal(Element attrDecl, XSDocumentInfo schemaDoc,
+            SchemaGrammar grammar) {
 
         // General Attribute Checking
-        Object[] attrValues = fAttrChecker.checkAttributes(attrDecl, true,
-                schemaDoc);
-        XSAttributeDecl attribute = traverseNamedAttr(attrDecl, attrValues,
-                schemaDoc, grammar, true, null);
+        Object[] attrValues = fAttrChecker.checkAttributes(attrDecl, true, schemaDoc);
+        XSAttributeDecl attribute = traverseNamedAttr(attrDecl, attrValues, schemaDoc, grammar, true, null);
         fAttrChecker.returnAttrArray(attrValues, schemaDoc);
         return attribute;
 
@@ -241,9 +224,8 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
      * @param isGlobal
      * @return the attribute declaration index
      */
-    XSAttributeDecl traverseNamedAttr(Element attrDecl, Object[] attrValues,
-            XSDocumentInfo schemaDoc, SchemaGrammar grammar, boolean isGlobal,
-            XSComplexTypeDecl enclosingCT) {
+    XSAttributeDecl traverseNamedAttr(Element attrDecl, Object[] attrValues, XSDocumentInfo schemaDoc,
+            SchemaGrammar grammar, boolean isGlobal, XSComplexTypeDecl enclosingCT) {
 
         String defaultAtt = (String) attrValues[XSAttributeChecker.ATTIDX_DEFAULT];
         String fixedAtt = (String) attrValues[XSAttributeChecker.ATTIDX_FIXED];
@@ -301,16 +283,13 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
         // get 'annotation'
         Element child = DOMUtil.getFirstChildElement(attrDecl);
         XSAnnotationImpl annotation = null;
-        if (child != null && DOMUtil.getLocalName(child).equals(
-                SchemaSymbols.ELT_ANNOTATION)) {
-            annotation = traverseAnnotationDecl(child, attrValues, false,
-                    schemaDoc);
+        if (child != null && DOMUtil.getLocalName(child).equals(SchemaSymbols.ELT_ANNOTATION)) {
+            annotation = traverseAnnotationDecl(child, attrValues, false, schemaDoc);
             child = DOMUtil.getNextSiblingElement(child);
         } else {
             String text = DOMUtil.getSyntheticAnnotation(attrDecl);
             if (text != null) {
-                annotation = traverseSyntheticAnnotation(attrDecl, text,
-                        attrValues, false, schemaDoc);
+                annotation = traverseSyntheticAnnotation(attrDecl, text, attrValues, false, schemaDoc);
             }
         }
 
@@ -323,8 +302,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
             String childName = DOMUtil.getLocalName(child);
 
             if (childName.equals(SchemaSymbols.ELT_SIMPLETYPE)) {
-                attrType = fSchemaHandler.fSimpleTypeTraverser.traverseLocal(
-                        child, schemaDoc, grammar);
+                attrType = fSchemaHandler.fSimpleTypeTraverser.traverseLocal(child, schemaDoc, grammar);
                 haveAnonType = true;
                 child = DOMUtil.getNextSiblingElement(child);
             }
@@ -332,15 +310,13 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
 
         // Handle type attribute
         if (attrType == null && typeAtt != null) {
-            XSTypeDefinition type = (XSTypeDefinition) fSchemaHandler
-                    .getGlobalDecl(schemaDoc, XSDHandler.TYPEDECL_TYPE, typeAtt,
-                            attrDecl);
-            if (type != null && type
-                    .getTypeCategory() == XSTypeDefinition.SIMPLE_TYPE) {
+            XSTypeDefinition type = (XSTypeDefinition) fSchemaHandler.getGlobalDecl(schemaDoc,
+                    XSDHandler.TYPEDECL_TYPE, typeAtt, attrDecl);
+            if (type != null && type.getTypeCategory() == XSTypeDefinition.SIMPLE_TYPE) {
                 attrType = (XSSimpleType) type;
             } else {
-                reportSchemaError("src-resolve", new Object[] { typeAtt.rawname,
-                        "simpleType definition" }, attrDecl);
+                reportSchemaError("src-resolve", new Object[] { typeAtt.rawname, "simpleType definition" },
+                        attrDecl);
                 if (type == null) {
                     attribute.fUnresolvedTypeName = typeAtt;
                 }
@@ -358,17 +334,16 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
         } else {
             annotations = XSObjectListImpl.EMPTY_LIST;
         }
-        attribute.setValues(nameAtt, tnsAtt, attrType, constraintType, scope,
-                attDefault, enclCT, annotations);
+        attribute.setValues(nameAtt, tnsAtt, attrType, constraintType, scope, attDefault, enclCT,
+                annotations);
 
         // Step 3: check against schema for schemas
 
         // required attributes
         if (nameAtt == null) {
             if (isGlobal)
-                reportSchemaError("s4s-att-must-appear", new Object[] {
-                        SchemaSymbols.ELT_ATTRIBUTE, SchemaSymbols.ATT_NAME },
-                        attrDecl);
+                reportSchemaError("s4s-att-must-appear", new Object[] { SchemaSymbols.ELT_ATTRIBUTE,
+                        SchemaSymbols.ATT_NAME }, attrDecl);
             else
                 reportSchemaError("src-attribute.3.1", null, attrDecl);
             nameAtt = NO_NAME;
@@ -376,9 +351,8 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
 
         // element
         if (child != null) {
-            reportSchemaError("s4s-elt-must-match.1", new Object[] { nameAtt,
-                    "(annotation?, (simpleType?))", DOMUtil.getLocalName(
-                            child) }, child);
+            reportSchemaError("s4s-elt-must-match.1", new Object[] { nameAtt, "(annotation?, (simpleType?))",
+                    DOMUtil.getLocalName(child) }, child);
         }
 
         // Step 4: check 3.2.3 constraints
@@ -387,8 +361,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
 
         // 1 default and fixed must not both be present.
         if (defaultAtt != null && fixedAtt != null) {
-            reportSchemaError("src-attribute.1", new Object[] { nameAtt },
-                    attrDecl);
+            reportSchemaError("src-attribute.1", new Object[] { nameAtt }, attrDecl);
         }
 
         // 2 If default and use are both present, use must have the actual value
@@ -407,8 +380,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
 
         // 4 type and <simpleType> must not both be present.
         if (haveAnonType && (typeAtt != null)) {
-            reportSchemaError("src-attribute.4", new Object[] { nameAtt },
-                    attrDecl);
+            reportSchemaError("src-attribute.4", new Object[] { nameAtt }, attrDecl);
         }
 
         // Step 5: check 3.2.6 constraints
@@ -426,13 +398,13 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
                 checkDefaultValid(attribute);
             } catch (InvalidDatatypeValueException ide) {
                 reportSchemaError(ide.getKey(), ide.getArgs(), attrDecl);
-                reportSchemaError("a-props-correct.2", new Object[] { nameAtt,
-                        attDefault.normalizedValue }, attrDecl);
+                reportSchemaError("a-props-correct.2", new Object[] { nameAtt, attDefault.normalizedValue },
+                        attrDecl);
                 // Recover by removing the default value
                 attDefault = null;
                 constraintType = XSConstants.VC_NONE;
-                attribute.setValues(nameAtt, tnsAtt, attrType, constraintType,
-                        scope, attDefault, enclCT, annotations);
+                attribute.setValues(nameAtt, tnsAtt, attrType, constraintType, scope, attDefault, enclCT,
+                        annotations);
             }
         }
 
@@ -440,13 +412,12 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
         // not be a {value constraint}.
         if (attDefault != null) {
             if (attrType.isIDType()) {
-                reportSchemaError("a-props-correct.3", new Object[] { nameAtt },
-                        attrDecl);
+                reportSchemaError("a-props-correct.3", new Object[] { nameAtt }, attrDecl);
                 // Recover by removing the default value
                 attDefault = null;
                 constraintType = XSConstants.VC_NONE;
-                attribute.setValues(nameAtt, tnsAtt, attrType, constraintType,
-                        scope, attDefault, enclCT, annotations);
+                attribute.setValues(nameAtt, tnsAtt, attrType, constraintType, scope, attDefault, enclCT,
+                        annotations);
             }
         }
 
@@ -465,8 +436,7 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
         // (unless it is one of the four built-in declarations given in the next
         // section).
         if (tnsAtt != null && tnsAtt.equals(SchemaSymbols.URI_XSI)) {
-            reportSchemaError("no-xsi", new Object[] { SchemaSymbols.URI_XSI },
-                    attrDecl);
+            reportSchemaError("no-xsi", new Object[] { SchemaSymbols.URI_XSI }, attrDecl);
             return null;
         }
 
@@ -481,10 +451,8 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
             }
 
             // also add it to extended map
-            final String loc = fSchemaHandler.schemaDocument2SystemId(
-                    schemaDoc);
-            final XSAttributeDecl attribute2 = grammar.getGlobalAttributeDecl(
-                    nameAtt, loc);
+            final String loc = fSchemaHandler.schemaDocument2SystemId(schemaDoc);
+            final XSAttributeDecl attribute2 = grammar.getGlobalAttributeDecl(nameAtt, loc);
             if (attribute2 == null) {
                 grammar.addGlobalAttributeDecl(attribute, loc);
             }
@@ -501,29 +469,23 @@ class XSDAttributeTraverser extends XSDAbstractTraverser {
     }
 
     // throws an error if the constraint value is invalid for the given type
-    void checkDefaultValid(XSAttributeDecl attribute)
-            throws InvalidDatatypeValueException {
+    void checkDefaultValid(XSAttributeDecl attribute) throws InvalidDatatypeValueException {
         // validate the original lexical rep, and set the actual value
-        ((XSSimpleType) attribute.getTypeDefinition()).validate(attribute
-                .getValInfo().normalizedValue, fValidationState, attribute
-                        .getValInfo());
+        ((XSSimpleType) attribute.getTypeDefinition()).validate(attribute.getValInfo().normalizedValue,
+                fValidationState, attribute.getValInfo());
         // validate the canonical lexical rep
-        ((XSSimpleType) attribute.getTypeDefinition()).validate(attribute
-                .getValInfo().stringValue(), fValidationState, attribute
-                        .getValInfo());
+        ((XSSimpleType) attribute.getTypeDefinition()).validate(attribute.getValInfo().stringValue(),
+                fValidationState, attribute.getValInfo());
     }
 
     // throws an error if the constraint value is invalid for the given type
-    void checkDefaultValid(XSAttributeUseImpl attrUse)
-            throws InvalidDatatypeValueException {
+    void checkDefaultValid(XSAttributeUseImpl attrUse) throws InvalidDatatypeValueException {
         // validate the original lexical rep, and set the actual value
-        ((XSSimpleType) attrUse.fAttrDecl.getTypeDefinition()).validate(
-                attrUse.fDefault.normalizedValue, fValidationState,
-                attrUse.fDefault);
+        ((XSSimpleType) attrUse.fAttrDecl.getTypeDefinition()).validate(attrUse.fDefault.normalizedValue,
+                fValidationState, attrUse.fDefault);
         // validate the canonical lexical rep
-        ((XSSimpleType) attrUse.fAttrDecl.getTypeDefinition()).validate(
-                attrUse.fDefault.stringValue(), fValidationState,
-                attrUse.fDefault);
+        ((XSSimpleType) attrUse.fAttrDecl.getTypeDefinition()).validate(attrUse.fDefault.stringValue(),
+                fValidationState, attrUse.fDefault);
     }
 
 }

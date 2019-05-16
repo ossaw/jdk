@@ -68,7 +68,6 @@ import com.sun.org.apache.xerces.internal.impl.Constants;
  * those values can be tailored by applications that care.
  *
  * @author Neil Graham, IBM
- *
  */
 public final class SecurityManager {
 
@@ -118,7 +117,7 @@ public final class SecurityManager {
      * </p>
      *
      * @param limit
-     *              the number of entity expansions permitted in a document
+     *        the number of entity expansions permitted in a document
      */
     public void setEntityExpansionLimit(int limit) {
         entityExpansionLimit = limit;
@@ -144,7 +143,7 @@ public final class SecurityManager {
      * </p>
      *
      * @param limit
-     *              the maximum value for maxOccurs other than "unbounded"
+     *        the maximum value for maxOccurs other than "unbounded"
      */
     public void setMaxOccurNodeLimit(int limit) {
         maxOccurLimit = limit;
@@ -181,8 +180,7 @@ public final class SecurityManager {
                     entityExpansionLimit = DEFAULT_ENTITY_EXPANSION_LIMIT;
             } else
                 entityExpansionLimit = DEFAULT_ENTITY_EXPANSION_LIMIT;
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
 
         try {
             String value = System.getProperty(Constants.MAX_OCCUR_LIMIT);
@@ -192,12 +190,10 @@ public final class SecurityManager {
                     maxOccurLimit = DEFAULT_MAX_OCCUR_NODE_LIMIT;
             } else
                 maxOccurLimit = DEFAULT_MAX_OCCUR_NODE_LIMIT;
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
 
         try {
-            String value = System.getProperty(
-                    Constants.ELEMENT_ATTRIBUTE_LIMIT);
+            String value = System.getProperty(Constants.ELEMENT_ATTRIBUTE_LIMIT);
             if (value != null && !value.equals("")) {
                 fElementAttributeLimit = Integer.parseInt(value);
                 if (fElementAttributeLimit < 0)
@@ -205,8 +201,7 @@ public final class SecurityManager {
             } else
                 fElementAttributeLimit = DEFAULT_ELEMENT_ATTRIBUTE_LIMIT;
 
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
 
     }
 

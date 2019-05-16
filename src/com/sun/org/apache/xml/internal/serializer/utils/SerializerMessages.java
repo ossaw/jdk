@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -60,22 +59,19 @@ public class SerializerMessages extends ListResourceBundle {
         Object[][] contents = new Object[][] { { MsgKey.BAD_MSGKEY,
                 "The message key ''{0}'' is not in the message class ''{1}''" },
 
-                { MsgKey.BAD_MSGFORMAT,
-                        "The format of message ''{0}'' in message class ''{1}'' failed." },
+                { MsgKey.BAD_MSGFORMAT, "The format of message ''{0}'' in message class ''{1}'' failed." },
 
                 { MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
                         "The serializer class ''{0}'' does not implement org.xml.sax.ContentHandler." },
 
-                { MsgKey.ER_RESOURCE_COULD_NOT_FIND,
-                        "The resource [ {0} ] could not be found.\n {1}" },
+                { MsgKey.ER_RESOURCE_COULD_NOT_FIND, "The resource [ {0} ] could not be found.\n {1}" },
 
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "The resource [ {0} ] could not load: {1} \n {2} \t {3}" },
 
                 { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Buffer size <=0" },
 
-                { MsgKey.ER_INVALID_UTF16_SURROGATE,
-                        "Invalid UTF-16 surrogate detected: {0} ?" },
+                { MsgKey.ER_INVALID_UTF16_SURROGATE, "Invalid UTF-16 surrogate detected: {0} ?" },
 
                 { MsgKey.ER_OIERROR, "IO error" },
 
@@ -87,8 +83,7 @@ public class SerializerMessages extends ListResourceBundle {
                  * a namespace prefix that was undefined. The value of the
                  * substitution text is the name of the prefix.
                  */
-                { MsgKey.ER_NAMESPACE_PREFIX,
-                        "Namespace for prefix ''{0}'' has not been declared." },
+                { MsgKey.ER_NAMESPACE_PREFIX, "Namespace for prefix ''{0}'' has not been declared." },
 
                 /*
                  * Note to translators: This message is reported if the
@@ -97,8 +92,7 @@ public class SerializerMessages extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { MsgKey.ER_STRAY_ATTRIBUTE,
-                        "Attribute ''{0}'' outside of element." },
+                { MsgKey.ER_STRAY_ATTRIBUTE, "Attribute ''{0}'' outside of element." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -107,8 +101,7 @@ public class SerializerMessages extends ListResourceBundle {
                  * {0} is the namespace prefix and {1} is the URI that was being
                  * used in the erroneous namespace declaration.
                  */
-                { MsgKey.ER_STRAY_NAMESPACE,
-                        "Namespace declaration ''{0}''=''{1}'' outside of element." },
+                { MsgKey.ER_STRAY_NAMESPACE, "Namespace declaration ''{0}''=''{1}'' outside of element." },
 
                 { MsgKey.ER_COULD_NOT_LOAD_RESOURCE,
                         "Could not load ''{0}'' (check CLASSPATH), now using just the defaults" },
@@ -121,37 +114,27 @@ public class SerializerMessages extends ListResourceBundle {
 
                 { MsgKey.ER_INVALID_PORT, "Invalid port number" },
 
-                { MsgKey.ER_PORT_WHEN_HOST_NULL,
-                        "Port cannot be set when host is null" },
+                { MsgKey.ER_PORT_WHEN_HOST_NULL, "Port cannot be set when host is null" },
 
-                { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
-                        "Host is not a well formed address" },
+                { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED, "Host is not a well formed address" },
 
-                { MsgKey.ER_SCHEME_NOT_CONFORMANT,
-                        "The scheme is not conformant." },
+                { MsgKey.ER_SCHEME_NOT_CONFORMANT, "The scheme is not conformant." },
 
-                { MsgKey.ER_SCHEME_FROM_NULL_STRING,
-                        "Cannot set scheme from null string" },
+                { MsgKey.ER_SCHEME_FROM_NULL_STRING, "Cannot set scheme from null string" },
 
-                { MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
-                        "Path contains invalid escape sequence" },
+                { MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE, "Path contains invalid escape sequence" },
 
-                { MsgKey.ER_PATH_INVALID_CHAR,
-                        "Path contains invalid character: {0}" },
+                { MsgKey.ER_PATH_INVALID_CHAR, "Path contains invalid character: {0}" },
 
-                { MsgKey.ER_FRAG_INVALID_CHAR,
-                        "Fragment contains invalid character" },
+                { MsgKey.ER_FRAG_INVALID_CHAR, "Fragment contains invalid character" },
 
-                { MsgKey.ER_FRAG_WHEN_PATH_NULL,
-                        "Fragment cannot be set when path is null" },
+                { MsgKey.ER_FRAG_WHEN_PATH_NULL, "Fragment cannot be set when path is null" },
 
-                { MsgKey.ER_FRAG_FOR_GENERIC_URI,
-                        "Fragment can only be set for a generic URI" },
+                { MsgKey.ER_FRAG_FOR_GENERIC_URI, "Fragment can only be set for a generic URI" },
 
                 { MsgKey.ER_NO_SCHEME_IN_URI, "No scheme found in URI" },
 
-                { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
-                        "Cannot initialize URI with empty parameters" },
+                { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS, "Cannot initialize URI with empty parameters" },
 
                 { MsgKey.ER_NO_FRAGMENT_STRING_IN_PATH,
                         "Fragment cannot be specified in both the path and fragment" },
@@ -159,8 +142,7 @@ public class SerializerMessages extends ListResourceBundle {
                 { MsgKey.ER_NO_QUERY_STRING_IN_PATH,
                         "Query string cannot be specified in path and query string" },
 
-                { MsgKey.ER_NO_PORT_IF_NO_HOST,
-                        "Port may not be specified if host is not specified" },
+                { MsgKey.ER_NO_PORT_IF_NO_HOST, "Port may not be specified if host is not specified" },
 
                 { MsgKey.ER_NO_USERINFO_IF_NO_HOST,
                         "Userinfo may not be specified if host is not specified" },

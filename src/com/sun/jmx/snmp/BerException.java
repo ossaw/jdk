@@ -7,7 +7,6 @@ package com.sun.jmx.snmp;
 
 /**
  * Exception thrown when a BER encoding/decoding error occurs.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>

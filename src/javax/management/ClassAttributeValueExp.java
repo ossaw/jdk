@@ -14,11 +14,9 @@ import com.sun.jmx.mbeanserver.GetPropertyAction;
  * It is used for performing queries based on the class of the MBean.
  * 
  * @serial include
- *
  *         <p>
  *         The <b>serialVersionUID</b> of this class is
  *         <code>-1081892073854801359L</code>.
- *
  * @since 1.5
  */
 @SuppressWarnings("serial") // serialVersionUID is not constant
@@ -54,7 +52,6 @@ class ClassAttributeValueExp extends AttributeValueExp {
 
     /**
      * @serial The name of the attribute
-     *
      *         <p>
      *         The <b>serialVersionUID</b> of this class is
      *         <code>-1081892073854801359L</code>.
@@ -78,18 +75,15 @@ class ClassAttributeValueExp extends AttributeValueExp {
      * Java implementation class of the MBean.
      *
      * @param name
-     *             The name of the MBean on which the ClassAttributeValueExp
-     *             will
-     *             be applied.
-     *
+     *        The name of the MBean on which the ClassAttributeValueExp
+     *        will
+     *        be applied.
      * @return The ValueExp.
-     *
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         // getAttribute(name);
         Object result = getValue(name);
         if (result instanceof String) {

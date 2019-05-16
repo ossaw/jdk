@@ -30,11 +30,9 @@ import com.sun.org.apache.xerces.internal.utils.SecuritySupport;
  * and for the Namespaces Recommendation
  *
  * @xerces.internal
- *
  * @author Eric Ye, IBM
  * @version $Id: XMLMessageFormatter_zh_CN.java 3094 2012-03-21 05:50:01Z joehw
  *          $
- *
  */
 public class XMLMessageFormatter_zh_CN implements MessageFormatter {
     /**
@@ -56,20 +54,18 @@ public class XMLMessageFormatter_zh_CN implements MessageFormatter {
      * information.
      *
      * @param locale
-     *                  The locale of the message.
+     *        The locale of the message.
      * @param key
-     *                  The message key.
+     *        The message key.
      * @param arguments
-     *                  The message replacement text arguments. The order of the
-     *                  arguments must match that of the placeholders in the
-     *                  actual
-     *                  message.
-     *
+     *        The message replacement text arguments. The order of the
+     *        arguments must match that of the placeholders in the
+     *        actual
+     *        message.
      * @return Returns the formatted message.
-     *
      * @throws MissingResourceException
-     *                                  Thrown if the message with the specified
-     *                                  key cannot be found.
+     *         Thrown if the message with the specified
+     *         key cannot be found.
      */
     public String formatMessage(Locale locale, String key, Object[] arguments)
             throws MissingResourceException {
@@ -77,8 +73,7 @@ public class XMLMessageFormatter_zh_CN implements MessageFormatter {
         if (fResourceBundle == null || locale != fLocale) {
             if (locale != null) {
                 fResourceBundle = SecuritySupport.getResourceBundle(
-                        "com.sun.org.apache.xerces.internal.impl.msg.XMLMessages",
-                        locale);
+                        "com.sun.org.apache.xerces.internal.impl.msg.XMLMessages", locale);
                 // memorize the most-recent locale
                 fLocale = locale;
             }

@@ -32,8 +32,6 @@ import org.w3c.dom.xpath.XPathNamespace;
 import org.w3c.dom.UserDataHandler;
 
 /**
- *
- *
  * The <code>XPathNamespace</code> interface is returned by
  * <code>XPathResult</code> interfaces to represent the XPath namespace node
  * type that DOM lacks. There is no public constructor for this node type.
@@ -72,7 +70,6 @@ import org.w3c.dom.UserDataHandler;
  * See also the
  * <a href='http://www.w3.org/TR/2004/NOTE-DOM-Level-3-XPath-20040226'>Document
  * Object Model (DOM) Level 3 XPath Specification</a>.
- *
  * This implementation wraps the DOM attribute node that contained the namespace
  * declaration.
  * 
@@ -316,8 +313,7 @@ class XPathNamespaceImpl implements XPathNamespace {
         return null; // PENDING
     }
 
-    public Object setUserData(String key, Object data,
-            UserDataHandler handler) {
+    public Object setUserData(String key, Object data, UserDataHandler handler) {
         return null; // PENDING
     }
 

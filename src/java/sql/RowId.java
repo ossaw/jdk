@@ -6,7 +6,6 @@
 package java.sql;
 
 /**
- *
  * The representation (mapping) in the Java programming language of an SQL ROWID
  * value. An SQL ROWID is a built-in type, a value of which can be thought of as
  * an address for its identified row in a database table. Whether that address
@@ -54,8 +53,8 @@ public interface RowId {
      * but still not identify the same row.
      *
      * @param obj
-     *            the <code>Object</code> to compare this <code>RowId</code>
-     *            object against.
+     *        the <code>Object</code> to compare this <code>RowId</code>
+     *        object against.
      * @return true if the <code>RowId</code>s are equal; false otherwise
      * @since 1.6
      */

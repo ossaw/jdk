@@ -51,7 +51,7 @@ public class ObjectPool implements java.io.Serializable {
      * Constructor ObjectPool
      *
      * @param type
-     *             Type of objects for this pool
+     *        Type of objects for this pool
      */
     public ObjectPool(Class type) {
         objectType = type;
@@ -62,8 +62,8 @@ public class ObjectPool implements java.io.Serializable {
      * Constructor ObjectPool
      *
      * @param className
-     *                  Fully qualified name of the type of objects for this
-     *                  pool.
+     *        Fully qualified name of the type of objects for this
+     *        pool.
      */
     public ObjectPool(String className) {
         try {
@@ -77,11 +77,10 @@ public class ObjectPool implements java.io.Serializable {
     /**
      * Constructor ObjectPool
      *
-     *
      * @param type
-     *             Type of objects for this pool
+     *        Type of objects for this pool
      * @param size
-     *             Size of vector to allocate
+     *        Size of vector to allocate
      */
     public ObjectPool(Class type, int size) {
         objectType = type;
@@ -90,7 +89,6 @@ public class ObjectPool implements java.io.Serializable {
 
     /**
      * Constructor ObjectPool
-     *
      */
     public ObjectPool() {
         objectType = null;
@@ -99,7 +97,6 @@ public class ObjectPool implements java.io.Serializable {
 
     /**
      * Get an instance of the given object in this pool if available
-     *
      *
      * @return an instance of the given object if available or null
      */
@@ -119,7 +116,6 @@ public class ObjectPool implements java.io.Serializable {
     /**
      * Get an instance of the given object in this pool
      *
-     *
      * @return An instance of the given object
      */
     public synchronized Object getInstance() {
@@ -130,9 +126,7 @@ public class ObjectPool implements java.io.Serializable {
             // Create a new object if so.
             try {
                 return objectType.newInstance();
-            } catch (InstantiationException ex) {
-            } catch (IllegalAccessException ex) {
-            }
+            } catch (InstantiationException ex) {} catch (IllegalAccessException ex) {}
 
             // Throw unchecked exception for error in pool configuration.
             throw new RuntimeException(XMLMessages.createXMLMessage(
@@ -153,9 +147,8 @@ public class ObjectPool implements java.io.Serializable {
     /**
      * Add an instance of the given object to the pool
      *
-     *
      * @param obj
-     *            Object to add.
+     *        Object to add.
      */
     public synchronized void freeInstance(Object obj) {
 

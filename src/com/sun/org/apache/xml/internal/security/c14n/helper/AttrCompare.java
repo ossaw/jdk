@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +27,6 @@ import java.util.Comparator;
 
 /**
  * Compares two attributes based on the C14n specification.
- *
  * <UL>
  * <LI>Namespace nodes have a lesser document order position than attribute
  * nodes.
@@ -52,7 +49,6 @@ public class AttrCompare implements Comparator<Attr>, Serializable {
 
     /**
      * Compares two attributes based on the C14n specification.
-     *
      * <UL>
      * <LI>Namespace nodes have a lesser document order position than attribute
      * nodes.
@@ -68,7 +64,6 @@ public class AttrCompare implements Comparator<Attr>, Serializable {
      * @param attr1
      * @return returns a negative integer, zero, or a positive integer as obj0
      *         is less than, equal to, or greater than obj1
-     *
      */
     public int compare(Attr attr0, Attr attr1) {
         String namespaceURI0 = attr0.getNamespaceURI();

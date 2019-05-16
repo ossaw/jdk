@@ -53,7 +53,7 @@ public interface PIHandler extends Closeable {
      * Called when a new object adapter is created.
      *
      * @param oa
-     *           The adapter associated with the interceptors to be invoked.
+     *        The adapter associated with the interceptors to be invoked.
      */
     void objectAdapterCreated(ObjectAdapter oa);
 
@@ -61,11 +61,11 @@ public interface PIHandler extends Closeable {
      * Called whenever a state change occurs in an adapter manager.
      *
      * @param managerId
-     *                  managerId The adapter manager id
+     *        managerId The adapter manager id
      * @param newState
-     *                  newState The new state of the adapter manager, and by
-     *                  implication of all object adapters managed by this
-     *                  manager.
+     *        newState The new state of the adapter manager, and by
+     *        implication of all object adapters managed by this
+     *        manager.
      */
     void adapterManagerStateChanged(int managerId, short newState);
 
@@ -74,13 +74,12 @@ public interface PIHandler extends Closeable {
      * caused by an adapter manager state change.
      *
      * @param templates
-     *                  The templates that are changing state.
+     *        The templates that are changing state.
      * @param newState
-     *                  The new state of the adapters identified by the
-     *                  templates.
+     *        The new state of the adapters identified by the
+     *        templates.
      */
-    void adapterStateChanged(ObjectReferenceTemplate[] templates,
-            short newState);
+    void adapterStateChanged(ObjectReferenceTemplate[] templates, short newState);
 
     /*
      ***************** Client PI hooks
@@ -105,8 +104,8 @@ public interface PIHandler extends Closeable {
      * to be invoked for all appropriate client-side request interceptors.
      *
      * @exception RemarhsalException
-     *                               - Thrown when this request needs to be
-     *                               retried.
+     *            - Thrown when this request needs to be
+     *            retried.
      */
     void invokeClientPIStartingPoint() throws RemarshalException;
 
@@ -115,13 +114,13 @@ public interface PIHandler extends Closeable {
      * invoked for all apporpriate client-side request interceptors.
      *
      * @param replyStatus
-     *                    One of the constants in iiop.messages.ReplyMessage
-     *                    indicating
-     *                    which reply status to set.
+     *        One of the constants in iiop.messages.ReplyMessage
+     *        indicating
+     *        which reply status to set.
      * @param exception
-     *                    The exception before ending interception points have
-     *                    been
-     *                    invoked, or null if no exception at the moment.
+     *        The exception before ending interception points have
+     *        been
+     *        invoked, or null if no exception at the moment.
      * @return The exception to be thrown, after having gone through all ending
      *         points, or null if there is no exception to be thrown. Note that
      *         this exception can be either the same or different from the
@@ -138,13 +137,13 @@ public interface PIHandler extends Closeable {
      * extraneous calls to invokeClientPIEndingPoint (see bug 6763340).
      *
      * @param replyStatus
-     *                    One of the constants in iiop.messages.ReplyMessage
-     *                    indicating
-     *                    which reply status to set.
+     *        One of the constants in iiop.messages.ReplyMessage
+     *        indicating
+     *        which reply status to set.
      * @param exception
-     *                    The exception before ending interception points have
-     *                    been
-     *                    invoked, or null if no exception at the moment.
+     *        The exception before ending interception points have
+     *        been
+     *        invoked, or null if no exception at the moment.
      * @return The exception to be thrown, after having gone through all ending
      *         points, or null if there is no exception to be thrown. Note that
      *         this exception can be either the same or different from the
@@ -160,11 +159,11 @@ public interface PIHandler extends Closeable {
      * information collection.
      *
      * @param diiRequest
-     *                   True if this is to be a DII request, or false if it is
-     *                   a
-     *                   "normal" request. In the DII case,
-     *                   initiateClientPIRequest is
-     *                   called twice and we need to ignore the second one.
+     *        True if this is to be a DII request, or false if it is
+     *        a
+     *        "normal" request. In the DII case,
+     *        initiateClientPIRequest is
+     *        called twice and we need to ignore the second one.
      */
     void initiateClientPIRequest(boolean diiRequest);
 
@@ -196,12 +195,12 @@ public interface PIHandler extends Closeable {
      * invoked for all appropriate server-side request interceptors.
      *
      * @throws ForwardException
-     *                          Thrown if an interceptor raises ForwardRequest.
-     *                          This is an
-     *                          unchecked exception so that we need not modify
-     *                          the entire
-     *                          execution path to declare throwing
-     *                          ForwardException.
+     *         Thrown if an interceptor raises ForwardRequest.
+     *         This is an
+     *         unchecked exception so that we need not modify
+     *         the entire
+     *         execution path to declare throwing
+     *         ForwardException.
      */
     void invokeServerPIStartingPoint();
 
@@ -210,12 +209,12 @@ public interface PIHandler extends Closeable {
      * be invoked for all appropriate server-side request interceptors.
      *
      * @throws ForwardException
-     *                          Thrown if an interceptor raises ForwardRequest.
-     *                          This is an
-     *                          unchecked exception so that we need not modify
-     *                          the entire
-     *                          execution path to declare throwing
-     *                          ForwardException.
+     *         Thrown if an interceptor raises ForwardRequest.
+     *         This is an
+     *         unchecked exception so that we need not modify
+     *         the entire
+     *         execution path to declare throwing
+     *         ForwardException.
      */
     void invokeServerPIIntermediatePoint();
 
@@ -224,15 +223,15 @@ public interface PIHandler extends Closeable {
      * invoked for all appropriate server-side request interceptors.
      *
      * @param replyMessage
-     *                     The iiop.messages.ReplyMessage containing the reply
-     *                     status.
+     *        The iiop.messages.ReplyMessage containing the reply
+     *        status.
      * @throws ForwardException
-     *                          Thrown if an interceptor raises ForwardRequest.
-     *                          This is an
-     *                          unchecked exception so that we need not modify
-     *                          the entire
-     *                          execution path to declare throwing
-     *                          ForwardException.
+     *         Thrown if an interceptor raises ForwardRequest.
+     *         This is an
+     *         unchecked exception so that we need not modify
+     *         the entire
+     *         execution path to declare throwing
+     *         ForwardException.
      */
     void invokeServerPIEndingPoint(ReplyMessage replyMessage);
 
@@ -242,28 +241,27 @@ public interface PIHandler extends Closeable {
      * information for the ServerRequestInfo object. poaimpl is declared as an
      * Object so that we need not introduce a dependency on the POA package.
      */
-    void initializeServerPIInfo(CorbaMessageMediator request, ObjectAdapter oa,
-            byte[] objectId, ObjectKeyTemplate oktemp);
+    void initializeServerPIInfo(CorbaMessageMediator request, ObjectAdapter oa, byte[] objectId,
+            ObjectKeyTemplate oktemp);
 
     /**
      * Notifies PI of additional information reqired for ServerRequestInfo.
      *
      * @param servant
-     *                The servant. This is java.lang.Object because in the POA
-     *                case,
-     *                this will be a org.omg.PortableServer.Servant whereas in
-     *                the
-     *                ServerRequestDispatcher case this will be an ObjectImpl.
-     * @param         targetMostDerivedInterface.
-     *                The most derived interface. This is passed in instead of
-     *                calculated when needed because it requires extra
-     *                information
-     *                in the POA case that we didn't want to bother creating
-     *                extra
-     *                methods for to pass in.
+     *        The servant. This is java.lang.Object because in the POA
+     *        case,
+     *        this will be a org.omg.PortableServer.Servant whereas in
+     *        the
+     *        ServerRequestDispatcher case this will be an ObjectImpl.
+     * @param targetMostDerivedInterface.
+     *        The most derived interface. This is passed in instead of
+     *        calculated when needed because it requires extra
+     *        information
+     *        in the POA case that we didn't want to bother creating
+     *        extra
+     *        methods for to pass in.
      */
-    void setServerPIInfo(java.lang.Object servant,
-            String targetMostDerivedInterface);
+    void setServerPIInfo(java.lang.Object servant, String targetMostDerivedInterface);
 
     /**
      * Notifies PI of additional information required for ServerRequestInfo.
@@ -300,8 +298,7 @@ public interface PIHandler extends Closeable {
 
     Policy create_policy(int type, Any val) throws PolicyError;
 
-    void register_interceptor(Interceptor interceptor, int type)
-            throws DuplicateName;
+    void register_interceptor(Interceptor interceptor, int type) throws DuplicateName;
 
     Current getPICurrent();
 

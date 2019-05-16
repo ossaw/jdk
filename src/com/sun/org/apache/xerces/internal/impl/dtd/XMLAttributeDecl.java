@@ -82,8 +82,7 @@ public class XMLAttributeDecl {
      * @param simpleType
      * @param optional
      */
-    public void setValues(QName name, XMLSimpleType simpleType,
-            boolean optional) {
+    public void setValues(QName name, XMLSimpleType simpleType, boolean optional) {
         this.name.setValues(name);
         this.simpleType.setValues(simpleType);
         this.optional = optional;

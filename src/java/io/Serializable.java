@@ -13,7 +13,6 @@ package java.io;
  * has no methods or fields and serves only to identify the semantics of being
  * serializable.
  * <p>
- *
  * To allow subtypes of non-serializable classes to be serialized, the subtype
  * may assume responsibility for saving and restoring the state of the
  * supertype's public, protected, and (if accessible) package fields. The
@@ -22,18 +21,15 @@ package java.io;
  * to declare a class Serializable if this is not the case. The error will be
  * detected at runtime.
  * <p>
- *
  * During deserialization, the fields of non-serializable classes will be
  * initialized using the public or protected no-arg constructor of the class. A
  * no-arg constructor must be accessible to the subclass that is serializable.
  * The fields of serializable subclasses will be restored from the stream.
  * <p>
- *
  * When traversing a graph, an object may be encountered that does not support
  * the Serializable interface. In this case the NotSerializableException will be
  * thrown and will identify the class of the non-serializable object.
  * <p>
- *
  * Classes that require special handling during the serialization and
  * deserialization process must implement special methods with these exact
  * signatures:
@@ -46,7 +42,6 @@ package java.io;
  * private void readObjectNoData()
  *     throws ObjectStreamException;
  * </PRE>
- *
  * <p>
  * The writeObject method is responsible for writing the state of the object for
  * its particular class so that the corresponding readObject method can restore
@@ -56,7 +51,6 @@ package java.io;
  * writing the individual fields to the ObjectOutputStream using the writeObject
  * method or by using the methods for primitive data types supported by
  * DataOutput.
- *
  * <p>
  * The readObject method is responsible for reading from the stream and
  * restoring the classes fields. It may call in.defaultReadObject to invoke the
@@ -69,7 +63,6 @@ package java.io;
  * writing the individual fields to the ObjectOutputStream using the writeObject
  * method or by using the methods for primitive data types supported by
  * DataOutput.
- *
  * <p>
  * The readObjectNoData method is responsible for initializing the state of the
  * object for its particular class in the event that the serialization stream
@@ -81,7 +74,6 @@ package java.io;
  * been tampered; hence, readObjectNoData is useful for initializing
  * deserialized objects properly despite a "hostile" or incomplete source
  * stream.
- *
  * <p>
  * Serializable classes that need to designate an alternative object to be used
  * when writing an object to the stream should implement this special method
@@ -91,14 +83,12 @@ package java.io;
  * ANY-ACCESS-MODIFIER Object writeReplace() throws ObjectStreamException;
  * </PRE>
  * <p>
- *
  * This writeReplace method is invoked by serialization if the method exists and
  * it would be accessible from a method defined within the class of the object
  * being serialized. Thus, the method can have private, protected and
  * package-private access. Subclass access to this method follows java
  * accessibility rules.
  * <p>
- *
  * Classes that need to designate a replacement when an instance of it is read
  * from the stream should implement this special method with the exact
  * signature.
@@ -107,11 +97,9 @@ package java.io;
  * ANY-ACCESS-MODIFIER Object readResolve() throws ObjectStreamException;
  * </PRE>
  * <p>
- *
  * This readResolve method follows the same invocation rules and accessibility
  * rules as writeReplace.
  * <p>
- *
  * The serialization runtime associates with each serializable class a version
  * number, called a serialVersionUID, which is used during deserialization to
  * verify that the sender and receiver of a serialized object have loaded

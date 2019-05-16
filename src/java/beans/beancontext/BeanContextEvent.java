@@ -32,7 +32,7 @@ public abstract class BeanContextEvent extends EventObject {
      * Contruct a BeanContextEvent
      *
      * @param bc
-     *           The BeanContext source
+     *        The BeanContext source
      */
     protected BeanContextEvent(BeanContext bc) {
         super(bc);
@@ -51,8 +51,8 @@ public abstract class BeanContextEvent extends EventObject {
      * Sets the <code>BeanContext</code> from which this event was propagated.
      * 
      * @param bc
-     *           the <code>BeanContext</code> from which this event was
-     *           propagated
+     *        the <code>BeanContext</code> from which this event was
+     *        propagated
      */
     public synchronized void setPropagatedFrom(BeanContext bc) {
         propagatedFrom = bc;

@@ -8,14 +8,10 @@
 package java.nio;
 
 /**
- * 
- * 
- * 
  * A read-only HeapLongBuffer. This class extends the corresponding read/write
  * class, overriding the mutation methods to throw a
  * {@link ReadOnlyBufferException} and overriding the view-buffer methods to
  * return an instance of this class rather than of the superclass.
- * 
  */
 
 class HeapLongBufferR extends HeapLongBuffer {
@@ -43,8 +39,7 @@ class HeapLongBufferR extends HeapLongBuffer {
 
     }
 
-    protected HeapLongBufferR(long[] buf, int mark, int pos, int lim, int cap,
-            int off) {
+    protected HeapLongBufferR(long[] buf, int mark, int pos, int lim, int cap, int off) {
 
         super(buf, mark, pos, lim, cap, off);
         this.isReadOnly = true;
@@ -52,13 +47,12 @@ class HeapLongBufferR extends HeapLongBuffer {
     }
 
     public LongBuffer slice() {
-        return new HeapLongBufferR(hb, -1, 0, this.remaining(), this
-                .remaining(), this.position() + offset);
+        return new HeapLongBufferR(hb, -1, 0, this.remaining(), this.remaining(), this.position() + offset);
     }
 
     public LongBuffer duplicate() {
-        return new HeapLongBufferR(hb, this.markValue(), this.position(), this
-                .limit(), this.capacity(), offset);
+        return new HeapLongBufferR(hb, this.markValue(), this.position(), this.limit(), this.capacity(),
+                offset);
     }
 
     public LongBuffer asReadOnlyBuffer() {

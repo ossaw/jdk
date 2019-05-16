@@ -11,7 +11,6 @@ import java.math.BigInteger;
  * The interface to an RSA public key.
  *
  * @author Jan Luehe
- *
  */
 
 public interface RSAPublicKey extends java.security.PublicKey, RSAKey {

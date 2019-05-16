@@ -17,7 +17,6 @@ public interface ExecutableMemberDoc extends MemberDoc {
      * Return exceptions this method or constructor throws. If the type of the
      * exception is a type variable, return the <code>ClassDoc</code> of its
      * erasure.
-     *
      * <p>
      * <i>The <code>thrownExceptions</code> method cannot accommodate certain
      * generic type constructs. The <code>thrownExceptionTypes</code> method
@@ -61,7 +60,6 @@ public interface ExecutableMemberDoc extends MemberDoc {
      * Get argument information.
      *
      * @see Parameter
-     *
      * @return an array of Parameter, one element per argument in the order the
      *         arguments are present.
      */

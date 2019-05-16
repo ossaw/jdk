@@ -57,12 +57,10 @@ import javax.accessibility.*;
  *
  * @beaninfo attribute: isContainer false description: A menu item which can be
  *           selected or deselected.
- *
  * @author Georges Saab
  * @author David Karlton
  */
-public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
-        Accessible {
+public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants, Accessible {
     /**
      * @see #getUIClassID
      * @see #readObject
@@ -81,7 +79,7 @@ public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
      * Creates an initially unselected check box menu item with an icon.
      *
      * @param icon
-     *             the icon of the CheckBoxMenuItem.
+     *        the icon of the CheckBoxMenuItem.
      */
     public JCheckBoxMenuItem(Icon icon) {
         this(null, icon, false);
@@ -91,7 +89,7 @@ public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
      * Creates an initially unselected check box menu item with text.
      *
      * @param text
-     *             the text of the CheckBoxMenuItem
+     *        the text of the CheckBoxMenuItem
      */
     public JCheckBoxMenuItem(String text) {
         this(text, null, false);
@@ -112,9 +110,9 @@ public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
      * text and icon.
      *
      * @param text
-     *             the text of the CheckBoxMenuItem
+     *        the text of the CheckBoxMenuItem
      * @param icon
-     *             the icon of the CheckBoxMenuItem
+     *        the icon of the CheckBoxMenuItem
      */
     public JCheckBoxMenuItem(String text, Icon icon) {
         this(text, icon, false);
@@ -125,9 +123,9 @@ public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
      * state.
      *
      * @param text
-     *             the text of the check box menu item.
+     *        the text of the check box menu item.
      * @param b
-     *             the selected state of the check box menu item
+     *        the selected state of the check box menu item
      */
     public JCheckBoxMenuItem(String text, boolean b) {
         this(text, null, b);
@@ -138,11 +136,11 @@ public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
      * selection state.
      *
      * @param text
-     *             the text of the check box menu item
+     *        the text of the check box menu item
      * @param icon
-     *             the icon of the check box menu item
+     *        the icon of the check box menu item
      * @param b
-     *             the selected state of the check box menu item
+     *        the selected state of the check box menu item
      */
     public JCheckBoxMenuItem(String text, Icon icon, boolean b) {
         super(text, icon);
@@ -177,8 +175,8 @@ public class JCheckBoxMenuItem extends JMenuItem implements SwingConstants,
      * compatibility only. New code should use setSelected() instead.
      *
      * @param b
-     *          a boolean value indicating the item's selected-state, where
-     *          true=selected
+     *        a boolean value indicating the item's selected-state, where
+     *        true=selected
      * @beaninfo description: The selection state of the check box menu item
      *           hidden: true
      */

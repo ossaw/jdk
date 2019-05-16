@@ -6,7 +6,6 @@
 package java.io;
 
 /**
- *
  * @since 1.8
  */
 class DefaultFileSystem {

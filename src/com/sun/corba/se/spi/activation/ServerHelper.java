@@ -14,16 +14,14 @@ package com.sun.corba.se.spi.activation;
 abstract public class ServerHelper {
     private static String _id = "IDL:activation/Server:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            com.sun.corba.se.spi.activation.Server that) {
+    public static void insert(org.omg.CORBA.Any a, com.sun.corba.se.spi.activation.Server that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.spi.activation.Server extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.spi.activation.Server extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -32,8 +30,7 @@ abstract public class ServerHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    com.sun.corba.se.spi.activation.ServerHelper.id(),
-                    "Server");
+                    com.sun.corba.se.spi.activation.ServerHelper.id(), "Server");
         }
         return __typeCode;
     }
@@ -42,8 +39,7 @@ abstract public class ServerHelper {
         return _id;
     }
 
-    public static com.sun.corba.se.spi.activation.Server read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static com.sun.corba.se.spi.activation.Server read(org.omg.CORBA.portable.InputStream istream) {
         return narrow(istream.read_Object(_ServerStub.class));
     }
 
@@ -52,8 +48,7 @@ abstract public class ServerHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static com.sun.corba.se.spi.activation.Server narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.spi.activation.Server narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.spi.activation.Server)
@@ -69,8 +64,7 @@ abstract public class ServerHelper {
         }
     }
 
-    public static com.sun.corba.se.spi.activation.Server unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.spi.activation.Server unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.spi.activation.Server)

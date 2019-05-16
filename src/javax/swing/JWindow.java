@@ -57,11 +57,9 @@ import javax.accessibility.*;
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @see JRootPane
- *
  * @beaninfo attribute: isContainer true attribute: containerDelegate
  *           getContentPane description: A toplevel window which has no system
  *           border or controls.
- *
  * @author David Kloba
  */
 @SuppressWarnings("serial")
@@ -101,10 +99,10 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * returned by <code>JComponent.getDefaultLocale</code>.
      *
      * @throws HeadlessException
-     *                           if
-     *                           <code>GraphicsEnvironment.isHeadless()</code>
-     *                           returns
-     *                           true.
+     *         if
+     *         <code>GraphicsEnvironment.isHeadless()</code>
+     *         returns
+     *         true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #isFocusableWindow
      * @see JComponent#getDefaultLocale
@@ -121,22 +119,20 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * returned by <code>JComponent.getDefaultLocale</code>.
      *
      * @param gc
-     *           the <code>GraphicsConfiguration</code> that is used to
-     *           construct the new window with; if gc is <code>null</code>, the
-     *           system default <code>GraphicsConfiguration</code> is assumed
+     *        the <code>GraphicsConfiguration</code> that is used to
+     *        construct the new window with; if gc is <code>null</code>, the
+     *        system default <code>GraphicsConfiguration</code> is assumed
      * @throws HeadlessException
-     *                                  If
-     *                                  <code>GraphicsEnvironment.isHeadless()</code>
-     *                                  returns
-     *                                  true.
+     *         If
+     *         <code>GraphicsEnvironment.isHeadless()</code>
+     *         returns
+     *         true.
      * @throws IllegalArgumentException
-     *                                  if <code>gc</code> is not from a screen
-     *                                  device.
-     *
+     *         if <code>gc</code> is not from a screen
+     *         device.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #isFocusableWindow
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.3
      */
     public JWindow(GraphicsConfiguration gc) {
@@ -154,10 +150,10 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * returned by <code>JComponent.getDefaultLocale</code>.
      *
      * @param owner
-     *              the frame from which the window is displayed
+     *        the frame from which the window is displayed
      * @throws HeadlessException
-     *                           if GraphicsEnvironment.isHeadless() returns
-     *                           true.
+     *         if GraphicsEnvironment.isHeadless() returns
+     *         true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #isFocusableWindow
      * @see JComponent#getDefaultLocale
@@ -165,8 +161,7 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
     public JWindow(Frame owner) {
         super(owner == null ? SwingUtilities.getSharedOwnerFrame() : owner);
         if (owner == null) {
-            WindowListener ownerShutdownListener = SwingUtilities
-                    .getSharedOwnerFrameShutdownListener();
+            WindowListener ownerShutdownListener = SwingUtilities.getSharedOwnerFrameShutdownListener();
             addWindowListener(ownerShutdownListener);
         }
         windowInit();
@@ -182,22 +177,20 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * returned by <code>JComponent.getDefaultLocale</code>.
      *
      * @param owner
-     *              the window from which the window is displayed
+     *        the window from which the window is displayed
      * @throws HeadlessException
-     *                           if
-     *                           <code>GraphicsEnvironment.isHeadless()</code>
-     *                           returns
-     *                           true.
+     *         if
+     *         <code>GraphicsEnvironment.isHeadless()</code>
+     *         returns
+     *         true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #isFocusableWindow
      * @see JComponent#getDefaultLocale
      */
     public JWindow(Window owner) {
-        super(owner == null ? (Window) SwingUtilities.getSharedOwnerFrame()
-                : owner);
+        super(owner == null ? (Window) SwingUtilities.getSharedOwnerFrame() : owner);
         if (owner == null) {
-            WindowListener ownerShutdownListener = SwingUtilities
-                    .getSharedOwnerFrameShutdownListener();
+            WindowListener ownerShutdownListener = SwingUtilities.getSharedOwnerFrameShutdownListener();
             addWindowListener(ownerShutdownListener);
         }
         windowInit();
@@ -213,38 +206,34 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * returned by <code>JComponent.getDefaultLocale</code>.
      *
      * @param owner
-     *              the window from which the window is displayed
+     *        the window from which the window is displayed
      * @param gc
-     *              the <code>GraphicsConfiguration</code> that is used to
-     *              construct the new window with; if gc is <code>null</code>,
-     *              the
-     *              system default <code>GraphicsConfiguration</code> is
-     *              assumed,
-     *              unless <code>owner</code> is also null, in which case the
-     *              <code>GraphicsConfiguration</code> from the shared owner
-     *              frame
-     *              will be used.
+     *        the <code>GraphicsConfiguration</code> that is used to
+     *        construct the new window with; if gc is <code>null</code>,
+     *        the
+     *        system default <code>GraphicsConfiguration</code> is
+     *        assumed,
+     *        unless <code>owner</code> is also null, in which case the
+     *        <code>GraphicsConfiguration</code> from the shared owner
+     *        frame
+     *        will be used.
      * @throws HeadlessException
-     *                                  if
-     *                                  <code>GraphicsEnvironment.isHeadless()</code>
-     *                                  returns
-     *                                  true.
+     *         if
+     *         <code>GraphicsEnvironment.isHeadless()</code>
+     *         returns
+     *         true.
      * @throws IllegalArgumentException
-     *                                  if <code>gc</code> is not from a screen
-     *                                  device.
-     *
+     *         if <code>gc</code> is not from a screen
+     *         device.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #isFocusableWindow
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.3
      */
     public JWindow(Window owner, GraphicsConfiguration gc) {
-        super(owner == null ? (Window) SwingUtilities.getSharedOwnerFrame()
-                : owner, gc);
+        super(owner == null ? (Window) SwingUtilities.getSharedOwnerFrame() : owner, gc);
         if (owner == null) {
-            WindowListener ownerShutdownListener = SwingUtilities
-                    .getSharedOwnerFrameShutdownListener();
+            WindowListener ownerShutdownListener = SwingUtilities.getSharedOwnerFrameShutdownListener();
             addWindowListener(ownerShutdownListener);
         }
         windowInit();
@@ -280,7 +269,6 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      *
      * @return true if <code>add</code> and <code>setLayout</code> are
      *         forwarded; false otherwise
-     *
      * @see #addImpl
      * @see #setLayout
      * @see #setRootPaneCheckingEnabled
@@ -312,13 +300,11 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * <em>The Java Tutorial</em>, for more information.
      *
      * @param newHandler
-     *                   the new {@code TransferHandler}
-     *
+     *        the new {@code TransferHandler}
      * @see TransferHandler
      * @see #getTransferHandler
      * @see java.awt.Component#setDropTarget
      * @since 1.6
-     *
      * @beaninfo bound: true hidden: true description: Mechanism for transfer of
      *           data into the component
      */
@@ -333,7 +319,6 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * Gets the <code>transferHandler</code> property.
      *
      * @return the value of the <code>transferHandler</code> property
-     *
      * @see TransferHandler
      * @see #setTransferHandler
      * @since 1.6
@@ -347,7 +332,7 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * unnecessary call to clear the background.
      *
      * @param g
-     *          the <code>Graphics</code> context in which to paint
+     *        the <code>Graphics</code> context in which to paint
      */
     public void update(Graphics g) {
         paint(g);
@@ -358,10 +343,9 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * forwarded to the <code>contentPane</code>.
      *
      * @param enabled
-     *                true if <code>add</code> and <code>setLayout</code> are
-     *                forwarded, false if they should operate directly on the
-     *                <code>JWindow</code>.
-     *
+     *        true if <code>add</code> and <code>setLayout</code> are
+     *        forwarded, false if they should operate directly on the
+     *        <code>JWindow</code>.
      * @see #addImpl
      * @see #setLayout
      * @see #isRootPaneCheckingEnabled
@@ -380,19 +364,18 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * of the frame, refer to {@link javax.swing.RootPaneContainer} for details.
      *
      * @param comp
-     *                    the component to be enhanced
+     *        the component to be enhanced
      * @param constraints
-     *                    the constraints to be respected
+     *        the constraints to be respected
      * @param index
-     *                    the index
+     *        the index
      * @exception IllegalArgumentException
-     *                                     if <code>index</code> is invalid
+     *            if <code>index</code> is invalid
      * @exception IllegalArgumentException
-     *                                     if adding the container's parent to
-     *                                     itself
+     *            if adding the container's parent to
+     *            itself
      * @exception IllegalArgumentException
-     *                                     if adding a window to a container
-     *
+     *            if adding a window to a container
      * @see #setRootPaneCheckingEnabled
      * @see javax.swing.RootPaneContainer
      */
@@ -411,9 +394,9 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * not a child of the <code>JWindow</code> or <code>contentPane</code>.
      *
      * @param comp
-     *             the component to be removed
+     *        the component to be removed
      * @throws NullPointerException
-     *                              if <code>comp</code> is null
+     *         if <code>comp</code> is null
      * @see #add
      * @see javax.swing.RootPaneContainer
      */
@@ -431,7 +414,7 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * {@link javax.swing.RootPaneContainer} for more information.
      *
      * @param manager
-     *                the <code>LayoutManager</code>
+     *        the <code>LayoutManager</code>
      * @see #setRootPaneCheckingEnabled
      * @see javax.swing.RootPaneContainer
      */
@@ -447,7 +430,6 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * Returns the <code>rootPane</code> object for this window.
      * 
      * @return the <code>rootPane</code> property for this window
-     *
      * @see #setRootPane
      * @see RootPaneContainer#getRootPane
      */
@@ -460,9 +442,8 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * called by the constructor.
      *
      * @param root
-     *             the new <code>rootPane</code> property
+     *        the new <code>rootPane</code> property
      * @see #getRootPane
-     *
      * @beaninfo hidden: true description: the RootPane object for this window.
      */
     protected void setRootPane(JRootPane root) {
@@ -498,15 +479,13 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * is called by the constructor.
      *
      * @param contentPane
-     *                    the new <code>contentPane</code>
-     *
+     *        the new <code>contentPane</code>
      * @exception IllegalComponentStateException
-     *                                           (a runtime exception) if the
-     *                                           content pane parameter is
-     *                                           <code>null</code>
+     *            (a runtime exception) if the
+     *            content pane parameter is
+     *            <code>null</code>
      * @see #getContentPane
      * @see RootPaneContainer#setContentPane
-     *
      * @beaninfo hidden: true description: The client area of the window where
      *           child components are normally inserted.
      */
@@ -530,15 +509,13 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * constructor.
      *
      * @param layeredPane
-     *                    the new <code>layeredPane</code> object
-     *
+     *        the new <code>layeredPane</code> object
      * @exception IllegalComponentStateException
-     *                                           (a runtime exception) if the
-     *                                           content pane parameter is
-     *                                           <code>null</code>
+     *            (a runtime exception) if the
+     *            content pane parameter is
+     *            <code>null</code>
      * @see #getLayeredPane
      * @see RootPaneContainer#setLayeredPane
-     *
      * @beaninfo hidden: true description: The pane which holds the various
      *           window layers.
      */
@@ -562,11 +539,9 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * constructor.
      * 
      * @param glassPane
-     *                  the <code>glassPane</code> object for this window
-     *
+     *        the <code>glassPane</code> object for this window
      * @see #getGlassPane
      * @see RootPaneContainer#setGlassPane
-     *
      * @beaninfo hidden: true description: A transparent pane used for menu
      *           rendering.
      */
@@ -590,22 +565,21 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * details on how the repaint is handled.
      *
      * @param time
-     *               maximum time in milliseconds before update
+     *        maximum time in milliseconds before update
      * @param x
-     *               the <i>x</i> coordinate
+     *        the <i>x</i> coordinate
      * @param y
-     *               the <i>y</i> coordinate
+     *        the <i>y</i> coordinate
      * @param width
-     *               the width
+     *        the width
      * @param height
-     *               the height
+     *        the height
      * @see RepaintManager
      * @since 1.6
      */
     public void repaint(long time, int x, int y, int width, int height) {
         if (RepaintManager.HANDLE_TOP_LEVEL_PAINT) {
-            RepaintManager.currentManager(this).addDirtyRegion(this, x, y,
-                    width, height);
+            RepaintManager.currentManager(this).addDirtyRegion(this, x, y, width, height);
         } else {
             super.repaint(time, x, y, width, height);
         }
@@ -620,11 +594,9 @@ public class JWindow extends Window implements Accessible, RootPaneContainer,
      * @return a string representation of this <code>JWindow</code>
      */
     protected String paramString() {
-        String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true"
-                : "false");
+        String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true" : "false");
 
-        return super.paramString() + ",rootPaneCheckingEnabled="
-                + rootPaneCheckingEnabledString;
+        return super.paramString() + ",rootPaneCheckingEnabled=" + rootPaneCheckingEnabledString;
     }
 
     /////////////////

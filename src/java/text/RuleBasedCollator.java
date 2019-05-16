@@ -25,7 +25,6 @@ import java.util.Locale;
  * <code>Collator</code> that provides a simple, data-driven, table collator.
  * With this class you can create a customized table-based <code>Collator</code>
  * . <code>RuleBasedCollator</code> maps characters to sort keys.
- *
  * <p>
  * <code>RuleBasedCollator</code> has the following restrictions for efficiency
  * (other subclasses may be used for more complex languages) :
@@ -34,7 +33,6 @@ import java.util.Locale;
  * it applies to the whole collator object.
  * <li>All non-mentioned characters are at the end of the collation order.
  * </ol>
- *
  * <p>
  * The collation table is composed of a list of collation rules, where each rule
  * is of one of three forms:
@@ -82,7 +80,6 @@ import java.util.Locale;
  * '&amp;' : Indicates that the next rule follows the position to where the
  * reset text-argument would be sorted.
  * </UL>
- *
  * <p>
  * This sounds more complicated than it is in practice. For example, the
  * following are equivalent ways of expressing the same thing: <blockquote>
@@ -124,7 +121,6 @@ import java.util.Locale;
  * ", - &lt; a &lt; b" makes "-" an ignorable character, as we saw earlier in
  * the word "black-birds". In the samples for different languages, you see that
  * most accents are ignorable.
- *
  * <p>
  * <strong>Normalization and Accents</strong>
  * <p>
@@ -143,7 +139,6 @@ import java.util.Locale;
  * the strings contain characters with compatibility decompositions (such as
  * full-width and half-width forms), you must use FULL_DECOMPOSITION, since the
  * rule tables only include canonical mappings.
- *
  * <p>
  * <strong>Errors</strong>
  * <p>
@@ -159,7 +154,6 @@ import java.util.Locale;
  * </UL>
  * If you produce one of these errors, a <code>RuleBasedCollator</code> throws a
  * <code>ParseException</code>.
- *
  * <p>
  * <strong>Examples</strong>
  * <p>
@@ -171,7 +165,6 @@ import java.util.Locale;
  * V &lt; w, W &lt; x, X &lt; y, Y &lt; z, Z &lt; &#92;u00E6, &#92;u00C6 &lt;
  * &#92;u00F8, &#92;u00D8 &lt; &#92;u00E5 = a&#92;u030A, &#92;u00C5 =
  * A&#92;u030A; aa, AA"
- *
  * <p>
  * To create a <code>RuleBasedCollator</code> object with specialized rules
  * tailored to your needs, you construct the <code>RuleBasedCollator</code> with
@@ -188,8 +181,7 @@ import java.util.Locale;
  * <pre>
  * String Norwegian = "&lt; a, A &lt; b, B &lt; c, C &lt; d, D &lt; e, E &lt; f, F &lt; g, G &lt; h, H &lt; i, I"
  *         + "&lt; j, J &lt; k, K &lt; l, L &lt; m, M &lt; n, N &lt; o, O &lt; p, P &lt; q, Q &lt; r, R"
- *         + "&lt; s, S &lt; t, T &lt; u, U &lt; v, V &lt; w, W &lt; x, X &lt; y, Y &lt; z, Z"
- *         + "&lt; &#92;u00E6, &#92;u00C6" + // Latin
+ *         + "&lt; s, S &lt; t, T &lt; u, U &lt; v, V &lt; w, W &lt; x, X &lt; y, Y &lt; z, Z" + "&lt; &#92;u00E6, &#92;u00C6" + // Latin
  *                                                                                                                                                                                                                                                   // letter
  *                                                                                                                                                                                                                                                   // ae
  *                                                                                                                                                                                                                                                   // &amp;
@@ -202,12 +194,10 @@ import java.util.Locale;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * A new collation rules string can be created by concatenating rules strings.
  * For example, the rules returned by {@link #getRules()} could be concatenated
  * to combine multiple <code>RuleBasedCollator</code>s.
- *
  * <p>
  * The following example demonstrates how to change the order of non-spacing
  * accents, <blockquote>
@@ -219,8 +209,7 @@ import java.util.Locale;
  *         + ";&#92;u0306;&#92;u0307;&#92;u0309;&#92;u030A" // main accents
  *         + ";&#92;u030B;&#92;u030C;&#92;u030D;&#92;u030E" // main accents
  *         + ";&#92;u030F;&#92;u0310;&#92;u0311;&#92;u0312" // main accents
- *         + "&lt; a , A ; ae, AE ; &#92;u00e6 , &#92;u00c6"
- *         + "&lt; b , B &lt; c, C &lt; e, E &amp; C &lt; d, D";
+ *         + "&lt; a , A ; ae, AE ; &#92;u00e6 , &#92;u00c6" + "&lt; b , B &lt; c, C &lt; e, E &amp; C &lt; d, D";
  * // change the order of accent characters
  * String addOn = "&amp; &#92;u0300 ; &#92;u0308 ; &#92;u0302";
  * RuleBasedCollator myCollator = new RuleBasedCollator(oldRules + addOn);
@@ -266,15 +255,15 @@ public class RuleBasedCollator extends Collator {
      * 
      * @see java.util.Locale
      * @param rules
-     *              the collation rules to build the collation table from.
+     *        the collation rules to build the collation table from.
      * @exception ParseException
-     *                           A format exception will be thrown if the build
-     *                           process of
-     *                           the rules fails. For example, build rule "a
-     *                           &lt; ? &lt; d"
-     *                           will cause the constructor to throw the
-     *                           ParseException
-     *                           because the '?' is not quoted.
+     *            A format exception will be thrown if the build
+     *            process of
+     *            the rules fails. For example, build rule "a
+     *            &lt; ? &lt; d"
+     *            will cause the constructor to throw the
+     *            ParseException
+     *            because the '?' is not quoted.
      */
     public RuleBasedCollator(String rules) throws ParseException {
         this(rules, Collator.CANONICAL_DECOMPOSITION);
@@ -287,19 +276,19 @@ public class RuleBasedCollator extends Collator {
      * 
      * @see java.util.Locale
      * @param rules
-     *               the collation rules to build the collation table from.
+     *        the collation rules to build the collation table from.
      * @param decomp
-     *               the decomposition strength used to build the collation
-     *               table
-     *               and to perform comparisons.
+     *        the decomposition strength used to build the collation
+     *        table
+     *        and to perform comparisons.
      * @exception ParseException
-     *                           A format exception will be thrown if the build
-     *                           process of
-     *                           the rules fails. For example, build rule "a < ?
-     *                           < d" will
-     *                           cause the constructor to throw the
-     *                           ParseException because
-     *                           the '?' is not quoted.
+     *            A format exception will be thrown if the build
+     *            process of
+     *            the rules fails. For example, build rule "a < ?
+     *            < d" will
+     *            cause the constructor to throw the
+     *            ParseException because
+     *            the '?' is not quoted.
      */
     RuleBasedCollator(String rules, int decomp) throws ParseException {
         setStrength(Collator.TERTIARY);
@@ -330,7 +319,7 @@ public class RuleBasedCollator extends Collator {
      * Returns a CollationElementIterator for the given String.
      *
      * @param source
-     *               the string to be collated
+     *        the string to be collated
      * @return a {@code CollationElementIterator} object
      * @see java.text.CollationElementIterator
      */
@@ -342,13 +331,12 @@ public class RuleBasedCollator extends Collator {
      * Returns a CollationElementIterator for the given CharacterIterator.
      *
      * @param source
-     *               the character iterator to be collated
+     *        the character iterator to be collated
      * @return a {@code CollationElementIterator} object
      * @see java.text.CollationElementIterator
      * @since 1.2
      */
-    public CollationElementIterator getCollationElementIterator(
-            CharacterIterator source) {
+    public CollationElementIterator getCollationElementIterator(CharacterIterator source) {
         return new CollationElementIterator(source, this);
     }
 
@@ -359,8 +347,8 @@ public class RuleBasedCollator extends Collator {
      * overriden in a subclass.
      *
      * @exception NullPointerException
-     *                                 if <code>source</code> or
-     *                                 <code>target</code> is null.
+     *            if <code>source</code> or
+     *            <code>target</code> is null.
      */
     public synchronized int compare(String source, String target) {
         if (source == null || target == null) {
@@ -507,14 +495,11 @@ public class RuleBasedCollator extends Collator {
 
                 if (checkSecTer) {
                     // a secondary or tertiary difference may still matter
-                    short secSOrder = CollationElementIterator.secondaryOrder(
-                            sOrder);
-                    short secTOrder = CollationElementIterator.secondaryOrder(
-                            tOrder);
+                    short secSOrder = CollationElementIterator.secondaryOrder(sOrder);
+                    short secTOrder = CollationElementIterator.secondaryOrder(tOrder);
                     if (secSOrder != secTOrder) {
                         // there is a secondary difference
-                        result = (secSOrder < secTOrder) ? Collator.LESS
-                                : Collator.GREATER;
+                        result = (secSOrder < secTOrder) ? Collator.LESS : Collator.GREATER;
                         // (strength is SECONDARY)
                         checkSecTer = false;
                         // (even in french, only the first secondary difference
@@ -523,14 +508,11 @@ public class RuleBasedCollator extends Collator {
                     } else {
                         if (checkTertiary) {
                             // a tertiary difference may still matter
-                            short terSOrder = CollationElementIterator
-                                    .tertiaryOrder(sOrder);
-                            short terTOrder = CollationElementIterator
-                                    .tertiaryOrder(tOrder);
+                            short terSOrder = CollationElementIterator.tertiaryOrder(sOrder);
+                            short terTOrder = CollationElementIterator.tertiaryOrder(tOrder);
                             if (terSOrder != terTOrder) {
                                 // there is a tertiary difference
-                                result = (terSOrder < terTOrder) ? Collator.LESS
-                                        : Collator.GREATER;
+                                result = (terSOrder < terTOrder) ? Collator.LESS : Collator.GREATER;
                                 // (strength is TERTIARY)
                                 checkTertiary = false;
                             }
@@ -553,8 +535,7 @@ public class RuleBasedCollator extends Collator {
                     // the source string.
                     // This is a primary difference, so the source is greater
                     return Collator.GREATER; // (strength is PRIMARY)
-                } else if (CollationElementIterator.secondaryOrder(
-                        sOrder) != 0) {
+                } else if (CollationElementIterator.secondaryOrder(sOrder) != 0) {
                     // Additional secondary elements mean the source string is
                     // greater
                     if (checkSecTer) {
@@ -562,8 +543,7 @@ public class RuleBasedCollator extends Collator {
                         checkSecTer = false;
                     }
                 }
-            } while ((sOrder = sourceCursor
-                    .next()) != CollationElementIterator.NULLORDER);
+            } while ((sOrder = sourceCursor.next()) != CollationElementIterator.NULLORDER);
         } else if (tOrder != CollationElementIterator.NULLORDER) {
             // The target string has more elements, but the source string
             // hasn't.
@@ -581,8 +561,7 @@ public class RuleBasedCollator extends Collator {
                         checkSecTer = false;
                     }
                 }
-            } while ((tOrder = targetCursor
-                    .next()) != CollationElementIterator.NULLORDER);
+            } while ((tOrder = targetCursor.next()) != CollationElementIterator.NULLORDER);
         }
 
         // For IDENTICAL comparisons, we use a bitwise character comparison
@@ -680,13 +659,11 @@ public class RuleBasedCollator extends Collator {
         }
 
         // walk through each character
-        while ((order = sourceCursor
-                .next()) != CollationElementIterator.NULLORDER) {
+        while ((order = sourceCursor.next()) != CollationElementIterator.NULLORDER) {
             secOrder = CollationElementIterator.secondaryOrder(order);
             terOrder = CollationElementIterator.tertiaryOrder(order);
             if (!CollationElementIterator.isIgnorable(order)) {
-                primResult.append((char) (CollationElementIterator.primaryOrder(
-                        order) + COLLATIONKEYOFFSET));
+                primResult.append((char) (CollationElementIterator.primaryOrder(order) + COLLATIONKEYOFFSET));
 
                 if (compareSec) {
                     //
@@ -694,8 +671,7 @@ public class RuleBasedCollator extends Collator {
                     // attached
                     // to a given base character
                     //
-                    if (tables.isFrenchSec() && preSecIgnore < secResult
-                            .length()) {
+                    if (tables.isFrenchSec() && preSecIgnore < secResult.length()) {
                         //
                         // We're doing reversed secondary ordering and we've hit
                         // a base
@@ -704,8 +680,7 @@ public class RuleBasedCollator extends Collator {
                         // that applied to the last base character. (see block
                         // comment above.)
                         //
-                        RBCollationTables.reverse(secResult, preSecIgnore,
-                                secResult.length());
+                        RBCollationTables.reverse(secResult, preSecIgnore, secResult.length());
                     }
                     // Remember where we are in the secondary orderings - this
                     // is how far
@@ -718,11 +693,9 @@ public class RuleBasedCollator extends Collator {
                 }
             } else {
                 if (compareSec && secOrder != 0)
-                    secResult.append((char) (secOrder + tables.getMaxSecOrder()
-                            + COLLATIONKEYOFFSET));
+                    secResult.append((char) (secOrder + tables.getMaxSecOrder() + COLLATIONKEYOFFSET));
                 if (compareTer && terOrder != 0)
-                    terResult.append((char) (terOrder + tables.getMaxTerOrder()
-                            + COLLATIONKEYOFFSET));
+                    terResult.append((char) (terOrder + tables.getMaxTerOrder() + COLLATIONKEYOFFSET));
             }
         }
         if (tables.isFrenchSec()) {
@@ -730,8 +703,7 @@ public class RuleBasedCollator extends Collator {
                 // If we've accumulated any secondary characters after the last
                 // base character,
                 // reverse them.
-                RBCollationTables.reverse(secResult, preSecIgnore, secResult
-                        .length());
+                RBCollationTables.reverse(secResult, preSecIgnore, secResult.length());
             }
             // And now reverse the entire secResult to get French secondary
             // ordering.
@@ -746,11 +718,9 @@ public class RuleBasedCollator extends Collator {
             primResult.append((char) 0);
             int mode = getDecomposition();
             if (mode == CANONICAL_DECOMPOSITION) {
-                primResult.append(Normalizer.normalize(source,
-                        Normalizer.Form.NFD));
+                primResult.append(Normalizer.normalize(source, Normalizer.Form.NFD));
             } else if (mode == FULL_DECOMPOSITION) {
-                primResult.append(Normalizer.normalize(source,
-                        Normalizer.Form.NFKD));
+                primResult.append(Normalizer.normalize(source, Normalizer.Form.NFKD));
             } else {
                 primResult.append(source);
             }
@@ -782,7 +752,7 @@ public class RuleBasedCollator extends Collator {
      * Compares the equality of two collation objects.
      * 
      * @param obj
-     *            the table-based collation object to be compared with this.
+     *        the table-based collation object to be compared with this.
      * @return true if the current table-based collation object is the same as
      *         the table-based collation object obj; false otherwise.
      */

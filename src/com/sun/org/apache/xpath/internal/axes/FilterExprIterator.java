@@ -42,7 +42,6 @@ public class FilterExprIterator extends BasicTestIterator {
 
     /**
      * Create a FilterExprIterator object.
-     *
      */
     public FilterExprIterator() {
         super(null);
@@ -50,7 +49,6 @@ public class FilterExprIterator extends BasicTestIterator {
 
     /**
      * Create a FilterExprIterator object.
-     *
      */
     public FilterExprIterator(Expression expr) {
         super(null);
@@ -61,14 +59,13 @@ public class FilterExprIterator extends BasicTestIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);
 
-        m_exprObj = FilterExprIteratorSimple.executeFilterExpr(context,
-                m_execContext, getPrefixResolver(), getIsTopLevel(),
-                m_stackFrame, m_expr);
+        m_exprObj = FilterExprIteratorSimple.executeFilterExpr(context, m_execContext, getPrefixResolver(),
+                getIsTopLevel(), m_stackFrame, m_expr);
     }
 
     /**
@@ -101,13 +98,13 @@ public class FilterExprIterator extends BasicTestIterator {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);
@@ -176,7 +173,7 @@ public class FilterExprIterator extends BasicTestIterator {
      * called.
      *
      * @param visitor
-     *                The visitor whose appropriate method will be called.
+     *        The visitor whose appropriate method will be called.
      */
     public void callPredicateVisitors(XPathVisitor visitor) {
         m_expr.callVisitors(new filterExprOwner(), visitor);

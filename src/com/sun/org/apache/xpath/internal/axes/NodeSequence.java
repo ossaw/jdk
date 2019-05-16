@@ -34,8 +34,7 @@ import com.sun.org.apache.xpath.internal.objects.XObject;
  * This class is the dynamic wrapper for a Xalan DTMIterator instance, and
  * provides random access capabilities.
  */
-public class NodeSequence extends XObject implements DTMIterator, Cloneable,
-        PathComponent {
+public class NodeSequence extends XObject implements DTMIterator, Cloneable, PathComponent {
     static final long serialVersionUID = 3866261934726581044L;
     /** The index of the last node in the iteration. */
     protected int m_last = -1;
@@ -123,7 +122,7 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
      * Set the functional iterator that fetches nodes.
      * 
      * @param iter
-     *             The iterator that is to be contained.
+     *        The iterator that is to be contained.
      */
     public final void setIter(DTMIterator iter) {
         m_iter = iter;
@@ -150,16 +149,15 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
      * Create a new NodeSequence from a (already cloned) iterator.
      *
      * @param iter
-     *                         Cloned (not static) DTMIterator.
+     *        Cloned (not static) DTMIterator.
      * @param context
-     *                         The initial context node.
+     *        The initial context node.
      * @param xctxt
-     *                         The execution context.
+     *        The execution context.
      * @param shouldCacheNodes
-     *                         True if this sequence can random access.
+     *        True if this sequence can random access.
      */
-    private NodeSequence(DTMIterator iter, int context, XPathContext xctxt,
-            boolean shouldCacheNodes) {
+    private NodeSequence(DTMIterator iter, int context, XPathContext xctxt, boolean shouldCacheNodes) {
         setIter(iter);
         setRoot(context, xctxt);
         setShouldCacheNodes(shouldCacheNodes);
@@ -211,8 +209,7 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
         if (null != mgr)
             return getDTMManager().getDTM(nodeHandle);
         else {
-            assertion(false,
-                    "Can not get a DTM Unless a DTMManager has been set!");
+            assertion(false, "Can not get a DTM Unless a DTMManager has been set!");
             return null;
         }
     }
@@ -245,8 +242,7 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
     public void setRoot(int nodeHandle, Object environment) {
         // If root is DTM.NULL, then something's wrong with the context
         if (nodeHandle == DTM.NULL) {
-            throw new RuntimeException("Unable to evaluate expression using "
-                    + "this context");
+            throw new RuntimeException("Unable to evaluate expression using " + "this context");
         }
 
         if (null != m_iter) {
@@ -275,8 +271,7 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
      * @see DTMIterator#getWhatToShow()
      */
     public int getWhatToShow() {
-        return hasCache() ? (DTMFilter.SHOW_ALL
-                & ~DTMFilter.SHOW_ENTITY_REFERENCE) : m_iter.getWhatToShow();
+        return hasCache() ? (DTMFilter.SHOW_ALL & ~DTMFilter.SHOW_ENTITY_REFERENCE) : m_iter.getWhatToShow();
     }
 
     /**
@@ -581,7 +576,6 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
      * deep clone.
      *
      * @return A clone of this object.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
@@ -617,8 +611,7 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
         if (null != m_iter)
             return m_iter.getAxis();
         else {
-            assertion(false,
-                    "Can not getAxis from a non-iterated node sequence!");
+            assertion(false, "Can not getAxis from a non-iterated node sequence!");
             return 0;
         }
     }
@@ -645,15 +638,14 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
      * order.
      * 
      * @param node
-     *             The node to be added.
+     *        The node to be added.
      * @return insertIndex.
      * @throws RuntimeException
-     *                          thrown if this NodeSetDTM is not of a mutable
-     *                          type.
+     *         thrown if this NodeSetDTM is not of a mutable
+     *         type.
      */
     protected int addNodeInDocOrder(int node) {
-        assertion(hasCache(),
-                "addNodeInDocOrder must be done on a mutable sequence!");
+        assertion(hasCache(), "addNodeInDocOrder must be done on a mutable sequence!");
 
         int insertIndex = -1;
 
@@ -698,7 +690,6 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
      * All setting of m_obj is done through setObject() now, and this method
      * over-rides the super-class method. So now we are in the loop have an
      * opportunity to update some caching information.
-     *
      */
     protected void setObject(Object obj) {
         if (obj instanceof NodeVector) {
@@ -808,7 +799,6 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable,
         /**
          * This method is called when yet another NodeSequence object uses, or
          * shares this same cache.
-         *
          */
         private void increaseUseCount() {
             if (m_vec2 != null)

@@ -14,7 +14,6 @@ import javax.swing.plaf.UIResource;
 /**
  * An Icon wrapper class which implements UIResource. UI classes which set icon
  * properties should use this class to wrap any icons specified as defaults.
- *
  * This class delegates all method invocations to the Icon "delegate" object
  * specified at construction.
  * <p>
@@ -27,7 +26,6 @@ import javax.swing.plaf.UIResource;
  *
  * @see javax.swing.plaf.UIResource
  * @author Amy Fowler
- *
  */
 public class IconUIResource implements Icon, UIResource, Serializable {
     private Icon delegate;
@@ -36,7 +34,7 @@ public class IconUIResource implements Icon, UIResource, Serializable {
      * Creates a UIResource icon object which wraps an existing Icon instance.
      * 
      * @param delegate
-     *                 the icon being wrapped
+     *        the icon being wrapped
      */
     public IconUIResource(Icon delegate) {
         if (delegate == null) {

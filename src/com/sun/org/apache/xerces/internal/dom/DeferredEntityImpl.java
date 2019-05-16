@@ -43,7 +43,6 @@ package com.sun.org.apache.xerces.internal.dom;
  * operation, and this is the simplest solution.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeferredEntityImpl extends EntityImpl implements DeferredNode {

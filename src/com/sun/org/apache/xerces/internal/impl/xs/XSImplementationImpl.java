@@ -32,11 +32,9 @@ import org.w3c.dom.DOMImplementation;
  * object that implements DOMImplementation.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  */
-public class XSImplementationImpl extends CoreDOMImplementationImpl implements
-        XSImplementation {
+public class XSImplementationImpl extends CoreDOMImplementationImpl implements XSImplementation {
 
     //
     // Data
@@ -65,26 +63,23 @@ public class XSImplementationImpl extends CoreDOMImplementationImpl implements
      * meaning language and level thereof.
      *
      * @param feature
-     *                The package name of the feature to test. In Level 1,
-     *                supported
-     *                values are "HTML" and "XML" (case-insensitive). At this
-     *                writing, com.sun.org.apache.xerces.internal.dom supports
-     *                only
-     *                XML.
-     *
+     *        The package name of the feature to test. In Level 1,
+     *        supported
+     *        values are "HTML" and "XML" (case-insensitive). At this
+     *        writing, com.sun.org.apache.xerces.internal.dom supports
+     *        only
+     *        XML.
      * @param version
-     *                The version number of the feature being tested. This is
-     *                interpreted as "Version of the DOM API supported for the
-     *                specified Feature", and in Level 1 should be "1.0"
-     *
+     *        The version number of the feature being tested. This is
+     *        interpreted as "Version of the DOM API supported for the
+     *        specified Feature", and in Level 1 should be "1.0"
      * @return true iff this implementation is compatable with the specified
      *         feature and version.
      */
     public boolean hasFeature(String feature, String version) {
 
-        return (feature.equalsIgnoreCase("XS-Loader") && (version == null
-                || version.equals("1.0")) || super.hasFeature(feature,
-                        version));
+        return (feature.equalsIgnoreCase("XS-Loader") && (version == null || version.equals("1.0"))
+                || super.hasFeature(feature, version));
     } // hasFeature(String,String):boolean
 
     /*
@@ -100,9 +95,8 @@ public class XSImplementationImpl extends CoreDOMImplementationImpl implements
         }
         for (int i = 0; i < versions.getLength(); i++) {
             if (!versions.item(i).equals("1.0")) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "FEATURE_NOT_SUPPORTED",
-                        new Object[] { versions.item(i) });
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "FEATURE_NOT_SUPPORTED", new Object[] { versions.item(i) });
                 throw new XSException(XSException.NOT_SUPPORTED_ERR, msg);
             }
         }

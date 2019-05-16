@@ -73,7 +73,7 @@ public class DLOAD extends LoadInstruction {
      * Load double from local variable
      * 
      * @param n
-     *          index of local variable
+     *        index of local variable
      */
     public DLOAD(int n) {
         super(com.sun.org.apache.bcel.internal.Constants.DLOAD,
@@ -87,7 +87,7 @@ public class DLOAD extends LoadInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         super.accept(v);

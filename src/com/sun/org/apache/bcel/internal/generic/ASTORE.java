@@ -73,7 +73,7 @@ public class ASTORE extends StoreInstruction {
      * Store reference into local variable
      * 
      * @param n
-     *          index of local variable
+     *        index of local variable
      */
     public ASTORE(int n) {
         super(com.sun.org.apache.bcel.internal.Constants.ASTORE,
@@ -87,7 +87,7 @@ public class ASTORE extends StoreInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         super.accept(v);

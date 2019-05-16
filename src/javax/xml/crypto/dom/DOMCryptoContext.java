@@ -47,10 +47,9 @@ public class DOMCryptoContext implements XMLCryptoContext {
      * if it maps to <code>null</code>.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public String getNamespacePrefix(String namespaceURI,
-            String defaultPrefix) {
+    public String getNamespacePrefix(String namespaceURI, String defaultPrefix) {
         if (namespaceURI == null) {
             throw new NullPointerException("namespaceURI cannot be null");
         }
@@ -63,7 +62,7 @@ public class DOMCryptoContext implements XMLCryptoContext {
      * the specified prefix.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public String putNamespacePrefix(String namespaceURI, String prefix) {
         if (namespaceURI == null) {
@@ -86,7 +85,7 @@ public class DOMCryptoContext implements XMLCryptoContext {
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void setBaseURI(String baseURI) {
         if (baseURI != null) {
@@ -108,7 +107,7 @@ public class DOMCryptoContext implements XMLCryptoContext {
      * that the specified name maps to.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public Object getProperty(String name) {
         if (name == null) {
@@ -122,7 +121,7 @@ public class DOMCryptoContext implements XMLCryptoContext {
      * the specified object.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public Object setProperty(String name, Object value) {
         if (name == null) {
@@ -141,17 +140,16 @@ public class DOMCryptoContext implements XMLCryptoContext {
 
     /**
      * Returns the <code>Element</code> with the specified ID attribute value.
-     *
      * <p>
      * This implementation uses an internal {@link HashMap} to get the element
      * that the specified attribute value maps to.
      *
      * @param idValue
-     *                the value of the ID
+     *        the value of the ID
      * @return the <code>Element</code> with the specified ID attribute value,
      *         or <code>null</code> if none.
      * @throws NullPointerException
-     *                              if <code>idValue</code> is <code>null</code>
+     *         if <code>idValue</code> is <code>null</code>
      * @see #setIdAttributeNS
      */
     public Element getElementById(String idValue) {
@@ -164,32 +162,30 @@ public class DOMCryptoContext implements XMLCryptoContext {
     /**
      * Registers the element's attribute specified by the namespace URI and
      * local name to be of type ID. The attribute must have a non-empty value.
-     *
      * <p>
      * This implementation uses an internal {@link HashMap} to map the
      * attribute's value to the specified element.
      *
      * @param element
-     *                     the element
+     *        the element
      * @param namespaceURI
-     *                     the namespace URI of the attribute (specify
-     *                     <code>null</code>
-     *                     if not applicable)
+     *        the namespace URI of the attribute (specify
+     *        <code>null</code>
+     *        if not applicable)
      * @param localName
-     *                     the local name of the attribute
+     *        the local name of the attribute
      * @throws IllegalArgumentException
-     *                                  if <code>localName</code> is not an
-     *                                  attribute of the
-     *                                  specified element or it does not contain
-     *                                  a specific value
+     *         if <code>localName</code> is not an
+     *         attribute of the
+     *         specified element or it does not contain
+     *         a specific value
      * @throws NullPointerException
-     *                                  if <code>element</code> or
-     *                                  <code>localName</code> is
-     *                                  <code>null</code>
+     *         if <code>element</code> or
+     *         <code>localName</code> is
+     *         <code>null</code>
      * @see #getElementById
      */
-    public void setIdAttributeNS(Element element, String namespaceURI,
-            String localName) {
+    public void setIdAttributeNS(Element element, String namespaceURI, String localName) {
         if (element == null) {
             throw new NullPointerException("element is null");
         }
@@ -198,8 +194,7 @@ public class DOMCryptoContext implements XMLCryptoContext {
         }
         String idValue = element.getAttributeNS(namespaceURI, localName);
         if (idValue == null || idValue.length() == 0) {
-            throw new IllegalArgumentException(localName + " is not an "
-                    + "attribute");
+            throw new IllegalArgumentException(localName + " is not an " + "attribute");
         }
         idMap.put(idValue, element);
     }
@@ -234,7 +229,7 @@ public class DOMCryptoContext implements XMLCryptoContext {
      * the specified object.
      *
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public Object put(Object key, Object value) {
         return objMap.put(key, value);

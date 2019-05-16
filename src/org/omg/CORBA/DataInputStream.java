@@ -229,13 +229,13 @@ public interface DataInputStream extends org.omg.CORBA.portable.ValueBase {
      * stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
@@ -248,238 +248,226 @@ public interface DataInputStream extends org.omg.CORBA.portable.ValueBase {
      * input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq, int offset,
-            int length);
+    void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL characters from offset for length elements from the
      * input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_char_array(org.omg.CORBA.CharSeqHolder seq, int offset,
-            int length);
+    void read_char_array(org.omg.CORBA.CharSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL wide characters from offset for length elements from
      * the input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq, int offset,
-            int length);
+    void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL octets from offset for length elements from the input
      * stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_octet_array(org.omg.CORBA.OctetSeqHolder seq, int offset,
-            int length);
+    void read_octet_array(org.omg.CORBA.OctetSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL shorts from offset for length elements from the input
      * stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_short_array(org.omg.CORBA.ShortSeqHolder seq, int offset,
-            int length);
+    void read_short_array(org.omg.CORBA.ShortSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL unsigned shorts from offset for length elements from
      * the input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq, int offset,
-            int length);
+    void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL longs from offset for length elements from the input
      * stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_long_array(org.omg.CORBA.LongSeqHolder seq, int offset,
-            int length);
+    void read_long_array(org.omg.CORBA.LongSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL unsigned longs from offset for length elements from
      * the input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq, int offset,
-            int length);
+    void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL unsigned long longs from offset for length elements
      * from the input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq, int offset,
-            int length);
+    void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL long longs from offset for length elements from the
      * input stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq, int offset,
-            int length);
+    void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL floats from offset for length elements from the input
      * stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_float_array(org.omg.CORBA.FloatSeqHolder seq, int offset,
-            int length);
+    void read_float_array(org.omg.CORBA.FloatSeqHolder seq, int offset, int length);
 
     /**
      * Reads array of IDL doubles from offset for length elements from the input
      * stream.
      * 
      * @param seq
-     *               The out parameter holder for the array to be read.
+     *        The out parameter holder for the array to be read.
      * @param offset
-     *               The index into seq of the first element to read from the
-     *               input
-     *               stream.
+     *        The index into seq of the first element to read from the
+     *        input
+     *        stream.
      * @param length
-     *               The number of elements to read from the input stream.
+     *        The number of elements to read from the input stream.
      * @throws <code>org.omg.CORBA.MARSHAL</code>
      *         If an inconsistency is detected, including not having
      *         registered a streaming policy, then the standard system
      *         exception MARSHAL is raised.
      */
-    void read_double_array(org.omg.CORBA.DoubleSeqHolder seq, int offset,
-            int length);
+    void read_double_array(org.omg.CORBA.DoubleSeqHolder seq, int offset, int length);
 } // interface DataInputStream

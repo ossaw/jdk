@@ -11,7 +11,6 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents a
  * Windows NT user.
- *
  * <p>
  * Principals such as this <code>NTUserPrincipal</code> may be associated with a
  * particular <code>Subject</code> to augment that <code>Subject</code> with an
@@ -34,23 +33,19 @@ public class NTUserPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Create an <code>NTUserPrincipal</code> with a Windows NT username.
-     *
      * <p>
      *
      * @param name
-     *             the Windows NT username for this user.
-     *             <p>
-     *
+     *        the Windows NT username for this user.
+     *        <p>
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public NTUserPrincipal(String name) {
         if (name == null) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "invalid.null.input.value",
-                            "sun.security.util.AuthResources"));
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("invalid.null.input.value", "sun.security.util.AuthResources"));
             Object[] source = { "name" };
             throw new NullPointerException(form.format(source));
         }
@@ -59,7 +54,6 @@ public class NTUserPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return the Windows NT username for this <code>NTPrincipal</code>.
-     *
      * <p>
      *
      * @return the Windows NT username for this <code>NTPrincipal</code>
@@ -70,15 +64,13 @@ public class NTUserPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a string representation of this <code>NTPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>NTPrincipal</code>.
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString("NTUserPrincipal.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "NTUserPrincipal.name", "sun.security.util.AuthResources"));
         Object[] source = { name };
         return form.format(source);
     }
@@ -88,13 +80,11 @@ public class NTUserPrincipal implements Principal, java.io.Serializable {
      * equality. Returns true if the given object is also a
      * <code>NTUserPrincipal</code> and the two NTUserPrincipals have the same
      * name.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>NTPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>NTPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>NTPrincipal</code>.
      */
@@ -116,7 +106,6 @@ public class NTUserPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a hash code for this <code>NTUserPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>NTUserPrincipal</code>.

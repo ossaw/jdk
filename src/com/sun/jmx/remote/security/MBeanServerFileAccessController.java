@@ -32,7 +32,6 @@ import javax.security.auth.Subject;
  * throw a SecurityException if the operation is not allowed; in this case the
  * request is not forwarded to the wrapped object.
  * </p>
- *
  * <p>
  * This class implements the {@link #checkRead()}, {@link #checkWrite()},
  * {@link #checkCreate(String)}, and {@link #checkUnregister(ObjectName)}
@@ -45,7 +44,6 @@ import javax.security.auth.Subject;
  * has exactly one access level. The same access level can be shared by several
  * usernames.
  * </p>
- *
  * <p>
  * The supported access level values are {@code readonly} and {@code readwrite}.
  * The {@code readwrite} access level can be qualified by one or more
@@ -60,14 +58,12 @@ import javax.security.auth.Subject;
  *              create javax.management.timer.*,javax.management.monitor.* \
  *              unregister
  * </pre>
- *
  * <p>
  * (The continuation lines with {@code \} come from the parser for Properties
  * files.)
  * </p>
  */
-public class MBeanServerFileAccessController extends
-        MBeanServerAccessController {
+public class MBeanServerFileAccessController extends MBeanServerAccessController {
 
     static final String READONLY = "readonly";
     static final String READWRITE = "readwrite";
@@ -84,16 +80,13 @@ public class MBeanServerFileAccessController extends
         final String[] createPatterns;
         private boolean unregister;
 
-        Access(boolean write, boolean unregister,
-                List<String> createPatternList) {
+        Access(boolean write, boolean unregister, List<String> createPatternList) {
             this.write = write;
-            int npats = (createPatternList == null) ? 0
-                    : createPatternList.size();
+            int npats = (createPatternList == null) ? 0 : createPatternList.size();
             if (npats == 0)
                 this.createPatterns = NO_STRINGS;
             else
-                this.createPatterns = createPatternList.toArray(
-                        new String[npats]);
+                this.createPatterns = createPatternList.toArray(new String[npats]);
             this.unregister = unregister;
         }
 
@@ -107,30 +100,26 @@ public class MBeanServerFileAccessController extends
      * {@link #setMBeanServer} method after doing access checks based on read
      * and write permissions.
      * </p>
-     *
      * <p>
      * This instance is initialized from the specified properties file.
      * </p>
      *
      * @param accessFileName
-     *                       name of the file which denotes a properties file on
-     *                       disk
-     *                       containing the username/access level entries.
-     *
+     *        name of the file which denotes a properties file on
+     *        disk
+     *        containing the username/access level entries.
      * @exception IOException
-     *                                     if the file does not exist, is a
-     *                                     directory rather than a
-     *                                     regular file, or for some other
-     *                                     reason cannot be opened
-     *                                     for reading.
-     *
+     *            if the file does not exist, is a
+     *            directory rather than a
+     *            regular file, or for some other
+     *            reason cannot be opened
+     *            for reading.
      * @exception IllegalArgumentException
-     *                                     if any of the supplied access level
-     *                                     values differs from
-     *                                     "readonly" or "readwrite".
+     *            if any of the supplied access level
+     *            values differs from
+     *            "readonly" or "readwrite".
      */
-    public MBeanServerFileAccessController(String accessFileName)
-            throws IOException {
+    public MBeanServerFileAccessController(String accessFileName) throws IOException {
         super();
         this.accessFileName = accessFileName;
         Properties props = propertiesFromFile(accessFileName);
@@ -143,34 +132,29 @@ public class MBeanServerFileAccessController extends
      * MBeanServer requests to <code>mbs</code> after doing access checks based
      * on read and write permissions.
      * </p>
-     *
      * <p>
      * This instance is initialized from the specified properties file.
      * </p>
      *
      * @param accessFileName
-     *                       name of the file which denotes a properties file on
-     *                       disk
-     *                       containing the username/access level entries.
-     *
+     *        name of the file which denotes a properties file on
+     *        disk
+     *        containing the username/access level entries.
      * @param mbs
-     *                       the MBeanServer object to which requests will be
-     *                       forwarded.
-     *
+     *        the MBeanServer object to which requests will be
+     *        forwarded.
      * @exception IOException
-     *                                     if the file does not exist, is a
-     *                                     directory rather than a
-     *                                     regular file, or for some other
-     *                                     reason cannot be opened
-     *                                     for reading.
-     *
+     *            if the file does not exist, is a
+     *            directory rather than a
+     *            regular file, or for some other
+     *            reason cannot be opened
+     *            for reading.
      * @exception IllegalArgumentException
-     *                                     if any of the supplied access level
-     *                                     values differs from
-     *                                     "readonly" or "readwrite".
+     *            if any of the supplied access level
+     *            values differs from
+     *            "readonly" or "readwrite".
      */
-    public MBeanServerFileAccessController(String accessFileName,
-            MBeanServer mbs) throws IOException {
+    public MBeanServerFileAccessController(String accessFileName, MBeanServer mbs) throws IOException {
         this(accessFileName);
         setMBeanServer(mbs);
     }
@@ -182,7 +166,6 @@ public class MBeanServerFileAccessController extends
      * {@link #setMBeanServer} method after doing access checks based on read
      * and write permissions.
      * </p>
-     *
      * <p>
      * This instance is initialized from the specified properties instance. This
      * constructor makes a copy of the properties instance and it is the copy
@@ -194,18 +177,16 @@ public class MBeanServerFileAccessController extends
      * </p>
      *
      * @param accessFileProps
-     *                        properties list containing the username/access
-     *                        level entries.
-     *
+     *        properties list containing the username/access
+     *        level entries.
      * @exception IllegalArgumentException
-     *                                     if <code>accessFileProps</code> is
-     *                                     <code>null</code> or if
-     *                                     any of the supplied access level
-     *                                     values differs from
-     *                                     "readonly" or "readwrite".
+     *            if <code>accessFileProps</code> is
+     *            <code>null</code> or if
+     *            any of the supplied access level
+     *            values differs from
+     *            "readonly" or "readwrite".
      */
-    public MBeanServerFileAccessController(Properties accessFileProps)
-            throws IOException {
+    public MBeanServerFileAccessController(Properties accessFileProps) throws IOException {
         super();
         if (accessFileProps == null)
             throw new IllegalArgumentException("Null properties");
@@ -220,7 +201,6 @@ public class MBeanServerFileAccessController extends
      * {@link #setMBeanServer} method after doing access checks based on read
      * and write permissions.
      * </p>
-     *
      * <p>
      * This instance is initialized from the specified properties instance. This
      * constructor makes a copy of the properties instance and it is the copy
@@ -232,22 +212,19 @@ public class MBeanServerFileAccessController extends
      * </p>
      *
      * @param accessFileProps
-     *                        properties list containing the username/access
-     *                        level entries.
-     *
+     *        properties list containing the username/access
+     *        level entries.
      * @param mbs
-     *                        the MBeanServer object to which requests will be
-     *                        forwarded.
-     *
+     *        the MBeanServer object to which requests will be
+     *        forwarded.
      * @exception IllegalArgumentException
-     *                                     if <code>accessFileProps</code> is
-     *                                     <code>null</code> or if
-     *                                     any of the supplied access level
-     *                                     values differs from
-     *                                     "readonly" or "readwrite".
+     *            if <code>accessFileProps</code> is
+     *            <code>null</code> or if
+     *            any of the supplied access level
+     *            values differs from
+     *            "readonly" or "readwrite".
      */
-    public MBeanServerFileAccessController(Properties accessFileProps,
-            MBeanServer mbs) throws IOException {
+    public MBeanServerFileAccessController(Properties accessFileProps, MBeanServer mbs) throws IOException {
         this(accessFileProps);
         setMBeanServer(mbs);
     }
@@ -292,14 +269,12 @@ public class MBeanServerFileAccessController extends
      * <p>
      * Refresh the set of username/access level entries.
      * </p>
-     *
      * <p>
      * If this instance was created using the
      * {@link #MBeanServerFileAccessController(String)} or
      * {@link #MBeanServerFileAccessController(String,MBeanServer)} constructors
      * to specify a file from which the entries are read, the file is re-read.
      * </p>
-     *
      * <p>
      * If this instance was created using the
      * {@link #MBeanServerFileAccessController(Properties)} or
@@ -309,16 +284,15 @@ public class MBeanServerFileAccessController extends
      * </p>
      *
      * @exception IOException
-     *                                     if the file does not exist, is a
-     *                                     directory rather than a
-     *                                     regular file, or for some other
-     *                                     reason cannot be opened
-     *                                     for reading.
-     *
+     *            if the file does not exist, is a
+     *            directory rather than a
+     *            regular file, or for some other
+     *            reason cannot be opened
+     *            for reading.
      * @exception IllegalArgumentException
-     *                                     if any of the supplied access level
-     *                                     values differs from
-     *                                     "readonly" or "readwrite".
+     *            if any of the supplied access level
+     *            values differs from
+     *            "readonly" or "readwrite".
      */
     public synchronized void refresh() throws IOException {
         Properties props;
@@ -329,8 +303,7 @@ public class MBeanServerFileAccessController extends
         parseProperties(props);
     }
 
-    private static Properties propertiesFromFile(String fname)
-            throws IOException {
+    private static Properties propertiesFromFile(String fname) throws IOException {
         FileInputStream fin = new FileInputStream(fname);
         try {
             Properties p = new Properties();
@@ -341,15 +314,13 @@ public class MBeanServerFileAccessController extends
         }
     }
 
-    private synchronized void checkAccess(AccessType requiredAccess,
-            String arg) {
+    private synchronized void checkAccess(AccessType requiredAccess, String arg) {
         final AccessControlContext acc = AccessController.getContext();
-        final Subject s = AccessController.doPrivileged(
-                new PrivilegedAction<Subject>() {
-                    public Subject run() {
-                        return Subject.getSubject(acc);
-                    }
-                });
+        final Subject s = AccessController.doPrivileged(new PrivilegedAction<Subject>() {
+            public Subject run() {
+                return Subject.getSubject(acc);
+            }
+        });
         if (s == null)
             return; /* security has not been enabled */
         final Set principals = s.getPrincipals();
@@ -392,8 +363,7 @@ public class MBeanServerFileAccessController extends
         // trace anyway.
         if (newPropertyValue != null) {
             SecurityException se2 = new SecurityException("Access property "
-                    + "for this identity should be similar to: " + READWRITE
-                    + " " + newPropertyValue);
+                    + "for this identity should be similar to: " + READWRITE + " " + newPropertyValue);
             se.initCause(se2);
         }
         throw se;
@@ -480,8 +450,7 @@ public class MBeanServerFileAccessController extends
             else if (type.equals(READWRITE))
                 access = parseReadWrite();
             else {
-                throw syntax("Expected " + READONLY + " or " + READWRITE + ": "
-                        + type);
+                throw syntax("Expected " + READONLY + " or " + READWRITE + ": " + type);
             }
             if (c != EOS)
                 throw syntax("Extra text at end of line");
@@ -575,8 +544,7 @@ public class MBeanServerFileAccessController extends
         }
 
         private IllegalArgumentException syntax(String msg) {
-            return new IllegalArgumentException(msg + " [" + identity + " " + s
-                    + "]");
+            return new IllegalArgumentException(msg + " [" + identity + " " + s + "]");
         }
     }
 

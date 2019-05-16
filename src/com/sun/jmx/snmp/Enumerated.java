@@ -11,13 +11,10 @@ import java.util.*;
 
 /**
  * This class is used for implementing enumerated values.
- *
  * An enumeration is represented by a class derived from Enumerated. The derived
  * class defines what are the permitted values in the enumeration.
- *
  * An enumerated value is represented by an instance of the derived class. It
  * can be represented : - as an integer - as a string
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -31,9 +28,9 @@ abstract public class Enumerated implements Serializable {
      * first available in getIntTable().
      * 
      * @exception IllegalArgumentException
-     *                                     One of the arguments passed to the
-     *                                     method is illegal or
-     *                                     inappropriate.
+     *            One of the arguments passed to the
+     *            method is illegal or
+     *            inappropriate.
      */
     public Enumerated() throws IllegalArgumentException {
         Enumeration<Integer> e = getIntTable().keys();
@@ -48,11 +45,11 @@ abstract public class Enumerated implements Serializable {
      * Construct an enumerated from its integer form.
      *
      * @param valueIndex
-     *                   The integer form.
+     *        The integer form.
      * @exception IllegalArgumentException
-     *                                     One of the arguments passed to the
-     *                                     method is illegal or
-     *                                     inappropriate.
+     *            One of the arguments passed to the
+     *            method is illegal or
+     *            inappropriate.
      */
     public Enumerated(int valueIndex) throws IllegalArgumentException {
         if (getIntTable().get(new Integer(valueIndex)) == null) {
@@ -65,11 +62,11 @@ abstract public class Enumerated implements Serializable {
      * Construct an enumerated from its Integer form.
      *
      * @param valueIndex
-     *                   The Integer form.
+     *        The Integer form.
      * @exception IllegalArgumentException
-     *                                     One of the arguments passed to the
-     *                                     method is illegal or
-     *                                     inappropriate.
+     *            One of the arguments passed to the
+     *            method is illegal or
+     *            inappropriate.
      */
     public Enumerated(Integer valueIndex) throws IllegalArgumentException {
         if (getIntTable().get(valueIndex) == null) {
@@ -82,11 +79,11 @@ abstract public class Enumerated implements Serializable {
      * Construct an enumerated from its string form.
      *
      * @param valueString
-     *                    The string form.
+     *        The string form.
      * @exception IllegalArgumentException
-     *                                     One of the arguments passed to the
-     *                                     method is illegal or
-     *                                     inappropriate.
+     *            One of the arguments passed to the
+     *            method is illegal or
+     *            inappropriate.
      */
     public Enumerated(String valueString) throws IllegalArgumentException {
         Integer index = getStringTable().get(valueString);
@@ -129,20 +126,17 @@ abstract public class Enumerated implements Serializable {
 
     /**
      * Compares this enumerated to the specified enumerated.
-     *
      * The result is true if and only if the argument is not null and is of the
      * same class.
      *
      * @param obj
-     *            The object to compare with.
-     *
+     *        The object to compare with.
      * @return True if this and obj are the same; false otherwise
      */
     @Override
     public boolean equals(Object obj) {
 
-        return ((obj != null) && (getClass() == obj.getClass())
-                && (value == ((Enumerated) obj).value));
+        return ((obj != null) && (getClass() == obj.getClass()) && (value == ((Enumerated) obj).value));
     }
 
     /**
@@ -169,7 +163,6 @@ abstract public class Enumerated implements Serializable {
     /**
      * Returns the hashtable of the integer forms. getIntTable().get(x) returns
      * the string form associated to the integer x.
-     *
      * This method must be implemented by the derived class.
      *
      * @return An hashtable for read-only purpose
@@ -180,7 +173,6 @@ abstract public class Enumerated implements Serializable {
     /**
      * Returns the hashtable of the string forms. getStringTable().get(s)
      * returns the integer form associated to the string s.
-     *
      * This method must be implemented by the derived class.
      *
      * @return An hashtable for read-only purpose

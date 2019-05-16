@@ -74,7 +74,6 @@ import org.w3c.dom.traversal.TreeWalker;
  * is serialized along with it.
  *
  * @xerces.internal
- *
  * @author Arnaud Le Hors, IBM
  * @author Joe Kesselman, IBM
  * @author Andy Clark, IBM
@@ -82,8 +81,8 @@ import org.w3c.dom.traversal.TreeWalker;
  * @version $Id: DocumentImpl.java,v 1.6 2010/07/20 20:25:24 joehw Exp $
  * @since PR-DOM-Level-1-19980818.
  */
-public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
-        DocumentEvent, DocumentRange {
+public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal, DocumentEvent,
+        DocumentRange {
 
     //
     // Constants
@@ -121,10 +120,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      *              boolean Bypass mutation events firing
      */
     private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[] {
-            new ObjectStreamField("iterators", Vector.class),
-            new ObjectStreamField("ranges", Vector.class),
-            new ObjectStreamField("eventListeners", Hashtable.class),
-            new ObjectStreamField("mutationEvents", boolean.class), };
+            new ObjectStreamField("iterators", Vector.class), new ObjectStreamField("ranges", Vector.class),
+            new ObjectStreamField("eventListeners", Hashtable.class), new ObjectStreamField("mutationEvents",
+                    boolean.class), };
 
     //
     // Constructors
@@ -167,7 +165,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      *
      * @return org.w3c.dom.Node
      * @param deep
-     *             boolean, iff true replicate children
+     *        boolean, iff true replicate children
      */
     public Node cloneNode(boolean deep) {
 
@@ -204,14 +202,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * DOM Nodes it references.
      *
      * @param root
-     *                   The root of the iterator.
+     *        The root of the iterator.
      * @param whatToShow
-     *                   The whatToShow mask.
+     *        The whatToShow mask.
      * @param filter
-     *                   The NodeFilter installed. Null means no filter.
+     *        The NodeFilter installed. Null means no filter.
      */
-    public NodeIterator createNodeIterator(Node root, short whatToShow,
-            NodeFilter filter) {
+    public NodeIterator createNodeIterator(Node root, short whatToShow, NodeFilter filter) {
         return createNodeIterator(root, whatToShow, filter, true);
     }
 
@@ -221,28 +218,28 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * references.
      *
      * @param root
-     *                                 The root of the iterator.
+     *        The root of the iterator.
      * @param whatToShow
-     *                                 The whatToShow mask.
+     *        The whatToShow mask.
      * @param filter
-     *                                 The NodeFilter installed. Null means no
-     *                                 filter.
+     *        The NodeFilter installed. Null means no
+     *        filter.
      * @param entityReferenceExpansion
-     *                                 true to expand the contents of
-     *                                 EntityReference nodes
+     *        true to expand the contents of
+     *        EntityReference nodes
      * @since WD-DOM-Level-2-19990923
      */
-    public NodeIterator createNodeIterator(Node root, int whatToShow,
-            NodeFilter filter, boolean entityReferenceExpansion) {
+    public NodeIterator createNodeIterator(Node root, int whatToShow, NodeFilter filter,
+            boolean entityReferenceExpansion) {
 
         if (root == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
 
-        NodeIterator iterator = new NodeIteratorImpl(this, root, whatToShow,
-                filter, entityReferenceExpansion);
+        NodeIterator iterator = new NodeIteratorImpl(this, root, whatToShow, filter,
+                entityReferenceExpansion);
         if (iterators == null) {
             iterators = new ArrayList<>();
         }
@@ -256,14 +253,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * NON-DOM extension: Create and return a TreeWalker.
      *
      * @param root
-     *                   The root of the iterator.
+     *        The root of the iterator.
      * @param whatToShow
-     *                   The whatToShow mask.
+     *        The whatToShow mask.
      * @param filter
-     *                   The NodeFilter installed. Null means no filter.
+     *        The NodeFilter installed. Null means no filter.
      */
-    public TreeWalker createTreeWalker(Node root, short whatToShow,
-            NodeFilter filter) {
+    public TreeWalker createTreeWalker(Node root, short whatToShow, NodeFilter filter) {
         return createTreeWalker(root, whatToShow, filter, true);
     }
 
@@ -271,26 +267,25 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * Create and return a TreeWalker.
      *
      * @param root
-     *                                 The root of the iterator.
+     *        The root of the iterator.
      * @param whatToShow
-     *                                 The whatToShow mask.
+     *        The whatToShow mask.
      * @param filter
-     *                                 The NodeFilter installed. Null means no
-     *                                 filter.
+     *        The NodeFilter installed. Null means no
+     *        filter.
      * @param entityReferenceExpansion
-     *                                 true to expand the contents of
-     *                                 EntityReference nodes
+     *        true to expand the contents of
+     *        EntityReference nodes
      * @since WD-DOM-Level-2-19990923
      */
-    public TreeWalker createTreeWalker(Node root, int whatToShow,
-            NodeFilter filter, boolean entityReferenceExpansion) {
+    public TreeWalker createTreeWalker(Node root, int whatToShow, NodeFilter filter,
+            boolean entityReferenceExpansion) {
         if (root == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
-        return new TreeWalkerImpl(root, whatToShow, filter,
-                entityReferenceExpansion);
+        return new TreeWalkerImpl(root, whatToShow, filter, entityReferenceExpansion);
     }
 
     //
@@ -301,7 +296,6 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * This is not called by the developer client. The developer client uses the
      * detach() function on the NodeIterator itself.
      * <p>
-     *
      * This function is called from the NodeIterator#detach().
      */
     void removeNodeIterator(NodeIterator nodeIterator) {
@@ -369,8 +363,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         if (ranges != null) {
             int size = ranges.size();
             for (int i = 0; i != size; i++) {
-                ((RangeImpl) ranges.get(i)).receiveDeletedText(node, offset,
-                        count);
+                ((RangeImpl) ranges.get(i)).receiveDeletedText(node, offset, count);
             }
         }
     }
@@ -384,8 +377,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         if (ranges != null) {
             int size = ranges.size();
             for (int i = 0; i != size; i++) {
-                ((RangeImpl) ranges.get(i)).receiveInsertedText(node, offset,
-                        count);
+                ((RangeImpl) ranges.get(i)).receiveInsertedText(node, offset, count);
             }
         }
     }
@@ -399,8 +391,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         if (ranges != null) {
             int size = ranges.size();
             for (int i = 0; i != size; i++) {
-                ((RangeImpl) ranges.get(i)).receiveSplitData(node, newNode,
-                        offset);
+                ((RangeImpl) ranges.get(i)).receiveSplitData(node, newNode, offset);
             }
         }
     }
@@ -415,35 +406,34 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * Create and return Event objects.
      *
      * @param type
-     *             The eventType parameter specifies the type of Event interface
-     *             to be created. If the Event interface specified is supported
-     *             by the implementation this method will return a new Event of
-     *             the interface type requested. If the Event is to be
-     *             dispatched
-     *             via the dispatchEvent method the appropriate event init
-     *             method
-     *             must be called after creation in order to initialize the
-     *             Event's values. As an example, a user wishing to synthesize
-     *             some kind of Event would call createEvent with the parameter
-     *             "Events". The initEvent method could then be called on the
-     *             newly created Event to set the specific type of Event to be
-     *             dispatched and set its context information.
+     *        The eventType parameter specifies the type of Event interface
+     *        to be created. If the Event interface specified is supported
+     *        by the implementation this method will return a new Event of
+     *        the interface type requested. If the Event is to be
+     *        dispatched
+     *        via the dispatchEvent method the appropriate event init
+     *        method
+     *        must be called after creation in order to initialize the
+     *        Event's values. As an example, a user wishing to synthesize
+     *        some kind of Event would call createEvent with the parameter
+     *        "Events". The initEvent method could then be called on the
+     *        newly created Event to set the specific type of Event to be
+     *        dispatched and set its context information.
      * @return Newly created Event
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: Raised if the implementation
-     *                         does not
-     *                         support the type of Event interface requested
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support the type of Event interface requested
      * @since WD-DOM-Level-2-19990923
      */
     public Event createEvent(String type) throws DOMException {
         if (type.equalsIgnoreCase("Events") || "Event".equals(type))
             return new EventImpl();
-        if (type.equalsIgnoreCase("MutationEvents") || "MutationEvent".equals(
-                type))
+        if (type.equalsIgnoreCase("MutationEvents") || "MutationEvent".equals(type))
             return new MutationEventImpl();
         else {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
     }
@@ -523,13 +513,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
          * NON-DOM INTERNAL: Constructor for Listener list Entry
          * 
          * @param type
-         *                  Event name (NOT event group!) to listen for.
+         *        Event name (NOT event group!) to listen for.
          * @param listener
-         *                  Who gets called when event is dispatched
+         *        Who gets called when event is dispatched
          * @param useCaptue
-         *                  True iff listener is registered on capturing phase
-         *                  rather
-         *                  than at-target or bubbling
+         *        True iff listener is registered on capturing phase
+         *        rather
+         *        than at-target or bubbling
          */
         LEntry(String type, EventListener listener, boolean useCapture) {
             this.type = type;
@@ -547,19 +537,18 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * registered once per role; redundant registrations are ignored.
      * 
      * @param node
-     *                   node to add listener to
+     *        node to add listener to
      * @param type
-     *                   Event name (NOT event group!) to listen for.
+     *        Event name (NOT event group!) to listen for.
      * @param listener
-     *                   Who gets called when event is dispatched
+     *        Who gets called when event is dispatched
      * @param useCapture
-     *                   True iff listener is registered on capturing phase
-     *                   rather than
-     *                   at-target or bubbling
+     *        True iff listener is registered on capturing phase
+     *        rather than
+     *        at-target or bubbling
      */
     @Override
-    protected void addEventListener(NodeImpl node, String type,
-            EventListener listener, boolean useCapture) {
+    protected void addEventListener(NodeImpl node, String type, EventListener listener, boolean useCapture) {
         // We can't dispatch to blank type-name, and of course we need
         // a listener to dispatch to
         if (type == null || type.equals("") || listener == null)
@@ -597,19 +586,19 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * role) are ignored.
      * 
      * @param node
-     *                   node to remove listener from
+     *        node to remove listener from
      * @param type
-     *                   Event name (NOT event group!) to listen for.
+     *        Event name (NOT event group!) to listen for.
      * @param listener
-     *                   Who gets called when event is dispatched
+     *        Who gets called when event is dispatched
      * @param useCapture
-     *                   True iff listener is registered on capturing phase
-     *                   rather than
-     *                   at-target or bubbling
+     *        True iff listener is registered on capturing phase
+     *        rather than
+     *        at-target or bubbling
      */
     @Override
-    protected void removeEventListener(NodeImpl node, String type,
-            EventListener listener, boolean useCapture) {
+    protected void removeEventListener(NodeImpl node, String type, EventListener listener,
+            boolean useCapture) {
         // If this couldn't be a valid listener registration, ignore request
         if (type == null || type.equals("") || listener == null)
             return;
@@ -622,8 +611,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         // count-down is OK for deletions!
         for (int i = nodeListeners.size() - 1; i >= 0; --i) {
             LEntry le = nodeListeners.get(i);
-            if (le.useCapture == useCapture && le.listener == listener
-                    && le.type.equals(type)) {
+            if (le.useCapture == useCapture && le.listener == listener && le.type.equals(type)) {
                 nodeListeners.remove(i);
                 // Storage management: Discard empty listener lists
                 if (nodeListeners.isEmpty())
@@ -696,10 +684,10 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * redispatchable, though it isn't stated in those terms.
      * 
      * @param node
-     *              node to dispatch to
+     *        node to dispatch to
      * @param event
-     *              the event object to be dispatched to registered
-     *              EventListeners
+     *        the event object to be dispatched to registered
+     *        EventListeners
      * @return true if the event's <code>preventDefault()</code> method was
      *         invoked by an EventListener; otherwise false.
      */
@@ -715,11 +703,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         // VALIDATE -- must have been initialized at least once, must have
         // a non-null non-blank name.
         if (!evt.initialized || evt.type == null || evt.type.equals("")) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "UNSPECIFIED_EVENT_TYPE_ERR", null);
-            throw new EventException(EventException.UNSPECIFIED_EVENT_TYPE_ERR,
-                    msg);
+            throw new EventException(EventException.UNSPECIFIED_EVENT_TYPE_ERR, msg);
         }
 
         // If nobody is listening for this event, discard immediately
@@ -767,14 +753,12 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
                 evt.currentTarget = nn;
                 List<LEntry> nodeListeners = getEventListeners(nn);
                 if (nodeListeners != null) {
-                    List<LEntry> nl = (List) ((ArrayList) nodeListeners)
-                            .clone();
+                    List<LEntry> nl = (List) ((ArrayList) nodeListeners).clone();
                     // call listeners in the order in which they got registered
                     int nlsize = nl.size();
                     for (int i = 0; i < nlsize; i++) {
                         LEntry le = nl.get(i);
-                        if (le.useCapture && le.type.equals(evt.type)
-                                && nodeListeners.contains(le)) {
+                        if (le.useCapture && le.type.equals(evt.type) && nodeListeners.contains(le)) {
                             try {
                                 le.listener.handleEvent(evt);
                             } catch (Exception e) {
@@ -800,8 +784,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
                 int nlsize = nl.size();
                 for (int i = 0; i < nlsize; i++) {
                     LEntry le = (LEntry) nl.get(i);
-                    if (!le.useCapture && le.type.equals(evt.type)
-                            && nodeListeners.contains(le)) {
+                    if (!le.useCapture && le.type.equals(evt.type) && nodeListeners.contains(le)) {
                         try {
                             le.listener.handleEvent(evt);
                         } catch (Exception e) {
@@ -827,15 +810,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
                     evt.currentTarget = nn;
                     nodeListeners = getEventListeners(nn);
                     if (nodeListeners != null) {
-                        List<LEntry> nl = (List) ((ArrayList) nodeListeners)
-                                .clone();
+                        List<LEntry> nl = (List) ((ArrayList) nodeListeners).clone();
                         // call listeners in the order in which they got
                         // registered
                         int nlsize = nl.size();
                         for (int i = 0; i < nlsize; i++) {
                             LEntry le = nl.get(i);
-                            if (!le.useCapture && le.type.equals(evt.type)
-                                    && nodeListeners.contains(le)) {
+                            if (!le.useCapture && le.type.equals(evt.type) && nodeListeners.contains(le)) {
                                 try {
                                     le.listener.handleEvent(evt);
                                 } catch (Exception e) {
@@ -876,9 +857,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * repeated chases up to root.
      * 
      * @param n
-     *          target node (that was directly inserted or removed)
+     *        target node (that was directly inserted or removed)
      * @param e
-     *          event to be sent to that node and its subtree
+     *        event to be sent to that node and its subtree
      */
     protected void dispatchEventToSubtree(Node n, Event e) {
 
@@ -896,9 +877,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * Dispatches event to the target node's descendents recursively
      *
      * @param n
-     *          node to dispatch to
+     *        node to dispatch to
      * @param e
-     *          event to be sent to that node and its subtree
+     *        event to be sent to that node and its subtree
      */
     protected void dispatchingEventToSubtree(Node n, Event e) {
         if (n == null)
@@ -935,14 +916,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * when the context was established by <code>savedEnclosingAttr</code>.
      * 
      * @param node
-     *             node to dispatch to
+     *        node to dispatch to
      * @param ea
-     *             description of Attr affected by current operation
+     *        description of Attr affected by current operation
      */
     protected void dispatchAggregateEvents(NodeImpl node, EnclosingAttr ea) {
         if (ea != null)
-            dispatchAggregateEvents(node, ea.node, ea.oldvalue,
-                    MutationEvent.MODIFICATION);
+            dispatchAggregateEvents(node, ea.node, ea.oldvalue, MutationEvent.MODIFICATION);
         else
             dispatchAggregateEvents(node, null, null, (short) 0);
 
@@ -964,21 +944,21 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * level. Some examples now exist in our code.
      *
      * @param node
-     *                      The node to dispatch to
+     *        The node to dispatch to
      * @param enclosingAttr
-     *                      The Attr node (if any) whose value has been changed
-     *                      as a
-     *                      result of the DOM operation. Null if none such.
+     *        The Attr node (if any) whose value has been changed
+     *        as a
+     *        result of the DOM operation. Null if none such.
      * @param oldValue
-     *                      The String value previously held by the
-     *                      enclosingAttr. Ignored
-     *                      if none such.
+     *        The String value previously held by the
+     *        enclosingAttr. Ignored
+     *        if none such.
      * @param change
-     *                      Type of modification to the attr. See
-     *                      MutationEvent.attrChange
+     *        Type of modification to the attr. See
+     *        MutationEvent.attrChange
      */
-    protected void dispatchAggregateEvents(NodeImpl node,
-            AttrImpl enclosingAttr, String oldvalue, short change) {
+    protected void dispatchAggregateEvents(NodeImpl node, AttrImpl enclosingAttr, String oldvalue,
+            short change) {
         // We have to send DOMAttrModified.
         NodeImpl owner = null;
         if (enclosingAttr != null) {
@@ -987,10 +967,8 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
             if (lc.total > 0) {
                 if (owner != null) {
                     MutationEventImpl me = new MutationEventImpl();
-                    me.initMutationEvent(MutationEventImpl.DOM_ATTR_MODIFIED,
-                            true, false, enclosingAttr, oldvalue, enclosingAttr
-                                    .getNodeValue(), enclosingAttr
-                                            .getNodeName(), change);
+                    me.initMutationEvent(MutationEventImpl.DOM_ATTR_MODIFIED, true, false, enclosingAttr,
+                            oldvalue, enclosingAttr.getNodeValue(), enclosingAttr.getNodeName(), change);
                     owner.dispatchEvent(me);
                 }
             }
@@ -1002,8 +980,8 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         LCount lc = LCount.lookup(MutationEventImpl.DOM_SUBTREE_MODIFIED);
         if (lc.total > 0) {
             MutationEvent me = new MutationEventImpl();
-            me.initMutationEvent(MutationEventImpl.DOM_SUBTREE_MODIFIED, true,
-                    false, null, null, null, null, (short) 0);
+            me.initMutationEvent(MutationEventImpl.DOM_SUBTREE_MODIFIED, true, false, null, null, null, null,
+                    (short) 0);
 
             // If we're within an Attr, DStM gets sent to the Attr
             // and to its owningElement. Otherwise we dispatch it
@@ -1023,7 +1001,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * an Attr
      * 
      * @param node
-     *             node to get enclosing attribute for
+     *        node to get enclosing attribute for
      * @return either a description of that Attr, or null if none such.
      */
     protected void saveEnclosingAttr(NodeImpl node) {
@@ -1070,18 +1048,15 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
     /**
      * A method to be called when a character data node has been modified
      */
-    void modifiedCharacterData(NodeImpl node, String oldvalue, String value,
-            boolean replace) {
+    void modifiedCharacterData(NodeImpl node, String oldvalue, String value, boolean replace) {
         if (mutationEvents) {
             if (!replace) {
                 // MUTATION POST-EVENTS:
-                LCount lc = LCount.lookup(
-                        MutationEventImpl.DOM_CHARACTER_DATA_MODIFIED);
+                LCount lc = LCount.lookup(MutationEventImpl.DOM_CHARACTER_DATA_MODIFIED);
                 if (lc.total > 0) {
                     MutationEvent me = new MutationEventImpl();
-                    me.initMutationEvent(
-                            MutationEventImpl.DOM_CHARACTER_DATA_MODIFIED, true,
-                            false, null, oldvalue, value, null, (short) 0);
+                    me.initMutationEvent(MutationEventImpl.DOM_CHARACTER_DATA_MODIFIED, true, false, null,
+                            oldvalue, value, null, (short) 0);
                     dispatchEvent(node, me);
                 }
 
@@ -1126,20 +1101,18 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
             LCount lc = LCount.lookup(MutationEventImpl.DOM_NODE_INSERTED);
             if (lc.total > 0) {
                 MutationEventImpl me = new MutationEventImpl();
-                me.initMutationEvent(MutationEventImpl.DOM_NODE_INSERTED, true,
-                        false, node, null, null, null, (short) 0);
+                me.initMutationEvent(MutationEventImpl.DOM_NODE_INSERTED, true, false, node, null, null, null,
+                        (short) 0);
                 dispatchEvent(newInternal, me);
             }
 
             // If within the Document, tell the subtree it's been added
             // to the Doc.
-            lc = LCount.lookup(
-                    MutationEventImpl.DOM_NODE_INSERTED_INTO_DOCUMENT);
+            lc = LCount.lookup(MutationEventImpl.DOM_NODE_INSERTED_INTO_DOCUMENT);
             if (lc.total > 0) {
                 NodeImpl eventAncestor = node;
                 if (savedEnclosingAttr != null)
-                    eventAncestor = (NodeImpl) savedEnclosingAttr.node
-                            .getOwnerElement();
+                    eventAncestor = (NodeImpl) savedEnclosingAttr.node.getOwnerElement();
                 if (eventAncestor != null) { // Might have been orphan Attr
                     NodeImpl p = eventAncestor;
                     while (p != null) {
@@ -1154,10 +1127,8 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
                     }
                     if (eventAncestor.getNodeType() == Node.DOCUMENT_NODE) {
                         MutationEventImpl me = new MutationEventImpl();
-                        me.initMutationEvent(
-                                MutationEventImpl.DOM_NODE_INSERTED_INTO_DOCUMENT,
-                                false, false, null, null, null, null,
-                                (short) 0);
+                        me.initMutationEvent(MutationEventImpl.DOM_NODE_INSERTED_INTO_DOCUMENT, false, false,
+                                null, null, null, null, (short) 0);
                         dispatchEventToSubtree(newInternal, me);
                     }
                 }
@@ -1212,31 +1183,26 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
             LCount lc = LCount.lookup(MutationEventImpl.DOM_NODE_REMOVED);
             if (lc.total > 0) {
                 MutationEventImpl me = new MutationEventImpl();
-                me.initMutationEvent(MutationEventImpl.DOM_NODE_REMOVED, true,
-                        false, node, null, null, null, (short) 0);
+                me.initMutationEvent(MutationEventImpl.DOM_NODE_REMOVED, true, false, node, null, null, null,
+                        (short) 0);
                 dispatchEvent(oldChild, me);
             }
 
             // If within Document, child's subtree is informed that it's
             // losing that status
-            lc = LCount.lookup(
-                    MutationEventImpl.DOM_NODE_REMOVED_FROM_DOCUMENT);
+            lc = LCount.lookup(MutationEventImpl.DOM_NODE_REMOVED_FROM_DOCUMENT);
             if (lc.total > 0) {
                 NodeImpl eventAncestor = this;
                 if (savedEnclosingAttr != null)
-                    eventAncestor = (NodeImpl) savedEnclosingAttr.node
-                            .getOwnerElement();
+                    eventAncestor = (NodeImpl) savedEnclosingAttr.node.getOwnerElement();
                 if (eventAncestor != null) { // Might have been orphan Attr
-                    for (NodeImpl p = eventAncestor
-                            .parentNode(); p != null; p = p.parentNode()) {
+                    for (NodeImpl p = eventAncestor.parentNode(); p != null; p = p.parentNode()) {
                         eventAncestor = p; // Last non-null ancestor
                     }
                     if (eventAncestor.getNodeType() == Node.DOCUMENT_NODE) {
                         MutationEventImpl me = new MutationEventImpl();
-                        me.initMutationEvent(
-                                MutationEventImpl.DOM_NODE_REMOVED_FROM_DOCUMENT,
-                                false, false, null, null, null, null,
-                                (short) 0);
+                        me.initMutationEvent(MutationEventImpl.DOM_NODE_REMOVED_FROM_DOCUMENT, false, false,
+                                null, null, null, null, (short) 0);
                         dispatchEventToSubtree(oldChild, me);
                     }
                 }
@@ -1292,8 +1258,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
     void modifiedAttrValue(AttrImpl attr, String oldvalue) {
         if (mutationEvents) {
             // MUTATION POST-EVENTS:
-            dispatchAggregateEvents(attr, attr, oldvalue,
-                    MutationEvent.MODIFICATION);
+            dispatchAggregateEvents(attr, attr, oldvalue, MutationEvent.MODIFICATION);
         }
     }
 
@@ -1304,11 +1269,10 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         if (mutationEvents) {
             // MUTATION POST-EVENTS:
             if (previous == null) {
-                dispatchAggregateEvents(attr.ownerNode, attr, null,
-                        MutationEvent.ADDITION);
+                dispatchAggregateEvents(attr.ownerNode, attr, null, MutationEvent.ADDITION);
             } else {
-                dispatchAggregateEvents(attr.ownerNode, attr, previous
-                        .getNodeValue(), MutationEvent.MODIFICATION);
+                dispatchAggregateEvents(attr.ownerNode, attr, previous.getNodeValue(),
+                        MutationEvent.MODIFICATION);
             }
         }
     }
@@ -1326,9 +1290,8 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
             LCount lc = LCount.lookup(MutationEventImpl.DOM_ATTR_MODIFIED);
             if (lc.total > 0) {
                 MutationEventImpl me = new MutationEventImpl();
-                me.initMutationEvent(MutationEventImpl.DOM_ATTR_MODIFIED, true,
-                        false, attr, attr.getNodeValue(), null, name,
-                        MutationEvent.REMOVAL);
+                me.initMutationEvent(MutationEventImpl.DOM_ATTR_MODIFIED, true, false, attr, attr
+                        .getNodeValue(), null, name, MutationEvent.REMOVAL);
                 dispatchEvent(oldOwner, me);
             }
 
@@ -1359,15 +1322,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
         // Convert Maps to Hashtables, Lists to Vectors
-        Vector<NodeIterator> it = (iterators == null) ? null
-                : new Vector<>(iterators);
+        Vector<NodeIterator> it = (iterators == null) ? null : new Vector<>(iterators);
         Vector<Range> r = (ranges == null) ? null : new Vector<>(ranges);
 
         Hashtable<NodeImpl, Vector<LEntry>> el = null;
         if (eventListeners != null) {
             el = new Hashtable<>();
-            for (Map.Entry<NodeImpl, List<LEntry>> e : eventListeners
-                    .entrySet()) {
+            for (Map.Entry<NodeImpl, List<LEntry>> e : eventListeners.entrySet()) {
                 el.put(e.getKey(), new Vector<>(e.getValue()));
             }
         }
@@ -1382,15 +1343,13 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
     }
 
     @SuppressWarnings("unchecked")
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // We have to read serialized fields first.
         ObjectInputStream.GetField gf = in.readFields();
-        Vector<NodeIterator> it = (Vector<NodeIterator>) gf.get("iterators",
-                null);
+        Vector<NodeIterator> it = (Vector<NodeIterator>) gf.get("iterators", null);
         Vector<Range> r = (Vector<Range>) gf.get("ranges", null);
-        Hashtable<NodeImpl, Vector<LEntry>> el = (Hashtable<NodeImpl, Vector<LEntry>>) gf
-                .get("eventListeners", null);
+        Hashtable<NodeImpl, Vector<LEntry>> el = (Hashtable<NodeImpl, Vector<LEntry>>) gf.get(
+                "eventListeners", null);
 
         mutationEvents = gf.get("mutationEvents", false);
 

@@ -47,21 +47,20 @@ public abstract class BooleanControl extends Control {
      * Constructs a new boolean control object with the given parameters.
      *
      * @param type
-     *                        the type of control represented this float control
-     *                        object
+     *        the type of control represented this float control
+     *        object
      * @param initialValue
-     *                        the initial control value
+     *        the initial control value
      * @param trueStateLabel
-     *                        the label for the state represented by
-     *                        <code>true</code>, such
-     *                        as "true" or "on."
+     *        the label for the state represented by
+     *        <code>true</code>, such
+     *        as "true" or "on."
      * @param falseStateLabel
-     *                        the label for the state represented by
-     *                        <code>false</code>,
-     *                        such as "false" or "off."
+     *        the label for the state represented by
+     *        <code>false</code>,
+     *        such as "false" or "off."
      */
-    protected BooleanControl(Type type, boolean initialValue,
-            String trueStateLabel, String falseStateLabel) {
+    protected BooleanControl(Type type, boolean initialValue, String trueStateLabel, String falseStateLabel) {
 
         super(type);
         this.value = initialValue;
@@ -75,10 +74,10 @@ public abstract class BooleanControl extends Control {
      * "true" and "false."
      *
      * @param type
-     *                     the type of control represented by this float control
-     *                     object
+     *        the type of control represented by this float control
+     *        object
      * @param initialValue
-     *                     the initial control value
+     *        the initial control value
      */
     protected BooleanControl(Type type, boolean initialValue) {
         this(type, initialValue, "true", "false");
@@ -92,7 +91,7 @@ public abstract class BooleanControl extends Control {
      * open before they can be affected by setting a value.
      * 
      * @param value
-     *              desired new value.
+     *        desired new value.
      */
     public void setValue(boolean value) {
         this.value = value;
@@ -111,7 +110,7 @@ public abstract class BooleanControl extends Control {
      * Obtains the label for the specified state.
      * 
      * @param state
-     *              the state whose label will be returned
+     *        the state whose label will be returned
      * @return the label for the specified state, such as "true" or "on" for
      *         <code>true</code>, or "false" or "off" for <code>false</code>.
      */
@@ -127,8 +126,7 @@ public abstract class BooleanControl extends Control {
      * @return a string description
      */
     public String toString() {
-        return new String(super.toString() + " with current value: "
-                + getStateLabel(getValue()));
+        return new String(super.toString() + " with current value: " + getStateLabel(getValue()));
     }
 
     // INNER CLASSES
@@ -164,7 +162,7 @@ public abstract class BooleanControl extends Control {
          * Constructs a new boolean control type.
          * 
          * @param name
-         *             the name of the new boolean control type
+         *        the name of the new boolean control type
          */
         protected Type(String name) {
             super(name);

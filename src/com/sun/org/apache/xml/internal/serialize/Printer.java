@@ -168,8 +168,7 @@ public class Printer {
         }
     }
 
-    public void printText(char[] chars, int start, int length)
-            throws IOException {
+    public void printText(char[] chars, int start, int length) throws IOException {
         try {
             while (length-- > 0) {
                 if (_pos == BufferSize) {

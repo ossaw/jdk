@@ -57,7 +57,6 @@ import com.sun.org.apache.xerces.internal.impl.dtd.XMLContentSpec;
  * Content model Bin-Op node.
  *
  * @xerces.internal
- *
  */
 public class CMBinOp extends CMNode {
     // -------------------------------------------------------------------

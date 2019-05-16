@@ -20,10 +20,8 @@ import sun.awt.AppContext;
  * @author Igor Kushnirskiy
  */
 class TimerQueue implements Runnable {
-    private static final Object sharedInstanceKey = new StringBuffer(
-            "TimerQueue.sharedInstanceKey");
-    private static final Object expiredTimersKey = new StringBuffer(
-            "TimerQueue.expiredTimersKey");
+    private static final Object sharedInstanceKey = new StringBuffer("TimerQueue.sharedInstanceKey");
+    private static final Object expiredTimersKey = new StringBuffer("TimerQueue.expiredTimersKey");
 
     private final DelayQueue<DelayedTimer> queue;
     private volatile boolean running;
@@ -50,8 +48,7 @@ class TimerQueue implements Runnable {
 
     public static TimerQueue sharedInstance() {
         synchronized (classLock) {
-            TimerQueue sharedInst = (TimerQueue) SwingUtilities.appContextGet(
-                    sharedInstanceKey);
+            TimerQueue sharedInst = (TimerQueue) SwingUtilities.appContextGet(sharedInstanceKey);
             if (sharedInst == null) {
                 sharedInst = new TimerQueue();
                 SwingUtilities.appContextPut(sharedInstanceKey, sharedInst);
@@ -67,19 +64,16 @@ class TimerQueue implements Runnable {
                 return;
             }
             try {
-                final ThreadGroup threadGroup = AppContext.getAppContext()
-                        .getThreadGroup();
-                java.security.AccessController.doPrivileged(
-                        new java.security.PrivilegedAction<Object>() {
-                            public Object run() {
-                                Thread timerThread = new Thread(threadGroup,
-                                        TimerQueue.this, "TimerQueue");
-                                timerThread.setDaemon(true);
-                                timerThread.setPriority(Thread.NORM_PRIORITY);
-                                timerThread.start();
-                                return null;
-                            }
-                        });
+                final ThreadGroup threadGroup = AppContext.getAppContext().getThreadGroup();
+                java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Object>() {
+                    public Object run() {
+                        Thread timerThread = new Thread(threadGroup, TimerQueue.this, "TimerQueue");
+                        timerThread.setDaemon(true);
+                        timerThread.setPriority(Thread.NORM_PRIORITY);
+                        timerThread.start();
+                        return null;
+                    }
+                });
                 running = true;
             } finally {
                 runningLock.unlock();
@@ -92,8 +86,7 @@ class TimerQueue implements Runnable {
         try {
             // If the Timer is already in the queue, then ignore the add.
             if (!containsTimer(timer)) {
-                addTimer(new DelayedTimer(timer, TimeUnit.MILLISECONDS.toNanos(
-                        delayMillis) + now()));
+                addTimer(new DelayedTimer(timer, TimeUnit.MILLISECONDS.toNanos(delayMillis) + now()));
             }
         } finally {
             timer.getLock().unlock();
@@ -154,9 +147,7 @@ class TimerQueue implements Runnable {
                             timer.post(); // have timer post an event
                             timer.delayedTimer = null;
                             if (timer.isRepeats()) {
-                                delayedTimer.setTime(now()
-                                        + TimeUnit.MILLISECONDS.toNanos(timer
-                                                .getDelay()));
+                                delayedTimer.setTime(now() + TimeUnit.MILLISECONDS.toNanos(timer.getDelay()));
                                 addTimer(delayedTimer);
                             }
                         }
@@ -164,8 +155,7 @@ class TimerQueue implements Runnable {
                         // Allow run other threads on systems without kernel
                         // threads
                         timer.getLock().newCondition().awaitNanos(1);
-                    } catch (SecurityException ignore) {
-                    } finally {
+                    } catch (SecurityException ignore) {} finally {
                         timer.getLock().unlock();
                     }
                 } catch (InterruptedException ie) {
@@ -264,8 +254,7 @@ class TimerQueue implements Runnable {
                     return 1;
                 }
             }
-            long d = (getDelay(TimeUnit.NANOSECONDS) - other.getDelay(
-                    TimeUnit.NANOSECONDS));
+            long d = (getDelay(TimeUnit.NANOSECONDS) - other.getDelay(TimeUnit.NANOSECONDS));
             return (d == 0) ? 0 : ((d < 0) ? -1 : 1);
         }
     }

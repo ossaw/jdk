@@ -35,8 +35,8 @@ public class ReverseAxesWalker extends AxesWalker {
      * Construct an AxesWalker using a LocPathIterator.
      *
      * @param locPathIterator
-     *                        The location path iterator that 'owns' this
-     *                        walker.
+     *        The location path iterator that 'owns' this
+     *        walker.
      */
     ReverseAxesWalker(LocPathIterator locPathIterator, int axis) {
         super(locPathIterator, axis);
@@ -47,7 +47,7 @@ public class ReverseAxesWalker extends AxesWalker {
      * interface).
      *
      * @param root
-     *             The context node of this step.
+     *        The context node of this step.
      */
     public void setRoot(int root) {
         super.setRoot(root);
@@ -111,8 +111,7 @@ public class ReverseAxesWalker extends AxesWalker {
      * it.
      *
      * @param predicateIndex
-     *                       The predicate index of the proximity position.
-     *
+     *        The predicate index of the proximity position.
      * @return The pridicate index, or -1.
      */
     protected int getProximityPosition(int predicateIndex) {
@@ -162,7 +161,7 @@ public class ReverseAxesWalker extends AxesWalker {
      * Count backwards one proximity position.
      *
      * @param i
-     *          The predicate index.
+     *        The predicate index.
      */
     protected void countProximityPosition(int i) {
         if (i < m_proximityPositions.length)
@@ -173,10 +172,8 @@ public class ReverseAxesWalker extends AxesWalker {
      * Get the number of nodes in this node list. The function is probably ill
      * named?
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
-     *
+     *        The XPath runtime context.
      * @return the number of nodes in this node list.
      */
     public int getLastPos(XPathContext xctxt) {

@@ -11,20 +11,17 @@ package org.omg.CosNaming;
 /**
  * The BindingIterator interface allows a client to iterate through the bindings
  * using the next_one or next_n operations.
- * 
  * The bindings iterator is obtained by using the <tt>list</tt> method on the
  * <tt>NamingContext</tt>.
  * 
  * @see org.omg.CosNaming.NamingContext#list
  */
-public final class BindingIteratorHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class BindingIteratorHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CosNaming.BindingIterator value = null;
 
     public BindingIteratorHolder() {}
 
-    public BindingIteratorHolder(
-            org.omg.CosNaming.BindingIterator initialValue) {
+    public BindingIteratorHolder(org.omg.CosNaming.BindingIterator initialValue) {
         value = initialValue;
     }
 

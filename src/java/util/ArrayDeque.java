@@ -19,14 +19,12 @@ import java.util.function.Consumer;
  * support concurrent access by multiple threads. Null elements are prohibited.
  * This class is likely to be faster than {@link Stack} when used as a stack,
  * and faster than {@link LinkedList} when used as a queue.
- *
  * <p>
  * Most {@code ArrayDeque} operations run in amortized constant time. Exceptions
  * include {@link #remove(Object) remove}, {@link #removeFirstOccurrence
  * removeFirstOccurrence}, {@link #removeLastOccurrence removeLastOccurrence},
  * {@link #contains contains}, {@link #iterator iterator.remove()}, and the bulk
  * operations, all of which run in linear time.
- *
  * <p>
  * The iterators returned by this class's {@code iterator} method are
  * <i>fail-fast</i>: If the deque is modified at any time after the iterator is
@@ -35,7 +33,6 @@ import java.util.function.Consumer;
  * Thus, in the face of concurrent modification, the iterator fails quickly and
  * cleanly, rather than risking arbitrary, non-deterministic behavior at an
  * undetermined time in the future.
- *
  * <p>
  * Note that the fail-fast behavior of an iterator cannot be guaranteed as it
  * is, generally speaking, impossible to make any hard guarantees in the
@@ -44,11 +41,9 @@ import java.util.function.Consumer;
  * would be wrong to write a program that depended on this exception for its
  * correctness: <i>the fail-fast behavior of iterators should be used only to
  * detect bugs.</i>
- *
  * <p>
  * This class and its iterator implement all of the <em>optional</em> methods of
  * the {@link Collection} and {@link Iterator} interfaces.
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -59,8 +54,7 @@ import java.util.function.Consumer;
  * @param <E>
  *        the type of elements held in this collection
  */
-public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
-        Cloneable, Serializable {
+public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>, Cloneable, Serializable {
     /**
      * The array in which the elements of the deque are stored. The capacity of
      * the deque is the length of this array, which is always a power of two.
@@ -97,7 +91,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Allocates empty array to hold the given number of elements.
      *
      * @param numElements
-     *                    the number of elements to hold
+     *        the number of elements to hold
      */
     private void allocateElements(int numElements) {
         int initialCapacity = MIN_INITIAL_CAPACITY;
@@ -169,7 +163,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * hold the specified number of elements.
      *
      * @param numElements
-     *                    lower bound on initial capacity of the deque
+     *        lower bound on initial capacity of the deque
      */
     public ArrayDeque(int numElements) {
         allocateElements(numElements);
@@ -182,9 +176,9 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * or <i>front</i> of the deque.)
      *
      * @param c
-     *          the collection whose elements are to be placed into the deque
+     *        the collection whose elements are to be placed into the deque
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public ArrayDeque(Collection<? extends E> c) {
         allocateElements(c.size());
@@ -199,9 +193,9 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Inserts the specified element at the front of this deque.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void addFirst(E e) {
         if (e == null)
@@ -213,14 +207,13 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * Inserts the specified element at the end of this deque.
-     *
      * <p>
      * This method is equivalent to {@link #add}.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void addLast(E e) {
         if (e == null)
@@ -234,10 +227,10 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Inserts the specified element at the front of this deque.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @return {@code true} (as specified by {@link Deque#offerFirst})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offerFirst(E e) {
         addFirst(e);
@@ -248,10 +241,10 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Inserts the specified element at the end of this deque.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @return {@code true} (as specified by {@link Deque#offerLast})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offerLast(E e) {
         addLast(e);
@@ -260,7 +253,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E removeFirst() {
         E x = pollFirst();
@@ -271,7 +264,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E removeLast() {
         E x = pollLast();
@@ -305,7 +298,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E getFirst() {
         @SuppressWarnings("unchecked")
@@ -317,7 +310,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E getLast() {
         @SuppressWarnings("unchecked")
@@ -347,7 +340,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * equivalently, if this deque changed as a result of the call).
      *
      * @param o
-     *          element to be removed from this deque, if present
+     *        element to be removed from this deque, if present
      * @return {@code true} if the deque contained the specified element
      */
     public boolean removeFirstOccurrence(Object o) {
@@ -375,7 +368,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * equivalently, if this deque changed as a result of the call).
      *
      * @param o
-     *          element to be removed from this deque, if present
+     *        element to be removed from this deque, if present
      * @return {@code true} if the deque contained the specified element
      */
     public boolean removeLastOccurrence(Object o) {
@@ -398,15 +391,14 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * Inserts the specified element at the end of this deque.
-     *
      * <p>
      * This method is equivalent to {@link #addLast}.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @return {@code true} (as specified by {@link Collection#add})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean add(E e) {
         addLast(e);
@@ -415,15 +407,14 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * Inserts the specified element at the end of this deque.
-     *
      * <p>
      * This method is equivalent to {@link #offerLast}.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @return {@code true} (as specified by {@link Queue#offer})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offer(E e) {
         return offerLast(e);
@@ -431,16 +422,14 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
     /**
      * Retrieves and removes the head of the queue represented by this deque.
-     *
      * This method differs from {@link #poll poll} only in that it throws an
      * exception if this deque is empty.
-     *
      * <p>
      * This method is equivalent to {@link #removeFirst}.
      *
      * @return the head of the queue represented by this deque
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E remove() {
         return removeFirst();
@@ -450,7 +439,6 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Retrieves and removes the head of the queue represented by this deque (in
      * other words, the first element of this deque), or returns {@code null} if
      * this deque is empty.
-     *
      * <p>
      * This method is equivalent to {@link #pollFirst}.
      *
@@ -465,13 +453,12 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Retrieves, but does not remove, the head of the queue represented by this
      * deque. This method differs from {@link #peek peek} only in that it throws
      * an exception if this deque is empty.
-     *
      * <p>
      * This method is equivalent to {@link #getFirst}.
      *
      * @return the head of the queue represented by this deque
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E element() {
         return getFirst();
@@ -480,7 +467,6 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
     /**
      * Retrieves, but does not remove, the head of the queue represented by this
      * deque, or returns {@code null} if this deque is empty.
-     *
      * <p>
      * This method is equivalent to {@link #peekFirst}.
      *
@@ -496,14 +482,13 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
     /**
      * Pushes an element onto the stack represented by this deque. In other
      * words, inserts the element at the front of this deque.
-     *
      * <p>
      * This method is equivalent to {@link #addFirst}.
      *
      * @param e
-     *          the element to push
+     *        the element to push
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void push(E e) {
         addFirst(e);
@@ -512,14 +497,13 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
     /**
      * Pops an element from the stack represented by this deque. In other words,
      * removes and returns the first element of this deque.
-     *
      * <p>
      * This method is equivalent to {@link #removeFirst()}.
      *
      * @return the element at the front of this deque (which is the top of the
      *         stack represented by this deque)
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E pop() {
         return removeFirst();
@@ -528,8 +512,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
     private void checkInvariants() {
         assert elements[tail] == null;
         assert head == tail ? elements[head] == null
-                : (elements[head] != null && elements[(tail - 1)
-                        & (elements.length - 1)] != null);
+                : (elements[head] != null && elements[(tail - 1) & (elements.length - 1)] != null);
         assert elements[(head - 1) & (elements.length - 1)] == null;
     }
 
@@ -537,7 +520,6 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Removes the element at the specified position in the elements array,
      * adjusting head and tail as necessary. This can result in motion of
      * elements backwards or forwards in the array.
-     *
      * <p>
      * This method is called delete rather than remove to emphasize that its
      * semantics differ from those of {@link List#remove(int)}.
@@ -724,7 +706,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * least one element {@code e} such that {@code o.equals(e)}.
      *
      * @param o
-     *          object to be checked for containment in this deque
+     *        object to be checked for containment in this deque
      * @return {@code true} if this deque contains the specified element
      */
     public boolean contains(Object o) {
@@ -748,12 +730,11 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * such an element exists). Returns {@code true} if this deque contained the
      * specified element (or equivalently, if this deque changed as a result of
      * the call).
-     *
      * <p>
      * This method is equivalent to {@link #removeFirstOccurrence(Object)}.
      *
      * @param o
-     *          element to be removed from this deque, if present
+     *        element to be removed from this deque, if present
      * @return {@code true} if this deque contained the specified element
      */
     public boolean remove(Object o) {
@@ -781,12 +762,10 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
     /**
      * Returns an array containing all of the elements in this deque in proper
      * sequence (from first to last element).
-     *
      * <p>
      * The returned array will be "safe" in that no references to it are
      * maintained by this deque. (In other words, this method must allocate a
      * new array). The caller is thus free to modify the returned array.
-     *
      * <p>
      * This method acts as bridge between array-based and collection-based APIs.
      *
@@ -802,18 +781,15 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * array is that of the specified array. If the deque fits in the specified
      * array, it is returned therein. Otherwise, a new array is allocated with
      * the runtime type of the specified array and the size of this deque.
-     *
      * <p>
      * If this deque fits in the specified array with room to spare (i.e., the
      * array has more elements than this deque), the element in the array
      * immediately following the end of the deque is set to {@code null}.
-     *
      * <p>
      * Like the {@link #toArray()} method, this method acts as bridge between
      * array-based and collection-based APIs. Further, this method allows
      * precise control over the runtime type of the output array, and may, under
      * certain circumstances, be used to save allocation costs.
-     *
      * <p>
      * Suppose {@code x} is a deque known to contain only strings. The following
      * code can be used to dump the deque into a newly allocated array of
@@ -830,24 +806,23 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * {@code toArray()}.
      *
      * @param a
-     *          the array into which the elements of the deque are to be
-     *          stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose
+     *        the array into which the elements of the deque are to be
+     *        stored, if it is big enough; otherwise, a new array of the
+     *        same runtime type is allocated for this purpose
      * @return an array containing all of the elements in this deque
      * @throws ArrayStoreException
-     *                              if the runtime type of the specified array
-     *                              is not a supertype
-     *                              of the runtime type of every element in this
-     *                              deque
+     *         if the runtime type of the specified array
+     *         is not a supertype
+     *         of the runtime type of every element in this
+     *         deque
      * @throws NullPointerException
-     *                              if the specified array is null
+     *         if the specified array is null
      */
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         int size = size();
         if (a.length < size)
-            a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
-                    .getComponentType(), size);
+            a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), size);
         copyElements(a);
         if (a.length > size)
             a[size] = null;
@@ -881,8 +856,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      *             of its elements (each an object reference) in first-to-last
      *             order.
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         s.defaultWriteObject();
 
         // Write out size
@@ -897,8 +871,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
     /**
      * Reconstitutes this deque from a stream (that is, deserializes it).
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         s.defaultReadObject();
 
         // Read in size and allocate array
@@ -916,7 +889,6 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@link Spliterator} over the elements in this
      * deque.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#SIZED},
      * {@link Spliterator#SUBSIZED}, {@link Spliterator#ORDERED}, and
@@ -1004,8 +976,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>,
 
         @Override
         public int characteristics() {
-            return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.NONNULL
-                    | Spliterator.SUBSIZED;
+            return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.NONNULL | Spliterator.SUBSIZED;
         }
     }
 

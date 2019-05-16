@@ -111,15 +111,13 @@ public interface XSConstants {
      * <code>XSTypeDefinition</code> final set.
      */
     public static final short DERIVATION_EXTENSION_RESTRICTION_SUBSTITION = XSConstants.DERIVATION_EXTENSION
-            | XSConstants.DERIVATION_RESTRICTION
-            | XSConstants.DERIVATION_SUBSTITUTION;
+            | XSConstants.DERIVATION_RESTRICTION | XSConstants.DERIVATION_SUBSTITUTION;
     /**
      * <code>XSTypeDefinition</code> final set.
      */
     public static final short DERIVATION_ALL = XSConstants.DERIVATION_SUBSTITUTION
-            | XSConstants.DERIVATION_EXTENSION
-            | XSConstants.DERIVATION_RESTRICTION | XSConstants.DERIVATION_LIST
-            | XSConstants.DERIVATION_UNION;
+            | XSConstants.DERIVATION_EXTENSION | XSConstants.DERIVATION_RESTRICTION
+            | XSConstants.DERIVATION_LIST | XSConstants.DERIVATION_UNION;
 
     // Scope
     /**

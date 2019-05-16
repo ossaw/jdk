@@ -66,7 +66,7 @@ public abstract class FieldOrMethod extends CPInstruction implements LoadClass {
 
     /**
      * @param index
-     *              to constant pool
+     *        to constant pool
      */
     protected FieldOrMethod(short opcode, int index) {
         super(opcode, index);
@@ -78,11 +78,9 @@ public abstract class FieldOrMethod extends CPInstruction implements LoadClass {
     public String getSignature(ConstantPoolGen cpg) {
         ConstantPool cp = cpg.getConstantPool();
         ConstantCP cmr = (ConstantCP) cp.getConstant(index);
-        ConstantNameAndType cnat = (ConstantNameAndType) cp.getConstant(cmr
-                .getNameAndTypeIndex());
+        ConstantNameAndType cnat = (ConstantNameAndType) cp.getConstant(cmr.getNameAndTypeIndex());
 
-        return ((ConstantUtf8) cp.getConstant(cnat.getSignatureIndex()))
-                .getBytes();
+        return ((ConstantUtf8) cp.getConstant(cnat.getSignatureIndex())).getBytes();
     }
 
     /**
@@ -91,8 +89,7 @@ public abstract class FieldOrMethod extends CPInstruction implements LoadClass {
     public String getName(ConstantPoolGen cpg) {
         ConstantPool cp = cpg.getConstantPool();
         ConstantCP cmr = (ConstantCP) cp.getConstant(index);
-        ConstantNameAndType cnat = (ConstantNameAndType) cp.getConstant(cmr
-                .getNameAndTypeIndex());
+        ConstantNameAndType cnat = (ConstantNameAndType) cp.getConstant(cmr.getNameAndTypeIndex());
         return ((ConstantUtf8) cp.getConstant(cnat.getNameIndex())).getBytes();
     }
 
@@ -103,8 +100,7 @@ public abstract class FieldOrMethod extends CPInstruction implements LoadClass {
         ConstantPool cp = cpg.getConstantPool();
         ConstantCP cmr = (ConstantCP) cp.getConstant(index);
         return cp.getConstantString(cmr.getClassIndex(),
-                com.sun.org.apache.bcel.internal.Constants.CONSTANT_Class)
-                .replace('/', '.');
+                com.sun.org.apache.bcel.internal.Constants.CONSTANT_Class).replace('/', '.');
     }
 
     /**

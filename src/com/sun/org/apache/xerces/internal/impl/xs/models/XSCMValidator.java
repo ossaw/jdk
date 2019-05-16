@@ -28,7 +28,6 @@ import java.util.ArrayList;
  * Note: State of the content model is stored in the validator
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @author Elena Litani, IBM
  * @version $Id: XSCMValidator.java,v 1.6 2009/07/28 15:18:12 spericas Exp $
@@ -55,18 +54,17 @@ public interface XSCMValidator {
      *
      * @param elementName
      * @param state
-     *                    Current state
+     *        Current state
      * @return element decl or wildcard decl that corresponds to the element
      *         from the Schema grammar
      */
-    public Object oneTransition(QName elementName, int[] state,
-            SubstitutionGroupHandler subGroupHandler);
+    public Object oneTransition(QName elementName, int[] state, SubstitutionGroupHandler subGroupHandler);
 
     /**
      * The method indicates the end of list of children
      *
      * @param state
-     *              Current state of the content model
+     *        Current state of the content model
      * @return true if the last state was a valid final state
      */
     public boolean endContentModel(int[] state);
@@ -75,11 +73,11 @@ public interface XSCMValidator {
      * check whether this content violates UPA constraint.
      *
      * @param subGroupHandler
-     *                        the substitution group handler
+     *        the substitution group handler
      * @return true if this content model contains other or list wildcard
      */
-    public boolean checkUniqueParticleAttribution(
-            SubstitutionGroupHandler subGroupHandler) throws XMLSchemaException;
+    public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler)
+            throws XMLSchemaException;
 
     /**
      * Check which elements are valid to appear at this point. This method also
@@ -87,7 +85,7 @@ public interface XSCMValidator {
      * been seen.
      *
      * @param state
-     *              the current state
+     *        the current state
      * @return a Vector whose entries are instances of either XSWildcardDecl or
      *         XSElementDecl.
      */

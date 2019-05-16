@@ -16,7 +16,6 @@ import org.xml.sax.SAXParseException;
 
 /**
  * Default implementation of the ValidationEventLocator interface.
- *
  * <p>
  * JAXB providers are allowed to use whatever class that implements the
  * ValidationEventLocator interface. This class is just provided for a
@@ -40,22 +39,20 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
 
     /**
      * Constructs an object from an org.xml.sax.Locator.
-     *
      * The object's ColumnNumber, LineNumber, and URL become available from the
      * values returned by the locator's getColumnNumber(), getLineNumber(), and
      * getSystemId() methods respectively. Node, Object, and Offset are not
      * available.
      *
      * @param loc
-     *            the SAX Locator object that will be used to populate this
-     *            event locator.
+     *        the SAX Locator object that will be used to populate this
+     *        event locator.
      * @throws IllegalArgumentException
-     *                                  if the Locator is null
+     *         if the Locator is null
      */
     public ValidationEventLocatorImpl(Locator loc) {
         if (loc == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "loc"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "loc"));
         }
 
         this.url = toURL(loc.getSystemId());
@@ -66,22 +63,20 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
     /**
      * Constructs an object from the location information of a
      * SAXParseException.
-     *
      * The object's ColumnNumber, LineNumber, and URL become available from the
      * values returned by the locator's getColumnNumber(), getLineNumber(), and
      * getSystemId() methods respectively. Node, Object, and Offset are not
      * available.
      *
      * @param e
-     *          the SAXParseException object that will be used to populate
-     *          this event locator.
+     *        the SAXParseException object that will be used to populate
+     *        this event locator.
      * @throws IllegalArgumentException
-     *                                  if the SAXParseException is null
+     *         if the SAXParseException is null
      */
     public ValidationEventLocatorImpl(SAXParseException e) {
         if (e == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "e"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "e"));
         }
 
         this.url = toURL(e.getSystemId());
@@ -91,20 +86,18 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
 
     /**
      * Constructs an object that points to a DOM Node.
-     *
      * The object's Node becomes available. ColumnNumber, LineNumber, Object,
      * Offset, and URL are not available.
      *
      * @param _node
-     *              the DOM Node object that will be used to populate this event
-     *              locator.
+     *        the DOM Node object that will be used to populate this event
+     *        locator.
      * @throws IllegalArgumentException
-     *                                  if the Node is null
+     *         if the Node is null
      */
     public ValidationEventLocatorImpl(Node _node) {
         if (_node == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "_node"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "_node"));
         }
 
         this.node = _node;
@@ -112,20 +105,18 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
 
     /**
      * Constructs an object that points to a JAXB content object.
-     *
      * The object's Object becomes available. ColumnNumber, LineNumber, Node,
      * Offset, and URL are not available.
      *
      * @param _object
-     *                the Object that will be used to populate this event
-     *                locator.
+     *        the Object that will be used to populate this event
+     *        locator.
      * @throws IllegalArgumentException
-     *                                  if the Object is null
+     *         if the Object is null
      */
     public ValidationEventLocatorImpl(Object _object) {
         if (_object == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "_object"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "_object"));
         }
 
         this.object = _object;
@@ -159,7 +150,7 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * Set the URL field on this event locator. Null values are allowed.
      *
      * @param _url
-     *             the url
+     *        the url
      */
     public void setURL(URL _url) {
         this.url = _url;
@@ -176,7 +167,7 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * Set the offset field on this event locator.
      *
      * @param _offset
-     *                the offset
+     *        the offset
      */
     public void setOffset(int _offset) {
         this.offset = _offset;
@@ -193,7 +184,7 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * Set the lineNumber field on this event locator.
      *
      * @param _lineNumber
-     *                    the line number
+     *        the line number
      */
     public void setLineNumber(int _lineNumber) {
         this.lineNumber = _lineNumber;
@@ -210,7 +201,7 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * Set the columnNumber field on this event locator.
      *
      * @param _columnNumber
-     *                      the column number
+     *        the column number
      */
     public void setColumnNumber(int _columnNumber) {
         this.columnNumber = _columnNumber;
@@ -227,7 +218,7 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * Set the Object field on this event locator. Null values are allowed.
      *
      * @param _object
-     *                the java content object
+     *        the java content object
      */
     public void setObject(Object _object) {
         this.object = _object;
@@ -244,7 +235,7 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * Set the Node field on this event locator. Null values are allowed.
      *
      * @param _node
-     *              the Node
+     *        the Node
      */
     public void setNode(Node _node) {
         this.node = _node;
@@ -257,10 +248,8 @@ public class ValidationEventLocatorImpl implements ValidationEventLocator {
      * @see Object#equals(Object)
      */
     public String toString() {
-        return MessageFormat.format(
-                "[node={0},object={1},url={2},line={3},col={4},offset={5}]",
-                getNode(), getObject(), getURL(), String.valueOf(
-                        getLineNumber()), String.valueOf(getColumnNumber()),
+        return MessageFormat.format("[node={0},object={1},url={2},line={3},col={4},offset={5}]", getNode(),
+                getObject(), getURL(), String.valueOf(getLineNumber()), String.valueOf(getColumnNumber()),
                 String.valueOf(getOffset()));
     }
 }

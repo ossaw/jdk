@@ -28,16 +28,14 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
      * Return true if the named field is defaulted and has no value in this
      * stream.
      */
-    public boolean defaulted(String name) throws IOException,
-            IllegalArgumentException {
+    public boolean defaulted(String name) throws IOException, IllegalArgumentException {
         return (!fields.containsKey(name));
     }
 
     /**
      * Get the value of the named boolean field from the persistent field.
      */
-    public boolean get(String name, boolean defvalue) throws IOException,
-            IllegalArgumentException {
+    public boolean get(String name, boolean defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -47,8 +45,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named char field from the persistent fields.
      */
-    public char get(String name, char defvalue) throws IOException,
-            IllegalArgumentException {
+    public char get(String name, char defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -59,8 +56,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named byte field from the persistent fields.
      */
-    public byte get(String name, byte defvalue) throws IOException,
-            IllegalArgumentException {
+    public byte get(String name, byte defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -71,8 +67,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named short field from the persistent fields.
      */
-    public short get(String name, short defvalue) throws IOException,
-            IllegalArgumentException {
+    public short get(String name, short defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -83,8 +78,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named int field from the persistent fields.
      */
-    public int get(String name, int defvalue) throws IOException,
-            IllegalArgumentException {
+    public int get(String name, int defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -95,8 +89,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named long field from the persistent fields.
      */
-    public long get(String name, long defvalue) throws IOException,
-            IllegalArgumentException {
+    public long get(String name, long defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -107,8 +100,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named float field from the persistent fields.
      */
-    public float get(String name, float defvalue) throws IOException,
-            IllegalArgumentException {
+    public float get(String name, float defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -119,8 +111,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named double field from the persistent field.
      */
-    public double get(String name, double defvalue) throws IOException,
-            IllegalArgumentException {
+    public double get(String name, double defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else
@@ -131,8 +122,7 @@ class LegacyHookGetFields extends ObjectInputStream.GetField {
     /**
      * Get the value of the named Object field from the persistent field.
      */
-    public Object get(String name, Object defvalue) throws IOException,
-            IllegalArgumentException {
+    public Object get(String name, Object defvalue) throws IOException, IllegalArgumentException {
         if (defaulted(name))
             return defvalue;
         else

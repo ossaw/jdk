@@ -54,7 +54,6 @@ package com.sun.org.apache.bcel.internal.generic;
  * Denotes an instruction to perform an unconditional branch, i.e., GOTO, JSR.
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
- * 
  * @see GOTO
  * @see JSR
  */

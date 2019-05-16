@@ -28,7 +28,6 @@ import org.xml.sax.ext.Attributes2;
  *
  * @author Arnaud Le Hors, IBM
  * @author Andy Clark, IBM
- *
  */
 public final class AttributesProxy implements AttributeList, Attributes2 {
 
@@ -93,8 +92,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
     }
 
     public String getType(String uri, String localName) {
-        return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getType(null,
-                localName) : fAttributes.getType(uri, localName);
+        return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getType(null, localName)
+                : fAttributes.getType(uri, localName);
     }
 
     public String getValue(int i) {
@@ -106,8 +105,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
     }
 
     public String getValue(String uri, String localName) {
-        return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getValue(null,
-                localName) : fAttributes.getValue(uri, localName);
+        return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getValue(null, localName)
+                : fAttributes.getValue(uri, localName);
     }
 
     public int getIndex(String qName) {
@@ -115,8 +114,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
     }
 
     public int getIndex(String uri, String localPart) {
-        return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getIndex(null,
-                localPart) : fAttributes.getIndex(uri, localPart);
+        return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getIndex(null, localPart)
+                : fAttributes.getIndex(uri, localPart);
     }
 
     /*
@@ -127,8 +126,7 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
         if (index < 0 || index >= fAttributes.getLength()) {
             throw new ArrayIndexOutOfBoundsException(index);
         }
-        return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(
-                Constants.ATTRIBUTE_DECLARED));
+        return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(Constants.ATTRIBUTE_DECLARED));
     }
 
     public boolean isDeclared(String qName) {
@@ -136,8 +134,7 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
         if (index == -1) {
             throw new IllegalArgumentException(qName);
         }
-        return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(
-                Constants.ATTRIBUTE_DECLARED));
+        return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(Constants.ATTRIBUTE_DECLARED));
     }
 
     public boolean isDeclared(String uri, String localName) {
@@ -145,8 +142,7 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
         if (index == -1) {
             throw new IllegalArgumentException(localName);
         }
-        return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(
-                Constants.ATTRIBUTE_DECLARED));
+        return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(Constants.ATTRIBUTE_DECLARED));
     }
 
     public boolean isSpecified(int index) {

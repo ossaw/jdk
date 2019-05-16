@@ -80,8 +80,7 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
             try {
                 clone = (HeapNode) super.clone();
             } catch (CloneNotSupportedException e) {
-                BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                        .toString());
+                BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
                 return null;
             }
 
@@ -109,7 +108,7 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
          * Performs a comparison of the two heap nodes
          *
          * @param heapNode
-         *                 the heap node against which to compare
+         *        the heap node against which to compare
          * @return <code>true</code> if and only if the current node for this
          *         heap node is before the current node of the argument heap
          *         node in document order.
@@ -120,7 +119,7 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
          * Sets context with respect to which this heap node is evaluated.
          *
          * @param node
-         *             The new context node
+         *        The new context node
          * @return a {@link HeapNode} which may or may not be the same as this
          *         <code>HeapNode</code>.
          */
@@ -165,8 +164,7 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
             clone._heap = heapCopy;
             return clone.reset();
         } catch (CloneNotSupportedException e) {
-            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                    .toString());
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
             return null;
         }
     }

@@ -35,9 +35,8 @@ public class WindowsPopupMenuSeparatorUI extends BasicPopupMenuSeparatorUI {
             int x = 1;
             Component parent = c.getParent();
             if (parent instanceof JComponent) {
-                Object gutterOffsetObject = ((JComponent) parent)
-                        .getClientProperty(
-                                WindowsPopupMenuUI.GUTTER_OFFSET_KEY);
+                Object gutterOffsetObject = ((JComponent) parent).getClientProperty(
+                        WindowsPopupMenuUI.GUTTER_OFFSET_KEY);
                 if (gutterOffsetObject instanceof Integer) {
                     /*
                      * gutter offset is in parent's coordinates. See comment in

@@ -26,7 +26,6 @@ package com.sun.org.apache.xerces.internal.xni;
  * explicitly catch them, if so desired.
  *
  * @author Andy Clark, IBM
- *
  * @version $Id: XNIException.java,v 1.6 2010-11-01 04:40:19 joehw Exp $
  */
 public class XNIException extends RuntimeException {
@@ -49,7 +48,7 @@ public class XNIException extends RuntimeException {
      * Constructs an XNI exception with a message.
      *
      * @param message
-     *                The exception message.
+     *        The exception message.
      */
     public XNIException(String message) {
         super(message);
@@ -59,7 +58,7 @@ public class XNIException extends RuntimeException {
      * Constructs an XNI exception with a wrapped exception.
      *
      * @param exception
-     *                  The wrapped exception.
+     *        The wrapped exception.
      */
     public XNIException(Exception exception) {
         super(exception.getMessage());
@@ -70,9 +69,9 @@ public class XNIException extends RuntimeException {
      * Constructs an XNI exception with a message and wrapped exception.
      *
      * @param message
-     *                  The exception message.
+     *        The exception message.
      * @param exception
-     *                  The wrapped exception.
+     *        The wrapped exception.
      */
     public XNIException(String message, Exception exception) {
         super(message);

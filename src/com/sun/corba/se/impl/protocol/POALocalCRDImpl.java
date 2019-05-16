@@ -66,8 +66,7 @@ public class POALocalCRDImpl extends LocalClientRequestDispatcherBase {
     // ObjectAdapter.returnServant calls are paired, as required for
     // Portable Interceptors and Servant Locators in the POA.
     // Thus, this method must call returnServant if it returns null.
-    public ServantObject servant_preinvoke(org.omg.CORBA.Object self,
-            String operation, Class expectedType) {
+    public ServantObject servant_preinvoke(org.omg.CORBA.Object self, String operation, Class expectedType) {
         ObjectAdapter oa = oaf.find(oaid);
         OAInvocationInfo info = null;
 
@@ -123,8 +122,7 @@ public class POALocalCRDImpl extends LocalClientRequestDispatcherBase {
         return info;
     }
 
-    public void servant_postinvoke(org.omg.CORBA.Object self,
-            ServantObject servantobj) {
+    public void servant_postinvoke(org.omg.CORBA.Object self, ServantObject servantobj) {
         ObjectAdapter oa = orb.peekInvocationInfo().oa();
         servantExit(oa);
     }

@@ -12,24 +12,20 @@ import java.security.BasicPermission;
  * Permission required by an authentication identity to perform operations on
  * behalf of an authorization identity.
  * </p>
- *
  * <p>
  * A SubjectDelegationPermission contains a name (also referred to as a
  * "target name") but no actions list; you either have the named permission or
  * you don't.
  * </p>
- *
  * <p>
  * The target name is the name of the authorization principal classname followed
  * by a period and the authorization principal name, that is <code>
  * "<em>PrincipalClassName</em>.<em>PrincipalName</em>"</code>.
  * </p>
- *
  * <p>
  * An asterisk may appear by itself, or if immediately preceded by a "." may
  * appear at the end of the target name, to signify a wildcard match.
  * </p>
- *
  * <p>
  * For example, "*", "javax.management.remote.JMXPrincipal.*" and
  * "javax.management.remote.JMXPrincipal.delegate" are valid target names. The
@@ -51,13 +47,12 @@ public final class SubjectDelegationPermission extends BasicPermission {
      * name is the symbolic name of the SubjectDelegationPermission.
      *
      * @param name
-     *             the name of the SubjectDelegationPermission
-     *
+     *        the name of the SubjectDelegationPermission
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
     public SubjectDelegationPermission(String name) {
         super(name);
@@ -69,17 +64,16 @@ public final class SubjectDelegationPermission extends BasicPermission {
      * actions String is currently unused and must be null.
      *
      * @param name
-     *                the name of the SubjectDelegationPermission
+     *        the name of the SubjectDelegationPermission
      * @param actions
-     *                must be null.
-     *
+     *        must be null.
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty or
-     *                                  <code>actions</code> is not
-     *                                  null.
+     *         if <code>name</code> is empty or
+     *         <code>actions</code> is not
+     *         null.
      */
     public SubjectDelegationPermission(String name, String actions) {
         super(name, actions);

@@ -26,13 +26,18 @@ class DeleteOnExitHook {
                                                                            * hook
                                                                            * invocation
                                                                            * order
-                                                                           */,
-                true /* register even if shutdown in progress */,
-                new Runnable() {
-                    public void run() {
-                        runHooks();
-                    }
-                });
+                                                                           */, true /*
+                                                                                    * register
+                                                                                    * even
+                                                                                    * if
+                                                                                    * shutdown
+                                                                                    * in
+                                                                                    * progress
+                                                                                    */, new Runnable() {
+            public void run() {
+                runHooks();
+            }
+        });
     }
 
     private DeleteOnExitHook() {}

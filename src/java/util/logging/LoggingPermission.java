@@ -21,14 +21,12 @@ import java.security.*;
  * Instead they are created by the security policy code based on reading the
  * security policy file.
  *
- *
  * @since 1.4
  * @see java.security.BasicPermission
  * @see java.security.Permission
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
  */
 
 public final class LoggingPermission extends java.security.BasicPermission {
@@ -39,19 +37,17 @@ public final class LoggingPermission extends java.security.BasicPermission {
      * Creates a new LoggingPermission object.
      *
      * @param name
-     *                Permission name. Must be "control".
+     *        Permission name. Must be "control".
      * @param actions
-     *                Must be either null or the empty string.
-     *
+     *        Must be either null or the empty string.
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty or if
-     *                                  arguments are invalid.
+     *         if <code>name</code> is empty or if
+     *         arguments are invalid.
      */
-    public LoggingPermission(String name, String actions)
-            throws IllegalArgumentException {
+    public LoggingPermission(String name, String actions) throws IllegalArgumentException {
         super(name);
         if (!name.equals("control")) {
             throw new IllegalArgumentException("name: " + name);

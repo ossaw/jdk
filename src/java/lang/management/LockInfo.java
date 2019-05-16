@@ -20,14 +20,12 @@ import sun.management.LockInfoCompositeData;
  * subclass) to implement its synchronization property. {@link ReentrantLock
  * ReentrantLock} and {@link ReentrantReadWriteLock ReentrantReadWriteLock} are
  * two examples of ownable synchronizers provided by the platform.
- *
  * <h3><a name="MappedType">MXBean Mapping</a></h3> <tt>LockInfo</tt> is mapped
  * to a {@link CompositeData CompositeData} as specified in the {@link #from
  * from} method.
  *
  * @see java.util.concurrent.locks.AbstractOwnableSynchronizer
  * @see java.util.concurrent.locks.Condition
- *
  * @author Mandy Chung
  * @since 1.6
  */
@@ -41,17 +39,16 @@ public class LockInfo {
      * Constructs a <tt>LockInfo</tt> object.
      *
      * @param className
-     *                         the fully qualified name of the class of the lock
-     *                         object.
+     *        the fully qualified name of the class of the lock
+     *        object.
      * @param identityHashCode
-     *                         the {@link System#identityHashCode identity hash
-     *                         code} of the
-     *                         lock object.
+     *        the {@link System#identityHashCode identity hash
+     *        code} of the
+     *        lock object.
      */
     public LockInfo(String className, int identityHashCode) {
         if (className == null) {
-            throw new NullPointerException(
-                    "Parameter className cannot be null");
+            throw new NullPointerException("Parameter className cannot be null");
         }
         this.className = className;
         this.identityHashCode = identityHashCode;
@@ -105,15 +102,13 @@ public class LockInfo {
      * </blockquote>
      *
      * @param cd
-     *           {@code CompositeData} representing a {@code LockInfo}
-     *
+     *        {@code CompositeData} representing a {@code LockInfo}
      * @throws IllegalArgumentException
-     *                                  if {@code cd} does not represent a
-     *                                  {@code LockInfo} with the
-     *                                  attributes described above.
+     *         if {@code cd} does not represent a
+     *         {@code LockInfo} with the
+     *         attributes described above.
      * @return a {@code LockInfo} object represented by {@code cd} if {@code cd}
      *         is not {@code null}; {@code null} otherwise.
-     *
      * @since 1.8
      */
     public static LockInfo from(CompositeData cd) {
@@ -136,8 +131,7 @@ public class LockInfo {
      * equals to the value of: <blockquote>
      * 
      * <pre>
-     * lock.getClass().getName() + '@' + Integer.toHexString(System
-     *         .identityHashCode(lock))
+     * lock.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(lock))
      * </pre>
      * 
      * </blockquote> where <tt>lock</tt> is the lock object.

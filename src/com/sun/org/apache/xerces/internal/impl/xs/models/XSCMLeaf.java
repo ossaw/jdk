@@ -24,7 +24,6 @@ import com.sun.org.apache.xerces.internal.impl.dtd.models.CMStateSet;
  * Content model leaf node.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
  */
 public class XSCMLeaf extends CMNode {

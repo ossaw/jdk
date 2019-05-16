@@ -26,9 +26,9 @@ public class InvalidAttributeIdentifierException extends NamingException {
      * the explanation supplied. All other fields set to null.
      * 
      * @param explanation
-     *                    Possibly null string containing additional detail
-     *                    about this
-     *                    exception.
+     *        Possibly null string containing additional detail
+     *        about this
+     *        exception.
      * @see java.lang.Throwable#getMessage
      */
     public InvalidAttributeIdentifierException(String explanation) {

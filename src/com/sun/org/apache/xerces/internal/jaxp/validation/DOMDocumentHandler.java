@@ -44,7 +44,7 @@ interface DOMDocumentHandler extends XMLDocumentHandler {
      * </p>
      *
      * @param result
-     *               the object which receives the constructed DOM nodes
+     *        the object which receives the constructed DOM nodes
      */
     public void setDOMResult(DOMResult result);
 
@@ -52,10 +52,9 @@ interface DOMDocumentHandler extends XMLDocumentHandler {
      * A document type declaration.
      *
      * @param node
-     *             a DocumentType node
-     *
+     *        a DocumentType node
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
     public void doctypeDecl(DocumentType node) throws XNIException;
 
@@ -67,10 +66,9 @@ interface DOMDocumentHandler extends XMLDocumentHandler {
      * A comment.
      *
      * @param node
-     *             a Comment node
-     *
+     *        a Comment node
      * @exception XNIException
-     *                         Thrown by application to signal an error.
+     *            Thrown by application to signal an error.
      */
     public void comment(Comment node) throws XNIException;
 
@@ -86,13 +84,11 @@ interface DOMDocumentHandler extends XMLDocumentHandler {
      * for parsing the data.
      *
      * @param node
-     *             a ProcessingInstruction node
-     *
+     *        a ProcessingInstruction node
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void processingInstruction(ProcessingInstruction node)
-            throws XNIException;
+    public void processingInstruction(ProcessingInstruction node) throws XNIException;
 
     public void setIgnoringCharacters(boolean ignore);
 }

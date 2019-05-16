@@ -25,11 +25,10 @@ public class AccountException extends LoginException {
     /**
      * Constructs a AccountException with the specified detail message. A detail
      * message is a String that describes this particular exception.
-     *
      * <p>
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public AccountException(String msg) {
         super(msg);

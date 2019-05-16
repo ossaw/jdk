@@ -24,7 +24,6 @@ import java.security.GeneralSecurityException;
  * synchronize.
  *
  * @see CertPathBuilder
- *
  * @since 1.4
  * @author Sean Mullan
  */
@@ -46,7 +45,7 @@ public class CertPathBuilderException extends GeneralSecurityException {
      * exception in more detail.
      *
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public CertPathBuilderException(String msg) {
         super(msg);
@@ -61,11 +60,11 @@ public class CertPathBuilderException extends GeneralSecurityException {
      * typically contains the class and detail message of cause).
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause getCause()} method). (A {@code null} value
-     *              is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause getCause()} method). (A {@code null} value
+     *        is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      */
     public CertPathBuilderException(Throwable cause) {
         super(cause);
@@ -76,13 +75,13 @@ public class CertPathBuilderException extends GeneralSecurityException {
      * message and cause.
      *
      * @param msg
-     *              the detail message
+     *        the detail message
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause getCause()} method). (A {@code null} value
-     *              is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause getCause()} method). (A {@code null} value
+     *        is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      */
     public CertPathBuilderException(String msg, Throwable cause) {
         super(msg, cause);

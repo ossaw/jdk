@@ -56,8 +56,8 @@ import com.sun.org.apache.bcel.internal.Constants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class ConversionInstruction extends Instruction implements
-        TypedInstruction, StackProducer, StackConsumer {
+public abstract class ConversionInstruction extends Instruction implements TypedInstruction, StackProducer,
+        StackConsumer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -66,7 +66,7 @@ public abstract class ConversionInstruction extends Instruction implements
 
     /**
      * @param opcode
-     *               opcode of instruction
+     *        opcode of instruction
      */
     protected ConversionInstruction(short opcode) {
         super(opcode, (short) 1);

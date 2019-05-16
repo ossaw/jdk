@@ -54,21 +54,21 @@ public final class ShapeGraphicAttribute extends GraphicAttribute {
      * {@link Shape}.
      * 
      * @param shape
-     *                  the <code>Shape</code> to render. The <code>Shape</code>
-     *                  is
-     *                  rendered with its origin at the origin of this
-     *                  <code>ShapeGraphicAttribute</code> in the host
-     *                  <code>TextLayout</code>. This object maintains a
-     *                  reference to
-     *                  <code>shape</code>.
+     *        the <code>Shape</code> to render. The <code>Shape</code>
+     *        is
+     *        rendered with its origin at the origin of this
+     *        <code>ShapeGraphicAttribute</code> in the host
+     *        <code>TextLayout</code>. This object maintains a
+     *        reference to
+     *        <code>shape</code>.
      * @param alignment
-     *                  one of the alignments from this
-     *                  <code>ShapeGraphicAttribute</code>.
+     *        one of the alignments from this
+     *        <code>ShapeGraphicAttribute</code>.
      * @param stroke
-     *                  <code>true</code> if the <code>Shape</code> should be
-     *                  stroked;
-     *                  <code>false</code> if the <code>Shape</code> should be
-     *                  filled.
+     *        <code>true</code> if the <code>Shape</code> should be
+     *        stroked;
+     *        <code>false</code> if the <code>Shape</code> should be
+     *        filled.
      */
     public ShapeGraphicAttribute(Shape shape, int alignment, boolean stroke) {
 
@@ -169,8 +169,8 @@ public final class ShapeGraphicAttribute extends GraphicAttribute {
      * returned by <code>getBounds</code>.
      * 
      * @param tx
-     *           an optional {@link AffineTransform} to apply to the this
-     *           <code>ShapeGraphicAttribute</code>. This can be null.
+     *        an optional {@link AffineTransform} to apply to the this
+     *        <code>ShapeGraphicAttribute</code>. This can be null.
      * @return the <code>Shape</code> representing this graphic attribute,
      *         suitable for stroking or filling.
      * @since 1.6
@@ -194,7 +194,7 @@ public final class ShapeGraphicAttribute extends GraphicAttribute {
      * <code>Object</code>.
      * 
      * @param rhs
-     *            the <code>Object</code> to compare for equality
+     *        the <code>Object</code> to compare for equality
      * @return <code>true</code> if this <code>ShapeGraphicAttribute</code>
      *         equals <code>rhs</code>; <code>false</code> otherwise.
      */
@@ -212,7 +212,7 @@ public final class ShapeGraphicAttribute extends GraphicAttribute {
      * <code>ShapeGraphicAttribute</code>.
      * 
      * @param rhs
-     *            the <code>ShapeGraphicAttribute</code> to compare for equality
+     *        the <code>ShapeGraphicAttribute</code> to compare for equality
      * @return <code>true</code> if this <code>ShapeGraphicAttribute</code>
      *         equals <code>rhs</code>; <code>false</code> otherwise.
      */

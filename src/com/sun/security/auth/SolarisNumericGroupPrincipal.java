@@ -11,7 +11,6 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents a
  * user's Solaris group identification number (GID).
- *
  * <p>
  * Principals such as this <code>SolarisNumericGroupPrincipal</code> may be
  * associated with a particular <code>Subject</code> to augment that
@@ -22,25 +21,21 @@ import java.security.Principal;
  * 
  * @deprecated As of JDK&nbsp;1.4, replaced by {@link UnixNumericGroupPrincipal}
  *             . This class is entirely deprecated.
- *
  * @see java.security.Principal
  * @see javax.security.auth.Subject
  */
 @jdk.Exported(false)
 @Deprecated
-public class SolarisNumericGroupPrincipal implements Principal,
-        java.io.Serializable {
+public class SolarisNumericGroupPrincipal implements Principal, java.io.Serializable {
 
     private static final long serialVersionUID = 2345199581042573224L;
 
-    private static final java.util.ResourceBundle rb = java.security.AccessController
-            .doPrivileged(
-                    new java.security.PrivilegedAction<java.util.ResourceBundle>() {
-                        public java.util.ResourceBundle run() {
-                            return (java.util.ResourceBundle.getBundle(
-                                    "sun.security.util.AuthResources"));
-                        }
-                    });
+    private static final java.util.ResourceBundle rb = java.security.AccessController.doPrivileged(
+            new java.security.PrivilegedAction<java.util.ResourceBundle>() {
+                public java.util.ResourceBundle run() {
+                    return (java.util.ResourceBundle.getBundle("sun.security.util.AuthResources"));
+                }
+            });
 
     /**
      * @serial
@@ -56,22 +51,19 @@ public class SolarisNumericGroupPrincipal implements Principal,
      * Create a <code>SolarisNumericGroupPrincipal</code> using a
      * <code>String</code> representation of the user's group identification
      * number (GID).
-     *
      * <p>
      *
      * @param name
-     *                     the user's group identification number (GID) for this
-     *                     user.
-     *                     <p>
-     *
+     *        the user's group identification number (GID) for this
+     *        user.
+     *        <p>
      * @param primaryGroup
-     *                     true if the specified GID represents the primary
-     *                     group to
-     *                     which this user belongs.
-     *
+     *        true if the specified GID represents the primary
+     *        group to
+     *        which this user belongs.
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public SolarisNumericGroupPrincipal(String name, boolean primaryGroup) {
         if (name == null)
@@ -84,20 +76,17 @@ public class SolarisNumericGroupPrincipal implements Principal,
     /**
      * Create a <code>SolarisNumericGroupPrincipal</code> using a long
      * representation of the user's group identification number (GID).
-     *
      * <p>
      *
      * @param name
-     *                     the user's group identification number (GID) for this
-     *                     user
-     *                     represented as a long.
-     *                     <p>
-     *
+     *        the user's group identification number (GID) for this
+     *        user
+     *        represented as a long.
+     *        <p>
      * @param primaryGroup
-     *                     true if the specified GID represents the primary
-     *                     group to
-     *                     which this user belongs.
-     *
+     *        true if the specified GID represents the primary
+     *        group to
+     *        which this user belongs.
      */
     public SolarisNumericGroupPrincipal(long name, boolean primaryGroup) {
         this.name = (new Long(name)).toString();
@@ -107,7 +96,6 @@ public class SolarisNumericGroupPrincipal implements Principal,
     /**
      * Return the user's group identification number (GID) for this
      * <code>SolarisNumericGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return the user's group identification number (GID) for this
@@ -120,7 +108,6 @@ public class SolarisNumericGroupPrincipal implements Principal,
     /**
      * Return the user's group identification number (GID) for this
      * <code>SolarisNumericGroupPrincipal</code> as a long.
-     *
      * <p>
      *
      * @return the user's group identification number (GID) for this
@@ -133,7 +120,6 @@ public class SolarisNumericGroupPrincipal implements Principal,
     /**
      * Return whether this group identification number (GID) represents the
      * primary group to which this user belongs.
-     *
      * <p>
      *
      * @return true if this group identification number (GID) represents the
@@ -146,18 +132,14 @@ public class SolarisNumericGroupPrincipal implements Principal,
     /**
      * Return a string representation of this
      * <code>SolarisNumericGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this
      *         <code>SolarisNumericGroupPrincipal</code>.
      */
     public String toString() {
-        return ((primaryGroup ? rb.getString(
-                "SolarisNumericGroupPrincipal.Primary.Group.") + name
-                : rb.getString(
-                        "SolarisNumericGroupPrincipal.Supplementary.Group.")
-                        + name));
+        return ((primaryGroup ? rb.getString("SolarisNumericGroupPrincipal.Primary.Group.") + name
+                : rb.getString("SolarisNumericGroupPrincipal.Supplementary.Group.") + name));
     }
 
     /**
@@ -166,13 +148,11 @@ public class SolarisNumericGroupPrincipal implements Principal,
      * the given object is also a <code>SolarisNumericGroupPrincipal</code> and
      * the two SolarisNumericGroupPrincipals have the same group identification
      * number (GID).
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>SolarisNumericGroupPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>SolarisNumericGroupPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>SolarisNumericGroupPrincipal</code>.
      */
@@ -187,15 +167,13 @@ public class SolarisNumericGroupPrincipal implements Principal,
             return false;
         SolarisNumericGroupPrincipal that = (SolarisNumericGroupPrincipal) o;
 
-        if (this.getName().equals(that.getName()) && this
-                .isPrimaryGroup() == that.isPrimaryGroup())
+        if (this.getName().equals(that.getName()) && this.isPrimaryGroup() == that.isPrimaryGroup())
             return true;
         return false;
     }
 
     /**
      * Return a hash code for this <code>SolarisNumericGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>SolarisNumericGroupPrincipal</code>.

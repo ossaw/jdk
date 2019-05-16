@@ -11,7 +11,6 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents a
  * user's Unix group identification number (GID).
- *
  * <p>
  * Principals such as this <code>UnixNumericGroupPrincipal</code> may be
  * associated with a particular <code>Subject</code> to augment that
@@ -24,8 +23,7 @@ import java.security.Principal;
  * @see javax.security.auth.Subject
  */
 @jdk.Exported
-public class UnixNumericGroupPrincipal implements Principal,
-        java.io.Serializable {
+public class UnixNumericGroupPrincipal implements Principal, java.io.Serializable {
 
     private static final long serialVersionUID = 3941535899328403223L;
 
@@ -43,29 +41,24 @@ public class UnixNumericGroupPrincipal implements Principal,
      * Create a <code>UnixNumericGroupPrincipal</code> using a
      * <code>String</code> representation of the user's group identification
      * number (GID).
-     *
      * <p>
      *
      * @param name
-     *                     the user's group identification number (GID) for this
-     *                     user.
-     *                     <p>
-     *
+     *        the user's group identification number (GID) for this
+     *        user.
+     *        <p>
      * @param primaryGroup
-     *                     true if the specified GID represents the primary
-     *                     group to
-     *                     which this user belongs.
-     *
+     *        true if the specified GID represents the primary
+     *        group to
+     *        which this user belongs.
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public UnixNumericGroupPrincipal(String name, boolean primaryGroup) {
         if (name == null) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "invalid.null.input.value",
-                            "sun.security.util.AuthResources"));
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("invalid.null.input.value", "sun.security.util.AuthResources"));
             Object[] source = { "name" };
             throw new NullPointerException(form.format(source));
         }
@@ -77,20 +70,17 @@ public class UnixNumericGroupPrincipal implements Principal,
     /**
      * Create a <code>UnixNumericGroupPrincipal</code> using a long
      * representation of the user's group identification number (GID).
-     *
      * <p>
      *
      * @param name
-     *                     the user's group identification number (GID) for this
-     *                     user
-     *                     represented as a long.
-     *                     <p>
-     *
+     *        the user's group identification number (GID) for this
+     *        user
+     *        represented as a long.
+     *        <p>
      * @param primaryGroup
-     *                     true if the specified GID represents the primary
-     *                     group to
-     *                     which this user belongs.
-     *
+     *        true if the specified GID represents the primary
+     *        group to
+     *        which this user belongs.
      */
     public UnixNumericGroupPrincipal(long name, boolean primaryGroup) {
         this.name = (new Long(name)).toString();
@@ -100,7 +90,6 @@ public class UnixNumericGroupPrincipal implements Principal,
     /**
      * Return the user's group identification number (GID) for this
      * <code>UnixNumericGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return the user's group identification number (GID) for this
@@ -113,7 +102,6 @@ public class UnixNumericGroupPrincipal implements Principal,
     /**
      * Return the user's group identification number (GID) for this
      * <code>UnixNumericGroupPrincipal</code> as a long.
-     *
      * <p>
      *
      * @return the user's group identification number (GID) for this
@@ -126,7 +114,6 @@ public class UnixNumericGroupPrincipal implements Principal,
     /**
      * Return whether this group identification number (GID) represents the
      * primary group to which this user belongs.
-     *
      * <p>
      *
      * @return true if this group identification number (GID) represents the
@@ -139,7 +126,6 @@ public class UnixNumericGroupPrincipal implements Principal,
     /**
      * Return a string representation of this
      * <code>UnixNumericGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this
@@ -148,16 +134,14 @@ public class UnixNumericGroupPrincipal implements Principal,
     public String toString() {
 
         if (primaryGroup) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "UnixNumericGroupPrincipal.Primary.Group.name",
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("UnixNumericGroupPrincipal.Primary.Group.name",
                             "sun.security.util.AuthResources"));
             Object[] source = { name };
             return form.format(source);
         } else {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "UnixNumericGroupPrincipal.Supplementary.Group.name",
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("UnixNumericGroupPrincipal.Supplementary.Group.name",
                             "sun.security.util.AuthResources"));
             Object[] source = { name };
             return form.format(source);
@@ -170,13 +154,11 @@ public class UnixNumericGroupPrincipal implements Principal,
      * given object is also a <code>UnixNumericGroupPrincipal</code> and the two
      * UnixNumericGroupPrincipals have the same group identification number
      * (GID).
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>UnixNumericGroupPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>UnixNumericGroupPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>UnixNumericGroupPrincipal</code>.
      */
@@ -191,15 +173,13 @@ public class UnixNumericGroupPrincipal implements Principal,
             return false;
         UnixNumericGroupPrincipal that = (UnixNumericGroupPrincipal) o;
 
-        if (this.getName().equals(that.getName()) && this
-                .isPrimaryGroup() == that.isPrimaryGroup())
+        if (this.getName().equals(that.getName()) && this.isPrimaryGroup() == that.isPrimaryGroup())
             return true;
         return false;
     }
 
     /**
      * Return a hash code for this <code>UnixNumericGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>UnixNumericGroupPrincipal</code>.

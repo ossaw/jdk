@@ -13,7 +13,6 @@ package java.security;
  * by calling the {@code getException} method. In effect, an
  * {@code PrivilegedActionException} is a "wrapper" for an exception thrown by a
  * privileged action.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "exception thrown by the
@@ -40,7 +39,7 @@ public class PrivilegedActionException extends Exception {
      * specific Exception.
      *
      * @param exception
-     *                  The exception thrown
+     *        The exception thrown
      */
     public PrivilegedActionException(Exception exception) {
         super((Throwable) null); // Disallow initCause
@@ -50,7 +49,6 @@ public class PrivilegedActionException extends Exception {
     /**
      * Returns the exception thrown by the privileged computation that resulted
      * in this {@code PrivilegedActionException}.
-     *
      * <p>
      * This method predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of

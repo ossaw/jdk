@@ -26,7 +26,6 @@ import org.omg.CORBA.portable.OutputStream;
  * If <code>myValueBaseHolder</code> is an instance of
  * <code>ValueBaseHolder</code>, the value stored in its <code>value</code>
  * field can be accessed with <code>myValueBaseHolder.value</code>.
- *
  */
 public final class ValueBaseHolder implements Streamable {
 
@@ -48,10 +47,10 @@ public final class ValueBaseHolder implements Streamable {
      * <code>java.io.Serializable</code>.
      * 
      * @param initial
-     *                the <code>java.io.Serializable</code> with which to
-     *                initialize
-     *                the <code>value</code> field of the newly-created
-     *                <code>ValueBaseHolder</code> object
+     *        the <code>java.io.Serializable</code> with which to
+     *        initialize
+     *        the <code>value</code> field of the newly-created
+     *        <code>ValueBaseHolder</code> object
      */
     public ValueBaseHolder(java.io.Serializable initial) {
         value = initial;
@@ -62,7 +61,7 @@ public final class ValueBaseHolder implements Streamable {
      * the unmarshalled data.
      *
      * @param input
-     *              the InputStream containing CDR formatted data from the wire
+     *        the InputStream containing CDR formatted data from the wire
      */
     public void _read(InputStream input) {
         value = ((org.omg.CORBA_2_3.portable.InputStream) input).read_value();
@@ -72,7 +71,7 @@ public final class ValueBaseHolder implements Streamable {
      * Marshals to <code>output</code> the value in the Holder.
      *
      * @param output
-     *               the OutputStream which will contain the CDR formatted data
+     *        the OutputStream which will contain the CDR formatted data
      */
     public void _write(OutputStream output) {
         ((org.omg.CORBA_2_3.portable.OutputStream) output).write_value(value);

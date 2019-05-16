@@ -68,8 +68,7 @@ public class PICurrent extends org.omg.CORBA.LocalObject implements Current {
      * ThreadLocalStack.
      */
     SlotTable getSlotTable() {
-        SlotTable table = (SlotTable) ((SlotTableStack) threadLocalSlotTable
-                .get()).peekSlotTable();
+        SlotTable table = (SlotTable) ((SlotTableStack) threadLocalSlotTable.get()).peekSlotTable();
         return table;
     }
 

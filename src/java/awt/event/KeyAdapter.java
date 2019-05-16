@@ -22,13 +22,11 @@ package java.awt.event;
  * object is invoked, and the <code>KeyEvent</code> is passed to it.
  *
  * @author Carl Quinn
- *
  * @see KeyEvent
  * @see KeyListener
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/keylistener.html">
  *      Tutorial: Writing a Key Listener</a>
- *
  * @since 1.1
  */
 public abstract class KeyAdapter implements KeyListener {

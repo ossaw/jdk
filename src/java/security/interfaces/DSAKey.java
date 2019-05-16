@@ -12,7 +12,6 @@ package java.security.interfaces;
  * @see DSAParams
  * @see java.security.Key
  * @see java.security.Signature
- *
  * @author Benjamin Renaud
  * @author Josh Bloch
  */
@@ -23,7 +22,6 @@ public interface DSAKey {
      * secret.
      *
      * @return the DSA-specific key parameters.
-     *
      * @see DSAParams
      */
     public DSAParams getParams();

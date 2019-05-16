@@ -61,7 +61,6 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * in conjunction with the JavaWrapper to dynamically modify/create classes as
  * they're requested.
  * </p>
- *
  * <p>
  * This class loader recognizes special requests in a distinct format, i.e.,
  * when the name of the requested class contains with "$$BCEL$$" it calls the
@@ -70,7 +69,6 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * override that method. "Normal" classes class can be modified by overriding
  * the modifyClass() method which is called just before defineClass().
  * </p>
- *
  * <p>
  * There may be a number of packages where you have to use the default class
  * loader (which may also be faster). You can define the set of packages where
@@ -98,16 +96,15 @@ public class ClassLoader extends java.lang.ClassLoader {
 
     /**
      * @param ignored_packages
-     *                         classes contained in these packages will be
-     *                         loaded with the
-     *                         system class loader
+     *        classes contained in these packages will be
+     *        loaded with the
+     *        system class loader
      */
     public ClassLoader(String[] ignored_packages) {
         addIgnoredPkgs(ignored_packages);
     }
 
-    public ClassLoader(java.lang.ClassLoader deferTo,
-            String[] ignored_packages) {
+    public ClassLoader(java.lang.ClassLoader deferTo, String[] ignored_packages) {
         this.deferTo = deferTo;
         this.repository = new ClassLoaderRepository(deferTo);
 
@@ -115,19 +112,15 @@ public class ClassLoader extends java.lang.ClassLoader {
     }
 
     private void addIgnoredPkgs(String[] ignored_packages) {
-        String[] new_p = new String[ignored_packages.length
-                + this.ignored_packages.length];
+        String[] new_p = new String[ignored_packages.length + this.ignored_packages.length];
 
-        System.arraycopy(this.ignored_packages, 0, new_p, 0,
-                this.ignored_packages.length);
-        System.arraycopy(ignored_packages, 0, new_p,
-                this.ignored_packages.length, ignored_packages.length);
+        System.arraycopy(this.ignored_packages, 0, new_p, 0, this.ignored_packages.length);
+        System.arraycopy(ignored_packages, 0, new_p, this.ignored_packages.length, ignored_packages.length);
 
         this.ignored_packages = new_p;
     }
 
-    protected Class loadClass(String class_name, boolean resolve)
-            throws ClassNotFoundException {
+    protected Class loadClass(String class_name, boolean resolve) throws ClassNotFoundException {
         Class cl = null;
 
         /*
@@ -191,14 +184,13 @@ public class ClassLoader extends java.lang.ClassLoader {
      * the subsequent string. You must regard however not to use any "illegal"
      * characters, i.e., characters that may not appear in a Java class name too
      * <br>
-     *
      * The default implementation interprets the string as a encoded compressed
      * Java class, unpacks and decodes it with the Utility.decode() method, and
      * parses the resulting byte array and returns the resulting JavaClass
      * object.
      *
      * @param class_name
-     *                   compressed byte code with "$$BCEL$$" in it
+     *        compressed byte code with "$$BCEL$$" in it
      */
     protected JavaClass createClass(String class_name) {
         int index = class_name.indexOf("$$BCEL$$");
@@ -207,8 +199,7 @@ public class ClassLoader extends java.lang.ClassLoader {
         JavaClass clazz = null;
         try {
             byte[] bytes = Utility.decode(real_name, true);
-            ClassParser parser = new ClassParser(new ByteArrayInputStream(
-                    bytes), "foo");
+            ClassParser parser = new ClassParser(new ByteArrayInputStream(bytes), "foo");
 
             clazz = parser.parse();
         } catch (Throwable e) {
@@ -219,10 +210,9 @@ public class ClassLoader extends java.lang.ClassLoader {
         // Adapt the class name to the passed value
         ConstantPool cp = clazz.getConstantPool();
 
-        ConstantClass cl = (ConstantClass) cp.getConstant(clazz
-                .getClassNameIndex(), Constants.CONSTANT_Class);
-        ConstantUtf8 name = (ConstantUtf8) cp.getConstant(cl.getNameIndex(),
-                Constants.CONSTANT_Utf8);
+        ConstantClass cl = (ConstantClass) cp.getConstant(clazz.getClassNameIndex(),
+                Constants.CONSTANT_Class);
+        ConstantUtf8 name = (ConstantUtf8) cp.getConstant(cl.getNameIndex(), Constants.CONSTANT_Utf8);
         name.setBytes(class_name.replace('.', '/'));
 
         return clazz;

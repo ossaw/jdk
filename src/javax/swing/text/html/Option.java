@@ -27,8 +27,8 @@ public class Option implements Serializable {
      * Creates a new Option object.
      *
      * @param attr
-     *             the attributes associated with the option element. The
-     *             attributes are copied to ensure they won't change.
+     *        the attributes associated with the option element. The
+     *        attributes are copied to ensure they won't change.
      */
     public Option(AttributeSet attr) {
         this.attr = attr.copyAttributes();

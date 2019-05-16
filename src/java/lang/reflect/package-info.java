@@ -9,15 +9,12 @@
  * about the fields, methods and constructors of loaded classes, and the use of
  * reflected fields, methods, and constructors to operate on their underlying
  * counterparts, within security restrictions.
- *
  * <p>
  * {@code AccessibleObject} allows suppression of access checks if the necessary
  * {@code ReflectPermission} is available.
- *
  * <p>
  * {@code Array} provides static methods to dynamically create and access
  * arrays.
- *
  * <p>
  * Classes in this package, along with {@code java.lang.Class} accommodate
  * applications such as debuggers, interpreters, object inspectors, class

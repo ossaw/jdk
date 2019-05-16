@@ -28,7 +28,6 @@ public class AppConfigurationEntry {
 
     /**
      * Default constructor for this class.
-     *
      * <p>
      * This entry represents a single {@code LoginModule} entry configured for
      * the application specified in the
@@ -36,38 +35,34 @@ public class AppConfigurationEntry {
      * {@code Configuration} class.
      *
      * @param loginModuleName
-     *                        String representing the class name of the
-     *                        {@code LoginModule}
-     *                        configured for the specified application.
-     *                        <p>
-     *
+     *        String representing the class name of the
+     *        {@code LoginModule}
+     *        configured for the specified application.
+     *        <p>
      * @param controlFlag
-     *                        either REQUIRED, REQUISITE, SUFFICIENT, or
-     *                        OPTIONAL.
-     *                        <p>
-     *
+     *        either REQUIRED, REQUISITE, SUFFICIENT, or
+     *        OPTIONAL.
+     *        <p>
      * @param options
-     *                        the options configured for this
-     *                        {@code LoginModule}.
-     *
+     *        the options configured for this
+     *        {@code LoginModule}.
      * @exception IllegalArgumentException
-     *                                     if {@code loginModuleName} is null,
-     *                                     if
-     *                                     {@code LoginModuleName} has a length
-     *                                     of 0, if
-     *                                     {@code controlFlag} is not either
-     *                                     REQUIRED, REQUISITE,
-     *                                     SUFFICIENT or OPTIONAL, or if
-     *                                     {@code options} is null.
+     *            if {@code loginModuleName} is null,
+     *            if
+     *            {@code LoginModuleName} has a length
+     *            of 0, if
+     *            {@code controlFlag} is not either
+     *            REQUIRED, REQUISITE,
+     *            SUFFICIENT or OPTIONAL, or if
+     *            {@code options} is null.
      */
-    public AppConfigurationEntry(String loginModuleName,
-            LoginModuleControlFlag controlFlag, Map<String, ?> options) {
+    public AppConfigurationEntry(String loginModuleName, LoginModuleControlFlag controlFlag,
+            Map<String, ?> options) {
         if (loginModuleName == null || loginModuleName.length() == 0
                 || (controlFlag != LoginModuleControlFlag.REQUIRED
                         && controlFlag != LoginModuleControlFlag.REQUISITE
                         && controlFlag != LoginModuleControlFlag.SUFFICIENT
-                        && controlFlag != LoginModuleControlFlag.OPTIONAL)
-                || options == null)
+                        && controlFlag != LoginModuleControlFlag.OPTIONAL) || options == null)
             throw new IllegalArgumentException();
 
         this.loginModuleName = loginModuleName;
@@ -116,26 +111,22 @@ public class AppConfigurationEntry {
         /**
          * Required {@code LoginModule}.
          */
-        public static final LoginModuleControlFlag REQUIRED = new LoginModuleControlFlag(
-                "required");
+        public static final LoginModuleControlFlag REQUIRED = new LoginModuleControlFlag("required");
 
         /**
          * Requisite {@code LoginModule}.
          */
-        public static final LoginModuleControlFlag REQUISITE = new LoginModuleControlFlag(
-                "requisite");
+        public static final LoginModuleControlFlag REQUISITE = new LoginModuleControlFlag("requisite");
 
         /**
          * Sufficient {@code LoginModule}.
          */
-        public static final LoginModuleControlFlag SUFFICIENT = new LoginModuleControlFlag(
-                "sufficient");
+        public static final LoginModuleControlFlag SUFFICIENT = new LoginModuleControlFlag("sufficient");
 
         /**
          * Optional {@code LoginModule}.
          */
-        public static final LoginModuleControlFlag OPTIONAL = new LoginModuleControlFlag(
-                "optional");
+        public static final LoginModuleControlFlag OPTIONAL = new LoginModuleControlFlag("optional");
 
         private LoginModuleControlFlag(String controlFlag) {
             this.controlFlag = controlFlag;
@@ -143,7 +134,6 @@ public class AppConfigurationEntry {
 
         /**
          * Return a String representation of this controlFlag.
-         *
          * <p>
          * The String has the format, "LoginModuleControlFlag: <i>flag</i>",
          * where <i>flag</i> is either <i>required</i>, <i>requisite</i>,
@@ -152,8 +142,7 @@ public class AppConfigurationEntry {
          * @return a String representation of this controlFlag.
          */
         public String toString() {
-            return (sun.security.util.ResourcesMgr.getString(
-                    "LoginModuleControlFlag.") + controlFlag);
+            return (sun.security.util.ResourcesMgr.getString("LoginModuleControlFlag.") + controlFlag);
         }
     }
 }

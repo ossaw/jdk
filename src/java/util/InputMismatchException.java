@@ -31,7 +31,7 @@ public class InputMismatchException extends NoSuchElementException {
      * <tt>getMessage</tt> method.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public InputMismatchException(String s) {
         super(s);

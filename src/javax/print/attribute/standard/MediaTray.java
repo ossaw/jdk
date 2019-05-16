@@ -21,7 +21,6 @@ import javax.print.attribute.EnumSyntax;
  * <B>IPP Compatibility:</B> MediaTray is a representation class for values of
  * the IPP "media" attribute which name paper trays.
  * <P>
- *
  */
 public class MediaTray extends Media implements Attribute {
 
@@ -72,17 +71,17 @@ public class MediaTray extends Media implements Attribute {
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected MediaTray(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "top", "middle", "bottom",
-            "envelope", "manual", "large-capacity", "main", "side" };
+    private static final String[] myStringTable = { "top", "middle", "bottom", "envelope", "manual",
+            "large-capacity", "main", "side" };
 
-    private static final MediaTray[] myEnumValueTable = { TOP, MIDDLE, BOTTOM,
-            ENVELOPE, MANUAL, LARGE_CAPACITY, MAIN, SIDE };
+    private static final MediaTray[] myEnumValueTable = { TOP, MIDDLE, BOTTOM, ENVELOPE, MANUAL,
+            LARGE_CAPACITY, MAIN, SIDE };
 
     /**
      * Returns the string table for class MediaTray.

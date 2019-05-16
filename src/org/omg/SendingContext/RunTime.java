@@ -18,5 +18,4 @@ package org.omg.SendingContext;
  * to ask the sender about the CodeBase for the implementation of the value
  * type.
  */
-public interface RunTime extends RunTimeOperations, org.omg.CORBA.Object,
-        org.omg.CORBA.portable.IDLEntity {}
+public interface RunTime extends RunTimeOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {}

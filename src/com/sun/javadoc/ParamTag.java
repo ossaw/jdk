@@ -11,7 +11,6 @@ package com.sun.javadoc;
  * parameter, or a type parameter.
  *
  * @author Robert Field
- *
  */
 public interface ParamTag extends Tag {
 

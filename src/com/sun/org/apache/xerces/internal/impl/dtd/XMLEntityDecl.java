@@ -102,11 +102,9 @@ public class XMLEntityDecl {
      * @param isPE
      * @param inExternal
      */
-    public void setValues(String name, String publicId, String systemId,
-            String baseSystemId, String notation, boolean isPE,
-            boolean inExternal) {
-        setValues(name, publicId, systemId, baseSystemId, notation, null, isPE,
-                inExternal);
+    public void setValues(String name, String publicId, String systemId, String baseSystemId, String notation,
+            boolean isPE, boolean inExternal) {
+        setValues(name, publicId, systemId, baseSystemId, notation, null, isPE, inExternal);
     }
 
     /**
@@ -121,9 +119,8 @@ public class XMLEntityDecl {
      * @param isPE
      * @param inExternal
      */
-    public void setValues(String name, String publicId, String systemId,
-            String baseSystemId, String notation, String value, boolean isPE,
-            boolean inExternal) {
+    public void setValues(String name, String publicId, String systemId, String baseSystemId, String notation,
+            String value, boolean isPE, boolean inExternal) {
         this.name = name;
         this.publicId = publicId;
         this.systemId = systemId;

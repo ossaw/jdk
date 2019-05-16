@@ -13,5 +13,5 @@ package org.omg.IOP;
  * <code>CodecFactory</code> is obtained through a call to
  * <code>ORB.resolve_initial_references( "CodecFactory" )</code>.
  */
-public interface CodecFactory extends CodecFactoryOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface CodecFactory
+public interface CodecFactory extends CodecFactoryOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface CodecFactory

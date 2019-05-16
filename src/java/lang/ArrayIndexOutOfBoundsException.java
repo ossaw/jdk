@@ -28,7 +28,7 @@ public class ArrayIndexOutOfBoundsException extends IndexOutOfBoundsException {
      * an argument indicating the illegal index.
      *
      * @param index
-     *              the illegal index.
+     *        the illegal index.
      */
     public ArrayIndexOutOfBoundsException(int index) {
         super("Array index out of range: " + index);
@@ -39,7 +39,7 @@ public class ArrayIndexOutOfBoundsException extends IndexOutOfBoundsException {
      * specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public ArrayIndexOutOfBoundsException(String s) {
         super(s);

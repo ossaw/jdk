@@ -8,12 +8,10 @@ package com.sun.jmx.remote.util;
 import javax.management.loading.ClassLoaderRepository;
 
 public class ClassLoaderWithRepository extends ClassLoader {
-    public ClassLoaderWithRepository(ClassLoaderRepository clr,
-            ClassLoader cl2) {
+    public ClassLoaderWithRepository(ClassLoaderRepository clr, ClassLoader cl2) {
 
         if (clr == null)
-            throw new IllegalArgumentException(
-                    "Null ClassLoaderRepository object.");
+            throw new IllegalArgumentException("Null ClassLoaderRepository object.");
 
         repository = clr;
         this.cl2 = cl2;

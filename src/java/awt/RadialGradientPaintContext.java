@@ -56,71 +56,69 @@ final class RadialGradientPaintContext extends MultipleGradientPaintContext {
      * Constructor for RadialGradientPaintContext.
      *
      * @param paint
-     *                     the {@code RadialGradientPaint} from which this
-     *                     context is
-     *                     created
+     *        the {@code RadialGradientPaint} from which this
+     *        context is
+     *        created
      * @param cm
-     *                     the {@code ColorModel} that receives the
-     *                     {@code Paint} data
-     *                     (this is used only as a hint)
+     *        the {@code ColorModel} that receives the
+     *        {@code Paint} data
+     *        (this is used only as a hint)
      * @param deviceBounds
-     *                     the device space bounding box of the graphics
-     *                     primitive being
-     *                     rendered
+     *        the device space bounding box of the graphics
+     *        primitive being
+     *        rendered
      * @param userBounds
-     *                     the user space bounding box of the graphics primitive
-     *                     being
-     *                     rendered
+     *        the user space bounding box of the graphics primitive
+     *        being
+     *        rendered
      * @param t
-     *                     the {@code AffineTransform} from user space into
-     *                     device space
-     *                     (gradientTransform should be concatenated with this)
+     *        the {@code AffineTransform} from user space into
+     *        device space
+     *        (gradientTransform should be concatenated with this)
      * @param hints
-     *                     the hints that the context object uses to choose
-     *                     between
-     *                     rendering alternatives
+     *        the hints that the context object uses to choose
+     *        between
+     *        rendering alternatives
      * @param cx
-     *                     the center X coordinate in user space of the circle
-     *                     defining
-     *                     the gradient. The last color of the gradient is
-     *                     mapped to the
-     *                     perimeter of this circle.
+     *        the center X coordinate in user space of the circle
+     *        defining
+     *        the gradient. The last color of the gradient is
+     *        mapped to the
+     *        perimeter of this circle.
      * @param cy
-     *                     the center Y coordinate in user space of the circle
-     *                     defining
-     *                     the gradient. The last color of the gradient is
-     *                     mapped to the
-     *                     perimeter of this circle.
+     *        the center Y coordinate in user space of the circle
+     *        defining
+     *        the gradient. The last color of the gradient is
+     *        mapped to the
+     *        perimeter of this circle.
      * @param r
-     *                     the radius of the circle defining the extents of the
-     *                     color
-     *                     gradient
+     *        the radius of the circle defining the extents of the
+     *        color
+     *        gradient
      * @param fx
-     *                     the X coordinate in user space to which the first
-     *                     color is
-     *                     mapped
+     *        the X coordinate in user space to which the first
+     *        color is
+     *        mapped
      * @param fy
-     *                     the Y coordinate in user space to which the first
-     *                     color is
-     *                     mapped
+     *        the Y coordinate in user space to which the first
+     *        color is
+     *        mapped
      * @param fractions
-     *                     the fractions specifying the gradient distribution
+     *        the fractions specifying the gradient distribution
      * @param colors
-     *                     the gradient colors
+     *        the gradient colors
      * @param cycleMethod
-     *                     either NO_CYCLE, REFLECT, or REPEAT
+     *        either NO_CYCLE, REFLECT, or REPEAT
      * @param colorSpace
-     *                     which colorspace to use for interpolation, either
-     *                     SRGB or
-     *                     LINEAR_RGB
+     *        which colorspace to use for interpolation, either
+     *        SRGB or
+     *        LINEAR_RGB
      */
-    RadialGradientPaintContext(RadialGradientPaint paint, ColorModel cm,
-            Rectangle deviceBounds, Rectangle2D userBounds, AffineTransform t,
-            RenderingHints hints, float cx, float cy, float r, float fx,
-            float fy, float[] fractions, Color[] colors,
-            CycleMethod cycleMethod, ColorSpaceType colorSpace) {
-        super(paint, cm, deviceBounds, userBounds, t, hints, fractions, colors,
-                cycleMethod, colorSpace);
+    RadialGradientPaintContext(RadialGradientPaint paint, ColorModel cm, Rectangle deviceBounds,
+            Rectangle2D userBounds, AffineTransform t, RenderingHints hints, float cx, float cy, float r,
+            float fx, float fy, float[] fractions, Color[] colors, CycleMethod cycleMethod,
+            ColorSpaceType colorSpace) {
+        super(paint, cm, deviceBounds, userBounds, t, hints, fractions, colors, cycleMethod, colorSpace);
 
         // copy some parameters
         centerX = cx;
@@ -143,8 +141,7 @@ final class RadialGradientPaintContext extends MultipleGradientPaintContext {
         // test if distance from focus to center is greater than the radius
         if (distSq > radiusSq * SCALEBACK) {
             // clamp focus to radius
-            float scalefactor = (float) Math.sqrt(radiusSq * SCALEBACK
-                    / distSq);
+            float scalefactor = (float) Math.sqrt(radiusSq * SCALEBACK / distSq);
             dX = dX * scalefactor;
             dY = dY * scalefactor;
             focusX = centerX + dX;
@@ -170,8 +167,7 @@ final class RadialGradientPaintContext extends MultipleGradientPaintContext {
      * @param x,y,w,h
      *        the area in device space for which colors are generated.
      */
-    protected void fillRaster(int pixels[], int off, int adjust, int x, int y,
-            int w, int h) {
+    protected void fillRaster(int pixels[], int off, int adjust, int x, int y, int w, int h) {
         if (isSimpleFocus && isNonCyclic && isSimpleLookup) {
             simpleNonCyclicFillRaster(pixels, off, adjust, x, y, w, h);
         } else {
@@ -184,8 +180,7 @@ final class RadialGradientPaintContext extends MultipleGradientPaintContext {
      * point, the gradient is noncyclic, and the gradient lookup method is fast
      * (single array index, no conversion necessary).
      */
-    private void simpleNonCyclicFillRaster(int pixels[], int off, int adjust,
-            int x, int y, int w, int h) {
+    private void simpleNonCyclicFillRaster(int pixels[], int off, int adjust, int x, int y, int w, int h) {
         /*
          * We calculate sqrt(X^2 + Y^2) relative to the radius size to get the
          * fraction for the color to use.
@@ -222,8 +217,7 @@ final class RadialGradientPaintContext extends MultipleGradientPaintContext {
         for (int j = 0; j < h; j++) {
             // these values depend on the coordinates of the start of the row
             float gRel = (rowX * rowX + rowY * rowY) / radiusSq;
-            float gDelta = (2 * (a00 * rowX + a10 * rowY) / radiusSq
-                    + gDeltaDelta / 2);
+            float gDelta = (2 * (a00 * rowX + a10 * rowY) / radiusSq + gDeltaDelta / 2);
 
             /*
              * Use optimized loops for any cases where gRel >= 1. We do not need
@@ -293,25 +287,21 @@ final class RadialGradientPaintContext extends MultipleGradientPaintContext {
     /**
      * Fill the raster, cycling the gradient colors when a point falls outside
      * of the perimeter of the 100% stop circle.
-     *
      * This calculation first computes the intersection point of the line from
      * the focus through the current point in the raster, and the perimeter of
      * the gradient circle.
-     *
      * Then it determines the percentage distance of the current point along
      * that line (focus is 0%, perimeter is 100%).
-     *
      * Equation of a circle centered at (a,b) with radius r: (x-a)^2 + (y-b)^2 =
      * r^2 Equation of a line with slope m and y-intercept b: y = mx + b
      * Replacing y in the circle equation and solving using the quadratic
      * formula produces the following set of equations. Constant factors have
      * been extracted out of the inner loop.
      */
-    private void cyclicCircularGradientFillRaster(int pixels[], int off,
-            int adjust, int x, int y, int w, int h) {
+    private void cyclicCircularGradientFillRaster(int pixels[], int off, int adjust, int x, int y, int w,
+            int h) {
         // constant part of the C factor of the quadratic equation
-        final double constC = -radiusSq + (centerX * centerX) + (centerY
-                * centerY);
+        final double constC = -radiusSq + (centerX * centerX) + (centerY * centerY);
 
         // coefficients of the quadratic equation (Ax^2 + Bx + C = 0)
         double A, B, C;

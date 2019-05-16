@@ -13,7 +13,6 @@ package java.nio.file.attribute;
  *
  * @param <T>
  *        The type of the file attribute value
- *
  * @since 1.7
  * @see PosixFilePermissions#asFileAttribute
  */

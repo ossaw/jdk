@@ -31,13 +31,11 @@ public class InvocationHandlerFactoryImpl implements InvocationHandlerFactory {
     private final PresentationManager pm;
     private Class[] proxyInterfaces;
 
-    public InvocationHandlerFactoryImpl(PresentationManager pm,
-            PresentationManager.ClassData classData) {
+    public InvocationHandlerFactoryImpl(PresentationManager pm, PresentationManager.ClassData classData) {
         this.classData = classData;
         this.pm = pm;
 
-        Class[] remoteInterfaces = classData.getIDLNameTranslator()
-                .getInterfaces();
+        Class[] remoteInterfaces = classData.getIDLNameTranslator().getInterfaces();
         proxyInterfaces = new Class[remoteInterfaces.length + 1];
         for (int ctr = 0; ctr < remoteInterfaces.length; ctr++)
             proxyInterfaces[ctr] = remoteInterfaces[ctr];
@@ -45,9 +43,8 @@ public class InvocationHandlerFactoryImpl implements InvocationHandlerFactory {
         proxyInterfaces[remoteInterfaces.length] = DynamicStub.class;
     }
 
-    private class CustomCompositeInvocationHandlerImpl extends
-            CompositeInvocationHandlerImpl implements LinkedInvocationHandler,
-            Serializable {
+    private class CustomCompositeInvocationHandlerImpl extends CompositeInvocationHandlerImpl implements
+            LinkedInvocationHandler, Serializable {
         private transient DynamicStub stub;
 
         public void setProxy(Proxy proxy) {
@@ -86,26 +83,21 @@ public class InvocationHandlerFactoryImpl implements InvocationHandlerFactory {
         // which extends org.omg.CORBA.Object. This handler delegates all
         // calls directly to a DynamicStubImpl, which extends
         // org.omg.CORBA.portable.ObjectImpl.
-        final InvocationHandler dynamicStubHandler = DelegateInvocationHandlerImpl
-                .create(stub);
+        final InvocationHandler dynamicStubHandler = DelegateInvocationHandlerImpl.create(stub);
 
         // Create an invocation handler that handles any remote interface
         // methods.
-        final InvocationHandler stubMethodHandler = new StubInvocationHandlerImpl(
-                pm, classData, stub);
+        final InvocationHandler stubMethodHandler = new StubInvocationHandlerImpl(pm, classData, stub);
 
         // Create a composite handler that handles the DynamicStub interface
         // as well as the remote interfaces.
-        final CompositeInvocationHandler handler = new CustomCompositeInvocationHandlerImpl(
-                stub);
+        final CompositeInvocationHandler handler = new CustomCompositeInvocationHandlerImpl(stub);
 
         AccessController.doPrivileged(new PrivilegedAction<Void>() {
             @Override
             public Void run() {
-                handler.addInvocationHandler(DynamicStub.class,
-                        dynamicStubHandler);
-                handler.addInvocationHandler(org.omg.CORBA.Object.class,
-                        dynamicStubHandler);
+                handler.addInvocationHandler(DynamicStub.class, dynamicStubHandler);
+                handler.addInvocationHandler(org.omg.CORBA.Object.class, dynamicStubHandler);
                 handler.addInvocationHandler(Object.class, dynamicStubHandler);
                 return null;
             }

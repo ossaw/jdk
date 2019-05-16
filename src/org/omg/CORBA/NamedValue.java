@@ -46,7 +46,6 @@ package org.omg.CORBA;
  *     System.out.println("extract failed");
  * }
  * </PRE>
- *
  * <P>
  * If this code fragment were put into a <code>main</code> method, the output
  * would be something like the following:
@@ -65,7 +64,6 @@ package org.omg.CORBA;
  * @see ARG_IN
  * @see ARG_INOUT
  * @see ARG_OUT
- *
  * @since JDK1.2
  */
 

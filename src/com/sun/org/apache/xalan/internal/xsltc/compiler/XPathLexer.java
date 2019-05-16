@@ -65,9 +65,8 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
             return new Symbol(ss);
         }
         // Return symbol if next token is '::' or '('
-        return (yy_buffer[index] == ':' && yy_buffer[index + 1] == ':'
-                || yy_buffer[index] == '(') ? newSymbol(ss)
-                        : newSymbol(sym.QNAME, yytext());
+        return (yy_buffer[index] == ':' && yy_buffer[index + 1] == ':' || yy_buffer[index] == '(')
+                ? newSymbol(ss) : newSymbol(sym.QNAME, yytext());
     }
 
     /**
@@ -153,8 +152,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
         if (null == instream) {
             throw (new Error("Error: Bad input stream initializer."));
         }
-        yy_reader = new java.io.BufferedReader(new java.io.InputStreamReader(
-                instream));
+        yy_reader = new java.io.BufferedReader(new java.io.InputStreamReader(instream));
     }
 
     private XPathLexer() {
@@ -196,8 +194,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
             yy_buffer_start = 0;
             yy_buffer_read = j;
             yy_buffer_index = j;
-            next_read = yy_reader.read(yy_buffer, yy_buffer_read,
-                    yy_buffer.length - yy_buffer_read);
+            next_read = yy_reader.read(yy_buffer, yy_buffer_read, yy_buffer.length - yy_buffer_read);
             if (-1 == next_read) {
                 return YY_EOF;
             }
@@ -208,8 +205,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
             if (yy_buffer_index >= yy_buffer.length) {
                 yy_buffer = yy_double(yy_buffer);
             }
-            next_read = yy_reader.read(yy_buffer, yy_buffer_read,
-                    yy_buffer.length - yy_buffer_read);
+            next_read = yy_reader.read(yy_buffer, yy_buffer_read, yy_buffer.length - yy_buffer_read);
             if (-1 == next_read) {
                 return YY_EOF;
             }
@@ -219,11 +215,9 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
     }
 
     private void yy_move_end() {
-        if (yy_buffer_end > yy_buffer_start && '\n' == yy_buffer[yy_buffer_end
-                - 1])
+        if (yy_buffer_end > yy_buffer_start && '\n' == yy_buffer[yy_buffer_end - 1])
             yy_buffer_end--;
-        if (yy_buffer_end > yy_buffer_start && '\r' == yy_buffer[yy_buffer_end
-                - 1])
+        if (yy_buffer_end > yy_buffer_start && '\r' == yy_buffer[yy_buffer_end - 1])
             yy_buffer_end--;
     }
 
@@ -239,16 +233,13 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
 
     private void yy_to_mark() {
         yy_buffer_index = yy_buffer_end;
-        yy_at_bol = (yy_buffer_end > yy_buffer_start)
-                && ('\r' == yy_buffer[yy_buffer_end - 1]
-                        || '\n' == yy_buffer[yy_buffer_end - 1]
-                        || 2028/* LS */ == yy_buffer[yy_buffer_end - 1]
-                        || 2029/* PS */ == yy_buffer[yy_buffer_end - 1]);
+        yy_at_bol = (yy_buffer_end > yy_buffer_start) && ('\r' == yy_buffer[yy_buffer_end - 1]
+                || '\n' == yy_buffer[yy_buffer_end - 1] || 2028/* LS */ == yy_buffer[yy_buffer_end - 1]
+                || 2029/* PS */ == yy_buffer[yy_buffer_end - 1]);
     }
 
     private java.lang.String yytext() {
-        return (new java.lang.String(yy_buffer, yy_buffer_start, yy_buffer_end
-                - yy_buffer_start));
+        return (new java.lang.String(yy_buffer, yy_buffer_start, yy_buffer_end - yy_buffer_start));
     }
 
     private int yylength() {
@@ -267,8 +258,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
 
     private final int YY_E_INTERNAL = 0;
     private final int YY_E_MATCH = 1;
-    private java.lang.String yy_error_string[] = { "Error: Internal error.\n",
-            "Error: Unmatched input.\n" };
+    private java.lang.String yy_error_string[] = { "Error: Internal error.\n", "Error: Unmatched input.\n" };
 
     private void yy_error(int code, boolean fatal) {
         java.lang.System.out.print(yy_error_string[code]);
@@ -296,8 +286,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
                     continue;
                 }
                 commaIndex = st.indexOf(',');
-                workString = (commaIndex == -1) ? st
-                        : st.substring(0, commaIndex);
+                workString = (commaIndex == -1) ? st : st.substring(0, commaIndex);
                 st = st.substring(commaIndex + 1);
                 colonIndex = workString.indexOf(':');
                 if (colonIndex == -1) {
@@ -315,113 +304,65 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
         return res;
     }
 
-    private int yy_acpt[] = { /* 0 */ YY_NOT_ACCEPT, /* 1 */ YY_NO_ANCHOR,
-            /* 2 */ YY_NO_ANCHOR, /* 3 */ YY_NO_ANCHOR, /* 4 */ YY_NO_ANCHOR,
-            /* 5 */ YY_NO_ANCHOR, /* 6 */ YY_NO_ANCHOR, /* 7 */ YY_NO_ANCHOR,
-            /* 8 */ YY_NO_ANCHOR, /* 9 */ YY_NO_ANCHOR, /* 10 */ YY_NO_ANCHOR,
-            /* 11 */ YY_NO_ANCHOR, /* 12 */ YY_NO_ANCHOR, /* 13 */ YY_NO_ANCHOR,
-            /* 14 */ YY_NO_ANCHOR, /* 15 */ YY_NO_ANCHOR, /* 16 */ YY_NO_ANCHOR,
-            /* 17 */ YY_NO_ANCHOR, /* 18 */ YY_NO_ANCHOR, /* 19 */ YY_NO_ANCHOR,
-            /* 20 */ YY_NO_ANCHOR, /* 21 */ YY_NO_ANCHOR, /* 22 */ YY_NO_ANCHOR,
-            /* 23 */ YY_NO_ANCHOR, /* 24 */ YY_NO_ANCHOR, /* 25 */ YY_NO_ANCHOR,
-            /* 26 */ YY_NO_ANCHOR, /* 27 */ YY_NO_ANCHOR, /* 28 */ YY_NO_ANCHOR,
-            /* 29 */ YY_NO_ANCHOR, /* 30 */ YY_NO_ANCHOR, /* 31 */ YY_NO_ANCHOR,
-            /* 32 */ YY_NO_ANCHOR, /* 33 */ YY_NO_ANCHOR, /* 34 */ YY_NO_ANCHOR,
-            /* 35 */ YY_NO_ANCHOR, /* 36 */ YY_NO_ANCHOR, /* 37 */ YY_NO_ANCHOR,
-            /* 38 */ YY_NO_ANCHOR, /* 39 */ YY_NO_ANCHOR, /* 40 */ YY_NO_ANCHOR,
-            /* 41 */ YY_NO_ANCHOR, /* 42 */ YY_NO_ANCHOR, /* 43 */ YY_NO_ANCHOR,
-            /* 44 */ YY_NO_ANCHOR, /* 45 */ YY_NO_ANCHOR, /* 46 */ YY_NO_ANCHOR,
-            /* 47 */ YY_NO_ANCHOR, /* 48 */ YY_NO_ANCHOR, /* 49 */ YY_NO_ANCHOR,
-            /* 50 */ YY_NO_ANCHOR, /* 51 */ YY_NO_ANCHOR, /* 52 */ YY_NO_ANCHOR,
-            /* 53 */ YY_NO_ANCHOR, /* 54 */ YY_NO_ANCHOR, /* 55 */ YY_NO_ANCHOR,
-            /* 56 */ YY_NO_ANCHOR, /* 57 */ YY_NO_ANCHOR, /* 58 */ YY_NO_ANCHOR,
-            /* 59 */ YY_NO_ANCHOR, /* 60 */ YY_NO_ANCHOR, /* 61 */ YY_NO_ANCHOR,
-            /* 62 */ YY_NO_ANCHOR, /* 63 */ YY_NO_ANCHOR,
-            /* 64 */ YY_NOT_ACCEPT, /* 65 */ YY_NO_ANCHOR,
-            /* 66 */ YY_NO_ANCHOR, /* 67 */ YY_NO_ANCHOR, /* 68 */ YY_NO_ANCHOR,
-            /* 69 */ YY_NOT_ACCEPT, /* 70 */ YY_NO_ANCHOR,
-            /* 71 */ YY_NO_ANCHOR, /* 72 */ YY_NOT_ACCEPT,
-            /* 73 */ YY_NO_ANCHOR, /* 74 */ YY_NO_ANCHOR,
-            /* 75 */ YY_NOT_ACCEPT, /* 76 */ YY_NO_ANCHOR,
-            /* 77 */ YY_NO_ANCHOR, /* 78 */ YY_NOT_ACCEPT,
-            /* 79 */ YY_NO_ANCHOR, /* 80 */ YY_NOT_ACCEPT,
-            /* 81 */ YY_NO_ANCHOR, /* 82 */ YY_NOT_ACCEPT,
-            /* 83 */ YY_NO_ANCHOR, /* 84 */ YY_NOT_ACCEPT,
-            /* 85 */ YY_NO_ANCHOR, /* 86 */ YY_NOT_ACCEPT,
-            /* 87 */ YY_NO_ANCHOR, /* 88 */ YY_NOT_ACCEPT,
-            /* 89 */ YY_NO_ANCHOR, /* 90 */ YY_NOT_ACCEPT,
-            /* 91 */ YY_NO_ANCHOR, /* 92 */ YY_NOT_ACCEPT,
-            /* 93 */ YY_NO_ANCHOR, /* 94 */ YY_NOT_ACCEPT,
-            /* 95 */ YY_NO_ANCHOR, /* 96 */ YY_NOT_ACCEPT,
-            /* 97 */ YY_NO_ANCHOR, /* 98 */ YY_NOT_ACCEPT,
-            /* 99 */ YY_NO_ANCHOR, /* 100 */ YY_NOT_ACCEPT,
-            /* 101 */ YY_NO_ANCHOR, /* 102 */ YY_NOT_ACCEPT,
-            /* 103 */ YY_NO_ANCHOR, /* 104 */ YY_NOT_ACCEPT,
-            /* 105 */ YY_NO_ANCHOR, /* 106 */ YY_NOT_ACCEPT,
-            /* 107 */ YY_NO_ANCHOR, /* 108 */ YY_NOT_ACCEPT,
-            /* 109 */ YY_NO_ANCHOR, /* 110 */ YY_NOT_ACCEPT,
-            /* 111 */ YY_NO_ANCHOR, /* 112 */ YY_NOT_ACCEPT,
-            /* 113 */ YY_NO_ANCHOR, /* 114 */ YY_NOT_ACCEPT,
-            /* 115 */ YY_NO_ANCHOR, /* 116 */ YY_NOT_ACCEPT,
-            /* 117 */ YY_NO_ANCHOR, /* 118 */ YY_NOT_ACCEPT,
-            /* 119 */ YY_NO_ANCHOR, /* 120 */ YY_NOT_ACCEPT,
-            /* 121 */ YY_NO_ANCHOR, /* 122 */ YY_NOT_ACCEPT,
-            /* 123 */ YY_NO_ANCHOR, /* 124 */ YY_NOT_ACCEPT,
-            /* 125 */ YY_NO_ANCHOR, /* 126 */ YY_NOT_ACCEPT,
-            /* 127 */ YY_NO_ANCHOR, /* 128 */ YY_NO_ANCHOR,
-            /* 129 */ YY_NO_ANCHOR, /* 130 */ YY_NO_ANCHOR,
-            /* 131 */ YY_NO_ANCHOR, /* 132 */ YY_NO_ANCHOR,
-            /* 133 */ YY_NO_ANCHOR, /* 134 */ YY_NO_ANCHOR,
-            /* 135 */ YY_NO_ANCHOR, /* 136 */ YY_NO_ANCHOR,
-            /* 137 */ YY_NO_ANCHOR, /* 138 */ YY_NO_ANCHOR,
-            /* 139 */ YY_NO_ANCHOR, /* 140 */ YY_NO_ANCHOR,
-            /* 141 */ YY_NO_ANCHOR, /* 142 */ YY_NO_ANCHOR,
-            /* 143 */ YY_NO_ANCHOR, /* 144 */ YY_NO_ANCHOR,
-            /* 145 */ YY_NO_ANCHOR, /* 146 */ YY_NO_ANCHOR,
-            /* 147 */ YY_NO_ANCHOR, /* 148 */ YY_NO_ANCHOR,
-            /* 149 */ YY_NO_ANCHOR, /* 150 */ YY_NO_ANCHOR,
-            /* 151 */ YY_NO_ANCHOR, /* 152 */ YY_NO_ANCHOR,
-            /* 153 */ YY_NO_ANCHOR, /* 154 */ YY_NO_ANCHOR,
-            /* 155 */ YY_NO_ANCHOR, /* 156 */ YY_NO_ANCHOR,
-            /* 157 */ YY_NO_ANCHOR, /* 158 */ YY_NO_ANCHOR,
-            /* 159 */ YY_NO_ANCHOR, /* 160 */ YY_NO_ANCHOR,
-            /* 161 */ YY_NO_ANCHOR, /* 162 */ YY_NO_ANCHOR,
-            /* 163 */ YY_NO_ANCHOR, /* 164 */ YY_NO_ANCHOR,
-            /* 165 */ YY_NO_ANCHOR, /* 166 */ YY_NO_ANCHOR,
-            /* 167 */ YY_NO_ANCHOR, /* 168 */ YY_NO_ANCHOR,
-            /* 169 */ YY_NO_ANCHOR, /* 170 */ YY_NO_ANCHOR,
-            /* 171 */ YY_NO_ANCHOR, /* 172 */ YY_NO_ANCHOR,
-            /* 173 */ YY_NO_ANCHOR, /* 174 */ YY_NO_ANCHOR,
-            /* 175 */ YY_NO_ANCHOR, /* 176 */ YY_NO_ANCHOR,
-            /* 177 */ YY_NO_ANCHOR, /* 178 */ YY_NO_ANCHOR,
-            /* 179 */ YY_NO_ANCHOR, /* 180 */ YY_NO_ANCHOR,
-            /* 181 */ YY_NO_ANCHOR, /* 182 */ YY_NO_ANCHOR,
-            /* 183 */ YY_NO_ANCHOR, /* 184 */ YY_NO_ANCHOR,
-            /* 185 */ YY_NOT_ACCEPT, /* 186 */ YY_NOT_ACCEPT,
-            /* 187 */ YY_NO_ANCHOR, /* 188 */ YY_NOT_ACCEPT,
-            /* 189 */ YY_NO_ANCHOR, /* 190 */ YY_NOT_ACCEPT,
-            /* 191 */ YY_NO_ANCHOR, /* 192 */ YY_NO_ANCHOR,
-            /* 193 */ YY_NO_ANCHOR, /* 194 */ YY_NO_ANCHOR,
-            /* 195 */ YY_NO_ANCHOR, /* 196 */ YY_NO_ANCHOR,
-            /* 197 */ YY_NO_ANCHOR, /* 198 */ YY_NO_ANCHOR,
-            /* 199 */ YY_NO_ANCHOR, /* 200 */ YY_NO_ANCHOR,
-            /* 201 */ YY_NO_ANCHOR, /* 202 */ YY_NO_ANCHOR,
-            /* 203 */ YY_NO_ANCHOR, /* 204 */ YY_NO_ANCHOR,
-            /* 205 */ YY_NO_ANCHOR, /* 206 */ YY_NO_ANCHOR,
-            /* 207 */ YY_NO_ANCHOR, /* 208 */ YY_NO_ANCHOR,
-            /* 209 */ YY_NO_ANCHOR, /* 210 */ YY_NO_ANCHOR,
-            /* 211 */ YY_NO_ANCHOR, /* 212 */ YY_NO_ANCHOR,
-            /* 213 */ YY_NO_ANCHOR, /* 214 */ YY_NO_ANCHOR,
-            /* 215 */ YY_NO_ANCHOR, /* 216 */ YY_NO_ANCHOR,
-            /* 217 */ YY_NO_ANCHOR, /* 218 */ YY_NO_ANCHOR,
-            /* 219 */ YY_NO_ANCHOR, /* 220 */ YY_NO_ANCHOR,
-            /* 221 */ YY_NO_ANCHOR, /* 222 */ YY_NO_ANCHOR,
-            /* 223 */ YY_NO_ANCHOR, /* 224 */ YY_NO_ANCHOR,
-            /* 225 */ YY_NO_ANCHOR, /* 226 */ YY_NO_ANCHOR,
-            /* 227 */ YY_NO_ANCHOR, /* 228 */ YY_NO_ANCHOR,
-            /* 229 */ YY_NO_ANCHOR, /* 230 */ YY_NO_ANCHOR,
-            /* 231 */ YY_NO_ANCHOR, /* 232 */ YY_NO_ANCHOR,
-            /* 233 */ YY_NO_ANCHOR };
+    private int yy_acpt[] = { /* 0 */ YY_NOT_ACCEPT, /* 1 */ YY_NO_ANCHOR, /* 2 */ YY_NO_ANCHOR,
+            /* 3 */ YY_NO_ANCHOR, /* 4 */ YY_NO_ANCHOR, /* 5 */ YY_NO_ANCHOR, /* 6 */ YY_NO_ANCHOR,
+            /* 7 */ YY_NO_ANCHOR, /* 8 */ YY_NO_ANCHOR, /* 9 */ YY_NO_ANCHOR, /* 10 */ YY_NO_ANCHOR,
+            /* 11 */ YY_NO_ANCHOR, /* 12 */ YY_NO_ANCHOR, /* 13 */ YY_NO_ANCHOR, /* 14 */ YY_NO_ANCHOR,
+            /* 15 */ YY_NO_ANCHOR, /* 16 */ YY_NO_ANCHOR, /* 17 */ YY_NO_ANCHOR, /* 18 */ YY_NO_ANCHOR,
+            /* 19 */ YY_NO_ANCHOR, /* 20 */ YY_NO_ANCHOR, /* 21 */ YY_NO_ANCHOR, /* 22 */ YY_NO_ANCHOR,
+            /* 23 */ YY_NO_ANCHOR, /* 24 */ YY_NO_ANCHOR, /* 25 */ YY_NO_ANCHOR, /* 26 */ YY_NO_ANCHOR,
+            /* 27 */ YY_NO_ANCHOR, /* 28 */ YY_NO_ANCHOR, /* 29 */ YY_NO_ANCHOR, /* 30 */ YY_NO_ANCHOR,
+            /* 31 */ YY_NO_ANCHOR, /* 32 */ YY_NO_ANCHOR, /* 33 */ YY_NO_ANCHOR, /* 34 */ YY_NO_ANCHOR,
+            /* 35 */ YY_NO_ANCHOR, /* 36 */ YY_NO_ANCHOR, /* 37 */ YY_NO_ANCHOR, /* 38 */ YY_NO_ANCHOR,
+            /* 39 */ YY_NO_ANCHOR, /* 40 */ YY_NO_ANCHOR, /* 41 */ YY_NO_ANCHOR, /* 42 */ YY_NO_ANCHOR,
+            /* 43 */ YY_NO_ANCHOR, /* 44 */ YY_NO_ANCHOR, /* 45 */ YY_NO_ANCHOR, /* 46 */ YY_NO_ANCHOR,
+            /* 47 */ YY_NO_ANCHOR, /* 48 */ YY_NO_ANCHOR, /* 49 */ YY_NO_ANCHOR, /* 50 */ YY_NO_ANCHOR,
+            /* 51 */ YY_NO_ANCHOR, /* 52 */ YY_NO_ANCHOR, /* 53 */ YY_NO_ANCHOR, /* 54 */ YY_NO_ANCHOR,
+            /* 55 */ YY_NO_ANCHOR, /* 56 */ YY_NO_ANCHOR, /* 57 */ YY_NO_ANCHOR, /* 58 */ YY_NO_ANCHOR,
+            /* 59 */ YY_NO_ANCHOR, /* 60 */ YY_NO_ANCHOR, /* 61 */ YY_NO_ANCHOR, /* 62 */ YY_NO_ANCHOR,
+            /* 63 */ YY_NO_ANCHOR, /* 64 */ YY_NOT_ACCEPT, /* 65 */ YY_NO_ANCHOR, /* 66 */ YY_NO_ANCHOR,
+            /* 67 */ YY_NO_ANCHOR, /* 68 */ YY_NO_ANCHOR, /* 69 */ YY_NOT_ACCEPT, /* 70 */ YY_NO_ANCHOR,
+            /* 71 */ YY_NO_ANCHOR, /* 72 */ YY_NOT_ACCEPT, /* 73 */ YY_NO_ANCHOR, /* 74 */ YY_NO_ANCHOR,
+            /* 75 */ YY_NOT_ACCEPT, /* 76 */ YY_NO_ANCHOR, /* 77 */ YY_NO_ANCHOR, /* 78 */ YY_NOT_ACCEPT,
+            /* 79 */ YY_NO_ANCHOR, /* 80 */ YY_NOT_ACCEPT, /* 81 */ YY_NO_ANCHOR, /* 82 */ YY_NOT_ACCEPT,
+            /* 83 */ YY_NO_ANCHOR, /* 84 */ YY_NOT_ACCEPT, /* 85 */ YY_NO_ANCHOR, /* 86 */ YY_NOT_ACCEPT,
+            /* 87 */ YY_NO_ANCHOR, /* 88 */ YY_NOT_ACCEPT, /* 89 */ YY_NO_ANCHOR, /* 90 */ YY_NOT_ACCEPT,
+            /* 91 */ YY_NO_ANCHOR, /* 92 */ YY_NOT_ACCEPT, /* 93 */ YY_NO_ANCHOR, /* 94 */ YY_NOT_ACCEPT,
+            /* 95 */ YY_NO_ANCHOR, /* 96 */ YY_NOT_ACCEPT, /* 97 */ YY_NO_ANCHOR, /* 98 */ YY_NOT_ACCEPT,
+            /* 99 */ YY_NO_ANCHOR, /* 100 */ YY_NOT_ACCEPT, /* 101 */ YY_NO_ANCHOR, /* 102 */ YY_NOT_ACCEPT,
+            /* 103 */ YY_NO_ANCHOR, /* 104 */ YY_NOT_ACCEPT, /* 105 */ YY_NO_ANCHOR, /* 106 */ YY_NOT_ACCEPT,
+            /* 107 */ YY_NO_ANCHOR, /* 108 */ YY_NOT_ACCEPT, /* 109 */ YY_NO_ANCHOR, /* 110 */ YY_NOT_ACCEPT,
+            /* 111 */ YY_NO_ANCHOR, /* 112 */ YY_NOT_ACCEPT, /* 113 */ YY_NO_ANCHOR, /* 114 */ YY_NOT_ACCEPT,
+            /* 115 */ YY_NO_ANCHOR, /* 116 */ YY_NOT_ACCEPT, /* 117 */ YY_NO_ANCHOR, /* 118 */ YY_NOT_ACCEPT,
+            /* 119 */ YY_NO_ANCHOR, /* 120 */ YY_NOT_ACCEPT, /* 121 */ YY_NO_ANCHOR, /* 122 */ YY_NOT_ACCEPT,
+            /* 123 */ YY_NO_ANCHOR, /* 124 */ YY_NOT_ACCEPT, /* 125 */ YY_NO_ANCHOR, /* 126 */ YY_NOT_ACCEPT,
+            /* 127 */ YY_NO_ANCHOR, /* 128 */ YY_NO_ANCHOR, /* 129 */ YY_NO_ANCHOR, /* 130 */ YY_NO_ANCHOR,
+            /* 131 */ YY_NO_ANCHOR, /* 132 */ YY_NO_ANCHOR, /* 133 */ YY_NO_ANCHOR, /* 134 */ YY_NO_ANCHOR,
+            /* 135 */ YY_NO_ANCHOR, /* 136 */ YY_NO_ANCHOR, /* 137 */ YY_NO_ANCHOR, /* 138 */ YY_NO_ANCHOR,
+            /* 139 */ YY_NO_ANCHOR, /* 140 */ YY_NO_ANCHOR, /* 141 */ YY_NO_ANCHOR, /* 142 */ YY_NO_ANCHOR,
+            /* 143 */ YY_NO_ANCHOR, /* 144 */ YY_NO_ANCHOR, /* 145 */ YY_NO_ANCHOR, /* 146 */ YY_NO_ANCHOR,
+            /* 147 */ YY_NO_ANCHOR, /* 148 */ YY_NO_ANCHOR, /* 149 */ YY_NO_ANCHOR, /* 150 */ YY_NO_ANCHOR,
+            /* 151 */ YY_NO_ANCHOR, /* 152 */ YY_NO_ANCHOR, /* 153 */ YY_NO_ANCHOR, /* 154 */ YY_NO_ANCHOR,
+            /* 155 */ YY_NO_ANCHOR, /* 156 */ YY_NO_ANCHOR, /* 157 */ YY_NO_ANCHOR, /* 158 */ YY_NO_ANCHOR,
+            /* 159 */ YY_NO_ANCHOR, /* 160 */ YY_NO_ANCHOR, /* 161 */ YY_NO_ANCHOR, /* 162 */ YY_NO_ANCHOR,
+            /* 163 */ YY_NO_ANCHOR, /* 164 */ YY_NO_ANCHOR, /* 165 */ YY_NO_ANCHOR, /* 166 */ YY_NO_ANCHOR,
+            /* 167 */ YY_NO_ANCHOR, /* 168 */ YY_NO_ANCHOR, /* 169 */ YY_NO_ANCHOR, /* 170 */ YY_NO_ANCHOR,
+            /* 171 */ YY_NO_ANCHOR, /* 172 */ YY_NO_ANCHOR, /* 173 */ YY_NO_ANCHOR, /* 174 */ YY_NO_ANCHOR,
+            /* 175 */ YY_NO_ANCHOR, /* 176 */ YY_NO_ANCHOR, /* 177 */ YY_NO_ANCHOR, /* 178 */ YY_NO_ANCHOR,
+            /* 179 */ YY_NO_ANCHOR, /* 180 */ YY_NO_ANCHOR, /* 181 */ YY_NO_ANCHOR, /* 182 */ YY_NO_ANCHOR,
+            /* 183 */ YY_NO_ANCHOR, /* 184 */ YY_NO_ANCHOR, /* 185 */ YY_NOT_ACCEPT, /* 186 */ YY_NOT_ACCEPT,
+            /* 187 */ YY_NO_ANCHOR, /* 188 */ YY_NOT_ACCEPT, /* 189 */ YY_NO_ANCHOR, /* 190 */ YY_NOT_ACCEPT,
+            /* 191 */ YY_NO_ANCHOR, /* 192 */ YY_NO_ANCHOR, /* 193 */ YY_NO_ANCHOR, /* 194 */ YY_NO_ANCHOR,
+            /* 195 */ YY_NO_ANCHOR, /* 196 */ YY_NO_ANCHOR, /* 197 */ YY_NO_ANCHOR, /* 198 */ YY_NO_ANCHOR,
+            /* 199 */ YY_NO_ANCHOR, /* 200 */ YY_NO_ANCHOR, /* 201 */ YY_NO_ANCHOR, /* 202 */ YY_NO_ANCHOR,
+            /* 203 */ YY_NO_ANCHOR, /* 204 */ YY_NO_ANCHOR, /* 205 */ YY_NO_ANCHOR, /* 206 */ YY_NO_ANCHOR,
+            /* 207 */ YY_NO_ANCHOR, /* 208 */ YY_NO_ANCHOR, /* 209 */ YY_NO_ANCHOR, /* 210 */ YY_NO_ANCHOR,
+            /* 211 */ YY_NO_ANCHOR, /* 212 */ YY_NO_ANCHOR, /* 213 */ YY_NO_ANCHOR, /* 214 */ YY_NO_ANCHOR,
+            /* 215 */ YY_NO_ANCHOR, /* 216 */ YY_NO_ANCHOR, /* 217 */ YY_NO_ANCHOR, /* 218 */ YY_NO_ANCHOR,
+            /* 219 */ YY_NO_ANCHOR, /* 220 */ YY_NO_ANCHOR, /* 221 */ YY_NO_ANCHOR, /* 222 */ YY_NO_ANCHOR,
+            /* 223 */ YY_NO_ANCHOR, /* 224 */ YY_NO_ANCHOR, /* 225 */ YY_NO_ANCHOR, /* 226 */ YY_NO_ANCHOR,
+            /* 227 */ YY_NO_ANCHOR, /* 228 */ YY_NO_ANCHOR, /* 229 */ YY_NO_ANCHOR, /* 230 */ YY_NO_ANCHOR,
+            /* 231 */ YY_NO_ANCHOR, /* 232 */ YY_NO_ANCHOR, /* 233 */ YY_NO_ANCHOR };
     static private int yy_cmap[] = unpackFromString(1, 65538,
             "54:9,27:2,54,27:2,54:18,27,17,53,54,15,54:2,55,25,26,1,3,11,4,13,2,56:10,10"
                     + ",54,18,16,19,54,12,44,57:3,46,57:3,51,57:4,48,52,43,57,47,50,45,57:3,49,57:"
@@ -631,8 +572,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
                     + ":13,-1:2,184:10,-1:3,76,184,76:3,-1:4,184:6,64,-1:2,76,-1:6,184:5,-1:3,184:"
                     + "4,232,184:8,-1:2,184:10,-1:3,76,184,76:3");
 
-    public com.sun.java_cup.internal.runtime.Symbol next_token()
-            throws java.io.IOException, Exception
+    public com.sun.java_cup.internal.runtime.Symbol next_token() throws java.io.IOException, Exception
 
     {
         int yy_lookahead;
@@ -832,14 +772,12 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
                         case -32:
                             break;
                         case 32: {
-                            return newSymbol(sym.Literal, yytext().substring(1,
-                                    yytext().length() - 1));
+                            return newSymbol(sym.Literal, yytext().substring(1, yytext().length() - 1));
                         }
                         case -33:
                             break;
                         case 33: {
-                            return newSymbol(sym.Literal, yytext().substring(1,
-                                    yytext().length() - 1));
+                            return newSymbol(sym.Literal, yytext().substring(1, yytext().length() - 1));
                         }
                         case -34:
                             break;
@@ -961,26 +899,22 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
                         case -57:
                             break;
                         case 57: {
-                            return disambiguateAxisOrFunction(
-                                    sym.ANCESTORORSELF);
+                            return disambiguateAxisOrFunction(sym.ANCESTORORSELF);
                         }
                         case -58:
                             break;
                         case 58: {
-                            return disambiguateAxisOrFunction(
-                                    sym.PRECEDINGSIBLING);
+                            return disambiguateAxisOrFunction(sym.PRECEDINGSIBLING);
                         }
                         case -59:
                             break;
                         case 59: {
-                            return disambiguateAxisOrFunction(
-                                    sym.FOLLOWINGSIBLING);
+                            return disambiguateAxisOrFunction(sym.FOLLOWINGSIBLING);
                         }
                         case -60:
                             break;
                         case 60: {
-                            return disambiguateAxisOrFunction(
-                                    sym.DESCENDANTORSELF);
+                            return disambiguateAxisOrFunction(sym.DESCENDANTORSELF);
                         }
                         case -61:
                             break;

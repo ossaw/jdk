@@ -15,7 +15,6 @@ import java.rmi.server.UID;
  * can contact its activation system when necessary.
  * </ul>
  * <p>
- *
  * The <code>ActivationGroupID</code> is returned from the call to
  * <code>ActivationSystem.registerGroup</code> and is used to identify the group
  * within the activation system. This group id is passed as one of the arguments
@@ -45,11 +44,11 @@ public class ActivationGroupID implements java.io.Serializable {
      * Constructs a unique group id.
      *
      * @param system
-     *               the group's activation system
+     *        the group's activation system
      * @throws UnsupportedOperationException
-     *                                       if and only if activation is not
-     *                                       supported by this
-     *                                       implementation
+     *         if and only if activation is not
+     *         supported by this
+     *         implementation
      * @since 1.2
      */
     public ActivationGroupID(ActivationSystem system) {
@@ -84,7 +83,7 @@ public class ActivationGroupID implements java.io.Serializable {
      * refers to the same remote object.
      *
      * @param obj
-     *            the Object to compare with
+     *        the Object to compare with
      * @return true if these Objects are equal; false otherwise.
      * @see java.util.Hashtable
      * @since 1.2

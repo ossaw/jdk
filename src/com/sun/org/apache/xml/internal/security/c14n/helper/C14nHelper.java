@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -37,7 +35,6 @@ public class C14nHelper {
 
     /**
      * Constructor C14nHelper
-     *
      */
     private C14nHelper() {
         // don't allow instantiation
@@ -94,8 +91,7 @@ public class C14nHelper {
      * @param attr
      * @throws CanonicalizationException
      */
-    public static void assertNotRelativeNS(Attr attr)
-            throws CanonicalizationException {
+    public static void assertNotRelativeNS(Attr attr) throws CanonicalizationException {
         if (attr == null) {
             return;
         }
@@ -104,14 +100,12 @@ public class C14nHelper {
         boolean definesDefaultNS = nodeAttrName.equals("xmlns");
         boolean definesNonDefaultNS = nodeAttrName.startsWith("xmlns:");
 
-        if ((definesDefaultNS || definesNonDefaultNS) && namespaceIsRelative(
-                attr)) {
+        if ((definesDefaultNS || definesNonDefaultNS) && namespaceIsRelative(attr)) {
             String parentName = attr.getOwnerElement().getTagName();
             String attrValue = attr.getValue();
             Object exArgs[] = { parentName, nodeAttrName, attrValue };
 
-            throw new CanonicalizationException(
-                    "c14n.Canonicalizer.RelativeNamespace", exArgs);
+            throw new CanonicalizationException("c14n.Canonicalizer.RelativeNamespace", exArgs);
         }
     }
 
@@ -122,14 +116,11 @@ public class C14nHelper {
      * @param document
      * @throws CanonicalizationException
      */
-    public static void checkTraversability(Document document)
-            throws CanonicalizationException {
+    public static void checkTraversability(Document document) throws CanonicalizationException {
         if (!document.isSupported("Traversal", "2.0")) {
-            Object exArgs[] = { document.getImplementation().getClass()
-                    .getName() };
+            Object exArgs[] = { document.getImplementation().getClass().getName() };
 
-            throw new CanonicalizationException(
-                    "c14n.Canonicalizer.TraversalNotSupported", exArgs);
+            throw new CanonicalizationException("c14n.Canonicalizer.TraversalNotSupported", exArgs);
         }
     }
 
@@ -141,8 +132,7 @@ public class C14nHelper {
      * @throws CanonicalizationException
      * @see C14nHelper#assertNotRelativeNS(Attr)
      */
-    public static void checkForRelativeNamespace(Element ctxNode)
-            throws CanonicalizationException {
+    public static void checkForRelativeNamespace(Element ctxNode) throws CanonicalizationException {
         if (ctxNode != null) {
             NamedNodeMap attributes = ctxNode.getAttributes();
 
@@ -150,8 +140,7 @@ public class C14nHelper {
                 C14nHelper.assertNotRelativeNS((Attr) attributes.item(i));
             }
         } else {
-            throw new CanonicalizationException(
-                    "Called checkForRelativeNamespace() on null");
+            throw new CanonicalizationException("Called checkForRelativeNamespace() on null");
         }
     }
 }

@@ -68,21 +68,19 @@ public final class SWITCH implements CompoundInstruction {
      * ascending order with gaps no larger than max_gap between the numbers, a
      * TABLESWITCH instruction is generated, and a LOOKUPSWITCH otherwise. The
      * former may be more efficient, but needs more space.
-     *
      * Note, that the key array always will be sorted, though we leave the
      * original arrays unaltered.
      *
      * @param match
-     *                array of match values (case 2: ... case 7: ..., etc.)
+     *        array of match values (case 2: ... case 7: ..., etc.)
      * @param targets
-     *                the instructions to be branched to for each case
+     *        the instructions to be branched to for each case
      * @param target
-     *                the default target
+     *        the default target
      * @param max_gap
-     *                maximum gap that may between case branches
+     *        maximum gap that may between case branches
      */
-    public SWITCH(int[] match, InstructionHandle[] targets,
-            InstructionHandle target, int max_gap) {
+    public SWITCH(int[] match, InstructionHandle[] targets, InstructionHandle target, int max_gap) {
         this.match = (int[]) match.clone();
         this.targets = (InstructionHandle[]) targets.clone();
 
@@ -97,13 +95,11 @@ public final class SWITCH implements CompoundInstruction {
 
                 instruction = new TABLESWITCH(this.match, this.targets, target);
             } else
-                instruction = new LOOKUPSWITCH(this.match, this.targets,
-                        target);
+                instruction = new LOOKUPSWITCH(this.match, this.targets, target);
         }
     }
 
-    public SWITCH(int[] match, InstructionHandle[] targets,
-            InstructionHandle target) {
+    public SWITCH(int[] match, InstructionHandle[] targets, InstructionHandle target) {
         this(match, targets, target, 1);
     }
 

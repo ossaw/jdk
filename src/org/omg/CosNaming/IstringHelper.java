@@ -27,9 +27,8 @@ abstract public class IstringHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_string_tc(0);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CosNaming.IstringHelper.id(), "Istring",
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CosNaming.IstringHelper.id(),
+                    "Istring", __typeCode);
         }
         return __typeCode;
     }
@@ -44,8 +43,7 @@ abstract public class IstringHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            String value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, String value) {
         ostream.write_string(value);
     }
 

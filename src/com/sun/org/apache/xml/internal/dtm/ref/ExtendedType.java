@@ -34,11 +34,11 @@ public final class ExtendedType {
      * The hash code is calculated from the node type, namespace and local name.
      *
      * @param nodetype
-     *                  Type of the node
+     *        Type of the node
      * @param namespace
-     *                  Namespace of the node
+     *        Namespace of the node
      * @param localName
-     *                  Local name of the node
+     *        Local name of the node
      */
     public ExtendedType(int nodetype, String namespace, String localName) {
         this.nodetype = nodetype;
@@ -52,16 +52,15 @@ public final class ExtendedType {
      * given hash code.
      *
      * @param nodetype
-     *                  Type of the node
+     *        Type of the node
      * @param namespace
-     *                  Namespace of the node
+     *        Namespace of the node
      * @param localName
-     *                  Local name of the node
+     *        Local name of the node
      * @param hash
-     *                  The given hash code
+     *        The given hash code
      */
-    public ExtendedType(int nodetype, String namespace, String localName,
-            int hash) {
+    public ExtendedType(int nodetype, String namespace, String localName, int hash) {
         this.nodetype = nodetype;
         this.namespace = namespace;
         this.localName = localName;
@@ -85,8 +84,7 @@ public final class ExtendedType {
      * This is intended to be used ONLY on the hashET object. Using it elsewhere
      * will mess up existing hashtable entries!
      */
-    protected void redefine(int nodetype, String namespace, String localName,
-            int hash) {
+    protected void redefine(int nodetype, String namespace, String localName, int hash) {
         this.nodetype = nodetype;
         this.namespace = namespace;
         this.localName = localName;
@@ -104,13 +102,13 @@ public final class ExtendedType {
      * Test if this ExtendedType object is equal to the given ExtendedType.
      *
      * @param other
-     *              The other ExtendedType object to test for equality
+     *        The other ExtendedType object to test for equality
      * @return true if the two ExtendedType objects are equal.
      */
     public boolean equals(ExtendedType other) {
         try {
-            return other.nodetype == this.nodetype && other.localName.equals(
-                    this.localName) && other.namespace.equals(this.namespace);
+            return other.nodetype == this.nodetype && other.localName.equals(this.localName)
+                    && other.namespace.equals(this.namespace);
         } catch (NullPointerException e) {
             return false;
         }

@@ -17,9 +17,9 @@ public class ApplicationException extends Exception {
      * as its parameters.
      * 
      * @param id
-     *            the repository id of the user exception
+     *        the repository id of the user exception
      * @param ins
-     *            the stream which contains the user exception data
+     *        the stream which contains the user exception data
      */
     public ApplicationException(String id, InputStream ins) {
         this.id = id;

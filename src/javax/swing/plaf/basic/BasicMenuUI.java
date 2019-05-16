@@ -83,38 +83,31 @@ public class BasicMenuUI extends BasicMenuItemUI {
     }
 
     void installLazyActionMap() {
-        LazyActionMap.installLazyActionMap(menuItem, BasicMenuUI.class,
-                getPropertyPrefix() + ".actionMap");
+        LazyActionMap.installLazyActionMap(menuItem, BasicMenuUI.class, getPropertyPrefix() + ".actionMap");
     }
 
     void updateMnemonicBinding() {
         int mnemonic = menuItem.getModel().getMnemonic();
-        int[] shortcutKeys = (int[]) DefaultLookup.get(menuItem, this,
-                "Menu.shortcutKeys");
+        int[] shortcutKeys = (int[]) DefaultLookup.get(menuItem, this, "Menu.shortcutKeys");
         if (shortcutKeys == null) {
             shortcutKeys = new int[] { KeyEvent.ALT_MASK };
         }
         if (mnemonic == lastMnemonic) {
             return;
         }
-        InputMap windowInputMap = SwingUtilities.getUIInputMap(menuItem,
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        InputMap windowInputMap = SwingUtilities.getUIInputMap(menuItem, JComponent.WHEN_IN_FOCUSED_WINDOW);
         if (lastMnemonic != 0 && windowInputMap != null) {
             for (int shortcutKey : shortcutKeys) {
-                windowInputMap.remove(KeyStroke.getKeyStroke(lastMnemonic,
-                        shortcutKey, false));
+                windowInputMap.remove(KeyStroke.getKeyStroke(lastMnemonic, shortcutKey, false));
             }
         }
         if (mnemonic != 0) {
             if (windowInputMap == null) {
-                windowInputMap = createInputMap(
-                        JComponent.WHEN_IN_FOCUSED_WINDOW);
-                SwingUtilities.replaceUIInputMap(menuItem,
-                        JComponent.WHEN_IN_FOCUSED_WINDOW, windowInputMap);
+                windowInputMap = createInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+                SwingUtilities.replaceUIInputMap(menuItem, JComponent.WHEN_IN_FOCUSED_WINDOW, windowInputMap);
             }
             for (int shortcutKey : shortcutKeys) {
-                windowInputMap.put(KeyStroke.getKeyStroke(mnemonic, shortcutKey,
-                        false), "selectMenu");
+                windowInputMap.put(KeyStroke.getKeyStroke(mnemonic, shortcutKey, false), "selectMenu");
             }
         }
         lastMnemonic = mnemonic;
@@ -137,8 +130,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
         return null;
     }
 
-    protected PropertyChangeListener createPropertyChangeListener(
-            JComponent c) {
+    protected PropertyChangeListener createPropertyChangeListener(JComponent c) {
         return getHandler();
     }
 
@@ -187,8 +179,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
     }
 
     protected void setupPostTimer(JMenu menu) {
-        Timer timer = new Timer(menu.getDelay(), new Actions(Actions.SELECT,
-                menu, false));
+        Timer timer = new Timer(menu.getDelay(), new Actions(Actions.SELECT, menu, false));
         timer.setRepeats(false);
         timer.start();
     }
@@ -230,8 +221,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
                 }
             }
 
-            final MenuSelectionManager defaultManager = MenuSelectionManager
-                    .defaultManager();
+            final MenuSelectionManager defaultManager = MenuSelectionManager.defaultManager();
             if (force) {
                 Container cnt = menu.getParent();
                 if (cnt != null && cnt instanceof JMenuBar) {
@@ -282,8 +272,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
             if (menu.isTopLevelMenu()) {
                 menu.setBackground(UIManager.getColor("MenuBar.background"));
             } else {
-                menu.setBackground(UIManager.getColor(getPropertyPrefix()
-                        + ".background"));
+                menu.setBackground(UIManager.getColor(getPropertyPrefix() + ".background"));
             }
         }
     }
@@ -316,7 +305,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * clears or sets the selection path of the MenuSelectionManager.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          */
         public void mousePressed(MouseEvent e) {
             getHandler().mousePressed(e);
@@ -327,7 +316,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * mouse event to the MenuSelectionManager.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          */
         public void mouseReleased(MouseEvent e) {
             getHandler().mouseReleased(e);
@@ -340,7 +329,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * hierarchical menu system.
          *
          * @param e
-         *          the mouse event; not used
+         *        the mouse event; not used
          */
         public void mouseEntered(MouseEvent e) {
             getHandler().mouseEntered(e);
@@ -355,7 +344,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * Delegates the mouse event to the MenuSelectionManager.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          * @see java.awt.event.MouseMotionListener#mouseDragged
          */
         public void mouseDragged(MouseEvent e) {
@@ -385,8 +374,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
         public void stateChanged(ChangeEvent e) {}
     }
 
-    private class Handler extends BasicMenuItemUI.Handler implements
-            MenuKeyListener {
+    private class Handler extends BasicMenuItemUI.Handler implements MenuKeyListener {
         //
         // PropertyChangeListener
         //
@@ -411,15 +399,14 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * clears or sets the selection path of the MenuSelectionManager.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          */
         public void mousePressed(MouseEvent e) {
             JMenu menu = (JMenu) menuItem;
             if (!menu.isEnabled())
                 return;
 
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             if (menu.isTopLevelMenu()) {
                 if (menu.isSelected() && menu.getPopupMenu().isShowing()) {
                     manager.clearSelectedPath();
@@ -435,8 +422,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
             }
 
             MenuElement selectedPath[] = manager.getSelectedPath();
-            if (selectedPath.length > 0 && selectedPath[selectedPath.length
-                    - 1] != menu.getPopupMenu()) {
+            if (selectedPath.length > 0 && selectedPath[selectedPath.length - 1] != menu.getPopupMenu()) {
 
                 if (menu.isTopLevelMenu() || menu.getDelay() == 0) {
                     appendPath(selectedPath, menu.getPopupMenu());
@@ -451,14 +437,13 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * mouse event to the MenuSelectionManager.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          */
         public void mouseReleased(MouseEvent e) {
             JMenu menu = (JMenu) menuItem;
             if (!menu.isEnabled())
                 return;
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             manager.processMouseEvent(e);
             if (!e.isConsumed())
                 manager.clearSelectedPath();
@@ -471,25 +456,22 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * hierarchical menu system.
          *
          * @param e
-         *          the mouse event; not used
+         *        the mouse event; not used
          */
         public void mouseEntered(MouseEvent e) {
             JMenu menu = (JMenu) menuItem;
             // only disable the menu highlighting if it's disabled and the
             // property isn't
             // true. This allows disabled rollovers to work in WinL&F
-            if (!menu.isEnabled() && !UIManager.getBoolean(
-                    "MenuItem.disabledAreNavigable")) {
+            if (!menu.isEnabled() && !UIManager.getBoolean("MenuItem.disabledAreNavigable")) {
                 return;
             }
 
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             MenuElement selectedPath[] = manager.getSelectedPath();
             if (!menu.isTopLevelMenu()) {
-                if (!(selectedPath.length > 0
-                        && selectedPath[selectedPath.length - 1] == menu
-                                .getPopupMenu())) {
+                if (!(selectedPath.length > 0 && selectedPath[selectedPath.length - 1] == menu
+                        .getPopupMenu())) {
                     if (menu.getDelay() == 0) {
                         appendPath(getPath(), menu.getPopupMenu());
                     } else {
@@ -498,8 +480,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
                     }
                 }
             } else {
-                if (selectedPath.length > 0 && selectedPath[0] == menu
-                        .getParent()) {
+                if (selectedPath.length > 0 && selectedPath[0] == menu.getParent()) {
                     MenuElement newPath[] = new MenuElement[3];
                     // A top level menu's parent is by definition
                     // a JMenuBar
@@ -520,7 +501,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
          * Delegates the mouse event to the MenuSelectionManager.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          * @see java.awt.event.MouseMotionListener#mouseDragged
          */
         public void mouseDragged(MouseEvent e) {
@@ -545,13 +526,11 @@ public class BasicMenuUI extends BasicMenuItemUI {
             MenuElement path[] = e.getPath();
 
             Point p = e.getPoint();
-            if (p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0
-                    && p.y < menuItem.getHeight()) {
+            if (p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0 && p.y < menuItem.getHeight()) {
                 JMenu menu = (JMenu) menuItem;
                 MenuElement selectedPath[] = manager.getSelectedPath();
-                if (!(selectedPath.length > 0
-                        && selectedPath[selectedPath.length - 1] == menu
-                                .getPopupMenu())) {
+                if (!(selectedPath.length > 0 && selectedPath[selectedPath.length - 1] == menu
+                        .getPopupMenu())) {
                     if (menu.isTopLevelMenu() || menu.getDelay() == 0 || e
                             .getID() == MouseEvent.MOUSE_DRAGGED) {
                         appendPath(path, menu.getPopupMenu());
@@ -561,8 +540,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
                     }
                 }
             } else if (e.getID() == MouseEvent.MOUSE_RELEASED) {
-                Component comp = manager.componentForPoint(e.getComponent(), e
-                        .getPoint());
+                Component comp = manager.componentForPoint(e.getComponent(), e.getPoint());
                 if (comp == null)
                     manager.clearSelectedPath();
             }
@@ -600,8 +578,7 @@ public class BasicMenuUI extends BasicMenuItemUI {
                 ArrayList newList = new ArrayList(Arrays.asList(path));
                 newList.add(popupMenu);
                 MenuElement subs[] = popupMenu.getSubElements();
-                MenuElement sub = BasicPopupMenuUI.findEnabledChild(subs, -1,
-                        true);
+                MenuElement sub = BasicPopupMenuUI.findEnabledChild(subs, -1, true);
                 if (sub != null) {
                     newList.add(sub);
                 }

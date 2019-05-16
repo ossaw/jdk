@@ -37,7 +37,6 @@ import org.xml.sax.SAXParseException;
 /**
  * This class is an adapter class. Its only purpose is to be extended and for
  * that extended class to over-ride all methods that are to be used.
- *
  * This class is not a public API, it is only public because it is used across
  * package boundaries.
  *
@@ -58,13 +57,11 @@ public class EmptySerializer implements SerializationHandler {
         return; // don't do anything.
     }
 
-    protected void couldThrowSAXException(char[] chars, int off, int len)
-            throws SAXException {
+    protected void couldThrowSAXException(char[] chars, int off, int len) throws SAXException {
         return; // don't do anything.
     }
 
-    protected void couldThrowSAXException(String elemQName)
-            throws SAXException {
+    protected void couldThrowSAXException(String elemQName) throws SAXException {
         return; // don't do anything.
     }
 
@@ -226,9 +223,8 @@ public class EmptySerializer implements SerializationHandler {
      *      java.lang.String, java.lang.String, java.lang.String,
      *      java.lang.String)
      */
-    public void addAttribute(String uri, String localName, String rawName,
-            String type, String value, boolean XSLAttribute)
-            throws SAXException {
+    public void addAttribute(String uri, String localName, String rawName, String type, String value,
+            boolean XSLAttribute) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -272,8 +268,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see ExtendedContentHandler#startElement(java.lang.String,
      *      java.lang.String, java.lang.String)
      */
-    public void startElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void startElement(String uri, String localName, String qName) throws SAXException {
         couldThrowSAXException(qName);
     }
 
@@ -288,8 +283,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see ExtendedContentHandler#namespaceAfterStartElement(java.lang.String,
      *      java.lang.String)
      */
-    public void namespaceAfterStartElement(String uri, String prefix)
-            throws SAXException {
+    public void namespaceAfterStartElement(String uri, String prefix) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -297,8 +291,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see ExtendedContentHandler#startPrefixMapping(java.lang.String,
      *      java.lang.String, boolean)
      */
-    public boolean startPrefixMapping(String prefix, String uri,
-            boolean shouldFlush) throws SAXException {
+    public boolean startPrefixMapping(String prefix, String uri, boolean shouldFlush) throws SAXException {
         couldThrowSAXException();
         return false;
     }
@@ -360,8 +353,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String,
      *      java.lang.String)
      */
-    public void startPrefixMapping(String arg0, String arg1)
-            throws SAXException {
+    public void startPrefixMapping(String arg0, String arg1) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -376,8 +368,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ContentHandler#startElement(java.lang.String,
      *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
-    public void startElement(String arg0, String arg1, String arg2,
-            Attributes arg3) throws SAXException {
+    public void startElement(String arg0, String arg1, String arg2, Attributes arg3) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -385,24 +376,21 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ContentHandler#endElement(java.lang.String,
      *      java.lang.String, java.lang.String)
      */
-    public void endElement(String arg0, String arg1, String arg2)
-            throws SAXException {
+    public void endElement(String arg0, String arg1, String arg2) throws SAXException {
         couldThrowSAXException();
     }
 
     /**
      * @see org.xml.sax.ContentHandler#characters(char[], int, int)
      */
-    public void characters(char[] arg0, int arg1, int arg2)
-            throws SAXException {
+    public void characters(char[] arg0, int arg1, int arg2) throws SAXException {
         couldThrowSAXException(arg0, arg1, arg2);
     }
 
     /**
      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
      */
-    public void ignorableWhitespace(char[] arg0, int arg1, int arg2)
-            throws SAXException {
+    public void ignorableWhitespace(char[] arg0, int arg1, int arg2) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -410,8 +398,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String,
      *      java.lang.String)
      */
-    public void processingInstruction(String arg0, String arg1)
-            throws SAXException {
+    public void processingInstruction(String arg0, String arg1) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -433,8 +420,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String,
      *      java.lang.String, java.lang.String)
      */
-    public void startDTD(String arg0, String arg1, String arg2)
-            throws SAXException {
+    public void startDTD(String arg0, String arg1, String arg2) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -614,8 +600,8 @@ public class EmptySerializer implements SerializationHandler {
      *      java.lang.String, java.lang.String, java.lang.String,
      *      java.lang.String)
      */
-    public void attributeDecl(String arg0, String arg1, String arg2,
-            String arg3, String arg4) throws SAXException {
+    public void attributeDecl(String arg0, String arg1, String arg2, String arg3, String arg4)
+            throws SAXException {
         couldThrowSAXException();
     }
 
@@ -623,8 +609,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ext.DeclHandler#internalEntityDecl(java.lang.String,
      *      java.lang.String)
      */
-    public void internalEntityDecl(String arg0, String arg1)
-            throws SAXException {
+    public void internalEntityDecl(String arg0, String arg1) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -632,8 +617,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.ext.DeclHandler#externalEntityDecl(java.lang.String,
      *      java.lang.String, java.lang.String)
      */
-    public void externalEntityDecl(String arg0, String arg1, String arg2)
-            throws SAXException {
+    public void externalEntityDecl(String arg0, String arg1, String arg2) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -684,8 +668,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see ExtendedContentHandler#addUniqueAttribute(java.lang.String,
      *      java.lang.String, int)
      */
-    public void addUniqueAttribute(String name, String value, int flags)
-            throws SAXException {
+    public void addUniqueAttribute(String name, String value, int flags) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -709,8 +692,8 @@ public class EmptySerializer implements SerializationHandler {
      *      java.lang.String, java.lang.String, java.lang.String,
      *      java.lang.String)
      */
-    public void addAttribute(String uri, String localName, String rawName,
-            String type, String value) throws SAXException {
+    public void addAttribute(String uri, String localName, String rawName, String type, String value)
+            throws SAXException {
         couldThrowSAXException();
     }
 
@@ -718,8 +701,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.DTDHandler#notationDecl(java.lang.String,
      *      java.lang.String, java.lang.String)
      */
-    public void notationDecl(String arg0, String arg1, String arg2)
-            throws SAXException {
+    public void notationDecl(String arg0, String arg1, String arg2) throws SAXException {
         couldThrowSAXException();
     }
 
@@ -727,8 +709,7 @@ public class EmptySerializer implements SerializationHandler {
      * @see org.xml.sax.DTDHandler#unparsedEntityDecl(java.lang.String,
      *      java.lang.String, java.lang.String, java.lang.String)
      */
-    public void unparsedEntityDecl(String arg0, String arg1, String arg2,
-            String arg3) throws SAXException {
+    public void unparsedEntityDecl(String arg0, String arg1, String arg2, String arg3) throws SAXException {
         couldThrowSAXException();
     }
 

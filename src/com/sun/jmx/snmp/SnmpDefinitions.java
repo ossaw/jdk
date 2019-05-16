@@ -9,8 +9,6 @@ package com.sun.jmx.snmp;
 /**
  * Contains SNMP constants related to command and response codes. All members
  * are static and can be used by any application.
- *
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>

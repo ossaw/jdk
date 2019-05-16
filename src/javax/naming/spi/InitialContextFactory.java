@@ -21,7 +21,6 @@ import javax.naming.*;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see InitialContextFactoryBuilder
  * @see NamingManager#getInitialContext
  * @see javax.naming.InitialContext
@@ -39,14 +38,13 @@ public interface InitialContextFactory {
      * reference to a clone or copy.
      *
      * @param environment
-     *                    The possibly null environment specifying information
-     *                    to be
-     *                    used in the creation of the initial context.
+     *        The possibly null environment specifying information
+     *        to be
+     *        used in the creation of the initial context.
      * @return A non-null initial context object that implements the Context
      *         interface.
      * @exception NamingException
-     *                            If cannot create an initial context.
+     *            If cannot create an initial context.
      */
-    public Context getInitialContext(Hashtable<?, ?> environment)
-            throws NamingException;
+    public Context getInitialContext(Hashtable<?, ?> environment) throws NamingException;
 }

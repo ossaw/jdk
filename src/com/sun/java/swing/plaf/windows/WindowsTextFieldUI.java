@@ -43,7 +43,7 @@ public class WindowsTextFieldUI extends BasicTextFieldUI {
      * Creates a UI for a JTextField.
      *
      * @param c
-     *          the text field
+     *        the text field
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {
@@ -56,7 +56,7 @@ public class WindowsTextFieldUI extends BasicTextFieldUI {
      * background color of the component.
      *
      * @param g
-     *          the graphics context
+     *        the graphics context
      */
     protected void paintBackground(Graphics g) {
         super.paintBackground(g);
@@ -113,8 +113,7 @@ public class WindowsTextFieldUI extends BasicTextFieldUI {
                     Rectangle startRect = null;
                     try {
                         startRect = ui.modelToView(field, dot, bias);
-                    } catch (BadLocationException ble) {
-                    }
+                    } catch (BadLocationException ble) {}
 
                     Insets i = field.getInsets();
                     BoundedRangeModel vis = field.getHorizontalVisibility();
@@ -136,8 +135,7 @@ public class WindowsTextFieldUI extends BasicTextFieldUI {
                             if (endRect != null && !endRect.equals(startRect)) {
                                 damage(endRect);
                             }
-                        } catch (BadLocationException ble) {
-                        }
+                        } catch (BadLocationException ble) {}
                     }
                 }
             }

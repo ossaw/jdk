@@ -38,8 +38,8 @@ public class MotifToggleButtonUI extends BasicToggleButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent b) {
         AppContext appContext = AppContext.getAppContext();
-        MotifToggleButtonUI motifToggleButtonUI = (MotifToggleButtonUI) appContext
-                .get(MOTIF_TOGGLE_BUTTON_UI_KEY);
+        MotifToggleButtonUI motifToggleButtonUI = (MotifToggleButtonUI) appContext.get(
+                MOTIF_TOGGLE_BUTTON_UI_KEY);
         if (motifToggleButtonUI == null) {
             motifToggleButtonUI = new MotifToggleButtonUI();
             appContext.put(MOTIF_TOGGLE_BUTTON_UI_KEY, motifToggleButtonUI);
@@ -85,19 +85,16 @@ public class MotifToggleButtonUI extends BasicToggleButtonUI {
             if (b.getBackground() instanceof UIResource) {
                 g.setColor(getSelectColor());
             }
-            g.fillRect(insets.left - margin.left, insets.top - margin.top,
-                    size.width - (insets.left - margin.left) - (insets.right
-                            - margin.right), size.height - (insets.top
-                                    - margin.top) - (insets.bottom
-                                            - margin.bottom));
+            g.fillRect(insets.left - margin.left, insets.top - margin.top, size.width - (insets.left
+                    - margin.left) - (insets.right - margin.right), size.height - (insets.top - margin.top)
+                            - (insets.bottom - margin.bottom));
             g.setColor(oldColor);
         }
     }
 
     public Insets getInsets(JComponent c) {
         Border border = c.getBorder();
-        Insets i = border != null ? border.getBorderInsets(c)
-                : new Insets(0, 0, 0, 0);
+        Insets i = border != null ? border.getBorderInsets(c) : new Insets(0, 0, 0, 0);
         return i;
     }
 

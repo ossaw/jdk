@@ -17,7 +17,6 @@ package javax.naming.event;
  * <p>
  * A listener interested in <tt>OBJECT_CHANGED</tt> event types must:
  * <ol>
- *
  * <li>Implement this interface and its method (<tt>objectChanged()</tt>)
  * <li>Implement <tt>NamingListener.namingExceptionThrown()</tt> so that it will
  * be notified of exceptions thrown while attempting to collect information
@@ -30,7 +29,6 @@ package javax.naming.event;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingEvent
  * @see NamespaceChangeListener
  * @see EventContext
@@ -47,7 +45,7 @@ public interface ObjectChangeListener extends NamingListener {
      * obtained using <tt>evt.getOldBinding()</tt>.
      * 
      * @param evt
-     *            The nonnull naming event.
+     *        The nonnull naming event.
      * @see NamingEvent#OBJECT_CHANGED
      */
     void objectChanged(NamingEvent evt);

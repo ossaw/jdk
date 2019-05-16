@@ -13,7 +13,6 @@ package com.sun.javadoc;
  * to using Type (which can be converted to ClassDoc, if possible).
  *
  * @see Type
- *
  * @since 1.2
  * @author Kaiyang Liu (original)
  * @author Robert Field (rewrite)
@@ -28,7 +27,6 @@ public interface ClassDoc extends ProgramElementDoc, Type {
     /**
      * Return true if this class implements or interface extends
      * <code>java.io.Serializable</code>.
-     *
      * Since <code>java.io.Externalizable</code> extends
      * <code>java.io.Serializable</code>, Externalizable objects are also
      * Serializable.
@@ -62,7 +60,6 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      *
      * @return an array of <code>FieldDoc</code> objects for the Serializable
      *         fields of this class or interface.
-     *
      * @see #definesSerializableFields()
      * @see SerialFieldTag
      */
@@ -79,7 +76,6 @@ public interface ClassDoc extends ProgramElementDoc, Type {
 
     /**
      * Return the superclass of this class. Return null if this is an interface.
-     *
      * <p>
      * <i>This method cannot accommodate certain generic type constructs. The
      * <code>superclassType</code> method should be used instead.</i>
@@ -107,7 +103,7 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * compatibility reasons).
      *
      * @param cd
-     *           the candidate superclass.
+     *        the candidate superclass.
      * @return true if cd is a superclass of this class.
      */
     boolean subclassOf(ClassDoc cd);
@@ -116,7 +112,6 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * Return interfaces implemented by this class or interfaces extended by
      * this interface. Includes only directly-declared interfaces, not inherited
      * interfaces. Return an empty array if there are no interfaces.
-     *
      * <p>
      * <i>This method cannot accommodate certain generic type constructs. The
      * <code>interfaceTypes</code> method should be used instead.</i>
@@ -171,9 +166,9 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * modifier option</a>. Excludes enum constants if this is an enum type.
      *
      * @param filter
-     *               Specify true to filter according to the specified access
-     *               modifier option. Specify false to include all fields
-     *               regardless of access modifier option.
+     *        Specify true to filter according to the specified access
+     *        modifier option. Specify false to include all fields
+     *        regardless of access modifier option.
      * @return an array of FieldDoc objects representing the included fields in
      *         this class or interface.
      */
@@ -205,9 +200,9 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * elements.
      *
      * @param filter
-     *               Specify true to filter according to the specified access
-     *               modifier option. Specify false to include all methods
-     *               regardless of access modifier option.
+     *        Specify true to filter according to the specified access
+     *        modifier option. Specify false to include all methods
+     *        regardless of access modifier option.
      * @return an array of MethodDoc objects representing the included methods
      *         in this class or interface.
      */
@@ -231,9 +226,9 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * constructor if no other constructors exist.
      *
      * @param filter
-     *               Specify true to filter according to the specified access
-     *               modifier option. Specify false to include all constructors
-     *               regardless of access modifier option.
+     *        Specify true to filter according to the specified access
+     *        modifier option. Specify false to include all constructors
+     *        regardless of access modifier option.
      * @return an array of ConstructorDoc objects representing the included
      *         constructors in this class.
      */
@@ -260,10 +255,10 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * classes. Anonymous and local classes are not included.
      *
      * @param filter
-     *               Specify true to filter according to the specified access
-     *               modifier option. Specify false to include all nested
-     *               classes
-     *               regardless of access modifier option.
+     *        Specify true to filter according to the specified access
+     *        modifier option. Specify false to include all nested
+     *        classes
+     *        regardless of access modifier option.
      * @return a filtered array of ClassDoc objects representing the included
      *         classes and interfaces defined in this class or interface.
      */
@@ -283,7 +278,6 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * Language Specification</cite>.
      *
      * @return an array of ClassDoc representing the imported classes.
-     *
      * @deprecated Import declarations are implementation details that should
      *             not be exposed here. In addition, not all imported classes
      *             are imported through single-type-import declarations.
@@ -297,7 +291,6 @@ public interface ClassDoc extends ProgramElementDoc, Type {
      * Specification</cite>.
      *
      * @return an array of PackageDoc representing the imported packages.
-     *
      * @deprecated Import declarations are implementation details that should
      *             not be exposed here. In addition, this method's return type
      *             does not allow for all type-import-on-demand declarations to

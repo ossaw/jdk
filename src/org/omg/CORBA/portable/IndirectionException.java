@@ -40,7 +40,7 @@ public class IndirectionException extends SystemException {
      * stream.
      *
      * @param offset
-     *               the stream offset where recursion is detected.
+     *        the stream offset where recursion is detected.
      */
     public IndirectionException(int offset) {
         super("", 0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);

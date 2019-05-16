@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,8 +34,8 @@ import org.w3c.dom.Attr;
 public abstract class ResourceResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(ResourceResolverSpi.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(ResourceResolverSpi.class
+            .getName());
 
     /** Field properties */
     protected java.util.Map<String, String> properties = null;
@@ -58,15 +56,12 @@ public abstract class ResourceResolverSpi {
      * @param uri
      * @param BaseURI
      * @return the resource wrapped around a XMLSignatureInput
-     *
      * @throws ResourceResolverException
-     *
      * @deprecated New clients should override
      *             {@link #engineResolveURI(ResourceResolverContext)}
      */
     @Deprecated
-    public XMLSignatureInput engineResolve(Attr uri, String BaseURI)
-            throws ResourceResolverException {
+    public XMLSignatureInput engineResolve(Attr uri, String BaseURI) throws ResourceResolverException {
         throw new UnsupportedOperationException();
     }
 
@@ -74,10 +69,8 @@ public abstract class ResourceResolverSpi {
      * This is the workhorse method used to resolve resources.
      * 
      * @param context
-     *                Context to use to resolve resources.
-     *
+     *        Context to use to resolve resources.
      * @return the resource wrapped around a XMLSignatureInput
-     *
      * @throws ResourceResolverException
      */
     public XMLSignatureInput engineResolveURI(ResourceResolverContext context)
@@ -115,7 +108,6 @@ public abstract class ResourceResolverSpi {
     }
 
     /**
-     *
      * @param newProperties
      */
     public void engineAddProperies(Map<String, String> newProperties) {
@@ -144,7 +136,6 @@ public abstract class ResourceResolverSpi {
      * @param uri
      * @param BaseURI
      * @return true if the engine can resolve the uri
-     *
      * @deprecated See {@link #engineCanResolveURI(ResourceResolverContext)}
      */
     @Deprecated
@@ -156,14 +147,13 @@ public abstract class ResourceResolverSpi {
     /**
      * This method helps the {@link ResourceResolver} to decide whether a
      * {@link ResourceResolverSpi} is able to perform the requested action.
-     *
      * <p>
      * New clients should override this method, and not override
      * {@link #engineCanResolve(Attr, String)}
      * </p>
      * 
      * @param context
-     *                Context in which to do resolution.
+     *        Context in which to do resolution.
      * @return true if the engine can resolve the uri
      */
     public boolean engineCanResolveURI(ResourceResolverContext context) {
@@ -206,8 +196,7 @@ public abstract class ResourceResolverSpi {
      * Fixes a platform dependent filename to standard URI form.
      *
      * @param str
-     *            The string to fix.
-     *
+     *        The string to fix.
      * @return Returns the fixed URI string.
      */
     public static String fixURI(String str) {
@@ -222,12 +211,11 @@ public abstract class ResourceResolverSpi {
             char ch1 = str.charAt(1);
             char ch2 = str.charAt(2);
             char ch3 = str.charAt(3);
-            boolean isDosFilename = ((('A' <= ch0) && (ch0 <= 'Z'))
-                    && (ch1 == ':') && (ch2 == '/') && (ch3 != '/'));
+            boolean isDosFilename = ((('A' <= ch0) && (ch0 <= 'Z')) && (ch1 == ':') && (ch2 == '/')
+                    && (ch3 != '/'));
 
             if (isDosFilename && log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE, "Found DOS filename: "
-                        + str);
+                log.log(java.util.logging.Level.FINE, "Found DOS filename: " + str);
             }
         }
 

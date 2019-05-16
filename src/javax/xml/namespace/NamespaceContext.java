@@ -11,7 +11,6 @@ import java.util.Iterator;
  * <p>
  * Interface for read only XML Namespace context processing.
  * </p>
- *
  * <p>
  * An XML Namespace has the properties:
  * </p>
@@ -26,12 +25,10 @@ import java.util.Iterator;
  * example:
  * <code>&lt;element xmlns:prefix="http://Namespace-name-URI"&gt;</code>
  * </p>
- *
  * <p>
  * All <code>get*(*)</code> methods operate in the current scope for Namespace
  * URI and prefix resolution.
  * </p>
- *
  * <p>
  * Note that a Namespace URI can be bound to <strong>multiple</strong> prefixes
  * in the current scope. This can occur when multiple
@@ -55,7 +52,6 @@ import java.util.Iterator;
  * &lt;/parent&gt;
  * </pre>
  * </p>
- *
  * <p>
  * A prefix can only be bound to a <strong>single</strong> Namespace URI in the
  * current scope.
@@ -79,12 +75,10 @@ public interface NamespaceContext {
      * <p>
      * Get Namespace URI bound to a prefix in the current scope.
      * </p>
-     *
      * <p>
      * When requesting a Namespace URI by prefix, the following table describes
      * the returned Namespace URI value for all possible prefix values:
      * </p>
-     *
      * <table border="2" rules="all" cellpadding="4">
      * <thead>
      * <tr>
@@ -131,13 +125,11 @@ public interface NamespaceContext {
      * </table>
      *
      * @param prefix
-     *               prefix to look up
-     *
+     *        prefix to look up
      * @return Namespace URI bound to prefix in the current scope
-     *
      * @throws IllegalArgumentException
-     *                                  When <code>prefix</code> is
-     *                                  <code>null</code>
+     *         When <code>prefix</code> is
+     *         <code>null</code>
      */
     String getNamespaceURI(String prefix);
 
@@ -145,17 +137,14 @@ public interface NamespaceContext {
      * <p>
      * Get prefix bound to Namespace URI in the current scope.
      * </p>
-     *
      * <p>
      * To get all prefixes bound to a Namespace URI in the current scope, use
      * {@link #getPrefixes(String namespaceURI)}.
      * </p>
-     *
      * <p>
      * When requesting a prefix by Namespace URI, the following table describes
      * the returned prefix value for all Namespace URI values:
      * </p>
-     *
      * <table border="2" rules="all" cellpadding="4">
      * <thead>
      * <tr>
@@ -200,13 +189,11 @@ public interface NamespaceContext {
      * </table>
      *
      * @param namespaceURI
-     *                     URI of Namespace to lookup
-     *
+     *        URI of Namespace to lookup
      * @return prefix bound to Namespace URI in current context
-     *
      * @throws IllegalArgumentException
-     *                                  When <code>namespaceURI</code> is
-     *                                  <code>null</code>
+     *         When <code>namespaceURI</code> is
+     *         <code>null</code>
      */
     String getPrefix(String namespaceURI);
 
@@ -214,23 +201,19 @@ public interface NamespaceContext {
      * <p>
      * Get all prefixes bound to a Namespace URI in the current scope.
      * </p>
-     *
      * <p>
      * An Iterator over String elements is returned in an arbitrary,
      * <strong>implementation dependent</strong>, order.
      * </p>
-     *
      * <p>
      * <strong>The <code>Iterator</code> is <em>not</em> modifiable. e.g. the
      * <code>remove()</code> method will throw
      * <code>UnsupportedOperationException</code>.</strong>
      * </p>
-     *
      * <p>
      * When requesting prefixes by Namespace URI, the following table describes
      * the returned prefixes value for all Namespace URI values:
      * </p>
-     *
      * <table border="2" rules="all" cellpadding="4">
      * <thead>
      * <tr>
@@ -273,14 +256,12 @@ public interface NamespaceContext {
      * </table>
      *
      * @param namespaceURI
-     *                     URI of Namespace to lookup
-     *
+     *        URI of Namespace to lookup
      * @return <code>Iterator</code> for all prefixes bound to the Namespace URI
      *         in the current scope
-     *
      * @throws IllegalArgumentException
-     *                                  When <code>namespaceURI</code> is
-     *                                  <code>null</code>
+     *         When <code>namespaceURI</code> is
+     *         <code>null</code>
      */
     Iterator getPrefixes(String namespaceURI);
 }

@@ -43,23 +43,22 @@ public interface PresentationManager {
          * RMI-IIOP interface.
          * 
          * @param className
-         *                       The name of the remote interface as a Java
-         *                       class name.
+         *        The name of the remote interface as a Java
+         *        class name.
          * @param isIDLStub
-         *                       True if className identifies an IDL stub, else
-         *                       false.
+         *        True if className identifies an IDL stub, else
+         *        false.
          * @param remoteCodeBase
-         *                       The CodeBase to use for loading Stub classes,
-         *                       if necessary
-         *                       (may be null or unused).
+         *        The CodeBase to use for loading Stub classes,
+         *        if necessary
+         *        (may be null or unused).
          * @param expectedClass
-         *                       The expected stub type (may be null or unused).
+         *        The expected stub type (may be null or unused).
          * @param classLoader
-         *                       The classLoader to use (may be null).
+         *        The classLoader to use (may be null).
          */
-        PresentationManager.StubFactory createStubFactory(String className,
-                boolean isIDLStub, String remoteCodeBase, Class expectedClass,
-                ClassLoader classLoader);
+        PresentationManager.StubFactory createStubFactory(String className, boolean isIDLStub,
+                String remoteCodeBase, Class expectedClass, ClassLoader classLoader);
 
         /**
          * Return a Tie for the given class.

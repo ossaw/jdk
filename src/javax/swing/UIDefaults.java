@@ -76,9 +76,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * load factor.
      *
      * @param initialCapacity
-     *                        the initial capacity of the defaults table
+     *        the initial capacity of the defaults table
      * @param loadFactor
-     *                        the load factor of the defaults table
+     *        the load factor of the defaults table
      * @see java.util.Hashtable
      * @since 1.6
      */
@@ -101,7 +101,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * </pre>
      * 
      * @param keyValueList
-     *                     an array of objects containing the key/value pairs
+     *        an array of objects containing the key/value pairs
      */
     public UIDefaults(Object[] keyValueList) {
         super(keyValueList.length / 2);
@@ -118,16 +118,14 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>UIDefaults.ActiveValue</code> the table entry is not replaced - the
      * value is computed with <code>ActiveValue.createValue()</code> for each
      * <code>get()</code> call.
-     *
      * If the key is not found in the table then it is searched for in the list
      * of resource bundles maintained by this object. The resource bundles are
      * searched most recently added first using the locale returned by
      * <code>getDefaultLocale</code>. <code>LazyValues</code> and
      * <code>ActiveValues</code> are not supported in the resource bundles.
      *
-     * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return the value for <code>key</code>
      * @see LazyValue
      * @see ActiveValue
@@ -150,8 +148,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * Quickly handle the common case, without grabbing a lock.
          */
         Object value = super.get(key);
-        if ((value != PENDING) && !(value instanceof ActiveValue)
-                && !(value instanceof LazyValue)) {
+        if ((value != PENDING) && !(value instanceof ActiveValue) && !(value instanceof LazyValue)) {
             return value;
         }
 
@@ -167,8 +164,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
                 do {
                     try {
                         this.wait();
-                    } catch (InterruptedException e) {
-                    }
+                    } catch (InterruptedException e) {}
                     value = super.get(key);
                 } while (value == PENDING);
                 return value;
@@ -215,7 +211,6 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>UIDefaults.ActiveValue</code> the table entry is not replaced - the
      * value is computed with <code>ActiveValue.createValue()</code> for each
      * <code>get()</code> call.
-     *
      * If the key is not found in the table then it is searched for in the list
      * of resource bundles maintained by this object. The resource bundles are
      * searched most recently added first using the given locale.
@@ -223,9 +218,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * in the resource bundles.
      *
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired <code>locale</code>
+     *        the desired <code>locale</code>
      * @return the value for <code>key</code>
      * @see LazyValue
      * @see ActiveValue
@@ -243,8 +238,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      */
     private Object getFromResourceBundle(Object key, Locale l) {
 
-        if (resourceBundles == null || resourceBundles.isEmpty()
-                || !(key instanceof String)) {
+        if (resourceBundles == null || resourceBundles.isEmpty() || !(key instanceof String)) {
             return null;
         }
 
@@ -272,8 +266,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
             for (int i = resourceBundles.size() - 1; i >= 0; i--) {
                 String bundleName = resourceBundles.get(i);
                 try {
-                    Control c = CoreResourceBundleControl.getRBControlInstance(
-                            bundleName);
+                    Control c = CoreResourceBundleControl.getRBControlInstance(bundleName);
                     ResourceBundle b;
                     if (c != null) {
                         b = ResourceBundle.getBundle(bundleName, l, c);
@@ -307,17 +300,16 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>null</code>, the key is removed from the table.
      *
      * @param key
-     *              the unique <code>Object</code> who's value will be used to
-     *              retrieve the data value associated with it
+     *        the unique <code>Object</code> who's value will be used to
+     *        retrieve the data value associated with it
      * @param value
-     *              the new <code>Object</code> to store as data under that key
+     *        the new <code>Object</code> to store as data under that key
      * @return the previous <code>Object</code> value, or <code>null</code>
      * @see #putDefaults
      * @see java.util.Hashtable#put
      */
     public Object put(Object key, Object value) {
-        Object oldValue = (value == null) ? super.remove(key)
-                : super.put(key, value);
+        Object oldValue = (value == null) ? super.remove(key) : super.put(key, value);
         if (key instanceof String) {
             firePropertyChange((String) key, oldValue, value);
         }
@@ -331,7 +323,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * be "UIDefaults". The key/value pairs are added for all locales.
      *
      * @param keyValueList
-     *                     an array of key/value pairs
+     *        an array of key/value pairs
      * @see #put
      * @see java.util.Hashtable#put
      */
@@ -352,7 +344,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is a <code>Font</code>, return
      *         the <code>Font</code> object; otherwise return <code>null</code>
      */
@@ -366,9 +358,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Font</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is a
      *         <code>Font</code>, return the <code>Font</code> object; otherwise
      *         return <code>null</code>
@@ -384,7 +376,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is a <code>Color</code>, return
      *         the <code>Color</code> object; otherwise return <code>null</code>
      */
@@ -398,9 +390,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Color</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is a
      *         <code>Color</code>, return the <code>Color</code> object;
      *         otherwise return <code>null</code>
@@ -416,7 +408,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is an <code>Icon</code>, return
      *         the <code>Icon</code> object; otherwise return <code>null</code>
      */
@@ -430,9 +422,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Icon</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is an
      *         <code>Icon</code>, return the <code>Icon</code> object; otherwise
      *         return <code>null</code>
@@ -448,7 +440,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is a <code>Border</code>,
      *         return the <code>Border</code> object; otherwise return
      *         <code>null</code>
@@ -463,9 +455,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Border</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is a
      *         <code>Border</code>, return the <code>Border</code> object;
      *         otherwise return <code>null</code>
@@ -481,7 +473,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is a <code>String</code>,
      *         return the <code>String</code> object; otherwise return
      *         <code>null</code>
@@ -496,9 +488,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>String</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired <code>Locale</code>
+     *        the desired <code>Locale</code>
      * @return if the value for <code>key</code> for the given
      *         <code>Locale</code> is a <code>String</code>, return the
      *         <code>String</code> object; otherwise return <code>null</code>
@@ -514,7 +506,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * integer value, otherwise return 0.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is an <code>Integer</code>,
      *         return its value, otherwise return 0
      */
@@ -528,9 +520,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Integer</code> return its integer value, otherwise return 0.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is an
      *         <code>Integer</code>, return its value, otherwise return 0
      * @since 1.4
@@ -545,16 +537,15 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return false.
      *
      * @param key
-     *            an <code>Object</code> specifying the key for the desired
-     *            boolean value
+     *        an <code>Object</code> specifying the key for the desired
+     *        boolean value
      * @return if the value of <code>key</code> is boolean, return the boolean
      *         value, otherwise return false.
      * @since 1.4
      */
     public boolean getBoolean(Object key) {
         Object value = get(key);
-        return (value instanceof Boolean) ? ((Boolean) value).booleanValue()
-                : false;
+        return (value instanceof Boolean) ? ((Boolean) value).booleanValue() : false;
     }
 
     /**
@@ -562,18 +553,17 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * boolean, return the boolean value, otherwise return false.
      *
      * @param key
-     *            an <code>Object</code> specifying the key for the desired
-     *            boolean value
+     *        an <code>Object</code> specifying the key for the desired
+     *        boolean value
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is
      *         boolean, return the boolean value, otherwise return false.
      * @since 1.4
      */
     public boolean getBoolean(Object key, Locale l) {
         Object value = get(key, l);
-        return (value instanceof Boolean) ? ((Boolean) value).booleanValue()
-                : false;
+        return (value instanceof Boolean) ? ((Boolean) value).booleanValue() : false;
     }
 
     /**
@@ -581,7 +571,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is an <code>Insets</code>,
      *         return the <code>Insets</code> object; otherwise return
      *         <code>null</code>
@@ -596,9 +586,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Insets</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is an
      *         <code>Insets</code>, return the <code>Insets</code> object;
      *         otherwise return <code>null</code>
@@ -614,7 +604,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @return if the value for <code>key</code> is a <code>Dimension</code>,
      *         return the <code>Dimension</code> object; otherwise return
      *         <code>null</code>
@@ -629,9 +619,9 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * <code>Dimension</code> return it, otherwise return <code>null</code>.
      * 
      * @param key
-     *            the desired key
+     *        the desired key
      * @param l
-     *            the desired locale
+     *        the desired locale
      * @return if the value for <code>key</code> and <code>Locale</code> is a
      *         <code>Dimension</code>, return the <code>Dimension</code> object;
      *         otherwise return <code>null</code>
@@ -657,14 +647,13 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * call it directly.
      *
      * @param uiClassID
-     *                      a string containing the class ID
+     *        a string containing the class ID
      * @param uiClassLoader
-     *                      the object which will load the class
+     *        the object which will load the class
      * @return the value of <code>Class.forName(get(uidClassID))</code>
      * @see #getUI
      */
-    public Class<? extends ComponentUI> getUIClass(String uiClassID,
-            ClassLoader uiClassLoader) {
+    public Class<? extends ComponentUI> getUIClass(String uiClassID, ClassLoader uiClassLoader) {
         try {
             String className = (String) get(uiClassID);
             if (className != null) {
@@ -696,7 +685,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * Returns the L&amp;F class that renders this component.
      *
      * @param uiClassID
-     *                  a string containing the class ID
+     *        a string containing the class ID
      * @return the Class object returned by
      *         <code>getUIClass(uiClassID, null)</code>
      */
@@ -710,7 +699,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * here.
      *
      * @param msg
-     *            message string to print
+     *        message string to print
      * @see #getUI
      */
     protected void getUIError(String msg) {
@@ -734,16 +723,14 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * </ul>
      * 
      * @param target
-     *               the <code>JComponent</code> which needs a UI
+     *        the <code>JComponent</code> which needs a UI
      * @return the <code>ComponentUI</code> object
      */
     public ComponentUI getUI(JComponent target) {
 
         Object cl = get("ClassLoader");
-        ClassLoader uiClassLoader = (cl != null) ? (ClassLoader) cl
-                : target.getClass().getClassLoader();
-        Class<? extends ComponentUI> uiClass = getUIClass(target.getUIClassID(),
-                uiClassLoader);
+        ClassLoader uiClassLoader = (cl != null) ? (ClassLoader) cl : target.getClass().getClassLoader();
+        Class<? extends ComponentUI> uiClass = getUIClass(target.getUIClassID(), uiClassLoader);
         Object uiObject = null;
 
         if (uiClass == null) {
@@ -752,8 +739,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
             try {
                 Method m = (Method) get(uiClass);
                 if (m == null) {
-                    m = uiClass.getMethod("createUI", new Class[] {
-                            JComponent.class });
+                    m = uiClass.getMethod("createUI", new Class[] { JComponent.class });
                     put(uiClass, m);
                 }
                 uiObject = MethodUtil.invoke(m, null, new Object[] { target });
@@ -775,11 +761,10 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * changed.
      *
      * @param listener
-     *                 the <code>PropertyChangeListener</code> to be added
+     *        the <code>PropertyChangeListener</code> to be added
      * @see java.beans.PropertyChangeSupport
      */
-    public synchronized void addPropertyChangeListener(
-            PropertyChangeListener listener) {
+    public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
         if (changeSupport == null) {
             changeSupport = new SwingPropertyChangeSupport(this);
         }
@@ -792,11 +777,10 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * for all properties.
      *
      * @param listener
-     *                 the <code>PropertyChangeListener</code> to be removed
+     *        the <code>PropertyChangeListener</code> to be removed
      * @see java.beans.PropertyChangeSupport
      */
-    public synchronized void removePropertyChangeListener(
-            PropertyChangeListener listener) {
+    public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
         if (changeSupport != null) {
             changeSupport.removePropertyChangeListener(listener);
         }
@@ -824,16 +808,15 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * listener.
      *
      * @param propertyName
-     *                     the programmatic name of the property that was
-     *                     changed
+     *        the programmatic name of the property that was
+     *        changed
      * @param oldValue
-     *                     the old value of the property
+     *        the old value of the property
      * @param newValue
-     *                     the new value of the property
+     *        the new value of the property
      * @see java.beans.PropertyChangeSupport
      */
-    protected void firePropertyChange(String propertyName, Object oldValue,
-            Object newValue) {
+    protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         if (changeSupport != null) {
             changeSupport.firePropertyChange(propertyName, oldValue, newValue);
         }
@@ -846,7 +829,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * searched first.
      *
      * @param bundleName
-     *                   the base name of the resource bundle to be added
+     *        the base name of the resource bundle to be added
      * @see java.util.ResourceBundle
      * @see #removeResourceBundle
      * @since 1.4
@@ -869,7 +852,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * searched for localized defaults.
      *
      * @param bundleName
-     *                   the base name of the resource bundle to be removed
+     *        the base name of the resource bundle to be removed
      * @see java.util.ResourceBundle
      * @see #addResourceBundle
      * @since 1.4
@@ -890,7 +873,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * behaviour.
      *
      * @param l
-     *          the new default locale
+     *        the new default locale
      * @see #getDefaultLocale
      * @see #get(Object)
      * @see #get(Object,Locale)
@@ -950,7 +933,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * is then stored in the table and returned to the calling method.
          *
          * @param table
-         *              a <code>UIDefaults</code> table
+         *        a <code>UIDefaults</code> table
          * @return the created <code>Object</code>
          */
         Object createValue(UIDefaults table);
@@ -981,7 +964,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * The object is created each time it is accessed.
          *
          * @param table
-         *              a <code>UIDefaults</code> table
+         *        a <code>UIDefaults</code> table
          * @return the created <code>Object</code>
          */
         Object createValue(UIDefaults table);
@@ -1009,8 +992,8 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * when asked.
          *
          * @param c
-         *          a <code>String</code> specifying the classname of the
-         *          instance to be created on demand
+         *        a <code>String</code> specifying the classname of the
+         *        instance to be created on demand
          */
         public ProxyLazyValue(String c) {
             this(c, (String) null);
@@ -1021,12 +1004,12 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * when asked.
          *
          * @param c
-         *          a <code>String</code> specifying the classname of the
-         *          class containing a static method to be called for instance
-         *          creation
+         *        a <code>String</code> specifying the classname of the
+         *        class containing a static method to be called for instance
+         *        creation
          * @param m
-         *          a <code>String</code> specifying the static method to be
-         *          called on class c
+         *        a <code>String</code> specifying the static method to be
+         *        called on class c
          */
         public ProxyLazyValue(String c, String m) {
             this(c, m, null);
@@ -1037,11 +1020,11 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * when asked.
          *
          * @param c
-         *          a <code>String</code> specifying the classname of the
-         *          instance to be created on demand
+         *        a <code>String</code> specifying the classname of the
+         *        instance to be created on demand
          * @param o
-         *          an array of <code>Objects</code> to be passed as
-         *          paramaters to the constructor in class c
+         *        an array of <code>Objects</code> to be passed as
+         *        paramaters to the constructor in class c
          */
         public ProxyLazyValue(String c, Object[] o) {
             this(c, null, o);
@@ -1052,15 +1035,15 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * when asked.
          *
          * @param c
-         *          a <code>String</code> specifying the classname of the
-         *          class containing a static method to be called for instance
-         *          creation.
+         *        a <code>String</code> specifying the classname of the
+         *        class containing a static method to be called for instance
+         *        creation.
          * @param m
-         *          a <code>String</code> specifying the static method to be
-         *          called on class c
+         *        a <code>String</code> specifying the static method to be
+         *        called on class c
          * @param o
-         *          an array of <code>Objects</code> to be passed as
-         *          paramaters to the static method in class c
+         *        an array of <code>Objects</code> to be passed as
+         *        paramaters to the static method in class c
          */
         public ProxyLazyValue(String c, String m, Object[] o) {
             acc = AccessController.getContext();
@@ -1076,7 +1059,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * The object is created each time it is accessed.
          *
          * @param table
-         *              a <code>UIDefaults</code> table
+         *        a <code>UIDefaults</code> table
          * @return the created <code>Object</code>
          */
         public Object createValue(final UIDefaults table) {
@@ -1086,48 +1069,42 @@ public class UIDefaults extends Hashtable<Object, Object> {
             if (acc == null && System.getSecurityManager() != null) {
                 throw new SecurityException("null AccessControlContext");
             }
-            return AccessController.doPrivileged(
-                    new PrivilegedAction<Object>() {
-                        public Object run() {
-                            try {
-                                Class<?> c;
-                                Object cl;
-                                // See if we should use a separate ClassLoader
-                                if (table == null || !((cl = table.get(
-                                        "ClassLoader")) instanceof ClassLoader)) {
-                                    cl = Thread.currentThread()
-                                            .getContextClassLoader();
-                                    if (cl == null) {
-                                        // Fallback to the system class loader.
-                                        cl = ClassLoader.getSystemClassLoader();
-                                    }
-                                }
-                                ReflectUtil.checkPackageAccess(className);
-                                c = Class.forName(className, true,
-                                        (ClassLoader) cl);
-                                SwingUtilities2.checkAccess(c.getModifiers());
-                                if (methodName != null) {
-                                    Class[] types = getClassArray(args);
-                                    Method m = c.getMethod(methodName, types);
-                                    return MethodUtil.invoke(m, c, args);
-                                } else {
-                                    Class[] types = getClassArray(args);
-                                    Constructor constructor = c.getConstructor(
-                                            types);
-                                    SwingUtilities2.checkAccess(constructor
-                                            .getModifiers());
-                                    return constructor.newInstance(args);
-                                }
-                            } catch (Exception e) {
-                                // Ideally we would throw an exception, unfortunately
-                                // often times there are errors as an initial look and
-                                // feel is loaded before one can be switched. Perhaps a
-                                // flag should be added for debugging, so that if true
-                                // the exception would be thrown.
+            return AccessController.doPrivileged(new PrivilegedAction<Object>() {
+                public Object run() {
+                    try {
+                        Class<?> c;
+                        Object cl;
+                        // See if we should use a separate ClassLoader
+                        if (table == null || !((cl = table.get("ClassLoader")) instanceof ClassLoader)) {
+                            cl = Thread.currentThread().getContextClassLoader();
+                            if (cl == null) {
+                                // Fallback to the system class loader.
+                                cl = ClassLoader.getSystemClassLoader();
                             }
-                            return null;
                         }
-                    }, acc);
+                        ReflectUtil.checkPackageAccess(className);
+                        c = Class.forName(className, true, (ClassLoader) cl);
+                        SwingUtilities2.checkAccess(c.getModifiers());
+                        if (methodName != null) {
+                            Class[] types = getClassArray(args);
+                            Method m = c.getMethod(methodName, types);
+                            return MethodUtil.invoke(m, c, args);
+                        } else {
+                            Class[] types = getClassArray(args);
+                            Constructor constructor = c.getConstructor(types);
+                            SwingUtilities2.checkAccess(constructor.getModifiers());
+                            return constructor.newInstance(args);
+                        }
+                    } catch (Exception e) {
+                        // Ideally we would throw an exception, unfortunately
+                        // often times there are errors as an initial look and
+                        // feel is loaded before one can be switched. Perhaps a
+                        // flag should be added for debugging, so that if true
+                        // the exception would be thrown.
+                    }
+                    return null;
+                }
+            }, acc);
         }
 
         /*
@@ -1206,7 +1183,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
          * in.
          *
          * @param table
-         *              a <code>UIDefaults</code> table
+         *        a <code>UIDefaults</code> table
          * @return the <code>InputMap</code>
          */
         public Object createValue(UIDefaults table) {
@@ -1224,22 +1201,17 @@ public class UIDefaults extends Hashtable<Object, Object> {
      * FileChooser.saveButton.textAndMnemonic=&Save For this case method get
      * returns "Save" for the key "FileChooser.saveButtonText" and mnemonic "S"
      * for the key "FileChooser.saveButtonMnemonic"
-     *
      * There are several patterns for the text and mnemonic suffixes which are
      * checked by the <code>TextAndMnemonicHashMap</code> class. Patterns which
      * are converted to the xxx.textAndMnemonic key: (xxxNameText,
      * xxxNameMnemonic) (xxxNameText, xxxMnemonic) (xxx.nameText, xxx.mnemonic)
      * (xxxText, xxxMnemonic)
-     *
      * These patterns can have a mnemonic index in format
      * (xxxDisplayedMnemonicIndex)
-     *
      * Pattern which is converted to the xxx.titleAndMnemonic key: (xxxTitle,
      * xxxMnemonic)
-     *
      */
-    private static class TextAndMnemonicHashMap extends
-            HashMap<String, Object> {
+    private static class TextAndMnemonicHashMap extends HashMap<String, Object> {
 
         static final String AND_MNEMONIC = "AndMnemonic";
         static final String TITLE_SUFFIX = ".titleAndMnemonic";
@@ -1277,8 +1249,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
                         value = super.get(compositeKey);
                     }
 
-                    return value == null ? null
-                            : getMnemonicFromProperty(value.toString());
+                    return value == null ? null : getMnemonicFromProperty(value.toString());
                 }
 
                 if (stringKey.endsWith("NameText")) {
@@ -1293,8 +1264,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
 
                 if (compositeKey != null) {
                     value = super.get(compositeKey);
-                    return value == null ? null
-                            : getTextFromProperty(value.toString());
+                    return value == null ? null : getTextFromProperty(value.toString());
                 }
 
                 if (stringKey.endsWith("DisplayedMnemonicIndex")) {
@@ -1304,8 +1274,7 @@ public class UIDefaults extends Hashtable<Object, Object> {
                         compositeKey = composeKey(stringKey, 22, TITLE_SUFFIX);
                         value = super.get(compositeKey);
                     }
-                    return value == null ? null
-                            : getIndexFromProperty(value.toString());
+                    return value == null ? null : getIndexFromProperty(value.toString());
                 }
             }
 

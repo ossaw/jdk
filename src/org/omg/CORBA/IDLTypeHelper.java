@@ -31,8 +31,8 @@ abstract public class IDLTypeHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.CORBA.IDLTypeHelper.id(), "IDLType");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.CORBA.IDLTypeHelper.id(),
+                    "IDLType");
         }
         return __typeCode;
     }
@@ -41,13 +41,11 @@ abstract public class IDLTypeHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.IDLType read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.IDLType read(org.omg.CORBA.portable.InputStream istream) {
         return narrow(istream.read_Object(_IDLTypeStub.class));
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CORBA.IDLType value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CORBA.IDLType value) {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 

@@ -121,57 +121,56 @@ public interface MouseEvent extends UIEvent {
      * invocation takes precedence.
      * 
      * @param typeArg
-     *                         Specifies the event type.
+     *        Specifies the event type.
      * @param canBubbleArg
-     *                         Specifies whether or not the event can bubble.
+     *        Specifies whether or not the event can bubble.
      * @param cancelableArg
-     *                         Specifies whether or not the event's default
-     *                         action can be
-     *                         prevented.
+     *        Specifies whether or not the event's default
+     *        action can be
+     *        prevented.
      * @param viewArg
-     *                         Specifies the <code>Event</code>'s
-     *                         <code>AbstractView</code>.
+     *        Specifies the <code>Event</code>'s
+     *        <code>AbstractView</code>.
      * @param detailArg
-     *                         Specifies the <code>Event</code>'s mouse click
-     *                         count.
+     *        Specifies the <code>Event</code>'s mouse click
+     *        count.
      * @param screenXArg
-     *                         Specifies the <code>Event</code>'s screen x
-     *                         coordinate
+     *        Specifies the <code>Event</code>'s screen x
+     *        coordinate
      * @param screenYArg
-     *                         Specifies the <code>Event</code>'s screen y
-     *                         coordinate
+     *        Specifies the <code>Event</code>'s screen y
+     *        coordinate
      * @param clientXArg
-     *                         Specifies the <code>Event</code>'s client x
-     *                         coordinate
+     *        Specifies the <code>Event</code>'s client x
+     *        coordinate
      * @param clientYArg
-     *                         Specifies the <code>Event</code>'s client y
-     *                         coordinate
+     *        Specifies the <code>Event</code>'s client y
+     *        coordinate
      * @param ctrlKeyArg
-     *                         Specifies whether or not control key was
-     *                         depressed during the
-     *                         <code>Event</code>.
+     *        Specifies whether or not control key was
+     *        depressed during the
+     *        <code>Event</code>.
      * @param altKeyArg
-     *                         Specifies whether or not alt key was depressed
-     *                         during the
-     *                         <code>Event</code>.
+     *        Specifies whether or not alt key was depressed
+     *        during the
+     *        <code>Event</code>.
      * @param shiftKeyArg
-     *                         Specifies whether or not shift key was depressed
-     *                         during the
-     *                         <code>Event</code>.
+     *        Specifies whether or not shift key was depressed
+     *        during the
+     *        <code>Event</code>.
      * @param metaKeyArg
-     *                         Specifies whether or not meta key was depressed
-     *                         during the
-     *                         <code>Event</code>.
+     *        Specifies whether or not meta key was depressed
+     *        during the
+     *        <code>Event</code>.
      * @param buttonArg
-     *                         Specifies the <code>Event</code>'s mouse button.
+     *        Specifies the <code>Event</code>'s mouse button.
      * @param relatedTargetArg
-     *                         Specifies the <code>Event</code>'s related
-     *                         <code>EventTarget</code>.
+     *        Specifies the <code>Event</code>'s related
+     *        <code>EventTarget</code>.
      */
-    public void initMouseEvent(String typeArg, boolean canBubbleArg,
-            boolean cancelableArg, AbstractView viewArg, int detailArg,
-            int screenXArg, int screenYArg, int clientXArg, int clientYArg,
-            boolean ctrlKeyArg, boolean altKeyArg, boolean shiftKeyArg,
-            boolean metaKeyArg, short buttonArg, EventTarget relatedTargetArg);
+    public void initMouseEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg,
+            AbstractView viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg,
+            int clientYArg, boolean ctrlKeyArg, boolean altKeyArg, boolean shiftKeyArg, boolean metaKeyArg,
+            short buttonArg, EventTarget relatedTargetArg);
 
 }

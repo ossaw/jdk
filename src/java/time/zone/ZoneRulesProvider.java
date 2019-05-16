@@ -93,7 +93,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *           without stopping the JVM. When examined in detail, this is a
  *           complex problem. Providers may choose to handle dynamic updates,
  *           however the default provider does not.
- *
  * @since 1.8
  */
 public abstract class ZoneRulesProvider {
@@ -105,8 +104,8 @@ public abstract class ZoneRulesProvider {
     /**
      * The lookup from zone ID to provider.
      */
-    private static final ConcurrentMap<String, ZoneRulesProvider> ZONES = new ConcurrentHashMap<>(
-            512, 0.75f, 2);
+    private static final ConcurrentMap<String, ZoneRulesProvider> ZONES = new ConcurrentHashMap<>(512, 0.75f,
+            2);
 
     static {
         // if the property java.time.zone.DefaultZoneRulesProvider is
@@ -114,14 +113,11 @@ public abstract class ZoneRulesProvider {
         final List<ZoneRulesProvider> loaded = new ArrayList<>();
         AccessController.doPrivileged(new PrivilegedAction<Object>() {
             public Object run() {
-                String prop = System.getProperty(
-                        "java.time.zone.DefaultZoneRulesProvider");
+                String prop = System.getProperty("java.time.zone.DefaultZoneRulesProvider");
                 if (prop != null) {
                     try {
-                        Class<?> c = Class.forName(prop, true, ClassLoader
-                                .getSystemClassLoader());
-                        ZoneRulesProvider provider = ZoneRulesProvider.class
-                                .cast(c.newInstance());
+                        Class<?> c = Class.forName(prop, true, ClassLoader.getSystemClassLoader());
+                        ZoneRulesProvider provider = ZoneRulesProvider.class.cast(c.newInstance());
                         registerProvider(provider);
                         loaded.add(provider);
                     } catch (Exception x) {
@@ -134,8 +130,8 @@ public abstract class ZoneRulesProvider {
             }
         });
 
-        ServiceLoader<ZoneRulesProvider> sl = ServiceLoader.load(
-                ZoneRulesProvider.class, ClassLoader.getSystemClassLoader());
+        ServiceLoader<ZoneRulesProvider> sl = ServiceLoader.load(ZoneRulesProvider.class, ClassLoader
+                .getSystemClassLoader());
         Iterator<ZoneRulesProvider> it = sl.iterator();
         while (it.hasNext()) {
             ZoneRulesProvider provider;
@@ -191,19 +187,19 @@ public abstract class ZoneRulesProvider {
      * desirable, see {@link #provideRules}.
      *
      * @param zoneId
-     *                   the zone ID as defined by {@code ZoneId}, not null
+     *        the zone ID as defined by {@code ZoneId}, not null
      * @param forCaching
-     *                   whether the rules are being queried for caching, true
-     *                   if the
-     *                   returned rules will be cached by {@code ZoneId}, false
-     *                   if they
-     *                   will be returned to the user without being cached in
-     *                   {@code ZoneId}
+     *        whether the rules are being queried for caching, true
+     *        if the
+     *        returned rules will be cached by {@code ZoneId}, false
+     *        if they
+     *        will be returned to the user without being cached in
+     *        {@code ZoneId}
      * @return the rules, null if {@code forCaching} is true and this is a
      *         dynamic provider that wants to prevent caching in {@code ZoneId},
      *         otherwise not null
      * @throws ZoneRulesException
-     *                            if rules cannot be obtained for the zone ID
+     *         if rules cannot be obtained for the zone ID
      */
     public static ZoneRules getRules(String zoneId, boolean forCaching) {
         Objects.requireNonNull(zoneId, "zoneId");
@@ -230,11 +226,11 @@ public abstract class ZoneRulesProvider {
      * historical rule information is available.
      *
      * @param zoneId
-     *               the zone ID as defined by {@code ZoneId}, not null
+     *        the zone ID as defined by {@code ZoneId}, not null
      * @return a modifiable copy of the history of the rules for the ID, sorted
      *         from oldest to newest, not null
      * @throws ZoneRulesException
-     *                            if history cannot be obtained for the zone ID
+     *         if history cannot be obtained for the zone ID
      */
     public static NavigableMap<String, ZoneRules> getVersions(String zoneId) {
         Objects.requireNonNull(zoneId, "zoneId");
@@ -245,17 +241,16 @@ public abstract class ZoneRulesProvider {
      * Gets the provider for the zone ID.
      *
      * @param zoneId
-     *               the zone ID as defined by {@code ZoneId}, not null
+     *        the zone ID as defined by {@code ZoneId}, not null
      * @return the provider, not null
      * @throws ZoneRulesException
-     *                            if the zone ID is unknown
+     *         if the zone ID is unknown
      */
     private static ZoneRulesProvider getProvider(String zoneId) {
         ZoneRulesProvider provider = ZONES.get(zoneId);
         if (provider == null) {
             if (ZONES.isEmpty()) {
-                throw new ZoneRulesException(
-                        "No time-zone data files registered");
+                throw new ZoneRulesException("No time-zone data files registered");
             }
             throw new ZoneRulesException("Unknown time-zone ID: " + zoneId);
         }
@@ -276,9 +271,9 @@ public abstract class ZoneRulesProvider {
      * deregister providers.
      *
      * @param provider
-     *                 the provider to register, not null
+     *        the provider to register, not null
      * @throws ZoneRulesException
-     *                            if a zone ID is already registered
+     *         if a zone ID is already registered
      */
     public static void registerProvider(ZoneRulesProvider provider) {
         Objects.requireNonNull(provider, "provider");
@@ -290,9 +285,9 @@ public abstract class ZoneRulesProvider {
      * Registers the provider.
      *
      * @param provider
-     *                 the provider to register, not null
+     *        the provider to register, not null
      * @throws ZoneRulesException
-     *                            if unable to complete the registration
+     *         if unable to complete the registration
      */
     private static void registerProvider0(ZoneRulesProvider provider) {
         for (String zoneId : provider.provideZoneIds()) {
@@ -300,9 +295,8 @@ public abstract class ZoneRulesProvider {
             ZoneRulesProvider old = ZONES.putIfAbsent(zoneId, provider);
             if (old != null) {
                 throw new ZoneRulesException(
-                        "Unable to register zone as one already registered with that ID: "
-                                + zoneId + ", currently loading from provider: "
-                                + provider);
+                        "Unable to register zone as one already registered with that ID: " + zoneId
+                                + ", currently loading from provider: " + provider);
             }
         }
     }
@@ -327,7 +321,7 @@ public abstract class ZoneRulesProvider {
      *
      * @return true if the rules were updated
      * @throws ZoneRulesException
-     *                            if an error occurs during the refresh
+     *         if an error occurs during the refresh
      */
     public static boolean refresh() {
         boolean changed = false;
@@ -355,7 +349,7 @@ public abstract class ZoneRulesProvider {
      *
      * @return the set of zone IDs being provided, not null
      * @throws ZoneRulesException
-     *                            if a problem occurs while providing the IDs
+     *         if a problem occurs while providing the IDs
      */
     protected abstract Set<String> provideZoneIds();
 
@@ -377,22 +371,21 @@ public abstract class ZoneRulesProvider {
      * flag is false, the provider must return non-null rules.
      *
      * @param zoneId
-     *                   the zone ID as defined by {@code ZoneId}, not null
+     *        the zone ID as defined by {@code ZoneId}, not null
      * @param forCaching
-     *                   whether the rules are being queried for caching, true
-     *                   if the
-     *                   returned rules will be cached by {@code ZoneId}, false
-     *                   if they
-     *                   will be returned to the user without being cached in
-     *                   {@code ZoneId}
+     *        whether the rules are being queried for caching, true
+     *        if the
+     *        returned rules will be cached by {@code ZoneId}, false
+     *        if they
+     *        will be returned to the user without being cached in
+     *        {@code ZoneId}
      * @return the rules, null if {@code forCaching} is true and this is a
      *         dynamic provider that wants to prevent caching in {@code ZoneId},
      *         otherwise not null
      * @throws ZoneRulesException
-     *                            if rules cannot be obtained for the zone ID
+     *         if rules cannot be obtained for the zone ID
      */
-    protected abstract ZoneRules provideRules(String zoneId,
-            boolean forCaching);
+    protected abstract ZoneRules provideRules(String zoneId, boolean forCaching);
 
     /**
      * SPI method to get the history of rules for the zone ID.
@@ -414,14 +407,13 @@ public abstract class ZoneRulesProvider {
      * data becomes available.
      *
      * @param zoneId
-     *               the zone ID as defined by {@code ZoneId}, not null
+     *        the zone ID as defined by {@code ZoneId}, not null
      * @return a modifiable copy of the history of the rules for the ID, sorted
      *         from oldest to newest, not null
      * @throws ZoneRulesException
-     *                            if history cannot be obtained for the zone ID
+     *         if history cannot be obtained for the zone ID
      */
-    protected abstract NavigableMap<String, ZoneRules> provideVersions(
-            String zoneId);
+    protected abstract NavigableMap<String, ZoneRules> provideVersions(String zoneId);
 
     /**
      * SPI method to refresh the rules from the underlying data provider.
@@ -435,7 +427,7 @@ public abstract class ZoneRulesProvider {
      *
      * @return true if the rules were updated
      * @throws ZoneRulesException
-     *                            if an error occurs during the refresh
+     *         if an error occurs during the refresh
      */
     protected boolean provideRefresh() {
         return false;

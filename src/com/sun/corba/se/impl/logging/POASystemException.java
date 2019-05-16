@@ -45,14 +45,12 @@ public class POASystemException extends LogWrapperBase {
     };
 
     public static POASystemException get(ORB orb, String logDomain) {
-        POASystemException wrapper = (POASystemException) orb.getLogWrapper(
-                logDomain, "POA", factory);
+        POASystemException wrapper = (POASystemException) orb.getLogWrapper(logDomain, "POA", factory);
         return wrapper;
     }
 
     public static POASystemException get(String logDomain) {
-        POASystemException wrapper = (POASystemException) ORB
-                .staticGetLogWrapper(logDomain, "POA", factory);
+        POASystemException wrapper = (POASystemException) ORB.staticGetLogWrapper(logDomain, "POA", factory);
         return wrapper;
     }
 
@@ -62,16 +60,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int SERVANT_MANAGER_ALREADY_SET = SUNVMCID.value + 1001;
 
-    public BAD_INV_ORDER servantManagerAlreadySet(CompletionStatus cs,
-            Throwable t) {
+    public BAD_INV_ORDER servantManagerAlreadySet(CompletionStatus cs, Throwable t) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(SERVANT_MANAGER_ALREADY_SET, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantManagerAlreadySet", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantManagerAlreadySet", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -98,8 +94,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.destroyDeadlock", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.destroyDeadlock", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -130,8 +125,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantOrb", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantOrb", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -158,8 +152,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.badServant", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.badServant", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -179,16 +172,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int ILLEGAL_FORWARD_REQUEST = SUNVMCID.value + 1003;
 
-    public BAD_OPERATION illegalForwardRequest(CompletionStatus cs,
-            Throwable t) {
+    public BAD_OPERATION illegalForwardRequest(CompletionStatus cs, Throwable t) {
         BAD_OPERATION exc = new BAD_OPERATION(ILLEGAL_FORWARD_REQUEST, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.illegalForwardRequest", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.illegalForwardRequest", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -219,8 +210,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.badTransactionContext", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.badTransactionContext", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -247,8 +237,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.badRepositoryId", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.badRepositoryId", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -279,8 +268,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.invokesetup", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.invokesetup", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -307,8 +295,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.badLocalreplystatus", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.badLocalreplystatus", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -328,16 +315,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int PERSISTENT_SERVERPORT_ERROR = SUNVMCID.value + 1003;
 
-    public INTERNAL persistentServerportError(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL persistentServerportError(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(PERSISTENT_SERVERPORT_ERROR, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.persistentServerportError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.persistentServerportError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -364,8 +349,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantDispatch", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantDispatch", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -392,8 +376,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.wrongClientsc", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.wrongClientsc", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -420,8 +403,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.cantCloneTemplate", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.cantCloneTemplate", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -441,16 +423,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int POACURRENT_UNBALANCED_STACK = SUNVMCID.value + 1007;
 
-    public INTERNAL poacurrentUnbalancedStack(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL poacurrentUnbalancedStack(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(POACURRENT_UNBALANCED_STACK, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poacurrentUnbalancedStack", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poacurrentUnbalancedStack", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -477,8 +457,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poacurrentNullField", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poacurrentNullField", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -496,19 +475,16 @@ public class POASystemException extends LogWrapperBase {
         return poacurrentNullField(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int POA_INTERNAL_GET_SERVANT_ERROR = SUNVMCID.value
-            + 1009;
+    public static final int POA_INTERNAL_GET_SERVANT_ERROR = SUNVMCID.value + 1009;
 
-    public INTERNAL poaInternalGetServantError(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL poaInternalGetServantError(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(POA_INTERNAL_GET_SERVANT_ERROR, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaInternalGetServantError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaInternalGetServantError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -528,8 +504,7 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int MAKE_FACTORY_NOT_POA = SUNVMCID.value + 1010;
 
-    public INTERNAL makeFactoryNotPoa(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INTERNAL makeFactoryNotPoa(CompletionStatus cs, Throwable t, Object arg0) {
         INTERNAL exc = new INTERNAL(MAKE_FACTORY_NOT_POA, cs);
         if (t != null)
             exc.initCause(t);
@@ -537,8 +512,7 @@ public class POASystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "POA.makeFactoryNotPoa", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.makeFactoryNotPoa", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -565,8 +539,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.duplicateOrbVersionSc", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.duplicateOrbVersionSc", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -593,8 +566,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.preinvokeCloneError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.preinvokeCloneError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -621,8 +593,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.preinvokePoaDestroyed", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.preinvokePoaDestroyed", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -649,8 +620,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.pmfCreateRetain", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.pmfCreateRetain", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -677,8 +647,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.pmfCreateNonRetain", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.pmfCreateNonRetain", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -696,19 +665,17 @@ public class POASystemException extends LogWrapperBase {
         return pmfCreateNonRetain(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int POLICY_MEDIATOR_BAD_POLICY_IN_FACTORY = SUNVMCID.value
-            + 1016;
+    public static final int POLICY_MEDIATOR_BAD_POLICY_IN_FACTORY = SUNVMCID.value + 1016;
 
-    public INTERNAL policyMediatorBadPolicyInFactory(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL policyMediatorBadPolicyInFactory(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(POLICY_MEDIATOR_BAD_POLICY_IN_FACTORY, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.policyMediatorBadPolicyInFactory",
-                    parameters, POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.policyMediatorBadPolicyInFactory", parameters, POASystemException.class,
+                    exc);
         }
 
         return exc;
@@ -719,13 +686,11 @@ public class POASystemException extends LogWrapperBase {
     }
 
     public INTERNAL policyMediatorBadPolicyInFactory(Throwable t) {
-        return policyMediatorBadPolicyInFactory(CompletionStatus.COMPLETED_NO,
-                t);
+        return policyMediatorBadPolicyInFactory(CompletionStatus.COMPLETED_NO, t);
     }
 
     public INTERNAL policyMediatorBadPolicyInFactory() {
-        return policyMediatorBadPolicyInFactory(CompletionStatus.COMPLETED_NO,
-                null);
+        return policyMediatorBadPolicyInFactory(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int SERVANT_TO_ID_OAA = SUNVMCID.value + 1017;
@@ -737,8 +702,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantToIdOaa", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantToIdOaa", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -765,8 +729,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantToIdSaa", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantToIdSaa", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -793,8 +756,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantToIdWp", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantToIdWp", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -821,8 +783,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.cantResolveRootPoa", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.cantResolveRootPoa", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -849,8 +810,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantMustBeLocal", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantMustBeLocal", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -877,8 +837,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.noProfilesInIor", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.noProfilesInIor", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -905,8 +864,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.aomEntryDecZero", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.aomEntryDecZero", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -933,8 +891,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.addPoaInactive", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.addPoaInactive", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -961,8 +918,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.illegalPoaStateTrans", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.illegalPoaStateTrans", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -982,8 +938,7 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int UNEXPECTED_EXCEPTION = SUNVMCID.value + 1026;
 
-    public INTERNAL unexpectedException(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INTERNAL unexpectedException(CompletionStatus cs, Throwable t, Object arg0) {
         INTERNAL exc = new INTERNAL(UNEXPECTED_EXCEPTION, cs);
         if (t != null)
             exc.initCause(t);
@@ -991,8 +946,7 @@ public class POASystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "POA.unexpectedException", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.unexpectedException", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1016,16 +970,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int SINGLE_THREAD_NOT_SUPPORTED = SUNVMCID.value + 1001;
 
-    public NO_IMPLEMENT singleThreadNotSupported(CompletionStatus cs,
-            Throwable t) {
+    public NO_IMPLEMENT singleThreadNotSupported(CompletionStatus cs, Throwable t) {
         NO_IMPLEMENT exc = new NO_IMPLEMENT(SINGLE_THREAD_NOT_SUPPORTED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.singleThreadNotSupported", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.singleThreadNotSupported", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1052,8 +1004,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.methodNotImplemented", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.methodNotImplemented", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1084,8 +1035,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaLookupError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaLookupError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1112,8 +1062,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "POA.poaInactive", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.FINE, "POA.poaInactive", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1140,8 +1089,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaNoServantManager", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaNoServantManager", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1168,8 +1116,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaNoDefaultServant", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaNoDefaultServant", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1196,8 +1143,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaServantNotUnique", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaServantNotUnique", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1224,8 +1170,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaWrongPolicy", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaWrongPolicy", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1252,8 +1197,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.findpoaError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.findpoaError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1271,20 +1215,17 @@ public class POASystemException extends LogWrapperBase {
         return findpoaError(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int POA_SERVANT_ACTIVATOR_LOOKUP_FAILED = SUNVMCID.value
-            + 1009;
+    public static final int POA_SERVANT_ACTIVATOR_LOOKUP_FAILED = SUNVMCID.value + 1009;
 
-    public OBJ_ADAPTER poaServantActivatorLookupFailed(CompletionStatus cs,
-            Throwable t) {
-        OBJ_ADAPTER exc = new OBJ_ADAPTER(POA_SERVANT_ACTIVATOR_LOOKUP_FAILED,
-                cs);
+    public OBJ_ADAPTER poaServantActivatorLookupFailed(CompletionStatus cs, Throwable t) {
+        OBJ_ADAPTER exc = new OBJ_ADAPTER(POA_SERVANT_ACTIVATOR_LOOKUP_FAILED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaServantActivatorLookupFailed",
-                    parameters, POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaServantActivatorLookupFailed", parameters, POASystemException.class,
+                    exc);
         }
 
         return exc;
@@ -1295,13 +1236,11 @@ public class POASystemException extends LogWrapperBase {
     }
 
     public OBJ_ADAPTER poaServantActivatorLookupFailed(Throwable t) {
-        return poaServantActivatorLookupFailed(CompletionStatus.COMPLETED_NO,
-                t);
+        return poaServantActivatorLookupFailed(CompletionStatus.COMPLETED_NO, t);
     }
 
     public OBJ_ADAPTER poaServantActivatorLookupFailed() {
-        return poaServantActivatorLookupFailed(CompletionStatus.COMPLETED_NO,
-                null);
+        return poaServantActivatorLookupFailed(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int POA_BAD_SERVANT_MANAGER = SUNVMCID.value + 1010;
@@ -1313,8 +1252,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaBadServantManager", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaBadServantManager", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1332,20 +1270,17 @@ public class POASystemException extends LogWrapperBase {
         return poaBadServantManager(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int POA_SERVANT_LOCATOR_LOOKUP_FAILED = SUNVMCID.value
-            + 1011;
+    public static final int POA_SERVANT_LOCATOR_LOOKUP_FAILED = SUNVMCID.value + 1011;
 
-    public OBJ_ADAPTER poaServantLocatorLookupFailed(CompletionStatus cs,
-            Throwable t) {
-        OBJ_ADAPTER exc = new OBJ_ADAPTER(POA_SERVANT_LOCATOR_LOOKUP_FAILED,
-                cs);
+    public OBJ_ADAPTER poaServantLocatorLookupFailed(CompletionStatus cs, Throwable t) {
+        OBJ_ADAPTER exc = new OBJ_ADAPTER(POA_SERVANT_LOCATOR_LOOKUP_FAILED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaServantLocatorLookupFailed",
-                    parameters, POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaServantLocatorLookupFailed", parameters, POASystemException.class,
+                    exc);
         }
 
         return exc;
@@ -1360,8 +1295,7 @@ public class POASystemException extends LogWrapperBase {
     }
 
     public OBJ_ADAPTER poaServantLocatorLookupFailed() {
-        return poaServantLocatorLookupFailed(CompletionStatus.COMPLETED_NO,
-                null);
+        return poaServantLocatorLookupFailed(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int POA_UNKNOWN_POLICY = SUNVMCID.value + 1012;
@@ -1373,8 +1307,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaUnknownPolicy", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaUnknownPolicy", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1401,8 +1334,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.poaNotFound", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.poaNotFound", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1429,8 +1361,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantLookup", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantLookup", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1457,8 +1388,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.localServantLookup", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.localServantLookup", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1485,8 +1415,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.servantManagerBadType", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.servantManagerBadType", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1513,8 +1442,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.defaultPoaNotPoaimpl", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.defaultPoaNotPoaimpl", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1532,19 +1460,16 @@ public class POASystemException extends LogWrapperBase {
         return defaultPoaNotPoaimpl(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int WRONG_POLICIES_FOR_THIS_OBJECT = SUNVMCID.value
-            + 1018;
+    public static final int WRONG_POLICIES_FOR_THIS_OBJECT = SUNVMCID.value + 1018;
 
-    public OBJ_ADAPTER wrongPoliciesForThisObject(CompletionStatus cs,
-            Throwable t) {
+    public OBJ_ADAPTER wrongPoliciesForThisObject(CompletionStatus cs, Throwable t) {
         OBJ_ADAPTER exc = new OBJ_ADAPTER(WRONG_POLICIES_FOR_THIS_OBJECT, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.wrongPoliciesForThisObject", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.wrongPoliciesForThisObject", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1562,19 +1487,16 @@ public class POASystemException extends LogWrapperBase {
         return wrongPoliciesForThisObject(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int THIS_OBJECT_SERVANT_NOT_ACTIVE = SUNVMCID.value
-            + 1019;
+    public static final int THIS_OBJECT_SERVANT_NOT_ACTIVE = SUNVMCID.value + 1019;
 
-    public OBJ_ADAPTER thisObjectServantNotActive(CompletionStatus cs,
-            Throwable t) {
+    public OBJ_ADAPTER thisObjectServantNotActive(CompletionStatus cs, Throwable t) {
         OBJ_ADAPTER exc = new OBJ_ADAPTER(THIS_OBJECT_SERVANT_NOT_ACTIVE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.thisObjectServantNotActive", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.thisObjectServantNotActive", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1601,8 +1523,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.thisObjectWrongPolicy", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.thisObjectWrongPolicy", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1629,8 +1550,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "POA.noContext", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.FINE, "POA.noContext", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1657,8 +1577,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.incarnateReturnedNull", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.incarnateReturnedNull", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1689,8 +1608,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.jtsInitError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.jtsInitError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1710,16 +1628,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int PERSISTENT_SERVERID_NOT_SET = SUNVMCID.value + 1002;
 
-    public INITIALIZE persistentServeridNotSet(CompletionStatus cs,
-            Throwable t) {
+    public INITIALIZE persistentServeridNotSet(CompletionStatus cs, Throwable t) {
         INITIALIZE exc = new INITIALIZE(PERSISTENT_SERVERID_NOT_SET, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.persistentServeridNotSet", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.persistentServeridNotSet", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1737,19 +1653,16 @@ public class POASystemException extends LogWrapperBase {
         return persistentServeridNotSet(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int PERSISTENT_SERVERPORT_NOT_SET = SUNVMCID.value
-            + 1003;
+    public static final int PERSISTENT_SERVERPORT_NOT_SET = SUNVMCID.value + 1003;
 
-    public INITIALIZE persistentServerportNotSet(CompletionStatus cs,
-            Throwable t) {
+    public INITIALIZE persistentServerportNotSet(CompletionStatus cs, Throwable t) {
         INITIALIZE exc = new INITIALIZE(PERSISTENT_SERVERPORT_NOT_SET, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.persistentServerportNotSet", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.persistentServerportNotSet", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1776,8 +1689,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.orbdError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.orbdError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1804,8 +1716,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.bootstrapError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.bootstrapError", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1836,8 +1747,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "POA.poaDiscarding", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.FINE, "POA.poaDiscarding", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1868,8 +1778,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.otshookexception", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.otshookexception", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1896,8 +1805,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.unknownServerException", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.unknownServerException", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1924,8 +1832,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.unknownServerappException", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.unknownServerappException", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -1943,19 +1850,17 @@ public class POASystemException extends LogWrapperBase {
         return unknownServerappException(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int UNKNOWN_LOCALINVOCATION_ERROR = SUNVMCID.value
-            + 1004;
+    public static final int UNKNOWN_LOCALINVOCATION_ERROR = SUNVMCID.value + 1004;
 
-    public UNKNOWN unknownLocalinvocationError(CompletionStatus cs,
-            Throwable t) {
+    public UNKNOWN unknownLocalinvocationError(CompletionStatus cs, Throwable t) {
         UNKNOWN exc = new UNKNOWN(UNKNOWN_LOCALINVOCATION_ERROR, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.unknownLocalinvocationError", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.unknownLocalinvocationError", parameters, POASystemException.class,
+                    exc);
         }
 
         return exc;
@@ -1977,20 +1882,17 @@ public class POASystemException extends LogWrapperBase {
     // OBJECT_NOT_EXIST
     ///////////////////////////////////////////////////////////
 
-    public static final int ADAPTER_ACTIVATOR_NONEXISTENT = SUNVMCID.value
-            + 1001;
+    public static final int ADAPTER_ACTIVATOR_NONEXISTENT = SUNVMCID.value + 1001;
 
-    public OBJECT_NOT_EXIST adapterActivatorNonexistent(CompletionStatus cs,
-            Throwable t) {
-        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(
-                ADAPTER_ACTIVATOR_NONEXISTENT, cs);
+    public OBJECT_NOT_EXIST adapterActivatorNonexistent(CompletionStatus cs, Throwable t) {
+        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(ADAPTER_ACTIVATOR_NONEXISTENT, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.adapterActivatorNonexistent", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.adapterActivatorNonexistent", parameters, POASystemException.class,
+                    exc);
         }
 
         return exc;
@@ -2010,17 +1912,14 @@ public class POASystemException extends LogWrapperBase {
 
     public static final int ADAPTER_ACTIVATOR_FAILED = SUNVMCID.value + 1002;
 
-    public OBJECT_NOT_EXIST adapterActivatorFailed(CompletionStatus cs,
-            Throwable t) {
-        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(ADAPTER_ACTIVATOR_FAILED,
-                cs);
+    public OBJECT_NOT_EXIST adapterActivatorFailed(CompletionStatus cs, Throwable t) {
+        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(ADAPTER_ACTIVATOR_FAILED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.adapterActivatorFailed", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.adapterActivatorFailed", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -2047,8 +1946,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.badSkeleton", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.badSkeleton", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -2075,8 +1973,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "POA.nullServant", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.FINE, "POA.nullServant", parameters, POASystemException.class, exc);
         }
 
         return exc;
@@ -2103,8 +2000,7 @@ public class POASystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "POA.adapterDestroyed", parameters,
-                    POASystemException.class, exc);
+            doLog(Level.WARNING, "POA.adapterDestroyed", parameters, POASystemException.class, exc);
         }
 
         return exc;

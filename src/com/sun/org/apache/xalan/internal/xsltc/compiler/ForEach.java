@@ -108,8 +108,7 @@ final class ForEach extends Instruction {
 
             // <xsl:sort> cannot be applied to a result tree - issue warning
             if (sortObjects.size() > 0) {
-                ErrorMsg msg = new ErrorMsg(ErrorMsg.RESULT_TREE_SORT_ERR,
-                        this);
+                ErrorMsg msg = new ErrorMsg(ErrorMsg.RESULT_TREE_SORT_ERR, this);
                 getParser().reportError(WARNING, msg);
             }
 
@@ -123,8 +122,7 @@ final class ForEach extends Instruction {
         } else {
             // Compile node iterator
             if (sortObjects.size() > 0) {
-                Sort.translateSortIterator(classGen, methodGen, _select,
-                        sortObjects);
+                Sort.translateSortIterator(classGen, methodGen, _select, sortObjects);
             } else {
                 _select.translate(classGen, methodGen);
             }
@@ -168,13 +166,11 @@ final class ForEach extends Instruction {
      * code that pushes the default variable value on the stack and pops it into
      * the variable slot. This is done by the Variable.initialize() method. The
      * code that we compile for this loop looks like this:
-     *
      * initialize iterator initialize variables <-- HERE!!! goto Iterate Loop: :
      * : (code for <xsl:for-each> contents) : Iterate: node = iterator.next();
      * if (node != END) goto Loop
      */
-    public void initializeVariables(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void initializeVariables(ClassGenerator classGen, MethodGenerator methodGen) {
         final int n = elementCount();
         for (int i = 0; i < n; i++) {
             final SyntaxTreeNode child = getContents().get(i);

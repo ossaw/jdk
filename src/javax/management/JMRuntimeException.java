@@ -26,7 +26,7 @@ public class JMRuntimeException extends RuntimeException {
      * Constructor that allows a specific error message to be specified.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public JMRuntimeException(String message) {
         super(message);

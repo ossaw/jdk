@@ -65,7 +65,6 @@ import java.util.Objects;
  * This calendar system is primarily used in the Republic of China, often known
  * as Taiwan. Dates are aligned such that {@code 0001-01-01 (Minguo)} is
  * {@code 1912-01-01 (ISO)}.
- *
  * <p>
  * This is a <a href="{@docRoot}/java/lang/doc-files/ValueBased.html"
  * >value-based</a> class; use of identity-sensitive operations (including
@@ -74,11 +73,10 @@ import java.util.Objects;
  * avoided. The {@code equals} method should be used for comparisons.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
-public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
-        ChronoLocalDate, Serializable {
+public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements ChronoLocalDate,
+        Serializable {
 
     /**
      * Serialization version.
@@ -120,7 +118,7 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * testing because the clock is hard-coded.
      *
      * @param zone
-     *             the zone ID to use, not null
+     *        the zone ID to use, not null
      * @return the current date using the system clock, not null
      */
     public static MinguoDate now(ZoneId zone) {
@@ -136,10 +134,10 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * injection}.
      *
      * @param clock
-     *              the clock to use, not null
+     *        the clock to use, not null
      * @return the current date, not null
      * @throws DateTimeException
-     *                           if the current date cannot be obtained
+     *         if the current date cannot be obtained
      */
     public static MinguoDate now(Clock clock) {
         return new MinguoDate(LocalDate.now(clock));
@@ -153,20 +151,19 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * be valid for the year and month, otherwise an exception will be thrown.
      *
      * @param prolepticYear
-     *                      the Minguo proleptic-year
+     *        the Minguo proleptic-year
      * @param month
-     *                      the Minguo month-of-year, from 1 to 12
+     *        the Minguo month-of-year, from 1 to 12
      * @param dayOfMonth
-     *                      the Minguo day-of-month, from 1 to 31
+     *        the Minguo day-of-month, from 1 to 31
      * @return the date in Minguo calendar system, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
     public static MinguoDate of(int prolepticYear, int month, int dayOfMonth) {
-        return new MinguoDate(LocalDate.of(prolepticYear + YEARS_DIFFERENCE,
-                month, dayOfMonth));
+        return new MinguoDate(LocalDate.of(prolepticYear + YEARS_DIFFERENCE, month, dayOfMonth));
     }
 
     /**
@@ -185,10 +182,10 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * reference, {@code MinguoDate::from}.
      *
      * @param temporal
-     *                 the temporal object to convert, not null
+     *        the temporal object to convert, not null
      * @return the date in Minguo calendar system, not null
      * @throws DateTimeException
-     *                           if unable to convert to a {@code MinguoDate}
+     *         if unable to convert to a {@code MinguoDate}
      */
     public static MinguoDate from(TemporalAccessor temporal) {
         return MinguoChronology.INSTANCE.date(temporal);
@@ -199,7 +196,7 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * Creates an instance from an ISO date.
      *
      * @param isoDate
-     *                the standard local date, validated not null
+     *        the standard local date, validated not null
      */
     MinguoDate(LocalDate isoDate) {
         Objects.requireNonNull(isoDate, "isoDate");
@@ -259,16 +256,14 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
                         return isoDate.range(field);
                     case YEAR_OF_ERA: {
                         ValueRange range = YEAR.range();
-                        long max = (getProlepticYear() <= 0 ? -range
-                                .getMinimum() + 1 + YEARS_DIFFERENCE
+                        long max = (getProlepticYear() <= 0 ? -range.getMinimum() + 1 + YEARS_DIFFERENCE
                                 : range.getMaximum() - YEARS_DIFFERENCE);
                         return ValueRange.of(1, max);
                     }
                 }
                 return getChronology().range(f);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.rangeRefinedBy(this);
     }
@@ -281,8 +276,7 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
                     return getProlepticMonth();
                 case YEAR_OF_ERA: {
                     int prolepticYear = getProlepticYear();
-                    return (prolepticYear >= 1 ? prolepticYear
-                            : 1 - prolepticYear);
+                    return (prolepticYear >= 1 ? prolepticYear : 1 - prolepticYear);
                 }
                 case YEAR:
                     return getProlepticYear();
@@ -317,19 +311,15 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
                 case YEAR_OF_ERA:
                 case YEAR:
                 case ERA: {
-                    int nvalue = getChronology().range(f).checkValidIntValue(
-                            newValue, f);
+                    int nvalue = getChronology().range(f).checkValidIntValue(newValue, f);
                     switch (f) {
                         case YEAR_OF_ERA:
-                            return with(isoDate.withYear(getProlepticYear() >= 1
-                                    ? nvalue + YEARS_DIFFERENCE
+                            return with(isoDate.withYear(getProlepticYear() >= 1 ? nvalue + YEARS_DIFFERENCE
                                     : (1 - nvalue) + YEARS_DIFFERENCE));
                         case YEAR:
-                            return with(isoDate.withYear(nvalue
-                                    + YEARS_DIFFERENCE));
+                            return with(isoDate.withYear(nvalue + YEARS_DIFFERENCE));
                         case ERA:
-                            return with(isoDate.withYear((1
-                                    - getProlepticYear()) + YEARS_DIFFERENCE));
+                            return with(isoDate.withYear((1 - getProlepticYear()) + YEARS_DIFFERENCE));
                     }
                 }
             }
@@ -342,9 +332,9 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public MinguoDate with(TemporalAdjuster adjuster) {
@@ -355,9 +345,9 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public MinguoDate plus(TemporalAmount amount) {
@@ -368,9 +358,9 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public MinguoDate minus(TemporalAmount amount) {
@@ -441,8 +431,7 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
     @Override
     public ChronoPeriod until(ChronoLocalDate endDate) {
         Period period = isoDate.until(endDate);
-        return getChronology().period(period.getYears(), period.getMonths(),
-                period.getDays());
+        return getChronology().period(period.getYears(), period.getMonths(), period.getDays());
     }
 
     @Override // override for performance
@@ -463,7 +452,7 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * {@link ChronoField#EPOCH_DAY} as a comparator.
      *
      * @param obj
-     *            the object to check, null returns false
+     *        the object to check, null returns false
      * @return true if this is equal to the other date
      */
     @Override // override for performance
@@ -493,13 +482,12 @@ public final class MinguoDate extends ChronoLocalDateImpl<MinguoDate> implements
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     /**

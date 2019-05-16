@@ -17,7 +17,6 @@ public class GenericSignatureFormatError extends ClassFormatError {
 
     /**
      * Constructs a new {@code GenericSignatureFormatError}.
-     *
      */
     public GenericSignatureFormatError() {
         super();
@@ -28,7 +27,7 @@ public class GenericSignatureFormatError extends ClassFormatError {
      * message.
      *
      * @param message
-     *                the detail message, may be {@code null}
+     *        the detail message, may be {@code null}
      */
     public GenericSignatureFormatError(String message) {
         super(message);

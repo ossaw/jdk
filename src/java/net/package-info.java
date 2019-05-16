@@ -5,7 +5,6 @@
 
 /**
  * Provides the classes for implementing networking applications.
- *
  * <p>
  * The java.net package can be roughly divided in two sections:
  * </p>
@@ -122,7 +121,6 @@
  * or be a "loopback" interface that can only communicate with entities on the
  * same machine.
  * </p>
- *
  * <h2>High level API</h2>
  * <p>
  * A number of classes in the java.net package do provide for a much higher

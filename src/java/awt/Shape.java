@@ -43,7 +43,6 @@ import java.awt.geom.Rectangle2D;
  * @see java.awt.geom.AffineTransform
  * @see java.awt.geom.FlatteningPathIterator
  * @see java.awt.geom.GeneralPath
- *
  * @author Jim Graham
  * @since 1.2
  */
@@ -58,7 +57,6 @@ public interface Shape {
      * <code>Shape</code> overflows the limited range of the integer data type.
      * The <code>getBounds2D</code> method generally returns a tighter bounding
      * box due to its greater flexibility in representation.
-     *
      * <p>
      * Note that the <a href="{@docRoot}/java/awt/Shape.html#def_insideness"
      * > definition of insideness</a> can lead to situations where points on the
@@ -102,7 +100,6 @@ public interface Shape {
      * and never fails due to overflow problems since the return value can be an
      * instance of the <code>Rectangle2D</code> that uses double precision
      * values to store the dimensions.
-     *
      * <p>
      * Note that the <a href="{@docRoot}/java/awt/Shape.html#def_insideness"
      * > definition of insideness</a> can lead to situations where points on the
@@ -142,9 +139,9 @@ public interface Shape {
      * insideness</a>.
      * 
      * @param x
-     *          the specified X coordinate to be tested
+     *        the specified X coordinate to be tested
      * @param y
-     *          the specified Y coordinate to be tested
+     *        the specified Y coordinate to be tested
      * @return <code>true</code> if the specified coordinates are inside the
      *         <code>Shape</code> boundary; <code>false</code> otherwise.
      * @since 1.2
@@ -158,7 +155,7 @@ public interface Shape {
      * insideness</a>.
      * 
      * @param p
-     *          the specified <code>Point2D</code> to be tested
+     *        the specified <code>Point2D</code> to be tested
      * @return <code>true</code> if the specified <code>Point2D</code> is inside
      *         the boundary of the <code>Shape</code>; <code>false</code>
      *         otherwise.
@@ -187,15 +184,15 @@ public interface Shape {
      * objects and therefore can be used if a more precise answer is required.
      *
      * @param x
-     *          the X coordinate of the upper-left corner of the specified
-     *          rectangular area
+     *        the X coordinate of the upper-left corner of the specified
+     *        rectangular area
      * @param y
-     *          the Y coordinate of the upper-left corner of the specified
-     *          rectangular area
+     *        the Y coordinate of the upper-left corner of the specified
+     *        rectangular area
      * @param w
-     *          the width of the specified rectangular area
+     *        the width of the specified rectangular area
      * @param h
-     *          the height of the specified rectangular area
+     *        the height of the specified rectangular area
      * @return <code>true</code> if the interior of the <code>Shape</code> and
      *         the interior of the rectangular area intersect, or are both
      *         highly likely to intersect and intersection calculations would be
@@ -223,7 +220,7 @@ public interface Shape {
      * objects and therefore can be used if a more precise answer is required.
      *
      * @param r
-     *          the specified <code>Rectangle2D</code>
+     *        the specified <code>Rectangle2D</code>
      * @return <code>true</code> if the interior of the <code>Shape</code> and
      *         the interior of the specified <code>Rectangle2D</code> intersect,
      *         or are both highly likely to intersect and intersection
@@ -255,15 +252,15 @@ public interface Shape {
      * be used if a more precise answer is required.
      *
      * @param x
-     *          the X coordinate of the upper-left corner of the specified
-     *          rectangular area
+     *        the X coordinate of the upper-left corner of the specified
+     *        rectangular area
      * @param y
-     *          the Y coordinate of the upper-left corner of the specified
-     *          rectangular area
+     *        the Y coordinate of the upper-left corner of the specified
+     *        rectangular area
      * @param w
-     *          the width of the specified rectangular area
+     *        the width of the specified rectangular area
      * @param h
-     *          the height of the specified rectangular area
+     *        the height of the specified rectangular area
      * @return <code>true</code> if the interior of the <code>Shape</code>
      *         entirely contains the specified rectangular area;
      *         <code>false</code> otherwise or, if the <code>Shape</code>
@@ -294,7 +291,7 @@ public interface Shape {
      * therefore can be used if a more precise answer is required.
      *
      * @param r
-     *          The specified <code>Rectangle2D</code>
+     *        The specified <code>Rectangle2D</code>
      * @return <code>true</code> if the interior of the <code>Shape</code>
      *         entirely contains the <code>Rectangle2D</code>;
      *         <code>false</code> otherwise or, if the <code>Shape</code>
@@ -323,9 +320,9 @@ public interface Shape {
      * such iterations.
      *
      * @param at
-     *           an optional <code>AffineTransform</code> to be applied to the
-     *           coordinates as they are returned in the iteration, or
-     *           <code>null</code> if untransformed coordinates are desired
+     *        an optional <code>AffineTransform</code> to be applied to the
+     *        coordinates as they are returned in the iteration, or
+     *        <code>null</code> if untransformed coordinates are desired
      * @return a new <code>PathIterator</code> object, which independently
      *         traverses the geometry of the <code>Shape</code>.
      * @since 1.2
@@ -361,16 +358,16 @@ public interface Shape {
      * such iterations.
      *
      * @param at
-     *                 an optional <code>AffineTransform</code> to be applied to
-     *                 the
-     *                 coordinates as they are returned in the iteration, or
-     *                 <code>null</code> if untransformed coordinates are
-     *                 desired
+     *        an optional <code>AffineTransform</code> to be applied to
+     *        the
+     *        coordinates as they are returned in the iteration, or
+     *        <code>null</code> if untransformed coordinates are
+     *        desired
      * @param flatness
-     *                 the maximum distance that the line segments used to
-     *                 approximate the curved segments are allowed to deviate
-     *                 from
-     *                 any point on the original curve
+     *        the maximum distance that the line segments used to
+     *        approximate the curved segments are allowed to deviate
+     *        from
+     *        any point on the original curve
      * @return a new <code>PathIterator</code> that independently traverses a
      *         flattened view of the geometry of the <code>Shape</code>.
      * @since 1.2

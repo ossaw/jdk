@@ -45,14 +45,10 @@ public class MotifTabbedPaneUI extends BasicTabbedPaneUI {
     protected void installDefaults() {
         super.installDefaults();
 
-        unselectedTabBackground = UIManager.getColor(
-                "TabbedPane.unselectedTabBackground");
-        unselectedTabForeground = UIManager.getColor(
-                "TabbedPane.unselectedTabForeground");
-        unselectedTabShadow = UIManager.getColor(
-                "TabbedPane.unselectedTabShadow");
-        unselectedTabHighlight = UIManager.getColor(
-                "TabbedPane.unselectedTabHighlight");
+        unselectedTabBackground = UIManager.getColor("TabbedPane.unselectedTabBackground");
+        unselectedTabForeground = UIManager.getColor("TabbedPane.unselectedTabForeground");
+        unselectedTabShadow = UIManager.getColor("TabbedPane.unselectedTabShadow");
+        unselectedTabHighlight = UIManager.getColor("TabbedPane.unselectedTabHighlight");
     }
 
     protected void uninstallDefaults() {
@@ -66,17 +62,15 @@ public class MotifTabbedPaneUI extends BasicTabbedPaneUI {
 
     // UI Rendering
 
-    protected void paintContentBorderTopEdge(Graphics g, int tabPlacement,
-            int selectedIndex, int x, int y, int w, int h) {
-        Rectangle selRect = selectedIndex < 0 ? null
-                : getTabBounds(selectedIndex, calcRect);
+    protected void paintContentBorderTopEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y,
+            int w, int h) {
+        Rectangle selRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
         g.setColor(lightHighlight);
 
         // Draw unbroken line if tabs are not on TOP, OR
         // selected tab is not visible (SCROLL_TAB_LAYOUT)
         //
-        if (tabPlacement != TOP || selectedIndex < 0 || (selRect.x < x
-                || selRect.x > x + w)) {
+        if (tabPlacement != TOP || selectedIndex < 0 || (selRect.x < x || selRect.x > x + w)) {
             g.drawLine(x, y, x + w - 2, y);
         } else {
             // Break line to show visual connection to selected tab
@@ -87,53 +81,46 @@ public class MotifTabbedPaneUI extends BasicTabbedPaneUI {
         }
     }
 
-    protected void paintContentBorderBottomEdge(Graphics g, int tabPlacement,
-            int selectedIndex, int x, int y, int w, int h) {
-        Rectangle selRect = selectedIndex < 0 ? null
-                : getTabBounds(selectedIndex, calcRect);
+    protected void paintContentBorderBottomEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y,
+            int w, int h) {
+        Rectangle selRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
         g.setColor(shadow);
 
         // Draw unbroken line if tabs are not on BOTTOM, OR
         // selected tab is not visible (SCROLL_TAB_LAYOUT)
         //
-        if (tabPlacement != BOTTOM || selectedIndex < 0 || (selRect.x < x
-                || selRect.x > x + w)) {
+        if (tabPlacement != BOTTOM || selectedIndex < 0 || (selRect.x < x || selRect.x > x + w)) {
             g.drawLine(x + 1, y + h - 1, x + w - 1, y + h - 1);
         } else {
             // Break line to show visual connection to selected tab
             g.drawLine(x + 1, y + h - 1, selRect.x - 1, y + h - 1);
             if (selRect.x + selRect.width < x + w - 2) {
-                g.drawLine(selRect.x + selRect.width, y + h - 1, x + w - 2, y
-                        + h - 1);
+                g.drawLine(selRect.x + selRect.width, y + h - 1, x + w - 2, y + h - 1);
             }
         }
     }
 
-    protected void paintContentBorderRightEdge(Graphics g, int tabPlacement,
-            int selectedIndex, int x, int y, int w, int h) {
-        Rectangle selRect = selectedIndex < 0 ? null
-                : getTabBounds(selectedIndex, calcRect);
+    protected void paintContentBorderRightEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y,
+            int w, int h) {
+        Rectangle selRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
         g.setColor(shadow);
         // Draw unbroken line if tabs are not on RIGHT, OR
         // selected tab is not visible (SCROLL_TAB_LAYOUT)
         //
-        if (tabPlacement != RIGHT || selectedIndex < 0 || (selRect.y < y
-                || selRect.y > y + h)) {
+        if (tabPlacement != RIGHT || selectedIndex < 0 || (selRect.y < y || selRect.y > y + h)) {
             g.drawLine(x + w - 1, y + 1, x + w - 1, y + h - 1);
         } else {
             // Break line to show visual connection to selected tab
             g.drawLine(x + w - 1, y + 1, x + w - 1, selRect.y - 1);
             if (selRect.y + selRect.height < y + h - 2) {
-                g.drawLine(x + w - 1, selRect.y + selRect.height, x + w - 1, y
-                        + h - 2);
+                g.drawLine(x + w - 1, selRect.y + selRect.height, x + w - 1, y + h - 2);
             }
         }
     }
 
-    protected void paintTabBackground(Graphics g, int tabPlacement,
-            int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-        g.setColor(isSelected ? tabPane.getBackgroundAt(tabIndex)
-                : unselectedTabBackground);
+    protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h,
+            boolean isSelected) {
+        g.setColor(isSelected ? tabPane.getBackgroundAt(tabIndex) : unselectedTabBackground);
         switch (tabPlacement) {
             case LEFT:
                 g.fillRect(x + 1, y + 1, w - 1, h - 2);
@@ -155,8 +142,8 @@ public class MotifTabbedPaneUI extends BasicTabbedPaneUI {
 
     }
 
-    protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex,
-            int x, int y, int w, int h, boolean isSelected) {
+    protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h,
+            boolean isSelected) {
         g.setColor(isSelected ? lightHighlight : unselectedTabHighlight);
 
         switch (tabPlacement) {
@@ -204,9 +191,8 @@ public class MotifTabbedPaneUI extends BasicTabbedPaneUI {
 
     }
 
-    protected void paintFocusIndicator(Graphics g, int tabPlacement,
-            Rectangle[] rects, int tabIndex, Rectangle iconRect,
-            Rectangle textRect, boolean isSelected) {
+    protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex,
+            Rectangle iconRect, Rectangle textRect, boolean isSelected) {
         Rectangle tabRect = rects[tabIndex];
         if (tabPane.hasFocus() && isSelected) {
             int x, y, w, h;
@@ -246,9 +232,8 @@ public class MotifTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     protected int getTabRunOverlay(int tabPlacement) {
-        tabRunOverlay = (tabPlacement == LEFT || tabPlacement == RIGHT)
-                ? (int) Math.round((float) maxTabWidth * .10)
-                : (int) Math.round((float) maxTabHeight * .22);
+        tabRunOverlay = (tabPlacement == LEFT || tabPlacement == RIGHT) ? (int) Math.round((float) maxTabWidth
+                * .10) : (int) Math.round((float) maxTabHeight * .22);
 
         // Ensure that runover lay is not more than insets
         // 2 pixel offset is set from insets to each run

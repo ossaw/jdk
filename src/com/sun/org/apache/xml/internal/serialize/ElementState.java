@@ -23,7 +23,6 @@ import java.util.Map;
 /**
  * Holds the state of the currently serialized element.
  *
- *
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @see BaseMarkupSerializer
  */

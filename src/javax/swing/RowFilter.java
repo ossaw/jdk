@@ -52,8 +52,7 @@ import java.util.regex.PatternSyntaxException;
  * 
  * <pre>
  * RowFilter&lt;PersonModel, Integer&gt; ageFilter = new RowFilter&lt;PersonModel, Integer&gt;() {
- *     public boolean include(
- *             Entry&lt;? extends PersonModel, ? extends Integer&gt; entry) {
+ *     public boolean include(Entry&lt;? extends PersonModel, ? extends Integer&gt; entry) {
  *         PersonModel personModel = entry.getModel();
  *         Person person = personModel.getPerson(entry.getIdentifier());
  *         if (person.getAge() &gt; 20) {
@@ -86,29 +85,29 @@ public abstract class RowFilter<M, I> {
      * @since 1.6
      */
     public enum ComparisonType {
-    /**
-     * Indicates that entries with a value before the supplied value should
-     * be included.
-     */
-    BEFORE,
+        /**
+         * Indicates that entries with a value before the supplied value should
+         * be included.
+         */
+        BEFORE,
 
-    /**
-     * Indicates that entries with a value after the supplied value should
-     * be included.
-     */
-    AFTER,
+        /**
+         * Indicates that entries with a value after the supplied value should
+         * be included.
+         */
+        AFTER,
 
-    /**
-     * Indicates that entries with a value equal to the supplied value
-     * should be included.
-     */
-    EQUAL,
+        /**
+         * Indicates that entries with a value equal to the supplied value
+         * should be included.
+         */
+        EQUAL,
 
-    /**
-     * Indicates that entries with a value not equal to the supplied value
-     * should be included.
-     */
-    NOT_EQUAL
+        /**
+         * Indicates that entries with a value not equal to the supplied value
+         * should be included.
+         */
+        NOT_EQUAL
     }
 
     /**
@@ -142,27 +141,25 @@ public abstract class RowFilter<M, I> {
      * description of the supported regular-expression constructs.
      *
      * @param regex
-     *                the regular expression to filter on
+     *        the regular expression to filter on
      * @param indices
-     *                the indices of the values to check. If not supplied all
-     *                values
-     *                are evaluated
+     *        the indices of the values to check. If not supplied all
+     *        values
+     *        are evaluated
      * @return a <code>RowFilter</code> implementing the specified criteria
      * @throws NullPointerException
-     *                                  if <code>regex</code> is
-     *                                  <code>null</code>
+     *         if <code>regex</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if any of the <code>indices</code> are
-     *                                  &lt; 0
+     *         if any of the <code>indices</code> are
+     *         &lt; 0
      * @throws PatternSyntaxException
-     *                                  if <code>regex</code> is not a valid
-     *                                  regular expression.
+     *         if <code>regex</code> is not a valid
+     *         regular expression.
      * @see java.util.regex.Pattern
      */
-    public static <M, I> RowFilter<M, I> regexFilter(String regex,
-            int... indices) {
-        return (RowFilter<M, I>) new RegexFilter(Pattern.compile(regex),
-                indices);
+    public static <M, I> RowFilter<M, I> regexFilter(String regex, int... indices) {
+        return (RowFilter<M, I>) new RegexFilter(Pattern.compile(regex), indices);
     }
 
     /**
@@ -176,26 +173,25 @@ public abstract class RowFilter<M, I> {
      * </pre>
      *
      * @param type
-     *                the type of comparison to perform
+     *        the type of comparison to perform
      * @param date
-     *                the date to compare against
+     *        the date to compare against
      * @param indices
-     *                the indices of the values to check. If not supplied all
-     *                values
-     *                are evaluated
+     *        the indices of the values to check. If not supplied all
+     *        values
+     *        are evaluated
      * @return a <code>RowFilter</code> implementing the specified criteria
      * @throws NullPointerException
-     *                                  if <code>date</code> is
-     *                                  <code>null</code>
+     *         if <code>date</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if any of the <code>indices</code> are
-     *                                  &lt; 0 or
-     *                                  <code>type</code> is <code>null</code>
+     *         if any of the <code>indices</code> are
+     *         &lt; 0 or
+     *         <code>type</code> is <code>null</code>
      * @see java.util.Calendar
      * @see java.util.Date
      */
-    public static <M, I> RowFilter<M, I> dateFilter(ComparisonType type,
-            Date date, int... indices) {
+    public static <M, I> RowFilter<M, I> dateFilter(ComparisonType type, Date date, int... indices) {
         return (RowFilter<M, I>) new DateFilter(type, date.getTime(), indices);
     }
 
@@ -210,21 +206,20 @@ public abstract class RowFilter<M, I> {
      * </pre>
      *
      * @param type
-     *                the type of comparison to perform
+     *        the type of comparison to perform
      * @param indices
-     *                the indices of the values to check. If not supplied all
-     *                values
-     *                are evaluated
+     *        the indices of the values to check. If not supplied all
+     *        values
+     *        are evaluated
      * @return a <code>RowFilter</code> implementing the specified criteria
      * @throws IllegalArgumentException
-     *                                  if any of the <code>indices</code> are
-     *                                  &lt; 0,
-     *                                  <code>type</code> is <code>null</code>
-     *                                  or <code>number</code>
-     *                                  is <code>null</code>
+     *         if any of the <code>indices</code> are
+     *         &lt; 0,
+     *         <code>type</code> is <code>null</code>
+     *         or <code>number</code>
+     *         is <code>null</code>
      */
-    public static <M, I> RowFilter<M, I> numberFilter(ComparisonType type,
-            Number number, int... indices) {
+    public static <M, I> RowFilter<M, I> numberFilter(ComparisonType type, Number number, int... indices) {
         return (RowFilter<M, I>) new NumberFilter(type, number, indices);
     }
 
@@ -236,20 +231,19 @@ public abstract class RowFilter<M, I> {
      * any entries containing the string "foo" or the string "bar":
      * 
      * <pre>
-     * List&lt;RowFilter&lt;Object, Object&gt;&gt; filters = new ArrayList&lt;RowFilter&lt;Object, Object&gt;&gt;(
-     *         2);
+     * List&lt;RowFilter&lt;Object, Object&gt;&gt; filters = new ArrayList&lt;RowFilter&lt;Object, Object&gt;&gt;(2);
      * filters.add(RowFilter.regexFilter("foo"));
      * filters.add(RowFilter.regexFilter("bar"));
      * RowFilter&lt;Object, Object&gt; fooBarFilter = RowFilter.orFilter(filters);
      * </pre>
      *
      * @param filters
-     *                the <code>RowFilter</code>s to test
+     *        the <code>RowFilter</code>s to test
      * @throws IllegalArgumentException
-     *                                  if any of the filters are
-     *                                  <code>null</code>
+     *         if any of the filters are
+     *         <code>null</code>
      * @throws NullPointerException
-     *                                  if <code>filters</code> is null
+     *         if <code>filters</code> is null
      * @return a <code>RowFilter</code> implementing the specified criteria
      * @see java.util.Arrays#asList
      */
@@ -266,21 +260,20 @@ public abstract class RowFilter<M, I> {
      * any entries containing the string "foo" and the string "bar":
      * 
      * <pre>
-     * List&lt;RowFilter&lt;Object, Object&gt;&gt; filters = new ArrayList&lt;RowFilter&lt;Object, Object&gt;&gt;(
-     *         2);
+     * List&lt;RowFilter&lt;Object, Object&gt;&gt; filters = new ArrayList&lt;RowFilter&lt;Object, Object&gt;&gt;(2);
      * filters.add(RowFilter.regexFilter("foo"));
      * filters.add(RowFilter.regexFilter("bar"));
      * RowFilter&lt;Object, Object&gt; fooBarFilter = RowFilter.andFilter(filters);
      * </pre>
      *
      * @param filters
-     *                the <code>RowFilter</code>s to test
+     *        the <code>RowFilter</code>s to test
      * @return a <code>RowFilter</code> implementing the specified criteria
      * @throws IllegalArgumentException
-     *                                  if any of the filters are
-     *                                  <code>null</code>
+     *         if any of the filters are
+     *         <code>null</code>
      * @throws NullPointerException
-     *                                  if <code>filters</code> is null
+     *         if <code>filters</code> is null
      * @see java.util.Arrays#asList
      */
     public static <M, I> RowFilter<M, I> andFilter(
@@ -293,11 +286,11 @@ public abstract class RowFilter<M, I> {
      * filter does not include the entry.
      *
      * @param filter
-     *               the <code>RowFilter</code> to negate
+     *        the <code>RowFilter</code> to negate
      * @return a <code>RowFilter</code> implementing the specified criteria
      * @throws IllegalArgumentException
-     *                                  if <code>filter</code> is
-     *                                  <code>null</code>
+     *         if <code>filter</code> is
+     *         <code>null</code>
      */
     public static <M, I> RowFilter<M, I> notFilter(RowFilter<M, I> filter) {
         return new NotFilter<M, I>(filter);
@@ -312,8 +305,8 @@ public abstract class RowFilter<M, I> {
      * undefined behavior.
      *
      * @param entry
-     *              a non-<code>null</code> object that wraps the underlying
-     *              object from the model
+     *        a non-<code>null</code> object that wraps the underlying
+     *        object from the model
      * @return true if the entry should be shown
      */
     public abstract boolean include(Entry<? extends M, ? extends I> entry);
@@ -369,11 +362,11 @@ public abstract class RowFilter<M, I> {
          * column number in the model.
          *
          * @param index
-         *              the index of the value to get
+         *        the index of the value to get
          * @return value at the specified index
          * @throws IndexOutOfBoundsException
-         *                                   if index &lt; 0 or &gt;=
-         *                                   getValueCount
+         *         if index &lt; 0 or &gt;=
+         *         getValueCount
          */
         public abstract Object getValue(int index);
 
@@ -389,11 +382,11 @@ public abstract class RowFilter<M, I> {
          * different string conversion should override this method if necessary.
          *
          * @param index
-         *              the index of the value to get
+         *        the index of the value to get
          * @return {@code non-null} string at the specified index
          * @throws IndexOutOfBoundsException
-         *                                   if index &lt; 0 || &gt;=
-         *                                   getValueCount
+         *         if index &lt; 0 || &gt;=
+         *         getValueCount
          */
         public String getStringValue(int index) {
             Object value = getValue(index);
@@ -410,8 +403,7 @@ public abstract class RowFilter<M, I> {
         public abstract I getIdentifier();
     }
 
-    private static abstract class GeneralFilter extends
-            RowFilter<Object, Object> {
+    private static abstract class GeneralFilter extends RowFilter<Object, Object> {
         private int[] columns;
 
         GeneralFilter(int[] columns) {
@@ -419,8 +411,7 @@ public abstract class RowFilter<M, I> {
             this.columns = columns;
         }
 
-        public boolean include(
-                Entry<? extends Object, ? extends Object> value) {
+        public boolean include(Entry<? extends Object, ? extends Object> value) {
             int count = value.getValueCount();
             if (columns.length > 0) {
                 for (int i = columns.length - 1; i >= 0; i--) {
@@ -441,8 +432,7 @@ public abstract class RowFilter<M, I> {
             return false;
         }
 
-        protected abstract boolean include(
-                Entry<? extends Object, ? extends Object> value, int index);
+        protected abstract boolean include(Entry<? extends Object, ? extends Object> value, int index);
     }
 
     private static class RegexFilter extends GeneralFilter {
@@ -456,8 +446,7 @@ public abstract class RowFilter<M, I> {
             matcher = regex.matcher("");
         }
 
-        protected boolean include(
-                Entry<? extends Object, ? extends Object> value, int index) {
+        protected boolean include(Entry<? extends Object, ? extends Object> value, int index) {
             matcher.reset(value.getStringValue(index));
             return matcher.find();
         }
@@ -476,8 +465,7 @@ public abstract class RowFilter<M, I> {
             this.date = date;
         }
 
-        protected boolean include(
-                Entry<? extends Object, ? extends Object> value, int index) {
+        protected boolean include(Entry<? extends Object, ? extends Object> value, int index) {
             Object v = value.getValue(index);
 
             if (v instanceof Date) {
@@ -507,8 +495,7 @@ public abstract class RowFilter<M, I> {
         NumberFilter(ComparisonType type, Number number, int[] columns) {
             super(columns);
             if (type == null || number == null) {
-                throw new IllegalArgumentException(
-                        "type and number must be non-null");
+                throw new IllegalArgumentException("type and number must be non-null");
             }
             this.type = type;
             this.number = number;
@@ -516,8 +503,7 @@ public abstract class RowFilter<M, I> {
         }
 
         @SuppressWarnings("unchecked")
-        protected boolean include(
-                Entry<? extends Object, ? extends Object> value, int index) {
+        protected boolean include(Entry<? extends Object, ? extends Object> value, int index) {
             Object v = value.getValue(index);
 
             if (v instanceof Number) {
@@ -564,8 +550,7 @@ public abstract class RowFilter<M, I> {
             this.filters = new ArrayList<RowFilter<? super M, ? super I>>();
             for (RowFilter<? super M, ? super I> filter : filters) {
                 if (filter == null) {
-                    throw new IllegalArgumentException(
-                            "Filter must be non-null");
+                    throw new IllegalArgumentException("Filter must be non-null");
                 }
                 this.filters.add(filter);
             }

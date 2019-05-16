@@ -28,9 +28,8 @@ public final class ServerDef implements org.omg.CORBA.portable.IDLEntity {
 
     public ServerDef() {} // ctor
 
-    public ServerDef(String _applicationName, String _serverName,
-            String _serverClassPath, String _serverArgs, String _serverVmArgs,
-            boolean _isInstalled) {
+    public ServerDef(String _applicationName, String _serverName, String _serverClassPath, String _serverArgs,
+            String _serverVmArgs, boolean _isInstalled) {
         applicationName = _applicationName;
         serverName = _serverName;
         serverClassPath = _serverClassPath;

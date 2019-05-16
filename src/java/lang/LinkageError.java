@@ -10,7 +10,6 @@ package java.lang;
  * on another class; however, the latter class has incompatibly changed after
  * the compilation of the former class.
  *
- *
  * @author Frank Yellin
  * @since JDK1.0
  */
@@ -28,7 +27,7 @@ public class LinkageError extends Error {
      * Constructs a {@code LinkageError} with the specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public LinkageError(String s) {
         super(s);
@@ -39,9 +38,9 @@ public class LinkageError extends Error {
      * cause.
      *
      * @param s
-     *              the detail message.
+     *        the detail message.
      * @param cause
-     *              the cause, may be {@code null}
+     *        the cause, may be {@code null}
      * @since 1.7
      */
     public LinkageError(String s, Throwable cause) {

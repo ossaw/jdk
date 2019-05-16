@@ -59,7 +59,6 @@ import javax.accessibility.*;
  * @see javax.swing.RootPaneContainer
  * @beaninfo attribute: isContainer true attribute: containerDelegate
  *           getContentPane description: Swing's Applet subclass.
- *
  * @author Arnaud Weber
  */
 public class JApplet extends Applet implements Accessible, RootPaneContainer,
@@ -93,8 +92,8 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * returned by <code>JComponent.getDefaultLocale</code>.
      *
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -160,13 +159,11 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * <em>The Java Tutorial</em>, for more information.
      *
      * @param newHandler
-     *                   the new {@code TransferHandler}
-     *
+     *        the new {@code TransferHandler}
      * @see TransferHandler
      * @see #getTransferHandler
      * @see java.awt.Component#setDropTarget
      * @since 1.6
-     *
      * @beaninfo bound: true hidden: true description: Mechanism for transfer of
      *           data into the component
      */
@@ -181,7 +178,6 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * Gets the <code>transferHandler</code> property.
      *
      * @return the value of the <code>transferHandler</code> property
-     *
      * @see TransferHandler
      * @see #setTransferHandler
      * @since 1.6
@@ -202,10 +198,8 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * Sets the menubar for this applet.
      * 
      * @param menuBar
-     *                the menubar being placed in the applet
-     *
+     *        the menubar being placed in the applet
      * @see #getJMenuBar
-     *
      * @beaninfo hidden: true description: The menubar for accessing pulldown
      *           menus from this applet.
      */
@@ -228,7 +222,6 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      *
      * @return true if <code>add</code> and <code>setLayout</code> are
      *         forwarded; false otherwise
-     *
      * @see #addImpl
      * @see #setLayout
      * @see #setRootPaneCheckingEnabled
@@ -243,10 +236,9 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * forwarded to the <code>contentPane</code>.
      *
      * @param enabled
-     *                true if <code>add</code> and <code>setLayout</code> are
-     *                forwarded, false if they should operate directly on the
-     *                <code>JApplet</code>.
-     *
+     *        true if <code>add</code> and <code>setLayout</code> are
+     *        forwarded, false if they should operate directly on the
+     *        <code>JApplet</code>.
      * @see #addImpl
      * @see #setLayout
      * @see #isRootPaneCheckingEnabled
@@ -265,19 +257,18 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * of the frame, refer to {@link javax.swing.RootPaneContainer} for details.
      *
      * @param comp
-     *                    the component to be enhanced
+     *        the component to be enhanced
      * @param constraints
-     *                    the constraints to be respected
+     *        the constraints to be respected
      * @param index
-     *                    the index
+     *        the index
      * @exception IllegalArgumentException
-     *                                     if <code>index</code> is invalid
+     *            if <code>index</code> is invalid
      * @exception IllegalArgumentException
-     *                                     if adding the container's parent to
-     *                                     itself
+     *            if adding the container's parent to
+     *            itself
      * @exception IllegalArgumentException
-     *                                     if adding a window to a container
-     *
+     *            if adding a window to a container
      * @see #setRootPaneCheckingEnabled
      * @see javax.swing.RootPaneContainer
      */
@@ -296,9 +287,9 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * not a child of the <code>JFrame</code> or <code>contentPane</code>.
      *
      * @param comp
-     *             the component to be removed
+     *        the component to be removed
      * @throws NullPointerException
-     *                              if <code>comp</code> is null
+     *         if <code>comp</code> is null
      * @see #add
      * @see javax.swing.RootPaneContainer
      */
@@ -316,7 +307,7 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * {@link javax.swing.RootPaneContainer} for more information.
      *
      * @param manager
-     *                the <code>LayoutManager</code>
+     *        the <code>LayoutManager</code>
      * @see #setRootPaneCheckingEnabled
      * @see javax.swing.RootPaneContainer
      */
@@ -342,10 +333,8 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * Sets the rootPane property. This method is called by the constructor.
      * 
      * @param root
-     *             the rootPane object for this applet
-     *
+     *        the rootPane object for this applet
      * @see #getRootPane
-     *
      * @beaninfo hidden: true description: the RootPane object for this applet.
      */
     protected void setRootPane(JRootPane root) {
@@ -378,14 +367,12 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * Sets the contentPane property. This method is called by the constructor.
      * 
      * @param contentPane
-     *                    the contentPane object for this applet
-     *
+     *        the contentPane object for this applet
      * @exception java.awt.IllegalComponentStateException
      *            (a runtime exception) if the content pane parameter is
      *            null
      * @see #getContentPane
      * @see RootPaneContainer#setContentPane
-     *
      * @beaninfo hidden: true description: The client area of the applet where
      *           child components are normally inserted.
      */
@@ -410,11 +397,9 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * Sets the layeredPane property. This method is called by the constructor.
      * 
      * @param layeredPane
-     *                    the layeredPane object for this applet
-     *
+     *        the layeredPane object for this applet
      * @see #getLayeredPane
      * @see RootPaneContainer#setLayeredPane
-     *
      * @beaninfo hidden: true description: The pane which holds the various
      *           applet layers.
      */
@@ -436,11 +421,9 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * Sets the glassPane property. This method is called by the constructor.
      * 
      * @param glassPane
-     *                  the glassPane object for this applet
-     *
+     *        the glassPane object for this applet
      * @see #getGlassPane
      * @see RootPaneContainer#setGlassPane
-     *
      * @beaninfo hidden: true description: A transparent pane used for menu
      *           rendering.
      */
@@ -464,22 +447,21 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      * details on how the repaint is handled.
      *
      * @param time
-     *               maximum time in milliseconds before update
+     *        maximum time in milliseconds before update
      * @param x
-     *               the <i>x</i> coordinate
+     *        the <i>x</i> coordinate
      * @param y
-     *               the <i>y</i> coordinate
+     *        the <i>y</i> coordinate
      * @param width
-     *               the width
+     *        the width
      * @param height
-     *               the height
+     *        the height
      * @see RepaintManager
      * @since 1.6
      */
     public void repaint(long time, int x, int y, int width, int height) {
         if (RepaintManager.HANDLE_TOP_LEVEL_PAINT) {
-            RepaintManager.currentManager(this).addDirtyRegion(this, x, y,
-                    width, height);
+            RepaintManager.currentManager(this).addDirtyRegion(this, x, y, width, height);
         } else {
             super.repaint(time, x, y, width, height);
         }
@@ -495,11 +477,10 @@ public class JApplet extends Applet implements Accessible, RootPaneContainer,
      */
     protected String paramString() {
         String rootPaneString = (rootPane != null ? rootPane.toString() : "");
-        String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true"
-                : "false");
+        String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true" : "false");
 
-        return super.paramString() + ",rootPane=" + rootPaneString
-                + ",rootPaneCheckingEnabled=" + rootPaneCheckingEnabledString;
+        return super.paramString() + ",rootPane=" + rootPaneString + ",rootPaneCheckingEnabled="
+                + rootPaneCheckingEnabledString;
     }
 
     /////////////////

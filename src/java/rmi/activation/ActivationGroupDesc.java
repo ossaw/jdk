@@ -23,13 +23,11 @@ import java.util.Properties;
  * data.
  * </ul>
  * <p>
- *
  * The group's class must be a concrete subclass of <code>ActivationGroup</code>
  * . A subclass of <code>ActivationGroup</code> is created/recreated via the
  * <code>ActivationGroup.createGroup</code> static method that invokes a special
  * constructor that takes two arguments:
  * <ul>
- *
  * <li>the group's <code>ActivationGroupID</code>, and
  * <li>the group's initialization data (in a
  * <code>java.rmi.MarshalledObject</code>)
@@ -79,18 +77,17 @@ public final class ActivationGroupDesc implements Serializable {
      * implementation's VM). The command environment can control the exact
      * command/options used in starting the child VM, or can be
      * <code>null</code> to accept rmid's default.
-     *
      * <p>
      * This constructor will create an <code>ActivationGroupDesc</code> with a
      * <code>null</code> group class name, which indicates the system's default
      * <code>ActivationGroup</code> implementation.
      *
      * @param overrides
-     *                  the set of properties to set when the group is
-     *                  recreated.
+     *        the set of properties to set when the group is
+     *        recreated.
      * @param cmd
-     *                  the controlling options for executing the VM in another
-     *                  process (or <code>null</code>).
+     *        the controlling options for executing the VM in another
+     *        process (or <code>null</code>).
      * @since 1.2
      */
     public ActivationGroupDesc(Properties overrides, CommandEnvironment cmd) {
@@ -102,30 +99,29 @@ public final class ActivationGroupDesc implements Serializable {
      * be used for the group.
      *
      * @param className
-     *                  the group's package qualified class name or
-     *                  <code>null</code>.
-     *                  A <code>null</code> group class name indicates the
-     *                  system's
-     *                  default <code>ActivationGroup</code> implementation.
+     *        the group's package qualified class name or
+     *        <code>null</code>.
+     *        A <code>null</code> group class name indicates the
+     *        system's
+     *        default <code>ActivationGroup</code> implementation.
      * @param location
-     *                  the location from where to load the group's class
+     *        the location from where to load the group's class
      * @param data
-     *                  the group's initialization data contained in marshalled
-     *                  form
-     *                  (could contain properties, for example)
+     *        the group's initialization data contained in marshalled
+     *        form
+     *        (could contain properties, for example)
      * @param overrides
-     *                  a properties map which will override those set by
-     *                  default in
-     *                  the subprocess environment (will be translated into
-     *                  <code>-D</code> options), or <code>null</code>.
+     *        a properties map which will override those set by
+     *        default in
+     *        the subprocess environment (will be translated into
+     *        <code>-D</code> options), or <code>null</code>.
      * @param cmd
-     *                  the controlling options for executing the VM in another
-     *                  process (or <code>null</code>).
+     *        the controlling options for executing the VM in another
+     *        process (or <code>null</code>).
      * @since 1.2
      */
-    public ActivationGroupDesc(String className, String location,
-            MarshalledObject<?> data, Properties overrides,
-            CommandEnvironment cmd) {
+    public ActivationGroupDesc(String className, String location, MarshalledObject<?> data,
+            Properties overrides, CommandEnvironment cmd) {
         this.props = overrides;
         this.env = cmd;
         this.data = data;
@@ -187,7 +183,6 @@ public final class ActivationGroupDesc implements Serializable {
 
     /**
      * Startup options for ActivationGroup implementations.
-     *
      * This class allows overriding default system properties and specifying
      * implementation-defined options for ActivationGroups.
      * 
@@ -210,19 +205,18 @@ public final class ActivationGroupDesc implements Serializable {
          * Create a CommandEnvironment with all the necessary information.
          *
          * @param cmdpath
-         *                the name of the java executable, including the full
-         *                path,
-         *                or <code>null</code>, meaning "use rmid's default".
-         *                The
-         *                named program <em>must</em> be able to accept multiple
-         *                <code>-Dpropname=value</code> options (as documented
-         *                for
-         *                the "java" tool)
-         *
+         *        the name of the java executable, including the full
+         *        path,
+         *        or <code>null</code>, meaning "use rmid's default".
+         *        The
+         *        named program <em>must</em> be able to accept multiple
+         *        <code>-Dpropname=value</code> options (as documented
+         *        for
+         *        the "java" tool)
          * @param argv
-         *                extra options which will be used in creating the
-         *                ActivationGroup. Null has the same effect as an empty
-         *                list.
+         *        extra options which will be used in creating the
+         *        ActivationGroup. Null has the same effect as an empty
+         *        list.
          * @since 1.2
          */
         public CommandEnvironment(String cmdpath, String[] argv) {
@@ -265,7 +259,7 @@ public final class ActivationGroupDesc implements Serializable {
          * Compares two command environments for content equality.
          *
          * @param obj
-         *            the Object to compare with
+         *        the Object to compare with
          * @return true if these Objects are equal; false otherwise.
          * @see java.util.Hashtable
          * @since 1.2
@@ -274,9 +268,8 @@ public final class ActivationGroupDesc implements Serializable {
 
             if (obj instanceof CommandEnvironment) {
                 CommandEnvironment env = (CommandEnvironment) obj;
-                return ((command == null ? env.command == null
-                        : command.equals(env.command)) && Arrays.equals(options,
-                                env.options));
+                return ((command == null ? env.command == null : command.equals(env.command)) && Arrays
+                        .equals(options, env.options));
             } else {
                 return false;
             }
@@ -295,19 +288,16 @@ public final class ActivationGroupDesc implements Serializable {
 
         /**
          * <code>readObject</code> for custom serialization.
-         *
          * <p>
          * This method reads this object's serialized form for this class as
          * follows:
-         *
          * <p>
          * This method first invokes <code>defaultReadObject</code> on the
          * specified object input stream, and if <code>options</code> is
          * <code>null</code>, then <code>options</code> is set to a zero-length
          * array of <code>String</code>.
          */
-        private void readObject(ObjectInputStream in) throws IOException,
-                ClassNotFoundException {
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
             in.defaultReadObject();
             if (options == null) {
                 options = new String[0];
@@ -319,7 +309,7 @@ public final class ActivationGroupDesc implements Serializable {
      * Compares two activation group descriptors for content equality.
      *
      * @param obj
-     *            the Object to compare with
+     *        the Object to compare with
      * @return true if these Objects are equal; false otherwise.
      * @see java.util.Hashtable
      * @since 1.2
@@ -328,16 +318,11 @@ public final class ActivationGroupDesc implements Serializable {
 
         if (obj instanceof ActivationGroupDesc) {
             ActivationGroupDesc desc = (ActivationGroupDesc) obj;
-            return ((className == null ? desc.className == null
-                    : className.equals(desc.className)) && (location == null
-                            ? desc.location == null
-                            : location.equals(desc.location)) && (data == null
-                                    ? desc.data == null
-                                    : data.equals(desc.data)) && (env == null
-                                            ? desc.env == null
-                                            : env.equals(desc.env))
-                    && (props == null ? desc.props == null
-                            : props.equals(desc.props)));
+            return ((className == null ? desc.className == null : className.equals(desc.className))
+                    && (location == null ? desc.location == null : location.equals(desc.location))
+                    && (data == null ? desc.data == null : data.equals(desc.data)) && (env == null
+                            ? desc.env == null : env.equals(desc.env)) && (props == null ? desc.props == null
+                                    : props.equals(desc.props)));
         } else {
             return false;
         }
@@ -352,10 +337,7 @@ public final class ActivationGroupDesc implements Serializable {
     public int hashCode() {
         // hash location, className, data, and env
         // but omit props (may be expensive)
-        return ((location == null ? 0 : location.hashCode() << 24)
-                ^ (env == null ? 0 : env.hashCode() << 16) ^ (className == null
-                        ? 0
-                        : className.hashCode() << 8) ^ (data == null ? 0
-                                : data.hashCode()));
+        return ((location == null ? 0 : location.hashCode() << 24) ^ (env == null ? 0 : env.hashCode() << 16)
+                ^ (className == null ? 0 : className.hashCode() << 8) ^ (data == null ? 0 : data.hashCode()));
     }
 }

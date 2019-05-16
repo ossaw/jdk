@@ -41,7 +41,7 @@ public interface DynStruct extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * Set the members of the struct.
      *
      * @param value
-     *              the array of name-value pairs.
+     *        the array of name-value pairs.
      * @throws org.omg.CORBA.DynAnyPackage.InvalidSeq
      *         if the given argument is invalid
      * @see #get_members

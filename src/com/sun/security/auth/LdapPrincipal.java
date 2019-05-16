@@ -12,14 +12,12 @@ import javax.naming.ldap.LdapName;
 /**
  * A principal identified by a distinguished name as specified by
  * <a href="http://www.ietf.org/rfc/rfc2253.txt">RFC 2253</a>.
- *
  * <p>
  * After successful authentication, a user {@link java.security.Principal} can
  * be associated with a particular {@link javax.security.auth.Subject} to
  * augment that <code>Subject</code> with an additional identity. Authorization
  * decisions can then be based upon the <code>Principal</code>s that are
  * associated with a <code>Subject</code>.
- *
  * <p>
  * This class is immutable.
  *
@@ -48,12 +46,12 @@ public final class LdapPrincipal implements Principal, java.io.Serializable {
      * Creates an LDAP principal.
      *
      * @param name
-     *             The principal's string distinguished name.
+     *        The principal's string distinguished name.
      * @throws InvalidNameException
-     *                              If a syntax violation is detected.
+     *         If a syntax violation is detected.
      * @exception NullPointerException
-     *                                 If the <code>name</code> is
-     *                                 <code>null</code>.
+     *            If the <code>name</code> is
+     *            <code>null</code>.
      */
     public LdapPrincipal(String name) throws InvalidNameException {
         if (name == null) {
@@ -67,7 +65,7 @@ public final class LdapPrincipal implements Principal, java.io.Serializable {
      * Compares this principal to the specified object.
      *
      * @param object
-     *               The object to compare this principal against.
+     *        The object to compare this principal against.
      * @return true if they are equal; false otherwise.
      */
     public boolean equals(Object object) {
@@ -77,8 +75,7 @@ public final class LdapPrincipal implements Principal, java.io.Serializable {
         if (object instanceof LdapPrincipal) {
             try {
 
-                return name.equals(getLdapName(((LdapPrincipal) object)
-                        .getName()));
+                return name.equals(getLdapName(((LdapPrincipal) object).getName()));
 
             } catch (InvalidNameException e) {
                 return false;

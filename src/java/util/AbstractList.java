@@ -11,36 +11,30 @@ package java.util;
  * "random access" data store (such as an array). For sequential access data
  * (such as a linked list), {@link AbstractSequentialList} should be used in
  * preference to this class.
- *
  * <p>
  * To implement an unmodifiable list, the programmer needs only to extend this
  * class and provide implementations for the {@link #get(int)} and
  * {@link List#size() size()} methods.
- *
  * <p>
  * To implement a modifiable list, the programmer must additionally override the
  * {@link #set(int, Object) set(int, E)} method (which otherwise throws an
  * {@code UnsupportedOperationException}). If the list is variable-size the
  * programmer must additionally override the {@link #add(int, Object) add(int,
  * E)} and {@link #remove(int)} methods.
- *
  * <p>
  * The programmer should generally provide a void (no argument) and collection
  * constructor, as per the recommendation in the {@link Collection} interface
  * specification.
- *
  * <p>
  * Unlike the other abstract collection implementations, the programmer does
  * <i>not</i> have to provide an iterator implementation; the iterator and list
  * iterator are implemented by this class, on top of the "random access"
  * methods: {@link #get(int)}, {@link #set(int, Object) set(int, E)},
  * {@link #add(int, Object) add(int, E)} and {@link #remove(int)}.
- *
  * <p>
  * The documentation for each non-abstract method in this class describes its
  * implementation in detail. Each of these methods may be overridden if the
  * collection being implemented admits a more efficient implementation.
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -51,8 +45,7 @@ package java.util;
  * @since 1.2
  */
 
-public abstract class AbstractList<E> extends AbstractCollection<E> implements
-        List<E> {
+public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
     /**
      * Sole constructor. (For invocation by subclass constructors, typically
      * implicit.)
@@ -62,40 +55,37 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
     /**
      * Appends the specified element to the end of this list (optional
      * operation).
-     *
      * <p>
      * Lists that support this operation may place limitations on what elements
      * may be added to this list. In particular, some lists will refuse to add
      * null elements, and others will impose restrictions on the type of
      * elements that may be added. List classes should clearly specify in their
      * documentation any restrictions on what elements may be added.
-     *
      * <p>
      * This implementation calls {@code add(size(), e)}.
-     *
      * <p>
      * Note that this implementation throws an
      * {@code UnsupportedOperationException} unless {@link #add(int, Object)
      * add(int, E)} is overridden.
      *
      * @param e
-     *          element to be appended to this list
+     *        element to be appended to this list
      * @return {@code true} (as specified by {@link Collection#add})
      * @throws UnsupportedOperationException
-     *                                       if the {@code add} operation is not
-     *                                       supported by this list
+     *         if the {@code add} operation is not
+     *         supported by this list
      * @throws ClassCastException
-     *                                       if the class of the specified
-     *                                       element prevents it from being
-     *                                       added to this list
+     *         if the class of the specified
+     *         element prevents it from being
+     *         added to this list
      * @throws NullPointerException
-     *                                       if the specified element is null
-     *                                       and this list does not
-     *                                       permit null elements
+     *         if the specified element is null
+     *         and this list does not
+     *         permit null elements
      * @throws IllegalArgumentException
-     *                                       if some property of this element
-     *                                       prevents it from being added
-     *                                       to this list
+     *         if some property of this element
+     *         prevents it from being added
+     *         to this list
      */
     public boolean add(E e) {
         add(size(), e);
@@ -106,27 +96,26 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * {@inheritDoc}
      *
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     abstract public E get(int index);
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation always throws an
      * {@code UnsupportedOperationException}.
      *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ClassCastException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IndexOutOfBoundsException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E set(int index, E element) {
         throw new UnsupportedOperationException();
@@ -134,21 +123,20 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation always throws an
      * {@code UnsupportedOperationException}.
      *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ClassCastException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IndexOutOfBoundsException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void add(int index, E element) {
         throw new UnsupportedOperationException();
@@ -156,15 +144,14 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation always throws an
      * {@code UnsupportedOperationException}.
      *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IndexOutOfBoundsException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E remove(int index) {
         throw new UnsupportedOperationException();
@@ -174,16 +161,15 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation first gets a list iterator (with
      * {@code listIterator()}). Then, it iterates over the list until the
      * specified element is found or the end of the list is reached.
      *
      * @throws ClassCastException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public int indexOf(Object o) {
         ListIterator<E> it = listIterator();
@@ -201,7 +187,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation first gets a list iterator that points to the end of
      * the list (with {@code listIterator(size())}). Then, it iterates backwards
@@ -209,9 +194,9 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * the list is reached.
      *
      * @throws ClassCastException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public int lastIndexOf(Object o) {
         ListIterator<E> it = listIterator(size());
@@ -232,18 +217,16 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
     /**
      * Removes all of the elements from this list (optional operation). The list
      * will be empty after this call returns.
-     *
      * <p>
      * This implementation calls {@code removeRange(0, size())}.
-     *
      * <p>
      * Note that this implementation throws an
      * {@code UnsupportedOperationException} unless {@code remove(int
      * index)} or {@code removeRange(int fromIndex, int toIndex)} is overridden.
      *
      * @throws UnsupportedOperationException
-     *                                       if the {@code clear} operation is
-     *                                       not supported by this list
+     *         if the {@code clear} operation is
+     *         not supported by this list
      */
     public void clear() {
         removeRange(0, size());
@@ -251,29 +234,27 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation gets an iterator over the specified collection and
      * iterates over it, inserting the elements obtained from the iterator into
      * this list at the appropriate position, one at a time, using
      * {@code add(int, E)}. Many implementations will override this method for
      * efficiency.
-     *
      * <p>
      * Note that this implementation throws an
      * {@code UnsupportedOperationException} unless {@link #add(int, Object)
      * add(int, E)} is overridden.
      *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ClassCastException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IndexOutOfBoundsException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public boolean addAll(int index, Collection<? extends E> c) {
         rangeCheckForAdd(index);
@@ -289,17 +270,14 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * Returns an iterator over the elements in this list in proper sequence.
-     *
      * <p>
      * This implementation returns a straightforward implementation of the
      * iterator interface, relying on the backing list's {@code size()},
      * {@code get(int)}, and {@code remove(int)} methods.
-     *
      * <p>
      * Note that the iterator returned by this method will throw an
      * {@link UnsupportedOperationException} in response to its {@code remove}
      * method unless the list's {@code remove(int)} method is overridden.
-     *
      * <p>
      * This implementation can be made to throw runtime exceptions in the face
      * of concurrent modification, as described in the specification for the
@@ -313,7 +291,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation returns {@code listIterator(0)}.
      *
@@ -325,7 +302,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation returns a straightforward implementation of the
      * {@code ListIterator} interface that extends the implementation of the
@@ -333,20 +309,18 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * {@code ListIterator} implementation relies on the backing list's
      * {@code get(int)}, {@code set(int, E)}, {@code add(int, E)} and
      * {@code remove(int)} methods.
-     *
      * <p>
      * Note that the list iterator returned by this implementation will throw an
      * {@link UnsupportedOperationException} in response to its {@code remove},
      * {@code set} and {@code add} methods unless the list's {@code remove(int)}
      * , {@code set(int, E)}, and {@code add(int, E)} methods are overridden.
-     *
      * <p>
      * This implementation can be made to throw runtime exceptions in the face
      * of concurrent modification, as described in the specification for the
      * (protected) {@link #modCount} field.
      *
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     public ListIterator<E> listIterator(final int index) {
         rangeCheckForAdd(index);
@@ -473,7 +447,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation returns a list that subclasses {@code AbstractList}.
      * The subclass stores, in private fields, the offset of the subList within
@@ -483,7 +456,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * {@code RandomAccess}. If this list implements {@code RandomAccess} the
      * returned list will be an instance of the subclass that implements
      * {@code RandomAccess}.
-     *
      * <p>
      * The subclass's {@code set(int, E)}, {@code get(int)}, {@code add(int, E)}
      * , {@code remove(int)}, {@code addAll(int,
@@ -492,31 +464,29 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * bounds-checking the index and adjusting for the offset. The
      * {@code addAll(Collection c)} method merely returns {@code addAll(size,
      * c)}.
-     *
      * <p>
      * The {@code listIterator(int)} method returns a "wrapper object" over a
      * list iterator on the backing list, which is created with the
      * corresponding method on the backing list. The {@code iterator} method
      * merely returns {@code listIterator()}, and the {@code size} method merely
      * returns the subclass's {@code size} field.
-     *
      * <p>
      * All methods first check to see if the actual {@code modCount} of the
      * backing list is equal to its expected value, and throw a
      * {@code ConcurrentModificationException} if it is not.
      *
      * @throws IndexOutOfBoundsException
-     *                                   if an endpoint index value is out of
-     *                                   range
-     *                                   {@code (fromIndex < 0 || toIndex > size)}
+     *         if an endpoint index value is out of
+     *         range
+     *         {@code (fromIndex < 0 || toIndex > size)}
      * @throws IllegalArgumentException
-     *                                   if the endpoint indices are out of
-     *                                   order
-     *                                   {@code (fromIndex > toIndex)}
+     *         if the endpoint indices are out of
+     *         order
+     *         {@code (fromIndex > toIndex)}
      */
     public List<E> subList(int fromIndex, int toIndex) {
-        return (this instanceof RandomAccess ? new RandomAccessSubList<>(this,
-                fromIndex, toIndex) : new SubList<>(this, fromIndex, toIndex));
+        return (this instanceof RandomAccess ? new RandomAccessSubList<>(this, fromIndex, toIndex)
+                : new SubList<>(this, fromIndex, toIndex));
     }
 
     // Comparison and hashing
@@ -530,7 +500,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * e1.equals(e2))}.) In other words, two lists are defined to be equal if
      * they contain the same elements in the same order.
      * <p>
-     *
      * This implementation first checks if the specified object is this list. If
      * so, it returns {@code true}; if not, it checks if the specified object is
      * a list. If not, it returns {@code false}; if so, it iterates over both
@@ -541,7 +510,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * when the iterations complete.
      *
      * @param o
-     *          the object to be compared for equality with this list
+     *        the object to be compared for equality with this list
      * @return {@code true} if the specified object is equal to this list
      */
     public boolean equals(Object o) {
@@ -563,7 +532,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
 
     /**
      * Returns the hash code value for this list.
-     *
      * <p>
      * This implementation uses exactly the code that is used to define the list
      * hash function in the documentation for the {@link List#hashCode} method.
@@ -583,13 +551,11 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * succeeding elements to the left (reduces their index). This call shortens
      * the list by {@code (toIndex - fromIndex)} elements. (If
      * {@code toIndex==fromIndex}, this operation has no effect.)
-     *
      * <p>
      * This method is called by the {@code clear} operation on this list and its
      * subLists. Overriding this method to take advantage of the internals of
      * the list implementation can <i>substantially</i> improve the performance
      * of the {@code clear} operation on this list and its subLists.
-     *
      * <p>
      * This implementation gets a list iterator positioned before
      * {@code fromIndex}, and repeatedly calls {@code ListIterator.next}
@@ -598,9 +564,9 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * this implementation requires quadratic time.</b>
      *
      * @param fromIndex
-     *                  index of first element to be removed
+     *        index of first element to be removed
      * @param toIndex
-     *                  index after last element to be removed
+     *        index after last element to be removed
      */
     protected void removeRange(int fromIndex, int toIndex) {
         ListIterator<E> it = listIterator(fromIndex);
@@ -615,7 +581,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * Structural modifications are those that change the size of the list, or
      * otherwise perturb it in such a fashion that iterations in progress may
      * yield incorrect results.
-     *
      * <p>
      * This field is used by the iterator and list iterator implementation
      * returned by the {@code iterator} and {@code listIterator} methods. If the
@@ -625,7 +590,6 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements
      * {@code add} operations. This provides <i>fail-fast</i> behavior, rather
      * than non-deterministic behavior in the face of concurrent modification
      * during iteration.
-     *
      * <p>
      * <b>Use of this field by subclasses is optional.</b> If a subclass wishes
      * to provide fail-fast iterators (and list iterators), then it merely has
@@ -660,8 +624,7 @@ class SubList<E> extends AbstractList<E> {
         if (toIndex > list.size())
             throw new IndexOutOfBoundsException("toIndex = " + toIndex);
         if (fromIndex > toIndex)
-            throw new IllegalArgumentException("fromIndex(" + fromIndex
-                    + ") > toIndex(" + toIndex + ")");
+            throw new IllegalArgumentException("fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")");
         l = list;
         offset = fromIndex;
         size = toIndex - fromIndex;

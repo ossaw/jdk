@@ -25,7 +25,6 @@ package javax.naming.event;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingEvent
  * @see ObjectChangeListener
  * @see EventContext
@@ -41,7 +40,7 @@ public interface NamespaceChangeListener extends NamingListener {
      * <tt>evt.getNewBinding()</tt>.
      * 
      * @param evt
-     *            The nonnull event.
+     *        The nonnull event.
      * @see NamingEvent#OBJECT_ADDED
      */
     void objectAdded(NamingEvent evt);
@@ -53,7 +52,7 @@ public interface NamespaceChangeListener extends NamingListener {
      * <tt>evt.getOldBinding()</tt>.
      * 
      * @param evt
-     *            The nonnull event.
+     *        The nonnull event.
      * @see NamingEvent#OBJECT_REMOVED
      */
     void objectRemoved(NamingEvent evt);
@@ -68,7 +67,7 @@ public interface NamespaceChangeListener extends NamingListener {
      * registered interest.
      * 
      * @param evt
-     *            The nonnull event.
+     *        The nonnull event.
      * @see NamingEvent#OBJECT_RENAMED
      */
     void objectRenamed(NamingEvent evt);

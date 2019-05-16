@@ -24,7 +24,7 @@ public class IllegalCharsetNameException extends IllegalArgumentException {
      * Constructs an instance of this class.
      *
      * @param charsetName
-     *                    The illegal charset name
+     *        The illegal charset name
      */
     public IllegalCharsetNameException(String charsetName) {
         super(String.valueOf(charsetName));

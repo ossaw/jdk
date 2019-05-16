@@ -47,9 +47,8 @@ public class DelegateImpl implements org.omg.PortableServer.portable.Delegate {
             }
 
             try {
-                if (defaultPOA.getPolicies().isImplicitlyActivated()
-                        || (defaultPOA.getPolicies().isUniqueIds() && defaultPOA
-                                .getPolicies().retainServants())) {
+                if (defaultPOA.getPolicies().isImplicitlyActivated() || (defaultPOA.getPolicies()
+                        .isUniqueIds() && defaultPOA.getPolicies().retainServants())) {
                     return defaultPOA.servant_to_reference(self);
                 } else {
                     throw wrapper.wrongPoliciesForThisObject();
@@ -90,8 +89,7 @@ public class DelegateImpl implements org.omg.PortableServer.portable.Delegate {
     }
 
     public boolean is_a(Servant self, String repId) {
-        String[] repositoryIds = self._all_interfaces(poa(self), object_id(
-                self));
+        String[] repositoryIds = self._all_interfaces(poa(self), object_id(self));
         for (int i = 0; i < repositoryIds.length; i++)
             if (repId.equals(repositoryIds[i]))
                 return true;

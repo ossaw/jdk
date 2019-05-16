@@ -16,18 +16,15 @@ import java.util.Vector;
 
 /**
  * Default implementation for AttributeList.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * AttributeList implements the deprecated SAX1 {@link org.xml.sax.AttributeList
  * AttributeList} interface, and has been replaced by the new SAX2
  * {@link org.xml.sax.helpers.AttributesImpl AttributesImpl} interface.
  * </p>
- *
  * <p>
  * This class provides a convenience implementation of the SAX
  * {@link org.xml.sax.AttributeList AttributeList} interface. This
@@ -48,7 +45,6 @@ import java.util.Vector;
  *   [...]
  * }
  * </pre>
- *
  * <p>
  * Please note that SAX parsers are not required to use this class to provide an
  * implementation of AttributeList; it is supplied only as an optional
@@ -71,7 +67,6 @@ public class AttributeListImpl implements AttributeList {
 
     /**
      * Create an empty attribute list.
-     *
      * <p>
      * This constructor is most useful for parser writers, who will use it to
      * create a single, reusable attribute list that can be reset with the clear
@@ -85,14 +80,13 @@ public class AttributeListImpl implements AttributeList {
 
     /**
      * Construct a persistent copy of an existing attribute list.
-     *
      * <p>
      * This constructor is most useful for application writers, who will use it
      * to create a persistent copy of an existing attribute list.
      * </p>
      *
      * @param atts
-     *             The attribute list to copy
+     *        The attribute list to copy
      * @see org.xml.sax.DocumentHandler#startElement
      */
     public AttributeListImpl(AttributeList atts) {
@@ -105,14 +99,13 @@ public class AttributeListImpl implements AttributeList {
 
     /**
      * Set the attribute list, discarding previous contents.
-     *
      * <p>
      * This method allows an application writer to reuse an attribute list
      * easily.
      * </p>
      *
      * @param atts
-     *             The attribute list to copy.
+     *        The attribute list to copy.
      */
     public void setAttributeList(AttributeList atts) {
         int count = atts.getLength();
@@ -126,18 +119,17 @@ public class AttributeListImpl implements AttributeList {
 
     /**
      * Add an attribute to an attribute list.
-     *
      * <p>
      * This method is provided for SAX parser writers, to allow them to build up
      * an attribute list incrementally before delivering it to the application.
      * </p>
      *
      * @param name
-     *              The attribute name.
+     *        The attribute name.
      * @param type
-     *              The attribute type ("NMTOKEN" for an enumeration).
+     *        The attribute type ("NMTOKEN" for an enumeration).
      * @param value
-     *              The attribute value (must not be null).
+     *        The attribute value (must not be null).
      * @see #removeAttribute
      * @see org.xml.sax.DocumentHandler#startElement
      */
@@ -149,19 +141,17 @@ public class AttributeListImpl implements AttributeList {
 
     /**
      * Remove an attribute from the list.
-     *
      * <p>
      * SAX application writers can use this method to filter an attribute out of
      * an AttributeList. Note that invoking this method will change the length
      * of the attribute list and some of the attribute's indices.
      * </p>
-     *
      * <p>
      * If the requested attribute is not in the list, this is a no-op.
      * </p>
      *
      * @param name
-     *             The attribute name.
+     *        The attribute name.
      * @see #addAttribute
      */
     public void removeAttribute(String name) {
@@ -176,7 +166,6 @@ public class AttributeListImpl implements AttributeList {
 
     /**
      * Clear the attribute list.
-     *
      * <p>
      * SAX parser writers can use this method to reset the attribute list
      * between DocumentHandler.startElement events. Normally, it will make sense
@@ -210,7 +199,7 @@ public class AttributeListImpl implements AttributeList {
      * Get the name of an attribute (by position).
      *
      * @param i
-     *          The position of the attribute in the list.
+     *        The position of the attribute in the list.
      * @return The attribute name as a string, or null if there is no attribute
      *         at that position.
      * @see org.xml.sax.AttributeList#getName(int)
@@ -230,7 +219,7 @@ public class AttributeListImpl implements AttributeList {
      * Get the type of an attribute (by position).
      *
      * @param i
-     *          The position of the attribute in the list.
+     *        The position of the attribute in the list.
      * @return The attribute type as a string ("NMTOKEN" for an enumeration, and
      *         "CDATA" if no declaration was read), or null if there is no
      *         attribute at that position.
@@ -251,7 +240,7 @@ public class AttributeListImpl implements AttributeList {
      * Get the value of an attribute (by position).
      *
      * @param i
-     *          The position of the attribute in the list.
+     *        The position of the attribute in the list.
      * @return The attribute value as a string, or null if there is no attribute
      *         at that position.
      * @see org.xml.sax.AttributeList#getValue(int)
@@ -271,7 +260,7 @@ public class AttributeListImpl implements AttributeList {
      * Get the type of an attribute (by name).
      *
      * @param name
-     *             The attribute name.
+     *        The attribute name.
      * @return The attribute type as a string ("NMTOKEN" for an enumeration, and
      *         "CDATA" if no declaration was read).
      * @see org.xml.sax.AttributeList#getType(java.lang.String)
@@ -284,7 +273,7 @@ public class AttributeListImpl implements AttributeList {
      * Get the value of an attribute (by name).
      *
      * @param name
-     *             The attribute name.
+     *        The attribute name.
      * @see org.xml.sax.AttributeList#getValue(java.lang.String)
      */
     public String getValue(String name) {

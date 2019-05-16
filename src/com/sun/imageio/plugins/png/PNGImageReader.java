@@ -176,8 +176,7 @@ public class PNGImageReader extends ImageReader {
         super(originatingProvider);
     }
 
-    public void setInput(Object input, boolean seekForwardOnly,
-            boolean ignoreMetadata) {
+    public void setInput(Object input, boolean seekForwardOnly, boolean ignoreMetadata) {
         super.setInput(input, seekForwardOnly, ignoreMetadata);
         this.stream = (ImageInputStream) input; // Always works
 
@@ -185,8 +184,7 @@ public class PNGImageReader extends ImageReader {
         resetStreamSettings();
     }
 
-    private String readNullTerminatedString(String charset, int maxLen)
-            throws IOException {
+    private String readNullTerminatedString(String charset, int maxLen) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int b;
         int count = 0;
@@ -210,9 +208,8 @@ public class PNGImageReader extends ImageReader {
             byte[] signature = new byte[8];
             stream.readFully(signature);
 
-            if (signature[0] != (byte) 137 || signature[1] != (byte) 80
-                    || signature[2] != (byte) 78 || signature[3] != (byte) 71
-                    || signature[4] != (byte) 13 || signature[5] != (byte) 10
+            if (signature[0] != (byte) 137 || signature[1] != (byte) 80 || signature[2] != (byte) 78
+                    || signature[3] != (byte) 71 || signature[4] != (byte) 13 || signature[5] != (byte) 10
                     || signature[6] != (byte) 26 || signature[7] != (byte) 10) {
                 throw new IIOException("Bad PNG signature!");
             }
@@ -250,20 +247,17 @@ public class PNGImageReader extends ImageReader {
             if (height == 0) {
                 throw new IIOException("Image height == 0!");
             }
-            if (bitDepth != 1 && bitDepth != 2 && bitDepth != 4 && bitDepth != 8
-                    && bitDepth != 16) {
+            if (bitDepth != 1 && bitDepth != 2 && bitDepth != 4 && bitDepth != 8 && bitDepth != 16) {
                 throw new IIOException("Bit depth must be 1, 2, 4, 8, or 16!");
             }
-            if (colorType != 0 && colorType != 2 && colorType != 3
-                    && colorType != 4 && colorType != 6) {
+            if (colorType != 0 && colorType != 2 && colorType != 3 && colorType != 4 && colorType != 6) {
                 throw new IIOException("Color type must be 0, 2, 3, 4, or 6!");
             }
             if (colorType == PNG_COLOR_PALETTE && bitDepth == 16) {
                 throw new IIOException("Bad color type/bit depth combination!");
             }
             if ((colorType == PNG_COLOR_RGB || colorType == PNG_COLOR_RGB_ALPHA
-                    || colorType == PNG_COLOR_GRAY_ALPHA) && (bitDepth != 8
-                            && bitDepth != 16)) {
+                    || colorType == PNG_COLOR_GRAY_ALPHA) && (bitDepth != 8 && bitDepth != 16)) {
                 throw new IIOException("Bad color type/bit depth combination!");
             }
             if (compressionMethod != 0) {
@@ -273,8 +267,7 @@ public class PNGImageReader extends ImageReader {
                 throw new IIOException("Unknown filter method (not 0)!");
             }
             if (interlaceMethod != 0 && interlaceMethod != 1) {
-                throw new IIOException(
-                        "Unknown interlace method (not 0 or 1)!");
+                throw new IIOException("Unknown interlace method (not 0 or 1)!");
             }
 
             metadata.IHDR_present = true;
@@ -293,15 +286,13 @@ public class PNGImageReader extends ImageReader {
 
     private void parse_PLTE_chunk(int chunkLength) throws IOException {
         if (metadata.PLTE_present) {
-            processWarningOccurred(
-                    "A PNG image may not contain more than one PLTE chunk.\n"
-                            + "The chunk wil be ignored.");
+            processWarningOccurred("A PNG image may not contain more than one PLTE chunk.\n"
+                    + "The chunk wil be ignored.");
             return;
         } else if (metadata.IHDR_colorType == PNG_COLOR_GRAY
                 || metadata.IHDR_colorType == PNG_COLOR_GRAY_ALPHA) {
-            processWarningOccurred(
-                    "A PNG gray or gray alpha image cannot have a PLTE chunk.\n"
-                            + "The chunk wil be ignored.");
+            processWarningOccurred("A PNG gray or gray alpha image cannot have a PLTE chunk.\n"
+                    + "The chunk wil be ignored.");
             return;
         }
 
@@ -382,8 +373,7 @@ public class PNGImageReader extends ImageReader {
         metadata.gAMA_present = true;
     }
 
-    private void parse_hIST_chunk(int chunkLength) throws IOException,
-            IIOException {
+    private void parse_hIST_chunk(int chunkLength) throws IOException, IIOException {
         if (!metadata.PLTE_present) {
             throw new IIOException("hIST chunk without prior PLTE chunk!");
         }
@@ -394,8 +384,7 @@ public class PNGImageReader extends ImageReader {
          * is even).
          */
         metadata.hIST_histogram = new char[chunkLength / 2];
-        stream.readFully(metadata.hIST_histogram, 0,
-                metadata.hIST_histogram.length);
+        stream.readFully(metadata.hIST_histogram, 0, metadata.hIST_histogram.length);
 
         metadata.hIST_present = true;
     }
@@ -420,8 +409,7 @@ public class PNGImageReader extends ImageReader {
         metadata.iTXt_keyword.add(keyword);
 
         int compressionFlag = stream.readUnsignedByte();
-        metadata.iTXt_compressionFlag.add(Boolean.valueOf(
-                compressionFlag == 1));
+        metadata.iTXt_compressionFlag.add(Boolean.valueOf(compressionFlag == 1));
 
         int compressionMethod = stream.readUnsignedByte();
         metadata.iTXt_compressionMethod.add(Integer.valueOf(compressionMethod));
@@ -466,8 +454,7 @@ public class PNGImageReader extends ImageReader {
             metadata.sBIT_blueBits = stream.readUnsignedByte();
         }
 
-        if (colorType == PNG_COLOR_GRAY_ALPHA
-                || colorType == PNG_COLOR_RGB_ALPHA) {
+        if (colorType == PNG_COLOR_GRAY_ALPHA || colorType == PNG_COLOR_RGB_ALPHA) {
             metadata.sBIT_alphaBits = stream.readUnsignedByte();
         }
 
@@ -475,8 +462,7 @@ public class PNGImageReader extends ImageReader {
         metadata.sBIT_present = true;
     }
 
-    private void parse_sPLT_chunk(int chunkLength) throws IOException,
-            IIOException {
+    private void parse_sPLT_chunk(int chunkLength) throws IOException, IIOException {
         metadata.sPLT_paletteName = readNullTerminatedString("ISO-8859-1", 80);
         chunkLength -= metadata.sPLT_paletteName.length() + 1;
 
@@ -543,8 +529,7 @@ public class PNGImageReader extends ImageReader {
         int colorType = metadata.IHDR_colorType;
         if (colorType == PNG_COLOR_PALETTE) {
             if (!metadata.PLTE_present) {
-                processWarningOccurred(
-                        "tRNS chunk without prior PLTE chunk, ignoring it.");
+                processWarningOccurred("tRNS chunk without prior PLTE chunk, ignoring it.");
                 return;
             }
 
@@ -552,8 +537,7 @@ public class PNGImageReader extends ImageReader {
             int maxEntries = metadata.PLTE_red.length;
             int numEntries = chunkLength;
             if (numEntries > maxEntries) {
-                processWarningOccurred(
-                        "tRNS chunk has more entries than prior PLTE chunk, ignoring extras.");
+                processWarningOccurred("tRNS chunk has more entries than prior PLTE chunk, ignoring extras.");
                 numEntries = maxEntries;
             }
             metadata.tRNS_alpha = new byte[numEntries];
@@ -562,8 +546,7 @@ public class PNGImageReader extends ImageReader {
             stream.skipBytes(chunkLength - numEntries);
         } else if (colorType == PNG_COLOR_GRAY) {
             if (chunkLength != 2) {
-                processWarningOccurred(
-                        "tRNS chunk for gray image must have length 2, ignoring chunk.");
+                processWarningOccurred("tRNS chunk for gray image must have length 2, ignoring chunk.");
                 stream.skipBytes(chunkLength);
                 return;
             }
@@ -571,8 +554,7 @@ public class PNGImageReader extends ImageReader {
             metadata.tRNS_colorType = PNG_COLOR_GRAY;
         } else if (colorType == PNG_COLOR_RGB) {
             if (chunkLength != 6) {
-                processWarningOccurred(
-                        "tRNS chunk for RGB image must have length 6, ignoring chunk.");
+                processWarningOccurred("tRNS chunk for RGB image must have length 6, ignoring chunk.");
                 stream.skipBytes(chunkLength);
                 return;
             }
@@ -581,8 +563,7 @@ public class PNGImageReader extends ImageReader {
             metadata.tRNS_blue = stream.readUnsignedShort();
             metadata.tRNS_colorType = PNG_COLOR_RGB;
         } else {
-            processWarningOccurred(
-                    "Gray+Alpha and RGBS images may not have a tRNS chunk, ignoring it.");
+            processWarningOccurred("Gray+Alpha and RGBS images may not have a tRNS chunk, ignoring it.");
             return;
         }
 
@@ -656,15 +637,15 @@ public class PNGImageReader extends ImageReader {
         }
 
         try {
-            loop: while (true) {
+            loop:
+            while (true) {
                 int chunkLength = stream.readInt();
                 int chunkType = stream.readInt();
                 int chunkCRC;
 
                 // verify the chunk length
                 if (chunkLength < 0) {
-                    throw new IIOException("Invalid chunk lenght "
-                            + chunkLength);
+                    throw new IIOException("Invalid chunk lenght " + chunkLength);
                 }
                 ;
 
@@ -674,8 +655,7 @@ public class PNGImageReader extends ImageReader {
                     chunkCRC = stream.readInt();
                     stream.reset();
                 } catch (IOException e) {
-                    throw new IIOException("Invalid chunk length "
-                            + chunkLength);
+                    throw new IIOException("Invalid chunk length " + chunkLength);
                 }
 
                 switch (chunkType) {
@@ -750,8 +730,7 @@ public class PNGImageReader extends ImageReader {
 
                         int ancillaryBit = chunkType >>> 28;
                         if (ancillaryBit == 0) {
-                            processWarningOccurred(
-                                    "Encountered unknown chunk with critical bit set!");
+                            processWarningOccurred("Encountered unknown chunk with critical bit set!");
                         }
 
                         metadata.unknownChunkType.add(chunkName.toString());
@@ -761,8 +740,7 @@ public class PNGImageReader extends ImageReader {
 
                 // double check whether all chunk data were consumed
                 if (chunkCRC != stream.readInt()) {
-                    throw new IIOException("Failed to read a chunk of type "
-                            + chunkType);
+                    throw new IIOException("Failed to read a chunk of type " + chunkType);
                 }
                 stream.flushBefore(stream.getStreamPosition());
             }
@@ -775,8 +753,7 @@ public class PNGImageReader extends ImageReader {
 
     // Data filtering methods
 
-    private static void decodeSubFilter(byte[] curr, int coff, int count,
-            int bpp) {
+    private static void decodeSubFilter(byte[] curr, int coff, int count, int bpp) {
         for (int i = bpp; i < count; i++) {
             int val;
 
@@ -787,8 +764,7 @@ public class PNGImageReader extends ImageReader {
         }
     }
 
-    private static void decodeUpFilter(byte[] curr, int coff, byte[] prev,
-            int poff, int count) {
+    private static void decodeUpFilter(byte[] curr, int coff, byte[] prev, int poff, int count) {
         for (int i = 0; i < count; i++) {
             int raw = curr[i + coff] & 0xff;
             int prior = prev[i + poff] & 0xff;
@@ -797,8 +773,8 @@ public class PNGImageReader extends ImageReader {
         }
     }
 
-    private static void decodeAverageFilter(byte[] curr, int coff, byte[] prev,
-            int poff, int count, int bpp) {
+    private static void decodeAverageFilter(byte[] curr, int coff, byte[] prev, int poff, int count,
+            int bpp) {
         int raw, priorPixel, priorRow;
 
         for (int i = 0; i < bpp; i++) {
@@ -832,8 +808,7 @@ public class PNGImageReader extends ImageReader {
         }
     }
 
-    private static void decodePaethFilter(byte[] curr, int coff, byte[] prev,
-            int poff, int count, int bpp) {
+    private static void decodePaethFilter(byte[] curr, int coff, byte[] prev, int poff, int count, int bpp) {
         int raw, priorPixel, priorRow, priorRowPixel;
 
         for (int i = 0; i < bpp; i++) {
@@ -849,8 +824,7 @@ public class PNGImageReader extends ImageReader {
             priorRow = prev[i + poff] & 0xff;
             priorRowPixel = prev[i + poff - bpp] & 0xff;
 
-            curr[i + coff] = (byte) (raw + paethPredictor(priorPixel, priorRow,
-                    priorRowPixel));
+            curr[i + coff] = (byte) (raw + paethPredictor(priorPixel, priorRow, priorRowPixel));
         }
     }
 
@@ -860,38 +834,34 @@ public class PNGImageReader extends ImageReader {
             { 0, 1, 2, 3 } // RGBA in RGBA order
     };
 
-    private WritableRaster createRaster(int width, int height, int bands,
-            int scanlineStride, int bitDepth) {
+    private WritableRaster createRaster(int width, int height, int bands, int scanlineStride, int bitDepth) {
 
         DataBuffer dataBuffer;
         WritableRaster ras = null;
         Point origin = new Point(0, 0);
         if ((bitDepth < 8) && (bands == 1)) {
             dataBuffer = new DataBufferByte(height * scanlineStride);
-            ras = Raster.createPackedRaster(dataBuffer, width, height, bitDepth,
-                    origin);
+            ras = Raster.createPackedRaster(dataBuffer, width, height, bitDepth, origin);
         } else if (bitDepth <= 8) {
             dataBuffer = new DataBufferByte(height * scanlineStride);
-            ras = Raster.createInterleavedRaster(dataBuffer, width, height,
-                    scanlineStride, bands, bandOffsets[bands], origin);
+            ras = Raster.createInterleavedRaster(dataBuffer, width, height, scanlineStride, bands,
+                    bandOffsets[bands], origin);
         } else {
             dataBuffer = new DataBufferUShort(height * scanlineStride);
-            ras = Raster.createInterleavedRaster(dataBuffer, width, height,
-                    scanlineStride, bands, bandOffsets[bands], origin);
+            ras = Raster.createInterleavedRaster(dataBuffer, width, height, scanlineStride, bands,
+                    bandOffsets[bands], origin);
         }
 
         return ras;
     }
 
-    private void skipPass(int passWidth, int passHeight) throws IOException,
-            IIOException {
+    private void skipPass(int passWidth, int passHeight) throws IOException, IIOException {
         if ((passWidth == 0) || (passHeight == 0)) {
             return;
         }
 
         int inputBands = inputBandsForColorType[metadata.IHDR_colorType];
-        int bytesPerRow = (inputBands * passWidth * metadata.IHDR_bitDepth + 7)
-                / 8;
+        int bytesPerRow = (inputBands * passWidth * metadata.IHDR_bitDepth + 7) / 8;
 
         // Read the image row-by-row
         for (int srcY = 0; srcY < passHeight; srcY++) {
@@ -911,8 +881,8 @@ public class PNGImageReader extends ImageReader {
         processImageProgress(100.0F * pixelsDone / totalPixels);
     }
 
-    private void decodePass(int passNum, int xStart, int yStart, int xStep,
-            int yStep, int passWidth, int passHeight) throws IOException {
+    private void decodePass(int passNum, int xStart, int yStart, int xStep, int yStep, int passWidth,
+            int passHeight) throws IOException {
 
         if ((passWidth == 0) || (passHeight == 0)) {
             return;
@@ -925,10 +895,9 @@ public class PNGImageReader extends ImageReader {
         int dstMaxY = dstMinY + imRas.getHeight() - 1;
 
         // Determine which pixels will be updated in this pass
-        int[] vals = ReaderUtil.computeUpdatedPixels(sourceRegion,
-                destinationOffset, dstMinX, dstMinY, dstMaxX, dstMaxY,
-                sourceXSubsampling, sourceYSubsampling, xStart, yStart,
-                passWidth, passHeight, xStep, yStep);
+        int[] vals = ReaderUtil.computeUpdatedPixels(sourceRegion, destinationOffset, dstMinX, dstMinY,
+                dstMaxX, dstMaxY, sourceXSubsampling, sourceYSubsampling, xStart, yStart, passWidth,
+                passHeight, xStep, yStep);
         int updateMinX = vals[0];
         int updateMinY = vals[1];
         int updateWidth = vals[2];
@@ -958,8 +927,7 @@ public class PNGImageReader extends ImageReader {
         // (dstX = updateMinX + k*updateXStep)
         // to source pixels (sourceX), and then
         // to offset and skip in passRow (srcX and srcXStep)
-        int sourceX = (updateMinX - destinationOffset.x) * sourceXSubsampling
-                + sourceRegion.x;
+        int sourceX = (updateMinX - destinationOffset.x) * sourceXSubsampling + sourceRegion.x;
         int srcX = (sourceX - xStart) / xStep;
 
         // Compute the step factor in the source
@@ -971,8 +939,7 @@ public class PNGImageReader extends ImageReader {
         byte[] prior = new byte[bytesPerRow];
 
         // Create a 1-row tall Raster to hold the data
-        WritableRaster passRow = createRaster(passWidth, 1, inputBands,
-                eltsPerRow, bitDepth);
+        WritableRaster passRow = createRaster(passWidth, 1, inputBands, eltsPerRow, bitDepth);
 
         // Create an array suitable for holding one pixel
         int[] ps = passRow.getPixel(0, 0, (int[]) null);
@@ -985,18 +952,16 @@ public class PNGImageReader extends ImageReader {
             shortData = ((DataBufferUShort) dataBuffer).getData();
         }
 
-        processPassStarted(theImage, passNum, sourceMinProgressivePass,
-                sourceMaxProgressivePass, updateMinX, updateMinY, updateXStep,
-                updateYStep, destinationBands);
+        processPassStarted(theImage, passNum, sourceMinProgressivePass, sourceMaxProgressivePass, updateMinX,
+                updateMinY, updateXStep, updateYStep, destinationBands);
 
         // Handle source and destination bands
         if (sourceBands != null) {
-            passRow = passRow.createWritableChild(0, 0, passRow.getWidth(), 1,
-                    0, 0, sourceBands);
+            passRow = passRow.createWritableChild(0, 0, passRow.getWidth(), 1, 0, 0, sourceBands);
         }
         if (destinationBands != null) {
-            imRas = imRas.createWritableChild(0, 0, imRas.getWidth(), imRas
-                    .getHeight(), 0, 0, destinationBands);
+            imRas = imRas.createWritableChild(0, 0, imRas.getWidth(), imRas.getHeight(), 0, 0,
+                    destinationBands);
         }
 
         // Determine if all of the relevant output bands have the
@@ -1022,20 +987,18 @@ public class PNGImageReader extends ImageReader {
                 int maxOutSample = (1 << outputSampleSize[b]) - 1;
                 scale[b] = new int[maxInSample + 1];
                 for (int s = 0; s <= maxInSample; s++) {
-                    scale[b][s] = (s * maxOutSample + halfMaxInSample)
-                            / maxInSample;
+                    scale[b][s] = (s * maxOutSample + halfMaxInSample) / maxInSample;
                 }
             }
         }
 
         // Limit passRow to relevant area for the case where we
         // will can setRect to copy a contiguous span
-        boolean useSetRect = srcXStep == 1 && updateXStep == 1
-                && !adjustBitDepths && (imRas instanceof ByteInterleavedRaster);
+        boolean useSetRect = srcXStep == 1 && updateXStep == 1 && !adjustBitDepths
+                && (imRas instanceof ByteInterleavedRaster);
 
         if (useSetRect) {
-            passRow = passRow.createWritableChild(srcX, 0, updateWidth, 1, 0, 0,
-                    null);
+            passRow = passRow.createWritableChild(srcX, 0, updateWidth, 1, 0, 0, null);
         }
 
         // Decode the (sub)image row-by-row
@@ -1067,16 +1030,13 @@ public class PNGImageReader extends ImageReader {
                     decodeUpFilter(curr, 0, prior, 0, bytesPerRow);
                     break;
                 case PNG_FILTER_AVERAGE:
-                    decodeAverageFilter(curr, 0, prior, 0, bytesPerRow,
-                            bytesPerPixel);
+                    decodeAverageFilter(curr, 0, prior, 0, bytesPerRow, bytesPerPixel);
                     break;
                 case PNG_FILTER_PAETH:
-                    decodePaethFilter(curr, 0, prior, 0, bytesPerRow,
-                            bytesPerPixel);
+                    decodePaethFilter(curr, 0, prior, 0, bytesPerRow, bytesPerPixel);
                     break;
                 default:
-                    throw new IIOException("Unknown row filter type (= "
-                            + filter + ")!");
+                    throw new IIOException("Unknown row filter type (= " + filter + ")!");
             }
 
             // Copy data into passRow byte by byte
@@ -1085,20 +1045,17 @@ public class PNGImageReader extends ImageReader {
             } else {
                 int idx = 0;
                 for (int j = 0; j < eltsPerRow; j++) {
-                    shortData[j] = (short) ((curr[idx] << 8) | (curr[idx + 1]
-                            & 0xff));
+                    shortData[j] = (short) ((curr[idx] << 8) | (curr[idx + 1] & 0xff));
                     idx += 2;
                 }
             }
 
             // True Y position in source
             int sourceY = srcY * yStep + yStart;
-            if ((sourceY >= sourceRegion.y) && (sourceY < sourceRegion.y
-                    + sourceRegion.height) && (((sourceY - sourceRegion.y)
-                            % sourceYSubsampling) == 0)) {
+            if ((sourceY >= sourceRegion.y) && (sourceY < sourceRegion.y + sourceRegion.height) && (((sourceY
+                    - sourceRegion.y) % sourceYSubsampling) == 0)) {
 
-                int dstY = destinationOffset.y + (sourceY - sourceRegion.y)
-                        / sourceYSubsampling;
+                int dstY = destinationOffset.y + (sourceY - sourceRegion.y) / sourceYSubsampling;
                 if (dstY < dstMinY) {
                     continue;
                 }
@@ -1111,8 +1068,7 @@ public class PNGImageReader extends ImageReader {
                 } else {
                     int newSrcX = srcX;
 
-                    for (int dstX = updateMinX; dstX < updateMinX
-                            + updateWidth; dstX += updateXStep) {
+                    for (int dstX = updateMinX; dstX < updateMinX + updateWidth; dstX += updateXStep) {
 
                         passRow.getPixel(newSrcX, 0, ps);
                         if (adjustBitDepths) {
@@ -1125,8 +1081,8 @@ public class PNGImageReader extends ImageReader {
                     }
                 }
 
-                processImageUpdate(theImage, updateMinX, dstY, updateWidth, 1,
-                        updateXStep, updateYStep, destinationBands);
+                processImageUpdate(theImage, updateMinX, dstY, updateWidth, 1, updateXStep, updateYStep,
+                        destinationBands);
 
                 // If read has been aborted, just return
                 // processReadAborted will be called later
@@ -1160,12 +1116,10 @@ public class PNGImageReader extends ImageReader {
                 int ybump = adam7YSubsampling[i + 1] - 1;
 
                 if (i >= sourceMinProgressivePass) {
-                    decodePass(i, XOffset, YOffset, XSubsampling, YSubsampling,
-                            (width + xbump) / XSubsampling, (height + ybump)
-                                    / YSubsampling);
+                    decodePass(i, XOffset, YOffset, XSubsampling, YSubsampling, (width + xbump)
+                            / XSubsampling, (height + ybump) / YSubsampling);
                 } else {
-                    skipPass((width + xbump) / XSubsampling, (height + ybump)
-                            / YSubsampling);
+                    skipPass((width + xbump) / XSubsampling, (height + ybump) / YSubsampling);
                 }
 
                 // If read has been aborted, just return
@@ -1197,10 +1151,8 @@ public class PNGImageReader extends ImageReader {
             sourceXSubsampling = param.getSourceXSubsampling();
             sourceYSubsampling = param.getSourceYSubsampling();
 
-            sourceMinProgressivePass = Math.max(param
-                    .getSourceMinProgressivePass(), 0);
-            sourceMaxProgressivePass = Math.min(param
-                    .getSourceMaxProgressivePass(), 6);
+            sourceMinProgressivePass = Math.max(param.getSourceMinProgressivePass(), 0);
+            sourceMaxProgressivePass = Math.min(param.getSourceMaxProgressivePass(), 6);
 
             sourceBands = param.getSourceBands();
             destinationBands = param.getDestinationBands();
@@ -1241,16 +1193,15 @@ public class PNGImageReader extends ImageReader {
 
             Rectangle destRegion = new Rectangle(0, 0, 0, 0);
             sourceRegion = new Rectangle(0, 0, 0, 0);
-            computeRegions(param, width, height, theImage, sourceRegion,
-                    destRegion);
+            computeRegions(param, width, height, theImage, sourceRegion, destRegion);
             destinationOffset.setLocation(destRegion.getLocation());
 
             // At this point the header has been read and we know
             // how many bands are in the image, so perform checking
             // of the read param.
             int colorType = metadata.IHDR_colorType;
-            checkReadParamBandSettings(param, inputBandsForColorType[colorType],
-                    theImage.getSampleModel().getNumBands());
+            checkReadParamBandSettings(param, inputBandsForColorType[colorType], theImage.getSampleModel()
+                    .getNumBands());
 
             processImageStarted(0);
             decodeImage();
@@ -1273,8 +1224,7 @@ public class PNGImageReader extends ImageReader {
             throw new IllegalStateException("No input source set!");
         }
         if (seekForwardOnly && allowSearch) {
-            throw new IllegalStateException(
-                    "seekForwardOnly and allowSearch can't both be true!");
+            throw new IllegalStateException("seekForwardOnly and allowSearch can't both be true!");
         }
         return 1;
     }
@@ -1299,8 +1249,7 @@ public class PNGImageReader extends ImageReader {
         return metadata.IHDR_height;
     }
 
-    public Iterator<ImageTypeSpecifier> getImageTypes(int imageIndex)
-            throws IIOException {
+    public Iterator<ImageTypeSpecifier> getImageTypes(int imageIndex) throws IIOException {
         if (imageIndex != 0) {
             throw new IndexOutOfBoundsException("imageIndex != 0!");
         }
@@ -1326,22 +1275,18 @@ public class PNGImageReader extends ImageReader {
         switch (colorType) {
             case PNG_COLOR_GRAY:
                 // Packed grayscale
-                l.add(ImageTypeSpecifier.createGrayscale(bitDepth, dataType,
-                        false));
+                l.add(ImageTypeSpecifier.createGrayscale(bitDepth, dataType, false));
                 break;
 
             case PNG_COLOR_RGB:
                 if (bitDepth == 8) {
                     // some standard types of buffered images
                     // which can be used as destination
-                    l.add(ImageTypeSpecifier.createFromBufferedImageType(
-                            BufferedImage.TYPE_3BYTE_BGR));
+                    l.add(ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_3BYTE_BGR));
 
-                    l.add(ImageTypeSpecifier.createFromBufferedImageType(
-                            BufferedImage.TYPE_INT_RGB));
+                    l.add(ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_INT_RGB));
 
-                    l.add(ImageTypeSpecifier.createFromBufferedImageType(
-                            BufferedImage.TYPE_INT_BGR));
+                    l.add(ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_INT_BGR));
 
                 }
                 // Component R, G, B
@@ -1350,8 +1295,7 @@ public class PNGImageReader extends ImageReader {
                 bandOffsets[0] = 0;
                 bandOffsets[1] = 1;
                 bandOffsets[2] = 2;
-                l.add(ImageTypeSpecifier.createInterleaved(rgb, bandOffsets,
-                        dataType, false, false));
+                l.add(ImageTypeSpecifier.createInterleaved(rgb, bandOffsets, dataType, false, false));
                 break;
 
             case PNG_COLOR_PALETTE:
@@ -1393,8 +1337,7 @@ public class PNGImageReader extends ImageReader {
 
                     green = Arrays.copyOf(metadata.PLTE_green, plength);
                     Arrays.fill(green, metadata.PLTE_green.length, plength,
-                            metadata.PLTE_green[metadata.PLTE_green.length
-                                    - 1]);
+                            metadata.PLTE_green[metadata.PLTE_green.length - 1]);
 
                     blue = Arrays.copyOf(metadata.PLTE_blue, plength);
                     Arrays.fill(blue, metadata.PLTE_blue.length, plength,
@@ -1411,13 +1354,12 @@ public class PNGImageReader extends ImageReader {
                         alpha = metadata.tRNS_alpha;
                     } else {
                         alpha = Arrays.copyOf(metadata.tRNS_alpha, red.length);
-                        Arrays.fill(alpha, metadata.tRNS_alpha.length,
-                                red.length, (byte) 255);
+                        Arrays.fill(alpha, metadata.tRNS_alpha.length, red.length, (byte) 255);
                     }
                 }
 
-                l.add(ImageTypeSpecifier.createIndexed(red, green, blue, alpha,
-                        bitDepth, DataBuffer.TYPE_BYTE));
+                l.add(ImageTypeSpecifier.createIndexed(red, green, blue, alpha, bitDepth,
+                        DataBuffer.TYPE_BYTE));
                 break;
 
             case PNG_COLOR_GRAY_ALPHA:
@@ -1426,19 +1368,16 @@ public class PNGImageReader extends ImageReader {
                 bandOffsets = new int[2];
                 bandOffsets[0] = 0;
                 bandOffsets[1] = 1;
-                l.add(ImageTypeSpecifier.createInterleaved(gray, bandOffsets,
-                        dataType, true, false));
+                l.add(ImageTypeSpecifier.createInterleaved(gray, bandOffsets, dataType, true, false));
                 break;
 
             case PNG_COLOR_RGB_ALPHA:
                 if (bitDepth == 8) {
                     // some standard types of buffered images
                     // wich can be used as destination
-                    l.add(ImageTypeSpecifier.createFromBufferedImageType(
-                            BufferedImage.TYPE_4BYTE_ABGR));
+                    l.add(ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_4BYTE_ABGR));
 
-                    l.add(ImageTypeSpecifier.createFromBufferedImageType(
-                            BufferedImage.TYPE_INT_ARGB));
+                    l.add(ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_INT_ARGB));
                 }
 
                 // Component R, G, B, A (non-premultiplied)
@@ -1449,8 +1388,7 @@ public class PNGImageReader extends ImageReader {
                 bandOffsets[2] = 2;
                 bandOffsets[3] = 3;
 
-                l.add(ImageTypeSpecifier.createInterleaved(rgb, bandOffsets,
-                        dataType, true, false));
+                l.add(ImageTypeSpecifier.createInterleaved(rgb, bandOffsets, dataType, true, false));
                 break;
 
             default:
@@ -1474,8 +1412,7 @@ public class PNGImageReader extends ImageReader {
      * After this changes we should override getRawImageType() to return last
      * element of image types list.
      */
-    public ImageTypeSpecifier getRawImageType(int imageIndex)
-            throws IOException {
+    public ImageTypeSpecifier getRawImageType(int imageIndex) throws IOException {
 
         Iterator<ImageTypeSpecifier> types = getImageTypes(imageIndex);
         ImageTypeSpecifier raw = null;
@@ -1501,8 +1438,7 @@ public class PNGImageReader extends ImageReader {
         return metadata;
     }
 
-    public BufferedImage read(int imageIndex, ImageReadParam param)
-            throws IIOException {
+    public BufferedImage read(int imageIndex, ImageReadParam param) throws IIOException {
         if (imageIndex != 0) {
             throw new IndexOutOfBoundsException("imageIndex != 0!");
         }

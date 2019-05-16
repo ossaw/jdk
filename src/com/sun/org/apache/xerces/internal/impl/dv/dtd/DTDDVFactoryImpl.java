@@ -28,9 +28,7 @@ import java.util.Map;
  * the factory to create/return built-in schema DVs and create user-defined DVs
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class DTDDVFactoryImpl extends DTDDVFactory {
 
@@ -59,7 +57,7 @@ public class DTDDVFactoryImpl extends DTDDVFactory {
      * return a dtd type of the given name
      *
      * @param name
-     *             the name of the datatype
+     *        the name of the datatype
      * @return the datatype validator of the given name
      */
     @Override

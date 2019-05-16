@@ -69,7 +69,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLString;
  *
  * @author Andy Clark, IBM
  * @author Eric Ye, IBM
- *
  */
 public class XMLStringBuffer extends XMLString {
 
@@ -96,8 +95,6 @@ public class XMLStringBuffer extends XMLString {
     } // <init>()
 
     /**
-     *
-     *
      * @param size
      */
     public XMLStringBuffer(int size) {

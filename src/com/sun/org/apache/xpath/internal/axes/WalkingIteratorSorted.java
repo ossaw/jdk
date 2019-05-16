@@ -45,8 +45,8 @@ public class WalkingIteratorSorted extends WalkingIterator {
      * Create a WalkingIteratorSorted object.
      *
      * @param nscontext
-     *                  The namespace context for this iterator, should be OK if
-     *                  null.
+     *        The namespace context for this iterator, should be OK if
+     *        null.
      */
     public WalkingIteratorSorted(PrefixResolver nscontext) {
         super(nscontext);
@@ -58,21 +58,19 @@ public class WalkingIteratorSorted extends WalkingIterator {
      * expressions.
      *
      * @param compiler
-     *                          The Compiler which is creating this expression.
+     *        The Compiler which is creating this expression.
      * @param opPos
-     *                          The position of this iterator in the opcode list
-     *                          from the
-     *                          compiler.
+     *        The position of this iterator in the opcode list
+     *        from the
+     *        compiler.
      * @param shouldLoadWalkers
-     *                          True if walkers should be loaded, or false if
-     *                          this is a
-     *                          derived iterator and it doesn't wish to load
-     *                          child walkers.
-     *
+     *        True if walkers should be loaded, or false if
+     *        this is a
+     *        derived iterator and it doesn't wish to load
+     *        child walkers.
      * @throws javax.xml.transform.TransformerException
      */
-    WalkingIteratorSorted(Compiler compiler, int opPos, int analysis,
-            boolean shouldLoadWalkers)
+    WalkingIteratorSorted(Compiler compiler, int opPos, int analysis, boolean shouldLoadWalkers)
             throws javax.xml.transform.TransformerException {
         super(compiler, opPos, analysis, shouldLoadWalkers);
     }
@@ -90,7 +88,6 @@ public class WalkingIteratorSorted extends WalkingIterator {
     /**
      * Tell if the nodeset can be walked in doc order, via static analysis.
      *
-     *
      * @return true if the nodeset can be walked in doc order, without sorting.
      */
     boolean canBeWalkedInNaturalDocOrderStatic() {
@@ -104,8 +101,8 @@ public class WalkingIteratorSorted extends WalkingIterator {
                 int axis = walker.getAxis();
 
                 if (walker.isDocOrdered()) {
-                    boolean isSimpleDownAxis = ((axis == Axis.CHILD)
-                            || (axis == Axis.SELF) || (axis == Axis.ROOT));
+                    boolean isSimpleDownAxis = ((axis == Axis.CHILD) || (axis == Axis.SELF)
+                            || (axis == Axis.ROOT));
                     // Catching the filtered list here is only OK because
                     // FilterExprWalker#isDocOrdered() did the right thing.
                     if (isSimpleDownAxis || (axis == -1))
@@ -113,12 +110,9 @@ public class WalkingIteratorSorted extends WalkingIterator {
                     else {
                         boolean isLastWalker = (null == walker.getNextWalker());
                         if (isLastWalker) {
-                            if (walker.isDocOrdered()
-                                    && (axis == Axis.DESCENDANT
-                                            || axis == Axis.DESCENDANTORSELF
-                                            || axis == Axis.DESCENDANTSFROMROOT
-                                            || axis == Axis.DESCENDANTSORSELFFROMROOT)
-                                    || (axis == Axis.ATTRIBUTE))
+                            if (walker.isDocOrdered() && (axis == Axis.DESCENDANT
+                                    || axis == Axis.DESCENDANTORSELF || axis == Axis.DESCENDANTSFROMROOT
+                                    || axis == Axis.DESCENDANTSORSELFFROMROOT) || (axis == Axis.ATTRIBUTE))
                                 return true;
                         }
                         return false;
@@ -184,13 +178,13 @@ public class WalkingIteratorSorted extends WalkingIterator {
      * This function is used to perform some extra analysis of the iterator.
      *
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);

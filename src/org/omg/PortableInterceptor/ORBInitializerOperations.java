@@ -117,8 +117,8 @@ public interface ORBInitializerOperations {
      * <code>ORBInitInfo.register_initial_reference</code>.
      * 
      * @param info
-     *             provides initialization attributes and operations by which
-     *             Interceptors can be registered.
+     *        provides initialization attributes and operations by which
+     *        Interceptors can be registered.
      */
     void pre_init(org.omg.PortableInterceptor.ORBInitInfo info);
 
@@ -137,8 +137,8 @@ public interface ORBInitializerOperations {
      * created, no IOR interceptors will be invoked.
      *
      * @param info
-     *             provides initialization attributes and operations by which
-     *             Interceptors can be registered.
+     *        provides initialization attributes and operations by which
+     *        Interceptors can be registered.
      */
     void post_init(org.omg.PortableInterceptor.ORBInitInfo info);
 } // interface ORBInitializerOperations

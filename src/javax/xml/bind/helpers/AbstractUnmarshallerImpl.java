@@ -34,11 +34,9 @@ import java.net.URL;
 
 /**
  * Partial default <tt>Unmarshaller</tt> implementation.
- *
  * <p>
  * This class provides a partial default implementation for the
  * {@link javax.xml.bind.Unmarshaller}interface.
- *
  * <p>
  * A JAXB Provider has to implement five methods (getUnmarshallerHandler,
  * unmarshal(Node), unmarshal(XMLReader,InputSource),
@@ -67,10 +65,8 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
 
     /**
      * Obtains a configured XMLReader.
-     *
      * This method is used when the client-specified {@link SAXSource} object
      * doesn't have XMLReader.
-     *
      * {@link Unmarshaller} is not re-entrant, so we will only use one instance
      * of XMLReader.
      */
@@ -96,8 +92,7 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
 
     public Object unmarshal(Source source) throws JAXBException {
         if (source == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "source"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "source"));
         }
 
         if (source instanceof SAXSource)
@@ -124,17 +119,14 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
     /**
      * Unmarshals an object by using the specified XMLReader and the
      * InputSource.
-     *
      * The callee should call the setErrorHandler method of the XMLReader so
      * that errors are passed to the client-specified ValidationEventHandler.
      */
-    protected abstract Object unmarshal(XMLReader reader, InputSource source)
-            throws JAXBException;
+    protected abstract Object unmarshal(XMLReader reader, InputSource source) throws JAXBException;
 
     public final Object unmarshal(InputSource source) throws JAXBException {
         if (source == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "source"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "source"));
         }
 
         return unmarshal(getXMLReader(), source);
@@ -146,8 +138,7 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
 
     public final Object unmarshal(URL url) throws JAXBException {
         if (url == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "url"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "url"));
         }
 
         return unmarshal(url.toExternalForm());
@@ -155,8 +146,7 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
 
     public final Object unmarshal(File f) throws JAXBException {
         if (f == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "file"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "file"));
         }
 
         try {
@@ -177,8 +167,7 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
     public final Object unmarshal(java.io.InputStream is) throws JAXBException {
 
         if (is == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "is"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "is"));
         }
 
         InputSource isrc = new InputSource(is);
@@ -187,8 +176,7 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
 
     public final Object unmarshal(Reader reader) throws JAXBException {
         if (reader == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "reader"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "reader"));
         }
 
         InputSource isrc = new InputSource(reader);
@@ -214,8 +202,8 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
      * @return true if the Unmarshaller is configured to validate during
      *         unmarshal operations, false otherwise
      * @throws JAXBException
-     *                       if an error occurs while retrieving the validating
-     *                       flag
+     *         if an error occurs while retrieving the validating
+     *         flag
      */
     public boolean isValidating() throws JAXBException {
         return validating;
@@ -232,13 +220,12 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
      * behaviour.
      *
      * @param handler
-     *                the validation event handler
+     *        the validation event handler
      * @throws JAXBException
-     *                       if an error was encountered while setting the event
-     *                       handler
+     *         if an error was encountered while setting the event
+     *         handler
      */
-    public void setEventHandler(ValidationEventHandler handler)
-            throws JAXBException {
+    public void setEventHandler(ValidationEventHandler handler) throws JAXBException {
 
         if (handler == null) {
             eventHandler = new DefaultValidationEventHandler();
@@ -256,13 +243,13 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
      * unmarshal methods.
      *
      * @param validating
-     *                   true if the Unmarshaller should validate during
-     *                   unmarshal,
-     *                   false otherwise
+     *        true if the Unmarshaller should validate during
+     *        unmarshal,
+     *        false otherwise
      * @throws JAXBException
-     *                       if an error occurred while enabling or disabling
-     *                       validation
-     *                       at unmarshal time
+     *         if an error occurred while enabling or disabling
+     *         validation
+     *         at unmarshal time
      */
     public void setValidating(boolean validating) throws JAXBException {
         this.validating = validating;
@@ -275,9 +262,9 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
      * @return the current ValidationEventHandler or the default event handler
      *         if it hasn't been set
      * @throws JAXBException
-     *                       if an error was encountered while getting the
-     *                       current event
-     *                       handler
+     *         if an error was encountered while getting the
+     *         current event
+     *         handler
      */
     public ValidationEventHandler getEventHandler() throws JAXBException {
         return eventHandler;
@@ -285,16 +272,13 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
 
     /**
      * Creates an UnmarshalException from a SAXException.
-     *
      * This is an utility method provided for the derived classes.
-     *
      * <p>
      * When a provider-implemented ContentHandler wants to throw a
      * JAXBException, it needs to wrap the exception by a SAXException. If the
      * unmarshaller implementation blindly wrap SAXException by JAXBException,
      * such an exception will be a JAXBException wrapped by a SAXException
      * wrapped by another JAXBException. This is silly.
-     *
      * <p>
      * This method checks the nested exception of SAXException and reduce those
      * excessive wrapping.
@@ -326,12 +310,10 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
      * needs to handle additional properties, it should override this method in
      * a derived class.
      */
-    public void setProperty(String name, Object value)
-            throws PropertyException {
+    public void setProperty(String name, Object value) throws PropertyException {
 
         if (name == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "name"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "name"));
         }
 
         throw new PropertyException(name, value);
@@ -346,8 +328,7 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
     public Object getProperty(String name) throws PropertyException {
 
         if (name == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "name"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "name"));
         }
 
         throw new PropertyException(name);
@@ -363,23 +344,19 @@ public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
         throw new UnsupportedOperationException();
     }
 
-    public <T> JAXBElement<T> unmarshal(Node node, Class<T> expectedType)
-            throws JAXBException {
+    public <T> JAXBElement<T> unmarshal(Node node, Class<T> expectedType) throws JAXBException {
         throw new UnsupportedOperationException();
     }
 
-    public <T> JAXBElement<T> unmarshal(Source source, Class<T> expectedType)
-            throws JAXBException {
+    public <T> JAXBElement<T> unmarshal(Source source, Class<T> expectedType) throws JAXBException {
         throw new UnsupportedOperationException();
     }
 
-    public <T> JAXBElement<T> unmarshal(XMLStreamReader reader,
-            Class<T> expectedType) throws JAXBException {
+    public <T> JAXBElement<T> unmarshal(XMLStreamReader reader, Class<T> expectedType) throws JAXBException {
         throw new UnsupportedOperationException();
     }
 
-    public <T> JAXBElement<T> unmarshal(XMLEventReader reader,
-            Class<T> expectedType) throws JAXBException {
+    public <T> JAXBElement<T> unmarshal(XMLEventReader reader, Class<T> expectedType) throws JAXBException {
         throw new UnsupportedOperationException();
     }
 

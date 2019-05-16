@@ -26,14 +26,12 @@ import java.util.concurrent.ForkJoinPool;
  *           likely override the {@code onCompletion} method from
  *           {@code CountedCompleter} to merge the results from child tasks into
  *           the current task's result.
- *
  *           <p>
  *           Splitting and setting up the child task links is done by
  *           {@code compute()} for internal nodes. At {@code compute()} time for
  *           leaf nodes, it is guaranteed that the parent's child-related fields
  *           (including sibling links for the parent's children) will be set up
  *           for all children.
- *
  *           <p>
  *           For example, a task that performs a reduce would override
  *           {@code doLeaf()} to perform a reduction on that leaf node's chunk
@@ -59,11 +57,9 @@ import java.util.concurrent.ForkJoinPool;
  *     }
  * }
  *           </pre>
- *
  *           <p>
  *           Serialization is not supported as there is no intention to
  *           serialize tasks managed by stream ops.
- *
  * @param <P_IN>
  *        Type of elements input to the pipeline
  * @param <P_OUT>
@@ -76,8 +72,8 @@ import java.util.concurrent.ForkJoinPool;
  * @since 1.8
  */
 @SuppressWarnings("serial")
-abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, R, K>>
-        extends CountedCompleter<R> {
+abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, R, K>> extends
+        CountedCompleter<R> {
 
     /**
      * Default target factor of leaf tasks for parallel decomposition. To allow
@@ -116,15 +112,14 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      * Constructor for root nodes.
      *
      * @param helper
-     *                    The {@code PipelineHelper} describing the stream
-     *                    pipeline up
-     *                    to this operation
+     *        The {@code PipelineHelper} describing the stream
+     *        pipeline up
+     *        to this operation
      * @param spliterator
-     *                    The {@code Spliterator} describing the source for this
-     *                    pipeline
+     *        The {@code Spliterator} describing the source for this
+     *        pipeline
      */
-    protected AbstractTask(PipelineHelper<P_OUT> helper,
-            Spliterator<P_IN> spliterator) {
+    protected AbstractTask(PipelineHelper<P_OUT> helper, Spliterator<P_IN> spliterator) {
         super(null);
         this.helper = helper;
         this.spliterator = spliterator;
@@ -135,12 +130,12 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      * Constructor for non-root nodes.
      *
      * @param parent
-     *                    this node's parent task
+     *        this node's parent task
      * @param spliterator
-     *                    {@code Spliterator} describing the subtree rooted at
-     *                    this
-     *                    node, obtained by splitting the parent
-     *                    {@code Spliterator}
+     *        {@code Spliterator} describing the subtree rooted at
+     *        this
+     *        node, obtained by splitting the parent
+     *        {@code Spliterator}
      */
     protected AbstractTask(K parent, Spliterator<P_IN> spliterator) {
         super(parent);
@@ -155,10 +150,10 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      * provided Spliterator.
      *
      * @param spliterator
-     *                    {@code Spliterator} describing the subtree rooted at
-     *                    this
-     *                    node, obtained by splitting the parent
-     *                    {@code Spliterator}
+     *        {@code Spliterator} describing the subtree rooted at
+     *        this
+     *        node, obtained by splitting the parent
+     *        {@code Spliterator}
      * @return newly constructed child node
      */
     protected abstract K makeChild(Spliterator<P_IN> spliterator);
@@ -187,8 +182,7 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      */
     protected final long getTargetSize(long sizeEstimate) {
         long s;
-        return ((s = targetSize) != 0 ? s
-                : (targetSize = suggestTargetSize(sizeEstimate)));
+        return ((s = targetSize) != 0 ? s : (targetSize = suggestTargetSize(sizeEstimate)));
     }
 
     /**
@@ -210,10 +204,10 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      * {@link #setLocalResult(Object)}} to manage results.
      *
      * @param result
-     *               must be null, or an exception is thrown (this is a safety
-     *               tripwire to detect when {@code setRawResult()} is being
-     *               used
-     *               instead of {@code setLocalResult()}
+     *        must be null, or an exception is thrown (this is a safety
+     *        tripwire to detect when {@code setRawResult()} is being
+     *        used
+     *        instead of {@code setLocalResult()}
      */
     @Override
     protected void setRawResult(R result) {
@@ -236,7 +230,7 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      * {@link #getLocalResult}
      *
      * @param localResult
-     *                    local result for this node
+     *        local result for this node
      */
     protected void setLocalResult(R localResult) {
         this.localResult = localResult;
@@ -277,7 +271,6 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
      * computing directly, calls {@code doLeaf} and pass the result to
      * {@code setRawResult}. Otherwise splits off subtasks, forking one and
      * continuing as the other.
-     *
      * <p>
      * The method is structured to conserve resources across a range of uses.
      * The loop continues with one of the child tasks when split, to avoid deep

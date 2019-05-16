@@ -87,12 +87,11 @@ public class LdapName implements Name {
      * Constructs an LDAP name from the given distinguished name.
      *
      * @param name
-     *             This is a non-null distinguished name formatted according to
-     *             the rules defined in
-     *             <a href="http://www.ietf.org/rfc/rfc2253.txt">RFC 2253</a>.
-     *
+     *        This is a non-null distinguished name formatted according to
+     *        the rules defined in
+     *        <a href="http://www.ietf.org/rfc/rfc2253.txt">RFC 2253</a>.
      * @throws InvalidNameException
-     *                              if a syntax violation is detected.
+     *         if a syntax violation is detected.
      * @see Rdn#escapeValue(Object value)
      */
     public LdapName(String name) throws InvalidNameException {
@@ -107,7 +106,7 @@ public class LdapName implements Name {
      * in the class description.
      *
      * @param rdns
-     *             The non-null list of <tt>Rdn</tt>s forming this LDAP name.
+     *        The non-null list of <tt>Rdn</tt>s forming this LDAP name.
      */
     public LdapName(List<Rdn> rdns) {
 
@@ -192,13 +191,13 @@ public class LdapName implements Name {
      * Retrieves a component of this LDAP name as a string.
      * 
      * @param posn
-     *             The 0-based index of the component to retrieve. Must be in
-     *             the
-     *             range [0,size()).
+     *        The 0-based index of the component to retrieve. Must be in
+     *        the
+     *        range [0,size()).
      * @return The non-null component at index posn.
      * @exception IndexOutOfBoundsException
-     *                                      if posn is outside the specified
-     *                                      range.
+     *            if posn is outside the specified
+     *            range.
      */
     public String get(int posn) {
         return rdns.get(posn).toString();
@@ -208,13 +207,13 @@ public class LdapName implements Name {
      * Retrieves an RDN of this LDAP name as an Rdn.
      * 
      * @param posn
-     *             The 0-based index of the RDN to retrieve. Must be in the
-     *             range
-     *             [0,size()).
+     *        The 0-based index of the RDN to retrieve. Must be in the
+     *        range
+     *        [0,size()).
      * @return The non-null RDN at index posn.
      * @exception IndexOutOfBoundsException
-     *                                      if posn is outside the specified
-     *                                      range.
+     *            if posn is outside the specified
+     *            range.
      */
     public Rdn getRdn(int posn) {
         return rdns.get(posn);
@@ -226,21 +225,20 @@ public class LdapName implements Name {
      * that is returned and vice versa.
      * 
      * @param posn
-     *             The 0-based index of the component at which to stop. Must be
-     *             in the range [0,size()].
+     *        The 0-based index of the component at which to stop. Must be
+     *        in the range [0,size()].
      * @return An instance of <tt>LdapName</tt> consisting of the components at
      *         indexes in the range [0,posn). If posn is zero, an empty LDAP
      *         name is returned.
      * @exception IndexOutOfBoundsException
-     *                                      If posn is outside the specified
-     *                                      range.
+     *            If posn is outside the specified
+     *            range.
      */
     public Name getPrefix(int posn) {
         try {
             return new LdapName(null, rdns, 0, posn);
         } catch (IllegalArgumentException e) {
-            throw new IndexOutOfBoundsException("Posn: " + posn + ", Size: "
-                    + rdns.size());
+            throw new IndexOutOfBoundsException("Posn: " + posn + ", Size: " + rdns.size());
         }
     }
 
@@ -250,21 +248,20 @@ public class LdapName implements Name {
      * that is returned and vice versa.
      *
      * @param posn
-     *             The 0-based index of the component at which to start. Must be
-     *             in the range [0,size()].
+     *        The 0-based index of the component at which to start. Must be
+     *        in the range [0,size()].
      * @return An instance of <tt>LdapName</tt> consisting of the components at
      *         indexes in the range [posn,size()). If posn is equal to size(),
      *         an empty LDAP name is returned.
      * @exception IndexOutOfBoundsException
-     *                                      If posn is outside the specified
-     *                                      range.
+     *            If posn is outside the specified
+     *            range.
      */
     public Name getSuffix(int posn) {
         try {
             return new LdapName(null, rdns, posn, rdns.size());
         } catch (IllegalArgumentException e) {
-            throw new IndexOutOfBoundsException("Posn: " + posn + ", Size: "
-                    + rdns.size());
+            throw new IndexOutOfBoundsException("Posn: " + posn + ", Size: " + rdns.size());
         }
     }
 
@@ -276,7 +273,7 @@ public class LdapName implements Name {
      * class description, false is returned.
      *
      * @param n
-     *          The LDAP name to check.
+     *        The LDAP name to check.
      * @return true if <tt>n</tt> is a prefix of this LDAP name, false
      *         otherwise.
      * @see #getPrefix(int posn)
@@ -298,7 +295,7 @@ public class LdapName implements Name {
      * returned.
      *
      * @param rdns
-     *             The sequence of <tt>Rdn</tt>s to check.
+     *        The sequence of <tt>Rdn</tt>s to check.
      * @return true if <tt>rdns</tt> form a prefix of this LDAP name, false
      *         otherwise.
      */
@@ -319,7 +316,7 @@ public class LdapName implements Name {
      * the class description, false is returned.
      *
      * @param n
-     *          The LDAP name to check.
+     *        The LDAP name to check.
      * @return true if <tt>n</tt> is a suffix of this name, false otherwise.
      * @see #getSuffix(int posn)
      */
@@ -340,7 +337,7 @@ public class LdapName implements Name {
      * is null, false is returned.
      *
      * @param rdns
-     *             The sequence of <tt>Rdn</tt>s to check.
+     *        The sequence of <tt>Rdn</tt>s to check.
      * @return true if <tt>rdns</tt> form a suffix of this LDAP name, false
      *         otherwise.
      */
@@ -393,15 +390,14 @@ public class LdapName implements Name {
      * Adds the components of a name -- in order -- to the end of this name.
      *
      * @param suffix
-     *               The non-null components to add.
+     *        The non-null components to add.
      * @return The updated name (not a new instance).
-     *
      * @throws InvalidNameException
-     *                              if <tt>suffix</tt> is not a valid LDAP name,
-     *                              or if the
-     *                              addition of the components would violate the
-     *                              syntax rules of
-     *                              this LDAP name.
+     *         if <tt>suffix</tt> is not a valid LDAP name,
+     *         or if the
+     *         addition of the components would violate the
+     *         syntax rules of
+     *         this LDAP name.
      */
     public Name addAll(Name suffix) throws InvalidNameException {
         return addAll(size(), suffix);
@@ -411,7 +407,7 @@ public class LdapName implements Name {
      * Adds the RDNs of a name -- in order -- to the end of this name.
      *
      * @param suffixRdns
-     *                   The non-null suffix <tt>Rdn</tt>s to add.
+     *        The non-null suffix <tt>Rdn</tt>s to add.
      * @return The updated name (not a new instance).
      */
     public Name addAll(List<Rdn> suffixRdns) {
@@ -425,21 +421,19 @@ public class LdapName implements Name {
      * accommodate the new components.
      *
      * @param suffix
-     *               The non-null components to add.
+     *        The non-null components to add.
      * @param posn
-     *               The index at which to add the new component. Must be in the
-     *               range [0,size()].
-     *
+     *        The index at which to add the new component. Must be in the
+     *        range [0,size()].
      * @return The updated name (not a new instance).
-     *
      * @throws InvalidNameException
-     *                                   if <tt>suffix</tt> is not a valid LDAP
-     *                                   name, or if the
-     *                                   addition of the components would
-     *                                   violate the syntax rules of
-     *                                   this LDAP name.
+     *         if <tt>suffix</tt> is not a valid LDAP
+     *         name, or if the
+     *         addition of the components would
+     *         violate the syntax rules of
+     *         this LDAP name.
      * @throws IndexOutOfBoundsException
-     *                                   If posn is outside the specified range.
+     *         If posn is outside the specified range.
      */
     public Name addAll(int posn, Name suffix) throws InvalidNameException {
         unparsed = null; // no longer valid
@@ -449,8 +443,7 @@ public class LdapName implements Name {
         } else {
             Enumeration<String> comps = suffix.getAll();
             while (comps.hasMoreElements()) {
-                rdns.add(posn++, (new Rfc2253Parser(comps.nextElement())
-                        .parseRdn()));
+                rdns.add(posn++, (new Rfc2253Parser(comps.nextElement()).parseRdn()));
             }
         }
         return this;
@@ -463,15 +456,14 @@ public class LdapName implements Name {
      * RDNs.
      *
      * @param suffixRdns
-     *                   The non-null suffix <tt>Rdn</tt>s to add.
+     *        The non-null suffix <tt>Rdn</tt>s to add.
      * @param posn
-     *                   The index at which to add the suffix RDNs. Must be in
-     *                   the
-     *                   range [0,size()].
-     *
+     *        The index at which to add the suffix RDNs. Must be in
+     *        the
+     *        range [0,size()].
      * @return The updated name (not a new instance).
      * @throws IndexOutOfBoundsException
-     *                                   If posn is outside the specified range.
+     *         If posn is outside the specified range.
      */
     public Name addAll(int posn, List<Rdn> suffixRdns) {
         unparsed = null;
@@ -490,12 +482,12 @@ public class LdapName implements Name {
      * Adds a single component to the end of this LDAP name.
      *
      * @param comp
-     *             The non-null component to add.
+     *        The non-null component to add.
      * @return The updated LdapName, not a new instance. Cannot be null.
      * @exception InvalidNameException
-     *                                 If adding comp at end of the name would
-     *                                 violate the name's
-     *                                 syntax.
+     *            If adding comp at end of the name would
+     *            violate the name's
+     *            syntax.
      */
     public Name add(String comp) throws InvalidNameException {
         return add(size(), comp);
@@ -505,8 +497,7 @@ public class LdapName implements Name {
      * Adds a single RDN to the end of this LDAP name.
      *
      * @param comp
-     *             The non-null RDN to add.
-     *
+     *        The non-null RDN to add.
      * @return The updated LdapName, not a new instance. Cannot be null.
      */
     public Name add(Rdn comp) {
@@ -520,18 +511,18 @@ public class LdapName implements Name {
      * new component.
      *
      * @param comp
-     *             The non-null component to add.
+     *        The non-null component to add.
      * @param posn
-     *             The index at which to add the new component. Must be in the
-     *             range [0,size()].
+     *        The index at which to add the new component. Must be in the
+     *        range [0,size()].
      * @return The updated LdapName, not a new instance. Cannot be null.
      * @exception IndexOutOfBoundsException
-     *                                      If posn is outside the specified
-     *                                      range.
+     *            If posn is outside the specified
+     *            range.
      * @exception InvalidNameException
-     *                                      If adding comp at the specified
-     *                                      position would violate the
-     *                                      name's syntax.
+     *            If adding comp at the specified
+     *            position would violate the
+     *            name's syntax.
      */
     public Name add(int posn, String comp) throws InvalidNameException {
         Rdn rdn = (new Rfc2253Parser(comp)).parseRdn();
@@ -546,14 +537,14 @@ public class LdapName implements Name {
      * up by one (away from index 0) to accommodate the new RDN.
      *
      * @param comp
-     *             The non-null RDN to add.
+     *        The non-null RDN to add.
      * @param posn
-     *             The index at which to add the new RDN. Must be in the range
-     *             [0,size()].
+     *        The index at which to add the new RDN. Must be in the range
+     *        [0,size()].
      * @return The updated LdapName, not a new instance. Cannot be null.
      * @exception IndexOutOfBoundsException
-     *                                      If posn is outside the specified
-     *                                      range.
+     *            If posn is outside the specified
+     *            range.
      */
     public Name add(int posn, Rdn comp) {
         if (comp == null) {
@@ -570,16 +561,15 @@ public class LdapName implements Name {
      * this position (if any) are shifted down (toward index 0) by one.
      *
      * @param posn
-     *             The index of the component to remove. Must be in the range
-     *             [0,size()).
+     *        The index of the component to remove. Must be in the range
+     *        [0,size()).
      * @return The component removed (a String).
-     *
      * @throws IndexOutOfBoundsException
-     *                                   if posn is outside the specified range.
+     *         if posn is outside the specified range.
      * @throws InvalidNameException
-     *                                   if deleting the component would violate
-     *                                   the syntax rules of
-     *                                   the name.
+     *         if deleting the component would violate
+     *         the syntax rules of
+     *         the name.
      */
     public Object remove(int posn) throws InvalidNameException {
         unparsed = null; // no longer valid
@@ -645,7 +635,7 @@ public class LdapName implements Name {
      * equality.
      *
      * @param obj
-     *            The possibly null object to compare against.
+     *        The possibly null object to compare against.
      * @return true if obj is equal to this LDAP name, false otherwise.
      * @see #hashCode
      */
@@ -695,12 +685,11 @@ public class LdapName implements Name {
      * positive number is returned.
      * 
      * @param obj
-     *            The non-null LdapName instance to compare against.
-     *
+     *        The non-null LdapName instance to compare against.
      * @return A negative integer, zero, or a positive integer as this Name is
      *         less than, equal to, or greater than the given obj.
      * @exception ClassCastException
-     *                               if obj is null or not a LdapName.
+     *            if obj is null or not a LdapName.
      */
     public int compareTo(Object obj) {
 
@@ -763,16 +752,14 @@ public class LdapName implements Name {
         s.writeObject(toString());
     }
 
-    private void readObject(ObjectInputStream s) throws java.io.IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         s.defaultReadObject();
         unparsed = (String) s.readObject();
         try {
             parse();
         } catch (InvalidNameException e) {
             // shouldn't happen
-            throw new java.io.StreamCorruptedException("Invalid name: "
-                    + unparsed);
+            throw new java.io.StreamCorruptedException("Invalid name: " + unparsed);
         }
     }
 

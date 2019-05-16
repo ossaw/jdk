@@ -32,8 +32,8 @@ public interface DynUnion extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * assigned a valid default value.
      * 
      * @param arg
-     *            <code>true</code> if the discriminator gets assigned a default
-     *            value
+     *        <code>true</code> if the discriminator gets assigned a default
+     *        value
      */
     public void set_as_default(boolean arg);
 
@@ -76,7 +76,7 @@ public interface DynUnion extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * Allows for the assignment of the name of this union member.
      * 
      * @param arg
-     *            the new name of this union member
+     *        the new name of this union member
      */
     public void member_name(String arg);
 

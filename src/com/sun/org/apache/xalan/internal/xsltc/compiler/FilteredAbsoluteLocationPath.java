@@ -65,8 +65,7 @@ final class FilteredAbsoluteLocationPath extends Expression {
     }
 
     public String toString() {
-        return "FilteredAbsoluteLocationPath(" + (_path != null ? _path
-                .toString() : "null") + ')';
+        return "FilteredAbsoluteLocationPath(" + (_path != null ? _path.toString() : "null") + ')';
     }
 
     public Type typeCheck(SymbolTable stable) throws TypeCheckError {
@@ -83,8 +82,8 @@ final class FilteredAbsoluteLocationPath extends Expression {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
         if (_path != null) {
-            final int initDFI = cpg.addMethodref(DUP_FILTERED_ITERATOR,
-                    "<init>", "(" + NODE_ITERATOR_SIG + ")V");
+            final int initDFI = cpg.addMethodref(DUP_FILTERED_ITERATOR, "<init>", "(" + NODE_ITERATOR_SIG
+                    + ")V");
 
             // Backwards branches are prohibited if an uninitialized object is
             // on the stack by section 4.9.4 of the JVM Specification, 2nd Ed.
@@ -96,9 +95,8 @@ final class FilteredAbsoluteLocationPath extends Expression {
             // arguments from the temporaries to avoid the problem.
 
             // Compile relative path iterator(s)
-            LocalVariableGen pathTemp = methodGen.addLocalVariable(
-                    "filtered_absolute_location_path_tmp", Util.getJCRefType(
-                            NODE_ITERATOR_SIG), null, null);
+            LocalVariableGen pathTemp = methodGen.addLocalVariable("filtered_absolute_location_path_tmp", Util
+                    .getJCRefType(NODE_ITERATOR_SIG), null, null);
             _path.translate(classGen, methodGen);
             pathTemp.setStart(il.append(new ASTORE(pathTemp.getIndex())));
 
@@ -110,8 +108,7 @@ final class FilteredAbsoluteLocationPath extends Expression {
             // Initialize Dup Filter Iterator with iterator from the stack
             il.append(new INVOKESPECIAL(initDFI));
         } else {
-            final int git = cpg.addInterfaceMethodref(DOM_INTF, "getIterator",
-                    "()" + NODE_ITERATOR_SIG);
+            final int git = cpg.addInterfaceMethodref(DOM_INTF, "getIterator", "()" + NODE_ITERATOR_SIG);
             il.append(methodGen.loadDOM());
             il.append(new INVOKEINTERFACE(git, 1));
         }

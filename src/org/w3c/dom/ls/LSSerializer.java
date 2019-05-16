@@ -399,26 +399,26 @@ public interface LSSerializer {
      * implementation dependent.
      * 
      * @param nodeArg
-     *                    The node to serialize.
+     *        The node to serialize.
      * @param destination
-     *                    The destination for the serialized DOM.
+     *        The destination for the serialized DOM.
      * @return Returns <code>true</code> if <code>node</code> was successfully
      *         serialized. Return <code>false</code> in case the normal
      *         processing stopped but the implementation kept serializing the
      *         document; the result of the serialization being implementation
      *         dependent then.
      * @exception LSException
-     *                        SERIALIZE_ERR: Raised if the
-     *                        <code>LSSerializer</code> was
-     *                        unable to serialize the node. DOM applications
-     *                        should
-     *                        attach a <code>DOMErrorHandler</code> using the
-     *                        parameter
-     *                        "<a href=
-     *                        'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
-     *                        error-handler</a>" if they wish to get details on
-     *                        the
-     *                        error.
+     *            SERIALIZE_ERR: Raised if the
+     *            <code>LSSerializer</code> was
+     *            unable to serialize the node. DOM applications
+     *            should
+     *            attach a <code>DOMErrorHandler</code> using the
+     *            parameter
+     *            "<a href=
+     *            'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
+     *            error-handler</a>" if they wish to get details on
+     *            the
+     *            error.
      */
     public boolean write(Node nodeArg, LSOutput destination) throws LSException;
 
@@ -428,26 +428,26 @@ public interface LSSerializer {
      * <code>LSOutput.systemId</code> set to the <code>uri</code> argument.
      * 
      * @param nodeArg
-     *                The node to serialize.
+     *        The node to serialize.
      * @param uri
-     *                The URI to write to.
+     *        The URI to write to.
      * @return Returns <code>true</code> if <code>node</code> was successfully
      *         serialized. Return <code>false</code> in case the normal
      *         processing stopped but the implementation kept serializing the
      *         document; the result of the serialization being implementation
      *         dependent then.
      * @exception LSException
-     *                        SERIALIZE_ERR: Raised if the
-     *                        <code>LSSerializer</code> was
-     *                        unable to serialize the node. DOM applications
-     *                        should
-     *                        attach a <code>DOMErrorHandler</code> using the
-     *                        parameter
-     *                        "<a href=
-     *                        'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
-     *                        error-handler</a>" if they wish to get details on
-     *                        the
-     *                        error.
+     *            SERIALIZE_ERR: Raised if the
+     *            <code>LSSerializer</code> was
+     *            unable to serialize the node. DOM applications
+     *            should
+     *            attach a <code>DOMErrorHandler</code> using the
+     *            parameter
+     *            "<a href=
+     *            'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
+     *            error-handler</a>" if they wish to get details on
+     *            the
+     *            error.
      */
     public boolean writeToURI(Node nodeArg, String uri) throws LSException;
 
@@ -460,24 +460,24 @@ public interface LSSerializer {
      * <code>DOMString</code> object.
      * 
      * @param nodeArg
-     *                The node to serialize.
+     *        The node to serialize.
      * @return Returns the serialized data.
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised if the resulting
-     *                         string is too
-     *                         long to fit in a <code>DOMString</code>.
+     *            DOMSTRING_SIZE_ERR: Raised if the resulting
+     *            string is too
+     *            long to fit in a <code>DOMString</code>.
      * @exception LSException
-     *                         SERIALIZE_ERR: Raised if the
-     *                         <code>LSSerializer</code> was
-     *                         unable to serialize the node. DOM applications
-     *                         should
-     *                         attach a <code>DOMErrorHandler</code> using the
-     *                         parameter
-     *                         "<a href=
-     *                         'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
-     *                         error-handler</a>" if they wish to get details on
-     *                         the
-     *                         error.
+     *            SERIALIZE_ERR: Raised if the
+     *            <code>LSSerializer</code> was
+     *            unable to serialize the node. DOM applications
+     *            should
+     *            attach a <code>DOMErrorHandler</code> using the
+     *            parameter
+     *            "<a href=
+     *            'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
+     *            error-handler</a>" if they wish to get details on
+     *            the
+     *            error.
      */
     public String writeToString(Node nodeArg) throws DOMException, LSException;
 

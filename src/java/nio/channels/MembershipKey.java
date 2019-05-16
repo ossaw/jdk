@@ -12,20 +12,17 @@ import java.io.IOException;
 /**
  * A token representing the membership of an Internet Protocol (IP) multicast
  * group.
- *
  * <p>
  * A membership key may represent a membership to receive all datagrams sent to
  * the group, or it may be <em>source-specific</em>, meaning that it represents
  * a membership that receives only datagrams from a specific source address.
  * Whether or not a membership key is source-specific may be determined by
  * invoking its {@link #sourceAddress() sourceAddress} method.
- *
  * <p>
  * A membership key is valid upon creation and remains valid until the
  * membership is dropped by invoking the {@link #drop() drop} method, or the
  * channel is closed. The validity of the membership key may be tested by
  * invoking its {@link #isValid() isValid} method.
- *
  * <p>
  * Where a membership key is not source-specific and the underlying operation
  * system supports source filtering, then the {@link #block block} and
@@ -33,7 +30,6 @@ import java.io.IOException;
  * datagrams from particular source addresses.
  *
  * @see MulticastChannel
- *
  * @since 1.7
  */
 public abstract class MembershipKey {
@@ -45,7 +41,6 @@ public abstract class MembershipKey {
 
     /**
      * Tells whether or not this membership is valid.
-     *
      * <p>
      * A multicast group membership is valid upon creation and remains valid
      * until the membership is dropped by invoking the {@link #drop() drop}
@@ -58,21 +53,18 @@ public abstract class MembershipKey {
 
     /**
      * Drop membership.
-     *
      * <p>
      * If the membership key represents a membership to receive all datagrams
      * then the membership is dropped and the channel will no longer receive any
      * datagrams sent to the group. If the membership key is source-specific
      * then the channel will no longer receive datagrams sent to the group from
      * that source address.
-     *
      * <p>
      * After membership is dropped it may still be possible to receive datagrams
      * sent to the group. This can arise when datagrams are waiting to be
      * received in the socket's receive buffer. After membership is dropped then
      * the channel may {@link MulticastChannel#join join} the group again in
      * which case a new membership key is returned.
-     *
      * <p>
      * Upon return, this membership object will be {@link #isValid() invalid}.
      * If the multicast group membership is already invalid then invoking this
@@ -83,7 +75,6 @@ public abstract class MembershipKey {
 
     /**
      * Block multicast datagrams from the given source address.
-     *
      * <p>
      * If this membership key is not source-specific, and the underlying
      * operating system supports source filtering, then this method blocks
@@ -94,25 +85,23 @@ public abstract class MembershipKey {
      * the socket's receive buffer.
      *
      * @param source
-     *               The source address to block
-     *
+     *        The source address to block
      * @return This membership key
-     *
      * @throws IllegalArgumentException
-     *                                       If the {@code source} parameter is
-     *                                       not a unicast address or
-     *                                       is not the same address type as the
-     *                                       multicast group
+     *         If the {@code source} parameter is
+     *         not a unicast address or
+     *         is not the same address type as the
+     *         multicast group
      * @throws IllegalStateException
-     *                                       If this membership key is
-     *                                       source-specific or is no longer
-     *                                       valid
+     *         If this membership key is
+     *         source-specific or is no longer
+     *         valid
      * @throws UnsupportedOperationException
-     *                                       If the underlying operating system
-     *                                       does not support source
-     *                                       filtering
+     *         If the underlying operating system
+     *         does not support source
+     *         filtering
      * @throws IOException
-     *                                       If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract MembershipKey block(InetAddress source) throws IOException;
 
@@ -121,14 +110,12 @@ public abstract class MembershipKey {
      * previously blocked using the {@link #block(InetAddress) block} method.
      *
      * @param source
-     *               The source address to unblock
-     *
+     *        The source address to unblock
      * @return This membership key
-     *
      * @throws IllegalStateException
-     *                               If the given source address is not
-     *                               currently blocked or the
-     *                               membership key is no longer valid
+     *         If the given source address is not
+     *         currently blocked or the
+     *         membership key is no longer valid
      */
     public abstract MembershipKey unblock(InetAddress source);
 

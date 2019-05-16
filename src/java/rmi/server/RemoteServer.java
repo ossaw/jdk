@@ -35,7 +35,7 @@ public abstract class RemoteServer extends RemoteObject {
      * Constructs a <code>RemoteServer</code> with the given reference type.
      *
      * @param ref
-     *            the remote reference
+     *        the remote reference
      * @since JDK1.1
      */
     protected RemoteServer(RemoteRef ref) {
@@ -47,12 +47,10 @@ public abstract class RemoteServer extends RemoteObject {
      * invocation being processed in the current thread.
      *
      * @return a string representation of the client host
-     *
      * @throws ServerNotActiveException
-     *                                  if no remote method invocation is being
-     *                                  processed in the
-     *                                  current thread
-     *
+     *         if no remote method invocation is being
+     *         processed in the
+     *         current thread
      * @since JDK1.1
      */
     public static String getClientHost() throws ServerNotActiveException {
@@ -62,7 +60,6 @@ public abstract class RemoteServer extends RemoteObject {
     /**
      * Log RMI calls to the output stream <code>out</code>. If <code>out</code>
      * is <code>null</code>, call logging is turned off.
-     *
      * <p>
      * If there is a security manager, its <code>checkPermission</code> method
      * will be invoked with a
@@ -70,11 +67,11 @@ public abstract class RemoteServer extends RemoteObject {
      * this could result in a <code>SecurityException</code>.
      *
      * @param out
-     *            the output stream to which RMI calls should be logged
+     *        the output stream to which RMI calls should be logged
      * @throws SecurityException
-     *                           if there is a security manager and the
-     *                           invocation of its
-     *                           <code>checkPermission</code> method fails
+     *         if there is a security manager and the
+     *         invocation of its
+     *         <code>checkPermission</code> method fails
      * @see #getLog
      * @since JDK1.1
      */

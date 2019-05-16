@@ -10,7 +10,6 @@ package javax.xml.stream.events;
 
 /**
  * An interface for handling Notation Declarations
- *
  * Receive notification of a notation declaration event. It is up to the
  * application to record the notation for later reference, At least one of
  * publicId and systemId must be non-null. There is no guarantee that the

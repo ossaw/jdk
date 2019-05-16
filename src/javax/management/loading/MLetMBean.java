@@ -27,25 +27,22 @@ public interface MLetMBean {
      * the MLET file will be instantiated and registered in the MBean server.
      *
      * @param url
-     *            The URL of the text file to be loaded as String object.
-     *
+     *        The URL of the text file to be loaded as String object.
      * @return A set containing one entry per MLET tag in the m-let text file
      *         loaded. Each entry specifies either the ObjectInstance for the
      *         created MBean, or a throwable object (that is, an error or an
      *         exception) if the MBean could not be created.
-     *
      * @exception ServiceNotFoundException
-     *                                     One of the following errors has
-     *                                     occurred: The m-let text
-     *                                     file does not contain an MLET tag,
-     *                                     the m-let text file is
-     *                                     not found, a mandatory attribute of
-     *                                     the MLET tag is not
-     *                                     specified, the value of url is
-     *                                     malformed.
+     *            One of the following errors has
+     *            occurred: The m-let text
+     *            file does not contain an MLET tag,
+     *            the m-let text file is
+     *            not found, a mandatory attribute of
+     *            the MLET tag is not
+     *            specified, the value of url is
+     *            malformed.
      */
-    public Set<Object> getMBeansFromURL(String url)
-            throws ServiceNotFoundException;
+    public Set<Object> getMBeansFromURL(String url) throws ServiceNotFoundException;
 
     /**
      * Loads a text file containing MLET tags that define the MBeans to be added
@@ -54,31 +51,28 @@ public interface MLetMBean {
      * the MLET file will be instantiated and registered in the MBean server.
      *
      * @param url
-     *            The URL of the text file to be loaded as URL object.
-     *
+     *        The URL of the text file to be loaded as URL object.
      * @return A set containing one entry per MLET tag in the m-let text file
      *         loaded. Each entry specifies either the ObjectInstance for the
      *         created MBean, or a throwable object (that is, an error or an
      *         exception) if the MBean could not be created.
-     *
      * @exception ServiceNotFoundException
-     *                                     One of the following errors has
-     *                                     occurred: The m-let text
-     *                                     file does not contain an MLET tag,
-     *                                     the m-let text file is
-     *                                     not found, a mandatory attribute of
-     *                                     the MLET tag is not
-     *                                     specified, the value of url is null.
+     *            One of the following errors has
+     *            occurred: The m-let text
+     *            file does not contain an MLET tag,
+     *            the m-let text file is
+     *            not found, a mandatory attribute of
+     *            the MLET tag is not
+     *            specified, the value of url is null.
      */
-    public Set<Object> getMBeansFromURL(URL url)
-            throws ServiceNotFoundException;
+    public Set<Object> getMBeansFromURL(URL url) throws ServiceNotFoundException;
 
     /**
      * Appends the specified URL to the list of URLs to search for classes and
      * resources.
      *
      * @param url
-     *            the URL to add.
+     *        the URL to add.
      */
     public void addURL(URL url);
 
@@ -87,10 +81,9 @@ public interface MLetMBean {
      * resources.
      *
      * @param url
-     *            the URL to add.
-     *
+     *        the URL to add.
      * @exception ServiceNotFoundException
-     *                                     The specified URL is malformed.
+     *            The specified URL is malformed.
      */
     public void addURL(String url) throws ServiceNotFoundException;
 
@@ -110,8 +103,7 @@ public interface MLetMBean {
      * "/"-separated path name that identifies the resource.
      *
      * @param name
-     *             The resource name
-     *
+     *        The resource name
      * @return An URL for reading the resource, or null if the resource could
      *         not be found or the caller doesn't have adequate privileges to
      *         get the resource.
@@ -123,11 +115,9 @@ public interface MLetMBean {
      * order is described in the documentation for getResource(String).
      *
      * @param name
-     *             The resource name
-     *
+     *        The resource name
      * @return An input stream for reading the resource, or null if the resource
      *         could not be found
-     *
      */
     public InputStream getResourceAsStream(String name);
 
@@ -138,15 +128,13 @@ public interface MLetMBean {
      * is a "/"-separated path name that identifies the resource.
      *
      * @param name
-     *             The resource name.
-     *
+     *        The resource name.
      * @return An enumeration of URL to the resource. If no resources could be
      *         found, the enumeration will be empty. Resources that cannot be
      *         accessed will not be in the enumeration.
-     *
      * @exception IOException
-     *                        if an I/O exception occurs when searching for
-     *                        resources.
+     *            if an I/O exception occurs when searching for
+     *            resources.
      */
     public Enumeration<URL> getResources(String name) throws IOException;
 
@@ -155,13 +143,11 @@ public interface MLetMBean {
      * libraries before they are loaded into memory.
      *
      * @return The current directory used by the library loader.
-     *
      * @see #setLibraryDirectory
-     *
      * @throws UnsupportedOperationException
-     *                                       if this implementation does not
-     *                                       support storing native
-     *                                       libraries in this way.
+     *         if this implementation does not
+     *         support storing native
+     *         libraries in this way.
      */
     public String getLibraryDirectory();
 
@@ -170,14 +156,12 @@ public interface MLetMBean {
      * libraries before they are loaded into memory.
      *
      * @param libdir
-     *               The directory used by the library loader.
-     *
+     *        The directory used by the library loader.
      * @see #getLibraryDirectory
-     *
      * @throws UnsupportedOperationException
-     *                                       if this implementation does not
-     *                                       support storing native
-     *                                       libraries in this way.
+     *         if this implementation does not
+     *         support storing native
+     *         libraries in this way.
      */
     public void setLibraryDirectory(String libdir);
 

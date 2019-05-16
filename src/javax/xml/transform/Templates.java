@@ -10,7 +10,6 @@ import java.util.Properties;
 /**
  * An object that implements this interface is the runtime representation of
  * processed transformation instructions.
- *
  * <p>
  * Templates must be threadsafe for a given instance over multiple threads
  * running concurrently, and may be used multiple times in a given session.
@@ -22,10 +21,9 @@ public interface Templates {
      * Create a new transformation context for this Templates object.
      *
      * @return A valid non-null instance of a Transformer.
-     *
      * @throws TransformerConfigurationException
-     *                                           if a Transformer can not be
-     *                                           created.
+     *         if a Transformer can not be
+     *         created.
      */
     Transformer newTransformer() throws TransformerConfigurationException;
 
@@ -34,7 +32,6 @@ public interface Templates {
      * object returned will be a clone of the internal values. Accordingly, it
      * can be mutated without mutating the Templates object, and then handed in
      * to {@link javax.xml.transform.Transformer#setOutputProperties}.
-     *
      * <p>
      * The properties returned should contain properties set by the stylesheet,
      * and these properties are "defaulted" by default properties specified by
@@ -48,7 +45,6 @@ public interface Templates {
      * getOutputProperties().get(String key) will only retrieve properties that
      * were explicitly set in the stylesheet.
      * </p>
-     *
      * <p>
      * For XSLT,
      * <a href="http://www.w3.org/TR/xslt#attribute-value-templates">Attribute

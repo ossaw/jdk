@@ -65,9 +65,7 @@ package java.awt;
  * @see Dialog#show
  * @see EventQueue#createSecondaryLoop
  * @see Toolkit#getSystemEventQueue
- *
  * @author Anton Tarasov, Artem Ananiev
- *
  * @since 1.7
  */
 public interface SecondaryLoop {

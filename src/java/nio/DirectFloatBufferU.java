@@ -23,8 +23,7 @@ class DirectFloatBufferU
     protected static final Unsafe unsafe = Bits.unsafe();
 
     // Cached array base offset
-    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
-            float[].class);
+    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(float[].class);
 
     // Cached unaligned-access capability
     protected static final boolean unaligned = Bits.unaligned();
@@ -69,14 +68,14 @@ class DirectFloatBufferU
     }
 
     public FloatBuffer duplicate() {
-        return new DirectFloatBufferU(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectFloatBufferU(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
     }
 
     public FloatBuffer asReadOnlyBuffer() {
 
-        return new DirectFloatBufferRU(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectFloatBufferRU(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
 
     }
 
@@ -108,12 +107,10 @@ class DirectFloatBufferU
                 throw new BufferUnderflowException();
 
             if (order() != ByteOrder.nativeOrder())
-                Bits.copyToIntArray(ix(pos), dst, (long) offset << 2,
-                        (long) length << 2);
+                Bits.copyToIntArray(ix(pos), dst, (long) offset << 2, (long) length << 2);
             else
 
-                Bits.copyToArray(ix(pos), dst, arrayBaseOffset,
-                        (long) offset << 2, (long) length << 2);
+                Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 2, (long) length << 2);
             position(pos + length);
         } else {
             super.get(dst, offset, length);
@@ -187,12 +184,10 @@ class DirectFloatBufferU
                 throw new BufferOverflowException();
 
             if (order() != ByteOrder.nativeOrder())
-                Bits.copyFromIntArray(src, (long) offset << 2, ix(pos),
-                        (long) length << 2);
+                Bits.copyFromIntArray(src, (long) offset << 2, ix(pos), (long) length << 2);
             else
 
-                Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 2, ix(
-                        pos), (long) length << 2);
+                Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 2, ix(pos), (long) length << 2);
             position(pos + length);
         } else {
             super.put(src, offset, length);
@@ -226,8 +221,7 @@ class DirectFloatBufferU
 
     public ByteOrder order() {
 
-        return ((ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN)
-                ? ByteOrder.LITTLE_ENDIAN
+        return ((ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
                 : ByteOrder.BIG_ENDIAN);
 
     }

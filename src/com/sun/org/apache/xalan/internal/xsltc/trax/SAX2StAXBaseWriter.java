@@ -18,8 +18,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.DefaultHandler;
 
-public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
-        LexicalHandler {
+public abstract class SAX2StAXBaseWriter extends DefaultHandler implements LexicalHandler {
 
     protected boolean isCDATA;
 
@@ -74,18 +73,16 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
         namespaces = null;
     }
 
-    public void startElement(String uri, String localName, String qName,
-            Attributes attributes) throws SAXException {
-        namespaces = null;
-    }
-
-    public void endElement(String uri, String localName, String qName)
+    public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
         namespaces = null;
     }
 
-    public void startPrefixMapping(String prefix, String uri)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        namespaces = null;
+    }
+
+    public void startPrefixMapping(String prefix, String uri) throws SAXException {
 
         if (prefix == null) {
             prefix = "";
@@ -111,8 +108,7 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
         }
     }
 
-    public void characters(char[] ch, int start, int length)
-            throws SAXException {
+    public void characters(char[] ch, int start, int length) throws SAXException {
         if (isCDATA) {
             CDATABuffer.append(ch, start, length);
         }
@@ -129,8 +125,7 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
 
     public void endEntity(String name) throws SAXException {}
 
-    public void startDTD(String name, String publicId, String systemId)
-            throws SAXException {}
+    public void startDTD(String name, String publicId, String systemId) throws SAXException {}
 
     public void startEntity(String name) throws SAXException {}
 
@@ -138,8 +133,7 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
      * Used to report a {@link SAXException}to the {@link XMLReporter}
      * registered with this handler.
      */
-    protected void reportException(String type, SAXException e)
-            throws SAXException {
+    protected void reportException(String type, SAXException e) throws SAXException {
 
         if (reporter != null) {
             try {
@@ -155,13 +149,13 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
      * name in the provided String array.
      *
      * @param qName
-     *                The qualified name to parse.
+     *        The qualified name to parse.
      * @param results
-     *                An array where parse results will be placed. The prefix
-     *                will
-     *                be placed at <code>results[0]</code>, and the local part
-     *                at
-     *                <code>results[1]</code>
+     *        An array where parse results will be placed. The prefix
+     *        will
+     *        be placed at <code>results[0]</code>, and the local part
+     *        at
+     *        <code>results[1]</code>
      */
     public static final void parseQName(String qName, String[] results) {
 

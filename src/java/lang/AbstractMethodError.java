@@ -29,7 +29,7 @@ public class AbstractMethodError extends IncompatibleClassChangeError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public AbstractMethodError(String s) {
         super(s);

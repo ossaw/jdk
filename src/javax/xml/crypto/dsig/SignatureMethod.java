@@ -64,7 +64,6 @@ public interface SignatureMethod extends XMLStructure, AlgorithmMethod {
     /**
      * Returns the algorithm-specific input parameters of this
      * <code>SignatureMethod</code>.
-     *
      * <p>
      * The returned parameters can be typecast to a
      * {@link SignatureMethodParameterSpec} object.

@@ -29,18 +29,15 @@ import org.xml.sax.XMLReader;
  * CoroutineParser is an API for parser threads that operate as coroutines. See
  * CoroutineSAXParser and CoroutineSAXParser_Xerces for examples.
  * </p>
- *
  * <p>
  * &lt;grumble&gt; I'd like the interface to require a specific form for either
  * the base constructor or a static factory method. Java doesn't allow us to
  * specify either, so I'll just document them here:
- *
  * <ul>
  * <li>public CoroutineParser(CoroutineManager co, int appCoroutine);</li>
  * <li>public CoroutineParser createCoroutineParser(CoroutineManager co, int
  * appCoroutine);</li>
  * </ul>
- *
  * &lt;/grumble&gt;
  * </p>
  *
@@ -73,7 +70,6 @@ public interface CoroutineParser {
     /**
      * Register a SAX-style lexical handler for us to output to Not all parsers
      * support this...
-     *
      * %REVIEW% Not called setLexicalHandler because Xalan uses that name
      * internally, which causes subclassing nuisances.
      */
@@ -91,18 +87,17 @@ public interface CoroutineParser {
      * partner coroutines, and serves both to encapsulate the communication
      * protocol and to avoid having to explicitly use the CoroutineParser's
      * coroutine ID number.
-     *
      * %REVIEW% Can/should this unify with doMore? (if URI hasn't changed, parse
      * more from same file, else end and restart parsing...?
      *
      * @param source
-     *                     The InputSource to parse from.
+     *        The InputSource to parse from.
      * @param appCoroutine
-     *                     The coroutine ID number of the coroutine invoking
-     *                     this method,
-     *                     so it can be resumed after the parser has responded
-     *                     to the
-     *                     request.
+     *        The coroutine ID number of the coroutine invoking
+     *        this method,
+     *        so it can be resumed after the parser has responded
+     *        to the
+     *        request.
      * @return Boolean.TRUE if the CoroutineParser believes more data may be
      *         available for further parsing. Boolean.FALSE if parsing ran to
      *         completion. Exception if the parser objected for some reason.
@@ -117,18 +112,18 @@ public interface CoroutineParser {
      * number.
      *
      * @param parsemore
-     *                     If true, tells the incremental parser to generate
-     *                     another
-     *                     chunk of output. If false, tells the parser that
-     *                     we're
-     *                     satisfied and it can terminate parsing of this
-     *                     document.
+     *        If true, tells the incremental parser to generate
+     *        another
+     *        chunk of output. If false, tells the parser that
+     *        we're
+     *        satisfied and it can terminate parsing of this
+     *        document.
      * @param appCoroutine
-     *                     The coroutine ID number of the coroutine invoking
-     *                     this method,
-     *                     so it can be resumed after the parser has responded
-     *                     to the
-     *                     request.
+     *        The coroutine ID number of the coroutine invoking
+     *        this method,
+     *        so it can be resumed after the parser has responded
+     *        to the
+     *        request.
      * @return Boolean.TRUE if the CoroutineParser believes more data may be
      *         available for further parsing. Boolean.FALSE if parsing ran to
      *         completion. Exception if the parser objected for some reason.
@@ -141,15 +136,14 @@ public interface CoroutineParser {
      * coroutines, and serves both to encapsulate the communication protocol and
      * to avoid having to explicitly use the CoroutineParser's coroutine ID
      * number.
-     *
      * Returns only after the CoroutineParser has acknowledged the request.
      *
      * @param appCoroutine
-     *                     The coroutine ID number of the coroutine invoking
-     *                     this method,
-     *                     so it can be resumed after the parser has responded
-     *                     to the
-     *                     request.
+     *        The coroutine ID number of the coroutine invoking
+     *        this method,
+     *        so it can be resumed after the parser has responded
+     *        to the
+     *        request.
      */
     public void doTerminate(int appCoroutine);
 

@@ -25,9 +25,9 @@ public interface Action {
      * propagated to doIt.
      * 
      * @param FSM
-     *              fsm is the state machine causing this action.
+     *        fsm is the state machine causing this action.
      * @param Input
-     *              in is the input that caused the transition.
+     *        in is the input that caused the transition.
      */
     public void doIt(FSM fsm, Input in);
 }

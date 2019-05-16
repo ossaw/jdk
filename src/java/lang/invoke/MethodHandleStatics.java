@@ -36,26 +36,16 @@ import sun.misc.Unsafe;
         final Object[] values = new Object[9];
         AccessController.doPrivileged(new PrivilegedAction<Void>() {
             public Void run() {
-                values[0] = Boolean.getBoolean(
-                        "java.lang.invoke.MethodHandle.DEBUG_NAMES");
-                values[1] = Boolean.getBoolean(
-                        "java.lang.invoke.MethodHandle.DUMP_CLASS_FILES");
-                values[2] = Boolean.getBoolean(
-                        "java.lang.invoke.MethodHandle.TRACE_INTERPRETER");
-                values[3] = Boolean.getBoolean(
-                        "java.lang.invoke.MethodHandle.TRACE_METHOD_LINKAGE");
-                values[4] = Integer.getInteger(
-                        "java.lang.invoke.MethodHandle.COMPILE_THRESHOLD", 0);
-                values[5] = Integer.getInteger(
-                        "java.lang.invoke.MethodHandle.DONT_INLINE_THRESHOLD",
-                        30);
-                values[6] = Integer.getInteger(
-                        "java.lang.invoke.MethodHandle.PROFILE_LEVEL", 0);
+                values[0] = Boolean.getBoolean("java.lang.invoke.MethodHandle.DEBUG_NAMES");
+                values[1] = Boolean.getBoolean("java.lang.invoke.MethodHandle.DUMP_CLASS_FILES");
+                values[2] = Boolean.getBoolean("java.lang.invoke.MethodHandle.TRACE_INTERPRETER");
+                values[3] = Boolean.getBoolean("java.lang.invoke.MethodHandle.TRACE_METHOD_LINKAGE");
+                values[4] = Integer.getInteger("java.lang.invoke.MethodHandle.COMPILE_THRESHOLD", 0);
+                values[5] = Integer.getInteger("java.lang.invoke.MethodHandle.DONT_INLINE_THRESHOLD", 30);
+                values[6] = Integer.getInteger("java.lang.invoke.MethodHandle.PROFILE_LEVEL", 0);
                 values[7] = Boolean.parseBoolean(System.getProperty(
                         "java.lang.invoke.MethodHandle.PROFILE_GWT", "true"));
-                values[8] = Integer.getInteger(
-                        "java.lang.invoke.MethodHandle.CUSTOMIZE_THRESHOLD",
-                        127);
+                values[8] = Integer.getInteger("java.lang.invoke.MethodHandle.CUSTOMIZE_THRESHOLD", 127);
                 return null;
             }
         });
@@ -70,8 +60,7 @@ import sun.misc.Unsafe;
         CUSTOMIZE_THRESHOLD = (Integer) values[8];
 
         if (CUSTOMIZE_THRESHOLD < -1 || CUSTOMIZE_THRESHOLD > 127) {
-            throw newInternalError(
-                    "CUSTOMIZE_THRESHOLD should be in [-1...127] range");
+            throw newInternalError("CUSTOMIZE_THRESHOLD should be in [-1...127] range");
         }
     }
 
@@ -80,12 +69,10 @@ import sun.misc.Unsafe;
      * it is reasonable to perform extra checks or save extra information.
      */
     /* non-public */ static boolean debugEnabled() {
-        return (DEBUG_METHOD_HANDLE_NAMES | DUMP_CLASS_FILES | TRACE_INTERPRETER
-                | TRACE_METHOD_LINKAGE);
+        return (DEBUG_METHOD_HANDLE_NAMES | DUMP_CLASS_FILES | TRACE_INTERPRETER | TRACE_METHOD_LINKAGE);
     }
 
-    /* non-public */ static String getNameString(MethodHandle target,
-            MethodType type) {
+    /* non-public */ static String getNameString(MethodHandle target, MethodType type) {
         if (type == null)
             type = target.type();
         MemberName name = null;
@@ -96,18 +83,15 @@ import sun.misc.Unsafe;
         return name.getName() + type;
     }
 
-    /* non-public */ static String getNameString(MethodHandle target,
-            MethodHandle typeHolder) {
-        return getNameString(target, typeHolder == null ? (MethodType) null
-                : typeHolder.type());
+    /* non-public */ static String getNameString(MethodHandle target, MethodHandle typeHolder) {
+        return getNameString(target, typeHolder == null ? (MethodType) null : typeHolder.type());
     }
 
     /* non-public */ static String getNameString(MethodHandle target) {
         return getNameString(target, (MethodType) null);
     }
 
-    /* non-public */ static String addTypeString(Object obj,
-            MethodHandle target) {
+    /* non-public */ static String addTypeString(Object obj, MethodHandle target) {
         String str = String.valueOf(obj);
         if (target == null)
             return str;
@@ -122,8 +106,7 @@ import sun.misc.Unsafe;
         return new InternalError(message);
     }
 
-    /* non-public */ static InternalError newInternalError(String message,
-            Throwable cause) {
+    /* non-public */ static InternalError newInternalError(String message, Throwable cause) {
         return new InternalError(message, cause);
     }
 
@@ -131,28 +114,24 @@ import sun.misc.Unsafe;
         return new InternalError(cause);
     }
 
-    /* non-public */ static RuntimeException newIllegalStateException(
-            String message) {
+    /* non-public */ static RuntimeException newIllegalStateException(String message) {
         return new IllegalStateException(message);
     }
 
-    /* non-public */ static RuntimeException newIllegalStateException(
-            String message, Object obj) {
+    /* non-public */ static RuntimeException newIllegalStateException(String message, Object obj) {
         return new IllegalStateException(message(message, obj));
     }
 
-    /* non-public */ static RuntimeException newIllegalArgumentException(
-            String message) {
+    /* non-public */ static RuntimeException newIllegalArgumentException(String message) {
         return new IllegalArgumentException(message);
     }
 
-    /* non-public */ static RuntimeException newIllegalArgumentException(
-            String message, Object obj) {
+    /* non-public */ static RuntimeException newIllegalArgumentException(String message, Object obj) {
         return new IllegalArgumentException(message(message, obj));
     }
 
-    /* non-public */ static RuntimeException newIllegalArgumentException(
-            String message, Object obj, Object obj2) {
+    /* non-public */ static RuntimeException newIllegalArgumentException(String message, Object obj,
+            Object obj2) {
         return new IllegalArgumentException(message(message, obj, obj2));
     }
 

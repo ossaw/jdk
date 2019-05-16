@@ -11,7 +11,6 @@ package javax.xml.soap;
  * gives the reason for the exception, an embedded <code>Throwable</code>
  * object, or both. This class provides methods for retrieving reason messages
  * and for retrieving the embedded <code>Throwable</code> object.
- *
  * <P>
  * Typical reasons for throwing a <code>SOAPException</code> object are problems
  * such as difficulty setting a header, not being able to send a message, and
@@ -36,7 +35,7 @@ public class SOAPException extends Exception {
      * <code>String</code> as the reason for the exception being thrown.
      *
      * @param reason
-     *               a description of what caused the exception
+     *        a description of what caused the exception
      */
     public SOAPException(String reason) {
         super(reason);
@@ -49,11 +48,11 @@ public class SOAPException extends Exception {
      * given <code>Throwable</code> object as an embedded exception.
      *
      * @param reason
-     *               a description of what caused the exception
+     *        a description of what caused the exception
      * @param cause
-     *               a <code>Throwable</code> object that is to be embedded in
-     *               this
-     *               <code>SOAPException</code> object
+     *        a <code>Throwable</code> object that is to be embedded in
+     *        this
+     *        <code>SOAPException</code> object
      */
     public SOAPException(String reason, Throwable cause) {
         super(reason);
@@ -118,22 +117,22 @@ public class SOAPException extends Exception {
      * called even once.
      *
      * @param cause
-     *              the <code>Throwable</code> object that caused this
-     *              <code>SOAPException</code> object to be thrown. The value of
-     *              this parameter is saved for later retrieval by the
-     *              {@link #getCause()} method. A <tt>null</tt> value is
-     *              permitted
-     *              and indicates that the cause is nonexistent or unknown.
+     *        the <code>Throwable</code> object that caused this
+     *        <code>SOAPException</code> object to be thrown. The value of
+     *        this parameter is saved for later retrieval by the
+     *        {@link #getCause()} method. A <tt>null</tt> value is
+     *        permitted
+     *        and indicates that the cause is nonexistent or unknown.
      * @return a reference to this <code>SOAPException</code> instance
      * @throws IllegalArgumentException
-     *                                  if <code>cause</code> is this
-     *                                  <code>Throwable</code> object.
-     *                                  (A <code>Throwable</code> object cannot
-     *                                  be its own cause.)
+     *         if <code>cause</code> is this
+     *         <code>Throwable</code> object.
+     *         (A <code>Throwable</code> object cannot
+     *         be its own cause.)
      * @throws IllegalStateException
-     *                                  if the cause for this
-     *                                  <code>SOAPException</code> object has
-     *                                  already been initialized
+     *         if the cause for this
+     *         <code>SOAPException</code> object has
+     *         already been initialized
      */
     public synchronized Throwable initCause(Throwable cause) {
         if (this.cause != null) {

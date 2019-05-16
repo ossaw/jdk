@@ -28,16 +28,13 @@ import com.sun.org.apache.xml.internal.serializer.utils.URI.MalformedURIExceptio
 /**
  * This class is used to resolve relative URIs and SystemID strings into
  * absolute URIs.
- *
  * <p>
  * This is a generic utility for resolving URIs, other than the fact that it's
  * declared to throw TransformerException. Please see code comments for details
  * on how resolution is performed.
  * </p>
- *
  * This class is a copy of the one in com.sun.org.apache.xml.internal.utils. It
  * exists to cut the serializers dependancy on that package.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -47,7 +44,6 @@ public final class SystemIDResolver {
 
     /**
      * Get an absolute URI from a given relative URI (local path).
-     *
      * <p>
      * The relative URI is a local filesystem path. The path can be absolute or
      * relative. If it is a relative path, it is resolved relative to the system
@@ -58,8 +54,7 @@ public final class SystemIDResolver {
      * </p>
      *
      * @param localPath
-     *                  The relative URI to resolve
-     *
+     *        The relative URI to resolve
      * @return Resolved absolute URI
      */
     public static String getAbsoluteURIFromRelative(String localPath) {
@@ -95,7 +90,7 @@ public final class SystemIDResolver {
      * Return an absolute path from a relative path.
      *
      * @param relativePath
-     *                     A relative path
+     *        A relative path
      * @return The absolute path
      */
     private static String getAbsolutePathFromRelativePath(String relativePath) {
@@ -106,7 +101,7 @@ public final class SystemIDResolver {
      * Return true if the systemId denotes an absolute URI .
      *
      * @param systemId
-     *                 The systemId string
+     *        The systemId string
      * @return true if the systemId is an an absolute URI
      */
     public static boolean isAbsoluteURI(String systemId) {
@@ -148,7 +143,7 @@ public final class SystemIDResolver {
      * Return true if the local path is an absolute path.
      *
      * @param systemId
-     *                 The path string
+     *        The path string
      * @return true if the path is absolute
      */
     public static boolean isAbsolutePath(String systemId) {
@@ -163,16 +158,15 @@ public final class SystemIDResolver {
      * Return true if the local path is a Windows absolute path.
      *
      * @param systemId
-     *                 The path string
+     *        The path string
      * @return true if the path is a Windows absolute path
      */
     private static boolean isWindowsAbsolutePath(String systemId) {
         if (!isAbsolutePath(systemId))
             return false;
         // On Windows, an absolute path starts with "[drive_letter]:\".
-        if (systemId.length() > 2 && systemId.charAt(1) == ':' && Character
-                .isLetter(systemId.charAt(0)) && (systemId.charAt(2) == '\\'
-                        || systemId.charAt(2) == '/'))
+        if (systemId.length() > 2 && systemId.charAt(1) == ':' && Character.isLetter(systemId.charAt(0))
+                && (systemId.charAt(2) == '\\' || systemId.charAt(2) == '/'))
             return true;
         else
             return false;
@@ -183,7 +177,7 @@ public final class SystemIDResolver {
      * input string to generate a well-formed URI string.
      *
      * @param str
-     *            The input string
+     *        The input string
      * @return The string after conversion
      */
     private static String replaceChars(String str) {
@@ -211,8 +205,7 @@ public final class SystemIDResolver {
      * Take a SystemID string and try to turn it into a good absolute URI.
      *
      * @param systemId
-     *                 A URI string, which may be absolute or relative.
-     *
+     *        A URI string, which may be absolute or relative.
      * @return The resolved absolute URI
      */
     public static String getAbsoluteURI(String systemId) {
@@ -234,14 +227,11 @@ public final class SystemIDResolver {
                         // absolute.
                         int secondColonIndex = systemId.indexOf(':', 5);
                         if (secondColonIndex > 0) {
-                            String localPath = systemId.substring(
-                                    secondColonIndex - 1);
+                            String localPath = systemId.substring(secondColonIndex - 1);
                             try {
                                 if (!isAbsolutePath(localPath))
-                                    absoluteURI = systemId.substring(0,
-                                            secondColonIndex - 1)
-                                            + getAbsolutePathFromRelativePath(
-                                                    localPath);
+                                    absoluteURI = systemId.substring(0, secondColonIndex - 1)
+                                            + getAbsolutePathFromRelativePath(localPath);
                             } catch (SecurityException se) {
                                 return systemId;
                             }
@@ -263,18 +253,16 @@ public final class SystemIDResolver {
      * Take a SystemID string and try to turn it into a good absolute URI.
      *
      * @param urlString
-     *                  SystemID string
+     *        SystemID string
      * @param base
-     *                  The URI string used as the base for resolving the
-     *                  systemID
-     *
+     *        The URI string used as the base for resolving the
+     *        systemID
      * @return The resolved absolute URI
      * @throws TransformerException
-     *                              thrown if the string can't be turned into a
-     *                              URI.
+     *         thrown if the string can't be turned into a
+     *         URI.
      */
-    public static String getAbsoluteURI(String urlString, String base)
-            throws TransformerException {
+    public static String getAbsoluteURI(String urlString, String base) throws TransformerException {
         if (base == null)
             return getAbsoluteURI(urlString);
 

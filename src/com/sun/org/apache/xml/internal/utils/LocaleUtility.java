@@ -69,8 +69,7 @@ public class LocaleUtility {
             country = EMPTY_STRING;
         }
 
-        if ((variant.length() > 0) && ((language.length() == 2) || (country
-                .length() == 2))) {
+        if ((variant.length() > 0) && ((language.length() == 2) || (country.length() == 2))) {
             variant = variant.toUpperCase();
         } else {
             variant = EMPTY_STRING;

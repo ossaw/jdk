@@ -22,16 +22,15 @@ public class BeanContextServiceRevokedEvent extends BeanContextEvent {
      * Construct a <code>BeanContextServiceEvent</code>.
      * 
      * @param bcs
-     *                   the <code>BeanContextServices</code> from which this
-     *                   service
-     *                   is being revoked
+     *        the <code>BeanContextServices</code> from which this
+     *        service
+     *        is being revoked
      * @param sc
-     *                   the service that is being revoked
+     *        the service that is being revoked
      * @param invalidate
-     *                   <code>true</code> for immediate revocation
+     *        <code>true</code> for immediate revocation
      */
-    public BeanContextServiceRevokedEvent(BeanContextServices bcs, Class sc,
-            boolean invalidate) {
+    public BeanContextServiceRevokedEvent(BeanContextServices bcs, Class sc, boolean invalidate) {
         super((BeanContext) bcs);
 
         serviceClass = sc;
@@ -63,7 +62,7 @@ public class BeanContextServiceRevokedEvent extends BeanContextEvent {
      * is of a particular class.
      * 
      * @param service
-     *                the service of interest (should be non-null)
+     *        the service of interest (should be non-null)
      * @return <code>true</code> if the service being revoked is of the same
      *         class as the specified service
      */

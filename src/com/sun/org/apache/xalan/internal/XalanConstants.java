@@ -11,7 +11,6 @@ import com.sun.org.apache.xalan.internal.utils.SecuritySupport;
  * Commonly used constants.
  *
  * @author Huizhe Wang, Oracle
- *
  * @version $Id: Constants.java,v 1.14 2011-06-07 04:39:40 joehw Exp $
  */
 public final class XalanConstants {
@@ -48,8 +47,7 @@ public final class XalanConstants {
      * JDK maxOccur limit; Note that the existing system property
      * "maxOccurLimit" with no prefix is still observed
      */
-    public static final String JDK_MAX_OCCUR_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX
-            + "maxOccurLimit";
+    public static final String JDK_MAX_OCCUR_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX + "maxOccurLimit";
 
     /**
      * JDK total entity size limit
@@ -78,22 +76,19 @@ public final class XalanConstants {
     /**
      * JDK maximum XML name limit
      */
-    public static final String JDK_XML_NAME_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX
-            + "maxXMLNameLimit";
+    public static final String JDK_XML_NAME_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX + "maxXMLNameLimit";
 
     /**
      * JDK maxElementDepth limit
      */
-    public static final String JDK_MAX_ELEMENT_DEPTH = ORACLE_JAXP_PROPERTY_PREFIX
-            + "maxElementDepth";
+    public static final String JDK_MAX_ELEMENT_DEPTH = ORACLE_JAXP_PROPERTY_PREFIX + "maxElementDepth";
 
     /**
      * JDK property indicating whether the parser shall print out entity count
      * information Value: a string "yes" means print, "no" or any other string
      * means not.
      */
-    public static final String JDK_ENTITY_COUNT_INFO = ORACLE_JAXP_PROPERTY_PREFIX
-            + "getEntityCountInfo";
+    public static final String JDK_ENTITY_COUNT_INFO = ORACLE_JAXP_PROPERTY_PREFIX + "getEntityCountInfo";
 
     //
     // Implementation limits: corresponding System Properties of the above
@@ -172,7 +167,6 @@ public final class XalanConstants {
      * <p>
      * Use Service Mechanism
      * </p>
-     *
      * <ul>
      * <li>{@code true} instruct an object to use service mechanism to find a
      * service implementation. This is the default behavior.</li>
@@ -233,8 +227,7 @@ public final class XalanConstants {
     public static boolean isJavaVersionAtLeast(int compareTo) {
         String javaVersion = SecuritySupport.getSystemProperty("java.version");
         String versions[] = javaVersion.split("\\.", 3);
-        if (Integer.parseInt(versions[0]) >= compareTo || Integer.parseInt(
-                versions[1]) >= compareTo) {
+        if (Integer.parseInt(versions[0]) >= compareTo || Integer.parseInt(versions[1]) >= compareTo) {
             return true;
         }
         return false;

@@ -37,7 +37,7 @@ public class FactoryConfigurationError extends Error {
      * <code>String </code> specified as an error message.
      *
      * @param msg
-     *            The error message for the exception.
+     *        The error message for the exception.
      */
 
     public FactoryConfigurationError(String msg) {
@@ -50,8 +50,8 @@ public class FactoryConfigurationError extends Error {
      * <code>Exception</code> base cause of the error.
      *
      * @param e
-     *          The exception to be encapsulated in a
-     *          FactoryConfigurationError.
+     *        The exception to be encapsulated in a
+     *        FactoryConfigurationError.
      */
 
     public FactoryConfigurationError(Exception e) {
@@ -64,10 +64,10 @@ public class FactoryConfigurationError extends Error {
      * <code>Exception</code> base cause and detail message.
      *
      * @param e
-     *            The exception to be encapsulated in a
-     *            FactoryConfigurationError
+     *        The exception to be encapsulated in a
+     *        FactoryConfigurationError
      * @param msg
-     *            The detail message.
+     *        The detail message.
      */
 
     public FactoryConfigurationError(Exception e, String msg) {

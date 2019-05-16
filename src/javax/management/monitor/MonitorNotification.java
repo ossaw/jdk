@@ -14,9 +14,7 @@ import javax.management.ObjectName;
  * <P>
  * The notification source and a set of parameters concerning the monitor
  * MBean's state need to be specified when creating a new object of this class.
- *
  * The list of notifications fired by the monitor MBeans is the following:
- *
  * <UL>
  * <LI>Common to all kind of monitors:
  * <UL>
@@ -48,7 +46,6 @@ import javax.management.ObjectName;
  * <LI>The observed attribute has differed from the "string to compare" value.
  * </UL>
  * </UL>
- *
  *
  * @since 1.5
  */
@@ -187,32 +184,31 @@ public class MonitorNotification extends javax.management.Notification {
      * Creates a monitor notification object.
      *
      * @param type
-     *                       The notification type.
+     *        The notification type.
      * @param source
-     *                       The notification producer.
+     *        The notification producer.
      * @param sequenceNumber
-     *                       The notification sequence number within the source
-     *                       object.
+     *        The notification sequence number within the source
+     *        object.
      * @param timeStamp
-     *                       The notification emission date.
+     *        The notification emission date.
      * @param msg
-     *                       The notification message.
+     *        The notification message.
      * @param obsObj
-     *                       The object observed by the producer of this
-     *                       notification.
+     *        The object observed by the producer of this
+     *        notification.
      * @param obsAtt
-     *                       The attribute observed by the producer of this
-     *                       notification.
+     *        The attribute observed by the producer of this
+     *        notification.
      * @param derGauge
-     *                       The derived gauge.
+     *        The derived gauge.
      * @param trigger
-     *                       The threshold/string (depending on the monitor
-     *                       type) that
-     *                       triggered the notification.
+     *        The threshold/string (depending on the monitor
+     *        type) that
+     *        triggered the notification.
      */
-    MonitorNotification(String type, Object source, long sequenceNumber,
-            long timeStamp, String msg, ObjectName obsObj, String obsAtt,
-            Object derGauge, Object trigger) {
+    MonitorNotification(String type, Object source, long sequenceNumber, long timeStamp, String msg,
+            ObjectName obsObj, String obsAtt, Object derGauge, Object trigger) {
 
         super(type, source, sequenceNumber, timeStamp, msg);
         this.observedObject = obsObj;

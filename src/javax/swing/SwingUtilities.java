@@ -53,8 +53,8 @@ public class SwingUtilities implements SwingConstants {
      */
     private static boolean getSuppressDropTarget() {
         if (!checkedSuppressDropSupport) {
-            suppressDropSupport = Boolean.valueOf(AccessController.doPrivileged(
-                    new GetPropertyAction("suppressSwingDropSupport")));
+            suppressDropSupport = Boolean.valueOf(AccessController.doPrivileged(new GetPropertyAction(
+                    "suppressSwingDropSupport")));
             checkedSuppressDropSupport = true;
         }
         return suppressDropSupport;
@@ -64,8 +64,7 @@ public class SwingUtilities implements SwingConstants {
      * Installs a {@code DropTarget} on the component as necessary for a
      * {@code TransferHandler} change.
      */
-    static void installSwingDropTargetAsNecessary(Component c,
-            TransferHandler t) {
+    static void installSwingDropTargetAsNecessary(Component c, TransferHandler t) {
 
         if (!getSuppressDropTarget()) {
             DropTarget dropHandler = c.getDropTarget();
@@ -82,10 +81,9 @@ public class SwingUtilities implements SwingConstants {
     /**
      * Return true if <code>a</code> contains <code>b</code>
      */
-    public static final boolean isRectangleContainingRectangle(Rectangle a,
-            Rectangle b) {
-        return b.x >= a.x && (b.x + b.width) <= (a.x + a.width) && b.y >= a.y
-                && (b.y + b.height) <= (a.y + a.height);
+    public static final boolean isRectangleContainingRectangle(Rectangle a, Rectangle b) {
+        return b.x >= a.x && (b.x + b.width) <= (a.x + a.width) && b.y >= a.y && (b.y + b.height) <= (a.y
+                + a.height);
     }
 
     /**
@@ -104,7 +102,7 @@ public class SwingUtilities implements SwingConstants {
      * <code>Window</code>.
      *
      * @param c
-     *          <code>Component</code> to get <code>Window</code> ancestor of.
+     *        <code>Component</code> to get <code>Window</code> ancestor of.
      * @return the first <code>Window </code> ancestor of <code>c</code>, or
      *         {@code null} if <code>c</code> is not contained inside a
      *         <code>Window</code>.
@@ -145,8 +143,7 @@ public class SwingUtilities implements SwingConstants {
      * both <code>source</code> and <code>destination</code> are {@code null},
      * return <code>aPoint</code> without any conversion.
      */
-    public static Point convertPoint(Component source, Point aPoint,
-            Component destination) {
+    public static Point convertPoint(Component source, Point aPoint, Component destination) {
         Point p;
 
         if (source == null && destination == null)
@@ -154,16 +151,14 @@ public class SwingUtilities implements SwingConstants {
         if (source == null) {
             source = getWindowAncestor(destination);
             if (source == null)
-                throw new Error(
-                        "Source component not connected to component tree hierarchy");
+                throw new Error("Source component not connected to component tree hierarchy");
         }
         p = new Point(aPoint);
         convertPointToScreen(p, source);
         if (destination == null) {
             destination = getWindowAncestor(source);
             if (destination == null)
-                throw new Error(
-                        "Destination component not connected to component tree hierarchy");
+                throw new Error("Destination component not connected to component tree hierarchy");
         }
         convertPointFromScreen(p, destination);
         return p;
@@ -179,8 +174,7 @@ public class SwingUtilities implements SwingConstants {
      * both <code>source</code> and <code>destination</code> are {@code null},
      * return <code>(x,y)</code> without any conversion.
      */
-    public static Point convertPoint(Component source, int x, int y,
-            Component destination) {
+    public static Point convertPoint(Component source, int x, int y, Component destination) {
         Point point = new Point(x, y);
         return convertPoint(source, point, destination);
     }
@@ -195,12 +189,10 @@ public class SwingUtilities implements SwingConstants {
      * both <code>source</code> and <code>destination</code> are {@code null},
      * return <code>aRectangle</code> without any conversion.
      */
-    public static Rectangle convertRectangle(Component source,
-            Rectangle aRectangle, Component destination) {
+    public static Rectangle convertRectangle(Component source, Rectangle aRectangle, Component destination) {
         Point point = new Point(aRectangle.x, aRectangle.y);
         point = convertPoint(source, point, destination);
-        return new Rectangle(point.x, point.y, aRectangle.width,
-                aRectangle.height);
+        return new Rectangle(point.x, point.y, aRectangle.width, aRectangle.height);
     }
 
     /**
@@ -242,14 +234,13 @@ public class SwingUtilities implements SwingConstants {
      * specified location, <code>parent</code> is returned.
      *
      * @param parent
-     *               the root component to begin the search
+     *        the root component to begin the search
      * @param x
-     *               the x target location
+     *        the x target location
      * @param y
-     *               the y target location
+     *        the y target location
      */
-    public static Component getDeepestComponentAt(Component parent, int x,
-            int y) {
+    public static Component getDeepestComponentAt(Component parent, int x, int y) {
         if (!parent.contains(x, y)) {
             return null;
         }
@@ -259,8 +250,7 @@ public class SwingUtilities implements SwingConstants {
                 if (comp != null && comp.isVisible()) {
                     Point loc = comp.getLocation();
                     if (comp instanceof Container) {
-                        comp = getDeepestComponentAt(comp, x - loc.x, y
-                                - loc.y);
+                        comp = getDeepestComponentAt(comp, x - loc.x, y - loc.y);
                     } else {
                         comp = comp.getComponentAt(x - loc.x, y - loc.y);
                     }
@@ -287,10 +277,9 @@ public class SwingUtilities implements SwingConstants {
      * translateMouseEvent() method to translate a mouse event from one
      * component to another without changing the source.
      */
-    public static MouseEvent convertMouseEvent(Component source,
-            MouseEvent sourceEvent, Component destination) {
-        Point p = convertPoint(source, new Point(sourceEvent.getX(), sourceEvent
-                .getY()), destination);
+    public static MouseEvent convertMouseEvent(Component source, MouseEvent sourceEvent,
+            Component destination) {
+        Point p = convertPoint(source, new Point(sourceEvent.getX(), sourceEvent.getY()), destination);
         Component newSource;
 
         if (destination != null)
@@ -301,33 +290,23 @@ public class SwingUtilities implements SwingConstants {
         MouseEvent newEvent;
         if (sourceEvent instanceof MouseWheelEvent) {
             MouseWheelEvent sourceWheelEvent = (MouseWheelEvent) sourceEvent;
-            newEvent = new MouseWheelEvent(newSource, sourceWheelEvent.getID(),
-                    sourceWheelEvent.getWhen(), sourceWheelEvent.getModifiers()
-                            | sourceWheelEvent.getModifiersEx(), p.x, p.y,
-                    sourceWheelEvent.getXOnScreen(), sourceWheelEvent
-                            .getYOnScreen(), sourceWheelEvent.getClickCount(),
-                    sourceWheelEvent.isPopupTrigger(), sourceWheelEvent
-                            .getScrollType(), sourceWheelEvent
-                                    .getScrollAmount(), sourceWheelEvent
+            newEvent = new MouseWheelEvent(newSource, sourceWheelEvent.getID(), sourceWheelEvent.getWhen(),
+                    sourceWheelEvent.getModifiers() | sourceWheelEvent.getModifiersEx(), p.x, p.y,
+                    sourceWheelEvent.getXOnScreen(), sourceWheelEvent.getYOnScreen(), sourceWheelEvent
+                            .getClickCount(), sourceWheelEvent.isPopupTrigger(), sourceWheelEvent
+                                    .getScrollType(), sourceWheelEvent.getScrollAmount(), sourceWheelEvent
                                             .getWheelRotation());
         } else if (sourceEvent instanceof MenuDragMouseEvent) {
             MenuDragMouseEvent sourceMenuDragEvent = (MenuDragMouseEvent) sourceEvent;
-            newEvent = new MenuDragMouseEvent(newSource, sourceMenuDragEvent
-                    .getID(), sourceMenuDragEvent.getWhen(), sourceMenuDragEvent
-                            .getModifiers() | sourceMenuDragEvent
-                                    .getModifiersEx(), p.x, p.y,
-                    sourceMenuDragEvent.getXOnScreen(), sourceMenuDragEvent
-                            .getYOnScreen(), sourceMenuDragEvent
-                                    .getClickCount(), sourceMenuDragEvent
-                                            .isPopupTrigger(),
-                    sourceMenuDragEvent.getPath(), sourceMenuDragEvent
-                            .getMenuSelectionManager());
+            newEvent = new MenuDragMouseEvent(newSource, sourceMenuDragEvent.getID(), sourceMenuDragEvent
+                    .getWhen(), sourceMenuDragEvent.getModifiers() | sourceMenuDragEvent.getModifiersEx(),
+                    p.x, p.y, sourceMenuDragEvent.getXOnScreen(), sourceMenuDragEvent.getYOnScreen(),
+                    sourceMenuDragEvent.getClickCount(), sourceMenuDragEvent.isPopupTrigger(),
+                    sourceMenuDragEvent.getPath(), sourceMenuDragEvent.getMenuSelectionManager());
         } else {
-            newEvent = new MouseEvent(newSource, sourceEvent.getID(),
-                    sourceEvent.getWhen(), sourceEvent.getModifiers()
-                            | sourceEvent.getModifiersEx(), p.x, p.y,
-                    sourceEvent.getXOnScreen(), sourceEvent.getYOnScreen(),
-                    sourceEvent.getClickCount(), sourceEvent.isPopupTrigger(),
+            newEvent = new MouseEvent(newSource, sourceEvent.getID(), sourceEvent.getWhen(), sourceEvent
+                    .getModifiers() | sourceEvent.getModifiersEx(), p.x, p.y, sourceEvent.getXOnScreen(),
+                    sourceEvent.getYOnScreen(), sourceEvent.getClickCount(), sourceEvent.isPopupTrigger(),
                     sourceEvent.getButton());
         }
         return newEvent;
@@ -338,9 +317,9 @@ public class SwingUtilities implements SwingConstants {
      * coordinates.
      *
      * @param p
-     *          a Point object (converted to the new coordinate system)
+     *        a Point object (converted to the new coordinate system)
      * @param c
-     *          a Component object
+     *        a Component object
      */
     public static void convertPointToScreen(Point p, Component c) {
         Rectangle b;
@@ -350,8 +329,7 @@ public class SwingUtilities implements SwingConstants {
             if (c instanceof JComponent) {
                 x = c.getX();
                 y = c.getY();
-            } else if (c instanceof java.applet.Applet
-                    || c instanceof java.awt.Window) {
+            } else if (c instanceof java.applet.Applet || c instanceof java.awt.Window) {
                 try {
                     Point pp = c.getLocationOnScreen();
                     x = pp.x;
@@ -379,9 +357,9 @@ public class SwingUtilities implements SwingConstants {
      * system
      *
      * @param p
-     *          a Point object (converted to the new coordinate system)
+     *        a Point object (converted to the new coordinate system)
      * @param c
-     *          a Component object
+     *        a Component object
      */
     public static void convertPointFromScreen(Point p, Component c) {
         Rectangle b;
@@ -391,8 +369,7 @@ public class SwingUtilities implements SwingConstants {
             if (c instanceof JComponent) {
                 x = c.getX();
                 y = c.getY();
-            } else if (c instanceof java.applet.Applet
-                    || c instanceof java.awt.Window) {
+            } else if (c instanceof java.applet.Applet || c instanceof java.awt.Window) {
                 try {
                     Point pp = c.getLocationOnScreen();
                     x = pp.x;
@@ -424,7 +401,7 @@ public class SwingUtilities implements SwingConstants {
      * <code>getWindowAncestor</code>.
      *
      * @param c
-     *          <code>Component</code> to get <code>Window</code> ancestor of.
+     *        <code>Component</code> to get <code>Window</code> ancestor of.
      * @return the first <code>Window </code> ancestor of <code>c</code>, or
      *         {@code null} if <code>c</code> is not contained inside a
      *         <code>Window</code>.
@@ -452,26 +429,22 @@ public class SwingUtilities implements SwingConstants {
      * the returned rectangle begins at (0,0) and has zero width and height.
      *
      * @param x
-     *               the X coordinate of the first rectangle's top-left point
+     *        the X coordinate of the first rectangle's top-left point
      * @param y
-     *               the Y coordinate of the first rectangle's top-left point
+     *        the Y coordinate of the first rectangle's top-left point
      * @param width
-     *               the width of the first rectangle
+     *        the width of the first rectangle
      * @param height
-     *               the height of the first rectangle
+     *        the height of the first rectangle
      * @param dest
-     *               the second rectangle
-     *
+     *        the second rectangle
      * @return <code>dest</code>, modified to specify the intersection
      */
-    public static Rectangle computeIntersection(int x, int y, int width,
-            int height, Rectangle dest) {
+    public static Rectangle computeIntersection(int x, int y, int width, int height, Rectangle dest) {
         int x1 = (x > dest.x) ? x : dest.x;
-        int x2 = ((x + width) < (dest.x + dest.width)) ? (x + width)
-                : (dest.x + dest.width);
+        int x2 = ((x + width) < (dest.x + dest.width)) ? (x + width) : (dest.x + dest.width);
         int y1 = (y > dest.y) ? y : dest.y;
-        int y2 = ((y + height) < (dest.y + dest.height) ? (y + height)
-                : (dest.y + dest.height));
+        int y2 = ((y + height) < (dest.y + dest.height) ? (y + height) : (dest.y + dest.height));
 
         dest.x = x1;
         dest.y = y1;
@@ -491,27 +464,24 @@ public class SwingUtilities implements SwingConstants {
      * allocating a new rectangle.
      *
      * @param x
-     *               the x-coordinate of the first rectangle
+     *        the x-coordinate of the first rectangle
      * @param y
-     *               the y-coordinate of the first rectangle
+     *        the y-coordinate of the first rectangle
      * @param width
-     *               the width of the first rectangle
+     *        the width of the first rectangle
      * @param height
-     *               the height of the first rectangle
+     *        the height of the first rectangle
      * @param dest
-     *               the coordinates of the second rectangle; the union of the
-     *               two
-     *               rectangles is returned in this rectangle
+     *        the coordinates of the second rectangle; the union of the
+     *        two
+     *        rectangles is returned in this rectangle
      * @return the <code>dest</code> <code>Rectangle</code>
      */
-    public static Rectangle computeUnion(int x, int y, int width, int height,
-            Rectangle dest) {
+    public static Rectangle computeUnion(int x, int y, int width, int height, Rectangle dest) {
         int x1 = (x < dest.x) ? x : dest.x;
-        int x2 = ((x + width) > (dest.x + dest.width)) ? (x + width)
-                : (dest.x + dest.width);
+        int x2 = ((x + width) > (dest.x + dest.width)) ? (x + width) : (dest.x + dest.width);
         int y1 = (y < dest.y) ? y : dest.y;
-        int y2 = ((y + height) > (dest.y + dest.height)) ? (y + height)
-                : (dest.y + dest.height);
+        int y2 = ((y + height) > (dest.y + dest.height)) ? (y + height) : (dest.y + dest.height);
 
         dest.x = x1;
         dest.y = y1;
@@ -525,10 +495,8 @@ public class SwingUtilities implements SwingConstants {
      * <code>rectA</code> that do not overlap with <code>rectB</code>. If the
      * two Rects do not overlap, returns an empty array
      */
-    public static Rectangle[] computeDifference(Rectangle rectA,
-            Rectangle rectB) {
-        if (rectB == null || !rectA.intersects(rectB)
-                || isRectangleContainingRectangle(rectB, rectA)) {
+    public static Rectangle[] computeDifference(Rectangle rectA, Rectangle rectB) {
+        if (rectB == null || !rectA.intersects(rectB) || isRectangleContainingRectangle(rectB, rectA)) {
             return new Rectangle[0];
         }
 
@@ -582,57 +550,48 @@ public class SwingUtilities implements SwingConstants {
                     t.x = rectA.x;
                     t.y = rectB.y + rectB.height;
                     t.width = rectA.width;
-                    t.height = rectA.y + rectA.height - (rectB.y
-                            + rectB.height);
+                    t.height = rectA.y + rectA.height - (rectB.y + rectB.height);
                     if (t.width > 0 && t.height > 0) {
                         a = t;
                         rectCount++;
                     }
-                } else if ((rectB.y + rectB.height) > (rectA.y
-                        + rectA.height)) {
-                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width),
-                            rectA.height);
+                } else if ((rectB.y + rectB.height) > (rectA.y + rectA.height)) {
+                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         a = t;
                         rectCount++;
                     }
                 } else {
-                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width), (rectB.y
-                                    + rectB.height) - rectA.y);
+                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), (rectB.y + rectB.height) - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width,
-                            (rectA.y + rectA.height) - (rectB.y
-                                    + rectB.height));
+                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width, (rectA.y + rectA.height)
+                            - (rectB.y + rectB.height));
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
                 }
-            } else if (rectB.x <= rectA.x && (rectB.y
-                    + rectB.height) >= (rectA.y + rectA.height)) {
+            } else if (rectB.x <= rectA.x && (rectB.y + rectB.height) >= (rectA.y + rectA.height)) {
                 if ((rectB.x + rectB.width) > (rectA.x + rectA.width)) {
-                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y
-                            - rectA.y);
+                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = t;
                         rectCount++;
                     }
                 } else {
-                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y
-                            - rectA.y);
+                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
-                    t.setBounds((rectB.x + rectB.width), rectB.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width), (rectA.y
-                                    + rectA.height) - rectB.y);
+                    t.setBounds((rectB.x + rectB.width), rectB.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), (rectA.y + rectA.height) - rectB.y);
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
@@ -640,165 +599,140 @@ public class SwingUtilities implements SwingConstants {
                 }
             } else if (rectB.x <= rectA.x) {
                 if ((rectB.x + rectB.width) >= (rectA.x + rectA.width)) {
-                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y
-                            - rectA.y);
+                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width,
-                            (rectA.y + rectA.height) - (rectB.y
-                                    + rectB.height));
+                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width, (rectA.y + rectA.height)
+                            - (rectB.y + rectB.height));
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
                 } else {
-                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y
-                            - rectA.y);
+                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds((rectB.x + rectB.width), rectB.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width),
-                            rectB.height);
+                    t.setBounds((rectB.x + rectB.width), rectB.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), rectB.height);
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width,
-                            (rectA.y + rectA.height) - (rectB.y
-                                    + rectB.height));
+                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width, (rectA.y + rectA.height)
+                            - (rectB.y + rectB.height));
                     if (t.width > 0 && t.height > 0) {
                         c = new Rectangle(t);
                         rectCount++;
                     }
                 }
-            } else if (rectB.x <= (rectA.x + rectA.width) && (rectB.x
-                    + rectB.width) > (rectA.x + rectA.width)) {
-                if (rectB.y <= rectA.y && (rectB.y + rectB.height) > (rectA.y
-                        + rectA.height)) {
-                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x,
-                            rectA.height);
+            } else if (rectB.x <= (rectA.x + rectA.width) && (rectB.x + rectB.width) > (rectA.x
+                    + rectA.width)) {
+                if (rectB.y <= rectA.y && (rectB.y + rectB.height) > (rectA.y + rectA.height)) {
+                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x, rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         a = t;
                         rectCount++;
                     }
                 } else if (rectB.y <= rectA.y) {
-                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x, (rectB.y
-                            + rectB.height) - rectA.y);
+                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x, (rectB.y + rectB.height) - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width,
-                            (rectA.y + rectA.height) - (rectB.y
-                                    + rectB.height));
+                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width, (rectA.y + rectA.height)
+                            - (rectB.y + rectB.height));
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
-                } else if ((rectB.y + rectB.height) > (rectA.y
-                        + rectA.height)) {
-                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y
-                            - rectA.y);
+                } else if ((rectB.y + rectB.height) > (rectA.y + rectA.height)) {
+                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, rectB.y, rectB.x - rectA.x, (rectA.y
-                            + rectA.height) - rectB.y);
+                    t.setBounds(rectA.x, rectB.y, rectB.x - rectA.x, (rectA.y + rectA.height) - rectB.y);
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
                 } else {
-                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y
-                            - rectA.y);
+                    t.setBounds(rectA.x, rectA.y, rectA.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, rectB.y, rectB.x - rectA.x,
-                            rectB.height);
+                    t.setBounds(rectA.x, rectB.y, rectB.x - rectA.x, rectB.height);
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width,
-                            (rectA.y + rectA.height) - (rectB.y
-                                    + rectB.height));
+                    t.setBounds(rectA.x, (rectB.y + rectB.height), rectA.width, (rectA.y + rectA.height)
+                            - (rectB.y + rectB.height));
                     if (t.width > 0 && t.height > 0) {
                         c = new Rectangle(t);
                         rectCount++;
                     }
                 }
-            } else if (rectB.x >= rectA.x && (rectB.x + rectB.width) <= (rectA.x
-                    + rectA.width)) {
-                if (rectB.y <= rectA.y && (rectB.y + rectB.height) > (rectA.y
-                        + rectA.height)) {
-                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x,
-                            rectA.height);
+            } else if (rectB.x >= rectA.x && (rectB.x + rectB.width) <= (rectA.x + rectA.width)) {
+                if (rectB.y <= rectA.y && (rectB.y + rectB.height) > (rectA.y + rectA.height)) {
+                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x, rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
-                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width),
-                            rectA.height);
+                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
                 } else if (rectB.y <= rectA.y) {
-                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x,
-                            rectA.height);
+                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x, rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectB.x, (rectB.y + rectB.height), rectB.width,
-                            (rectA.y + rectA.height) - (rectB.y
-                                    + rectB.height));
+                    t.setBounds(rectB.x, (rectB.y + rectB.height), rectB.width, (rectA.y + rectA.height)
+                            - (rectB.y + rectB.height));
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width),
-                            rectA.height);
+                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         c = new Rectangle(t);
                         rectCount++;
                     }
                 } else {
-                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x,
-                            rectA.height);
+                    t.setBounds(rectA.x, rectA.y, rectB.x - rectA.x, rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         a = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds(rectB.x, rectA.y, rectB.width, rectB.y
-                            - rectA.y);
+                    t.setBounds(rectB.x, rectA.y, rectB.width, rectB.y - rectA.y);
                     if (t.width > 0 && t.height > 0) {
                         b = new Rectangle(t);
                         rectCount++;
                     }
 
-                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x
-                            + rectA.width) - (rectB.x + rectB.width),
-                            rectA.height);
+                    t.setBounds((rectB.x + rectB.width), rectA.y, (rectA.x + rectA.width) - (rectB.x
+                            + rectB.width), rectA.height);
                     if (t.width > 0 && t.height > 0) {
                         c = new Rectangle(t);
                         rectCount++;
@@ -824,36 +758,36 @@ public class SwingUtilities implements SwingConstants {
      * Returns true if the mouse event specifies the left mouse button.
      *
      * @param anEvent
-     *                a MouseEvent object
+     *        a MouseEvent object
      * @return true if the left mouse button was active
      */
     public static boolean isLeftMouseButton(MouseEvent anEvent) {
-        return ((anEvent.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0
-                || anEvent.getButton() == MouseEvent.BUTTON1);
+        return ((anEvent.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0 || anEvent
+                .getButton() == MouseEvent.BUTTON1);
     }
 
     /**
      * Returns true if the mouse event specifies the middle mouse button.
      *
      * @param anEvent
-     *                a MouseEvent object
+     *        a MouseEvent object
      * @return true if the middle mouse button was active
      */
     public static boolean isMiddleMouseButton(MouseEvent anEvent) {
-        return ((anEvent.getModifiersEx() & InputEvent.BUTTON2_DOWN_MASK) != 0
-                || anEvent.getButton() == MouseEvent.BUTTON2);
+        return ((anEvent.getModifiersEx() & InputEvent.BUTTON2_DOWN_MASK) != 0 || anEvent
+                .getButton() == MouseEvent.BUTTON2);
     }
 
     /**
      * Returns true if the mouse event specifies the right mouse button.
      *
      * @param anEvent
-     *                a MouseEvent object
+     *        a MouseEvent object
      * @return true if the right mouse button was active
      */
     public static boolean isRightMouseButton(MouseEvent anEvent) {
-        return ((anEvent.getModifiersEx() & InputEvent.BUTTON3_DOWN_MASK) != 0
-                || anEvent.getButton() == MouseEvent.BUTTON3);
+        return ((anEvent.getModifiersEx() & InputEvent.BUTTON3_DOWN_MASK) != 0 || anEvent
+                .getButton() == MouseEvent.BUTTON3);
     }
 
     /**
@@ -861,9 +795,9 @@ public class SwingUtilities implements SwingConstants {
      * (sizes).
      *
      * @param fm
-     *            a FontMetrics object to compute with
+     *        a FontMetrics object to compute with
      * @param str
-     *            the String to compute
+     *        the String to compute
      * @return an int containing the string width
      */
     public static int computeStringWidth(FontMetrics fm, String str) {
@@ -880,11 +814,9 @@ public class SwingUtilities implements SwingConstants {
      * rectangle. The JComponents orientation (LEADING/TRAILING) will also be
      * taken into account and translated into LEFT/RIGHT values accordingly.
      */
-    public static String layoutCompoundLabel(JComponent c, FontMetrics fm,
-            String text, Icon icon, int verticalAlignment,
-            int horizontalAlignment, int verticalTextPosition,
-            int horizontalTextPosition, Rectangle viewR, Rectangle iconR,
-            Rectangle textR, int textIconGap) {
+    public static String layoutCompoundLabel(JComponent c, FontMetrics fm, String text, Icon icon,
+            int verticalAlignment, int horizontalAlignment, int verticalTextPosition,
+            int horizontalTextPosition, Rectangle viewR, Rectangle iconR, Rectangle textR, int textIconGap) {
         boolean orientationIsLeftToRight = true;
         int hAlign = horizontalAlignment;
         int hTextPos = horizontalTextPosition;
@@ -917,9 +849,8 @@ public class SwingUtilities implements SwingConstants {
                 break;
         }
 
-        return layoutCompoundLabelImpl(c, fm, text, icon, verticalAlignment,
-                hAlign, verticalTextPosition, hTextPos, viewR, iconR, textR,
-                textIconGap);
+        return layoutCompoundLabelImpl(c, fm, text, icon, verticalAlignment, hAlign, verticalTextPosition,
+                hTextPos, viewR, iconR, textR, textIconGap);
     }
 
     /**
@@ -931,14 +862,11 @@ public class SwingUtilities implements SwingConstants {
      * RIGHT) and in horizontalAlignment (they will default to CENTER). Use the
      * other version of layoutCompoundLabel() instead.
      */
-    public static String layoutCompoundLabel(FontMetrics fm, String text,
-            Icon icon, int verticalAlignment, int horizontalAlignment,
-            int verticalTextPosition, int horizontalTextPosition,
-            Rectangle viewR, Rectangle iconR, Rectangle textR,
-            int textIconGap) {
-        return layoutCompoundLabelImpl(null, fm, text, icon, verticalAlignment,
-                horizontalAlignment, verticalTextPosition,
-                horizontalTextPosition, viewR, iconR, textR, textIconGap);
+    public static String layoutCompoundLabel(FontMetrics fm, String text, Icon icon, int verticalAlignment,
+            int horizontalAlignment, int verticalTextPosition, int horizontalTextPosition, Rectangle viewR,
+            Rectangle iconR, Rectangle textR, int textIconGap) {
+        return layoutCompoundLabelImpl(null, fm, text, icon, verticalAlignment, horizontalAlignment,
+                verticalTextPosition, horizontalTextPosition, viewR, iconR, textR, textIconGap);
     }
 
     /**
@@ -950,11 +878,9 @@ public class SwingUtilities implements SwingConstants {
      * RIGHT) and in horizontalAlignment (they will default to CENTER). Use the
      * other version of layoutCompoundLabel() instead.
      */
-    private static String layoutCompoundLabelImpl(JComponent c, FontMetrics fm,
-            String text, Icon icon, int verticalAlignment,
-            int horizontalAlignment, int verticalTextPosition,
-            int horizontalTextPosition, Rectangle viewR, Rectangle iconR,
-            Rectangle textR, int textIconGap) {
+    private static String layoutCompoundLabelImpl(JComponent c, FontMetrics fm, String text, Icon icon,
+            int verticalAlignment, int horizontalAlignment, int verticalTextPosition,
+            int horizontalTextPosition, Rectangle viewR, Rectangle iconR, Rectangle textR, int textIconGap) {
         /*
          * Initialize the icon bounds rectangle iconR.
          */
@@ -996,8 +922,7 @@ public class SwingUtilities implements SwingConstants {
             }
             v = (c != null) ? (View) c.getClientProperty("html") : null;
             if (v != null) {
-                textR.width = Math.min(availTextWidth, (int) v.getPreferredSpan(
-                        View.X_AXIS));
+                textR.width = Math.min(availTextWidth, (int) v.getPreferredSpan(View.X_AXIS));
                 textR.height = (int) v.getPreferredSpan(View.Y_AXIS);
             } else {
                 textR.width = SwingUtilities2.stringWidth(c, fm, text);
@@ -1016,8 +941,7 @@ public class SwingUtilities implements SwingConstants {
                     textR.width -= lsb;
                 }
                 if (textR.width > availTextWidth) {
-                    text = SwingUtilities2.clipString(c, fm, text,
-                            availTextWidth);
+                    text = SwingUtilities2.clipString(c, fm, text, availTextWidth);
                     textR.width = SwingUtilities2.stringWidth(c, fm, text);
                 }
                 textR.height = fm.getHeight();
@@ -1064,19 +988,16 @@ public class SwingUtilities implements SwingConstants {
          * inlined below.
          */
         int labelR_x = Math.min(iconR.x, textR.x);
-        int labelR_width = Math.max(iconR.x + iconR.width, textR.x
-                + textR.width) - labelR_x;
+        int labelR_width = Math.max(iconR.x + iconR.width, textR.x + textR.width) - labelR_x;
         int labelR_y = Math.min(iconR.y, textR.y);
-        int labelR_height = Math.max(iconR.y + iconR.height, textR.y
-                + textR.height) - labelR_y;
+        int labelR_height = Math.max(iconR.y + iconR.height, textR.y + textR.height) - labelR_y;
 
         int dx, dy;
 
         if (verticalAlignment == TOP) {
             dy = viewR.y - labelR_y;
         } else if (verticalAlignment == CENTER) {
-            dy = (viewR.y + (viewR.height / 2)) - (labelR_y + (labelR_height
-                    / 2));
+            dy = (viewR.y + (viewR.height / 2)) - (labelR_y + (labelR_height / 2));
         } else { // (verticalAlignment == BOTTOM)
             dy = (viewR.y + viewR.height) - (labelR_y + labelR_height);
         }
@@ -1086,8 +1007,7 @@ public class SwingUtilities implements SwingConstants {
         } else if (horizontalAlignment == RIGHT) {
             dx = (viewR.x + viewR.width) - (labelR_x + labelR_width);
         } else { // (horizontalAlignment == CENTER)
-            dx = (viewR.x + (viewR.width / 2)) - (labelR_x + (labelR_width
-                    / 2));
+            dx = (viewR.x + (viewR.width / 2)) - (labelR_x + (labelR_width / 2));
         }
 
         /*
@@ -1145,27 +1065,25 @@ public class SwingUtilities implements SwingConstants {
      * problems...
      *
      * @param g
-     *          the <code>Graphics</code> object to draw on
+     *        the <code>Graphics</code> object to draw on
      * @param c
-     *          the <code>Component</code> to draw
+     *        the <code>Component</code> to draw
      * @param p
-     *          the intermediate <code>Container</code>
+     *        the intermediate <code>Container</code>
      * @param x
-     *          an int specifying the left side of the area draw in, in
-     *          pixels, measured from the left edge of the graphics context
+     *        an int specifying the left side of the area draw in, in
+     *        pixels, measured from the left edge of the graphics context
      * @param y
-     *          an int specifying the top of the area to draw in, in pixels
-     *          measured down from the top edge of the graphics context
+     *        an int specifying the top of the area to draw in, in pixels
+     *        measured down from the top edge of the graphics context
      * @param w
-     *          an int specifying the width of the area draw in, in pixels
+     *        an int specifying the width of the area draw in, in pixels
      * @param h
-     *          an int specifying the height of the area draw in, in pixels
-     *
+     *        an int specifying the height of the area draw in, in pixels
      * @see CellRendererPane
      * @see java.awt.Component#isLightweight
      */
-    public static void paintComponent(Graphics g, Component c, Container p,
-            int x, int y, int w, int h) {
+    public static void paintComponent(Graphics g, Component c, Container p, int x, int y, int w, int h) {
         getCellRendererPane(c, p).paintComponent(g, c, p, x, y, w, h, false);
     }
 
@@ -1176,19 +1094,17 @@ public class SwingUtilities implements SwingConstants {
      * Refer to it for more information.
      *
      * @param g
-     *          the <code>Graphics</code> object to draw on
+     *        the <code>Graphics</code> object to draw on
      * @param c
-     *          the <code>Component</code> to draw
+     *        the <code>Component</code> to draw
      * @param p
-     *          the intermediate <code>Container</code>
+     *        the intermediate <code>Container</code>
      * @param r
-     *          the <code>Rectangle</code> to draw in
-     *
+     *        the <code>Rectangle</code> to draw in
      * @see #paintComponent(Graphics,Component,Container,int,int,int,int)
      * @see CellRendererPane
      */
-    public static void paintComponent(Graphics g, Component c, Container p,
-            Rectangle r) {
+    public static void paintComponent(Graphics g, Component c, Container p, Rectangle r) {
         paintComponent(g, c, p, r.x, r.y, r.width, r.height);
     }
 
@@ -1196,8 +1112,7 @@ public class SwingUtilities implements SwingConstants {
      * Ensures that cell renderer <code>c</code> has a
      * <code>ComponentShell</code> parent and that the shell's parent is p.
      */
-    private static CellRendererPane getCellRendererPane(Component c,
-            Container p) {
+    private static CellRendererPane getCellRendererPane(Component c, Container p) {
         Container shell = c.getParent();
         if (shell instanceof CellRendererPane) {
             if (shell.getParent() != p) {
@@ -1262,8 +1177,7 @@ public class SwingUtilities implements SwingConstants {
      * };
      *
      * SwingUtilities.invokeLater(doHelloWorld);
-     * System.out.println(
-     *         "This might well be displayed before the other message.");
+     * System.out.println("This might well be displayed before the other message.");
      * </pre>
      * 
      * If invokeLater is called from the event dispatching thread -- for
@@ -1332,19 +1246,18 @@ public class SwingUtilities implements SwingConstants {
      * <code>java.awt.EventQueue.invokeAndWait()</code>.
      *
      * @exception InterruptedException
-     *                                      if we're interrupted while waiting
-     *                                      for the event
-     *                                      dispatching thread to finish
-     *                                      executing
-     *                                      <code>doRun.run()</code>
+     *            if we're interrupted while waiting
+     *            for the event
+     *            dispatching thread to finish
+     *            executing
+     *            <code>doRun.run()</code>
      * @exception InvocationTargetException
-     *                                      if an exception is thrown while
-     *                                      running <code>doRun</code>
-     *
+     *            if an exception is thrown while
+     *            running <code>doRun</code>
      * @see #invokeLater
      */
-    public static void invokeAndWait(final Runnable doRun)
-            throws InterruptedException, InvocationTargetException {
+    public static void invokeAndWait(final Runnable doRun) throws InterruptedException,
+            InvocationTargetException {
         EventQueue.invokeAndWait(doRun);
     }
 
@@ -1367,7 +1280,6 @@ public class SwingUtilities implements SwingConstants {
     /**
      * Get the index of this object in its accessible parent.
      * <p>
-     *
      * Note: as of the Java 2 platform v1.3, it is recommended that developers
      * call Component.AccessibleAWTComponent.getAccessibleIndexInParent()
      * instead of using this method.
@@ -1389,8 +1301,7 @@ public class SwingUtilities implements SwingConstants {
      */
     public static Accessible getAccessibleAt(Component c, Point p) {
         if (c instanceof Container) {
-            return c.getAccessibleContext().getAccessibleComponent()
-                    .getAccessibleAt(p);
+            return c.getAccessibleContext().getAccessibleComponent().getAccessibleAt(p);
         } else if (c instanceof Accessible) {
             Accessible a = (Accessible) c;
             if (a != null) {
@@ -1407,8 +1318,7 @@ public class SwingUtilities implements SwingConstants {
                                 acmp = ac.getAccessibleComponent();
                                 if ((acmp != null) && (acmp.isShowing())) {
                                     location = acmp.getLocation();
-                                    Point np = new Point(p.x - location.x, p.y
-                                            - location.y);
+                                    Point np = new Point(p.x - location.x, p.y - location.y);
                                     if (acmp.contains(np)) {
                                         return a;
                                     }
@@ -1426,7 +1336,6 @@ public class SwingUtilities implements SwingConstants {
     /**
      * Get the state of this object.
      * <p>
-     *
      * Note: as of the Java 2 platform v1.3, it is recommended that developers
      * call Component.AccessibleAWTComponent.getAccessibleIndexInParent()
      * instead of using this method.
@@ -1444,7 +1353,6 @@ public class SwingUtilities implements SwingConstants {
      * children of this object implement Accessible, than this method should
      * return the number of children of this object.
      * <p>
-     *
      * Note: as of the Java 2 platform v1.3, it is recommended that developers
      * call Component.AccessibleAWTComponent.getAccessibleIndexInParent()
      * instead of using this method.
@@ -1458,13 +1366,12 @@ public class SwingUtilities implements SwingConstants {
     /**
      * Return the nth Accessible child of the object.
      * <p>
-     *
      * Note: as of the Java 2 platform v1.3, it is recommended that developers
      * call Component.AccessibleAWTComponent.getAccessibleIndexInParent()
      * instead of using this method.
      *
      * @param i
-     *          zero-based index of child
+     *        zero-based index of child
      * @return the nth Accessible child of the object
      */
     public static Accessible getAccessibleChild(Component c, int i) {
@@ -1476,24 +1383,21 @@ public class SwingUtilities implements SwingConstants {
      * <code>Component</code> that is the focus owner, if any.
      *
      * @param c
-     *          the root of the <code>Component</code> hierarchy to search for
-     *          the focus owner
+     *        the root of the <code>Component</code> hierarchy to search for
+     *        the focus owner
      * @return the focus owner, or <code>null</code> if there is no focus owner,
      *         or if the focus owner is not <code>comp</code>, or a descendant
      *         of <code>comp</code>
-     *
      * @see java.awt.KeyboardFocusManager#getFocusOwner
      * @deprecated As of 1.4, replaced by
      *             <code>KeyboardFocusManager.getFocusOwner()</code>.
      */
     @Deprecated
     public static Component findFocusOwner(Component c) {
-        Component focusOwner = KeyboardFocusManager
-                .getCurrentKeyboardFocusManager().getFocusOwner();
+        Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
 
         // verify focusOwner is a descendant of c
-        for (Component temp = focusOwner; temp != null; temp = (temp instanceof Window)
-                ? null
+        for (Component temp = focusOwner; temp != null; temp = (temp instanceof Window) ? null
                 : temp.getParent()) {
             if (temp == c) {
                 return focusOwner;
@@ -1562,8 +1466,8 @@ public class SwingUtilities implements SwingConstants {
      * hence you rarely need to directly invoke this method.
      *
      * @param event
-     *              KeyEvent used to identify which bindings to process, as well
-     *              as which Component has focus.
+     *        KeyEvent used to identify which bindings to process, as well
+     *        as which Component has focus.
      * @return true if a binding has found and processed
      * @since 1.4
      */
@@ -1583,15 +1487,13 @@ public class SwingUtilities implements SwingConstants {
             // invoke processKeyBindings on it
             while (component != null) {
                 if (component instanceof JComponent) {
-                    return ((JComponent) component).processKeyBindings(event,
-                            pressed);
+                    return ((JComponent) component).processKeyBindings(event, pressed);
                 }
-                if ((component instanceof Applet)
-                        || (component instanceof Window)) {
+                if ((component instanceof Applet) || (component instanceof Window)) {
                     // No JComponents, if Window or Applet parent, process
                     // WHEN_IN_FOCUSED_WINDOW bindings.
-                    return JComponent.processKeyBindingsForAllComponents(event,
-                            (Container) component, pressed);
+                    return JComponent.processKeyBindingsForAllComponents(event, (Container) component,
+                            pressed);
                 }
                 component = component.getParent();
             }
@@ -1625,8 +1527,8 @@ public class SwingUtilities implements SwingConstants {
      *
      * @since 1.3
      */
-    public static boolean notifyAction(Action action, KeyStroke ks,
-            KeyEvent event, Object sender, int modifiers) {
+    public static boolean notifyAction(Action action, KeyStroke ks, KeyEvent event, Object sender,
+            int modifiers) {
         if (action == null) {
             return false;
         }
@@ -1662,8 +1564,7 @@ public class SwingUtilities implements SwingConstants {
             // was called with a null.
             command = null;
         }
-        action.actionPerformed(new ActionEvent(sender,
-                ActionEvent.ACTION_PERFORMED, command, event.getWhen(),
+        action.actionPerformed(new ActionEvent(sender, ActionEvent.ACTION_PERFORMED, command, event.getWhen(),
                 modifiers));
         return true;
     }
@@ -1675,8 +1576,7 @@ public class SwingUtilities implements SwingConstants {
      *
      * @since 1.3
      */
-    public static void replaceUIInputMap(JComponent component, int type,
-            InputMap uiInputMap) {
+    public static void replaceUIInputMap(JComponent component, int type, InputMap uiInputMap) {
         InputMap map = component.getInputMap(type, (uiInputMap != null));
 
         while (map != null) {
@@ -1696,8 +1596,7 @@ public class SwingUtilities implements SwingConstants {
      *
      * @since 1.3
      */
-    public static void replaceUIActionMap(JComponent component,
-            ActionMap uiActionMap) {
+    public static void replaceUIActionMap(JComponent component, ActionMap uiActionMap) {
         ActionMap map = component.getActionMap((uiActionMap != null));
 
         while (map != null) {
@@ -1752,8 +1651,7 @@ public class SwingUtilities implements SwingConstants {
     }
 
     // Don't use String, as it's not guaranteed to be unique in a Hashtable.
-    private static final Object sharedOwnerFrameKey = new StringBuffer(
-            "SwingUtilities.sharedOwnerFrame");
+    private static final Object sharedOwnerFrameKey = new StringBuffer("SwingUtilities.sharedOwnerFrame");
 
     static class SharedOwnerFrame extends Frame implements WindowListener {
         public void addNotify() {
@@ -1825,13 +1723,12 @@ public class SwingUtilities implements SwingConstants {
      * JDialogs and JWindows created with {@code null} owners.
      * 
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
     static Frame getSharedOwnerFrame() throws HeadlessException {
-        Frame sharedOwnerFrame = (Frame) SwingUtilities.appContextGet(
-                sharedOwnerFrameKey);
+        Frame sharedOwnerFrame = (Frame) SwingUtilities.appContextGet(sharedOwnerFrameKey);
         if (sharedOwnerFrame == null) {
             sharedOwnerFrame = new SharedOwnerFrame();
             SwingUtilities.appContextPut(sharedOwnerFrameKey, sharedOwnerFrame);
@@ -1844,12 +1741,11 @@ public class SwingUtilities implements SwingConstants {
      * SharedOwnerFrame if it has no more displayable children.
      * 
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
-    static WindowListener getSharedOwnerFrameShutdownListener()
-            throws HeadlessException {
+    static WindowListener getSharedOwnerFrameShutdownListener() throws HeadlessException {
         Frame sharedOwnerFrame = getSharedOwnerFrame();
         return (WindowListener) sharedOwnerFrame;
     }
@@ -1874,11 +1770,9 @@ public class SwingUtilities implements SwingConstants {
         AppContext.getAppContext().remove(key);
     }
 
-    static Class<?> loadSystemClass(String className)
-            throws ClassNotFoundException {
+    static Class<?> loadSystemClass(String className) throws ClassNotFoundException {
         ReflectUtil.checkPackageAccess(className);
-        return Class.forName(className, true, Thread.currentThread()
-                .getContextClassLoader());
+        return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
     }
 
     /*
@@ -1890,8 +1784,7 @@ public class SwingUtilities implements SwingConstants {
     }
 
     private SwingUtilities() {
-        throw new Error(
-                "SwingUtilities is just a container for static methods");
+        throw new Error("SwingUtilities is just a container for static methods");
     }
 
     /**
@@ -1899,8 +1792,7 @@ public class SwingUtilities implements SwingConstants {
      * and the image it contains is the same as <code>image</code>.
      */
     static boolean doesIconReferenceImage(Icon icon, Image image) {
-        Image iconImage = (icon != null && (icon instanceof ImageIcon))
-                ? ((ImageIcon) icon).getImage()
+        Image iconImage = (icon != null && (icon instanceof ImageIcon)) ? ((ImageIcon) icon).getImage()
                 : null;
         return (iconImage == image);
     }
@@ -1910,9 +1802,9 @@ public class SwingUtilities implements SwingConstants {
      * string <code>text</code>. Matching algorithm is not case-sensitive.
      *
      * @param text
-     *                 The text to search through, may be {@code null}
+     *        The text to search through, may be {@code null}
      * @param mnemonic
-     *                 The mnemonic to find the character for.
+     *        The mnemonic to find the character for.
      * @return index into the string if exists, otherwise -1
      */
     static int findDisplayedMnemonicIndex(String text, int mnemonic) {
@@ -1943,14 +1835,13 @@ public class SwingUtilities implements SwingConstants {
      * implement painting code.
      *
      * @param c
-     *          the JComponent in question; if {@code null}, this method
-     *          returns {@code null}
+     *        the JComponent in question; if {@code null}, this method
+     *        returns {@code null}
      * @param r
-     *          the Rectangle instance to be modified; may be {@code null}
+     *        the Rectangle instance to be modified; may be {@code null}
      * @return {@code null} if the Component is {@code null}; otherwise, returns
      *         the passed-in rectangle (if non-{@code null}) or a new rectangle
      *         specifying position and size information
-     *
      * @since 1.4
      */
     public static Rectangle calculateInnerArea(JComponent c, Rectangle r) {
@@ -1996,18 +1887,15 @@ public class SwingUtilities implements SwingConstants {
      * instance of {@link JLayer}.
      *
      * @param component
-     *                  {@code Component} to get the first ancestor of, which is
-     *                  not a
-     *                  {@link JLayer} instance.
-     *
+     *        {@code Component} to get the first ancestor of, which is
+     *        not a
+     *        {@link JLayer} instance.
      * @return the first ancestor of the {@code component} which is not an
      *         instance of {@link JLayer}. If such an ancestor can not be found,
      *         {@code null} is returned.
-     *
      * @throws NullPointerException
-     *                              if {@code component} is {@code null}
+     *         if {@code component} is {@code null}
      * @see JLayer
-     *
      * @since 1.7
      */
     public static Container getUnwrappedParent(Component component) {
@@ -2022,26 +1910,22 @@ public class SwingUtilities implements SwingConstants {
      * Returns the first {@code JViewport}'s descendant which is not an instance
      * of {@code JLayer}. If such a descendant can not be found, {@code null} is
      * returned.
-     *
      * If the {@code viewport}'s view component is not a {@code JLayer}, this
      * method is equivalent to {@link JViewport#getView()} otherwise
      * {@link JLayer#getView()} will be recursively called on all descending
      * {@code JLayer}s.
      *
      * @param viewport
-     *                 {@code JViewport} to get the first descendant of, which
-     *                 in not
-     *                 a {@code JLayer} instance.
-     *
+     *        {@code JViewport} to get the first descendant of, which
+     *        in not
+     *        a {@code JLayer} instance.
      * @return the first {@code JViewport}'s descendant which is not an instance
      *         of {@code JLayer}. If such a descendant can not be found,
      *         {@code null} is returned.
-     *
      * @throws NullPointerException
-     *                              if {@code viewport} is {@code null}
+     *         if {@code viewport} is {@code null}
      * @see JViewport#getView()
      * @see JLayer
-     *
      * @since 1.7
      */
     public static Component getUnwrappedView(JViewport viewport) {
@@ -2054,7 +1938,6 @@ public class SwingUtilities implements SwingConstants {
 
     /**
      * Retrieves the validate root of a given container.
-     *
      * If the container is contained within a {@code CellRendererPane}, this
      * method returns {@code null} due to the synthetic nature of the {@code
      * CellRendererPane}.

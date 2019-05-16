@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -51,11 +49,9 @@ public class DocumentSerializer extends AbstractSerializer {
      * @return the Node resulting from the parse of the source
      * @throws XMLEncryptionException
      */
-    public Node deserialize(byte[] source, Node ctx)
-            throws XMLEncryptionException {
+    public Node deserialize(byte[] source, Node ctx) throws XMLEncryptionException {
         byte[] fragment = createContext(source, ctx);
-        return deserialize(ctx, new InputSource(new ByteArrayInputStream(
-                fragment)));
+        return deserialize(ctx, new InputSource(new ByteArrayInputStream(fragment)));
     }
 
     /**
@@ -64,8 +60,7 @@ public class DocumentSerializer extends AbstractSerializer {
      * @return the Node resulting from the parse of the source
      * @throws XMLEncryptionException
      */
-    public Node deserialize(String source, Node ctx)
-            throws XMLEncryptionException {
+    public Node deserialize(String source, Node ctx) throws XMLEncryptionException {
         String fragment = createContext(source, ctx);
         return deserialize(ctx, new InputSource(new StringReader(fragment)));
     }
@@ -76,16 +71,13 @@ public class DocumentSerializer extends AbstractSerializer {
      * @return the Node resulting from the parse of the source
      * @throws XMLEncryptionException
      */
-    private Node deserialize(Node ctx, InputSource inputSource)
-            throws XMLEncryptionException {
+    private Node deserialize(Node ctx, InputSource inputSource) throws XMLEncryptionException {
         try {
             if (dbf == null) {
                 dbf = DocumentBuilderFactory.newInstance();
                 dbf.setNamespaceAware(true);
-                dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                        Boolean.TRUE);
-                dbf.setAttribute("http://xml.org/sax/features/namespaces",
-                        Boolean.TRUE);
+                dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
+                dbf.setAttribute("http://xml.org/sax/features/namespaces", Boolean.TRUE);
                 dbf.setValidating(false);
             }
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -98,8 +90,7 @@ public class DocumentSerializer extends AbstractSerializer {
                 contextDocument = ctx.getOwnerDocument();
             }
 
-            Element fragElt = (Element) contextDocument.importNode(d
-                    .getDocumentElement(), true);
+            Element fragElt = (Element) contextDocument.importNode(d.getDocumentElement(), true);
             DocumentFragment result = contextDocument.createDocumentFragment();
             Node child = fragElt.getFirstChild();
             while (child != null) {

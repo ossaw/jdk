@@ -44,30 +44,29 @@ public class GradientPaint implements Paint {
      * Constructs a simple acyclic <code>GradientPaint</code> object.
      * 
      * @param x1
-     *               x coordinate of the first specified <code>Point</code> in
-     *               user
-     *               space
+     *        x coordinate of the first specified <code>Point</code> in
+     *        user
+     *        space
      * @param y1
-     *               y coordinate of the first specified <code>Point</code> in
-     *               user
-     *               space
+     *        y coordinate of the first specified <code>Point</code> in
+     *        user
+     *        space
      * @param color1
-     *               <code>Color</code> at the first specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the first specified
+     *        <code>Point</code>
      * @param x2
-     *               x coordinate of the second specified <code>Point</code> in
-     *               user space
+     *        x coordinate of the second specified <code>Point</code> in
+     *        user space
      * @param y2
-     *               y coordinate of the second specified <code>Point</code> in
-     *               user space
+     *        y coordinate of the second specified <code>Point</code> in
+     *        user space
      * @param color2
-     *               <code>Color</code> at the second specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the second specified
+     *        <code>Point</code>
      * @throws NullPointerException
-     *                              if either one of colors is null
+     *         if either one of colors is null
      */
-    public GradientPaint(float x1, float y1, Color color1, float x2, float y2,
-            Color color2) {
+    public GradientPaint(float x1, float y1, Color color1, float x2, float y2, Color color2) {
         if ((color1 == null) || (color2 == null)) {
             throw new NullPointerException("Colors cannot be null");
         }
@@ -82,23 +81,21 @@ public class GradientPaint implements Paint {
      * Constructs a simple acyclic <code>GradientPaint</code> object.
      * 
      * @param pt1
-     *               the first specified <code>Point</code> in user space
+     *        the first specified <code>Point</code> in user space
      * @param color1
-     *               <code>Color</code> at the first specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the first specified
+     *        <code>Point</code>
      * @param pt2
-     *               the second specified <code>Point</code> in user space
+     *        the second specified <code>Point</code> in user space
      * @param color2
-     *               <code>Color</code> at the second specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the second specified
+     *        <code>Point</code>
      * @throws NullPointerException
-     *                              if either one of colors or points is null
+     *         if either one of colors or points is null
      */
     public GradientPaint(Point2D pt1, Color color1, Point2D pt2, Color color2) {
-        if ((color1 == null) || (color2 == null) || (pt1 == null)
-                || (pt2 == null)) {
-            throw new NullPointerException(
-                    "Colors and points should be non-null");
+        if ((color1 == null) || (color2 == null) || (pt1 == null) || (pt2 == null)) {
+            throw new NullPointerException("Colors and points should be non-null");
         }
 
         p1 = new Point2D.Float((float) pt1.getX(), (float) pt1.getY());
@@ -112,32 +109,31 @@ public class GradientPaint implements Paint {
      * depending on the <code>boolean</code> parameter.
      * 
      * @param x1
-     *               x coordinate of the first specified <code>Point</code> in
-     *               user
-     *               space
+     *        x coordinate of the first specified <code>Point</code> in
+     *        user
+     *        space
      * @param y1
-     *               y coordinate of the first specified <code>Point</code> in
-     *               user
-     *               space
+     *        y coordinate of the first specified <code>Point</code> in
+     *        user
+     *        space
      * @param color1
-     *               <code>Color</code> at the first specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the first specified
+     *        <code>Point</code>
      * @param x2
-     *               x coordinate of the second specified <code>Point</code> in
-     *               user space
+     *        x coordinate of the second specified <code>Point</code> in
+     *        user space
      * @param y2
-     *               y coordinate of the second specified <code>Point</code> in
-     *               user space
+     *        y coordinate of the second specified <code>Point</code> in
+     *        user space
      * @param color2
-     *               <code>Color</code> at the second specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the second specified
+     *        <code>Point</code>
      * @param cyclic
-     *               <code>true</code> if the gradient pattern should cycle
-     *               repeatedly between the two colors; <code>false</code>
-     *               otherwise
+     *        <code>true</code> if the gradient pattern should cycle
+     *        repeatedly between the two colors; <code>false</code>
+     *        otherwise
      */
-    public GradientPaint(float x1, float y1, Color color1, float x2, float y2,
-            Color color2, boolean cyclic) {
+    public GradientPaint(float x1, float y1, Color color1, float x2, float y2, Color color2, boolean cyclic) {
         this(x1, y1, color1, x2, y2, color2);
         this.cyclic = cyclic;
     }
@@ -147,25 +143,24 @@ public class GradientPaint implements Paint {
      * depending on the <code>boolean</code> parameter.
      * 
      * @param pt1
-     *               the first specified <code>Point</code> in user space
+     *        the first specified <code>Point</code> in user space
      * @param color1
-     *               <code>Color</code> at the first specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the first specified
+     *        <code>Point</code>
      * @param pt2
-     *               the second specified <code>Point</code> in user space
+     *        the second specified <code>Point</code> in user space
      * @param color2
-     *               <code>Color</code> at the second specified
-     *               <code>Point</code>
+     *        <code>Color</code> at the second specified
+     *        <code>Point</code>
      * @param cyclic
-     *               <code>true</code> if the gradient pattern should cycle
-     *               repeatedly between the two colors; <code>false</code>
-     *               otherwise
+     *        <code>true</code> if the gradient pattern should cycle
+     *        repeatedly between the two colors; <code>false</code>
+     *        otherwise
      * @throws NullPointerException
-     *                              if either one of colors or points is null
+     *         if either one of colors or points is null
      */
     @ConstructorProperties({ "point1", "color1", "point2", "color2", "cyclic" })
-    public GradientPaint(Point2D pt1, Color color1, Point2D pt2, Color color2,
-            boolean cyclic) {
+    public GradientPaint(Point2D pt1, Color color1, Point2D pt2, Color color2, boolean cyclic) {
         this(pt1, color1, pt2, color2);
         this.cyclic = cyclic;
     }
@@ -226,26 +221,26 @@ public class GradientPaint implements Paint {
      * parameter handling.
      *
      * @param cm
-     *                     the preferred {@link ColorModel} which represents the
-     *                     most
-     *                     convenient format for the caller to receive the pixel
-     *                     data, or
-     *                     {@code null} if there is no preference.
+     *        the preferred {@link ColorModel} which represents the
+     *        most
+     *        convenient format for the caller to receive the pixel
+     *        data, or
+     *        {@code null} if there is no preference.
      * @param deviceBounds
-     *                     the device space bounding box of the graphics
-     *                     primitive being
-     *                     rendered.
+     *        the device space bounding box of the graphics
+     *        primitive being
+     *        rendered.
      * @param userBounds
-     *                     the user space bounding box of the graphics primitive
-     *                     being
-     *                     rendered.
+     *        the user space bounding box of the graphics primitive
+     *        being
+     *        rendered.
      * @param xform
-     *                     the {@link AffineTransform} from user space into
-     *                     device space.
+     *        the {@link AffineTransform} from user space into
+     *        device space.
      * @param hints
-     *                     the set of hints that the context object can use to
-     *                     choose
-     *                     between rendering alternatives.
+     *        the set of hints that the context object can use to
+     *        choose
+     *        between rendering alternatives.
      * @return the {@code PaintContext} for generating color patterns.
      * @see Paint
      * @see PaintContext
@@ -255,12 +250,10 @@ public class GradientPaint implements Paint {
      * @see AffineTransform
      * @see RenderingHints
      */
-    public PaintContext createContext(ColorModel cm, Rectangle deviceBounds,
-            Rectangle2D userBounds, AffineTransform xform,
-            RenderingHints hints) {
+    public PaintContext createContext(ColorModel cm, Rectangle deviceBounds, Rectangle2D userBounds,
+            AffineTransform xform, RenderingHints hints) {
 
-        return new GradientPaintContext(cm, p1, p2, xform, color1, color2,
-                cyclic);
+        return new GradientPaintContext(cm, p1, p2, xform, color1, color2, cyclic);
     }
 
     /**

@@ -62,7 +62,6 @@ import org.w3c.dom.TypeInfo;
  * This class represents a single attribute.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
- *
  * @version $Id: AttrImpl.java,v 1.5 2010-11-01 04:40:01 joehw Exp $
  */
 public class AttrImpl extends NodeImpl implements Attr {
@@ -79,20 +78,20 @@ public class AttrImpl extends NodeImpl implements Attr {
      * Constructs an attribute.
      *
      * @param element
-     *                  Element which owns this attribute
+     *        Element which owns this attribute
      * @param prefix
-     *                  The QName prefix.
+     *        The QName prefix.
      * @param localpart
-     *                  The QName localpart.
+     *        The QName localpart.
      * @param rawname
-     *                  The QName rawname.
+     *        The QName rawname.
      * @param uri
-     *                  The uri binding for the associated prefix.
+     *        The uri binding for the associated prefix.
      * @param value
-     *                  The value of the attribute.
+     *        The value of the attribute.
      */
-    public AttrImpl(Element element, String prefix, String localpart,
-            String rawname, String uri, String value) {
+    public AttrImpl(Element element, String prefix, String localpart, String rawname, String uri,
+            String value) {
         super(prefix, localpart, rawname, uri, Node.ATTRIBUTE_NODE);
         this.element = element;
         this.value = value;

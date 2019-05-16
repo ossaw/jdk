@@ -33,7 +33,7 @@ public class InvalidClassException extends ObjectStreamException {
      * Report an InvalidClassException for the reason specified.
      *
      * @param reason
-     *               String describing the reason for the exception.
+     *        String describing the reason for the exception.
      */
     public InvalidClassException(String reason) {
         super(reason);
@@ -43,9 +43,9 @@ public class InvalidClassException extends ObjectStreamException {
      * Constructs an InvalidClassException object.
      *
      * @param cname
-     *               a String naming the invalid class.
+     *        a String naming the invalid class.
      * @param reason
-     *               a String describing the reason for the exception.
+     *        a String describing the reason for the exception.
      */
     public InvalidClassException(String cname, String reason) {
         super(reason);

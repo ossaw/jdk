@@ -25,7 +25,6 @@ import com.sun.org.apache.xpath.internal.functions.FuncExtFunction;
 
 /**
  * Interface that XPath objects can call to obtain access to an ExtensionsTable.
- *
  */
 public interface ExtensionsProvider {
     /**
@@ -44,8 +43,8 @@ public interface ExtensionsProvider {
     /**
      * Execute the extension function.
      */
-    public Object extFunction(String ns, String funcName, Vector argVec,
-            Object methodKey) throws javax.xml.transform.TransformerException;
+    public Object extFunction(String ns, String funcName, Vector argVec, Object methodKey)
+            throws javax.xml.transform.TransformerException;
 
     /**
      * Execute the extension function.

@@ -24,8 +24,7 @@ import javax.print.attribute.SupportedValuesAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class CopiesSupported extends SetOfIntegerSyntax implements
-        SupportedValuesAttribute {
+public final class CopiesSupported extends SetOfIntegerSyntax implements SupportedValuesAttribute {
 
     private static final long serialVersionUID = 6927711687034846001L;
 
@@ -34,12 +33,11 @@ public final class CopiesSupported extends SetOfIntegerSyntax implements
      * That is, only the one value of Copies is supported.
      *
      * @param member
-     *               Set member.
-     *
+     *        Set member.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>member</CODE> is
-     *                                     less than 1.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>member</CODE> is
+     *            less than 1.
      */
     public CopiesSupported(int member) {
         super(member);
@@ -54,16 +52,15 @@ public final class CopiesSupported extends SetOfIntegerSyntax implements
      * supported.
      *
      * @param lowerBound
-     *                   Lower bound of the range.
+     *        Lower bound of the range.
      * @param upperBound
-     *                   Upper bound of the range.
-     *
+     *        Upper bound of the range.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if a
-     *                                     null range is specified
-     *                                     or if a non-null range is specified
-     *                                     with
-     *                                     <CODE>lowerBound</CODE> less than 1.
+     *            (Unchecked exception) Thrown if a
+     *            null range is specified
+     *            or if a non-null range is specified
+     *            with
+     *            <CODE>lowerBound</CODE> less than 1.
      */
     public CopiesSupported(int lowerBound, int upperBound) {
         super(lowerBound, upperBound);
@@ -87,8 +84,7 @@ public final class CopiesSupported extends SetOfIntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this copies
      *         supported attribute, false otherwise.
      */

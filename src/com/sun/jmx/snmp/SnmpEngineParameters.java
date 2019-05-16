@@ -10,7 +10,6 @@ import java.io.Serializable;
 /**
  * This class is used to pass some specific parameters to an <CODE>
  * SnmpEngineFactory </CODE>.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -49,7 +48,7 @@ public class SnmpEngineParameters implements Serializable {
      * <CODE>com.sun.jmx.snmp.usm.UserAcl.UserAcl</CODE> is instantiated.
      * 
      * @param uacl
-     *             The user ACL to use.
+     *        The user ACL to use.
      */
     public void setUserAcl(UserAcl uacl) {
         this.uacl = uacl;
@@ -68,7 +67,6 @@ public class SnmpEngineParameters implements Serializable {
      * Activate SNMP V3 encryption. By default the encryption is not activated.
      * Be sure that the security provider classes needed for DES are in your
      * classpath (eg:JCE classes)
-     *
      */
     public void activateEncryption() {
         this.encrypt = true;
@@ -78,7 +76,6 @@ public class SnmpEngineParameters implements Serializable {
      * Deactivate SNMP V3 encryption. By default the encryption is not
      * activated. Be sure that the security provider classes needed for DES are
      * in your classpath (eg:JCE classes)
-     *
      */
     public void deactivateEncryption() {
         this.encrypt = false;
@@ -98,7 +95,7 @@ public class SnmpEngineParameters implements Serializable {
      * Set the engine Id.
      * 
      * @param engineId
-     *                 The engine Id to use.
+     *        The engine Id to use.
      */
     public void setEngineId(SnmpEngineId engineId) {
         this.engineId = engineId;

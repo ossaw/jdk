@@ -43,14 +43,14 @@ public interface XSModel {
      * attribute declarations, etc.
      * 
      * @param objectType
-     *                   The type of the declaration, i.e.
-     *                   <code>ELEMENT_DECLARATION</code>. Note that
-     *                   <code>XSTypeDefinition.SIMPLE_TYPE</code> and
-     *                   <code>XSTypeDefinition.COMPLEX_TYPE</code> can also be
-     *                   used as
-     *                   the <code>objectType</code> to retrieve only complex
-     *                   types or
-     *                   simple types, instead of all types.
+     *        The type of the declaration, i.e.
+     *        <code>ELEMENT_DECLARATION</code>. Note that
+     *        <code>XSTypeDefinition.SIMPLE_TYPE</code> and
+     *        <code>XSTypeDefinition.COMPLEX_TYPE</code> can also be
+     *        used as
+     *        the <code>objectType</code> to retrieve only complex
+     *        types or
+     *        simple types, instead of all types.
      * @return A list of top-level definitions of the specified type in
      *         <code>objectType</code> or an empty <code>XSNamedMap</code> if no
      *         such definitions exist.
@@ -63,18 +63,17 @@ public interface XSModel {
      * declarations, attribute declarations, etc.
      * 
      * @param objectType
-     *                   The type of the declaration, i.e.
-     *                   <code>ELEMENT_DECLARATION</code>.
+     *        The type of the declaration, i.e.
+     *        <code>ELEMENT_DECLARATION</code>.
      * @param namespace
-     *                   The namespace to which the declaration belongs or
-     *                   <code>null</code> (for components with no target
-     *                   namespace).
+     *        The namespace to which the declaration belongs or
+     *        <code>null</code> (for components with no target
+     *        namespace).
      * @return A list of top-level definitions of the specified type in
      *         <code>objectType</code> and defined in the specified
      *         <code>namespace</code> or an empty <code>XSNamedMap</code>.
      */
-    public XSNamedMap getComponentsByNamespace(short objectType,
-            String namespace);
+    public XSNamedMap getComponentsByNamespace(short objectType, String namespace);
 
     /**
      * [annotations]: a set of annotations if it exists, otherwise an empty
@@ -86,39 +85,37 @@ public interface XSModel {
      * Convenience method. Returns a top-level element declaration.
      * 
      * @param name
-     *                  The name of the declaration.
+     *        The name of the declaration.
      * @param namespace
-     *                  The namespace of the declaration, otherwise
-     *                  <code>null</code>.
+     *        The namespace of the declaration, otherwise
+     *        <code>null</code>.
      * @return A top-level element declaration or <code>null</code> if such a
      *         declaration does not exist.
      */
-    public XSElementDeclaration getElementDeclaration(String name,
-            String namespace);
+    public XSElementDeclaration getElementDeclaration(String name, String namespace);
 
     /**
      * Convenience method. Returns a top-level attribute declaration.
      * 
      * @param name
-     *                  The name of the declaration.
+     *        The name of the declaration.
      * @param namespace
-     *                  The namespace of the declaration, otherwise
-     *                  <code>null</code>.
+     *        The namespace of the declaration, otherwise
+     *        <code>null</code>.
      * @return A top-level attribute declaration or <code>null</code> if such a
      *         declaration does not exist.
      */
-    public XSAttributeDeclaration getAttributeDeclaration(String name,
-            String namespace);
+    public XSAttributeDeclaration getAttributeDeclaration(String name, String namespace);
 
     /**
      * Convenience method. Returns a top-level simple or complex type
      * definition.
      * 
      * @param name
-     *                  The name of the definition.
+     *        The name of the definition.
      * @param namespace
-     *                  The namespace of the declaration, otherwise
-     *                  <code>null</code>.
+     *        The namespace of the declaration, otherwise
+     *        <code>null</code>.
      * @return An <code>XSTypeDefinition</code> or <code>null</code> if such a
      *         definition does not exist.
      */
@@ -128,43 +125,40 @@ public interface XSModel {
      * Convenience method. Returns a top-level attribute group definition.
      * 
      * @param name
-     *                  The name of the definition.
+     *        The name of the definition.
      * @param namespace
-     *                  The namespace of the definition, otherwise
-     *                  <code>null</code>.
+     *        The namespace of the definition, otherwise
+     *        <code>null</code>.
      * @return A top-level attribute group definition or <code>null</code> if
      *         such a definition does not exist.
      */
-    public XSAttributeGroupDefinition getAttributeGroup(String name,
-            String namespace);
+    public XSAttributeGroupDefinition getAttributeGroup(String name, String namespace);
 
     /**
      * Convenience method. Returns a top-level model group definition.
      * 
      * @param name
-     *                  The name of the definition.
+     *        The name of the definition.
      * @param namespace
-     *                  The namespace of the definition, otherwise
-     *                  <code>null</code>.
+     *        The namespace of the definition, otherwise
+     *        <code>null</code>.
      * @return A top-level model group definition or <code>null</code> if such a
      *         definition does not exist.
      */
-    public XSModelGroupDefinition getModelGroupDefinition(String name,
-            String namespace);
+    public XSModelGroupDefinition getModelGroupDefinition(String name, String namespace);
 
     /**
      * Convenience method. Returns a top-level notation declaration.
      * 
      * @param name
-     *                  The name of the declaration.
+     *        The name of the declaration.
      * @param namespace
-     *                  The namespace of the declaration, otherwise
-     *                  <code>null</code>.
+     *        The namespace of the declaration, otherwise
+     *        <code>null</code>.
      * @return A top-level notation declaration or <code>null</code> if such a
      *         declaration does not exist.
      */
-    public XSNotationDeclaration getNotationDeclaration(String name,
-            String namespace);
+    public XSNotationDeclaration getNotationDeclaration(String name, String namespace);
 
     /**
      * Convenience method. Returns a list containing the members of the
@@ -173,7 +167,7 @@ public interface XSModel {
      * members.
      * 
      * @param head
-     *             The substitution group head.
+     *        The substitution group head.
      * @return A list containing the members of the substitution group for the
      *         given <code>XSElementDeclaration</code> or an empty
      *         <code>XSObjectList</code> if the substitution group contains no

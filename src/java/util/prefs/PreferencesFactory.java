@@ -13,7 +13,6 @@ import java.util.*;
  * <tt>PreferencesFactory</tt> implementations so that the new
  * <tt>Preferences</tt> implementation can be installed in place of the
  * platform-specific default implementation.
- *
  * <p>
  * <strong>This class is for <tt>Preferences</tt> implementers only. Normal
  * users of the <tt>Preferences</tt> facility should have no need to consult

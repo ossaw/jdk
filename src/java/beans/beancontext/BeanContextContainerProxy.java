@@ -15,7 +15,6 @@ import java.awt.Container;
  *
  * @author Laurence P. G. Cable
  * @since 1.2
- *
  * @see java.beans.beancontext.BeanContext
  * @see java.beans.beancontext.BeanContextSupport
  */

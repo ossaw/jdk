@@ -25,7 +25,7 @@ class EffectUtils {
      * Clear a transparent image to 100% transparent
      *
      * @param img
-     *            The image to clear
+     *        The image to clear
      */
     static void clearImage(BufferedImage img) {
         Graphics2D g2 = img.createGraphics();
@@ -41,21 +41,20 @@ class EffectUtils {
      * Apply Gaussian Blur to Image
      *
      * @param src
-     *               The image tp
+     *        The image tp
      * @param dst
-     *               The destination image to draw blured src image into, null
-     *               if
-     *               you want a new one created
+     *        The destination image to draw blured src image into, null
+     *        if
+     *        you want a new one created
      * @param radius
-     *               The blur kernel radius
+     *        The blur kernel radius
      * @return The blured image
      */
-    static BufferedImage gaussianBlur(BufferedImage src, BufferedImage dst,
-            int radius) {
+    static BufferedImage gaussianBlur(BufferedImage src, BufferedImage dst, int radius) {
         int width = src.getWidth();
         int height = src.getHeight();
-        if (dst == null || dst.getWidth() != width || dst.getHeight() != height
-                || src.getType() != dst.getType()) {
+        if (dst == null || dst.getWidth() != width || dst.getHeight() != height || src.getType() != dst
+                .getType()) {
             dst = createColorModelCompatibleImage(src);
         }
         float[] kernel = createGaussianKernel(radius);
@@ -83,8 +82,8 @@ class EffectUtils {
             setPixels(dst, 0, 0, width, height, srcPixels);
         } else {
             throw new IllegalArgumentException(
-                    "EffectUtils.gaussianBlur() src image is not a supported type, type=["
-                            + src.getType() + "]");
+                    "EffectUtils.gaussianBlur() src image is not a supported type, type=[" + src.getType()
+                            + "]");
         }
         return dst;
     }
@@ -104,20 +103,20 @@ class EffectUtils {
      * </p>
      *
      * @param srcPixels
-     *                  the source pixels
+     *        the source pixels
      * @param dstPixels
-     *                  the destination pixels
+     *        the destination pixels
      * @param width
-     *                  the width of the source picture
+     *        the width of the source picture
      * @param height
-     *                  the height of the source picture
+     *        the height of the source picture
      * @param kernel
-     *                  the kernel of the blur effect
+     *        the kernel of the blur effect
      * @param radius
-     *                  the radius of the blur effect
+     *        the radius of the blur effect
      */
-    private static void blur(int[] srcPixels, int[] dstPixels, int width,
-            int height, float[] kernel, int radius) {
+    private static void blur(int[] srcPixels, int[] dstPixels, int width, int height, float[] kernel,
+            int radius) {
         float a;
         float r;
         float g;
@@ -155,11 +154,8 @@ class EffectUtils {
                 cg = (int) (g + 0.5f);
                 cb = (int) (b + 0.5f);
 
-                dstPixels[index] = ((ca > 255 ? 255 : ca) << 24) | ((cr > 255
-                        ? 255
-                        : cr) << 16) | ((cg > 255 ? 255 : cg) << 8) | (cb > 255
-                                ? 255
-                                : cb);
+                dstPixels[index] = ((ca > 255 ? 255 : ca) << 24) | ((cr > 255 ? 255 : cr) << 16) | ((cg > 255
+                        ? 255 : cg) << 8) | (cb > 255 ? 255 : cb);
                 index += height;
             }
         }
@@ -180,20 +176,19 @@ class EffectUtils {
      * </p>
      *
      * @param srcPixels
-     *                  the source pixels
+     *        the source pixels
      * @param dstPixels
-     *                  the destination pixels
+     *        the destination pixels
      * @param width
-     *                  the width of the source picture
+     *        the width of the source picture
      * @param height
-     *                  the height of the source picture
+     *        the height of the source picture
      * @param kernel
-     *                  the kernel of the blur effect
+     *        the kernel of the blur effect
      * @param radius
-     *                  the radius of the blur effect
+     *        the radius of the blur effect
      */
-    static void blur(byte[] srcPixels, byte[] dstPixels, int width, int height,
-            float[] kernel, int radius) {
+    static void blur(byte[] srcPixels, byte[] dstPixels, int width, int height, float[] kernel, int radius) {
         float p;
         int cp;
         for (int y = 0; y < height; y++) {
@@ -234,8 +229,7 @@ class EffectUtils {
         for (int i = -radius; i <= radius; i++) {
             float distance = i * i;
             int index = i + radius;
-            data[index] = (float) Math.exp(-distance / twoSigmaSquare)
-                    / sigmaRoot;
+            data[index] = (float) Math.exp(-distance / twoSigmaSquare) / sigmaRoot;
             total += data[index];
         }
 
@@ -259,25 +253,24 @@ class EffectUtils {
      * </p>
      *
      * @param img
-     *               the source image
+     *        the source image
      * @param x
-     *               the x location at which to start grabbing pixels
+     *        the x location at which to start grabbing pixels
      * @param y
-     *               the y location at which to start grabbing pixels
+     *        the y location at which to start grabbing pixels
      * @param w
-     *               the width of the rectangle of pixels to grab
+     *        the width of the rectangle of pixels to grab
      * @param h
-     *               the height of the rectangle of pixels to grab
+     *        the height of the rectangle of pixels to grab
      * @param pixels
-     *               a pre-allocated array of pixels of size w*h; can be null
+     *        a pre-allocated array of pixels of size w*h; can be null
      * @return <code>pixels</code> if non-null, a new array of integers
      *         otherwise
      * @throws IllegalArgumentException
-     *                                  is <code>pixels</code> is non-null and
-     *                                  of length &lt; w*h
+     *         is <code>pixels</code> is non-null and
+     *         of length &lt; w*h
      */
-    static byte[] getPixels(BufferedImage img, int x, int y, int w, int h,
-            byte[] pixels) {
+    static byte[] getPixels(BufferedImage img, int x, int y, int w, int h, byte[] pixels) {
         if (w == 0 || h == 0) {
             return new byte[0];
         }
@@ -285,8 +278,7 @@ class EffectUtils {
         if (pixels == null) {
             pixels = new byte[w * h];
         } else if (pixels.length < w * h) {
-            throw new IllegalArgumentException(
-                    "pixels array must have a length >= w*h");
+            throw new IllegalArgumentException("pixels array must have a length >= w*h");
         }
 
         int imageType = img.getType();
@@ -294,8 +286,7 @@ class EffectUtils {
             Raster raster = img.getRaster();
             return (byte[]) raster.getDataElements(x, y, w, h, pixels);
         } else {
-            throw new IllegalArgumentException(
-                    "Only type BYTE_GRAY is supported");
+            throw new IllegalArgumentException("Only type BYTE_GRAY is supported");
         }
     }
 
@@ -308,36 +299,33 @@ class EffectUtils {
      * </p>
      *
      * @param img
-     *               the destination image
+     *        the destination image
      * @param x
-     *               the x location at which to start storing pixels
+     *        the x location at which to start storing pixels
      * @param y
-     *               the y location at which to start storing pixels
+     *        the y location at which to start storing pixels
      * @param w
-     *               the width of the rectangle of pixels to store
+     *        the width of the rectangle of pixels to store
      * @param h
-     *               the height of the rectangle of pixels to store
+     *        the height of the rectangle of pixels to store
      * @param pixels
-     *               an array of pixels, stored as integers
+     *        an array of pixels, stored as integers
      * @throws IllegalArgumentException
-     *                                  is <code>pixels</code> is non-null and
-     *                                  of length &lt; w*h
+     *         is <code>pixels</code> is non-null and
+     *         of length &lt; w*h
      */
-    static void setPixels(BufferedImage img, int x, int y, int w, int h,
-            byte[] pixels) {
+    static void setPixels(BufferedImage img, int x, int y, int w, int h, byte[] pixels) {
         if (pixels == null || w == 0 || h == 0) {
             return;
         } else if (pixels.length < w * h) {
-            throw new IllegalArgumentException(
-                    "pixels array must have a length >= w*h");
+            throw new IllegalArgumentException("pixels array must have a length >= w*h");
         }
         int imageType = img.getType();
         if (imageType == BufferedImage.TYPE_BYTE_GRAY) {
             WritableRaster raster = img.getRaster();
             raster.setDataElements(x, y, w, h, pixels);
         } else {
-            throw new IllegalArgumentException(
-                    "Only type BYTE_GRAY is supported");
+            throw new IllegalArgumentException("Only type BYTE_GRAY is supported");
         }
     }
 
@@ -351,25 +339,24 @@ class EffectUtils {
      * </p>
      *
      * @param img
-     *               the source image
+     *        the source image
      * @param x
-     *               the x location at which to start grabbing pixels
+     *        the x location at which to start grabbing pixels
      * @param y
-     *               the y location at which to start grabbing pixels
+     *        the y location at which to start grabbing pixels
      * @param w
-     *               the width of the rectangle of pixels to grab
+     *        the width of the rectangle of pixels to grab
      * @param h
-     *               the height of the rectangle of pixels to grab
+     *        the height of the rectangle of pixels to grab
      * @param pixels
-     *               a pre-allocated array of pixels of size w*h; can be null
+     *        a pre-allocated array of pixels of size w*h; can be null
      * @return <code>pixels</code> if non-null, a new array of integers
      *         otherwise
      * @throws IllegalArgumentException
-     *                                  is <code>pixels</code> is non-null and
-     *                                  of length &lt; w*h
+     *         is <code>pixels</code> is non-null and
+     *         of length &lt; w*h
      */
-    public static int[] getPixels(BufferedImage img, int x, int y, int w, int h,
-            int[] pixels) {
+    public static int[] getPixels(BufferedImage img, int x, int y, int w, int h, int[] pixels) {
         if (w == 0 || h == 0) {
             return new int[0];
         }
@@ -377,13 +364,11 @@ class EffectUtils {
         if (pixels == null) {
             pixels = new int[w * h];
         } else if (pixels.length < w * h) {
-            throw new IllegalArgumentException("pixels array must have a length"
-                    + " >= w*h");
+            throw new IllegalArgumentException("pixels array must have a length" + " >= w*h");
         }
 
         int imageType = img.getType();
-        if (imageType == BufferedImage.TYPE_INT_ARGB
-                || imageType == BufferedImage.TYPE_INT_RGB) {
+        if (imageType == BufferedImage.TYPE_INT_ARGB || imageType == BufferedImage.TYPE_INT_RGB) {
             Raster raster = img.getRaster();
             return (int[]) raster.getDataElements(x, y, w, h, pixels);
         }
@@ -401,33 +386,30 @@ class EffectUtils {
      * </p>
      *
      * @param img
-     *               the destination image
+     *        the destination image
      * @param x
-     *               the x location at which to start storing pixels
+     *        the x location at which to start storing pixels
      * @param y
-     *               the y location at which to start storing pixels
+     *        the y location at which to start storing pixels
      * @param w
-     *               the width of the rectangle of pixels to store
+     *        the width of the rectangle of pixels to store
      * @param h
-     *               the height of the rectangle of pixels to store
+     *        the height of the rectangle of pixels to store
      * @param pixels
-     *               an array of pixels, stored as integers
+     *        an array of pixels, stored as integers
      * @throws IllegalArgumentException
-     *                                  is <code>pixels</code> is non-null and
-     *                                  of length &lt; w*h
+     *         is <code>pixels</code> is non-null and
+     *         of length &lt; w*h
      */
-    public static void setPixels(BufferedImage img, int x, int y, int w, int h,
-            int[] pixels) {
+    public static void setPixels(BufferedImage img, int x, int y, int w, int h, int[] pixels) {
         if (pixels == null || w == 0 || h == 0) {
             return;
         } else if (pixels.length < w * h) {
-            throw new IllegalArgumentException("pixels array must have a length"
-                    + " >= w*h");
+            throw new IllegalArgumentException("pixels array must have a length" + " >= w*h");
         }
 
         int imageType = img.getType();
-        if (imageType == BufferedImage.TYPE_INT_ARGB
-                || imageType == BufferedImage.TYPE_INT_RGB) {
+        if (imageType == BufferedImage.TYPE_INT_ARGB || imageType == BufferedImage.TYPE_INT_RGB) {
             WritableRaster raster = img.getRaster();
             raster.setDataElements(x, y, w, h, pixels);
         } else {
@@ -445,17 +427,15 @@ class EffectUtils {
      * </p>
      *
      * @param image
-     *              the reference image from which the color model of the new
-     *              image is obtained
+     *        the reference image from which the color model of the new
+     *        image is obtained
      * @return a new <code>BufferedImage</code>, compatible with the color model
      *         of <code>image</code>
      */
-    public static BufferedImage createColorModelCompatibleImage(
-            BufferedImage image) {
+    public static BufferedImage createColorModelCompatibleImage(BufferedImage image) {
         ColorModel cm = image.getColorModel();
-        return new BufferedImage(cm, cm.createCompatibleWritableRaster(image
-                .getWidth(), image.getHeight()), cm.isAlphaPremultiplied(),
-                null);
+        return new BufferedImage(cm, cm.createCompatibleWritableRaster(image.getWidth(), image.getHeight()),
+                cm.isAlphaPremultiplied(), null);
     }
 
     /**
@@ -468,18 +448,15 @@ class EffectUtils {
      * </p>
      *
      * @param width
-     *               the width of the new image
+     *        the width of the new image
      * @param height
-     *               the height of the new image
+     *        the height of the new image
      * @return a new translucent compatible <code>BufferedImage</code> of the
      *         specified width and height
      */
-    public static BufferedImage createCompatibleTranslucentImage(int width,
-            int height) {
-        return isHeadless() ? new BufferedImage(width, height,
-                BufferedImage.TYPE_INT_ARGB)
-                : getGraphicsConfiguration().createCompatibleImage(width,
-                        height, Transparency.TRANSLUCENT);
+    public static BufferedImage createCompatibleTranslucentImage(int width, int height) {
+        return isHeadless() ? new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+                : getGraphicsConfiguration().createCompatibleImage(width, height, Transparency.TRANSLUCENT);
     }
 
     private static boolean isHeadless() {
@@ -488,8 +465,8 @@ class EffectUtils {
 
     // Returns the graphics configuration for the primary screen
     private static GraphicsConfiguration getGraphicsConfiguration() {
-        return GraphicsEnvironment.getLocalGraphicsEnvironment()
-                .getDefaultScreenDevice().getDefaultConfiguration();
+        return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+                .getDefaultConfiguration();
     }
 
 }

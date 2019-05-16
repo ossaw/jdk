@@ -11,5 +11,4 @@ package com.sun.java.swing.plaf.nimbus;
  *             instead.
  */
 @Deprecated
-public abstract class AbstractRegionPainter extends
-        javax.swing.plaf.nimbus.AbstractRegionPainter {}
+public abstract class AbstractRegionPainter extends javax.swing.plaf.nimbus.AbstractRegionPainter {}

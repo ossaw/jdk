@@ -61,7 +61,6 @@ import java.util.List;
  *
  * @implSpec This interface places no restrictions on the mutability of
  *           implementations, however immutability is strongly recommended.
- *
  * @since 1.8
  */
 public interface TemporalAmount {
@@ -76,16 +75,15 @@ public interface TemporalAmount {
      *           {@link #getUnits()}. Typically, the implementation would define
      *           additional units as conversions for the convenience of
      *           developers.
-     *
      * @param unit
-     *             the {@code TemporalUnit} for which to return the value
+     *        the {@code TemporalUnit} for which to return the value
      * @return the long value of the unit
      * @throws DateTimeException
-     *                                          if a value for the unit cannot
-     *                                          be obtained
+     *         if a value for the unit cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the {@code unit} is not
-     *                                          supported
+     *         if the {@code unit} is not
+     *         supported
      */
     long get(TemporalUnit unit);
 
@@ -99,7 +97,6 @@ public interface TemporalAmount {
      * @implSpec The list of units completely and uniquely represents the state
      *           of the object without omissions, overlaps or duplication. The
      *           units are in order from longest duration to shortest.
-     *
      * @return the List of {@code TemporalUnits}; not null
      */
     List<TemporalUnit> getUnits();
@@ -142,15 +139,14 @@ public interface TemporalAmount {
      *           <p>
      *           This method may be called from multiple threads in parallel. It
      *           must be thread-safe when invoked.
-     *
      * @param temporal
-     *                 the temporal object to add the amount to, not null
+     *        the temporal object to add the amount to, not null
      * @return an object of the same observable type with the addition made, not
      *         null
      * @throws DateTimeException
-     *                             if unable to add
+     *         if unable to add
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     Temporal addTo(Temporal temporal);
 
@@ -192,15 +188,14 @@ public interface TemporalAmount {
      *           <p>
      *           This method may be called from multiple threads in parallel. It
      *           must be thread-safe when invoked.
-     *
      * @param temporal
-     *                 the temporal object to subtract the amount from, not null
+     *        the temporal object to subtract the amount from, not null
      * @return an object of the same observable type with the subtraction made,
      *         not null
      * @throws DateTimeException
-     *                             if unable to subtract
+     *         if unable to subtract
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     Temporal subtractFrom(Temporal temporal);
 }

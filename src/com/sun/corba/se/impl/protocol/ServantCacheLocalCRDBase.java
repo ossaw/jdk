@@ -28,8 +28,7 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 
 import com.sun.corba.se.impl.logging.POASystemException;
 
-public abstract class ServantCacheLocalCRDBase extends
-        LocalClientRequestDispatcherBase {
+public abstract class ServantCacheLocalCRDBase extends LocalClientRequestDispatcherBase {
 
     private OAInvocationInfo cachedInfo;
     protected POASystemException wrapper;

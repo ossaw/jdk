@@ -39,11 +39,11 @@ public interface Ref {
      * @return the fully-qualified SQL name of the referenced SQL structured
      *         type
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     String getBaseTypeName() throws SQLException;
@@ -53,19 +53,19 @@ public interface Ref {
      * given type map.
      *
      * @param map
-     *            a <code>java.util.Map</code> object that contains the mapping
-     *            to use (the fully-qualified name of the SQL structured type
-     *            being referenced and the class object for <code>SQLData</code>
-     *            implementation to which the SQL structured type will be
-     *            mapped)
+     *        a <code>java.util.Map</code> object that contains the mapping
+     *        to use (the fully-qualified name of the SQL structured type
+     *        being referenced and the class object for <code>SQLData</code>
+     *        implementation to which the SQL structured type will be
+     *        mapped)
      * @return a Java <code>Object</code> that is the custom mapping for the SQL
      *         structured type to which this <code>Ref</code> object refers
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      * @see #setObject
      */
@@ -81,11 +81,11 @@ public interface Ref {
      * @return a Java <code>Object</code> that is the mapping for the SQL
      *         structured type to which this <code>Ref</code> object refers
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      * @see #setObject
      */
@@ -97,14 +97,14 @@ public interface Ref {
      * converts this to an SQL structured type when it sends it to the database.
      *
      * @param value
-     *              an <code>Object</code> representing the SQL structured type
-     *              instance that this <code>Ref</code> object will reference
+     *        an <code>Object</code> representing the SQL structured type
+     *        instance that this <code>Ref</code> object will reference
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      * @see #getObject()
      * @see #getObject(Map)

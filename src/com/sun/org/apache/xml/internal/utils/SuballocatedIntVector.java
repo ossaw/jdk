@@ -22,17 +22,13 @@ package com.sun.org.apache.xml.internal.utils;
 /**
  * A very simple table that stores a list of int. Very similar API to our
  * IntVector class (same API); different internal storage.
- *
  * This version uses an array-of-arrays solution. Read/write access is thus a
  * bit slower than the simple IntVector, and basic storage is a trifle higher
  * due to the top-level array -- but appending is O(1) fast rather than O(N**2)
  * slow, which will swamp those costs in situations where long vectors are being
  * built up.
- *
  * Known issues:
- *
  * Some methods are private because they haven't yet been tested properly.
- *
  * Retrieval performance is critical, since this is used at the core of the DTM
  * model. (Append performance is almost as important.) That's pushing me toward
  * just letting reads from unset indices throw exceptions or return stale data;
@@ -84,9 +80,9 @@ public class SuballocatedIntVector {
      * For efficiency, we will round the requested size off to a power of two.
      *
      * @param blocksize
-     *                  Size of block to allocate
+     *        Size of block to allocate
      * @param numblocks
-     *                  Number of blocks to allocate
+     *        Number of blocks to allocate
      */
     public SuballocatedIntVector(int blocksize, int numblocks) {
         // m_blocksize = blocksize;
@@ -108,7 +104,7 @@ public class SuballocatedIntVector {
      * of blocks (32).
      *
      * @param blocksize
-     *                  Size of block to allocate
+     *        Size of block to allocate
      */
     public SuballocatedIntVector(int blocksize) {
         this(blocksize, NUMBLOCKS_DEFAULT);
@@ -138,7 +134,7 @@ public class SuballocatedIntVector {
      * Append a int onto the vector.
      *
      * @param value
-     *              Int to add to the list
+     *        Int to add to the list
      */
     public void addElement(int value) {
         int indexRelativeToCache = m_firstFree - m_buildCacheStartIndex;
@@ -182,7 +178,7 @@ public class SuballocatedIntVector {
      * Append several int values onto the vector.
      *
      * @param value
-     *              Int to add to the list
+     *        Int to add to the list
      */
     private void addElements(int value, int numberOfElements) {
         if (m_firstFree + numberOfElements < m_blocksize)
@@ -203,8 +199,7 @@ public class SuballocatedIntVector {
                 int[] block = m_map[index];
                 if (null == block)
                     block = m_map[index] = new int[m_blocksize];
-                int copied = (m_blocksize - offset < numberOfElements)
-                        ? m_blocksize - offset
+                int copied = (m_blocksize - offset < numberOfElements) ? m_blocksize - offset
                         : numberOfElements;
                 numberOfElements -= copied;
                 while (copied-- > 0)
@@ -221,7 +216,7 @@ public class SuballocatedIntVector {
      * "Not Set" means the value is unspecified.
      *
      * @param numberOfElements
-     *                         Int to add to the list
+     *        Int to add to the list
      */
     private void addElements(int numberOfElements) {
         int newlen = m_firstFree + numberOfElements;
@@ -239,13 +234,12 @@ public class SuballocatedIntVector {
      * component in this vector with an index greater or equal to the specified
      * index is shifted upward to have an index one greater than the value it
      * had previously.
-     *
      * Insertion may be an EXPENSIVE operation!
      *
      * @param value
-     *              Int to insert
+     *        Int to insert
      * @param at
-     *              Index of where to insert
+     *        Index of where to insert
      */
     private void insertElementAt(int value, int at) {
         if (at == m_firstFree)
@@ -306,8 +300,7 @@ public class SuballocatedIntVector {
      * an index one smaller than the value it had previously.
      *
      * @param s
-     *          Int to remove from array
-     *
+     *        Int to remove from array
      * @return True if the int was removed, false if it was not found
      */
     private boolean removeElement(int s) {
@@ -324,7 +317,7 @@ public class SuballocatedIntVector {
      * downward to have an index one smaller than the value it had previously.
      *
      * @param at
-     *           index of where to remove and int
+     *        index of where to remove and int
      */
     private void removeElementAt(int at) {
         // No point in removing elements that "don't exist"...
@@ -356,14 +349,13 @@ public class SuballocatedIntVector {
     /**
      * Sets the component at the specified index of this vector to be the
      * specified object. The previous component at that position is discarded.
-     *
      * The index must be a value greater than or equal to 0 and less than the
      * current size of the vector.
      *
      * @param value
-     *              object to set
+     *        object to set
      * @param at
-     *              Index of where to set the object
+     *        Index of where to set the object
      */
     public void setElementAt(int value, int at) {
         if (at < m_blocksize)
@@ -394,30 +386,27 @@ public class SuballocatedIntVector {
      * application, so performance is critical.
      *
      * @param i
-     *          index of value to get
-     *
+     *        index of value to get
      * @return value at given index. If that value wasn't previously set, the
      *         result is undefined for performance reasons. It may throw an
      *         exception (see below), may return zero, or (if setSize has
      *         previously been used) may return stale data.
-     *
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the index was _clearly_
-     *                                        unreasonable (negative, or past
-     *                                        the highest block).
-     *
+     *         if the index was _clearly_
+     *         unreasonable (negative, or past
+     *         the highest block).
      * @throws NullPointerException
-     *                                        if the index points to a block
-     *                                        that could have existed (based
-     *                                        on the highest index used) but has
-     *                                        never had anything set
-     *                                        into it. %REVIEW% Could add a
-     *                                        catch to create the block in
-     *                                        that case, or return 0. Try/Catch
-     *                                        is _supposed_ to be nearly
-     *                                        free when not thrown to. Do we
-     *                                        believe that? Should we have a
-     *                                        separate safeElementAt?
+     *         if the index points to a block
+     *         that could have existed (based
+     *         on the highest index used) but has
+     *         never had anything set
+     *         into it. %REVIEW% Could add a
+     *         catch to create the block in
+     *         that case, or return 0. Try/Catch
+     *         is _supposed_ to be nearly
+     *         free when not thrown to. Do we
+     *         believe that? Should we have a
+     *         separate safeElementAt?
      */
     public int elementAt(int i) {
         // This is actually a significant optimization!
@@ -431,8 +420,7 @@ public class SuballocatedIntVector {
      * Tell if the table contains the given node.
      *
      * @param s
-     *          object to look for
-     *
+     *        object to look for
      * @return true if the object is in the list
      */
     private boolean contains(int s) {
@@ -444,9 +432,9 @@ public class SuballocatedIntVector {
      * search at index, and testing for equality using the equals method.
      *
      * @param elem
-     *              object to look for
+     *        object to look for
      * @param index
-     *              Index of where to begin search
+     *        Index of where to begin search
      * @return the index of the first occurrence of the object argument in this
      *         vector at position index or later in the vector; returns -1 if
      *         the object is not found.
@@ -483,7 +471,7 @@ public class SuballocatedIntVector {
      * search at index, and testing for equality using the equals method.
      *
      * @param elem
-     *             object to look for
+     *        object to look for
      * @return the index of the first occurrence of the object argument in this
      *         vector at position index or later in the vector; returns -1 if
      *         the object is not found.
@@ -497,7 +485,7 @@ public class SuballocatedIntVector {
      * search at index, and testing for equality using the equals method.
      *
      * @param elem
-     *             Object to look for
+     *        Object to look for
      * @return the index of the first occurrence of the object argument in this
      *         vector at position index or later in the vector; returns -1 if
      *         the object is not found.

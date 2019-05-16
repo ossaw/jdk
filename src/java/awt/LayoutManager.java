@@ -16,7 +16,6 @@ package java.awt;
  *
  * @see Container
  * @see javax.swing.JComponent#isOptimizedDrawingEnabled
- *
  * @author Sami Shaio
  * @author Arthur van Hoff
  */
@@ -27,9 +26,9 @@ public interface LayoutManager {
      * by <code>name</code>.
      *
      * @param name
-     *             the string to be associated with the component
+     *        the string to be associated with the component
      * @param comp
-     *             the component to be added
+     *        the component to be added
      */
     void addLayoutComponent(String name, Component comp);
 
@@ -37,7 +36,7 @@ public interface LayoutManager {
      * Removes the specified component from the layout.
      * 
      * @param comp
-     *             the component to be removed
+     *        the component to be removed
      */
     void removeLayoutComponent(Component comp);
 
@@ -46,8 +45,7 @@ public interface LayoutManager {
      * given the components it contains.
      * 
      * @param parent
-     *               the container to be laid out
-     *
+     *        the container to be laid out
      * @see #minimumLayoutSize
      */
     Dimension preferredLayoutSize(Container parent);
@@ -57,7 +55,7 @@ public interface LayoutManager {
      * the components it contains.
      * 
      * @param parent
-     *               the component to be laid out
+     *        the component to be laid out
      * @see #preferredLayoutSize
      */
     Dimension minimumLayoutSize(Container parent);
@@ -66,7 +64,7 @@ public interface LayoutManager {
      * Lays out the specified container.
      * 
      * @param parent
-     *               the container to be laid out
+     *        the container to be laid out
      */
     void layoutContainer(Container parent);
 }

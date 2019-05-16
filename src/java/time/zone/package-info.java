@@ -39,7 +39,6 @@
  * resulting gaps and overlaps in the local time-line typically caused by
  * Daylight Saving Time.
  * </p>
- *
  * <h3>Package specification</h3>
  * <p>
  * Unless otherwise noted, passing a null argument to a constructor or method in

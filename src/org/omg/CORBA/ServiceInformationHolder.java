@@ -24,8 +24,7 @@ package org.omg.CORBA;
  * <code>value</code> field can be accessed with
  * <code>myServiceInformationHolder.value</code>.
  */
-public final class ServiceInformationHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ServiceInformationHolder implements org.omg.CORBA.portable.Streamable {
 
     /**
      * The <code>ServiceInformation</code> value held by this
@@ -48,9 +47,9 @@ public final class ServiceInformationHolder implements
      * <code>ServiceInformation</code> object.
      *
      * @param arg
-     *            the <code>ServiceInformation</code> object with which to
-     *            initialize the <code>value</code> field of the newly-created
-     *            <code>ServiceInformationHolder</code> object
+     *        the <code>ServiceInformation</code> object with which to
+     *        initialize the <code>value</code> field of the newly-created
+     *        <code>ServiceInformationHolder</code> object
      */
     public ServiceInformationHolder(org.omg.CORBA.ServiceInformation arg) {
         value = arg;
@@ -61,8 +60,8 @@ public final class ServiceInformationHolder implements
      * <code>value</code> field to the output stream <code>out</code>.
      *
      * @param out
-     *            the <code>OutputStream</code> object that will contain the CDR
-     *            formatted data
+     *        the <code>OutputStream</code> object that will contain the CDR
+     *        formatted data
      */
     public void _write(org.omg.CORBA.portable.OutputStream out) {
         org.omg.CORBA.ServiceInformationHelper.write(out, value);
@@ -74,8 +73,8 @@ public final class ServiceInformationHolder implements
      * <code>ServiceInformationHolder</code> object.
      *
      * @param in
-     *           the <code>InputStream</code> object containing CDR formatted
-     *           data from the wire
+     *        the <code>InputStream</code> object containing CDR formatted
+     *        data from the wire
      */
     public void _read(org.omg.CORBA.portable.InputStream in) {
         value = org.omg.CORBA.ServiceInformationHelper.read(in);

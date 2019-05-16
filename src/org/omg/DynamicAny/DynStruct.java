@@ -13,5 +13,5 @@ package org.omg.DynamicAny;
  * values. Members of the exceptions are handled in the same way as members of a
  * struct.
  */
-public interface DynStruct extends DynStructOperations,
-        org.omg.DynamicAny.DynAny, org.omg.CORBA.portable.IDLEntity {} // interface DynStruct
+public interface DynStruct extends DynStructOperations, org.omg.DynamicAny.DynAny,
+        org.omg.CORBA.portable.IDLEntity {} // interface DynStruct

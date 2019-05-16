@@ -79,7 +79,7 @@ public class XMLFormatter extends Formatter {
      * the message field.
      *
      * @param record
-     *               the log record to be formatted.
+     *        the log record to be formatted.
      * @return a formatted log record
      */
     public String format(LogRecord record) {
@@ -138,8 +138,7 @@ public class XMLFormatter extends Formatter {
         // bundle name, and params.
         ResourceBundle bundle = record.getResourceBundle();
         try {
-            if (bundle != null && bundle.getString(record
-                    .getMessage()) != null) {
+            if (bundle != null && bundle.getString(record.getMessage()) != null) {
                 sb.append("  <key>");
                 escape(sb, record.getMessage());
                 sb.append("</key>\n");
@@ -154,8 +153,7 @@ public class XMLFormatter extends Formatter {
         Object parameters[] = record.getParameters();
         // Check to see if the parameter was not a messagetext format
         // or was not null or empty
-        if (parameters != null && parameters.length != 0 && record.getMessage()
-                .indexOf("{") == -1) {
+        if (parameters != null && parameters.length != 0 && record.getMessage().indexOf("{") == -1) {
             for (int i = 0; i < parameters.length; i++) {
                 sb.append("  <param>");
                 try {
@@ -203,7 +201,7 @@ public class XMLFormatter extends Formatter {
      * Return the header string for a set of XML formatted records.
      *
      * @param h
-     *          The target handler (can be null)
+     *        The target handler (can be null)
      * @return a valid XML string
      */
     public String getHead(Handler h) {
@@ -243,7 +241,7 @@ public class XMLFormatter extends Formatter {
      * Return the tail string for a set of XML formatted records.
      *
      * @param h
-     *          The target handler (can be null)
+     *        The target handler (can be null)
      * @return a valid XML string
      */
     public String getTail(Handler h) {

@@ -96,8 +96,8 @@ public class POAFactory implements ObjectAdapterFactory {
         registerRootPOA();
 
         POACurrent poaCurrent = new POACurrent(orb);
-        orb.getLocalResolver().register(ORBConstants.POA_CURRENT_NAME,
-                ClosureFactory.makeConstant(poaCurrent));
+        orb.getLocalResolver().register(ORBConstants.POA_CURRENT_NAME, ClosureFactory.makeConstant(
+                poaCurrent));
     }
 
     public ObjectAdapter find(ObjectAdapterId oaid) {
@@ -144,10 +144,8 @@ public class POAFactory implements ObjectAdapterFactory {
 
         while (managers.hasNext()) {
             try {
-                ((POAManager) managers.next()).deactivate(true,
-                        waitForCompletion);
-            } catch (org.omg.PortableServer.POAManagerPackage.AdapterInactive e) {
-            }
+                ((POAManager) managers.next()).deactivate(true, waitForCompletion);
+            } catch (org.omg.PortableServer.POAManagerPackage.AdapterInactive e) {}
         }
     }
 
@@ -175,8 +173,7 @@ public class POAFactory implements ObjectAdapterFactory {
             }
         };
 
-        orb.getLocalResolver().register(ORBConstants.ROOT_POA_NAME,
-                ClosureFactory.makeFuture(rpClosure));
+        orb.getLocalResolver().register(ORBConstants.ROOT_POA_NAME, ClosureFactory.makeFuture(rpClosure));
     }
 
     public synchronized POA getRootPOA() {
@@ -187,8 +184,7 @@ public class POAFactory implements ObjectAdapterFactory {
             }
 
             try {
-                Object obj = orb.resolve_initial_references(
-                        ORBConstants.ROOT_POA_NAME);
+                Object obj = orb.resolve_initial_references(ORBConstants.ROOT_POA_NAME);
                 rootPOA = (POAImpl) obj;
             } catch (InvalidName inv) {
                 throw wrapper.cantResolveRootPoa(inv);

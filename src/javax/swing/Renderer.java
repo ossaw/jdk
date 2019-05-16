@@ -19,9 +19,9 @@ public interface Renderer {
      * portrayed as "currently selected".
      *
      * @param aValue
-     *                   an Object object
+     *        an Object object
      * @param isSelected
-     *                   a boolean
+     *        a boolean
      */
     void setValue(Object aValue, boolean isSelected);
 

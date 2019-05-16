@@ -151,11 +151,11 @@ public class StyleSheet extends StyleContext {
      * of elements.
      *
      * @param t
-     *          the type to translate to visual attributes
+     *        the type to translate to visual attributes
      * @param e
-     *          the element representing the tag; the element can be used to
-     *          determine the nesting for situations where the attributes will
-     *          differ if nested inside of other elements
+     *        the element representing the tag; the element can be used to
+     *        determine the nesting for situations where the attributes will
+     *        differ if nested inside of other elements
      * @return the set of CSS attributes to use to render the tag
      */
     public Style getRule(HTML.Tag t, Element e) {
@@ -186,12 +186,10 @@ public class StyleSheet extends StyleContext {
                 if (attr != null) {
                     if (attr.isDefined(HTML.Attribute.ID)) {
                         cacheLookup.append('#');
-                        cacheLookup.append(attr.getAttribute(
-                                HTML.Attribute.ID));
+                        cacheLookup.append(attr.getAttribute(HTML.Attribute.ID));
                     } else if (attr.isDefined(HTML.Attribute.CLASS)) {
                         cacheLookup.append('.');
-                        cacheLookup.append(attr.getAttribute(
-                                HTML.Attribute.CLASS));
+                        cacheLookup.append(attr.getAttribute(HTML.Attribute.CLASS));
                     }
                 }
                 cacheLookup.append(' ');
@@ -218,8 +216,7 @@ public class StyleSheet extends StyleContext {
                 }
             }
 
-            Style style = getResolvedStyle(cacheLookup.toString(),
-                    searchContext, t);
+            Style style = getResolvedStyle(cacheLookup.toString(), searchContext, t);
             return style;
         } finally {
             SearchBuffer.releaseSearchBuffer(sb);
@@ -261,8 +258,7 @@ public class StyleSheet extends StyleContext {
             if (rule == baseUnitsDisable) {
                 sizeMap = sizeMapDefault;
             } else if (rule.startsWith(baseUnits)) {
-                rebaseSizeMap(Integer.parseInt(rule.substring(baseUnits
-                        .length())));
+                rebaseSizeMap(Integer.parseInt(rule.substring(baseUnits.length())));
             } else if (rule == w3cLengthUnitsEnable) {
                 w3cLengthUnits = true;
             } else if (rule == w3cLengthUnitsDisable) {
@@ -270,10 +266,8 @@ public class StyleSheet extends StyleContext {
             } else {
                 CssParser parser = new CssParser();
                 try {
-                    parser.parse(getBase(), new StringReader(rule), false,
-                            false);
-                } catch (IOException ioe) {
-                }
+                    parser.parse(getBase(), new StringReader(rule), false, false);
+                } catch (IOException ioe) {}
             }
         }
     }
@@ -297,11 +291,11 @@ public class StyleSheet extends StyleContext {
      * will win.
      *
      * @param in
-     *            the stream to read the CSS grammar from
+     *        the stream to read the CSS grammar from
      * @param ref
-     *            the reference URL. This value represents the location of the
-     *            stream and may be null. All relative URLs specified in the
-     *            stream will be based upon this parameter.
+     *        the reference URL. This value represents the location of the
+     *        stream and may be null. All relative URLs specified in the
+     *        stream will be based upon this parameter.
      */
     public void loadRules(Reader in, URL ref) throws IOException {
         CssParser parser = new CssParser();
@@ -320,7 +314,7 @@ public class StyleSheet extends StyleContext {
      * Removes a named style previously added to the document.
      *
      * @param nm
-     *           the name of the style to remove
+     *        the name of the style to remove
      */
     public void removeStyle(String nm) {
         Style aStyle = getStyle(nm);
@@ -331,15 +325,13 @@ public class StyleSheet extends StyleContext {
             synchronized (this) {
                 SelectorMapping mapping = getRootSelectorMapping();
                 for (int i = selectors.length - 1; i >= 0; i--) {
-                    mapping = mapping.getChildSelectorMapping(selectors[i],
-                            true);
+                    mapping = mapping.getChildSelectorMapping(selectors[i], true);
                 }
                 Style rule = mapping.getStyle();
                 if (rule != null) {
                     mapping.setStyle(null);
                     if (resolvedStyles.size() > 0) {
-                        Enumeration<ResolvedStyle> values = resolvedStyles
-                                .elements();
+                        Enumeration<ResolvedStyle> values = resolvedStyles.elements();
                         while (values.hasMoreElements()) {
                             ResolvedStyle style = values.nextElement();
                             style.removeStyle(rule);
@@ -366,8 +358,7 @@ public class StyleSheet extends StyleContext {
             }
             if (!linkedStyleSheets.contains(ss)) {
                 int index = 0;
-                if (ss instanceof javax.swing.plaf.UIResource
-                        && linkedStyleSheets.size() > 1) {
+                if (ss instanceof javax.swing.plaf.UIResource && linkedStyleSheets.size() > 1) {
                     index = linkedStyleSheets.size() - 1;
                 }
                 linkedStyleSheets.insertElementAt(ss, index);
@@ -468,8 +459,7 @@ public class StyleSheet extends StyleContext {
      *
      * @since 1.3
      */
-    public void addCSSAttribute(MutableAttributeSet attr, CSS.Attribute key,
-            String value) {
+    public void addCSSAttribute(MutableAttributeSet attr, CSS.Attribute key, String value) {
         css.addInternalCSSValue(attr, key, value);
     }
 
@@ -478,8 +468,7 @@ public class StyleSheet extends StyleContext {
      *
      * @since 1.3
      */
-    public boolean addCSSAttributeFromHTML(MutableAttributeSet attr,
-            CSS.Attribute key, String value) {
+    public boolean addCSSAttributeFromHTML(MutableAttributeSet attr, CSS.Attribute key, String value) {
         Object iValue = css.getCssValue(key, value);
         if (iValue != null) {
             attr.addAttribute(key, iValue);
@@ -494,7 +483,7 @@ public class StyleSheet extends StyleContext {
      * Converts a set of HTML attributes to an equivalent set of CSS attributes.
      *
      * @param htmlAttrSet
-     *                    AttributeSet containing the HTML attributes.
+     *        AttributeSet containing the HTML attributes.
      */
     public AttributeSet translateHTMLToCSS(AttributeSet htmlAttrSet) {
         AttributeSet cssAttrSet = css.translateHTMLToCSS(htmlAttrSet);
@@ -513,34 +502,30 @@ public class StyleSheet extends StyleContext {
      * stored (but will likely be unused).
      *
      * @param old
-     *              the old attribute set
+     *        the old attribute set
      * @param key
-     *              the non-null attribute key
+     *        the non-null attribute key
      * @param value
-     *              the attribute value
+     *        the attribute value
      * @return the updated attribute set
      * @see MutableAttributeSet#addAttribute
      */
-    public AttributeSet addAttribute(AttributeSet old, Object key,
-            Object value) {
+    public AttributeSet addAttribute(AttributeSet old, Object key, Object value) {
         if (css == null) {
             // supers constructor will call this before returning,
             // and we need to make sure CSS is non null.
             css = new CSS();
         }
         if (key instanceof StyleConstants) {
-            HTML.Tag tag = HTML.getTagForStyleConstantsKey(
-                    (StyleConstants) key);
+            HTML.Tag tag = HTML.getTagForStyleConstantsKey((StyleConstants) key);
 
             if (tag != null && old.isDefined(tag)) {
                 old = removeAttribute(old, tag);
             }
 
-            Object cssValue = css.styleConstantsValueToCSSValue(
-                    (StyleConstants) key, value);
+            Object cssValue = css.styleConstantsValueToCSSValue((StyleConstants) key, value);
             if (cssValue != null) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     return super.addAttribute(old, cssKey, cssValue);
                 }
@@ -555,9 +540,9 @@ public class StyleSheet extends StyleContext {
      * forwarding to the superclass behavior.
      *
      * @param old
-     *             the old attribute set
+     *        the old attribute set
      * @param attr
-     *             the attributes to add
+     *        the attributes to add
      * @return the updated attribute set
      * @see MutableAttributeSet#addAttribute
      */
@@ -574,16 +559,15 @@ public class StyleSheet extends StyleContext {
      * forwarding to the superclass behavior.
      *
      * @param old
-     *            the old set of attributes
+     *        the old set of attributes
      * @param key
-     *            the non-null attribute name
+     *        the non-null attribute name
      * @return the updated attribute set
      * @see MutableAttributeSet#removeAttribute
      */
     public AttributeSet removeAttribute(AttributeSet old, Object key) {
         if (key instanceof StyleConstants) {
-            HTML.Tag tag = HTML.getTagForStyleConstantsKey(
-                    (StyleConstants) key);
+            HTML.Tag tag = HTML.getTagForStyleConstantsKey((StyleConstants) key);
             if (tag != null) {
                 old = super.removeAttribute(old, tag);
             }
@@ -602,14 +586,13 @@ public class StyleSheet extends StyleContext {
      * attribute prior to forwarding to the superclass behavior.
      *
      * @param old
-     *              the old attribute set
+     *        the old attribute set
      * @param names
-     *              the attribute names
+     *        the attribute names
      * @return the updated attribute set
      * @see MutableAttributeSet#removeAttributes
      */
-    public AttributeSet removeAttributes(AttributeSet old,
-            Enumeration<?> names) {
+    public AttributeSet removeAttributes(AttributeSet old, Enumeration<?> names) {
         // PENDING: Should really be doing something similar to
         // removeHTMLTags here, but it is rather expensive to have to
         // clone names
@@ -622,9 +605,9 @@ public class StyleSheet extends StyleContext {
      * forwarding to the superclass behavior.
      *
      * @param old
-     *              the old attribute set
+     *        the old attribute set
      * @param attrs
-     *              the attributes
+     *        the attributes
      * @return the updated attribute set
      * @see MutableAttributeSet#removeAttributes
      */
@@ -642,8 +625,8 @@ public class StyleSheet extends StyleContext {
      * attribute conversion.
      *
      * @param a
-     *          The set of attributes to be represented in the the compact
-     *          form.
+     *        The set of attributes to be represented in the the compact
+     *        form.
      */
     protected SmallAttributeSet createSmallAttributeSet(AttributeSet a) {
         return new SmallConversionSet(a);
@@ -657,8 +640,8 @@ public class StyleSheet extends StyleContext {
      * MutableAttributeSet that provides some sort of attribute conversion.
      *
      * @param a
-     *          The set of attributes to be represented in the the larger
-     *          form.
+     *        The set of attributes to be represented in the the larger
+     *        form.
      */
     protected MutableAttributeSet createLargeAttributeSet(AttributeSet a) {
         return new LargeConversionSet(a);
@@ -669,16 +652,14 @@ public class StyleSheet extends StyleContext {
      * removed from old. The resulting AttributeSet is then returned.
      */
     private AttributeSet removeHTMLTags(AttributeSet old, AttributeSet attr) {
-        if (!(attr instanceof LargeConversionSet)
-                && !(attr instanceof SmallConversionSet)) {
+        if (!(attr instanceof LargeConversionSet) && !(attr instanceof SmallConversionSet)) {
             Enumeration names = attr.getAttributeNames();
 
             while (names.hasMoreElements()) {
                 Object key = names.nextElement();
 
                 if (key instanceof StyleConstants) {
-                    HTML.Tag tag = HTML.getTagForStyleConstantsKey(
-                            (StyleConstants) key);
+                    HTML.Tag tag = HTML.getTagForStyleConstantsKey((StyleConstants) key);
 
                     if (tag != null && old.isDefined(tag)) {
                         old = super.removeAttribute(old, tag);
@@ -695,8 +676,7 @@ public class StyleSheet extends StyleContext {
      * be converted to CSS attributes.
      */
     AttributeSet convertAttributeSet(AttributeSet a) {
-        if ((a instanceof LargeConversionSet)
-                || (a instanceof SmallConversionSet)) {
+        if ((a instanceof LargeConversionSet) || (a instanceof SmallConversionSet)) {
             // known to be converted.
             return a;
         }
@@ -716,12 +696,10 @@ public class StyleSheet extends StyleContext {
                     Object cssValue = null;
                     if (key instanceof StyleConstants) {
                         // convert the StyleConstants attribute if possible
-                        Object cssKey = css.styleConstantsKeyToCSSKey(
-                                (StyleConstants) key);
+                        Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                         if (cssKey != null) {
                             Object value = a.getAttribute(key);
-                            cssValue = css.styleConstantsValueToCSSValue(
-                                    (StyleConstants) key, value);
+                            cssValue = css.styleConstantsValueToCSSValue((StyleConstants) key, value);
                             if (cssValue != null) {
                                 converted.addAttribute(cssKey, cssValue);
                             }
@@ -747,7 +725,7 @@ public class StyleSheet extends StyleContext {
          * Creates a new attribute set based on a supplied set of attributes.
          *
          * @param source
-         *               the set of attributes
+         *        the set of attributes
          */
         public LargeConversionSet(AttributeSet source) {
             super(source);
@@ -761,14 +739,13 @@ public class StyleSheet extends StyleContext {
          * Checks whether a given attribute is defined.
          *
          * @param key
-         *            the attribute key
+         *        the attribute key
          * @return true if the attribute is defined
          * @see AttributeSet#isDefined
          */
         public boolean isDefined(Object key) {
             if (key instanceof StyleConstants) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     return super.isDefined(cssKey);
                 }
@@ -780,19 +757,17 @@ public class StyleSheet extends StyleContext {
          * Gets the value of an attribute.
          *
          * @param key
-         *            the attribute name
+         *        the attribute name
          * @return the attribute value
          * @see AttributeSet#getAttribute
          */
         public Object getAttribute(Object key) {
             if (key instanceof StyleConstants) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     Object value = super.getAttribute(cssKey);
                     if (value != null) {
-                        return css.cssValueToStyleConstantsValue(
-                                (StyleConstants) key, value);
+                        return css.cssValueToStyleConstantsValue((StyleConstants) key, value);
                     }
                 }
             }
@@ -810,7 +785,7 @@ public class StyleSheet extends StyleContext {
          * Creates a new attribute set based on a supplied set of attributes.
          *
          * @param attrs
-         *              the set of attributes
+         *        the set of attributes
          */
         public SmallConversionSet(AttributeSet attrs) {
             super(attrs);
@@ -820,14 +795,13 @@ public class StyleSheet extends StyleContext {
          * Checks whether a given attribute is defined.
          *
          * @param key
-         *            the attribute key
+         *        the attribute key
          * @return true if the attribute is defined
          * @see AttributeSet#isDefined
          */
         public boolean isDefined(Object key) {
             if (key instanceof StyleConstants) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     return super.isDefined(cssKey);
                 }
@@ -839,19 +813,17 @@ public class StyleSheet extends StyleContext {
          * Gets the value of an attribute.
          *
          * @param key
-         *            the attribute name
+         *        the attribute name
          * @return the attribute value
          * @see AttributeSet#getAttribute
          */
         public Object getAttribute(Object key) {
             if (key instanceof StyleConstants) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     Object value = super.getAttribute(cssKey);
                     if (value != null) {
-                        return css.cssValueToStyleConstantsValue(
-                                (StyleConstants) key, value);
+                        return css.cssValueToStyleConstantsValue((StyleConstants) key, value);
                     }
                 }
             }
@@ -874,7 +846,7 @@ public class StyleSheet extends StyleContext {
      * hue, etc.
      *
      * @param a
-     *          the set of attributes
+     *        the set of attributes
      * @return the color
      */
     public Color getForeground(AttributeSet a) {
@@ -891,7 +863,7 @@ public class StyleSheet extends StyleContext {
      * hue, etc.
      *
      * @param a
-     *          the set of attributes
+     *        the set of attributes
      * @return the color
      */
     public Color getBackground(AttributeSet a) {
@@ -971,14 +943,13 @@ public class StyleSheet extends StyleContext {
      * Adds a rule into the StyleSheet.
      *
      * @param selector
-     *                    the selector to use for the rule. This will be a set
-     *                    of simple
-     *                    selectors, and must be a length of 1 or greater.
+     *        the selector to use for the rule. This will be a set
+     *        of simple
+     *        selectors, and must be a length of 1 or greater.
      * @param declaration
-     *                    the set of CSS attributes that make up the rule.
+     *        the set of CSS attributes that make up the rule.
      */
-    void addRule(String[] selector, AttributeSet declaration,
-            boolean isLinked) {
+    void addRule(String[] selector, AttributeSet declaration, boolean isLinked) {
         int n = selector.length;
         StringBuilder sb = new StringBuilder();
         sb.append(selector[0]);
@@ -998,15 +969,13 @@ public class StyleSheet extends StyleContext {
             synchronized (this) {
                 SelectorMapping mapping = getRootSelectorMapping();
                 for (int i = n - 1; i >= 0; i--) {
-                    mapping = mapping.getChildSelectorMapping(selector[i],
-                            true);
+                    mapping = mapping.getChildSelectorMapping(selector[i], true);
                 }
                 rule = mapping.getStyle();
                 if (rule == null) {
                     rule = altRule;
                     mapping.setStyle(rule);
-                    refreshResolvedRules(selectorName, selector, rule, mapping
-                            .getSpecificity());
+                    refreshResolvedRules(selectorName, selector, rule, mapping.getSpecificity());
                 }
             }
         }
@@ -1086,8 +1055,7 @@ public class StyleSheet extends StyleContext {
      */
     /* protected */ String cleanSelectorString(String selector) {
         boolean lastWasSpace = true;
-        for (int counter = 0, maxCounter = selector
-                .length(); counter < maxCounter; counter++) {
+        for (int counter = 0, maxCounter = selector.length(); counter < maxCounter; counter++) {
             switch (selector.charAt(counter)) {
                 case ' ':
                     if (lastWasSpace) {
@@ -1129,8 +1097,7 @@ public class StyleSheet extends StyleContext {
                         if (!lastWasSpace) {
                             lastWasSpace = true;
                             if (lastIndex < counter) {
-                                buff.append(chars, lastIndex, 1 + counter
-                                        - lastIndex);
+                                buff.append(chars, lastIndex, 1 + counter - lastIndex);
                             }
                         }
                         lastIndex = counter + 1;
@@ -1141,8 +1108,7 @@ public class StyleSheet extends StyleContext {
                         if (!lastWasSpace) {
                             lastWasSpace = true;
                             if (lastIndex < counter) {
-                                buff.append(chars, lastIndex, counter
-                                        - lastIndex);
+                                buff.append(chars, lastIndex, counter - lastIndex);
                                 buff.append(' ');
                             }
                         }
@@ -1185,8 +1151,7 @@ public class StyleSheet extends StyleContext {
         int specificity = 0;
         boolean lastWasSpace = true;
 
-        for (int counter = 0, maxCounter = selector
-                .length(); counter < maxCounter; counter++) {
+        for (int counter = 0, maxCounter = selector.length(); counter < maxCounter; counter++) {
             switch (selector.charAt(counter)) {
                 case '.':
                     specificity += 100;
@@ -1230,8 +1195,7 @@ public class StyleSheet extends StyleContext {
      * Returns the resolved style for <code>selector</code>. This will create
      * the resolved style, if necessary.
      */
-    private synchronized Style getResolvedStyle(String selector,
-            Vector elements, HTML.Tag t) {
+    private synchronized Style getResolvedStyle(String selector, Vector elements, HTML.Tag t) {
         Style retStyle = resolvedStyles.get(selector);
         if (retStyle == null) {
             retStyle = createResolvedStyle(selector, elements, t);
@@ -1255,16 +1219,14 @@ public class StyleSheet extends StyleContext {
      * Adds <code>mapping</code> to <code>elements</code>. It is added such that
      * <code>elements</code> will remain ordered by specificity.
      */
-    private void addSortedStyle(SelectorMapping mapping,
-            Vector<SelectorMapping> elements) {
+    private void addSortedStyle(SelectorMapping mapping, Vector<SelectorMapping> elements) {
         int size = elements.size();
 
         if (size > 0) {
             int specificity = mapping.getSpecificity();
 
             for (int counter = 0; counter < size; counter++) {
-                if (specificity >= elements.elementAt(counter)
-                        .getSpecificity()) {
+                if (specificity >= elements.elementAt(counter).getSpecificity()) {
                     elements.insertElementAt(mapping, counter);
                     return;
                 }
@@ -1278,9 +1240,8 @@ public class StyleSheet extends StyleContext {
      * calls this method if <code>parentMapping</code> has any child mappings
      * for any of the Elements in <code>elements</code>.
      */
-    private synchronized void getStyles(SelectorMapping parentMapping,
-            Vector<SelectorMapping> styles, String[] tags, String[] ids,
-            String[] classes, int index, int numElements,
+    private synchronized void getStyles(SelectorMapping parentMapping, Vector<SelectorMapping> styles,
+            String[] tags, String[] ids, String[] classes, int index, int numElements,
             Hashtable<SelectorMapping, SelectorMapping> alreadyChecked) {
         // Avoid desending the same mapping twice.
         if (alreadyChecked.contains(parentMapping)) {
@@ -1294,40 +1255,35 @@ public class StyleSheet extends StyleContext {
         for (int counter = index; counter < numElements; counter++) {
             String tagString = tags[counter];
             if (tagString != null) {
-                SelectorMapping childMapping = parentMapping
-                        .getChildSelectorMapping(tagString, false);
+                SelectorMapping childMapping = parentMapping.getChildSelectorMapping(tagString, false);
                 if (childMapping != null) {
-                    getStyles(childMapping, styles, tags, ids, classes, counter
-                            + 1, numElements, alreadyChecked);
+                    getStyles(childMapping, styles, tags, ids, classes, counter + 1, numElements,
+                            alreadyChecked);
                 }
                 if (classes[counter] != null) {
                     String className = classes[counter];
-                    childMapping = parentMapping.getChildSelectorMapping(
-                            tagString + "." + className, false);
+                    childMapping = parentMapping.getChildSelectorMapping(tagString + "." + className, false);
                     if (childMapping != null) {
-                        getStyles(childMapping, styles, tags, ids, classes,
-                                counter + 1, numElements, alreadyChecked);
+                        getStyles(childMapping, styles, tags, ids, classes, counter + 1, numElements,
+                                alreadyChecked);
                     }
-                    childMapping = parentMapping.getChildSelectorMapping("."
-                            + className, false);
+                    childMapping = parentMapping.getChildSelectorMapping("." + className, false);
                     if (childMapping != null) {
-                        getStyles(childMapping, styles, tags, ids, classes,
-                                counter + 1, numElements, alreadyChecked);
+                        getStyles(childMapping, styles, tags, ids, classes, counter + 1, numElements,
+                                alreadyChecked);
                     }
                 }
                 if (ids[counter] != null) {
                     String idName = ids[counter];
-                    childMapping = parentMapping.getChildSelectorMapping(
-                            tagString + "#" + idName, false);
+                    childMapping = parentMapping.getChildSelectorMapping(tagString + "#" + idName, false);
                     if (childMapping != null) {
-                        getStyles(childMapping, styles, tags, ids, classes,
-                                counter + 1, numElements, alreadyChecked);
+                        getStyles(childMapping, styles, tags, ids, classes, counter + 1, numElements,
+                                alreadyChecked);
                     }
-                    childMapping = parentMapping.getChildSelectorMapping("#"
-                            + idName, false);
+                    childMapping = parentMapping.getChildSelectorMapping("#" + idName, false);
                     if (childMapping != null) {
-                        getStyles(childMapping, styles, tags, ids, classes,
-                                counter + 1, numElements, alreadyChecked);
+                        getStyles(childMapping, styles, tags, ids, classes, counter + 1, numElements,
+                                alreadyChecked);
                     }
                 }
             }
@@ -1338,58 +1294,46 @@ public class StyleSheet extends StyleContext {
      * Creates and returns a Style containing all the rules that match
      * <code>selector</code>.
      */
-    private synchronized Style createResolvedStyle(String selector,
-            String[] tags, String[] ids, String[] classes) {
+    private synchronized Style createResolvedStyle(String selector, String[] tags, String[] ids,
+            String[] classes) {
         SearchBuffer sb = SearchBuffer.obtainSearchBuffer();
         Vector<SelectorMapping> tempVector = sb.getVector();
-        Hashtable<SelectorMapping, SelectorMapping> tempHashtable = sb
-                .getHashtable();
+        Hashtable<SelectorMapping, SelectorMapping> tempHashtable = sb.getHashtable();
         // Determine all the Styles that are appropriate, placing them
         // in tempVector
         try {
             SelectorMapping mapping = getRootSelectorMapping();
             int numElements = tags.length;
             String tagString = tags[0];
-            SelectorMapping childMapping = mapping.getChildSelectorMapping(
-                    tagString, false);
+            SelectorMapping childMapping = mapping.getChildSelectorMapping(tagString, false);
             if (childMapping != null) {
-                getStyles(childMapping, tempVector, tags, ids, classes, 1,
-                        numElements, tempHashtable);
+                getStyles(childMapping, tempVector, tags, ids, classes, 1, numElements, tempHashtable);
             }
             if (classes[0] != null) {
                 String className = classes[0];
-                childMapping = mapping.getChildSelectorMapping(tagString + "."
-                        + className, false);
+                childMapping = mapping.getChildSelectorMapping(tagString + "." + className, false);
                 if (childMapping != null) {
-                    getStyles(childMapping, tempVector, tags, ids, classes, 1,
-                            numElements, tempHashtable);
+                    getStyles(childMapping, tempVector, tags, ids, classes, 1, numElements, tempHashtable);
                 }
-                childMapping = mapping.getChildSelectorMapping("." + className,
-                        false);
+                childMapping = mapping.getChildSelectorMapping("." + className, false);
                 if (childMapping != null) {
-                    getStyles(childMapping, tempVector, tags, ids, classes, 1,
-                            numElements, tempHashtable);
+                    getStyles(childMapping, tempVector, tags, ids, classes, 1, numElements, tempHashtable);
                 }
             }
             if (ids[0] != null) {
                 String idName = ids[0];
-                childMapping = mapping.getChildSelectorMapping(tagString + "#"
-                        + idName, false);
+                childMapping = mapping.getChildSelectorMapping(tagString + "#" + idName, false);
                 if (childMapping != null) {
-                    getStyles(childMapping, tempVector, tags, ids, classes, 1,
-                            numElements, tempHashtable);
+                    getStyles(childMapping, tempVector, tags, ids, classes, 1, numElements, tempHashtable);
                 }
-                childMapping = mapping.getChildSelectorMapping("#" + idName,
-                        false);
+                childMapping = mapping.getChildSelectorMapping("#" + idName, false);
                 if (childMapping != null) {
-                    getStyles(childMapping, tempVector, tags, ids, classes, 1,
-                            numElements, tempHashtable);
+                    getStyles(childMapping, tempVector, tags, ids, classes, 1, numElements, tempHashtable);
                 }
             }
             // Create a new Style that will delegate to all the matching
             // Styles.
-            int numLinkedSS = (linkedStyleSheets != null) ? linkedStyleSheets
-                    .size() : 0;
+            int numLinkedSS = (linkedStyleSheets != null) ? linkedStyleSheets.size() : 0;
             int numStyles = tempVector.size();
             AttributeSet[] attrs = new AttributeSet[numStyles + numLinkedSS];
             for (int counter = 0; counter < numStyles; counter++) {
@@ -1397,16 +1341,14 @@ public class StyleSheet extends StyleContext {
             }
             // Get the AttributeSet from linked style sheets.
             for (int counter = 0; counter < numLinkedSS; counter++) {
-                AttributeSet attr = linkedStyleSheets.elementAt(counter)
-                        .getRule(selector);
+                AttributeSet attr = linkedStyleSheets.elementAt(counter).getRule(selector);
                 if (attr == null) {
                     attrs[counter + numStyles] = SimpleAttributeSet.EMPTY;
                 } else {
                     attrs[counter + numStyles] = attr;
                 }
             }
-            ResolvedStyle retStyle = new ResolvedStyle(selector, attrs,
-                    numStyles);
+            ResolvedStyle retStyle = new ResolvedStyle(selector, attrs, numStyles);
             resolvedStyles.put(selector, retStyle);
             return retStyle;
         } finally {
@@ -1419,17 +1361,16 @@ public class StyleSheet extends StyleContext {
      * <code>selector</code>.
      *
      * @param elements
-     *                 a Vector of all the Elements the style is being asked
-     *                 for. The
-     *                 first Element is the deepest Element, with the last
-     *                 Element
-     *                 representing the root.
+     *        a Vector of all the Elements the style is being asked
+     *        for. The
+     *        first Element is the deepest Element, with the last
+     *        Element
+     *        representing the root.
      * @param t
-     *                 the Tag to use for the first Element in
-     *                 <code>elements</code>
+     *        the Tag to use for the first Element in
+     *        <code>elements</code>
      */
-    private Style createResolvedStyle(String selector, Vector elements,
-            HTML.Tag t) {
+    private Style createResolvedStyle(String selector, Vector elements, HTML.Tag t) {
         int numElements = elements.size();
         // Build three arrays, one for tags, one for class's, and one for
         // id's
@@ -1449,22 +1390,19 @@ public class StyleSheet extends StyleContext {
                 }
             }
             if (attr != null) {
-                HTML.Tag tag = (HTML.Tag) attr.getAttribute(
-                        StyleConstants.NameAttribute);
+                HTML.Tag tag = (HTML.Tag) attr.getAttribute(StyleConstants.NameAttribute);
                 if (tag != null) {
                     tags[counter] = tag.toString();
                 } else {
                     tags[counter] = null;
                 }
                 if (attr.isDefined(HTML.Attribute.CLASS)) {
-                    classes[counter] = attr.getAttribute(HTML.Attribute.CLASS)
-                            .toString();
+                    classes[counter] = attr.getAttribute(HTML.Attribute.CLASS).toString();
                 } else {
                     classes[counter] = null;
                 }
                 if (attr.isDefined(HTML.Attribute.ID)) {
-                    ids[counter] = attr.getAttribute(HTML.Attribute.ID)
-                            .toString();
+                    ids[counter] = attr.getAttribute(HTML.Attribute.ID).toString();
                 } else {
                     ids[counter] = null;
                 }
@@ -1503,47 +1441,40 @@ public class StyleSheet extends StyleContext {
                 if (spaceIndex == -1) {
                     spaceIndex = length;
                 }
-                if (dotIndex != -1 && poundIndex != -1 && dotIndex < spaceIndex
-                        && poundIndex < spaceIndex) {
+                if (dotIndex != -1 && poundIndex != -1 && dotIndex < spaceIndex && poundIndex < spaceIndex) {
                     if (poundIndex < dotIndex) {
                         // #.
                         if (lastIndex == poundIndex) {
                             elements.addElement("");
                         } else {
-                            elements.addElement(selector.substring(lastIndex,
-                                    poundIndex));
+                            elements.addElement(selector.substring(lastIndex, poundIndex));
                         }
                         if ((dotIndex + 1) < spaceIndex) {
-                            elements.addElement(selector.substring(dotIndex + 1,
-                                    spaceIndex));
+                            elements.addElement(selector.substring(dotIndex + 1, spaceIndex));
                         } else {
                             elements.addElement(null);
                         }
                         if ((poundIndex + 1) == dotIndex) {
                             elements.addElement(null);
                         } else {
-                            elements.addElement(selector.substring(poundIndex
-                                    + 1, dotIndex));
+                            elements.addElement(selector.substring(poundIndex + 1, dotIndex));
                         }
                     } else if (poundIndex < spaceIndex) {
                         // .#
                         if (lastIndex == dotIndex) {
                             elements.addElement("");
                         } else {
-                            elements.addElement(selector.substring(lastIndex,
-                                    dotIndex));
+                            elements.addElement(selector.substring(lastIndex, dotIndex));
                         }
                         if ((dotIndex + 1) < poundIndex) {
-                            elements.addElement(selector.substring(dotIndex + 1,
-                                    poundIndex));
+                            elements.addElement(selector.substring(dotIndex + 1, poundIndex));
                         } else {
                             elements.addElement(null);
                         }
                         if ((poundIndex + 1) == spaceIndex) {
                             elements.addElement(null);
                         } else {
-                            elements.addElement(selector.substring(poundIndex
-                                    + 1, spaceIndex));
+                            elements.addElement(selector.substring(poundIndex + 1, spaceIndex));
                         }
                     }
                     dotIndex = poundIndex = spaceIndex + 1;
@@ -1552,14 +1483,12 @@ public class StyleSheet extends StyleContext {
                     if (dotIndex == lastIndex) {
                         elements.addElement("");
                     } else {
-                        elements.addElement(selector.substring(lastIndex,
-                                dotIndex));
+                        elements.addElement(selector.substring(lastIndex, dotIndex));
                     }
                     if ((dotIndex + 1) == spaceIndex) {
                         elements.addElement(null);
                     } else {
-                        elements.addElement(selector.substring(dotIndex + 1,
-                                spaceIndex));
+                        elements.addElement(selector.substring(dotIndex + 1, spaceIndex));
                     }
                     elements.addElement(null);
                     dotIndex = spaceIndex + 1;
@@ -1568,21 +1497,18 @@ public class StyleSheet extends StyleContext {
                     if (poundIndex == lastIndex) {
                         elements.addElement("");
                     } else {
-                        elements.addElement(selector.substring(lastIndex,
-                                poundIndex));
+                        elements.addElement(selector.substring(lastIndex, poundIndex));
                     }
                     elements.addElement(null);
                     if ((poundIndex + 1) == spaceIndex) {
                         elements.addElement(null);
                     } else {
-                        elements.addElement(selector.substring(poundIndex + 1,
-                                spaceIndex));
+                        elements.addElement(selector.substring(poundIndex + 1, spaceIndex));
                     }
                     poundIndex = spaceIndex + 1;
                 } else {
                     // id
-                    elements.addElement(selector.substring(lastIndex,
-                            spaceIndex));
+                    elements.addElement(selector.substring(lastIndex, spaceIndex));
                     elements.addElement(null);
                     elements.addElement(null);
                 }
@@ -1594,8 +1520,7 @@ public class StyleSheet extends StyleContext {
             String[] tags = new String[numTags];
             String[] ids = new String[numTags];
             String[] classes = new String[numTags];
-            for (int index = 0, eIndex = total
-                    - 3; index < numTags; index++, eIndex -= 3) {
+            for (int index = 0, eIndex = total - 3; index < numTags; index++, eIndex -= 3) {
                 tags[index] = elements.elementAt(eIndex);
                 classes[index] = elements.elementAt(eIndex + 1);
                 ids[index] = elements.elementAt(eIndex + 2);
@@ -1610,8 +1535,8 @@ public class StyleSheet extends StyleContext {
      * Should be invoked when a new rule is added that did not previously exist.
      * Goes through and refreshes the necessary resolved rules.
      */
-    private synchronized void refreshResolvedRules(String selectorName,
-            String[] selector, Style newStyle, int specificity) {
+    private synchronized void refreshResolvedRules(String selectorName, String[] selector, Style newStyle,
+            int specificity) {
         if (resolvedStyles.size() > 0) {
             Enumeration<ResolvedStyle> values = resolvedStyles.elements();
             while (values.hasMoreElements()) {
@@ -1756,28 +1681,26 @@ public class StyleSheet extends StyleContext {
          * border, and padding.
          *
          * @param side
-         *             The size of the box to fetch the inset for. This can be
-         *             View.TOP, View.LEFT, View.BOTTOM, or View.RIGHT.
+         *        The size of the box to fetch the inset for. This can be
+         *        View.TOP, View.LEFT, View.BOTTOM, or View.RIGHT.
          * @param v
-         *             the view making the request. This is used to get the
-         *             AttributeSet, and may be used to resolve percentage
-         *             arguments.
+         *        the view making the request. This is used to get the
+         *        AttributeSet, and may be used to resolve percentage
+         *        arguments.
          * @exception IllegalArgumentException
-         *                                     for an invalid direction
+         *            for an invalid direction
          */
         public float getInset(int side, View v) {
             AttributeSet a = v.getAttributes();
             float inset = 0;
             switch (side) {
                 case View.LEFT:
-                    inset += getOrientationMargin(HorizontalMargin.LEFT,
-                            leftMargin, a, isLeftToRight(v));
+                    inset += getOrientationMargin(HorizontalMargin.LEFT, leftMargin, a, isLeftToRight(v));
                     inset += binsets.left;
                     inset += getLength(CSS.Attribute.PADDING_LEFT, a);
                     break;
                 case View.RIGHT:
-                    inset += getOrientationMargin(HorizontalMargin.RIGHT,
-                            rightMargin, a, isLeftToRight(v));
+                    inset += getOrientationMargin(HorizontalMargin.RIGHT, rightMargin, a, isLeftToRight(v));
                     inset += binsets.right;
                     inset += getLength(CSS.Attribute.PADDING_RIGHT, a);
                     break;
@@ -1802,22 +1725,21 @@ public class StyleSheet extends StyleContext {
          * paint the border, padding, and background.
          *
          * @param g
-         *          the rendering surface.
+         *        the rendering surface.
          * @param x
-         *          the x coordinate of the allocated area to render into.
+         *        the x coordinate of the allocated area to render into.
          * @param y
-         *          the y coordinate of the allocated area to render into.
+         *        the y coordinate of the allocated area to render into.
          * @param w
-         *          the width of the allocated area to render into.
+         *        the width of the allocated area to render into.
          * @param h
-         *          the height of the allocated area to render into.
+         *        the height of the allocated area to render into.
          * @param v
-         *          the view making the request. This is used to get the
-         *          AttributeSet, and may be used to resolve percentage
-         *          arguments.
+         *        the view making the request. This is used to get the
+         *        AttributeSet, and may be used to resolve percentage
+         *        arguments.
          */
-        public void paint(Graphics g, float x, float y, float w, float h,
-                View v) {
+        public void paint(Graphics g, float x, float y, float w, float h, View v) {
             // PENDING(prinz) implement real rendering... which would
             // do full set of border and background capabilities.
             // remove margin
@@ -1828,10 +1750,9 @@ public class StyleSheet extends StyleContext {
             float dh = 0;
             AttributeSet a = v.getAttributes();
             boolean isLeftToRight = isLeftToRight(v);
-            float localLeftMargin = getOrientationMargin(HorizontalMargin.LEFT,
-                    leftMargin, a, isLeftToRight);
-            float localRightMargin = getOrientationMargin(
-                    HorizontalMargin.RIGHT, rightMargin, a, isLeftToRight);
+            float localLeftMargin = getOrientationMargin(HorizontalMargin.LEFT, leftMargin, a, isLeftToRight);
+            float localRightMargin = getOrientationMargin(HorizontalMargin.RIGHT, rightMargin, a,
+                    isLeftToRight);
             if (!(v instanceof HTMLEditorKit.HTMLFactory.BodyBlockView)) {
                 dx = localLeftMargin;
                 dy = topMargin;
@@ -1840,8 +1761,7 @@ public class StyleSheet extends StyleContext {
             }
             if (bg != null) {
                 g.setColor(bg);
-                g.fillRect((int) (x + dx), (int) (y + dy), (int) (w + dw),
-                        (int) (h + dh));
+                g.fillRect((int) (x + dx), (int) (y + dy), (int) (w + dw), (int) (h + dh));
             }
             if (bgPainter != null) {
                 bgPainter.paint(g, x + dx, y + dy, w + dw, h + dh, v);
@@ -1854,8 +1774,7 @@ public class StyleSheet extends StyleContext {
                 // BevelBorder does not support border width
                 int bw = (int) getLength(CSS.Attribute.BORDER_TOP_WIDTH, a);
                 for (int i = bw - 1; i >= 0; i--) {
-                    border.paintBorder(null, g, (int) x + i, (int) y + i,
-                            (int) w - 2 * i, (int) h - 2 * i);
+                    border.paintBorder(null, g, (int) x + i, (int) y + i, (int) w - 2 * i, (int) h - 2 * i);
                 }
             } else {
                 border.paintBorder(null, g, (int) x, (int) y, (int) w, (int) h);
@@ -1886,11 +1805,9 @@ public class StyleSheet extends StyleContext {
             boolean ret = false;
             AttributeSet attr;
             Object obj;
-            if (v != null && (attr = v.getElement().getAttributes()) != null
-                    && (obj = attr.getAttribute(
-                            StyleConstants.NameAttribute)) instanceof HTML.Tag
-                    && (obj == HTML.Tag.DIR || obj == HTML.Tag.MENU
-                            || obj == HTML.Tag.UL || obj == HTML.Tag.OL)) {
+            if (v != null && (attr = v.getElement().getAttributes()) != null && (obj = attr.getAttribute(
+                    StyleConstants.NameAttribute)) instanceof HTML.Tag && (obj == HTML.Tag.DIR
+                            || obj == HTML.Tag.MENU || obj == HTML.Tag.UL || obj == HTML.Tag.OL)) {
                 ret = true;
             }
 
@@ -1909,40 +1826,37 @@ public class StyleSheet extends StyleContext {
          * describe it if margin-(left|right) is present we are to use it.
          *
          * @param side
-         *                      The horizontal side to fetch margin for This can
-         *                      be
-         *                      HorizontalMargin.LEFT or HorizontalMargin.RIGHT
+         *        The horizontal side to fetch margin for This can
+         *        be
+         *        HorizontalMargin.LEFT or HorizontalMargin.RIGHT
          * @param cssMargin
-         *                      margin from css
+         *        margin from css
          * @param a
-         *                      AttributeSet for the View we getting margin for
+         *        AttributeSet for the View we getting margin for
          * @param isLeftToRight
          * @return orientation depended margin
          */
-        float getOrientationMargin(HorizontalMargin side, float cssMargin,
-                AttributeSet a, boolean isLeftToRight) {
+        float getOrientationMargin(HorizontalMargin side, float cssMargin, AttributeSet a,
+                boolean isLeftToRight) {
             float margin = cssMargin;
             float orientationMargin = cssMargin;
             Object cssMarginValue = null;
             switch (side) {
                 case RIGHT: {
-                    orientationMargin = (isLeftToRight) ? getLength(
-                            CSS.Attribute.MARGIN_RIGHT_LTR, a)
+                    orientationMargin = (isLeftToRight) ? getLength(CSS.Attribute.MARGIN_RIGHT_LTR, a)
                             : getLength(CSS.Attribute.MARGIN_RIGHT_RTL, a);
                     cssMarginValue = a.getAttribute(CSS.Attribute.MARGIN_RIGHT);
                 }
                     break;
                 case LEFT: {
-                    orientationMargin = (isLeftToRight) ? getLength(
-                            CSS.Attribute.MARGIN_LEFT_LTR, a)
+                    orientationMargin = (isLeftToRight) ? getLength(CSS.Attribute.MARGIN_LEFT_LTR, a)
                             : getLength(CSS.Attribute.MARGIN_LEFT_RTL, a);
                     cssMarginValue = a.getAttribute(CSS.Attribute.MARGIN_LEFT);
                 }
                     break;
             }
 
-            if (cssMarginValue == null
-                    && orientationMargin != Integer.MIN_VALUE) {
+            if (cssMarginValue == null && orientationMargin != Integer.MIN_VALUE) {
                 margin = orientationMargin;
             }
             return margin;
@@ -1973,8 +1887,7 @@ public class StyleSheet extends StyleContext {
         ListPainter(AttributeSet attr, StyleSheet ss) {
             this.ss = ss;
             /* Get the image to use as a list bullet */
-            String imgstr = (String) attr.getAttribute(
-                    CSS.Attribute.LIST_STYLE_IMAGE);
+            String imgstr = (String) attr.getAttribute(CSS.Attribute.LIST_STYLE_IMAGE);
             type = null;
             if (imgstr != null && !imgstr.equals("none")) {
                 String tmpstr = null;
@@ -2002,8 +1915,7 @@ public class StyleSheet extends StyleContext {
 
             /* Get the type of bullet to use in the list */
             if (img == null) {
-                type = (CSS.Value) attr.getAttribute(
-                        CSS.Attribute.LIST_STYLE_TYPE);
+                type = (CSS.Value) attr.getAttribute(CSS.Attribute.LIST_STYLE_TYPE);
             }
             start = 1;
 
@@ -2017,16 +1929,15 @@ public class StyleSheet extends StyleContext {
          * the latter, the default type is "decimal".
          */
         private CSS.Value getChildType(View childView) {
-            CSS.Value childtype = (CSS.Value) childView.getAttributes()
-                    .getAttribute(CSS.Attribute.LIST_STYLE_TYPE);
+            CSS.Value childtype = (CSS.Value) childView.getAttributes().getAttribute(
+                    CSS.Attribute.LIST_STYLE_TYPE);
 
             if (childtype == null) {
                 if (type == null) {
                     // Parent view.
                     View v = childView.getParent();
                     HTMLDocument doc = (HTMLDocument) v.getDocument();
-                    if (doc.matchNameAttribute(v.getElement().getAttributes(),
-                            HTML.Tag.OL)) {
+                    if (doc.matchNameAttribute(v.getElement().getAttributes(), HTML.Tag.OL)) {
                         childtype = CSS.Value.DECIMAL;
                     } else {
                         childtype = CSS.Value.DISC;
@@ -2047,15 +1958,12 @@ public class StyleSheet extends StyleContext {
             if (element != null) {
                 AttributeSet attr = element.getAttributes();
                 Object startValue;
-                if (attr != null && attr.isDefined(HTML.Attribute.START)
-                        && (startValue = attr.getAttribute(
-                                HTML.Attribute.START)) != null
-                        && (startValue instanceof String)) {
+                if (attr != null && attr.isDefined(HTML.Attribute.START) && (startValue = attr.getAttribute(
+                        HTML.Attribute.START)) != null && (startValue instanceof String)) {
 
                     try {
                         start = Integer.parseInt((String) startValue);
-                    } catch (NumberFormatException nfe) {
-                    }
+                    } catch (NumberFormatException nfe) {}
                 }
             }
         }
@@ -2073,10 +1981,8 @@ public class StyleSheet extends StyleContext {
             }
             int retIndex = childIndex;
             for (int counter = childIndex; counter >= 0; counter--) {
-                AttributeSet as = parentView.getElement().getElement(counter)
-                        .getAttributes();
-                if (as.getAttribute(
-                        StyleConstants.NameAttribute) != HTML.Tag.LI) {
+                AttributeSet as = parentView.getElement().getElement(counter).getAttributes();
+                if (as.getAttribute(StyleConstants.NameAttribute) != HTML.Tag.LI) {
                     retIndex--;
                 } else if (as.isDefined(HTML.Attribute.VALUE)) {
                     Object value = as.getAttribute(HTML.Attribute.VALUE);
@@ -2084,8 +1990,7 @@ public class StyleSheet extends StyleContext {
                         try {
                             int iValue = Integer.parseInt((String) value);
                             return retIndex - counter + iValue;
-                        } catch (NumberFormatException nfe) {
-                        }
+                        } catch (NumberFormatException nfe) {}
                     }
                 }
             }
@@ -2096,28 +2001,26 @@ public class StyleSheet extends StyleContext {
          * Paints the CSS list decoration according to the attributes given.
          *
          * @param g
-         *             the rendering surface.
+         *        the rendering surface.
          * @param x
-         *             the x coordinate of the list item allocation
+         *        the x coordinate of the list item allocation
          * @param y
-         *             the y coordinate of the list item allocation
+         *        the y coordinate of the list item allocation
          * @param w
-         *             the width of the list item allocation
+         *        the width of the list item allocation
          * @param h
-         *             the height of the list item allocation
+         *        the height of the list item allocation
          * @param v
-         *             the allocated area to paint into.
+         *        the allocated area to paint into.
          * @param item
-         *             which list item is being painted. This is a number
-         *             greater
-         *             than or equal to 0.
+         *        which list item is being painted. This is a number
+         *        greater
+         *        than or equal to 0.
          */
-        public void paint(Graphics g, float x, float y, float w, float h,
-                View v, int item) {
+        public void paint(Graphics g, float x, float y, float w, float h, View v, int item) {
             View cv = v.getView(item);
             Container host = v.getContainer();
-            Object name = cv.getElement().getAttributes().getAttribute(
-                    StyleConstants.NameAttribute);
+            Object name = cv.getElement().getAttributes().getAttribute(StyleConstants.NameAttribute);
             // Only draw something if the View is a list item. This won't
             // be the case for comments.
             if (!(name instanceof HTML.Tag) || name != HTML.Tag.LI) {
@@ -2134,17 +2037,12 @@ public class StyleSheet extends StyleContext {
             float align = 0;
             if (cv.getViewCount() > 0) {
                 View pView = cv.getView(0);
-                Object cName = pView.getElement().getAttributes().getAttribute(
-                        StyleConstants.NameAttribute);
-                if ((cName == HTML.Tag.P || cName == HTML.Tag.IMPLIED) && pView
-                        .getViewCount() > 0) {
+                Object cName = pView.getElement().getAttributes().getAttribute(StyleConstants.NameAttribute);
+                if ((cName == HTML.Tag.P || cName == HTML.Tag.IMPLIED) && pView.getViewCount() > 0) {
                     paintRect.setBounds((int) x, (int) y, (int) w, (int) h);
                     Shape shape = cv.getChildAllocation(0, paintRect);
-                    if (shape != null && (shape = pView.getView(0)
-                            .getChildAllocation(0, shape)) != null) {
-                        Rectangle rect = (shape instanceof Rectangle)
-                                ? (Rectangle) shape
-                                : shape.getBounds();
+                    if (shape != null && (shape = pView.getView(0).getChildAllocation(0, shape)) != null) {
+                        Rectangle rect = (shape instanceof Rectangle) ? (Rectangle) shape : shape.getBounds();
 
                         align = pView.getView(0).getAlignment(View.Y_AXIS);
                         y = rect.y;
@@ -2154,9 +2052,8 @@ public class StyleSheet extends StyleContext {
             }
 
             // set the color of a decoration
-            Color c = (host.isEnabled() ? (ss != null ? ss.getForeground(cv
-                    .getAttributes()) : host.getForeground())
-                    : UIManager.getColor("textInactiveText"));
+            Color c = (host.isEnabled() ? (ss != null ? ss.getForeground(cv.getAttributes())
+                    : host.getForeground()) : UIManager.getColor("textInactiveText"));
             g.setColor(c);
 
             if (img != null) {
@@ -2164,30 +2061,23 @@ public class StyleSheet extends StyleContext {
                 return;
             }
             CSS.Value childtype = getChildType(cv);
-            Font font = ((StyledDocument) cv.getDocument()).getFont(cv
-                    .getAttributes());
+            Font font = ((StyledDocument) cv.getDocument()).getFont(cv.getAttributes());
             if (font != null) {
                 g.setFont(font);
             }
             if (childtype == CSS.Value.SQUARE || childtype == CSS.Value.CIRCLE
                     || childtype == CSS.Value.DISC) {
-                drawShape(g, childtype, (int) x, (int) y, (int) w, (int) h,
-                        align);
+                drawShape(g, childtype, (int) x, (int) y, (int) w, (int) h, align);
             } else if (childtype == CSS.Value.DECIMAL) {
-                drawLetter(g, '1', (int) x, (int) y, (int) w, (int) h, align,
-                        getRenderIndex(v, item));
+                drawLetter(g, '1', (int) x, (int) y, (int) w, (int) h, align, getRenderIndex(v, item));
             } else if (childtype == CSS.Value.LOWER_ALPHA) {
-                drawLetter(g, 'a', (int) x, (int) y, (int) w, (int) h, align,
-                        getRenderIndex(v, item));
+                drawLetter(g, 'a', (int) x, (int) y, (int) w, (int) h, align, getRenderIndex(v, item));
             } else if (childtype == CSS.Value.UPPER_ALPHA) {
-                drawLetter(g, 'A', (int) x, (int) y, (int) w, (int) h, align,
-                        getRenderIndex(v, item));
+                drawLetter(g, 'A', (int) x, (int) y, (int) w, (int) h, align, getRenderIndex(v, item));
             } else if (childtype == CSS.Value.LOWER_ROMAN) {
-                drawLetter(g, 'i', (int) x, (int) y, (int) w, (int) h, align,
-                        getRenderIndex(v, item));
+                drawLetter(g, 'i', (int) x, (int) y, (int) w, (int) h, align, getRenderIndex(v, item));
             } else if (childtype == CSS.Value.UPPER_ROMAN) {
-                drawLetter(g, 'I', (int) x, (int) y, (int) w, (int) h, align,
-                        getRenderIndex(v, item));
+                drawLetter(g, 'I', (int) x, (int) y, (int) w, (int) h, align, getRenderIndex(v, item));
             }
         }
 
@@ -2195,23 +2085,21 @@ public class StyleSheet extends StyleContext {
          * Draws the bullet icon specified by the list-style-image argument.
          *
          * @param g
-         *              the graphics context
+         *        the graphics context
          * @param ax
-         *              x coordinate to place the bullet
+         *        x coordinate to place the bullet
          * @param ay
-         *              y coordinate to place the bullet
+         *        y coordinate to place the bullet
          * @param aw
-         *              width of the container the bullet is placed in
+         *        width of the container the bullet is placed in
          * @param ah
-         *              height of the container the bullet is placed in
+         *        height of the container the bullet is placed in
          * @param align
-         *              preferred alignment factor for the child view
+         *        preferred alignment factor for the child view
          */
-        void drawIcon(Graphics g, int ax, int ay, int aw, int ah, float align,
-                Component c) {
+        void drawIcon(Graphics g, int ax, int ay, int aw, int ah, float align, Component c) {
             // Align to bottom of icon.
-            int gap = isLeftToRight ? -(img.getIconWidth() + bulletgap)
-                    : (aw + bulletgap);
+            int gap = isLeftToRight ? -(img.getIconWidth() + bulletgap) : (aw + bulletgap);
             int x = ax + gap;
             int y = Math.max(ay, ay + (int) (align * ah) - img.getIconHeight());
 
@@ -2222,22 +2110,21 @@ public class StyleSheet extends StyleContext {
          * Draws the graphical bullet item specified by the type argument.
          *
          * @param g
-         *              the graphics context
+         *        the graphics context
          * @param type
-         *              type of bullet to draw (circle, square, disc)
+         *        type of bullet to draw (circle, square, disc)
          * @param ax
-         *              x coordinate to place the bullet
+         *        x coordinate to place the bullet
          * @param ay
-         *              y coordinate to place the bullet
+         *        y coordinate to place the bullet
          * @param aw
-         *              width of the container the bullet is placed in
+         *        width of the container the bullet is placed in
          * @param ah
-         *              height of the container the bullet is placed in
+         *        height of the container the bullet is placed in
          * @param align
-         *              preferred alignment factor for the child view
+         *        preferred alignment factor for the child view
          */
-        void drawShape(Graphics g, CSS.Value type, int ax, int ay, int aw,
-                int ah, float align) {
+        void drawShape(Graphics g, CSS.Value type, int ax, int ay, int aw, int ah, float align) {
             // Align to bottom of shape.
             int gap = isLeftToRight ? -(bulletgap + 8) : (aw + bulletgap);
             int x = ax + gap;
@@ -2256,28 +2143,26 @@ public class StyleSheet extends StyleContext {
          * Draws the letter or number for an ordered list.
          *
          * @param g
-         *               the graphics context
+         *        the graphics context
          * @param letter
-         *               type of ordered list to draw
+         *        type of ordered list to draw
          * @param ax
-         *               x coordinate to place the bullet
+         *        x coordinate to place the bullet
          * @param ay
-         *               y coordinate to place the bullet
+         *        y coordinate to place the bullet
          * @param aw
-         *               width of the container the bullet is placed in
+         *        width of the container the bullet is placed in
          * @param ah
-         *               height of the container the bullet is placed in
+         *        height of the container the bullet is placed in
          * @param index
-         *               position of the list item in the list
+         *        position of the list item in the list
          */
-        void drawLetter(Graphics g, char letter, int ax, int ay, int aw, int ah,
-                float align, int index) {
+        void drawLetter(Graphics g, char letter, int ax, int ay, int aw, int ah, float align, int index) {
             String str = formatItemNum(index, letter);
             str = isLeftToRight ? str + "." : "." + str;
             FontMetrics fm = SwingUtilities2.getFontMetrics(null, g);
             int stringwidth = SwingUtilities2.stringWidth(null, fm, str);
-            int gap = isLeftToRight ? -(stringwidth + bulletgap)
-                    : (aw + bulletgap);
+            int gap = isLeftToRight ? -(stringwidth + bulletgap) : (aw + bulletgap);
             int x = ax + gap;
             int y = Math.max(ay + fm.getAscent(), ay + (int) (ah * align));
             SwingUtilities2.drawString(null, g, str, x, y);
@@ -2288,9 +2173,9 @@ public class StyleSheet extends StyleContext {
          * ii iii, a b c, etc.
          *
          * @param itemNum
-         *                number to format
+         *        number to format
          * @param type
-         *                type of ordered list
+         *        type of ordered list
          */
         String formatItemNum(int itemNum, char type) {
             String numStyle = "1";
@@ -2330,14 +2215,13 @@ public class StyleSheet extends StyleContext {
          * Converts the item number into an alphabetic character
          *
          * @param itemNum
-         *                number to format
+         *        number to format
          */
         String formatAlphaNumerals(int itemNum) {
             String result;
 
             if (itemNum > 26) {
-                result = formatAlphaNumerals(itemNum / 26)
-                        + formatAlphaNumerals(itemNum % 26);
+                result = formatAlphaNumerals(itemNum / 26) + formatAlphaNumerals(itemNum % 26);
             } else {
                 // -1 because item is 1 based.
                 result = String.valueOf((char) ('a' + itemNum - 1));
@@ -2347,14 +2231,13 @@ public class StyleSheet extends StyleContext {
         }
 
         /* list of roman numerals */
-        static final char romanChars[][] = { { 'i', 'v' }, { 'x', 'l' }, { 'c',
-                'd' }, { 'm', '?' }, };
+        static final char romanChars[][] = { { 'i', 'v' }, { 'x', 'l' }, { 'c', 'd' }, { 'm', '?' }, };
 
         /**
          * Converts the item number into a roman numeral
          *
          * @param num
-         *            number to format
+         *        number to format
          */
         String formatRomanNumerals(int num) {
             return formatRomanNumerals(0, num);
@@ -2364,14 +2247,13 @@ public class StyleSheet extends StyleContext {
          * Converts the item number into a roman numeral
          *
          * @param num
-         *            number to format
+         *        number to format
          */
         String formatRomanNumerals(int level, int num) {
             if (num < 10) {
                 return formatRomanDigit(level, num);
             } else {
-                return formatRomanNumerals(level + 1, num / 10)
-                        + formatRomanDigit(level, num % 10);
+                return formatRomanNumerals(level + 1, num / 10) + formatRomanDigit(level, num % 10);
             }
         }
 
@@ -2379,9 +2261,9 @@ public class StyleSheet extends StyleContext {
          * Converts the item number into a roman numeral
          *
          * @param level
-         *              position
+         *        position
          * @param digit
-         *              digit to format
+         *        digit to format
          */
         String formatRomanDigit(int level, int digit) {
             String result = "";
@@ -2435,8 +2317,8 @@ public class StyleSheet extends StyleContext {
         BackgroundImagePainter(AttributeSet a, CSS css, StyleSheet ss) {
             backgroundImage = ss.getBackgroundImage(a);
             // Determine the position.
-            CSS.BackgroundPosition pos = (CSS.BackgroundPosition) a
-                    .getAttribute(CSS.Attribute.BACKGROUND_POSITION);
+            CSS.BackgroundPosition pos = (CSS.BackgroundPosition) a.getAttribute(
+                    CSS.Attribute.BACKGROUND_POSITION);
             if (pos != null) {
                 hPosition = pos.getHorizontalPosition();
                 vPosition = pos.getVerticalPosition();
@@ -2452,8 +2334,7 @@ public class StyleSheet extends StyleContext {
                 }
             }
             // Determine any repeating values.
-            CSS.Value repeats = (CSS.Value) a.getAttribute(
-                    CSS.Attribute.BACKGROUND_REPEAT);
+            CSS.Value repeats = (CSS.Value) a.getAttribute(CSS.Attribute.BACKGROUND_REPEAT);
             if (repeats == null || repeats == CSS.Value.BACKGROUND_REPEAT) {
                 flags |= 3;
             } else if (repeats == CSS.Value.BACKGROUND_REPEAT_X) {
@@ -2475,20 +2356,17 @@ public class StyleSheet extends StyleContext {
                 int width = backgroundImage.getIconWidth();
                 int height = backgroundImage.getIconWidth();
                 if ((flags & 4) == 4) {
-                    paintX = (int) (x + w * hPosition - (float) width
-                            * hPosition);
+                    paintX = (int) (x + w * hPosition - (float) width * hPosition);
                 } else {
                     paintX = (int) x + (int) hPosition;
                 }
                 if ((flags & 8) == 8) {
-                    paintY = (int) (y + h * vPosition - (float) height
-                            * vPosition);
+                    paintY = (int) (y + h * vPosition - (float) height * vPosition);
                 } else {
                     paintY = (int) y + (int) vPosition;
                 }
-                if (clip == null || !((paintX + width <= clip.x) || (paintY
-                        + height <= clip.y) || (paintX >= clip.x + clip.width)
-                        || (paintY >= clip.y + clip.height))) {
+                if (clip == null || !((paintX + width <= clip.x) || (paintY + height <= clip.y)
+                        || (paintX >= clip.x + clip.width) || (paintY >= clip.y + clip.height))) {
                     backgroundImage.paintIcon(null, g, paintX, paintY);
                 }
             } else {
@@ -2503,8 +2381,7 @@ public class StyleSheet extends StyleContext {
                         while (paintX < paintMaxX) {
                             int ySpot = paintY;
                             while (ySpot < paintMaxY) {
-                                backgroundImage.paintIcon(null, g, paintX,
-                                        ySpot);
+                                backgroundImage.paintIcon(null, g, paintX, ySpot);
                                 ySpot += height;
                             }
                             paintX += width;
@@ -2518,21 +2395,18 @@ public class StyleSheet extends StyleContext {
             }
         }
 
-        private boolean updatePaintCoordinates(Rectangle clip, int width,
-                int height) {
+        private boolean updatePaintCoordinates(Rectangle clip, int width, int height) {
             if ((flags & 3) == 1) {
                 paintMaxY = paintY + 1;
             } else if ((flags & 3) == 2) {
                 paintMaxX = paintX + 1;
             }
             if (clip != null) {
-                if ((flags & 3) == 1 && ((paintY + height <= clip.y)
-                        || (paintY > clip.y + clip.height))) {
+                if ((flags & 3) == 1 && ((paintY + height <= clip.y) || (paintY > clip.y + clip.height))) {
                     // not visible.
                     return false;
                 }
-                if ((flags & 3) == 2 && ((paintX + width <= clip.x)
-                        || (paintX > clip.x + clip.width))) {
+                if ((flags & 3) == 2 && ((paintX + width <= clip.x) || (paintX > clip.x + clip.width))) {
                     // not visible.
                     return false;
                 }
@@ -2541,8 +2415,7 @@ public class StyleSheet extends StyleContext {
                         if ((clip.x + clip.width - paintX) % width == 0) {
                             paintMaxX = clip.x + clip.width;
                         } else {
-                            paintMaxX = ((clip.x + clip.width - paintX) / width
-                                    + 1) * width + paintX;
+                            paintMaxX = ((clip.x + clip.width - paintX) / width + 1) * width + paintX;
                         }
                     }
                     if (clip.x > paintX) {
@@ -2554,8 +2427,7 @@ public class StyleSheet extends StyleContext {
                         if ((clip.y + clip.height - paintY) % height == 0) {
                             paintMaxY = clip.y + clip.height;
                         } else {
-                            paintMaxY = ((clip.y + clip.height - paintY)
-                                    / height + 1) * height + paintY;
+                            paintMaxY = ((clip.y + clip.height - paintY) / height + 1) * height + paintY;
                         }
                     }
                     if (clip.y > paintY) {
@@ -2612,25 +2484,21 @@ public class StyleSheet extends StyleContext {
                                      * of conditional behaviour in the
                                      * stylesheet.
                                      **/
-                                    if (o != null
-                                            && o instanceof AttributeSet) {
+                                    if (o != null && o instanceof AttributeSet) {
                                         AttributeSet attr = (AttributeSet) o;
-                                        if (attr.getAttribute(
-                                                HTML.Attribute.HREF) == null) {
+                                        if (attr.getAttribute(HTML.Attribute.HREF) == null) {
                                             continue;
                                         }
                                     }
                                 }
-                                AttributeSet cssRule = styles.getRule(
-                                        (HTML.Tag) key, elem);
+                                AttributeSet cssRule = styles.getRule((HTML.Tag) key, elem);
                                 if (cssRule != null) {
                                     muxList.addElement(cssRule);
                                 }
                             }
                         }
                     } else {
-                        HTML.Tag t = (HTML.Tag) a.getAttribute(
-                                StyleConstants.NameAttribute);
+                        HTML.Tag t = (HTML.Tag) a.getAttribute(StyleConstants.NameAttribute);
                         AttributeSet cssRule = styles.getRule(t, elem);
                         if (cssRule != null) {
                             muxList.addElement(cssRule);
@@ -2653,14 +2521,13 @@ public class StyleSheet extends StyleContext {
          * mapping.
          *
          * @param key
-         *            the attribute key
+         *        the attribute key
          * @return true if the attribute is defined
          * @see AttributeSet#isDefined
          */
         public boolean isDefined(Object key) {
             if (key instanceof StyleConstants) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     key = cssKey;
                 }
@@ -2674,19 +2541,17 @@ public class StyleSheet extends StyleContext {
          * converted.
          *
          * @param key
-         *            the attribute name
+         *        the attribute name
          * @return the attribute value
          * @see AttributeSet#getAttribute
          */
         public Object getAttribute(Object key) {
             if (key instanceof StyleConstants) {
-                Object cssKey = css.styleConstantsKeyToCSSKey(
-                        (StyleConstants) key);
+                Object cssKey = css.styleConstantsKeyToCSSKey((StyleConstants) key);
                 if (cssKey != null) {
                     Object value = doGetAttribute(cssKey);
                     if (value instanceof CSS.CssValue) {
-                        return ((CSS.CssValue) value).toStyleConstants(
-                                (StyleConstants) key, host);
+                        return ((CSS.CssValue) value).toStyleConstants((StyleConstants) key, host);
                     }
                 }
             }
@@ -2738,8 +2603,7 @@ public class StyleSheet extends StyleContext {
     // contain a SimpleAttributeSet that modify methods are delegated to,
     // or change getRule to return an AttributeSet and then don't make this
     // implement Style.
-    static class ResolvedStyle extends MuxingAttributeSet implements
-            Serializable, Style {
+    static class ResolvedStyle extends MuxingAttributeSet implements Serializable, Style {
         ResolvedStyle(String name, AttributeSet[] attrs, int extendedIndex) {
             super(attrs);
             this.name = name;
@@ -2756,8 +2620,7 @@ public class StyleSheet extends StyleContext {
             int maxCounter = attrs.length;
             int counter = 0;
             for (; counter < extendedIndex; counter++) {
-                if (specificity > getSpecificity(((Style) attrs[counter])
-                        .getName())) {
+                if (specificity > getSpecificity(((Style) attrs[counter]).getName())) {
                     break;
                 }
             }
@@ -2842,8 +2705,7 @@ public class StyleSheet extends StyleContext {
                     if (thisCurrent >= 0) {
                         thisCurrent++;
                     }
-                    match = matches(selector, sCurrent, sLast, thisCurrent,
-                            thisLast);
+                    match = matches(selector, sCurrent, sLast, thisCurrent, thisLast);
                 }
                 if (!match) {
                     return false;
@@ -2857,13 +2719,11 @@ public class StyleSheet extends StyleContext {
          * thisCurrent, thisLast matches the substring of selector in the ranme
          * sCurrent to sLast based on CSS selector matching.
          */
-        boolean matches(String selector, int sCurrent, int sLast,
-                int thisCurrent, int thisLast) {
+        boolean matches(String selector, int sCurrent, int sLast, int thisCurrent, int thisLast) {
             sCurrent = Math.max(sCurrent, 0);
             thisCurrent = Math.max(thisCurrent, 0);
             int thisDotIndex = boundedIndexOf(name, '.', thisCurrent, thisLast);
-            int thisPoundIndex = boundedIndexOf(name, '#', thisCurrent,
-                    thisLast);
+            int thisPoundIndex = boundedIndexOf(name, '#', thisCurrent, thisLast);
             int sDotIndex = boundedIndexOf(selector, '.', sCurrent, sLast);
             int sPoundIndex = boundedIndexOf(selector, '#', sCurrent, sLast);
             if (sDotIndex != -1) {
@@ -2874,16 +2734,14 @@ public class StyleSheet extends StyleContext {
                     return false;
                 }
                 if (sCurrent == sDotIndex) {
-                    if ((thisLast - thisDotIndex) != (sLast - sDotIndex)
-                            || !selector.regionMatches(sCurrent, name,
-                                    thisDotIndex, (thisLast - thisDotIndex))) {
+                    if ((thisLast - thisDotIndex) != (sLast - sDotIndex) || !selector.regionMatches(sCurrent,
+                            name, thisDotIndex, (thisLast - thisDotIndex))) {
                         return false;
                     }
                 } else {
                     // Has to fully match.
-                    if ((sLast - sCurrent) != (thisLast - thisCurrent)
-                            || !selector.regionMatches(sCurrent, name,
-                                    thisCurrent, (thisLast - thisCurrent))) {
+                    if ((sLast - sCurrent) != (thisLast - thisCurrent) || !selector.regionMatches(sCurrent,
+                            name, thisCurrent, (thisLast - thisCurrent))) {
                         return false;
                     }
                 }
@@ -2897,17 +2755,14 @@ public class StyleSheet extends StyleContext {
                     return false;
                 }
                 if (sCurrent == sPoundIndex) {
-                    if ((thisLast - thisPoundIndex) != (sLast - sPoundIndex)
-                            || !selector.regionMatches(sCurrent, name,
-                                    thisPoundIndex, (thisLast
-                                            - thisPoundIndex))) {
+                    if ((thisLast - thisPoundIndex) != (sLast - sPoundIndex) || !selector.regionMatches(
+                            sCurrent, name, thisPoundIndex, (thisLast - thisPoundIndex))) {
                         return false;
                     }
                 } else {
                     // Has to fully match.
-                    if ((sLast - sCurrent) != (thisLast - thisCurrent)
-                            || !selector.regionMatches(sCurrent, name,
-                                    thisCurrent, (thisLast - thisCurrent))) {
+                    if ((sLast - sCurrent) != (thisLast - thisCurrent) || !selector.regionMatches(sCurrent,
+                            name, thisCurrent, (thisLast - thisCurrent))) {
                         return false;
                     }
                 }
@@ -2915,20 +2770,17 @@ public class StyleSheet extends StyleContext {
             }
             if (thisDotIndex != -1) {
                 // Receiver references a class, just check element name.
-                return (((thisDotIndex - thisCurrent) == (sLast - sCurrent))
-                        && selector.regionMatches(sCurrent, name, thisCurrent,
-                                thisDotIndex - thisCurrent));
+                return (((thisDotIndex - thisCurrent) == (sLast - sCurrent)) && selector.regionMatches(
+                        sCurrent, name, thisCurrent, thisDotIndex - thisCurrent));
             }
             if (thisPoundIndex != -1) {
                 // Receiver references an id, just check element name.
-                return (((thisPoundIndex - thisCurrent) == (sLast - sCurrent))
-                        && selector.regionMatches(sCurrent, name, thisCurrent,
-                                thisPoundIndex - thisCurrent));
+                return (((thisPoundIndex - thisCurrent) == (sLast - sCurrent)) && selector.regionMatches(
+                        sCurrent, name, thisCurrent, thisPoundIndex - thisCurrent));
             }
             // Fail through, no classes or ides, just check string.
-            return (((thisLast - thisCurrent) == (sLast - sCurrent)) && selector
-                    .regionMatches(sCurrent, name, thisCurrent, thisLast
-                            - thisCurrent));
+            return (((thisLast - thisCurrent) == (sLast - sCurrent)) && selector.regionMatches(sCurrent, name,
+                    thisCurrent, thisLast - thisCurrent));
         }
 
         /**
@@ -3015,8 +2867,7 @@ public class StyleSheet extends StyleContext {
          * <code>selector</code>, and <code>create</code> is true, a new one
          * will be created.
          */
-        public SelectorMapping getChildSelectorMapping(String selector,
-                boolean create) {
+        public SelectorMapping getChildSelectorMapping(String selector, boolean create) {
             SelectorMapping retValue = null;
 
             if (children != null) {
@@ -3121,8 +2972,7 @@ public class StyleSheet extends StyleContext {
         public AttributeSet parseDeclaration(String string) {
             try {
                 return parseDeclaration(new StringReader(string));
-            } catch (IOException ioe) {
-            }
+            } catch (IOException ioe) {}
             return null;
         }
 
@@ -3137,8 +2987,7 @@ public class StyleSheet extends StyleContext {
         /**
          * Parse the given CSS stream
          */
-        public void parse(URL base, Reader r, boolean parseDeclaration,
-                boolean isLink) throws IOException {
+        public void parse(URL base, Reader r, boolean parseDeclaration, boolean isLink) throws IOException {
             this.base = base;
             this.isLink = isLink;
             this.parsingDeclaration = parseDeclaration;
@@ -3273,8 +3122,8 @@ public class StyleSheet extends StyleContext {
         final int minimalFontSize = 4;
         sizeMap = new int[sizeMapDefault.length];
         for (int i = 0; i < sizeMapDefault.length; i++) {
-            sizeMap[i] = Math.max(base * sizeMapDefault[i]
-                    / sizeMapDefault[CSS.baseFontSizeIndex], minimalFontSize);
+            sizeMap[i] = Math.max(base * sizeMapDefault[i] / sizeMapDefault[CSS.baseFontSizeIndex],
+                    minimalFontSize);
         }
 
     }

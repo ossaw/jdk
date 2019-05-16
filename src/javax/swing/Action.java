@@ -43,7 +43,6 @@ import java.beans.*;
  * property changes. For this reason, you should take care to only use
  * <code>Action</code>s where their benefits are desired, and use simple
  * <code>ActionListener</code>s elsewhere. <br>
- *
  * <h3><a name="buttonActions"></a>Swing Components Supporting
  * <code>Action</code></h3>
  * <p>
@@ -67,7 +66,6 @@ import java.beans.*;
  * <code>Action</code> (or a <code>Action</code> that is <code>null</code>)
  * results in the button's corresponding property being set to <code>null</code>
  * .
- *
  * <table border="1" cellpadding="1" cellspacing="0" summary=
  * "Supported Action properties">
  * <tr valign="top" align="left">
@@ -305,9 +303,9 @@ public interface Action extends ActionListener {
      * listeners.
      *
      * @param key
-     *              a <code>String</code> containing the key
+     *        a <code>String</code> containing the key
      * @param value
-     *              an <code>Object</code> value
+     *        an <code>Object</code> value
      */
     public void putValue(String key, Object value);
 
@@ -318,7 +316,7 @@ public interface Action extends ActionListener {
      * <code>PropertyChangeEvent</code> is sent to listeners.
      *
      * @param b
-     *          true to enable this <code>Action</code>, false to disable it
+     *        true to enable this <code>Action</code>, false to disable it
      */
     public void setEnabled(boolean b);
 
@@ -338,7 +336,7 @@ public interface Action extends ActionListener {
      * changes, the registered listeners are informed of the change.
      *
      * @param listener
-     *                 a <code>PropertyChangeListener</code> object
+     *        a <code>PropertyChangeListener</code> object
      */
     public void addPropertyChangeListener(PropertyChangeListener listener);
 
@@ -346,7 +344,7 @@ public interface Action extends ActionListener {
      * Removes a <code>PropertyChange</code> listener.
      *
      * @param listener
-     *                 a <code>PropertyChangeListener</code> object
+     *        a <code>PropertyChangeListener</code> object
      * @see #addPropertyChangeListener
      */
     public void removePropertyChangeListener(PropertyChangeListener listener);

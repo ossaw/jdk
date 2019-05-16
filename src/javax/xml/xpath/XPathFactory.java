@@ -10,18 +10,15 @@ package javax.xml.xpath;
  * An <code>XPathFactory</code> instance can be used to create
  * {@link javax.xml.xpath.XPath} objects.
  * </p>
- *
  * <p>
  * See {@link #newInstance(String uri)} for lookup mechanism.
  * </p>
- *
  * <p>
  * The {@link XPathFactory} class is not thread-safe. In other words, it is the
  * application's responsibility to ensure that at most one thread is using a
  * {@link XPathFactory} object at any given moment. Implementations are
  * encouraged to mark methods as <code>synchronized</code> to protect themselves
  * from broken clients.
- *
  * <p>
  * {@link XPathFactory} is not re-entrant. While one of the
  * <code>newInstance</code> methods is being invoked, applications may not
@@ -30,7 +27,6 @@ package javax.xml.xpath;
  *
  * @author <a href="mailto:Norman.Walsh@Sun.com">Norman Walsh</a>
  * @author <a href="mailto:Jeff.Suttor@Sun.com">Jeff Suttor</a>
- *
  * @since 1.5
  */
 public abstract class XPathFactory {
@@ -71,7 +67,6 @@ public abstract class XPathFactory {
      * Get a new <code>XPathFactory</code> instance using the default object
      * model, {@link #DEFAULT_OBJECT_MODEL_URI}, the W3C DOM.
      * </p>
-     *
      * <p>
      * This method is functionally equivalent to:
      * </p>
@@ -79,18 +74,16 @@ public abstract class XPathFactory {
      * <pre>
      * newInstance(DEFAULT_OBJECT_MODEL_URI)
      * </pre>
-     *
      * <p>
      * Since the implementation for the W3C DOM is always available, this method
      * will never fail.
      * </p>
      *
      * @return Instance of an <code>XPathFactory</code>.
-     *
      * @throws RuntimeException
-     *                          When there is a failure in creating an
-     *                          <code>XPathFactory</code> for the default object
-     *                          model.
+     *         When there is a failure in creating an
+     *         <code>XPathFactory</code> for the default object
+     *         model.
      */
     public static XPathFactory newInstance() {
 
@@ -99,8 +92,7 @@ public abstract class XPathFactory {
         } catch (XPathFactoryConfigurationException xpathFactoryConfigurationException) {
             throw new RuntimeException(
                     "XPathFactory#newInstance() failed to create an XPathFactory for the default object model: "
-                            + DEFAULT_OBJECT_MODEL_URI
-                            + " with the XPathFactoryConfigurationException: "
+                            + DEFAULT_OBJECT_MODEL_URI + " with the XPathFactoryConfigurationException: "
                             + xpathFactoryConfigurationException.toString());
         }
     }
@@ -110,7 +102,6 @@ public abstract class XPathFactory {
      * Get a new <code>XPathFactory</code> instance using the specified object
      * model.
      * </p>
-     *
      * <p>
      * To find a <code>XPathFactory</code> object, this method looks the
      * following places in the following order where "the class loader" refers
@@ -147,7 +138,6 @@ public abstract class XPathFactory {
      * If everything fails, an <code>XPathFactoryConfigurationException</code>
      * will be thrown.
      * </p>
-     *
      * <p>
      * Tip for Trouble-shooting:
      * </p>
@@ -163,28 +153,25 @@ public abstract class XPathFactory {
      * </pre>
      *
      * @param uri
-     *            Identifies the underlying object model. The specification only
-     *            defines the URI {@link #DEFAULT_OBJECT_MODEL_URI},
-     *            <code>http://java.sun.com/jaxp/xpath/dom</code> for the W3C
-     *            DOM, the org.w3c.dom package, and implementations are free to
-     *            introduce other URIs for other object models.
-     *
+     *        Identifies the underlying object model. The specification only
+     *        defines the URI {@link #DEFAULT_OBJECT_MODEL_URI},
+     *        <code>http://java.sun.com/jaxp/xpath/dom</code> for the W3C
+     *        DOM, the org.w3c.dom package, and implementations are free to
+     *        introduce other URIs for other object models.
      * @return Instance of an <code>XPathFactory</code>.
-     *
      * @throws XPathFactoryConfigurationException
-     *                                            If the specified object model
-     *                                            is unavailable, or if there is
-     *                                            a configuration error.
+     *         If the specified object model
+     *         is unavailable, or if there is
+     *         a configuration error.
      * @throws NullPointerException
-     *                                            If <code>uri</code> is
-     *                                            <code>null</code>.
+     *         If <code>uri</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                            If <code>uri</code> is
-     *                                            <code>null</code> or
-     *                                            <code>uri.length() == 0</code>.
+     *         If <code>uri</code> is
+     *         <code>null</code> or
+     *         <code>uri.length() == 0</code>.
      */
-    public static XPathFactory newInstance(final String uri)
-            throws XPathFactoryConfigurationException {
+    public static XPathFactory newInstance(final String uri) throws XPathFactoryConfigurationException {
 
         if (uri == null) {
             throw new NullPointerException(
@@ -203,13 +190,11 @@ public abstract class XPathFactory {
             classLoader = XPathFactory.class.getClassLoader();
         }
 
-        XPathFactory xpathFactory = new XPathFactoryFinder(classLoader)
-                .newFactory(uri);
+        XPathFactory xpathFactory = new XPathFactoryFinder(classLoader).newFactory(uri);
 
         if (xpathFactory == null) {
             throw new XPathFactoryConfigurationException(
-                    "No XPathFactory implementation found for the object model: "
-                            + uri);
+                    "No XPathFactory implementation found for the object model: " + uri);
         }
 
         return xpathFactory;
@@ -223,15 +208,12 @@ public abstract class XPathFactory {
      * are multiple providers in the classpath. It gives more control to the
      * application as it can specify which provider should be loaded.
      * </p>
-     *
-     *
      * <h2>Tip for Trouble-shooting</h2>
      * <p>
      * Setting the <code>jaxp.debug</code> system property will cause this
      * method to print a lot of debug messages to <code>System.err</code> about
      * what it is doing and where it is looking at.
      * </p>
-     *
      * <p>
      * If you have problems try:
      * </p>
@@ -241,57 +223,49 @@ public abstract class XPathFactory {
      * </pre>
      *
      * @param uri
-     *                         Identifies the underlying object model. The
-     *                         specification only
-     *                         defines the URI
-     *                         {@link #DEFAULT_OBJECT_MODEL_URI},
-     *                         <code>http://java.sun.com/jaxp/xpath/dom</code>
-     *                         for the W3C
-     *                         DOM, the org.w3c.dom package, and implementations
-     *                         are free to
-     *                         introduce other URIs for other object models.
-     *
+     *        Identifies the underlying object model. The
+     *        specification only
+     *        defines the URI
+     *        {@link #DEFAULT_OBJECT_MODEL_URI},
+     *        <code>http://java.sun.com/jaxp/xpath/dom</code>
+     *        for the W3C
+     *        DOM, the org.w3c.dom package, and implementations
+     *        are free to
+     *        introduce other URIs for other object models.
      * @param factoryClassName
-     *                         fully qualified factory class name that provides
-     *                         implementation of
-     *                         <code>javax.xml.xpath.XPathFactory</code>.
-     *
+     *        fully qualified factory class name that provides
+     *        implementation of
+     *        <code>javax.xml.xpath.XPathFactory</code>.
      * @param classLoader
-     *                         <code>ClassLoader</code> used to load the factory
-     *                         class. If
-     *                         <code>null</code> current <code>Thread</code>'s
-     *                         context
-     *                         classLoader is used to load the factory class.
-     *
-     *
+     *        <code>ClassLoader</code> used to load the factory
+     *        class. If
+     *        <code>null</code> current <code>Thread</code>'s
+     *        context
+     *        classLoader is used to load the factory class.
      * @return New instance of a <code>XPathFactory</code>
-     *
      * @throws XPathFactoryConfigurationException
-     *                                            if
-     *                                            <code>factoryClassName</code>
-     *                                            is <code>null</code>, or the
-     *                                            factory class cannot be
-     *                                            loaded, instantiated or the
-     *                                            factory
-     *                                            class does not support the
-     *                                            object model specified in the
-     *                                            <code>uri</code> parameter.
-     *
+     *         if
+     *         <code>factoryClassName</code>
+     *         is <code>null</code>, or the
+     *         factory class cannot be
+     *         loaded, instantiated or the
+     *         factory
+     *         class does not support the
+     *         object model specified in the
+     *         <code>uri</code> parameter.
      * @throws NullPointerException
-     *                                            If <code>uri</code> is
-     *                                            <code>null</code>.
+     *         If <code>uri</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                            If <code>uri</code> is
-     *                                            <code>null</code> or
-     *                                            <code>uri.length() == 0</code>.
-     *
+     *         If <code>uri</code> is
+     *         <code>null</code> or
+     *         <code>uri.length() == 0</code>.
      * @see #newInstance()
      * @see #newInstance(String uri)
-     *
      * @since 1.6
      */
-    public static XPathFactory newInstance(String uri, String factoryClassName,
-            ClassLoader classLoader) throws XPathFactoryConfigurationException {
+    public static XPathFactory newInstance(String uri, String factoryClassName, ClassLoader classLoader)
+            throws XPathFactoryConfigurationException {
         ClassLoader cl = classLoader;
 
         if (uri == null) {
@@ -308,22 +282,19 @@ public abstract class XPathFactory {
             cl = ss.getContextClassLoader();
         }
 
-        XPathFactory f = new XPathFactoryFinder(cl).createInstance(
-                factoryClassName);
+        XPathFactory f = new XPathFactoryFinder(cl).createInstance(factoryClassName);
 
         if (f == null) {
             throw new XPathFactoryConfigurationException(
-                    "No XPathFactory implementation found for the object model: "
-                            + uri);
+                    "No XPathFactory implementation found for the object model: " + uri);
         }
         // if this factory supports the given schemalanguage return this factory
         // else thrown exception
         if (f.isObjectModelSupported(uri)) {
             return f;
         } else {
-            throw new XPathFactoryConfigurationException("Factory "
-                    + factoryClassName + " doesn't support given " + uri
-                    + " object model");
+            throw new XPathFactoryConfigurationException("Factory " + factoryClassName
+                    + " doesn't support given " + uri + " object model");
         }
 
     }
@@ -334,18 +305,16 @@ public abstract class XPathFactory {
      * </p>
      *
      * @param objectModel
-     *                    Specifies the object model which the returned
-     *                    <code>XPathFactory</code> will understand.
-     *
+     *        Specifies the object model which the returned
+     *        <code>XPathFactory</code> will understand.
      * @return <code>true</code> if <code>XPathFactory</code> supports
      *         <code>objectModel</code>, else <code>false</code>.
-     *
      * @throws NullPointerException
-     *                                  If <code>objectModel</code> is
-     *                                  <code>null</code>.
+     *         If <code>objectModel</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  If
-     *                                  <code>objectModel.length() == 0</code>.
+     *         If
+     *         <code>objectModel.length() == 0</code>.
      */
     public abstract boolean isObjectModelSupported(String objectModel);
 
@@ -354,7 +323,6 @@ public abstract class XPathFactory {
      * Set a feature for this <code>XPathFactory</code> and <code>XPath</code>s
      * created by this factory.
      * </p>
-     *
      * <p>
      * Feature names are fully qualified {@link java.net.URI}s. Implementations
      * may define their own features. An
@@ -363,7 +331,6 @@ public abstract class XPathFactory {
      * support the feature. It is possible for an <code>XPathFactory</code> to
      * expose a feature value but be unable to change its state.
      * </p>
-     *
      * <p>
      * All implementations are required to support the
      * {@link javax.xml.XMLConstants#FEATURE_SECURE_PROCESSING} feature. When
@@ -374,28 +341,25 @@ public abstract class XPathFactory {
      * </p>
      *
      * @param name
-     *              Feature name.
+     *        Feature name.
      * @param value
-     *              Is feature state <code>true</code> or <code>false</code>.
-     *
+     *        Is feature state <code>true</code> or <code>false</code>.
      * @throws XPathFactoryConfigurationException
-     *                                            if this
-     *                                            <code>XPathFactory</code> or
-     *                                            the <code>XPath</code>s
-     *                                            it creates cannot support this
-     *                                            feature.
+     *         if this
+     *         <code>XPathFactory</code> or
+     *         the <code>XPath</code>s
+     *         it creates cannot support this
+     *         feature.
      * @throws NullPointerException
-     *                                            if <code>name</code> is
-     *                                            <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      */
-    public abstract void setFeature(String name, boolean value)
-            throws XPathFactoryConfigurationException;
+    public abstract void setFeature(String name, boolean value) throws XPathFactoryConfigurationException;
 
     /**
      * <p>
      * Get the state of the named feature.
      * </p>
-     *
      * <p>
      * Feature names are fully qualified {@link java.net.URI}s. Implementations
      * may define their own features. An
@@ -406,72 +370,61 @@ public abstract class XPathFactory {
      * </p>
      *
      * @param name
-     *             Feature name.
-     *
+     *        Feature name.
      * @return State of the named feature.
-     *
      * @throws XPathFactoryConfigurationException
-     *                                            if this
-     *                                            <code>XPathFactory</code> or
-     *                                            the <code>XPath</code>s
-     *                                            it creates cannot support this
-     *                                            feature.
+     *         if this
+     *         <code>XPathFactory</code> or
+     *         the <code>XPath</code>s
+     *         it creates cannot support this
+     *         feature.
      * @throws NullPointerException
-     *                                            if <code>name</code> is
-     *                                            <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      */
-    public abstract boolean getFeature(String name)
-            throws XPathFactoryConfigurationException;
+    public abstract boolean getFeature(String name) throws XPathFactoryConfigurationException;
 
     /**
      * <p>
      * Establish a default variable resolver.
      * </p>
-     *
      * <p>
      * Any <code>XPath</code> objects constructed from this factory will use the
      * specified resolver by default.
      * </p>
-     *
      * <p>
      * A <code>NullPointerException</code> is thrown if <code>resolver</code> is
      * <code>null</code>.
      * </p>
      *
      * @param resolver
-     *                 Variable resolver.
-     *
+     *        Variable resolver.
      * @throws NullPointerException
-     *                              If <code>resolver</code> is
-     *                              <code>null</code>.
+     *         If <code>resolver</code> is
+     *         <code>null</code>.
      */
-    public abstract void setXPathVariableResolver(
-            XPathVariableResolver resolver);
+    public abstract void setXPathVariableResolver(XPathVariableResolver resolver);
 
     /**
      * <p>
      * Establish a default function resolver.
      * </p>
-     *
      * <p>
      * Any <code>XPath</code> objects constructed from this factory will use the
      * specified resolver by default.
      * </p>
-     *
      * <p>
      * A <code>NullPointerException</code> is thrown if <code>resolver</code> is
      * <code>null</code>.
      * </p>
      *
      * @param resolver
-     *                 XPath function resolver.
-     *
+     *        XPath function resolver.
      * @throws NullPointerException
-     *                              If <code>resolver</code> is
-     *                              <code>null</code>.
+     *         If <code>resolver</code> is
+     *         <code>null</code>.
      */
-    public abstract void setXPathFunctionResolver(
-            XPathFunctionResolver resolver);
+    public abstract void setXPathFunctionResolver(XPathFunctionResolver resolver);
 
     /**
      * <p>

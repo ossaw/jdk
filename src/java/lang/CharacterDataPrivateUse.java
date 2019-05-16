@@ -17,8 +17,7 @@ class CharacterDataPrivateUse extends CharacterData {
     }
 
     int getType(int ch) {
-        return (ch & 0xFFFE) == 0xFFFE ? Character.UNASSIGNED
-                : Character.PRIVATE_USE;
+        return (ch & 0xFFFE) == 0xFFFE ? Character.UNASSIGNED : Character.PRIVATE_USE;
     }
 
     boolean isJavaIdentifierStart(int ch) {

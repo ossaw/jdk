@@ -30,11 +30,10 @@ abstract public class AddressingDispositionHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    org.omg.CORBA.TCKind.tk_short);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_short);
             __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    com.sun.corba.se.impl.protocol.giopmsgheaders.AddressingDispositionHelper
-                            .id(), "AddressingDisposition", __typeCode);
+                    com.sun.corba.se.impl.protocol.giopmsgheaders.AddressingDispositionHelper.id(),
+                    "AddressingDisposition", __typeCode);
         }
         return __typeCode;
     }
@@ -49,8 +48,7 @@ abstract public class AddressingDispositionHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            short value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, short value) {
         ostream.write_short(value);
     }
 

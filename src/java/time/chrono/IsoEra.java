@@ -38,7 +38,6 @@ import java.time.DateTimeException;
  * The ISO-8601 standard does not define eras. A definition has therefore been
  * created with two eras - 'Current era' (CE) for years on or after 0001-01-01
  * (ISO), and 'Before current era' (BCE) for years before that.
- *
  * <table summary=
  * "ISO years and eras" cellpadding="2" cellspacing="3" border="0" >
  * <thead>
@@ -75,7 +74,6 @@ import java.time.DateTimeException;
  * {@code IsoEra}. Use {@code getValue()} instead.</b>
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum IsoEra implements Era {
@@ -99,10 +97,10 @@ public enum IsoEra implements Era {
      * factory allows the enum to be obtained from the {@code int} value.
      *
      * @param isoEra
-     *               the BCE/CE value to represent, from 0 (BCE) to 1 (CE)
+     *        the BCE/CE value to represent, from 0 (BCE) to 1 (CE)
      * @return the era singleton, not null
      * @throws DateTimeException
-     *                           if the value is invalid
+     *         if the value is invalid
      */
     public static IsoEra of(int isoEra) {
         switch (isoEra) {

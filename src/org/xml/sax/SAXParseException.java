@@ -12,12 +12,10 @@ package org.xml.sax;
 
 /**
  * Encapsulate an XML parse error or warning.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * This exception may include information for locating the error in the original
  * XML document, as if it came from a {@link Locator} object. Note that although
@@ -26,7 +24,6 @@ package org.xml.sax;
  * application is not actually required to throw the exception; instead, it can
  * simply read the information in it and take a different action.
  * </p>
- *
  * <p>
  * Since this exception is a subclass of {@link org.xml.sax.SAXException
  * SAXException}, it inherits the ability to wrap another exception.
@@ -47,7 +44,6 @@ public class SAXParseException extends SAXException {
 
     /**
      * Create a new SAXParseException from a message and a Locator.
-     *
      * <p>
      * This constructor is especially useful when an application is creating its
      * own exception from within a {@link org.xml.sax.ContentHandler
@@ -55,16 +51,16 @@ public class SAXParseException extends SAXException {
      * </p>
      *
      * @param message
-     *                The error or warning message.
+     *        The error or warning message.
      * @param locator
-     *                The locator object for the error or warning (may be null).
+     *        The locator object for the error or warning (may be null).
      * @see org.xml.sax.Locator
      */
     public SAXParseException(String message, Locator locator) {
         super(message);
         if (locator != null) {
-            init(locator.getPublicId(), locator.getSystemId(), locator
-                    .getLineNumber(), locator.getColumnNumber());
+            init(locator.getPublicId(), locator.getSystemId(), locator.getLineNumber(), locator
+                    .getColumnNumber());
         } else {
             init(null, null, -1, -1);
         }
@@ -72,7 +68,6 @@ public class SAXParseException extends SAXException {
 
     /**
      * Wrap an existing exception in a SAXParseException.
-     *
      * <p>
      * This constructor is especially useful when an application is creating its
      * own exception from within a {@link org.xml.sax.ContentHandler
@@ -81,20 +76,20 @@ public class SAXParseException extends SAXException {
      * </p>
      *
      * @param message
-     *                The error or warning message, or null to use the message
-     *                from
-     *                the embedded exception.
+     *        The error or warning message, or null to use the message
+     *        from
+     *        the embedded exception.
      * @param locator
-     *                The locator object for the error or warning (may be null).
+     *        The locator object for the error or warning (may be null).
      * @param e
-     *                Any exception.
+     *        Any exception.
      * @see org.xml.sax.Locator
      */
     public SAXParseException(String message, Locator locator, Exception e) {
         super(message, e);
         if (locator != null) {
-            init(locator.getPublicId(), locator.getSystemId(), locator
-                    .getLineNumber(), locator.getColumnNumber());
+            init(locator.getPublicId(), locator.getSystemId(), locator.getLineNumber(), locator
+                    .getColumnNumber());
         } else {
             init(null, null, -1, -1);
         }
@@ -102,11 +97,9 @@ public class SAXParseException extends SAXException {
 
     /**
      * Create a new SAXParseException.
-     *
      * <p>
      * This constructor is most useful for parser writers.
      * </p>
-     *
      * <p>
      * All parameters except the message are as if they were provided by a
      * {@link Locator}. For example, if the system identifier is a URL
@@ -114,41 +107,38 @@ public class SAXParseException extends SAXException {
      * creating the exception.
      * </p>
      *
-     *
      * @param message
-     *                     The error or warning message.
+     *        The error or warning message.
      * @param publicId
-     *                     The public identifier of the entity that generated
-     *                     the error
-     *                     or warning.
+     *        The public identifier of the entity that generated
+     *        the error
+     *        or warning.
      * @param systemId
-     *                     The system identifier of the entity that generated
-     *                     the error
-     *                     or warning.
+     *        The system identifier of the entity that generated
+     *        the error
+     *        or warning.
      * @param lineNumber
-     *                     The line number of the end of the text that caused
-     *                     the error
-     *                     or warning.
+     *        The line number of the end of the text that caused
+     *        the error
+     *        or warning.
      * @param columnNumber
-     *                     The column number of the end of the text that cause
-     *                     the error
-     *                     or warning.
+     *        The column number of the end of the text that cause
+     *        the error
+     *        or warning.
      */
-    public SAXParseException(String message, String publicId, String systemId,
-            int lineNumber, int columnNumber) {
+    public SAXParseException(String message, String publicId, String systemId, int lineNumber,
+            int columnNumber) {
         super(message);
         init(publicId, systemId, lineNumber, columnNumber);
     }
 
     /**
      * Create a new SAXParseException with an embedded exception.
-     *
      * <p>
      * This constructor is most useful for parser writers who need to wrap an
      * exception that is not a subclass of {@link org.xml.sax.SAXException
      * SAXException}.
      * </p>
-     *
      * <p>
      * All parameters except the message and exception are as if they were
      * provided by a {@link Locator}. For example, if the system identifier is a
@@ -157,30 +147,30 @@ public class SAXParseException extends SAXException {
      * </p>
      *
      * @param message
-     *                     The error or warning message, or null to use the
-     *                     message from
-     *                     the embedded exception.
+     *        The error or warning message, or null to use the
+     *        message from
+     *        the embedded exception.
      * @param publicId
-     *                     The public identifier of the entity that generated
-     *                     the error
-     *                     or warning.
+     *        The public identifier of the entity that generated
+     *        the error
+     *        or warning.
      * @param systemId
-     *                     The system identifier of the entity that generated
-     *                     the error
-     *                     or warning.
+     *        The system identifier of the entity that generated
+     *        the error
+     *        or warning.
      * @param lineNumber
-     *                     The line number of the end of the text that caused
-     *                     the error
-     *                     or warning.
+     *        The line number of the end of the text that caused
+     *        the error
+     *        or warning.
      * @param columnNumber
-     *                     The column number of the end of the text that cause
-     *                     the error
-     *                     or warning.
+     *        The column number of the end of the text that cause
+     *        the error
+     *        or warning.
      * @param e
-     *                     Another exception to embed in this one.
+     *        Another exception to embed in this one.
      */
-    public SAXParseException(String message, String publicId, String systemId,
-            int lineNumber, int columnNumber, Exception e) {
+    public SAXParseException(String message, String publicId, String systemId, int lineNumber,
+            int columnNumber, Exception e) {
         super(message, e);
         init(publicId, systemId, lineNumber, columnNumber);
     }
@@ -189,20 +179,19 @@ public class SAXParseException extends SAXException {
      * Internal initialization method.
      *
      * @param publicId
-     *                     The public identifier of the entity which generated
-     *                     the
-     *                     exception, or null.
+     *        The public identifier of the entity which generated
+     *        the
+     *        exception, or null.
      * @param systemId
-     *                     The system identifier of the entity which generated
-     *                     the
-     *                     exception, or null.
+     *        The system identifier of the entity which generated
+     *        the
+     *        exception, or null.
      * @param lineNumber
-     *                     The line number of the error, or -1.
+     *        The line number of the error, or -1.
      * @param columnNumber
-     *                     The column number of the error, or -1.
+     *        The column number of the error, or -1.
      */
-    private void init(String publicId, String systemId, int lineNumber,
-            int columnNumber) {
+    private void init(String publicId, String systemId, int lineNumber, int columnNumber) {
         this.publicId = publicId;
         this.systemId = systemId;
         this.lineNumber = lineNumber;
@@ -222,7 +211,6 @@ public class SAXParseException extends SAXException {
 
     /**
      * Get the system identifier of the entity where the exception occurred.
-     *
      * <p>
      * If the system identifier is a URL, it will have been resolved fully.
      * </p>
@@ -237,7 +225,6 @@ public class SAXParseException extends SAXException {
 
     /**
      * The line number of the end of the text where the exception occurred.
-     *
      * <p>
      * The first line is line 1.
      * </p>
@@ -252,7 +239,6 @@ public class SAXParseException extends SAXException {
 
     /**
      * The column number of the end of the text where the exception occurred.
-     *
      * <p>
      * The first column in a line is position 1.
      * </p>

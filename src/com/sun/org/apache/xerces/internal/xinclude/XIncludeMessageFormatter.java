@@ -29,7 +29,6 @@ import java.util.ResourceBundle;
  * Candidate Recommendation
  *
  * @author Peter McCracken, IBM
- *
  * @version $Id: XIncludeMessageFormatter.java,v 1.7 2010-11-01 04:40:18 joehw
  *          Exp $
  */
@@ -46,20 +45,18 @@ public class XIncludeMessageFormatter implements MessageFormatter {
      * information.
      *
      * @param locale
-     *                  The locale of the message.
+     *        The locale of the message.
      * @param key
-     *                  The message key.
+     *        The message key.
      * @param arguments
-     *                  The message replacement text arguments. The order of the
-     *                  arguments must match that of the placeholders in the
-     *                  actual
-     *                  message.
-     *
+     *        The message replacement text arguments. The order of the
+     *        arguments must match that of the placeholders in the
+     *        actual
+     *        message.
      * @return Returns the formatted message.
-     *
      * @throws MissingResourceException
-     *                                  Thrown if the message with the specified
-     *                                  key cannot be found.
+     *         Thrown if the message with the specified
+     *         key cannot be found.
      */
     public String formatMessage(Locale locale, String key, Object[] arguments)
             throws MissingResourceException {
@@ -67,8 +64,7 @@ public class XIncludeMessageFormatter implements MessageFormatter {
         if (fResourceBundle == null || locale != fLocale) {
             if (locale != null) {
                 fResourceBundle = SecuritySupport.getResourceBundle(
-                        "com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages",
-                        locale);
+                        "com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages", locale);
                 // memorize the most-recent locale
                 fLocale = locale;
             }
@@ -90,8 +86,7 @@ public class XIncludeMessageFormatter implements MessageFormatter {
         if (msg == null) {
             msg = fResourceBundle.getString("BadMessageKey");
             throw new MissingResourceException(msg,
-                    "com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages",
-                    key);
+                    "com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages", key);
         }
 
         return msg;

@@ -17,7 +17,7 @@ public interface CaretListener extends EventListener {
      * Called when the caret position is updated.
      *
      * @param e
-     *          the caret event
+     *        the caret event
      */
     void caretUpdate(CaretEvent e);
 }

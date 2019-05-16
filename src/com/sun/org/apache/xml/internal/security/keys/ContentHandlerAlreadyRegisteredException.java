@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,8 +22,7 @@ package com.sun.org.apache.xml.internal.security.keys;
 
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 
-public class ContentHandlerAlreadyRegisteredException extends
-        XMLSecurityException {
+public class ContentHandlerAlreadyRegisteredException extends XMLSecurityException {
 
     /**
      *
@@ -34,7 +31,6 @@ public class ContentHandlerAlreadyRegisteredException extends
 
     /**
      * Constructor ContentHandlerAlreadyRegisteredException
-     *
      */
     public ContentHandlerAlreadyRegisteredException() {
         super();
@@ -55,8 +51,7 @@ public class ContentHandlerAlreadyRegisteredException extends
      * @param msgID
      * @param exArgs
      */
-    public ContentHandlerAlreadyRegisteredException(String msgID,
-            Object exArgs[]) {
+    public ContentHandlerAlreadyRegisteredException(String msgID, Object exArgs[]) {
         super(msgID, exArgs);
     }
 
@@ -66,8 +61,7 @@ public class ContentHandlerAlreadyRegisteredException extends
      * @param msgID
      * @param originalException
      */
-    public ContentHandlerAlreadyRegisteredException(String msgID,
-            Exception originalException) {
+    public ContentHandlerAlreadyRegisteredException(String msgID, Exception originalException) {
         super(msgID, originalException);
     }
 
@@ -78,8 +72,8 @@ public class ContentHandlerAlreadyRegisteredException extends
      * @param exArgs
      * @param originalException
      */
-    public ContentHandlerAlreadyRegisteredException(String msgID,
-            Object exArgs[], Exception originalException) {
+    public ContentHandlerAlreadyRegisteredException(String msgID, Object exArgs[],
+            Exception originalException) {
         super(msgID, exArgs, originalException);
     }
 

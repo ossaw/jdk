@@ -71,7 +71,6 @@ import java.util.Locale;
  * day-of-week concept defined exactly equivalent to the ISO calendar system.
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
@@ -126,16 +125,15 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * (Sunday).
      *
      * @param dayOfWeek
-     *                  the day-of-week to represent, from 1 (Monday) to 7
-     *                  (Sunday)
+     *        the day-of-week to represent, from 1 (Monday) to 7
+     *        (Sunday)
      * @return the day-of-week singleton, not null
      * @throws DateTimeException
-     *                           if the day-of-week is invalid
+     *         if the day-of-week is invalid
      */
     public static DayOfWeek of(int dayOfWeek) {
         if (dayOfWeek < 1 || dayOfWeek > 7) {
-            throw new DateTimeException("Invalid value for DayOfWeek: "
-                    + dayOfWeek);
+            throw new DateTimeException("Invalid value for DayOfWeek: " + dayOfWeek);
         }
         return ENUMS[dayOfWeek - 1];
     }
@@ -157,10 +155,10 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * reference, {@code DayOfWeek::from}.
      *
      * @param temporal
-     *                 the temporal object to convert, not null
+     *        the temporal object to convert, not null
      * @return the day-of-week, not null
      * @throws DateTimeException
-     *                           if unable to convert to a {@code DayOfWeek}
+     *         if unable to convert to a {@code DayOfWeek}
      */
     public static DayOfWeek from(TemporalAccessor temporal) {
         if (temporal instanceof DayOfWeek) {
@@ -169,10 +167,8 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
         try {
             return of(temporal.get(DAY_OF_WEEK));
         } catch (DateTimeException ex) {
-            throw new DateTimeException(
-                    "Unable to obtain DayOfWeek from TemporalAccessor: "
-                            + temporal + " of type " + temporal.getClass()
-                                    .getName(), ex);
+            throw new DateTimeException("Unable to obtain DayOfWeek from TemporalAccessor: " + temporal
+                    + " of type " + temporal.getClass().getName(), ex);
         }
     }
 
@@ -202,14 +198,13 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * is returned.
      *
      * @param style
-     *               the length of the text required, not null
+     *        the length of the text required, not null
      * @param locale
-     *               the locale to use, not null
+     *        the locale to use, not null
      * @return the text value of the day-of-week, not null
      */
     public String getDisplayName(TextStyle style, Locale locale) {
-        return new DateTimeFormatterBuilder().appendText(DAY_OF_WEEK, style)
-                .toFormatter(locale).format(this);
+        return new DateTimeFormatterBuilder().appendText(DAY_OF_WEEK, style).toFormatter(locale).format(this);
     }
 
     // -----------------------------------------------------------------------
@@ -231,7 +226,7 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * determined by the field.
      *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if the field is supported on this day-of-week, false if not
      */
     @Override
@@ -262,13 +257,13 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * determined by the field.
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      */
     @Override
     public ValueRange range(TemporalField field) {
@@ -298,19 +293,19 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field, within the valid range of values
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained or the value is
-     *                                          outside the range of valid
-     *                                          values for the field
+     *         if a value for the field cannot
+     *         be obtained or the value is
+     *         outside the range of valid
+     *         values for the field
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported or
-     *                                          the range of values exceeds
-     *                                          an {@code int}
+     *         if the field is not supported or
+     *         the range of values exceeds
+     *         an {@code int}
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public int get(TemporalField field) {
@@ -339,23 +334,22 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained
+     *         if a value for the field cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long getLong(TemporalField field) {
         if (field == DAY_OF_WEEK) {
             return getValue();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.getFrom(this);
     }
@@ -371,7 +365,7 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * This instance is immutable and unaffected by this method call.
      *
      * @param days
-     *             the days to add, positive or negative
+     *        the days to add, positive or negative
      * @return the resulting day-of-week, not null
      */
     public DayOfWeek plus(long days) {
@@ -389,7 +383,7 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * This instance is immutable and unaffected by this method call.
      *
      * @param days
-     *             the days to subtract, positive or negative
+     *        the days to subtract, positive or negative
      * @return the resulting day-of-week, not null
      */
     public DayOfWeek minus(long days) {
@@ -409,16 +403,16 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
      * query passing {@code this} as the argument.
      *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query (defined by the query)
+     *         if unable to query (defined by the query)
      * @throws ArithmeticException
-     *                             if numeric overflow occurs (defined by the
-     *                             query)
+     *         if numeric overflow occurs (defined by the
+     *         query)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -467,12 +461,12 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the target object to be adjusted, not null
+     *        the target object to be adjusted, not null
      * @return the adjusted object, not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Temporal adjustInto(Temporal temporal) {

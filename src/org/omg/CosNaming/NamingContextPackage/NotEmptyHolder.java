@@ -13,8 +13,7 @@ public final class NotEmptyHolder implements org.omg.CORBA.portable.Streamable {
 
     public NotEmptyHolder() {}
 
-    public NotEmptyHolder(
-            org.omg.CosNaming.NamingContextPackage.NotEmpty initialValue) {
+    public NotEmptyHolder(org.omg.CosNaming.NamingContextPackage.NotEmpty initialValue) {
         value = initialValue;
     }
 

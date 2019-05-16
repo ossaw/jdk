@@ -73,7 +73,7 @@ public class FLOAD extends LoadInstruction {
      * Load float from local variable
      * 
      * @param n
-     *          index of local variable
+     *        index of local variable
      */
     public FLOAD(int n) {
         super(com.sun.org.apache.bcel.internal.Constants.FLOAD,
@@ -87,7 +87,7 @@ public class FLOAD extends LoadInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         super.accept(v);

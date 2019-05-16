@@ -44,11 +44,11 @@ public interface ViewCSS extends AbstractView {
      * <a href='http://www.w3.org/TR/1998/REC-CSS2-19980512'>CSS2</a>].
      * 
      * @param elt
-     *                  The element whose style is to be computed. This
-     *                  parameter
-     *                  cannot be null.
+     *        The element whose style is to be computed. This
+     *        parameter
+     *        cannot be null.
      * @param pseudoElt
-     *                  The pseudo-element or <code>null</code> if none.
+     *        The pseudo-element or <code>null</code> if none.
      * @return The computed style. The <code>CSSStyleDeclaration</code> is
      *         read-only and contains only absolute values.
      */

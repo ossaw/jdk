@@ -16,8 +16,7 @@ package org.omg.CORBA;
  * <li>PARAM_INOUT - Represents an "inout" parameter.</li>
  * </ul>
  */
-public final class ParameterModeHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ParameterModeHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CORBA.ParameterMode value = null;
 
     public ParameterModeHolder() {}

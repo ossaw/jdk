@@ -47,8 +47,7 @@ public class Util {
     private static boolean allowCustomValueHandler;
 
     static {
-        utilDelegate = (javax.rmi.CORBA.UtilDelegate) createDelegate(
-                UtilClassKey);
+        utilDelegate = (javax.rmi.CORBA.UtilDelegate) createDelegate(UtilClassKey);
         allowCustomValueHandler = readAllowCustomValueHandlerProperty();
     }
 
@@ -67,7 +66,7 @@ public class Util {
      * Maps a SystemException to a RemoteException.
      * 
      * @param ex
-     *           the SystemException to map.
+     *        the SystemException to map.
      * @return the mapped exception.
      */
     public static RemoteException mapSystemException(SystemException ex) {
@@ -82,9 +81,9 @@ public class Util {
      * Writes any java.lang.Object as a CORBA any.
      * 
      * @param out
-     *            the stream in which to write the any.
+     *        the stream in which to write the any.
      * @param obj
-     *            the object to write as an any.
+     *        the object to write as an any.
      */
     public static void writeAny(OutputStream out, Object obj) {
 
@@ -97,7 +96,7 @@ public class Util {
      * Reads a java.lang.Object as a CORBA any.
      * 
      * @param in
-     *           the stream from which to read the any.
+     *        the stream from which to read the any.
      * @return the object read from the stream.
      */
     public static Object readAny(InputStream in) {
@@ -117,12 +116,11 @@ public class Util {
      * <code>out.write_Object(org.omg.CORBA.Object)</code>.
      * 
      * @param out
-     *            the stream in which to write the object.
+     *        the stream in which to write the object.
      * @param obj
-     *            the object to write.
+     *        the object to write.
      */
-    public static void writeRemoteObject(OutputStream out,
-            java.lang.Object obj) {
+    public static void writeRemoteObject(OutputStream out, java.lang.Object obj) {
 
         if (utilDelegate != null) {
             utilDelegate.writeRemoteObject(out, obj);
@@ -139,12 +137,11 @@ public class Util {
      * <code>out.write_abstract_interface(java.lang.Object)</code>.
      * 
      * @param out
-     *            the stream in which to write the object.
+     *        the stream in which to write the object.
      * @param obj
-     *            the object to write.
+     *        the object to write.
      */
-    public static void writeAbstractObject(OutputStream out,
-            java.lang.Object obj) {
+    public static void writeAbstractObject(OutputStream out, java.lang.Object obj) {
 
         if (utilDelegate != null) {
             utilDelegate.writeAbstractObject(out, obj);
@@ -156,12 +153,11 @@ public class Util {
      * {@link Tie#setTarget} on the tie object.
      * 
      * @param tie
-     *               the tie to register.
+     *        the tie to register.
      * @param target
-     *               the target for the tie.
+     *        the target for the tie.
      */
-    public static void registerTarget(javax.rmi.CORBA.Tie tie,
-            java.rmi.Remote target) {
+    public static void registerTarget(javax.rmi.CORBA.Tie tie, java.rmi.Remote target) {
 
         if (utilDelegate != null) {
             utilDelegate.registerTarget(tie, target);
@@ -174,10 +170,9 @@ public class Util {
      * {@link Tie#deactivate} to deactivate the object.
      * 
      * @param target
-     *               the object to unexport.
+     *        the object to unexport.
      */
-    public static void unexportObject(java.rmi.Remote target)
-            throws java.rmi.NoSuchObjectException {
+    public static void unexportObject(java.rmi.Remote target) throws java.rmi.NoSuchObjectException {
 
         if (utilDelegate != null) {
             utilDelegate.unexportObject(target);
@@ -218,7 +213,7 @@ public class Util {
      * Returns the codebase, if any, for the given class.
      * 
      * @param clz
-     *            the class to get a codebase for.
+     *        the class to get a codebase for.
      * @return a space-separated list of URLs, or null.
      */
     public static String getCodebase(java.lang.Class clz) {
@@ -252,21 +247,21 @@ public class Util {
      * the loaded class, else throw <tt>ClassNotFoundException</tt>.
      * 
      * @param className
-     *                       the name of the class.
+     *        the name of the class.
      * @param remoteCodebase
-     *                       a space-separated list of URLs at which the class
-     *                       might be
-     *                       found. May be null.
+     *        a space-separated list of URLs at which the class
+     *        might be
+     *        found. May be null.
      * @param loader
-     *                       a <tt>ClassLoader</tt> that may be used to load the
-     *                       class if
-     *                       all other methods fail.
+     *        a <tt>ClassLoader</tt> that may be used to load the
+     *        class if
+     *        all other methods fail.
      * @return the <code>Class</code> object representing the loaded class.
      * @exception ClassNotFoundException
-     *                                   if class cannot be loaded.
+     *            if class cannot be loaded.
      */
-    public static Class loadClass(String className, String remoteCodebase,
-            ClassLoader loader) throws ClassNotFoundException {
+    public static Class loadClass(String className, String remoteCodebase, ClassLoader loader)
+            throws ClassNotFoundException {
         if (utilDelegate != null) {
             return utilDelegate.loadClass(className, remoteCodebase, loader);
         }
@@ -277,25 +272,22 @@ public class Util {
      * The <tt>isLocal</tt> method has the same semantics as the
      * <tt>ObjectImpl._is_local</tt> method, except that it can throw a
      * <tt>RemoteException</tt>.
-     *
      * The <tt>_is_local()</tt> method is provided so that stubs may determine
      * if a particular object is implemented by a local servant and hence local
      * invocation APIs may be used.
      *
      * @param stub
-     *             the stub to test.
-     *
+     *        the stub to test.
      * @return The <tt>_is_local()</tt> method returns true if the servant
      *         incarnating the object is located in the same process as the stub
      *         and they both share the same ORB instance. The
      *         <tt>_is_local()</tt> method returns false otherwise. The default
      *         behavior of <tt>_is_local()</tt> is to return false.
-     *
      * @throws RemoteException
-     *                         The Java to IDL specification does not specify
-     *                         the conditions
-     *                         that cause a <tt>RemoteException</tt> to be
-     *                         thrown.
+     *         The Java to IDL specification does not specify
+     *         the conditions
+     *         that cause a <tt>RemoteException</tt> to be
+     *         thrown.
      */
     public static boolean isLocal(Stub stub) throws RemoteException {
 
@@ -311,7 +303,7 @@ public class Util {
      * corresponding client-side exception.
      * 
      * @param orig
-     *             the exception to wrap.
+     *        the exception to wrap.
      * @return the wrapped exception.
      */
     public static RemoteException wrapException(Throwable orig) {
@@ -329,16 +321,15 @@ public class Util {
      * necessary to support RMI semantics.
      * 
      * @param obj
-     *            the objects to copy or connect.
+     *        the objects to copy or connect.
      * @param orb
-     *            the ORB.
+     *        the ORB.
      * @return the copied or connected objects.
      * @exception RemoteException
-     *                            if any object could not be copied or
-     *                            connected.
+     *            if any object could not be copied or
+     *            connected.
      */
-    public static Object[] copyObjects(Object[] obj, ORB orb)
-            throws RemoteException {
+    public static Object[] copyObjects(Object[] obj, ORB orb) throws RemoteException {
 
         if (utilDelegate != null) {
             return utilDelegate.copyObjects(obj, orb);
@@ -352,16 +343,15 @@ public class Util {
      * parameter, result object, or exception.
      * 
      * @param obj
-     *            the object to copy.
+     *        the object to copy.
      * @param orb
-     *            the ORB.
+     *        the ORB.
      * @return the copy or connected object.
      * @exception RemoteException
-     *                            if the object could not be copied or
-     *                            connected.
+     *            if the object could not be copied or
+     *            connected.
      */
-    public static Object copyObject(Object obj, ORB orb)
-            throws RemoteException {
+    public static Object copyObject(Object obj, ORB orb) throws RemoteException {
 
         if (utilDelegate != null) {
             return utilDelegate.copyObject(obj, orb);
@@ -375,8 +365,7 @@ public class Util {
     // then remove it from PortableRemoteObject. Also in Stub.java
     private static Object createDelegate(String classKey) {
 
-        String className = (String) AccessController.doPrivileged(
-                new GetPropertyAction(classKey));
+        String className = (String) AccessController.doPrivileged(new GetPropertyAction(classKey));
         if (className == null) {
             Properties props = getORBPropertiesFile();
             if (props != null) {
@@ -395,15 +384,13 @@ public class Util {
             exc.initCause(ex);
             throw exc;
         } catch (Exception ex) {
-            INITIALIZE exc = new INITIALIZE("Error while instantiating"
-                    + className);
+            INITIALIZE exc = new INITIALIZE("Error while instantiating" + className);
             exc.initCause(ex);
             throw exc;
         }
     }
 
-    private static Class loadDelegateClass(String className)
-            throws ClassNotFoundException {
+    private static Class loadDelegateClass(String className) throws ClassNotFoundException {
         try {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             return Class.forName(className, false, loader);
@@ -424,8 +411,7 @@ public class Util {
      * Load the orb.properties file.
      */
     private static Properties getORBPropertiesFile() {
-        return (Properties) AccessController.doPrivileged(
-                new GetORBPropertiesFileAction());
+        return (Properties) AccessController.doPrivileged(new GetORBPropertiesFileAction());
     }
 
     private static void isCustomSerializationPermitted() {
@@ -435,8 +421,7 @@ public class Util {
                 // check that a serialization permission has been
                 // set to allow the loading of the Util delegate
                 // which provides access to custom ValueHandler
-                sm.checkPermission(new SerializablePermission(
-                        "enableCustomValueHandler"));
+                sm.checkPermission(new SerializablePermission("enableCustomValueHandler"));
             }
         }
     }

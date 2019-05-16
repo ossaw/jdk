@@ -128,9 +128,8 @@ public class BasicFileChooserUI extends FileChooserUI {
      * {@code createUI} methods of all basic UIs classes to instantiate UIs.
      *
      * @param c
-     *          the {@code JFileChooser} which needs a UI
+     *        the {@code JFileChooser} which needs a UI
      * @return the {@code BasicFileChooserUI} object
-     *
      * @see UIDefaults#getUI(JComponent)
      * @since 1.7
      */
@@ -151,8 +150,7 @@ public class BasicFileChooserUI extends FileChooserUI {
         installDefaults(filechooser);
         installComponents(filechooser);
         installListeners(filechooser);
-        filechooser.applyComponentOrientation(filechooser
-                .getComponentOrientation());
+        filechooser.applyComponentOrientation(filechooser.getComponentOrientation());
     }
 
     public void uninstallUI(JComponent c) {
@@ -181,18 +179,15 @@ public class BasicFileChooserUI extends FileChooserUI {
         }
         fc.addPropertyChangeListener(getModel());
 
-        InputMap inputMap = getInputMap(
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        SwingUtilities.replaceUIInputMap(fc,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
+        InputMap inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        SwingUtilities.replaceUIInputMap(fc, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
         ActionMap actionMap = getActionMap();
         SwingUtilities.replaceUIActionMap(fc, actionMap);
     }
 
     InputMap getInputMap(int condition) {
         if (condition == JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT) {
-            return (InputMap) DefaultLookup.get(getFileChooser(), this,
-                    "FileChooser.ancestorInputMap");
+            return (InputMap) DefaultLookup.get(getFileChooser(), this, "FileChooser.ancestorInputMap");
         }
         return null;
     }
@@ -213,8 +208,7 @@ public class BasicFileChooserUI extends FileChooserUI {
         map.put(FilePane.ACTION_APPROVE_SELECTION, getApproveSelectionAction());
         map.put(FilePane.ACTION_CANCEL, getCancelSelectionAction());
         map.put(FilePane.ACTION_REFRESH, refreshAction);
-        map.put(FilePane.ACTION_CHANGE_TO_PARENT_DIRECTORY,
-                getChangeToParentDirectoryAction());
+        map.put(FilePane.ACTION_CHANGE_TO_PARENT_DIRECTORY, getChangeToParentDirectoryAction());
         return map;
     }
 
@@ -223,16 +217,14 @@ public class BasicFileChooserUI extends FileChooserUI {
             fc.removePropertyChangeListener(propertyChangeListener);
         }
         fc.removePropertyChangeListener(getModel());
-        SwingUtilities.replaceUIInputMap(fc,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
+        SwingUtilities.replaceUIInputMap(fc, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
         SwingUtilities.replaceUIActionMap(fc, null);
     }
 
     protected void installDefaults(JFileChooser fc) {
         installIcons(fc);
         installStrings(fc);
-        usesSingleFilePane = UIManager.getBoolean(
-                "FileChooser.usesSingleFilePane");
+        usesSingleFilePane = UIManager.getBoolean("FileChooser.usesSingleFilePane");
         readOnly = UIManager.getBoolean("FileChooser.readOnly");
         TransferHandler th = fc.getTransferHandler();
         if (th == null || th instanceof UIResource) {
@@ -259,57 +251,38 @@ public class BasicFileChooserUI extends FileChooserUI {
     protected void installStrings(JFileChooser fc) {
 
         Locale l = fc.getLocale();
-        newFolderErrorText = UIManager.getString(
-                "FileChooser.newFolderErrorText", l);
-        newFolderErrorSeparator = UIManager.getString(
-                "FileChooser.newFolderErrorSeparator", l);
+        newFolderErrorText = UIManager.getString("FileChooser.newFolderErrorText", l);
+        newFolderErrorSeparator = UIManager.getString("FileChooser.newFolderErrorSeparator", l);
 
         newFolderParentDoesntExistTitleText = UIManager.getString(
                 "FileChooser.newFolderParentDoesntExistTitleText", l);
-        newFolderParentDoesntExistText = UIManager.getString(
-                "FileChooser.newFolderParentDoesntExistText", l);
+        newFolderParentDoesntExistText = UIManager.getString("FileChooser.newFolderParentDoesntExistText", l);
 
-        fileDescriptionText = UIManager.getString(
-                "FileChooser.fileDescriptionText", l);
-        directoryDescriptionText = UIManager.getString(
-                "FileChooser.directoryDescriptionText", l);
+        fileDescriptionText = UIManager.getString("FileChooser.fileDescriptionText", l);
+        directoryDescriptionText = UIManager.getString("FileChooser.directoryDescriptionText", l);
 
         saveButtonText = UIManager.getString("FileChooser.saveButtonText", l);
         openButtonText = UIManager.getString("FileChooser.openButtonText", l);
-        saveDialogTitleText = UIManager.getString(
-                "FileChooser.saveDialogTitleText", l);
-        openDialogTitleText = UIManager.getString(
-                "FileChooser.openDialogTitleText", l);
-        cancelButtonText = UIManager.getString("FileChooser.cancelButtonText",
-                l);
-        updateButtonText = UIManager.getString("FileChooser.updateButtonText",
-                l);
+        saveDialogTitleText = UIManager.getString("FileChooser.saveDialogTitleText", l);
+        openDialogTitleText = UIManager.getString("FileChooser.openDialogTitleText", l);
+        cancelButtonText = UIManager.getString("FileChooser.cancelButtonText", l);
+        updateButtonText = UIManager.getString("FileChooser.updateButtonText", l);
         helpButtonText = UIManager.getString("FileChooser.helpButtonText", l);
-        directoryOpenButtonText = UIManager.getString(
-                "FileChooser.directoryOpenButtonText", l);
+        directoryOpenButtonText = UIManager.getString("FileChooser.directoryOpenButtonText", l);
 
         saveButtonMnemonic = getMnemonic("FileChooser.saveButtonMnemonic", l);
         openButtonMnemonic = getMnemonic("FileChooser.openButtonMnemonic", l);
-        cancelButtonMnemonic = getMnemonic("FileChooser.cancelButtonMnemonic",
-                l);
-        updateButtonMnemonic = getMnemonic("FileChooser.updateButtonMnemonic",
-                l);
+        cancelButtonMnemonic = getMnemonic("FileChooser.cancelButtonMnemonic", l);
+        updateButtonMnemonic = getMnemonic("FileChooser.updateButtonMnemonic", l);
         helpButtonMnemonic = getMnemonic("FileChooser.helpButtonMnemonic", l);
-        directoryOpenButtonMnemonic = getMnemonic(
-                "FileChooser.directoryOpenButtonMnemonic", l);
+        directoryOpenButtonMnemonic = getMnemonic("FileChooser.directoryOpenButtonMnemonic", l);
 
-        saveButtonToolTipText = UIManager.getString(
-                "FileChooser.saveButtonToolTipText", l);
-        openButtonToolTipText = UIManager.getString(
-                "FileChooser.openButtonToolTipText", l);
-        cancelButtonToolTipText = UIManager.getString(
-                "FileChooser.cancelButtonToolTipText", l);
-        updateButtonToolTipText = UIManager.getString(
-                "FileChooser.updateButtonToolTipText", l);
-        helpButtonToolTipText = UIManager.getString(
-                "FileChooser.helpButtonToolTipText", l);
-        directoryOpenButtonToolTipText = UIManager.getString(
-                "FileChooser.directoryOpenButtonToolTipText", l);
+        saveButtonToolTipText = UIManager.getString("FileChooser.saveButtonToolTipText", l);
+        openButtonToolTipText = UIManager.getString("FileChooser.openButtonToolTipText", l);
+        cancelButtonToolTipText = UIManager.getString("FileChooser.cancelButtonToolTipText", l);
+        updateButtonToolTipText = UIManager.getString("FileChooser.updateButtonToolTipText", l);
+        helpButtonToolTipText = UIManager.getString("FileChooser.helpButtonToolTipText", l);
+        directoryOpenButtonToolTipText = UIManager.getString("FileChooser.directoryOpenButtonToolTipText", l);
     }
 
     protected void uninstallDefaults(JFileChooser fc) {
@@ -362,8 +335,7 @@ public class BasicFileChooserUI extends FileChooserUI {
         return model;
     }
 
-    public PropertyChangeListener createPropertyChangeListener(
-            JFileChooser fc) {
+    public PropertyChangeListener createPropertyChangeListener(JFileChooser fc) {
         return null;
     }
 
@@ -428,8 +400,7 @@ public class BasicFileChooserUI extends FileChooserUI {
         return handler;
     }
 
-    protected MouseListener createDoubleClickListener(JFileChooser fc,
-            JList list) {
+    protected MouseListener createDoubleClickListener(JFileChooser fc, JList list) {
         return new Handler(list);
     }
 
@@ -449,11 +420,9 @@ public class BasicFileChooserUI extends FileChooserUI {
         public void mouseClicked(MouseEvent evt) {
             // Note: we can't depend on evt.getSource() because of backward
             // compatibility
-            if (list != null && SwingUtilities.isLeftMouseButton(evt) && (evt
-                    .getClickCount() % 2 == 0)) {
+            if (list != null && SwingUtilities.isLeftMouseButton(evt) && (evt.getClickCount() % 2 == 0)) {
 
-                int index = SwingUtilities2.loc2IndexFileList(list, evt
-                        .getPoint());
+                int index = SwingUtilities2.loc2IndexFileList(list, evt.getPoint());
                 if (index >= 0) {
                     File f = (File) list.getModel().getElementAt(index);
                     try {
@@ -479,8 +448,7 @@ public class BasicFileChooserUI extends FileChooserUI {
                 if (th1 != th2) {
                     list.setTransferHandler(th1);
                 }
-                if (getFileChooser().getDragEnabled() != list
-                        .getDragEnabled()) {
+                if (getFileChooser().getDragEnabled() != list.getDragEnabled()) {
                     list.setDragEnabled(getFileChooser().getDragEnabled());
                 }
             }
@@ -499,31 +467,24 @@ public class BasicFileChooserUI extends FileChooserUI {
                 JList list = (JList) evt.getSource();
 
                 int fsm = chooser.getFileSelectionMode();
-                boolean useSetDirectory = usesSingleFilePane
-                        && (fsm == JFileChooser.FILES_ONLY);
+                boolean useSetDirectory = usesSingleFilePane && (fsm == JFileChooser.FILES_ONLY);
 
                 if (chooser.isMultiSelectionEnabled()) {
                     File[] files = null;
                     Object[] objects = list.getSelectedValues();
                     if (objects != null) {
-                        if (objects.length == 1 && ((File) objects[0])
-                                .isDirectory() && chooser.isTraversable(
-                                        ((File) objects[0])) && (useSetDirectory
-                                                || !fsv.isFileSystem(
-                                                        ((File) objects[0])))) {
+                        if (objects.length == 1 && ((File) objects[0]).isDirectory() && chooser.isTraversable(
+                                ((File) objects[0])) && (useSetDirectory || !fsv.isFileSystem(
+                                        ((File) objects[0])))) {
                             setDirectorySelected(true);
                             setDirectory(((File) objects[0]));
                         } else {
-                            ArrayList<File> fList = new ArrayList<File>(
-                                    objects.length);
+                            ArrayList<File> fList = new ArrayList<File>(objects.length);
                             for (Object object : objects) {
                                 File f = (File) object;
                                 boolean isDir = f.isDirectory();
-                                if ((chooser.isFileSelectionEnabled() && !isDir)
-                                        || (chooser
-                                                .isDirectorySelectionEnabled()
-                                                && fsv.isFileSystem(f)
-                                                && isDir)) {
+                                if ((chooser.isFileSelectionEnabled() && !isDir) || (chooser
+                                        .isDirectorySelectionEnabled() && fsv.isFileSystem(f) && isDir)) {
                                     fList.add(f);
                                 }
                             }
@@ -536,9 +497,8 @@ public class BasicFileChooserUI extends FileChooserUI {
                     chooser.setSelectedFiles(files);
                 } else {
                     File file = (File) list.getSelectedValue();
-                    if (file != null && file.isDirectory() && chooser
-                            .isTraversable(file) && (useSetDirectory || !fsv
-                                    .isFileSystem(file))) {
+                    if (file != null && file.isDirectory() && chooser.isTraversable(file) && (useSetDirectory
+                            || !fsv.isFileSystem(file))) {
 
                         setDirectorySelected(true);
                         setDirectory(file);
@@ -609,7 +569,7 @@ public class BasicFileChooserUI extends FileChooserUI {
      * This is normally called by the UI on a selection event.
      *
      * @param b
-     *          iff a directory is currently selected.
+     *        iff a directory is currently selected.
      * @since 1.4
      */
     protected void setDirectorySelected(boolean b) {
@@ -632,8 +592,8 @@ public class BasicFileChooserUI extends FileChooserUI {
      * This is normally called by the UI on a selection event.
      *
      * @param f
-     *          the <code>File</code> object representing the directory that
-     *          is currently selected
+     *        the <code>File</code> object representing the directory that
+     *        is currently selected
      * @since 1.4
      */
     protected void setDirectory(File f) {
@@ -756,26 +716,22 @@ public class BasicFileChooserUI extends FileChooserUI {
             File currentDirectory = fc.getCurrentDirectory();
 
             if (!currentDirectory.exists()) {
-                JOptionPane.showMessageDialog(fc,
-                        newFolderParentDoesntExistText,
-                        newFolderParentDoesntExistTitleText,
-                        JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(fc, newFolderParentDoesntExistText,
+                        newFolderParentDoesntExistTitleText, JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             File newFolder;
             try {
-                newFolder = fc.getFileSystemView().createNewFolder(
-                        currentDirectory);
+                newFolder = fc.getFileSystemView().createNewFolder(currentDirectory);
                 if (fc.isMultiSelectionEnabled()) {
                     fc.setSelectedFiles(new File[] { newFolder });
                 } else {
                     fc.setSelectedFile(newFolder);
                 }
             } catch (IOException exc) {
-                JOptionPane.showMessageDialog(fc, newFolderErrorText
-                        + newFolderErrorSeparator + exc, newFolderErrorText,
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(fc, newFolderErrorText + newFolderErrorSeparator + exc,
+                        newFolderErrorText, JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -800,8 +756,7 @@ public class BasicFileChooserUI extends FileChooserUI {
     protected class ChangeToParentDirectoryAction extends AbstractAction {
         protected ChangeToParentDirectoryAction() {
             super("Go Up");
-            putValue(Action.ACTION_COMMAND_KEY,
-                    FilePane.ACTION_CHANGE_TO_PARENT_DIRECTORY);
+            putValue(Action.ACTION_COMMAND_KEY, FilePane.ACTION_CHANGE_TO_PARENT_DIRECTORY);
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -862,20 +817,17 @@ public class BasicFileChooserUI extends FileChooserUI {
             // Unix: Resolve '~' to user's home directory
             if (File.separatorChar == '/') {
                 if (filename.startsWith("~/")) {
-                    filename = System.getProperty("user.home") + filename
-                            .substring(1);
+                    filename = System.getProperty("user.home") + filename.substring(1);
                 } else if (filename.equals("~")) {
                     filename = System.getProperty("user.home");
                 }
             }
 
-            if (chooser.isMultiSelectionEnabled() && filename.length() > 1
-                    && filename.charAt(0) == '"' && filename.charAt(filename
-                            .length() - 1) == '"') {
+            if (chooser.isMultiSelectionEnabled() && filename.length() > 1 && filename.charAt(0) == '"'
+                    && filename.charAt(filename.length() - 1) == '"') {
                 List<File> fList = new ArrayList<File>();
 
-                String[] files = filename.substring(1, filename.length() - 1)
-                        .split("\" \"");
+                String[] files = filename.substring(1, filename.length() - 1).split("\" \"");
                 // Optimize searching files by names in "children" array
                 Arrays.sort(files);
 
@@ -933,28 +885,24 @@ public class BasicFileChooserUI extends FileChooserUI {
                 resetGlobFilter();
 
                 // Check for directory change action
-                boolean isDir = (selectedFile != null && selectedFile
-                        .isDirectory());
-                boolean isTrav = (selectedFile != null && chooser.isTraversable(
-                        selectedFile));
+                boolean isDir = (selectedFile != null && selectedFile.isDirectory());
+                boolean isTrav = (selectedFile != null && chooser.isTraversable(selectedFile));
                 boolean isDirSelEnabled = chooser.isDirectorySelectionEnabled();
                 boolean isFileSelEnabled = chooser.isFileSelectionEnabled();
-                boolean isCtrl = (e != null && (e.getModifiers() & Toolkit
-                        .getDefaultToolkit().getMenuShortcutKeyMask()) != 0);
+                boolean isCtrl = (e != null && (e.getModifiers() & Toolkit.getDefaultToolkit()
+                        .getMenuShortcutKeyMask()) != 0);
 
                 if (isDir && isTrav && (isCtrl || !isDirSelEnabled)) {
                     changeDirectory(selectedFile);
                     return;
-                } else if ((isDir || !isFileSelEnabled) && (!isDir
-                        || !isDirSelEnabled) && (!isDirSelEnabled
-                                || selectedFile.exists())) {
+                } else if ((isDir || !isFileSelEnabled) && (!isDir || !isDirSelEnabled) && (!isDirSelEnabled
+                        || selectedFile.exists())) {
                     selectedFile = null;
                 }
             }
 
             if (selectedFiles != null || selectedFile != null) {
-                if (selectedFiles != null || chooser
-                        .isMultiSelectionEnabled()) {
+                if (selectedFiles != null || chooser.isMultiSelectionEnabled()) {
                     if (selectedFiles == null) {
                         selectedFiles = new File[] { selectedFile };
                     }
@@ -991,10 +939,9 @@ public class BasicFileChooserUI extends FileChooserUI {
     }
 
     private static boolean isGlobPattern(String filename) {
-        return ((File.separatorChar == '\\' && (filename.indexOf('*') >= 0
-                || filename.indexOf('?') >= 0)) || (File.separatorChar == '/'
-                        && (filename.indexOf('*') >= 0 || filename.indexOf(
-                                '?') >= 0 || filename.indexOf('[') >= 0)));
+        return ((File.separatorChar == '\\' && (filename.indexOf('*') >= 0 || filename.indexOf('?') >= 0))
+                || (File.separatorChar == '/' && (filename.indexOf('*') >= 0 || filename.indexOf('?') >= 0
+                        || filename.indexOf('[') >= 0)));
     }
 
     /*
@@ -1088,8 +1035,7 @@ public class BasicFileChooserUI extends FileChooserUI {
                                 rPat[j++] = gPat[++i];
                             } else {
                                 rPat[j++] = '\\';
-                                if (i < gPat.length - 1 && "*?[]".indexOf(gPat[i
-                                        + 1]) >= 0) {
+                                if (i < gPat.length - 1 && "*?[]".indexOf(gPat[i + 1]) >= 0) {
                                     rPat[j++] = gPat[++i];
                                 } else {
                                     rPat[j++] = '\\';
@@ -1107,8 +1053,7 @@ public class BasicFileChooserUI extends FileChooserUI {
                     }
                 }
             }
-            this.pattern = Pattern.compile(new String(rPat, 0, j),
-                    Pattern.CASE_INSENSITIVE);
+            this.pattern = Pattern.compile(new String(rPat, 0, j), Pattern.CASE_INSENSITIVE);
         }
 
         public boolean accept(File f) {
@@ -1141,8 +1086,7 @@ public class BasicFileChooserUI extends FileChooserUI {
     protected class UpdateAction extends AbstractAction {
         public void actionPerformed(ActionEvent e) {
             JFileChooser fc = getFileChooser();
-            fc.setCurrentDirectory(fc.getFileSystemView().createFileObject(
-                    getDirectoryName()));
+            fc.setCurrentDirectory(fc.getFileSystemView().createFileObject(getDirectoryName()));
             fc.rescanCurrentDirectory();
         }
     }
@@ -1173,8 +1117,8 @@ public class BasicFileChooserUI extends FileChooserUI {
             }
         }
         fc.setCurrentDirectory(dir);
-        if (fc.getFileSelectionMode() == JFileChooser.FILES_AND_DIRECTORIES
-                && fc.getFileSystemView().isFileSystem(dir)) {
+        if (fc.getFileSelectionMode() == JFileChooser.FILES_AND_DIRECTORIES && fc.getFileSystemView()
+                .isFileSystem(dir)) {
 
             setFileName(dir.getAbsolutePath());
         }
@@ -1214,8 +1158,7 @@ public class BasicFileChooserUI extends FileChooserUI {
             // Note: Returns display name rather than file name
             String fileName = null;
             if (f != null) {
-                fileName = getFileChooser().getFileSystemView()
-                        .getSystemDisplayName(f);
+                fileName = getFileChooser().getFileSystemView().getSystemDisplayName(f);
             }
             return fileName;
         }
@@ -1225,8 +1168,7 @@ public class BasicFileChooserUI extends FileChooserUI {
         }
 
         public String getTypeDescription(File f) {
-            String type = getFileChooser().getFileSystemView()
-                    .getSystemTypeDescription(f);
+            String type = getFileChooser().getFileSystemView().getSystemTypeDescription(f);
             if (type == null) {
                 if (f.isDirectory()) {
                     type = directoryDescriptionText;
@@ -1288,18 +1230,16 @@ public class BasicFileChooserUI extends FileChooserUI {
      * presented as a list, the list support is reused with the added flavor of
      * DataFlavor.javaFileListFlavor
      */
-    static class FileTransferHandler extends TransferHandler implements
-            UIResource {
+    static class FileTransferHandler extends TransferHandler implements UIResource {
 
         /**
          * Create a Transferable to use as the source for a data transfer.
          *
          * @param c
-         *          The component holding the data to be transfered. This
-         *          argument is provided to enable sharing of TransferHandlers
-         *          by multiple components.
+         *        The component holding the data to be transfered. This
+         *        argument is provided to enable sharing of TransferHandlers
+         *        by multiple components.
          * @return The representation of the data to be transfered.
-         *
          */
         protected Transferable createTransferable(JComponent c) {
             Object[] values = null;
@@ -1334,8 +1274,7 @@ public class BasicFileChooserUI extends FileChooserUI {
             plainBuf.deleteCharAt(plainBuf.length() - 1);
             htmlBuf.append("</ul>\n</body>\n</html>");
 
-            return new FileTransferable(plainBuf.toString(), htmlBuf.toString(),
-                    values);
+            return new FileTransferable(plainBuf.toString(), htmlBuf.toString(), values);
         }
 
         public int getSourceActions(JComponent c) {
@@ -1346,8 +1285,7 @@ public class BasicFileChooserUI extends FileChooserUI {
 
             Object[] fileData;
 
-            FileTransferable(String plainData, String htmlData,
-                    Object[] fileData) {
+            FileTransferable(String plainData, String htmlData, Object[] fileData) {
                 super(plainData, htmlData);
                 this.fileData = fileData;
             }

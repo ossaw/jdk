@@ -61,14 +61,13 @@ public class MatchPatternIterator extends LocPathIterator {
      * expressions.
      *
      * @param compiler
-     *                 The Compiler which is creating this expression.
+     *        The Compiler which is creating this expression.
      * @param opPos
-     *                 The position of this iterator in the opcode list from the
-     *                 compiler.
+     *        The position of this iterator in the opcode list from the
+     *        compiler.
      * @param analysis
-     *                 Analysis bits that give general information about the
-     *                 LocationPath.
-     *
+     *        Analysis bits that give general information about the
+     *        LocationPath.
      * @throws javax.xml.transform.TransformerException
      */
     MatchPatternIterator(Compiler compiler, int opPos, int analysis)
@@ -85,31 +84,25 @@ public class MatchPatternIterator extends LocPathIterator {
         boolean walkDescendants = false;
         boolean walkAttributes = false;
 
-        if (0 != (analysis & (WalkerFactory.BIT_ROOT
-                | WalkerFactory.BIT_ANY_DESCENDANT_FROM_ROOT)))
+        if (0 != (analysis & (WalkerFactory.BIT_ROOT | WalkerFactory.BIT_ANY_DESCENDANT_FROM_ROOT)))
             fromRoot = true;
 
-        if (0 != (analysis & (WalkerFactory.BIT_ANCESTOR
-                | WalkerFactory.BIT_ANCESTOR_OR_SELF
-                | WalkerFactory.BIT_PRECEDING
-                | WalkerFactory.BIT_PRECEDING_SIBLING
-                | WalkerFactory.BIT_FOLLOWING
-                | WalkerFactory.BIT_FOLLOWING_SIBLING | WalkerFactory.BIT_PARENT
+        if (0 != (analysis & (WalkerFactory.BIT_ANCESTOR | WalkerFactory.BIT_ANCESTOR_OR_SELF
+                | WalkerFactory.BIT_PRECEDING | WalkerFactory.BIT_PRECEDING_SIBLING
+                | WalkerFactory.BIT_FOLLOWING | WalkerFactory.BIT_FOLLOWING_SIBLING | WalkerFactory.BIT_PARENT
                 | WalkerFactory.BIT_FILTER)))
             walkBack = true;
 
-        if (0 != (analysis & (WalkerFactory.BIT_DESCENDANT_OR_SELF
-                | WalkerFactory.BIT_DESCENDANT | WalkerFactory.BIT_CHILD)))
+        if (0 != (analysis & (WalkerFactory.BIT_DESCENDANT_OR_SELF | WalkerFactory.BIT_DESCENDANT
+                | WalkerFactory.BIT_CHILD)))
             walkDescendants = true;
 
-        if (0 != (analysis & (WalkerFactory.BIT_ATTRIBUTE
-                | WalkerFactory.BIT_NAMESPACE)))
+        if (0 != (analysis & (WalkerFactory.BIT_ATTRIBUTE | WalkerFactory.BIT_NAMESPACE)))
             walkAttributes = true;
 
         if (false || DEBUG) {
             System.out.print("analysis: " + Integer.toBinaryString(analysis));
-            System.out.println(", " + WalkerFactory.getAnalysisString(
-                    analysis));
+            System.out.println(", " + WalkerFactory.getAnalysisString(analysis));
         }
 
         if (fromRoot || walkBack) {
@@ -137,7 +130,7 @@ public class MatchPatternIterator extends LocPathIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);
@@ -166,8 +159,8 @@ public class MatchPatternIterator extends LocPathIterator {
      * @return The next node on the axis, or DTM.NULL.
      */
     protected int getNextNode() {
-        m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(
-                m_context) : m_traverser.next(m_context, m_lastFetched);
+        m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(m_context)
+                : m_traverser.next(m_context, m_lastFetched);
         return m_lastFetched;
     }
 
@@ -208,8 +201,7 @@ public class MatchPatternIterator extends LocPathIterator {
                 next = getNextNode();
 
                 if (DTM.NULL != next) {
-                    if (DTMIterator.FILTER_ACCEPT == acceptNode(next,
-                            m_execContext))
+                    if (DTMIterator.FILTER_ACCEPT == acceptNode(next, m_execContext))
                         break;
                     else
                         continue;
@@ -246,7 +238,7 @@ public class MatchPatternIterator extends LocPathIterator {
      * called directly from user code.
      * 
      * @param n
-     *          The node to check to see if it passes the filter or not.
+     *        The node to check to see if it passes the filter or not.
      * @return a constant to determine whether the node is accepted, rejected,
      *         or skipped, as defined above .
      */
@@ -274,8 +266,7 @@ public class MatchPatternIterator extends LocPathIterator {
             }
 
             // System.out.println("\n::acceptNode - score: "+score.num()+"::");
-            return (score == NodeTest.SCORE_NONE) ? DTMIterator.FILTER_SKIP
-                    : DTMIterator.FILTER_ACCEPT;
+            return (score == NodeTest.SCORE_NONE) ? DTMIterator.FILTER_SKIP : DTMIterator.FILTER_ACCEPT;
         } catch (javax.xml.transform.TransformerException se) {
 
             // TODO: Fix this.

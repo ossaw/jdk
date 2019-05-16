@@ -27,11 +27,11 @@ public class RowSetEvent extends java.util.EventObject {
      * <code>RowSet</code> object.
      *
      * @param source
-     *               the <code>RowSet</code> object whose data has changed or
-     *               whose
-     *               cursor has moved
+     *        the <code>RowSet</code> object whose data has changed or
+     *        whose
+     *        cursor has moved
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null.
+     *         if <code>source</code> is null.
      */
     public RowSetEvent(RowSet source) {
         super(source);

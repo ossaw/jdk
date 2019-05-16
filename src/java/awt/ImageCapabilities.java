@@ -19,7 +19,7 @@ public class ImageCapabilities implements Cloneable {
      * Creates a new object for specifying image capabilities.
      * 
      * @param accelerated
-     *                    whether or not an accelerated image is desired
+     *        whether or not an accelerated image is desired
      */
     public ImageCapabilities(boolean accelerated) {
         this.accelerated = accelerated;

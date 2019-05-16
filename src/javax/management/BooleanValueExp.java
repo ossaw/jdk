@@ -10,7 +10,6 @@ package javax.management;
  * a ValueExp is required.
  * 
  * @serial include
- *
  * @since 1.5
  */
 class BooleanValueExp extends QueryEval implements ValueExp {
@@ -58,18 +57,15 @@ class BooleanValueExp extends QueryEval implements ValueExp {
      * Applies the ValueExp on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the ValueExp will be applied.
-     *
+     *        The name of the MBean on which the ValueExp will be applied.
      * @return The <CODE>ValueExp</CODE>.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         return this;
     }
 

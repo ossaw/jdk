@@ -24,7 +24,6 @@ import javax.swing.text.*;
  * @see Accessible#getAccessibleContext
  * @see AccessibleContext
  * @see AccessibleContext#getAccessibleText
- *
  * @author Peter Korn
  */
 public interface AccessibleText {
@@ -52,7 +51,6 @@ public interface AccessibleText {
     /**
      * Constant used to indicate that the part of the text that should be
      * retrieved is a sentence.
-     *
      * A sentence is a string of words which expresses an assertion, a question,
      * a command, a wish, an exclamation, or the performance of an action. In
      * English locales, the string usually begins with a capital letter and
@@ -72,7 +70,7 @@ public interface AccessibleText {
      * -1.
      *
      * @param p
-     *          the Point in local coordinates
+     *        the Point in local coordinates
      * @return the zero-based index of the character under Point p; if Point is
      *         invalid return -1.
      */
@@ -84,7 +82,7 @@ public interface AccessibleText {
      * invalid an empty rectangle is returned.
      *
      * @param i
-     *          the index into the String
+     *        the index into the String
      * @return the screen coordinates of the character's bounding box, if index
      *         is invalid return an empty rectangle.
      */
@@ -99,7 +97,6 @@ public interface AccessibleText {
 
     /**
      * Returns the zero-based offset of the caret.
-     *
      * Note: That to the right of the caret will have the same index value as
      * the offset (the caret is between two characters).
      * 
@@ -111,9 +108,9 @@ public interface AccessibleText {
      * Returns the String at a given index.
      *
      * @param part
-     *              the CHARACTER, WORD, or SENTENCE to retrieve
+     *        the CHARACTER, WORD, or SENTENCE to retrieve
      * @param index
-     *              an index within the text
+     *        an index within the text
      * @return the letter, word, or sentence
      */
     public String getAtIndex(int part, int index);
@@ -122,9 +119,9 @@ public interface AccessibleText {
      * Returns the String after a given index.
      *
      * @param part
-     *              the CHARACTER, WORD, or SENTENCE to retrieve
+     *        the CHARACTER, WORD, or SENTENCE to retrieve
      * @param index
-     *              an index within the text
+     *        an index within the text
      * @return the letter, word, or sentence
      */
     public String getAfterIndex(int part, int index);
@@ -133,9 +130,9 @@ public interface AccessibleText {
      * Returns the String before a given index.
      *
      * @param part
-     *              the CHARACTER, WORD, or SENTENCE to retrieve
+     *        the CHARACTER, WORD, or SENTENCE to retrieve
      * @param index
-     *              an index within the text
+     *        an index within the text
      * @return the letter, word, or sentence
      */
     public String getBeforeIndex(int part, int index);
@@ -144,7 +141,7 @@ public interface AccessibleText {
      * Returns the AttributeSet for a given character at a given index
      *
      * @param i
-     *          the zero-based index into the text
+     *        the zero-based index into the text
      * @return the AttributeSet of the character
      */
     public AttributeSet getCharacterAttribute(int i);

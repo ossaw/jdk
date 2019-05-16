@@ -27,7 +27,7 @@ public final class SchemaFactoryConfigurationError extends Error {
      * <code>String</code> specified as an error message.
      *
      * @param message
-     *                The error message for the exception.
+     *        The error message for the exception.
      */
     public SchemaFactoryConfigurationError(String message) {
         super(message);
@@ -38,8 +38,8 @@ public final class SchemaFactoryConfigurationError extends Error {
      * <code>Throwable</code> base cause.
      *
      * @param cause
-     *              The exception or error to be encapsulated in a
-     *              SchemaFactoryConfigurationError.
+     *        The exception or error to be encapsulated in a
+     *        SchemaFactoryConfigurationError.
      */
     public SchemaFactoryConfigurationError(Throwable cause) {
         super(cause);
@@ -50,10 +50,10 @@ public final class SchemaFactoryConfigurationError extends Error {
      * <code>Throwable</code> base cause and detail message.
      *
      * @param cause
-     *                The exception or error to be encapsulated in a
-     *                SchemaFactoryConfigurationError.
+     *        The exception or error to be encapsulated in a
+     *        SchemaFactoryConfigurationError.
      * @param message
-     *                The detail message.
+     *        The detail message.
      */
     public SchemaFactoryConfigurationError(String message, Throwable cause) {
         super(message, cause);

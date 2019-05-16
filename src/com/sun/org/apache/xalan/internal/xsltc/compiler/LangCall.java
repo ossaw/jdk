@@ -74,8 +74,8 @@ final class LangCall extends FunctionCall {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
 
-        final int tst = cpg.addMethodref(BASIS_LIBRARY_CLASS, "testLanguage",
-                "(" + STRING_SIG + DOM_INTF_SIG + "I)Z");
+        final int tst = cpg.addMethodref(BASIS_LIBRARY_CLASS, "testLanguage", "(" + STRING_SIG + DOM_INTF_SIG
+                + "I)Z");
         _lang.translate(classGen, methodGen);
         il.append(methodGen.loadDOM());
         if (classGen instanceof FilterGenerator)

@@ -12,7 +12,6 @@ import com.sun.corba.se.spi.legacy.connection.Connection;
  * PortableInterceptor.ClientRequestInfo and
  * PortableInterceptor.ServerRequestInfo.
  * <p>
- *
  */
 
 public interface RequestInfoExt {

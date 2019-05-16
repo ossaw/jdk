@@ -15,7 +15,6 @@ package javax.management;
  * MBeanServer. The ObjectName of the MBeanServerDelegate is
  * {@link MBeanServerDelegate#DELEGATE_NAME}, which is
  * <CODE>JMImplementation:type=MBeanServerDelegate</CODE>.
- *
  * <p>
  * The following code prints a message every time an MBean is registered or
  * unregistered in the MBean Server {@code mbeanServer}:
@@ -45,13 +44,11 @@ package javax.management;
  *     mbeanServer.addNotificationListener(
  *             MBeanServerDelegate.DELEGATE_NAME, printListener, null, null);
  * </pre>
- *
  * <p id="group">
  * An MBean which is not an {@link MBeanServerDelegate} may also emit
  * MBeanServerNotifications. In particular, there is a convention for MBeans to
  * emit an MBeanServerNotification for a group of MBeans.
  * </p>
- *
  * <p>
  * An MBeanServerNotification emitted to denote the registration or
  * unregistration of a group of MBeans has the following characteristics:
@@ -69,7 +66,6 @@ package javax.management;
  * set to an array of ObjectNames containing the names of all MBeans being
  * registered or unregistered.</li>
  * </ul>
- *
  * <p>
  * MBeans which emit these group registration/unregistration notifications will
  * declare them in their {@link MBeanInfo#getNotifications()
@@ -102,25 +98,23 @@ public class MBeanServerNotification extends Notification {
      * MBeans that caused the notification and the specified notification type.
      *
      * @param type
-     *                       A string denoting the type of the notification. Set
-     *                       it to one
-     *                       these values: {@link #REGISTRATION_NOTIFICATION},
-     *                       {@link #UNREGISTRATION_NOTIFICATION}.
+     *        A string denoting the type of the notification. Set
+     *        it to one
+     *        these values: {@link #REGISTRATION_NOTIFICATION},
+     *        {@link #UNREGISTRATION_NOTIFICATION}.
      * @param source
-     *                       The MBeanServerNotification object responsible for
-     *                       forwarding
-     *                       MBean server notification.
+     *        The MBeanServerNotification object responsible for
+     *        forwarding
+     *        MBean server notification.
      * @param sequenceNumber
-     *                       A sequence number that can be used to order
-     *                       received
-     *                       notifications.
+     *        A sequence number that can be used to order
+     *        received
+     *        notifications.
      * @param objectName
-     *                       The object name of the MBean that caused the
-     *                       notification.
-     *
+     *        The object name of the MBean that caused the
+     *        notification.
      */
-    public MBeanServerNotification(String type, Object source,
-            long sequenceNumber, ObjectName objectName) {
+    public MBeanServerNotification(String type, Object source, long sequenceNumber, ObjectName objectName) {
         super(type, source, sequenceNumber);
         this.objectName = objectName;
     }

@@ -23,7 +23,7 @@ public class SnmpUnknownSecModelException extends SnmpUnknownModelException {
      * Constructor.
      * 
      * @param msg
-     *            The exception msg to display.
+     *        The exception msg to display.
      */
     public SnmpUnknownSecModelException(String msg) {
         super(msg);

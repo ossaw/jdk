@@ -19,7 +19,6 @@ import com.sun.jmx.remote.util.ClassLogger;
  * NotificationEmitter} interface. This can be used as the super class of an
  * MBean that sends notifications.
  * </p>
- *
  * <p>
  * By default, the notification dispatch model is synchronous. That is, when a
  * thread calls sendNotification, the
@@ -28,7 +27,6 @@ import com.sun.jmx.remote.util.ClassLogger;
  * <code>handleNotification</code> in a subclass, or by passing an Executor to
  * the constructor.
  * </p>
- *
  * <p>
  * If the method call of a filter or listener throws an {@link Exception}, then
  * that exception does not prevent other listeners from being invoked. However,
@@ -37,7 +35,6 @@ import com.sun.jmx.remote.util.ClassLogger;
  * {@link Error}, then that {@code Error} is propagated to the caller of
  * {@link #sendNotification sendNotification}.
  * </p>
- *
  * <p>
  * Remote listeners added using the JMX Remote API (see JMXConnector) are not
  * usually called synchronously. That is, when sendNotification returns, it is
@@ -76,12 +73,12 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * null)}.
      * 
      * @param executor
-     *                 an executor used by the method
-     *                 <code>sendNotification</code>
-     *                 to send each notification. If it is null, the thread
-     *                 calling
-     *                 <code>sendNotification</code> will invoke the
-     *                 <code>handleNotification</code> method itself.
+     *        an executor used by the method
+     *        <code>sendNotification</code>
+     *        to send each notification. If it is null, the thread
+     *        calling
+     *        <code>sendNotification</code> will invoke the
+     *        <code>handleNotification</code> method itself.
      * @since 1.6
      */
     public NotificationBroadcasterSupport(Executor executor) {
@@ -97,7 +94,6 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * MBeanNotificationInfo[] info) NotificationBroadcasterSupport(null, info)}
      * .
      * </p>
-     *
      * <p>
      * If the <code>info</code> array is not empty, then it is cloned by the
      * constructor as if by {@code info.clone()}, and each call to
@@ -105,11 +101,10 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * </p>
      *
      * @param info
-     *             an array indicating, for each notification this MBean may
-     *             send, the name of the Java class of the notification and the
-     *             notification type. Can be null, which is equivalent to an
-     *             empty array.
-     *
+     *        an array indicating, for each notification this MBean may
+     *        send, the name of the Java class of the notification and the
+     *        notification type. Can be null, which is equivalent to an
+     *        empty array.
      * @since 1.6
      */
     public NotificationBroadcasterSupport(MBeanNotificationInfo... info) {
@@ -122,7 +117,6 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * notifications that may be sent, and where each listener is invoked using
      * the given {@link java.util.concurrent.Executor}.
      * </p>
-     *
      * <p>
      * When {@link #sendNotification sendNotification} is called, a listener is
      * selected if it was added with a null {@link NotificationFilter}, or if
@@ -133,7 +127,6 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * listener, {@link Executor#execute executor.execute} is called with a
      * command that calls the <code>handleNotification</code> method.
      * </p>
-     *
      * <p>
      * If the <code>info</code> array is not empty, then it is cloned by the
      * constructor as if by {@code info.clone()}, and each call to
@@ -141,24 +134,21 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * </p>
      *
      * @param executor
-     *                 an executor used by the method
-     *                 <code>sendNotification</code>
-     *                 to send each notification. If it is null, the thread
-     *                 calling
-     *                 <code>sendNotification</code> will invoke the
-     *                 <code>handleNotification</code> method itself.
-     *
+     *        an executor used by the method
+     *        <code>sendNotification</code>
+     *        to send each notification. If it is null, the thread
+     *        calling
+     *        <code>sendNotification</code> will invoke the
+     *        <code>handleNotification</code> method itself.
      * @param info
-     *                 an array indicating, for each notification this MBean may
-     *                 send, the name of the Java class of the notification and
-     *                 the
-     *                 notification type. Can be null, which is equivalent to an
-     *                 empty array.
-     *
+     *        an array indicating, for each notification this MBean may
+     *        send, the name of the Java class of the notification and
+     *        the
+     *        notification type. Can be null, which is equivalent to an
+     *        empty array.
      * @since 1.6
      */
-    public NotificationBroadcasterSupport(Executor executor,
-            MBeanNotificationInfo... info) {
+    public NotificationBroadcasterSupport(Executor executor, MBeanNotificationInfo... info) {
         this.executor = (executor != null) ? executor : defaultExecutor;
 
         notifInfo = info == null ? NO_NOTIFICATION_INFO : info.clone();
@@ -168,26 +158,24 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * Adds a listener.
      *
      * @param listener
-     *                 The listener to receive notifications.
+     *        The listener to receive notifications.
      * @param filter
-     *                 The filter object. If filter is null, no filtering will
-     *                 be
-     *                 performed before handling notifications.
+     *        The filter object. If filter is null, no filtering will
+     *        be
+     *        performed before handling notifications.
      * @param handback
-     *                 An opaque object to be sent back to the listener when a
-     *                 notification is emitted. This object cannot be used by
-     *                 the
-     *                 Notification broadcaster object. It should be resent
-     *                 unchanged
-     *                 with the notification to the listener.
-     *
+     *        An opaque object to be sent back to the listener when a
+     *        notification is emitted. This object cannot be used by
+     *        the
+     *        Notification broadcaster object. It should be resent
+     *        unchanged
+     *        with the notification to the listener.
      * @exception IllegalArgumentException
-     *                                     thrown if the listener is null.
-     *
+     *            thrown if the listener is null.
      * @see #removeNotificationListener
      */
-    public void addNotificationListener(NotificationListener listener,
-            NotificationFilter filter, Object handback) {
+    public void addNotificationListener(NotificationListener listener, NotificationFilter filter,
+            Object handback) {
 
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
@@ -196,25 +184,22 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
         listenerList.add(new ListenerInfo(listener, filter, handback));
     }
 
-    public void removeNotificationListener(NotificationListener listener)
-            throws ListenerNotFoundException {
+    public void removeNotificationListener(NotificationListener listener) throws ListenerNotFoundException {
 
         ListenerInfo wildcard = new WildcardListenerInfo(listener);
-        boolean removed = listenerList.removeAll(Collections.singleton(
-                wildcard));
+        boolean removed = listenerList.removeAll(Collections.singleton(wildcard));
         if (!removed)
             throw new ListenerNotFoundException("Listener not registered");
     }
 
-    public void removeNotificationListener(NotificationListener listener,
-            NotificationFilter filter, Object handback)
-            throws ListenerNotFoundException {
+    public void removeNotificationListener(NotificationListener listener, NotificationFilter filter,
+            Object handback) throws ListenerNotFoundException {
 
         ListenerInfo li = new ListenerInfo(listener, filter, handback);
         boolean removed = listenerList.remove(li);
         if (!removed) {
-            throw new ListenerNotFoundException("Listener not registered "
-                    + "(with this filter and " + "handback)");
+            throw new ListenerNotFoundException("Listener not registered " + "(with this filter and "
+                    + "handback)");
             // or perhaps not registered at all
         }
     }
@@ -228,13 +213,12 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
 
     /**
      * Sends a notification.
-     *
      * If an {@code Executor} was specified in the constructor, it will be given
      * one task per selected listener to deliver the notification to that
      * listener.
      *
      * @param notification
-     *                     The notification to send.
+     *        The notification to send.
      */
     public void sendNotification(Notification notification) {
 
@@ -246,8 +230,7 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
 
         for (ListenerInfo li : listenerList) {
             try {
-                enabled = li.filter == null || li.filter.isNotificationEnabled(
-                        notification);
+                enabled = li.filter == null || li.filter.isNotificationEnabled(notification);
             } catch (Exception e) {
                 if (logger.debugOn()) {
                     logger.debug("sendNotification", e);
@@ -269,7 +252,6 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * be overridden in subclasses to change the behavior of notification
      * delivery, for instance to deliver the notification in a separate thread.
      * </p>
-     *
      * <p>
      * The default implementation of this method is equivalent to
      * 
@@ -278,18 +260,16 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
      * </pre>
      *
      * @param listener
-     *                 the listener to which the notification is being
-     *                 delivered.
+     *        the listener to which the notification is being
+     *        delivered.
      * @param notif
-     *                 the notification being delivered to the listener.
+     *        the notification being delivered to the listener.
      * @param handback
-     *                 the handback object that was supplied when the listener
-     *                 was
-     *                 added.
-     *
+     *        the handback object that was supplied when the listener
+     *        was
+     *        added.
      */
-    protected void handleNotification(NotificationListener listener,
-            Notification notif, Object handback) {
+    protected void handleNotification(NotificationListener listener, Notification notif, Object handback) {
         listener.handleNotification(notif, handback);
     }
 
@@ -299,8 +279,7 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
         NotificationFilter filter;
         Object handback;
 
-        ListenerInfo(NotificationListener listener, NotificationFilter filter,
-                Object handback) {
+        ListenerInfo(NotificationListener listener, NotificationFilter filter, Object handback) {
             this.listener = listener;
             this.filter = filter;
             this.handback = handback;
@@ -314,8 +293,7 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
             if (li instanceof WildcardListenerInfo)
                 return (li.listener == listener);
             else
-                return (li.listener == listener && li.filter == filter
-                        && li.handback == handback);
+                return (li.listener == listener && li.filter == filter && li.handback == handback);
         }
 
         @Override
@@ -364,8 +342,7 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
 
         public void run() {
             try {
-                handleNotification(listenerInfo.listener, notif,
-                        listenerInfo.handback);
+                handleNotification(listenerInfo.listener, notif, listenerInfo.handback);
             } catch (Exception e) {
                 if (logger.debugOn()) {
                     logger.debug("SendNotifJob-run", e);
@@ -377,6 +354,6 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
         private final ListenerInfo listenerInfo;
     }
 
-    private static final ClassLogger logger = new ClassLogger(
-            "javax.management", "NotificationBroadcasterSupport");
+    private static final ClassLogger logger = new ClassLogger("javax.management",
+            "NotificationBroadcasterSupport");
 }

@@ -12,7 +12,6 @@ import javax.management.ObjectName;
 /**
  * Exposes the remote management interface of the gauge monitor MBean.
  *
- *
  * @since 1.5
  */
 public interface GaugeMonitorMBean extends MonitorMBean {
@@ -44,10 +43,9 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      * Gets the derived gauge for the specified MBean.
      *
      * @param object
-     *               the MBean for which the derived gauge is to be returned
+     *        the MBean for which the derived gauge is to be returned
      * @return The derived gauge for the specified MBean if this MBean is in the
      *         set of observed MBeans, or <code>null</code> otherwise.
-     *
      */
     public Number getDerivedGauge(ObjectName object);
 
@@ -55,11 +53,10 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      * Gets the derived gauge timestamp for the specified MBean.
      *
      * @param object
-     *               the MBean for which the derived gauge timestamp is to be
-     *               returned
+     *        the MBean for which the derived gauge timestamp is to be
+     *        returned
      * @return The derived gauge timestamp for the specified MBean if this MBean
      *         is in the set of observed MBeans, or <code>null</code> otherwise.
-     *
      */
     public long getDerivedGaugeTimeStamp(ObjectName object);
 
@@ -81,23 +78,21 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      * Sets the high and the low threshold values.
      *
      * @param highValue
-     *                  The high threshold value.
+     *        The high threshold value.
      * @param lowValue
-     *                  The low threshold value.
+     *        The low threshold value.
      * @exception java.lang.IllegalArgumentException
      *            The specified high/low threshold is null or the low
      *            threshold is greater than the high threshold or the high
      *            threshold and the low threshold are not of the same type.
      */
-    public void setThresholds(Number highValue, Number lowValue)
-            throws java.lang.IllegalArgumentException;
+    public void setThresholds(Number highValue, Number lowValue) throws java.lang.IllegalArgumentException;
 
     /**
      * Gets the high notification's on/off switch value.
      *
      * @return <CODE>true</CODE> if the gauge monitor notifies when exceeding
      *         the high threshold, <CODE>false</CODE> otherwise.
-     *
      * @see #setNotifyHigh
      */
     public boolean getNotifyHigh();
@@ -106,8 +101,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      * Sets the high notification's on/off switch value.
      *
      * @param value
-     *              The high notification's on/off switch value.
-     *
+     *        The high notification's on/off switch value.
      * @see #getNotifyHigh
      */
     public void setNotifyHigh(boolean value);
@@ -117,7 +111,6 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      *
      * @return <CODE>true</CODE> if the gauge monitor notifies when exceeding
      *         the low threshold, <CODE>false</CODE> otherwise.
-     *
      * @see #setNotifyLow
      */
     public boolean getNotifyLow();
@@ -126,8 +119,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      * Sets the low notification's on/off switch value.
      *
      * @param value
-     *              The low notification's on/off switch value.
-     *
+     *        The low notification's on/off switch value.
      * @see #getNotifyLow
      */
     public void setNotifyLow(boolean value);
@@ -137,7 +129,6 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      *
      * @return <CODE>true</CODE> if the difference mode is used,
      *         <CODE>false</CODE> otherwise.
-     *
      * @see #setDifferenceMode
      */
     public boolean getDifferenceMode();
@@ -146,8 +137,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
      * Sets the difference mode flag value.
      *
      * @param value
-     *              The difference mode flag value.
-     *
+     *        The difference mode flag value.
      * @see #getDifferenceMode
      */
     public void setDifferenceMode(boolean value);

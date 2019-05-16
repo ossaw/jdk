@@ -103,7 +103,7 @@ public class BasicAttribute implements Attribute {
      * are equal have the same hash code.
      *
      * @param obj
-     *            The possibly null object to check.
+     *        The possibly null object to check.
      * @return true if obj is equal to this attribute; false otherwise.
      * @see #hashCode
      * @see #contains
@@ -117,8 +117,7 @@ public class BasicAttribute implements Attribute {
                 return false;
             }
             int len;
-            if (attrID.equals(target.getID()) && (len = size()) == target
-                    .size()) {
+            if (attrID.equals(target.getID()) && (len = size()) == target.size()) {
                 try {
                     if (isOrdered()) {
                         // Go through both list of values
@@ -194,8 +193,7 @@ public class BasicAttribute implements Attribute {
             answer.append("No values");
         } else {
             boolean start = true;
-            for (Enumeration<Object> e = values.elements(); e
-                    .hasMoreElements();) {
+            for (Enumeration<Object> e = values.elements(); e.hasMoreElements();) {
                 if (!start)
                     answer.append(", ");
                 answer.append(e.nextElement());
@@ -209,7 +207,7 @@ public class BasicAttribute implements Attribute {
      * Constructs a new instance of an unordered attribute with no value.
      *
      * @param id
-     *           The attribute's id. It cannot be null.
+     *        The attribute's id. It cannot be null.
      */
     public BasicAttribute(String id) {
         this(id, false);
@@ -219,10 +217,10 @@ public class BasicAttribute implements Attribute {
      * Constructs a new instance of an unordered attribute with a single value.
      *
      * @param id
-     *              The attribute's id. It cannot be null.
+     *        The attribute's id. It cannot be null.
      * @param value
-     *              The attribute's value. If null, a null value is added to the
-     *              attribute.
+     *        The attribute's value. If null, a null value is added to the
+     *        attribute.
      */
     public BasicAttribute(String id, Object value) {
         this(id, value, false);
@@ -232,10 +230,10 @@ public class BasicAttribute implements Attribute {
      * Constructs a new instance of a possibly ordered attribute with no value.
      *
      * @param id
-     *                The attribute's id. It cannot be null.
+     *        The attribute's id. It cannot be null.
      * @param ordered
-     *                true means the attribute's values will be ordered; false
-     *                otherwise.
+     *        true means the attribute's values will be ordered; false
+     *        otherwise.
      */
     public BasicAttribute(String id, boolean ordered) {
         attrID = id;
@@ -248,14 +246,14 @@ public class BasicAttribute implements Attribute {
      * value.
      *
      * @param id
-     *                The attribute's id. It cannot be null.
+     *        The attribute's id. It cannot be null.
      * @param value
-     *                The attribute's value. If null, a null value is added to
-     *                the
-     *                attribute.
+     *        The attribute's value. If null, a null value is added to
+     *        the
+     *        attribute.
      * @param ordered
-     *                true means the attribute's values will be ordered; false
-     *                otherwise.
+     *        true means the attribute's values will be ordered; false
+     *        otherwise.
      */
     public BasicAttribute(String id, Object value, boolean ordered) {
         this(id, ordered);
@@ -282,8 +280,7 @@ public class BasicAttribute implements Attribute {
      */
     public Object get() throws NamingException {
         if (values.size() == 0) {
-            throw new NoSuchElementException("Attribute " + getID()
-                    + " has no value");
+            throw new NoSuchElementException("Attribute " + getID() + " has no value");
         } else {
             return values.elementAt(0);
         }
@@ -326,8 +323,7 @@ public class BasicAttribute implements Attribute {
             Object it;
             for (int i = 0; i < ct; i++) {
                 it = values.elementAt(i);
-                if (it != null && cl == it.getClass() && arrayEquals(target,
-                        it))
+                if (it != null && cl == it.getClass() && arrayEquals(target, it))
                     return i;
             }
         } else {
@@ -437,16 +433,14 @@ public class BasicAttribute implements Attribute {
 
     public void add(int ix, Object attrVal) {
         if (!isOrdered() && contains(attrVal)) {
-            throw new IllegalStateException(
-                    "Cannot add duplicate to unordered attribute");
+            throw new IllegalStateException("Cannot add duplicate to unordered attribute");
         }
         values.insertElementAt(attrVal, ix);
     }
 
     public Object set(int ix, Object attrVal) {
         if (!isOrdered() && contains(attrVal)) {
-            throw new IllegalStateException(
-                    "Cannot add duplicate to unordered attribute");
+            throw new IllegalStateException("Cannot add duplicate to unordered attribute");
         }
 
         Object answer = values.elementAt(ix);
@@ -484,8 +478,7 @@ public class BasicAttribute implements Attribute {
      * @serialData Default field (the attribute ID -- a String), followed by the
      *             number of values (an int), and the individual values.
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         s.defaultWriteObject(); // write out the attrID
         s.writeInt(values.size());
         for (int i = 0; i < values.size(); i++) {
@@ -496,8 +489,7 @@ public class BasicAttribute implements Attribute {
     /**
      * Overridden to avoid exposing implementation details.
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         s.defaultReadObject(); // read in the attrID
         int n = s.readInt(); // number of values
         values = new Vector<>(Math.min(1024, n));

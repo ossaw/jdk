@@ -11,15 +11,13 @@ package org.omg.CosNaming;
 /**
  * The BindingIterator interface allows a client to iterate through the bindings
  * using the next_one or next_n operations.
- * 
  * The bindings iterator is obtained by using the <tt>list</tt> method on the
  * <tt>NamingContext</tt>.
  * 
  * @see org.omg.CosNaming.NamingContext#list
  */
-public abstract class BindingIteratorPOA extends org.omg.PortableServer.Servant
-        implements org.omg.CosNaming.BindingIteratorOperations,
-        org.omg.CORBA.portable.InvokeHandler {
+public abstract class BindingIteratorPOA extends org.omg.PortableServer.Servant implements
+        org.omg.CosNaming.BindingIteratorOperations, org.omg.CORBA.portable.InvokeHandler {
 
     // Constructors
 
@@ -30,14 +28,12 @@ public abstract class BindingIteratorPOA extends org.omg.PortableServer.Servant
         _methods.put("destroy", new java.lang.Integer(2));
     }
 
-    public org.omg.CORBA.portable.OutputStream _invoke(String $method,
-            org.omg.CORBA.portable.InputStream in,
+    public org.omg.CORBA.portable.OutputStream _invoke(String $method, org.omg.CORBA.portable.InputStream in,
             org.omg.CORBA.portable.ResponseHandler $rh) {
         org.omg.CORBA.portable.OutputStream out = null;
         java.lang.Integer __method = (java.lang.Integer) _methods.get($method);
         if (__method == null)
-            throw new org.omg.CORBA.BAD_OPERATION(0,
-                    org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+            throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
 
         switch (__method.intValue()) {
 
@@ -46,7 +42,7 @@ public abstract class BindingIteratorPOA extends org.omg.PortableServer.Servant
              * bindings, false is returned.
              * 
              * @param b
-             *          the returned binding
+             *        the returned binding
              */
             case 0: // CosNaming/BindingIterator/next_one
             {
@@ -63,11 +59,10 @@ public abstract class BindingIteratorPOA extends org.omg.PortableServer.Servant
              * This operation returns at most the requested number of bindings.
              * 
              * @param how_many
-             *                 the maximum number of bindings tro return
-             *                 <p>
-             * 
+             *        the maximum number of bindings tro return
+             *        <p>
              * @param bl
-             *                 the returned bindings
+             *        the returned bindings
              */
             case 1: // CosNaming/BindingIterator/next_n
             {
@@ -92,19 +87,16 @@ public abstract class BindingIteratorPOA extends org.omg.PortableServer.Servant
             }
 
             default:
-                throw new org.omg.CORBA.BAD_OPERATION(0,
-                        org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+                throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
 
         return out;
     } // _invoke
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/CosNaming/BindingIterator:1.0" };
+    private static String[] __ids = { "IDL:omg.org/CosNaming/BindingIterator:1.0" };
 
-    public String[] _all_interfaces(org.omg.PortableServer.POA poa,
-            byte[] objectId) {
+    public String[] _all_interfaces(org.omg.PortableServer.POA poa, byte[] objectId) {
         return (String[]) __ids.clone();
     }
 

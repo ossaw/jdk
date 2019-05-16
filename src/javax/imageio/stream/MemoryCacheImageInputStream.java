@@ -15,12 +15,10 @@ import sun.java2d.DisposerRecord;
  * An implementation of <code>ImageInputStream</code> that gets its input from a
  * regular <code>InputStream</code>. A memory buffer is used to cache at least
  * the data between the discard position and the current read position.
- *
  * <p>
  * In general, it is preferable to use a <code>FileCacheImageInputStream</code>
  * when reading from a regular <code>InputStream</code>. This class is provided
  * for cases where it is not possible to create a writable temporary file.
- *
  */
 public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
 
@@ -39,11 +37,10 @@ public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
      * a given <code>InputStream</code>.
      *
      * @param stream
-     *               an <code>InputStream</code> to read from.
-     *
+     *        an <code>InputStream</code> to read from.
      * @exception IllegalArgumentException
-     *                                     if <code>stream</code> is
-     *                                     <code>null</code>.
+     *            if <code>stream</code> is
+     *            <code>null</code>.
      */
     public MemoryCacheImageInputStream(InputStream stream) {
         if (stream == null) {
@@ -78,8 +75,7 @@ public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
             throw new NullPointerException("b == null!");
         }
         if (off < 0 || len < 0 || off + len > b.length || off + len < 0) {
-            throw new IndexOutOfBoundsException(
-                    "off < 0 || len < 0 || off+len > b.length || off+len < 0!");
+            throw new IndexOutOfBoundsException("off < 0 || len < 0 || off+len > b.length || off+len < 0!");
         }
 
         bitOffset = 0;
@@ -111,7 +107,6 @@ public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
      * data in order to allow seeking backwards.
      *
      * @return <code>true</code>.
-     *
      * @see #isCachedMemory
      * @see #isCachedFile
      */
@@ -124,7 +119,6 @@ public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
      * not maintain a file cache.
      *
      * @return <code>false</code>.
-     *
      * @see #isCached
      * @see #isCachedMemory
      */
@@ -137,7 +131,6 @@ public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
      * maintains a main memory cache.
      *
      * @return <code>true</code>.
-     *
      * @see #isCached
      * @see #isCachedFile
      */

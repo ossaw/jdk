@@ -34,11 +34,9 @@ package java.text;
  * signaling that the iterator has reached the end of the sequence. DONE is also
  * returned by other methods to indicate that the current index is outside this
  * range.
- *
  * <P>
  * Examples:
  * <P>
- *
  * Traverse the text from start to finish
  * 
  * <pre>
@@ -151,10 +149,10 @@ public interface CharacterIterator extends Cloneable {
      * character.
      * 
      * @param position
-     *                 the position within the text. Valid values range from
-     *                 getBeginIndex() to getEndIndex(). An
-     *                 IllegalArgumentException
-     *                 is thrown if an invalid value is supplied.
+     *        the position within the text. Valid values range from
+     *        getBeginIndex() to getEndIndex(). An
+     *        IllegalArgumentException
+     *        is thrown if an invalid value is supplied.
      * @return the character at the specified position or DONE if the specified
      *         position is equal to getEndIndex()
      */

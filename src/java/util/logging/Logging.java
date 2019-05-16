@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 /**
  * Logging is the implementation class of LoggingMXBean.
- *
  * The <tt>LoggingMXBean</tt> interface provides a standard method for
  * management access to the individual {@code Logger} objects available at
  * runtime.
@@ -19,7 +18,6 @@ import java.util.ArrayList;
  * @author Ron Mann
  * @author Mandy Chung
  * @since 1.5
- *
  * @see javax.management
  * @see Logger
  * @see LogManager
@@ -67,8 +65,7 @@ class Logging implements LoggingMXBean {
 
         Logger logger = logManager.getLogger(loggerName);
         if (logger == null) {
-            throw new IllegalArgumentException("Logger " + loggerName
-                    + "does not exist");
+            throw new IllegalArgumentException("Logger " + loggerName + "does not exist");
         }
 
         Level level = null;
@@ -76,8 +73,7 @@ class Logging implements LoggingMXBean {
             // parse will throw IAE if logLevel is invalid
             level = Level.findLevel(levelName);
             if (level == null) {
-                throw new IllegalArgumentException("Unknown level \""
-                        + levelName + "\"");
+                throw new IllegalArgumentException("Unknown level \"" + levelName + "\"");
             }
         }
 

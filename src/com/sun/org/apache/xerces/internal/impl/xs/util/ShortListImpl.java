@@ -26,9 +26,7 @@ import com.sun.org.apache.xerces.internal.xs.XSException;
  * Containts a list of Object's.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: ShortListImpl.java,v 1.7 2010-11-01 04:40:06 joehw Exp $
  */
 public final class ShortListImpl extends AbstractList implements ShortList {
@@ -36,8 +34,7 @@ public final class ShortListImpl extends AbstractList implements ShortList {
     /**
      * An immutable empty list.
      */
-    public static final ShortListImpl EMPTY_LIST = new ShortListImpl(
-            new short[0], 0);
+    public static final ShortListImpl EMPTY_LIST = new ShortListImpl(new short[0], 0);
 
     // The array to hold all data
     private final short[] fArray;
@@ -48,9 +45,9 @@ public final class ShortListImpl extends AbstractList implements ShortList {
      * Construct an XSObjectList implementation
      *
      * @param array
-     *               the data array
+     *        the data array
      * @param length
-     *               the number of elements
+     *        the number of elements
      */
     public ShortListImpl(short[] array, int length) {
         fArray = array;
@@ -70,8 +67,8 @@ public final class ShortListImpl extends AbstractList implements ShortList {
      * of this list.
      * 
      * @param item
-     *             <code>unsigned short</code> whose presence in this list is to
-     *             be tested.
+     *        <code>unsigned short</code> whose presence in this list is to
+     *        be tested.
      * @return True if this list contains the <code>unsigned short</code>
      *         <code>item</code>.
      */

@@ -26,20 +26,17 @@ import javax.imageio.spi.ImageWriterSpi;
  * An abstract superclass for encoding and writing images. This class must be
  * subclassed by classes that write out images in the context of the Java Image
  * I/O framework.
- *
  * <p>
  * <code>ImageWriter</code> objects are normally instantiated by the service
  * provider class for the specific format. Service provider classes are
  * registered with the <code>IIORegistry</code>, which uses them for format
  * recognition and presentation of available format readers and writers.
- *
  * <p>
  *
  * @see ImageReader
  * @see ImageWriteParam
  * @see javax.imageio.spi.IIORegistry
  * @see javax.imageio.spi.ImageWriterSpi
- *
  */
 public abstract class ImageWriter implements ImageTranscoder {
 
@@ -101,7 +98,6 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Constructs an <code>ImageWriter</code> and sets its
      * <code>originatingProvider</code> instance variable to the supplied value.
-     *
      * <p>
      * Subclasses that make use of extensions should provide a constructor with
      * signature <code>(ImageWriterSpi,
@@ -110,9 +106,9 @@ public abstract class ImageWriter implements ImageTranscoder {
      * should be thrown.
      *
      * @param originatingProvider
-     *                            the <code>ImageWriterSpi</code> that is
-     *                            constructing this
-     *                            object, or <code>null</code>.
+     *        the <code>ImageWriterSpi</code> that is
+     *        constructing this
+     *        object, or <code>null</code>.
      */
     protected ImageWriter(ImageWriterSpi originatingProvider) {
         this.originatingProvider = originatingProvider;
@@ -122,13 +118,11 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Returns the <code>ImageWriterSpi</code> object that created this
      * <code>ImageWriter</code>, or <code>null</code> if this object was not
      * created through the <code>IIORegistry</code>.
-     *
      * <p>
      * The default implementation returns the value of the
      * <code>originatingProvider</code> instance variable.
      *
      * @return an <code>ImageWriterSpi</code>, or <code>null</code>.
-     *
      * @see ImageWriterSpi
      */
     public ImageWriterSpi getOriginatingProvider() {
@@ -142,7 +136,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * distributed imaging applications to transmit a series of images over a
      * single network connection. If <code>output</code> is <code>null</code>,
      * any currently set output will be removed.
-     *
      * <p>
      * If <code>output</code> is an <code>ImageOutputStream</code>, calls to the
      * <code>write</code>, <code>writeToSequence</code>, and
@@ -153,7 +146,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>prepareInsertEmpty</code>/<code>endInsertEmpty</code>, and
      * <code>endWriteSequence</code>, require the full contents of the stream to
      * be readable and writable, and may alter any portion of the stream.
-     *
      * <p>
      * Use of a general <code>Object</code> other than an
      * <code>ImageOutputStream</code> is intended for writers that interact
@@ -162,7 +154,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>getOutputTypes</code> method; most writers will return a
      * single-element array containing only <code>ImageOutputStream.class</code>
      * to indicate that they accept only an <code>ImageOutputStream</code>.
-     *
      * <p>
      * The default implementation sets the <code>output</code> instance variable
      * to the value of <code>output</code> after checking <code>output</code>
@@ -170,16 +161,14 @@ public abstract class ImageWriter implements ImageTranscoder {
      * there is one.
      *
      * @param output
-     *               the <code>ImageOutputStream</code> or other
-     *               <code>Object</code> to use for future writing.
-     *
+     *        the <code>ImageOutputStream</code> or other
+     *        <code>Object</code> to use for future writing.
      * @exception IllegalArgumentException
-     *                                     if <code>output</code> is not an
-     *                                     instance of one of the
-     *                                     classes returned by the originating
-     *                                     service provider's
-     *                                     <code>getOutputTypes</code> method.
-     *
+     *            if <code>output</code> is not an
+     *            instance of one of the
+     *            classes returned by the originating
+     *            service provider's
+     *            <code>getOutputTypes</code> method.
      * @see #getOutput
      */
     public void setOutput(Object output) {
@@ -207,14 +196,12 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Returns the <code>ImageOutputStream</code> or other <code>Object</code>
      * set by the most recent call to the <code>setOutput</code> method. If no
      * destination has been set, <code>null</code> is returned.
-     *
      * <p>
      * The default implementation returns the value of the <code>output</code>
      * instance variable.
      *
      * @return the <code>Object</code> that was specified using
      *         <code>setOutput</code>, or <code>null</code>.
-     *
      * @see #setOutput
      */
     public Object getOutput() {
@@ -227,7 +214,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Returns an array of <code>Locale</code>s that may be used to localize
      * warning listeners and compression settings. A return value of
      * <code>null</code> indicates that localization is not supported.
-     *
      * <p>
      * The default implementation returns a clone of the
      * <code>availableLocales</code> instance variable if it is non-
@@ -237,15 +223,13 @@ public abstract class ImageWriter implements ImageTranscoder {
      *         <code>setLocale</code>, or <code>null</code>.
      */
     public Locale[] getAvailableLocales() {
-        return (availableLocales == null) ? null
-                : (Locale[]) availableLocales.clone();
+        return (availableLocales == null) ? null : (Locale[]) availableLocales.clone();
     }
 
     /**
      * Sets the current <code>Locale</code> of this <code>ImageWriter</code> to
      * the given value. A value of <code>null</code> removes any previous
      * setting, and indicates that the writer should localize as it sees fit.
-     *
      * <p>
      * The default implementation checks <code>locale</code> against the values
      * returned by <code>getAvailableLocales</code>, and sets the
@@ -254,14 +238,12 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>null</code> without any checking.
      *
      * @param locale
-     *               the desired <code>Locale</code>, or <code>null</code>.
-     *
+     *        the desired <code>Locale</code>, or <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if <code>locale</code> is
-     *                                     non-<code>null</code> but is not
-     *                                     one of the values returned by
-     *                                     <code>getAvailableLocales</code>.
-     *
+     *            if <code>locale</code> is
+     *            non-<code>null</code> but is not
+     *            one of the values returned by
+     *            <code>getAvailableLocales</code>.
      * @see #getLocale
      */
     public void setLocale(Locale locale) {
@@ -286,13 +268,11 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Returns the currently set <code>Locale</code>, or <code>null</code> if
      * none has been set.
-     *
      * <p>
      * The default implementation returns the value of the <code>locale</code>
      * instance variable.
      *
      * @return the current <code>Locale</code>, or <code>null</code>.
-     *
      * @see #setLocale
      */
     public Locale getLocale() {
@@ -307,7 +287,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * that would be used if no <code>ImageWriteParam</code> object were
      * specified. This is useful as a starting point for tweaking just a few
      * parameters and otherwise leaving the default settings alone.
-     *
      * <p>
      * The default implementation constructs and returns a new
      * <code>ImageWriteParam</code> object that does not allow tiling,
@@ -315,7 +294,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * current <code>Locale</code> (<i>i.e.</i>, what you would get by calling
      * <code>new
      * ImageWriteParam(getLocale())</code>.
-     *
      * <p>
      * Individual plug-ins may return an instance of
      * <code>ImageWriteParam</code> with additional optional features enabled,
@@ -339,24 +317,20 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>IIOMetadataController</code> object, or via plug-in specific
      * interfaces, and the resulting data supplied to one of the
      * <code>write</code> methods that take a stream metadata parameter.
-     *
      * <p>
      * An optional <code>ImageWriteParam</code> may be supplied for cases where
      * it may affect the structure of the stream metadata.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * Writers that do not make use of stream metadata (<i>e.g.</i>, writers for
      * single-image formats) should return <code>null</code>.
      *
      * @param param
-     *              an <code>ImageWriteParam</code> that will be used to encode
-     *              the image, or <code>null</code>.
-     *
+     *        an <code>ImageWriteParam</code> that will be used to encode
+     *        the image, or <code>null</code>.
      * @return an <code>IIOMetadata</code> object.
      */
     public abstract IIOMetadata getDefaultStreamMetadata(ImageWriteParam param);
@@ -369,37 +343,32 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>IIOMetadataController</code> object, or via plug-in specific
      * interfaces, and the resulting data supplied to one of the
      * <code>write</code> methods that take a stream metadata parameter.
-     *
      * <p>
      * An optional <code>ImageWriteParam</code> may be supplied for cases where
      * it may affect the structure of the image metadata.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
      *
      * @param imageType
-     *                  an <code>ImageTypeSpecifier</code> indicating the format
-     *                  of
-     *                  the image to be written later.
+     *        an <code>ImageTypeSpecifier</code> indicating the format
+     *        of
+     *        the image to be written later.
      * @param param
-     *                  an <code>ImageWriteParam</code> that will be used to
-     *                  encode
-     *                  the image, or <code>null</code>.
-     *
+     *        an <code>ImageWriteParam</code> that will be used to
+     *        encode
+     *        the image, or <code>null</code>.
      * @return an <code>IIOMetadata</code> object.
      */
-    public abstract IIOMetadata getDefaultImageMetadata(
-            ImageTypeSpecifier imageType, ImageWriteParam param);
+    public abstract IIOMetadata getDefaultImageMetadata(ImageTypeSpecifier imageType, ImageWriteParam param);
 
     // comment inherited
-    public abstract IIOMetadata convertStreamMetadata(IIOMetadata inData,
+    public abstract IIOMetadata convertStreamMetadata(IIOMetadata inData, ImageWriteParam param);
+
+    // comment inherited
+    public abstract IIOMetadata convertImageMetadata(IIOMetadata inData, ImageTypeSpecifier imageType,
             ImageWriteParam param);
-
-    // comment inherited
-    public abstract IIOMetadata convertImageMetadata(IIOMetadata inData,
-            ImageTypeSpecifier imageType, ImageWriteParam param);
 
     // Thumbnails
 
@@ -408,43 +377,38 @@ public abstract class ImageWriter implements ImageTranscoder {
      * given the image type and any additional write parameters and metadata
      * objects that will be used during encoding. A return value of
      * <code>-1</code> indicates that insufficient information is available.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied for cases
      * where it may affect thumbnail handling.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * The default implementation returns 0.
      *
      * @param imageType
-     *                       an <code>ImageTypeSpecifier</code> indicating the
-     *                       type of
-     *                       image to be written, or <code>null</code>.
+     *        an <code>ImageTypeSpecifier</code> indicating the
+     *        type of
+     *        image to be written, or <code>null</code>.
      * @param param
-     *                       the <code>ImageWriteParam</code> that will be used
-     *                       for
-     *                       writing, or <code>null</code>.
+     *        the <code>ImageWriteParam</code> that will be used
+     *        for
+     *        writing, or <code>null</code>.
      * @param streamMetadata
-     *                       an <code>IIOMetadata</code> object that will be
-     *                       used for
-     *                       writing, or <code>null</code>.
+     *        an <code>IIOMetadata</code> object that will be
+     *        used for
+     *        writing, or <code>null</code>.
      * @param imageMetadata
-     *                       an <code>IIOMetadata</code> object that will be
-     *                       used for
-     *                       writing, or <code>null</code>.
-     *
+     *        an <code>IIOMetadata</code> object that will be
+     *        used for
+     *        writing, or <code>null</code>.
      * @return the number of thumbnails that may be written given the supplied
      *         parameters, or <code>-1</code> if insufficient information is
      *         available.
      */
-    public int getNumThumbnailsSupported(ImageTypeSpecifier imageType,
-            ImageWriteParam param, IIOMetadata streamMetadata,
-            IIOMetadata imageMetadata) {
+    public int getNumThumbnailsSupported(ImageTypeSpecifier imageType, ImageWriteParam param,
+            IIOMetadata streamMetadata, IIOMetadata imageMetadata) {
         return 0;
     }
 
@@ -453,7 +417,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * ranges for thumbnail images as they will be encoded in the output file or
      * stream. This information is merely advisory; the writer will resize any
      * supplied thumbnails as necessary.
-     *
      * <p>
      * The information is returned as a set of pairs; the first element of a
      * pair contains an (inclusive) minimum width and height, and the second
@@ -461,42 +424,37 @@ public abstract class ImageWriter implements ImageTranscoder {
      * pair defines a valid range of sizes. To specify a fixed size, the same
      * width and height will appear for both elements. A return value of
      * <code>null</code> indicates that the size is arbitrary or unknown.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied for cases
      * where it may affect thumbnail handling.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * The default implementation returns <code>null</code>.
      *
      * @param imageType
-     *                       an <code>ImageTypeSpecifier</code> indicating the
-     *                       type of
-     *                       image to be written, or <code>null</code>.
+     *        an <code>ImageTypeSpecifier</code> indicating the
+     *        type of
+     *        image to be written, or <code>null</code>.
      * @param param
-     *                       the <code>ImageWriteParam</code> that will be used
-     *                       for
-     *                       writing, or <code>null</code>.
+     *        the <code>ImageWriteParam</code> that will be used
+     *        for
+     *        writing, or <code>null</code>.
      * @param streamMetadata
-     *                       an <code>IIOMetadata</code> object that will be
-     *                       used for
-     *                       writing, or <code>null</code>.
+     *        an <code>IIOMetadata</code> object that will be
+     *        used for
+     *        writing, or <code>null</code>.
      * @param imageMetadata
-     *                       an <code>IIOMetadata</code> object that will be
-     *                       used for
-     *                       writing, or <code>null</code>.
-     *
+     *        an <code>IIOMetadata</code> object that will be
+     *        used for
+     *        writing, or <code>null</code>.
      * @return an array of <code>Dimension</code>s with an even length of at
      *         least two, or <code>null</code>.
      */
-    public Dimension[] getPreferredThumbnailSizes(ImageTypeSpecifier imageType,
-            ImageWriteParam param, IIOMetadata streamMetadata,
-            IIOMetadata imageMetadata) {
+    public Dimension[] getPreferredThumbnailSizes(ImageTypeSpecifier imageType, ImageWriteParam param,
+            IIOMetadata streamMetadata, IIOMetadata imageMetadata) {
         return null;
     }
 
@@ -507,7 +465,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * image. If this method returns <code>false</code>, then those methods will
      * throw an <code>UnsupportedOperationException</code> if supplied with an
      * <code>IIOImage</code> containing a <code>Raster</code>.
-     *
      * <p>
      * The default implementation returns <code>false</code>.
      *
@@ -524,66 +481,59 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>ImageOutputStream</code>, its existing contents prior to the
      * current seek position are not affected, and need not be readable or
      * writable.
-     *
      * <p>
      * The output must have been set beforehand using the <code>setOutput</code>
      * method.
-     *
      * <p>
      * Stream metadata may optionally be supplied; if it is <code>null</code>,
      * default stream metadata will be used.
-     *
      * <p>
      * If <code>canWriteRasters</code> returns <code>true</code>, the
      * <code>IIOImage</code> may contain a <code>Raster</code> source.
      * Otherwise, it must contain a <code>RenderedImage</code> source.
-     *
      * <p>
      * The supplied thumbnails will be resized if needed, and any thumbnails in
      * excess of the supported number will be ignored. If the format requires
      * additional thumbnails that are not provided, the writer should generate
      * them internally.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
      *
      * @param streamMetadata
-     *                       an <code>IIOMetadata</code> object representing
-     *                       stream
-     *                       metadata, or <code>null</code> to use default
-     *                       values.
+     *        an <code>IIOMetadata</code> object representing
+     *        stream
+     *        metadata, or <code>null</code> to use default
+     *        values.
      * @param image
-     *                       an <code>IIOImage</code> object containing an
-     *                       image,
-     *                       thumbnails, and metadata to be written.
+     *        an <code>IIOImage</code> object containing an
+     *        image,
+     *        thumbnails, and metadata to be written.
      * @param param
-     *                       an <code>ImageWriteParam</code>, or
-     *                       <code>null</code> to use a
-     *                       default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or
+     *        <code>null</code> to use a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if <code>image</code> contains a
-     *                                          <code>Raster</code> and
-     *                                          <code>canWriteRasters</code>
-     *                                          returns <code>false</code>.
+     *            if <code>image</code> contains a
+     *            <code>Raster</code> and
+     *            <code>canWriteRasters</code>
+     *            returns <code>false</code>.
      * @exception IllegalArgumentException
-     *                                          if <code>image</code> is
-     *                                          <code>null</code>.
+     *            if <code>image</code> is
+     *            <code>null</code>.
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
-    public abstract void write(IIOMetadata streamMetadata, IIOImage image,
-            ImageWriteParam param) throws IOException;
+    public abstract void write(IIOMetadata streamMetadata, IIOImage image, ImageWriteParam param)
+            throws IOException;
 
     /**
      * Appends a complete image stream containing a single image with default
@@ -591,22 +541,21 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>write(null, image, null)</code>.
      *
      * @param image
-     *              an <code>IIOImage</code> object containing an image,
-     *              thumbnails, and metadata to be written.
-     *
+     *        an <code>IIOImage</code> object containing an image,
+     *        thumbnails, and metadata to be written.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception IllegalArgumentException
-     *                                          if <code>image</code> is
-     *                                          <code>null</code>.
+     *            if <code>image</code> is
+     *            <code>null</code>.
      * @exception UnsupportedOperationException
-     *                                          if <code>image</code> contains a
-     *                                          <code>Raster</code> and
-     *                                          <code>canWriteRasters</code>
-     *                                          returns <code>false</code>.
+     *            if <code>image</code> contains a
+     *            <code>Raster</code> and
+     *            <code>canWriteRasters</code>
+     *            returns <code>false</code>.
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
     public void write(IIOImage image) throws IOException {
         write(null, image, null);
@@ -619,15 +568,14 @@ public abstract class ImageWriter implements ImageTranscoder {
      * null, null), null)</code>.
      *
      * @param image
-     *              a <code>RenderedImage</code> to be written.
-     *
+     *        a <code>RenderedImage</code> to be written.
      * @exception IllegalStateException
-     *                                     if the output has not been set.
+     *            if the output has not been set.
      * @exception IllegalArgumentException
-     *                                     if <code>image</code> is
-     *                                     <code>null</code>.
+     *            if <code>image</code> is
+     *            <code>null</code>.
      * @exception IOException
-     *                                     if an error occurs during writing.
+     *            if an error occurs during writing.
      */
     public void write(RenderedImage image) throws IOException {
         write(null, new IIOImage(image, null, null), null);
@@ -648,12 +596,10 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Returns <code>true</code> if the writer is able to append an image to an
      * image stream that already contains header information and possibly prior
      * images.
-     *
      * <p>
      * If <code>canWriteSequence</code> returns <code>false</code>,
      * <code>writeToSequence</code> and <code>endWriteSequence</code> will throw
      * an <code>UnsupportedOperationException</code>.
-     *
      * <p>
      * The default implementation returns <code>false</code>.
      *
@@ -669,7 +615,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * object. The metadata will be written to the stream if it should precede
      * the image data. If the argument is <code>null</code>, default stream
      * metadata is used.
-     *
      * <p>
      * If the output is an <code>ImageOutputStream</code>, the existing contents
      * of the output prior to the current seek position are flushed, and need
@@ -679,35 +624,30 @@ public abstract class ImageWriter implements ImageTranscoder {
      * the metadata written by this method must remain in a writable portion of
      * the stream. Other formats may flush the stream after this method and
      * after each image.
-     *
      * <p>
      * If <code>canWriteSequence</code> returns <code>false</code>, this method
      * will throw an <code>UnsupportedOperationException</code>.
-     *
      * <p>
      * The output must have been set beforehand using either the
      * <code>setOutput</code> method.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param streamMetadata
-     *                       A stream metadata object, or <code>null</code>.
-     *
+     *        A stream metadata object, or <code>null</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if <code>canWriteSequence</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if <code>canWriteSequence</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IOException
-     *                                          if an error occurs writing the
-     *                                          stream metadata.
+     *            if an error occurs writing the
+     *            stream metadata.
      */
-    public void prepareWriteSequence(IIOMetadata streamMetadata)
-            throws IOException {
+    public void prepareWriteSequence(IIOMetadata streamMetadata) throws IOException {
         unsupported();
     }
 
@@ -718,76 +658,66 @@ public abstract class ImageWriter implements ImageTranscoder {
      * flushed, and need not be readable or writable, unless the plug-in needs
      * to be able to patch up the header information when
      * <code>endWriteSequence</code> is called (<i>e.g.</i> TIFF).
-     *
      * <p>
      * If <code>canWriteSequence</code> returns <code>false</code>, this method
      * will throw an <code>UnsupportedOperationException</code>.
-     *
      * <p>
      * The output must have been set beforehand using the <code>setOutput</code>
      * method.
-     *
      * <p>
      * <code>prepareWriteSequence</code> must have been called beforehand, or an
      * <code>IllegalStateException</code> is thrown.
-     *
      * <p>
      * If <code>canWriteRasters</code> returns <code>true</code>, the
      * <code>IIOImage</code> may contain a <code>Raster</code> source.
      * Otherwise, it must contain a <code>RenderedImage</code> source.
-     *
      * <p>
      * The supplied thumbnails will be resized if needed, and any thumbnails in
      * excess of the supported number will be ignored. If the format requires
      * additional thumbnails that are not provided, the writer will generate
      * them internally.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param image
-     *              an <code>IIOImage</code> object containing an image,
-     *              thumbnails, and metadata to be written.
+     *        an <code>IIOImage</code> object containing an image,
+     *        thumbnails, and metadata to be written.
      * @param param
-     *              an <code>ImageWriteParam</code>, or <code>null</code> to use
-     *              a
-     *              default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or <code>null</code> to use
+     *        a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set,
-     *                                          or
-     *                                          <code>prepareWriteSequence</code>
-     *                                          has not been called.
+     *            if the output has not been set,
+     *            or
+     *            <code>prepareWriteSequence</code>
+     *            has not been called.
      * @exception UnsupportedOperationException
-     *                                          if <code>canWriteSequence</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if <code>canWriteSequence</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalArgumentException
-     *                                          if <code>image</code> is
-     *                                          <code>null</code>.
+     *            if <code>image</code> is
+     *            <code>null</code>.
      * @exception UnsupportedOperationException
-     *                                          if <code>image</code> contains a
-     *                                          <code>Raster</code> and
-     *                                          <code>canWriteRasters</code>
-     *                                          returns <code>false</code>.
+     *            if <code>image</code> contains a
+     *            <code>Raster</code> and
+     *            <code>canWriteRasters</code>
+     *            returns <code>false</code>.
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
-    public void writeToSequence(IIOImage image, ImageWriteParam param)
-            throws IOException {
+    public void writeToSequence(IIOImage image, ImageWriteParam param) throws IOException {
         unsupported();
     }
 
@@ -799,28 +729,26 @@ public abstract class ImageWriter implements ImageTranscoder {
      * If the output is an <code>ImageOutputStream</code>, data through the
      * stream metadata at the end of the sequence are flushed and need not be
      * readable or writable.
-     *
      * <p>
      * If <code>canWriteSequence</code> returns <code>false</code>, this method
      * will throw an <code>UnsupportedOperationException</code>.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @exception IllegalStateException
-     *                                          if the output has not been set,
-     *                                          or
-     *                                          <code>prepareWriteSequence</code>
-     *                                          has not been called.
+     *            if the output has not been set,
+     *            or
+     *            <code>prepareWriteSequence</code>
+     *            has not been called.
      * @exception UnsupportedOperationException
-     *                                          if <code>canWriteSequence</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if <code>canWriteSequence</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
     public void endWriteSequence() throws IOException {
         unsupported();
@@ -831,18 +759,16 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Returns <code>true</code> if it is possible to replace the stream
      * metadata already present in the output.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
      * <code>false</code>.
      *
      * @return <code>true</code> if replacement of stream metadata is allowed.
-     *
      * @exception IllegalStateException
-     *                                  if the output has not been set.
+     *            if the output has not been set.
      * @exception IOException
-     *                                  if an I/O error occurs during the query.
+     *            if an I/O error occurs during the query.
      */
     public boolean canReplaceStreamMetadata() throws IOException {
         if (getOutput() == null) {
@@ -857,36 +783,32 @@ public abstract class ImageWriter implements ImageTranscoder {
      * stream are examined and possibly edited to make room for the new data.
      * All of the prior contents of the output must be available for reading and
      * writing.
-     *
      * <p>
      * If <code>canReplaceStreamMetadata</code> returns <code>false</code>, an
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param streamMetadata
-     *                       an <code>IIOMetadata</code> object representing
-     *                       stream
-     *                       metadata, or <code>null</code> to use default
-     *                       values.
-     *
+     *        an <code>IIOMetadata</code> object representing
+     *        stream
+     *        metadata, or <code>null</code> to use default
+     *        values.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if the
-     *                                          <code>canReplaceStreamMetadata</code>
-     *                                          returns
-     *                                          <code>false</code>. modes do not
-     *                                          include
+     *            if the
+     *            <code>canReplaceStreamMetadata</code>
+     *            returns
+     *            <code>false</code>. modes do not
+     *            include
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
-    public void replaceStreamMetadata(IIOMetadata streamMetadata)
-            throws IOException {
+    public void replaceStreamMetadata(IIOMetadata streamMetadata) throws IOException {
         unsupported();
     }
 
@@ -896,35 +818,31 @@ public abstract class ImageWriter implements ImageTranscoder {
      * this method returns <code>false</code>, a call to
      * <code>replaceImageMetadata(imageIndex)</code> will throw an
      * <code>UnsupportedOperationException</code>.
-     *
      * <p>
      * A writer that does not support any image metadata replacement may return
      * <code>false</code> without performing bounds checking on the index.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
      * <code>false</code> without checking the value of <code>imageIndex</code>.
      *
      * @param imageIndex
-     *                   the index of the image whose metadata is to be
-     *                   replaced.
-     *
+     *        the index of the image whose metadata is to be
+     *        replaced.
      * @return <code>true</code> if the image metadata of the given image can be
      *         replaced.
-     *
      * @exception IllegalStateException
-     *                                      if the output has not been set.
+     *            if the output has not been set.
      * @exception IndexOutOfBoundsException
-     *                                      if the writer supports image
-     *                                      metadata replacement in
-     *                                      general, but <code>imageIndex</code>
-     *                                      is less than 0 or
-     *                                      greater than the largest available
-     *                                      index.
+     *            if the writer supports image
+     *            metadata replacement in
+     *            general, but <code>imageIndex</code>
+     *            is less than 0 or
+     *            greater than the largest available
+     *            index.
      * @exception IOException
-     *                                      if an I/O error occurs during the
-     *                                      query.
+     *            if an I/O error occurs during the
+     *            query.
      */
     public boolean canReplaceImageMetadata(int imageIndex) throws IOException {
         if (getOutput() == null) {
@@ -935,42 +853,38 @@ public abstract class ImageWriter implements ImageTranscoder {
 
     /**
      * Replaces the image metadata associated with an existing image.
-     *
      * <p>
      * If <code>canReplaceImageMetadata(imageIndex)</code> returns
      * <code>false</code>, an <code>UnsupportedOperationException</code> will be
      * thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param imageIndex
-     *                      the index of the image whose metadata is to be
-     *                      replaced.
+     *        the index of the image whose metadata is to be
+     *        replaced.
      * @param imageMetadata
-     *                      an <code>IIOMetadata</code> object representing
-     *                      image
-     *                      metadata, or <code>null</code>.
-     *
+     *        an <code>IIOMetadata</code> object representing
+     *        image
+     *        metadata, or <code>null</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canReplaceImageMetadata</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canReplaceImageMetadata</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IndexOutOfBoundsException
-     *                                          if <code>imageIndex</code> is
-     *                                          less than 0 or greater than
-     *                                          the largest available index.
+     *            if <code>imageIndex</code> is
+     *            less than 0 or greater than
+     *            the largest available index.
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
-    public void replaceImageMetadata(int imageIndex, IIOMetadata imageMetadata)
-            throws IOException {
+    public void replaceImageMetadata(int imageIndex, IIOMetadata imageMetadata) throws IOException {
         unsupported();
     }
 
@@ -982,32 +896,28 @@ public abstract class ImageWriter implements ImageTranscoder {
      * equal to the insertion index will have their indices increased by 1. A
      * value for <code>imageIndex</code> of <code>-1</code> may be used to
      * signify an index one larger than the current largest index.
-     *
      * <p>
      * A writer that does not support any image insertion may return
      * <code>false</code> without performing bounds checking on the index.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
      * <code>false</code> without checking the value of <code>imageIndex</code>.
      *
      * @param imageIndex
-     *                   the index at which the image is to be inserted.
-     *
+     *        the index at which the image is to be inserted.
      * @return <code>true</code> if an image may be inserted at the given index.
-     *
      * @exception IllegalStateException
-     *                                      if the output has not been set.
+     *            if the output has not been set.
      * @exception IndexOutOfBoundsException
-     *                                      if the writer supports image
-     *                                      insertion in general, but
-     *                                      <code>imageIndex</code> is less than
-     *                                      -1 or greater than
-     *                                      the largest available index.
+     *            if the writer supports image
+     *            insertion in general, but
+     *            <code>imageIndex</code> is less than
+     *            -1 or greater than
+     *            the largest available index.
      * @exception IOException
-     *                                      if an I/O error occurs during the
-     *                                      query.
+     *            if an I/O error occurs during the
+     *            query.
      */
     public boolean canInsertImage(int imageIndex) throws IOException {
         if (getOutput() == null) {
@@ -1024,61 +934,55 @@ public abstract class ImageWriter implements ImageTranscoder {
      * index; that is, it will cause the image to be logically appended to the
      * end of the sequence. If the output is an <code>ImageOutputStream</code>,
      * the entirety of the stream must be both readable and writeable.
-     *
      * <p>
      * If <code>canInsertImage(imageIndex)</code> returns <code>false</code>, an
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param imageIndex
-     *                   the index at which to write the image.
+     *        the index at which to write the image.
      * @param image
-     *                   an <code>IIOImage</code> object containing an image,
-     *                   thumbnails, and metadata to be written.
+     *        an <code>IIOImage</code> object containing an image,
+     *        thumbnails, and metadata to be written.
      * @param param
-     *                   an <code>ImageWriteParam</code>, or <code>null</code>
-     *                   to use a
-     *                   default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or <code>null</code>
+     *        to use a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canInsertImage(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canInsertImage(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalArgumentException
-     *                                          if <code>image</code> is
-     *                                          <code>null</code>.
+     *            if <code>image</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                          if <code>imageIndex</code> is
-     *                                          less than -1 or greater than
-     *                                          the largest available index.
+     *            if <code>imageIndex</code> is
+     *            less than -1 or greater than
+     *            the largest available index.
      * @exception UnsupportedOperationException
-     *                                          if <code>image</code> contains a
-     *                                          <code>Raster</code> and
-     *                                          <code>canWriteRasters</code>
-     *                                          returns <code>false</code>.
+     *            if <code>image</code> contains a
+     *            <code>Raster</code> and
+     *            <code>canWriteRasters</code>
+     *            returns <code>false</code>.
      * @exception IOException
-     *                                          if an error occurs during
-     *                                          writing.
+     *            if an error occurs during
+     *            writing.
      */
-    public void writeInsert(int imageIndex, IIOImage image,
-            ImageWriteParam param) throws IOException {
+    public void writeInsert(int imageIndex, IIOImage image, ImageWriteParam param) throws IOException {
         unsupported();
     }
 
@@ -1088,32 +992,28 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Returns <code>true</code> if the writer supports the removal of an
      * existing image at the given index. Existing images with indices greater
      * than the insertion index will have their indices decreased by 1.
-     *
      * <p>
      * A writer that does not support any image removal may return
      * <code>false</code> without performing bounds checking on the index.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
      * <code>false</code> without checking the value of <code>imageIndex</code>.
      *
      * @param imageIndex
-     *                   the index of the image to be removed.
-     *
+     *        the index of the image to be removed.
      * @return <code>true</code> if it is possible to remove the given image.
-     *
      * @exception IllegalStateException
-     *                                      if the output has not been set.
+     *            if the output has not been set.
      * @exception IndexOutOfBoundsException
-     *                                      if the writer supports image removal
-     *                                      in general, but
-     *                                      <code>imageIndex</code> is less than
-     *                                      0 or greater than the
-     *                                      largest available index.
+     *            if the writer supports image removal
+     *            in general, but
+     *            <code>imageIndex</code> is less than
+     *            0 or greater than the
+     *            largest available index.
      * @exception IOException
-     *                                      if an I/O error occurs during the
-     *                                      query.
+     *            if an I/O error occurs during the
+     *            query.
      */
     public boolean canRemoveImage(int imageIndex) throws IOException {
         if (getOutput() == null) {
@@ -1124,36 +1024,32 @@ public abstract class ImageWriter implements ImageTranscoder {
 
     /**
      * Removes an image from the stream.
-     *
      * <p>
      * If <code>canRemoveImage(imageIndex)</code> returns false, an
      * <code>UnsupportedOperationException</code>will be thrown.
-     *
      * <p>
      * The removal may or may not cause a reduction in the actual file size.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param imageIndex
-     *                   the index of the image to be removed.
-     *
+     *        the index of the image to be removed.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canRemoveImage(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canRemoveImage(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IndexOutOfBoundsException
-     *                                          if <code>imageIndex</code> is
-     *                                          less than 0 or greater than
-     *                                          the largest available index.
+     *            if <code>imageIndex</code> is
+     *            less than 0 or greater than
+     *            the largest available index.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          the removal.
+     *            if an I/O error occurs during
+     *            the removal.
      */
     public void removeImage(int imageIndex) throws IOException {
         unsupported();
@@ -1169,7 +1065,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * methods. If the output is an <code>ImageOutputStream</code>, its existing
      * contents prior to the current seek position are not affected, and need
      * not be readable or writable.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
@@ -1177,11 +1072,10 @@ public abstract class ImageWriter implements ImageTranscoder {
      *
      * @return <code>true</code> if the writing of complete image stream with
      *         contents to be defined later is supported.
-     *
      * @exception IllegalStateException
-     *                                  if the output has not been set.
+     *            if the output has not been set.
      * @exception IOException
-     *                                  if an I/O error occurs during the query.
+     *            if an I/O error occurs during the query.
      */
     public boolean canWriteEmpty() throws IOException {
         if (getOutput() == null) {
@@ -1198,7 +1092,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>ImageOutputStream</code>, its existing contents prior to the
      * current seek position are not affected, and need not be readable or
      * writable.
-     *
      * <p>
      * The writing is not complete until a call to <code>endWriteEmpty</code>
      * occurs. Calls to <code>prepareReplacePixels</code>,
@@ -1208,88 +1101,82 @@ public abstract class ImageWriter implements ImageTranscoder {
      * <code>prepareWriteEmpty</code> cannot be nested, and calls to
      * <code>prepareWriteEmpty</code> and <code>prepareInsertEmpty</code> may
      * not be interspersed.
-     *
      * <p>
      * If <code>canWriteEmpty</code> returns <code>false</code>, an
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param streamMetadata
-     *                       an <code>IIOMetadata</code> object representing
-     *                       stream
-     *                       metadata, or <code>null</code> to use default
-     *                       values.
+     *        an <code>IIOMetadata</code> object representing
+     *        stream
+     *        metadata, or <code>null</code> to use default
+     *        values.
      * @param imageType
-     *                       an <code>ImageTypeSpecifier</code> describing the
-     *                       layout of
-     *                       the image.
+     *        an <code>ImageTypeSpecifier</code> describing the
+     *        layout of
+     *        the image.
      * @param width
-     *                       the width of the image.
+     *        the width of the image.
      * @param height
-     *                       the height of the image.
+     *        the height of the image.
      * @param imageMetadata
-     *                       an <code>IIOMetadata</code> object representing
-     *                       image
-     *                       metadata, or <code>null</code>.
+     *        an <code>IIOMetadata</code> object representing
+     *        image
+     *        metadata, or <code>null</code>.
      * @param thumbnails
-     *                       a <code>List</code> of <code>BufferedImage</code>
-     *                       thumbnails
-     *                       for this image, or <code>null</code>.
+     *        a <code>List</code> of <code>BufferedImage</code>
+     *        thumbnails
+     *        for this image, or <code>null</code>.
      * @param param
-     *                       an <code>ImageWriteParam</code>, or
-     *                       <code>null</code> to use a
-     *                       default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or
+     *        <code>null</code> to use a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if <code>canWriteEmpty</code>
-     *                                          returns <code>false</code>.
+     *            if <code>canWriteEmpty</code>
+     *            returns <code>false</code>.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareWriteEmpty</code>
-     *                                          has
-     *                                          been made without a
-     *                                          corresponding call to
-     *                                          <code>endWriteEmpty</code>.
+     *            if a previous call to
+     *            <code>prepareWriteEmpty</code>
+     *            has
+     *            been made without a
+     *            corresponding call to
+     *            <code>endWriteEmpty</code>.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareInsertEmpty</code>
-     *                                          has
-     *                                          been made without a
-     *                                          corresponding call to
-     *                                          <code>endInsertEmpty</code>.
+     *            if a previous call to
+     *            <code>prepareInsertEmpty</code>
+     *            has
+     *            been made without a
+     *            corresponding call to
+     *            <code>endInsertEmpty</code>.
      * @exception IllegalArgumentException
-     *                                          if <code>imageType</code> is
-     *                                          <code>null</code> or
-     *                                          <code>thumbnails</code> contains
-     *                                          <code>null</code>
-     *                                          references or objects other than
-     *                                          <code>BufferedImage</code>s.
+     *            if <code>imageType</code> is
+     *            <code>null</code> or
+     *            <code>thumbnails</code> contains
+     *            <code>null</code>
+     *            references or objects other than
+     *            <code>BufferedImage</code>s.
      * @exception IllegalArgumentException
-     *                                          if width or height are less than
-     *                                          1.
+     *            if width or height are less than
+     *            1.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
-    public void prepareWriteEmpty(IIOMetadata streamMetadata,
-            ImageTypeSpecifier imageType, int width, int height,
-            IIOMetadata imageMetadata, List<? extends BufferedImage> thumbnails,
+    public void prepareWriteEmpty(IIOMetadata streamMetadata, ImageTypeSpecifier imageType, int width,
+            int height, IIOMetadata imageMetadata, List<? extends BufferedImage> thumbnails,
             ImageWriteParam param) throws IOException {
         unsupported();
     }
@@ -1297,44 +1184,42 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Completes the writing of a new image that was begun with a prior call to
      * <code>prepareWriteEmpty</code>.
-     *
      * <p>
      * If <code>canWriteEmpty()</code> returns <code>false</code>, an
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canWriteEmpty(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canWriteEmpty(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareWriteEmpty</code>
-     *                                          without a corresponding call to
-     *                                          <code>endWriteEmpty</code>
-     *                                          has not been made.
+     *            if a previous call to
+     *            <code>prepareWriteEmpty</code>
+     *            without a corresponding call to
+     *            <code>endWriteEmpty</code>
+     *            has not been made.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareInsertEmpty</code>
-     *                                          without a corresponding call to
-     *                                          <code>endInsertEmpty</code> has
-     *                                          been made.
+     *            if a previous call to
+     *            <code>prepareInsertEmpty</code>
+     *            without a corresponding call to
+     *            <code>endInsertEmpty</code> has
+     *            been made.
      * @exception IllegalStateException
-     *                                          if a call to
-     *                                          <code>prepareReiplacePixels</code>
-     *                                          has been
-     *                                          made without a matching call to
-     *                                          <code>endReplacePixels</code>.
+     *            if a call to
+     *            <code>prepareReiplacePixels</code>
+     *            has been
+     *            made without a matching call to
+     *            <code>endReplacePixels</code>.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
     public void endWriteEmpty() throws IOException {
         if (getOutput() == null) {
@@ -1351,33 +1236,29 @@ public abstract class ImageWriter implements ImageTranscoder {
      * than or equal to the insertion index will have their indices increased by
      * 1. A value for <code>imageIndex</code> of <code>-1</code> may be used to
      * signify an index one larger than the current largest index.
-     *
      * <p>
      * A writer that does not support insertion of empty images may return
      * <code>false</code> without performing bounds checking on the index.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
      * <code>false</code> without checking the value of <code>imageIndex</code>.
      *
      * @param imageIndex
-     *                   the index at which the image is to be inserted.
-     *
+     *        the index at which the image is to be inserted.
      * @return <code>true</code> if an empty image may be inserted at the given
      *         index.
-     *
      * @exception IllegalStateException
-     *                                      if the output has not been set.
+     *            if the output has not been set.
      * @exception IndexOutOfBoundsException
-     *                                      if the writer supports empty image
-     *                                      insertion in general,
-     *                                      but <code>imageIndex</code> is less
-     *                                      than -1 or greater
-     *                                      than the largest available index.
+     *            if the writer supports empty image
+     *            insertion in general,
+     *            but <code>imageIndex</code> is less
+     *            than -1 or greater
+     *            than the largest available index.
      * @exception IOException
-     *                                      if an I/O error occurs during the
-     *                                      query.
+     *            if an I/O error occurs during the
+     *            query.
      */
     public boolean canInsertEmpty(int imageIndex) throws IOException {
         if (getOutput() == null) {
@@ -1395,7 +1276,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      * will cause the image to be logically appended to the end of the sequence.
      * If the output is an <code>ImageOutputStream</code>, the entirety of the
      * stream must be both readable and writeable.
-     *
      * <p>
      * The image contents may be supplied later using the
      * <code>replacePixels</code> method. The insertion is not complete until a
@@ -1406,91 +1286,85 @@ public abstract class ImageWriter implements ImageTranscoder {
      * calls to <code>prepareInsertEmpty</code> cannot be nested, and calls to
      * <code>prepareWriteEmpty</code> and <code>prepareInsertEmpty</code> may
      * not be interspersed.
-     *
      * <p>
      * If <code>canInsertEmpty(imageIndex)</code> returns <code>false</code>, an
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param imageIndex
-     *                      the index at which to write the image.
+     *        the index at which to write the image.
      * @param imageType
-     *                      an <code>ImageTypeSpecifier</code> describing the
-     *                      layout of
-     *                      the image.
+     *        an <code>ImageTypeSpecifier</code> describing the
+     *        layout of
+     *        the image.
      * @param width
-     *                      the width of the image.
+     *        the width of the image.
      * @param height
-     *                      the height of the image.
+     *        the height of the image.
      * @param imageMetadata
-     *                      an <code>IIOMetadata</code> object representing
-     *                      image
-     *                      metadata, or <code>null</code>.
+     *        an <code>IIOMetadata</code> object representing
+     *        image
+     *        metadata, or <code>null</code>.
      * @param thumbnails
-     *                      a <code>List</code> of <code>BufferedImage</code>
-     *                      thumbnails
-     *                      for this image, or <code>null</code>.
+     *        a <code>List</code> of <code>BufferedImage</code>
+     *        thumbnails
+     *        for this image, or <code>null</code>.
      * @param param
-     *                      an <code>ImageWriteParam</code>, or
-     *                      <code>null</code> to use a
-     *                      default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or
+     *        <code>null</code> to use a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canInsertEmpty(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canInsertEmpty(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IndexOutOfBoundsException
-     *                                          if <code>imageIndex</code> is
-     *                                          less than -1 or greater than
-     *                                          the largest available index.
+     *            if <code>imageIndex</code> is
+     *            less than -1 or greater than
+     *            the largest available index.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareInsertEmpty</code>
-     *                                          has
-     *                                          been made without a
-     *                                          corresponding call to
-     *                                          <code>endInsertEmpty</code>.
+     *            if a previous call to
+     *            <code>prepareInsertEmpty</code>
+     *            has
+     *            been made without a
+     *            corresponding call to
+     *            <code>endInsertEmpty</code>.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareWriteEmpty</code>
-     *                                          has
-     *                                          been made without a
-     *                                          corresponding call to
-     *                                          <code>endWriteEmpty</code>.
+     *            if a previous call to
+     *            <code>prepareWriteEmpty</code>
+     *            has
+     *            been made without a
+     *            corresponding call to
+     *            <code>endWriteEmpty</code>.
      * @exception IllegalArgumentException
-     *                                          if <code>imageType</code> is
-     *                                          <code>null</code> or
-     *                                          <code>thumbnails</code> contains
-     *                                          <code>null</code>
-     *                                          references or objects other than
-     *                                          <code>BufferedImage</code>s.
+     *            if <code>imageType</code> is
+     *            <code>null</code> or
+     *            <code>thumbnails</code> contains
+     *            <code>null</code>
+     *            references or objects other than
+     *            <code>BufferedImage</code>s.
      * @exception IllegalArgumentException
-     *                                          if width or height are less than
-     *                                          1.
+     *            if width or height are less than
+     *            1.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
-    public void prepareInsertEmpty(int imageIndex, ImageTypeSpecifier imageType,
-            int width, int height, IIOMetadata imageMetadata,
-            List<? extends BufferedImage> thumbnails, ImageWriteParam param)
+    public void prepareInsertEmpty(int imageIndex, ImageTypeSpecifier imageType, int width, int height,
+            IIOMetadata imageMetadata, List<? extends BufferedImage> thumbnails, ImageWriteParam param)
             throws IOException {
         unsupported();
     }
@@ -1498,40 +1372,39 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Completes the insertion of a new image that was begun with a prior call
      * to <code>prepareInsertEmpty</code>.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canInsertEmpty(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canInsertEmpty(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareInsertEmpty</code>
-     *                                          without a corresponding call to
-     *                                          <code>endInsertEmpty</code> has
-     *                                          not been made.
+     *            if a previous call to
+     *            <code>prepareInsertEmpty</code>
+     *            without a corresponding call to
+     *            <code>endInsertEmpty</code> has
+     *            not been made.
      * @exception IllegalStateException
-     *                                          if a previous call to
-     *                                          <code>prepareWriteEmpty</code>
-     *                                          without a corresponding call to
-     *                                          <code>endWriteEmpty</code>
-     *                                          has been made.
+     *            if a previous call to
+     *            <code>prepareWriteEmpty</code>
+     *            without a corresponding call to
+     *            <code>endWriteEmpty</code>
+     *            has been made.
      * @exception IllegalStateException
-     *                                          if a call to
-     *                                          <code>prepareReplacePixels</code>
-     *                                          has been
-     *                                          made without a matching call to
-     *                                          <code>endReplacePixels</code>.
+     *            if a call to
+     *            <code>prepareReplacePixels</code>
+     *            has been
+     *            made without a matching call to
+     *            <code>endReplacePixels</code>.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
     public void endInsertEmpty() throws IOException {
         unsupported();
@@ -1542,33 +1415,29 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Returns <code>true</code> if the writer allows pixels of the given image
      * to be replaced using the <code>replacePixels</code> methods.
-     *
      * <p>
      * A writer that does not support any pixel replacement may return
      * <code>false</code> without performing bounds checking on the index.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise returns
      * <code>false</code> without checking the value of <code>imageIndex</code>.
      *
      * @param imageIndex
-     *                   the index of the image whose pixels are to be replaced.
-     *
+     *        the index of the image whose pixels are to be replaced.
      * @return <code>true</code> if the pixels of the given image can be
      *         replaced.
-     *
      * @exception IllegalStateException
-     *                                      if the output has not been set.
+     *            if the output has not been set.
      * @exception IndexOutOfBoundsException
-     *                                      if the writer supports pixel
-     *                                      replacement in general, but
-     *                                      <code>imageIndex</code> is less than
-     *                                      0 or greater than the
-     *                                      largest available index.
+     *            if the writer supports pixel
+     *            replacement in general, but
+     *            <code>imageIndex</code> is less than
+     *            0 or greater than the
+     *            largest available index.
      * @exception IOException
-     *                                      if an I/O error occurs during the
-     *                                      query.
+     *            if an I/O error occurs during the
+     *            query.
      */
     public boolean canReplacePixels(int imageIndex) throws IOException {
         if (getOutput() == null) {
@@ -1581,51 +1450,47 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Prepares the writer to handle a series of calls to the
      * <code>replacePixels</code> methods. The affected pixel area will be
      * clipped against the supplied
-     *
      * <p>
      * If <code>canReplacePixels</code> returns <code>false</code>, and
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param imageIndex
-     *                   the index of the image whose pixels are to be replaced.
+     *        the index of the image whose pixels are to be replaced.
      * @param region
-     *                   a <code>Rectangle</code> that will be used to clip
-     *                   future
-     *                   pixel regions.
-     *
+     *        a <code>Rectangle</code> that will be used to clip
+     *        future
+     *        pixel regions.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canReplacePixels(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canReplacePixels(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IndexOutOfBoundsException
-     *                                          if <code>imageIndex</code> is
-     *                                          less than 0 or greater than
-     *                                          the largest available index.
+     *            if <code>imageIndex</code> is
+     *            less than 0 or greater than
+     *            the largest available index.
      * @exception IllegalStateException
-     *                                          if there is a previous call to
-     *                                          <code>prepareReplacePixels</code>
-     *                                          without a matching call
-     *                                          to <code>endReplacePixels</code>
-     *                                          (<i>i.e.</i>, nesting is
-     *                                          not allowed).
+     *            if there is a previous call to
+     *            <code>prepareReplacePixels</code>
+     *            without a matching call
+     *            to <code>endReplacePixels</code>
+     *            (<i>i.e.</i>, nesting is
+     *            not allowed).
      * @exception IllegalArgumentException
-     *                                          if <code>region</code> is
-     *                                          <code>null</code> or has a width
-     *                                          or height less than 1.
+     *            if <code>region</code> is
+     *            <code>null</code> or has a width
+     *            or height less than 1.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          the preparation.
+     *            if an I/O error occurs during
+     *            the preparation.
      */
-    public void prepareReplacePixels(int imageIndex, Rectangle region)
-            throws IOException {
+    public void prepareReplacePixels(int imageIndex, Rectangle region) throws IOException {
         unsupported();
     }
 
@@ -1633,77 +1498,70 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Replaces a portion of an image already present in the output with a
      * portion of the given image. The image data must match, or be convertible
      * to, the image layout of the existing image.
-     *
      * <p>
      * The destination region is specified in the <code>param</code> argument,
      * and will be clipped to the image boundaries and the region supplied to
      * <code>prepareReplacePixels</code>. At least one pixel of the source must
      * not be clipped, or an exception is thrown.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * This method may only be called after a call to
      * <code>prepareReplacePixels</code>, or else an
      * <code>IllegalStateException</code> will be thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param image
-     *              a <code>RenderedImage</code> containing source pixels.
+     *        a <code>RenderedImage</code> containing source pixels.
      * @param param
-     *              an <code>ImageWriteParam</code>, or <code>null</code> to use
-     *              a
-     *              default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or <code>null</code> to use
+     *        a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canReplacePixels(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canReplacePixels(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalStateException
-     *                                          if there is no previous call to
-     *                                          <code>prepareReplacePixels</code>
-     *                                          without a matching call
-     *                                          to
-     *                                          <code>endReplacePixels</code>.
+     *            if there is no previous call to
+     *            <code>prepareReplacePixels</code>
+     *            without a matching call
+     *            to
+     *            <code>endReplacePixels</code>.
      * @exception IllegalArgumentException
-     *                                          if any of the following are
-     *                                          true:
-     *                                          <ul>
-     *                                          <li><code>image</code> is
-     *                                          <code>null</code>.
-     *                                          <li><code>param</code> is
-     *                                          <code>null</code>.
-     *                                          <li>the intersected region does
-     *                                          not contain at least one
-     *                                          pixel.
-     *                                          <li>the layout of
-     *                                          <code>image</code> does not
-     *                                          match, or
-     *                                          this writer cannot convert it
-     *                                          to, the existing image
-     *                                          layout.
-     *                                          </ul>
+     *            if any of the following are
+     *            true:
+     *            <ul>
+     *            <li><code>image</code> is
+     *            <code>null</code>.
+     *            <li><code>param</code> is
+     *            <code>null</code>.
+     *            <li>the intersected region does
+     *            not contain at least one
+     *            pixel.
+     *            <li>the layout of
+     *            <code>image</code> does not
+     *            match, or
+     *            this writer cannot convert it
+     *            to, the existing image
+     *            layout.
+     *            </ul>
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
-    public void replacePixels(RenderedImage image, ImageWriteParam param)
-            throws IOException {
+    public void replacePixels(RenderedImage image, ImageWriteParam param) throws IOException {
         unsupported();
     }
 
@@ -1711,112 +1569,103 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Replaces a portion of an image already present in the output with a
      * portion of the given <code>Raster</code>. The image data must match, or
      * be convertible to, the image layout of the existing image.
-     *
      * <p>
      * An <code>ImageWriteParam</code> may optionally be supplied to control the
      * writing process. If <code>param</code> is <code>null</code>, a default
      * write param will be used.
-     *
      * <p>
      * The destination region is specified in the <code>param</code> argument,
      * and will be clipped to the image boundaries and the region supplied to
      * <code>prepareReplacePixels</code>. At least one pixel of the source must
      * not be clipped, or an exception is thrown.
-     *
      * <p>
      * If the supplied <code>ImageWriteParam</code> contains optional setting
      * values not supported by this writer (<i>e.g.</i> progressive encoding or
      * any format-specific settings), they will be ignored.
-     *
      * <p>
      * This method may only be called after a call to
      * <code>prepareReplacePixels</code>, or else an
      * <code>IllegalStateException</code> will be thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @param raster
-     *               a <code>Raster</code> containing source pixels.
+     *        a <code>Raster</code> containing source pixels.
      * @param param
-     *               an <code>ImageWriteParam</code>, or <code>null</code> to
-     *               use a
-     *               default <code>ImageWriteParam</code>.
-     *
+     *        an <code>ImageWriteParam</code>, or <code>null</code> to
+     *        use a
+     *        default <code>ImageWriteParam</code>.
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canReplacePixels(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canReplacePixels(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalStateException
-     *                                          if there is no previous call to
-     *                                          <code>prepareReplacePixels</code>
-     *                                          without a matching call
-     *                                          to
-     *                                          <code>endReplacePixels</code>.
+     *            if there is no previous call to
+     *            <code>prepareReplacePixels</code>
+     *            without a matching call
+     *            to
+     *            <code>endReplacePixels</code>.
      * @exception UnsupportedOperationException
-     *                                          if <code>canWriteRasters</code>
-     *                                          returns <code>false</code>
-     *                                          .
+     *            if <code>canWriteRasters</code>
+     *            returns <code>false</code>
+     *            .
      * @exception IllegalArgumentException
-     *                                          if any of the following are
-     *                                          true:
-     *                                          <ul>
-     *                                          <li><code>raster</code> is
-     *                                          <code>null</code>.
-     *                                          <li><code>param</code> is
-     *                                          <code>null</code>.
-     *                                          <li>the intersected region does
-     *                                          not contain at least one
-     *                                          pixel.
-     *                                          <li>the layout of
-     *                                          <code>raster</code> does not
-     *                                          match, or
-     *                                          this writer cannot convert it
-     *                                          to, the existing image
-     *                                          layout.
-     *                                          </ul>
+     *            if any of the following are
+     *            true:
+     *            <ul>
+     *            <li><code>raster</code> is
+     *            <code>null</code>.
+     *            <li><code>param</code> is
+     *            <code>null</code>.
+     *            <li>the intersected region does
+     *            not contain at least one
+     *            pixel.
+     *            <li>the layout of
+     *            <code>raster</code> does not
+     *            match, or
+     *            this writer cannot convert it
+     *            to, the existing image
+     *            layout.
+     *            </ul>
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
-    public void replacePixels(Raster raster, ImageWriteParam param)
-            throws IOException {
+    public void replacePixels(Raster raster, ImageWriteParam param) throws IOException {
         unsupported();
     }
 
     /**
      * Terminates a sequence of calls to <code>replacePixels</code>.
-     *
      * <p>
      * If <code>canReplacePixels</code> returns <code>false</code>, and
      * <code>UnsupportedOperationException</code> will be thrown.
-     *
      * <p>
      * The default implementation throws an <code>IllegalStateException</code>
      * if the output is <code>null</code>, and otherwise throws an
      * <code>UnsupportedOperationException</code>.
      *
      * @exception IllegalStateException
-     *                                          if the output has not been set.
+     *            if the output has not been set.
      * @exception UnsupportedOperationException
-     *                                          if
-     *                                          <code>canReplacePixels(imageIndex)</code>
-     *                                          returns
-     *                                          <code>false</code>.
+     *            if
+     *            <code>canReplacePixels(imageIndex)</code>
+     *            returns
+     *            <code>false</code>.
      * @exception IllegalStateException
-     *                                          if there is no previous call to
-     *                                          <code>prepareReplacePixels</code>
-     *                                          without a matching call
-     *                                          to
-     *                                          <code>endReplacePixels</code>.
+     *            if there is no previous call to
+     *            <code>prepareReplacePixels</code>
+     *            without a matching call
+     *            to
+     *            <code>endReplacePixels</code>.
      * @exception IOException
-     *                                          if an I/O error occurs during
-     *                                          writing.
+     *            if an I/O error occurs during
+     *            writing.
      */
     public void endReplacePixels() throws IOException {
         unsupported();
@@ -1827,7 +1676,6 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Requests that any current write operation be aborted. The contents of the
      * output following the abort will be undefined.
-     *
      * <p>
      * Writers should call <code>clearAbortRequest</code> at the beginning of
      * each write operation, and poll the value of <code>abortRequested</code>
@@ -1844,7 +1692,6 @@ public abstract class ImageWriter implements ImageTranscoder {
      *
      * @return <code>true</code> if the current write operation should be
      *         aborted.
-     *
      * @see #abort
      * @see #clearAbortRequest
      */
@@ -1874,8 +1721,7 @@ public abstract class ImageWriter implements ImageTranscoder {
      * messages may be localized as the writer sees fit.
      *
      * @param listener
-     *                 an <code>IIOWriteWarningListener</code> to be registered.
-     *
+     *        an <code>IIOWriteWarningListener</code> to be registered.
      * @see #removeIIOWriteWarningListener
      */
     public void addIIOWriteWarningListener(IIOWriteWarningListener listener) {
@@ -1893,13 +1739,11 @@ public abstract class ImageWriter implements ImageTranscoder {
      * exception will be thrown and no action will be taken.
      *
      * @param listener
-     *                 an <code>IIOWriteWarningListener</code> to be
-     *                 deregistered.
-     *
+     *        an <code>IIOWriteWarningListener</code> to be
+     *        deregistered.
      * @see #addIIOWriteWarningListener
      */
-    public void removeIIOWriteWarningListener(
-            IIOWriteWarningListener listener) {
+    public void removeIIOWriteWarningListener(IIOWriteWarningListener listener) {
         if (listener == null || warningListeners == null) {
             return;
         }
@@ -1917,7 +1761,6 @@ public abstract class ImageWriter implements ImageTranscoder {
     /**
      * Removes all currently registered <code>IIOWriteWarningListener</code>
      * objects.
-     *
      * <p>
      * The default implementation sets the <code>warningListeners</code> and
      * <code>warningLocales</code> instance variables to <code>null</code>.
@@ -1933,9 +1776,8 @@ public abstract class ImageWriter implements ImageTranscoder {
      * exception will be thrown and no action will be taken.
      *
      * @param listener
-     *                 an <code>IIOWriteProgressListener</code> to be
-     *                 registered.
-     *
+     *        an <code>IIOWriteProgressListener</code> to be
+     *        registered.
      * @see #removeIIOWriteProgressListener
      */
     public void addIIOWriteProgressListener(IIOWriteProgressListener listener) {
@@ -1952,24 +1794,20 @@ public abstract class ImageWriter implements ImageTranscoder {
      * exception will be thrown and no action will be taken.
      *
      * @param listener
-     *                 an <code>IIOWriteProgressListener</code> to be
-     *                 deregistered.
-     *
+     *        an <code>IIOWriteProgressListener</code> to be
+     *        deregistered.
      * @see #addIIOWriteProgressListener
      */
-    public void removeIIOWriteProgressListener(
-            IIOWriteProgressListener listener) {
+    public void removeIIOWriteProgressListener(IIOWriteProgressListener listener) {
         if (listener == null || progressListeners == null) {
             return;
         }
-        progressListeners = ImageReader.removeFromList(progressListeners,
-                listener);
+        progressListeners = ImageReader.removeFromList(progressListeners, listener);
     }
 
     /**
      * Removes all currently registered <code>IIOWriteProgressListener</code>
      * objects.
-     *
      * <p>
      * The default implementation sets the <code>progressListeners</code>
      * instance variable to <code>null</code>.
@@ -1985,7 +1823,7 @@ public abstract class ImageWriter implements ImageTranscoder {
      * convenience.
      *
      * @param imageIndex
-     *                   the index of the image about to be written.
+     *        the index of the image about to be written.
      */
     protected void processImageStarted(int imageIndex) {
         if (progressListeners == null) {
@@ -1993,8 +1831,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.imageStarted(this, imageIndex);
         }
     }
@@ -2006,8 +1843,8 @@ public abstract class ImageWriter implements ImageTranscoder {
      * convenience.
      *
      * @param percentageDone
-     *                       the current percentage of completion, as a
-     *                       <code>float</code>.
+     *        the current percentage of completion, as a
+     *        <code>float</code>.
      */
     protected void processImageProgress(float percentageDone) {
         if (progressListeners == null) {
@@ -2015,8 +1852,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.imageProgress(this, percentageDone);
         }
     }
@@ -2033,8 +1869,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.imageComplete(this);
         }
     }
@@ -2046,10 +1881,10 @@ public abstract class ImageWriter implements ImageTranscoder {
      * convenience.
      *
      * @param imageIndex
-     *                       the index of the image associated with the
-     *                       thumbnail.
+     *        the index of the image associated with the
+     *        thumbnail.
      * @param thumbnailIndex
-     *                       the index of the thumbnail.
+     *        the index of the thumbnail.
      */
     protected void processThumbnailStarted(int imageIndex, int thumbnailIndex) {
         if (progressListeners == null) {
@@ -2057,8 +1892,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.thumbnailStarted(this, imageIndex, thumbnailIndex);
         }
     }
@@ -2070,8 +1904,8 @@ public abstract class ImageWriter implements ImageTranscoder {
      * a convenience.
      *
      * @param percentageDone
-     *                       the current percentage of completion, as a
-     *                       <code>float</code>.
+     *        the current percentage of completion, as a
+     *        <code>float</code>.
      */
     protected void processThumbnailProgress(float percentageDone) {
         if (progressListeners == null) {
@@ -2079,8 +1913,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.thumbnailProgress(this, percentageDone);
         }
     }
@@ -2097,8 +1930,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.thumbnailComplete(this);
         }
     }
@@ -2115,8 +1947,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = progressListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners
-                    .get(i);
+            IIOWriteProgressListener listener = (IIOWriteProgressListener) progressListeners.get(i);
             listener.writeAborted(this);
         }
     }
@@ -2128,13 +1959,12 @@ public abstract class ImageWriter implements ImageTranscoder {
      * convenience.
      *
      * @param imageIndex
-     *                   the index of the image on which the warning occurred.
+     *        the index of the image on which the warning occurred.
      * @param warning
-     *                   the warning message.
-     *
+     *        the warning message.
      * @exception IllegalArgumentException
-     *                                     if <code>warning</code> is
-     *                                     <code>null</code>.
+     *            if <code>warning</code> is
+     *            <code>null</code>.
      */
     protected void processWarningOccurred(int imageIndex, String warning) {
         if (warningListeners == null) {
@@ -2145,8 +1975,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = warningListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteWarningListener listener = (IIOWriteWarningListener) warningListeners
-                    .get(i);
+            IIOWriteWarningListener listener = (IIOWriteWarningListener) warningListeners.get(i);
 
             listener.warningOccurred(this, imageIndex, warning);
         }
@@ -2160,36 +1989,34 @@ public abstract class ImageWriter implements ImageTranscoder {
      * convenience.
      *
      * @param imageIndex
-     *                   the index of the image on which the warning occurred.
+     *        the index of the image on which the warning occurred.
      * @param baseName
-     *                   the base name of a set of <code>ResourceBundle</code>s
-     *                   containing localized warning messages.
+     *        the base name of a set of <code>ResourceBundle</code>s
+     *        containing localized warning messages.
      * @param keyword
-     *                   the keyword used to index the warning message within
-     *                   the set
-     *                   of <code>ResourceBundle</code>s.
-     *
+     *        the keyword used to index the warning message within
+     *        the set
+     *        of <code>ResourceBundle</code>s.
      * @exception IllegalArgumentException
-     *                                     if <code>baseName</code> is
-     *                                     <code>null</code>.
+     *            if <code>baseName</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if <code>keyword</code> is
-     *                                     <code>null</code>.
+     *            if <code>keyword</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if no appropriate
-     *                                     <code>ResourceBundle</code> may be
-     *                                     located.
+     *            if no appropriate
+     *            <code>ResourceBundle</code> may be
+     *            located.
      * @exception IllegalArgumentException
-     *                                     if the named resource is not found in
-     *                                     the located
-     *                                     <code>ResourceBundle</code>.
+     *            if the named resource is not found in
+     *            the located
+     *            <code>ResourceBundle</code>.
      * @exception IllegalArgumentException
-     *                                     if the object retrieved from the
-     *                                     <code>ResourceBundle</code> is not a
-     *                                     <code>String</code>.
+     *            if the object retrieved from the
+     *            <code>ResourceBundle</code> is not a
+     *            <code>String</code>.
      */
-    protected void processWarningOccurred(int imageIndex, String baseName,
-            String keyword) {
+    protected void processWarningOccurred(int imageIndex, String baseName, String keyword) {
         if (warningListeners == null) {
             return;
         }
@@ -2201,8 +2028,7 @@ public abstract class ImageWriter implements ImageTranscoder {
         }
         int numListeners = warningListeners.size();
         for (int i = 0; i < numListeners; i++) {
-            IIOWriteWarningListener listener = (IIOWriteWarningListener) warningListeners
-                    .get(i);
+            IIOWriteWarningListener listener = (IIOWriteWarningListener) warningListeners.get(i);
             Locale locale = (Locale) warningLocales.get(i);
             if (locale == null) {
                 locale = Locale.getDefault();
@@ -2215,11 +2041,10 @@ public abstract class ImageWriter implements ImageTranscoder {
              * class loader to locate the resource bundle. If that throws
              * MissingResourceException, then try the system class loader.
              */
-            ClassLoader loader = (ClassLoader) java.security.AccessController
-                    .doPrivileged(new java.security.PrivilegedAction() {
+            ClassLoader loader = (ClassLoader) java.security.AccessController.doPrivileged(
+                    new java.security.PrivilegedAction() {
                         public Object run() {
-                            return Thread.currentThread()
-                                    .getContextClassLoader();
+                            return Thread.currentThread().getContextClassLoader();
                         }
                     });
 
@@ -2251,7 +2076,6 @@ public abstract class ImageWriter implements ImageTranscoder {
 
     /**
      * Restores the <code>ImageWriter</code> to its initial state.
-     *
      * <p>
      * The default implementation calls <code>setOutput(null)</code>,
      * <code>setLocale(null)</code>,
@@ -2271,12 +2095,10 @@ public abstract class ImageWriter implements ImageTranscoder {
      * Allows any resources held by this object to be released. The result of
      * calling any other method (other than <code>finalize</code>) subsequent to
      * a call to this method is undefined.
-     *
      * <p>
      * It is important for applications to call this method when they know they
      * will no longer be using this <code>ImageWriter</code>. Otherwise, the
      * writer may continue to hold on to resources indefinitely.
-     *
      * <p>
      * The default implementation of this method in the superclass does nothing.
      * Subclass implementations should ensure that all resources, especially

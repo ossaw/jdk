@@ -25,10 +25,8 @@ import sun.security.action.GetPropertyAction;
  * converting a String to the <CODE>application/x-www-form-urlencoded</CODE>
  * MIME format. For more information about HTML form encoding, consult the HTML
  * <A HREF="http://www.w3.org/TR/html4/">specification</A>.
- *
  * <p>
  * When encoding a String, the following rules apply:
- *
  * <ul>
  * <li>The alphanumeric characters &quot;{@code a}&quot; through &quot;{@code z}
  * &quot;, &quot;{@code A}&quot; through &quot;{@code Z}&quot; and &quot;
@@ -44,7 +42,6 @@ import sun.security.action.GetPropertyAction;
  * scheme to use is UTF-8. However, for compatibility reasons, if an encoding is
  * not specified, then the default encoding of the platform is used.
  * </ul>
- *
  * <p>
  * For example using UTF-8 as the encoding scheme the string &quot;The string
  * &#252;@foo-bar&quot; would get converted to
@@ -107,8 +104,7 @@ public class URLEncoder {
         dontNeedEncoding.set('.');
         dontNeedEncoding.set('*');
 
-        dfltEncName = AccessController.doPrivileged(new GetPropertyAction(
-                "file.encoding"));
+        dfltEncName = AccessController.doPrivileged(new GetPropertyAction("file.encoding"));
     }
 
     /**
@@ -122,7 +118,7 @@ public class URLEncoder {
      * obtain the bytes for unsafe characters.
      *
      * @param s
-     *          {@code String} to be translated.
+     *        {@code String} to be translated.
      * @deprecated The resulting string may vary depending on the platform's
      *             default encoding. Instead, use the encode(String,String)
      *             method to specify the encoding.
@@ -154,20 +150,19 @@ public class URLEncoder {
      * incompatibilities.</em>
      *
      * @param s
-     *            {@code String} to be translated.
+     *        {@code String} to be translated.
      * @param enc
-     *            The name of a supported
-     *            <a href="../lang/package-summary.html#charenc">character
-     *            encoding</a>.
+     *        The name of a supported
+     *        <a href="../lang/package-summary.html#charenc">character
+     *        encoding</a>.
      * @return the translated {@code String}.
      * @exception UnsupportedEncodingException
-     *                                         If the named encoding is not
-     *                                         supported
+     *            If the named encoding is not
+     *            supported
      * @see URLDecoder#decode(java.lang.String, java.lang.String)
      * @since 1.4
      */
-    public static String encode(String s, String enc)
-            throws UnsupportedEncodingException {
+    public static String encode(String s, String enc) throws UnsupportedEncodingException {
 
         boolean needToChange = false;
         StringBuffer out = new StringBuffer(s.length());
@@ -231,8 +226,7 @@ public class URLEncoder {
                         }
                     }
                     i++;
-                } while (i < s.length() && !dontNeedEncoding.get((c = (int) s
-                        .charAt(i))));
+                } while (i < s.length() && !dontNeedEncoding.get((c = (int) s.charAt(i))));
 
                 charArrayWriter.flush();
                 String str = new String(charArrayWriter.toCharArray());

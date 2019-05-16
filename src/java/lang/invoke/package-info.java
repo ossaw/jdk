@@ -6,7 +6,6 @@
 /**
  * The {@code java.lang.invoke} package contains dynamic language support
  * provided directly by the Java core class libraries and virtual machine.
- *
  * <p>
  * As described in the Java Virtual Machine Specification, certain types in this
  * package have special relations to dynamic language support in the virtual
@@ -16,17 +15,14 @@
  * <a href="MethodHandle.html#sigpoly">signature polymorphic methods</a> which
  * can be linked regardless of their type descriptor. Normally, method linkage
  * requires exact matching of type descriptors.</li>
- *
  * <li>The JVM bytecode format supports immediate constants of the classes
  * {@link java.lang.invoke.MethodHandle MethodHandle} and
  * {@link java.lang.invoke.MethodType MethodType}.</li>
  * </ul>
- *
  * <h1><a name="jvm_mods"></a>Summary of relevant Java Virtual Machine changes
  * </h1> The following low-level information summarizes relevant parts of the
  * Java Virtual Machine specification. For full details, please see the current
  * version of that specification.
- *
  * Each occurrence of an {@code invokedynamic} instruction is called a
  * <em>dynamic call site</em>.
  * <h2><a name="indyinsn"></a>{@code invokedynamic} instructions</h2> A dynamic
@@ -74,7 +70,6 @@
  * as the abnormal termination of the dynamic call site execution. If this
  * happens, the same error will the thrown for all subsequent attempts to
  * execute the dynamic call site.
- *
  * <h2>timing of linkage</h2> A dynamic call site is linked just before its
  * first execution. The bootstrap method call implementing the linkage occurs
  * within a thread that is attempting a first execution.
@@ -97,14 +92,12 @@
  * install it visibly to all threads. Any other bootstrap method calls are
  * allowed to complete, but their results are ignored, and their dynamic call
  * site invocations proceed with the originally chosen target object.
- * 
  * <p style="font-size:smaller;">
  * <em>Discussion:</em> These rules do not enable the JVM to duplicate dynamic
  * call sites, or to issue &ldquo;causeless&rdquo; bootstrap method calls. Every
  * dynamic call site transitions at most once from unlinked to linked, just
  * before its first invocation. There is no way to undo the effect of a
  * completed bootstrap method call.
- *
  * <h2>types of bootstrap methods</h2> As long as each bootstrap method can be
  * correctly invoked by {@code MethodHandle.invoke}, its detailed type is
  * arbitrary. For example, the first argument could be {@code Object} instead of

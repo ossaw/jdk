@@ -23,9 +23,9 @@ public class CheckedInputStream extends FilterInputStream {
      * Creates an input stream using the specified Checksum.
      * 
      * @param in
-     *              the input stream
+     *        the input stream
      * @param cksum
-     *              the Checksum
+     *        the Checksum
      */
     public CheckedInputStream(InputStream in, Checksum cksum) {
         super(in);
@@ -37,7 +37,7 @@ public class CheckedInputStream extends FilterInputStream {
      * 
      * @return the byte read, or -1 if the end of the stream is reached.
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public int read() throws IOException {
         int b = in.read();
@@ -53,24 +53,24 @@ public class CheckedInputStream extends FilterInputStream {
      * <code>0</code> is returned.
      * 
      * @param buf
-     *            the buffer into which the data is read
+     *        the buffer into which the data is read
      * @param off
-     *            the start offset in the destination array <code>b</code>
+     *        the start offset in the destination array <code>b</code>
      * @param len
-     *            the maximum number of bytes read
+     *        the maximum number of bytes read
      * @return the actual number of bytes read, or -1 if the end of the stream
      *         is reached.
      * @exception NullPointerException
-     *                                      If <code>buf</code> is
-     *                                      <code>null</code>.
+     *            If <code>buf</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                      If <code>off</code> is negative,
-     *                                      <code>len</code> is
-     *                                      negative, or <code>len</code> is
-     *                                      greater than
-     *                                      <code>buf.length - off</code>
+     *            If <code>off</code> is negative,
+     *            <code>len</code> is
+     *            negative, or <code>len</code> is
+     *            greater than
+     *            <code>buf.length - off</code>
      * @exception IOException
-     *                                      if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public int read(byte[] buf, int off, int len) throws IOException {
         len = in.read(buf, off, len);
@@ -84,10 +84,10 @@ public class CheckedInputStream extends FilterInputStream {
      * Skips specified number of bytes of input.
      * 
      * @param n
-     *          the number of bytes to skip
+     *        the number of bytes to skip
      * @return the actual number of bytes skipped
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public long skip(long n) throws IOException {
         byte[] buf = new byte[512];

@@ -13,7 +13,6 @@ package java.lang.reflect;
  * @see Field
  * @see Method
  * @see Constructor
- *
  * @author Nakul Saraiya
  */
 public interface Member {

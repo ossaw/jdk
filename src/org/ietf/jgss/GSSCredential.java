@@ -14,7 +14,6 @@ package org.ietf.jgss;
  * to the same entity. A credential may be used to perform context initiation,
  * acceptance, or both.
  * <p>
- *
  * Credentials are instantiated using one of the <code>createCredential</code>
  * methods in the {@link GSSManager GSSManager} class. GSS-API credential
  * creation is not intended to provide a "login to the network" function, as
@@ -26,7 +25,6 @@ package org.ietf.jgss;
  * impose a local access-control policy on callers to prevent unauthorized
  * callers from acquiring credentials to which they are not entitled.
  * <p>
- *
  * Applications will create a credential object passing the desired parameters.
  * The application can then use the query methods to obtain specific information
  * about the instantiated credential object. When the credential is no longer
@@ -34,7 +32,6 @@ package org.ietf.jgss;
  * release any resources held by the credential object and to destroy any
  * cryptographically sensitive information.
  * <p>
- *
  * This example code demonstrates the creation of a GSSCredential implementation
  * for a specific entity, querying of its fields, and its release when it is no
  * longer needed:
@@ -47,8 +44,7 @@ package org.ietf.jgss;
  * GSSName name = manager.createName("myusername", GSSName.NT_USER_NAME);
  *
  * // now acquire credentials for the entity
- * GSSCredential cred = manager.createCredential(name,
- *         GSSCredential.ACCEPT_ONLY);
+ * GSSCredential cred = manager.createCredential(name, GSSCredential.ACCEPT_ONLY);
  *
  * // display credential information - name, remaining lifetime,
  * // and the mechanisms it has been acquired over
@@ -69,7 +65,6 @@ package org.ietf.jgss;
  * @see GSSManager#createCredential(GSSName, int, Oid, int)
  * @see GSSManager#createCredential(GSSName, int, Oid[], int)
  * @see #dispose()
- *
  * @author Mayank Upadhyay
  * @since 1.4
  */
@@ -78,21 +73,18 @@ public interface GSSCredential extends Cloneable {
     /**
      * Credential usage flag requesting that it be usable for both context
      * initiation and acceptance.
-     *
      */
     public static final int INITIATE_AND_ACCEPT = 0;
 
     /**
      * Credential usage flag requesting that it be usable for context initiation
      * only.
-     *
      */
     public static final int INITIATE_ONLY = 1;
 
     /**
      * Credential usage flag requesting that it be usable for context acceptance
      * only.
-     *
      */
     public static final int ACCEPT_ONLY = 2;
 
@@ -116,8 +108,8 @@ public interface GSSCredential extends Cloneable {
      * information is maintained.
      *
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public void dispose() throws GSSException;
 
@@ -125,10 +117,9 @@ public interface GSSCredential extends Cloneable {
      * Retrieves the name of the entity that the credential asserts.
      *
      * @return a GSSName representing the entity
-     *
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public GSSName getName() throws GSSException;
 
@@ -139,15 +130,14 @@ public interface GSSCredential extends Cloneable {
      * {@link #getName() getName}.
      *
      * @param mech
-     *             the Oid of the mechanism for which the Mechanism Name should
-     *             be returned.
+     *        the Oid of the mechanism for which the Mechanism Name should
+     *        be returned.
      * @return a GSSName representing the entity canonicalized for the desired
      *         mechanism
-     *
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public GSSName getName(Oid mech) throws GSSException;
 
@@ -160,13 +150,11 @@ public interface GSSCredential extends Cloneable {
      *         return value of {@link #INDEFINITE_LIFETIME INDEFINITE_LIFETIME}
      *         indicates that the credential does not expire. A return value of
      *         0 indicates that the credential is already expired.
-     *
      * @see #getRemainingInitLifetime(Oid)
      * @see #getRemainingAcceptLifetime(Oid)
-     *
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public int getRemainingLifetime() throws GSSException;
 
@@ -181,15 +169,13 @@ public interface GSSCredential extends Cloneable {
      *         INDEFINITE_LIFETIME} indicates that the credential element does
      *         not expire. A return value of 0 indicates that the credential
      *         element is already expired.
-     *
      * @param mech
-     *             the Oid of the mechanism whose initiator credential element
-     *             should be queried.
-     *
+     *        the Oid of the mechanism whose initiator credential element
+     *        should be queried.
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public int getRemainingInitLifetime(Oid mech) throws GSSException;
 
@@ -204,15 +190,13 @@ public interface GSSCredential extends Cloneable {
      *         INDEFINITE_LIFETIME} indicates that the credential element does
      *         not expire. A return value of 0 indicates that the credential
      *         element is already expired.
-     *
      * @param mech
-     *             the Oid of the mechanism whose acceptor credential element
-     *             should be queried.
-     *
+     *        the Oid of the mechanism whose acceptor credential element
+     *        should be queried.
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public int getRemainingAcceptLifetime(Oid mech) throws GSSException;
 
@@ -226,10 +210,9 @@ public interface GSSCredential extends Cloneable {
      * @return The return value will be one of {@link #INITIATE_ONLY
      *         INITIATE_ONLY}, {@link #ACCEPT_ONLY ACCEPT_ONLY}, and
      *         {@link #INITIATE_AND_ACCEPT INITIATE_AND_ACCEPT}.
-     *
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public int getUsage() throws GSSException;
 
@@ -242,14 +225,13 @@ public interface GSSCredential extends Cloneable {
      *         INITIATE_ONLY}, {@link #ACCEPT_ONLY ACCEPT_ONLY}, and
      *         {@link #INITIATE_AND_ACCEPT INITIATE_AND_ACCEPT}.
      * @param mech
-     *             the Oid of the mechanism whose credentials usage mode is to
-     *             be
-     *             determined.
-     *
+     *        the Oid of the mechanism whose credentials usage mode is to
+     *        be
+     *        determined.
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public int getUsage(Oid mech) throws GSSException;
 
@@ -261,10 +243,9 @@ public interface GSSCredential extends Cloneable {
      * determine the possible modes of usage.
      *
      * @return an array of Oid's corresponding to the supported mechanisms.
-     *
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public Oid[] getMechs() throws GSSException;
 
@@ -273,21 +254,17 @@ public interface GSSCredential extends Cloneable {
      * This method allows the construction of credentials, one mechanism at a
      * time.
      * <p>
-     *
      * This routine is envisioned to be used mainly by context acceptors during
      * the creation of acceptor credentials which are to be used with a variety
      * of clients using different security mechanisms.
      * <p>
-     *
      * This routine adds the new credential element "in-place". To add the
      * element in a new credential, first call <code>clone</code> to obtain a
      * copy of this credential, then call its <code>add</code> method.
      * <p>
-     *
      * As always, GSS-API implementations must impose a local access-control
      * policy on callers to prevent unauthorized callers from acquiring
      * credentials to which they are not entitled.
-     *
      * Non-default values for initLifetime and acceptLifetime cannot always be
      * honored by the underlying mechanisms, thus callers should be prepared to
      * call {@link #getRemainingInitLifetime(Oid) getRemainingInitLifetime} and
@@ -295,67 +272,66 @@ public interface GSSCredential extends Cloneable {
      * the credential.
      *
      * @param name
-     *                       the name of the principal for whom this credential
-     *                       is to be
-     *                       acquired. Use <code>null</code> to specify the
-     *                       default
-     *                       principal.
+     *        the name of the principal for whom this credential
+     *        is to be
+     *        acquired. Use <code>null</code> to specify the
+     *        default
+     *        principal.
      * @param initLifetime
-     *                       the number of seconds that the credential element
-     *                       should
-     *                       remain valid for initiating of security contexts.
-     *                       Use
-     *                       {@link GSSCredential#INDEFINITE_LIFETIME
-     *                       GSSCredential.INDEFINITE_LIFETIME} to request that
-     *                       the
-     *                       credentials have the maximum permitted lifetime for
-     *                       this. Use
-     *                       {@link GSSCredential#DEFAULT_LIFETIME
-     *                       GSSCredential.DEFAULT_LIFETIME} to request default
-     *                       credential
-     *                       lifetime for this.
+     *        the number of seconds that the credential element
+     *        should
+     *        remain valid for initiating of security contexts.
+     *        Use
+     *        {@link GSSCredential#INDEFINITE_LIFETIME
+     *        GSSCredential.INDEFINITE_LIFETIME} to request that
+     *        the
+     *        credentials have the maximum permitted lifetime for
+     *        this. Use
+     *        {@link GSSCredential#DEFAULT_LIFETIME
+     *        GSSCredential.DEFAULT_LIFETIME} to request default
+     *        credential
+     *        lifetime for this.
      * @param acceptLifetime
-     *                       the number of seconds that the credential element
-     *                       should
-     *                       remain valid for accepting security contexts. Use
-     *                       {@link GSSCredential#INDEFINITE_LIFETIME
-     *                       GSSCredential.INDEFINITE_LIFETIME} to request that
-     *                       the
-     *                       credentials have the maximum permitted lifetime for
-     *                       this. Use
-     *                       {@link GSSCredential#DEFAULT_LIFETIME
-     *                       GSSCredential.DEFAULT_LIFETIME} to request default
-     *                       credential
-     *                       lifetime for this.
+     *        the number of seconds that the credential element
+     *        should
+     *        remain valid for accepting security contexts. Use
+     *        {@link GSSCredential#INDEFINITE_LIFETIME
+     *        GSSCredential.INDEFINITE_LIFETIME} to request that
+     *        the
+     *        credentials have the maximum permitted lifetime for
+     *        this. Use
+     *        {@link GSSCredential#DEFAULT_LIFETIME
+     *        GSSCredential.DEFAULT_LIFETIME} to request default
+     *        credential
+     *        lifetime for this.
      * @param mech
-     *                       the mechanism over which the credential is to be
-     *                       acquired.
+     *        the mechanism over which the credential is to be
+     *        acquired.
      * @param usage
-     *                       the usage mode that this credential element should
-     *                       add to the
-     *                       credential. The value of this parameter must be one
-     *                       of:
-     *                       {@link #INITIATE_AND_ACCEPT INITIATE_AND_ACCEPT},
-     *                       {@link #ACCEPT_ONLY ACCEPT_ONLY}, and
-     *                       {@link #INITIATE_ONLY
-     *                       INITIATE_ONLY}.
-     *
+     *        the usage mode that this credential element should
+     *        add to the
+     *        credential. The value of this parameter must be one
+     *        of:
+     *        {@link #INITIATE_AND_ACCEPT INITIATE_AND_ACCEPT},
+     *        {@link #ACCEPT_ONLY ACCEPT_ONLY}, and
+     *        {@link #INITIATE_ONLY
+     *        INITIATE_ONLY}.
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#DUPLICATE_ELEMENT
-     *                      GSSException.DUPLICATE_ELEMENT},
-     *                      {@link GSSException#BAD_MECH
-     *                      GSSException.BAD_MECH},
-     *                      {@link GSSException#BAD_NAMETYPE
-     *                      GSSException.BAD_NAMETYPE},
-     *                      {@link GSSException#NO_CRED
-     *                      GSSException.NO_CRED},
-     *                      {@link GSSException#CREDENTIALS_EXPIRED
-     *                      GSSException.CREDENTIALS_EXPIRED},
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#DUPLICATE_ELEMENT
+     *         GSSException.DUPLICATE_ELEMENT},
+     *         {@link GSSException#BAD_MECH
+     *         GSSException.BAD_MECH},
+     *         {@link GSSException#BAD_NAMETYPE
+     *         GSSException.BAD_NAMETYPE},
+     *         {@link GSSException#NO_CRED
+     *         GSSException.NO_CRED},
+     *         {@link GSSException#CREDENTIALS_EXPIRED
+     *         GSSException.CREDENTIALS_EXPIRED},
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
-    public void add(GSSName name, int initLifetime, int acceptLifetime,
-            Oid mech, int usage) throws GSSException;
+    public void add(GSSName name, int initLifetime, int acceptLifetime, Oid mech, int usage)
+            throws GSSException;
 
     /**
      * Tests if this GSSCredential asserts the same entity as the supplied
@@ -365,7 +341,7 @@ public interface GSSCredential extends Cloneable {
      * @return <code>true</code> if the two GSSCredentials assert the same
      *         entity; <code>false</code> otherwise.
      * @param another
-     *                another GSSCredential for comparison to this one
+     *        another GSSCredential for comparison to this one
      */
     public boolean equals(Object another);
 

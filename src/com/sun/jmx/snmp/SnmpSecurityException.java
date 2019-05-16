@@ -47,7 +47,7 @@ public class SnmpSecurityException extends Exception {
      * Constructor.
      * 
      * @param msg
-     *            The exception msg to display.
+     *        The exception msg to display.
      */
     public SnmpSecurityException(String msg) {
         super(msg);

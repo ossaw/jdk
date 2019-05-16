@@ -66,7 +66,6 @@ import java.util.Objects;
  * common implementations are defined in {@link ChronoField}. The chronology
  * defines how the calendar system operates and the meaning of the standard
  * fields.
- *
  * <h3>When to use this interface</h3> The design of the API encourages the use
  * of {@code LocalDate} rather than this interface, even in the case where the
  * application needs to deal with multiple calendar systems.
@@ -77,7 +76,6 @@ import java.util.Objects;
  * wrong approach, resulting in logic errors and hard to find bugs. As such, it
  * should be considered an application-wide architectural decision to choose to
  * use this interface as opposed to {@code LocalDate}.
- *
  * <h3>Architectural issues to consider</h3> These are some of the points that
  * must be considered before using this interface throughout an application.
  * <p>
@@ -122,7 +120,6 @@ import java.util.Objects;
  * <p>
  * 6) Most of the time, passing a {@code ChronoLocalDate} throughout an
  * application is unnecessary, as discussed in the last section below.
- *
  * <h3>False assumptions causing bugs in multi-calendar system code</h3> As
  * indicated above, there are many issues to consider when try to use and
  * manipulate a date in an arbitrary calendar system. These are some of the key
@@ -165,7 +162,6 @@ import java.util.Objects;
  * is essential that code using this interface is subjected to additional code
  * reviews. It is also why an architectural decision to avoid this interface
  * type is usually the correct one.
- *
  * <h3>Using LocalDate instead</h3> The primary alternative to using this
  * interface throughout your application is as follows.
  * <ul>
@@ -217,11 +213,9 @@ import java.util.Objects;
  *           <p>
  *           Additional calendar systems may be added to the system. See
  *           {@link Chronology} for more details.
- *
  * @since 1.8
  */
-public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
-        Comparable<ChronoLocalDate> {
+public interface ChronoLocalDate extends Temporal, TemporalAdjuster, Comparable<ChronoLocalDate> {
 
     /**
      * Gets a comparator that compares {@code ChronoLocalDate} in time-line
@@ -263,11 +257,11 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * reference, {@code ChronoLocalDate::from}.
      *
      * @param temporal
-     *                 the temporal object to convert, not null
+     *        the temporal object to convert, not null
      * @return the date, not null
      * @throws DateTimeException
-     *                           if unable to convert to a
-     *                           {@code ChronoLocalDate}
+     *         if unable to convert to a
+     *         {@code ChronoLocalDate}
      * @see Chronology#date(TemporalAccessor)
      */
     static ChronoLocalDate from(TemporalAccessor temporal) {
@@ -277,9 +271,8 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
         Objects.requireNonNull(temporal, "temporal");
         Chronology chrono = temporal.query(TemporalQueries.chronology());
         if (chrono == null) {
-            throw new DateTimeException(
-                    "Unable to obtain ChronoLocalDate from TemporalAccessor: "
-                            + temporal.getClass());
+            throw new DateTimeException("Unable to obtain ChronoLocalDate from TemporalAccessor: " + temporal
+                    .getClass());
         }
         return chrono.date(temporal);
     }
@@ -373,7 +366,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if the field can be queried, false if not
      */
     @Override
@@ -400,7 +393,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * determined by the unit.
      *
      * @param unit
-     *             the unit to check, null returns false
+     *        the unit to check, null returns false
      * @return true if the unit can be added/subtracted, false if not
      */
     @Override
@@ -417,96 +410,88 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     default ChronoLocalDate with(TemporalAdjuster adjuster) {
-        return ChronoLocalDateImpl.ensureValid(getChronology(),
-                Temporal.super.with(adjuster));
+        return ChronoLocalDateImpl.ensureValid(getChronology(), Temporal.super.with(adjuster));
     }
 
     /**
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                                          {@inheritDoc}
+     *         {@inheritDoc}
      * @throws UnsupportedTemporalTypeException
-     *                                          {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                                          {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     default ChronoLocalDate with(TemporalField field, long newValue) {
         if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
-        return ChronoLocalDateImpl.ensureValid(getChronology(), field
-                .adjustInto(this, newValue));
+        return ChronoLocalDateImpl.ensureValid(getChronology(), field.adjustInto(this, newValue));
     }
 
     /**
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     default ChronoLocalDate plus(TemporalAmount amount) {
-        return ChronoLocalDateImpl.ensureValid(getChronology(),
-                Temporal.super.plus(amount));
+        return ChronoLocalDateImpl.ensureValid(getChronology(), Temporal.super.plus(amount));
     }
 
     /**
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     default ChronoLocalDate plus(long amountToAdd, TemporalUnit unit) {
         if (unit instanceof ChronoUnit) {
-            throw new UnsupportedTemporalTypeException("Unsupported unit: "
-                    + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
-        return ChronoLocalDateImpl.ensureValid(getChronology(), unit.addTo(this,
-                amountToAdd));
+        return ChronoLocalDateImpl.ensureValid(getChronology(), unit.addTo(this, amountToAdd));
     }
 
     /**
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                             {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     default ChronoLocalDate minus(TemporalAmount amount) {
-        return ChronoLocalDateImpl.ensureValid(getChronology(),
-                Temporal.super.minus(amount));
+        return ChronoLocalDateImpl.ensureValid(getChronology(), Temporal.super.minus(amount));
     }
 
     /**
      * {@inheritDoc}
      * 
      * @throws DateTimeException
-     *                                          {@inheritDoc}
+     *         {@inheritDoc}
      * @throws UnsupportedTemporalTypeException
-     *                                          {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ArithmeticException
-     *                                          {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     default ChronoLocalDate minus(long amountToSubtract, TemporalUnit unit) {
-        return ChronoLocalDateImpl.ensureValid(getChronology(),
-                Temporal.super.minus(amountToSubtract, unit));
+        return ChronoLocalDateImpl.ensureValid(getChronology(), Temporal.super.minus(amountToSubtract, unit));
     }
 
     // -----------------------------------------------------------------------
@@ -522,22 +507,22 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
      * query passing {@code this} as the argument.
      *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query (defined by the query)
+     *         if unable to query (defined by the query)
      * @throws ArithmeticException
-     *                             if numeric overflow occurs (defined by the
-     *                             query)
+     *         if numeric overflow occurs (defined by the
+     *         query)
      */
     @SuppressWarnings("unchecked")
     @Override
     default <R> R query(TemporalQuery<R> query) {
-        if (query == TemporalQueries.zoneId() || query == TemporalQueries.zone()
-                || query == TemporalQueries.offset()) {
+        if (query == TemporalQueries.zoneId() || query == TemporalQueries.zone() || query == TemporalQueries
+                .offset()) {
             return null;
         } else if (query == TemporalQueries.localTime()) {
             return null;
@@ -574,12 +559,12 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the target object to be adjusted, not null
+     *        the target object to be adjusted, not null
      * @return the adjusted object, not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     default Temporal adjustInto(Temporal temporal) {
@@ -626,21 +611,21 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param endExclusive
-     *                     the end date, exclusive, which is converted to a
-     *                     {@code ChronoLocalDate} in the same chronology, not
-     *                     null
+     *        the end date, exclusive, which is converted to a
+     *        {@code ChronoLocalDate} in the same chronology, not
+     *        null
      * @param unit
-     *                     the unit to measure the amount in, not null
+     *        the unit to measure the amount in, not null
      * @return the amount of time between this date and the end date
      * @throws DateTimeException
-     *                                          if the amount cannot be
-     *                                          calculated, or the end temporal
-     *                                          cannot be converted to a
-     *                                          {@code ChronoLocalDate}
+     *         if the amount cannot be
+     *         calculated, or the end temporal
+     *         cannot be converted to a
+     *         {@code ChronoLocalDate}
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override // override for Javadoc
     long until(Temporal endExclusive, TemporalUnit unit);
@@ -664,14 +649,14 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param endDateExclusive
-     *                         the end date, exclusive, which may be in any
-     *                         chronology, not
-     *                         null
+     *        the end date, exclusive, which may be in any
+     *        chronology, not
+     *        null
      * @return the period between this date and the end date, not null
      * @throws DateTimeException
-     *                             if the period cannot be calculated
+     *         if the period cannot be calculated
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     ChronoPeriod until(ChronoLocalDate endDateExclusive);
 
@@ -687,10 +672,10 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * </pre>
      *
      * @param formatter
-     *                  the formatter to use, not null
+     *        the formatter to use, not null
      * @return the formatted date string, not null
      * @throws DateTimeException
-     *                           if an error occurs during printing
+     *         if an error occurs during printing
      */
     default String format(DateTimeFormatter formatter) {
         Objects.requireNonNull(formatter, "formatter");
@@ -705,7 +690,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * specified time. All possible combinations of date and time are valid.
      *
      * @param localTime
-     *                  the local time to use, not null
+     *        the local time to use, not null
      * @return the local date-time formed from this date and the specified time,
      *         not null
      */
@@ -759,7 +744,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * This default implementation performs the comparison defined above.
      *
      * @param other
-     *              the other date to compare to, not null
+     *        the other date to compare to, not null
      * @return the comparator value, negative if less, positive if greater
      */
     @Override
@@ -784,7 +769,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * epoch-day.
      *
      * @param other
-     *              the other date to compare to, not null
+     *        the other date to compare to, not null
      * @return true if this is after the specified date
      */
     default boolean isAfter(ChronoLocalDate other) {
@@ -804,7 +789,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * epoch-day.
      *
      * @param other
-     *              the other date to compare to, not null
+     *        the other date to compare to, not null
      * @return true if this is before the specified date
      */
     default boolean isBefore(ChronoLocalDate other) {
@@ -825,7 +810,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * epoch-day.
      *
      * @param other
-     *              the other date to compare to, not null
+     *        the other date to compare to, not null
      * @return true if the underlying date is equal to the specified date
      */
     default boolean isEqual(ChronoLocalDate other) {
@@ -844,7 +829,7 @@ public interface ChronoLocalDate extends Temporal, TemporalAdjuster,
      * a comparator.
      *
      * @param obj
-     *            the object to check, null returns false
+     *        the object to check, null returns false
      * @return true if this is equal to the other date
      */
     @Override

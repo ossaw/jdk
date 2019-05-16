@@ -33,7 +33,7 @@ public class CompletionException extends RuntimeException {
      * initialized by a call to {@link #initCause(Throwable) initCause}.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     protected CompletionException(String message) {
         super(message);
@@ -44,10 +44,10 @@ public class CompletionException extends RuntimeException {
      * message and cause.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      * @param cause
-     *                the cause (which is saved for later retrieval by the
-     *                {@link #getCause()} method)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method)
      */
     public CompletionException(String message, Throwable cause) {
         super(message, cause);
@@ -60,8 +60,8 @@ public class CompletionException extends RuntimeException {
      * of {@code cause}).
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause()} method)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method)
      */
     public CompletionException(Throwable cause) {
         super(cause);

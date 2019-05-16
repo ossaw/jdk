@@ -33,8 +33,7 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterMessageFromOperator extends TextSyntax implements
-        PrintServiceAttribute {
+public final class PrinterMessageFromOperator extends TextSyntax implements PrintServiceAttribute {
 
     static final long serialVersionUID = -4486871203218629318L;
 
@@ -43,17 +42,16 @@ public final class PrinterMessageFromOperator extends TextSyntax implements
      * message and locale.
      *
      * @param message
-     *                Message.
+     *        Message.
      * @param locale
-     *                Natural language of the text string. null is interpreted
-     *                to
-     *                mean the default locale as returned by
-     *                <code>Locale.getDefault()</code>
-     *
+     *        Natural language of the text string. null is interpreted
+     *        to
+     *        mean the default locale as returned by
+     *        <code>Locale.getDefault()</code>
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>message</CODE> is
-     *                                 null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>message</CODE> is
+     *            null.
      */
     public PrinterMessageFromOperator(String message, Locale locale) {
         super(message, locale);
@@ -74,14 +72,12 @@ public final class PrinterMessageFromOperator extends TextSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this printer message
      *         from operator attribute, false otherwise.
      */
     public boolean equals(Object object) {
-        return (super.equals(object)
-                && object instanceof PrinterMessageFromOperator);
+        return (super.equals(object) && object instanceof PrinterMessageFromOperator);
     }
 
     /**

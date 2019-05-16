@@ -73,8 +73,7 @@ public class XPathParser {
     /**
      * The parser constructor.
      */
-    public XPathParser(ErrorListener errorListener,
-            javax.xml.transform.SourceLocator sourceLocator) {
+    public XPathParser(ErrorListener errorListener, javax.xml.transform.SourceLocator sourceLocator) {
         m_errorListener = errorListener;
         m_sourceLocator = sourceLocator;
     }
@@ -89,18 +88,16 @@ public class XPathParser {
      * parse doesn't have to be done each time the expression is evaluated.
      *
      * @param compiler
-     *                         The compiler object.
+     *        The compiler object.
      * @param expression
-     *                         A string conforming to the XPath grammar.
+     *        A string conforming to the XPath grammar.
      * @param namespaceContext
-     *                         An object that is able to resolve prefixes in the
-     *                         XPath to
-     *                         namespaces.
-     *
+     *        An object that is able to resolve prefixes in the
+     *        XPath to
+     *        namespaces.
      * @throws javax.xml.transform.TransformerException
      */
-    public void initXPath(Compiler compiler, String expression,
-            PrefixResolver namespaceContext)
+    public void initXPath(Compiler compiler, String expression, PrefixResolver namespaceContext)
             throws javax.xml.transform.TransformerException {
 
         m_ops = compiler;
@@ -141,11 +138,10 @@ public class XPathParser {
                         extraTokens += ", ";
                 }
 
-                error(XPATHErrorResources.ER_EXTRA_ILLEGAL_TOKENS,
-                        new Object[] { extraTokens }); // "Extra
-                                                                                                          // illegal
-                                                                                                          // tokens:
-                                                                                                          // "+extraTokens);
+                error(XPATHErrorResources.ER_EXTRA_ILLEGAL_TOKENS, new Object[] { extraTokens }); // "Extra
+                                                                                                  // illegal
+                                                                                                  // tokens:
+                                                                                                  // "+extraTokens);
             }
 
         } catch (com.sun.org.apache.xpath.internal.XPathProcessorException e) {
@@ -167,18 +163,16 @@ public class XPathParser {
      * a parse doesn't have to be done each time the expression is evaluated.
      * 
      * @param compiler
-     *                         The XPath object to be initialized.
+     *        The XPath object to be initialized.
      * @param expression
-     *                         A String representing the XPath.
+     *        A String representing the XPath.
      * @param namespaceContext
-     *                         An object that is able to resolve prefixes in the
-     *                         XPath to
-     *                         namespaces.
-     *
+     *        An object that is able to resolve prefixes in the
+     *        XPath to
+     *        namespaces.
      * @throws javax.xml.transform.TransformerException
      */
-    public void initMatchPattern(Compiler compiler, String expression,
-            PrefixResolver namespaceContext)
+    public void initMatchPattern(Compiler compiler, String expression, PrefixResolver namespaceContext)
             throws javax.xml.transform.TransformerException {
 
         m_ops = compiler;
@@ -207,17 +201,15 @@ public class XPathParser {
                     extraTokens += ", ";
             }
 
-            error(XPATHErrorResources.ER_EXTRA_ILLEGAL_TOKENS, new Object[] {
-                    extraTokens }); // "Extra
-                                                                                                      // illegal
-                                                                                                      // tokens:
-                                                                                                      // "+extraTokens);
+            error(XPATHErrorResources.ER_EXTRA_ILLEGAL_TOKENS, new Object[] { extraTokens }); // "Extra
+                                                                                              // illegal
+                                                                                              // tokens:
+                                                                                              // "+extraTokens);
         }
 
         // Terminate for safety.
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ENDOP);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
         m_ops.shrink();
     }
@@ -239,8 +231,8 @@ public class XPathParser {
      * be sent to System.err.
      *
      * @param handler
-     *                Reference to error listener where syntax errors will be
-     *                sent.
+     *        Reference to error listener where syntax errors will be
+     *        sent.
      */
     public void setErrorHandler(ErrorListener handler) {
         m_errorListener = handler;
@@ -260,8 +252,7 @@ public class XPathParser {
      * Check whether m_token matches the target string.
      *
      * @param s
-     *          A string reference or null.
-     *
+     *        A string reference or null.
      * @return If m_token is null, returns false (or true if s is also null), or
      *         return true if the current token matches the string, else false.
      */
@@ -273,8 +264,7 @@ public class XPathParser {
      * Check whether m_tokenChar==c.
      *
      * @param c
-     *          A character to be tested.
-     *
+     *        A character to be tested.
      * @return If m_token is null, returns false, or return true if c matches
      *         the current token.
      */
@@ -286,10 +276,9 @@ public class XPathParser {
      * Look ahead of the current token in order to make a branching decision.
      *
      * @param c
-     *          the character to be tested for.
+     *        the character to be tested for.
      * @param n
-     *          number of tokens to look ahead. Must be greater than 1.
-     *
+     *        number of tokens to look ahead. Must be greater than 1.
      * @return true if the next token matches the character argument.
      */
     final boolean lookahead(char c, int n) {
@@ -297,8 +286,7 @@ public class XPathParser {
         int pos = (m_queueMark + n);
         boolean b;
 
-        if ((pos <= m_ops.getTokenQueueSize()) && (pos > 0) && (m_ops
-                .getTokenQueueSize() != 0)) {
+        if ((pos <= m_ops.getTokenQueueSize()) && (pos > 0) && (m_ops.getTokenQueueSize() != 0)) {
             String tok = ((String) m_ops.m_tokenQueue.elementAt(pos - 1));
 
             b = (tok.length() == 1) ? (tok.charAt(0) == c) : false;
@@ -314,13 +302,12 @@ public class XPathParser {
      * branching decision.
      *
      * @param c
-     *          the character to compare it to.
+     *        the character to compare it to.
      * @param n
-     *          number of tokens to look behind. Must be greater than 1. Note
-     *          that the look behind terminates at either the beginning of the
-     *          string or on a '|' character. Because of this, this method
-     *          should only be used for pattern matching.
-     *
+     *        number of tokens to look behind. Must be greater than 1. Note
+     *        that the look behind terminates at either the beginning of the
+     *        string or on a '|' character. Because of this, this method
+     *        should only be used for pattern matching.
      * @return true if the token behind the current token matches the character
      *         argument.
      */
@@ -330,8 +317,7 @@ public class XPathParser {
         int lookBehindPos = m_queueMark - (n + 1);
 
         if (lookBehindPos >= 0) {
-            String lookbehind = (String) m_ops.m_tokenQueue.elementAt(
-                    lookBehindPos);
+            String lookbehind = (String) m_ops.m_tokenQueue.elementAt(lookBehindPos);
 
             if (lookbehind.length() == 1) {
                 char c0 = (lookbehind == null) ? '|' : lookbehind.charAt(0);
@@ -352,11 +338,10 @@ public class XPathParser {
      * token.
      *
      * @param n
-     *          number of tokens to look behind. Must be greater than 1. Note
-     *          that the look behind terminates at either the beginning of the
-     *          string or on a '|' character. Because of this, this method
-     *          should only be used for pattern matching.
-     *
+     *        number of tokens to look behind. Must be greater than 1. Note
+     *        that the look behind terminates at either the beginning of the
+     *        string or on a '|' character. Because of this, this method
+     *        should only be used for pattern matching.
      * @return true if look behind has a token, false otherwise.
      */
     private final boolean lookbehindHasToken(int n) {
@@ -364,8 +349,7 @@ public class XPathParser {
         boolean hasToken;
 
         if ((m_queueMark - n) > 0) {
-            String lookbehind = (String) m_ops.m_tokenQueue.elementAt(
-                    m_queueMark - (n - 1));
+            String lookbehind = (String) m_ops.m_tokenQueue.elementAt(m_queueMark - (n - 1));
             char c0 = (lookbehind == null) ? '|' : lookbehind.charAt(0);
 
             hasToken = (c0 == '|') ? false : true;
@@ -380,10 +364,9 @@ public class XPathParser {
      * Look ahead of the current token in order to make a branching decision.
      *
      * @param s
-     *          the string to compare it to.
+     *        the string to compare it to.
      * @param n
-     *          number of tokens to lookahead. Must be greater than 1.
-     *
+     *        number of tokens to lookahead. Must be greater than 1.
      * @return true if the token behind the current token matches the string
      *         argument.
      */
@@ -392,8 +375,7 @@ public class XPathParser {
         boolean isToken;
 
         if ((m_queueMark + n) <= m_ops.getTokenQueueSize()) {
-            String lookahead = (String) m_ops.m_tokenQueue.elementAt(m_queueMark
-                    + (n - 1));
+            String lookahead = (String) m_ops.m_tokenQueue.elementAt(m_queueMark + (n - 1));
 
             isToken = (lookahead != null) ? lookahead.equals(s) : (s == null);
         } else {
@@ -421,8 +403,7 @@ public class XPathParser {
      * Retrieve a token relative to the current token.
      *
      * @param i
-     *          Position relative to current token.
-     *
+     *        Position relative to current token.
      * @return The string at the given index, or null if the index is out of
      *         range.
      */
@@ -461,22 +442,19 @@ public class XPathParser {
      * Consume an expected token, throwing an exception if it isn't there.
      *
      * @param expected
-     *                 The string to be expected.
-     *
+     *        The string to be expected.
      * @throws javax.xml.transform.TransformerException
      */
-    private final void consumeExpected(String expected)
-            throws javax.xml.transform.TransformerException {
+    private final void consumeExpected(String expected) throws javax.xml.transform.TransformerException {
 
         if (tokenIs(expected)) {
             nextToken();
         } else {
-            error(XPATHErrorResources.ER_EXPECTED_BUT_FOUND, new Object[] {
-                    expected, m_token }); // "Expected
-                                                                                                          // "+expected+",
-                                                                                                          // but
-                                                                                                          // found:
-                                                                                                          // "+m_token);
+            error(XPATHErrorResources.ER_EXPECTED_BUT_FOUND, new Object[] { expected, m_token }); // "Expected
+                                                                                                  // "+expected+",
+                                                                                                  // but
+                                                                                                  // found:
+                                                                                                  // "+m_token);
 
             // Patch for Christina's gripe. She wants her errorHandler to return
             // from
@@ -491,18 +469,16 @@ public class XPathParser {
      * Consume an expected token, throwing an exception if it isn't there.
      *
      * @param expected
-     *                 the character to be expected.
-     *
+     *        the character to be expected.
      * @throws javax.xml.transform.TransformerException
      */
-    private final void consumeExpected(char expected)
-            throws javax.xml.transform.TransformerException {
+    private final void consumeExpected(char expected) throws javax.xml.transform.TransformerException {
 
         if (tokenIs(expected)) {
             nextToken();
         } else {
-            error(XPATHErrorResources.ER_EXPECTED_BUT_FOUND, new Object[] {
-                    String.valueOf(expected), m_token }); // "Expected
+            error(XPATHErrorResources.ER_EXPECTED_BUT_FOUND, new Object[] { String.valueOf(expected),
+                    m_token }); // "Expected
                                                                                                                           // "+expected+",
                                                                                                                           // but
                                                                                                                           // found:
@@ -521,19 +497,18 @@ public class XPathParser {
      * Warn the user of a problem.
      *
      * @param msg
-     *             An error msgkey that corresponds to one of the constants
-     *             found
-     *             in
-     *             {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-     *             , which is a key for a format string.
+     *        An error msgkey that corresponds to one of the constants
+     *        found
+     *        in
+     *        {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+     *        , which is a key for a format string.
      * @param args
-     *             An array of arguments represented in the format string, which
-     *             may be null.
-     *
+     *        An array of arguments represented in the format string, which
+     *        may be null.
      * @throws TransformerException
-     *                              if the current ErrorListoner determines to
-     *                              throw an
-     *                              exception.
+     *         if the current ErrorListoner determines to
+     *         throw an
+     *         exception.
      */
     void warn(String msg, Object[] args) throws TransformerException {
 
@@ -553,19 +528,17 @@ public class XPathParser {
      * Notify the user of an assertion error, and probably throw an exception.
      *
      * @param b
-     *            If false, a runtime exception will be thrown.
+     *        If false, a runtime exception will be thrown.
      * @param msg
-     *            The assertion message, which should be informative.
-     *
+     *        The assertion message, which should be informative.
      * @throws RuntimeException
-     *                          if the b argument is false.
+     *         if the b argument is false.
      */
     private void assertion(boolean b, String msg) {
 
         if (!b) {
             String fMsg = XSLMessages.createXPATHMessage(
-                    XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION,
-                    new Object[] { msg });
+                    XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION, new Object[] { msg });
 
             throw new RuntimeException(fMsg);
         }
@@ -575,27 +548,25 @@ public class XPathParser {
      * Notify the user of an error, and probably throw an exception.
      *
      * @param msg
-     *             An error msgkey that corresponds to one of the constants
-     *             found
-     *             in
-     *             {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-     *             , which is a key for a format string.
+     *        An error msgkey that corresponds to one of the constants
+     *        found
+     *        in
+     *        {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+     *        , which is a key for a format string.
      * @param args
-     *             An array of arguments represented in the format string, which
-     *             may be null.
-     *
+     *        An array of arguments represented in the format string, which
+     *        may be null.
      * @throws TransformerException
-     *                              if the current ErrorListoner determines to
-     *                              throw an
-     *                              exception.
+     *         if the current ErrorListoner determines to
+     *         throw an
+     *         exception.
      */
     void error(String msg, Object[] args) throws TransformerException {
 
         String fmsg = XSLMessages.createXPATHMessage(msg, args);
         ErrorListener ehandler = this.getErrorListener();
 
-        TransformerException te = new TransformerException(fmsg,
-                m_sourceLocator);
+        TransformerException te = new TransformerException(fmsg, m_sourceLocator);
         if (null != ehandler) {
             // TO DO: Need to get stylesheet Locator from here.
             ehandler.fatalError(te);
@@ -623,27 +594,25 @@ public class XPathParser {
      * and take appropriate action.
      *
      * @param msg
-     *             An error msgkey that corresponds to one of the constants
-     *             found
-     *             in
-     *             {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-     *             , which is a key for a format string.
+     *        An error msgkey that corresponds to one of the constants
+     *        found
+     *        in
+     *        {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+     *        , which is a key for a format string.
      * @param args
-     *             An array of arguments represented in the format string, which
-     *             may be null.
-     *
+     *        An array of arguments represented in the format string, which
+     *        may be null.
      * @throws TransformerException
-     *                              if the current ErrorListoner determines to
-     *                              throw an
-     *                              exception.
+     *         if the current ErrorListoner determines to
+     *         throw an
+     *         exception.
      */
     void errorForDOM3(String msg, Object[] args) throws TransformerException {
 
         String fmsg = XSLMessages.createXPATHMessage(msg, args);
         ErrorListener ehandler = this.getErrorListener();
 
-        TransformerException te = new XPathStylesheetDOM3Exception(fmsg,
-                m_sourceLocator);
+        TransformerException te = new XPathStylesheetDOM3Exception(fmsg, m_sourceLocator);
         if (null != ehandler) {
             // TO DO: Need to get stylesheet Locator from here.
             ehandler.fatalError(te);
@@ -685,8 +654,7 @@ public class XPathParser {
      * Given a string, return the corresponding function token.
      *
      * @param key
-     *            A local name of a function.
-     *
+     *        A local name of a function.
      * @return The function ID, which may correspond to one of the FUNC_XXX
      *         values found in
      *         {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable},
@@ -720,11 +688,11 @@ public class XPathParser {
      * operation, but will update the length value for the total expression.
      *
      * @param pos
-     *               The position where the op is to be inserted.
+     *        The position where the op is to be inserted.
      * @param length
-     *               The length of the operation space in the op map.
+     *        The length of the operation space in the op map.
      * @param op
-     *               The op code to the inserted.
+     *        The op code to the inserted.
      */
     void insertOp(int pos, int length, int op) {
 
@@ -743,9 +711,9 @@ public class XPathParser {
      * operation, and will update the length value for the total expression.
      *
      * @param length
-     *               The length of the operation.
+     *        The length of the operation.
      * @param op
-     *               The op code to the inserted.
+     *        The op code to the inserted.
      */
     void appendOp(int length, int op) {
 
@@ -759,10 +727,7 @@ public class XPathParser {
     // ============= EXPRESSIONS FUNCTIONS =================
 
     /**
-     *
-     *
      * Expr ::= OrExpr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -771,10 +736,7 @@ public class XPathParser {
     }
 
     /**
-     *
-     *
      * OrExpr ::= AndExpr | OrExpr 'or' AndExpr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -789,16 +751,12 @@ public class XPathParser {
             insertOp(opPos, 2, OpCodes.OP_OR);
             OrExpr();
 
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
         }
     }
 
     /**
-     *
-     *
      * AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -813,29 +771,21 @@ public class XPathParser {
             insertOp(opPos, 2, OpCodes.OP_AND);
             AndExpr();
 
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
         }
     }
 
     /**
-     *
      * @returns an Object which is either a String, a Number, a Boolean, or a
      *          vector of nodes.
-     *
      *          EqualityExpr ::= RelationalExpr | EqualityExpr '='
      *          RelationalExpr
-     *
-     *
      * @param addPos
-     *               Position where expression is to be added, or -1 for append.
-     *
+     *        Position where expression is to be added, or -1 for append.
      * @return the position at the end of the equality expression.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected int EqualityExpr(int addPos)
-            throws javax.xml.transform.TransformerException {
+    protected int EqualityExpr(int addPos) throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -850,23 +800,21 @@ public class XPathParser {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_NOTEQUALS);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = EqualityExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             } else if (tokenIs('=')) {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_EQUALS);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = EqualityExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             }
         }
@@ -879,21 +827,15 @@ public class XPathParser {
      * 
      * @returns an Object which is either a String, a Number, a Boolean, or a
      *          vector of nodes.
-     *
      *          RelationalExpr ::= AdditiveExpr | RelationalExpr '<'
      *          AdditiveExpr | RelationalExpr '>' AdditiveExpr | RelationalExpr
      *          '<=' AdditiveExpr | RelationalExpr '>=' AdditiveExpr
-     *
-     *
      * @param addPos
-     *               Position where expression is to be added, or -1 for append.
-     *
+     *        Position where expression is to be added, or -1 for append.
      * @return the position at the end of the relational expression.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected int RelationalExpr(int addPos)
-            throws javax.xml.transform.TransformerException {
+    protected int RelationalExpr(int addPos) throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -913,12 +855,11 @@ public class XPathParser {
                     insertOp(addPos, 2, OpCodes.OP_LT);
                 }
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = RelationalExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             } else if (tokenIs('>')) {
                 nextToken();
@@ -930,12 +871,11 @@ public class XPathParser {
                     insertOp(addPos, 2, OpCodes.OP_GT);
                 }
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = RelationalExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             }
         }
@@ -947,20 +887,15 @@ public class XPathParser {
      * This has to handle construction of the operations so that they are
      * evaluated in pre-fix order. So, for 9+7-6, instead of |+|9|-|7|6|, this
      * needs to be evaluated as |-|+|9|7|6|.
-     *
      * AdditiveExpr ::= MultiplicativeExpr | AdditiveExpr '+' MultiplicativeExpr
      * | AdditiveExpr '-' MultiplicativeExpr
      *
-     *
      * @param addPos
-     *               Position where expression is to be added, or -1 for append.
-     *
+     *        Position where expression is to be added, or -1 for append.
      * @return the position at the end of the equality expression.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected int AdditiveExpr(int addPos)
-            throws javax.xml.transform.TransformerException {
+    protected int AdditiveExpr(int addPos) throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -974,23 +909,21 @@ public class XPathParser {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_PLUS);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = AdditiveExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             } else if (tokenIs('-')) {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_MINUS);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = AdditiveExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             }
         }
@@ -1002,20 +935,16 @@ public class XPathParser {
      * This has to handle construction of the operations so that they are
      * evaluated in pre-fix order. So, for 9+7-6, instead of |+|9|-|7|6|, this
      * needs to be evaluated as |-|+|9|7|6|.
-     *
      * MultiplicativeExpr ::= UnaryExpr | MultiplicativeExpr MultiplyOperator
      * UnaryExpr | MultiplicativeExpr 'div' UnaryExpr | MultiplicativeExpr 'mod'
      * UnaryExpr | MultiplicativeExpr 'quo' UnaryExpr
      *
      * @param addPos
-     *               Position where expression is to be added, or -1 for append.
-     *
+     *        Position where expression is to be added, or -1 for append.
      * @return the position at the end of the equality expression.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected int MultiplicativeExpr(int addPos)
-            throws javax.xml.transform.TransformerException {
+    protected int MultiplicativeExpr(int addPos) throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -1029,45 +958,41 @@ public class XPathParser {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_MULT);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = MultiplicativeExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             } else if (tokenIs("div")) {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_DIV);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = MultiplicativeExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             } else if (tokenIs("mod")) {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_MOD);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = MultiplicativeExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             } else if (tokenIs("quo")) {
                 nextToken();
                 insertOp(addPos, 2, OpCodes.OP_QUO);
 
-                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                        - addPos;
+                int opPlusLeftHandLen = m_ops.getOp(OpMap.MAPINDEX_LENGTH) - addPos;
 
                 addPos = MultiplicativeExpr(addPos);
-                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos
-                        + opPlusLeftHandLen + 1) + opPlusLeftHandLen);
+                m_ops.setOp(addPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(addPos + opPlusLeftHandLen + 1)
+                        + opPlusLeftHandLen);
                 addPos += 2;
             }
         }
@@ -1076,9 +1001,7 @@ public class XPathParser {
     }
 
     /**
-     *
      * UnaryExpr ::= UnionExpr | '-' UnaryExpr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -1097,39 +1020,30 @@ public class XPathParser {
         UnionExpr();
 
         if (isNeg)
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
-     *
      * StringExpr ::= Expr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void StringExpr()
-            throws javax.xml.transform.TransformerException {
+    protected void StringExpr() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
         appendOp(2, OpCodes.OP_STRING);
         Expr();
 
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
-     *
-     *
      * StringExpr ::= Expr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void BooleanExpr()
-            throws javax.xml.transform.TransformerException {
+    protected void BooleanExpr() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -1155,23 +1069,18 @@ public class XPathParser {
     }
 
     /**
-     *
-     *
      * NumberExpr ::= Expr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void NumberExpr()
-            throws javax.xml.transform.TransformerException {
+    protected void NumberExpr() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
         appendOp(2, OpCodes.OP_NUMBER);
         Expr();
 
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
@@ -1179,10 +1088,7 @@ public class XPathParser {
      * hand side expression. The results of the right hand side expressions are
      * node sets. The result of the left hand side UnionExpr is the union of the
      * results of the right hand side expressions.
-     *
-     *
      * UnionExpr ::= PathExpr | UnionExpr '|' PathExpr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -1210,8 +1116,7 @@ public class XPathParser {
             // this.m_testForDocOrder = true;
         } while (continueOrLoop);
 
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
@@ -1219,12 +1124,11 @@ public class XPathParser {
      * RelativeLocationPath | FilterExpr '//' RelativeLocationPath
      *
      * @throws XSLProcessorException
-     *                               thrown if the active ProblemListener and
-     *                               XPathContext decide
-     *                               the error condition is severe enough to
-     *                               halt processing.
-     *
-     * @throws                       javax.xml.transform.TransformerException
+     *         thrown if the active ProblemListener and
+     *         XPathContext decide
+     *         the error condition is severe enough to
+     *         halt processing.
+     * @throws javax.xml.transform.TransformerException
      */
     protected void PathExpr() throws javax.xml.transform.TransformerException {
 
@@ -1258,10 +1162,8 @@ public class XPathParser {
             // Terminate for safety.
             if (locationPathStarted) {
                 m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ENDOP);
-                m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                        OpMap.MAPINDEX_LENGTH) + 1);
-                m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                        OpMap.MAPINDEX_LENGTH) - opPos);
+                m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
+                m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
             }
         } else {
             LocationPath();
@@ -1269,22 +1171,18 @@ public class XPathParser {
     }
 
     /**
-     *
-     *
      * FilterExpr ::= PrimaryExpr | FilterExpr Predicate
      *
      * @throws XSLProcessorException
-     *                               thrown if the active ProblemListener and
-     *                               XPathContext decide
-     *                               the error condition is severe enough to
-     *                               halt processing.
-     *
+     *         thrown if the active ProblemListener and
+     *         XPathContext decide
+     *         the error condition is severe enough to
+     *         halt processing.
      * @return FILTER_MATCH_PREDICATES, if this method successfully matched a
      *         FilterExpr with one or more Predicates; FILTER_MATCH_PRIMARY, if
      *         this method successfully matched a FilterExpr that was just a
      *         PrimaryExpr; or FILTER_MATCH_FAILED, if this method did not match
      *         a FilterExpr
-     *
      * @throws javax.xml.transform.TransformerException
      */
     protected int FilterExpr() throws javax.xml.transform.TransformerException {
@@ -1321,17 +1219,13 @@ public class XPathParser {
     }
 
     /**
-     *
      * PrimaryExpr ::= VariableReference | '(' Expr ')' | Literal | Number |
      * FunctionCall
      *
      * @return true if this method successfully matched a PrimaryExpr
-     *
      * @throws javax.xml.transform.TransformerException
-     *
      */
-    protected boolean PrimaryExpr()
-            throws javax.xml.transform.TransformerException {
+    protected boolean PrimaryExpr() throws javax.xml.transform.TransformerException {
 
         boolean matchFound;
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
@@ -1340,8 +1234,7 @@ public class XPathParser {
             appendOp(2, OpCodes.OP_LITERAL);
             Literal();
 
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
             matchFound = true;
         } else if (m_tokenChar == '$') {
@@ -1349,8 +1242,7 @@ public class XPathParser {
             appendOp(2, OpCodes.OP_VARIABLE);
             QName();
 
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
             matchFound = true;
         } else if (m_tokenChar == '(') {
@@ -1359,22 +1251,18 @@ public class XPathParser {
             Expr();
             consumeExpected(')');
 
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
             matchFound = true;
-        } else if ((null != m_token) && ((('.' == m_tokenChar) && (m_token
-                .length() > 1) && Character.isDigit(m_token.charAt(1)))
-                || Character.isDigit(m_tokenChar))) {
+        } else if ((null != m_token) && ((('.' == m_tokenChar) && (m_token.length() > 1) && Character.isDigit(
+                m_token.charAt(1))) || Character.isDigit(m_tokenChar))) {
             appendOp(2, OpCodes.OP_NUMBERLIT);
             Number();
 
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
             matchFound = true;
-        } else if (lookahead('(', 1) || (lookahead(':', 1) && lookahead('(',
-                3))) {
+        } else if (lookahead('(', 1) || (lookahead(':', 1) && lookahead('(', 3))) {
             matchFound = FunctionCall();
         } else {
             matchFound = false;
@@ -1384,9 +1272,7 @@ public class XPathParser {
     }
 
     /**
-     *
      * Argument ::= Expr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -1397,20 +1283,16 @@ public class XPathParser {
         appendOp(2, OpCodes.OP_ARGUMENT);
         Expr();
 
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
-     *
      * FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument)*)? ')'
      *
      * @return true if, and only if, a FunctionCall was matched
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected boolean FunctionCall()
-            throws javax.xml.transform.TransformerException {
+    protected boolean FunctionCall() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -1429,12 +1311,11 @@ public class XPathParser {
             int funcTok = getFunctionToken(m_token);
 
             if (-1 == funcTok) {
-                error(XPATHErrorResources.ER_COULDNOT_FIND_FUNCTION,
-                        new Object[] { m_token }); // "Could
-                                                                                                        // not
-                                                                                                        // find
-                                                                                                        // function:
-                                                                                                        // "+m_token+"()");
+                error(XPATHErrorResources.ER_COULDNOT_FIND_FUNCTION, new Object[] { m_token }); // "Could
+                                                                                                // not
+                                                                                                // find
+                                                                                                // function:
+                                                                                                // "+m_token+"()");
             }
 
             switch (funcTok) {
@@ -1457,13 +1338,12 @@ public class XPathParser {
 
         while (!tokenIs(')') && m_token != null) {
             if (tokenIs(',')) {
-                error(XPATHErrorResources.ER_FOUND_COMMA_BUT_NO_PRECEDING_ARG,
-                        null); // "Found
-                                                                                              // ','
-                                                                                              // but
-                                                                                              // no
-                                                                                              // preceding
-                                                                                              // argument!");
+                error(XPATHErrorResources.ER_FOUND_COMMA_BUT_NO_PRECEDING_ARG, null); // "Found
+                                                                                      // ','
+                                                                                      // but
+                                                                                      // no
+                                                                                      // preceding
+                                                                                      // argument!");
             }
 
             Argument();
@@ -1472,13 +1352,12 @@ public class XPathParser {
                 consumeExpected(',');
 
                 if (tokenIs(')')) {
-                    error(XPATHErrorResources.ER_FOUND_COMMA_BUT_NO_FOLLOWING_ARG,
-                            null); // "Found
-                                                                                                  // ','
-                                                                                                  // but
-                                                                                                  // no
-                                                                                                  // following
-                                                                                                  // argument!");
+                    error(XPATHErrorResources.ER_FOUND_COMMA_BUT_NO_FOLLOWING_ARG, null); // "Found
+                                                                                          // ','
+                                                                                          // but
+                                                                                          // no
+                                                                                          // following
+                                                                                          // argument!");
                 }
             }
         }
@@ -1487,10 +1366,8 @@ public class XPathParser {
 
         // Terminate for safety.
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ENDOP);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
         return true;
     }
@@ -1498,14 +1375,11 @@ public class XPathParser {
     // ============= GRAMMAR FUNCTIONS =================
 
     /**
-     *
      * LocationPath ::= RelativeLocationPath | AbsoluteLocationPath
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void LocationPath()
-            throws javax.xml.transform.TransformerException {
+    protected void LocationPath() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -1519,8 +1393,7 @@ public class XPathParser {
 
             // Tell how long the step is without the predicate
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 2, 4);
-            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1,
-                    OpCodes.NODETYPE_ROOT);
+            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1, OpCodes.NODETYPE_ROOT);
 
             nextToken();
         } else if (m_token == null) {
@@ -1533,30 +1406,24 @@ public class XPathParser {
                 // nothing
                 // "Location path expected, but found "+m_token+" was
                 // encountered."
-                error(XPATHErrorResources.ER_EXPECTED_LOC_PATH, new Object[] {
-                        m_token });
+                error(XPATHErrorResources.ER_EXPECTED_LOC_PATH, new Object[] { m_token });
             }
         }
 
         // Terminate for safety.
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ENDOP);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
-     *
      * RelativeLocationPath ::= Step | RelativeLocationPath '/' Step |
      * AbbreviatedRelativeLocationPath
      *
      * @returns true if, and only if, a RelativeLocationPath was matched
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected boolean RelativeLocationPath()
-            throws javax.xml.transform.TransformerException {
+    protected boolean RelativeLocationPath() throws javax.xml.transform.TransformerException {
         if (!Step()) {
             return false;
         }
@@ -1575,11 +1442,9 @@ public class XPathParser {
     }
 
     /**
-     *
      * Step ::= Basis Predicate | AbbreviatedStep
      *
      * @returns false if step was empty (or only a '/'); true, otherwise
-     *
      * @throws javax.xml.transform.TransformerException
      */
     protected boolean Step() throws javax.xml.transform.TransformerException {
@@ -1603,20 +1468,15 @@ public class XPathParser {
             // by a regular step pattern.
 
             // Make room for telling how long the step is without the predicate
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
-            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH),
-                    OpCodes.NODETYPE_NODE);
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.NODETYPE_NODE);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             // Tell how long the step is without the predicate
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH + 1, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH + 1, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
             // Tell how long the step is with the predicate
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
             opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
         }
@@ -1640,23 +1500,21 @@ public class XPathParser {
 
             // Tell how long the step is without the predicate
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 2, 4);
-            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1,
-                    OpCodes.NODETYPE_NODE);
+            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1, OpCodes.NODETYPE_NODE);
         } else if (tokenIs("..")) {
             nextToken();
             appendOp(4, OpCodes.FROM_PARENT);
 
             // Tell how long the step is without the predicate
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 2, 4);
-            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1,
-                    OpCodes.NODETYPE_NODE);
+            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1, OpCodes.NODETYPE_NODE);
         }
 
         // There is probably a better way to test for this
         // transition... but it gets real hairy if you try
         // to do it in basis().
-        else if (tokenIs('*') || tokenIs('@') || tokenIs('_')
-                || (m_token != null && Character.isLetter(m_token.charAt(0)))) {
+        else if (tokenIs('*') || tokenIs('@') || tokenIs('_') || (m_token != null && Character.isLetter(
+                m_token.charAt(0)))) {
             Basis();
 
             while (tokenIs('[')) {
@@ -1664,8 +1522,7 @@ public class XPathParser {
             }
 
             // Tell how long the entire step is.
-            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) - opPos);
+            m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
         } else {
             // No Step matched - that's an error if previous thing was a '//'
             if (doubleSlash) {
@@ -1680,7 +1537,6 @@ public class XPathParser {
     }
 
     /**
-     *
      * Basis ::= AxisName '::' NodeTest | AbbreviatedBasis
      *
      * @throws javax.xml.transform.TransformerException
@@ -1708,23 +1564,19 @@ public class XPathParser {
         }
 
         // Make room for telling how long the step is without the predicate
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
         NodeTest(axesType);
 
         // Tell how long the step is without the predicate
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH + 1, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH + 1, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
-     *
      * Basis ::= AxisName '::' NodeTest | AbbreviatedBasis
      *
      * @return FROM_XXX axes type, found in
      *         {@link com.sun.org.apache.xpath.internal.compiler.Keywords}.
-     *
      * @throws javax.xml.transform.TransformerException
      */
     protected int AxisName() throws javax.xml.transform.TransformerException {
@@ -1732,11 +1584,10 @@ public class XPathParser {
         Object val = Keywords.getAxisName(m_token);
 
         if (null == val) {
-            error(XPATHErrorResources.ER_ILLEGAL_AXIS_NAME, new Object[] {
-                    m_token }); // "illegal
-                                                                                               // axis
-                                                                                               // name:
-                                                                                               // "+m_token);
+            error(XPATHErrorResources.ER_ILLEGAL_AXIS_NAME, new Object[] { m_token }); // "illegal
+                                                                                       // axis
+                                                                                       // name:
+                                                                                       // "+m_token);
         }
 
         int axesType = ((Integer) val).intValue();
@@ -1747,35 +1598,30 @@ public class XPathParser {
     }
 
     /**
-     *
      * NodeTest ::= WildcardName | NodeType '(' ')' | 'processing-instruction'
      * '(' Literal ')'
      *
      * @param axesType
-     *                 FROM_XXX axes type, found in
-     *                 {@link com.sun.org.apache.xpath.internal.compiler.Keywords}.
-     *
+     *        FROM_XXX axes type, found in
+     *        {@link com.sun.org.apache.xpath.internal.compiler.Keywords}.
      * @throws javax.xml.transform.TransformerException
      */
-    protected void NodeTest(int axesType)
-            throws javax.xml.transform.TransformerException {
+    protected void NodeTest(int axesType) throws javax.xml.transform.TransformerException {
 
         if (lookahead('(', 1)) {
             Object nodeTestOp = Keywords.getNodeType(m_token);
 
             if (null == nodeTestOp) {
-                error(XPATHErrorResources.ER_UNKNOWN_NODETYPE, new Object[] {
-                        m_token }); // "Unknown
-                                                                                                  // nodetype:
-                                                                                                  // "+m_token);
+                error(XPATHErrorResources.ER_UNKNOWN_NODETYPE, new Object[] { m_token }); // "Unknown
+                                                                                          // nodetype:
+                                                                                          // "+m_token);
             } else {
                 nextToken();
 
                 int nt = ((Integer) nodeTestOp).intValue();
 
                 m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), nt);
-                m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                        OpMap.MAPINDEX_LENGTH) + 1);
+                m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
                 consumeExpected('(');
 
@@ -1791,16 +1637,13 @@ public class XPathParser {
 
             // Assume name of attribute or element.
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.NODENAME);
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             if (lookahead(':', 1)) {
                 if (tokenIs('*')) {
-                    m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH),
-                            OpCodes.ELEMWILDCARD);
+                    m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ELEMWILDCARD);
                 } else {
-                    m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark
-                            - 1);
+                    m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark - 1);
 
                     // Minimalist check for an NCName - just check first
                     // character
@@ -1818,15 +1661,12 @@ public class XPathParser {
                 m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.EMPTY);
             }
 
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             if (tokenIs('*')) {
-                m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH),
-                        OpCodes.ELEMWILDCARD);
+                m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ELEMWILDCARD);
             } else {
-                m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark
-                        - 1);
+                m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark - 1);
 
                 // Minimalist check for an NCName - just check first character
                 // to distinguish from other possible tokens
@@ -1837,17 +1677,14 @@ public class XPathParser {
                 }
             }
 
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             nextToken();
         }
     }
 
     /**
-     *
      * Predicate ::= '[' PredicateExpr ']'
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -1861,14 +1698,11 @@ public class XPathParser {
     }
 
     /**
-     *
      * PredicateExpr ::= Expr
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void PredicateExpr()
-            throws javax.xml.transform.TransformerException {
+    protected void PredicateExpr() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -1877,10 +1711,8 @@ public class XPathParser {
 
         // Terminate for safety.
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ENDOP);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
@@ -1892,21 +1724,18 @@ public class XPathParser {
         // Namespace
         if (lookahead(':', 1)) {
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark - 1);
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             nextToken();
             consumeExpected(':');
         } else {
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.EMPTY);
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
         }
 
         // Local name
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark - 1);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
         nextToken();
     }
@@ -1918,8 +1747,7 @@ public class XPathParser {
     protected void NCName() {
 
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark - 1);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
         nextToken();
     }
@@ -1927,9 +1755,7 @@ public class XPathParser {
     /**
      * The value of the Literal is the sequence of characters inside the " or '
      * characters>.
-     *
      * Literal ::= '"' [^"]* '"' | "'" [^']* "'"
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -1953,26 +1779,22 @@ public class XPathParser {
 
             // lit = m_token.substring(1, last);
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), tokenQueuePos);
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             nextToken();
         } else {
-            error(XPATHErrorResources.ER_PATTERN_LITERAL_NEEDS_BE_QUOTED,
-                    new Object[] { m_token }); // "Pattern
-                                                                                                             // literal
-                                                                                                             // ("+m_token+")
-                                                                                                             // needs
-                                                                                                             // to
-                                                                                                             // be
-                                                                                                             // quoted!");
+            error(XPATHErrorResources.ER_PATTERN_LITERAL_NEEDS_BE_QUOTED, new Object[] { m_token }); // "Pattern
+                                                                                                     // literal
+                                                                                                     // ("+m_token+")
+                                                                                                     // needs
+                                                                                                     // to
+                                                                                                     // be
+                                                                                                     // quoted!");
         }
     }
 
     /**
-     *
      * Number ::= [0-9]+('.'[0-9]+)? | '.'[0-9]+
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -1992,15 +1814,13 @@ public class XPathParser {
             } catch (NumberFormatException nfe) {
                 num = 0.0; // to shut up compiler.
 
-                error(XPATHErrorResources.ER_COULDNOT_BE_FORMATTED_TO_NUMBER,
-                        new Object[] { m_token }); // m_token+" could not be
-                                                                                                                 // formatted to a number!");
+                error(XPATHErrorResources.ER_COULDNOT_BE_FORMATTED_TO_NUMBER, new Object[] { m_token }); // m_token+" could not be
+                                                                                                         // formatted to a number!");
             }
 
             m_ops.m_tokenQueue.setElementAt(new XNumber(num), m_queueMark - 1);
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), m_queueMark - 1);
-            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                    OpMap.MAPINDEX_LENGTH) + 1);
+            m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
             nextToken();
         }
@@ -2009,9 +1829,7 @@ public class XPathParser {
     // ============= PATTERN FUNCTIONS =================
 
     /**
-     *
      * Pattern ::= LocationPathPattern | Pattern '|' LocationPathPattern
-     *
      *
      * @throws javax.xml.transform.TransformerException
      */
@@ -2029,16 +1847,12 @@ public class XPathParser {
     }
 
     /**
-     *
-     *
      * LocationPathPattern ::= '/' RelativePathPattern? | IdKeyPattern (('/' |
      * '//') RelativePathPattern)? | '//'? RelativePathPattern
      *
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void LocationPathPattern()
-            throws javax.xml.transform.TransformerException {
+    protected void LocationPathPattern() throws javax.xml.transform.TransformerException {
 
         int opPos = m_ops.getOp(OpMap.MAPINDEX_LENGTH);
 
@@ -2050,8 +1864,7 @@ public class XPathParser {
 
         appendOp(2, OpCodes.OP_LOCATIONPATHPATTERN);
 
-        if (lookahead('(', 1) && (tokenIs(Keywords.FUNC_ID_STRING) || tokenIs(
-                Keywords.FUNC_KEY_STRING))) {
+        if (lookahead('(', 1) && (tokenIs(Keywords.FUNC_ID_STRING) || tokenIs(Keywords.FUNC_KEY_STRING))) {
             IdKeyPattern();
 
             if (tokenIs('/')) {
@@ -2067,8 +1880,7 @@ public class XPathParser {
 
                 // Tell how long the step is without the predicate
                 m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 2, 4);
-                m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1,
-                        OpCodes.NODETYPE_FUNCTEST);
+                m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1, OpCodes.NODETYPE_FUNCTEST);
 
                 relativePathStatus = RELATIVE_PATH_REQUIRED;
             }
@@ -2093,8 +1905,7 @@ public class XPathParser {
 
             // Tell how long the step is without the predicate
             m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 2, 4);
-            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1,
-                    OpCodes.NODETYPE_ROOT);
+            m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH) - 1, OpCodes.NODETYPE_ROOT);
 
             nextToken();
         } else {
@@ -2112,34 +1923,27 @@ public class XPathParser {
 
         // Terminate for safety.
         m_ops.setOp(m_ops.getOp(OpMap.MAPINDEX_LENGTH), OpCodes.ENDOP);
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
     }
 
     /**
-     *
      * IdKeyPattern ::= 'id' '(' Literal ')' | 'key' '(' Literal ',' Literal ')'
      * (Also handle doc())
      *
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void IdKeyPattern()
-            throws javax.xml.transform.TransformerException {
+    protected void IdKeyPattern() throws javax.xml.transform.TransformerException {
         FunctionCall();
     }
 
     /**
-     *
      * RelativePathPattern ::= StepPattern | RelativePathPattern '/' StepPattern
      * | RelativePathPattern '//' StepPattern
      *
      * @throws javax.xml.transform.TransformerException
      */
-    protected void RelativePathPattern()
-            throws javax.xml.transform.TransformerException {
+    protected void RelativePathPattern() throws javax.xml.transform.TransformerException {
 
         // Caller will have consumed any '/' or '//' preceding the
         // RelativePathPattern, so let StepPattern know it can't begin with a
@@ -2159,17 +1963,14 @@ public class XPathParser {
     }
 
     /**
-     *
      * StepPattern ::= AbbreviatedNodeTestStep
      *
      * @param isLeadingSlashPermitted
-     *                                a boolean indicating whether a slash can
-     *                                appear at the start
-     *                                of this step
-     *
+     *        a boolean indicating whether a slash can
+     *        appear at the start
+     *        of this step
      * @return boolean indicating whether a slash following the step was
      *         consumed
-     *
      * @throws javax.xml.transform.TransformerException
      */
     protected boolean StepPattern(boolean isLeadingSlashPermitted)
@@ -2178,17 +1979,14 @@ public class XPathParser {
     }
 
     /**
-     *
      * AbbreviatedNodeTestStep ::= '@'? NodeTest Predicate
      *
      * @param isLeadingSlashPermitted
-     *                                a boolean indicating whether a slash can
-     *                                appear at the start
-     *                                of this step
-     *
+     *        a boolean indicating whether a slash can
+     *        appear at the start
+     *        of this step
      * @return boolean indicating whether a slash following the step was
      *         consumed
-     *
      * @throws javax.xml.transform.TransformerException
      */
     protected boolean AbbreviatedNodeTestStep(boolean isLeadingSlashPermitted)
@@ -2218,8 +2016,7 @@ public class XPathParser {
             } else {
                 axesType = -1;
 
-                this.error(XPATHErrorResources.ER_AXES_NOT_ALLOWED,
-                        new Object[] { this.m_token });
+                this.error(XPATHErrorResources.ER_AXES_NOT_ALLOWED, new Object[] { this.m_token });
             }
 
             nextToken();
@@ -2242,14 +2039,12 @@ public class XPathParser {
         }
 
         // Make room for telling how long the step is without the predicate
-        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH)
-                + 1);
+        m_ops.setOp(OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) + 1);
 
         NodeTest(axesType);
 
         // Tell how long the step is without the predicate
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH + 1, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH + 1, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
         while (tokenIs('[')) {
             Predicate();
@@ -2282,8 +2077,7 @@ public class XPathParser {
         }
 
         // Tell how long the entire step is.
-        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(
-                OpMap.MAPINDEX_LENGTH) - opPos);
+        m_ops.setOp(opPos + OpMap.MAPINDEX_LENGTH, m_ops.getOp(OpMap.MAPINDEX_LENGTH) - opPos);
 
         return trailingSlashConsumed;
     }

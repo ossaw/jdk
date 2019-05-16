@@ -9,12 +9,10 @@
  * javadoc comments embedded in the source. This is useful for documentation,
  * program checking, automatic code generation and many other tools.
  * <p>
- * 
  * Doclets are invoked by javadoc and use this API to write out program
  * information to files. For example, the standard doclet is called by default
  * and writes out documentation to HTML files.
  * <p>
- * 
  * The invocation is defined by the abstract {@link com.sun.javadoc.Doclet}
  * class -- the entry point is the {@link com.sun.javadoc.Doclet#start(RootDoc)
  * start} method:
@@ -27,10 +25,8 @@
  * structure information. From this root all other program structure information
  * can be extracted.
  * <p>
- * 
  * <a name="terminology"></a>
  * <h3>Terminology</h3>
- * 
  * <a name="included"></a> When calling javadoc, you pass in package names and
  * source file names -- these are called the <em>specified</em> packages and
  * classes. You also pass in Javadoc options; the <em>access control</em>
@@ -40,7 +36,6 @@
  * set. (The unfiltered set is also available through
  * {@link com.sun.javadoc.PackageDoc#allClasses(boolean) allClasses(false)}.)
  * <p>
- * 
  * <a name="class"></a> Throughout this API, the term <em>class</em> is normally
  * a shorthand for "class or interface", as in: {@link com.sun.javadoc.ClassDoc}
  * , {@link com.sun.javadoc.PackageDoc#allClasses() allClasses()}, and
@@ -55,16 +50,13 @@
  * API, the detailed description of each program element describes explicitly
  * which meaning is being used.
  * <p>
- * 
  * <a name="qualified"></a> A <em>qualified</em> class or interface name is one
  * that has its package name prepended to it, such as
  * <code>java.lang.String</code>. A non-qualified name has no package name, such
  * as <code>String</code>.
  * <p>
- * 
  * <a name="example"></a>
  * <h3>Example</h3>
- * 
  * The following is an example doclet that displays information in the
  * <code>@param</code> tags of the processed classes:
  * 
@@ -133,7 +125,6 @@ public class ListParams extends <font color=red title=
     java.util.ArrayList.remove
        index - the index of the element to removed.
     ...
- * 
  * </pre>
  * 
  * @see com.sun.javadoc.Doclet

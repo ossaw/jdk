@@ -33,13 +33,11 @@ public abstract class SingleNodeCounter extends NodeCounter {
     static private final int[] EmptyArray = new int[] {};
     DTMAxisIterator _countSiblings = null;
 
-    public SingleNodeCounter(Translet translet, DOM document,
-            DTMAxisIterator iterator) {
+    public SingleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
         super(translet, document, iterator);
     }
 
-    public SingleNodeCounter(Translet translet, DOM document,
-            DTMAxisIterator iterator, boolean hasFrom) {
+    public SingleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator, boolean hasFrom) {
         super(translet, document, iterator, hasFrom);
     }
 
@@ -111,22 +109,21 @@ public abstract class SingleNodeCounter extends NodeCounter {
         return formatNumbers(result);
     }
 
-    public static NodeCounter getDefaultNodeCounter(Translet translet,
-            DOM document, DTMAxisIterator iterator) {
+    public static NodeCounter getDefaultNodeCounter(Translet translet, DOM document,
+            DTMAxisIterator iterator) {
         return new DefaultSingleNodeCounter(translet, document, iterator);
     }
 
     static class DefaultSingleNodeCounter extends SingleNodeCounter {
-        public DefaultSingleNodeCounter(Translet translet, DOM document,
-                DTMAxisIterator iterator) {
+        public DefaultSingleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
             super(translet, document, iterator);
         }
 
         public NodeCounter setStartNode(int node) {
             _node = node;
             _nodeType = _document.getExpandedTypeID(node);
-            _countSiblings = _document.getTypedAxisIterator(
-                    Axis.PRECEDINGSIBLING, _document.getExpandedTypeID(node));
+            _countSiblings = _document.getTypedAxisIterator(Axis.PRECEDINGSIBLING, _document
+                    .getExpandedTypeID(node));
             return this;
         }
 

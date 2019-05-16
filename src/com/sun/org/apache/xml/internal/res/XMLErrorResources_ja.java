@@ -192,8 +192,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
             { ER_COROUTINE_CO_EXIT,
                     "CoroutineManager\u304Cco_exit()\u30EA\u30AF\u30A8\u30B9\u30C8\u3092\u53D7\u3051\u53D6\u308A\u307E\u3057\u305F" },
 
-            { ER_COJOINROUTINESET_FAILED,
-                    "co_joinCoroutineSet()\u304C\u5931\u6557\u3057\u307E\u3057\u305F" },
+            { ER_COJOINROUTINESET_FAILED, "co_joinCoroutineSet()\u304C\u5931\u6557\u3057\u307E\u3057\u305F" },
 
             { ER_COROUTINE_PARAM,
                     "\u30B3\u30EB\u30FC\u30C1\u30F3\u30FB\u30D1\u30E9\u30E1\u30FC\u30BF\u306E\u30A8\u30E9\u30FC({0})" },
@@ -222,8 +221,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
             { ER_NO_DTMIDS_AVAIL,
                     "DTM ID\u306F\u3053\u308C\u4EE5\u4E0A\u4F7F\u7528\u3067\u304D\u307E\u305B\u3093" },
 
-            { ER_NOT_SUPPORTED,
-                    "\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u307E\u305B\u3093: {0}" },
+            { ER_NOT_SUPPORTED, "\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u307E\u305B\u3093: {0}" },
 
             { ER_NODE_NON_NULL,
                     "\u30CE\u30FC\u30C9\u306FgetDTMHandleFromNode\u306B\u3064\u3044\u3066\u975Enull\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059" },
@@ -246,8 +244,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
             { ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                     "\u30D1\u30B9\u306B\u7121\u52B9\u306A\u30A8\u30B9\u30B1\u30FC\u30D7\u30FB\u30B7\u30FC\u30B1\u30F3\u30B9\u304C\u542B\u307E\u308C\u3066\u3044\u307E\u3059" },
 
-            { ER_SCHEME_REQUIRED,
-                    "\u30B9\u30AD\u30FC\u30E0\u304C\u5FC5\u8981\u3067\u3059\u3002" },
+            { ER_SCHEME_REQUIRED, "\u30B9\u30AD\u30FC\u30E0\u304C\u5FC5\u8981\u3067\u3059\u3002" },
 
             { ER_NO_SCHEME_IN_URI,
                     "\u30B9\u30AD\u30FC\u30E0\u304CURI\u306B\u898B\u3064\u304B\u308A\u307E\u305B\u3093: {0}" },
@@ -270,8 +267,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
             { ER_PORT_WHEN_HOST_NULL,
                     "\u30DB\u30B9\u30C8\u304Cnull\u306E\u5834\u5408\u306F\u30DD\u30FC\u30C8\u3092\u8A2D\u5B9A\u3067\u304D\u307E\u305B\u3093" },
 
-            { ER_INVALID_PORT,
-                    "\u7121\u52B9\u306A\u30DD\u30FC\u30C8\u756A\u53F7" },
+            { ER_INVALID_PORT, "\u7121\u52B9\u306A\u30DD\u30FC\u30C8\u756A\u53F7" },
 
             { ER_FRAG_FOR_GENERIC_URI,
                     "\u6C4E\u7528URI\u306E\u30D5\u30E9\u30B0\u30E1\u30F3\u30C8\u306E\u307F\u8A2D\u5B9A\u3067\u304D\u307E\u3059" },
@@ -323,8 +319,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 
             { ER_SYSTEMID_UNKNOWN, "\u4E0D\u660E\u306ASystemId" },
 
-            { ER_LOCATION_UNKNOWN,
-                    "\u30A8\u30E9\u30FC\u306E\u5834\u6240\u304C\u4E0D\u660E\u3067\u3059" },
+            { ER_LOCATION_UNKNOWN, "\u30A8\u30E9\u30FC\u306E\u5834\u6240\u304C\u4E0D\u660E\u3067\u3059" },
 
             { ER_PREFIX_MUST_RESOLVE,
                     "\u63A5\u982D\u8F9E\u306F\u30CD\u30FC\u30E0\u30B9\u30DA\u30FC\u30B9\u306B\u89E3\u6C7A\u3055\u308C\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: {0}" },
@@ -344,8 +339,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
             { ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
                     "DOM\u306B\u8907\u6570\u306E\u30EB\u30FC\u30C8\u3092\u6301\u3064\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093\u3002" },
 
-            { ER_ARG_LOCALNAME_NULL,
-                    "\u5F15\u6570'localName'\u306Fnull\u3067\u3059" },
+            { ER_ARG_LOCALNAME_NULL, "\u5F15\u6570'localName'\u306Fnull\u3067\u3059" },
 
             // Note to translators: A QNAME has the syntactic form
             // [NCName:]NCName
@@ -370,8 +364,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
                     "createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
             { "FORMAT_FAILED",
                     "messageFormat\u306E\u547C\u51FA\u3057\u4E2D\u306B\u4F8B\u5916\u304C\u30B9\u30ED\u30FC\u3055\u308C\u307E\u3057\u305F" },
-            { "line", "\u884C\u756A\u53F7" }, { "column",
-                    "\u5217\u756A\u53F7" },
+            { "line", "\u884C\u756A\u53F7" }, { "column", "\u5217\u756A\u53F7" },
 
             { ER_SERIALIZER_NOT_CONTENTHANDLER,
                     "\u30B7\u30EA\u30A2\u30E9\u30A4\u30B6\u30FB\u30AF\u30E9\u30B9''{0}''\u306Forg.xml.sax.ContentHandler\u3092\u5B9F\u88C5\u3057\u307E\u305B\u3093\u3002" },
@@ -382,8 +375,7 @@ public class XMLErrorResources_ja extends ListResourceBundle {
             { ER_RESOURCE_COULD_NOT_LOAD,
                     "\u30EA\u30BD\u30FC\u30B9[ {0} ]\u3092\u30ED\u30FC\u30C9\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F: {1} \n {2} \t {3}" },
 
-            { ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                    "\u30D0\u30C3\u30D5\u30A1\u30FB\u30B5\u30A4\u30BA<=0" },
+            { ER_BUFFER_SIZE_LESSTHAN_ZERO, "\u30D0\u30C3\u30D5\u30A1\u30FB\u30B5\u30A4\u30BA<=0" },
 
             { ER_INVALID_UTF16_SURROGATE,
                     "\u7121\u52B9\u306AUTF-16\u30B5\u30ED\u30B2\u30FC\u30C8\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F: {0}\u3002" },

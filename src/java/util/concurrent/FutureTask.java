@@ -21,13 +21,11 @@ import java.util.concurrent.locks.LockSupport;
  * computation has not yet completed. Once the computation has completed, the
  * computation cannot be restarted or cancelled (unless the computation is
  * invoked using {@link #runAndReset}).
- *
  * <p>
  * A {@code FutureTask} can be used to wrap a {@link Callable} or
  * {@link Runnable} object. Because {@code FutureTask} implements
  * {@code Runnable}, a {@code FutureTask} can be submitted to an
  * {@link Executor} for execution.
- *
  * <p>
  * In addition to serving as a standalone class, this class provides
  * {@code protected} functionality that may be useful when creating customized
@@ -57,7 +55,6 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * to satisfy a cancel(true)). Transitions from these intermediate to final
      * states use cheaper ordered/lazy writes because values are unique and
      * cannot be further modified.
-     *
      * Possible state transitions: NEW -> COMPLETING -> NORMAL NEW -> COMPLETING
      * -> EXCEPTIONAL NEW -> CANCELLED NEW -> INTERRUPTING -> INTERRUPTED
      */
@@ -83,7 +80,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * Returns result or throws exception for completed task.
      *
      * @param s
-     *          completed state value
+     *        completed state value
      */
     @SuppressWarnings("unchecked")
     private V report(int s) throws ExecutionException {
@@ -100,9 +97,9 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * {@code Callable}.
      *
      * @param callable
-     *                 the callable task
+     *        the callable task
      * @throws NullPointerException
-     *                              if the callable is null
+     *         if the callable is null
      */
     public FutureTask(Callable<V> callable) {
         if (callable == null)
@@ -117,16 +114,16 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * result on successful completion.
      *
      * @param runnable
-     *                 the runnable task
+     *        the runnable task
      * @param result
-     *                 the result to return on successful completion. If you
-     *                 don't
-     *                 need a particular result, consider using constructions of
-     *                 the
-     *                 form:
-     *                 {@code Future<?> f = new FutureTask<Void>(runnable, null)}
+     *        the result to return on successful completion. If you
+     *        don't
+     *        need a particular result, consider using constructions of
+     *        the
+     *        form:
+     *        {@code Future<?> f = new FutureTask<Void>(runnable, null)}
      * @throws NullPointerException
-     *                              if the runnable is null
+     *         if the runnable is null
      */
     public FutureTask(Runnable runnable, V result) {
         this.callable = Executors.callable(runnable, result);
@@ -142,8 +139,8 @@ public class FutureTask<V> implements RunnableFuture<V> {
     }
 
     public boolean cancel(boolean mayInterruptIfRunning) {
-        if (!(state == NEW && UNSAFE.compareAndSwapInt(this, stateOffset, NEW,
-                mayInterruptIfRunning ? INTERRUPTING : CANCELLED)))
+        if (!(state == NEW && UNSAFE.compareAndSwapInt(this, stateOffset, NEW, mayInterruptIfRunning
+                ? INTERRUPTING : CANCELLED)))
             return false;
         try { // in case call to interrupt throws exception
             if (mayInterruptIfRunning) {
@@ -163,7 +160,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
 
     /**
      * @throws CancellationException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      */
     public V get() throws InterruptedException, ExecutionException {
         int s = state;
@@ -174,15 +171,14 @@ public class FutureTask<V> implements RunnableFuture<V> {
 
     /**
      * @throws CancellationException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public V get(long timeout, TimeUnit unit) throws InterruptedException,
-            ExecutionException, TimeoutException {
+    public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException,
+            TimeoutException {
         if (unit == null)
             throw new NullPointerException();
         int s = state;
-        if (s <= COMPLETING && (s = awaitDone(true, unit.toNanos(
-                timeout))) <= COMPLETING)
+        if (s <= COMPLETING && (s = awaitDone(true, unit.toNanos(timeout))) <= COMPLETING)
             throw new TimeoutException();
         return report(s);
     }
@@ -200,13 +196,12 @@ public class FutureTask<V> implements RunnableFuture<V> {
     /**
      * Sets the result of this future to the given value unless this future has
      * already been set or has been cancelled.
-     *
      * <p>
      * This method is invoked internally by the {@link #run} method upon
      * successful completion of the computation.
      *
      * @param v
-     *          the value
+     *        the value
      */
     protected void set(V v) {
         if (UNSAFE.compareAndSwapInt(this, stateOffset, NEW, COMPLETING)) {
@@ -220,13 +215,12 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * Causes this future to report an {@link ExecutionException} with the given
      * throwable as its cause, unless this future has already been set or has
      * been cancelled.
-     *
      * <p>
      * This method is invoked internally by the {@link #run} method upon failure
      * of the computation.
      *
      * @param t
-     *          the cause of failure
+     *        the cause of failure
      */
     protected void setException(Throwable t) {
         if (UNSAFE.compareAndSwapInt(this, stateOffset, NEW, COMPLETING)) {
@@ -237,8 +231,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
     }
 
     public void run() {
-        if (state != NEW || !UNSAFE.compareAndSwapObject(this, runnerOffset,
-                null, Thread.currentThread()))
+        if (state != NEW || !UNSAFE.compareAndSwapObject(this, runnerOffset, null, Thread.currentThread()))
             return;
         try {
             Callable<V> c = callable;
@@ -277,8 +270,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * @return {@code true} if successfully run and reset
      */
     protected boolean runAndReset() {
-        if (state != NEW || !UNSAFE.compareAndSwapObject(this, runnerOffset,
-                null, Thread.currentThread()))
+        if (state != NEW || !UNSAFE.compareAndSwapObject(this, runnerOffset, null, Thread.currentThread()))
             return false;
         boolean ran = false;
         int s = state;
@@ -374,13 +366,12 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * Awaits completion or aborts on interrupt or timeout.
      *
      * @param timed
-     *              true if use timed waits
+     *        true if use timed waits
      * @param nanos
-     *              time to wait, if timed
+     *        time to wait, if timed
      * @return state upon completion
      */
-    private int awaitDone(boolean timed, long nanos)
-            throws InterruptedException {
+    private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         final long deadline = timed ? System.nanoTime() + nanos : 0L;
         WaitNode q = null;
         boolean queued = false;
@@ -400,8 +391,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
             else if (q == null)
                 q = new WaitNode();
             else if (!queued)
-                queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
-                        q.next = waiters, q);
+                queued = UNSAFE.compareAndSwapObject(this, waitersOffset, q.next = waiters, q);
             else if (timed) {
                 nanos = deadline - System.nanoTime();
                 if (nanos <= 0L) {
@@ -426,7 +416,8 @@ public class FutureTask<V> implements RunnableFuture<V> {
     private void removeWaiter(WaitNode node) {
         if (node != null) {
             node.thread = null;
-            retry: for (;;) { // restart on removeWaiter race
+            retry:
+            for (;;) { // restart on removeWaiter race
                 for (WaitNode pred = null, q = waiters, s; q != null; q = s) {
                     s = q.next;
                     if (q.thread != null)
@@ -435,8 +426,7 @@ public class FutureTask<V> implements RunnableFuture<V> {
                         pred.next = s;
                         if (pred.thread == null) // check for race
                             continue retry;
-                    } else if (!UNSAFE.compareAndSwapObject(this, waitersOffset,
-                            q, s))
+                    } else if (!UNSAFE.compareAndSwapObject(this, waitersOffset, q, s))
                         continue retry;
                 }
                 break;
@@ -454,10 +444,8 @@ public class FutureTask<V> implements RunnableFuture<V> {
             UNSAFE = sun.misc.Unsafe.getUnsafe();
             Class<?> k = FutureTask.class;
             stateOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("state"));
-            runnerOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                    "runner"));
-            waitersOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                    "waiters"));
+            runnerOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("runner"));
+            waitersOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("waiters"));
         } catch (Exception e) {
             throw new Error(e);
         }

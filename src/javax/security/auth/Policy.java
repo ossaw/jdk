@@ -17,7 +17,6 @@ import sun.security.util.Debug;
  * This is an abstract class for representing the system policy for
  * Subject-based authorization. A subclass implementation of this class provides
  * a means to specify a Subject-based access control {@code Policy}.
- *
  * <p>
  * A {@code Policy} object can be queried for the set of Permissions granted to
  * code running as a {@code Principal} in the following manner:
@@ -31,14 +30,12 @@ import sun.security.util.Debug;
  * appropriate {@code Permissions} object with the Permissions granted to the
  * Principals associated with the provided <i>subject</i>, and granted to the
  * code specified by the provided <i>codeSource</i>.
- *
  * <p>
  * A {@code Policy} contains the following information. Note that this example
  * only represents the syntax for the default {@code Policy} implementation.
  * Subclass implementations of this class may implement alternative syntaxes and
  * may retrieve the {@code Policy} from any source such as files, databases, or
  * servers.
- *
  * <p>
  * Each entry in the {@code Policy} is represented as a <b><i>grant</i></b>
  * entry. Each <b><i>grant</i></b> entry specifies a codebase, code signers, and
@@ -68,7 +65,6 @@ import sun.security.util.Debug;
  * "foo', and running as a {@code SolarisPrincipal} with the name, duke, has one
  * {@code Permission}. This {@code Permission} permits the executing code to
  * read and write files in the directory, "/home/duke".
- *
  * <p>
  * To "run" as a particular {@code Principal}, code invokes the
  * {@code Subject.doAs(subject, ...)} method. After invoking that method, the
@@ -76,7 +72,6 @@ import sun.security.util.Debug;
  * . Note that this {@code Policy} (and the Permissions granted in this
  * {@code Policy}) only become effective after the call to {@code Subject.doAs}
  * has occurred.
- *
  * <p>
  * Multiple Principals may be listed within one <b><i>grant</i></b> entry. All
  * the Principals in the grant entry must be associated with the {@code Subject}
@@ -94,7 +89,6 @@ import sun.security.util.Debug;
  * This entry grants any code running as both "duke" and "0" permission to read
  * and write files in duke's home directory, as well as permission to make
  * socket connections to "duke.com".
- *
  * <p>
  * Note that non Principal-based grant entries are not permitted in this
  * {@code Policy}. Therefore, grant entries such as:
@@ -107,7 +101,6 @@ import sun.security.util.Debug;
  *
  * are rejected. Such permission must be listed in the
  * {@code java.security.Policy}.
- *
  * <p>
  * The default {@code Policy} implementation can be changed by setting the value
  * of the {@code auth.policy.provider} security property to the fully qualified
@@ -119,7 +112,6 @@ import sun.security.util.Debug;
  *             <pre>
  *      public PermissionCollection getPermissions
  *          (java.security.ProtectionDomain pd)
- *
  *             </pre>
  * 
  *             and ProtectionDomain has a constructor:
@@ -134,7 +126,6 @@ import sun.security.util.Debug;
  *
  *             These two APIs provide callers the means to query the Policy for
  *             Principal-based Permission entries.
- *
  * @see java.security.Security security properties
  */
 @Deprecated
@@ -143,8 +134,7 @@ public abstract class Policy {
     private static Policy policy;
     private final static String AUTH_POLICY = "sun.security.provider.AuthPolicyFile";
 
-    private final java.security.AccessControlContext acc = java.security.AccessController
-            .getContext();
+    private final java.security.AccessControlContext acc = java.security.AccessController.getContext();
 
     // true if a custom (not AUTH_POLICY) system-wide policy object is set
     private static boolean isCustomPolicy;
@@ -160,15 +150,12 @@ public abstract class Policy {
      * {@code SecurityManager.checkPermission} with the
      * {@code AuthPermission("getPolicy")} permission to ensure the caller has
      * permission to get the Policy object.
-     *
      * <p>
      *
      * @return the installed Policy. The return value cannot be {@code null}.
-     *
      * @exception java.lang.SecurityException
      *            if the current thread does not have permission to get the
      *            Policy object.
-     *
      * @see #setPolicy
      */
     public static Policy getPolicy() {
@@ -182,7 +169,6 @@ public abstract class Policy {
      * Returns the installed Policy object, skipping the security check.
      *
      * @return the installed Policy.
-     *
      */
     static Policy getPolicyNoCheck() {
         if (policy == null) {
@@ -191,13 +177,11 @@ public abstract class Policy {
 
                 if (policy == null) {
                     String policy_class = null;
-                    policy_class = AccessController.doPrivileged(
-                            new PrivilegedAction<String>() {
-                                public String run() {
-                                    return java.security.Security.getProperty(
-                                            "auth.policy.provider");
-                                }
-                            });
+                    policy_class = AccessController.doPrivileged(new PrivilegedAction<String>() {
+                        public String run() {
+                            return java.security.Security.getProperty("auth.policy.provider");
+                        }
+                    });
                     if (policy_class == null) {
                         policy_class = AUTH_POLICY;
                     }
@@ -207,31 +191,24 @@ public abstract class Policy {
 
                         Policy untrustedImpl = AccessController.doPrivileged(
                                 new PrivilegedExceptionAction<Policy>() {
-                                    public Policy run()
-                                            throws ClassNotFoundException,
-                                            InstantiationException,
+                                    public Policy run() throws ClassNotFoundException, InstantiationException,
                                             IllegalAccessException {
-                                        Class<? extends Policy> implClass = Class
-                                                .forName(finalClass, false,
-                                                        Thread.currentThread()
-                                                                .getContextClassLoader())
-                                                .asSubclass(Policy.class);
+                                        Class<? extends Policy> implClass = Class.forName(finalClass, false,
+                                                Thread.currentThread().getContextClassLoader()).asSubclass(
+                                                        Policy.class);
                                         return implClass.newInstance();
                                     }
                                 });
-                        AccessController.doPrivileged(
-                                new PrivilegedExceptionAction<Void>() {
-                                    public Void run() {
-                                        setPolicy(untrustedImpl);
-                                        isCustomPolicy = !finalClass.equals(
-                                                AUTH_POLICY);
-                                        return null;
-                                    }
-                                }, Objects.requireNonNull(untrustedImpl.acc));
+                        AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
+                            public Void run() {
+                                setPolicy(untrustedImpl);
+                                isCustomPolicy = !finalClass.equals(AUTH_POLICY);
+                                return null;
+                            }
+                        }, Objects.requireNonNull(untrustedImpl.acc));
                     } catch (Exception e) {
-                        throw new SecurityException(
-                                sun.security.util.ResourcesMgr.getString(
-                                        "unable.to.instantiate.Subject.based.policy"));
+                        throw new SecurityException(sun.security.util.ResourcesMgr.getString(
+                                "unable.to.instantiate.Subject.based.policy"));
                     }
                 }
             }
@@ -244,16 +221,13 @@ public abstract class Policy {
      * {@code SecurityManager.checkPermission} with the
      * {@code AuthPermission("setPolicy")} permission to ensure the caller has
      * permission to set the Policy.
-     *
      * <p>
      *
      * @param policy
-     *               the new system Policy object.
-     *
+     *        the new system Policy object.
      * @exception java.lang.SecurityException
      *            if the current thread does not have permission to set the
      *            Policy.
-     *
      * @see #getPolicy
      */
     public static void setPolicy(Policy policy) {
@@ -278,8 +252,7 @@ public abstract class Policy {
         if (policy != null) {
             if (debug != null && isCustomPolicy) {
                 debug.println("Providing backwards compatibility for "
-                        + "javax.security.auth.policy implementation: " + policy
-                                .toString());
+                        + "javax.security.auth.policy implementation: " + policy.toString());
             }
             return isCustomPolicy;
         }
@@ -293,8 +266,7 @@ public abstract class Policy {
         if (policyClass != null && !policyClass.equals(AUTH_POLICY)) {
             if (debug != null) {
                 debug.println("Providing backwards compatibility for "
-                        + "javax.security.auth.policy implementation: "
-                        + policyClass);
+                        + "javax.security.auth.policy implementation: " + policyClass);
             }
             return true;
         }
@@ -304,46 +276,41 @@ public abstract class Policy {
     /**
      * Retrieve the Permissions granted to the Principals associated with the
      * specified {@code CodeSource}.
-     *
      * <p>
      *
      * @param subject
-     *                the {@code Subject} whose associated Principals, in
-     *                conjunction with the provided {@code CodeSource},
-     *                determines
-     *                the Permissions returned by this method. This parameter
-     *                may be
-     *                {@code null}.
-     *                <p>
-     *
+     *        the {@code Subject} whose associated Principals, in
+     *        conjunction with the provided {@code CodeSource},
+     *        determines
+     *        the Permissions returned by this method. This parameter
+     *        may be
+     *        {@code null}.
+     *        <p>
      * @param cs
-     *                the code specified by its {@code CodeSource} that
-     *                determines,
-     *                in conjunction with the provided {@code Subject}, the
-     *                Permissions returned by this method. This parameter may be
-     *                {@code null}.
-     *
+     *        the code specified by its {@code CodeSource} that
+     *        determines,
+     *        in conjunction with the provided {@code Subject}, the
+     *        Permissions returned by this method. This parameter may be
+     *        {@code null}.
      * @return the Collection of Permissions granted to all the {@code Subject}
      *         and code specified in the provided <i>subject</i> and <i>cs</i>
      *         parameters.
      */
-    public abstract java.security.PermissionCollection getPermissions(
-            Subject subject, java.security.CodeSource cs);
+    public abstract java.security.PermissionCollection getPermissions(Subject subject,
+            java.security.CodeSource cs);
 
     /**
      * Refresh and reload the Policy.
-     *
      * <p>
      * This method causes this object to refresh/reload its current Policy. This
      * is implementation-dependent. For example, if the Policy object is stored
      * in a file, calling {@code refresh} will cause the file to be re-read.
-     *
      * <p>
      *
      * @exception SecurityException
-     *                              if the caller does not have permission to
-     *                              refresh the
-     *                              Policy.
+     *            if the caller does not have permission to
+     *            refresh the
+     *            Policy.
      */
     public abstract void refresh();
 }

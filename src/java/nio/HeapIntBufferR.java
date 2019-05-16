@@ -8,14 +8,10 @@
 package java.nio;
 
 /**
- * 
- * 
- * 
  * A read-only HeapIntBuffer. This class extends the corresponding read/write
  * class, overriding the mutation methods to throw a
  * {@link ReadOnlyBufferException} and overriding the view-buffer methods to
  * return an instance of this class rather than of the superclass.
- * 
  */
 
 class HeapIntBufferR extends HeapIntBuffer {
@@ -43,8 +39,7 @@ class HeapIntBufferR extends HeapIntBuffer {
 
     }
 
-    protected HeapIntBufferR(int[] buf, int mark, int pos, int lim, int cap,
-            int off) {
+    protected HeapIntBufferR(int[] buf, int mark, int pos, int lim, int cap, int off) {
 
         super(buf, mark, pos, lim, cap, off);
         this.isReadOnly = true;
@@ -52,13 +47,12 @@ class HeapIntBufferR extends HeapIntBuffer {
     }
 
     public IntBuffer slice() {
-        return new HeapIntBufferR(hb, -1, 0, this.remaining(), this.remaining(),
-                this.position() + offset);
+        return new HeapIntBufferR(hb, -1, 0, this.remaining(), this.remaining(), this.position() + offset);
     }
 
     public IntBuffer duplicate() {
-        return new HeapIntBufferR(hb, this.markValue(), this.position(), this
-                .limit(), this.capacity(), offset);
+        return new HeapIntBufferR(hb, this.markValue(), this.position(), this.limit(), this.capacity(),
+                offset);
     }
 
     public IntBuffer asReadOnlyBuffer() {

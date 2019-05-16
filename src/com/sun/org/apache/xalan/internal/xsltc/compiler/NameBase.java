@@ -73,8 +73,7 @@ class NameBase extends FunctionCall {
         }
 
         // The argument has to be a node, a node-set or a node reference
-        if ((_paramType != Type.NodeSet) && (_paramType != Type.Node)
-                && (_paramType != Type.Reference)) {
+        if ((_paramType != Type.NodeSet) && (_paramType != Type.Node) && (_paramType != Type.Reference)) {
             throw new TypeCheckError(this);
         }
 
@@ -104,9 +103,8 @@ class NameBase extends FunctionCall {
             _param.translate(classGen, methodGen);
         } else if (_paramType == Type.Reference) {
             _param.translate(classGen, methodGen);
-            il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                    "referenceToNodeSet", "(" + OBJECT_SIG + ")"
-                            + NODE_ITERATOR_SIG)));
+            il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "referenceToNodeSet", "("
+                    + OBJECT_SIG + ")" + NODE_ITERATOR_SIG)));
             il.append(methodGen.nextNode());
         }
         // Function was called with node-set parameter

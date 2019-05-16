@@ -33,8 +33,7 @@ public class MaxStreamFormatVersionServiceContext extends ServiceContext {
         this.maxStreamFormatVersion = maxStreamFormatVersion;
     }
 
-    public MaxStreamFormatVersionServiceContext(InputStream is,
-            GIOPVersion gv) {
+    public MaxStreamFormatVersionServiceContext(InputStream is, GIOPVersion gv) {
         super(is, gv);
 
         maxStreamFormatVersion = is.read_octet();
@@ -55,7 +54,6 @@ public class MaxStreamFormatVersionServiceContext extends ServiceContext {
     }
 
     public String toString() {
-        return "MaxStreamFormatVersionServiceContext[" + maxStreamFormatVersion
-                + "]";
+        return "MaxStreamFormatVersionServiceContext[" + maxStreamFormatVersion + "]";
     }
 }

@@ -44,8 +44,7 @@ public abstract class StubAdapter {
             CORBALogDomains.RPC_PRESENTATION);
 
     public static boolean isStubClass(Class cls) {
-        return (ObjectImpl.class.isAssignableFrom(cls)) || (DynamicStub.class
-                .isAssignableFrom(cls));
+        return (ObjectImpl.class.isAssignableFrom(cls)) || (DynamicStub.class.isAssignableFrom(cls));
     }
 
     public static boolean isStub(Object stub) {
@@ -144,8 +143,7 @@ public abstract class StubAdapter {
             throw wrapper.getTypeIdsRequiresStub();
     }
 
-    public static void connect(Object stub, ORB orb)
-            throws java.rmi.RemoteException {
+    public static void connect(Object stub, ORB orb) throws java.rmi.RemoteException {
         if (stub instanceof DynamicStub)
             ((DynamicStub) stub).connect((com.sun.corba.se.spi.orb.ORB) orb);
         else if (stub instanceof javax.rmi.CORBA.Stub)
@@ -165,8 +163,7 @@ public abstract class StubAdapter {
             throw wrapper.isLocalRequiresStub();
     }
 
-    public static OutputStream request(Object stub, String operation,
-            boolean responseExpected) {
+    public static OutputStream request(Object stub, String operation, boolean responseExpected) {
         if (stub instanceof DynamicStub)
             return ((DynamicStub) stub).request(operation, responseExpected);
         else if (stub instanceof ObjectImpl)

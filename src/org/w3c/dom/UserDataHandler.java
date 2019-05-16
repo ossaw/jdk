@@ -63,25 +63,24 @@ public interface UserDataHandler {
      * handler is DOM implementation dependent.
      * 
      * @param operation
-     *                  Specifies the type of operation that is being performed
-     *                  on the
-     *                  node.
+     *        Specifies the type of operation that is being performed
+     *        on the
+     *        node.
      * @param key
-     *                  Specifies the key for which this handler is being
-     *                  called.
+     *        Specifies the key for which this handler is being
+     *        called.
      * @param data
-     *                  Specifies the data for which this handler is being
-     *                  called.
+     *        Specifies the data for which this handler is being
+     *        called.
      * @param src
-     *                  Specifies the node being cloned, adopted, imported, or
-     *                  renamed. This is <code>null</code> when the node is
-     *                  being
-     *                  deleted.
+     *        Specifies the node being cloned, adopted, imported, or
+     *        renamed. This is <code>null</code> when the node is
+     *        being
+     *        deleted.
      * @param dst
-     *                  Specifies the node newly created if any, or
-     *                  <code>null</code>.
+     *        Specifies the node newly created if any, or
+     *        <code>null</code>.
      */
-    public void handle(short operation, String key, Object data, Node src,
-            Node dst);
+    public void handle(short operation, String key, Object data, Node src, Node dst);
 
 }

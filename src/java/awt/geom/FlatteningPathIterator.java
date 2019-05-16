@@ -68,11 +68,11 @@ public class FlatteningPathIterator implements PathIterator {
      * yields a maximum of 1024 line segments per curve.
      * 
      * @param src
-     *                 the original unflattened path being iterated over
+     *        the original unflattened path being iterated over
      * @param flatness
-     *                 the maximum allowable distance between the control points
-     *                 and
-     *                 the flattened curve
+     *        the maximum allowable distance between the control points
+     *        and
+     *        the flattened curve
      */
     public FlatteningPathIterator(PathIterator src, double flatness) {
         this(src, flatness, 10);
@@ -88,22 +88,21 @@ public class FlatteningPathIterator implements PathIterator {
      * <code>(2^limit)</code> line segments per curve.
      * 
      * @param src
-     *                 the original unflattened path being iterated over
+     *        the original unflattened path being iterated over
      * @param flatness
-     *                 the maximum allowable distance between the control points
-     *                 and
-     *                 the flattened curve
+     *        the maximum allowable distance between the control points
+     *        and
+     *        the flattened curve
      * @param limit
-     *                 the maximum number of recursive subdivisions allowed for
-     *                 any
-     *                 curved segment
+     *        the maximum number of recursive subdivisions allowed for
+     *        any
+     *        curved segment
      * @exception IllegalArgumentException
-     *                                     if <code>flatness</code> or
-     *                                     <code>limit</code> is less
-     *                                     than zero
+     *            if <code>flatness</code> or
+     *            <code>limit</code> is less
+     *            than zero
      */
-    public FlatteningPathIterator(PathIterator src, double flatness,
-            int limit) {
+    public FlatteningPathIterator(PathIterator src, double flatness, int limit) {
         if (flatness < 0.0) {
             throw new IllegalArgumentException("flatness must be >= 0");
         }
@@ -167,8 +166,7 @@ public class FlatteningPathIterator implements PathIterator {
             int have = hold.length - holdIndex;
             int newsize = hold.length + GROW_SIZE;
             double newhold[] = new double[newsize];
-            System.arraycopy(hold, holdIndex, newhold, holdIndex + GROW_SIZE,
-                    have);
+            System.arraycopy(hold, holdIndex, newhold, holdIndex + GROW_SIZE, have);
             hold = newhold;
             holdIndex += GROW_SIZE;
             holdEnd += GROW_SIZE;
@@ -233,14 +231,12 @@ public class FlatteningPathIterator implements PathIterator {
 
                 level = levels[levelIndex];
                 while (level < limit) {
-                    if (QuadCurve2D.getFlatnessSq(hold,
-                            holdIndex) < squareflat) {
+                    if (QuadCurve2D.getFlatnessSq(hold, holdIndex) < squareflat) {
                         break;
                     }
 
                     ensureHoldCapacity(4);
-                    QuadCurve2D.subdivide(hold, holdIndex, hold, holdIndex - 4,
-                            hold, holdIndex);
+                    QuadCurve2D.subdivide(hold, holdIndex, hold, holdIndex - 4, hold, holdIndex);
                     holdIndex -= 4;
 
                     // Now that we have subdivided, we have constructed
@@ -280,14 +276,12 @@ public class FlatteningPathIterator implements PathIterator {
 
                 level = levels[levelIndex];
                 while (level < limit) {
-                    if (CubicCurve2D.getFlatnessSq(hold,
-                            holdIndex) < squareflat) {
+                    if (CubicCurve2D.getFlatnessSq(hold, holdIndex) < squareflat) {
                         break;
                     }
 
                     ensureHoldCapacity(6);
-                    CubicCurve2D.subdivide(hold, holdIndex, hold, holdIndex - 6,
-                            hold, holdIndex);
+                    CubicCurve2D.subdivide(hold, holdIndex, hold, holdIndex - 6, hold, holdIndex);
                     holdIndex -= 6;
 
                     // Now that we have subdivided, we have constructed
@@ -322,20 +316,19 @@ public class FlatteningPathIterator implements PathIterator {
      * types return one point, and SEG_CLOSE does not return any points.
      * 
      * @param coords
-     *               an array that holds the data returned from this method
+     *        an array that holds the data returned from this method
      * @return the path segment type of the current path segment.
      * @exception NoSuchElementException
-     *                                   if there are no more elements in the
-     *                                   flattening path to be
-     *                                   returned.
+     *            if there are no more elements in the
+     *            flattening path to be
+     *            returned.
      * @see PathIterator#SEG_MOVETO
      * @see PathIterator#SEG_LINETO
      * @see PathIterator#SEG_CLOSE
      */
     public int currentSegment(float[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "flattening iterator out of bounds");
+            throw new NoSuchElementException("flattening iterator out of bounds");
         }
         int type = holdType;
         if (type != SEG_CLOSE) {
@@ -357,20 +350,19 @@ public class FlatteningPathIterator implements PathIterator {
      * types return one point, and SEG_CLOSE does not return any points.
      * 
      * @param coords
-     *               an array that holds the data returned from this method
+     *        an array that holds the data returned from this method
      * @return the path segment type of the current path segment.
      * @exception NoSuchElementException
-     *                                   if there are no more elements in the
-     *                                   flattening path to be
-     *                                   returned.
+     *            if there are no more elements in the
+     *            flattening path to be
+     *            returned.
      * @see PathIterator#SEG_MOVETO
      * @see PathIterator#SEG_LINETO
      * @see PathIterator#SEG_CLOSE
      */
     public int currentSegment(double[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "flattening iterator out of bounds");
+            throw new NoSuchElementException("flattening iterator out of bounds");
         }
         int type = holdType;
         if (type != SEG_CLOSE) {

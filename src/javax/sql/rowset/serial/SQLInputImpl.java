@@ -80,33 +80,31 @@ public class SQLInputImpl implements SQLInput {
      * implementation.
      *
      * @param attributes
-     *                   an array of <code>Object</code> instances in which each
-     *                   element is an attribute of a UDT. The order of the
-     *                   attributes
-     *                   in the array is the same order in which the attributes
-     *                   were
-     *                   defined in the UDT definition.
+     *        an array of <code>Object</code> instances in which each
+     *        element is an attribute of a UDT. The order of the
+     *        attributes
+     *        in the array is the same order in which the attributes
+     *        were
+     *        defined in the UDT definition.
      * @param map
-     *                   a <code>java.util.Map</code> object containing zero or
-     *                   more
-     *                   entries, with each entry consisting of 1) a
-     *                   <code>String</code> giving the fully qualified name of
-     *                   the UDT
-     *                   and 2) the <code>Class</code> object for the
-     *                   <code>SQLData</code> implementation that defines how
-     *                   the UDT
-     *                   is to be mapped
+     *        a <code>java.util.Map</code> object containing zero or
+     *        more
+     *        entries, with each entry consisting of 1) a
+     *        <code>String</code> giving the fully qualified name of
+     *        the UDT
+     *        and 2) the <code>Class</code> object for the
+     *        <code>SQLData</code> implementation that defines how
+     *        the UDT
+     *        is to be mapped
      * @throws SQLException
-     *                      if the <code>attributes</code> or the
-     *                      <code>map</code> is a
-     *                      <code>null</code> value
+     *         if the <code>attributes</code> or the
+     *         <code>map</code> is a
+     *         <code>null</code> value
      */
 
-    public SQLInputImpl(Object[] attributes, Map<String, Class<?>> map)
-            throws SQLException {
+    public SQLInputImpl(Object[] attributes, Map<String, Class<?>> map) throws SQLException {
         if ((attributes == null) || (map == null)) {
-            throw new SQLException("Cannot instantiate a SQLInputImpl "
-                    + "object with null parameters");
+            throw new SQLException("Cannot instantiate a SQLInputImpl " + "object with null parameters");
         }
         // assign our local reference to the attribute stream
         attrib = Arrays.copyOf(attributes, attributes.length);
@@ -123,14 +121,13 @@ public class SQLInputImpl implements SQLInput {
      * @return the next value in the input stream as an <code>Object</code> in
      *         the Java programming language
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no further values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no further values in the stream
      */
     private Object getNextAttribute() throws SQLException {
         if (++idx >= attrib.length) {
-            throw new SQLException("SQLInputImpl exception: Invalid read "
-                    + "position");
+            throw new SQLException("SQLInputImpl exception: Invalid read " + "position");
         } else {
             lastValueWasNull = attrib[idx] == null;
             return attrib[idx];
@@ -155,9 +152,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no further values in the stream.
      */
     public String readString() throws SQLException {
         return (String) getNextAttribute();
@@ -175,9 +172,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no further values in the stream.
      */
     public boolean readBoolean() throws SQLException {
         Boolean attrib = (Boolean) getNextAttribute();
@@ -196,9 +193,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no further values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no further values in the stream
      */
     public byte readByte() throws SQLException {
         Byte attrib = (Byte) getNextAttribute();
@@ -217,9 +214,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public short readShort() throws SQLException {
         Short attrib = (Short) getNextAttribute();
@@ -238,9 +235,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public int readInt() throws SQLException {
         Integer attrib = (Integer) getNextAttribute();
@@ -259,9 +256,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public long readLong() throws SQLException {
         Long attrib = (Long) getNextAttribute();
@@ -280,9 +277,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public float readFloat() throws SQLException {
         Float attrib = (Float) getNextAttribute();
@@ -301,9 +298,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public double readDouble() throws SQLException {
         Double attrib = (Double) getNextAttribute();
@@ -322,9 +319,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public java.math.BigDecimal readBigDecimal() throws SQLException {
         return (java.math.BigDecimal) getNextAttribute();
@@ -342,9 +339,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public byte[] readBytes() throws SQLException {
         return (byte[]) getNextAttribute();
@@ -362,9 +359,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the next attribute in this <code>SQLInputImpl</code> object; if
      *         the value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position or if
-     *                      there are no more values in the stream
+     *         if the read position is located at an invalid
+     *         position or if
+     *         there are no more values in the stream
      */
     public java.sql.Date readDate() throws SQLException {
         return (java.sql.Date) getNextAttribute();
@@ -381,9 +378,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the attribute; if the value is <code>SQL NULL</code>, return
      *         <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public java.sql.Time readTime() throws SQLException {
         return (java.sql.Time) getNextAttribute();
@@ -396,9 +393,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the attribute; if the value is <code>SQL NULL</code>, return
      *         <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public java.sql.Timestamp readTimestamp() throws SQLException {
         return (java.sql.Timestamp) getNextAttribute();
@@ -415,9 +412,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the attribute; if the value is <code>SQL NULL</code>, return
      *         <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public java.io.Reader readCharacterStream() throws SQLException {
         return (java.io.Reader) getNextAttribute();
@@ -434,9 +431,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the attribute; if the value is <code>SQL NULL</code>, return
      *         <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public java.io.InputStream readAsciiStream() throws SQLException {
         return (java.io.InputStream) getNextAttribute();
@@ -453,9 +450,9 @@ public class SQLInputImpl implements SQLInput {
      * @return the attribute; if the value is <code>SQL NULL</code>, return
      *         <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public java.io.InputStream readBinaryStream() throws SQLException {
         return (java.io.InputStream) getNextAttribute();
@@ -489,9 +486,9 @@ public class SQLInputImpl implements SQLInput {
      *         the Java programming language; <code>null</code> if the value is
      *         SQL <code>NULL</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public Object readObject() throws SQLException {
         Object attrib = getNextAttribute();
@@ -527,9 +524,9 @@ public class SQLInputImpl implements SQLInput {
      *         value at the head of the stream; if the value is
      *         <code>SQL NULL</code> return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public Ref readRef() throws SQLException {
         return (Ref) getNextAttribute();
@@ -548,9 +545,9 @@ public class SQLInputImpl implements SQLInput {
      *         value at the head of this stream; if the value is
      *         <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public Blob readBlob() throws SQLException {
         return (Blob) getNextAttribute();
@@ -569,9 +566,9 @@ public class SQLInputImpl implements SQLInput {
      *         value at the head of the stream; if the value is
      *         <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public Clob readClob() throws SQLException {
         return (Clob) getNextAttribute();
@@ -589,10 +586,9 @@ public class SQLInputImpl implements SQLInput {
      *         <code>ARRAY</code> value at the head of the stream; * if the
      *         value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
-     * 
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public Array readArray() throws SQLException {
         return (Array) getNextAttribute();
@@ -606,9 +602,9 @@ public class SQLInputImpl implements SQLInput {
      *         <code>null</code>; otherwise, <code>false</code>; by default it
      *         will return false
      * @throws SQLException
-     *                      if an error occurs determining the last value read
-     *                      was a
-     *                      <code>null</code> value or not;
+     *         if an error occurs determining the last value read
+     *         was a
+     *         <code>null</code> value or not;
      */
     public boolean wasNull() throws SQLException {
         return lastValueWasNull;
@@ -626,9 +622,9 @@ public class SQLInputImpl implements SQLInput {
      *         <code>DATALINK</code> value at the head of the stream; * if the
      *         value is <code>SQL NULL</code>, return <code>null</code>
      * @throws SQLException
-     *                      if the read position is located at an invalid
-     *                      position; or if
-     *                      there are no further values in the stream.
+     *         if the read position is located at an invalid
+     *         position; or if
+     *         there are no further values in the stream.
      */
     public java.net.URL readURL() throws SQLException {
         return (java.net.URL) getNextAttribute();
@@ -644,7 +640,7 @@ public class SQLInputImpl implements SQLInput {
      *         <code>NCLOB</code> value at the head of the stream;
      *         <code>null</code> if the value read is SQL <code>NULL</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     public NClob readNClob() throws SQLException {
@@ -660,7 +656,7 @@ public class SQLInputImpl implements SQLInput {
      * @return the attribute; if the value is SQL <code>NULL</code>, returns
      *         <code>null</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     public String readNString() throws SQLException {
@@ -675,7 +671,7 @@ public class SQLInputImpl implements SQLInput {
      *         <code>XML</code> value at the head of the stream;
      *         <code>null</code> if the value read is SQL <code>NULL</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     public SQLXML readSQLXML() throws SQLException {
@@ -690,7 +686,7 @@ public class SQLInputImpl implements SQLInput {
      *         <code>ROWID</code> value at the head of the stream;
      *         <code>null</code> if the value read is SQL <code>NULL</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     public RowId readRowId() throws SQLException {

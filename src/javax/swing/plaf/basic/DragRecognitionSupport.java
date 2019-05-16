@@ -37,13 +37,12 @@ class DragRecognitionSupport {
      * Returns the DragRecognitionSupport for the caller's AppContext.
      */
     private static DragRecognitionSupport getDragRecognitionSupport() {
-        DragRecognitionSupport support = (DragRecognitionSupport) AppContext
-                .getAppContext().get(DragRecognitionSupport.class);
+        DragRecognitionSupport support = (DragRecognitionSupport) AppContext.getAppContext().get(
+                DragRecognitionSupport.class);
 
         if (support == null) {
             support = new DragRecognitionSupport();
-            AppContext.getAppContext().put(DragRecognitionSupport.class,
-                    support);
+            AppContext.getAppContext().put(DragRecognitionSupport.class, support);
         }
 
         return support;
@@ -76,15 +75,14 @@ class DragRecognitionSupport {
         component = null;
     }
 
-    private int mapDragOperationFromModifiers(MouseEvent me,
-            TransferHandler th) {
+    private int mapDragOperationFromModifiers(MouseEvent me, TransferHandler th) {
 
         if (th == null || !SwingUtilities.isLeftMouseButton(me)) {
             return TransferHandler.NONE;
         }
 
-        return SunDragSourceContextPeer.convertModifiersToDropAction(me
-                .getModifiersEx(), th.getSourceActions(component));
+        return SunDragSourceContextPeer.convertModifiersToDropAction(me.getModifiersEx(), th.getSourceActions(
+                component));
     }
 
     /**
@@ -93,8 +91,7 @@ class DragRecognitionSupport {
     private boolean mousePressedImpl(MouseEvent me) {
         component = (JComponent) me.getSource();
 
-        if (mapDragOperationFromModifiers(me, component
-                .getTransferHandler()) != TransferHandler.NONE) {
+        if (mapDragOperationFromModifiers(me, component.getTransferHandler()) != TransferHandler.NONE) {
 
             motionThreshold = DragSource.getDragThreshold();
             dndArmedEvent = me;

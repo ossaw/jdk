@@ -22,22 +22,20 @@ public final class IIOPHelper {
 
     // loads IIOPProxy implementation class if available
     private static final String IMPL_CLASS = "com.sun.jmx.remote.protocol.iiop.IIOPProxyImpl";
-    private static final IIOPProxy proxy = AccessController.doPrivileged(
-            new PrivilegedAction<IIOPProxy>() {
-                public IIOPProxy run() {
-                    try {
-                        Class<?> c = Class.forName(IMPL_CLASS, true,
-                                IIOPHelper.class.getClassLoader());
-                        return (IIOPProxy) c.newInstance();
-                    } catch (ClassNotFoundException cnf) {
-                        return null;
-                    } catch (InstantiationException e) {
-                        throw new AssertionError(e);
-                    } catch (IllegalAccessException e) {
-                        throw new AssertionError(e);
-                    }
-                }
-            });
+    private static final IIOPProxy proxy = AccessController.doPrivileged(new PrivilegedAction<IIOPProxy>() {
+        public IIOPProxy run() {
+            try {
+                Class<?> c = Class.forName(IMPL_CLASS, true, IIOPHelper.class.getClassLoader());
+                return (IIOPProxy) c.newInstance();
+            } catch (ClassNotFoundException cnf) {
+                return null;
+            } catch (InstantiationException e) {
+                throw new AssertionError(e);
+            } catch (IllegalAccessException e) {
+                throw new AssertionError(e);
+            }
+        }
+    });
 
     /**
      * Returns true if RMI-IIOP and CORBA is available.
@@ -78,8 +76,8 @@ public final class IIOPHelper {
      * Returns the ORB associated with the given stub
      *
      * @throws UnsupportedOperationException
-     *                                       if the object does not support the
-     *                                       operation that was invoked
+     *         if the object does not support the
+     *         operation that was invoked
      */
     public static Object getOrb(Object stub) {
         ensureAvailable();
@@ -91,8 +89,7 @@ public final class IIOPHelper {
      */
     public static void connect(Object stub, Object orb) throws IOException {
         if (proxy == null)
-            throw new IOException(
-                    "Connection to ORB failed, RMI/IIOP not available");
+            throw new IOException("Connection to ORB failed, RMI/IIOP not available");
         proxy.connect(stub, orb);
     }
 
@@ -106,11 +103,9 @@ public final class IIOPHelper {
     /**
      * Creates, and returns, a new ORB instance.
      */
-    public static Object createOrb(String[] args, Properties props)
-            throws IOException {
+    public static Object createOrb(String[] args, Properties props) throws IOException {
         if (proxy == null)
-            throw new IOException(
-                    "ORB initialization failed, RMI/IIOP not available");
+            throw new IOException("ORB initialization failed, RMI/IIOP not available");
         return proxy.createOrb(args, props);
     }
 
@@ -145,8 +140,7 @@ public final class IIOPHelper {
      */
     public static void exportObject(Remote obj) throws IOException {
         if (proxy == null)
-            throw new IOException(
-                    "RMI object cannot be exported, RMI/IIOP not available");
+            throw new IOException("RMI object cannot be exported, RMI/IIOP not available");
         proxy.exportObject(obj);
     }
 

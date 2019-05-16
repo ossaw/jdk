@@ -17,8 +17,7 @@ import javax.swing.plaf.basic.*;
  * @author Scott Violet
  * @since 1.7
  */
-public class SynthScrollBarUI extends BasicScrollBarUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthScrollBarUI extends BasicScrollBarUI implements PropertyChangeListener, SynthUI {
 
     private SynthStyle style;
     private SynthStyle thumbStyle;
@@ -37,8 +36,7 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
     protected void installDefaults() {
         super.installDefaults();
         trackHighlight = NO_HIGHLIGHT;
-        if (scrollbar.getLayout() == null || (scrollbar
-                .getLayout() instanceof UIResource)) {
+        if (scrollbar.getLayout() == null || (scrollbar.getLayout() instanceof UIResource)) {
             scrollbar.setLayout(this);
         }
         configureScrollBarColors();
@@ -57,16 +55,14 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
         style = SynthLookAndFeel.updateStyle(context, this);
         if (style != oldStyle) {
             scrollBarWidth = style.getInt(context, "ScrollBar.thumbHeight", 14);
-            minimumThumbSize = (Dimension) style.get(context,
-                    "ScrollBar.minimumThumbSize");
+            minimumThumbSize = (Dimension) style.get(context, "ScrollBar.minimumThumbSize");
             if (minimumThumbSize == null) {
                 minimumThumbSize = new Dimension();
                 validMinimumThumbSize = false;
             } else {
                 validMinimumThumbSize = true;
             }
-            maximumThumbSize = (Dimension) style.get(context,
-                    "ScrollBar.maximumThumbSize");
+            maximumThumbSize = (Dimension) style.get(context, "ScrollBar.maximumThumbSize");
             if (maximumThumbSize == null) {
                 maximumThumbSize = new Dimension(4096, 4097);
             }
@@ -77,8 +73,7 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
             // handle scaling for sizeVarients for special case components. The
             // key "JComponent.sizeVariant" scales for large/small/mini
             // components are based on Apples LAF
-            String scaleKey = (String) scrollbar.getClientProperty(
-                    "JComponent.sizeVariant");
+            String scaleKey = (String) scrollbar.getClientProperty("JComponent.sizeVariant");
             if (scaleKey != null) {
                 if ("large".equals(scaleKey)) {
                     scrollBarWidth *= 1.15;
@@ -178,8 +173,7 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
     }
 
     private int getComponentState(JComponent c, Region region) {
-        if (region == Region.SCROLL_BAR_THUMB && isThumbRollover() && c
-                .isEnabled()) {
+        if (region == Region.SCROLL_BAR_THUMB && isThumbRollover() && c.isEnabled()) {
             return MOUSE_OVER;
         }
         return SynthLookAndFeel.getComponentState(c);
@@ -191,8 +185,7 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
     @Override
     public boolean getSupportsAbsolutePositioning() {
         SynthContext context = getContext(scrollbar);
-        boolean value = style.getBoolean(context,
-                "ScrollBar.allowsAbsolutePositioning", false);
+        boolean value = style.getBoolean(context, "ScrollBar.allowsAbsolutePositioning", false);
         context.dispose();
         return value;
     }
@@ -201,15 +194,14 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -217,8 +209,8 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintScrollBarBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight(), scrollbar.getOrientation());
+        context.getPainter().paintScrollBarBackground(context, g, 0, 0, c.getWidth(), c.getHeight(), scrollbar
+                .getOrientation());
         paint(context, g);
         context.dispose();
     }
@@ -230,9 +222,9 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -247,14 +239,13 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
      * Paints the specified component.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
-        SynthContext subcontext = getContext(scrollbar,
-                Region.SCROLL_BAR_TRACK);
+        SynthContext subcontext = getContext(scrollbar, Region.SCROLL_BAR_TRACK);
         paintTrack(subcontext, g, getTrackBounds());
         subcontext.dispose();
 
@@ -267,53 +258,45 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
-        context.getPainter().paintScrollBarBorder(context, g, x, y, w, h,
-                scrollbar.getOrientation());
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+        context.getPainter().paintScrollBarBorder(context, g, x, y, w, h, scrollbar.getOrientation());
     }
 
     /**
      * Paints the scrollbar track.
      *
      * @param context
-     *                    context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                    {@code Graphics} object used for painting
+     *        {@code Graphics} object used for painting
      * @param trackBounds
-     *                    bounding box for the track
+     *        bounding box for the track
      */
-    protected void paintTrack(SynthContext context, Graphics g,
-            Rectangle trackBounds) {
+    protected void paintTrack(SynthContext context, Graphics g, Rectangle trackBounds) {
         SynthLookAndFeel.updateSubregion(context, g, trackBounds);
-        context.getPainter().paintScrollBarTrackBackground(context, g,
-                trackBounds.x, trackBounds.y, trackBounds.width,
-                trackBounds.height, scrollbar.getOrientation());
-        context.getPainter().paintScrollBarTrackBorder(context, g,
-                trackBounds.x, trackBounds.y, trackBounds.width,
-                trackBounds.height, scrollbar.getOrientation());
+        context.getPainter().paintScrollBarTrackBackground(context, g, trackBounds.x, trackBounds.y,
+                trackBounds.width, trackBounds.height, scrollbar.getOrientation());
+        context.getPainter().paintScrollBarTrackBorder(context, g, trackBounds.x, trackBounds.y,
+                trackBounds.width, trackBounds.height, scrollbar.getOrientation());
     }
 
     /**
      * Paints the scrollbar thumb.
      *
      * @param context
-     *                    context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                    {@code Graphics} object used for painting
+     *        {@code Graphics} object used for painting
      * @param thumbBounds
-     *                    bounding box for the thumb
+     *        bounding box for the thumb
      */
-    protected void paintThumb(SynthContext context, Graphics g,
-            Rectangle thumbBounds) {
+    protected void paintThumb(SynthContext context, Graphics g, Rectangle thumbBounds) {
         SynthLookAndFeel.updateSubregion(context, g, thumbBounds);
         int orientation = scrollbar.getOrientation();
-        context.getPainter().paintScrollBarThumbBackground(context, g,
-                thumbBounds.x, thumbBounds.y, thumbBounds.width,
-                thumbBounds.height, orientation);
-        context.getPainter().paintScrollBarThumbBorder(context, g,
-                thumbBounds.x, thumbBounds.y, thumbBounds.width,
-                thumbBounds.height, orientation);
+        context.getPainter().paintScrollBarThumbBackground(context, g, thumbBounds.x, thumbBounds.y,
+                thumbBounds.width, thumbBounds.height, orientation);
+        context.getPainter().paintScrollBarThumbBorder(context, g, thumbBounds.x, thumbBounds.y,
+                thumbBounds.width, thumbBounds.height, orientation);
     }
 
     /**
@@ -327,8 +310,8 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
      * this method just return a cached size.
      *
      * @param c
-     *          the <code>JScrollBar</code> that's delegating this method to
-     *          us
+     *        the <code>JScrollBar</code> that's delegating this method to
+     *        us
      * @return the preferred size of a Basic JScrollBar
      * @see #getMaximumSize
      * @see #getMinimumSize
@@ -336,10 +319,9 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
     @Override
     public Dimension getPreferredSize(JComponent c) {
         Insets insets = c.getInsets();
-        return (scrollbar.getOrientation() == JScrollBar.VERTICAL)
-                ? new Dimension(scrollBarWidth + insets.left + insets.right, 48)
-                : new Dimension(48, scrollBarWidth + insets.top
-                        + insets.bottom);
+        return (scrollbar.getOrientation() == JScrollBar.VERTICAL) ? new Dimension(scrollBarWidth
+                + insets.left + insets.right, 48)
+                : new Dimension(48, scrollBarWidth + insets.top + insets.bottom);
     }
 
     /**
@@ -435,19 +417,11 @@ public class SynthScrollBarUI extends BasicScrollBarUI implements
     private void updateButtonDirections() {
         int orient = scrollbar.getOrientation();
         if (scrollbar.getComponentOrientation().isLeftToRight()) {
-            ((SynthArrowButton) incrButton).setDirection(orient == HORIZONTAL
-                    ? EAST
-                    : SOUTH);
-            ((SynthArrowButton) decrButton).setDirection(orient == HORIZONTAL
-                    ? WEST
-                    : NORTH);
+            ((SynthArrowButton) incrButton).setDirection(orient == HORIZONTAL ? EAST : SOUTH);
+            ((SynthArrowButton) decrButton).setDirection(orient == HORIZONTAL ? WEST : NORTH);
         } else {
-            ((SynthArrowButton) incrButton).setDirection(orient == HORIZONTAL
-                    ? WEST
-                    : SOUTH);
-            ((SynthArrowButton) decrButton).setDirection(orient == HORIZONTAL
-                    ? EAST
-                    : NORTH);
+            ((SynthArrowButton) incrButton).setDirection(orient == HORIZONTAL ? WEST : SOUTH);
+            ((SynthArrowButton) decrButton).setDirection(orient == HORIZONTAL ? EAST : NORTH);
         }
     }
 

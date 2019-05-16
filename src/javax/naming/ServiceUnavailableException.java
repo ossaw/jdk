@@ -16,7 +16,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @since 1.3
  */
 
@@ -26,7 +25,7 @@ public class ServiceUnavailableException extends NamingException {
      * explanation. All other fields default to null.
      *
      * @param explanation
-     *                    Possibly null additional detail about this exception.
+     *        Possibly null additional detail about this exception.
      * @see java.lang.Throwable#getMessage
      */
     public ServiceUnavailableException(String explanation) {

@@ -39,7 +39,6 @@ import javax.management.ImmutableDescriptor;
  *        meaning that an attribute, parameter, or return value that is
  *        described as a {@code SimpleType.INTEGER} must have Java type
  *        {@link Integer}.
- *
  * @since 1.5
  */
 public abstract class OpenType<T> implements Serializable {
@@ -72,41 +71,35 @@ public abstract class OpenType<T> implements Serializable {
       CompositeData.class.getName(),
       TabularData.class.getName() } ;
      * </pre>
-     *
      */
-    public static final List<String> ALLOWED_CLASSNAMES_LIST = Collections
-            .unmodifiableList(Arrays.asList("java.lang.Void",
-                    "java.lang.Boolean", "java.lang.Character",
-                    "java.lang.Byte", "java.lang.Short", "java.lang.Integer",
-                    "java.lang.Long", "java.lang.Float", "java.lang.Double",
-                    "java.lang.String", "java.math.BigDecimal",
-                    "java.math.BigInteger", "java.util.Date",
-                    "javax.management.ObjectName", CompositeData.class
-                            .getName(), // better
-                    // refer
-                    // to
-                    // these
-                    // two
-                    // class
-                    // names
-                    // like
-                    // this,
-                    // rather
-                    // than
-                    // hardcoding
-                    // a
-                    // string,
-                    TabularData.class.getName())); // in case the package of
-                                                   // these classes should
-                                                   // change (who knows...)
+    public static final List<String> ALLOWED_CLASSNAMES_LIST = Collections.unmodifiableList(Arrays.asList(
+            "java.lang.Void", "java.lang.Boolean", "java.lang.Character", "java.lang.Byte", "java.lang.Short",
+            "java.lang.Integer", "java.lang.Long", "java.lang.Float", "java.lang.Double", "java.lang.String",
+            "java.math.BigDecimal", "java.math.BigInteger", "java.util.Date", "javax.management.ObjectName",
+            CompositeData.class.getName(), // better
+            // refer
+            // to
+            // these
+            // two
+            // class
+            // names
+            // like
+            // this,
+            // rather
+            // than
+            // hardcoding
+            // a
+            // string,
+            TabularData.class.getName())); // in case the package of
+                                           // these classes should
+                                           // change (who knows...)
 
     /**
      * @deprecated Use {@link #ALLOWED_CLASSNAMES_LIST ALLOWED_CLASSNAMES_LIST}
      *             instead.
      */
     @Deprecated
-    public static final String[] ALLOWED_CLASSNAMES = ALLOWED_CLASSNAMES_LIST
-            .toArray(new String[0]);
+    public static final String[] ALLOWED_CLASSNAMES = ALLOWED_CLASSNAMES_LIST.toArray(new String[0]);
 
     /**
      * @serial The fully qualified Java class name of open data values this type
@@ -144,61 +137,58 @@ public abstract class OpenType<T> implements Serializable {
      * &nbsp;
      * 
      * @param className
-     *                    The fully qualified Java class name of the open data
-     *                    values
-     *                    this open type describes. The valid Java class names
-     *                    allowed
-     *                    for open data values are listed in
-     *                    {@link #ALLOWED_CLASSNAMES_LIST
-     *                    ALLOWED_CLASSNAMES_LIST}. A
-     *                    multidimensional array of any one of these classes or
-     *                    their
-     *                    corresponding primitive types is also an allowed
-     *                    class, in
-     *                    which case the class name follows the rules defined by
-     *                    the
-     *                    method {@link Class#getName() getName()} of
-     *                    <code>java.lang.Class</code>. For example, a
-     *                    3-dimensional
-     *                    array of Strings has for class name &quot;
-     *                    <code>[[[Ljava.lang.String;</code>&quot; (without the
-     *                    quotes).
-     *                    <br>
-     *                    &nbsp;
+     *        The fully qualified Java class name of the open data
+     *        values
+     *        this open type describes. The valid Java class names
+     *        allowed
+     *        for open data values are listed in
+     *        {@link #ALLOWED_CLASSNAMES_LIST
+     *        ALLOWED_CLASSNAMES_LIST}. A
+     *        multidimensional array of any one of these classes or
+     *        their
+     *        corresponding primitive types is also an allowed
+     *        class, in
+     *        which case the class name follows the rules defined by
+     *        the
+     *        method {@link Class#getName() getName()} of
+     *        <code>java.lang.Class</code>. For example, a
+     *        3-dimensional
+     *        array of Strings has for class name &quot;
+     *        <code>[[[Ljava.lang.String;</code>&quot; (without the
+     *        quotes).
+     *        <br>
+     *        &nbsp;
      * @param typeName
-     *                    The name given to the open type this instance
-     *                    represents;
-     *                    cannot be a null or empty string. <br>
-     *                    &nbsp;
+     *        The name given to the open type this instance
+     *        represents;
+     *        cannot be a null or empty string. <br>
+     *        &nbsp;
      * @param description
-     *                    The human readable description of the open type this
-     *                    instance
-     *                    represents; cannot be a null or empty string. <br>
-     *                    &nbsp;
+     *        The human readable description of the open type this
+     *        instance
+     *        represents; cannot be a null or empty string. <br>
+     *        &nbsp;
      * @throws IllegalArgumentException
-     *                                  if <var>className</var>,
-     *                                  <var>typeName</var> or
-     *                                  <var>description</var> is a null or
-     *                                  empty string <br>
-     *                                  &nbsp;
+     *         if <var>className</var>,
+     *         <var>typeName</var> or
+     *         <var>description</var> is a null or
+     *         empty string <br>
+     *         &nbsp;
      * @throws OpenDataException
-     *                                  if <var>className</var> is not one of
-     *                                  the allowed Java class
-     *                                  names for open data
+     *         if <var>className</var> is not one of
+     *         the allowed Java class
+     *         names for open data
      */
-    protected OpenType(String className, String typeName, String description)
-            throws OpenDataException {
+    protected OpenType(String className, String typeName, String description) throws OpenDataException {
         checkClassNameOverride();
         this.typeName = valid("typeName", typeName);
         this.description = valid("description", description);
         this.className = validClassName(className);
-        this.isArray = (this.className != null && this.className.startsWith(
-                "["));
+        this.isArray = (this.className != null && this.className.startsWith("["));
     }
 
     /* Package-private constructor for callers we trust to get it right. */
-    OpenType(String className, String typeName, String description,
-            boolean isArray) {
+    OpenType(String className, String typeName, String description, boolean isArray) {
         this.className = valid("className", className);
         this.typeName = valid("typeName", typeName);
         this.description = valid("description", description);
@@ -209,8 +199,7 @@ public abstract class OpenType<T> implements Serializable {
         if (this.getClass().getClassLoader() == null)
             return; // We trust bootstrap classes.
         if (overridesGetClassName(this.getClass())) {
-            final GetPropertyAction getExtendOpenTypes = new GetPropertyAction(
-                    "jmx.extend.open.types");
+            final GetPropertyAction getExtendOpenTypes = new GetPropertyAction("jmx.extend.open.types");
             if (AccessController.doPrivileged(getExtendOpenTypes) == null) {
                 throw new SecurityException("Cannot override getClassName() "
                         + "unless -Djmx.extend.open.types");
@@ -222,8 +211,7 @@ public abstract class OpenType<T> implements Serializable {
         return AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
             public Boolean run() {
                 try {
-                    return (c.getMethod("getClassName")
-                            .getDeclaringClass() != OpenType.class);
+                    return (c.getMethod("getClassName").getDeclaringClass() != OpenType.class);
                 } catch (Exception e) {
                     return true; // fail safe
                 }
@@ -231,8 +219,7 @@ public abstract class OpenType<T> implements Serializable {
         });
     }
 
-    private static String validClassName(String className)
-            throws OpenDataException {
+    private static String validClassName(String className) throws OpenDataException {
         className = valid("className", className);
 
         // Check if className describes an array class, and determines its
@@ -250,8 +237,7 @@ public abstract class OpenType<T> implements Serializable {
             if (className.startsWith("L", n) && className.endsWith(";")) {
                 // removes the n leading '[' + the 'L' characters
                 // and the last ';' character
-                eltClassName = className.substring(n + 1, className.length()
-                        - 1);
+                eltClassName = className.substring(n + 1, className.length() - 1);
             } else if (n == className.length() - 1) {
                 // removes the n leading '[' characters
                 eltClassName = className.substring(n, className.length());
@@ -288,16 +274,14 @@ public abstract class OpenType<T> implements Serializable {
      */
     private static String valid(String argName, String argValue) {
         if (argValue == null || (argValue = argValue.trim()).equals(""))
-            throw new IllegalArgumentException("Argument " + argName
-                    + " cannot be null or empty");
+            throw new IllegalArgumentException("Argument " + argName + " cannot be null or empty");
         return argValue;
     }
 
     /* Package-private access to a Descriptor containing this OpenType. */
     synchronized Descriptor getDescriptor() {
         if (descriptor == null) {
-            descriptor = new ImmutableDescriptor(new String[] { "openType" },
-                    new Object[] { this });
+            descriptor = new ImmutableDescriptor(new String[] { "openType" }, new Object[] { this });
         }
         return descriptor;
     }
@@ -366,8 +350,7 @@ public abstract class OpenType<T> implements Serializable {
      * Tests whether <var>obj</var> is a value for this open type.
      *
      * @param obj
-     *            the object to be tested for validity.
-     *
+     *        the object to be tested for validity.
      * @return <code>true</code> if <var>obj</var> is a value for this open
      *         type, <code>false</code> otherwise.
      */
@@ -379,8 +362,7 @@ public abstract class OpenType<T> implements Serializable {
      * are equal.
      *
      * @param ot
-     *           the type to be tested.
-     *
+     *        the type to be tested.
      * @return true if {@code ot} is assignable to this open type.
      */
     boolean isAssignableFrom(OpenType<?> ot) {
@@ -394,8 +376,7 @@ public abstract class OpenType<T> implements Serializable {
      * instance for equality.
      *
      * @param obj
-     *            the object to compare to.
-     *
+     *        the object to compare to.
      * @return true if this object and <code>obj</code> are equal.
      */
     public abstract boolean equals(Object obj);
@@ -413,20 +394,16 @@ public abstract class OpenType<T> implements Serializable {
      * Deserializes an {@link OpenType} from an
      * {@link java.io.ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         checkClassNameOverride();
         ObjectInputStream.GetField fields = in.readFields();
         final String classNameField;
         final String descriptionField;
         final String typeNameField;
         try {
-            classNameField = validClassName((String) fields.get("className",
-                    null));
-            descriptionField = valid("description", (String) fields.get(
-                    "description", null));
-            typeNameField = valid("typeName", (String) fields.get("typeName",
-                    null));
+            classNameField = validClassName((String) fields.get("className", null));
+            descriptionField = valid("description", (String) fields.get("description", null));
+            typeNameField = valid("typeName", (String) fields.get("typeName", null));
         } catch (Exception e) {
             IOException e2 = new InvalidObjectException(e.getMessage());
             e2.initCause(e);

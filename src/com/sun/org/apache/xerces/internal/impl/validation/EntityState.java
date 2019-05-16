@@ -23,7 +23,6 @@ package com.sun.org.apache.xerces.internal.impl.validation;
  * entity validator that will need to validate attributes of type entity.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  */
 public interface EntityState {

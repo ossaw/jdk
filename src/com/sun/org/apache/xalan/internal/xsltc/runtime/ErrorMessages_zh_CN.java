@@ -219,8 +219,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "XSL \u5143\u7D20 ''{0}'' \u4E0D\u53D7\u652F\u6301" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "XSL \u5143\u7D20 ''{0}'' \u4E0D\u53D7\u652F\u6301" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -228,8 +227,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * but XSLTC does not recognize the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { BasisLibrary.UNSUPPORTED_EXT_ERR,
-                        "XSLTC \u6269\u5C55 ''{0}'' \u65E0\u6CD5\u8BC6\u522B" },
+                { BasisLibrary.UNSUPPORTED_EXT_ERR, "XSLTC \u6269\u5C55 ''{0}'' \u65E0\u6CD5\u8BC6\u522B" },
 
                 /*
                  * Note to translators: This error message is produced if the

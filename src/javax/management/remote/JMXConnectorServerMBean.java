@@ -14,7 +14,6 @@ import java.util.Map;
  * to an MBean server, and establishes connections to that MBean server for
  * remote clients.
  * </p>
- *
  * <p>
  * A newly-created connector server is <em>inactive</em>, and does not yet
  * listen for connections. Only when its {@link #start start} method has been
@@ -33,14 +32,13 @@ public interface JMXConnectorServerMBean {
      * </p>
      *
      * @exception IOException
-     *                                  if it is not possible to start listening
-     *                                  or if the
-     *                                  connector server has been stopped.
-     *
+     *            if it is not possible to start listening
+     *            or if the
+     *            connector server has been stopped.
      * @exception IllegalStateException
-     *                                  if the connector server has not been
-     *                                  attached to an MBean
-     *                                  server.
+     *            if the connector server has not been
+     *            attached to an MBean
+     *            server.
      */
     public void start() throws IOException;
 
@@ -52,24 +50,20 @@ public interface JMXConnectorServerMBean {
      * normally or with an exception, the connector server will not create any
      * new client connections.
      * </p>
-     *
      * <p>
      * Once a connector server has been stopped, it cannot be started again.
      * </p>
-     *
      * <p>
      * Calling this method when the connector server has already been stopped
      * has no effect. Calling this method when the connector server has not yet
      * been started will disable the connector server object permanently.
      * </p>
-     *
      * <p>
      * If closing a client connection produces an exception, that exception is
      * not thrown from this method. A {@link JMXConnectionNotification} with
      * type {@link JMXConnectionNotification#FAILED} is emitted from this MBean
      * with the connection ID of the connection that could not be closed.
      * </p>
-     *
      * <p>
      * Closing a connector server is a potentially slow operation. For example,
      * if a client machine with an open connection has crashed, the close
@@ -79,14 +73,14 @@ public interface JMXConnectorServerMBean {
      * </p>
      *
      * @exception IOException
-     *                        if the server cannot be closed cleanly. When this
-     *                        exception is thrown, the server has already
-     *                        attempted to
-     *                        close all client connections. All client
-     *                        connections are
-     *                        closed except possibly those that generated
-     *                        exceptions
-     *                        when the server attempted to close them.
+     *            if the server cannot be closed cleanly. When this
+     *            exception is thrown, the server has already
+     *            attempted to
+     *            close all client connections. All client
+     *            connections are
+     *            closed except possibly those that generated
+     *            exceptions
+     *            when the server attempted to close them.
      */
     public void stop() throws IOException;
 
@@ -109,14 +103,12 @@ public interface JMXConnectorServerMBean {
      * <code>MBeanServer</code> for any new connection created by this connector
      * server. Existing connections are unaffected.
      * </p>
-     *
      * <p>
      * This method can be called more than once with different
      * {@link MBeanServerForwarder} objects. The result is a chain of
      * forwarders. The last forwarder added is the first in the chain. In more
      * detail:
      * </p>
-     *
      * <ul>
      * <li>
      * <p>
@@ -126,7 +118,6 @@ public interface JMXConnectorServerMBean {
      * so produces an exception, this method throws the same exception without
      * any other effect.
      * </p>
-     *
      * <li>
      * <p>
      * If this connector is not already associated with an
@@ -138,15 +129,14 @@ public interface JMXConnectorServerMBean {
      * </ul>
      *
      * @param mbsf
-     *             the new <code>MBeanServerForwarder</code>.
-     *
+     *        the new <code>MBeanServerForwarder</code>.
      * @exception IllegalArgumentException
-     *                                     if the call to
-     *                                     {@link MBeanServerForwarder#setMBeanServer
-     *                                     mbsf.setMBeanServer} fails with
-     *                                     <code>IllegalArgumentException</code>.
-     *                                     This includes the
-     *                                     case where <code>mbsf</code> is null.
+     *            if the call to
+     *            {@link MBeanServerForwarder#setMBeanServer
+     *            mbsf.setMBeanServer} fails with
+     *            <code>IllegalArgumentException</code>.
+     *            This includes the
+     *            case where <code>mbsf</code> is null.
      */
     public void setMBeanServerForwarder(MBeanServerForwarder mbsf);
 
@@ -201,7 +191,6 @@ public interface JMXConnectorServerMBean {
      * serializable object whose {@link JMXConnector#connect(Map) connect}
      * method can be used to make one new connection to this connector server.
      * </p>
-     *
      * <p>
      * A given connector need not support the generation of client stubs.
      * However, the connectors specified by the JMX Remote API do (JMXMP
@@ -209,29 +198,24 @@ public interface JMXConnectorServerMBean {
      * </p>
      *
      * @param env
-     *            client connection parameters of the same sort that can be
-     *            provided to {@link JMXConnector#connect(Map)
-     *            JMXConnector.connect(Map)}. Can be null, which is equivalent
-     *            to an empty map.
-     *
+     *        client connection parameters of the same sort that can be
+     *        provided to {@link JMXConnector#connect(Map)
+     *        JMXConnector.connect(Map)}. Can be null, which is equivalent
+     *        to an empty map.
      * @return a client stub that can be used to make a new connection to this
      *         connector server.
-     *
      * @exception UnsupportedOperationException
-     *                                          if this connector server does
-     *                                          not support the generation
-     *                                          of client stubs.
-     *
+     *            if this connector server does
+     *            not support the generation
+     *            of client stubs.
      * @exception IllegalStateException
-     *                                          if the JMXConnectorServer is not
-     *                                          started (see
-     *                                          {@link JMXConnectorServerMBean#isActive()}).
-     *
+     *            if the JMXConnectorServer is not
+     *            started (see
+     *            {@link JMXConnectorServerMBean#isActive()}).
      * @exception IOException
-     *                                          if a communications problem
-     *                                          means that a stub cannot be
-     *                                          created.
-     *
+     *            if a communications problem
+     *            means that a stub cannot be
+     *            created.
      */
     public JMXConnector toJMXConnector(Map<String, ?> env) throws IOException;
 }

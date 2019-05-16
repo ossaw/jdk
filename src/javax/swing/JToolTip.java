@@ -92,7 +92,7 @@ public class JToolTip extends JComponent implements Accessible {
      * <code>tipText</code> may be <code>null</code>.
      *
      * @param tipText
-     *                the <code>String</code> to display
+     *        the <code>String</code> to display
      * @beaninfo preferred: true bound: true description: Sets the text of the
      *           tooltip
      */
@@ -124,7 +124,7 @@ public class JToolTip extends JComponent implements Accessible {
      * This is a bound property.
      *
      * @param c
-     *          the <code>JComponent</code> being described
+     *        the <code>JComponent</code> being described
      * @see JComponent#createToolTip
      * @beaninfo bound: true description: Sets the component that the tooltip
      *           describes.
@@ -141,7 +141,6 @@ public class JToolTip extends JComponent implements Accessible {
      * <code>null</code>.
      *
      * @return the component that the tooltip describes
-     *
      * @see JComponent#createToolTip
      */
     public JComponent getComponent() {
@@ -232,8 +231,7 @@ public class JToolTip extends JComponent implements Accessible {
 
             // fallback to client property
             if (description == null) {
-                description = (String) getClientProperty(
-                        AccessibleContext.ACCESSIBLE_DESCRIPTION_PROPERTY);
+                description = (String) getClientProperty(AccessibleContext.ACCESSIBLE_DESCRIPTION_PROPERTY);
             }
             if (description == null) {
                 description = getTipText();

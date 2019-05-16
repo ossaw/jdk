@@ -58,8 +58,7 @@ class SmartGridLayout implements LayoutManager, Serializable {
                 for (int row = 0; row < rows; row++) {
                     Component current = layoutGrid[column][row];
 
-                    current.setBounds(horizLoc, vertLoc, columnWidths[column],
-                            rowHeights[row]);
+                    current.setBounds(horizLoc, vertLoc, columnWidths[column], rowHeights[row]);
                     // System.out.println(current.getBounds());
                     vertLoc += (rowHeights[row] + yGap);
                 }
@@ -74,8 +73,7 @@ class SmartGridLayout implements LayoutManager, Serializable {
                 for (int row = 0; row < rows; row++) {
                     Component current = layoutGrid[column][row];
 
-                    current.setBounds(horizLoc, vertLoc, columnWidths[column],
-                            rowHeights[row]);
+                    current.setBounds(horizLoc, vertLoc, columnWidths[column], rowHeights[row]);
                     // System.out.println(current.getBounds());
                     vertLoc += (rowHeights[row] + yGap);
                 }

@@ -29,11 +29,11 @@ public interface Struct {
      *         which this <code>Struct</code> object is the generic
      *         representation
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     String getSQLTypeName() throws SQLException;
@@ -52,11 +52,11 @@ public interface Struct {
      *
      * @return an array containing the ordered attribute values
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     Object[] getAttributes() throws SQLException;
@@ -75,16 +75,15 @@ public interface Struct {
      * result.
      *
      * @param map
-     *            a mapping of SQL type names to Java classes
+     *        a mapping of SQL type names to Java classes
      * @return an array containing the ordered attribute values
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
-    Object[] getAttributes(java.util.Map<String, Class<?>> map)
-            throws SQLException;
+    Object[] getAttributes(java.util.Map<String, Class<?>> map) throws SQLException;
 }

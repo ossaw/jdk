@@ -12,7 +12,6 @@ import javax.management.ObjectName;
 /**
  * Exposes the remote management interface of monitor MBeans.
  *
- *
  * @since 1.5
  */
 public interface MonitorMBean {
@@ -34,20 +33,17 @@ public interface MonitorMBean {
      * Adds the specified object in the set of observed MBeans.
      *
      * @param object
-     *               The object to observe.
+     *        The object to observe.
      * @exception java.lang.IllegalArgumentException
      *            the specified object is null.
-     *
      */
-    public void addObservedObject(ObjectName object)
-            throws java.lang.IllegalArgumentException;
+    public void addObservedObject(ObjectName object) throws java.lang.IllegalArgumentException;
 
     /**
      * Removes the specified object from the set of observed MBeans.
      *
      * @param object
-     *               The object to remove.
-     *
+     *        The object to remove.
      */
     public void removeObservedObject(ObjectName object);
 
@@ -55,10 +51,9 @@ public interface MonitorMBean {
      * Tests whether the specified object is in the set of observed MBeans.
      *
      * @param object
-     *               The object to check.
+     *        The object to check.
      * @return <CODE>true</CODE> if the specified object is in the set,
      *         <CODE>false</CODE> otherwise.
-     *
      */
     public boolean containsObservedObject(ObjectName object);
 
@@ -66,7 +61,6 @@ public interface MonitorMBean {
      * Returns an array containing the objects being observed.
      *
      * @return The objects being observed.
-     *
      */
     public ObjectName[] getObservedObjects();
 
@@ -74,9 +68,7 @@ public interface MonitorMBean {
      * Gets the object name of the object being observed.
      *
      * @return The object being observed.
-     *
      * @see #setObservedObject
-     *
      * @deprecated As of JMX 1.2, replaced by {@link #getObservedObjects}
      */
     @Deprecated
@@ -86,10 +78,8 @@ public interface MonitorMBean {
      * Sets the object to observe identified by its object name.
      *
      * @param object
-     *               The object to observe.
-     *
+     *        The object to observe.
      * @see #getObservedObject
-     *
      * @deprecated As of JMX 1.2, replaced by {@link #addObservedObject}
      */
     @Deprecated
@@ -99,7 +89,6 @@ public interface MonitorMBean {
      * Gets the attribute being observed.
      *
      * @return The attribute being observed.
-     *
      * @see #setObservedAttribute
      */
     public String getObservedAttribute();
@@ -108,8 +97,7 @@ public interface MonitorMBean {
      * Sets the attribute to observe.
      *
      * @param attribute
-     *                  The attribute to observe.
-     *
+     *        The attribute to observe.
      * @see #getObservedAttribute
      */
     public void setObservedAttribute(String attribute);
@@ -118,7 +106,6 @@ public interface MonitorMBean {
      * Gets the granularity period (in milliseconds).
      *
      * @return The granularity period.
-     *
      * @see #setGranularityPeriod
      */
     public long getGranularityPeriod();
@@ -127,14 +114,12 @@ public interface MonitorMBean {
      * Sets the granularity period (in milliseconds).
      *
      * @param period
-     *               The granularity period.
+     *        The granularity period.
      * @exception java.lang.IllegalArgumentException
      *            The granularity period is less than or equal to zero.
-     *
      * @see #getGranularityPeriod
      */
-    public void setGranularityPeriod(long period)
-            throws java.lang.IllegalArgumentException;
+    public void setGranularityPeriod(long period) throws java.lang.IllegalArgumentException;
 
     /**
      * Tests if the monitor MBean is active. A monitor MBean is marked active

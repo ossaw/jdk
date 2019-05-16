@@ -27,7 +27,7 @@ public class StackOverflowError extends VirtualMachineError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public StackOverflowError(String s) {
         super(s);

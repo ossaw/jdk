@@ -34,10 +34,9 @@ public interface PrefixResolver {
      * itself.
      *
      * @param prefix
-     *               The prefix to look up, which may be an empty string ("")
-     *               for
-     *               the default Namespace.
-     *
+     *        The prefix to look up, which may be an empty string ("")
+     *        for
+     *        the default Namespace.
      * @return The associated Namespace URI, or null if the prefix is undeclared
      *         in this context.
      */
@@ -48,12 +47,11 @@ public interface PrefixResolver {
      * node.
      *
      * @param prefix
-     *                The prefix to look up, which may be an empty string ("")
-     *                for
-     *                the default Namespace.
+     *        The prefix to look up, which may be an empty string ("")
+     *        for
+     *        the default Namespace.
      * @param context
-     *                The node context from which to look up the URI.
-     *
+     *        The node context from which to look up the URI.
      * @return The associated Namespace URI as a string, or null if the prefix
      *         is undeclared in this context.
      */

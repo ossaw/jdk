@@ -23,5 +23,5 @@ package org.omg.DynamicAny;
  * as ORB bridging and debugging and should not be used to arbitrarily violate
  * the encapsulation of the value type.
  */
-public interface DynValue extends DynValueOperations,
-        org.omg.DynamicAny.DynValueCommon, org.omg.CORBA.portable.IDLEntity {} // interface DynValue
+public interface DynValue extends DynValueOperations, org.omg.DynamicAny.DynValueCommon,
+        org.omg.CORBA.portable.IDLEntity {} // interface DynValue

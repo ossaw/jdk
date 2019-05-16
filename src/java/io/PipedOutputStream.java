@@ -37,9 +37,9 @@ public class PipedOutputStream extends OutputStream {
      * from <code>snk</code>.
      *
      * @param snk
-     *            The piped input stream to connect to.
+     *        The piped input stream to connect to.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public PipedOutputStream(PipedInputStream snk) throws IOException {
         connect(snk);
@@ -77,9 +77,9 @@ public class PipedOutputStream extends OutputStream {
      * </blockquote> The two calls have the same effect.
      *
      * @param snk
-     *            the piped input stream to connect to.
+     *        the piped input stream to connect to.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public synchronized void connect(PipedInputStream snk) throws IOException {
         if (snk == null) {
@@ -99,12 +99,12 @@ public class PipedOutputStream extends OutputStream {
      * Implements the <code>write</code> method of <code>OutputStream</code>.
      *
      * @param b
-     *          the <code>byte</code> to be written.
+     *        the <code>byte</code> to be written.
      * @exception IOException
-     *                        if the pipe is <a href=#BROKEN> broken</a>,
-     *                        {@link #connect(java.io.PipedInputStream)
-     *                        unconnected},
-     *                        closed, or if an I/O error occurs.
+     *            if the pipe is <a href=#BROKEN> broken</a>,
+     *            {@link #connect(java.io.PipedInputStream)
+     *            unconnected},
+     *            closed, or if an I/O error occurs.
      */
     public void write(int b) throws IOException {
         if (sink == null) {
@@ -119,24 +119,24 @@ public class PipedOutputStream extends OutputStream {
      * until all the bytes are written to the output stream.
      *
      * @param b
-     *            the data.
+     *        the data.
      * @param off
-     *            the start offset in the data.
+     *        the start offset in the data.
      * @param len
-     *            the number of bytes to write.
+     *        the number of bytes to write.
      * @exception IOException
-     *                        if the pipe is <a href=#BROKEN> broken</a>,
-     *                        {@link #connect(java.io.PipedInputStream)
-     *                        unconnected},
-     *                        closed, or if an I/O error occurs.
+     *            if the pipe is <a href=#BROKEN> broken</a>,
+     *            {@link #connect(java.io.PipedInputStream)
+     *            unconnected},
+     *            closed, or if an I/O error occurs.
      */
     public void write(byte b[], int off, int len) throws IOException {
         if (sink == null) {
             throw new IOException("Pipe not connected");
         } else if (b == null) {
             throw new NullPointerException();
-        } else if ((off < 0) || (off > b.length) || (len < 0) || ((off
-                + len) > b.length) || ((off + len) < 0)) {
+        } else if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) > b.length) || ((off
+                + len) < 0)) {
             throw new IndexOutOfBoundsException();
         } else if (len == 0) {
             return;
@@ -150,7 +150,7 @@ public class PipedOutputStream extends OutputStream {
      * pipe.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public synchronized void flush() throws IOException {
         if (sink != null) {
@@ -166,7 +166,7 @@ public class PipedOutputStream extends OutputStream {
      * writing bytes.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public void close() throws IOException {
         if (sink != null) {

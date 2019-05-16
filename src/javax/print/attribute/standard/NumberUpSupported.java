@@ -22,8 +22,7 @@ import javax.print.attribute.SupportedValuesAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class NumberUpSupported extends SetOfIntegerSyntax implements
-        SupportedValuesAttribute {
+public final class NumberUpSupported extends SetOfIntegerSyntax implements SupportedValuesAttribute {
 
     private static final long serialVersionUID = -1041573395759141805L;
 
@@ -34,23 +33,22 @@ public final class NumberUpSupported extends SetOfIntegerSyntax implements
      * an explanation of array form.
      *
      * @param members
-     *                Set members in array form.
-     *
+     *        Set members in array form.
      * @exception NullPointerException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>members</CODE> is
-     *                                     null or any element of
-     *                                     <CODE>members</CODE> is null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>members</CODE> is
+     *            null or any element of
+     *            <CODE>members</CODE> is null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if any
-     *                                     element of
-     *                                     <CODE>members</CODE> is not a
-     *                                     length-one or length-two
-     *                                     array. Also thrown if
-     *                                     <CODE>members</CODE> is a
-     *                                     zero-length array or if any member of
-     *                                     the set is less than
-     *                                     1.
+     *            (unchecked exception) Thrown if any
+     *            element of
+     *            <CODE>members</CODE> is not a
+     *            length-one or length-two
+     *            array. Also thrown if
+     *            <CODE>members</CODE> is a
+     *            zero-length array or if any member of
+     *            the set is less than
+     *            1.
      */
     public NumberUpSupported(int[][] members) {
         super(members);
@@ -65,8 +63,7 @@ public final class NumberUpSupported extends SetOfIntegerSyntax implements
         int i;
         for (i = 0; i < n; ++i) {
             if (myMembers[i][0] < 1) {
-                throw new IllegalArgumentException(
-                        "Number up value must be > 0");
+                throw new IllegalArgumentException("Number up value must be > 0");
             }
         }
     }
@@ -76,12 +73,11 @@ public final class NumberUpSupported extends SetOfIntegerSyntax implements
      * integer. That is, only the one value of NumberUp is supported.
      *
      * @param member
-     *               Set member.
-     *
+     *        Set member.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>member</CODE> is
-     *                                     less than 1.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>member</CODE> is
+     *            less than 1.
      */
     public NumberUpSupported(int member) {
         super(member);
@@ -96,16 +92,15 @@ public final class NumberUpSupported extends SetOfIntegerSyntax implements
      * supported.
      *
      * @param lowerBound
-     *                   Lower bound of the range.
+     *        Lower bound of the range.
      * @param upperBound
-     *                   Upper bound of the range.
-     *
+     *        Upper bound of the range.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if a
-     *                                     null range is specified
-     *                                     or if a non-null range is specified
-     *                                     with
-     *                                     <CODE>lowerBound</CODE> less than 1.
+     *            (Unchecked exception) Thrown if a
+     *            null range is specified
+     *            or if a non-null range is specified
+     *            with
+     *            <CODE>lowerBound</CODE> less than 1.
      */
     public NumberUpSupported(int lowerBound, int upperBound) {
         super(lowerBound, upperBound);
@@ -128,8 +123,7 @@ public final class NumberUpSupported extends SetOfIntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this number up
      *         supported attribute, false otherwise.
      */

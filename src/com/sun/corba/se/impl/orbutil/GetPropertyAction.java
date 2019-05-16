@@ -10,19 +10,16 @@ package com.sun.corba.se.impl.orbutil;
  * privileged action. This class is directly copied from
  * sun.security.action.GetPropertyAction in order to avoid depending on the
  * sun.security.action package.
- *
  * <p>
  * An instance of this class can be used as the argument of
  * <code>AccessController.doPrivileged</code>.
- *
  * <p>
  * The following code retrieves the value of the system property named
  * <code>"prop"</code> as a privileged action:
  * <p>
  *
  * <pre>
- * String s = (String) java.security.AccessController.doPrivileged(
- *         new GetPropertyAction("prop"));
+ * String s = (String) java.security.AccessController.doPrivileged(new GetPropertyAction("prop"));
  * </pre>
  *
  * @author Roland Schemers
@@ -40,7 +37,7 @@ public class GetPropertyAction implements java.security.PrivilegedAction {
      * needs to be determined.
      *
      * @param theProp
-     *                the name of the system property.
+     *        the name of the system property.
      */
     public GetPropertyAction(String theProp) {
         this.theProp = theProp;
@@ -51,9 +48,9 @@ public class GetPropertyAction implements java.security.PrivilegedAction {
      * value of that property.
      *
      * @param theProp
-     *                  the name of the system property.
+     *        the name of the system property.
      * @param defaulVal
-     *                  the default value.
+     *        the default value.
      */
     public GetPropertyAction(String theProp, String defaultVal) {
         this.theProp = theProp;

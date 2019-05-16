@@ -9,14 +9,12 @@ package org.omg.IOP;
  */
 
 /** An array of tagged components, forming a multiple component profile. */
-public final class MultipleComponentProfileHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class MultipleComponentProfileHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.IOP.TaggedComponent value[] = null;
 
     public MultipleComponentProfileHolder() {}
 
-    public MultipleComponentProfileHolder(
-            org.omg.IOP.TaggedComponent[] initialValue) {
+    public MultipleComponentProfileHolder(org.omg.IOP.TaggedComponent[] initialValue) {
         value = initialValue;
     }
 

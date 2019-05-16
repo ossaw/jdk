@@ -7,7 +7,6 @@ package javax.xml.ws.http;
 
 /**
  * The <code>HTTPException</code> exception represents a XML/HTTP fault.
- *
  * <p>
  * Since there is no standard format for faults or exceptions in XML/HTTP
  * messaging, only the HTTP status code is captured.
@@ -22,7 +21,7 @@ public class HTTPException extends javax.xml.ws.ProtocolException {
      * Constructor for the HTTPException
      * 
      * @param statusCode
-     *                   <code>int</code> for the HTTP status code
+     *        <code>int</code> for the HTTP status code
      **/
     public HTTPException(int statusCode) {
         super();

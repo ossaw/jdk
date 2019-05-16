@@ -75,9 +75,8 @@ public class ClassPath implements Serializable {
 
         ArrayList vec = new ArrayList();
 
-        for (StringTokenizer tok = new StringTokenizer(class_path,
-                SecuritySupport.getSystemProperty("path.separator")); tok
-                        .hasMoreTokens();) {
+        for (StringTokenizer tok = new StringTokenizer(class_path, SecuritySupport.getSystemProperty(
+                "path.separator")); tok.hasMoreTokens();) {
             String path = tok.nextToken();
 
             if (!path.equals("")) {
@@ -91,8 +90,7 @@ public class ClassPath implements Serializable {
                             vec.add(new Zip(new ZipFile(file)));
                     }
                 } catch (IOException e) {
-                    System.err.println("CLASSPATH component " + file + ": "
-                            + e);
+                    System.err.println("CLASSPATH component " + file + ": " + e);
                 }
             }
         }
@@ -157,8 +155,7 @@ public class ClassPath implements Serializable {
 
         try {
             class_path = SecuritySupport.getSystemProperty("java.class.path");
-            boot_path = SecuritySupport.getSystemProperty(
-                    "sun.boot.class.path");
+            boot_path = SecuritySupport.getSystemProperty("sun.boot.class.path");
             ext_path = SecuritySupport.getSystemProperty("java.ext.dirs");
         } catch (SecurityException e) {
             return "";
@@ -174,14 +171,12 @@ public class ClassPath implements Serializable {
 
         for (Iterator e = dirs.iterator(); e.hasNext();) {
             File ext_dir = new File((String) e.next());
-            String[] extensions = SecuritySupport.getFileList(ext_dir,
-                    new FilenameFilter() {
-                        public boolean accept(File dir, String name) {
-                            name = name.toLowerCase();
-                            return name.endsWith(".zip") || name.endsWith(
-                                    ".jar");
-                        }
-                    });
+            String[] extensions = SecuritySupport.getFileList(ext_dir, new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    name = name.toLowerCase();
+                    return name.endsWith(".zip") || name.endsWith(".jar");
+                }
+            });
 
             if (extensions != null)
                 for (int i = 0; i < extensions.length; i++)
@@ -202,7 +197,7 @@ public class ClassPath implements Serializable {
 
     /**
      * @param name
-     *             fully qualified class name, e.g. java.lang.String
+     *        fully qualified class name, e.g. java.lang.String
      * @return input stream for class
      */
     public InputStream getInputStream(String name) throws IOException {
@@ -213,19 +208,17 @@ public class ClassPath implements Serializable {
      * Return stream for class or resource on CLASSPATH.
      *
      * @param name
-     *               fully qualified file name, e.g. java/lang/String
+     *        fully qualified file name, e.g. java/lang/String
      * @param suffix
-     *               file name ends with suff, e.g. .java
+     *        file name ends with suff, e.g. .java
      * @return input stream for file on class path
      */
-    public InputStream getInputStream(String name, String suffix)
-            throws IOException {
+    public InputStream getInputStream(String name, String suffix) throws IOException {
         InputStream is = null;
 
         try {
             is = getClass().getClassLoader().getResourceAsStream(name + suffix);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         if (is != null)
             return is;
@@ -235,13 +228,12 @@ public class ClassPath implements Serializable {
 
     /**
      * @param name
-     *               fully qualified file name, e.g. java/lang/String
+     *        fully qualified file name, e.g. java/lang/String
      * @param suffix
-     *               file name ends with suff, e.g. .java
+     *        file name ends with suff, e.g. .java
      * @return class file for the java class
      */
-    public ClassFile getClassFile(String name, String suffix)
-            throws IOException {
+    public ClassFile getClassFile(String name, String suffix) throws IOException {
         for (int i = 0; i < paths.length; i++) {
             ClassFile cf;
 
@@ -254,7 +246,7 @@ public class ClassPath implements Serializable {
 
     /**
      * @param name
-     *             fully qualified class name, e.g. java.lang.String
+     *        fully qualified class name, e.g. java.lang.String
      * @return input stream for class
      */
     public ClassFile getClassFile(String name) throws IOException {
@@ -263,9 +255,9 @@ public class ClassPath implements Serializable {
 
     /**
      * @param name
-     *               fully qualified file name, e.g. java/lang/String
+     *        fully qualified file name, e.g. java/lang/String
      * @param suffix
-     *               file name ends with suffix, e.g. .java
+     *        file name ends with suffix, e.g. .java
      * @return byte array for file on class path
      */
     public byte[] getBytes(String name, String suffix) throws IOException {
@@ -292,7 +284,7 @@ public class ClassPath implements Serializable {
 
     /**
      * @param name
-     *             name of file to search for, e.g. java/lang/String.java
+     *        name of file to search for, e.g. java/lang/String.java
      * @return full (canonical) path for file
      */
     public String getPath(String name) throws IOException {
@@ -309,9 +301,9 @@ public class ClassPath implements Serializable {
 
     /**
      * @param name
-     *               name of file to search for, e.g. java/lang/String
+     *        name of file to search for, e.g. java/lang/String
      * @param suffix
-     *               file name suffix, e.g. .java
+     *        file name suffix, e.g. .java
      * @return full (canonical) path for file, if it exists
      */
     public String getPath(String name, String suffix) throws IOException {
@@ -319,8 +311,7 @@ public class ClassPath implements Serializable {
     }
 
     private static abstract class PathEntry implements Serializable {
-        abstract ClassFile getClassFile(String name, String suffix)
-                throws IOException;
+        abstract ClassFile getClassFile(String name, String suffix) throws IOException;
     }
 
     /**
@@ -362,8 +353,8 @@ public class ClassPath implements Serializable {
         }
 
         ClassFile getClassFile(String name, String suffix) throws IOException {
-            final File file = new File(dir + File.separatorChar + name.replace(
-                    '.', File.separatorChar) + suffix);
+            final File file = new File(dir + File.separatorChar + name.replace('.', File.separatorChar)
+                    + suffix);
 
             return SecuritySupport.getFileExists(file) ? new ClassFile() {
                 public InputStream getInputStream() throws IOException {
@@ -407,8 +398,7 @@ public class ClassPath implements Serializable {
         }
 
         ClassFile getClassFile(String name, String suffix) throws IOException {
-            final ZipEntry entry = zip.getEntry(name.replace('.', '/')
-                    + suffix);
+            final ZipEntry entry = zip.getEntry(name.replace('.', '/') + suffix);
 
             return (entry != null) ? new ClassFile() {
                 public InputStream getInputStream() throws IOException {

@@ -56,8 +56,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class LoadInstruction extends LocalVariableInstruction
-        implements PushInstruction {
+public abstract class LoadInstruction extends LocalVariableInstruction implements PushInstruction {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise. tag and length
@@ -69,11 +68,11 @@ public abstract class LoadInstruction extends LocalVariableInstruction
 
     /**
      * @param opcode
-     *               Instruction opcode
+     *        Instruction opcode
      * @param c_tag
-     *               Instruction number for compact version, ALOAD_0, e.g.
+     *        Instruction number for compact version, ALOAD_0, e.g.
      * @param n
-     *               local variable index (unsigned short)
+     *        local variable index (unsigned short)
      */
     protected LoadInstruction(short opcode, short c_tag, int n) {
         super(opcode, c_tag, n);
@@ -86,7 +85,7 @@ public abstract class LoadInstruction extends LocalVariableInstruction
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

@@ -34,13 +34,11 @@ import javax.management.RuntimeOperationsException;
  * associated Descriptor and an implementation of the DescriptorAccess
  * interface.
  * </p>
- *
  * <P id="descriptor">
  * The fields in the descriptor are defined, but not limited to, the following.
  * Note that when the Type in this table is Number, a String that is the decimal
  * representation of a Long can also be used.
  * </P>
- *
  * <table border="1" cellpadding="5" summary="ModelMBeanConstructorInfo Fields">
  * <tr>
  * <th>Name</th>
@@ -78,16 +76,13 @@ import javax.management.RuntimeOperationsException;
  * <td>XML formatted string to describe how to present operation</td>
  * </tr>
  * </table>
- *
  * <p>
  * The {@code persistPolicy} and {@code currencyTimeLimit} fields are
  * meaningless for constructors, but are not considered invalid.
  * </p>
- *
  * <p>
  * The default descriptor will have the {@code name}, {@code
  * descriptorType}, {@code displayName} and {@code role} fields.
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>3862947819818064362L</code>.
@@ -96,8 +91,7 @@ import javax.management.RuntimeOperationsException;
  */
 
 @SuppressWarnings("serial") // serialVersionUID is not constant
-public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
-        DescriptorAccess {
+public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements DescriptorAccess {
 
     // Serialization compatibility stuff:
     // Two serial forms are supported in this class. The selected form depends
@@ -112,13 +106,12 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
     private static final long newSerialVersionUID = 3862947819818064362L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("consDescriptor", Descriptor.class),
-            new ObjectStreamField("currClass", String.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField(
+            "consDescriptor", Descriptor.class), new ObjectStreamField("currClass", String.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("consDescriptor", Descriptor.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField(
+            "consDescriptor", Descriptor.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -162,19 +155,17 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * contain the {@link DescriptorKey} meta-annotation.
      *
      * @param description
-     *                          A human readable description of the constructor.
+     *        A human readable description of the constructor.
      * @param constructorMethod
-     *                          The java.lang.reflect.Constructor object
-     *                          describing the MBean
-     *                          constructor.
+     *        The java.lang.reflect.Constructor object
+     *        describing the MBean
+     *        constructor.
      */
-    public ModelMBeanConstructorInfo(String description,
-            Constructor<?> constructorMethod) {
+    public ModelMBeanConstructorInfo(String description, Constructor<?> constructorMethod) {
         super(description, constructorMethod);
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "ModelMBeanConstructorInfo(String,Constructor)",
-                    "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(),
+                    "ModelMBeanConstructorInfo(String,Constructor)", "Entry");
         }
         consDescriptor = validDescriptor(null);
 
@@ -190,44 +181,42 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * meta-annotation.
      *
      * @param description
-     *                          A human readable description of the constructor.
+     *        A human readable description of the constructor.
      * @param constructorMethod
-     *                          The java.lang.reflect.Constructor object
-     *                          describing the
-     *                          ModelMBean constructor.
+     *        The java.lang.reflect.Constructor object
+     *        describing the
+     *        ModelMBean constructor.
      * @param descriptor
-     *                          An instance of Descriptor containing the
-     *                          appropriate metadata
-     *                          for this instance of the
-     *                          ModelMBeanConstructorInfo. If it is
-     *                          null, then a default descriptor will be created.
-     *                          If the
-     *                          descriptor does not contain the field
-     *                          "displayName" this field
-     *                          is added in the descriptor with its default
-     *                          value.
-     *
+     *        An instance of Descriptor containing the
+     *        appropriate metadata
+     *        for this instance of the
+     *        ModelMBeanConstructorInfo. If it is
+     *        null, then a default descriptor will be created.
+     *        If the
+     *        descriptor does not contain the field
+     *        "displayName" this field
+     *        is added in the descriptor with its default
+     *        value.
      * @exception RuntimeOperationsException
-     *                                       Wraps an IllegalArgumentException.
-     *                                       The descriptor is
-     *                                       invalid, or descriptor field "name"
-     *                                       is not equal to name
-     *                                       parameter, or descriptor field
-     *                                       "descriptorType" is not
-     *                                       equal to "operation" or descriptor
-     *                                       field "role" is present
-     *                                       but not equal to "constructor".
+     *            Wraps an IllegalArgumentException.
+     *            The descriptor is
+     *            invalid, or descriptor field "name"
+     *            is not equal to name
+     *            parameter, or descriptor field
+     *            "descriptorType" is not
+     *            equal to "operation" or descriptor
+     *            field "role" is present
+     *            but not equal to "constructor".
      */
 
-    public ModelMBeanConstructorInfo(String description,
-            Constructor<?> constructorMethod, Descriptor descriptor) {
+    public ModelMBeanConstructorInfo(String description, Constructor<?> constructorMethod,
+            Descriptor descriptor) {
 
         super(description, constructorMethod);
         // put getter and setter methods in constructors list
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "ModelMBeanConstructorInfo("
-                            + "String,Constructor,Descriptor)", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(),
+                    "ModelMBeanConstructorInfo(" + "String,Constructor,Descriptor)", "Entry");
         }
         consDescriptor = validDescriptor(descriptor);
     }
@@ -236,23 +225,21 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * Constructs a ModelMBeanConstructorInfo object with a default descriptor.
      *
      * @param name
-     *                    The name of the constructor.
+     *        The name of the constructor.
      * @param description
-     *                    A human readable description of the constructor.
+     *        A human readable description of the constructor.
      * @param signature
-     *                    MBeanParameterInfo object array describing the
-     *                    parameters(arguments) of the constructor.
+     *        MBeanParameterInfo object array describing the
+     *        parameters(arguments) of the constructor.
      */
 
-    public ModelMBeanConstructorInfo(String name, String description,
-            MBeanParameterInfo[] signature) {
+    public ModelMBeanConstructorInfo(String name, String description, MBeanParameterInfo[] signature) {
 
         super(name, description, signature);
         // create default descriptor
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "ModelMBeanConstructorInfo("
-                            + "String,String,MBeanParameterInfo[])", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(),
+                    "ModelMBeanConstructorInfo(" + "String,String,MBeanParameterInfo[])", "Entry");
         }
         consDescriptor = validDescriptor(null);
     }
@@ -261,43 +248,40 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * Constructs a ModelMBeanConstructorInfo object.
      *
      * @param name
-     *                    The name of the constructor.
+     *        The name of the constructor.
      * @param description
-     *                    A human readable description of the constructor.
+     *        A human readable description of the constructor.
      * @param signature
-     *                    MBeanParameterInfo objects describing the
-     *                    parameters(arguments) of the constructor.
+     *        MBeanParameterInfo objects describing the
+     *        parameters(arguments) of the constructor.
      * @param descriptor
-     *                    An instance of Descriptor containing the appropriate
-     *                    metadata
-     *                    for this instance of the MBeanConstructorInfo. If it
-     *                    is null
-     *                    then a default descriptor will be created. If the
-     *                    descriptor
-     *                    does not contain the field "displayName" this field is
-     *                    added
-     *                    in the descriptor with its default value.
-     *
+     *        An instance of Descriptor containing the appropriate
+     *        metadata
+     *        for this instance of the MBeanConstructorInfo. If it
+     *        is null
+     *        then a default descriptor will be created. If the
+     *        descriptor
+     *        does not contain the field "displayName" this field is
+     *        added
+     *        in the descriptor with its default value.
      * @exception RuntimeOperationsException
-     *                                       Wraps an IllegalArgumentException.
-     *                                       The descriptor is
-     *                                       invalid, or descriptor field "name"
-     *                                       is not equal to name
-     *                                       parameter, or descriptor field
-     *                                       "descriptorType" is not
-     *                                       equal to "operation" or descriptor
-     *                                       field "role" is present
-     *                                       but not equal to "constructor".
+     *            Wraps an IllegalArgumentException.
+     *            The descriptor is
+     *            invalid, or descriptor field "name"
+     *            is not equal to name
+     *            parameter, or descriptor field
+     *            "descriptorType" is not
+     *            equal to "operation" or descriptor
+     *            field "role" is present
+     *            but not equal to "constructor".
      */
 
-    public ModelMBeanConstructorInfo(String name, String description,
-            MBeanParameterInfo[] signature, Descriptor descriptor) {
+    public ModelMBeanConstructorInfo(String name, String description, MBeanParameterInfo[] signature,
+            Descriptor descriptor) {
         super(name, description, signature);
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "ModelMBeanConstructorInfo("
-                            + "String,String,MBeanParameterInfo[],Descriptor)",
-                    "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(),
+                    "ModelMBeanConstructorInfo(" + "String,String,MBeanParameterInfo[],Descriptor)", "Entry");
         }
         consDescriptor = validDescriptor(descriptor);
     }
@@ -307,15 +291,13 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * ModelMBeanConstructor Object.
      *
      * @param old
-     *            the ModelMBeanConstructorInfo to be duplicated
-     *
+     *        the ModelMBeanConstructorInfo to be duplicated
      */
     ModelMBeanConstructorInfo(ModelMBeanConstructorInfo old) {
         super(old.getName(), old.getDescription(), old.getSignature());
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "ModelMBeanConstructorInfo("
-                            + "ModelMBeanConstructorInfo)", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(),
+                    "ModelMBeanConstructorInfo(" + "ModelMBeanConstructorInfo)", "Entry");
         }
         consDescriptor = validDescriptor(consDescriptor);
     }
@@ -323,13 +305,12 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
     /**
      * Creates and returns a new ModelMBeanConstructorInfo which is a duplicate
      * of this ModelMBeanConstructorInfo.
-     *
      */
     @Override
     public Object clone() {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "clone()", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(), "clone()",
+                    "Entry");
         }
         return (new ModelMBeanConstructorInfo(this));
     }
@@ -338,15 +319,14 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * Returns a copy of the associated Descriptor.
      *
      * @return Descriptor associated with the ModelMBeanConstructorInfo object.
-     *
      * @see #setDescriptor
      */
 
     @Override
     public Descriptor getDescriptor() {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "getDescriptor()", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(), "getDescriptor()",
+                    "Entry");
         }
         if (consDescriptor == null) {
             consDescriptor = validDescriptor(null);
@@ -362,33 +342,31 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * wrapping an IllegalArgumentException is thrown.
      *
      * @param inDescriptor
-     *                     replaces the Descriptor associated with the
-     *                     ModelMBeanConstructor. If the descriptor does not
-     *                     contain all
-     *                     the following fields, the missing ones are added with
-     *                     their
-     *                     default values: displayName, name, role,
-     *                     descriptorType.
-     *
+     *        replaces the Descriptor associated with the
+     *        ModelMBeanConstructor. If the descriptor does not
+     *        contain all
+     *        the following fields, the missing ones are added with
+     *        their
+     *        default values: displayName, name, role,
+     *        descriptorType.
      * @exception RuntimeOperationsException
-     *                                       Wraps an IllegalArgumentException.
-     *                                       The descriptor is
-     *                                       invalid, or descriptor field "name"
-     *                                       is present but not
-     *                                       equal to name parameter, or
-     *                                       descriptor field
-     *                                       "descriptorType" is present but not
-     *                                       equal to "operation"
-     *                                       or descriptor field "role" is
-     *                                       present but not equal to
-     *                                       "constructor".
-     *
+     *            Wraps an IllegalArgumentException.
+     *            The descriptor is
+     *            invalid, or descriptor field "name"
+     *            is present but not
+     *            equal to name parameter, or
+     *            descriptor field
+     *            "descriptorType" is present but not
+     *            equal to "operation"
+     *            or descriptor field "role" is
+     *            present but not equal to
+     *            "constructor".
      * @see #getDescriptor
      */
     public void setDescriptor(Descriptor inDescriptor) {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "setDescriptor()", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(), "setDescriptor()",
+                    "Entry");
         }
         consDescriptor = validDescriptor(inDescriptor);
     }
@@ -400,12 +378,11 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
     @Override
     public String toString() {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class
-                    .getName(), "toString()", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanConstructorInfo.class.getName(), "toString()",
+                    "Entry");
         }
-        String retStr = "ModelMBeanConstructorInfo: " + this.getName()
-                + " ; Description: " + this.getDescription() + " ; Descriptor: "
-                + this.getDescriptor() + " ; Signature: ";
+        String retStr = "ModelMBeanConstructorInfo: " + this.getName() + " ; Description: " + this
+                .getDescription() + " ; Descriptor: " + this.getDescriptor() + " ; Signature: ";
         MBeanParameterInfo[] pTypes = this.getSignature();
         for (int i = 0; i < pTypes.length; i++) {
             retStr = retStr.concat((pTypes[i]).getType() + ", ");
@@ -418,20 +395,17 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * validity. If the Descriptor is invalid (for instance by having the wrong
      * "name"), this indicates programming error and a
      * RuntimeOperationsException will be thrown.
-     *
      * The following fields will be defaulted if they are not already set:
      * displayName=this.getName(), name=this.getName(),
      * descriptorType="operation", role="constructor"
      *
-     *
      * @param in
-     *           Descriptor to be checked, or null which is equivalent to an
-     *           empty Descriptor.
+     *        Descriptor to be checked, or null which is equivalent to an
+     *        empty Descriptor.
      * @exception RuntimeOperationsException
-     *                                       if Descriptor is invalid
+     *            if Descriptor is invalid
      */
-    private Descriptor validDescriptor(final Descriptor in)
-            throws RuntimeOperationsException {
+    private Descriptor validDescriptor(final Descriptor in) throws RuntimeOperationsException {
         Descriptor clone;
         boolean defaulted = (in == null);
         if (defaulted) {
@@ -444,55 +418,42 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
         // Setting defaults.
         if (defaulted && clone.getFieldValue("name") == null) {
             clone.setField("name", this.getName());
-            MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this
-                    .getName());
+            MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this.getName());
         }
         if (defaulted && clone.getFieldValue("descriptorType") == null) {
             clone.setField("descriptorType", "operation");
-            MODELMBEAN_LOGGER.finer(
-                    "Defaulting descriptorType to \"operation\"");
+            MODELMBEAN_LOGGER.finer("Defaulting descriptorType to \"operation\"");
         }
         if (clone.getFieldValue("displayName") == null) {
             clone.setField("displayName", this.getName());
-            MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to "
-                    + this.getName());
+            MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to " + this.getName());
         }
         if (clone.getFieldValue("role") == null) {
             clone.setField("role", "constructor");
-            MODELMBEAN_LOGGER.finer(
-                    "Defaulting Descriptor role field to \"constructor\"");
+            MODELMBEAN_LOGGER.finer("Defaulting Descriptor role field to \"constructor\"");
         }
 
         // Checking validity
         if (!clone.isValid()) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
                     "The isValid() method of the Descriptor object itself returned false,"
-                            + "one or more required fields are invalid. Descriptor:"
-                            + clone.toString());
+                            + "one or more required fields are invalid. Descriptor:" + clone.toString());
         }
         if (!getName().equalsIgnoreCase((String) clone.getFieldValue("name"))) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
-                    "The Descriptor \"name\" field does not match the object described. "
-                            + " Expected: " + this.getName() + " , was: "
-                            + clone.getFieldValue("name"));
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
+                    "The Descriptor \"name\" field does not match the object described. " + " Expected: "
+                            + this.getName() + " , was: " + clone.getFieldValue("name"));
         }
-        if (!"operation".equalsIgnoreCase((String) clone.getFieldValue(
-                "descriptorType"))) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
+        if (!"operation".equalsIgnoreCase((String) clone.getFieldValue("descriptorType"))) {
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
                     "The Descriptor \"descriptorType\" field does not match the object described. "
-                            + " Expected: \"operation\" ," + " was: " + clone
-                                    .getFieldValue("descriptorType"));
+                            + " Expected: \"operation\" ," + " was: " + clone.getFieldValue(
+                                    "descriptorType"));
         }
-        if (!((String) clone.getFieldValue("role")).equalsIgnoreCase(
-                "constructor")) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
+        if (!((String) clone.getFieldValue("role")).equalsIgnoreCase("constructor")) {
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
                     "The Descriptor \"role\" field does not match the object described. "
-                            + " Expected: \"constructor\" ," + " was: " + clone
-                                    .getFieldValue("role"));
+                            + " Expected: \"constructor\" ," + " was: " + clone.getFieldValue("role"));
         }
 
         return clone;
@@ -502,8 +463,7 @@ public class ModelMBeanConstructorInfo extends MBeanConstructorInfo implements
      * Deserializes a {@link ModelMBeanConstructorInfo} from an
      * {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // New serial form ignores extra field "currClass"
         in.defaultReadObject();
     }

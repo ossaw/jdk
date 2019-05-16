@@ -36,11 +36,9 @@ public final class FilterGenerator extends ClassGenerator {
     private static int TRANSLET_INDEX = 5; // translet
     private final Instruction _aloadTranslet;
 
-    public FilterGenerator(String className, String superClassName,
-            String fileName, int accessFlags, String[] interfaces,
-            Stylesheet stylesheet) {
-        super(className, superClassName, fileName, accessFlags, interfaces,
-                stylesheet);
+    public FilterGenerator(String className, String superClassName, String fileName, int accessFlags,
+            String[] interfaces, Stylesheet stylesheet) {
+        super(className, superClassName, fileName, accessFlags, interfaces, stylesheet);
 
         _aloadTranslet = new ALOAD(TRANSLET_INDEX);
     }

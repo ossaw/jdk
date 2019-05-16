@@ -27,7 +27,6 @@ import com.sun.org.apache.xerces.internal.xs.XSModel;
  * grammar can be obtained.
  *
  * @author Sandy Gao, IBM
- *
  */
 public interface XSGrammar extends Grammar {
 

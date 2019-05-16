@@ -32,7 +32,6 @@ public interface SerializerTrace {
 
     /**
      * Event type generated when a document begins.
-     *
      */
     public static final int EVENTTYPE_STARTDOCUMENT = 1;
 
@@ -112,7 +111,7 @@ public interface SerializerTrace {
      * Fire startDocument, endDocument events.
      *
      * @param eventType
-     *                  One of the EVENTTYPE_XXX constants.
+     *        One of the EVENTTYPE_XXX constants.
      */
     public void fireGenerateEvent(int eventType);
 
@@ -120,11 +119,11 @@ public interface SerializerTrace {
      * Fire startElement, endElement events.
      *
      * @param eventType
-     *                  One of the EVENTTYPE_XXX constants.
+     *        One of the EVENTTYPE_XXX constants.
      * @param name
-     *                  The name of the element.
+     *        The name of the element.
      * @param atts
-     *                  The SAX attribute list.
+     *        The SAX attribute list.
      */
     public void fireGenerateEvent(int eventType, String name, Attributes atts);
 
@@ -132,26 +131,25 @@ public interface SerializerTrace {
      * Fire characters, cdata events.
      *
      * @param eventType
-     *                  One of the EVENTTYPE_XXX constants.
+     *        One of the EVENTTYPE_XXX constants.
      * @param ch
-     *                  The char array from the SAX event.
+     *        The char array from the SAX event.
      * @param start
-     *                  The start offset to be used in the char array.
+     *        The start offset to be used in the char array.
      * @param length
-     *                  The end offset to be used in the chara array.
+     *        The end offset to be used in the chara array.
      */
-    public void fireGenerateEvent(int eventType, char ch[], int start,
-            int length);
+    public void fireGenerateEvent(int eventType, char ch[], int start, int length);
 
     /**
      * Fire processingInstruction events.
      *
      * @param eventType
-     *                  One of the EVENTTYPE_XXX constants.
+     *        One of the EVENTTYPE_XXX constants.
      * @param name
-     *                  The name of the processing instruction.
+     *        The name of the processing instruction.
      * @param data
-     *                  The processing instruction data.
+     *        The processing instruction data.
      */
     public void fireGenerateEvent(int eventType, String name, String data);
 
@@ -159,9 +157,9 @@ public interface SerializerTrace {
      * Fire comment and entity ref events.
      *
      * @param eventType
-     *                  One of the EVENTTYPE_XXX constants.
+     *        One of the EVENTTYPE_XXX constants.
      * @param data
-     *                  The comment or entity ref data.
+     *        The comment or entity ref data.
      */
     public void fireGenerateEvent(int eventType, String data);
 

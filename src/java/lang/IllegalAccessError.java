@@ -30,7 +30,7 @@ public class IllegalAccessError extends IncompatibleClassChangeError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IllegalAccessError(String s) {
         super(s);

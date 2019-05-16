@@ -51,7 +51,7 @@ public class FeatureDescriptor {
      * Sets the programmatic name of this feature.
      *
      * @param name
-     *             The programmatic name of the property/method/event
+     *        The programmatic name of the property/method/event
      */
     public void setName(String name) {
         this.name = name;
@@ -74,8 +74,8 @@ public class FeatureDescriptor {
      * Sets the localized display name of this feature.
      *
      * @param displayName
-     *                    The localized display name for the
-     *                    property/method/event.
+     *        The localized display name for the
+     *        property/method/event.
      */
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
@@ -96,7 +96,7 @@ public class FeatureDescriptor {
      * intended for expert users from those that are intended for normal users.
      *
      * @param expert
-     *               True if this feature is intended for use by experts only.
+     *        True if this feature is intended for use by experts only.
      */
     public void setExpert(boolean expert) {
         this.expert = expert;
@@ -117,7 +117,7 @@ public class FeatureDescriptor {
      * tool use, and which should not be exposed to humans.
      *
      * @param hidden
-     *               True if this feature should be hidden from human users.
+     *        True if this feature should be hidden from human users.
      */
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
@@ -139,9 +139,9 @@ public class FeatureDescriptor {
      * important for presenting to humans.
      *
      * @param preferred
-     *                  True if this feature should be preferentially shown to
-     *                  human
-     *                  users.
+     *        True if this feature should be preferentially shown to
+     *        human
+     *        users.
      */
     public void setPreferred(boolean preferred) {
         this.preferred = preferred;
@@ -165,8 +165,8 @@ public class FeatureDescriptor {
      * these descriptive strings should be less than about 40 characters.
      * 
      * @param text
-     *             A (localized) short description to be associated with this
-     *             property/method/event.
+     *        A (localized) short description to be associated with this
+     *        property/method/event.
      */
     public void setShortDescription(String text) {
         shortDescription = text;
@@ -176,9 +176,9 @@ public class FeatureDescriptor {
      * Associate a named attribute with this feature.
      *
      * @param attributeName
-     *                      The locale-independent name of the attribute
+     *        The locale-independent name of the attribute
      * @param value
-     *                      The value.
+     *        The value.
      */
     public void setValue(String attributeName, Object value) {
         getTable().put(attributeName, value);
@@ -188,7 +188,7 @@ public class FeatureDescriptor {
      * Retrieve a named attribute with this feature.
      *
      * @param attributeName
-     *                      The locale-independent name of the attribute
+     *        The locale-independent name of the attribute
      * @return The value of the attribute. May be null if the attribute is
      *         unknown.
      */
@@ -213,9 +213,9 @@ public class FeatureDescriptor {
      * (y) is given priority over the first argument (x).
      *
      * @param x
-     *          The first (lower priority) MethodDescriptor
+     *        The first (lower priority) MethodDescriptor
      * @param y
-     *          The second (higher priority) MethodDescriptor
+     *        The second (higher priority) MethodDescriptor
      */
     FeatureDescriptor(FeatureDescriptor x, FeatureDescriptor y) {
         expert = x.expert | y.expert;
@@ -259,7 +259,7 @@ public class FeatureDescriptor {
      * is exist its value should be overridden.
      *
      * @param table
-     *              the attribute table with new values
+     *        the attribute table with new values
      */
     private void addTable(Hashtable<String, Object> table) {
         if ((table != null) && !table.isEmpty()) {
@@ -284,7 +284,7 @@ public class FeatureDescriptor {
      * "transient" attribute is already set it should not be changed.
      *
      * @param annotation
-     *                   the annotation of the element of the feature
+     *        the annotation of the element of the feature
      */
     void setTransient(Transient annotation) {
         if ((annotation != null) && (null == getValue(TRANSIENT))) {
@@ -317,7 +317,6 @@ public class FeatureDescriptor {
      *
      * @return a new soft reference or <code>null</code> if object is
      *         <code>null</code>
-     *
      * @see SoftReference
      */
     static <T> Reference<T> getSoftReference(T object) {
@@ -329,7 +328,6 @@ public class FeatureDescriptor {
      *
      * @return a new weak reference or <code>null</code> if object is
      *         <code>null</code>
-     *
      * @see WeakReference
      */
     static <T> Reference<T> getWeakReference(T object) {
@@ -340,11 +338,10 @@ public class FeatureDescriptor {
      * Resolves the return type of the method.
      *
      * @param base
-     *               the class that contains the method in the hierarchy
+     *        the class that contains the method in the hierarchy
      * @param method
-     *               the object that represents the method
+     *        the object that represents the method
      * @return a class identifying the return type of the method
-     *
      * @see Method#getGenericReturnType
      * @see Method#getReturnType
      */
@@ -352,19 +349,17 @@ public class FeatureDescriptor {
         if (base == null) {
             base = method.getDeclaringClass();
         }
-        return TypeResolver.erase(TypeResolver.resolveInClass(base, method
-                .getGenericReturnType()));
+        return TypeResolver.erase(TypeResolver.resolveInClass(base, method.getGenericReturnType()));
     }
 
     /**
      * Resolves the parameter types of the method.
      *
      * @param base
-     *               the class that contains the method in the hierarchy
+     *        the class that contains the method in the hierarchy
      * @param method
-     *               the object that represents the method
+     *        the object that represents the method
      * @return an array of classes identifying the parameter types of the method
-     *
      * @see Method#getGenericParameterTypes
      * @see Method#getParameterTypes
      */
@@ -372,8 +367,7 @@ public class FeatureDescriptor {
         if (base == null) {
             base = method.getDeclaringClass();
         }
-        return TypeResolver.erase(TypeResolver.resolveInClass(base, method
-                .getGenericParameterTypes()));
+        return TypeResolver.erase(TypeResolver.resolveInClass(base, method.getGenericParameterTypes()));
     }
 
     private boolean expert;
@@ -388,7 +382,6 @@ public class FeatureDescriptor {
      * Returns a string representation of the object.
      *
      * @return a string representation of the object
-     *
      * @since 1.7
      */
     public String toString() {
@@ -402,8 +395,7 @@ public class FeatureDescriptor {
         if ((this.table != null) && !this.table.isEmpty()) {
             sb.append("; values={");
             for (Entry<String, Object> entry : this.table.entrySet()) {
-                sb.append(entry.getKey()).append("=").append(entry.getValue())
-                        .append("; ");
+                sb.append(entry.getKey()).append("=").append(entry.getValue()).append("; ");
             }
             sb.setLength(sb.length() - 2);
             sb.append("}");
@@ -414,8 +406,7 @@ public class FeatureDescriptor {
 
     void appendTo(StringBuilder sb) {}
 
-    static void appendTo(StringBuilder sb, String name,
-            Reference<?> reference) {
+    static void appendTo(StringBuilder sb, String name, Reference<?> reference) {
         if (reference != null) {
             appendTo(sb, name, reference.get());
         }

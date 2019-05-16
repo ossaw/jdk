@@ -16,5 +16,5 @@ package org.omg.CORBA;
  * superior and subordinate domains and creating and accessing policies.
  */
 
-public interface DomainManager extends DomainManagerOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {}
+public interface DomainManager extends DomainManagerOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {}

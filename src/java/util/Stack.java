@@ -15,7 +15,6 @@ package java.util;
  * from the top.
  * <p>
  * When a stack is first created, it contains no items.
- *
  * <p>
  * A more complete and consistent set of LIFO stack operations is provided by
  * the {@link Deque} interface and its implementations, which should be used in
@@ -48,7 +47,7 @@ public class Stack<E> extends Vector<E> {
      * </blockquote>
      *
      * @param item
-     *             the item to be pushed onto this stack.
+     *        the item to be pushed onto this stack.
      * @return the <code>item</code> argument.
      * @see java.util.Vector#addElement
      */
@@ -65,7 +64,7 @@ public class Stack<E> extends Vector<E> {
      * @return The object at the top of this stack (the last item of the
      *         <tt>Vector</tt> object).
      * @throws EmptyStackException
-     *                             if this stack is empty.
+     *         if this stack is empty.
      */
     public synchronized E pop() {
         E obj;
@@ -84,7 +83,7 @@ public class Stack<E> extends Vector<E> {
      * @return the object at the top of this stack (the last item of the
      *         <tt>Vector</tt> object).
      * @throws EmptyStackException
-     *                             if this stack is empty.
+     *         if this stack is empty.
      */
     public synchronized E peek() {
         int len = size();
@@ -113,7 +112,7 @@ public class Stack<E> extends Vector<E> {
      * <tt>o</tt> to the items in this stack.
      *
      * @param o
-     *          the desired object.
+     *        the desired object.
      * @return the 1-based position from the top of the stack where the object
      *         is located; the return value <code>-1</code> indicates that the
      *         object is not on the stack.

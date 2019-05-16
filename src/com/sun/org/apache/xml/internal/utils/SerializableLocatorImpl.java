@@ -36,15 +36,13 @@ package com.sun.org.apache.xml.internal.utils;
  * @since XalanJ2
  * @author Joe Kesselman
  */
-public class SerializableLocatorImpl implements org.xml.sax.Locator,
-        java.io.Serializable
+public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Serializable
 
 {
     static final long serialVersionUID = -2660312888446371460L;
 
     /**
      * Zero-argument constructor.
-     *
      * <p>
      * SAX says "This will not normally be useful, since the main purpose of
      * this class is to make a snapshot of an existing Locator." In fact, it
@@ -57,7 +55,6 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator,
 
     /**
      * Copy constructor.
-     *
      * <p>
      * Create a persistent copy of the current state of a locator. When the
      * original locator changes, this copy will still keep the original values
@@ -65,7 +62,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator,
      * </p>
      *
      * @param locator
-     *                The locator to copy.
+     *        The locator to copy.
      */
     public SerializableLocatorImpl(org.xml.sax.Locator locator) {
         setPublicId(locator.getPublicId());
@@ -130,7 +127,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator,
      * Set the public identifier for this locator.
      *
      * @param publicId
-     *                 The new public identifier, or null if none is available.
+     *        The new public identifier, or null if none is available.
      * @see #getPublicId
      */
     public void setPublicId(String publicId) {
@@ -141,7 +138,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator,
      * Set the system identifier for this locator.
      *
      * @param systemId
-     *                 The new system identifier, or null if none is available.
+     *        The new system identifier, or null if none is available.
      * @see #getSystemId
      */
     public void setSystemId(String systemId) {
@@ -152,7 +149,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator,
      * Set the line number for this locator (1-based).
      *
      * @param lineNumber
-     *                   The line number, or -1 if none is available.
+     *        The line number, or -1 if none is available.
      * @see #getLineNumber
      */
     public void setLineNumber(int lineNumber) {
@@ -163,7 +160,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator,
      * Set the column number for this locator (1-based).
      *
      * @param columnNumber
-     *                     The column number, or -1 if none is available.
+     *        The column number, or -1 if none is available.
      * @see #getColumnNumber
      */
     public void setColumnNumber(int columnNumber) {

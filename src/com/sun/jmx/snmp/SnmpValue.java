@@ -10,15 +10,13 @@ import java.io.Serializable;
 /**
  * Is an abstract representation of an SNMP Value. All classes provided for
  * dealing with SNMP types should derive from this class.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
  * </p>
  */
 
-public abstract class SnmpValue implements Cloneable, Serializable,
-        SnmpDataTypeEnums {
+public abstract class SnmpValue implements Cloneable, Serializable, SnmpDataTypeEnums {
 
     /**
      * Returns a <CODE>String</CODE> form containing ASN.1 tagging information.

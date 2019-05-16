@@ -40,8 +40,7 @@ import sun.font.FontUtilities;
  *
  * @author Timothy Prinzing
  */
-public class StyleContext implements Serializable,
-        AbstractDocument.AttributeContext {
+public class StyleContext implements Serializable, AbstractDocument.AttributeContext {
 
     /**
      * Returns default AttributeContext shared by all documents that don't
@@ -72,20 +71,20 @@ public class StyleContext implements Serializable,
      * specified in the parent.
      *
      * @param nm
-     *               the name of the style (must be unique within the collection
-     *               of
-     *               named styles in the document). The name may be null if the
-     *               style is unnamed, but the caller is responsible for
-     *               managing
-     *               the reference returned as an unnamed style can't be fetched
-     *               by
-     *               name. An unnamed style may be useful for things like
-     *               character
-     *               attribute overrides such as found in a style run.
+     *        the name of the style (must be unique within the collection
+     *        of
+     *        named styles in the document). The name may be null if the
+     *        style is unnamed, but the caller is responsible for
+     *        managing
+     *        the reference returned as an unnamed style can't be fetched
+     *        by
+     *        name. An unnamed style may be useful for things like
+     *        character
+     *        attribute overrides such as found in a style run.
      * @param parent
-     *               the parent style. This may be null if unspecified
-     *               attributes
-     *               need not be resolved in some other style.
+     *        the parent style. This may be null if unspecified
+     *        attributes
+     *        need not be resolved in some other style.
      * @return the created style
      */
     public Style addStyle(String nm, Style parent) {
@@ -101,7 +100,7 @@ public class StyleContext implements Serializable,
      * Removes a named style previously added to the document.
      *
      * @param nm
-     *           the name of the style to remove
+     *        the name of the style to remove
      */
     public void removeStyle(String nm) {
         styles.removeAttribute(nm);
@@ -111,7 +110,7 @@ public class StyleContext implements Serializable,
      * Fetches a named style previously added to the document
      *
      * @param nm
-     *           the name of the style
+     *        the name of the style
      * @return the style
      */
     public Style getStyle(String nm) {
@@ -131,7 +130,7 @@ public class StyleContext implements Serializable,
      * Adds a listener to track when styles are added or removed.
      *
      * @param l
-     *          the change listener
+     *        the change listener
      */
     public void addChangeListener(ChangeListener l) {
         styles.addChangeListener(l);
@@ -141,7 +140,7 @@ public class StyleContext implements Serializable,
      * Removes a listener that was tracking styles being added or removed.
      *
      * @param l
-     *          the change listener
+     *        the change listener
      */
     public void removeChangeListener(ChangeListener l) {
         styles.removeChangeListener(l);
@@ -166,7 +165,7 @@ public class StyleContext implements Serializable,
      * cache.
      *
      * @param attr
-     *             the attribute set
+     *        the attribute set
      * @return the font
      */
     public Font getFont(AttributeSet attr) {
@@ -185,8 +184,7 @@ public class StyleContext implements Serializable,
          * if either superscript or subscript is is set, we need to reduce the
          * font size by 2.
          */
-        if (StyleConstants.isSuperscript(attr) || StyleConstants.isSubscript(
-                attr)) {
+        if (StyleConstants.isSuperscript(attr) || StyleConstants.isSubscript(attr)) {
             size -= 2;
         }
 
@@ -200,7 +198,7 @@ public class StyleContext implements Serializable,
      * StyleConstants.Foreground attribute.
      *
      * @param attr
-     *             the set of attributes
+     *        the set of attributes
      * @return the color
      */
     public Color getForeground(AttributeSet attr) {
@@ -214,7 +212,7 @@ public class StyleContext implements Serializable,
      * StyleConstants.Background attribute.
      *
      * @param attr
-     *             the set of attributes
+     *        the set of attributes
      * @return the color
      */
     public Color getBackground(AttributeSet attr) {
@@ -227,11 +225,11 @@ public class StyleContext implements Serializable,
      * low-level cache for 1.1 font features.
      *
      * @param family
-     *               the font family (such as "Monospaced")
+     *        the font family (such as "Monospaced")
      * @param style
-     *               the style of the font (such as Font.PLAIN)
+     *        the style of the font (such as Font.PLAIN)
      * @param size
-     *               the point size &gt;= 1
+     *        the point size &gt;= 1
      * @return the new font
      */
     public Font getFont(String family, int style, int size) {
@@ -242,10 +240,8 @@ public class StyleContext implements Serializable,
             Style defaultStyle = getStyle(StyleContext.DEFAULT_STYLE);
             if (defaultStyle != null) {
                 final String FONT_ATTRIBUTE_KEY = "FONT_ATTRIBUTE_KEY";
-                Font defaultFont = (Font) defaultStyle.getAttribute(
-                        FONT_ATTRIBUTE_KEY);
-                if (defaultFont != null && defaultFont.getFamily()
-                        .equalsIgnoreCase(family)) {
+                Font defaultFont = (Font) defaultStyle.getAttribute(FONT_ATTRIBUTE_KEY);
+                if (defaultFont != null && defaultFont.getFamily().equalsIgnoreCase(family)) {
                     f = defaultFont.deriveFont(style, size);
                 }
             }
@@ -265,7 +261,7 @@ public class StyleContext implements Serializable,
      * Returns font metrics for a font.
      *
      * @param f
-     *          the font
+     *        the font
      * @return the metrics
      */
     public FontMetrics getFontMetrics(Font f) {
@@ -286,16 +282,15 @@ public class StyleContext implements Serializable,
      * Concurrency in Swing</A> for more information.
      *
      * @param old
-     *              the old attribute set
+     *        the old attribute set
      * @param name
-     *              the non-null attribute name
+     *        the non-null attribute name
      * @param value
-     *              the attribute value
+     *        the attribute value
      * @return the updated attribute set
      * @see MutableAttributeSet#addAttribute
      */
-    public synchronized AttributeSet addAttribute(AttributeSet old, Object name,
-            Object value) {
+    public synchronized AttributeSet addAttribute(AttributeSet old, Object name, Object value) {
         if ((old.getAttributeCount() + 1) <= getCompressionThreshold()) {
             // build a search key and find/create an immutable and unique
             // set.
@@ -319,16 +314,14 @@ public class StyleContext implements Serializable,
      * Concurrency in Swing</A> for more information.
      *
      * @param old
-     *             the old attribute set
+     *        the old attribute set
      * @param attr
-     *             the attributes to add
+     *        the attributes to add
      * @return the updated attribute set
      * @see MutableAttributeSet#addAttribute
      */
-    public synchronized AttributeSet addAttributes(AttributeSet old,
-            AttributeSet attr) {
-        if ((old.getAttributeCount() + attr
-                .getAttributeCount()) <= getCompressionThreshold()) {
+    public synchronized AttributeSet addAttributes(AttributeSet old, AttributeSet attr) {
+        if ((old.getAttributeCount() + attr.getAttributeCount()) <= getCompressionThreshold()) {
             // build a search key and find/create an immutable and unique
             // set.
             search.removeAttributes(search);
@@ -351,14 +344,13 @@ public class StyleContext implements Serializable,
      * Concurrency in Swing</A> for more information.
      *
      * @param old
-     *             the old set of attributes
+     *        the old set of attributes
      * @param name
-     *             the non-null attribute name
+     *        the non-null attribute name
      * @return the updated attribute set
      * @see MutableAttributeSet#removeAttribute
      */
-    public synchronized AttributeSet removeAttribute(AttributeSet old,
-            Object name) {
+    public synchronized AttributeSet removeAttribute(AttributeSet old, Object name) {
         if ((old.getAttributeCount() - 1) <= getCompressionThreshold()) {
             // build a search key and find/create an immutable and unique
             // set.
@@ -382,14 +374,13 @@ public class StyleContext implements Serializable,
      * Concurrency in Swing</A> for more information.
      *
      * @param old
-     *              the old attribute set
+     *        the old attribute set
      * @param names
-     *              the attribute names
+     *        the attribute names
      * @return the updated attribute set
      * @see MutableAttributeSet#removeAttributes
      */
-    public synchronized AttributeSet removeAttributes(AttributeSet old,
-            Enumeration<?> names) {
+    public synchronized AttributeSet removeAttributes(AttributeSet old, Enumeration<?> names) {
         if (old.getAttributeCount() <= getCompressionThreshold()) {
             // build a search key and find/create an immutable and unique
             // set.
@@ -413,14 +404,13 @@ public class StyleContext implements Serializable,
      * Concurrency in Swing</A> for more information.
      *
      * @param old
-     *              the old attribute set
+     *        the old attribute set
      * @param attrs
-     *              the attributes
+     *        the attributes
      * @return the updated attribute set
      * @see MutableAttributeSet#removeAttributes
      */
-    public synchronized AttributeSet removeAttributes(AttributeSet old,
-            AttributeSet attrs) {
+    public synchronized AttributeSet removeAttributes(AttributeSet old, AttributeSet attrs) {
         if (old.getAttributeCount() <= getCompressionThreshold()) {
             // build a search key and find/create an immutable and unique
             // set.
@@ -456,7 +446,7 @@ public class StyleContext implements Serializable,
      * Concurrency in Swing</A> for more information.
      *
      * @param a
-     *          the set to reclaim
+     *        the set to reclaim
      */
     public void reclaim(AttributeSet a) {
         if (SwingUtilities.isEventDispatchThread()) {
@@ -486,8 +476,8 @@ public class StyleContext implements Serializable,
      * attribute conversion.
      *
      * @param a
-     *          The set of attributes to be represented in the the compact
-     *          form.
+     *        The set of attributes to be represented in the the compact
+     *        form.
      */
     protected SmallAttributeSet createSmallAttributeSet(AttributeSet a) {
         return new SmallAttributeSet(a);
@@ -501,8 +491,8 @@ public class StyleContext implements Serializable,
      * MutableAttributeSet that provides some sort of attribute conversion.
      *
      * @param a
-     *          The set of attributes to be represented in the the larger
-     *          form.
+     *        The set of attributes to be represented in the the larger
+     *        form.
      */
     protected MutableAttributeSet createLargeAttributeSet(AttributeSet a) {
         return new SimpleAttributeSet(a);
@@ -563,16 +553,15 @@ public class StyleContext implements Serializable,
     /**
      * Context-specific handling of writing out attributes
      */
-    public void writeAttributes(ObjectOutputStream out, AttributeSet a)
-            throws IOException {
+    public void writeAttributes(ObjectOutputStream out, AttributeSet a) throws IOException {
         writeAttributeSet(out, a);
     }
 
     /**
      * Context-specific handling of reading in attributes
      */
-    public void readAttributes(ObjectInputStream in, MutableAttributeSet a)
-            throws ClassNotFoundException, IOException {
+    public void readAttributes(ObjectInputStream in, MutableAttributeSet a) throws ClassNotFoundException,
+            IOException {
         readAttributeSet(in, a);
     }
 
@@ -585,14 +574,13 @@ public class StyleContext implements Serializable,
      * expected to be serializable.
      *
      * @param out
-     *            the output stream
+     *        the output stream
      * @param a
-     *            the attribute set
+     *        the attribute set
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
-    public static void writeAttributeSet(ObjectOutputStream out, AttributeSet a)
-            throws IOException {
+    public static void writeAttributeSet(ObjectOutputStream out, AttributeSet a) throws IOException {
         int n = a.getAttributeCount();
         out.writeInt(n);
         Enumeration keys = a.getAttributeNames();
@@ -614,8 +602,7 @@ public class StyleContext implements Serializable,
                 out.writeObject((ioFmt != null) ? ioFmt : value);
             } else {
                 if (ioFmt == null) {
-                    throw new NotSerializableException(value.getClass()
-                            .getName()
+                    throw new NotSerializableException(value.getClass().getName()
                             + " is not serializable as a value in an AttributeSet");
                 }
                 out.writeObject(ioFmt);
@@ -633,20 +620,20 @@ public class StyleContext implements Serializable,
      * mutable set.
      *
      * @param in
-     *           the object stream to read the attribute data from.
+     *        the object stream to read the attribute data from.
      * @param a
-     *           the attribute set to place the attribute definitions in.
+     *        the attribute set to place the attribute definitions in.
      * @exception ClassNotFoundException
-     *                                   passed upward if encountered when
-     *                                   reading the object
-     *                                   stream.
+     *            passed upward if encountered when
+     *            reading the object
+     *            stream.
      * @exception IOException
-     *                                   passed upward if encountered when
-     *                                   reading the object
-     *                                   stream.
+     *            passed upward if encountered when
+     *            reading the object
+     *            stream.
      */
-    public static void readAttributeSet(ObjectInputStream in,
-            MutableAttributeSet a) throws ClassNotFoundException, IOException {
+    public static void readAttributeSet(ObjectInputStream in, MutableAttributeSet a)
+            throws ClassNotFoundException, IOException {
 
         int n = in.readInt();
         for (int i = 0; i < n; i++) {
@@ -678,7 +665,7 @@ public class StyleContext implements Serializable,
      * same when recomputed later.
      *
      * @param key
-     *            the non-null object key
+     *        the non-null object key
      */
     public static void registerStaticAttributeKey(Object key) {
         String ioFmt = key.getClass().getName() + "." + key.toString();
@@ -718,8 +705,7 @@ public class StyleContext implements Serializable,
         s.defaultWriteObject();
     }
 
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         fontSearch = new FontKey(null, 0, 0);
         fontTable = new Hashtable<FontKey, Font>();
         search = new SimpleAttributeSet();
@@ -743,8 +729,7 @@ public class StyleContext implements Serializable,
     private transient Hashtable<FontKey, Font> fontTable = new Hashtable<FontKey, Font>();
 
     private transient Map<SmallAttributeSet, WeakReference<SmallAttributeSet>> attributesPool = Collections
-            .synchronizedMap(
-                    new WeakHashMap<SmallAttributeSet, WeakReference<SmallAttributeSet>>());
+            .synchronizedMap(new WeakHashMap<SmallAttributeSet, WeakReference<SmallAttributeSet>>());
     private transient MutableAttributeSet search = new SimpleAttributeSet();
 
     /**
@@ -850,15 +835,14 @@ public class StyleContext implements Serializable,
          * <code>true</code> if the object is an equivalent set of attributes.
          * 
          * @param obj
-         *            the object to compare with.
+         *        the object to compare with.
          * @return <code>true</code> if the objects are equal;
          *         <code>false</code> otherwise.
          */
         public boolean equals(Object obj) {
             if (obj instanceof AttributeSet) {
                 AttributeSet attrs = (AttributeSet) obj;
-                return ((getAttributeCount() == attrs.getAttributeCount())
-                        && containsAttributes(attrs));
+                return ((getAttributeCount() == attrs.getAttributeCount()) && containsAttributes(attrs));
             }
             return false;
         }
@@ -889,7 +873,7 @@ public class StyleContext implements Serializable,
          * Checks whether a given attribute is defined.
          *
          * @param key
-         *            the attribute key
+         *        the attribute key
          * @return true if the attribute is defined
          * @see AttributeSet#isDefined
          */
@@ -908,7 +892,7 @@ public class StyleContext implements Serializable,
          * Checks whether two attribute sets are equal.
          *
          * @param attr
-         *             the attribute set to check against
+         *        the attribute set to check against
          * @return true if the same
          * @see AttributeSet#isEqual
          */
@@ -916,8 +900,7 @@ public class StyleContext implements Serializable,
             if (attr instanceof SmallAttributeSet) {
                 return attr == this;
             }
-            return ((getAttributeCount() == attr.getAttributeCount())
-                    && containsAttributes(attr));
+            return ((getAttributeCount() == attr.getAttributeCount()) && containsAttributes(attr));
         }
 
         /**
@@ -934,7 +917,7 @@ public class StyleContext implements Serializable,
          * Gets the value of an attribute.
          *
          * @param key
-         *            the attribute name
+         *        the attribute name
          * @return the attribute value
          * @see AttributeSet#getAttribute
          */
@@ -962,9 +945,9 @@ public class StyleContext implements Serializable,
          * Checks whether a given attribute name/value is defined.
          *
          * @param name
-         *              the attribute name
+         *        the attribute name
          * @param value
-         *              the attribute value
+         *        the attribute value
          * @return true if the name/value is defined
          * @see AttributeSet#containsAttribute
          */
@@ -977,7 +960,7 @@ public class StyleContext implements Serializable,
          * attributes.
          *
          * @param attrs
-         *              the attributes to check
+         *        the attributes to check
          * @return true if the element contains all the attributes
          * @see AttributeSet#containsAttributes
          */
@@ -1037,7 +1020,7 @@ public class StyleContext implements Serializable,
          *
          * @return the next element of this enumeration.
          * @exception NoSuchElementException
-         *                                   if no more elements exist.
+         *            if no more elements exist.
          * @since JDK1.0
          */
         public Object nextElement() {
@@ -1230,15 +1213,14 @@ public class StyleContext implements Serializable,
          * name, style, and point size as this font.
          * 
          * @param obj
-         *            the object to compare this font with.
+         *        the object to compare this font with.
          * @return <code>true</code> if the objects are equal;
          *         <code>false</code> otherwise.
          */
         public boolean equals(Object obj) {
             if (obj instanceof FontKey) {
                 FontKey font = (FontKey) obj;
-                return (size == font.size) && (style == font.style)
-                        && (family == font.family);
+                return (size == font.size) && (style == font.style) && (family == font.family);
             }
             return false;
         }
@@ -1265,9 +1247,9 @@ public class StyleContext implements Serializable,
          * Creates a new named style.
          *
          * @param name
-         *               the style name, null for unnamed
+         *        the style name, null for unnamed
          * @param parent
-         *               the parent style, null if none
+         *        the parent style, null if none
          * @since 1.4
          */
         public NamedStyle(String name, Style parent) {
@@ -1284,7 +1266,7 @@ public class StyleContext implements Serializable,
          * Creates a new named style.
          *
          * @param parent
-         *               the parent style, null if none
+         *        the parent style, null if none
          * @since 1.4
          */
         public NamedStyle(Style parent) {
@@ -1324,7 +1306,7 @@ public class StyleContext implements Serializable,
          * Changes the name of the style. Does nothing with a null name.
          *
          * @param name
-         *             the new name
+         *        the new name
          */
         public void setName(String name) {
             if (name != null) {
@@ -1336,7 +1318,7 @@ public class StyleContext implements Serializable,
          * Adds a change listener.
          *
          * @param l
-         *          the change listener
+         *        the change listener
          */
         public void addChangeListener(ChangeListener l) {
             listenerList.add(ChangeListener.class, l);
@@ -1346,7 +1328,7 @@ public class StyleContext implements Serializable,
          * Removes a change listener.
          *
          * @param l
-         *          the change listener
+         *        the change listener
          */
         public void removeChangeListener(ChangeListener l) {
             listenerList.remove(ChangeListener.class, l);
@@ -1381,8 +1363,7 @@ public class StyleContext implements Serializable,
                     // Lazily create the event:
                     if (changeEvent == null)
                         changeEvent = new ChangeEvent(this);
-                    ((ChangeListener) listeners[i + 1]).stateChanged(
-                            changeEvent);
+                    ((ChangeListener) listeners[i + 1]).stateChanged(changeEvent);
                 }
             }
         }
@@ -1393,11 +1374,9 @@ public class StyleContext implements Serializable,
          *
          * @return all of the objects receiving <em>listenerType</em>
          *         notifications from this model
-         *
          * @since 1.3
          */
-        public <T extends EventListener> T[] getListeners(
-                Class<T> listenerType) {
+        public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
             return listenerList.getListeners(listenerType);
         }
 
@@ -1418,7 +1397,7 @@ public class StyleContext implements Serializable,
          * Checks whether a given attribute is defined.
          *
          * @param attrName
-         *                 the non-null attribute name
+         *        the non-null attribute name
          * @return true if the attribute is defined
          * @see AttributeSet#isDefined
          */
@@ -1430,7 +1409,7 @@ public class StyleContext implements Serializable,
          * Checks whether two attribute sets are equal.
          *
          * @param attr
-         *             the attribute set to check against
+         *        the attribute set to check against
          * @return true if the same
          * @see AttributeSet#isEqual
          */
@@ -1454,7 +1433,7 @@ public class StyleContext implements Serializable,
          * Gets the value of an attribute.
          *
          * @param attrName
-         *                 the non-null attribute name
+         *        the non-null attribute name
          * @return the attribute value
          * @see AttributeSet#getAttribute
          */
@@ -1476,9 +1455,9 @@ public class StyleContext implements Serializable,
          * Checks whether a given attribute name/value is defined.
          *
          * @param name
-         *              the non-null attribute name
+         *        the non-null attribute name
          * @param value
-         *              the attribute value
+         *        the attribute value
          * @return true if the name/value is defined
          * @see AttributeSet#containsAttribute
          */
@@ -1490,7 +1469,7 @@ public class StyleContext implements Serializable,
          * Checks whether the element contains all the attributes.
          *
          * @param attrs
-         *              the attributes to check
+         *        the attributes to check
          * @return true if the element contains all the attributes
          * @see AttributeSet#containsAttributes
          */
@@ -1517,9 +1496,9 @@ public class StyleContext implements Serializable,
          * Adds an attribute.
          *
          * @param name
-         *              the non-null attribute name
+         *        the non-null attribute name
          * @param value
-         *              the attribute value
+         *        the attribute value
          * @see MutableAttributeSet#addAttribute
          */
         public void addAttribute(Object name, Object value) {
@@ -1532,7 +1511,7 @@ public class StyleContext implements Serializable,
          * Adds a set of attributes to the element.
          *
          * @param attr
-         *             the attributes to add
+         *        the attributes to add
          * @see MutableAttributeSet#addAttribute
          */
         public void addAttributes(AttributeSet attr) {
@@ -1545,7 +1524,7 @@ public class StyleContext implements Serializable,
          * Removes an attribute from the set.
          *
          * @param name
-         *             the non-null attribute name
+         *        the non-null attribute name
          * @see MutableAttributeSet#removeAttribute
          */
         public void removeAttribute(Object name) {
@@ -1558,7 +1537,7 @@ public class StyleContext implements Serializable,
          * Removes a set of attributes for the element.
          *
          * @param names
-         *              the attribute names
+         *        the attribute names
          * @see MutableAttributeSet#removeAttributes
          */
         public void removeAttributes(Enumeration<?> names) {
@@ -1571,7 +1550,7 @@ public class StyleContext implements Serializable,
          * Removes a set of attributes for the element.
          *
          * @param attrs
-         *              the attributes
+         *        the attributes
          * @see MutableAttributeSet#removeAttributes
          */
         public void removeAttributes(AttributeSet attrs) {
@@ -1588,7 +1567,7 @@ public class StyleContext implements Serializable,
          * Sets the resolving parent.
          *
          * @param parent
-         *               the parent, null if none
+         *        the parent, null if none
          * @see MutableAttributeSet#setResolveParent
          */
         public void setResolveParent(AttributeSet parent) {
@@ -1606,8 +1585,7 @@ public class StyleContext implements Serializable,
             writeAttributeSet(s, attributes);
         }
 
-        private void readObject(ObjectInputStream s)
-                throws ClassNotFoundException, IOException {
+        private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
             s.defaultReadObject();
             attributes = SimpleAttributeSet.EMPTY;
             readAttributeSet(s, this);

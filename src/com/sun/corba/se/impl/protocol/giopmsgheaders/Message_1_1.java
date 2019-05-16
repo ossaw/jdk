@@ -19,14 +19,12 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public class Message_1_1 extends
-        com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase {
+public class Message_1_1 extends com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase {
 
     // Constants
     final static int UPPER_THREE_BYTES_OF_INT_MASK = 0xFF;
 
-    private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-            CORBALogDomains.RPC_PROTOCOL);
+    private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.RPC_PROTOCOL);
 
     // Instance variables
     int magic = (int) 0;
@@ -39,8 +37,7 @@ public class Message_1_1 extends
 
     Message_1_1() {}
 
-    Message_1_1(int _magic, GIOPVersion _GIOP_version, byte _flags,
-            byte _message_type, int _message_size) {
+    Message_1_1(int _magic, GIOPVersion _GIOP_version, byte _flags, byte _message_type, int _message_size) {
         magic = _magic;
         GIOP_version = _GIOP_version;
         flags = _flags;
@@ -119,13 +116,11 @@ public class Message_1_1 extends
             case GIOPCancelRequest:
             case GIOPCloseConnection:
             case GIOPMessageError:
-                throw wrapper.fragmentationDisallowed(
-                        CompletionStatus.COMPLETED_MAYBE);
+                throw wrapper.fragmentationDisallowed(CompletionStatus.COMPLETED_MAYBE);
             case GIOPLocateRequest:
             case GIOPLocateReply:
                 if (this.GIOP_version.equals(GIOPVersion.V1_1)) {
-                    throw wrapper.fragmentationDisallowed(
-                            CompletionStatus.COMPLETED_MAYBE);
+                    throw wrapper.fragmentationDisallowed(CompletionStatus.COMPLETED_MAYBE);
                 }
                 break;
         }

@@ -40,12 +40,12 @@ public class PrefixResolverDefault implements PrefixResolver {
      * Construct a PrefixResolverDefault object.
      * 
      * @param xpathExpressionContext
-     *                               The context from which XPath expression
-     *                               prefixes will be
-     *                               resolved. Warning: This will not work
-     *                               correctly if
-     *                               xpathExpressionContext is an attribute
-     *                               node.
+     *        The context from which XPath expression
+     *        prefixes will be
+     *        resolved. Warning: This will not work
+     *        correctly if
+     *        xpathExpressionContext is an attribute
+     *        node.
      */
     public PrefixResolverDefault(Node xpathExpressionContext) {
         m_context = xpathExpressionContext;
@@ -57,7 +57,7 @@ public class PrefixResolverDefault implements PrefixResolver {
      * context itself.
      * 
      * @param prefix
-     *               Prefix to resolve.
+     *        Prefix to resolve.
      * @return Namespace that prefix resolves to, or null if prefix is not
      *         bound.
      */
@@ -70,16 +70,15 @@ public class PrefixResolverDefault implements PrefixResolver {
      * work correctly if namespaceContext is an attribute node.
      * 
      * @param prefix
-     *                         Prefix to resolve.
+     *        Prefix to resolve.
      * @param namespaceContext
-     *                         Node from which to start searching for a xmlns
-     *                         attribute that
-     *                         binds a prefix to a namespace.
+     *        Node from which to start searching for a xmlns
+     *        attribute that
+     *        binds a prefix to a namespace.
      * @return Namespace that prefix resolves to, or null if prefix is not
      *         bound.
      */
-    public String getNamespaceForPrefix(String prefix,
-            org.w3c.dom.Node namespaceContext) {
+    public String getNamespaceForPrefix(String prefix, org.w3c.dom.Node namespaceContext) {
 
         Node parent = namespaceContext;
         String namespace = null;
@@ -90,8 +89,7 @@ public class PrefixResolverDefault implements PrefixResolver {
             int type;
 
             while ((null != parent) && (null == namespace) && (((type = parent
-                    .getNodeType()) == Node.ELEMENT_NODE)
-                    || (type == Node.ENTITY_REFERENCE_NODE))) {
+                    .getNodeType()) == Node.ELEMENT_NODE) || (type == Node.ENTITY_REFERENCE_NODE))) {
                 if (type == Node.ELEMENT_NODE) {
                     if (parent.getNodeName().indexOf(prefix + ":") == 0)
                         return parent.getNamespaceURI();
@@ -104,8 +102,7 @@ public class PrefixResolverDefault implements PrefixResolver {
 
                         if (isPrefix || aname.equals("xmlns")) {
                             int index = aname.indexOf(':');
-                            String p = isPrefix ? aname.substring(index + 1)
-                                    : "";
+                            String p = isPrefix ? aname.substring(index + 1) : "";
 
                             if (p.equals(prefix)) {
                                 namespace = attr.getNodeValue();

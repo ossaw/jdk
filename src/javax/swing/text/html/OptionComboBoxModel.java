@@ -18,8 +18,7 @@ import java.io.Serializable;
  * @author Sunita Mani
  */
 
-class OptionComboBoxModel<E> extends DefaultComboBoxModel<E> implements
-        Serializable {
+class OptionComboBoxModel<E> extends DefaultComboBoxModel<E> implements Serializable {
 
     private Option selectedOption = null;
 

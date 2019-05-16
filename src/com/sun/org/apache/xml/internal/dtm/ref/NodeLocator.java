@@ -38,16 +38,15 @@ public class NodeLocator implements SourceLocator {
      * Creates a new <code>NodeLocator</code> instance.
      *
      * @param publicId
-     *                     a <code>String</code> value
+     *        a <code>String</code> value
      * @param systemId
-     *                     a <code>String</code> value
+     *        a <code>String</code> value
      * @param lineNumber
-     *                     an <code>int</code> value
+     *        an <code>int</code> value
      * @param columnNumber
-     *                     an <code>int</code> value
+     *        an <code>int</code> value
      */
-    public NodeLocator(String publicId, String systemId, int lineNumber,
-            int columnNumber) {
+    public NodeLocator(String publicId, String systemId, int lineNumber, int columnNumber) {
         this.m_publicId = publicId;
         this.m_systemId = systemId;
         this.m_lineNumber = lineNumber;
@@ -97,7 +96,6 @@ public class NodeLocator implements SourceLocator {
      * @return a <code>String</code> value
      */
     public String toString() {
-        return "file '" + m_systemId + "', line #" + m_lineNumber + ", column #"
-                + m_columnNumber;
+        return "file '" + m_systemId + "', line #" + m_lineNumber + ", column #" + m_columnNumber;
     }
 }

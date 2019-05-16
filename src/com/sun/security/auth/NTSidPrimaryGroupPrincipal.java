@@ -9,7 +9,6 @@ package com.sun.security.auth;
  * <p>
  * This class extends <code>NTSid</code> and represents a Windows NT user's
  * primary group SID.
- *
  * <p>
  * Principals such as this <code>NTSidPrimaryGroupPrincipal</code> may be
  * associated with a particular <code>Subject</code> to augment that
@@ -29,16 +28,14 @@ public class NTSidPrimaryGroupPrincipal extends NTSid {
     /**
      * Create an <code>NTSidPrimaryGroupPrincipal</code> with a Windows NT group
      * SID.
-     *
      * <p>
      *
      * @param name
-     *             the primary Windows NT group SID for this user.
-     *             <p>
-     *
+     *        the primary Windows NT group SID for this user.
+     *        <p>
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public NTSidPrimaryGroupPrincipal(String name) {
         super(name);
@@ -47,17 +44,14 @@ public class NTSidPrimaryGroupPrincipal extends NTSid {
     /**
      * Return a string representation of this
      * <code>NTSidPrimaryGroupPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this
      *         <code>NTSidPrimaryGroupPrincipal</code>.
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString(
-                        "NTSidPrimaryGroupPrincipal.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "NTSidPrimaryGroupPrincipal.name", "sun.security.util.AuthResources"));
         Object[] source = { getName() };
         return form.format(source);
     }
@@ -67,13 +61,11 @@ public class NTSidPrimaryGroupPrincipal extends NTSid {
      * <code>NTSidPrimaryGroupPrincipal</code> for equality. Returns true if the
      * given object is also a <code>NTSidPrimaryGroupPrincipal</code> and the
      * two NTSidPrimaryGroupPrincipals have the same SID.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>NTSidPrimaryGroupPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>NTSidPrimaryGroupPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>NTSidPrimaryGroupPrincipal</code>.
      */

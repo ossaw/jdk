@@ -56,7 +56,7 @@ public interface XSLoader {
      * not defined by this specification.
      * 
      * @param uriList
-     *                The list of URI locations.
+     *        The list of URI locations.
      * @return An XSModel representing the schema documents.
      */
     public XSModel loadURIList(StringList uriList);
@@ -66,8 +66,8 @@ public interface XSLoader {
      * <code>LSInput</code>s.
      * 
      * @param is
-     *           The list of <code>LSInput</code>s from which the XML Schema
-     *           documents are to be read.
+     *        The list of <code>LSInput</code>s from which the XML Schema
+     *        documents are to be read.
      * @return An XSModel representing the schema documents.
      */
     public XSModel loadInputList(LSInputList is);
@@ -78,7 +78,7 @@ public interface XSLoader {
      * defined by this specification.
      * 
      * @param uri
-     *            The location of the XML Schema document to be read.
+     *        The location of the XML Schema document to be read.
      * @return An XSModel representing this schema.
      */
     public XSModel loadURI(String uri);
@@ -88,8 +88,8 @@ public interface XSLoader {
      * <code>LSInput</code> .
      * 
      * @param is
-     *           The <code>LSInput</code> from which the source document is to
-     *           be read.
+     *        The <code>LSInput</code> from which the source document is to
+     *        be read.
      * @return An XSModel representing this schema.
      */
     public XSModel load(LSInput is);

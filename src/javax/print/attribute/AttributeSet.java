@@ -84,25 +84,23 @@ public interface AttributeSet {
      * does not contain any attribute value in the given attribute category.
      *
      * @param category
-     *                 Attribute category whose associated attribute value is to
-     *                 be
-     *                 returned. It must be a {@link java.lang.Class Class} that
-     *                 implements interface {@link Attribute Attribute}.
-     *
+     *        Attribute category whose associated attribute value is to
+     *        be
+     *        returned. It must be a {@link java.lang.Class Class} that
+     *        implements interface {@link Attribute Attribute}.
      * @return The attribute value in the given attribute category contained in
      *         this attribute set, or <tt>null</tt> if this attribute set does
      *         not contain any attribute value in the given attribute category.
-     *
      * @throws NullPointerException
-     *                              (unchecked exception) Thrown if the
-     *                              <CODE>category</CODE> is
-     *                              null.
+     *         (unchecked exception) Thrown if the
+     *         <CODE>category</CODE> is
+     *         null.
      * @throws ClassCastException
-     *                              (unchecked exception) Thrown if the
-     *                              <CODE>category</CODE> is
-     *                              not a {@link java.lang.Class Class} that
-     *                              implements interface
-     *                              {@link Attribute Attribute}.
+     *         (unchecked exception) Thrown if the
+     *         <CODE>category</CODE> is
+     *         not a {@link java.lang.Class Class} that
+     *         implements interface
+     *         {@link Attribute Attribute}.
      */
     public Attribute get(Class<?> category);
 
@@ -112,21 +110,19 @@ public interface AttributeSet {
      * as the specified attribute value.
      *
      * @param attribute
-     *                  Attribute value to be added to this attribute set.
-     *
+     *        Attribute value to be added to this attribute set.
      * @return <tt>true</tt> if this attribute set changed as a result of the
      *         call, i.e., the given attribute value was not already a member of
      *         this attribute set.
-     *
      * @throws NullPointerException
-     *                                  (unchecked exception) Thrown if the
-     *                                  <CODE>attribute</CODE> is
-     *                                  null.
+     *         (unchecked exception) Thrown if the
+     *         <CODE>attribute</CODE> is
+     *         null.
      * @throws UnmodifiableSetException
-     *                                  (unchecked exception) Thrown if this
-     *                                  attribute set does not
-     *                                  support the <CODE>add()</CODE>
-     *                                  operation.
+     *         (unchecked exception) Thrown if this
+     *         attribute set does not
+     *         support the <CODE>add()</CODE>
+     *         operation.
      */
     public boolean add(Attribute attribute);
 
@@ -136,17 +132,15 @@ public interface AttributeSet {
      * does nothing and returns <tt>false</tt>.
      *
      * @param category
-     *                 Attribute category to be removed from this attribute set.
-     *
+     *        Attribute category to be removed from this attribute set.
      * @return <tt>true</tt> if this attribute set changed as a result of the
      *         call, i.e., the given attribute value had been a member of this
      *         attribute set.
-     *
      * @throws UnmodifiableSetException
-     *                                  (unchecked exception) Thrown if this
-     *                                  attribute set does not
-     *                                  support the <CODE>remove()</CODE>
-     *                                  operation.
+     *         (unchecked exception) Thrown if this
+     *         attribute set does not
+     *         support the <CODE>remove()</CODE>
+     *         operation.
      */
     public boolean remove(Class<?> category);
 
@@ -156,17 +150,15 @@ public interface AttributeSet {
      * and returns <tt>false</tt>.
      *
      * @param attribute
-     *                  Attribute value to be removed from this attribute set.
-     *
+     *        Attribute value to be removed from this attribute set.
      * @return <tt>true</tt> if this attribute set changed as a result of the
      *         call, i.e., the given attribute value had been a member of this
      *         attribute set.
-     *
      * @throws UnmodifiableSetException
-     *                                  (unchecked exception) Thrown if this
-     *                                  attribute set does not
-     *                                  support the <CODE>remove()</CODE>
-     *                                  operation.
+     *         (unchecked exception) Thrown if this
+     *         attribute set does not
+     *         support the <CODE>remove()</CODE>
+     *         operation.
      */
     public boolean remove(Attribute attribute);
 
@@ -175,8 +167,7 @@ public interface AttributeSet {
      * specified category.
      *
      * @param category
-     *                 whose presence in this attribute set is to be tested.
-     *
+     *        whose presence in this attribute set is to be tested.
      * @return <tt>true</tt> if this attribute set contains an attribute value
      *         for the specified category.
      */
@@ -187,10 +178,9 @@ public interface AttributeSet {
      * value.
      *
      * @param attribute
-     *                  Attribute value whose presence in this attribute set is
-     *                  to be
-     *                  tested.
-     *
+     *        Attribute value whose presence in this attribute set is
+     *        to be
+     *        tested.
      * @return <tt>true</tt> if this attribute set contains the given attribute
      *         value.
      */
@@ -210,21 +200,18 @@ public interface AttributeSet {
      * may not have been added to this attribute set.
      *
      * @param attributes
-     *                   whose elements are to be added to this attribute set.
-     *
+     *        whose elements are to be added to this attribute set.
      * @return <tt>true</tt> if this attribute set changed as a result of the
      *         call.
-     *
      * @throws UnmodifiableSetException
-     *                                  (Unchecked exception) Thrown if this
-     *                                  attribute set does not
-     *                                  support the
-     *                                  <tt>addAll(AttributeSet)</tt> method.
+     *         (Unchecked exception) Thrown if this
+     *         attribute set does not
+     *         support the
+     *         <tt>addAll(AttributeSet)</tt> method.
      * @throws NullPointerException
-     *                                  (Unchecked exception) Thrown if some
-     *                                  element in the specified
-     *                                  set is null.
-     *
+     *         (Unchecked exception) Thrown if some
+     *         element in the specified
+     *         set is null.
      * @see #add(Attribute)
      */
     public boolean addAll(AttributeSet attributes);
@@ -250,10 +237,10 @@ public interface AttributeSet {
      * Removes all attributes from this attribute set.
      *
      * @throws UnmodifiableSetException
-     *                                  (unchecked exception) Thrown if this
-     *                                  attribute set does not
-     *                                  support the <CODE>clear()</CODE>
-     *                                  operation.
+     *         (unchecked exception) Thrown if this
+     *         attribute set does not
+     *         support the <CODE>clear()</CODE>
+     *         operation.
      */
     public void clear();
 
@@ -272,8 +259,7 @@ public interface AttributeSet {
      * properly across different implementations of the AttributeSet interface.
      *
      * @param object
-     *               to be compared for equality with this attribute set.
-     *
+     *        to be compared for equality with this attribute set.
      * @return <tt>true</tt> if the specified object is equal to this attribute
      *         set.
      */

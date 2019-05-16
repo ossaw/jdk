@@ -26,25 +26,23 @@ public interface Binding {
      * Sets the handler chain for the protocol binding instance.
      *
      * @param chain
-     *              A List of handler configuration entries
+     *        A List of handler configuration entries
      * @throws WebServiceException
-     *                             On an error in the configuration of the
-     *                             handler chain
-     * @throws                     java.lang.UnsupportedOperationException
-     *                             If this operation is not supported. This may
-     *                             be done to avoid
-     *                             any overriding of a pre-configured handler
-     *                             chain.
+     *         On an error in the configuration of the
+     *         handler chain
+     * @throws java.lang.UnsupportedOperationException
+     *         If this operation is not supported. This may
+     *         be done to avoid
+     *         any overriding of a pre-configured handler
+     *         chain.
      */
-    public void setHandlerChain(
-            java.util.List<javax.xml.ws.handler.Handler> chain);
+    public void setHandlerChain(java.util.List<javax.xml.ws.handler.Handler> chain);
 
     /**
      * Get the URI for this binding instance.
      *
      * @return String The binding identifier for the port. Never returns
      *         <code>null</code>
-     *
      * @since JAX-WS 2.1
      */
     String getBindingID();

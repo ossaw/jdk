@@ -10,7 +10,6 @@ import javax.lang.model.type.*;
 /**
  * A skeletal visitor of types with default behavior appropriate for the
  * {@link javax.lang.model.SourceVersion#RELEASE_6 RELEASE_6} source version.
- *
  * <p>
  * <b>WARNING:</b> The {@code TypeVisitor} interface implemented by this class
  * may have methods added to it in the future to accommodate new, currently
@@ -19,7 +18,6 @@ import javax.lang.model.type.*;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -27,7 +25,6 @@ import javax.lang.model.type.*;
  * language level; this visitor will have different default behavior for the
  * visit method in question. When the new visitor is introduced, all or portions
  * of this visitor may be deprecated.
- *
  * <p>
  * Note that adding a default implementation of a new visit method in a visitor
  * class will occur instead of adding a <em>default
@@ -44,11 +41,9 @@ import javax.lang.model.type.*;
  *        the type of the additional parameter to this visitor's methods.
  *        Use {@code Void} for visitors that do not need an additional
  *        parameter.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
- *
  * @see AbstractTypeVisitor7
  * @see AbstractTypeVisitor8
  * @since 1.6
@@ -66,9 +61,9 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
      * t.accept(v, p)}.
      *
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     public final R visit(TypeMirror t, P p) {
@@ -82,7 +77,7 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
      * {@code t.accept(v, null)}.
      *
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @return a visitor-specified result
      */
     public final R visit(TypeMirror t) {
@@ -94,11 +89,10 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
      * visitUnknown}.
      * 
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code visitUnknown}
-     *
      * @since 1.7
      */
     public R visitUnion(UnionType t, P p) {
@@ -110,11 +104,10 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
      * visitUnknown}.
      * 
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code visitUnknown}
-     *
      * @since 1.8
      */
     public R visitIntersection(IntersectionType t, P p) {
@@ -123,18 +116,17 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * The default implementation of this method in {@code
      * AbstractTypeVisitor6} will always throw {@code
      * UnknownTypeException}. This behavior is not required of a subclass.
      *
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @return a visitor-specified result
      * @throws UnknownTypeException
-     *                              a visitor implementation may optionally
-     *                              throw this exception
+     *         a visitor implementation may optionally
+     *         throw this exception
      */
     public R visitUnknown(TypeMirror t, P p) {
         throw new UnknownTypeException(t, p);

@@ -10,7 +10,6 @@ package javax.management;
  * operations.
  * 
  * @serial include
- *
  * @since 1.5
  */
 class BinaryOpValueExp extends QueryEval implements ValueExp {
@@ -73,19 +72,16 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
      * Applies the BinaryOpValueExp on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the BinaryOpValueExp will be
-     *             applied.
-     *
+     *        The name of the MBean on which the BinaryOpValueExp will be
+     *        applied.
      * @return The ValueExp.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         ValueExp val1 = exp1.apply(name);
         ValueExp val2 = exp2.apply(name);
         String sval1;
@@ -147,8 +143,7 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
      */
     public String toString() {
         try {
-            return parens(exp1, true) + " " + opString() + " " + parens(exp2,
-                    false);
+            return parens(exp1, true) + " " + opString() + " " + parens(exp2, false);
         } catch (BadBinaryOpValueExpException ex) {
             return "invalid expression";
         }
@@ -179,8 +174,7 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
      * B) * C A * B * C A + (B + C) A + (B + C) A + (B * C) A + B * C A * (B +
      * C) A * (B + C) A * (B * C) A * (B * C)
      */
-    private String parens(ValueExp subexp, boolean left)
-            throws BadBinaryOpValueExpException {
+    private String parens(ValueExp subexp, boolean left) throws BadBinaryOpValueExpException {
         boolean omit;
         if (subexp instanceof BinaryOpValueExp) {
             int subop = ((BinaryOpValueExp) subexp).op;

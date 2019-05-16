@@ -46,13 +46,13 @@ public interface ClientRequestInterceptorOperations extends
      * <code>completion_status</code> shall be <code>COMPLETED_NO</code>.
      *
      * @param ri
-     *           Information about the current request being intercepted.
+     *        Information about the current request being intercepted.
      * @exception ForwardRequest
-     *                           If thrown, indicates to the ORB that a retry of
-     *                           the
-     *                           request should occur with the new object given
-     *                           in the
-     *                           exception.
+     *            If thrown, indicates to the ORB that a retry of
+     *            the
+     *            request should occur with the new object given
+     *            in the
+     *            exception.
      */
     void send_request(org.omg.PortableInterceptor.ClientRequestInfo ri)
             throws org.omg.PortableInterceptor.ForwardRequest;
@@ -81,11 +81,11 @@ public interface ClientRequestInterceptorOperations extends
      * <code>COMPLETED_NO</code>.
      * 
      * @param ri
-     *           Information about the current request being intercepted.
+     *        Information about the current request being intercepted.
      * @exception TIMEOUT
-     *                    thrown if the response is not available before the
-     *                    poll
-     *                    time-out expires
+     *            thrown if the response is not available before the
+     *            poll
+     *            time-out expires
      */
     void send_poll(org.omg.PortableInterceptor.ClientRequestInfo ri);
 
@@ -104,7 +104,7 @@ public interface ClientRequestInterceptorOperations extends
      * <code>COMPLETED_YES</code>.
      *
      * @param ri
-     *           Information about the current request being intercepted.
+     *        Information about the current request being intercepted.
      */
     void receive_reply(org.omg.PortableInterceptor.ClientRequestInfo ri);
 
@@ -148,13 +148,13 @@ public interface ClientRequestInterceptorOperations extends
      * request and the retrying request is the same.
      *
      * @param ri
-     *           Information about the current request being intercepted.
+     *        Information about the current request being intercepted.
      * @exception ForwardRequest
-     *                           If thrown, indicates to the ORB that a retry of
-     *                           the
-     *                           request should occur with the new object given
-     *                           in the
-     *                           exception.
+     *            If thrown, indicates to the ORB that a retry of
+     *            the
+     *            request should occur with the new object given
+     *            in the
+     *            exception.
      */
     void receive_exception(org.omg.PortableInterceptor.ClientRequestInfo ri)
             throws org.omg.PortableInterceptor.ForwardRequest;
@@ -193,13 +193,13 @@ public interface ClientRequestInterceptorOperations extends
      * interception point would not be called.
      * 
      * @param ri
-     *           Information about the current request being intercepted.
+     *        Information about the current request being intercepted.
      * @exception ForwardRequest
-     *                           If thrown, indicates to the ORB that a retry of
-     *                           the
-     *                           request should occur with the new object given
-     *                           in the
-     *                           exception.
+     *            If thrown, indicates to the ORB that a retry of
+     *            the
+     *            request should occur with the new object given
+     *            in the
+     *            exception.
      */
     void receive_other(org.omg.PortableInterceptor.ClientRequestInfo ri)
             throws org.omg.PortableInterceptor.ForwardRequest;

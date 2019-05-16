@@ -28,9 +28,8 @@ import com.sun.org.apache.regexp.internal.RESyntaxException;
  * <pre>
  *
  * // Pre-compiled regular expression "a*b"
- * char[] re1Instructions = { 0x007c, 0x0000, 0x001a, 0x007c, 0x0000, 0x000d,
- *         0x0041, 0x0001, 0x0004, 0x0061, 0x007c, 0x0000, 0x0003, 0x0047,
- *         0x0000, 0xfff6, 0x007c, 0x0000, 0x0003, 0x004e, 0x0000, 0x0003,
+ * char[] re1Instructions = { 0x007c, 0x0000, 0x001a, 0x007c, 0x0000, 0x000d, 0x0041, 0x0001, 0x0004, 0x0061,
+ *         0x007c, 0x0000, 0x0003, 0x0047, 0x0000, 0xfff6, 0x007c, 0x0000, 0x0003, 0x004e, 0x0000, 0x0003,
  *         0x0041, 0x0001, 0x0004, 0x0062, 0x0045, 0x0000, 0x0000, };
  *
  * REProgram re1 = new REProgram(re1Instructions);
@@ -50,7 +49,6 @@ import com.sun.org.apache.regexp.internal.RESyntaxException;
  *
  * @see RE
  * @see RECompiler
- *
  * @author <a href="mailto:jonl@muppetlabs.com">Jonathan Locke</a>
  */
 public class recompile {
@@ -58,7 +56,7 @@ public class recompile {
      * Main application entrypoint.
      * 
      * @param arg
-     *            Command line arguments
+     *        Command line arguments
      */
     static public void main(String[] arg) {
         // Create a compiler object
@@ -79,9 +77,8 @@ public class recompile {
                 String instructions = name + "PatternInstructions";
 
                 // Output program as a nice, formatted character array
-                System.out.print("\n    // Pre-compiled regular expression '"
-                        + pattern + "'\n" + "    private static char[] "
-                        + instructions + " = \n    {");
+                System.out.print("\n    // Pre-compiled regular expression '" + pattern + "'\n"
+                        + "    private static char[] " + instructions + " = \n    {");
 
                 // Compile program for pattern
                 REProgram program = r.compile(pattern);
@@ -107,12 +104,10 @@ public class recompile {
 
                 // End of program block
                 System.out.println("\n    };");
-                System.out.println("\n    private static RE " + name
-                        + "Pattern = new RE(new REProgram(" + instructions
-                        + "));");
+                System.out.println("\n    private static RE " + name + "Pattern = new RE(new REProgram("
+                        + instructions + "));");
             } catch (RESyntaxException e) {
-                System.out.println("Syntax error in expression \"" + arg[i]
-                        + "\": " + e.toString());
+                System.out.println("Syntax error in expression \"" + arg[i] + "\": " + e.toString());
             } catch (Exception e) {
                 System.out.println("Unexpected exception: " + e.toString());
             } catch (Error e) {

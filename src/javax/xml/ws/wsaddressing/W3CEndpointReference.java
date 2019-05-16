@@ -60,32 +60,29 @@ public final class W3CEndpointReference extends EndpointReference {
      * Creates an EPR from infoset representation
      *
      * @param source
-     *               A source object containing valid XmlInfoset instance
-     *               consistent with the W3C WS-Addressing Core recommendation.
-     *
+     *        A source object containing valid XmlInfoset instance
+     *        consistent with the W3C WS-Addressing Core recommendation.
      * @throws WebServiceException
-     *                              If the source does NOT contain a valid W3C
-     *                              WS-Addressing
-     *                              EndpointReference.
+     *         If the source does NOT contain a valid W3C
+     *         WS-Addressing
+     *         EndpointReference.
      * @throws NullPointerException
-     *                              If the <code>null</code> <code>source</code>
-     *                              value is given
+     *         If the <code>null</code> <code>source</code>
+     *         value is given
      */
     public W3CEndpointReference(Source source) {
         try {
-            W3CEndpointReference epr = w3cjc.createUnmarshaller().unmarshal(
-                    source, W3CEndpointReference.class).getValue();
+            W3CEndpointReference epr = w3cjc.createUnmarshaller().unmarshal(source,
+                    W3CEndpointReference.class).getValue();
             this.address = epr.address;
             this.metadata = epr.metadata;
             this.referenceParameters = epr.referenceParameters;
             this.elements = epr.elements;
             this.attributes = epr.attributes;
         } catch (JAXBException e) {
-            throw new WebServiceException(
-                    "Error unmarshalling W3CEndpointReference ", e);
+            throw new WebServiceException("Error unmarshalling W3CEndpointReference ", e);
         } catch (ClassCastException e) {
-            throw new WebServiceException(
-                    "Source did not contain W3CEndpointReference", e);
+            throw new WebServiceException("Source did not contain W3CEndpointReference", e);
         }
     }
 
@@ -97,8 +94,7 @@ public final class W3CEndpointReference extends EndpointReference {
             Marshaller marshaller = w3cjc.createMarshaller();
             marshaller.marshal(this, result);
         } catch (JAXBException e) {
-            throw new WebServiceException(
-                    "Error marshalling W3CEndpointReference. ", e);
+            throw new WebServiceException("Error marshalling W3CEndpointReference. ", e);
         }
     }
 
@@ -106,8 +102,7 @@ public final class W3CEndpointReference extends EndpointReference {
         try {
             return JAXBContext.newInstance(W3CEndpointReference.class);
         } catch (JAXBException e) {
-            throw new WebServiceException(
-                    "Error creating JAXBContext for W3CEndpointReference. ", e);
+            throw new WebServiceException("Error creating JAXBContext for W3CEndpointReference. ", e);
         }
     }
 

@@ -32,13 +32,11 @@ class TableScrollPaneCorner extends JComponent implements UIResource {
                 "TableHeader:\"TableHeader.renderer\"[Enabled].backgroundPainter");
         if (painter != null) {
             if (g instanceof Graphics2D) {
-                painter.paint((Graphics2D) g, this, getWidth() + 1,
-                        getHeight());
+                painter.paint((Graphics2D) g, this, getWidth() + 1, getHeight());
             } else {
                 // paint using image to not Graphics2D to support
                 // Java 1.1 printing API
-                BufferedImage img = new BufferedImage(getWidth(), getHeight(),
-                        BufferedImage.TYPE_INT_ARGB);
+                BufferedImage img = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
                 Graphics2D g2 = (Graphics2D) img.getGraphics();
                 painter.paint(g2, this, getWidth() + 1, getHeight());
                 g2.dispose();

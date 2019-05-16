@@ -36,26 +36,25 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a functional reduce on
      * reference values.
      *
-     * @param          <T>
-     *                 the type of the input elements
-     * @param          <U>
-     *                 the type of the result
+     * @param <T>
+     *        the type of the input elements
+     * @param <U>
+     *        the type of the result
      * @param seed
-     *                 the identity element for the reduction
+     *        the identity element for the reduction
      * @param reducer
-     *                 the accumulating function that incorporates an additional
-     *                 input element into the result
+     *        the accumulating function that incorporates an additional
+     *        input element into the result
      * @param combiner
-     *                 the combining function that combines two intermediate
-     *                 results
+     *        the combining function that combines two intermediate
+     *        results
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static <T, U> TerminalOp<T, U> makeRef(U seed,
-            BiFunction<U, ? super T, U> reducer, BinaryOperator<U> combiner) {
+    public static <T, U> TerminalOp<T, U> makeRef(U seed, BiFunction<U, ? super T, U> reducer,
+            BinaryOperator<U> combiner) {
         Objects.requireNonNull(reducer);
         Objects.requireNonNull(combiner);
-        class ReducingSink extends Box<U> implements
-                AccumulatingSink<T, U, ReducingSink> {
+        class ReducingSink extends Box<U> implements AccumulatingSink<T, U, ReducingSink> {
             @Override
             public void begin(long size) {
                 state = seed;
@@ -83,18 +82,16 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a functional reduce on
      * reference values producing an optional reference result.
      *
-     * @param          <T>
-     *                 The type of the input elements, and the type of the
-     *                 result
+     * @param <T>
+     *        The type of the input elements, and the type of the
+     *        result
      * @param operator
-     *                 The reducing function
+     *        The reducing function
      * @return A {@code TerminalOp} implementing the reduction
      */
-    public static <T> TerminalOp<T, Optional<T>> makeRef(
-            BinaryOperator<T> operator) {
+    public static <T> TerminalOp<T, Optional<T>> makeRef(BinaryOperator<T> operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<T, Optional<T>, ReducingSink> {
+        class ReducingSink implements AccumulatingSink<T, Optional<T>, ReducingSink> {
             private boolean empty;
             private T state;
 
@@ -124,8 +121,7 @@ final class ReduceOps {
                     accept(other.state);
             }
         }
-        return new ReduceOp<T, Optional<T>, ReducingSink>(
-                StreamShape.REFERENCE) {
+        return new ReduceOp<T, Optional<T>, ReducingSink>(StreamShape.REFERENCE) {
             @Override
             public ReducingSink makeSink() {
                 return new ReducingSink();
@@ -137,21 +133,19 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a mutable reduce on
      * reference values.
      *
-     * @param           <T>
-     *                  the type of the input elements
-     * @param           <I>
-     *                  the type of the intermediate reduction result
+     * @param <T>
+     *        the type of the input elements
+     * @param <I>
+     *        the type of the intermediate reduction result
      * @param collector
-     *                  a {@code Collector} defining the reduction
+     *        a {@code Collector} defining the reduction
      * @return a {@code ReduceOp} implementing the reduction
      */
-    public static <T, I> TerminalOp<T, I> makeRef(
-            Collector<? super T, I, ?> collector) {
+    public static <T, I> TerminalOp<T, I> makeRef(Collector<? super T, I, ?> collector) {
         Supplier<I> supplier = Objects.requireNonNull(collector).supplier();
         BiConsumer<I, ? super T> accumulator = collector.accumulator();
         BinaryOperator<I> combiner = collector.combiner();
-        class ReducingSink extends Box<I> implements
-                AccumulatingSink<T, I, ReducingSink> {
+        class ReducingSink extends Box<I> implements AccumulatingSink<T, I, ReducingSink> {
             @Override
             public void begin(long size) {
                 state = supplier.get();
@@ -175,10 +169,8 @@ final class ReduceOps {
 
             @Override
             public int getOpFlags() {
-                return collector.characteristics().contains(
-                        Collector.Characteristics.UNORDERED)
-                                ? StreamOpFlag.NOT_ORDERED
-                                : 0;
+                return collector.characteristics().contains(Collector.Characteristics.UNORDERED)
+                        ? StreamOpFlag.NOT_ORDERED : 0;
             }
         };
     }
@@ -187,17 +179,17 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a mutable reduce on
      * reference values.
      *
-     * @param             <T>
-     *                    the type of the input elements
-     * @param             <R>
-     *                    the type of the result
+     * @param <T>
+     *        the type of the input elements
+     * @param <R>
+     *        the type of the result
      * @param seedFactory
-     *                    a factory to produce a new base accumulator
+     *        a factory to produce a new base accumulator
      * @param accumulator
-     *                    a function to incorporate an element into an
-     *                    accumulator
+     *        a function to incorporate an element into an
+     *        accumulator
      * @param reducer
-     *                    a function to combine an accumulator into another
+     *        a function to combine an accumulator into another
      * @return a {@code TerminalOp} implementing the reduction
      */
     public static <T, R> TerminalOp<T, R> makeRef(Supplier<R> seedFactory,
@@ -205,8 +197,7 @@ final class ReduceOps {
         Objects.requireNonNull(seedFactory);
         Objects.requireNonNull(accumulator);
         Objects.requireNonNull(reducer);
-        class ReducingSink extends Box<R> implements
-                AccumulatingSink<T, R, ReducingSink> {
+        class ReducingSink extends Box<R> implements AccumulatingSink<T, R, ReducingSink> {
             @Override
             public void begin(long size) {
                 state = seedFactory.get();
@@ -235,16 +226,14 @@ final class ReduceOps {
      * {@code int} values.
      *
      * @param identity
-     *                 the identity for the combining function
+     *        the identity for the combining function
      * @param operator
-     *                 the combining function
+     *        the combining function
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static TerminalOp<Integer, Integer> makeInt(int identity,
-            IntBinaryOperator operator) {
+    public static TerminalOp<Integer, Integer> makeInt(int identity, IntBinaryOperator operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<Integer, Integer, ReducingSink>, Sink.OfInt {
+        class ReducingSink implements AccumulatingSink<Integer, Integer, ReducingSink>, Sink.OfInt {
             private int state;
 
             @Override
@@ -267,8 +256,7 @@ final class ReduceOps {
                 accept(other.state);
             }
         }
-        return new ReduceOp<Integer, Integer, ReducingSink>(
-                StreamShape.INT_VALUE) {
+        return new ReduceOp<Integer, Integer, ReducingSink>(StreamShape.INT_VALUE) {
             @Override
             public ReducingSink makeSink() {
                 return new ReducingSink();
@@ -281,15 +269,12 @@ final class ReduceOps {
      * {@code int} values, producing an optional integer result.
      *
      * @param operator
-     *                 the combining function
+     *        the combining function
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static TerminalOp<Integer, OptionalInt> makeInt(
-            IntBinaryOperator operator) {
+    public static TerminalOp<Integer, OptionalInt> makeInt(IntBinaryOperator operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<Integer, OptionalInt, ReducingSink>,
-                Sink.OfInt {
+        class ReducingSink implements AccumulatingSink<Integer, OptionalInt, ReducingSink>, Sink.OfInt {
             private boolean empty;
             private int state;
 
@@ -319,8 +304,7 @@ final class ReduceOps {
                     accept(other.state);
             }
         }
-        return new ReduceOp<Integer, OptionalInt, ReducingSink>(
-                StreamShape.INT_VALUE) {
+        return new ReduceOp<Integer, OptionalInt, ReducingSink>(StreamShape.INT_VALUE) {
             @Override
             public ReducingSink makeSink() {
                 return new ReducingSink();
@@ -332,24 +316,23 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a mutable reduce on
      * {@code int} values.
      *
-     * @param             <R>
-     *                    The type of the result
+     * @param <R>
+     *        The type of the result
      * @param supplier
-     *                    a factory to produce a new accumulator of the result
-     *                    type
+     *        a factory to produce a new accumulator of the result
+     *        type
      * @param accumulator
-     *                    a function to incorporate an int into an accumulator
+     *        a function to incorporate an int into an accumulator
      * @param combiner
-     *                    a function to combine an accumulator into another
+     *        a function to combine an accumulator into another
      * @return A {@code ReduceOp} implementing the reduction
      */
-    public static <R> TerminalOp<Integer, R> makeInt(Supplier<R> supplier,
-            ObjIntConsumer<R> accumulator, BinaryOperator<R> combiner) {
+    public static <R> TerminalOp<Integer, R> makeInt(Supplier<R> supplier, ObjIntConsumer<R> accumulator,
+            BinaryOperator<R> combiner) {
         Objects.requireNonNull(supplier);
         Objects.requireNonNull(accumulator);
         Objects.requireNonNull(combiner);
-        class ReducingSink extends Box<R> implements
-                AccumulatingSink<Integer, R, ReducingSink>, Sink.OfInt {
+        class ReducingSink extends Box<R> implements AccumulatingSink<Integer, R, ReducingSink>, Sink.OfInt {
             @Override
             public void begin(long size) {
                 state = supplier.get();
@@ -378,16 +361,14 @@ final class ReduceOps {
      * {@code long} values.
      *
      * @param identity
-     *                 the identity for the combining function
+     *        the identity for the combining function
      * @param operator
-     *                 the combining function
+     *        the combining function
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static TerminalOp<Long, Long> makeLong(long identity,
-            LongBinaryOperator operator) {
+    public static TerminalOp<Long, Long> makeLong(long identity, LongBinaryOperator operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<Long, Long, ReducingSink>, Sink.OfLong {
+        class ReducingSink implements AccumulatingSink<Long, Long, ReducingSink>, Sink.OfLong {
             private long state;
 
             @Override
@@ -423,15 +404,12 @@ final class ReduceOps {
      * {@code long} values, producing an optional long result.
      *
      * @param operator
-     *                 the combining function
+     *        the combining function
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static TerminalOp<Long, OptionalLong> makeLong(
-            LongBinaryOperator operator) {
+    public static TerminalOp<Long, OptionalLong> makeLong(LongBinaryOperator operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<Long, OptionalLong, ReducingSink>,
-                Sink.OfLong {
+        class ReducingSink implements AccumulatingSink<Long, OptionalLong, ReducingSink>, Sink.OfLong {
             private boolean empty;
             private long state;
 
@@ -461,8 +439,7 @@ final class ReduceOps {
                     accept(other.state);
             }
         }
-        return new ReduceOp<Long, OptionalLong, ReducingSink>(
-                StreamShape.LONG_VALUE) {
+        return new ReduceOp<Long, OptionalLong, ReducingSink>(StreamShape.LONG_VALUE) {
             @Override
             public ReducingSink makeSink() {
                 return new ReducingSink();
@@ -474,24 +451,23 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a mutable reduce on
      * {@code long} values.
      *
-     * @param             <R>
-     *                    the type of the result
+     * @param <R>
+     *        the type of the result
      * @param supplier
-     *                    a factory to produce a new accumulator of the result
-     *                    type
+     *        a factory to produce a new accumulator of the result
+     *        type
      * @param accumulator
-     *                    a function to incorporate an int into an accumulator
+     *        a function to incorporate an int into an accumulator
      * @param combiner
-     *                    a function to combine an accumulator into another
+     *        a function to combine an accumulator into another
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static <R> TerminalOp<Long, R> makeLong(Supplier<R> supplier,
-            ObjLongConsumer<R> accumulator, BinaryOperator<R> combiner) {
+    public static <R> TerminalOp<Long, R> makeLong(Supplier<R> supplier, ObjLongConsumer<R> accumulator,
+            BinaryOperator<R> combiner) {
         Objects.requireNonNull(supplier);
         Objects.requireNonNull(accumulator);
         Objects.requireNonNull(combiner);
-        class ReducingSink extends Box<R> implements
-                AccumulatingSink<Long, R, ReducingSink>, Sink.OfLong {
+        class ReducingSink extends Box<R> implements AccumulatingSink<Long, R, ReducingSink>, Sink.OfLong {
             @Override
             public void begin(long size) {
                 state = supplier.get();
@@ -520,16 +496,14 @@ final class ReduceOps {
      * {@code double} values.
      *
      * @param identity
-     *                 the identity for the combining function
+     *        the identity for the combining function
      * @param operator
-     *                 the combining function
+     *        the combining function
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static TerminalOp<Double, Double> makeDouble(double identity,
-            DoubleBinaryOperator operator) {
+    public static TerminalOp<Double, Double> makeDouble(double identity, DoubleBinaryOperator operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<Double, Double, ReducingSink>, Sink.OfDouble {
+        class ReducingSink implements AccumulatingSink<Double, Double, ReducingSink>, Sink.OfDouble {
             private double state;
 
             @Override
@@ -552,8 +526,7 @@ final class ReduceOps {
                 accept(other.state);
             }
         }
-        return new ReduceOp<Double, Double, ReducingSink>(
-                StreamShape.DOUBLE_VALUE) {
+        return new ReduceOp<Double, Double, ReducingSink>(StreamShape.DOUBLE_VALUE) {
             @Override
             public ReducingSink makeSink() {
                 return new ReducingSink();
@@ -566,15 +539,12 @@ final class ReduceOps {
      * {@code double} values, producing an optional double result.
      *
      * @param operator
-     *                 the combining function
+     *        the combining function
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static TerminalOp<Double, OptionalDouble> makeDouble(
-            DoubleBinaryOperator operator) {
+    public static TerminalOp<Double, OptionalDouble> makeDouble(DoubleBinaryOperator operator) {
         Objects.requireNonNull(operator);
-        class ReducingSink implements
-                AccumulatingSink<Double, OptionalDouble, ReducingSink>,
-                Sink.OfDouble {
+        class ReducingSink implements AccumulatingSink<Double, OptionalDouble, ReducingSink>, Sink.OfDouble {
             private boolean empty;
             private double state;
 
@@ -595,8 +565,7 @@ final class ReduceOps {
 
             @Override
             public OptionalDouble get() {
-                return empty ? OptionalDouble.empty()
-                        : OptionalDouble.of(state);
+                return empty ? OptionalDouble.empty() : OptionalDouble.of(state);
             }
 
             @Override
@@ -605,8 +574,7 @@ final class ReduceOps {
                     accept(other.state);
             }
         }
-        return new ReduceOp<Double, OptionalDouble, ReducingSink>(
-                StreamShape.DOUBLE_VALUE) {
+        return new ReduceOp<Double, OptionalDouble, ReducingSink>(StreamShape.DOUBLE_VALUE) {
             @Override
             public ReducingSink makeSink() {
                 return new ReducingSink();
@@ -618,24 +586,24 @@ final class ReduceOps {
      * Constructs a {@code TerminalOp} that implements a mutable reduce on
      * {@code double} values.
      *
-     * @param             <R>
-     *                    the type of the result
+     * @param <R>
+     *        the type of the result
      * @param supplier
-     *                    a factory to produce a new accumulator of the result
-     *                    type
+     *        a factory to produce a new accumulator of the result
+     *        type
      * @param accumulator
-     *                    a function to incorporate an int into an accumulator
+     *        a function to incorporate an int into an accumulator
      * @param combiner
-     *                    a function to combine an accumulator into another
+     *        a function to combine an accumulator into another
      * @return a {@code TerminalOp} implementing the reduction
      */
-    public static <R> TerminalOp<Double, R> makeDouble(Supplier<R> supplier,
-            ObjDoubleConsumer<R> accumulator, BinaryOperator<R> combiner) {
+    public static <R> TerminalOp<Double, R> makeDouble(Supplier<R> supplier, ObjDoubleConsumer<R> accumulator,
+            BinaryOperator<R> combiner) {
         Objects.requireNonNull(supplier);
         Objects.requireNonNull(accumulator);
         Objects.requireNonNull(combiner);
-        class ReducingSink extends Box<R> implements
-                AccumulatingSink<Double, R, ReducingSink>, Sink.OfDouble {
+        class ReducingSink extends Box<R> implements AccumulatingSink<Double, R, ReducingSink>,
+                Sink.OfDouble {
             @Override
             public void begin(long size) {
                 state = supplier.get();
@@ -671,8 +639,7 @@ final class ReduceOps {
      * @param <K>
      *        the type of the {@code AccumulatingSink}.
      */
-    private interface AccumulatingSink<T, R, K extends AccumulatingSink<T, R, K>>
-            extends TerminalSink<T, R> {
+    private interface AccumulatingSink<T, R, K extends AccumulatingSink<T, R, K>> extends TerminalSink<T, R> {
         public void combine(K other);
     }
 
@@ -706,8 +673,8 @@ final class ReduceOps {
      * @param <S>
      *        the type of the {@code AccumulatingSink}
      */
-    private static abstract class ReduceOp<T, R, S extends AccumulatingSink<T, R, S>>
-            implements TerminalOp<T, R> {
+    private static abstract class ReduceOp<T, R, S extends AccumulatingSink<T, R, S>> implements
+            TerminalOp<T, R> {
         private final StreamShape inputShape;
 
         /**
@@ -715,7 +682,7 @@ final class ReduceOps {
          * the specified {@code Supplier} to create accumulating sinks.
          *
          * @param shape
-         *              The shape of the stream pipeline
+         *        The shape of the stream pipeline
          */
         ReduceOp(StreamShape shape) {
             inputShape = shape;
@@ -729,14 +696,12 @@ final class ReduceOps {
         }
 
         @Override
-        public <P_IN> R evaluateSequential(PipelineHelper<T> helper,
-                Spliterator<P_IN> spliterator) {
+        public <P_IN> R evaluateSequential(PipelineHelper<T> helper, Spliterator<P_IN> spliterator) {
             return helper.wrapAndCopyInto(makeSink(), spliterator).get();
         }
 
         @Override
-        public <P_IN> R evaluateParallel(PipelineHelper<T> helper,
-                Spliterator<P_IN> spliterator) {
+        public <P_IN> R evaluateParallel(PipelineHelper<T> helper, Spliterator<P_IN> spliterator) {
             return new ReduceTask<>(this, helper, spliterator).invoke().get();
         }
     }
@@ -745,26 +710,22 @@ final class ReduceOps {
      * A {@code ForkJoinTask} for performing a parallel reduce operation.
      */
     @SuppressWarnings("serial")
-    private static final class ReduceTask<P_IN, P_OUT, R, S extends AccumulatingSink<P_OUT, R, S>>
-            extends
+    private static final class ReduceTask<P_IN, P_OUT, R, S extends AccumulatingSink<P_OUT, R, S>> extends
             AbstractTask<P_IN, P_OUT, S, ReduceTask<P_IN, P_OUT, R, S>> {
         private final ReduceOp<P_OUT, R, S> op;
 
-        ReduceTask(ReduceOp<P_OUT, R, S> op, PipelineHelper<P_OUT> helper,
-                Spliterator<P_IN> spliterator) {
+        ReduceTask(ReduceOp<P_OUT, R, S> op, PipelineHelper<P_OUT> helper, Spliterator<P_IN> spliterator) {
             super(helper, spliterator);
             this.op = op;
         }
 
-        ReduceTask(ReduceTask<P_IN, P_OUT, R, S> parent,
-                Spliterator<P_IN> spliterator) {
+        ReduceTask(ReduceTask<P_IN, P_OUT, R, S> parent, Spliterator<P_IN> spliterator) {
             super(parent, spliterator);
             this.op = parent.op;
         }
 
         @Override
-        protected ReduceTask<P_IN, P_OUT, R, S> makeChild(
-                Spliterator<P_IN> spliterator) {
+        protected ReduceTask<P_IN, P_OUT, R, S> makeChild(Spliterator<P_IN> spliterator) {
             return new ReduceTask<>(this, spliterator);
         }
 

@@ -31,7 +31,7 @@ public class InvalidRoleValueException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public InvalidRoleValueException(String message) {
         super(message);

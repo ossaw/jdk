@@ -39,14 +39,12 @@ public class IORSystemException extends LogWrapperBase {
     };
 
     public static IORSystemException get(ORB orb, String logDomain) {
-        IORSystemException wrapper = (IORSystemException) orb.getLogWrapper(
-                logDomain, "IOR", factory);
+        IORSystemException wrapper = (IORSystemException) orb.getLogWrapper(logDomain, "IOR", factory);
         return wrapper;
     }
 
     public static IORSystemException get(String logDomain) {
-        IORSystemException wrapper = (IORSystemException) ORB
-                .staticGetLogWrapper(logDomain, "IOR", factory);
+        IORSystemException wrapper = (IORSystemException) ORB.staticGetLogWrapper(logDomain, "IOR", factory);
         return wrapper;
     }
 
@@ -63,8 +61,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.ortNotInitialized", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.ortNotInitialized", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -91,8 +88,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.nullPoa", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.nullPoa", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -120,8 +116,7 @@ public class IORSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "IOR.badMagic", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.badMagic", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -148,8 +143,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.stringifyWriteError", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.stringifyWriteError", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -167,47 +161,38 @@ public class IORSystemException extends LogWrapperBase {
         return stringifyWriteError(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int TAGGED_PROFILE_TEMPLATE_FACTORY_NOT_FOUND = SUNVMCID.value
-            + 1205;
+    public static final int TAGGED_PROFILE_TEMPLATE_FACTORY_NOT_FOUND = SUNVMCID.value + 1205;
 
-    public INTERNAL taggedProfileTemplateFactoryNotFound(CompletionStatus cs,
-            Throwable t, Object arg0) {
-        INTERNAL exc = new INTERNAL(TAGGED_PROFILE_TEMPLATE_FACTORY_NOT_FOUND,
-                cs);
+    public INTERNAL taggedProfileTemplateFactoryNotFound(CompletionStatus cs, Throwable t, Object arg0) {
+        INTERNAL exc = new INTERNAL(TAGGED_PROFILE_TEMPLATE_FACTORY_NOT_FOUND, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "IOR.taggedProfileTemplateFactoryNotFound",
-                    parameters, IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.taggedProfileTemplateFactoryNotFound", parameters,
+                    IORSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL taggedProfileTemplateFactoryNotFound(CompletionStatus cs,
-            Object arg0) {
+    public INTERNAL taggedProfileTemplateFactoryNotFound(CompletionStatus cs, Object arg0) {
         return taggedProfileTemplateFactoryNotFound(cs, null, arg0);
     }
 
-    public INTERNAL taggedProfileTemplateFactoryNotFound(Throwable t,
-            Object arg0) {
-        return taggedProfileTemplateFactoryNotFound(
-                CompletionStatus.COMPLETED_NO, t, arg0);
+    public INTERNAL taggedProfileTemplateFactoryNotFound(Throwable t, Object arg0) {
+        return taggedProfileTemplateFactoryNotFound(CompletionStatus.COMPLETED_NO, t, arg0);
     }
 
     public INTERNAL taggedProfileTemplateFactoryNotFound(Object arg0) {
-        return taggedProfileTemplateFactoryNotFound(
-                CompletionStatus.COMPLETED_NO, null, arg0);
+        return taggedProfileTemplateFactoryNotFound(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
-    public static final int INVALID_JDK1_3_1_PATCH_LEVEL = SUNVMCID.value
-            + 1206;
+    public static final int INVALID_JDK1_3_1_PATCH_LEVEL = SUNVMCID.value + 1206;
 
-    public INTERNAL invalidJdk131PatchLevel(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INTERNAL invalidJdk131PatchLevel(CompletionStatus cs, Throwable t, Object arg0) {
         INTERNAL exc = new INTERNAL(INVALID_JDK1_3_1_PATCH_LEVEL, cs);
         if (t != null)
             exc.initCause(t);
@@ -215,8 +200,7 @@ public class IORSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "IOR.invalidJdk131PatchLevel", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.invalidJdk131PatchLevel", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -231,14 +215,12 @@ public class IORSystemException extends LogWrapperBase {
     }
 
     public INTERNAL invalidJdk131PatchLevel(Object arg0) {
-        return invalidJdk131PatchLevel(CompletionStatus.COMPLETED_NO, null,
-                arg0);
+        return invalidJdk131PatchLevel(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
     public static final int GET_LOCAL_SERVANT_FAILURE = SUNVMCID.value + 1207;
 
-    public INTERNAL getLocalServantFailure(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INTERNAL getLocalServantFailure(CompletionStatus cs, Throwable t, Object arg0) {
         INTERNAL exc = new INTERNAL(GET_LOCAL_SERVANT_FAILURE, cs);
         if (t != null)
             exc.initCause(t);
@@ -246,8 +228,7 @@ public class IORSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.FINE, "IOR.getLocalServantFailure", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.FINE, "IOR.getLocalServantFailure", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -262,8 +243,7 @@ public class IORSystemException extends LogWrapperBase {
     }
 
     public INTERNAL getLocalServantFailure(Object arg0) {
-        return getLocalServantFailure(CompletionStatus.COMPLETED_NO, null,
-                arg0);
+        return getLocalServantFailure(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
     ///////////////////////////////////////////////////////////
@@ -272,16 +252,14 @@ public class IORSystemException extends LogWrapperBase {
 
     public static final int ADAPTER_ID_NOT_AVAILABLE = SUNVMCID.value + 1201;
 
-    public BAD_OPERATION adapterIdNotAvailable(CompletionStatus cs,
-            Throwable t) {
+    public BAD_OPERATION adapterIdNotAvailable(CompletionStatus cs, Throwable t) {
         BAD_OPERATION exc = new BAD_OPERATION(ADAPTER_ID_NOT_AVAILABLE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.adapterIdNotAvailable", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.adapterIdNotAvailable", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -301,16 +279,14 @@ public class IORSystemException extends LogWrapperBase {
 
     public static final int SERVER_ID_NOT_AVAILABLE = SUNVMCID.value + 1202;
 
-    public BAD_OPERATION serverIdNotAvailable(CompletionStatus cs,
-            Throwable t) {
+    public BAD_OPERATION serverIdNotAvailable(CompletionStatus cs, Throwable t) {
         BAD_OPERATION exc = new BAD_OPERATION(SERVER_ID_NOT_AVAILABLE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.serverIdNotAvailable", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.serverIdNotAvailable", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -337,8 +313,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.orbIdNotAvailable", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.orbIdNotAvailable", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -356,20 +331,17 @@ public class IORSystemException extends LogWrapperBase {
         return orbIdNotAvailable(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int OBJECT_ADAPTER_ID_NOT_AVAILABLE = SUNVMCID.value
-            + 1204;
+    public static final int OBJECT_ADAPTER_ID_NOT_AVAILABLE = SUNVMCID.value + 1204;
 
-    public BAD_OPERATION objectAdapterIdNotAvailable(CompletionStatus cs,
-            Throwable t) {
-        BAD_OPERATION exc = new BAD_OPERATION(OBJECT_ADAPTER_ID_NOT_AVAILABLE,
-                cs);
+    public BAD_OPERATION objectAdapterIdNotAvailable(CompletionStatus cs, Throwable t) {
+        BAD_OPERATION exc = new BAD_OPERATION(OBJECT_ADAPTER_ID_NOT_AVAILABLE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.objectAdapterIdNotAvailable", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.objectAdapterIdNotAvailable", parameters, IORSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -391,8 +363,7 @@ public class IORSystemException extends LogWrapperBase {
     // BAD_PARAM
     ///////////////////////////////////////////////////////////
 
-    public static final int BAD_OID_IN_IOR_TEMPLATE_LIST = SUNVMCID.value
-            + 1201;
+    public static final int BAD_OID_IN_IOR_TEMPLATE_LIST = SUNVMCID.value + 1201;
 
     public BAD_PARAM badOidInIorTemplateList(CompletionStatus cs, Throwable t) {
         BAD_PARAM exc = new BAD_PARAM(BAD_OID_IN_IOR_TEMPLATE_LIST, cs);
@@ -401,8 +372,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.badOidInIorTemplateList", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.badOidInIorTemplateList", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -429,8 +399,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.invalidTaggedProfile", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.invalidTaggedProfile", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -450,8 +419,7 @@ public class IORSystemException extends LogWrapperBase {
 
     public static final int BAD_IIOP_ADDRESS_PORT = SUNVMCID.value + 1203;
 
-    public BAD_PARAM badIiopAddressPort(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public BAD_PARAM badIiopAddressPort(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_PARAM exc = new BAD_PARAM(BAD_IIOP_ADDRESS_PORT, cs);
         if (t != null)
             exc.initCause(t);
@@ -459,8 +427,7 @@ public class IORSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "IOR.badIiopAddressPort", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.badIiopAddressPort", parameters, IORSystemException.class, exc);
         }
 
         return exc;
@@ -491,8 +458,7 @@ public class IORSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "IOR.iorMustHaveIiopProfile", parameters,
-                    IORSystemException.class, exc);
+            doLog(Level.WARNING, "IOR.iorMustHaveIiopProfile", parameters, IORSystemException.class, exc);
         }
 
         return exc;

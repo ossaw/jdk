@@ -13,10 +13,9 @@ package org.omg.CosNaming;
  * each name is unique. Different names can be bound to an object in the same or
  * different contexts at the same time.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
  */
-public interface NamingContext extends NamingContextOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface NamingContext
+public interface NamingContext extends NamingContextOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface NamingContext

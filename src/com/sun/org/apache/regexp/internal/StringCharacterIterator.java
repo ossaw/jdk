@@ -28,7 +28,7 @@ public final class StringCharacterIterator implements CharacterIterator {
 
     /**
      * @param src
-     *            - encapsulated String
+     *        - encapsulated String
      */
     public StringCharacterIterator(String src) {
         this.src = src;

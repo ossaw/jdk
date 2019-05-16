@@ -16,7 +16,6 @@ package java.lang;
  * </ul>
  * <p>
  * but no definition for the class with the specified name could be found.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "optional exception that
@@ -58,7 +57,7 @@ public class ClassNotFoundException extends ReflectiveOperationException {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public ClassNotFoundException(String s) {
         super(s, null); // Disallow initCause
@@ -70,9 +69,9 @@ public class ClassNotFoundException extends ReflectiveOperationException {
      * class.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the exception that was raised while loading the class
+     *        the exception that was raised while loading the class
      * @since 1.2
      */
     public ClassNotFoundException(String s, Throwable ex) {
@@ -83,7 +82,6 @@ public class ClassNotFoundException extends ReflectiveOperationException {
     /**
      * Returns the exception that was raised if an error occurred while
      * attempting to load the class. Otherwise, returns <tt>null</tt>.
-     *
      * <p>
      * This method predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of

@@ -40,7 +40,6 @@ import javax.management.remote.MBeanServerForwarder;
  * RuntimeException if the operation is not allowed; in this case the request is
  * not forwarded to the wrapped object.
  * </p>
- *
  * <p>
  * A typical use of this class is to insert it between a connector server such
  * as the RMI connector and the MBeanServer with which the connector is
@@ -49,7 +48,6 @@ import javax.management.remote.MBeanServerForwarder;
  * be rejected by throwing a <code>SecurityException</code> in the corresponding
  * <code>check*</code> method.
  * </p>
- *
  * <p>
  * This is an abstract class, because in its implementation none of the checking
  * methods does anything. To be useful, it must be subclassed and at least one
@@ -57,7 +55,6 @@ import javax.management.remote.MBeanServerForwarder;
  * MBeanServer methods may also be overridden, for instance if the default
  * checking behavior is inappropriate.
  * </p>
- *
  * <p>
  * If there is no SecurityManager, then the access controller will refuse to
  * create an MBean that is a ClassLoader, which includes MLets, or to execute
@@ -69,8 +66,7 @@ import javax.management.remote.MBeanServerForwarder;
  * and security managers.
  * </p>
  */
-public abstract class MBeanServerAccessController implements
-        MBeanServerForwarder {
+public abstract class MBeanServerAccessController implements MBeanServerForwarder {
 
     public MBeanServer getMBeanServer() {
         return mbs;
@@ -80,8 +76,7 @@ public abstract class MBeanServerAccessController implements
         if (mbs == null)
             throw new IllegalArgumentException("Null MBeanServer");
         if (this.mbs != null)
-            throw new IllegalArgumentException("MBeanServer object already "
-                    + "initialized");
+            throw new IllegalArgumentException("MBeanServer object already " + "initialized");
         this.mbs = mbs;
     }
 
@@ -125,33 +120,28 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public void addNotificationListener(ObjectName name,
-            NotificationListener listener, NotificationFilter filter,
-            Object handback) throws InstanceNotFoundException {
+    public void addNotificationListener(ObjectName name, NotificationListener listener,
+            NotificationFilter filter, Object handback) throws InstanceNotFoundException {
         checkRead();
-        getMBeanServer().addNotificationListener(name, listener, filter,
-                handback);
+        getMBeanServer().addNotificationListener(name, listener, filter, handback);
     }
 
     /**
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public void addNotificationListener(ObjectName name, ObjectName listener,
-            NotificationFilter filter, Object handback)
-            throws InstanceNotFoundException {
+    public void addNotificationListener(ObjectName name, ObjectName listener, NotificationFilter filter,
+            Object handback) throws InstanceNotFoundException {
         checkRead();
-        getMBeanServer().addNotificationListener(name, listener, filter,
-                handback);
+        getMBeanServer().addNotificationListener(name, listener, filter, handback);
     }
 
     /**
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public ObjectInstance createMBean(String className, ObjectName name)
-            throws ReflectionException, InstanceAlreadyExistsException,
-            MBeanRegistrationException, MBeanException,
+    public ObjectInstance createMBean(String className, ObjectName name) throws ReflectionException,
+            InstanceAlreadyExistsException, MBeanRegistrationException, MBeanException,
             NotCompliantMBeanException {
         checkCreate(className);
         SecurityManager sm = System.getSecurityManager();
@@ -168,20 +158,17 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public ObjectInstance createMBean(String className, ObjectName name,
-            Object params[], String signature[]) throws ReflectionException,
-            InstanceAlreadyExistsException, MBeanRegistrationException,
+    public ObjectInstance createMBean(String className, ObjectName name, Object params[], String signature[])
+            throws ReflectionException, InstanceAlreadyExistsException, MBeanRegistrationException,
             MBeanException, NotCompliantMBeanException {
         checkCreate(className);
         SecurityManager sm = System.getSecurityManager();
         if (sm == null) {
-            Object object = getMBeanServer().instantiate(className, params,
-                    signature);
+            Object object = getMBeanServer().instantiate(className, params, signature);
             checkClassLoader(object);
             return getMBeanServer().registerMBean(object, name);
         } else {
-            return getMBeanServer().createMBean(className, name, params,
-                    signature);
+            return getMBeanServer().createMBean(className, name, params, signature);
         }
     }
 
@@ -189,11 +176,9 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public ObjectInstance createMBean(String className, ObjectName name,
-            ObjectName loaderName) throws ReflectionException,
-            InstanceAlreadyExistsException, MBeanRegistrationException,
-            MBeanException, NotCompliantMBeanException,
-            InstanceNotFoundException {
+    public ObjectInstance createMBean(String className, ObjectName name, ObjectName loaderName)
+            throws ReflectionException, InstanceAlreadyExistsException, MBeanRegistrationException,
+            MBeanException, NotCompliantMBeanException, InstanceNotFoundException {
         checkCreate(className);
         SecurityManager sm = System.getSecurityManager();
         if (sm == null) {
@@ -209,21 +194,18 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public ObjectInstance createMBean(String className, ObjectName name,
-            ObjectName loaderName, Object params[], String signature[])
-            throws ReflectionException, InstanceAlreadyExistsException,
-            MBeanRegistrationException, MBeanException,
-            NotCompliantMBeanException, InstanceNotFoundException {
+    public ObjectInstance createMBean(String className, ObjectName name, ObjectName loaderName,
+            Object params[], String signature[]) throws ReflectionException, InstanceAlreadyExistsException,
+            MBeanRegistrationException, MBeanException, NotCompliantMBeanException,
+            InstanceNotFoundException {
         checkCreate(className);
         SecurityManager sm = System.getSecurityManager();
         if (sm == null) {
-            Object object = getMBeanServer().instantiate(className, loaderName,
-                    params, signature);
+            Object object = getMBeanServer().instantiate(className, loaderName, params, signature);
             checkClassLoader(object);
             return getMBeanServer().registerMBean(object, name);
         } else {
-            return getMBeanServer().createMBean(className, name, loaderName,
-                    params, signature);
+            return getMBeanServer().createMBean(className, name, loaderName, params, signature);
         }
     }
 
@@ -232,8 +214,8 @@ public abstract class MBeanServerAccessController implements
      * object.
      */
     @Deprecated
-    public ObjectInputStream deserialize(ObjectName name, byte[] data)
-            throws InstanceNotFoundException, OperationsException {
+    public ObjectInputStream deserialize(ObjectName name, byte[] data) throws InstanceNotFoundException,
+            OperationsException {
         checkRead();
         return getMBeanServer().deserialize(name, data);
     }
@@ -243,8 +225,8 @@ public abstract class MBeanServerAccessController implements
      * object.
      */
     @Deprecated
-    public ObjectInputStream deserialize(String className, byte[] data)
-            throws OperationsException, ReflectionException {
+    public ObjectInputStream deserialize(String className, byte[] data) throws OperationsException,
+            ReflectionException {
         checkRead();
         return getMBeanServer().deserialize(className, data);
     }
@@ -254,10 +236,8 @@ public abstract class MBeanServerAccessController implements
      * object.
      */
     @Deprecated
-    public ObjectInputStream deserialize(String className,
-            ObjectName loaderName, byte[] data)
-            throws InstanceNotFoundException, OperationsException,
-            ReflectionException {
+    public ObjectInputStream deserialize(String className, ObjectName loaderName, byte[] data)
+            throws InstanceNotFoundException, OperationsException, ReflectionException {
         checkRead();
         return getMBeanServer().deserialize(className, loaderName, data);
     }
@@ -266,9 +246,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public Object getAttribute(ObjectName name, String attribute)
-            throws MBeanException, AttributeNotFoundException,
-            InstanceNotFoundException, ReflectionException {
+    public Object getAttribute(ObjectName name, String attribute) throws MBeanException,
+            AttributeNotFoundException, InstanceNotFoundException, ReflectionException {
         checkRead();
         return getMBeanServer().getAttribute(name, attribute);
     }
@@ -277,8 +256,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public AttributeList getAttributes(ObjectName name, String[] attributes)
-            throws InstanceNotFoundException, ReflectionException {
+    public AttributeList getAttributes(ObjectName name, String[] attributes) throws InstanceNotFoundException,
+            ReflectionException {
         checkRead();
         return getMBeanServer().getAttributes(name, attributes);
     }
@@ -287,8 +266,7 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public ClassLoader getClassLoader(ObjectName loaderName)
-            throws InstanceNotFoundException {
+    public ClassLoader getClassLoader(ObjectName loaderName) throws InstanceNotFoundException {
         checkRead();
         return getMBeanServer().getClassLoader(loaderName);
     }
@@ -297,8 +275,7 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public ClassLoader getClassLoaderFor(ObjectName mbeanName)
-            throws InstanceNotFoundException {
+    public ClassLoader getClassLoaderFor(ObjectName mbeanName) throws InstanceNotFoundException {
         checkRead();
         return getMBeanServer().getClassLoaderFor(mbeanName);
     }
@@ -343,8 +320,7 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public MBeanInfo getMBeanInfo(ObjectName name)
-            throws InstanceNotFoundException, IntrospectionException,
+    public MBeanInfo getMBeanInfo(ObjectName name) throws InstanceNotFoundException, IntrospectionException,
             ReflectionException {
         checkRead();
         return getMBeanServer().getMBeanInfo(name);
@@ -354,8 +330,7 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public ObjectInstance getObjectInstance(ObjectName name)
-            throws InstanceNotFoundException {
+    public ObjectInstance getObjectInstance(ObjectName name) throws InstanceNotFoundException {
         checkRead();
         return getMBeanServer().getObjectInstance(name);
     }
@@ -364,8 +339,7 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public Object instantiate(String className) throws ReflectionException,
-            MBeanException {
+    public Object instantiate(String className) throws ReflectionException, MBeanException {
         checkCreate(className);
         return getMBeanServer().instantiate(className);
     }
@@ -374,8 +348,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public Object instantiate(String className, Object params[],
-            String signature[]) throws ReflectionException, MBeanException {
+    public Object instantiate(String className, Object params[], String signature[])
+            throws ReflectionException, MBeanException {
         checkCreate(className);
         return getMBeanServer().instantiate(className, params, signature);
     }
@@ -384,9 +358,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public Object instantiate(String className, ObjectName loaderName)
-            throws ReflectionException, MBeanException,
-            InstanceNotFoundException {
+    public Object instantiate(String className, ObjectName loaderName) throws ReflectionException,
+            MBeanException, InstanceNotFoundException {
         checkCreate(className);
         return getMBeanServer().instantiate(className, loaderName);
     }
@@ -395,21 +368,18 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkCreate(className)</code>, then forward this method to the
      * wrapped object.
      */
-    public Object instantiate(String className, ObjectName loaderName,
-            Object params[], String signature[]) throws ReflectionException,
-            MBeanException, InstanceNotFoundException {
+    public Object instantiate(String className, ObjectName loaderName, Object params[], String signature[])
+            throws ReflectionException, MBeanException, InstanceNotFoundException {
         checkCreate(className);
-        return getMBeanServer().instantiate(className, loaderName, params,
-                signature);
+        return getMBeanServer().instantiate(className, loaderName, params, signature);
     }
 
     /**
      * Call <code>checkWrite()</code>, then forward this method to the wrapped
      * object.
      */
-    public Object invoke(ObjectName name, String operationName, Object params[],
-            String signature[]) throws InstanceNotFoundException,
-            MBeanException, ReflectionException {
+    public Object invoke(ObjectName name, String operationName, Object params[], String signature[])
+            throws InstanceNotFoundException, MBeanException, ReflectionException {
         checkWrite();
         checkMLetMethods(name, operationName);
         return getMBeanServer().invoke(name, operationName, params, signature);
@@ -419,8 +389,7 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public boolean isInstanceOf(ObjectName name, String className)
-            throws InstanceNotFoundException {
+    public boolean isInstanceOf(ObjectName name, String className) throws InstanceNotFoundException {
         checkRead();
         return getMBeanServer().isInstanceOf(name, className);
     }
@@ -456,9 +425,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkWrite()</code>, then forward this method to the wrapped
      * object.
      */
-    public ObjectInstance registerMBean(Object object, ObjectName name)
-            throws InstanceAlreadyExistsException, MBeanRegistrationException,
-            NotCompliantMBeanException {
+    public ObjectInstance registerMBean(Object object, ObjectName name) throws InstanceAlreadyExistsException,
+            MBeanRegistrationException, NotCompliantMBeanException {
         checkWrite();
         return getMBeanServer().registerMBean(object, name);
     }
@@ -467,9 +435,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public void removeNotificationListener(ObjectName name,
-            NotificationListener listener) throws InstanceNotFoundException,
-            ListenerNotFoundException {
+    public void removeNotificationListener(ObjectName name, NotificationListener listener)
+            throws InstanceNotFoundException, ListenerNotFoundException {
         checkRead();
         getMBeanServer().removeNotificationListener(name, listener);
     }
@@ -478,13 +445,11 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public void removeNotificationListener(ObjectName name,
-            NotificationListener listener, NotificationFilter filter,
-            Object handback) throws InstanceNotFoundException,
+    public void removeNotificationListener(ObjectName name, NotificationListener listener,
+            NotificationFilter filter, Object handback) throws InstanceNotFoundException,
             ListenerNotFoundException {
         checkRead();
-        getMBeanServer().removeNotificationListener(name, listener, filter,
-                handback);
+        getMBeanServer().removeNotificationListener(name, listener, filter, handback);
     }
 
     /**
@@ -501,22 +466,18 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkRead()</code>, then forward this method to the wrapped
      * object.
      */
-    public void removeNotificationListener(ObjectName name, ObjectName listener,
-            NotificationFilter filter, Object handback)
-            throws InstanceNotFoundException, ListenerNotFoundException {
+    public void removeNotificationListener(ObjectName name, ObjectName listener, NotificationFilter filter,
+            Object handback) throws InstanceNotFoundException, ListenerNotFoundException {
         checkRead();
-        getMBeanServer().removeNotificationListener(name, listener, filter,
-                handback);
+        getMBeanServer().removeNotificationListener(name, listener, filter, handback);
     }
 
     /**
      * Call <code>checkWrite()</code>, then forward this method to the wrapped
      * object.
      */
-    public void setAttribute(ObjectName name, Attribute attribute)
-            throws InstanceNotFoundException, AttributeNotFoundException,
-            InvalidAttributeValueException, MBeanException,
-            ReflectionException {
+    public void setAttribute(ObjectName name, Attribute attribute) throws InstanceNotFoundException,
+            AttributeNotFoundException, InvalidAttributeValueException, MBeanException, ReflectionException {
         checkWrite();
         getMBeanServer().setAttribute(name, attribute);
     }
@@ -525,9 +486,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkWrite()</code>, then forward this method to the wrapped
      * object.
      */
-    public AttributeList setAttributes(ObjectName name,
-            AttributeList attributes) throws InstanceNotFoundException,
-            ReflectionException {
+    public AttributeList setAttributes(ObjectName name, AttributeList attributes)
+            throws InstanceNotFoundException, ReflectionException {
         checkWrite();
         return getMBeanServer().setAttributes(name, attributes);
     }
@@ -536,8 +496,8 @@ public abstract class MBeanServerAccessController implements
      * Call <code>checkUnregister()</code>, then forward this method to the
      * wrapped object.
      */
-    public void unregisterMBean(ObjectName name)
-            throws InstanceNotFoundException, MBeanRegistrationException {
+    public void unregisterMBean(ObjectName name) throws InstanceNotFoundException,
+            MBeanRegistrationException {
         checkUnregister(name);
         getMBeanServer().unregisterMBean(name);
     }
@@ -548,27 +508,22 @@ public abstract class MBeanServerAccessController implements
 
     private void checkClassLoader(Object object) {
         if (object instanceof ClassLoader)
-            throw new SecurityException("Access denied! Creating an "
-                    + "MBean that is a ClassLoader "
-                    + "is forbidden unless a security "
-                    + "manager is installed.");
+            throw new SecurityException("Access denied! Creating an " + "MBean that is a ClassLoader "
+                    + "is forbidden unless a security " + "manager is installed.");
     }
 
-    private void checkMLetMethods(ObjectName name, String operation)
-            throws InstanceNotFoundException {
+    private void checkMLetMethods(ObjectName name, String operation) throws InstanceNotFoundException {
         // Check if security manager installed
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
             return;
         }
         // Check for addURL and getMBeansFromURL methods
-        if (!operation.equals("addURL") && !operation.equals(
-                "getMBeansFromURL")) {
+        if (!operation.equals("addURL") && !operation.equals("getMBeansFromURL")) {
             return;
         }
         // Check if MBean is instance of MLet
-        if (!getMBeanServer().isInstanceOf(name,
-                "javax.management.loading.MLet")) {
+        if (!getMBeanServer().isInstanceOf(name, "javax.management.loading.MLet")) {
             return;
         }
         // Throw security exception
@@ -589,8 +544,7 @@ public abstract class MBeanServerAccessController implements
                 throw new SecurityException("Access denied! MLet method "
                         + "getMBeansFromURL cannot be invoked unless a "
                         + "security manager is installed or the system property "
-                        + "-Djmx.remote.x.mlet.allow.getMBeansFromURL=true "
-                        + "is specified.");
+                        + "-Djmx.remote.x.mlet.allow.getMBeansFromURL=true " + "is specified.");
             }
         }
     }

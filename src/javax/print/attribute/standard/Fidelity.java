@@ -16,7 +16,6 @@ import javax.print.attribute.PrintRequestAttribute;
  * exactly as specified it must reject the job. If FIDELITY_FALSE is specified a
  * reasonable attempt to print the job is acceptable. If not supplied the
  * default is FIDELITY_FALSE.
- *
  * <P>
  * <B>IPP Compatibility:</B> The IPP boolean value is "true" for FIDELITY_TRUE
  * and "false" for FIDELITY_FALSE. The category name returned by
@@ -26,10 +25,8 @@ import javax.print.attribute.PrintRequestAttribute;
  * <a href="http://www.ietf.org/rfc/rfc2911.txt">RFC 2911</a> Section 15.1 for a
  * fuller description of the IPP fidelity attribute.
  * <P>
- *
  */
-public final class Fidelity extends EnumSyntax implements PrintJobAttribute,
-        PrintRequestAttribute {
+public final class Fidelity extends EnumSyntax implements PrintJobAttribute, PrintRequestAttribute {
 
     private static final long serialVersionUID = 6320827847329172308L;
 
@@ -48,7 +45,7 @@ public final class Fidelity extends EnumSyntax implements PrintJobAttribute,
      * Construct a new fidelity enumeration value with the given integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected Fidelity(int value) {
         super(value);
@@ -56,8 +53,7 @@ public final class Fidelity extends EnumSyntax implements PrintJobAttribute,
 
     private static final String[] myStringTable = { "true", "false" };
 
-    private static final Fidelity[] myEnumValueTable = { FIDELITY_TRUE,
-            FIDELITY_FALSE };
+    private static final Fidelity[] myEnumValueTable = { FIDELITY_TRUE, FIDELITY_FALSE };
 
     /**
      * Returns the string table for class Fidelity.

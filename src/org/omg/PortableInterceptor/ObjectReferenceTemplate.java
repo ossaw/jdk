@@ -15,8 +15,7 @@ package org.omg.PortableInterceptor;
  * adapter_id is similarly unique within the same scope, but it is opaque, and
  * less useful in many cases.
  */
-public interface ObjectReferenceTemplate extends
-        org.omg.PortableInterceptor.ObjectReferenceFactory {
+public interface ObjectReferenceTemplate extends org.omg.PortableInterceptor.ObjectReferenceFactory {
     public abstract String server_id();
 
     public abstract String orb_id();

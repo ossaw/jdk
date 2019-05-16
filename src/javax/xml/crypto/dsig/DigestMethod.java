@@ -68,7 +68,6 @@ public interface DigestMethod extends XMLStructure, AlgorithmMethod {
     /**
      * Returns the algorithm-specific input parameters associated with this
      * <code>DigestMethod</code>.
-     *
      * <p>
      * The returned parameters can be typecast to a
      * {@link DigestMethodParameterSpec} object.

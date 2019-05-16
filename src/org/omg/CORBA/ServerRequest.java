@@ -15,13 +15,11 @@ package org.omg.CORBA;
  * DIR) is created by implementing the <code>DynamicImplementation</code> class,
  * which has a single <code>invoke</code> method. This method accepts a
  * <code>ServerRequest</code> object.
- *
  * The abstract class <code>ServerRequest</code> defines methods for accessing
  * the method name, the arguments and the context of the request, as well as
  * methods for setting the result of the request either as a return value or an
  * exception.
  * <p>
- *
  * A subtlety with accessing the arguments of the request is that the DIR needs
  * to provide type information about the expected arguments, since there is no
  * compiled information about these. This information is provided through an
@@ -30,7 +28,6 @@ package org.omg.CORBA;
  * turn has a <code>TypeCode</code> object representing the type of the
  * argument.
  * <p>
- *
  * Similarly, type information needs to be provided for the response, for either
  * the expected result or for an exception, so the methods <code>result</code>
  * and <code>except</code> take an <code>Any</code> object as a parameter.
@@ -39,7 +36,6 @@ package org.omg.CORBA;
  * @see org.omg.CORBA.DynamicImplementation
  * @see org.omg.CORBA.NVList
  * @see org.omg.CORBA.NamedValue
- *
  */
 
 public abstract class ServerRequest {
@@ -102,8 +98,8 @@ public abstract class ServerRequest {
      * "inout" arguments.
      *
      * @param params
-     *               the arguments of the method, in the form of an
-     *               <code>NVList</code> object
+     *        the arguments of the method, in the form of an
+     *        <code>NVList</code> object
      * @deprecated use the method <code>arguments</code>
      */
     @Deprecated
@@ -130,7 +126,7 @@ public abstract class ServerRequest {
      * any "inout" arguments.
      *
      * @param args
-     *             the arguments of the method, in the form of an NVList
+     *        the arguments of the method, in the form of an NVList
      * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
      *      comments for unimplemented features</a>
      */
@@ -159,8 +155,8 @@ public abstract class ServerRequest {
      * passed by the client, may result in a MARSHAL system exception.
      *
      * @param any
-     *            an <code>Any</code> object containing the return value to be
-     *            set
+     *        an <code>Any</code> object containing the return value to be
+     *        set
      * @deprecated use the method <code>set_result</code>
      */
     @Deprecated
@@ -187,8 +183,8 @@ public abstract class ServerRequest {
      * passed by the client, may result in a MARSHAL system exception.
      *
      * @param any
-     *            an <code>Any</code> object containing the return value to be
-     *            set
+     *        an <code>Any</code> object containing the return value to be
+     *        set
      * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
      *      comments for unimplemented features</a>
      */
@@ -207,7 +203,7 @@ public abstract class ServerRequest {
      * UNKNOWN_EXCEPTION system exception.
      *
      * @param any
-     *            the <code>Any</code> object containing the exception
+     *        the <code>Any</code> object containing the exception
      * @deprecated use set_exception()
      */
     @Deprecated
@@ -229,17 +225,17 @@ public abstract class ServerRequest {
      * exception.
      *
      * @param any
-     *            the <code>Any</code> object containing the exception
+     *        the <code>Any</code> object containing the exception
      * @exception BAD_PARAM
-     *                              if the given <code>Any</code> object does
-     *                              not contain an
-     *                              exception or the exception is an unlisted
-     *                              user exception
+     *            if the given <code>Any</code> object does
+     *            not contain an
+     *            exception or the exception is an unlisted
+     *            user exception
      * @exception UNKNOWN_EXCEPTION
-     *                              if the given exception is an unlisted user
-     *                              exception and
-     *                              the DIR did not receive a BAD_PARAM
-     *                              exception
+     *            if the given exception is an unlisted user
+     *            exception and
+     *            the DIR did not receive a BAD_PARAM
+     *            exception
      * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
      *      comments for unimplemented features</a>
      */
@@ -260,12 +256,12 @@ public abstract class ServerRequest {
      * @return the context object that is to be used to resolve any context
      *         strings whose values need to be sent with the invocation.
      * @exception BAD_INV_ORDER
-     *                          if (1) the method <code>ctx</code> is called
-     *                          before the
-     *                          method <code>arguments</code> or (2) the method
-     *                          <code>ctx</code> is called after calling
-     *                          <code>set_result</code> or
-     *                          <code>set_exception</code>
+     *            if (1) the method <code>ctx</code> is called
+     *            before the
+     *            method <code>arguments</code> or (2) the method
+     *            <code>ctx</code> is called after calling
+     *            <code>set_result</code> or
+     *            <code>set_exception</code>
      */
     public abstract Context ctx();
 

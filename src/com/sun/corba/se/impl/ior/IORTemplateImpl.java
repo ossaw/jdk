@@ -30,8 +30,7 @@ import com.sun.corba.se.spi.orb.ORB;
  * 
  * @author
  */
-public class IORTemplateImpl extends IdentifiableContainerBase implements
-        IORTemplate {
+public class IORTemplateImpl extends IdentifiableContainerBase implements IORTemplate {
     private ObjectKeyTemplate oktemp;
 
     public boolean equals(Object obj) {
@@ -71,16 +70,14 @@ public class IORTemplateImpl extends IdentifiableContainerBase implements
         Iterator thisIterator = iterator();
         Iterator listIterator = list.iterator();
         while (thisIterator.hasNext() && listIterator.hasNext()) {
-            TaggedProfileTemplate thisTemplate = (TaggedProfileTemplate) thisIterator
-                    .next();
-            TaggedProfileTemplate listTemplate = (TaggedProfileTemplate) listIterator
-                    .next();
+            TaggedProfileTemplate thisTemplate = (TaggedProfileTemplate) thisIterator.next();
+            TaggedProfileTemplate listTemplate = (TaggedProfileTemplate) listIterator.next();
             if (!thisTemplate.isEquivalent(listTemplate))
                 return false;
         }
 
-        return (thisIterator.hasNext() == listIterator.hasNext())
-                && getObjectKeyTemplate().equals(list.getObjectKeyTemplate());
+        return (thisIterator.hasNext() == listIterator.hasNext()) && getObjectKeyTemplate().equals(list
+                .getObjectKeyTemplate());
     }
 
     /**
@@ -100,8 +97,7 @@ public class IORTemplateImpl extends IdentifiableContainerBase implements
 
     public IORTemplateImpl(InputStream is) {
         ORB orb = (ORB) (is.orb());
-        IdentifiableFactoryFinder finder = orb
-                .getTaggedProfileTemplateFactoryFinder();
+        IdentifiableFactoryFinder finder = orb.getTaggedProfileTemplateFactoryFinder();
 
         oktemp = orb.getObjectKeyFactory().createTemplate(is);
         EncapsulationUtility.readIdentifiableSequence(this, finder, is);

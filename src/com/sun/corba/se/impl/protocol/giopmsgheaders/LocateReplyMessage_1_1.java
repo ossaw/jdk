@@ -26,8 +26,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateReplyMessage_1_1 extends Message_1_1 implements
-        LocateReplyMessage {
+public final class LocateReplyMessage_1_1 extends Message_1_1 implements LocateReplyMessage {
 
     // Instance variables
 
@@ -42,10 +41,8 @@ public final class LocateReplyMessage_1_1 extends Message_1_1 implements
         this.orb = orb;
     }
 
-    LocateReplyMessage_1_1(ORB orb, int _request_id, int _reply_status,
-            IOR _ior) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPLocateReply, 0);
+    LocateReplyMessage_1_1(ORB orb, int _request_id, int _reply_status, IOR _ior) {
+        super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPLocateReply, 0);
         this.orb = orb;
         request_id = _request_id;
         reply_status = _reply_status;
@@ -106,10 +103,9 @@ public final class LocateReplyMessage_1_1 extends Message_1_1 implements
             case OBJECT_FORWARD:
                 break;
             default:
-                ORBUtilSystemException localWrapper = ORBUtilSystemException
-                        .get(CORBALogDomains.RPC_PROTOCOL);
-                throw localWrapper.illegalReplyStatus(
-                        CompletionStatus.COMPLETED_MAYBE);
+                ORBUtilSystemException localWrapper = ORBUtilSystemException.get(
+                        CORBALogDomains.RPC_PROTOCOL);
+                throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 

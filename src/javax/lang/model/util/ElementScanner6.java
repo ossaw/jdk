@@ -21,7 +21,6 @@ import static javax.lang.model.SourceVersion.*;
  * <tt>visit<i>XYZ</i></tt> methods. Note that clients of a scanner may get the
  * desired behavior be invoking {@code v.scan(e, p)} rather than
  * {@code v.visit(e, p)} on the root objects of interest.
- *
  * <p>
  * When a subclass overrides a <tt>visit<i>XYZ</i></tt> method, the new method
  * can cause the enclosed elements to be scanned in the default way by calling
@@ -33,13 +32,11 @@ import static javax.lang.model.SourceVersion.*;
  * traversed in some other order, instead of calling
  * <tt>super.visit<i>XYZ</i></tt>, an overriding visit method should call
  * {@code scan} with the elements in the desired order.
- *
  * <p>
  * Methods in this class may be overridden subject to their general contract.
  * Note that annotating methods in concrete subclasses with
  * {@link java.lang.Override @Override} will help ensure that methods are
  * overridden as intended.
- *
  * <p>
  * <b>WARNING:</b> The {@code ElementVisitor} interface implemented by this
  * class may have methods added to it in the future to accommodate new,
@@ -48,7 +45,6 @@ import static javax.lang.model.SourceVersion.*;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -64,11 +60,9 @@ import static javax.lang.model.SourceVersion.*;
  *        the type of the additional parameter to this visitor's methods.
  *        Use {@code Void} for visitors that do not need an additional
  *        parameter.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
- *
  * @see ElementScanner7
  * @see ElementScanner8
  * @since 1.6
@@ -93,7 +87,7 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * value.
      *
      * @param defaultValue
-     *                     the default value
+     *        the default value
      */
     protected ElementScanner6(R defaultValue) {
         DEFAULT_VALUE = defaultValue;
@@ -106,9 +100,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * DEFAULT_VALUE} for an empty iterable.
      *
      * @param iterable
-     *                 the elements to scan
+     *        the elements to scan
      * @param p
-     *                 additional parameter
+     *        additional parameter
      * @return the scan of the last element or {@code DEFAULT_VALUE} if no
      *         elements
      */
@@ -124,9 +118,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * may be overridden by subclasses.
      *
      * @param e
-     *          the element to scan
+     *        the element to scan
      * @param p
-     *          a scanner-specified parameter
+     *        a scanner-specified parameter
      * @return the result of visiting {@code e}.
      */
     public R scan(Element e, P p) {
@@ -137,7 +131,7 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * Convenience method equivalent to {@code v.scan(e, null)}.
      *
      * @param e
-     *          the element to scan
+     *        the element to scan
      * @return the result of scanning {@code e}.
      */
     public final R scan(Element e) {
@@ -148,9 +142,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * {@inheritDoc} This implementation scans the enclosed elements.
      *
      * @param e
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of scanning
      */
     public R visitPackage(PackageElement e, P p) {
@@ -161,9 +155,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * {@inheritDoc} This implementation scans the enclosed elements.
      *
      * @param e
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of scanning
      */
     public R visitType(TypeElement e, P p) {
@@ -172,15 +166,14 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 
     /**
      * {@inheritDoc}
-     *
      * This implementation scans the enclosed elements, unless the element is a
      * {@code RESOURCE_VARIABLE} in which case {@code
      * visitUnknown} is called.
      *
      * @param e
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of scanning
      */
     public R visitVariable(VariableElement e, P p) {
@@ -194,9 +187,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * {@inheritDoc} This implementation scans the parameters.
      *
      * @param e
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of scanning
      */
     public R visitExecutable(ExecutableElement e, P p) {
@@ -207,9 +200,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
      * {@inheritDoc} This implementation scans the enclosed elements.
      *
      * @param e
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of scanning
      */
     public R visitTypeParameter(TypeParameterElement e, P p) {

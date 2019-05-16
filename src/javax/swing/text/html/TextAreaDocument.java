@@ -28,8 +28,7 @@ class TextAreaDocument extends PlainDocument {
             if (initialText != null) {
                 insertString(0, initialText, null);
             }
-        } catch (BadLocationException e) {
-        }
+        } catch (BadLocationException e) {}
     }
 
     /**
@@ -38,7 +37,6 @@ class TextAreaDocument extends PlainDocument {
     void storeInitialText() {
         try {
             initialText = getText(0, getLength());
-        } catch (BadLocationException e) {
-        }
+        } catch (BadLocationException e) {}
     }
 }

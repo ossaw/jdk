@@ -44,12 +44,12 @@ public interface XSAnnotation extends XSObject {
      * the specified document handler.
      * 
      * @param target
-     *                   A target pointer to the annotation target object, i.e.
-     *                   <code>org.w3c.dom.Document</code>,
-     *                   <code>org.w3c.dom.Element</code> ,
-     *                   <code>org.xml.sax.ContentHandler</code>.
+     *        A target pointer to the annotation target object, i.e.
+     *        <code>org.w3c.dom.Document</code>,
+     *        <code>org.w3c.dom.Element</code> ,
+     *        <code>org.xml.sax.ContentHandler</code>.
      * @param targetType
-     *                   A target type.
+     *        A target type.
      * @return True if the <code>target</code> is a recognized type and
      *         supported by this implementation, otherwise false.
      */

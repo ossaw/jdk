@@ -20,7 +20,6 @@ import java.io.*;
  *
  * @see Element
  * @author Arthur Van Hoff
- *
  */
 public final class AttributeList implements DTDConstants, Serializable {
     public String name;
@@ -42,8 +41,8 @@ public final class AttributeList implements DTDConstants, Serializable {
     /**
      * Create an attribute list element.
      */
-    public AttributeList(String name, int type, int modifier, String value,
-            Vector<?> values, AttributeList next) {
+    public AttributeList(String name, int type, int modifier, String value, Vector<?> values,
+            AttributeList next) {
         this.name = name;
         this.type = type;
         this.modifier = modifier;

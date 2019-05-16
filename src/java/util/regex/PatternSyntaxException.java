@@ -27,14 +27,12 @@ public class PatternSyntaxException extends IllegalArgumentException {
      * Constructs a new instance of this class.
      *
      * @param desc
-     *              A description of the error
-     *
+     *        A description of the error
      * @param regex
-     *              The erroneous pattern
-     *
+     *        The erroneous pattern
      * @param index
-     *              The approximate index in the pattern of the error, or
-     *              <tt>-1</tt> if the index is not known
+     *        The approximate index in the pattern of the error, or
+     *        <tt>-1</tt> if the index is not known
      */
     public PatternSyntaxException(String desc, String regex, int index) {
         this.desc = desc;
@@ -70,8 +68,8 @@ public class PatternSyntaxException extends IllegalArgumentException {
         return pattern;
     }
 
-    private static final String nl = java.security.AccessController
-            .doPrivileged(new GetPropertyAction("line.separator"));
+    private static final String nl = java.security.AccessController.doPrivileged(new GetPropertyAction(
+            "line.separator"));
 
     /**
      * Returns a multi-line string containing the description of the syntax

@@ -21,7 +21,6 @@ package java.security.cert;
  * @see CRL
  * @see CertStore
  * @see CertStore#getCRLs
- *
  * @author Steve Hanna
  * @since 1.4
  */
@@ -31,7 +30,7 @@ public interface CRLSelector extends Cloneable {
      * Decides whether a {@code CRL} should be selected.
      *
      * @param crl
-     *            the {@code CRL} to be checked
+     *        the {@code CRL} to be checked
      * @return {@code true} if the {@code CRL} should be selected, {@code false}
      *         otherwise
      */

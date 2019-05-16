@@ -32,7 +32,7 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * zero.
      *
      * @param out
-     *            the underlying output stream, to be saved for later use.
+     *        the underlying output stream, to be saved for later use.
      * @see java.io.FilterOutputStream#out
      */
     public DataOutputStream(OutputStream out) {
@@ -60,9 +60,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * Implements the <code>write</code> method of <code>OutputStream</code>.
      *
      * @param b
-     *          the <code>byte</code> to be written.
+     *        the <code>byte</code> to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public synchronized void write(int b) throws IOException {
@@ -77,17 +77,16 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>len</code>.
      *
      * @param b
-     *            the data.
+     *        the data.
      * @param off
-     *            the start offset in the data.
+     *        the start offset in the data.
      * @param len
-     *            the number of bytes to write.
+     *        the number of bytes to write.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
-    public synchronized void write(byte b[], int off, int len)
-            throws IOException {
+    public synchronized void write(byte b[], int off, int len) throws IOException {
         out.write(b, off, len);
         incCount(len);
     }
@@ -100,7 +99,7 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>flush</code> method of its underlying output stream.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      * @see java.io.OutputStream#flush()
      */
@@ -116,9 +115,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by <code>1</code>.
      *
      * @param v
-     *          a <code>boolean</code> value to be written.
+     *        a <code>boolean</code> value to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeBoolean(boolean v) throws IOException {
@@ -132,9 +131,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * is incremented by <code>1</code>.
      *
      * @param v
-     *          a <code>byte</code> value to be written.
+     *        a <code>byte</code> value to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeByte(int v) throws IOException {
@@ -148,9 +147,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by <code>2</code>.
      *
      * @param v
-     *          a <code>short</code> to be written.
+     *        a <code>short</code> to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeShort(int v) throws IOException {
@@ -165,9 +164,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by <code>2</code>.
      *
      * @param v
-     *          a <code>char</code> value to be written.
+     *        a <code>char</code> value to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeChar(int v) throws IOException {
@@ -182,9 +181,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by <code>4</code>.
      *
      * @param v
-     *          an <code>int</code> to be written.
+     *        an <code>int</code> to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeInt(int v) throws IOException {
@@ -203,9 +202,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by <code>8</code>.
      *
      * @param v
-     *          a <code>long</code> to be written.
+     *        a <code>long</code> to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeLong(long v) throws IOException {
@@ -229,9 +228,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by <code>4</code>.
      *
      * @param v
-     *          a <code>float</code> value to be written.
+     *        a <code>float</code> value to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      * @see java.lang.Float#floatToIntBits(float)
      */
@@ -247,9 +246,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * counter <code>written</code> is incremented by <code>8</code>.
      *
      * @param v
-     *          a <code>double</code> value to be written.
+     *        a <code>double</code> value to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      * @see java.lang.Double#doubleToLongBits(double)
      */
@@ -264,9 +263,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>written</code> is incremented by the length of <code>s</code>.
      *
      * @param s
-     *          a string of bytes to be written.
+     *        a string of bytes to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public final void writeBytes(String s) throws IOException {
@@ -285,9 +284,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * .
      *
      * @param s
-     *          a <code>String</code> value to be written.
+     *        a <code>String</code> value to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.DataOutputStream#writeChar(int)
      * @see java.io.FilterOutputStream#out
      */
@@ -317,9 +316,9 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * thrice the length of <code>str</code>.
      *
      * @param str
-     *            a string to be written.
+     *        a string to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public final void writeUTF(String str) throws IOException {
         writeUTF(str, this);
@@ -341,12 +340,12 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
      * <code>str</code>.
      *
      * @param str
-     *            a string to be written.
+     *        a string to be written.
      * @param out
-     *            destination to write to
+     *        destination to write to
      * @return The number of bytes written out.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     static int writeUTF(String str, DataOutput out) throws IOException {
         int strlen = str.length();
@@ -366,8 +365,7 @@ public class DataOutputStream extends FilterOutputStream implements DataOutput {
         }
 
         if (utflen > 65535)
-            throw new UTFDataFormatException("encoded string too long: "
-                    + utflen + " bytes");
+            throw new UTFDataFormatException("encoded string too long: " + utflen + " bytes");
 
         byte[] bytearr = null;
         if (out instanceof DataOutputStream) {

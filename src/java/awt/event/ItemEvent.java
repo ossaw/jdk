@@ -35,13 +35,11 @@ import java.awt.ItemSelectable;
  * behavior.
  *
  * @author Carl Quinn
- *
  * @see java.awt.ItemSelectable
  * @see ItemListener
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/itemlistener.html">
  *      Tutorial: Writing an Item Listener</a>
- *
  * @since 1.1
  */
 public class ItemEvent extends AWTEvent {
@@ -100,30 +98,29 @@ public class ItemEvent extends AWTEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                    The <code>ItemSelectable</code> object that originated
-     *                    the
-     *                    event
+     *        The <code>ItemSelectable</code> object that originated
+     *        the
+     *        event
      * @param id
-     *                    The integer that identifies the event type. For
-     *                    information on
-     *                    allowable values, see the class description for
-     *                    {@link ItemEvent}
+     *        The integer that identifies the event type. For
+     *        information on
+     *        allowable values, see the class description for
+     *        {@link ItemEvent}
      * @param item
-     *                    An object -- the item affected by the event
+     *        An object -- the item affected by the event
      * @param stateChange
-     *                    An integer that indicates whether the item was
-     *                    selected or
-     *                    deselected. For information on allowable values, see
-     *                    the class
-     *                    description for {@link ItemEvent}
+     *        An integer that indicates whether the item was
+     *        selected or
+     *        deselected. For information on allowable values, see
+     *        the class
+     *        description for {@link ItemEvent}
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getItemSelectable()
      * @see #getID()
      * @see #getStateChange()
      */
-    public ItemEvent(ItemSelectable source, int id, Object item,
-            int stateChange) {
+    public ItemEvent(ItemSelectable source, int id, Object item, int stateChange) {
         super(source, id);
         this.item = item;
         this.stateChange = stateChange;
@@ -152,7 +149,6 @@ public class ItemEvent extends AWTEvent {
      *
      * @return an integer that indicates whether the item was selected or
      *         deselected
-     *
      * @see #SELECTED
      * @see #DESELECTED
      */

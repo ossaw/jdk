@@ -49,8 +49,7 @@ import java.util.Hashtable;
  * Synchronized.
  */
 
-public class NamingContextImpl extends NamingContextExtPOA implements
-        NamingContextDataStore, Serializable {
+public class NamingContextImpl extends NamingContextExtPOA implements NamingContextDataStore, Serializable {
 
     // The ORB is required to do string_to_object() operations
     // All the references are stored in the files in the form of IOR strings
@@ -91,13 +90,13 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * Create a naming context servant. Runs the super constructor.
      * 
      * @param orb
-     *                              an ORB object.
+     *        an ORB object.
      * @param objKey
-     *                              as String
+     *        as String
      * @param TheNameService
-     *                              as NameService
+     *        as NameService
      * @param TheServantManagerImpl
-     *                              as ServantManagerImpl
+     *        as ServantManagerImpl
      * @exception java.lang.Exception
      *            a Java exception.
      */
@@ -107,10 +106,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
         super();
 
         this.orb = orb;
-        readWrapper = NamingSystemException.get(orb,
-                CORBALogDomains.NAMING_READ);
-        updateWrapper = NamingSystemException.get(orb,
-                CORBALogDomains.NAMING_UPDATE);
+        readWrapper = NamingSystemException.get(orb, CORBALogDomains.NAMING_READ);
+        updateWrapper = NamingSystemException.get(orb, CORBALogDomains.NAMING_UPDATE);
 
         debug = true; // orb.namingDebugFlag ;
         this.objKey = objKey;
@@ -136,8 +133,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
         orb = theOrb;
     }
 
-    public void setServantManagerImpl(
-            ServantManagerImpl theServantManagerImpl) {
+    public void setServantManagerImpl(ServantManagerImpl theServantManagerImpl) {
         theServantManagerImplHandle = theServantManagerImpl;
     }
 
@@ -153,10 +149,10 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * is a NamingContext it will not participate in a recursive resolve.
      * 
      * @param n
-     *            a sequence of NameComponents which is the name under which the
-     *            object will be bound.
+     *        a sequence of NameComponents which is the name under which the
+     *        object will be bound.
      * @param obj
-     *            the object reference to be bound.
+     *        the object reference to be bound.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -196,10 +192,10 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * The NamingContext will participate in recursive resolving.
      * 
      * @param n
-     *            a sequence of NameComponents which is the name under which the
-     *            object will be bound.
+     *        a sequence of NameComponents which is the name under which the
+     *        object will be bound.
      * @param obj
-     *            the NamingContect object reference to be bound.
+     *        the NamingContect object reference to be bound.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -237,10 +233,10 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * resolve.
      * 
      * @param n
-     *            a sequence of NameComponents which is the name under which the
-     *            object will be bound.
+     *        a sequence of NameComponents which is the name under which the
+     *        object will be bound.
      * @param obj
-     *            the object reference to be bound.
+     *        the object reference to be bound.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -282,10 +278,10 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * resolving.
      * 
      * @param n
-     *            a sequence of NameComponents which is the name under which the
-     *            object will be bound.
+     *        a sequence of NameComponents which is the name under which the
+     *        object will be bound.
      * @param obj
-     *            the object reference to be bound.
+     *        the object reference to be bound.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -324,7 +320,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * bind_context().
      * 
      * @param n
-     *          a sequence of NameComponents which is the name to be resolved.
+     *        a sequence of NameComponents which is the name to be resolved.
      * @return the object reference bound under the supplied name.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
@@ -357,7 +353,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * NamingContext.
      * 
      * @param n
-     *          a sequence of NameComponents which is the name to be unbound.
+     *        a sequence of NameComponents which is the name to be unbound.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -371,8 +367,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      *            One of a fixed set of CORBA system exceptions.
      * @see doUnbind
      */
-    public void unbind(NameComponent[] n)
-            throws org.omg.CosNaming.NamingContextPackage.NotFound,
+    public void unbind(NameComponent[] n) throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
         if (debug)
@@ -389,18 +384,17 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * iterating over the remaining bindings.
      * 
      * @param how_many
-     *                 The number of requested bindings in the BindingList.
+     *        The number of requested bindings in the BindingList.
      * @param bl
-     *                 The BindingList as an out parameter.
+     *        The BindingList as an out parameter.
      * @param bi
-     *                 The BindingIterator as an out parameter.
+     *        The BindingIterator as an out parameter.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      * @see BindingListHolder
      * @see BindingIteratorImpl
      */
-    public void list(int how_many, BindingListHolder bl,
-            BindingIteratorHolder bi) {
+    public void list(int how_many, BindingListHolder bl, BindingIteratorHolder bi) {
         if (debug)
             dprint("list(" + how_many + ")");
         // List actually generates the list
@@ -409,8 +403,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             impl.List(how_many, bl, bi);
         }
         if (debug && bl.value != null)
-            dprint("list(" + how_many + ") -> bindings[" + bl.value.length
-                    + "] + iterator: " + bi.value);
+            dprint("list(" + how_many + ") -> bindings[" + bl.value.length + "] + iterator: " + bi.value);
     }
 
     /**
@@ -438,7 +431,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * newly created NamingContext.
      * 
      * @param n
-     *          a sequence of NameComponents which is the name to be unbound.
+     *        a sequence of NameComponents which is the name to be unbound.
      * @return an object reference for a new NamingContext object implemented by
      *         this Name Server, bound to the supplied name.
      * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
@@ -476,8 +469,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             try {
                 if (nc != null)
                     nc.destroy();
-            } catch (org.omg.CosNaming.NamingContextPackage.NotEmpty e) {
-            }
+            } catch (org.omg.CosNaming.NamingContextPackage.NotEmpty e) {}
         }
         return rnc;
     }
@@ -491,8 +483,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      */
-    public void destroy()
-            throws org.omg.CosNaming.NamingContextPackage.NotEmpty {
+    public void destroy() throws org.omg.CosNaming.NamingContextPackage.NotEmpty {
         if (debug)
             dprint("destroy ");
         NamingContextDataStore impl = (NamingContextDataStore) this;
@@ -518,17 +509,17 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * still apply.
      * 
      * @param impl
-     *               an implementation of NamingContextDataStore
+     *        an implementation of NamingContextDataStore
      * @param n
-     *               a sequence of NameComponents which is the name under which
-     *               the
-     *               object will be bound.
+     *        a sequence of NameComponents which is the name under which
+     *        the
+     *        object will be bound.
      * @param obj
-     *               the object reference to be bound.
+     *        the object reference to be bound.
      * @param rebind
-     *               Replace an existing binding or not.
+     *        Replace an existing binding or not.
      * @param bt
-     *               Type of binding (as object or as context).
+     *        Type of binding (as object or as context).
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -549,9 +540,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * @see rebind
      * @see rebind_context
      */
-    private void doBind(NamingContextDataStore impl, NameComponent[] n,
-            org.omg.CORBA.Object obj, boolean rebind,
-            org.omg.CosNaming.BindingType bt)
+    private void doBind(NamingContextDataStore impl, NameComponent[] n, org.omg.CORBA.Object obj,
+            boolean rebind, org.omg.CosNaming.BindingType bt)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName,
@@ -581,15 +571,13 @@ public class NamingContextImpl extends NamingContextExtPOA implements
                         // Fix for bug Id: 4384628
                         if (bth.value.value() == BindingType.nobject.value()) {
                             if (bt.value() == BindingType.ncontext.value()) {
-                                throw new NotFound(NotFoundReason.not_context,
-                                        n);
+                                throw new NotFound(NotFoundReason.not_context, n);
                             }
                         } else {
                             // Previously a Context was bound and now trying to
                             // bind Object. It is invalid.
                             if (bt.value() == BindingType.nobject.value()) {
-                                throw new NotFound(NotFoundReason.not_object,
-                                        n);
+                                throw new NotFound(NotFoundReason.not_object, n);
                             }
                         }
                         impl.Unbind(n[0]);
@@ -649,10 +637,10 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * still apply.
      * 
      * @param impl
-     *             an implementation of NamingContextDataStore
+     *        an implementation of NamingContextDataStore
      * @param n
-     *             a sequence of NameComponents which is the name to be
-     *             resolved.
+     *        a sequence of NameComponents which is the name to be
+     *        resolved.
      * @return the object reference bound under the supplied name.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
@@ -667,8 +655,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      *            One of a fixed set of CORBA system exceptions.
      * @see resolve
      */
-    public static org.omg.CORBA.Object doResolve(NamingContextDataStore impl,
-            NameComponent[] n)
+    public static org.omg.CORBA.Object doResolve(NamingContextDataStore impl, NameComponent[] n)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
@@ -687,8 +674,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             }
             if (obj == null) {
                 // Object was not found
-                throw new org.omg.CosNaming.NamingContextPackage.NotFound(
-                        NotFoundReason.missing_node, n);
+                throw new org.omg.CosNaming.NamingContextPackage.NotFound(NotFoundReason.missing_node, n);
             }
             return obj;
         } else {
@@ -716,9 +702,9 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * implementations where the recursive semantics still apply.
      * 
      * @param impl
-     *             an implementation of NamingContextDataStore
+     *        an implementation of NamingContextDataStore
      * @param n
-     *             a sequence of NameComponents which is the name to be unbound.
+     *        a sequence of NameComponents which is the name to be unbound.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            A name with multiple components was supplied, but the
      *            first component could not be resolved.
@@ -754,8 +740,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
 
             if (objRef == null)
                 // It was not bound
-                throw new org.omg.CosNaming.NamingContextPackage.NotFound(
-                        NotFoundReason.missing_node, n);
+                throw new org.omg.CosNaming.NamingContextPackage.NotFound(NotFoundReason.missing_node, n);
             // Done
             return;
         } else {
@@ -779,9 +764,9 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * found or not narrowable.
      * 
      * @param impl
-     *             an implementation of NamingContextDataStore
+     *        an implementation of NamingContextDataStore
      * @param n
-     *             a NameComponents which is the name to be found.
+     *        a NameComponents which is the name to be found.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            The first component could not be resolved.
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
@@ -791,8 +776,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      *            One of a fixed set of CORBA system exceptions.
      * @see resolve
      */
-    protected static NamingContext resolveFirstAsContext(
-            NamingContextDataStore impl, NameComponent[] n)
+    protected static NamingContext resolveFirstAsContext(NamingContextDataStore impl, NameComponent[] n)
             throws org.omg.CosNaming.NamingContextPackage.NotFound {
         org.omg.CORBA.Object topRef = null;
         BindingTypeHolder bth = new BindingTypeHolder();
@@ -803,16 +787,14 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             topRef = impl.Resolve(n[0], bth);
             if (topRef == null) {
                 // It was not bound
-                throw new org.omg.CosNaming.NamingContextPackage.NotFound(
-                        NotFoundReason.missing_node, n);
+                throw new org.omg.CosNaming.NamingContextPackage.NotFound(NotFoundReason.missing_node, n);
             }
         }
 
         // Was it bound as a context?
         if (bth.value != BindingType.ncontext) {
             // It was not a context
-            throw new org.omg.CosNaming.NamingContextPackage.NotFound(
-                    NotFoundReason.not_context, n);
+            throw new org.omg.CosNaming.NamingContextPackage.NotFound(NotFoundReason.not_context, n);
         }
 
         // Narrow to a naming context
@@ -820,8 +802,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             context = NamingContextHelper.narrow(topRef);
         } catch (org.omg.CORBA.BAD_PARAM ex) {
             // It was not a context
-            throw new org.omg.CosNaming.NamingContextPackage.NotFound(
-                    NotFoundReason.not_context, n);
+            throw new org.omg.CosNaming.NamingContextPackage.NotFound(NotFoundReason.not_context, n);
         }
 
         // Hmm. must be ok
@@ -834,8 +815,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             for (int i = 0; i < name.length; i++) {
                 if (i > 0)
                     s.append(",");
-                s.append("[").append(name[i].id).append(",").append(
-                        name[i].kind).append("]");
+                s.append("[").append(name[i].id).append(",").append(name[i].kind).append("]");
             }
         }
         s.append("}");
@@ -846,9 +826,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
     private static boolean debug;
 
     private static void dprint(String msg) {
-        NamingUtils.dprint("NamingContextImpl(" + Thread.currentThread()
-                .getName() + " at " + System.currentTimeMillis() + " ems): "
-                + msg);
+        NamingUtils.dprint("NamingContextImpl(" + Thread.currentThread().getName() + " at " + System
+                .currentTimeMillis() + " ems): " + msg);
     }
 
     /**
@@ -860,12 +839,12 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * with compound names, doBind( ) calls this method recursively.
      * 
      * @param n
-     *            a sequence of NameComponents which is the name under which the
-     *            object will be bound.
+     *        a sequence of NameComponents which is the name under which the
+     *        object will be bound.
      * @param obj
-     *            the object reference to be bound.
+     *        the object reference to be bound.
      * @param bt
-     *            Type of binding (as object or as context).
+     *        Type of binding (as object or as context).
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            raised if the NameComoponent list is invalid
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
@@ -878,8 +857,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * @see Resolve
      * @see Unbind
      */
-    public void Bind(NameComponent n, org.omg.CORBA.Object obj,
-            BindingType bt) {
+    public void Bind(NameComponent n, org.omg.CORBA.Object obj, BindingType bt) {
         if (obj == null) {
             // Raise a Valid Exception and Return
             return;
@@ -906,8 +884,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
                 value.setObjectRef(obj);
             }
 
-            InternalBindingValue oldValue = (InternalBindingValue) this.theHashtable
-                    .put(key, value);
+            InternalBindingValue oldValue = (InternalBindingValue) this.theHashtable.put(key, value);
 
             if (oldValue != null) {
                 // There was an entry with this name in the Hashtable and hence
@@ -939,9 +916,9 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * Names.
      * 
      * @param n
-     *           a sequence of NameComponents which is the name to be resolved.
+     *        a sequence of NameComponents which is the name to be resolved.
      * @param bt
-     *           Type of binding (as object or as context).
+     *        Type of binding (as object or as context).
      * @return the object reference bound under the supplied name.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Neither a NamingContext or a Corba Object reference not
@@ -955,8 +932,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      *            One of a fixed set of CORBA system exceptions.
      * @see Bind
      */
-    public Object Resolve(NameComponent n, BindingTypeHolder bth)
-            throws SystemException {
+    public Object Resolve(NameComponent n, BindingTypeHolder bth) throws SystemException {
         if ((n.id.length() == 0) && (n.kind.length() == 0)) {
             // If the NameComponent list has no entry then it means the current
             // context was requested
@@ -965,8 +941,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
         }
 
         InternalBindingKey key = new InternalBindingKey(n);
-        InternalBindingValue value = (InternalBindingValue) this.theHashtable
-                .get(key);
+        InternalBindingValue value = (InternalBindingValue) this.theHashtable.get(key);
 
         if (value == null) {
             // No entry was found for the given name and hence return NULL
@@ -986,8 +961,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             // read it from the File.
             if (value.strObjectRef.startsWith("NC")) {
                 bth.value = BindingType.ncontext;
-                return theNameServiceHandle.getObjectReferenceFromKey(
-                        value.strObjectRef);
+                return theNameServiceHandle.getObjectReferenceFromKey(value.strObjectRef);
             } else {
                 // Else, It is a Object Reference. Check whether Object
                 // Reference
@@ -997,18 +971,15 @@ public class NamingContextImpl extends NamingContextExtPOA implements
 
                 if (theObjectFromStringifiedReference == null) {
                     try {
-                        theObjectFromStringifiedReference = orb
-                                .string_to_object(value.strObjectRef);
+                        theObjectFromStringifiedReference = orb.string_to_object(value.strObjectRef);
                         value.setObjectRef(theObjectFromStringifiedReference);
                     } catch (Exception e) {
-                        throw readWrapper.resolveConversionFailure(
-                                CompletionStatus.COMPLETED_MAYBE, e);
+                        throw readWrapper.resolveConversionFailure(CompletionStatus.COMPLETED_MAYBE, e);
                     }
                 }
             }
         } catch (Exception e) {
-            throw readWrapper.resolveFailure(CompletionStatus.COMPLETED_MAYBE,
-                    e);
+            throw readWrapper.resolveFailure(CompletionStatus.COMPLETED_MAYBE, e);
         }
 
         return theObjectFromStringifiedReference;
@@ -1020,7 +991,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * Unbind using compound Names.
      * 
      * @param n
-     *          a sequence of NameComponents which is the name to be resolved.
+     *        a sequence of NameComponents which is the name to be resolved.
      * @return the object reference bound under the supplied name.
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Neither a NamingContext or a Corba Object reference not
@@ -1054,22 +1025,20 @@ public class NamingContextImpl extends NamingContextExtPOA implements
 
             if (value.strObjectRef.startsWith("NC")) {
                 theServantManagerImplHandle.readInContext(value.strObjectRef);
-                Object theObjectFromStringfiedReference = theNameServiceHandle
-                        .getObjectReferenceFromKey(value.strObjectRef);
+                Object theObjectFromStringfiedReference = theNameServiceHandle.getObjectReferenceFromKey(
+                        value.strObjectRef);
                 return theObjectFromStringfiedReference;
             } else {
                 Object theObjectFromStringifiedReference = value.getObjectRef();
 
                 if (theObjectFromStringifiedReference == null) {
-                    theObjectFromStringifiedReference = orb.string_to_object(
-                            value.strObjectRef);
+                    theObjectFromStringifiedReference = orb.string_to_object(value.strObjectRef);
                 }
 
                 return theObjectFromStringifiedReference;
             }
         } catch (Exception e) {
-            throw updateWrapper.unbindFailure(CompletionStatus.COMPLETED_MAYBE,
-                    e);
+            throw updateWrapper.unbindFailure(CompletionStatus.COMPLETED_MAYBE, e);
         }
     }
 
@@ -1080,23 +1049,22 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * required number of bindings.
      * 
      * @param how_many
-     *                 The number of requested bindings in the BindingList.
+     *        The number of requested bindings in the BindingList.
      * @param bl
-     *                 The BindingList as an out parameter.
+     *        The BindingList as an out parameter.
      * @param bi
-     *                 The BindingIterator as an out parameter.
+     *        The BindingIterator as an out parameter.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      */
 
-    public void List(int how_many, BindingListHolder bl,
-            BindingIteratorHolder bi) throws SystemException {
+    public void List(int how_many, BindingListHolder bl, BindingIteratorHolder bi) throws SystemException {
         if (biPOA == null) {
             createbiPOA();
         }
         try {
-            PersistentBindingIterator bindingIterator = new PersistentBindingIterator(
-                    this.orb, (Hashtable) this.theHashtable.clone(), biPOA);
+            PersistentBindingIterator bindingIterator = new PersistentBindingIterator(this.orb,
+                    (Hashtable) this.theHashtable.clone(), biPOA);
             // Have it set the binding list
             bindingIterator.list(how_many, bl);
 
@@ -1104,8 +1072,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             org.omg.CORBA.Object obj = biPOA.id_to_reference(objectId);
 
             // Get the object reference for the binding iterator servant
-            org.omg.CosNaming.BindingIterator bindingRef = org.omg.CosNaming.BindingIteratorHelper
-                    .narrow(obj);
+            org.omg.CosNaming.BindingIterator bindingRef = org.omg.CosNaming.BindingIteratorHelper.narrow(
+                    obj);
 
             bi.value = bindingRef;
         } catch (org.omg.CORBA.SystemException e) {
@@ -1120,18 +1088,14 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             return;
         }
         try {
-            POA rootPOA = (POA) orb.resolve_initial_references(
-                    ORBConstants.ROOT_POA_NAME);
+            POA rootPOA = (POA) orb.resolve_initial_references(ORBConstants.ROOT_POA_NAME);
             rootPOA.the_POAManager().activate();
 
             int i = 0;
             Policy[] poaPolicy = new Policy[3];
-            poaPolicy[i++] = rootPOA.create_lifespan_policy(
-                    LifespanPolicyValue.TRANSIENT);
-            poaPolicy[i++] = rootPOA.create_id_assignment_policy(
-                    IdAssignmentPolicyValue.SYSTEM_ID);
-            poaPolicy[i++] = rootPOA.create_servant_retention_policy(
-                    ServantRetentionPolicyValue.RETAIN);
+            poaPolicy[i++] = rootPOA.create_lifespan_policy(LifespanPolicyValue.TRANSIENT);
+            poaPolicy[i++] = rootPOA.create_id_assignment_policy(IdAssignmentPolicyValue.SYSTEM_ID);
+            poaPolicy[i++] = rootPOA.create_servant_retention_policy(ServantRetentionPolicyValue.RETAIN);
             biPOA = rootPOA.create_POA("BindingIteratorPOA", null, poaPolicy);
             biPOA.the_POAManager().activate();
         } catch (Exception e) {
@@ -1181,12 +1145,11 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * components.
      * 
      * @param n
-     *          Name of the object
-     *          <p>
+     *        Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
-     *
      */
     public String to_string(org.omg.CosNaming.NameComponent[] n)
             throws org.omg.CosNaming.NamingContextPackage.InvalidName {
@@ -1209,12 +1172,11 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * Name Components.
      * 
      * @param sn
-     *           Stringified Name of the object
-     *           <p>
+     *        Stringified Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
-     *
      */
     public org.omg.CosNaming.NameComponent[] to_name(String sn)
             throws org.omg.CosNaming.NamingContextPackage.InvalidName {
@@ -1222,8 +1184,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
         if ((sn == null) || (sn.length() == 0)) {
             throw new org.omg.CosNaming.NamingContextPackage.InvalidName();
         }
-        org.omg.CosNaming.NameComponent[] theNameComponents = getINSImpl()
-                .convertToNameComponent(sn);
+        org.omg.CosNaming.NameComponent[] theNameComponents = getINSImpl().convertToNameComponent(sn);
         if ((theNameComponents == null) || (theNameComponents.length == 0)) {
             throw new org.omg.CosNaming.NamingContextPackage.InvalidName();
         }
@@ -1231,9 +1192,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
             // If there is a name component whose id and kind null or
             // zero length string, then an invalid name exception needs to be
             // raised.
-            if (((theNameComponents[i].id == null) || (theNameComponents[i].id
-                    .length() == 0)) && ((theNameComponents[i].kind == null)
-                            || (theNameComponents[i].kind.length() == 0))) {
+            if (((theNameComponents[i].id == null) || (theNameComponents[i].id.length() == 0))
+                    && ((theNameComponents[i].kind == null) || (theNameComponents[i].kind.length() == 0))) {
                 throw new InvalidName();
             }
         }
@@ -1245,12 +1205,12 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * Stringified Name of the object.
      * 
      * @param addr
-     *             internet based address of the host machine where Name Service
-     *             is running
-     *             <p>
+     *        internet based address of the host machine where Name Service
+     *        is running
+     *        <p>
      * @param sn
-     *             Stringified Name of the object
-     *             <p>
+     *        Stringified Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
@@ -1258,7 +1218,6 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      *            Indicates the internet based address of the host machine
      *            is incorrect
      *            <p>
-     *
      */
 
     public String to_url(String addr, String sn)
@@ -1291,8 +1250,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * This operation resolves the Stringified name into the object reference.
      * 
      * @param sn
-     *           Stringified Name of the object
-     *           <p>
+     *        Stringified Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates there is no object reference for the given name.
      *            <p>
@@ -1302,10 +1261,8 @@ public class NamingContextImpl extends NamingContextExtPOA implements
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
-     *
      */
-    public org.omg.CORBA.Object resolve_str(String sn)
-            throws org.omg.CosNaming.NamingContextPackage.NotFound,
+    public org.omg.CORBA.Object resolve_str(String sn) throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.Object theObject = null;
@@ -1313,8 +1270,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
         if ((sn == null) || (sn.length() == 0)) {
             throw new org.omg.CosNaming.NamingContextPackage.InvalidName();
         }
-        org.omg.CosNaming.NameComponent[] theNameComponents = getINSImpl()
-                .convertToNameComponent(sn);
+        org.omg.CosNaming.NameComponent[] theNameComponents = getINSImpl().convertToNameComponent(sn);
         if ((theNameComponents == null) || (theNameComponents.length == 0)) {
             throw new org.omg.CosNaming.NamingContextPackage.InvalidName();
         }
@@ -1336,8 +1292,7 @@ public class NamingContextImpl extends NamingContextExtPOA implements
         System.out.println("Hashtable Size = " + theHashtable.size());
         java.util.Enumeration e = theHashtable.keys();
         for (; e.hasMoreElements();) {
-            InternalBindingValue thevalue = (InternalBindingValue) this.theHashtable
-                    .get(e.nextElement());
+            InternalBindingValue thevalue = (InternalBindingValue) this.theHashtable.get(e.nextElement());
             if (thevalue != null) {
                 System.out.println("value = " + thevalue.strObjectRef);
             }

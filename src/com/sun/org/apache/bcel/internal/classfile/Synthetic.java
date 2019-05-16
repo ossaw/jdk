@@ -72,24 +72,22 @@ public final class Synthetic extends Attribute {
      * references (shallow copy). Use copy() for a physical copy.
      */
     public Synthetic(Synthetic c) {
-        this(c.getNameIndex(), c.getLength(), c.getBytes(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getBytes(), c.getConstantPool());
     }
 
     /**
      * @param name_index
-     *                      Index in constant pool to CONSTANT_Utf8, which
-     *                      should
-     *                      represent the string "Synthetic".
+     *        Index in constant pool to CONSTANT_Utf8, which
+     *        should
+     *        represent the string "Synthetic".
      * @param length
-     *                      Content length in bytes - should be zero.
+     *        Content length in bytes - should be zero.
      * @param bytes
-     *                      Attribute contents
+     *        Attribute contents
      * @param constant_pool
-     *                      The constant pool this attribute is associated with.
+     *        The constant pool this attribute is associated with.
      */
-    public Synthetic(int name_index, int length, byte[] bytes,
-            ConstantPool constant_pool) {
+    public Synthetic(int name_index, int length, byte[] bytes, ConstantPool constant_pool) {
         super(Constants.ATTR_SYNTHETIC, name_index, length, constant_pool);
         this.bytes = bytes;
     }
@@ -98,17 +96,17 @@ public final class Synthetic extends Attribute {
      * Construct object from file stream.
      * 
      * @param name_index
-     *                      Index in constant pool to CONSTANT_Utf8
+     *        Index in constant pool to CONSTANT_Utf8
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      * @throws IOException
      */
-    Synthetic(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    Synthetic(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, (byte[]) null, constant_pool);
 
         if (length > 0) {
@@ -124,7 +122,7 @@ public final class Synthetic extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitSynthetic(this);
@@ -134,7 +132,7 @@ public final class Synthetic extends Attribute {
      * Dump source file attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {

@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 
 /**
  * Indicates an exceptional condition thrown by a {@link KeySelector}.
- *
  * <p>
  * A <code>KeySelectorException</code> can contain a cause: another throwable
  * that caused this <code>KeySelectorException</code> to get thrown.
@@ -47,7 +46,7 @@ public class KeySelectorException extends Exception {
      * detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public KeySelectorException(String message) {
         super(message);
@@ -61,11 +60,11 @@ public class KeySelectorException extends Exception {
      * <i>not</i> automatically incorporated in this exception's detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      * @param cause
-     *                the cause (A <tt>null</tt> value is permitted, and
-     *                indicates
-     *                that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and
+     *        indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public KeySelectorException(String message, Throwable cause) {
         super(message);
@@ -79,8 +78,8 @@ public class KeySelectorException extends Exception {
      * contains the class and detail message of <code>cause</code>).
      *
      * @param cause
-     *              the cause (A <tt>null</tt> value is permitted, and indicates
-     *              that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public KeySelectorException(Throwable cause) {
         super(cause == null ? null : cause.toString());
@@ -114,7 +113,7 @@ public class KeySelectorException extends Exception {
      * cause's backtrace to the specified print stream.
      *
      * @param s
-     *          <code>PrintStream</code> to use for output
+     *        <code>PrintStream</code> to use for output
      */
     public void printStackTrace(PrintStream s) {
         super.printStackTrace(s);
@@ -126,7 +125,7 @@ public class KeySelectorException extends Exception {
      * cause's backtrace to the specified print writer.
      *
      * @param s
-     *          <code>PrintWriter</code> to use for output
+     *        <code>PrintWriter</code> to use for output
      */
     public void printStackTrace(PrintWriter s) {
         super.printStackTrace(s);

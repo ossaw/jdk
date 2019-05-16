@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -47,8 +45,8 @@ import org.w3c.dom.Node;
 public class ResolverFragment extends ResourceResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(ResolverFragment.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(ResolverFragment.class
+            .getName());
 
     @Override
     public boolean engineIsThreadSafe() {
@@ -91,24 +89,20 @@ public class ResolverFragment extends ResourceResolverSpi {
             selectedElem = doc.getElementById(id);
             if (selectedElem == null) {
                 Object exArgs[] = { id };
-                throw new ResourceResolverException(
-                        "signature.Verification.MissingID", exArgs,
-                        context.attr, context.baseUri);
+                throw new ResourceResolverException("signature.Verification.MissingID", exArgs, context.attr,
+                        context.baseUri);
             }
             if (context.secureValidation) {
-                Element start = context.attr.getOwnerDocument()
-                        .getDocumentElement();
+                Element start = context.attr.getOwnerDocument().getDocumentElement();
                 if (!XMLUtils.protectAgainstWrappingAttack(start, id)) {
                     Object exArgs[] = { id };
-                    throw new ResourceResolverException(
-                            "signature.Verification.MultipleIDs", exArgs,
+                    throw new ResourceResolverException("signature.Verification.MultipleIDs", exArgs,
                             context.attr, context.baseUri);
                 }
             }
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE,
-                        "Try to catch an Element with ID " + id
-                                + " and Element was " + selectedElem);
+                log.log(java.util.logging.Level.FINE, "Try to catch an Element with ID " + id
+                        + " and Element was " + selectedElem);
             }
         }
 
@@ -134,25 +128,22 @@ public class ResolverFragment extends ResourceResolverSpi {
     public boolean engineCanResolveURI(ResourceResolverContext context) {
         if (context.uriToResolve == null) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE,
-                        "Quick fail for null uri");
+                log.log(java.util.logging.Level.FINE, "Quick fail for null uri");
             }
             return false;
         }
 
-        if (context.uriToResolve.equals("") || ((context.uriToResolve.charAt(
-                0) == '#') && !context.uriToResolve.startsWith("#xpointer("))) {
+        if (context.uriToResolve.equals("") || ((context.uriToResolve.charAt(0) == '#')
+                && !context.uriToResolve.startsWith("#xpointer("))) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE,
-                        "State I can resolve reference: \""
-                                + context.uriToResolve + "\"");
+                log.log(java.util.logging.Level.FINE, "State I can resolve reference: \""
+                        + context.uriToResolve + "\"");
             }
             return true;
         }
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE,
-                    "Do not seem to be able to resolve reference: \""
-                            + context.uriToResolve + "\"");
+            log.log(java.util.logging.Level.FINE, "Do not seem to be able to resolve reference: \""
+                    + context.uriToResolve + "\"");
         }
         return false;
     }

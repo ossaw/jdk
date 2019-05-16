@@ -39,24 +39,20 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
     private static boolean exclusiveBind = true;
 
     static {
-        java.security.AccessController.doPrivileged(
-                new PrivilegedAction<Object>() {
-                    public Object run() {
-                        version = 0;
-                        try {
-                            version = Float.parseFloat(System.getProperties()
-                                    .getProperty("os.version"));
-                            preferIPv4Stack = Boolean.parseBoolean(System
-                                    .getProperties().getProperty(
-                                            "java.net.preferIPv4Stack"));
-                            exclBindProp = System.getProperty(
-                                    "sun.net.useExclusiveBind");
-                        } catch (NumberFormatException e) {
-                            assert false : e;
-                        }
-                        return null; // nothing to return
-                    }
-                });
+        java.security.AccessController.doPrivileged(new PrivilegedAction<Object>() {
+            public Object run() {
+                version = 0;
+                try {
+                    version = Float.parseFloat(System.getProperties().getProperty("os.version"));
+                    preferIPv4Stack = Boolean.parseBoolean(System.getProperties().getProperty(
+                            "java.net.preferIPv4Stack"));
+                    exclBindProp = System.getProperty("sun.net.useExclusiveBind");
+                } catch (NumberFormatException e) {
+                    assert false : e;
+                }
+                return null; // nothing to return
+            }
+        });
 
         // (version >= 6.0) implies Vista or greater.
         if (version >= 6.0 && !preferIPv4Stack) {
@@ -65,8 +61,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
 
         if (exclBindProp != null) {
             // sun.net.useExclusiveBind is true
-            exclusiveBind = exclBindProp.length() == 0 ? true
-                    : Boolean.parseBoolean(exclBindProp);
+            exclusiveBind = exclBindProp.length() == 0 ? true : Boolean.parseBoolean(exclBindProp);
         } else if (version < 6.0) {
             exclusiveBind = false;
         }
@@ -141,8 +136,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
         this.fd = impl.fd;
     }
 
-    protected void connect(String host, int port) throws UnknownHostException,
-            IOException {
+    protected void connect(String host, int port) throws UnknownHostException, IOException {
         impl.connect(host, port);
     }
 
@@ -150,8 +144,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
         impl.connect(address, port);
     }
 
-    protected void connect(SocketAddress address, int timeout)
-            throws IOException {
+    protected void connect(SocketAddress address, int timeout) throws IOException {
         impl.connect(address, timeout);
     }
 
@@ -163,13 +156,11 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
         return impl.getOption(opt);
     }
 
-    synchronized void doConnect(InetAddress address, int port, int timeout)
-            throws IOException {
+    synchronized void doConnect(InetAddress address, int port, int timeout) throws IOException {
         impl.doConnect(address, port, timeout);
     }
 
-    protected synchronized void bind(InetAddress address, int lport)
-            throws IOException {
+    protected synchronized void bind(InetAddress address, int lport) throws IOException {
         impl.bind(address, lport);
     }
 
@@ -283,8 +274,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
         impl.socketCreate(isServer);
     }
 
-    void socketConnect(InetAddress address, int port, int timeout)
-            throws IOException {
+    void socketConnect(InetAddress address, int port, int timeout) throws IOException {
         impl.socketConnect(address, port, timeout);
     }
 
@@ -312,8 +302,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl {
         impl.socketShutdown(howto);
     }
 
-    void socketSetOption(int cmd, boolean on, Object value)
-            throws SocketException {
+    void socketSetOption(int cmd, boolean on, Object value) throws SocketException {
         impl.socketSetOption(cmd, on, value);
     }
 

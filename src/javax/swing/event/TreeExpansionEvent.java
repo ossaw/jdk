@@ -38,10 +38,10 @@ public class TreeExpansionEvent extends EventObject {
      * Constructs a TreeExpansionEvent object.
      *
      * @param source
-     *               the Object that originated the event (typically
-     *               <code>this</code>)
+     *        the Object that originated the event (typically
+     *        <code>this</code>)
      * @param path
-     *               a TreePath object identifying the newly expanded node
+     *        a TreePath object identifying the newly expanded node
      */
     public TreeExpansionEvent(Object source, TreePath path) {
         super(source);

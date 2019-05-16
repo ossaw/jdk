@@ -25,11 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Represents a Catalog entry.
- *
  * <p>
  * Instances of this class represent individual entries in a Catalog.
  * </p>
- *
  * <p>
  * Each catalog entry has a unique name and is associated with an arbitrary
  * number of arguments (all strings). For example, the TR9401 catalog entry
@@ -37,22 +35,18 @@ import java.util.concurrent.atomic.AtomicInteger;
  * entry has a unique numeric type, assigned automatically when the entry type
  * is created.
  * </p>
- *
  * <p>
  * The number and type of catalog entries is maintained <em>statically</em>.
  * Catalog classes, or their subclasses, can add new entry types, but all
  * Catalog objects share the same global pool of types.
  * </p>
- *
  * <p>
  * Initially there are no valid entries.
  * </p>
  *
  * @see Catalog
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  */
 public class CatalogEntry {
     /** The nextEntry is the ordinal number of the next entry type. */
@@ -74,15 +68,15 @@ public class CatalogEntry {
      * Adds a new catalog entry type.
      *
      * @param name
-     *                The name of the catalog entry type. This must be unique
-     *                among
-     *                all types and is case-sensitive. (Adding a duplicate name
-     *                effectively replaces the old type with the new type.)
+     *        The name of the catalog entry type. This must be unique
+     *        among
+     *        all types and is case-sensitive. (Adding a duplicate name
+     *        effectively replaces the old type with the new type.)
      * @param numArgs
-     *                The number of arguments that this entry type is required
-     *                to
-     *                have. There is no provision for variable numbers of
-     *                arguments.
+     *        The number of arguments that this entry type is required
+     *        to
+     *        have. There is no provision for variable numbers of
+     *        arguments.
      * @return The type for the new entry.
      */
     static int addEntryType(String name, int numArgs) {
@@ -97,11 +91,11 @@ public class CatalogEntry {
      * Lookup an entry type
      *
      * @param name
-     *             The name of the catalog entry type.
+     *        The name of the catalog entry type.
      * @return The type of the catalog entry with the specified name.
      * @throws InvalidCatalogEntryTypeException
-     *                                          if no entry has the specified
-     *                                          name.
+     *         if no entry has the specified
+     *         name.
      */
     public static int getEntryType(String name) throws CatalogException {
         if (!entryTypes.containsKey(name)) {
@@ -121,11 +115,11 @@ public class CatalogEntry {
      * Find out how many arguments an entry is required to have.
      *
      * @param name
-     *             The name of the catalog entry type.
+     *        The name of the catalog entry type.
      * @return The number of arguments that entry type is required to have.
      * @throws InvalidCatalogEntryTypeException
-     *                                          if no entry has the specified
-     *                                          name.
+     *         if no entry has the specified
+     *         name.
      */
     public static int getEntryArgCount(String name) throws CatalogException {
         return getEntryArgCount(getEntryType(name));
@@ -135,10 +129,10 @@ public class CatalogEntry {
      * Find out how many arguments an entry is required to have.
      *
      * @param type
-     *             A valid catalog entry type.
+     *        A valid catalog entry type.
      * @return The number of arguments that entry type is required to have.
      * @throws InvalidCatalogEntryTypeException
-     *                                          if the type is invalid.
+     *         if the type is invalid.
      */
     public static int getEntryArgCount(int type) throws CatalogException {
         try {
@@ -164,14 +158,14 @@ public class CatalogEntry {
      * Construct a catalog entry of the specified type.
      *
      * @param name
-     *             The name of the entry type
+     *        The name of the entry type
      * @param args
-     *             A String Vector of arguments
+     *        A String Vector of arguments
      * @throws InvalidCatalogEntryTypeException
-     *                                          if no such entry type exists.
+     *         if no such entry type exists.
      * @throws InvalidCatalogEntryException
-     *                                          if the wrong number of arguments
-     *                                          is passed.
+     *         if the wrong number of arguments
+     *         is passed.
      */
     public CatalogEntry(String name, Vector args) throws CatalogException {
         Integer iType = entryTypes.get(name);
@@ -199,14 +193,14 @@ public class CatalogEntry {
      * Construct a catalog entry of the specified type.
      *
      * @param type
-     *             The entry type
+     *        The entry type
      * @param args
-     *             A String Vector of arguments
+     *        A String Vector of arguments
      * @throws InvalidCatalogEntryTypeException
-     *                                          if no such entry type exists.
+     *         if no such entry type exists.
      * @throws InvalidCatalogEntryException
-     *                                          if the wrong number of arguments
-     *                                          is passed.
+     *         if the wrong number of arguments
+     *         is passed.
      */
     public CatalogEntry(int type, Vector args) throws CatalogException {
         try {
@@ -235,7 +229,7 @@ public class CatalogEntry {
      * Get an entry argument.
      *
      * @param argNum
-     *               The argument number (arguments are numbered from 0).
+     *        The argument number (arguments are numbered from 0).
      * @return The specified argument or null if an invalid argNum is provided.
      */
     public String getEntryArg(int argNum) {
@@ -249,7 +243,6 @@ public class CatalogEntry {
 
     /**
      * Set an entry argument.
-     *
      * <p>
      * Catalogs sometimes need to adjust the catlog entry parameters, for
      * example to make a relative URI absolute with respect to the current base
@@ -259,13 +252,12 @@ public class CatalogEntry {
      * </p>
      *
      * @param argNum
-     *               The argument number (arguments are numbered from 0).
+     *        The argument number (arguments are numbered from 0).
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if an invalid argument number is
-     *                                        provided.
+     *         if an invalid argument number is
+     *         provided.
      */
-    public void setEntryArg(int argNum, String newspec)
-            throws ArrayIndexOutOfBoundsException {
+    public void setEntryArg(int argNum, String newspec) throws ArrayIndexOutOfBoundsException {
         args.set(argNum, newspec);
     }
 }

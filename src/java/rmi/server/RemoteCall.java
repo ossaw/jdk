@@ -82,9 +82,9 @@ public interface RemoteCall {
      * success of the call). Should only succeed once per remote call.
      *
      * @param success
-     *                If true, indicates normal return, else indicates
-     *                exceptional
-     *                return.
+     *        If true, indicates normal return, else indicates
+     *        exceptional
+     *        return.
      * @return output stream for writing call result
      * @exception java.io.IOException
      *            if an I/O error occurs.
@@ -94,8 +94,7 @@ public interface RemoteCall {
      * @deprecated no replacement
      */
     @Deprecated
-    ObjectOutput getResultStream(boolean success) throws IOException,
-            StreamCorruptedException;
+    ObjectOutput getResultStream(boolean success) throws IOException, StreamCorruptedException;
 
     /**
      * Do whatever it takes to execute the call.

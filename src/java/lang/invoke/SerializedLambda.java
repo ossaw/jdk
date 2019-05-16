@@ -18,14 +18,12 @@ import java.util.Objects;
  * functional interface method and the identity of the implementation method, as
  * well as dynamic metafactory arguments such as values captured from the
  * lexical scope at the time of lambda capture.
- *
  * <p>
  * Implementors of serializable lambdas, such as compilers or language runtime
  * libraries, are expected to ensure that instances deserialize properly. One
  * means to do so is to ensure that the {@code writeReplace} method returns an
  * instance of {@code SerializedLambda}, rather than allowing default
  * serialization to proceed.
- *
  * <p>
  * {@code SerializedLambda} has a {@code readResolve} method that looks for a
  * (possibly private) static method called
@@ -55,52 +53,50 @@ public final class SerializedLambda implements Serializable {
      * at the lambda factory site.
      *
      * @param capturingClass
-     *                                           The class in which the lambda
-     *                                           expression appears
+     *        The class in which the lambda
+     *        expression appears
      * @param functionalInterfaceClass
-     *                                           Name, in slash-delimited form,
-     *                                           of static type of the returned
-     *                                           lambda object
+     *        Name, in slash-delimited form,
+     *        of static type of the returned
+     *        lambda object
      * @param functionalInterfaceMethodName
-     *                                           Name of the functional
-     *                                           interface method for the
-     *                                           present at the
-     *                                           lambda factory site
+     *        Name of the functional
+     *        interface method for the
+     *        present at the
+     *        lambda factory site
      * @param functionalInterfaceMethodSignature
-     *                                           Signature of the functional
-     *                                           interface method present at the
-     *                                           lambda factory site
+     *        Signature of the functional
+     *        interface method present at the
+     *        lambda factory site
      * @param implMethodKind
-     *                                           Method handle kind for the
-     *                                           implementation method
+     *        Method handle kind for the
+     *        implementation method
      * @param implClass
-     *                                           Name, in slash-delimited form,
-     *                                           for the class holding the
-     *                                           implementation method
+     *        Name, in slash-delimited form,
+     *        for the class holding the
+     *        implementation method
      * @param implMethodName
-     *                                           Name of the implementation
-     *                                           method
+     *        Name of the implementation
+     *        method
      * @param implMethodSignature
-     *                                           Signature of the implementation
-     *                                           method
+     *        Signature of the implementation
+     *        method
      * @param instantiatedMethodType
-     *                                           The signature of the primary
-     *                                           functional interface method
-     *                                           after
-     *                                           type variables are substituted
-     *                                           with their instantiation from
-     *                                           the capture site
+     *        The signature of the primary
+     *        functional interface method
+     *        after
+     *        type variables are substituted
+     *        with their instantiation from
+     *        the capture site
      * @param capturedArgs
-     *                                           The dynamic arguments to the
-     *                                           lambda factory site, which
-     *                                           represent variables captured by
-     *                                           the lambda
+     *        The dynamic arguments to the
+     *        lambda factory site, which
+     *        represent variables captured by
+     *        the lambda
      */
-    public SerializedLambda(Class<?> capturingClass,
-            String functionalInterfaceClass,
-            String functionalInterfaceMethodName,
-            String functionalInterfaceMethodSignature, int implMethodKind,
-            String implClass, String implMethodName, String implMethodSignature,
+    public SerializedLambda(Class<?> capturingClass, String functionalInterfaceClass,
+            String functionalInterfaceMethodName, String functionalInterfaceMethodSignature,
+            int implMethodKind, String implClass, String implMethodName, String implMethodSignature,
             String instantiatedMethodType, Object[] capturedArgs) {
         this.capturingClass = capturingClass;
         this.functionalInterfaceClass = functionalInterfaceClass;
@@ -214,7 +210,7 @@ public final class SerializedLambda implements Serializable {
      * Get a dynamic argument to the lambda capture site.
      * 
      * @param i
-     *          the argument to capture
+     *        the argument to capture
      * @return a dynamic argument to the lambda capture site
      */
     public Object getCapturedArg(int i) {
@@ -223,17 +219,15 @@ public final class SerializedLambda implements Serializable {
 
     private Object readResolve() throws ReflectiveOperationException {
         try {
-            Method deserialize = AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Method>() {
-                        @Override
-                        public Method run() throws Exception {
-                            Method m = capturingClass.getDeclaredMethod(
-                                    "$deserializeLambda$",
-                                    SerializedLambda.class);
-                            m.setAccessible(true);
-                            return m;
-                        }
-                    });
+            Method deserialize = AccessController.doPrivileged(new PrivilegedExceptionAction<Method>() {
+                @Override
+                public Method run() throws Exception {
+                    Method m = capturingClass.getDeclaredMethod("$deserializeLambda$",
+                            SerializedLambda.class);
+                    m.setAccessible(true);
+                    return m;
+                }
+            });
 
             return deserialize.invoke(null, this);
         } catch (PrivilegedActionException e) {
@@ -243,22 +237,17 @@ public final class SerializedLambda implements Serializable {
             else if (cause instanceof RuntimeException)
                 throw (RuntimeException) cause;
             else
-                throw new RuntimeException(
-                        "Exception in SerializedLambda.readResolve", e);
+                throw new RuntimeException("Exception in SerializedLambda.readResolve", e);
         }
     }
 
     @Override
     public String toString() {
-        String implKind = MethodHandleInfo.referenceKindToString(
-                implMethodKind);
-        return String.format("SerializedLambda[%s=%s, %s=%s.%s:%s, "
-                + "%s=%s %s.%s:%s, %s=%s, %s=%d]", "capturingClass",
-                capturingClass, "functionalInterfaceMethod",
-                functionalInterfaceClass, functionalInterfaceMethodName,
-                functionalInterfaceMethodSignature, "implementation", implKind,
-                implClass, implMethodName, implMethodSignature,
-                "instantiatedMethodType", instantiatedMethodType, "numCaptured",
-                capturedArgs.length);
+        String implKind = MethodHandleInfo.referenceKindToString(implMethodKind);
+        return String.format("SerializedLambda[%s=%s, %s=%s.%s:%s, " + "%s=%s %s.%s:%s, %s=%s, %s=%d]",
+                "capturingClass", capturingClass, "functionalInterfaceMethod", functionalInterfaceClass,
+                functionalInterfaceMethodName, functionalInterfaceMethodSignature, "implementation", implKind,
+                implClass, implMethodName, implMethodSignature, "instantiatedMethodType",
+                instantiatedMethodType, "numCaptured", capturedArgs.length);
     }
 }

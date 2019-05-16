@@ -8,8 +8,7 @@ package org.omg.CosNaming;
  * PDT
  */
 
-public final class NameComponentHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class NameComponentHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CosNaming.NameComponent value = null;
 
     public NameComponentHolder() {}

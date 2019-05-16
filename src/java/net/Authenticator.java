@@ -29,7 +29,6 @@ package java.net;
  *
  * @see java.net.Authenticator#setDefault(java.net.Authenticator)
  * @see java.net.Authenticator#getPasswordAuthentication()
- *
  * @author Bill Foote
  * @since 1.2
  */
@@ -86,23 +85,20 @@ public abstract class Authenticator {
      * permission. This may result in a java.lang.SecurityException.
      *
      * @param a
-     *          The authenticator to be set. If a is {@code null} then any
-     *          previously set authenticator is removed.
-     *
+     *        The authenticator to be set. If a is {@code null} then any
+     *        previously set authenticator is removed.
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method doesn't allow setting the default
-     *                           authenticator.
-     *
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method doesn't allow setting the default
+     *         authenticator.
      * @see SecurityManager#checkPermission
      * @see java.net.NetPermission
      */
     public synchronized static void setDefault(Authenticator a) {
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
-            NetPermission setDefaultPermission = new NetPermission(
-                    "setDefaultAuthenticator");
+            NetPermission setDefaultPermission = new NetPermission("setDefaultAuthenticator");
             sm.checkPermission(setDefaultPermission);
         }
 
@@ -118,38 +114,33 @@ public abstract class Authenticator {
      * permission. This may result in a java.lang.SecurityException.
      *
      * @param addr
-     *                 The InetAddress of the site requesting authorization, or
-     *                 null
-     *                 if not known.
+     *        The InetAddress of the site requesting authorization, or
+     *        null
+     *        if not known.
      * @param port
-     *                 the port for the requested connection
+     *        the port for the requested connection
      * @param protocol
-     *                 The protocol that's requesting the connection (
-     *                 {@link java.net.Authenticator#getRequestingProtocol()})
+     *        The protocol that's requesting the connection (
+     *        {@link java.net.Authenticator#getRequestingProtocol()})
      * @param prompt
-     *                 A prompt string for the user
+     *        A prompt string for the user
      * @param scheme
-     *                 The authentication scheme
-     *
+     *        The authentication scheme
      * @return The username/password, or null if one can't be gotten.
-     *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method doesn't allow the password
-     *                           authentication request.
-     *
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method doesn't allow the password
+     *         authentication request.
      * @see SecurityManager#checkPermission
      * @see java.net.NetPermission
      */
-    public static PasswordAuthentication requestPasswordAuthentication(
-            InetAddress addr, int port, String protocol, String prompt,
-            String scheme) {
+    public static PasswordAuthentication requestPasswordAuthentication(InetAddress addr, int port,
+            String protocol, String prompt, String scheme) {
 
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
-            NetPermission requestPermission = new NetPermission(
-                    "requestPasswordAuthentication");
+            NetPermission requestPermission = new NetPermission("requestPasswordAuthentication");
             sm.checkPermission(requestPermission);
         }
 
@@ -180,42 +171,37 @@ public abstract class Authenticator {
      * permission. This may result in a java.lang.SecurityException.
      *
      * @param host
-     *                 The hostname of the site requesting authentication.
+     *        The hostname of the site requesting authentication.
      * @param addr
-     *                 The InetAddress of the site requesting authentication, or
-     *                 null
-     *                 if not known.
+     *        The InetAddress of the site requesting authentication, or
+     *        null
+     *        if not known.
      * @param port
-     *                 the port for the requested connection.
+     *        the port for the requested connection.
      * @param protocol
-     *                 The protocol that's requesting the connection (
-     *                 {@link java.net.Authenticator#getRequestingProtocol()})
+     *        The protocol that's requesting the connection (
+     *        {@link java.net.Authenticator#getRequestingProtocol()})
      * @param prompt
-     *                 A prompt string for the user which identifies the
-     *                 authentication realm.
+     *        A prompt string for the user which identifies the
+     *        authentication realm.
      * @param scheme
-     *                 The authentication scheme
-     *
+     *        The authentication scheme
      * @return The username/password, or null if one can't be gotten.
-     *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method doesn't allow the password
-     *                           authentication request.
-     *
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method doesn't allow the password
+     *         authentication request.
      * @see SecurityManager#checkPermission
      * @see java.net.NetPermission
      * @since 1.4
      */
-    public static PasswordAuthentication requestPasswordAuthentication(
-            String host, InetAddress addr, int port, String protocol,
-            String prompt, String scheme) {
+    public static PasswordAuthentication requestPasswordAuthentication(String host, InetAddress addr,
+            int port, String protocol, String prompt, String scheme) {
 
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
-            NetPermission requestPermission = new NetPermission(
-                    "requestPasswordAuthentication");
+            NetPermission requestPermission = new NetPermission("requestPasswordAuthentication");
             sm.checkPermission(requestPermission);
         }
 
@@ -245,47 +231,41 @@ public abstract class Authenticator {
      * permission. This may result in a java.lang.SecurityException.
      *
      * @param host
-     *                 The hostname of the site requesting authentication.
+     *        The hostname of the site requesting authentication.
      * @param addr
-     *                 The InetAddress of the site requesting authorization, or
-     *                 null
-     *                 if not known.
+     *        The InetAddress of the site requesting authorization, or
+     *        null
+     *        if not known.
      * @param port
-     *                 the port for the requested connection
+     *        the port for the requested connection
      * @param protocol
-     *                 The protocol that's requesting the connection (
-     *                 {@link java.net.Authenticator#getRequestingProtocol()})
+     *        The protocol that's requesting the connection (
+     *        {@link java.net.Authenticator#getRequestingProtocol()})
      * @param prompt
-     *                 A prompt string for the user
+     *        A prompt string for the user
      * @param scheme
-     *                 The authentication scheme
+     *        The authentication scheme
      * @param url
-     *                 The requesting URL that caused the authentication
+     *        The requesting URL that caused the authentication
      * @param reqType
-     *                 The type (server or proxy) of the entity requesting
-     *                 authentication.
-     *
+     *        The type (server or proxy) of the entity requesting
+     *        authentication.
      * @return The username/password, or null if one can't be gotten.
-     *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method doesn't allow the password
-     *                           authentication request.
-     *
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method doesn't allow the password
+     *         authentication request.
      * @see SecurityManager#checkPermission
      * @see java.net.NetPermission
-     *
      * @since 1.5
      */
-    public static PasswordAuthentication requestPasswordAuthentication(
-            String host, InetAddress addr, int port, String protocol,
-            String prompt, String scheme, URL url, RequestorType reqType) {
+    public static PasswordAuthentication requestPasswordAuthentication(String host, InetAddress addr,
+            int port, String protocol, String prompt, String scheme, URL url, RequestorType reqType) {
 
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
-            NetPermission requestPermission = new NetPermission(
-                    "requestPasswordAuthentication");
+            NetPermission requestPermission = new NetPermission("requestPasswordAuthentication");
             sm.checkPermission(requestPermission);
         }
 
@@ -347,7 +327,6 @@ public abstract class Authenticator {
      *
      * @return the protocol, optionally followed by "/version", where version is
      *         a version number.
-     *
      * @see java.net.URL#getProtocol()
      */
     protected final String getRequestingProtocol() {
@@ -369,7 +348,6 @@ public abstract class Authenticator {
      * for example).
      *
      * @return the scheme of the requestor
-     *
      */
     protected final String getRequestingScheme() {
         return requestingScheme;
@@ -390,9 +368,7 @@ public abstract class Authenticator {
      * Returns the URL that resulted in this request for authentication.
      *
      * @since 1.5
-     *
      * @return the requesting URL
-     *
      */
     protected URL getRequestingURL() {
         return requestingURL;
@@ -402,9 +378,7 @@ public abstract class Authenticator {
      * Returns whether the requestor is a Proxy or a Server.
      *
      * @since 1.5
-     *
      * @return the authentication type of the requestor
-     *
      */
     protected RequestorType getRequestorType() {
         return requestingAuthType;

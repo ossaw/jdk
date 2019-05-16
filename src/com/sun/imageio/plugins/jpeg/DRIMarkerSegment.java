@@ -40,10 +40,8 @@ class DRIMarkerSegment extends MarkerSegment {
         return node;
     }
 
-    void updateFromNativeNode(Node node, boolean fromScratch)
-            throws IIOInvalidTreeException {
-        restartInterval = getAttributeValue(node, null, "interval", 0, 65535,
-                true);
+    void updateFromNativeNode(Node node, boolean fromScratch) throws IIOInvalidTreeException {
+        restartInterval = getAttributeValue(node, null, "interval", 0, 65535, true);
     }
 
     /**

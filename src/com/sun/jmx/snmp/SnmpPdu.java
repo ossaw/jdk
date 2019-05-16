@@ -15,8 +15,6 @@ import java.net.InetAddress;
  * {@link com.sun.jmx.snmp.SnmpScopedPduPacket SnmpScopedPduPacket}) <BR>
  * The <CODE>SnmpPdu</CODE> class defines the attributes common to every form of
  * SNMP packets.
- *
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -24,7 +22,6 @@ import java.net.InetAddress;
  * 
  * @see SnmpMessage
  * @see SnmpPduFactory
- *
  * @since 1.5
  */
 public abstract class SnmpPdu implements SnmpDefinitions, Serializable {
@@ -87,7 +84,7 @@ public abstract class SnmpPdu implements SnmpDefinitions, Serializable {
      * "SnmpGet".
      * 
      * @param cmd
-     *            The integer representation of the PDU type.
+     *        The integer representation of the PDU type.
      * @return The <CODE>String</CODE> representation of the PDU type.
      */
     public static String pduTypeToString(int cmd) {

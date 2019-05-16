@@ -14,7 +14,6 @@ import java.security.Principal;
  * a domain name if the user logged into a Windows NT domain, a workgroup name
  * if the user logged into a workgroup, or a machine name if the user logged
  * into a standalone configuration.
- *
  * <p>
  * Principals such as this <code>NTDomainPrincipal</code> may be associated with
  * a particular <code>Subject</code> to augment that <code>Subject</code> with
@@ -37,23 +36,19 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Create an <code>NTDomainPrincipal</code> with a Windows NT domain name.
-     *
      * <p>
      *
      * @param name
-     *             the Windows NT domain name for this user.
-     *             <p>
-     *
+     *        the Windows NT domain name for this user.
+     *        <p>
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public NTDomainPrincipal(String name) {
         if (name == null) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "invalid.null.input.value",
-                            "sun.security.util.AuthResources"));
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("invalid.null.input.value", "sun.security.util.AuthResources"));
             Object[] source = { "name" };
             throw new NullPointerException(form.format(source));
         }
@@ -63,7 +58,6 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
     /**
      * Return the Windows NT domain name for this <code>NTDomainPrincipal</code>
      * .
-     *
      * <p>
      *
      * @return the Windows NT domain name for this
@@ -75,16 +69,13 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a string representation of this <code>NTDomainPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>NTDomainPrincipal</code>.
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString(
-                        "NTDomainPrincipal.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "NTDomainPrincipal.name", "sun.security.util.AuthResources"));
         Object[] source = { name };
         return form.format(source);
     }
@@ -94,13 +85,11 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
      * for equality. Returns true if the given object is also a
      * <code>NTDomainPrincipal</code> and the two NTDomainPrincipals have the
      * same name.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>NTDomainPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>NTDomainPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>NTDomainPrincipal</code>.
      */
@@ -122,7 +111,6 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a hash code for this <code>NTDomainPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>NTDomainPrincipal</code>.

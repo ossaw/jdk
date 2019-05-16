@@ -99,7 +99,6 @@ public class LocatorWrapper implements XMLLocator {
      * Returns the character offset, or <code>-1</code>, if no character offset
      * is available.
      * <p>
-     *
      * <p>
      * As this information is not available from {@link org.xml.sax.Locator},
      * always return <code>-1</code>.
@@ -113,7 +112,6 @@ public class LocatorWrapper implements XMLLocator {
      * <p>
      * Returns the XML version of the current entity.
      * </p>
-     *
      * <p>
      * As this information is not available from {@link org.xml.sax.Locator},
      * always return <code>null</code>.

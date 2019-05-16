@@ -10,7 +10,6 @@ package javax.xml.crypto;
 /**
  * Identifies a data object via a URI-Reference, as specified by
  * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC 2396</a>.
- *
  * <p>
  * Note that some subclasses may not have a <code>type</code> attribute and for
  * objects of those types, the {@link #getType} method always returns

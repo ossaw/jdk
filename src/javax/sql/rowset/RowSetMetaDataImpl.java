@@ -75,12 +75,12 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * <code><a href="../../sql/Types.html">java.sql.Types</a></code> class.
      *
      * @param SQLType
-     *                an <code>int</code> defined in the class
-     *                <code>java.sql.Types</code>
+     *        an <code>int</code> defined in the class
+     *        <code>java.sql.Types</code>
      * @throws SQLException
-     *                      if the given <code>int</code> is not a constant
-     *                      defined in
-     *                      the class <code>java.sql.Types</code>
+     *         if the given <code>int</code> is not a constant
+     *         defined in
+     *         the class <code>java.sql.Types</code>
      */
     private void checkColType(int SQLType) throws SQLException {
         try {
@@ -104,17 +104,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * object for which this <code>RowSetMetaDataImpl</code> object was created.
      *
      * @param columnCount
-     *                    an <code>int</code> giving the number of columns in
-     *                    the
-     *                    <code>RowSet</code> object
+     *        an <code>int</code> giving the number of columns in
+     *        the
+     *        <code>RowSet</code> object
      * @throws SQLException
-     *                      if the given number is equal to or less than zero
+     *         if the given number is equal to or less than zero
      */
     public void setColumnCount(int columnCount) throws SQLException {
 
         if (columnCount <= 0) {
-            throw new SQLException("Invalid column count. Cannot be less "
-                    + "or equal to zero");
+            throw new SQLException("Invalid column count. Cannot be less " + "or equal to zero");
         }
 
         colCount = columnCount;
@@ -142,21 +141,20 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * read-only, to the given <code>boolean</code> value.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns in
-     *                    the
-     *                    rowset, inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns in
+     *        the
+     *        rowset, inclusive
      * @param property
-     *                    <code>true</code> if the given column is automatically
-     *                    incremented; <code>false</code> otherwise
+     *        <code>true</code> if the given column is automatically
+     *        incremented; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given index
-     *                      is out
-     *                      of bounds
+     *         if a database access error occurs or the given index
+     *         is out
+     *         of bounds
      */
-    public void setAutoIncrement(int columnIndex, boolean property)
-            throws SQLException {
+    public void setAutoIncrement(int columnIndex, boolean property) throws SQLException {
         checkColRange(columnIndex);
         colInfo[columnIndex].autoIncrement = property;
     }
@@ -166,22 +164,21 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * given <code>boolean</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns in
-     *                    the
-     *                    rowset, inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns in
+     *        the
+     *        rowset, inclusive
      * @param property
-     *                    <code>true</code> to indicate that the column name is
-     *                    case
-     *                    sensitive; <code>false</code> otherwise
+     *        <code>true</code> to indicate that the column name is
+     *        case
+     *        sensitive; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setCaseSensitive(int columnIndex, boolean property)
-            throws SQLException {
+    public void setCaseSensitive(int columnIndex, boolean property) throws SQLException {
         checkColRange(columnIndex);
         colInfo[columnIndex].caseSensitive = property;
     }
@@ -191,24 +188,22 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * <code>WHERE</code> clause to the given <code>boolean</code> value.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns in
-     *                    the
-     *                    rowset, inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns in
+     *        the
+     *        rowset, inclusive
      * @param property
-     *                    <code>true</code> to indicate that a column value can
-     *                    be used
-     *                    in a <code>WHERE</code> clause; <code>false</code>
-     *                    otherwise
-     *
+     *        <code>true</code> to indicate that a column value can
+     *        be used
+     *        in a <code>WHERE</code> clause; <code>false</code>
+     *        otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setSearchable(int columnIndex, boolean property)
-            throws SQLException {
+    public void setSearchable(int columnIndex, boolean property) throws SQLException {
         checkColRange(columnIndex);
         colInfo[columnIndex].searchable = property;
     }
@@ -218,21 +213,20 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * the given <code>boolean</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param property
-     *                    true if the value is a cash value; false otherwise.
+     *        true if the value is a cash value; false otherwise.
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setCurrency(int columnIndex, boolean property)
-            throws SQLException {
+    public void setCurrency(int columnIndex, boolean property) throws SQLException {
         checkColRange(columnIndex);
         colInfo[columnIndex].currency = property;
     }
@@ -243,26 +237,25 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * <code>ResultSetMetaData</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param property
-     *                    one of the following <code>ResultSetMetaData</code>
-     *                    constants:
-     *                    <code>columnNoNulls</code>,
-     *                    <code>columnNullable</code>, or
-     *                    <code>columnNullableUnknown</code>
-     *
+     *        one of the following <code>ResultSetMetaData</code>
+     *        constants:
+     *        <code>columnNoNulls</code>,
+     *        <code>columnNullable</code>, or
+     *        <code>columnNullableUnknown</code>
      * @throws SQLException
-     *                      if a database access error occurs, the given column
-     *                      number is
-     *                      out of bounds, or the value supplied for the
-     *                      <i>property</i>
-     *                      parameter is not one of the following constants:
-     *                      <code>ResultSetMetaData.columnNoNulls</code>,
-     *                      <code>ResultSetMetaData.columnNullable</code>, or
-     *                      <code>ResultSetMetaData.columnNullableUnknown</code>
+     *         if a database access error occurs, the given column
+     *         number is
+     *         out of bounds, or the value supplied for the
+     *         <i>property</i>
+     *         parameter is not one of the following constants:
+     *         <code>ResultSetMetaData.columnNoNulls</code>,
+     *         <code>ResultSetMetaData.columnNullable</code>, or
+     *         <code>ResultSetMetaData.columnNullableUnknown</code>
      */
     public void setNullable(int columnIndex, int property) throws SQLException {
         if ((property < ResultSetMetaData.columnNoNulls)
@@ -279,21 +272,20 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * to the given <code>boolean</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param property
-     *                    <code>true</code> to indicate that a column value is a
-     *                    signed
-     *                    number; <code>false</code> to indicate that it is not
+     *        <code>true</code> to indicate that a column value is a
+     *        signed
+     *        number; <code>false</code> to indicate that it is not
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setSigned(int columnIndex, boolean property)
-            throws SQLException {
+    public void setSigned(int columnIndex, boolean property) throws SQLException {
         checkColRange(columnIndex);
         colInfo[columnIndex].signed = property;
     }
@@ -303,25 +295,22 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * given number.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param size
-     *                    the maximum size of the column in chars; must be
-     *                    <code>0</code> or more
+     *        the maximum size of the column in chars; must be
+     *        <code>0</code> or more
      * @throws SQLException
-     *                      if a database access error occurs, the given column
-     *                      number is
-     *                      out of bounds, or <i>size</i> is less than
-     *                      <code>0</code>
+     *         if a database access error occurs, the given column
+     *         number is
+     *         out of bounds, or <i>size</i> is less than
+     *         <code>0</code>
      */
-    public void setColumnDisplaySize(int columnIndex, int size)
-            throws SQLException {
+    public void setColumnDisplaySize(int columnIndex, int size) throws SQLException {
         if (size < 0) {
-            throw new SQLException(
-                    "Invalid column display size. Cannot be less "
-                            + "than zero");
+            throw new SQLException("Invalid column display size. Cannot be less " + "than zero");
         }
         checkColRange(columnIndex);
         colInfo[columnIndex].columnDisplaySize = size;
@@ -333,22 +322,21 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * label is set to an empty string ("").
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param label
-     *                    the column label to be used in printouts and displays;
-     *                    if the
-     *                    column label is <code>null</code>, an empty
-     *                    <code>String</code> is set
+     *        the column label to be used in printouts and displays;
+     *        if the
+     *        column label is <code>null</code>, an empty
+     *        <code>String</code> is set
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column index
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column index
+     *         is out of bounds
      */
-    public void setColumnLabel(int columnIndex, String label)
-            throws SQLException {
+    public void setColumnLabel(int columnIndex, String label) throws SQLException {
         checkColRange(columnIndex);
         if (label != null) {
             colInfo[columnIndex].columnLabel = label;
@@ -361,22 +349,21 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * Sets the column name of the designated column to the given name.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param columnName
-     *                    a <code>String</code> object indicating the column
-     *                    name; if
-     *                    the given name is <code>null</code>, an empty
-     *                    <code>String</code> is set
+     *        a <code>String</code> object indicating the column
+     *        name; if
+     *        the given name is <code>null</code>, an empty
+     *        <code>String</code> is set
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column index
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column index
+     *         is out of bounds
      */
-    public void setColumnName(int columnIndex, String columnName)
-            throws SQLException {
+    public void setColumnName(int columnIndex, String columnName) throws SQLException {
         checkColRange(columnIndex);
         if (columnName != null) {
             colInfo[columnIndex].columnName = columnName;
@@ -391,22 +378,21 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * name is set to an empty string ("").
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param schemaName
-     *                    the schema name for the table from which a value in
-     *                    the
-     *                    designated column was derived; may be an empty
-     *                    <code>String</code> or <code>null</code>
+     *        the schema name for the table from which a value in
+     *        the
+     *        designated column was derived; may be an empty
+     *        <code>String</code> or <code>null</code>
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setSchemaName(int columnIndex, String schemaName)
-            throws SQLException {
+    public void setSchemaName(int columnIndex, String schemaName) throws SQLException {
         checkColRange(columnIndex);
         if (schemaName != null) {
             colInfo[columnIndex].schemaName = schemaName;
@@ -420,26 +406,24 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * designated column to the given number.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param precision
-     *                    the total number of decimal digits; must be
-     *                    <code>0</code> or
-     *                    more
+     *        the total number of decimal digits; must be
+     *        <code>0</code> or
+     *        more
      * @throws SQLException
-     *                      if a database access error occurs,
-     *                      <i>columnIndex</i> is out
-     *                      of bounds, or <i>precision</i> is less than
-     *                      <code>0</code>
+     *         if a database access error occurs,
+     *         <i>columnIndex</i> is out
+     *         of bounds, or <i>precision</i> is less than
+     *         <code>0</code>
      */
-    public void setPrecision(int columnIndex, int precision)
-            throws SQLException {
+    public void setPrecision(int columnIndex, int precision) throws SQLException {
 
         if (precision < 0) {
-            throw new SQLException("Invalid precision value. Cannot be less "
-                    + "than zero");
+            throw new SQLException("Invalid precision value. Cannot be less " + "than zero");
         }
         checkColRange(columnIndex);
         colInfo[columnIndex].colPrecision = precision;
@@ -450,24 +434,23 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * stored in the designated column to the given number.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param scale
-     *                    the number of digits to the right of the decimal
-     *                    point; must
-     *                    be zero or greater
+     *        the number of digits to the right of the decimal
+     *        point; must
+     *        be zero or greater
      * @throws SQLException
-     *                      if a database access error occurs,
-     *                      <i>columnIndex</i> is out
-     *                      of bounds, or <i>scale</i> is less than
-     *                      <code>0</code>
+     *         if a database access error occurs,
+     *         <i>columnIndex</i> is out
+     *         of bounds, or <i>scale</i> is less than
+     *         <code>0</code>
      */
     public void setScale(int columnIndex, int scale) throws SQLException {
         if (scale < 0) {
-            throw new SQLException("Invalid scale size. Cannot be less "
-                    + "than zero");
+            throw new SQLException("Invalid scale size. Cannot be less " + "than zero");
         }
         checkColRange(columnIndex);
         colInfo[columnIndex].colScale = scale;
@@ -478,21 +461,20 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * to the given table name.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param tableName
-     *                    the column's table name; may be <code>null</code> or
-     *                    an empty
-     *                    string
+     *        the column's table name; may be <code>null</code> or
+     *        an empty
+     *        string
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setTableName(int columnIndex, String tableName)
-            throws SQLException {
+    public void setTableName(int columnIndex, String tableName) throws SQLException {
         checkColRange(columnIndex);
         if (tableName != null) {
             colInfo[columnIndex].tableName = tableName;
@@ -507,21 +489,20 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * , the catalog name is set to an empty string.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param catalogName
-     *                    the column's table's catalog name; if the catalogName
-     *                    is
-     *                    <code>null</code>, an empty <code>String</code> is set
+     *        the column's table's catalog name; if the catalogName
+     *        is
+     *        <code>null</code>, an empty <code>String</code> is set
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setCatalogName(int columnIndex, String catalogName)
-            throws SQLException {
+    public void setCatalogName(int columnIndex, String catalogName) throws SQLException {
         checkColRange(columnIndex);
         if (catalogName != null)
             colInfo[columnIndex].catName = catalogName;
@@ -534,24 +515,23 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * given type code from the class <code>java.sql.Types</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param SQLType
-     *                    the designated column's SQL type, which must be one of
-     *                    the
-     *                    constants in the class <code>java.sql.Types</code>
+     *        the designated column's SQL type, which must be one of
+     *        the
+     *        constants in the class <code>java.sql.Types</code>
      * @throws SQLException
-     *                      if a database access error occurs, the given column
-     *                      number is
-     *                      out of bounds, or the column type specified is not
-     *                      one of the
-     *                      constants in <code>java.sql.Types</code>
+     *         if a database access error occurs, the given column
+     *         number is
+     *         out of bounds, or the column type specified is not
+     *         one of the
+     *         constants in <code>java.sql.Types</code>
      * @see java.sql.Types
      */
-    public void setColumnType(int columnIndex, int SQLType)
-            throws SQLException {
+    public void setColumnType(int columnIndex, int SQLType) throws SQLException {
         // examine java.sql.Type reflectively, loop on the fields and check
         // this. Separate out into a private method
         checkColType(SQLType);
@@ -564,21 +544,20 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * designated column to the given type name.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @param typeName
-     *                    the data source-specific type name; if <i>typeName</i>
-     *                    is
-     *                    <code>null</code>, an empty <code>String</code> is set
+     *        the data source-specific type name; if <i>typeName</i>
+     *        is
+     *        <code>null</code>, an empty <code>String</code> is set
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
-    public void setColumnTypeName(int columnIndex, String typeName)
-            throws SQLException {
+    public void setColumnTypeName(int columnIndex, String typeName) throws SQLException {
         checkColRange(columnIndex);
         if (typeName != null) {
             colInfo[columnIndex].colTypeName = typeName;
@@ -593,7 +572,7 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      *
      * @return the number of columns
      * @throws SQLException
-     *                      if an error occurs determining the column count
+     *         if an error occurs determining the column count
      */
     public int getColumnCount() throws SQLException {
         return colCount;
@@ -604,16 +583,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * automatically numbered, and thus readonly.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if the column is automatically numbered;
      *         <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isAutoIncrement(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -624,16 +603,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * Indicates whether the case of the designated column's name matters.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if the column name is case sensitive;
      *         <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isCaseSensitive(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -645,16 +624,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * a <code>WHERE</code> clause.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if a value in the designated column can be used
      *         in a <code>WHERE</code> clause; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isSearchable(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -666,16 +645,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * value.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if a value in the designated column is a cash
      *         value; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isCurrency(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -687,17 +666,17 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * <code>NULL</code> value in the designated column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return a constant from the <code>ResultSetMetaData</code> interface;
      *         either <code>columnNoNulls</code>, <code>columnNullable</code>,
      *         or <code>columnNullableUnknown</code>
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public int isNullable(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -709,16 +688,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * number.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if a value in the designated column is a signed
      *         number; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isSigned(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -729,16 +708,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * Retrieves the normal maximum width in chars of the designated column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the maximum number of chars that can be displayed in the
      *         designated column
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public int getColumnDisplaySize(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -750,15 +729,15 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * printouts and displays.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the suggested column name to use in printouts and displays
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getColumnLabel(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -769,15 +748,15 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * Retrieves the name of the designated column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the column name of the designated column
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getColumnName(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -789,22 +768,21 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * designated column was derived.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the schema name or an empty <code>String</code> if no schema name
      *         is available
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getSchemaName(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
         String str = "";
-        if (colInfo[columnIndex].schemaName == null) {
-        } else {
+        if (colInfo[columnIndex].schemaName == null) {} else {
             str = colInfo[columnIndex].schemaName;
         }
         return str;
@@ -815,15 +793,15 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the precision for values stored in the designated column
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public int getPrecision(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -835,15 +813,15 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * values stored in the designated column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the scale for values stored in the designated column
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public int getScale(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -855,16 +833,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * column was derived.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the table name or an empty <code>String</code> if no table name
      *         is available
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getTableName(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -876,22 +854,21 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * designated column was derived.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the catalog name of the column's table or an empty
      *         <code>String</code> if no catalog name is available
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getCatalogName(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
         String str = "";
-        if (colInfo[columnIndex].catName == null) {
-        } else {
+        if (colInfo[columnIndex].catName == null) {} else {
             str = colInfo[columnIndex].catName;
         }
         return str;
@@ -902,16 +879,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * constants) for the SQL type of the value stored in the designated column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return an <code>int</code> representing the SQL type of values stored in
      *         the designated column
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      * @see java.sql.Types
      */
     public int getColumnType(int columnIndex) throws SQLException {
@@ -924,15 +901,15 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * column.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the type name used by the data source
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getColumnTypeName(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -944,16 +921,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * readonly.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if this <code>RowSet</code> object is read-Only
      *         and thus not updatable; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isReadOnly(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -966,16 +943,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * operation may or may not succeed.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if a write operation on the designated column
      *         may will succeed; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isWritable(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -987,16 +964,16 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * definitely succeed.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return <code>true</code> if a write operation on the designated column
      *         will definitely succeed; <code>false</code> otherwise
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public boolean isDefinitelyWritable(int columnIndex) throws SQLException {
         checkColRange(columnIndex);
@@ -1016,19 +993,19 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * one of its subclasses.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, and so on;
-     *                    must be
-     *                    between <code>1</code> and the number of columns,
-     *                    inclusive
+     *        the first column is 1, the second is 2, and so on;
+     *        must be
+     *        between <code>1</code> and the number of columns,
+     *        inclusive
      * @return the fully-qualified name of the class in the Java programming
      *         language that would be used by the method
      *         <code>RowSet.getObject</code> to retrieve the value in the
      *         specified column. This is the class name used for custom mapping
      *         when there is a custom mapping.
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      column number
-     *                      is out of bounds
+     *         if a database access error occurs or the given
+     *         column number
+     *         is out of bounds
      */
     public String getColumnClassName(int columnIndex) throws SQLException {
         String className = String.class.getName();
@@ -1113,8 +1090,8 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * interface, then an <code>SQLException</code> is thrown.
      *
      * @param iface
-     *              A Class defining an interface that the result must
-     *              implement.
+     *        A Class defining an interface that the result must
+     *        implement.
      * @return an object that implements the interface. May be a proxy for the
      *         actual implementing object.
      * @throws java.sql.SQLException
@@ -1144,7 +1121,7 @@ public class RowSetMetaDataImpl implements RowSetMetaData, Serializable {
      * succeed.
      *
      * @param interfaces
-     *                   a Class defining an interface.
+     *        a Class defining an interface.
      * @return true if this implements the interface or directly or indirectly
      *         wraps an object that does.
      * @throws java.sql.SQLException

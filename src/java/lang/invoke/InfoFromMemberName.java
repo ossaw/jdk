@@ -54,8 +54,7 @@ final class InfoFromMemberName implements MethodHandleInfo {
 
     @Override
     public String toString() {
-        return MethodHandleInfo.toString(getReferenceKind(),
-                getDeclaringClass(), getName(), getMethodType());
+        return MethodHandleInfo.toString(getReferenceKind(), getDeclaringClass(), getName(), getMethodType());
     }
 
     @Override
@@ -68,24 +67,21 @@ final class InfoFromMemberName implements MethodHandleInfo {
             // and a signature-polymorphic instance (synthetic and not varargs).
             // For more information see comments on {@link
             // MethodHandleNatives#linkMethod}.
-            throw new IllegalArgumentException(
-                    "cannot reflect signature polymorphic method");
+            throw new IllegalArgumentException("cannot reflect signature polymorphic method");
         }
-        Member mem = AccessController.doPrivileged(
-                new PrivilegedAction<Member>() {
-                    public Member run() {
-                        try {
-                            return reflectUnchecked();
-                        } catch (ReflectiveOperationException ex) {
-                            throw new IllegalArgumentException(ex);
-                        }
-                    }
-                });
+        Member mem = AccessController.doPrivileged(new PrivilegedAction<Member>() {
+            public Member run() {
+                try {
+                    return reflectUnchecked();
+                } catch (ReflectiveOperationException ex) {
+                    throw new IllegalArgumentException(ex);
+                }
+            }
+        });
         try {
             Class<?> defc = getDeclaringClass();
             byte refKind = (byte) getReferenceKind();
-            lookup.checkAccess(refKind, defc, convertToMemberName(refKind,
-                    mem));
+            lookup.checkAccess(refKind, defc, convertToMemberName(refKind, mem));
         } catch (IllegalAccessException ex) {
             throw new IllegalArgumentException(ex);
         }
@@ -98,17 +94,14 @@ final class InfoFromMemberName implements MethodHandleInfo {
         boolean isPublic = Modifier.isPublic(getModifiers());
         if (MethodHandleNatives.refKindIsMethod(refKind)) {
             if (isPublic)
-                return defc.getMethod(getName(), getMethodType()
-                        .parameterArray());
+                return defc.getMethod(getName(), getMethodType().parameterArray());
             else
-                return defc.getDeclaredMethod(getName(), getMethodType()
-                        .parameterArray());
+                return defc.getDeclaredMethod(getName(), getMethodType().parameterArray());
         } else if (MethodHandleNatives.refKindIsConstructor(refKind)) {
             if (isPublic)
                 return defc.getConstructor(getMethodType().parameterArray());
             else
-                return defc.getDeclaredConstructor(getMethodType()
-                        .parameterArray());
+                return defc.getDeclaredConstructor(getMethodType().parameterArray());
         } else if (MethodHandleNatives.refKindIsField(refKind)) {
             if (isPublic)
                 return defc.getField(getName());
@@ -119,16 +112,14 @@ final class InfoFromMemberName implements MethodHandleInfo {
         }
     }
 
-    private static MemberName convertToMemberName(byte refKind, Member mem)
-            throws IllegalAccessException {
+    private static MemberName convertToMemberName(byte refKind, Member mem) throws IllegalAccessException {
         if (mem instanceof Method) {
             boolean wantSpecial = (refKind == REF_invokeSpecial);
             return new MemberName((Method) mem, wantSpecial);
         } else if (mem instanceof Constructor) {
             return new MemberName((Constructor) mem);
         } else if (mem instanceof Field) {
-            boolean isSetter = (refKind == REF_putField
-                    || refKind == REF_putStatic);
+            boolean isSetter = (refKind == REF_putField || refKind == REF_putStatic);
             return new MemberName((Field) mem, isSetter);
         }
         throw new InternalError(mem.getClass().getName());

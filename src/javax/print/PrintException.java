@@ -10,7 +10,6 @@ package javax.print;
  * occurred while using a Print Service instance. This base class furnishes only
  * a string description of the error. Subclasses furnish more detailed
  * information if applicable.
- *
  */
 public class PrintException extends Exception {
 
@@ -25,7 +24,7 @@ public class PrintException extends Exception {
      * Construct a print exception with the given detail message.
      *
      * @param s
-     *          Detail message, or null if no detail message.
+     *        Detail message, or null if no detail message.
      */
     public PrintException(String s) {
         super(s);
@@ -35,7 +34,7 @@ public class PrintException extends Exception {
      * Construct a print exception chaining the supplied exception.
      *
      * @param e
-     *          Chained exception.
+     *        Chained exception.
      */
     public PrintException(Exception e) {
         super(e);
@@ -46,9 +45,9 @@ public class PrintException extends Exception {
      * exception.
      * 
      * @param s
-     *          Detail message, or null if no detail message.
+     *        Detail message, or null if no detail message.
      * @param e
-     *          Chained exception.
+     *        Chained exception.
      */
     public PrintException(String s, Exception e) {
         super(s, e);

@@ -31,8 +31,7 @@ public class ORBInitRefResolverImpl implements Resolver {
         if (url == null)
             return null;
 
-        org.omg.CORBA.Object result = (org.omg.CORBA.Object) urlHandler.operate(
-                url);
+        org.omg.CORBA.Object result = (org.omg.CORBA.Object) urlHandler.operate(url);
         return result;
     }
 

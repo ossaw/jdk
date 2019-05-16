@@ -18,7 +18,6 @@ import javax.xml.bind.JAXBElement;
 /**
  * <p>
  * Annotate a JavaBean multi-valued property to support mixed content.
- *
  * <p>
  * The usage is subject to the following constraints:
  * <ul>
@@ -36,7 +35,6 @@ import javax.xml.bind.JAXBElement;
  * <li>Unknown content that is not be bound to a JAXB mapped class is inserted
  * as {@link Element}. (Assumes property annotated with &#64;XmlAnyElement)</li>
  * </ul>
- *
  * Below is an example of binding and creation of mixed content.
  * 
  * <pre>
@@ -107,7 +105,6 @@ import javax.xml.bind.JAXBElement;
  * gcl.add(ObjectFactory.createLetterBodyProductName("Baby Monitor"));
  * gcl.add("shipped from our warehouse"); // add text information item
  * </pre>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
@@ -118,5 +115,4 @@ import javax.xml.bind.JAXBElement;
  */
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
-public @interface XmlMixed {
-}
+public @interface XmlMixed {}

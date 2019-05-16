@@ -56,7 +56,7 @@ public interface MultipleMaster {
      * is returned.
      * 
      * @param axes
-     *             an array containing axis values
+     *        an array containing axis values
      * @return a {@link Font} object that is an instance of
      *         <code>MultipleMaster</code> and is based on the design axis
      *         values provided by <code>axes</code>.
@@ -68,24 +68,24 @@ public interface MultipleMaster {
      * information. In case of an error, <code>null</code> is returned.
      * 
      * @param glyphWidths
-     *                         an array of floats representing the desired width
-     *                         of each
-     *                         glyph in font space
+     *        an array of floats representing the desired width
+     *        of each
+     *        glyph in font space
      * @param avgStemWidth
-     *                         the average stem width for the overall font in
-     *                         font space
+     *        the average stem width for the overall font in
+     *        font space
      * @param typicalCapHeight
-     *                         the height of a typical upper case char
+     *        the height of a typical upper case char
      * @param typicalXHeight
-     *                         the height of a typical lower case char
+     *        the height of a typical lower case char
      * @param italicAngle
-     *                         the angle at which the italics lean, in degrees
-     *                         counterclockwise from vertical
+     *        the angle at which the italics lean, in degrees
+     *        counterclockwise from vertical
      * @return a <code>Font</code> object that is an instance of
      *         <code>MultipleMaster</code> and is based on the specified metric
      *         information.
      */
-    public Font deriveMMFont(float[] glyphWidths, float avgStemWidth,
-            float typicalCapHeight, float typicalXHeight, float italicAngle);
+    public Font deriveMMFont(float[] glyphWidths, float avgStemWidth, float typicalCapHeight,
+            float typicalXHeight, float italicAngle);
 
 }

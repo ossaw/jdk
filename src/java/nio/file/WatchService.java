@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
  * events. For example a file manager may use a watch service to monitor a
  * directory for changes so that it can update its display of the list of files
  * when files are created or deleted.
- *
  * <p>
  * A {@link Watchable} object is registered with a watch service by invoking its
  * {@link Watchable#register register} method, returning a {@link WatchKey} to
@@ -25,7 +24,6 @@ import java.util.concurrent.TimeUnit;
  * process events. Once the events have been processed the consumer invokes the
  * key's {@link WatchKey#reset reset} method to reset the key which allows the
  * key to be signalled and re-queued with further events.
- *
  * <p>
  * Registration with a watch service is cancelled by invoking the key's
  * {@link WatchKey#cancel cancel} method. A key that is queued at the time that
@@ -36,7 +34,6 @@ import java.util.concurrent.TimeUnit;
  * manner it is signalled and queued, if not currently signalled. To ensure that
  * the consumer is notified the return value from the {@code reset} method
  * indicates if the key is valid.
- *
  * <p>
  * A watch service is safe for use by multiple concurrent consumers. To ensure
  * that only one consumer processes the events for a particular object at any
@@ -45,7 +42,6 @@ import java.util.concurrent.TimeUnit;
  * close} method may be invoked at any time to close the service causing any
  * threads waiting to retrieve keys, to throw {@code
  * ClosedWatchServiceException}.
- *
  * <p>
  * File systems may report events faster than they can be retrieved or processed
  * and an implementation may impose an unspecified limit on the number of events
@@ -54,7 +50,6 @@ import java.util.concurrent.TimeUnit;
  * method to return an element with an event type of
  * {@link StandardWatchEventKinds#OVERFLOW OVERFLOW}. This event can be used by
  * the consumer as a trigger to re-examine the state of the object.
- *
  * <p>
  * When an event is reported to indicate that a file in a watched directory has
  * been modified then there is no guarantee that the program (or programs) that
@@ -62,9 +57,7 @@ import java.util.concurrent.TimeUnit;
  * access with other programs that may be updating the file. The
  * {@link java.nio.channels.FileChannel FileChannel} class defines methods to
  * lock regions of a file against access by other programs.
- *
  * <h2>Platform dependencies</h2>
- *
  * <p>
  * The implementation that observes events from the file system is intended to
  * map directly on to the native file event notification facility where
@@ -78,7 +71,6 @@ import java.util.concurrent.TimeUnit;
  * files (meaning files that are deleted very quickly after they are created)
  * may not be detected by primitive implementations that periodically poll the
  * file system to detect changes.
- *
  * <p>
  * If a watched file is not located on a local storage device then it is
  * implementation specific if changes to the file can be detected. In
@@ -86,7 +78,6 @@ import java.util.concurrent.TimeUnit;
  * systems be detected.
  *
  * @since 1.7
- *
  * @see FileSystem#newWatchService
  */
 
@@ -94,21 +85,19 @@ public interface WatchService extends Closeable {
 
     /**
      * Closes this watch service.
-     *
      * <p>
      * If a thread is currently blocked in the {@link #take take} or
      * {@link #poll(long,TimeUnit) poll} methods waiting for a key to be queued
      * then it immediately receives a {@link ClosedWatchServiceException}. Any
      * valid keys associated with this watch service are {@link WatchKey#isValid
      * invalidated}.
-     *
      * <p>
      * After a watch service is closed, any further attempt to invoke operations
      * upon it will throw {@link ClosedWatchServiceException}. If this watch
      * service is already closed then invoking this method has no effect.
      *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
     @Override
     void close() throws IOException;
@@ -118,9 +107,8 @@ public interface WatchService extends Closeable {
      * present.
      *
      * @return the next watch key, or {@code null}
-     *
      * @throws ClosedWatchServiceException
-     *                                     if this watch service is closed
+     *         if this watch service is closed
      */
     WatchKey poll();
 
@@ -129,20 +117,18 @@ public interface WatchService extends Closeable {
      * specified wait time if none are yet present.
      *
      * @param timeout
-     *                how to wait before giving up, in units of unit
+     *        how to wait before giving up, in units of unit
      * @param unit
-     *                a {@code TimeUnit} determining how to interpret the
-     *                timeout
-     *                parameter
-     *
+     *        a {@code TimeUnit} determining how to interpret the
+     *        timeout
+     *        parameter
      * @return the next watch key, or {@code null}
-     *
      * @throws ClosedWatchServiceException
-     *                                     if this watch service is closed, or
-     *                                     it is closed while
-     *                                     waiting for the next key
+     *         if this watch service is closed, or
+     *         it is closed while
+     *         waiting for the next key
      * @throws InterruptedException
-     *                                     if interrupted while waiting
+     *         if interrupted while waiting
      */
     WatchKey poll(long timeout, TimeUnit unit) throws InterruptedException;
 
@@ -150,13 +136,12 @@ public interface WatchService extends Closeable {
      * Retrieves and removes next watch key, waiting if none are yet present.
      *
      * @return the next watch key
-     *
      * @throws ClosedWatchServiceException
-     *                                     if this watch service is closed, or
-     *                                     it is closed while
-     *                                     waiting for the next key
+     *         if this watch service is closed, or
+     *         it is closed while
+     *         waiting for the next key
      * @throws InterruptedException
-     *                                     if interrupted while waiting
+     *         if interrupted while waiting
      */
     WatchKey take() throws InterruptedException;
 }

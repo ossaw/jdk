@@ -7,30 +7,24 @@ package javax.xml.validation;
 
 /**
  * Immutable in-memory representation of grammar.
- *
  * <p>
  * This object represents a set of constraints that can be checked/ enforced
  * against an XML document.
- *
  * <p>
  * A {@link Schema} object is thread safe and applications are encouraged to
  * share it across many parsers in many threads.
- *
  * <p>
  * A {@link Schema} object is immutable in the sense that it shouldn't change
  * the set of constraints once it is created. In other words, if an application
  * validates the same document twice against the same {@link Schema}, it must
  * always produce the same result.
- *
  * <p>
  * A {@link Schema} object is usually created from {@link SchemaFactory}.
- *
  * <p>
  * Two kinds of validators can be created from a {@link Schema} object. One is
  * {@link Validator}, which provides highly-level validation operations that
  * cover typical use cases. The other is {@link ValidatorHandler}, which works
  * on top of SAX for better modularity.
- *
  * <p>
  * This specification does not refine the
  * {@link java.lang.Object#equals(java.lang.Object)} method. In other words, if
@@ -50,7 +44,6 @@ public abstract class Schema {
 
     /**
      * Constructor for the derived class.
-     *
      * <p>
      * The constructor does nothing.
      */
@@ -58,12 +51,10 @@ public abstract class Schema {
 
     /**
      * Creates a new {@link Validator} for this {@link Schema}.
-     *
      * <p>
      * A validator enforces/checks the set of constraints this object
      * represents.
      * </p>
-     *
      * <p>
      * Implementors should assure that the properties set on the
      * {@link SchemaFactory} that created this {@link Schema} are also set on
@@ -76,7 +67,6 @@ public abstract class Schema {
 
     /**
      * Creates a new {@link ValidatorHandler} for this {@link Schema}.
-     *
      * <p>
      * Implementors should assure that the properties set on the
      * {@link SchemaFactory} that created this {@link Schema} are also set on

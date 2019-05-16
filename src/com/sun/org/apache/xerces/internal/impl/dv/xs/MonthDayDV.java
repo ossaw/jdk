@@ -27,10 +27,8 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Validator for &lt;gMonthDay&gt; datatype (W3C Schema Datatypes)
  *
  * @xerces.internal
- *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
- *
  * @version $Id: MonthDayDV.java,v 1.7 2010-11-01 04:39:47 joehw Exp $
  */
 
@@ -43,7 +41,7 @@ public class MonthDayDV extends AbstractDateTimeDV {
      * Convert a string to a compiled form
      *
      * @param content
-     *                The lexical representation of gMonthDay
+     *        The lexical representation of gMonthDay
      * @return a valid and normalized gMonthDay object
      */
     public Object getActualValue(String content, ValidationContext context)
@@ -51,8 +49,8 @@ public class MonthDayDV extends AbstractDateTimeDV {
         try {
             return parse(content);
         } catch (Exception ex) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "gMonthDay" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "gMonthDay" });
         }
     }
 
@@ -60,11 +58,11 @@ public class MonthDayDV extends AbstractDateTimeDV {
      * Parses, validates and computes normalized version of gMonthDay object
      *
      * @param str
-     *            The lexical representation of gMonthDay object --MM-DD with
-     *            possible time zone Z or (-),(+)hh:mm
+     *        The lexical representation of gMonthDay object --MM-DD with
+     *        possible time zone Z or (-),(+)hh:mm
      * @return normalized date representation
      * @exception SchemaDateTimeException
-     *                                    Invalid lexical representation
+     *            Invalid lexical representation
      */
     protected DateTimeData parse(String str) throws SchemaDateTimeException {
         DateTimeData date = new DateTimeData(str, this);
@@ -74,23 +72,20 @@ public class MonthDayDV extends AbstractDateTimeDV {
         date.year = YEAR;
 
         if (str.charAt(0) != '-' || str.charAt(1) != '-') {
-            throw new SchemaDateTimeException("Invalid format for gMonthDay: "
-                    + str);
+            throw new SchemaDateTimeException("Invalid format for gMonthDay: " + str);
         }
         date.month = parseInt(str, 2, 4);
         int start = 4;
 
         if (str.charAt(start++) != '-') {
-            throw new SchemaDateTimeException("Invalid format for gMonthDay: "
-                    + str);
+            throw new SchemaDateTimeException("Invalid format for gMonthDay: " + str);
         }
 
         date.day = parseInt(str, start, start + 2);
 
         if (MONTHDAY_SIZE < len) {
             if (!isNextCharUTCSign(str, MONTHDAY_SIZE, len)) {
-                throw new SchemaDateTimeException("Error in month parsing:"
-                        + str);
+                throw new SchemaDateTimeException("Error in month parsing:" + str);
             } else {
                 getTimeZone(str, date, MONTHDAY_SIZE, len);
             }
@@ -113,7 +108,7 @@ public class MonthDayDV extends AbstractDateTimeDV {
      * Converts gMonthDay object representation to String
      *
      * @param date
-     *             gmonthDay object
+     *        gmonthDay object
      * @return lexical representation of month: --MM-DD with an optional time
      *         zone sign
      */
@@ -129,13 +124,9 @@ public class MonthDayDV extends AbstractDateTimeDV {
     }
 
     protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-        return datatypeFactory.newXMLGregorianCalendar(
-                DatatypeConstants.FIELD_UNDEFINED, date.unNormMonth,
-                date.unNormDay, DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
-                        ? date.timezoneHr * 60 + date.timezoneMin
-                        : DatatypeConstants.FIELD_UNDEFINED);
+        return datatypeFactory.newXMLGregorianCalendar(DatatypeConstants.FIELD_UNDEFINED, date.unNormMonth,
+                date.unNormDay, DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
+                        ? date.timezoneHr * 60 + date.timezoneMin : DatatypeConstants.FIELD_UNDEFINED);
     }
 }

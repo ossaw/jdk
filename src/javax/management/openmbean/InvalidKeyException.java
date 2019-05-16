@@ -10,7 +10,6 @@ package javax.management.openmbean;
  * was expected to be an item name of a <i>composite data</i> or a row index of
  * a <i>tabular data</i> is not valid.
  *
- *
  * @since 1.5
  */
 public class InvalidKeyException extends IllegalArgumentException {
@@ -28,7 +27,7 @@ public class InvalidKeyException extends IllegalArgumentException {
      * An InvalidKeyException with a detail message.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public InvalidKeyException(String msg) {
         super(msg);

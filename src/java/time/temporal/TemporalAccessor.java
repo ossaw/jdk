@@ -66,7 +66,6 @@ import java.util.Objects;
  *
  * @implSpec This interface places no restrictions on the mutability of
  *           implementations, however immutability is strongly recommended.
- *
  * @since 1.8
  */
 public interface TemporalAccessor {
@@ -89,9 +88,8 @@ public interface TemporalAccessor {
      *           <p>
      *           Implementations must ensure that no observable state is altered
      *           when this read-only method is invoked.
-     *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if this date-time can be queried for the field, false if not
      */
     boolean isSupported(TemporalField field);
@@ -130,28 +128,26 @@ public interface TemporalAccessor {
      *               if (isSupported(field)) {
      *                   return field.range();
      *               }
-     *               throw new UnsupportedTemporalTypeException("Unsupported field: "
-     *                       + field);
+     *               throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
      *           }
      *           return field.rangeRefinedBy(this);
      *           </pre>
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      */
     default ValueRange range(TemporalField field) {
         if (field instanceof ChronoField) {
             if (isSupported(field)) {
                 return field.range();
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         Objects.requireNonNull(field, "field");
         return field.rangeRefinedBy(this);
@@ -190,19 +186,19 @@ public interface TemporalAccessor {
      *           </pre>
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field, within the valid range of values
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained or the value is
-     *                                          outside the range of valid
-     *                                          values for the field
+     *         if a value for the field cannot
+     *         be obtained or the value is
+     *         outside the range of valid
+     *         values for the field
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported or
-     *                                          the range of values exceeds
-     *                                          an {@code int}
+     *         if the field is not supported or
+     *         the range of values exceeds
+     *         an {@code int}
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     default int get(TemporalField field) {
         ValueRange range = range(field);
@@ -212,8 +208,8 @@ public interface TemporalAccessor {
         }
         long value = getLong(field);
         if (range.isValidValue(value) == false) {
-            throw new DateTimeException("Invalid value for " + field
-                    + " (valid values " + range + "): " + value);
+            throw new DateTimeException("Invalid value for " + field + " (valid values " + range + "): "
+                    + value);
         }
         return (int) value;
     }
@@ -238,17 +234,16 @@ public interface TemporalAccessor {
      *           <p>
      *           Implementations must ensure that no observable state is altered
      *           when this read-only method is invoked.
-     *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained
+     *         if a value for the field cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     long getLong(TemporalField field);
 
@@ -270,8 +265,8 @@ public interface TemporalAccessor {
      * @implSpec The default implementation must behave equivalent to this code:
      * 
      *           <pre>
-     *           if (query == TemporalQueries.zoneId() || query == TemporalQueries
-     *                   .chronology() || query == TemporalQueries.precision()) {
+     *           if (query == TemporalQueries.zoneId() || query == TemporalQueries.chronology()
+     *                   || query == TemporalQueries.precision()) {
      *               return null;
      *           }
      *           return query.queryFrom(this);
@@ -301,20 +296,19 @@ public interface TemporalAccessor {
      *           <p>
      *           Implementations must ensure that no observable state is altered
      *           when this read-only method is invoked.
-     *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query
+     *         if unable to query
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     default <R> R query(TemporalQuery<R> query) {
-        if (query == TemporalQueries.zoneId() || query == TemporalQueries
-                .chronology() || query == TemporalQueries.precision()) {
+        if (query == TemporalQueries.zoneId() || query == TemporalQueries.chronology()
+                || query == TemporalQueries.precision()) {
             return null;
         }
         return query.queryFrom(this);

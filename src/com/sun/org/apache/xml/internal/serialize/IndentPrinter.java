@@ -112,7 +112,7 @@ public class IndentPrinter extends Printer {
      * line. When a line is long enough, it can be broken at its text boundary.
      *
      * @param text
-     *             The text to print
+     *        The text to print
      */
     public void printText(String text) {
         _text.append(text);
@@ -157,8 +157,8 @@ public class IndentPrinter extends Printer {
             // The printed line size consists of the indentation we're going
             // to use next, the accumulated line so far, some spaces and the
             // accumulated text so far.
-            if (_format.getLineWidth() > 0 && _thisIndent + _line.length()
-                    + _spaces + _text.length() > _format.getLineWidth()) {
+            if (_format.getLineWidth() > 0 && _thisIndent + _line.length() + _spaces + _text
+                    .length() > _format.getLineWidth()) {
                 flushLine(false);
                 try {
                     // Print line and new line, then zero the line contents.
@@ -233,8 +233,7 @@ public class IndentPrinter extends Printer {
                 if (_format.getIndenting() && !preserveSpace) {
                     // Make sure the indentation does not blow us away.
                     indent = _thisIndent;
-                    if ((2 * indent) > _format.getLineWidth() && _format
-                            .getLineWidth() > 0)
+                    if ((2 * indent) > _format.getLineWidth() && _format.getLineWidth() > 0)
                         indent = _format.getLineWidth() / 2;
                     // Print the indentation as spaces and set the current
                     // indentation to the next expected indentation.

@@ -27,9 +27,7 @@ import com.sun.org.apache.xerces.internal.impl.xs.util.XSObjectListImpl;
  * The class used to pass all facets to {@link XSSimpleType#applyFacets}.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class XSFacets {
 

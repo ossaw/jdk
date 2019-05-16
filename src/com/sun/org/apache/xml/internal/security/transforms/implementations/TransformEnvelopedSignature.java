@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -58,17 +56,14 @@ public class TransformEnvelopedSignature extends TransformSpi {
     /**
      * @inheritDoc
      */
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            OutputStream os, Transform transformObject)
-            throws TransformationException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
+            Transform transformObject) throws TransformationException {
         /**
          * If the actual input is an octet stream, then the application MUST
          * convert the octet stream to an XPath node-set suitable for use by
          * Canonical XML with Comments. (A subsequent application of the
          * REQUIRED Canonical XML algorithm would strip away these comments.)
-         *
          * ...
-         *
          * The evaluation of this expression includes all of the document's
          * nodes (including comments) in the node-set representing the octet
          * stream.
@@ -87,18 +82,16 @@ public class TransformEnvelopedSignature extends TransformSpi {
      * @return the node that is the signature
      * @throws TransformationException
      */
-    private static Node searchSignatureElement(Node signatureElement)
-            throws TransformationException {
+    private static Node searchSignatureElement(Node signatureElement) throws TransformationException {
         boolean found = false;
 
         while (true) {
-            if (signatureElement == null || signatureElement
-                    .getNodeType() == Node.DOCUMENT_NODE) {
+            if (signatureElement == null || signatureElement.getNodeType() == Node.DOCUMENT_NODE) {
                 break;
             }
             Element el = (Element) signatureElement;
-            if (el.getNamespaceURI().equals(Constants.SignatureSpecNS) && el
-                    .getLocalName().equals(Constants._TAG_SIGNATURE)) {
+            if (el.getNamespaceURI().equals(Constants.SignatureSpecNS) && el.getLocalName().equals(
+                    Constants._TAG_SIGNATURE)) {
                 found = true;
                 break;
             }
@@ -107,8 +100,7 @@ public class TransformEnvelopedSignature extends TransformSpi {
         }
 
         if (!found) {
-            throw new TransformationException(
-                    "transform.envelopedSignatureTransformNotInSignatureElement");
+            throw new TransformationException("transform.envelopedSignatureTransformNotInSignatureElement");
         }
         return signatureElement;
     }

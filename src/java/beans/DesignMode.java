@@ -20,7 +20,6 @@ package java.beans;
  *
  * @author Laurence P. G. Cable
  * @since 1.2
- *
  * @see java.beans.beancontext.BeanContext
  * @see java.beans.beancontext.BeanContextChild
  * @see java.beans.beancontext.BeanContextMembershipListener
@@ -53,7 +52,7 @@ public interface DesignMode {
      * associated with a BeanContext that it is nested within.
      *
      * @param designTime
-     *                   the current "value" of the "designTime" property
+     *        the current "value" of the "designTime" property
      * @see java.beans.beancontext.BeanContext
      * @see java.beans.beancontext.BeanContextMembershipListener
      * @see java.beans.PropertyChangeEvent

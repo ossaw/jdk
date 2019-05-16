@@ -70,8 +70,8 @@ public interface Mixer extends Line {
      * open.
      * 
      * @param info
-     *             a <code>Line.Info</code> object describing lines about which
-     *             information is queried
+     *        a <code>Line.Info</code> object describing lines about which
+     *        information is queried
      * @return an array of <code>Line.Info</code> objects describing source
      *         lines matching the type requested. If no matching source lines
      *         are supported, an array of length 0 is returned.
@@ -84,8 +84,8 @@ public interface Mixer extends Line {
      * open.
      * 
      * @param info
-     *             a <code>Line.Info</code> object describing lines about which
-     *             information is queried
+     *        a <code>Line.Info</code> object describing lines about which
+     *        information is queried
      * @return an array of <code>Line.Info</code> objects describing target
      *         lines matching the type requested. If no matching target lines
      *         are supported, an array of length 0 is returned.
@@ -98,7 +98,7 @@ public interface Mixer extends Line {
      * when this mixer is open.
      * 
      * @param info
-     *             describes the line for which support is queried
+     *        describes the line for which support is queried
      * @return <code>true</code> if at least one matching line is supported,
      *         <code>false</code> otherwise
      */
@@ -107,7 +107,6 @@ public interface Mixer extends Line {
     /**
      * Obtains a line that is available for use and that matches the description
      * in the specified <code>Line.Info</code> object.
-     *
      * <p>
      * If a <code>DataLine</code> is requested, and <code>info</code> is an
      * instance of <code>DataLine.Info</code> specifying at least one fully
@@ -115,21 +114,21 @@ public interface Mixer extends Line {
      * of the returned <code>DataLine</code>.
      *
      * @param info
-     *             describes the desired line
+     *        describes the desired line
      * @return a line that is available for use and that matches the description
      *         in the specified {@code Line.Info} object
      * @throws LineUnavailableException
-     *                                  if a matching line is not available due
-     *                                  to resource
-     *                                  restrictions
+     *         if a matching line is not available due
+     *         to resource
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if this mixer does not support any lines
-     *                                  matching the
-     *                                  description
+     *         if this mixer does not support any lines
+     *         matching the
+     *         description
      * @throws SecurityException
-     *                                  if a matching line is not available due
-     *                                  to security
-     *                                  restrictions
+     *         if a matching line is not available due
+     *         to security
+     *         restrictions
      */
     public Line getLine(Line.Info info) throws LineUnavailableException;
 
@@ -138,12 +137,10 @@ public interface Mixer extends Line {
     /**
      * Obtains the approximate maximum number of lines of the requested type
      * that can be open simultaneously on the mixer.
-     *
      * Certain types of mixers do not have a hard bound and may allow opening
      * more lines. Since certain lines are a shared resource, a mixer may not be
      * able to open the maximum number of lines if another process has opened
      * lines of this mixer.
-     *
      * The requested type is any line that matches the description in the
      * provided <code>Line.Info</code> object. For example, if the info object
      * represents a speaker port, and the mixer supports exactly one speaker
@@ -153,9 +150,9 @@ public interface Mixer extends Line {
      * function returns <code>AudioSystem.NOT_SPECIFIED</code>.
      * 
      * @param info
-     *             a <code>Line.Info</code> that describes the line for which
-     *             the
-     *             number of supported instances is queried
+     *        a <code>Line.Info</code> that describes the line for which
+     *        the
+     *        number of supported instances is queried
      * @return the maximum number of matching lines supported, or
      *         <code>AudioSystem.NOT_SPECIFIED</code>
      */
@@ -168,9 +165,9 @@ public interface Mixer extends Line {
      *         are currently open to this mixer, an array of length 0 is
      *         returned.
      * @throws SecurityException
-     *                           if the matching lines are not available due to
-     *                           security
-     *                           restrictions
+     *         if the matching lines are not available due to
+     *         security
+     *         restrictions
      */
     public Line[] getSourceLines();
 
@@ -181,9 +178,9 @@ public interface Mixer extends Line {
      *         are currently open from this mixer, an array of length 0 is
      *         returned.
      * @throws SecurityException
-     *                           if the matching lines are not available due to
-     *                           security
-     *                           restrictions
+     *         if the matching lines are not available due to
+     *         security
+     *         restrictions
      */
     public Line[] getTargetLines();
 
@@ -194,26 +191,25 @@ public interface Mixer extends Line {
      * playing or capturing data simultaneously.
      *
      * @param lines
-     *                     the lines that should be synchronized
+     *        the lines that should be synchronized
      * @param maintainSync
-     *                     <code>true</code> if the synchronization must be
-     *                     precisely
-     *                     maintained (i.e., the synchronization must be
-     *                     sample-accurate)
-     *                     at all times during operation of the lines , or
-     *                     <code>false</code> if precise synchronization is
-     *                     required only
-     *                     during start and stop operations
-     *
+     *        <code>true</code> if the synchronization must be
+     *        precisely
+     *        maintained (i.e., the synchronization must be
+     *        sample-accurate)
+     *        at all times during operation of the lines , or
+     *        <code>false</code> if precise synchronization is
+     *        required only
+     *        during start and stop operations
      * @throws IllegalArgumentException
-     *                                  if the lines cannot be synchronized.
-     *                                  This may occur if the
-     *                                  lines are of different types or have
-     *                                  different formats for
-     *                                  which this mixer does not support
-     *                                  synchronization, or if all
-     *                                  lines specified do not belong to this
-     *                                  mixer.
+     *         if the lines cannot be synchronized.
+     *         This may occur if the
+     *         lines are of different types or have
+     *         different formats for
+     *         which this mixer does not support
+     *         synchronization, or if all
+     *         lines specified do not belong to this
+     *         mixer.
      */
     public void synchronize(Line[] lines, boolean maintainSync);
 
@@ -225,17 +221,16 @@ public interface Mixer extends Line {
      * this mixer are unsynchronized.
      * 
      * @param lines
-     *              the synchronized lines for which synchronization should be
-     *              released, or <code>null</code> for all this mixer's
-     *              synchronized lines
-     *
+     *        the synchronized lines for which synchronization should be
+     *        released, or <code>null</code> for all this mixer's
+     *        synchronized lines
      * @throws IllegalArgumentException
-     *                                  if the lines cannot be unsynchronized.
-     *                                  This may occur if the
-     *                                  argument specified does not exactly
-     *                                  match a set of lines for
-     *                                  which synchronization has already been
-     *                                  established.
+     *         if the lines cannot be unsynchronized.
+     *         This may occur if the
+     *         argument specified does not exactly
+     *         match a set of lines for
+     *         which synchronization has already been
+     *         established.
      */
     public void unsynchronize(Line[] lines);
 
@@ -244,23 +239,21 @@ public interface Mixer extends Line {
      * of lines.
      *
      * @param lines
-     *                     the set of lines for which synchronization support is
-     *                     queried
+     *        the set of lines for which synchronization support is
+     *        queried
      * @param maintainSync
-     *                     <code>true</code> if the synchronization must be
-     *                     precisely
-     *                     maintained (i.e., the synchronization must be
-     *                     sample-accurate)
-     *                     at all times during operation of the lines , or
-     *                     <code>false</code> if precise synchronization is
-     *                     required only
-     *                     during start and stop operations
-     *
+     *        <code>true</code> if the synchronization must be
+     *        precisely
+     *        maintained (i.e., the synchronization must be
+     *        sample-accurate)
+     *        at all times during operation of the lines , or
+     *        <code>false</code> if precise synchronization is
+     *        required only
+     *        during start and stop operations
      * @return <code>true</code> if the lines can be synchronized,
      *         <code>false</code> otherwise
      */
-    public boolean isSynchronizationSupported(Line[] lines,
-            boolean maintainSync);
+    public boolean isSynchronizationSupported(Line[] lines, boolean maintainSync);
 
     /**
      * The <code>Mixer.Info</code> class represents information about an audio
@@ -299,18 +292,17 @@ public interface Mixer extends Line {
          * information.
          * 
          * @param name
-         *                    the name of the mixer
+         *        the name of the mixer
          * @param vendor
-         *                    the company who manufactures or creates the
-         *                    hardware or
-         *                    software mixer
+         *        the company who manufactures or creates the
+         *        hardware or
+         *        software mixer
          * @param description
-         *                    descriptive text about the mixer
+         *        descriptive text about the mixer
          * @param version
-         *                    version information for the mixer
+         *        version information for the mixer
          */
-        protected Info(String name, String vendor, String description,
-                String version) {
+        protected Info(String name, String vendor, String description, String version) {
 
             this.name = name;
             this.vendor = vendor;
@@ -323,8 +315,8 @@ public interface Mixer extends Line {
          * <code>true</code> if they are identical.
          * 
          * @param obj
-         *            the reference object with which to compare this info
-         *            object
+         *        the reference object with which to compare this info
+         *        object
          * @return <code>true</code> if this info object is the same as the
          *         <code>obj</code> argument; <code>false</code> otherwise
          */

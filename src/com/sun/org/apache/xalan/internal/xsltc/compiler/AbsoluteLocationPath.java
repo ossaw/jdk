@@ -65,8 +65,7 @@ final class AbsoluteLocationPath extends Expression {
     }
 
     public String toString() {
-        return "AbsoluteLocationPath(" + (_path != null ? _path.toString()
-                : "null") + ')';
+        return "AbsoluteLocationPath(" + (_path != null ? _path.toString() : "null") + ')';
     }
 
     public Type typeCheck(SymbolTable stable) throws TypeCheckError {
@@ -83,8 +82,7 @@ final class AbsoluteLocationPath extends Expression {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
         if (_path != null) {
-            final int initAI = cpg.addMethodref(ABSOLUTE_ITERATOR, "<init>", "("
-                    + NODE_ITERATOR_SIG + ")V");
+            final int initAI = cpg.addMethodref(ABSOLUTE_ITERATOR, "<init>", "(" + NODE_ITERATOR_SIG + ")V");
 
             // Compile relative path iterator(s)
             //
@@ -97,23 +95,19 @@ final class AbsoluteLocationPath extends Expression {
             // a temporary variable, create the object and reload the argument
             // from the temporary to avoid the problem.
             _path.translate(classGen, methodGen);
-            LocalVariableGen relPathIterator = methodGen.addLocalVariable(
-                    "abs_location_path_tmp", Util.getJCRefType(
-                            NODE_ITERATOR_SIG), null, null);
-            relPathIterator.setStart(il.append(new ASTORE(relPathIterator
-                    .getIndex())));
+            LocalVariableGen relPathIterator = methodGen.addLocalVariable("abs_location_path_tmp", Util
+                    .getJCRefType(NODE_ITERATOR_SIG), null, null);
+            relPathIterator.setStart(il.append(new ASTORE(relPathIterator.getIndex())));
 
             // Create new AbsoluteIterator
             il.append(new NEW(cpg.addClass(ABSOLUTE_ITERATOR)));
             il.append(DUP);
-            relPathIterator.setEnd(il.append(new ALOAD(relPathIterator
-                    .getIndex())));
+            relPathIterator.setEnd(il.append(new ALOAD(relPathIterator.getIndex())));
 
             // Initialize AbsoluteIterator with iterator from the stack
             il.append(new INVOKESPECIAL(initAI));
         } else {
-            final int gitr = cpg.addInterfaceMethodref(DOM_INTF, "getIterator",
-                    "()" + NODE_ITERATOR_SIG);
+            final int gitr = cpg.addInterfaceMethodref(DOM_INTF, "getIterator", "()" + NODE_ITERATOR_SIG);
             il.append(methodGen.loadDOM());
             il.append(new INVOKEINTERFACE(gitr, 1));
         }

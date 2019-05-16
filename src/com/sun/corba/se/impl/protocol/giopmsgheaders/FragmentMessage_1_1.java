@@ -11,8 +11,7 @@ package com.sun.corba.se.impl.protocol.giopmsgheaders;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class FragmentMessage_1_1 extends Message_1_1 implements
-        FragmentMessage {
+public final class FragmentMessage_1_1 extends Message_1_1 implements FragmentMessage {
 
     // Constructors
 

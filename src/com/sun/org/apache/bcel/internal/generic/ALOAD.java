@@ -73,7 +73,7 @@ public class ALOAD extends LoadInstruction {
      * Load reference from local variable
      * 
      * @param n
-     *          index of local variable
+     *        index of local variable
      */
     public ALOAD(int n) {
         super(com.sun.org.apache.bcel.internal.Constants.ALOAD,
@@ -87,7 +87,7 @@ public class ALOAD extends LoadInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         super.accept(v);

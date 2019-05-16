@@ -26,11 +26,9 @@ import static java.lang.annotation.ElementType.PACKAGE;
 
 /**
  * Use an adapter that implements {@link XmlAdapter} for custom marshaling.
- *
  * <p>
  * <b> Usage: </b>
  * </p>
- *
  * <p>
  * The <tt>@XmlJavaTypeAdapter</tt> annotation can be used with the following
  * program elements:
@@ -41,7 +39,6 @@ import static java.lang.annotation.ElementType.PACKAGE;
  * <li>package</li>
  * <li>from within {@link XmlJavaTypeAdapters}</li>
  * </ul>
- *
  * <p>
  * When <tt>@XmlJavaTypeAdapter</tt> annotation is defined on a class, it
  * applies to all references to the class.
@@ -61,14 +58,12 @@ import static java.lang.annotation.ElementType.PACKAGE;
  * A <tt>@XmlJavaTypeAdapter</tt> annotation on a class overrides the
  * <tt>@XmlJavaTypeAdapter</tt> annotation specified at the package level for
  * that class.
- *
  * <p>
  * This annotation can be used with the following other annotations:
  * {@link XmlElement}, {@link XmlAttribute}, {@link XmlElementRef},
  * {@link XmlElementRefs}, {@link XmlAnyElement}. This can also be used at the
  * package level with the following annotations: {@link XmlAccessorType},
  * {@link XmlSchema}, {@link XmlSchemaType}, {@link XmlSchemaTypes}.
- *
  * <p>
  * <b> Example: </b> See example in {@link XmlAdapter}
  *

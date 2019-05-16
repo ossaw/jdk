@@ -26,7 +26,6 @@ import javax.management.ObjectName;
  * Represents a role: includes a role name and referenced MBeans (via their
  * ObjectNames). The role value is always represented as an ArrayList collection
  * (of ObjectNames) to homogenize the access.
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>-279985518429862552L</code>.
@@ -49,14 +48,12 @@ public class Role implements Serializable {
     private static final long newSerialVersionUID = -279985518429862552L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("myName", String.class),
-            new ObjectStreamField("myObjNameList", ArrayList.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField("myName",
+            String.class), new ObjectStreamField("myObjNameList", ArrayList.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("name", String.class), new ObjectStreamField(
-                    "objectNameList", List.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField("name",
+            String.class), new ObjectStreamField("objectNameList", List.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -113,15 +110,13 @@ public class Role implements Serializable {
      * set in a relation.
      *
      * @param roleName
-     *                  role name
+     *        role name
      * @param roleValue
-     *                  role value (List of ObjectName objects)
-     *
+     *        role value (List of ObjectName objects)
      * @exception IllegalArgumentException
-     *                                     if null parameter
+     *            if null parameter
      */
-    public Role(String roleName, List<ObjectName> roleValue)
-            throws IllegalArgumentException {
+    public Role(String roleName, List<ObjectName> roleValue) throws IllegalArgumentException {
 
         if (roleName == null || roleValue == null) {
             String excMsg = "Invalid parameter";
@@ -142,7 +137,6 @@ public class Role implements Serializable {
      * Retrieves role name.
      *
      * @return the role name.
-     *
      * @see #setRoleName
      */
     public String getRoleName() {
@@ -153,7 +147,6 @@ public class Role implements Serializable {
      * Retrieves role value.
      *
      * @return ArrayList of ObjectName objects for referenced MBeans.
-     *
      * @see #setRoleValue
      */
     public List<ObjectName> getRoleValue() {
@@ -164,11 +157,9 @@ public class Role implements Serializable {
      * Sets role name.
      *
      * @param roleName
-     *                 role name
-     *
+     *        role name
      * @exception IllegalArgumentException
-     *                                     if null parameter
-     *
+     *            if null parameter
      * @see #getRoleName
      */
     public void setRoleName(String roleName) throws IllegalArgumentException {
@@ -186,15 +177,12 @@ public class Role implements Serializable {
      * Sets role value.
      *
      * @param roleValue
-     *                  List of ObjectName objects for referenced MBeans.
-     *
+     *        List of ObjectName objects for referenced MBeans.
      * @exception IllegalArgumentException
-     *                                     if null parameter
-     *
+     *            if null parameter
      * @see #getRoleValue
      */
-    public void setRoleValue(List<ObjectName> roleValue)
-            throws IllegalArgumentException {
+    public void setRoleValue(List<ObjectName> roleValue) throws IllegalArgumentException {
 
         if (roleValue == null) {
             String excMsg = "Invalid parameter.";
@@ -213,8 +201,7 @@ public class Role implements Serializable {
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("role name: " + name + "; role value: ");
-        for (Iterator<ObjectName> objNameIter = objectNameList
-                .iterator(); objNameIter.hasNext();) {
+        for (Iterator<ObjectName> objNameIter = objectNameList.iterator(); objNameIter.hasNext();) {
             ObjectName currObjName = objNameIter.next();
             result.append(currObjName.toString());
             if (objNameIter.hasNext()) {
@@ -246,16 +233,13 @@ public class Role implements Serializable {
      * Returns a string for the given role value.
      *
      * @param roleValue
-     *                  List of ObjectName objects
-     *
+     *        List of ObjectName objects
      * @return A String consisting of the ObjectNames separated by newlines
      *         (\n).
-     *
      * @exception IllegalArgumentException
-     *                                     if null parameter
+     *            if null parameter
      */
-    public static String roleValueToString(List<ObjectName> roleValue)
-            throws IllegalArgumentException {
+    public static String roleValueToString(List<ObjectName> roleValue) throws IllegalArgumentException {
 
         if (roleValue == null) {
             String excMsg = "Invalid parameter";
@@ -274,8 +258,7 @@ public class Role implements Serializable {
     /**
      * Deserializes a {@link Role} from an {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         if (compat) {
             // Read an object serialized in the old serial form
             //

@@ -14,5 +14,5 @@ package org.omg.PortableServer;
  * one of its children), or when find_POA is called with an activate parameter
  * value of TRUE.
  */
-public interface AdapterActivator extends AdapterActivatorOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface AdapterActivator
+public interface AdapterActivator extends AdapterActivatorOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface AdapterActivator

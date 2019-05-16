@@ -9,7 +9,6 @@ package com.sun.security.auth.module;
  * <p>
  * This class implementation retrieves and makes available NT security
  * information for the current user.
- *
  */
 @jdk.Exported
 public class NTSystem {
@@ -45,7 +44,6 @@ public class NTSystem {
 
     /**
      * Get the username for the current NT user.
-     *
      * <p>
      *
      * @return the username for the current NT user.
@@ -56,7 +54,6 @@ public class NTSystem {
 
     /**
      * Get the domain for the current NT user.
-     *
      * <p>
      *
      * @return the domain for the current NT user.
@@ -67,7 +64,6 @@ public class NTSystem {
 
     /**
      * Get a printable SID for the current NT user's domain.
-     *
      * <p>
      *
      * @return a printable SID for the current NT user's domain.
@@ -78,7 +74,6 @@ public class NTSystem {
 
     /**
      * Get a printable SID for the current NT user.
-     *
      * <p>
      *
      * @return a printable SID for the current NT user.
@@ -89,7 +84,6 @@ public class NTSystem {
 
     /**
      * Get a printable primary group SID for the current NT user.
-     *
      * <p>
      *
      * @return the primary group SID for the current NT user.
@@ -100,7 +94,6 @@ public class NTSystem {
 
     /**
      * Get the printable group SIDs for the current NT user.
-     *
      * <p>
      *
      * @return the group SIDs for the current NT user.
@@ -111,7 +104,6 @@ public class NTSystem {
 
     /**
      * Get an impersonation token for the current NT user.
-     *
      * <p>
      *
      * @return an impersonation token for the current NT user.

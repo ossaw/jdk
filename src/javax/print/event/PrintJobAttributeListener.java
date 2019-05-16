@@ -9,7 +9,6 @@ package javax.print.event;
  * Implementations of this interface are attached to a
  * {@link javax.print.DocPrintJob DocPrintJob} to monitor the status of
  * attribute changes associated with the print job.
- *
  */
 public interface PrintJobAttributeListener {
 
@@ -20,7 +19,7 @@ public interface PrintJobAttributeListener {
      * changed from <code>PROCESSING</code> to <code>PROCESSING_STOPPED</code>.
      * 
      * @param pjae
-     *             the event.
+     *        the event.
      */
     public void attributeUpdate(PrintJobAttributeEvent pjae);
 

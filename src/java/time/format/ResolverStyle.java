@@ -39,7 +39,6 @@ package java.time.format;
  * control how phase 2, resolving, happens.
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum ResolverStyle {

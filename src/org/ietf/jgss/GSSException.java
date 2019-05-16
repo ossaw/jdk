@@ -70,13 +70,11 @@ public class GSSException extends Exception {
 
     /**
      * Defective credentials.
-     *
      */
     public static final int DEFECTIVE_CREDENTIAL = 9;
 
     /**
      * Defective token.
-     *
      */
     public static final int DEFECTIVE_TOKEN = 10;
 
@@ -210,9 +208,9 @@ public class GSSException extends Exception {
      * Creates a GSSException object with a specified major code.
      *
      * @param majorCode
-     *                  the The GSS error code for the problem causing this
-     *                  exception
-     *                  to be thrown.
+     *        the The GSS error code for the problem causing this
+     *        exception
+     *        to be thrown.
      */
     public GSSException(int majorCode) {
 
@@ -227,9 +225,9 @@ public class GSSException extends Exception {
      * specific major string for it.
      *
      * @param majorCode
-     *                    the fatal error code causing this exception.
+     *        the fatal error code causing this exception.
      * @param majorString
-     *                    an expicit message to be included in this exception
+     *        an expicit message to be included in this exception
      */
     GSSException(int majorCode, String majorString) {
 
@@ -247,15 +245,15 @@ public class GSSException extends Exception {
      * allows the setting of both the GSS code and the mechanism code.
      *
      * @param majorCode
-     *                    the GSS error code for the problem causing this
-     *                    exception to
-     *                    be thrown.
+     *        the GSS error code for the problem causing this
+     *        exception to
+     *        be thrown.
      * @param minorCode
-     *                    the mechanism level error code for the problem causing
-     *                    this
-     *                    exception to be thrown.
+     *        the mechanism level error code for the problem causing
+     *        this
+     *        exception to be thrown.
      * @param minorString
-     *                    the textual explanation of the mechanism error code.
+     *        the textual explanation of the mechanism error code.
      */
     public GSSException(int majorCode, int minorCode, String minorString) {
 
@@ -334,9 +332,9 @@ public class GSSException extends Exception {
      * indicate error details.
      *
      * @param minorCode
-     *                  the mechanism specific error code
+     *        the mechanism specific error code
      * @param message
-     *                  textual explanation of the mechanism error code
+     *        textual explanation of the mechanism error code
      * @see #getMinor
      */
     public void setMinor(int minorCode, String message) {
@@ -365,8 +363,7 @@ public class GSSException extends Exception {
         if (minor == 0)
             return (getMajorString());
 
-        return (getMajorString() + " (Mechanism level: " + getMinorString()
-                + ")");
+        return (getMajorString() + " (Mechanism level: " + getMinorString() + ")");
     }
 
     /*

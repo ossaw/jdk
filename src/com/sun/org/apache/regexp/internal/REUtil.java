@@ -30,35 +30,32 @@ public class REUtil {
      * Creates a regular expression, permitting simple or complex syntax
      * 
      * @param expression
-     *                   The expression, beginning with a prefix if it's complex
-     *                   or
-     *                   having no prefix if it's simple
+     *        The expression, beginning with a prefix if it's complex
+     *        or
+     *        having no prefix if it's simple
      * @param matchFlags
-     *                   Matching style flags
+     *        Matching style flags
      * @return The regular expression object
      * @exception RESyntaxException
-     *                              thrown in case of error
+     *            thrown in case of error
      */
-    public static RE createRE(String expression, int matchFlags)
-            throws RESyntaxException {
+    public static RE createRE(String expression, int matchFlags) throws RESyntaxException {
         if (expression.startsWith(complexPrefix)) {
-            return new RE(expression.substring(complexPrefix.length()),
-                    matchFlags);
+            return new RE(expression.substring(complexPrefix.length()), matchFlags);
         }
-        return new RE(RE.simplePatternToFullRegularExpression(expression),
-                matchFlags);
+        return new RE(RE.simplePatternToFullRegularExpression(expression), matchFlags);
     }
 
     /**
      * Creates a regular expression, permitting simple or complex syntax
      * 
      * @param expression
-     *                   The expression, beginning with a prefix if it's complex
-     *                   or
-     *                   having no prefix if it's simple
+     *        The expression, beginning with a prefix if it's complex
+     *        or
+     *        having no prefix if it's simple
      * @return The regular expression object
      * @exception RESyntaxException
-     *                              thrown in case of error
+     *            thrown in case of error
      */
     public static RE createRE(String expression) throws RESyntaxException {
         return createRE(expression, RE.MATCH_NORMAL);

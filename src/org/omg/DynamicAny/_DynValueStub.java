@@ -23,8 +23,7 @@ package org.omg.DynamicAny;
  * as ORB bridging and debugging and should not be used to arbitrarily violate
  * the encapsulation of the value type.
  */
-public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
-        org.omg.DynamicAny.DynValue {
+public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements org.omg.DynamicAny.DynValue {
     final public static java.lang.Class _opsClass = DynValueOperations.class;
 
     /**
@@ -33,16 +32,14 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * manipulated may not contain the names of members.
      *
      * @exception TypeMismatch
-     *                         if the DynValue represents a null value type.
+     *            if the DynValue represents a null value type.
      * @exception InvalidValue
-     *                         if the current position does not indicate a
-     *                         member
+     *            if the current position does not indicate a
+     *            member
      */
-    public String current_member_name()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public String current_member_name() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "current_member_name", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("current_member_name", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -56,16 +53,14 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Returns the TCKind associated with the member at the current position.
      *
      * @exception TypeMismatch
-     *                         if the DynValue represents a null value type.
+     *            if the DynValue represents a null value type.
      * @exception InvalidValue
-     *                         if the current position does not indicate a
-     *                         member
+     *            if the current position does not indicate a
+     *            member
      */
-    public org.omg.CORBA.TCKind current_member_kind()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public org.omg.CORBA.TCKind current_member_kind() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "current_member_kind", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("current_member_kind", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -84,12 +79,11 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * not contain member names.
      *
      * @exception InvalidValue
-     *                         if this object represents a null value type
+     *            if this object represents a null value type
      */
     public org.omg.DynamicAny.NameValuePair[] get_members()
             throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_members", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_members", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -112,23 +106,22 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * attempt to assign member values based on member names.
      *
      * @exception TypeMismatch
-     *                         if the member names supplied in the passed
-     *                         sequence do not
-     *                         match the corresponding member name in the
-     *                         DynValue's
-     *                         TypeCode and they are not empty strings
+     *            if the member names supplied in the passed
+     *            sequence do not
+     *            match the corresponding member name in the
+     *            DynValue's
+     *            TypeCode and they are not empty strings
      * @exception InvalidValue
-     *                         if the passed sequence has a number of elements
-     *                         that
-     *                         disagrees with the number of members as indicated
-     *                         by the
-     *                         DynValue's TypeCode
+     *            if the passed sequence has a number of elements
+     *            that
+     *            disagrees with the number of members as indicated
+     *            by the
+     *            DynValue's TypeCode
      */
     public void set_members(org.omg.DynamicAny.NameValuePair[] value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "set_members", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("set_members", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -147,12 +140,11 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * TypeCode does not contain member names.
      *
      * @exception InvalidValue
-     *                         if this object represents a null value type
+     *            if this object represents a null value type
      */
     public org.omg.DynamicAny.NameDynAnyPair[] get_members_as_dyn_any()
             throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_members_as_dyn_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_members_as_dyn_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -175,24 +167,22 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * attempt to assign member values based on member names.
      *
      * @exception TypeMismatch
-     *                         if the member names supplied in the passed
-     *                         sequence do not
-     *                         match the corresponding member name in the
-     *                         DynValue's
-     *                         TypeCode and they are not empty strings
+     *            if the member names supplied in the passed
+     *            sequence do not
+     *            match the corresponding member name in the
+     *            DynValue's
+     *            TypeCode and they are not empty strings
      * @exception InvalidValue
-     *                         if the passed sequence has a number of elements
-     *                         that
-     *                         disagrees with the number of members as indicated
-     *                         by the
-     *                         DynValue's TypeCode
+     *            if the passed sequence has a number of elements
+     *            that
+     *            disagrees with the number of members as indicated
+     *            by the
+     *            DynValue's TypeCode
      */
-    public void set_members_as_dyn_any(
-            org.omg.DynamicAny.NameDynAnyPair[] value)
+    public void set_members_as_dyn_any(org.omg.DynamicAny.NameDynAnyPair[] value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "set_members_as_dyn_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("set_members_as_dyn_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -206,8 +196,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Returns true if the DynValueCommon represents a null value type.
      */
     public boolean is_null() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("is_null",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("is_null", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -221,8 +210,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Changes the representation of a DynValueCommon to a null value type.
      */
     public void set_to_null() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "set_to_null", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("set_to_null", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -239,8 +227,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * represents a non-null value type, then this operation has no effect.
      */
     public void set_to_value() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "set_to_value", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("set_to_value", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -261,8 +248,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * @return The TypeCode associated with this DynAny object
      */
     public org.omg.CORBA.TypeCode type() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("type",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("type", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -280,14 +266,13 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      *
      * @param dyn_any
      * @exception TypeMismatch
-     *                         if the type of the passed DynAny is not
-     *                         equivalent to the
-     *                         type of target DynAny
+     *            if the type of the passed DynAny is not
+     *            equivalent to the
+     *            type of target DynAny
      */
     public void assign(org.omg.DynamicAny.DynAny dyn_any)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("assign",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("assign", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -304,19 +289,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * have components.
      *
      * @exception TypeMismatch
-     *                         if the type of the passed Any is not equivalent
-     *                         to the
-     *                         type of target DynAny
+     *            if the type of the passed Any is not equivalent
+     *            to the
+     *            type of target DynAny
      * @exception InvalidValue
-     *                         if the passed Any does not contain a legal value
-     *                         (such as
-     *                         a null string)
+     *            if the passed Any does not contain a legal value
+     *            (such as
+     *            a null string)
      */
-    public void from_any(org.omg.CORBA.Any value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void from_any(org.omg.CORBA.Any value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "from_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("from_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -334,8 +317,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * @return a new Any object with the same value and TypeCode
      */
     public org.omg.CORBA.Any to_any() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("to_any",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("to_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -354,8 +336,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * @return true of the DynAnys are equal, false otherwise
      */
     public boolean equal(org.omg.DynamicAny.DynAny dyn_any) {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("equal",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("equal", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -381,8 +362,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * destroying the DynAny from which the component was obtained.
      */
     public void destroy() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("destroy",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("destroy", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -401,8 +381,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * @return a deep copy of the DynAny object
      */
     public org.omg.DynamicAny.DynAny copy() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("copy",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("copy", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -416,19 +395,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a boolean value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_boolean(boolean value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_boolean(boolean value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_boolean", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_boolean", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -443,19 +420,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * to the Java byte data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_octet(byte value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_octet(byte value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_octet", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_octet", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -469,19 +444,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a char value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_char(char value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_char(char value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_char", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_char", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -495,19 +468,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a short value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_short(short value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_short(short value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_short", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_short", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -522,19 +493,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * to the Java short data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_ushort(short value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_ushort(short value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_ushort", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_ushort", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -549,19 +518,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java int data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_long(int value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_long(int value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_long", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_long", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -576,19 +543,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java int data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_ulong(int value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_ulong(int value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_ulong", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_ulong", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -602,19 +567,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a float value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_float(float value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_float(float value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_float", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_float", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -628,19 +591,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a double value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_double(double value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_double(double value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_double", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_double", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -655,23 +616,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * strings are inserted using this method.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception InvalidValue
-     *                         if the string inserted is longer than the bound
-     *                         of a
-     *                         bounded string
+     *            if the string inserted is longer than the bound
+     *            of a
+     *            bounded string
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_string(String value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_string(String value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_string", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_string", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -685,19 +644,18 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a reference to a CORBA object into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
     public void insert_reference(org.omg.CORBA.Object value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_reference", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_reference", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -711,19 +669,18 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts a TypeCode object into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
     public void insert_typecode(org.omg.CORBA.TypeCode value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_typecode", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_typecode", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -738,19 +695,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java long data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_longlong(long value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_longlong(long value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_longlong", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_longlong", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -765,19 +720,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * type is mapped to the Java long data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_ulonglong(long value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_ulonglong(long value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_ulonglong", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_ulonglong", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -792,19 +745,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * to the Java char data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_wchar(char value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_wchar(char value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_wchar", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_wchar", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -819,19 +770,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * strings are inserted using this method.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception InvalidValue
-     *                         if the string inserted is longer than the bound
-     *                         of a
-     *                         bounded string
+     *            if the string inserted is longer than the bound
+     *            of a
+     *            bounded string
      */
-    public void insert_wstring(String value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_wstring(String value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_wstring", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_wstring", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -845,19 +794,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Inserts an Any value into the Any represented by this DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_any(org.omg.CORBA.Any value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_any(org.omg.CORBA.Any value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -872,19 +819,18 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * represented by this DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
     public void insert_dyn_any(org.omg.DynamicAny.DynAny value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_dyn_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_dyn_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -899,19 +845,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * ValueBase type is mapped to the Java Serializable type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public void insert_val(java.io.Serializable value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void insert_val(java.io.Serializable value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "insert_val", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("insert_val", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -925,23 +869,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the boolean value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public boolean get_boolean()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public boolean get_boolean() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_boolean", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_boolean", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -956,23 +898,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java byte data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public byte get_octet()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public byte get_octet() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_octet", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_octet", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -986,22 +926,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the char value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     public char get_char() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_char", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_char", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1015,23 +954,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the short value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public short get_short()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public short get_short() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_short", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_short", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1046,23 +983,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java short data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public short get_ushort()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public short get_ushort() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_ushort", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_ushort", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1077,22 +1012,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java int data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     public int get_long() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_long", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_long", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1107,22 +1041,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java int data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     public int get_ulong() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_ulong", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_ulong", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1136,23 +1069,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the float value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public float get_float()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public float get_float() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_float", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_float", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1166,23 +1097,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the double value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public double get_double()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public double get_double() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_double", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_double", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1197,23 +1126,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * strings are extracted using this method.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public String get_string()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public String get_string() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_string", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_string", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1227,23 +1154,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the reference to a CORBA Object from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public org.omg.CORBA.Object get_reference()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public org.omg.CORBA.Object get_reference() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_reference", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_reference", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1257,23 +1182,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts the TypeCode object from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public org.omg.CORBA.TypeCode get_typecode()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public org.omg.CORBA.TypeCode get_typecode() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_typecode", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_typecode", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1288,23 +1211,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java long data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public long get_longlong()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public long get_longlong() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_longlong", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_longlong", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1319,23 +1240,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * type is mapped to the Java long data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public long get_ulonglong()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public long get_ulonglong() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_ulonglong", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_ulonglong", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1350,23 +1269,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * mapped to the Java char data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public char get_wchar()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public char get_wchar() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_wchar", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_wchar", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1381,19 +1298,17 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * strings are extracted using this method.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    public String get_wstring()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public String get_wstring() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_wstring", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_wstring", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1407,23 +1322,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Extracts an Any value contained in the Any represented by this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public org.omg.CORBA.Any get_any()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public org.omg.CORBA.Any get_any() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_any",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1438,23 +1351,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * and returns it wrapped into a new DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public org.omg.DynamicAny.DynAny get_dyn_any()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public org.omg.DynamicAny.DynAny get_dyn_any() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "get_dyn_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_dyn_any", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1469,23 +1380,21 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * is mapped to the Java Serializable type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    public java.io.Serializable get_val()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public java.io.Serializable get_val() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_val",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("get_val", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1507,8 +1416,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * position to -1 and returns false.
      */
     public boolean seek(int index) {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("seek",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("seek", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1522,8 +1430,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * Is equivalent to seek(0).
      */
     public void rewind() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("rewind",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("rewind", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1541,8 +1448,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * at -1 and returns false.
      */
     public boolean next() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("next",
-                _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("next", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1569,8 +1475,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * </UL>
      */
     public int component_count() {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "component_count", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("component_count", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1598,14 +1503,13 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
      * completely initialized, to_any creates the corresponding any value.
      *
      * @exception TypeMismatch
-     *                         If called on a DynAny that cannot have
-     *                         components, such as
-     *                         a DynEnum or an empty exception
+     *            If called on a DynAny that cannot have
+     *            components, such as
+     *            a DynEnum or an empty exception
      */
     public org.omg.DynamicAny.DynAny current_component()
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "current_component", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("current_component", _opsClass);
         DynValueOperations $self = (DynValueOperations) $so.servant;
 
         try {
@@ -1617,15 +1521,13 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
 
     // Type-specific CORBA::Object operations
     private static String[] __ids = { "IDL:omg.org/DynamicAny/DynValue:1.0",
-            "IDL:omg.org/DynamicAny/DynValueCommon:1.0",
-            "IDL:omg.org/DynamicAny/DynAny:1.0" };
+            "IDL:omg.org/DynamicAny/DynValueCommon:1.0", "IDL:omg.org/DynamicAny/DynAny:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -1640,8 +1542,7 @@ public class _DynValueStub extends org.omg.CORBA.portable.ObjectImpl implements
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

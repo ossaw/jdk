@@ -49,11 +49,10 @@ public abstract class SecureCacheResponse extends CacheResponse {
      * @return an immutable List of Certificate representing the server's
      *         certificate chain.
      * @throws SSLPeerUnverifiedException
-     *                                    if the peer is not verified.
+     *         if the peer is not verified.
      * @see #getPeerPrincipal()
      */
-    public abstract List<Certificate> getServerCertificateChain()
-            throws SSLPeerUnverifiedException;
+    public abstract List<Certificate> getServerCertificateChain() throws SSLPeerUnverifiedException;
 
     /**
      * Returns the server's principal which was established as part of defining
@@ -63,15 +62,12 @@ public abstract class SecureCacheResponse extends CacheResponse {
      * @return the server's principal. Returns an X500Principal of the
      *         end-entity certiticate for X509-based cipher suites, and
      *         KerberosPrincipal for Kerberos cipher suites.
-     *
      * @throws SSLPeerUnverifiedException
-     *                                    if the peer was not verified.
-     *
+     *         if the peer was not verified.
      * @see #getServerCertificateChain()
      * @see #getLocalPrincipal()
      */
-    public abstract Principal getPeerPrincipal()
-            throws SSLPeerUnverifiedException;
+    public abstract Principal getPeerPrincipal() throws SSLPeerUnverifiedException;
 
     /**
      * Returns the principal that was sent to the server during handshaking in
@@ -81,7 +77,6 @@ public abstract class SecureCacheResponse extends CacheResponse {
      *         end-entity certificate for X509-based cipher suites, and
      *         KerberosPrincipal for Kerberos cipher suites. If no principal was
      *         sent, then null is returned.
-     *
      * @see #getLocalCertificateChain()
      * @see #getPeerPrincipal()
      */

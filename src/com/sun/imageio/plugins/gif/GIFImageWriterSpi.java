@@ -28,17 +28,14 @@ public class GIFImageWriterSpi extends ImageWriterSpi {
 
     private static final String writerClassName = "com.sun.imageio.plugins.gif.GIFImageWriter";
 
-    private static final String[] readerSpiNames = {
-            "com.sun.imageio.plugins.gif.GIFImageReaderSpi" };
+    private static final String[] readerSpiNames = { "com.sun.imageio.plugins.gif.GIFImageReaderSpi" };
 
     public GIFImageWriterSpi() {
-        super(vendorName, version, names, suffixes, MIMETypes, writerClassName,
-                new Class[] { ImageOutputStream.class }, readerSpiNames, true,
-                GIFWritableStreamMetadata.NATIVE_FORMAT_NAME,
-                "com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null,
-                null, true, GIFWritableImageMetadata.NATIVE_FORMAT_NAME,
-                "com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null,
-                null);
+        super(vendorName, version, names, suffixes, MIMETypes, writerClassName, new Class[] {
+                ImageOutputStream.class }, readerSpiNames, true, GIFWritableStreamMetadata.NATIVE_FORMAT_NAME,
+                "com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null, null, true,
+                GIFWritableImageMetadata.NATIVE_FORMAT_NAME,
+                "com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null, null);
     }
 
     public boolean canEncodeImage(ImageTypeSpecifier type) {
@@ -49,9 +46,8 @@ public class GIFImageWriterSpi extends ImageWriterSpi {
         SampleModel sm = type.getSampleModel();
         ColorModel cm = type.getColorModel();
 
-        boolean canEncode = sm.getNumBands() == 1 && sm.getSampleSize(0) <= 8
-                && sm.getWidth() <= 65535 && sm.getHeight() <= 65535
-                && (cm == null || cm.getComponentSize()[0] <= 8);
+        boolean canEncode = sm.getNumBands() == 1 && sm.getSampleSize(0) <= 8 && sm.getWidth() <= 65535 && sm
+                .getHeight() <= 65535 && (cm == null || cm.getComponentSize()[0] <= 8);
 
         if (canEncode) {
             return true;

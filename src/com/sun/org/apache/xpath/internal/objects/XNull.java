@@ -89,8 +89,7 @@ public class XNull extends XNodeSet {
      * Cast result object to a result tree fragment.
      *
      * @param support
-     *                XPath context to use for the conversion
-     *
+     *        XPath context to use for the conversion
      * @return The object as a result tree fragment.
      */
     public int rtf(XPathContext support) {
@@ -113,8 +112,7 @@ public class XNull extends XNodeSet {
      * Tell if two objects are functionally equal.
      *
      * @param obj2
-     *             Object to compare this to
-     *
+     *        Object to compare this to
      * @return True if the given object is of type CLASS_NULL
      */
     public boolean equals(XObject obj2) {

@@ -30,7 +30,7 @@ public class InvalidParameterException extends IllegalArgumentException {
      * exception.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public InvalidParameterException(String msg) {
         super(msg);

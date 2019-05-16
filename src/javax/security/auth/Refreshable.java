@@ -17,7 +17,6 @@ public interface Refreshable {
 
     /**
      * Determine if this {@code Object} is current.
-     *
      * <p>
      *
      * @return true if this {@code Object} is currently current, false
@@ -27,18 +26,16 @@ public interface Refreshable {
 
     /**
      * Update or extend the validity period for this {@code Object}.
-     *
      * <p>
      *
      * @exception SecurityException
-     *                                   if the caller does not have permission
-     *                                   to update or extend
-     *                                   the validity period for this
-     *                                   {@code Object}.
-     *                                   <p>
-     *
+     *            if the caller does not have permission
+     *            to update or extend
+     *            the validity period for this
+     *            {@code Object}.
+     *            <p>
      * @exception RefreshFailedException
-     *                                   if the refresh attempt failed.
+     *            if the refresh attempt failed.
      */
     void refresh() throws RefreshFailedException;
 }

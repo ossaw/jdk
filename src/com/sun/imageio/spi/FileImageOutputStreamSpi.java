@@ -27,8 +27,7 @@ public class FileImageOutputStreamSpi extends ImageOutputStreamSpi {
         return "Service provider that instantiates a FileImageOutputStream from a File";
     }
 
-    public ImageOutputStream createOutputStreamInstance(Object output,
-            boolean useCache, File cacheDir) {
+    public ImageOutputStream createOutputStreamInstance(Object output, boolean useCache, File cacheDir) {
         if (output instanceof File) {
             try {
                 return new FileImageOutputStream((File) output);

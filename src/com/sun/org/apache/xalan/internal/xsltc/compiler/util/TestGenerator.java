@@ -47,11 +47,9 @@ public final class TestGenerator extends MethodGenerator {
     private final Instruction _astoreIterator;
     private final Instruction _aloadIterator;
 
-    public TestGenerator(int access_flags, Type return_type, Type[] arg_types,
-            String[] arg_names, String method_name, String class_name,
-            InstructionList il, ConstantPoolGen cp) {
-        super(access_flags, return_type, arg_types, arg_names, method_name,
-                class_name, il, cp);
+    public TestGenerator(int access_flags, Type return_type, Type[] arg_types, String[] arg_names,
+            String method_name, String class_name, InstructionList il, ConstantPoolGen cp) {
+        super(access_flags, return_type, arg_types, arg_names, method_name, class_name, il, cp);
 
         _iloadCurrent = new ILOAD(CURRENT_NODE_INDEX);
         _istoreCurrent = new ISTORE(CURRENT_NODE_INDEX);

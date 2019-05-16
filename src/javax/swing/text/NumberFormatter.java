@@ -81,7 +81,7 @@ public class NumberFormatter extends InternationalFormatter {
      * Creates a NumberFormatter with the specified Format instance.
      *
      * @param format
-     *               Format used to dictate legal values
+     *        Format used to dictate legal values
      */
     public NumberFormatter(NumberFormat format) {
         super(format);
@@ -100,7 +100,7 @@ public class NumberFormatter extends InternationalFormatter {
      * <code>NumberFormat.getNumberInstance()</code> method.
      *
      * @param format
-     *               NumberFormat instance used to dictate legal values
+     *        NumberFormat instance used to dictate legal values
      */
     public void setFormat(Format format) {
         super.setFormat(format);
@@ -221,8 +221,7 @@ public class NumberFormatter extends InternationalFormatter {
         for (int counter = text.length() - 1; counter >= 0; counter--) {
             char aChar = text.charAt(counter);
 
-            if (!Character.isDigit(aChar) && specialChars.indexOf(
-                    aChar) == -1) {
+            if (!Character.isDigit(aChar) && specialChars.indexOf(aChar) == -1) {
                 return false;
             }
         }
@@ -311,11 +310,10 @@ public class NumberFormatter extends InternationalFormatter {
     /**
      * Overriden to toggle the value if the positive/minus sign is inserted.
      */
-    void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-            String string, AttributeSet attr) throws BadLocationException {
-        if (!getAllowsInvalid() && length == 0 && string != null && string
-                .length() == 1 && toggleSignIfNecessary(fb, offset, string
-                        .charAt(0))) {
+    void replace(DocumentFilter.FilterBypass fb, int offset, int length, String string, AttributeSet attr)
+            throws BadLocationException {
+        if (!getAllowsInvalid() && length == 0 && string != null && string.length() == 1
+                && toggleSignIfNecessary(fb, offset, string.charAt(0))) {
             return;
         }
         super.replace(fb, offset, length, string, attr);
@@ -326,8 +324,8 @@ public class NumberFormatter extends InternationalFormatter {
      * <code>aChar</code> is the positive or minus sign. Returns true if a sign
      * change was attempted.
      */
-    private boolean toggleSignIfNecessary(DocumentFilter.FilterBypass fb,
-            int offset, char aChar) throws BadLocationException {
+    private boolean toggleSignIfNecessary(DocumentFilter.FilterBypass fb, int offset, char aChar)
+            throws BadLocationException {
         if (aChar == getMinusSign() || aChar == getPositiveSign()) {
             NumberFormat.Field field = getFieldFrom(offset, -1);
             Object newValue;
@@ -348,8 +346,7 @@ public class NumberFormatter extends InternationalFormatter {
                     fb.remove(0, fb.getDocument().getLength());
                     fb.insertString(0, string, null);
                     updateValue(newValue);
-                    repositionCursor(getLiteralCountTo(offset) - lc + offset,
-                            1);
+                    repositionCursor(getLiteralCountTo(offset) - lc + offset, 1);
                     return true;
                 }
             } catch (ParseException pe) {
@@ -393,14 +390,12 @@ public class NumberFormatter extends InternationalFormatter {
                     try {
                         ReflectUtil.checkPackageAccess(valueClass);
                         SwingUtilities2.checkAccess(valueClass.getModifiers());
-                        Constructor cons = valueClass.getConstructor(
-                                new Class[] { String.class });
+                        Constructor cons = valueClass.getConstructor(new Class[] { String.class });
                         if (cons != null) {
                             SwingUtilities2.checkAccess(cons.getModifiers());
                             return cons.newInstance(new Object[] { string });
                         }
-                    } catch (Throwable ex) {
-                    }
+                    } catch (Throwable ex) {}
                 }
             }
         }
@@ -410,8 +405,7 @@ public class NumberFormatter extends InternationalFormatter {
     /**
      * Invoked to toggle the sign of the exponent (for scientific numbers).
      */
-    private Object toggleExponentSign(int offset, char aChar)
-            throws BadLocationException, ParseException {
+    private Object toggleExponentSign(int offset, char aChar) throws BadLocationException, ParseException {
         String string = getFormattedTextField().getText();
         int replaceLength = 0;
         int loc = getAttributeStart(NumberFormat.Field.EXPONENT_SIGN);
@@ -423,8 +417,7 @@ public class NumberFormatter extends InternationalFormatter {
         if (aChar == getPositiveSign()) {
             string = getReplaceString(offset, replaceLength, null);
         } else {
-            string = getReplaceString(offset, replaceLength, new String(
-                    new char[] { aChar }));
+            string = getReplaceString(offset, replaceLength, new String(new char[] { aChar }));
         }
         return stringToValue(string);
     }

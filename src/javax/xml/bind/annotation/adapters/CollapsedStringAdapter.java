@@ -8,7 +8,6 @@ package javax.xml.bind.annotation.adapters;
 /**
  * Built-in {@link XmlAdapter} to handle <tt>xs:token</tt> and its derived
  * types.
- *
  * <p>
  * This adapter removes leading and trailing whitespaces, then truncate any
  * sequnce of tab, CR, LF, and SP by a single whitespace character ' '.
@@ -83,7 +82,6 @@ public class CollapsedStringAdapter extends XmlAdapter<String, String> {
 
     /**
      * No-op.
-     *
      * Just return the same string given as the parameter.
      */
     public String marshal(String s) {

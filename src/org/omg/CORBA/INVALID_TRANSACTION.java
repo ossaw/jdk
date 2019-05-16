@@ -17,7 +17,6 @@ package org.omg.CORBA;
  * @see <A href="../../../../technotes/guides/idl/jidlExceptions.html">
  *      documentation on Java&nbsp;IDL exceptions</A>
  * @since JDK1.2
- *
  */
 
 public final class INVALID_TRANSACTION extends SystemException {
@@ -34,7 +33,7 @@ public final class INVALID_TRANSACTION extends SystemException {
      * specified detail message.
      * 
      * @param s
-     *          the String containing a detail message
+     *        the String containing a detail message
      */
     public INVALID_TRANSACTION(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -45,9 +44,9 @@ public final class INVALID_TRANSACTION extends SystemException {
      * specified minor code and completion status.
      * 
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
     public INVALID_TRANSACTION(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -59,14 +58,13 @@ public final class INVALID_TRANSACTION extends SystemException {
      * message is a String that describes this particular exception.
      * 
      * @param s
-     *                  the String containing a detail message
+     *        the String containing a detail message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
-    public INVALID_TRANSACTION(String s, int minor,
-            CompletionStatus completed) {
+    public INVALID_TRANSACTION(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);
     }
 }

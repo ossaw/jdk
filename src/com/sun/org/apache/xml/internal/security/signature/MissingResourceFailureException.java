@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -62,8 +60,7 @@ public class MissingResourceFailureException extends XMLSignatureException {
      * @param reference
      * @see #getReference
      */
-    public MissingResourceFailureException(String msgID, Object exArgs[],
-            Reference reference) {
+    public MissingResourceFailureException(String msgID, Object exArgs[], Reference reference) {
         super(msgID, exArgs);
 
         this.uninitializedReference = reference;
@@ -77,8 +74,7 @@ public class MissingResourceFailureException extends XMLSignatureException {
      * @param reference
      * @see #getReference
      */
-    public MissingResourceFailureException(String msgID,
-            Exception originalException, Reference reference) {
+    public MissingResourceFailureException(String msgID, Exception originalException, Reference reference) {
         super(msgID, originalException);
 
         this.uninitializedReference = reference;
@@ -93,8 +89,8 @@ public class MissingResourceFailureException extends XMLSignatureException {
      * @param reference
      * @see #getReference
      */
-    public MissingResourceFailureException(String msgID, Object exArgs[],
-            Exception originalException, Reference reference) {
+    public MissingResourceFailureException(String msgID, Object exArgs[], Exception originalException,
+            Reference reference) {
         super(msgID, exArgs, originalException);
 
         this.uninitializedReference = reference;
@@ -105,7 +101,7 @@ public class MissingResourceFailureException extends XMLSignatureException {
      * {@link com.sun.org.apache.xml.internal.security.signature.Reference}
      *
      * @param reference
-     *                  the Reference object
+     *        the Reference object
      * @see #getReference
      */
     public void setReference(Reference reference) {
@@ -115,7 +111,6 @@ public class MissingResourceFailureException extends XMLSignatureException {
     /**
      * used to get the uninitialized
      * {@link com.sun.org.apache.xml.internal.security.signature.Reference}
-     *
      * This allows to supply the correct
      * {@link com.sun.org.apache.xml.internal.security.signature.XMLSignatureInput}
      * to the

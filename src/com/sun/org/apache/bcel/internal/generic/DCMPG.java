@@ -61,8 +61,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class DCMPG extends Instruction implements TypedInstruction,
-        StackProducer, StackConsumer {
+public class DCMPG extends Instruction implements TypedInstruction, StackProducer, StackConsumer {
 
     public DCMPG() {
         super(com.sun.org.apache.bcel.internal.Constants.DCMPG, (short) 1);
@@ -82,7 +81,7 @@ public class DCMPG extends Instruction implements TypedInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitTypedInstruction(this);

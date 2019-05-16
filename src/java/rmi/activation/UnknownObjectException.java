@@ -34,7 +34,7 @@ public class UnknownObjectException extends ActivationException {
      * detail message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since 1.2
      */
     public UnknownObjectException(String s) {

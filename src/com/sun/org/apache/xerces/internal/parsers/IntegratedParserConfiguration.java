@@ -32,11 +32,9 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentScanner;
 /**
  * This is configuration uses a scanner that integrates both scanning of the
  * document and binding namespaces.
- *
  * If namespace feature is turned on, the pipeline is constructured with the
  * following components: XMLNSDocumentScannerImpl -> XMLNSDTDValidator ->
  * (optional) XMLSchemaValidator
- *
  * If the namespace feature is turned off the default document scanner
  * implementation is used (XMLDocumentScannerImpl).
  * <p>
@@ -64,7 +62,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentScanner;
  * </ul>
  *
  * @author Elena Litani, IBM
- *
  */
 public class IntegratedParserConfiguration extends StandardParserConfiguration {
 
@@ -95,7 +92,7 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
      * Constructs a parser configuration using the specified symbol table.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      */
     public IntegratedParserConfiguration(SymbolTable symbolTable) {
         this(symbolTable, null, null);
@@ -109,12 +106,11 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                    The grammar pool to use.
+     *        The grammar pool to use.
      */
-    public IntegratedParserConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public IntegratedParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null);
     } // <init>(SymbolTable,XMLGrammarPool)
 
@@ -126,14 +122,14 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                       The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                       The grammar pool to use.
+     *        The grammar pool to use.
      * @param parentSettings
-     *                       The parent settings.
+     *        The parent settings.
      */
-    public IntegratedParserConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+    public IntegratedParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
+            XMLComponentManager parentSettings) {
         super(symbolTable, grammarPool, parentSettings);
 
         // create components
@@ -209,11 +205,9 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
                 fProperties.put(SCHEMA_VALIDATOR, fSchemaValidator);
                 addComponent(fSchemaValidator);
                 // add schema message formatter
-                if (fErrorReporter.getMessageFormatter(
-                        XSMessageFormatter.SCHEMA_DOMAIN) == null) {
+                if (fErrorReporter.getMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN) == null) {
                     XSMessageFormatter xmft = new XSMessageFormatter();
-                    fErrorReporter.putMessageFormatter(
-                            XSMessageFormatter.SCHEMA_DOMAIN, xmft);
+                    fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, xmft);
                 }
 
             }

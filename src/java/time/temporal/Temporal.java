@@ -61,7 +61,6 @@ import java.time.DateTimeException;
  * be in calendar systems other than ISO. See
  * {@link java.time.chrono.ChronoLocalDate} for a fuller discussion of the
  * issues.
- *
  * <h3>When to implement</h3>
  * <p>
  * A class should implement this interface if it meets three criteria:
@@ -96,7 +95,6 @@ import java.time.DateTimeException;
  * @implSpec This interface places no restrictions on the mutability of
  *           implementations, however immutability is strongly recommended. All
  *           implementations must be {@link Comparable}.
- *
  * @since 1.8
  */
 public interface Temporal extends TemporalAccessor {
@@ -120,9 +118,8 @@ public interface Temporal extends TemporalAccessor {
      *           <p>
      *           Implementations must ensure that no observable state is altered
      *           when this read-only method is invoked.
-     *
      * @param unit
-     *             the unit to check, null returns false
+     *        the unit to check, null returns false
      * @return true if the unit can be added/subtracted, false if not
      */
     boolean isSupported(TemporalUnit unit);
@@ -164,13 +161,13 @@ public interface Temporal extends TemporalAccessor {
      *           </pre>
      *
      * @param adjuster
-     *                 the adjuster to use, not null
+     *        the adjuster to use, not null
      * @return an object of the same type with the specified adjustment made,
      *         not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     default Temporal with(TemporalAdjuster adjuster) {
         return adjuster.adjustInto(this);
@@ -206,18 +203,17 @@ public interface Temporal extends TemporalAccessor {
      *           adjusted copy of the original must be returned. This provides
      *           equivalent, safe behavior for immutable and mutable
      *           implementations.
-     *
      * @param field
-     *                 the field to set in the result, not null
+     *        the field to set in the result, not null
      * @param newValue
-     *                 the new value of the field in the result
+     *        the new value of the field in the result
      * @return an object of the same type with the specified field set, not null
      * @throws DateTimeException
-     *                                          if the field cannot be set
+     *         if the field cannot be set
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     Temporal with(TemporalField field, long newValue);
 
@@ -256,13 +252,13 @@ public interface Temporal extends TemporalAccessor {
      *           </pre>
      *
      * @param amount
-     *               the amount to add, not null
+     *        the amount to add, not null
      * @return an object of the same type with the specified adjustment made,
      *         not null
      * @throws DateTimeException
-     *                             if the addition cannot be made
+     *         if the addition cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     default Temporal plus(TemporalAmount amount) {
         return amount.addTo(this);
@@ -297,20 +293,19 @@ public interface Temporal extends TemporalAccessor {
      *           adjusted copy of the original must be returned. This provides
      *           equivalent, safe behavior for immutable and mutable
      *           implementations.
-     *
      * @param amountToAdd
-     *                    the amount of the specified unit to add, may be
-     *                    negative
+     *        the amount of the specified unit to add, may be
+     *        negative
      * @param unit
-     *                    the unit of the amount to add, not null
+     *        the unit of the amount to add, not null
      * @return an object of the same type with the specified period added, not
      *         null
      * @throws DateTimeException
-     *                                          if the unit cannot be added
+     *         if the unit cannot be added
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     Temporal plus(long amountToAdd, TemporalUnit unit);
 
@@ -350,13 +345,13 @@ public interface Temporal extends TemporalAccessor {
      *           </pre>
      *
      * @param amount
-     *               the amount to subtract, not null
+     *        the amount to subtract, not null
      * @return an object of the same type with the specified adjustment made,
      *         not null
      * @throws DateTimeException
-     *                             if the subtraction cannot be made
+     *         if the subtraction cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     default Temporal minus(TemporalAmount amount) {
         return amount.subtractFrom(this);
@@ -388,27 +383,27 @@ public interface Temporal extends TemporalAccessor {
      *           The default implementation must behave equivalent to this code:
      * 
      *           <pre>
-     *           return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
-     *                   .plus(1, unit) : plus(-amountToSubtract, unit));
+     *           return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
+     *                   : plus(-amountToSubtract, unit));
      *           </pre>
      *
      * @param amountToSubtract
-     *                         the amount of the specified unit to subtract, may
-     *                         be negative
+     *        the amount of the specified unit to subtract, may
+     *        be negative
      * @param unit
-     *                         the unit of the amount to subtract, not null
+     *        the unit of the amount to subtract, not null
      * @return an object of the same type with the specified period subtracted,
      *         not null
      * @throws DateTimeException
-     *                                          if the unit cannot be subtracted
+     *         if the unit cannot be subtracted
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     default Temporal minus(long amountToSubtract, TemporalUnit unit) {
-        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
-                .plus(1, unit) : plus(-amountToSubtract, unit));
+        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
+                : plus(-amountToSubtract, unit));
     }
 
     // -----------------------------------------------------------------------
@@ -481,25 +476,24 @@ public interface Temporal extends TemporalAccessor {
      *           <p>
      *           Implementations must ensure that no observable state is altered
      *           when this read-only method is invoked.
-     *
      * @param endExclusive
-     *                     the end temporal, exclusive, converted to be of the
-     *                     same type
-     *                     as this object, not null
+     *        the end temporal, exclusive, converted to be of the
+     *        same type
+     *        as this object, not null
      * @param unit
-     *                     the unit to measure the amount in, not null
+     *        the unit to measure the amount in, not null
      * @return the amount of time between this temporal object and the specified
      *         one in terms of the unit; positive if the specified object is
      *         later than this one, negative if it is earlier than this one
      * @throws DateTimeException
-     *                                          if the amount cannot be
-     *                                          calculated, or the end temporal
-     *                                          cannot be converted to the same
-     *                                          type as this temporal
+     *         if the amount cannot be
+     *         calculated, or the end temporal
+     *         cannot be converted to the same
+     *         type as this temporal
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     long until(Temporal endExclusive, TemporalUnit unit);
 

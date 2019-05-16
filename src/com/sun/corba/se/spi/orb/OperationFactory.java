@@ -221,12 +221,10 @@ public abstract class OperationFactory {
             String className = getString(value);
 
             try {
-                Class<?> result = SharedSecrets.getJavaCorbaAccess().loadClass(
-                        className);
+                Class<?> result = SharedSecrets.getJavaCorbaAccess().loadClass(className);
                 return result;
             } catch (Exception exc) {
-                ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                        CORBALogDomains.ORB_LIFECYCLE);
+                ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.ORB_LIFECYCLE);
                 throw wrapper.couldNotLoadClass(exc, className);
             }
         }
@@ -256,8 +254,7 @@ public abstract class OperationFactory {
             try {
                 return new URL(val);
             } catch (MalformedURLException exc) {
-                ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                        CORBALogDomains.ORB_LIFECYCLE);
+                ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.ORB_LIFECYCLE);
                 throw wrapper.badUrl(exc, val);
             }
         }
@@ -319,8 +316,8 @@ public abstract class OperationFactory {
             if ((result >= min) && (result <= max))
                 return new Integer(result);
             else
-                throw new IllegalArgumentException("Property value " + result
-                        + " is not in the range " + min + " to " + max);
+                throw new IllegalArgumentException("Property value " + result + " is not in the range " + min
+                        + " to " + max);
         }
 
         public String toString() {
@@ -384,8 +381,7 @@ public abstract class OperationFactory {
 
             int numTokens = st.countTokens();
             if (numTokens != actions.length)
-                throw new Error(
-                        "Number of tokens and number of actions do not match");
+                throw new Error("Number of tokens and number of actions do not match");
 
             int ctr = 0;
             Object[] result = new Object[numTokens];
@@ -399,8 +395,7 @@ public abstract class OperationFactory {
         }
 
         public String toString() {
-            return "sequenceAction(separator=\"" + sep + "\",actions=" + Arrays
-                    .toString(actions) + ")";
+            return "sequenceAction(separator=\"" + sep + "\",actions=" + Arrays.toString(actions) + ")";
         }
     }
 

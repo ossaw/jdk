@@ -20,8 +20,7 @@ public class _ServerStub extends org.omg.CORBA.portable.ObjectImpl implements
     public void shutdown() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("shutdown",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("shutdown", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -42,8 +41,7 @@ public class _ServerStub extends org.omg.CORBA.portable.ObjectImpl implements
     public void install() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("install",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("install", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -64,8 +62,7 @@ public class _ServerStub extends org.omg.CORBA.portable.ObjectImpl implements
     public void uninstall() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("uninstall",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("uninstall", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -86,8 +83,7 @@ public class _ServerStub extends org.omg.CORBA.portable.ObjectImpl implements
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -102,8 +98,7 @@ public class _ServerStub extends org.omg.CORBA.portable.ObjectImpl implements
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

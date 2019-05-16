@@ -46,8 +46,7 @@ final class UnsupportedElement extends SyntaxTreeNode {
     /**
      * Basic consutrcor - stores element uri/prefix/localname
      */
-    public UnsupportedElement(String uri, String prefix, String local,
-            boolean isExtension) {
+    public UnsupportedElement(String uri, String prefix, String local, boolean isExtension) {
         super(uri, prefix, local);
         _isExtension = isExtension;
     }
@@ -69,8 +68,7 @@ final class UnsupportedElement extends SyntaxTreeNode {
      */
     public void display(int indent) {
         indent(indent);
-        Util.println("Unsupported element = " + _qname.getNamespace() + ":"
-                + _qname.getLocalPart());
+        Util.println("Unsupported element = " + _qname.getNamespace() + ":" + _qname.getLocalPart());
         displayContents(indent + IndentIncrement);
     }
 
@@ -138,8 +136,8 @@ final class UnsupportedElement extends SyntaxTreeNode {
             ConstantPoolGen cpg = classGen.getConstantPool();
             InstructionList il = methodGen.getInstructionList();
 
-            final int unsupportedElem = cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                    "unsupported_ElementF", "(" + STRING_SIG + "Z)V");
+            final int unsupportedElem = cpg.addMethodref(BASIS_LIBRARY_CLASS, "unsupported_ElementF", "("
+                    + STRING_SIG + "Z)V");
             il.append(new PUSH(cpg, getQName().toString()));
             il.append(new PUSH(cpg, _isExtension));
             il.append(new INVOKESTATIC(unsupportedElem));

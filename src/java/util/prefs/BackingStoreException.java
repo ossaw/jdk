@@ -19,7 +19,7 @@ public class BackingStoreException extends Exception {
      * Constructs a BackingStoreException with the specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public BackingStoreException(String s) {
         super(s);
@@ -29,7 +29,7 @@ public class BackingStoreException extends Exception {
      * Constructs a BackingStoreException with the specified cause.
      *
      * @param cause
-     *              the cause
+     *        the cause
      */
     public BackingStoreException(Throwable cause) {
         super(cause);

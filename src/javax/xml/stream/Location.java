@@ -10,7 +10,6 @@ package javax.xml.stream;
 
 /**
  * Provides information on the location of an event.
- *
  * All the information provided by a Location is optional. For example an
  * application may only report line numbers.
  *

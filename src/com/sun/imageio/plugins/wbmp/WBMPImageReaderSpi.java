@@ -20,8 +20,7 @@ public class WBMPImageReaderSpi extends ImageReaderSpi {
     private static final int MAX_WBMP_WIDTH = 1024;
     private static final int MAX_WBMP_HEIGHT = 768;
 
-    private static String[] writerSpiNames = {
-            "com.sun.imageio.plugins.wbmp.WBMPImageWriterSpi" };
+    private static String[] writerSpiNames = { "com.sun.imageio.plugins.wbmp.WBMPImageWriterSpi" };
     private static String[] formatNames = { "wbmp", "WBMP" };
     private static String[] entensions = { "wbmp" };
     private static String[] mimeType = { "image/vnd.wap.wbmp" };
@@ -30,9 +29,8 @@ public class WBMPImageReaderSpi extends ImageReaderSpi {
 
     public WBMPImageReaderSpi() {
         super("Oracle Corporation", "1.0", formatNames, entensions, mimeType,
-                "com.sun.imageio.plugins.wbmp.WBMPImageReader", new Class[] {
-                        ImageInputStream.class }, writerSpiNames, true, null,
-                null, null, null, true, WBMPMetadata.nativeMetadataFormatName,
+                "com.sun.imageio.plugins.wbmp.WBMPImageReader", new Class[] { ImageInputStream.class },
+                writerSpiNames, true, null, null, null, null, true, WBMPMetadata.nativeMetadataFormatName,
                 "com.sun.imageio.plugins.wbmp.WBMPMetadataFormat", null, null);
     }
 
@@ -93,8 +91,7 @@ public class WBMPImageReaderSpi extends ImageReaderSpi {
         }
     }
 
-    public ImageReader createReaderInstance(Object extension)
-            throws IIOException {
+    public ImageReader createReaderInstance(Object extension) throws IIOException {
         return new WBMPImageReader(this);
     }
 }

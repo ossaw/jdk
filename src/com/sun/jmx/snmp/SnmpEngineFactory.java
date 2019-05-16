@@ -14,7 +14,6 @@ package com.sun.jmx.snmp;
  * <li>Access Control Sub System + Ip Acl + User based Access Control Model. See
  * <CODE> IpAcl </CODE> and <CODE> UserAcl </CODE>.</li>
  * </ul>
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -27,11 +26,11 @@ public interface SnmpEngineFactory {
      * The engine instantiation method.
      * 
      * @param p
-     *          The parameters used to instantiate a new engine.
+     *        The parameters used to instantiate a new engine.
      * @throws IllegalArgumentException
-     *                                  Throwed if one of the configuration file
-     *                                  file doesn't exist
-     *                                  (Acl files, security file).
+     *         Throwed if one of the configuration file
+     *         file doesn't exist
+     *         (Acl files, security file).
      * @return The newly created SnmpEngine.
      */
     public SnmpEngine createEngine(SnmpEngineParameters p);
@@ -40,15 +39,14 @@ public interface SnmpEngineFactory {
      * The engine instantiation method.
      * 
      * @param p
-     *              The parameters used to instantiate a new engine.
+     *        The parameters used to instantiate a new engine.
      * @param ipacl
-     *              The Ip ACL to pass to the Access Control Model.
+     *        The Ip ACL to pass to the Access Control Model.
      * @throws IllegalArgumentException
-     *                                  Throwed if one of the configuration file
-     *                                  file doesn't exist
-     *                                  (Acl files, security file).
+     *         Throwed if one of the configuration file
+     *         file doesn't exist
+     *         (Acl files, security file).
      * @return The newly created SnmpEngine.
      */
-    public SnmpEngine createEngine(SnmpEngineParameters p,
-            InetAddressAcl ipacl);
+    public SnmpEngine createEngine(SnmpEngineParameters p, InetAddressAcl ipacl);
 }

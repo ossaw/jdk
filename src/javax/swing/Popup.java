@@ -31,7 +31,6 @@ import sun.awt.SunToolkit;
  * instead obtain one from a <code>PopupFactory</code>.
  *
  * @see PopupFactory
- *
  * @since 1.4
  */
 public class Popup {
@@ -52,15 +51,15 @@ public class Popup {
      * <code>y</code>.
      *
      * @param owner
-     *                 Component mouse coordinates are relative to, may be null
+     *        Component mouse coordinates are relative to, may be null
      * @param contents
-     *                 Contents of the Popup
+     *        Contents of the Popup
      * @param x
-     *                 Initial x screen coordinate
+     *        Initial x screen coordinate
      * @param y
-     *                 Initial y screen coordinate
+     *        Initial y screen coordinate
      * @exception IllegalArgumentException
-     *                                     if contents is null
+     *            if contents is null
      */
     protected Popup(Component owner, Component contents, int x, int y) {
         this();

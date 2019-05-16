@@ -43,7 +43,6 @@ import javax.xml.ws.soap.MTOM;
  * @see Addressing
  * @see MTOM
  * @see RespectBinding
- *
  * @since JAX-WS 2.1
  */
 @Target(ElementType.ANNOTATION_TYPE)

@@ -25,7 +25,6 @@ import java.util.Vector;
 /**
  * This interface has methods associated with the XSLT xsl:output attribues
  * specified in the stylesheet that effect the format of the document output.
- *
  * In an XSLT stylesheet these attributes appear for example as:
  * 
  * <pre>
@@ -49,7 +48,6 @@ import java.util.Vector;
  * The one attribute not covered in this interface is <code>method</code> as
  * this value is implicitly chosen by the serializer that is created, for
  * example ToXMLStream vs. ToHTMLStream or another one.
- *
  * This interface is only used internally within Xalan.
  *
  * @xsl.usage internal
@@ -70,7 +68,6 @@ interface XSLOutputAttributes {
      * 
      * @return the system identifier to be used in the DOCTYPE declaration in
      *         the output document.
-     *
      */
     public String getDoctypeSystem();
 
@@ -116,25 +113,24 @@ interface XSLOutputAttributes {
     /**
      * Sets the value coming from the xsl:output cdata-section-elements
      * stylesheet property.
-     *
      * This sets the elements whose text elements are to be output as CDATA
      * sections.
      * 
      * @param URI_and_localNames
-     *                           pairs of namespace URI and local names that
-     *                           identify elements
-     *                           whose text elements are to be output as CDATA
-     *                           sections. The
-     *                           namespace of the local element must be the
-     *                           given URI to match.
-     *                           The qName is not given because the prefix does
-     *                           not matter,
-     *                           only the namespace URI to which that prefix
-     *                           would map matters,
-     *                           so the prefix itself is not relevant in
-     *                           specifying which
-     *                           elements have their text to be output as CDATA
-     *                           sections.
+     *        pairs of namespace URI and local names that
+     *        identify elements
+     *        whose text elements are to be output as CDATA
+     *        sections. The
+     *        namespace of the local element must be the
+     *        given URI to match.
+     *        The qName is not given because the prefix does
+     *        not matter,
+     *        only the namespace URI to which that prefix
+     *        would map matters,
+     *        so the prefix itself is not relevant in
+     *        specifying which
+     *        elements have their text to be output as CDATA
+     *        sections.
      */
     public void setCdataSectionElements(Vector URI_and_localNames);
 
@@ -143,13 +139,13 @@ interface XSLOutputAttributes {
      * doctype-system stylesheet properties
      * 
      * @param system
-     *               the system identifier to be used in the DOCTYPE declaration
-     *               in
-     *               the output document.
+     *        the system identifier to be used in the DOCTYPE declaration
+     *        in
+     *        the output document.
      * @param pub
-     *               the public identifier to be used in the DOCTYPE declaration
-     *               in
-     *               the output document.
+     *        the public identifier to be used in the DOCTYPE declaration
+     *        in
+     *        the output document.
      */
     public void setDoctype(String system, String pub);
 
@@ -158,9 +154,9 @@ interface XSLOutputAttributes {
      * attribute.
      * 
      * @param doctype
-     *                the public identifier to be used in the DOCTYPE
-     *                declaration in
-     *                the output document.
+     *        the public identifier to be used in the DOCTYPE
+     *        declaration in
+     *        the output document.
      */
     public void setDoctypePublic(String doctype);
 
@@ -169,9 +165,9 @@ interface XSLOutputAttributes {
      * attribute.
      * 
      * @param doctype
-     *                the system identifier to be used in the DOCTYPE
-     *                declaration in
-     *                the output document.
+     *        the system identifier to be used in the DOCTYPE
+     *        declaration in
+     *        the output document.
      */
     public void setDoctypeSystem(String doctype);
 
@@ -180,7 +176,7 @@ interface XSLOutputAttributes {
      * stylesheet attribute.
      * 
      * @param encoding
-     *                 the character encoding
+     *        the character encoding
      */
     public void setEncoding(String encoding);
 
@@ -188,8 +184,8 @@ interface XSLOutputAttributes {
      * Sets the value coming from the xsl:output indent stylesheet attribute.
      * 
      * @param indent
-     *               true if the output document should be indented to visually
-     *               indicate its structure.
+     *        true if the output document should be indented to visually
+     *        indicate its structure.
      */
     public void setIndent(boolean indent);
 
@@ -198,8 +194,8 @@ interface XSLOutputAttributes {
      * attribute.
      * 
      * @param mediatype
-     *                  the media-type or MIME type associated with the output
-     *                  document.
+     *        the media-type or MIME type associated with the output
+     *        document.
      */
     public void setMediaType(String mediatype);
 
@@ -208,8 +204,8 @@ interface XSLOutputAttributes {
      * attribute
      * 
      * @param b
-     *          true if the XML declaration is to be omitted from the output
-     *          document.
+     *        true if the XML declaration is to be omitted from the output
+     *        document.
      */
     public void setOmitXMLDeclaration(boolean b);
 
@@ -218,9 +214,9 @@ interface XSLOutputAttributes {
      * attribute.
      * 
      * @param standalone
-     *                   a value of "yes" indicates that the
-     *                   <code>standalone</code>
-     *                   delaration is to be included in the output document.
+     *        a value of "yes" indicates that the
+     *        <code>standalone</code>
+     *        delaration is to be included in the output document.
      */
     public void setStandalone(String standalone);
 
@@ -228,7 +224,7 @@ interface XSLOutputAttributes {
      * Sets the value coming from the xsl:output version attribute.
      * 
      * @param version
-     *                the version of the output format.
+     *        the version of the output format.
      */
     public void setVersion(String version);
 

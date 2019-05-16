@@ -31,7 +31,6 @@ import javax.swing.event.*;
  * Use Trees</a> in <em>The Java Tutorial.</em>
  *
  * @see TreePath
- *
  * @author Rob Davis
  * @author Ray Ryan
  */
@@ -54,7 +53,7 @@ public interface TreeModel {
      * index &lt; getChildCount(parent</code>)).
      *
      * @param parent
-     *               a node in the tree, obtained from this data source
+     *        a node in the tree, obtained from this data source
      * @return the child of <code>parent</code> at index <code>index</code>
      */
     public Object getChild(Object parent, int index);
@@ -65,7 +64,7 @@ public interface TreeModel {
      * node previously obtained from this data source.
      *
      * @param parent
-     *               a node in the tree, obtained from this data source
+     *        a node in the tree, obtained from this data source
      * @return the number of children of the node <code>parent</code>
      */
     public int getChildCount(Object parent);
@@ -78,7 +77,7 @@ public interface TreeModel {
      * no children.
      *
      * @param node
-     *             a node in the tree, obtained from this data source
+     *        a node in the tree, obtained from this data source
      * @return true if <code>node</code> is a leaf
      */
     public boolean isLeaf(Object node);
@@ -90,9 +89,9 @@ public interface TreeModel {
      * <code>treeNodesChanged</code> event.
      *
      * @param path
-     *                 path to the node that the user has altered
+     *        path to the node that the user has altered
      * @param newValue
-     *                 the new value from the TreeCellEditor
+     *        the new value from the TreeCellEditor
      */
     public void valueForPathChanged(TreePath path, Object newValue);
 
@@ -103,9 +102,9 @@ public interface TreeModel {
      * model, returns -1.
      *
      * @param parent
-     *               a node in the tree, obtained from this data source
+     *        a node in the tree, obtained from this data source
      * @param child
-     *               the node we are interested in
+     *        the node we are interested in
      * @return the index of the child in the parent, or -1 if either
      *         <code>child</code> or <code>parent</code> are <code>null</code>
      *         or don't belong to this tree model
@@ -121,7 +120,7 @@ public interface TreeModel {
      * changes.
      *
      * @param l
-     *          the listener to add
+     *        the listener to add
      * @see #removeTreeModelListener
      */
     void addTreeModelListener(TreeModelListener l);
@@ -132,7 +131,7 @@ public interface TreeModel {
      *
      * @see #addTreeModelListener
      * @param l
-     *          the listener to remove
+     *        the listener to remove
      */
     void removeTreeModelListener(TreeModelListener l);
 

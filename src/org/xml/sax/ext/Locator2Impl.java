@@ -16,11 +16,9 @@ import org.xml.sax.helpers.LocatorImpl;
 /**
  * SAX2 extension helper for holding additional Entity information, implementing
  * the {@link Locator2} interface.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
  * </blockquote>
- *
  * <p>
  * This is not part of core-only SAX2 distributions.
  * </p>
@@ -45,7 +43,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
      * copied, otherwise they set to <em>null</em>.
      *
      * @param locator
-     *                The existing Locator object.
+     *        The existing Locator object.
      */
     public Locator2Impl(Locator locator) {
         super(locator);
@@ -87,7 +85,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
      * Assigns the current value of the version property.
      *
      * @param version
-     *                the new "version" value
+     *        the new "version" value
      * @see #getXMLVersion
      */
     public void setXMLVersion(String version) {
@@ -98,7 +96,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
      * Assigns the current value of the encoding property.
      *
      * @param encoding
-     *                 the new "encoding" value
+     *        the new "encoding" value
      * @see #getEncoding
      */
     public void setEncoding(String encoding) {

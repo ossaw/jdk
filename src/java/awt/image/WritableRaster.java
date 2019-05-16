@@ -18,7 +18,6 @@ import java.awt.Point;
 /**
  * This class extends Raster to provide pixel writing capabilities. Refer to the
  * class comment for Raster for descriptions of how a Raster stores pixels.
- *
  * <p>
  * The constructors of this class are protected. To instantiate a
  * WritableRaster, use one of the createWritableRaster factory methods in the
@@ -33,21 +32,20 @@ public class WritableRaster extends Raster {
      * is automatically created.
      * 
      * @param sampleModel
-     *                    The SampleModel that specifies the layout.
+     *        The SampleModel that specifies the layout.
      * @param origin
-     *                    The Point that specifies the origin.
+     *        The Point that specifies the origin.
      * @throws RasterFormatException
-     *                               if computing either
-     *                               <code>origin.x + sampleModel.getWidth()</code>
-     *                               or
-     *                               <code>origin.y + sampleModel.getHeight()</code>
-     *                               results in
-     *                               integer overflow
+     *         if computing either
+     *         <code>origin.x + sampleModel.getWidth()</code>
+     *         or
+     *         <code>origin.y + sampleModel.getHeight()</code>
+     *         results in
+     *         integer overflow
      */
     protected WritableRaster(SampleModel sampleModel, Point origin) {
-        this(sampleModel, sampleModel.createDataBuffer(), new Rectangle(
-                origin.x, origin.y, sampleModel.getWidth(), sampleModel
-                        .getHeight()), origin, null);
+        this(sampleModel, sampleModel.createDataBuffer(), new Rectangle(origin.x, origin.y, sampleModel
+                .getWidth(), sampleModel.getHeight()), origin, null);
     }
 
     /**
@@ -57,23 +55,22 @@ public class WritableRaster extends Raster {
      * compatible with SampleModel.
      * 
      * @param sampleModel
-     *                    The SampleModel that specifies the layout.
+     *        The SampleModel that specifies the layout.
      * @param dataBuffer
-     *                    The DataBuffer that contains the image data.
+     *        The DataBuffer that contains the image data.
      * @param origin
-     *                    The Point that specifies the origin.
+     *        The Point that specifies the origin.
      * @throws RasterFormatException
-     *                               if computing either
-     *                               <code>origin.x + sampleModel.getWidth()</code>
-     *                               or
-     *                               <code>origin.y + sampleModel.getHeight()</code>
-     *                               results in
-     *                               integer overflow
+     *         if computing either
+     *         <code>origin.x + sampleModel.getWidth()</code>
+     *         or
+     *         <code>origin.y + sampleModel.getHeight()</code>
+     *         results in
+     *         integer overflow
      */
-    protected WritableRaster(SampleModel sampleModel, DataBuffer dataBuffer,
-            Point origin) {
-        this(sampleModel, dataBuffer, new Rectangle(origin.x, origin.y,
-                sampleModel.getWidth(), sampleModel.getHeight()), origin, null);
+    protected WritableRaster(SampleModel sampleModel, DataBuffer dataBuffer, Point origin) {
+        this(sampleModel, dataBuffer, new Rectangle(origin.x, origin.y, sampleModel.getWidth(), sampleModel
+                .getHeight()), origin, null);
     }
 
     /**
@@ -83,34 +80,32 @@ public class WritableRaster extends Raster {
      * contained by the base Raster. (The base Raster is the Raster's ancestor
      * which has no parent.) sampleModelTranslate specifies the
      * sampleModelTranslateX and sampleModelTranslateY values of the new Raster.
-     *
      * Note that this constructor should generally be called by other
      * constructors or create methods, it should not be used directly.
      * 
      * @param sampleModel
-     *                             The SampleModel that specifies the layout.
+     *        The SampleModel that specifies the layout.
      * @param dataBuffer
-     *                             The DataBuffer that contains the image data.
+     *        The DataBuffer that contains the image data.
      * @param aRegion
-     *                             The Rectangle that specifies the image area.
+     *        The Rectangle that specifies the image area.
      * @param sampleModelTranslate
-     *                             The Point that specifies the translation from
-     *                             SampleModel to
-     *                             Raster coordinates.
+     *        The Point that specifies the translation from
+     *        SampleModel to
+     *        Raster coordinates.
      * @param parent
-     *                             The parent (if any) of this raster.
+     *        The parent (if any) of this raster.
      * @throws RasterFormatException
-     *                               if <code>aRegion</code> has width or height
-     *                               less than or
-     *                               equal to zero, or computing either
-     *                               <code>aRegion.x + aRegion.width</code> or
-     *                               <code>aRegion.y + aRegion.height</code>
-     *                               results in integer
-     *                               overflow
+     *         if <code>aRegion</code> has width or height
+     *         less than or
+     *         equal to zero, or computing either
+     *         <code>aRegion.x + aRegion.width</code> or
+     *         <code>aRegion.y + aRegion.height</code>
+     *         results in integer
+     *         overflow
      */
-    protected WritableRaster(SampleModel sampleModel, DataBuffer dataBuffer,
-            Rectangle aRegion, Point sampleModelTranslate,
-            WritableRaster parent) {
+    protected WritableRaster(SampleModel sampleModel, DataBuffer dataBuffer, Rectangle aRegion,
+            Point sampleModelTranslate, WritableRaster parent) {
         super(sampleModel, dataBuffer, aRegion, sampleModelTranslate, parent);
     }
 
@@ -132,23 +127,21 @@ public class WritableRaster extends Raster {
      * getParent() and getWritableParent() methods.
      *
      * @param childMinX
-     *                  X coord of the upper left corner of the new Raster.
+     *        X coord of the upper left corner of the new Raster.
      * @param childMinY
-     *                  Y coord of the upper left corner of the new Raster.
+     *        Y coord of the upper left corner of the new Raster.
      * @return a <code>WritableRaster</code> the same as this one except for the
      *         specified location.
      * @throws RasterFormatException
-     *                               if computing either
-     *                               <code>childMinX + this.getWidth()</code>
-     *                               or
-     *                               <code>childMinY + this.getHeight()</code>
-     *                               results in
-     *                               integer overflow
+     *         if computing either
+     *         <code>childMinX + this.getWidth()</code>
+     *         or
+     *         <code>childMinY + this.getHeight()</code>
+     *         results in
+     *         integer overflow
      */
-    public WritableRaster createWritableTranslatedChild(int childMinX,
-            int childMinY) {
-        return createWritableChild(minX, minY, width, height, childMinX,
-                childMinY, null);
+    public WritableRaster createWritableTranslatedChild(int childMinX, int childMinY) {
+        return createWritableChild(minX, minY, width, height, childMinX, childMinY, null);
     }
 
     /**
@@ -156,13 +149,11 @@ public class WritableRaster extends Raster {
      * WritableRaster's DataBuffer. The new WritableRaster will possess a
      * reference to the current WritableRaster, accessible through its
      * getParent() and getWritableParent() methods.
-     *
      * <p>
      * The parentX, parentY, width and height parameters form a Rectangle in
      * this WritableRaster's coordinate space, indicating the area of pixels to
      * be shared. An error will be thrown if this Rectangle is not contained
      * with the bounds of the current WritableRaster.
-     *
      * <p>
      * The new WritableRaster may additionally be translated to a different
      * coordinate system for the plane than that used by the current
@@ -171,13 +162,11 @@ public class WritableRaster extends Raster {
      * coordinate (childMinX, childMinY) in the new WritableRaster will map to
      * the same pixel as the coordinate (parentX, parentY) in the current
      * WritableRaster.
-     *
      * <p>
      * The new WritableRaster may be defined to contain only a subset of the
      * bands of the current WritableRaster, possibly reordered, by means of the
      * bandList parameter. If bandList is null, it is taken to include all of
      * the bands of the current WritableRaster in their current order.
-     *
      * <p>
      * To create a new WritableRaster that contains a subregion of the current
      * WritableRaster, but shares its coordinate system and bands, this method
@@ -185,42 +174,42 @@ public class WritableRaster extends Raster {
      * parentY, and bandList equal to null.
      *
      * @param parentX
-     *                  X coordinate of the upper left corner in this
-     *                  WritableRaster's
-     *                  coordinates.
+     *        X coordinate of the upper left corner in this
+     *        WritableRaster's
+     *        coordinates.
      * @param parentY
-     *                  Y coordinate of the upper left corner in this
-     *                  WritableRaster's
-     *                  coordinates.
+     *        Y coordinate of the upper left corner in this
+     *        WritableRaster's
+     *        coordinates.
      * @param w
-     *                  Width of the region starting at (parentX, parentY).
+     *        Width of the region starting at (parentX, parentY).
      * @param h
-     *                  Height of the region starting at (parentX, parentY).
+     *        Height of the region starting at (parentX, parentY).
      * @param childMinX
-     *                  X coordinate of the upper left corner of the returned
-     *                  WritableRaster.
+     *        X coordinate of the upper left corner of the returned
+     *        WritableRaster.
      * @param childMinY
-     *                  Y coordinate of the upper left corner of the returned
-     *                  WritableRaster.
+     *        Y coordinate of the upper left corner of the returned
+     *        WritableRaster.
      * @param bandList
-     *                  Array of band indices, or null to use all bands.
+     *        Array of band indices, or null to use all bands.
      * @return a <code>WritableRaster</code> sharing all or part of the
      *         <code>DataBuffer</code> of this <code>WritableRaster</code>.
      * @exception RasterFormatException
-     *                                  if the subregion is outside of the
-     *                                  raster bounds.
+     *            if the subregion is outside of the
+     *            raster bounds.
      * @throws RasterFormatException
-     *                               if <code>w</code> or <code>h</code> is less
-     *                               than or equal to
-     *                               zero, or computing any of
-     *                               <code>parentX + w</code>,
-     *                               <code>parentY + h</code>,
-     *                               <code>childMinX + w</code>, or
-     *                               <code>childMinY + h</code> results in
-     *                               integer overflow
+     *         if <code>w</code> or <code>h</code> is less
+     *         than or equal to
+     *         zero, or computing any of
+     *         <code>parentX + w</code>,
+     *         <code>parentY + h</code>,
+     *         <code>childMinX + w</code>, or
+     *         <code>childMinY + h</code> results in
+     *         integer overflow
      */
-    public WritableRaster createWritableChild(int parentX, int parentY, int w,
-            int h, int childMinX, int childMinY, int bandList[]) {
+    public WritableRaster createWritableChild(int parentX, int parentY, int w, int h, int childMinX,
+            int childMinY, int bandList[]) {
         if (parentX < this.minX) {
             throw new RasterFormatException("parentX lies outside raster");
         }
@@ -228,13 +217,10 @@ public class WritableRaster extends Raster {
             throw new RasterFormatException("parentY lies outside raster");
         }
         if ((parentX + w < parentX) || (parentX + w > this.width + this.minX)) {
-            throw new RasterFormatException(
-                    "(parentX + width) is outside raster");
+            throw new RasterFormatException("(parentX + width) is outside raster");
         }
-        if ((parentY + h < parentY) || (parentY + h > this.height
-                + this.minY)) {
-            throw new RasterFormatException(
-                    "(parentY + height) is outside raster");
+        if ((parentY + h < parentY) || (parentY + h > this.height + this.minY)) {
+            throw new RasterFormatException("(parentY + height) is outside raster");
         }
 
         SampleModel sm;
@@ -252,9 +238,8 @@ public class WritableRaster extends Raster {
         int deltaX = childMinX - parentX;
         int deltaY = childMinY - parentY;
 
-        return new WritableRaster(sm, getDataBuffer(), new Rectangle(childMinX,
-                childMinY, w, h), new Point(sampleModelTranslateX + deltaX,
-                        sampleModelTranslateY + deltaY), this);
+        return new WritableRaster(sm, getDataBuffer(), new Rectangle(childMinX, childMinY, w, h), new Point(
+                sampleModelTranslateX + deltaX, sampleModelTranslateY + deltaY), this);
     }
 
     /**
@@ -273,23 +258,21 @@ public class WritableRaster extends Raster {
      * @see java.awt.image.SampleModel#setDataElements(int, int, Object,
      *      DataBuffer)
      * @param x
-     *               The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *               The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param inData
-     *               An object reference to an array of type defined by
-     *               getTransferType() and length getNumDataElements()
-     *               containing
-     *               the pixel data to place at x,y.
-     *
+     *        An object reference to an array of type defined by
+     *        getTransferType() and length getNumDataElements()
+     *        containing
+     *        the pixel data to place at x,y.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if inData is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if inData is too
+     *         small to hold the input.
      */
     public void setDataElements(int x, int y, Object inData) {
-        sampleModel.setDataElements(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, inData, dataBuffer);
+        sampleModel.setDataElements(x - sampleModelTranslateX, y - sampleModelTranslateY, inData, dataBuffer);
     }
 
     /**
@@ -303,28 +286,25 @@ public class WritableRaster extends Raster {
      * guaranteed.
      * 
      * @param x
-     *                 The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *                 The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param inRaster
-     *                 Raster containing data to place at x,y.
-     *
+     *        Raster containing data to place at x,y.
      * @throws NullPointerException
-     *                                        if inRaster is null.
+     *         if inRaster is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds.
+     *         if the coordinates are not in
+     *         bounds.
      */
     public void setDataElements(int x, int y, Raster inRaster) {
         int dstOffX = x + inRaster.getMinX();
         int dstOffY = y + inRaster.getMinY();
         int width = inRaster.getWidth();
         int height = inRaster.getHeight();
-        if ((dstOffX < this.minX) || (dstOffY < this.minY) || (dstOffX
-                + width > this.minX + this.width) || (dstOffY
-                        + height > this.minY + this.height)) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "Coordinate out of bounds!");
+        if ((dstOffX < this.minX) || (dstOffY < this.minY) || (dstOffX + width > this.minX + this.width)
+                || (dstOffY + height > this.minY + this.height)) {
+            throw new ArrayIndexOutOfBoundsException("Coordinate out of bounds!");
         }
 
         int srcOffX = inRaster.getMinX();
@@ -332,8 +312,7 @@ public class WritableRaster extends Raster {
         Object tdata = null;
 
         for (int startY = 0; startY < height; startY++) {
-            tdata = inRaster.getDataElements(srcOffX, srcOffY + startY, width,
-                    1, tdata);
+            tdata = inRaster.getDataElements(srcOffX, srcOffY + startY, width, 1, tdata);
             setDataElements(dstOffX, dstOffY + startY, width, 1, tdata);
         }
     }
@@ -353,29 +332,28 @@ public class WritableRaster extends Raster {
      * @see java.awt.image.SampleModel#setDataElements(int, int, int, int,
      *      Object, DataBuffer)
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param inData
-     *               An object reference to an array of type defined by
-     *               getTransferType() and length w*h*getNumDataElements()
-     *               containing the pixel data to place between x,y and x+w-1,
-     *               y+h-1.
-     *
+     *        An object reference to an array of type defined by
+     *        getTransferType() and length w*h*getNumDataElements()
+     *        containing the pixel data to place between x,y and x+w-1,
+     *        y+h-1.
      * @throws NullPointerException
-     *                                        if inData is null.
+     *         if inData is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if inData is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if inData is too
+     *         small to hold the input.
      */
     public void setDataElements(int x, int y, int w, int h, Object inData) {
-        sampleModel.setDataElements(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, inData, dataBuffer);
+        sampleModel.setDataElements(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, inData,
+                dataBuffer);
     }
 
     /**
@@ -418,10 +396,9 @@ public class WritableRaster extends Raster {
      * <p>
      * 
      * @param srcRaster
-     *                  The Raster from which to copy pixels.
-     *
+     *        The Raster from which to copy pixels.
      * @throws NullPointerException
-     *                              if srcRaster is null.
+     *         if srcRaster is null.
      */
     public void setRect(Raster srcRaster) {
         setRect(0, 0, srcRaster);
@@ -437,18 +414,17 @@ public class WritableRaster extends Raster {
      * {@link WritableRaster#setRect(Raster)}.
      *
      * @param dx
-     *                  The X translation factor from src space to dst space of
-     *                  the
-     *                  copy.
+     *        The X translation factor from src space to dst space of
+     *        the
+     *        copy.
      * @param dy
-     *                  The Y translation factor from src space to dst space of
-     *                  the
-     *                  copy.
+     *        The Y translation factor from src space to dst space of
+     *        the
+     *        copy.
      * @param srcRaster
-     *                  The Raster from which to copy pixels.
-     *
+     *        The Raster from which to copy pixels.
      * @throws NullPointerException
-     *                              if srcRaster is null.
+     *         if srcRaster is null.
      */
     public void setRect(int dx, int dy, Raster srcRaster) {
         int width = srcRaster.getWidth();
@@ -490,8 +466,7 @@ public class WritableRaster extends Raster {
                 int[] iData = null;
                 for (int startY = 0; startY < height; startY++) {
                     // Grab one scanline at a time
-                    iData = srcRaster.getPixels(srcOffX, srcOffY + startY,
-                            width, 1, iData);
+                    iData = srcRaster.getPixels(srcOffX, srcOffY + startY, width, 1, iData);
                     setPixels(dstOffX, dstOffY + startY, width, 1, iData);
                 }
                 break;
@@ -499,8 +474,7 @@ public class WritableRaster extends Raster {
             case DataBuffer.TYPE_FLOAT:
                 float[] fData = null;
                 for (int startY = 0; startY < height; startY++) {
-                    fData = srcRaster.getPixels(srcOffX, srcOffY + startY,
-                            width, 1, fData);
+                    fData = srcRaster.getPixels(srcOffX, srcOffY + startY, width, 1, fData);
                     setPixels(dstOffX, dstOffY + startY, width, 1, fData);
                 }
                 break;
@@ -509,8 +483,7 @@ public class WritableRaster extends Raster {
                 double[] dData = null;
                 for (int startY = 0; startY < height; startY++) {
                     // Grab one scanline at a time
-                    dData = srcRaster.getPixels(srcOffX, srcOffY + startY,
-                            width, 1, dData);
+                    dData = srcRaster.getPixels(srcOffX, srcOffY + startY, width, 1, dData);
                     setPixels(dstOffX, dstOffY + startY, width, 1, dData);
                 }
                 break;
@@ -523,22 +496,20 @@ public class WritableRaster extends Raster {
      * not in bounds. However, explicit bounds checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *               The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param iArray
-     *               The input samples in a int array.
-     *
+     *        The input samples in a int array.
      * @throws NullPointerException
-     *                                        if iArray is null.
+     *         if iArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if iArray is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if iArray is too
+     *         small to hold the input.
      */
     public void setPixel(int x, int y, int iArray[]) {
-        sampleModel.setPixel(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, iArray, dataBuffer);
+        sampleModel.setPixel(x - sampleModelTranslateX, y - sampleModelTranslateY, iArray, dataBuffer);
     }
 
     /**
@@ -547,22 +518,20 @@ public class WritableRaster extends Raster {
      * not in bounds. However, explicit bounds checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *               The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param fArray
-     *               The input samples in a float array.
-     *
+     *        The input samples in a float array.
      * @throws NullPointerException
-     *                                        if fArray is null.
+     *         if fArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if fArray is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if fArray is too
+     *         small to hold the input.
      */
     public void setPixel(int x, int y, float fArray[]) {
-        sampleModel.setPixel(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, fArray, dataBuffer);
+        sampleModel.setPixel(x - sampleModelTranslateX, y - sampleModelTranslateY, fArray, dataBuffer);
     }
 
     /**
@@ -571,22 +540,20 @@ public class WritableRaster extends Raster {
      * not in bounds. However, explicit bounds checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *               The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param dArray
-     *               The input samples in a double array.
-     *
+     *        The input samples in a double array.
      * @throws NullPointerException
-     *                                        if dArray is null.
+     *         if dArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if dArray is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if dArray is too
+     *         small to hold the input.
      */
     public void setPixel(int x, int y, double dArray[]) {
-        sampleModel.setPixel(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, dArray, dataBuffer);
+        sampleModel.setPixel(x - sampleModelTranslateX, y - sampleModelTranslateY, dArray, dataBuffer);
     }
 
     /**
@@ -596,26 +563,24 @@ public class WritableRaster extends Raster {
      * checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param iArray
-     *               The input int pixel array.
-     *
+     *        The input int pixel array.
      * @throws NullPointerException
-     *                                        if iArray is null.
+     *         if iArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if iArray is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if iArray is too
+     *         small to hold the input.
      */
     public void setPixels(int x, int y, int w, int h, int iArray[]) {
-        sampleModel.setPixels(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, iArray, dataBuffer);
+        sampleModel.setPixels(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, iArray, dataBuffer);
     }
 
     /**
@@ -625,26 +590,24 @@ public class WritableRaster extends Raster {
      * checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param fArray
-     *               The input float pixel array.
-     *
+     *        The input float pixel array.
      * @throws NullPointerException
-     *                                        if fArray is null.
+     *         if fArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if fArray is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if fArray is too
+     *         small to hold the input.
      */
     public void setPixels(int x, int y, int w, int h, float fArray[]) {
-        sampleModel.setPixels(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, fArray, dataBuffer);
+        sampleModel.setPixels(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, fArray, dataBuffer);
     }
 
     /**
@@ -654,26 +617,24 @@ public class WritableRaster extends Raster {
      * checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param dArray
-     *               The input double pixel array.
-     *
+     *        The input double pixel array.
      * @throws NullPointerException
-     *                                        if dArray is null.
+     *         if dArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates are not in
-     *                                        bounds, or if dArray is too
-     *                                        small to hold the input.
+     *         if the coordinates are not in
+     *         bounds, or if dArray is too
+     *         small to hold the input.
      */
     public void setPixels(int x, int y, int w, int h, double dArray[]) {
-        sampleModel.setPixels(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, dArray, dataBuffer);
+        sampleModel.setPixels(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, dArray, dataBuffer);
     }
 
     /**
@@ -683,21 +644,19 @@ public class WritableRaster extends Raster {
      * checking is not guaranteed.
      * 
      * @param x
-     *          The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *          The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param b
-     *          The band to set.
+     *        The band to set.
      * @param s
-     *          The input sample.
-     *
+     *        The input sample.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates or the band
-     *                                        index are not in bounds.
+     *         if the coordinates or the band
+     *         index are not in bounds.
      */
     public void setSample(int x, int y, int b, int s) {
-        sampleModel.setSample(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, b, s, dataBuffer);
+        sampleModel.setSample(x - sampleModelTranslateX, y - sampleModelTranslateY, b, s, dataBuffer);
     }
 
     /**
@@ -707,21 +666,19 @@ public class WritableRaster extends Raster {
      * checking is not guaranteed.
      * 
      * @param x
-     *          The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *          The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param b
-     *          The band to set.
+     *        The band to set.
      * @param s
-     *          The input sample as a float.
-     *
+     *        The input sample as a float.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates or the band
-     *                                        index are not in bounds.
+     *         if the coordinates or the band
+     *         index are not in bounds.
      */
     public void setSample(int x, int y, int b, float s) {
-        sampleModel.setSample(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, b, s, dataBuffer);
+        sampleModel.setSample(x - sampleModelTranslateX, y - sampleModelTranslateY, b, s, dataBuffer);
     }
 
     /**
@@ -731,21 +688,19 @@ public class WritableRaster extends Raster {
      * bounds checking is not guaranteed.
      * 
      * @param x
-     *          The X coordinate of the pixel location.
+     *        The X coordinate of the pixel location.
      * @param y
-     *          The Y coordinate of the pixel location.
+     *        The Y coordinate of the pixel location.
      * @param b
-     *          The band to set.
+     *        The band to set.
      * @param s
-     *          The input sample as a double.
-     *
+     *        The input sample as a double.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates or the band
-     *                                        index are not in bounds.
+     *         if the coordinates or the band
+     *         index are not in bounds.
      */
     public void setSample(int x, int y, int b, double s) {
-        sampleModel.setSample(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, b, s, dataBuffer);
+        sampleModel.setSample(x - sampleModelTranslateX, y - sampleModelTranslateY, b, s, dataBuffer);
     }
 
     /**
@@ -755,29 +710,28 @@ public class WritableRaster extends Raster {
      * in bounds. However, explicit bounds checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param b
-     *               The band to set.
+     *        The band to set.
      * @param iArray
-     *               The input int sample array.
-     *
+     *        The input int sample array.
      * @throws NullPointerException
-     *                                        if iArray is null.
+     *         if iArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates or the band
-     *                                        index are not in bounds, or if
-     *                                        iArray is too small to hold the
-     *                                        input.
+     *         if the coordinates or the band
+     *         index are not in bounds, or if
+     *         iArray is too small to hold the
+     *         input.
      */
     public void setSamples(int x, int y, int w, int h, int b, int iArray[]) {
-        sampleModel.setSamples(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, b, iArray, dataBuffer);
+        sampleModel.setSamples(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, b, iArray,
+                dataBuffer);
     }
 
     /**
@@ -787,29 +741,28 @@ public class WritableRaster extends Raster {
      * in bounds. However, explicit bounds checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param b
-     *               The band to set.
+     *        The band to set.
      * @param fArray
-     *               The input float sample array.
-     *
+     *        The input float sample array.
      * @throws NullPointerException
-     *                                        if fArray is null.
+     *         if fArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates or the band
-     *                                        index are not in bounds, or if
-     *                                        fArray is too small to hold the
-     *                                        input.
+     *         if the coordinates or the band
+     *         index are not in bounds, or if
+     *         fArray is too small to hold the
+     *         input.
      */
     public void setSamples(int x, int y, int w, int h, int b, float fArray[]) {
-        sampleModel.setSamples(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, b, fArray, dataBuffer);
+        sampleModel.setSamples(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, b, fArray,
+                dataBuffer);
     }
 
     /**
@@ -819,29 +772,28 @@ public class WritableRaster extends Raster {
      * in bounds. However, explicit bounds checking is not guaranteed.
      * 
      * @param x
-     *               The X coordinate of the upper left pixel location.
+     *        The X coordinate of the upper left pixel location.
      * @param y
-     *               The Y coordinate of the upper left pixel location.
+     *        The Y coordinate of the upper left pixel location.
      * @param w
-     *               Width of the pixel rectangle.
+     *        Width of the pixel rectangle.
      * @param h
-     *               Height of the pixel rectangle.
+     *        Height of the pixel rectangle.
      * @param b
-     *               The band to set.
+     *        The band to set.
      * @param dArray
-     *               The input double sample array.
-     *
+     *        The input double sample array.
      * @throws NullPointerException
-     *                                        if dArray is null.
+     *         if dArray is null.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the coordinates or the band
-     *                                        index are not in bounds, or if
-     *                                        dArray is too small to hold the
-     *                                        input.
+     *         if the coordinates or the band
+     *         index are not in bounds, or if
+     *         dArray is too small to hold the
+     *         input.
      */
     public void setSamples(int x, int y, int w, int h, int b, double dArray[]) {
-        sampleModel.setSamples(x - sampleModelTranslateX, y
-                - sampleModelTranslateY, w, h, b, dArray, dataBuffer);
+        sampleModel.setSamples(x - sampleModelTranslateX, y - sampleModelTranslateY, w, h, b, dArray,
+                dataBuffer);
     }
 
 }

@@ -25,7 +25,6 @@ import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
  * be apparent in the resulting infoset.
  *
  * @author Peter McCracken, IBM
- *
  */
 public class XIncludeNamespaceSupport extends MultipleScopeNamespaceSupport {
 
@@ -55,8 +54,7 @@ public class XIncludeNamespaceSupport extends MultipleScopeNamespaceSupport {
         super.pushContext();
         if (fCurrentContext + 1 == fValidContext.length) {
             boolean[] contextarray = new boolean[fValidContext.length * 2];
-            System.arraycopy(fValidContext, 0, contextarray, 0,
-                    fValidContext.length);
+            System.arraycopy(fValidContext, 0, contextarray, 0, fValidContext.length);
             fValidContext = contextarray;
         }
 
@@ -81,7 +79,7 @@ public class XIncludeNamespaceSupport extends MultipleScopeNamespaceSupport {
      * which was not set to an invalid context using setContextInvalid()
      *
      * @param prefix
-     *               the prefix of the desired URI
+     *        the prefix of the desired URI
      * @return the URI corresponding to the prefix in the context of the include
      *         parent
      */

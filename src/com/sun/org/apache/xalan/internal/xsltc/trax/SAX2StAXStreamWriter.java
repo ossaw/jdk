@@ -72,8 +72,8 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
 
     }
 
-    public void startElement(String uri, String localName, String qName,
-            Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes)
+            throws SAXException {
 
         if (needToCallStartDocument) {
             try {
@@ -81,8 +81,7 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
                     writer.writeStartDocument();
                 else {
                     try {
-                        writer.writeStartDocument(((Locator2) docLocator)
-                                .getXMLVersion());
+                        writer.writeStartDocument(((Locator2) docLocator).getXMLVersion());
                     } catch (ClassCastException e) {
                         writer.writeStartDocument();
                     }
@@ -151,8 +150,7 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
 
                 } else if (attrPrefix.length() > 0) {
 
-                    writer.writeAttribute(attrPrefix, attrURI, attrLocal,
-                            attrValue);
+                    writer.writeAttribute(attrPrefix, attrURI, attrLocal, attrValue);
 
                 } else {
                     writer.writeAttribute(attrQName, attrValue);
@@ -171,8 +169,7 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
 
     }
 
-    public void endElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qName) throws SAXException {
 
         try {
 
@@ -205,8 +202,7 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
 
     }
 
-    public void characters(char[] ch, int start, int length)
-            throws SAXException {
+    public void characters(char[] ch, int start, int length) throws SAXException {
 
         super.characters(ch, start, length);
         try {
@@ -241,8 +237,7 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
 
     }
 
-    public void ignorableWhitespace(char[] ch, int start, int length)
-            throws SAXException {
+    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
 
         super.ignorableWhitespace(ch, start, length);
         try {
@@ -257,8 +252,7 @@ public class SAX2StAXStreamWriter extends SAX2StAXBaseWriter {
 
     }
 
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
 
         super.processingInstruction(target, data);
         try {

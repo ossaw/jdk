@@ -31,7 +31,6 @@ import com.sun.org.apache.xerces.internal.xs.XSConstants;
  * attributes will be available at the startElement call.
  *
  * @xerces.internal
- *
  * @author Elena Litani IBM
  */
 public class AttributePSVImpl implements AttributePSVI {
@@ -93,7 +92,6 @@ public class AttributePSVImpl implements AttributePSVI {
 
     /**
      * [schema normalized value]
-     *
      *
      * @see <a
      *      href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>

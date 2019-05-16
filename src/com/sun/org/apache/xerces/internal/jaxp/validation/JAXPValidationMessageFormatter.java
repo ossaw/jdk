@@ -38,29 +38,26 @@ final class JAXPValidationMessageFormatter {
      * information.
      *
      * @param locale
-     *                  The locale of the message.
+     *        The locale of the message.
      * @param key
-     *                  The message key.
+     *        The message key.
      * @param arguments
-     *                  The message replacement text arguments. The order of the
-     *                  arguments must match that of the placeholders in the
-     *                  actual
-     *                  message.
-     *
+     *        The message replacement text arguments. The order of the
+     *        arguments must match that of the placeholders in the
+     *        actual
+     *        message.
      * @return the formatted message.
-     *
      * @throws MissingResourceException
-     *                                  Thrown if the message with the specified
-     *                                  key cannot be found.
+     *         Thrown if the message with the specified
+     *         key cannot be found.
      */
-    public static String formatMessage(Locale locale, String key,
-            Object[] arguments) throws MissingResourceException {
+    public static String formatMessage(Locale locale, String key, Object[] arguments)
+            throws MissingResourceException {
 
         ResourceBundle resourceBundle = null;
         if (locale != null) {
             resourceBundle = SecuritySupport.getResourceBundle(
-                    "com.sun.org.apache.xerces.internal.impl.msg.JAXPValidationMessages",
-                    locale);
+                    "com.sun.org.apache.xerces.internal.impl.msg.JAXPValidationMessages", locale);
         } else {
             resourceBundle = SecuritySupport.getResourceBundle(
                     "com.sun.org.apache.xerces.internal.impl.msg.JAXPValidationMessages");

@@ -11,5 +11,4 @@ package javax.xml.ws.handler;
  *
  * @since JAX-WS 2.0
  **/
-public interface LogicalHandler<C extends LogicalMessageContext> extends
-        Handler<C> {}
+public interface LogicalHandler<C extends LogicalMessageContext> extends Handler<C> {}

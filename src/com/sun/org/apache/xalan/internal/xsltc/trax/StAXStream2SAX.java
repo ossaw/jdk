@@ -51,8 +51,7 @@ public class StAXStream2SAX implements XMLReader, Locator {
         return _sax;
     }
 
-    public void setContentHandler(ContentHandler handler)
-            throws NullPointerException {
+    public void setContentHandler(ContentHandler handler) throws NullPointerException {
         _sax = handler;
         if (handler instanceof LexicalHandler) {
             _lex = (LexicalHandler) handler;
@@ -100,8 +99,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
                 event = staxStreamReader.nextTag();
                 // An error if a START_ELEMENT isn't found now
                 if (event != XMLStreamConstants.START_ELEMENT) {
-                    throw new IllegalStateException("The current event is "
-                            + "not START_ELEMENT\n but" + event);
+                    throw new IllegalStateException("The current event is " + "not START_ELEMENT\n but"
+                            + event);
                 }
             }
 
@@ -201,8 +200,7 @@ public class StAXStream2SAX implements XMLReader, Locator {
 
     private void handlePI() throws XMLStreamException {
         try {
-            _sax.processingInstruction(staxStreamReader.getPITarget(),
-                    staxStreamReader.getPIData());
+            _sax.processingInstruction(staxStreamReader.getPITarget(), staxStreamReader.getPIData());
         } catch (SAXException e) {
             throw new XMLStreamException(e);
         }
@@ -242,15 +240,13 @@ public class StAXStream2SAX implements XMLReader, Locator {
         try {
             // construct prefix:localName from qName
             String qname = "";
-            if (qName.getPrefix() != null && qName.getPrefix().trim()
-                    .length() != 0) {
+            if (qName.getPrefix() != null && qName.getPrefix().trim().length() != 0) {
                 qname = qName.getPrefix() + ":";
             }
             qname += qName.getLocalPart();
 
             // fire endElement
-            _sax.endElement(qName.getNamespaceURI(), qName.getLocalPart(),
-                    qname);
+            _sax.endElement(qName.getNamespaceURI(), qName.getLocalPart(), qname);
 
             // end namespace bindings
             int nsCount = staxStreamReader.getNamespaceCount();
@@ -276,8 +272,7 @@ public class StAXStream2SAX implements XMLReader, Locator {
                 if (prefix == null) { // true for default namespace
                     prefix = "";
                 }
-                _sax.startPrefixMapping(prefix, staxStreamReader
-                        .getNamespaceURI(i));
+                _sax.startPrefixMapping(prefix, staxStreamReader.getNamespaceURI(i));
             }
 
             // fire startElement
@@ -289,8 +284,7 @@ public class StAXStream2SAX implements XMLReader, Locator {
             else
                 rawname = prefix + ':' + qName.getLocalPart();
             Attributes attrs = getAttributes();
-            _sax.startElement(qName.getNamespaceURI(), qName.getLocalPart(),
-                    rawname, attrs);
+            _sax.startElement(qName.getNamespaceURI(), qName.getLocalPart(), rawname, attrs);
         } catch (SAXException e) {
             throw new XMLStreamException(e);
         }
@@ -306,10 +300,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
         AttributesImpl attrs = new AttributesImpl();
 
         int eventType = staxStreamReader.getEventType();
-        if (eventType != XMLStreamConstants.ATTRIBUTE
-                && eventType != XMLStreamConstants.START_ELEMENT) {
-            throw new InternalError("getAttributes() attempting to process: "
-                    + eventType);
+        if (eventType != XMLStreamConstants.ATTRIBUTE && eventType != XMLStreamConstants.START_ELEMENT) {
+            throw new InternalError("getAttributes() attempting to process: " + eventType);
         }
 
         // in SAX, namespace declarations are not part of attributes by default.
@@ -399,16 +391,15 @@ public class StAXStream2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public boolean getFeature(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public boolean getFeature(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return false;
     }
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setFeature(String name, boolean value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setFeature(String name, boolean value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -418,8 +409,7 @@ public class StAXStream2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setEntityResolver(EntityResolver resolver)
-            throws NullPointerException {}
+    public void setEntityResolver(EntityResolver resolver) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -431,20 +421,18 @@ public class StAXStream2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setErrorHandler(ErrorHandler handler)
-            throws NullPointerException {}
+    public void setErrorHandler(ErrorHandler handler) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setProperty(String name, Object value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setProperty(String name, Object value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public Object getProperty(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public Object getProperty(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return null;
     }
 

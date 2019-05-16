@@ -29,7 +29,6 @@ package javax.accessibility;
  * @see Accessible#getAccessibleContext
  * @see AccessibleContext
  * @see AccessibleContext#getAccessibleTable
- *
  * @author Lynn Monsanto
  * @since 1.3
  */

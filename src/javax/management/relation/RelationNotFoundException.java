@@ -27,7 +27,7 @@ public class RelationNotFoundException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public RelationNotFoundException(String message) {
         super(message);

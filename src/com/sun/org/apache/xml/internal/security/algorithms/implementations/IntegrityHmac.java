@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -45,8 +43,8 @@ import org.w3c.dom.Text;
 public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(IntegrityHmac.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(IntegrityHmac.class
+            .getName());
 
     /** Field macAlgorithm */
     private Mac macAlgorithm = null;
@@ -75,8 +73,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
     public IntegrityHmac() throws XMLSignatureException {
         String algorithmID = JCEMapper.translateURItoJCEID(this.engineGetURI());
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE,
-                    "Created IntegrityHmacSHA1 using " + algorithmID);
+            log.log(java.util.logging.Level.FINE, "Created IntegrityHmacSHA1 using " + algorithmID);
         }
 
         try {
@@ -84,8 +81,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
         } catch (java.security.NoSuchAlgorithmException ex) {
             Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
 
-            throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
-                    exArgs);
+            throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
         }
     }
 
@@ -97,8 +93,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * @param params
      * @throws XMLSignatureException
      */
-    protected void engineSetParameter(AlgorithmParameterSpec params)
-            throws XMLSignatureException {
+    protected void engineSetParameter(AlgorithmParameterSpec params) throws XMLSignatureException {
         throw new XMLSignatureException("empty");
     }
 
@@ -116,23 +111,18 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * @return true if the signature is correct
      * @throws XMLSignatureException
      */
-    protected boolean engineVerify(byte[] signature)
-            throws XMLSignatureException {
+    protected boolean engineVerify(byte[] signature) throws XMLSignatureException {
         try {
-            if (this.HMACOutputLengthSet
-                    && this.HMACOutputLength < getDigestLength()) {
+            if (this.HMACOutputLengthSet && this.HMACOutputLength < getDigestLength()) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "HMACOutputLength must not be less than "
-                                    + getDigestLength());
+                    log.log(java.util.logging.Level.FINE, "HMACOutputLength must not be less than "
+                            + getDigestLength());
                 }
                 Object[] exArgs = { String.valueOf(getDigestLength()) };
-                throw new XMLSignatureException(
-                        "algorithms.HMACOutputLengthMin", exArgs);
+                throw new XMLSignatureException("algorithms.HMACOutputLengthMin", exArgs);
             } else {
                 byte[] completeResult = this.macAlgorithm.doFinal();
-                return MessageDigestAlgorithm.isEqual(completeResult,
-                        signature);
+                return MessageDigestAlgorithm.isEqual(completeResult, signature);
             }
         } catch (IllegalStateException ex) {
             throw new XMLSignatureException("empty", ex);
@@ -147,15 +137,13 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * @param secretKey
      * @throws XMLSignatureException
      */
-    protected void engineInitVerify(Key secretKey)
-            throws XMLSignatureException {
+    protected void engineInitVerify(Key secretKey) throws XMLSignatureException {
         if (!(secretKey instanceof SecretKey)) {
             String supplied = secretKey.getClass().getName();
             String needed = SecretKey.class.getName();
             Object exArgs[] = { supplied, needed };
 
-            throw new XMLSignatureException(
-                    "algorithms.WrongKeyForThisOperation", exArgs);
+            throw new XMLSignatureException("algorithms.WrongKeyForThisOperation", exArgs);
         }
 
         try {
@@ -165,13 +153,11 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
             // see: http://bugs.sun.com/view_bug.do?bug_id=4953555
             Mac mac = this.macAlgorithm;
             try {
-                this.macAlgorithm = Mac.getInstance(macAlgorithm
-                        .getAlgorithm());
+                this.macAlgorithm = Mac.getInstance(macAlgorithm.getAlgorithm());
             } catch (Exception e) {
                 // this shouldn't occur, but if it does, restore previous Mac
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "Exception when reinstantiating Mac:" + e);
+                    log.log(java.util.logging.Level.FINE, "Exception when reinstantiating Mac:" + e);
                 }
                 this.macAlgorithm = mac;
             }
@@ -188,16 +174,13 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      */
     protected byte[] engineSign() throws XMLSignatureException {
         try {
-            if (this.HMACOutputLengthSet
-                    && this.HMACOutputLength < getDigestLength()) {
+            if (this.HMACOutputLengthSet && this.HMACOutputLength < getDigestLength()) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "HMACOutputLength must not be less than "
-                                    + getDigestLength());
+                    log.log(java.util.logging.Level.FINE, "HMACOutputLength must not be less than "
+                            + getDigestLength());
                 }
                 Object[] exArgs = { String.valueOf(getDigestLength()) };
-                throw new XMLSignatureException(
-                        "algorithms.HMACOutputLengthMin", exArgs);
+                throw new XMLSignatureException("algorithms.HMACOutputLengthMin", exArgs);
             } else {
                 return this.macAlgorithm.doFinal();
             }
@@ -218,8 +201,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
             String needed = SecretKey.class.getName();
             Object exArgs[] = { supplied, needed };
 
-            throw new XMLSignatureException(
-                    "algorithms.WrongKeyForThisOperation", exArgs);
+            throw new XMLSignatureException("algorithms.WrongKeyForThisOperation", exArgs);
         }
 
         try {
@@ -236,16 +218,14 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * @param algorithmParameterSpec
      * @throws XMLSignatureException
      */
-    protected void engineInitSign(Key secretKey,
-            AlgorithmParameterSpec algorithmParameterSpec)
+    protected void engineInitSign(Key secretKey, AlgorithmParameterSpec algorithmParameterSpec)
             throws XMLSignatureException {
         if (!(secretKey instanceof SecretKey)) {
             String supplied = secretKey.getClass().getName();
             String needed = SecretKey.class.getName();
             Object exArgs[] = { supplied, needed };
 
-            throw new XMLSignatureException(
-                    "algorithms.WrongKeyForThisOperation", exArgs);
+            throw new XMLSignatureException("algorithms.WrongKeyForThisOperation", exArgs);
         }
 
         try {
@@ -264,10 +244,8 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * @param secureRandom
      * @throws XMLSignatureException
      */
-    protected void engineInitSign(Key secretKey, SecureRandom secureRandom)
-            throws XMLSignatureException {
-        throw new XMLSignatureException(
-                "algorithms.CannotUseSecureRandomOnMAC");
+    protected void engineInitSign(Key secretKey, SecureRandom secureRandom) throws XMLSignatureException {
+        throw new XMLSignatureException("algorithms.CannotUseSecureRandomOnMAC");
     }
 
     /**
@@ -309,8 +287,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * @param len
      * @throws XMLSignatureException
      */
-    protected void engineUpdate(byte buf[], int offset, int len)
-            throws XMLSignatureException {
+    protected void engineUpdate(byte buf[], int offset, int len) throws XMLSignatureException {
         try {
             this.macAlgorithm.update(buf, offset, len);
         } catch (IllegalStateException ex) {
@@ -322,7 +299,6 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
      * Method engineGetJCEAlgorithmString
      * 
      * @inheritDoc
-     *
      */
     protected String engineGetJCEAlgorithmString() {
         return this.macAlgorithm.getAlgorithm();
@@ -359,8 +335,8 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
             throw new IllegalArgumentException("element null");
         }
 
-        Text hmaclength = XMLUtils.selectDsNodeText(element.getFirstChild(),
-                Constants._TAG_HMACOUTPUTLENGTH, 0);
+        Text hmaclength = XMLUtils.selectDsNodeText(element.getFirstChild(), Constants._TAG_HMACOUTPUTLENGTH,
+                0);
 
         if (hmaclength != null) {
             this.HMACOutputLength = Integer.parseInt(hmaclength.getData());
@@ -380,10 +356,8 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
 
         if (this.HMACOutputLengthSet) {
             Document doc = element.getOwnerDocument();
-            Element HMElem = XMLUtils.createElementInSignatureSpace(doc,
-                    Constants._TAG_HMACOUTPUTLENGTH);
-            Text HMText = doc.createTextNode(Integer.valueOf(
-                    this.HMACOutputLength).toString());
+            Element HMElem = XMLUtils.createElementInSignatureSpace(doc, Constants._TAG_HMACOUTPUTLENGTH);
+            Text HMText = doc.createTextNode(Integer.valueOf(this.HMACOutputLength).toString());
 
             HMElem.appendChild(HMText);
             XMLUtils.addReturnToElement(element);
@@ -410,7 +384,6 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
          * Method engineGetURI
          * 
          * @inheritDoc
-         *
          */
         public String engineGetURI() {
             return XMLSignature.ALGO_ID_MAC_HMAC_SHA1;
@@ -467,7 +440,6 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
          * Method engineGetURI
          * 
          * @inheritDoc
-         *
          */
         public String engineGetURI() {
             return XMLSignature.ALGO_ID_MAC_HMAC_SHA384;
@@ -496,7 +468,6 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
          * Method engineGetURI
          * 
          * @inheritDoc
-         *
          */
         public String engineGetURI() {
             return XMLSignature.ALGO_ID_MAC_HMAC_SHA512;

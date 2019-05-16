@@ -108,5 +108,5 @@ package org.omg.PortableInterceptor;
  * 
  * @see ORBInitInfo
  */
-public interface ORBInitializer extends ORBInitializerOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface ORBInitializer
+public interface ORBInitializer extends ORBInitializerOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface ORBInitializer

@@ -35,16 +35,15 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
     private boolean disposed;
 
     static {
-        AWTAccessor.setSequencedEventAccessor(
-                new AWTAccessor.SequencedEventAccessor() {
-                    public AWTEvent getNested(AWTEvent sequencedEvent) {
-                        return ((SequencedEvent) sequencedEvent).nested;
-                    }
+        AWTAccessor.setSequencedEventAccessor(new AWTAccessor.SequencedEventAccessor() {
+            public AWTEvent getNested(AWTEvent sequencedEvent) {
+                return ((SequencedEvent) sequencedEvent).nested;
+            }
 
-                    public boolean isSequencedEvent(AWTEvent event) {
-                        return event instanceof SequencedEvent;
-                    }
-                });
+            public boolean isSequencedEvent(AWTEvent event) {
+                return event instanceof SequencedEvent;
+            }
+        });
     }
 
     /**
@@ -52,8 +51,8 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
      * event.
      *
      * @param nested
-     *               the AWTEvent which this SequencedEvent's dispatch() method
-     *               will dispatch
+     *        the AWTEvent which this SequencedEvent's dispatch() method
+     *        will dispatch
      */
     public SequencedEvent(AWTEvent nested) {
         super(nested.getSource(), ID);
@@ -72,7 +71,6 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
      * nested events have been dispatched, then this method blocks until such a
      * point is reached. While waiting disposes nested events to disposed
      * AppContext
-     *
      * NOTE: Locking protocol. Since dispose() can get EventQueue lock,
      * dispatch() shall never call dispose() while holding the lock on the list,
      * as EventQueue lock is held during dispatching. The locks should be
@@ -84,8 +82,7 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
 
             if (getFirst() != this) {
                 if (EventQueue.isDispatchThread()) {
-                    EventDispatchThread edt = (EventDispatchThread) Thread
-                            .currentThread();
+                    EventDispatchThread edt = (EventDispatchThread) Thread.currentThread();
                     edt.pumpEvents(SentEvent.ID, new Conditional() {
                         public boolean evaluate() {
                             return !SequencedEvent.this.isFirstOrDisposed();
@@ -105,8 +102,7 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
             }
 
             if (!disposed) {
-                KeyboardFocusManager.getCurrentKeyboardFocusManager()
-                        .setCurrentSequencedEvent(this);
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().setCurrentSequencedEvent(this);
                 Toolkit.getEventQueue().dispatchEvent(nested);
             }
         } finally {
@@ -161,7 +157,6 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
      * Disposes of this instance. This method is invoked once the nested event
      * has been dispatched and handled, or when the peer of the target of the
      * nested event has been disposed with a call to Component.removeNotify.
-     *
      * NOTE: Locking protocol. Since SunToolkit.postEvent can get EventQueue
      * lock, it shall never be called while holding the lock on the list, as
      * EventQueue lock is held during dispatching and dispatch() will get lock
@@ -172,10 +167,8 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
             if (disposed) {
                 return;
             }
-            if (KeyboardFocusManager.getCurrentKeyboardFocusManager()
-                    .getCurrentSequencedEvent() == this) {
-                KeyboardFocusManager.getCurrentKeyboardFocusManager()
-                        .setCurrentSequencedEvent(null);
+            if (KeyboardFocusManager.getCurrentKeyboardFocusManager().getCurrentSequencedEvent() == this) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().setCurrentSequencedEvent(null);
             }
             disposed = true;
         }

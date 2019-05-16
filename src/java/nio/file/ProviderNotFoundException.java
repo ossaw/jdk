@@ -22,7 +22,7 @@ public class ProviderNotFoundException extends RuntimeException {
      * Constructs an instance of this class.
      *
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public ProviderNotFoundException(String msg) {
         super(msg);

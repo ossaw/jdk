@@ -72,7 +72,7 @@ public class InterfaceAddress {
      * both.
      *
      * @param obj
-     *            the object to compare against.
+     *        the object to compare against.
      * @return {@code true} if the objects are the same; {@code false}
      *         otherwise.
      * @see java.net.InterfaceAddress#hashCode()
@@ -82,11 +82,9 @@ public class InterfaceAddress {
             return false;
         }
         InterfaceAddress cmp = (InterfaceAddress) obj;
-        if (!(address == null ? cmp.address == null
-                : address.equals(cmp.address)))
+        if (!(address == null ? cmp.address == null : address.equals(cmp.address)))
             return false;
-        if (!(broadcast == null ? cmp.broadcast == null
-                : broadcast.equals(cmp.broadcast)))
+        if (!(broadcast == null ? cmp.broadcast == null : broadcast.equals(cmp.broadcast)))
             return false;
         if (maskLength != cmp.maskLength)
             return false;
@@ -99,8 +97,7 @@ public class InterfaceAddress {
      * @return a hash code value for this Interface address.
      */
     public int hashCode() {
-        return address.hashCode() + ((broadcast != null) ? broadcast.hashCode()
-                : 0) + maskLength;
+        return address.hashCode() + ((broadcast != null) ? broadcast.hashCode() : 0) + maskLength;
     }
 
     /**

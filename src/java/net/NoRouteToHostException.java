@@ -21,7 +21,7 @@ public class NoRouteToHostException extends SocketException {
      * that gives a specific description of this error.
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public NoRouteToHostException(String msg) {
         super(msg);

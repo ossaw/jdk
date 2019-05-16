@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
 /**
  * The <code>Response</code> interface provides methods used to obtain the
  * payload and context of a message sent in response to an operation invocation.
- *
  * <p>
  * For asynchronous operation invocations it provides additional methods to
  * check the status of the request. The <code>get(...)</code> methods may throw
@@ -28,7 +27,6 @@ public interface Response<T> extends Future<T> {
      *
      * @return The contained response context. May be <code>null</code> if a
      *         response is not yet available.
-     *
      **/
     Map<String, Object> getContext();
 }

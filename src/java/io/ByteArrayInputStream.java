@@ -66,7 +66,7 @@ public class ByteArrayInputStream extends InputStream {
      * of <code>count</code> is the length of <code>buf</code>.
      *
      * @param buf
-     *            the input buffer.
+     *        the input buffer.
      */
     public ByteArrayInputStream(byte buf[]) {
         this.buf = buf;
@@ -83,11 +83,11 @@ public class ByteArrayInputStream extends InputStream {
      * offset.
      *
      * @param buf
-     *               the input buffer.
+     *        the input buffer.
      * @param offset
-     *               the offset in the buffer of the first byte to read.
+     *        the offset in the buffer of the first byte to read.
      * @param length
-     *               the maximum number of bytes to read from the buffer.
+     *        the maximum number of bytes to read from the buffer.
      */
     public ByteArrayInputStream(byte buf[], int offset, int length) {
         this.buf = buf;
@@ -126,23 +126,23 @@ public class ByteArrayInputStream extends InputStream {
      * This <code>read</code> method cannot block.
      *
      * @param b
-     *            the buffer into which the data is read.
+     *        the buffer into which the data is read.
      * @param off
-     *            the start offset in the destination array <code>b</code>
+     *        the start offset in the destination array <code>b</code>
      * @param len
-     *            the maximum number of bytes read.
+     *        the maximum number of bytes read.
      * @return the total number of bytes read into the buffer, or
      *         <code>-1</code> if there is no more data because the end of the
      *         stream has been reached.
      * @exception NullPointerException
-     *                                      If <code>b</code> is
-     *                                      <code>null</code>.
+     *            If <code>b</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                      If <code>off</code> is negative,
-     *                                      <code>len</code> is
-     *                                      negative, or <code>len</code> is
-     *                                      greater than
-     *                                      <code>b.length - off</code>
+     *            If <code>off</code> is negative,
+     *            <code>len</code> is
+     *            negative, or <code>len</code> is
+     *            greater than
+     *            <code>b.length - off</code>
      */
     public synchronized int read(byte b[], int off, int len) {
         if (b == null) {
@@ -175,7 +175,7 @@ public class ByteArrayInputStream extends InputStream {
      * added into <code>pos</code> and <code>k</code> is returned.
      *
      * @param n
-     *          the number of bytes to be skipped.
+     *        the number of bytes to be skipped.
      * @return the actual number of bytes skipped.
      */
     public synchronized long skip(long n) {
@@ -220,7 +220,6 @@ public class ByteArrayInputStream extends InputStream {
      * <p>
      * If no mark has been set, then the value of the mark is the offset passed
      * to the constructor (or 0 if the offset was not supplied).
-     *
      * <p>
      * Note: The <code>readAheadLimit</code> for this class has no meaning.
      *

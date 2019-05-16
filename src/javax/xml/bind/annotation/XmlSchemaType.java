@@ -15,7 +15,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Maps a Java type to a simple schema built-in type.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -27,13 +26,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * <li>field</li>
  * <li>package</li>
  * </ul>
- *
  * <p>
  * <tt>@XmlSchemaType</tt> annotation defined for Java type applies to all
  * references to the Java type from a property/field. A <tt>@XmlSchemaType</tt>
  * annotation specified on the property/field overrides the
  * <tt>@XmlSchemaType</tt> annotation specified at the package level.
- *
  * <p>
  * This annotation can be used with the following annotations:
  * {@link XmlElement}, {@link XmlAttribute}.
@@ -55,7 +52,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  *       &lt;/sequence>
  *     &lt;/xs:complexType>
  * </pre>
- *
  * <p>
  * <b> Example 2: </b> Customize mapping of XMLGregorianCalendar at package
  * level

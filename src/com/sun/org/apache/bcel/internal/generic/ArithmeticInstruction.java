@@ -56,8 +56,8 @@ import com.sun.org.apache.bcel.internal.Constants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class ArithmeticInstruction extends Instruction implements
-        TypedInstruction, StackProducer, StackConsumer {
+public abstract class ArithmeticInstruction extends Instruction implements TypedInstruction, StackProducer,
+        StackConsumer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -66,7 +66,7 @@ public abstract class ArithmeticInstruction extends Instruction implements
 
     /**
      * @param opcode
-     *               of instruction
+     *        of instruction
      */
     protected ArithmeticInstruction(short opcode) {
         super(opcode, (short) 1);

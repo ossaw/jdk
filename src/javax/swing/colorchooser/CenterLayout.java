@@ -45,15 +45,13 @@ class CenterLayout implements LayoutManager, Serializable {
             Dimension containerSize = container.getSize();
             Insets containerInsets = container.getInsets();
             containerSize.width -= containerInsets.left + containerInsets.right;
-            containerSize.height -= containerInsets.top
-                    + containerInsets.bottom;
+            containerSize.height -= containerInsets.top + containerInsets.bottom;
             int componentLeft = (containerSize.width / 2) - (size.width / 2);
             int componentTop = (containerSize.height / 2) - (size.height / 2);
             componentLeft += containerInsets.left;
             componentTop += containerInsets.top;
 
             c.setBounds(componentLeft, componentTop, size.width, size.height);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 }

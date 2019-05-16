@@ -31,23 +31,21 @@ import java.util.function.Supplier;
  *        type of elements in the upstream source
  * @since 1.8
  */
-abstract class IntPipeline<E_IN> extends
-        AbstractPipeline<E_IN, Integer, IntStream> implements IntStream {
+abstract class IntPipeline<E_IN> extends AbstractPipeline<E_IN, Integer, IntStream> implements IntStream {
 
     /**
      * Constructor for the head of a stream pipeline.
      *
      * @param source
-     *                    {@code Supplier<Spliterator>} describing the stream
-     *                    source
+     *        {@code Supplier<Spliterator>} describing the stream
+     *        source
      * @param sourceFlags
-     *                    The source flags for the stream source, described in
-     *                    {@link StreamOpFlag}
+     *        The source flags for the stream source, described in
+     *        {@link StreamOpFlag}
      * @param parallel
-     *                    {@code true} if the pipeline is parallel
+     *        {@code true} if the pipeline is parallel
      */
-    IntPipeline(Supplier<? extends Spliterator<Integer>> source,
-            int sourceFlags, boolean parallel) {
+    IntPipeline(Supplier<? extends Spliterator<Integer>> source, int sourceFlags, boolean parallel) {
         super(source, sourceFlags, parallel);
     }
 
@@ -55,15 +53,14 @@ abstract class IntPipeline<E_IN> extends
      * Constructor for the head of a stream pipeline.
      *
      * @param source
-     *                    {@code Spliterator} describing the stream source
+     *        {@code Spliterator} describing the stream source
      * @param sourceFlags
-     *                    The source flags for the stream source, described in
-     *                    {@link StreamOpFlag}
+     *        The source flags for the stream source, described in
+     *        {@link StreamOpFlag}
      * @param parallel
-     *                    {@code true} if the pipeline is parallel
+     *        {@code true} if the pipeline is parallel
      */
-    IntPipeline(Spliterator<Integer> source, int sourceFlags,
-            boolean parallel) {
+    IntPipeline(Spliterator<Integer> source, int sourceFlags, boolean parallel) {
         super(source, sourceFlags, parallel);
     }
 
@@ -72,9 +69,9 @@ abstract class IntPipeline<E_IN> extends
      * pipeline.
      *
      * @param upstream
-     *                 the upstream element source
+     *        the upstream element source
      * @param opFlags
-     *                 the operation flags for the new operation
+     *        the operation flags for the new operation
      */
     IntPipeline(AbstractPipeline<?, E_IN, ?> upstream, int opFlags) {
         super(upstream, opFlags);
@@ -89,8 +86,7 @@ abstract class IntPipeline<E_IN> extends
             return (IntConsumer) sink;
         } else {
             if (Tripwire.ENABLED)
-                Tripwire.trip(AbstractPipeline.class,
-                        "using IntStream.adapt(Sink<Integer> s)");
+                Tripwire.trip(AbstractPipeline.class, "using IntStream.adapt(Sink<Integer> s)");
             return sink::accept;
         }
     }
@@ -106,10 +102,8 @@ abstract class IntPipeline<E_IN> extends
             return (Spliterator.OfInt) s;
         } else {
             if (Tripwire.ENABLED)
-                Tripwire.trip(AbstractPipeline.class,
-                        "using IntStream.adapt(Spliterator<Integer> s)");
-            throw new UnsupportedOperationException(
-                    "IntStream.adapt(Spliterator<Integer> s)");
+                Tripwire.trip(AbstractPipeline.class, "using IntStream.adapt(Spliterator<Integer> s)");
+            throw new UnsupportedOperationException("IntStream.adapt(Spliterator<Integer> s)");
         }
     }
 
@@ -121,39 +115,32 @@ abstract class IntPipeline<E_IN> extends
     }
 
     @Override
-    final <P_IN> Node<Integer> evaluateToNode(PipelineHelper<Integer> helper,
-            Spliterator<P_IN> spliterator, boolean flattenTree,
-            IntFunction<Integer[]> generator) {
+    final <P_IN> Node<Integer> evaluateToNode(PipelineHelper<Integer> helper, Spliterator<P_IN> spliterator,
+            boolean flattenTree, IntFunction<Integer[]> generator) {
         return Nodes.collectInt(helper, spliterator, flattenTree);
     }
 
     @Override
-    final <P_IN> Spliterator<Integer> wrap(PipelineHelper<Integer> ph,
-            Supplier<Spliterator<P_IN>> supplier, boolean isParallel) {
-        return new StreamSpliterators.IntWrappingSpliterator<>(ph, supplier,
-                isParallel);
+    final <P_IN> Spliterator<Integer> wrap(PipelineHelper<Integer> ph, Supplier<Spliterator<P_IN>> supplier,
+            boolean isParallel) {
+        return new StreamSpliterators.IntWrappingSpliterator<>(ph, supplier, isParallel);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    final Spliterator.OfInt lazySpliterator(
-            Supplier<? extends Spliterator<Integer>> supplier) {
-        return new StreamSpliterators.DelegatingSpliterator.OfInt(
-                (Supplier<Spliterator.OfInt>) supplier);
+    final Spliterator.OfInt lazySpliterator(Supplier<? extends Spliterator<Integer>> supplier) {
+        return new StreamSpliterators.DelegatingSpliterator.OfInt((Supplier<Spliterator.OfInt>) supplier);
     }
 
     @Override
-    final void forEachWithCancel(Spliterator<Integer> spliterator,
-            Sink<Integer> sink) {
+    final void forEachWithCancel(Spliterator<Integer> spliterator, Sink<Integer> sink) {
         Spliterator.OfInt spl = adapt(spliterator);
         IntConsumer adaptedSink = adapt(sink);
-        do {
-        } while (!sink.cancellationRequested() && spl.tryAdvance(adaptedSink));
+        do {} while (!sink.cancellationRequested() && spl.tryAdvance(adaptedSink));
     }
 
     @Override
-    final Node.Builder<Integer> makeNodeBuilder(long exactSizeIfKnown,
-            IntFunction<Integer[]> generator) {
+    final Node.Builder<Integer> makeNodeBuilder(long exactSizeIfKnown, IntFunction<Integer[]> generator) {
         return Nodes.intBuilder(exactSizeIfKnown);
     }
 
@@ -173,9 +160,8 @@ abstract class IntPipeline<E_IN> extends
 
     @Override
     public final LongStream asLongStream() {
-        return new LongPipeline.StatelessOp<Integer>(this,
-                StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
-                        | StreamOpFlag.NOT_DISTINCT) {
+        return new LongPipeline.StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
+                | StreamOpFlag.NOT_DISTINCT) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Long> sink) {
                 return new Sink.ChainedInt<Long>(sink) {
@@ -190,9 +176,8 @@ abstract class IntPipeline<E_IN> extends
 
     @Override
     public final DoubleStream asDoubleStream() {
-        return new DoublePipeline.StatelessOp<Integer>(this,
-                StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
-                        | StreamOpFlag.NOT_DISTINCT) {
+        return new DoublePipeline.StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
+                | StreamOpFlag.NOT_DISTINCT) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Double> sink) {
                 return new Sink.ChainedInt<Double>(sink) {
@@ -213,8 +198,8 @@ abstract class IntPipeline<E_IN> extends
     @Override
     public final IntStream map(IntUnaryOperator mapper) {
         Objects.requireNonNull(mapper);
-        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE,
-                StreamOpFlag.NOT_SORTED | StreamOpFlag.NOT_DISTINCT) {
+        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
+                | StreamOpFlag.NOT_DISTINCT) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Integer> sink) {
                 return new Sink.ChainedInt<Integer>(sink) {
@@ -230,9 +215,8 @@ abstract class IntPipeline<E_IN> extends
     @Override
     public final <U> Stream<U> mapToObj(IntFunction<? extends U> mapper) {
         Objects.requireNonNull(mapper);
-        return new ReferencePipeline.StatelessOp<Integer, U>(this,
-                StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
-                        | StreamOpFlag.NOT_DISTINCT) {
+        return new ReferencePipeline.StatelessOp<Integer, U>(this, StreamShape.INT_VALUE,
+                StreamOpFlag.NOT_SORTED | StreamOpFlag.NOT_DISTINCT) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<U> sink) {
                 return new Sink.ChainedInt<U>(sink) {
@@ -248,9 +232,8 @@ abstract class IntPipeline<E_IN> extends
     @Override
     public final LongStream mapToLong(IntToLongFunction mapper) {
         Objects.requireNonNull(mapper);
-        return new LongPipeline.StatelessOp<Integer>(this,
-                StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
-                        | StreamOpFlag.NOT_DISTINCT) {
+        return new LongPipeline.StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
+                | StreamOpFlag.NOT_DISTINCT) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Long> sink) {
                 return new Sink.ChainedInt<Long>(sink) {
@@ -266,9 +249,8 @@ abstract class IntPipeline<E_IN> extends
     @Override
     public final DoubleStream mapToDouble(IntToDoubleFunction mapper) {
         Objects.requireNonNull(mapper);
-        return new DoublePipeline.StatelessOp<Integer>(this,
-                StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
-                        | StreamOpFlag.NOT_DISTINCT) {
+        return new DoublePipeline.StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
+                | StreamOpFlag.NOT_DISTINCT) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Double> sink) {
                 return new Sink.ChainedInt<Double>(sink) {
@@ -283,9 +265,8 @@ abstract class IntPipeline<E_IN> extends
 
     @Override
     public final IntStream flatMap(IntFunction<? extends IntStream> mapper) {
-        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE,
-                StreamOpFlag.NOT_SORTED | StreamOpFlag.NOT_DISTINCT
-                        | StreamOpFlag.NOT_SIZED) {
+        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SORTED
+                | StreamOpFlag.NOT_DISTINCT | StreamOpFlag.NOT_SIZED) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Integer> sink) {
                 return new Sink.ChainedInt<Integer>(sink) {
@@ -301,8 +282,7 @@ abstract class IntPipeline<E_IN> extends
                             // depth=0 case and just grab spliterator and
                             // forEach it
                             if (result != null)
-                                result.sequential().forEach(i -> downstream
-                                        .accept(i));
+                                result.sequential().forEach(i -> downstream.accept(i));
                         }
                     }
                 };
@@ -314,8 +294,7 @@ abstract class IntPipeline<E_IN> extends
     public IntStream unordered() {
         if (!isOrdered())
             return this;
-        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE,
-                StreamOpFlag.NOT_ORDERED) {
+        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_ORDERED) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Integer> sink) {
                 return sink;
@@ -326,8 +305,7 @@ abstract class IntPipeline<E_IN> extends
     @Override
     public final IntStream filter(IntPredicate predicate) {
         Objects.requireNonNull(predicate);
-        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE,
-                StreamOpFlag.NOT_SIZED) {
+        return new StatelessOp<Integer>(this, StreamShape.INT_VALUE, StreamOpFlag.NOT_SIZED) {
             @Override
             Sink<Integer> opWrapSink(int flags, Sink<Integer> sink) {
                 return new Sink.ChainedInt<Integer>(sink) {
@@ -436,8 +414,7 @@ abstract class IntPipeline<E_IN> extends
             ll[0] += rr[0];
             ll[1] += rr[1];
         });
-        return avg[0] > 0 ? OptionalDouble.of((double) avg[1] / avg[0])
-                : OptionalDouble.empty();
+        return avg[0] > 0 ? OptionalDouble.of((double) avg[1] / avg[0]) : OptionalDouble.empty();
     }
 
     @Override
@@ -457,8 +434,8 @@ abstract class IntPipeline<E_IN> extends
     }
 
     @Override
-    public final <R> R collect(Supplier<R> supplier,
-            ObjIntConsumer<R> accumulator, BiConsumer<R, R> combiner) {
+    public final <R> R collect(Supplier<R> supplier, ObjIntConsumer<R> accumulator,
+            BiConsumer<R, R> combiner) {
         BinaryOperator<R> operator = (left, right) -> {
             combiner.accept(left, right);
             return left;
@@ -493,8 +470,7 @@ abstract class IntPipeline<E_IN> extends
 
     @Override
     public final int[] toArray() {
-        return Nodes.flattenInt((Node.OfInt) evaluateToArrayNode(
-                Integer[]::new)).asPrimitiveArray();
+        return Nodes.flattenInt((Node.OfInt) evaluateToArrayNode(Integer[]::new)).asPrimitiveArray();
     }
 
     //
@@ -511,17 +487,16 @@ abstract class IntPipeline<E_IN> extends
          * Constructor for the source stage of an IntStream.
          *
          * @param source
-         *                    {@code Supplier<Spliterator>} describing the
-         *                    stream source
+         *        {@code Supplier<Spliterator>} describing the
+         *        stream source
          * @param sourceFlags
-         *                    the source flags for the stream source, described
-         *                    in
-         *                    {@link StreamOpFlag}
+         *        the source flags for the stream source, described
+         *        in
+         *        {@link StreamOpFlag}
          * @param parallel
-         *                    {@code true} if the pipeline is parallel
+         *        {@code true} if the pipeline is parallel
          */
-        Head(Supplier<? extends Spliterator<Integer>> source, int sourceFlags,
-                boolean parallel) {
+        Head(Supplier<? extends Spliterator<Integer>> source, int sourceFlags, boolean parallel) {
             super(source, sourceFlags, parallel);
         }
 
@@ -529,13 +504,13 @@ abstract class IntPipeline<E_IN> extends
          * Constructor for the source stage of an IntStream.
          *
          * @param source
-         *                    {@code Spliterator} describing the stream source
+         *        {@code Spliterator} describing the stream source
          * @param sourceFlags
-         *                    the source flags for the stream source, described
-         *                    in
-         *                    {@link StreamOpFlag}
+         *        the source flags for the stream source, described
+         *        in
+         *        {@link StreamOpFlag}
          * @param parallel
-         *                    {@code true} if the pipeline is parallel
+         *        {@code true} if the pipeline is parallel
          */
         Head(Spliterator<Integer> source, int sourceFlags, boolean parallel) {
             super(source, sourceFlags, parallel);
@@ -585,14 +560,13 @@ abstract class IntPipeline<E_IN> extends
          * operation to an existing stream.
          * 
          * @param upstream
-         *                   The upstream pipeline stage
+         *        The upstream pipeline stage
          * @param inputShape
-         *                   The stream shape for the upstream pipeline stage
+         *        The stream shape for the upstream pipeline stage
          * @param opFlags
-         *                   Operation flags for the new stage
+         *        Operation flags for the new stage
          */
-        StatelessOp(AbstractPipeline<?, E_IN, ?> upstream,
-                StreamShape inputShape, int opFlags) {
+        StatelessOp(AbstractPipeline<?, E_IN, ?> upstream, StreamShape inputShape, int opFlags) {
             super(upstream, opFlags);
             assert upstream.getOutputShape() == inputShape;
         }
@@ -616,14 +590,13 @@ abstract class IntPipeline<E_IN> extends
          * operation to an existing stream.
          * 
          * @param upstream
-         *                   The upstream pipeline stage
+         *        The upstream pipeline stage
          * @param inputShape
-         *                   The stream shape for the upstream pipeline stage
+         *        The stream shape for the upstream pipeline stage
          * @param opFlags
-         *                   Operation flags for the new stage
+         *        Operation flags for the new stage
          */
-        StatefulOp(AbstractPipeline<?, E_IN, ?> upstream,
-                StreamShape inputShape, int opFlags) {
+        StatefulOp(AbstractPipeline<?, E_IN, ?> upstream, StreamShape inputShape, int opFlags) {
             super(upstream, opFlags);
             assert upstream.getOutputShape() == inputShape;
         }
@@ -634,8 +607,7 @@ abstract class IntPipeline<E_IN> extends
         }
 
         @Override
-        abstract <P_IN> Node<Integer> opEvaluateParallel(
-                PipelineHelper<Integer> helper, Spliterator<P_IN> spliterator,
-                IntFunction<Integer[]> generator);
+        abstract <P_IN> Node<Integer> opEvaluateParallel(PipelineHelper<Integer> helper,
+                Spliterator<P_IN> spliterator, IntFunction<Integer[]> generator);
     }
 }

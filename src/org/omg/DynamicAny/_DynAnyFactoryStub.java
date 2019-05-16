@@ -35,8 +35,8 @@ package org.omg.DynamicAny;
  * by means of invoking operations on the resulting object. Finally, the to_any
  * operation can be invoked to create an any value from the constructed DynAny.
  */
-public class _DynAnyFactoryStub extends org.omg.CORBA.portable.ObjectImpl
-        implements org.omg.DynamicAny.DynAnyFactory {
+public class _DynAnyFactoryStub extends org.omg.CORBA.portable.ObjectImpl implements
+        org.omg.DynamicAny.DynAnyFactory {
     final public static java.lang.Class _opsClass = DynAnyFactoryOperations.class;
 
     /**
@@ -47,14 +47,13 @@ public class _DynAnyFactoryStub extends org.omg.CORBA.portable.ObjectImpl
      * if the passed value has components, to -1 otherwise
      *
      * @exception InconsistentTypeCode
-     *                                 if value has a TypeCode with a TCKind of
-     *                                 tk_Principal,
-     *                                 tk_native, or tk_abstract_interface
+     *            if value has a TypeCode with a TCKind of
+     *            tk_Principal,
+     *            tk_native, or tk_abstract_interface
      */
     public org.omg.DynamicAny.DynAny create_dyn_any(org.omg.CORBA.Any value)
             throws org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCode {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "create_dyn_any", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("create_dyn_any", _opsClass);
         DynAnyFactoryOperations $self = (DynAnyFactoryOperations) $so.servant;
 
         try {
@@ -101,11 +100,10 @@ public class _DynAnyFactoryStub extends org.omg.CORBA.portable.ObjectImpl
      * <LI>For DynValue and DynValueBox it initializes to a null value.
      * </UL>
      */
-    public org.omg.DynamicAny.DynAny create_dyn_any_from_type_code(
-            org.omg.CORBA.TypeCode type)
+    public org.omg.DynamicAny.DynAny create_dyn_any_from_type_code(org.omg.CORBA.TypeCode type)
             throws org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCode {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "create_dyn_any_from_type_code", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("create_dyn_any_from_type_code",
+                _opsClass);
         DynAnyFactoryOperations $self = (DynAnyFactoryOperations) $so.servant;
 
         try {
@@ -116,15 +114,13 @@ public class _DynAnyFactoryStub extends org.omg.CORBA.portable.ObjectImpl
     } // create_dyn_any_from_type_code
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/DynamicAny/DynAnyFactory:1.0" };
+    private static String[] __ids = { "IDL:omg.org/DynamicAny/DynAnyFactory:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -139,8 +135,7 @@ public class _DynAnyFactoryStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

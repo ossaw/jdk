@@ -68,8 +68,7 @@ import com.sun.org.apache.bcel.internal.ExceptionConstants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class GETSTATIC extends FieldInstruction implements PushInstruction,
-        ExceptionThrower {
+public class GETSTATIC extends FieldInstruction implements PushInstruction, ExceptionThrower {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -85,11 +84,9 @@ public class GETSTATIC extends FieldInstruction implements PushInstruction,
     }
 
     public Class[] getExceptions() {
-        Class[] cs = new Class[1
-                + ExceptionConstants.EXCS_FIELD_AND_METHOD_RESOLUTION.length];
+        Class[] cs = new Class[1 + ExceptionConstants.EXCS_FIELD_AND_METHOD_RESOLUTION.length];
 
-        System.arraycopy(ExceptionConstants.EXCS_FIELD_AND_METHOD_RESOLUTION, 0,
-                cs, 0,
+        System.arraycopy(ExceptionConstants.EXCS_FIELD_AND_METHOD_RESOLUTION, 0, cs, 0,
                 ExceptionConstants.EXCS_FIELD_AND_METHOD_RESOLUTION.length);
         cs[ExceptionConstants.EXCS_FIELD_AND_METHOD_RESOLUTION.length] = ExceptionConstants.INCOMPATIBLE_CLASS_CHANGE_ERROR;
 
@@ -103,7 +100,7 @@ public class GETSTATIC extends FieldInstruction implements PushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

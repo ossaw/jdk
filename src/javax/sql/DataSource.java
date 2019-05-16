@@ -60,7 +60,7 @@ public interface DataSource extends CommonDataSource, Wrapper {
      *
      * @return a connection to the data source
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @throws java.sql.SQLTimeoutException
      *         when the driver has determined that the timeout value
      *         specified by the {@code setLoginTimeout} method has been
@@ -75,13 +75,13 @@ public interface DataSource extends CommonDataSource, Wrapper {
      * {@code DataSource} object represents.
      *
      * @param username
-     *                 the database user on whose behalf the connection is being
-     *                 made
+     *        the database user on whose behalf the connection is being
+     *        made
      * @param password
-     *                 the user's password
+     *        the user's password
      * @return a connection to the data source
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @throws java.sql.SQLTimeoutException
      *         when the driver has determined that the timeout value
      *         specified by the {@code setLoginTimeout} method has been
@@ -89,6 +89,5 @@ public interface DataSource extends CommonDataSource, Wrapper {
      *         database connection attempt
      * @since 1.4
      */
-    Connection getConnection(String username, String password)
-            throws SQLException;
+    Connection getConnection(String username, String password) throws SQLException;
 }

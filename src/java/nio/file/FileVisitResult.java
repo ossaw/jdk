@@ -9,7 +9,6 @@ package java.nio.file;
  * The result type of a {@link FileVisitor FileVisitor}.
  *
  * @since 1.7
- *
  * @see Files#walkFileTree
  */
 

@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -72,8 +71,7 @@ public class SerializerMessages_ko extends ListResourceBundle {
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "[{0}] \uB9AC\uC18C\uC2A4\uAC00 \uB2E4\uC74C\uC744 \uB85C\uB4DC\uD560 \uC218 \uC5C6\uC74C: {1} \n {2} \t {3}" },
 
-                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                        "\uBC84\uD37C \uD06C\uAE30 <=0" },
+                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "\uBC84\uD37C \uD06C\uAE30 <=0" },
 
                 { MsgKey.ER_INVALID_UTF16_SURROGATE,
                         "\uBD80\uC801\uD569\uD55C UTF-16 \uB300\uB9AC \uC694\uC18C\uAC00 \uAC10\uC9C0\uB428: {0}" },
@@ -171,8 +169,7 @@ public class SerializerMessages_ko extends ListResourceBundle {
                 { MsgKey.ER_XML_VERSION_NOT_SUPPORTED,
                         "\uACBD\uACE0: \uCD9C\uB825 \uBB38\uC11C\uC758 \uBC84\uC804\uC774 ''{0}''\uC774(\uAC00) \uB418\uB3C4\uB85D \uC694\uCCAD\uD588\uC2B5\uB2C8\uB2E4. \uC774 \uBC84\uC804\uC758 XML\uC740 \uC9C0\uC6D0\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uCD9C\uB825 \uBB38\uC11C\uC758 \uBC84\uC804\uC740 ''1.0''\uC774 \uB429\uB2C8\uB2E4." },
 
-                { MsgKey.ER_SCHEME_REQUIRED,
-                        "\uCCB4\uACC4\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
+                { MsgKey.ER_SCHEME_REQUIRED, "\uCCB4\uACC4\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
 
                 /*
                  * Note to translators: The words 'Properties' and

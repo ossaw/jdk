@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -48,7 +46,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 /**
- *
  * @author Christian Geuer-Pollmann
  */
 public class Canonicalizer {
@@ -70,8 +67,7 @@ public class Canonicalizer {
     /**
      * The URL defined in XML-SEC Rec for inclusive c14n <b>with</b> comments.
      */
-    public static final String ALGO_ID_C14N_WITH_COMMENTS = ALGO_ID_C14N_OMIT_COMMENTS
-            + "#WithComments";
+    public static final String ALGO_ID_C14N_WITH_COMMENTS = ALGO_ID_C14N_OMIT_COMMENTS + "#WithComments";
     /**
      * The URL defined in XML-SEC Rec for exclusive c14n <b>without</b>
      * comments.
@@ -89,8 +85,7 @@ public class Canonicalizer {
     /**
      * The URI for inclusive c14n 1.1 <b>with</b> comments.
      */
-    public static final String ALGO_ID_C14N11_WITH_COMMENTS = ALGO_ID_C14N11_OMIT_COMMENTS
-            + "#WithComments";
+    public static final String ALGO_ID_C14N11_WITH_COMMENTS = ALGO_ID_C14N11_OMIT_COMMENTS + "#WithComments";
     /**
      * Non-standard algorithm to serialize the physical representation for XML
      * Encryption
@@ -107,18 +102,16 @@ public class Canonicalizer {
      * @param algorithmURI
      * @throws InvalidCanonicalizerException
      */
-    private Canonicalizer(String algorithmURI)
-            throws InvalidCanonicalizerException {
+    private Canonicalizer(String algorithmURI) throws InvalidCanonicalizerException {
         try {
-            Class<? extends CanonicalizerSpi> implementingClass = canonicalizerHash
-                    .get(algorithmURI);
+            Class<? extends CanonicalizerSpi> implementingClass = canonicalizerHash.get(algorithmURI);
 
             canonicalizerSpi = implementingClass.newInstance();
             canonicalizerSpi.reset = true;
         } catch (Exception e) {
             Object exArgs[] = { algorithmURI };
-            throw new InvalidCanonicalizerException(
-                    "signature.Canonicalizer.UnknownCanonicalizer", exArgs, e);
+            throw new InvalidCanonicalizerException("signature.Canonicalizer.UnknownCanonicalizer", exArgs,
+                    e);
         }
     }
 
@@ -129,8 +122,7 @@ public class Canonicalizer {
      * @return a Canonicalizer instance ready for the job
      * @throws InvalidCanonicalizerException
      */
-    public static final Canonicalizer getInstance(String algorithmURI)
-            throws InvalidCanonicalizerException {
+    public static final Canonicalizer getInstance(String algorithmURI) throws InvalidCanonicalizerException {
         return new Canonicalizer(algorithmURI);
     }
 
@@ -141,29 +133,26 @@ public class Canonicalizer {
      * @param implementingClass
      * @throws AlgorithmAlreadyRegisteredException
      * @throws SecurityException
-     *                                             if a security manager is
-     *                                             installed and the caller does
-     *                                             not
-     *                                             have permission to register
-     *                                             the canonicalizer
+     *         if a security manager is
+     *         installed and the caller does
+     *         not
+     *         have permission to register
+     *         the canonicalizer
      */
     @SuppressWarnings("unchecked")
     public static void register(String algorithmURI, String implementingClass)
             throws AlgorithmAlreadyRegisteredException, ClassNotFoundException {
         JavaUtils.checkRegisterPermission();
         // check whether URI is already registered
-        Class<? extends CanonicalizerSpi> registeredClass = canonicalizerHash
-                .get(algorithmURI);
+        Class<? extends CanonicalizerSpi> registeredClass = canonicalizerHash.get(algorithmURI);
 
         if (registeredClass != null) {
             Object exArgs[] = { algorithmURI, registeredClass };
-            throw new AlgorithmAlreadyRegisteredException(
-                    "algorithm.alreadyRegistered", exArgs);
+            throw new AlgorithmAlreadyRegisteredException("algorithm.alreadyRegistered", exArgs);
         }
 
-        canonicalizerHash.put(algorithmURI,
-                (Class<? extends CanonicalizerSpi>) Class.forName(
-                        implementingClass));
+        canonicalizerHash.put(algorithmURI, (Class<? extends CanonicalizerSpi>) Class.forName(
+                implementingClass));
     }
 
     /**
@@ -173,24 +162,21 @@ public class Canonicalizer {
      * @param implementingClass
      * @throws AlgorithmAlreadyRegisteredException
      * @throws SecurityException
-     *                                             if a security manager is
-     *                                             installed and the caller does
-     *                                             not
-     *                                             have permission to register
-     *                                             the canonicalizer
+     *         if a security manager is
+     *         installed and the caller does
+     *         not
+     *         have permission to register
+     *         the canonicalizer
      */
-    public static void register(String algorithmURI,
-            Class<? extends CanonicalizerSpi> implementingClass)
+    public static void register(String algorithmURI, Class<? extends CanonicalizerSpi> implementingClass)
             throws AlgorithmAlreadyRegisteredException, ClassNotFoundException {
         JavaUtils.checkRegisterPermission();
         // check whether URI is already registered
-        Class<? extends CanonicalizerSpi> registeredClass = canonicalizerHash
-                .get(algorithmURI);
+        Class<? extends CanonicalizerSpi> registeredClass = canonicalizerHash.get(algorithmURI);
 
         if (registeredClass != null) {
             Object exArgs[] = { algorithmURI, registeredClass };
-            throw new AlgorithmAlreadyRegisteredException(
-                    "algorithm.alreadyRegistered", exArgs);
+            throw new AlgorithmAlreadyRegisteredException("algorithm.alreadyRegistered", exArgs);
         }
 
         canonicalizerHash.put(algorithmURI, implementingClass);
@@ -208,12 +194,9 @@ public class Canonicalizer {
                 Canonicalizer20010315ExclOmitComments.class);
         canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N_EXCL_WITH_COMMENTS,
                 Canonicalizer20010315ExclWithComments.class);
-        canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N11_OMIT_COMMENTS,
-                Canonicalizer11_OmitComments.class);
-        canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N11_WITH_COMMENTS,
-                Canonicalizer11_WithComments.class);
-        canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N_PHYSICAL,
-                CanonicalizerPhysical.class);
+        canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N11_OMIT_COMMENTS, Canonicalizer11_OmitComments.class);
+        canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N11_WITH_COMMENTS, Canonicalizer11_WithComments.class);
+        canonicalizerHash.put(Canonicalizer.ALGO_ID_C14N_PHYSICAL, CanonicalizerPhysical.class);
     }
 
     /**
@@ -242,19 +225,16 @@ public class Canonicalizer {
      * @param inputBytes
      * @return the result of the canonicalization.
      * @throws CanonicalizationException
-     * @throws                           java.io.IOException
-     * @throws                           javax.xml.parsers.ParserConfigurationException
-     * @throws                           org.xml.sax.SAXException
+     * @throws java.io.IOException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
      */
-    public byte[] canonicalize(byte[] inputBytes)
-            throws javax.xml.parsers.ParserConfigurationException,
-            java.io.IOException, org.xml.sax.SAXException,
-            CanonicalizationException {
+    public byte[] canonicalize(byte[] inputBytes) throws javax.xml.parsers.ParserConfigurationException,
+            java.io.IOException, org.xml.sax.SAXException, CanonicalizationException {
         InputStream bais = new ByteArrayInputStream(inputBytes);
         InputSource in = new InputSource(bais);
         DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
-        dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                Boolean.TRUE);
+        dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
 
         dfactory.setNamespaceAware(true);
 
@@ -280,8 +260,7 @@ public class Canonicalizer {
          * the canonical form, even though the document type declaration is not
          * retained in the canonical form.
          */
-        db.setErrorHandler(
-                new com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler());
+        db.setErrorHandler(new com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler());
 
         Document document = db.parse(in);
         return this.canonicalizeSubtree(document);
@@ -291,13 +270,11 @@ public class Canonicalizer {
      * Canonicalizes the subtree rooted by <CODE>node</CODE>.
      *
      * @param node
-     *             The node to canonicalize
+     *        The node to canonicalize
      * @return the result of the c14n.
-     *
      * @throws CanonicalizationException
      */
-    public byte[] canonicalizeSubtree(Node node)
-            throws CanonicalizationException {
+    public byte[] canonicalizeSubtree(Node node) throws CanonicalizationException {
         return canonicalizerSpi.engineCanonicalizeSubTree(node);
     }
 
@@ -311,8 +288,7 @@ public class Canonicalizer {
      */
     public byte[] canonicalizeSubtree(Node node, String inclusiveNamespaces)
             throws CanonicalizationException {
-        return canonicalizerSpi.engineCanonicalizeSubTree(node,
-                inclusiveNamespaces);
+        return canonicalizerSpi.engineCanonicalizeSubTree(node, inclusiveNamespaces);
     }
 
     /**
@@ -323,8 +299,7 @@ public class Canonicalizer {
      * @return the result of the c14n.
      * @throws CanonicalizationException
      */
-    public byte[] canonicalizeXPathNodeSet(NodeList xpathNodeSet)
-            throws CanonicalizationException {
+    public byte[] canonicalizeXPathNodeSet(NodeList xpathNodeSet) throws CanonicalizationException {
         return canonicalizerSpi.engineCanonicalizeXPathNodeSet(xpathNodeSet);
     }
 
@@ -337,10 +312,9 @@ public class Canonicalizer {
      * @return the result of the c14n.
      * @throws CanonicalizationException
      */
-    public byte[] canonicalizeXPathNodeSet(NodeList xpathNodeSet,
-            String inclusiveNamespaces) throws CanonicalizationException {
-        return canonicalizerSpi.engineCanonicalizeXPathNodeSet(xpathNodeSet,
-                inclusiveNamespaces);
+    public byte[] canonicalizeXPathNodeSet(NodeList xpathNodeSet, String inclusiveNamespaces)
+            throws CanonicalizationException {
+        return canonicalizerSpi.engineCanonicalizeXPathNodeSet(xpathNodeSet, inclusiveNamespaces);
     }
 
     /**
@@ -350,8 +324,7 @@ public class Canonicalizer {
      * @return the result of the c14n.
      * @throws CanonicalizationException
      */
-    public byte[] canonicalizeXPathNodeSet(Set<Node> xpathNodeSet)
-            throws CanonicalizationException {
+    public byte[] canonicalizeXPathNodeSet(Set<Node> xpathNodeSet) throws CanonicalizationException {
         return canonicalizerSpi.engineCanonicalizeXPathNodeSet(xpathNodeSet);
     }
 
@@ -363,10 +336,9 @@ public class Canonicalizer {
      * @return the result of the c14n.
      * @throws CanonicalizationException
      */
-    public byte[] canonicalizeXPathNodeSet(Set<Node> xpathNodeSet,
-            String inclusiveNamespaces) throws CanonicalizationException {
-        return canonicalizerSpi.engineCanonicalizeXPathNodeSet(xpathNodeSet,
-                inclusiveNamespaces);
+    public byte[] canonicalizeXPathNodeSet(Set<Node> xpathNodeSet, String inclusiveNamespaces)
+            throws CanonicalizationException {
+        return canonicalizerSpi.engineCanonicalizeXPathNodeSet(xpathNodeSet, inclusiveNamespaces);
     }
 
     /**

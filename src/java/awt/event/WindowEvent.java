@@ -29,13 +29,11 @@ import sun.awt.SunToolkit;
  *
  * @author Carl Quinn
  * @author Amy Fowler
- *
  * @see WindowAdapter
  * @see WindowListener
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/windowlistener.html">
  *      Tutorial: Writing a Window Listener</a>
- *
  * @since JDK1.1
  */
 public class WindowEvent extends ComponentEvent {
@@ -173,26 +171,26 @@ public class WindowEvent extends ComponentEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                 The <code>Window</code> object that originated the event
+     *        The <code>Window</code> object that originated the event
      * @param id
-     *                 An integer indicating the type of event. For information
-     *                 on
-     *                 allowable values, see the class description for
-     *                 {@link WindowEvent}
+     *        An integer indicating the type of event. For information
+     *        on
+     *        allowable values, see the class description for
+     *        {@link WindowEvent}
      * @param opposite
-     *                 The other window involved in the focus or activation
-     *                 change,
-     *                 or <code>null</code>
+     *        The other window involved in the focus or activation
+     *        change,
+     *        or <code>null</code>
      * @param oldState
-     *                 Previous state of the window for window state change
-     *                 event.
-     *                 See {@code #getOldState()} for allowable values
+     *        Previous state of the window for window state change
+     *        event.
+     *        See {@code #getOldState()} for allowable values
      * @param newState
-     *                 New state of the window for window state change event.
-     *                 See
-     *                 {@code #getNewState()} for allowable values
+     *        New state of the window for window state change event.
+     *        See
+     *        {@code #getNewState()} for allowable values
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getWindow()
      * @see #getID()
      * @see #getOppositeWindow()
@@ -200,8 +198,7 @@ public class WindowEvent extends ComponentEvent {
      * @see #getNewState()
      * @since 1.4
      */
-    public WindowEvent(Window source, int id, Window opposite, int oldState,
-            int newState) {
+    public WindowEvent(Window source, int id, Window opposite, int oldState, int newState) {
         super(source, id);
         this.opposite = opposite;
         this.oldState = oldState;
@@ -224,26 +221,26 @@ public class WindowEvent extends ComponentEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                 The <code>Window</code> object that originated the event
+     *        The <code>Window</code> object that originated the event
      * @param id
-     *                 An integer indicating the type of event. For information
-     *                 on
-     *                 allowable values, see the class description for
-     *                 {@link WindowEvent}. It is expected that this constructor
-     *                 will
-     *                 not be used for other then {@code WINDOW_ACTIVATED},
-     *                 {@code WINDOW_DEACTIVATED}, {@code WINDOW_GAINED_FOCUS},
-     *                 or
-     *                 {@code WINDOW_LOST_FOCUS}. {@code WindowEvent} types,
-     *                 because
-     *                 the opposite <code>Window</code> of other event types
-     *                 will
-     *                 always be {@code null}.
+     *        An integer indicating the type of event. For information
+     *        on
+     *        allowable values, see the class description for
+     *        {@link WindowEvent}. It is expected that this constructor
+     *        will
+     *        not be used for other then {@code WINDOW_ACTIVATED},
+     *        {@code WINDOW_DEACTIVATED}, {@code WINDOW_GAINED_FOCUS},
+     *        or
+     *        {@code WINDOW_LOST_FOCUS}. {@code WindowEvent} types,
+     *        because
+     *        the opposite <code>Window</code> of other event types
+     *        will
+     *        always be {@code null}.
      * @param opposite
-     *                 The other <code>Window</code> involved in the focus or
-     *                 activation change, or <code>null</code>
+     *        The other <code>Window</code> involved in the focus or
+     *        activation change, or <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getWindow()
      * @see #getID()
      * @see #getOppositeWindow()
@@ -261,25 +258,25 @@ public class WindowEvent extends ComponentEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                 The <code>Window</code> object that originated the event
+     *        The <code>Window</code> object that originated the event
      * @param id
-     *                 An integer indicating the type of event. For information
-     *                 on
-     *                 allowable values, see the class description for
-     *                 {@link WindowEvent}. It is expected that this constructor
-     *                 will
-     *                 not be used for other then {@code WINDOW_STATE_CHANGED}
-     *                 {@code WindowEvent} types, because the previous and new
-     *                 window
-     *                 states are meaningless for other event types.
+     *        An integer indicating the type of event. For information
+     *        on
+     *        allowable values, see the class description for
+     *        {@link WindowEvent}. It is expected that this constructor
+     *        will
+     *        not be used for other then {@code WINDOW_STATE_CHANGED}
+     *        {@code WindowEvent} types, because the previous and new
+     *        window
+     *        states are meaningless for other event types.
      * @param oldState
-     *                 An integer representing the previous window state. See
-     *                 {@code #getOldState()} for allowable values
+     *        An integer representing the previous window state. See
+     *        {@code #getOldState()} for allowable values
      * @param newState
-     *                 An integer representing the new window state. See
-     *                 {@code #getNewState()} for allowable values
+     *        An integer representing the new window state. See
+     *        {@code #getNewState()} for allowable values
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getWindow()
      * @see #getID()
      * @see #getOldState()
@@ -297,13 +294,13 @@ public class WindowEvent extends ComponentEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *               The <code>Window</code> object that originated the event
+     *        The <code>Window</code> object that originated the event
      * @param id
-     *               An integer indicating the type of event. For information on
-     *               allowable values, see the class description for
-     *               {@link WindowEvent}.
+     *        An integer indicating the type of event. For information on
+     *        allowable values, see the class description for
+     *        {@link WindowEvent}.
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getWindow()
      * @see #getID()
      */
@@ -338,8 +335,7 @@ public class WindowEvent extends ComponentEvent {
             return null;
         }
 
-        return (SunToolkit.targetToAppContext(opposite) == AppContext
-                .getAppContext()) ? opposite : null;
+        return (SunToolkit.targetToAppContext(opposite) == AppContext.getAppContext()) ? opposite : null;
     }
 
     /**
@@ -428,8 +424,7 @@ public class WindowEvent extends ComponentEvent {
             default:
                 typeStr = "unknown type";
         }
-        typeStr += ",opposite=" + getOppositeWindow() + ",oldState=" + oldState
-                + ",newState=" + newState;
+        typeStr += ",opposite=" + getOppositeWindow() + ",oldState=" + oldState + ",newState=" + newState;
 
         return typeStr;
     }

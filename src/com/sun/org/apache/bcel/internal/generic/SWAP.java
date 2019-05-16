@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class SWAP extends StackInstruction implements StackConsumer,
-        StackProducer {
+public class SWAP extends StackInstruction implements StackConsumer, StackProducer {
     public SWAP() {
         super(com.sun.org.apache.bcel.internal.Constants.SWAP);
     }
@@ -72,7 +71,7 @@ public class SWAP extends StackInstruction implements StackConsumer,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackConsumer(this);

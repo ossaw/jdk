@@ -36,7 +36,7 @@ public abstract class IntegerSyntax implements Serializable, Cloneable {
      * Construct a new integer attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected IntegerSyntax(int value) {
         this.value = value;
@@ -47,23 +47,22 @@ public abstract class IntegerSyntax implements Serializable, Cloneable {
      * must lie within the given range.
      *
      * @param value
-     *                   Integer value.
+     *        Integer value.
      * @param lowerBound
-     *                   Lower bound.
+     *        Lower bound.
      * @param upperBound
-     *                   Upper bound.
-     *
+     *        Upper bound.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than <CODE>lowerBound</CODE> or
-     *                                     greater than
-     *                                     <CODE>upperBound</CODE>.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than <CODE>lowerBound</CODE> or
+     *            greater than
+     *            <CODE>upperBound</CODE>.
      */
     protected IntegerSyntax(int value, int lowerBound, int upperBound) {
         if (lowerBound > value || value > upperBound) {
-            throw new IllegalArgumentException("Value " + value
-                    + " not in range " + lowerBound + ".." + upperBound);
+            throw new IllegalArgumentException("Value " + value + " not in range " + lowerBound + ".."
+                    + upperBound);
         }
         this.value = value;
     }
@@ -88,15 +87,13 @@ public abstract class IntegerSyntax implements Serializable, Cloneable {
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this integer
      *         attribute, false otherwise.
      */
     public boolean equals(Object object) {
 
-        return (object != null && object instanceof IntegerSyntax
-                && value == ((IntegerSyntax) object).value);
+        return (object != null && object instanceof IntegerSyntax && value == ((IntegerSyntax) object).value);
     }
 
     /**

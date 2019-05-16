@@ -13,12 +13,10 @@ package org.xml.sax;
 
 /**
  * Receive notification of the logical content of a document.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * This is the main interface that most SAX applications implement: if the
  * application needs to be informed of basic parsing events, it implements this
@@ -27,7 +25,6 @@ package org.xml.sax;
  * parser uses the instance to report basic document-related events like the
  * start and end of elements and character data.
  * </p>
- *
  * <p>
  * The order of events in this interface is very important, and mirrors the
  * order of information in the document itself. For example, all of an element's
@@ -35,13 +32,11 @@ package org.xml.sax;
  * appear, in order, between the startElement event and the corresponding
  * endElement event.
  * </p>
- *
  * <p>
  * This interface is similar to the now-deprecated SAX 1.0 DocumentHandler
  * interface, but it adds support for Namespaces and for reporting skipped
  * entities (in non-validating XML processors).
  * </p>
- *
  * <p>
  * Implementors should note that there is also a <code>ContentHandler</code>
  * class in the <code>java.net</code> package; that means that it's probably a
@@ -52,7 +47,6 @@ package org.xml.sax;
  * import java.net.*;
  * import org.xml.sax.*;
  * </pre>
- *
  * <p>
  * In fact, "import ...*" is usually a sign of sloppy programming anyway, so the
  * user should consider this a feature rather than a bug.
@@ -68,14 +62,12 @@ public interface ContentHandler {
 
     /**
      * Receive an object for locating the origin of SAX document events.
-     *
      * <p>
      * SAX parsers are strongly encouraged (though not absolutely required) to
      * supply a locator: if it does so, it must supply the locator to the
      * application by invoking this method before invoking any of the other
      * methods in the ContentHandler interface.
      * </p>
-     *
      * <p>
      * The locator allows the application to determine the end position of any
      * document-related event, even if the parser is not reporting an error.
@@ -84,7 +76,6 @@ public interface ContentHandler {
      * application's business rules). The information returned by the locator is
      * probably not sufficient for use with a search engine.
      * </p>
-     *
      * <p>
      * Note that the locator will return correct information only during the
      * invocation SAX event callbacks after {@link #startDocument startDocument}
@@ -93,15 +84,14 @@ public interface ContentHandler {
      * </p>
      *
      * @param locator
-     *                an object that can return the location of any SAX document
-     *                event
+     *        an object that can return the location of any SAX document
+     *        event
      * @see org.xml.sax.Locator
      */
     public void setDocumentLocator(Locator locator);
 
     /**
      * Receive notification of the beginning of a document.
-     *
      * <p>
      * The SAX parser will invoke this method only once, before any other event
      * callbacks (except for {@link #setDocumentLocator setDocumentLocator}).
@@ -115,7 +105,6 @@ public interface ContentHandler {
 
     /**
      * Receive notification of the end of a document.
-     *
      * <p>
      * <strong>There is an apparent contradiction between the documentation for
      * this method and the documentation for
@@ -124,7 +113,6 @@ public interface ContentHandler {
      * about whether endDocument() will or will not be invoked when the parser
      * has reported a fatalError() or thrown an exception.</strong>
      * </p>
-     *
      * <p>
      * The SAX parser will invoke this method only once, and it will be the last
      * method invoked during the parse. The parser shall not invoke this method
@@ -140,7 +128,6 @@ public interface ContentHandler {
 
     /**
      * Begin the scope of a prefix-URI Namespace mapping.
-     *
      * <p>
      * The information from this event is not necessary for normal Namespace
      * processing: the SAX XML reader will automatically replace prefixes for
@@ -148,7 +135,6 @@ public interface ContentHandler {
      * <code>http://xml.org/sax/features/namespaces</code> feature is
      * <var>true</var> (the default).
      * </p>
-     *
      * <p>
      * There are cases, however, when applications need to use prefixes in
      * character data or in attribute values, where they cannot safely be
@@ -156,7 +142,6 @@ public interface ContentHandler {
      * information to the application to expand prefixes in those contexts
      * itself, if necessary.
      * </p>
-     *
      * <p>
      * Note that start/endPrefixMapping events are not guaranteed to be properly
      * nested relative to each other: all startPrefixMapping events will occur
@@ -165,29 +150,26 @@ public interface ContentHandler {
      * occur immediately after the corresponding {@link #endElement endElement}
      * event, but their order is not otherwise guaranteed.
      * </p>
-     *
      * <p>
      * There should never be start/endPrefixMapping events for the "xml" prefix,
      * since it is predeclared and immutable.
      * </p>
      *
      * @param prefix
-     *               the Namespace prefix being declared. An empty string is
-     *               used
-     *               for the default element namespace, which has no prefix.
+     *        the Namespace prefix being declared. An empty string is
+     *        used
+     *        for the default element namespace, which has no prefix.
      * @param uri
-     *               the Namespace URI the prefix is mapped to
+     *        the Namespace URI the prefix is mapped to
      * @throws org.xml.sax.SAXException
      *         the client may throw an exception during processing
      * @see #endPrefixMapping
      * @see #startElement
      */
-    public void startPrefixMapping(String prefix, String uri)
-            throws SAXException;
+    public void startPrefixMapping(String prefix, String uri) throws SAXException;
 
     /**
      * End the scope of a prefix-URI mapping.
-     *
      * <p>
      * See {@link #startPrefixMapping startPrefixMapping} for details. These
      * events will always occur immediately after the corresponding
@@ -197,8 +179,8 @@ public interface ContentHandler {
      * </p>
      *
      * @param prefix
-     *               the prefix that was being mapped. This is the empty string
-     *               when a default mapping scope ends.
+     *        the prefix that was being mapped. This is the empty string
+     *        when a default mapping scope ends.
      * @throws org.xml.sax.SAXException
      *         the client may throw an exception during processing
      * @see #startPrefixMapping
@@ -208,7 +190,6 @@ public interface ContentHandler {
 
     /**
      * Receive notification of the beginning of an element.
-     *
      * <p>
      * The Parser will invoke this method at the beginning of every element in
      * the XML document; there will be a corresponding {@link #endElement
@@ -216,23 +197,19 @@ public interface ContentHandler {
      * empty). All of the element's content will be reported, in order, before
      * the corresponding endElement event.
      * </p>
-     *
      * <p>
      * This event allows up to three name components for each element:
      * </p>
-     *
      * <ol>
      * <li>the Namespace URI;</li>
      * <li>the local name; and</li>
      * <li>the qualified (prefixed) name.</li>
      * </ol>
-     *
      * <p>
      * Any or all of these may be provided, depending on the values of the
      * <var>http://xml.org/sax/features/namespaces</var> and the
      * <var>http://xml.org/sax/features/namespace-prefixes</var> properties:
      * </p>
-     *
      * <ul>
      * <li>the Namespace URI and local name are required when the namespaces
      * property is <var>true</var> (the default), and are optional when the
@@ -242,7 +219,6 @@ public interface ContentHandler {
      * is <var>true</var>, and is optional when the namespace-prefixes property
      * is <var>false</var> (the default).</li>
      * </ul>
-     *
      * <p>
      * Note that the attribute list provided will contain only attributes with
      * explicit values (specified or defaulted): #IMPLIED attributes will be
@@ -251,72 +227,66 @@ public interface ContentHandler {
      * <code>http://xml.org/sax/features/namespace-prefixes</code> property is
      * true (it is false by default, and support for a true value is optional).
      * </p>
-     *
      * <p>
      * Like {@link #characters characters()}, attribute values may have
      * characters that need more than one <code>char</code> value.
      * </p>
      *
      * @param uri
-     *                  the Namespace URI, or the empty string if the element
-     *                  has no
-     *                  Namespace URI or if Namespace processing is not being
-     *                  performed
+     *        the Namespace URI, or the empty string if the element
+     *        has no
+     *        Namespace URI or if Namespace processing is not being
+     *        performed
      * @param localName
-     *                  the local name (without prefix), or the empty string if
-     *                  Namespace processing is not being performed
+     *        the local name (without prefix), or the empty string if
+     *        Namespace processing is not being performed
      * @param qName
-     *                  the qualified name (with prefix), or the empty string if
-     *                  qualified names are not available
+     *        the qualified name (with prefix), or the empty string if
+     *        qualified names are not available
      * @param atts
-     *                  the attributes attached to the element. If there are no
-     *                  attributes, it shall be an empty Attributes object. The
-     *                  value
-     *                  of this object after startElement returns is undefined
+     *        the attributes attached to the element. If there are no
+     *        attributes, it shall be an empty Attributes object. The
+     *        value
+     *        of this object after startElement returns is undefined
      * @throws org.xml.sax.SAXException
      *         any SAX exception, possibly wrapping another exception
      * @see #endElement
      * @see org.xml.sax.Attributes
      * @see org.xml.sax.helpers.AttributesImpl
      */
-    public void startElement(String uri, String localName, String qName,
-            Attributes atts) throws SAXException;
+    public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException;
 
     /**
      * Receive notification of the end of an element.
-     *
      * <p>
      * The SAX parser will invoke this method at the end of every element in the
      * XML document; there will be a corresponding {@link #startElement
      * startElement} event for every endElement event (even when the element is
      * empty).
      * </p>
-     *
      * <p>
      * For information on the names, see startElement.
      * </p>
      *
      * @param uri
-     *                  the Namespace URI, or the empty string if the element
-     *                  has no
-     *                  Namespace URI or if Namespace processing is not being
-     *                  performed
+     *        the Namespace URI, or the empty string if the element
+     *        has no
+     *        Namespace URI or if Namespace processing is not being
+     *        performed
      * @param localName
-     *                  the local name (without prefix), or the empty string if
-     *                  Namespace processing is not being performed
+     *        the local name (without prefix), or the empty string if
+     *        Namespace processing is not being performed
      * @param qName
-     *                  the qualified XML name (with prefix), or the empty
-     *                  string if
-     *                  qualified names are not available
+     *        the qualified XML name (with prefix), or the empty
+     *        string if
+     *        qualified names are not available
      * @throws org.xml.sax.SAXException
      *         any SAX exception, possibly wrapping another exception
      */
-    public void endElement(String uri, String localName, String qName)
-            throws SAXException;
+    public void endElement(String uri, String localName, String qName) throws SAXException;
 
     /**
      * Receive notification of character data.
-     *
      * <p>
      * The Parser will call this method to report each chunk of character data.
      * SAX parsers may return all contiguous character data in a single chunk,
@@ -324,12 +294,10 @@ public interface ContentHandler {
      * in any single event must come from the same external entity so that the
      * Locator provides useful information.
      * </p>
-     *
      * <p>
      * The application must not attempt to read from the array outside of the
      * specified range.
      * </p>
-     *
      * <p>
      * Individual characters may consist of more than one Java <code>char</code>
      * value. There are two important cases where this happens, because
@@ -340,7 +308,6 @@ public interface ContentHandler {
      * composite characters, such as a base character combining with one or more
      * accent characters.
      * </p>
-     *
      * <p>
      * Your code should not assume that algorithms using <code>char</code>
      * -at-a-time idioms will be working in character units; in some cases they
@@ -350,7 +317,6 @@ public interface ContentHandler {
      * generally relevant whenever Java code manipulates internationalized text;
      * the issue isn't unique to XML.
      * </p>
-     *
      * <p>
      * Note that some parsers will report whitespace in element content using
      * the {@link #ignorableWhitespace ignorableWhitespace} method rather than
@@ -358,85 +324,76 @@ public interface ContentHandler {
      * </p>
      *
      * @param ch
-     *               the characters from the XML document
+     *        the characters from the XML document
      * @param start
-     *               the start position in the array
+     *        the start position in the array
      * @param length
-     *               the number of characters to read from the array
+     *        the number of characters to read from the array
      * @throws org.xml.sax.SAXException
      *         any SAX exception, possibly wrapping another exception
      * @see #ignorableWhitespace
      * @see org.xml.sax.Locator
      */
-    public void characters(char ch[], int start, int length)
-            throws SAXException;
+    public void characters(char ch[], int start, int length) throws SAXException;
 
     /**
      * Receive notification of ignorable whitespace in element content.
-     *
      * <p>
      * Validating Parsers must use this method to report each chunk of
      * whitespace in element content (see the W3C XML 1.0 recommendation,
      * section 2.10): non-validating parsers may also use this method if they
      * are capable of parsing and using content models.
      * </p>
-     *
      * <p>
      * SAX parsers may return all contiguous whitespace in a single chunk, or
      * they may split it into several chunks; however, all of the characters in
      * any single event must come from the same external entity, so that the
      * Locator provides useful information.
      * </p>
-     *
      * <p>
      * The application must not attempt to read from the array outside of the
      * specified range.
      * </p>
      *
      * @param ch
-     *               the characters from the XML document
+     *        the characters from the XML document
      * @param start
-     *               the start position in the array
+     *        the start position in the array
      * @param length
-     *               the number of characters to read from the array
+     *        the number of characters to read from the array
      * @throws org.xml.sax.SAXException
      *         any SAX exception, possibly wrapping another exception
      * @see #characters
      */
-    public void ignorableWhitespace(char ch[], int start, int length)
-            throws SAXException;
+    public void ignorableWhitespace(char ch[], int start, int length) throws SAXException;
 
     /**
      * Receive notification of a processing instruction.
-     *
      * <p>
      * The Parser will invoke this method once for each processing instruction
      * found: note that processing instructions may occur before or after the
      * main document element.
      * </p>
-     *
      * <p>
      * A SAX parser must never report an XML declaration (XML 1.0, section 2.8)
      * or a text declaration (XML 1.0, section 4.3.1) using this method.
      * </p>
-     *
      * <p>
      * Like {@link #characters characters()}, processing instruction data may
      * have characters that need more than one <code>char</code> value.
      * </p>
      *
      * @param target
-     *               the processing instruction target
+     *        the processing instruction target
      * @param data
-     *               the processing instruction data, or null if none was
-     *               supplied.
-     *               The data does not include any whitespace separating it from
-     *               the target
+     *        the processing instruction data, or null if none was
+     *        supplied.
+     *        The data does not include any whitespace separating it from
+     *        the target
      * @throws org.xml.sax.SAXException
      *         any SAX exception, possibly wrapping another exception
      */
-    public void processingInstruction(String target, String data)
-            throws SAXException;
+    public void processingInstruction(String target, String data) throws SAXException;
 
     /**
      * Receive notification of a skipped entity. This is not called for entity
@@ -444,7 +401,6 @@ public interface ContentHandler {
      * declarations. (The XML recommendation requires reporting skipped external
      * entities. SAX also reports internal entity expansion/non-expansion,
      * except within markup constructs.)
-     *
      * <p>
      * The Parser will invoke this method each time the entity is skipped.
      * Non-validating processors may skip entities if they have not seen the
@@ -457,9 +413,9 @@ public interface ContentHandler {
      * </p>
      *
      * @param name
-     *             the name of the skipped entity. If it is a parameter entity,
-     *             the name will begin with '%', and if it is the external DTD
-     *             subset, it will be the string "[dtd]"
+     *        the name of the skipped entity. If it is a parameter entity,
+     *        the name will begin with '%', and if it is the external DTD
+     *        subset, it will be the string "[dtd]"
      * @throws org.xml.sax.SAXException
      *         any SAX exception, possibly wrapping another exception
      */

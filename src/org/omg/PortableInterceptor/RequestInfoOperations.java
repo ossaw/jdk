@@ -51,7 +51,7 @@ public interface RequestInfoOperations {
      * <i>Note: Arguments are available for DSI/DII calls.</i>
      *
      * @exception NO_RESOURCES
-     *                         thrown if arguments are not available.
+     *            thrown if arguments are not available.
      * @see <a href="package-summary.html#unimpl">
      *      <code>PortableInterceptor</code> package comments for limitations /
      *      unimplemented features</a>
@@ -72,7 +72,7 @@ public interface RequestInfoOperations {
      * <i>Note: Exceptions are available for DSI/DII calls.</i>
      *
      * @exception NO_RESOURCES
-     *                         thrown if exceptions are not available.
+     *            thrown if exceptions are not available.
      * @see <a href="package-summary.html#unimpl">
      *      <code>PortableInterceptor</code> package comments for limitations /
      *      unimplemented features</a>
@@ -92,7 +92,7 @@ public interface RequestInfoOperations {
      * <i>Note: Contexts are available for DSI/DII calls.</i>
      *
      * @exception NO_RESOURCES
-     *                         thrown if contexts are not available.
+     *            thrown if contexts are not available.
      * @see <a href="package-summary.html#unimpl">
      *      <code>PortableInterceptor</code> package comments for limitations /
      *      unimplemented features</a>
@@ -112,7 +112,7 @@ public interface RequestInfoOperations {
      * calls.</i>
      *
      * @exception NO_RESOURCES
-     *                         thrown if operation context is not available.
+     *            thrown if operation context is not available.
      * @see <a href="package-summary.html#unimpl">
      *      <code>PortableInterceptor</code> package comments for limitations /
      *      unimplemented features</a>
@@ -133,7 +133,7 @@ public interface RequestInfoOperations {
      * <i>Note: Result is available for DSI/DII calls.</i>
      *
      * @exception NO_RESOURCES
-     *                         thrown if result is not available.
+     *            thrown if result is not available.
      * @see <a href="package-summary.html#unimpl">
      *      <code>PortableInterceptor</code> package comments for limitations /
      *      unimplemented features</a>
@@ -247,16 +247,15 @@ public interface RequestInfoOperations {
      * with a <code>TCKind</code> value of <code>tk_null</code> is returned.
      *
      * @param id
-     *           The <code>SlotId</code> of the slot which is to be returned.
+     *        The <code>SlotId</code> of the slot which is to be returned.
      * @return The slot data, in the form of an any, obtained with the given
      *         identifier.
      * @exception InvalidSlot
-     *                        thrown if the ID does not define an allocated
-     *                        slot.
+     *            thrown if the ID does not define an allocated
+     *            slot.
      * @see Current
      */
-    org.omg.CORBA.Any get_slot(int id)
-            throws org.omg.PortableInterceptor.InvalidSlot;
+    org.omg.CORBA.Any get_slot(int id) throws org.omg.PortableInterceptor.InvalidSlot;
 
     /**
      * Returns a copy of the service context with the given ID that is
@@ -264,15 +263,15 @@ public interface RequestInfoOperations {
      * <p>
      * 
      * @param id
-     *           The <code>IOP.ServiceId</code> of the service context which is
-     *           to be returned.
+     *        The <code>IOP.ServiceId</code> of the service context which is
+     *        to be returned.
      * @return The <code>IOP.ServiceContext</code> obtained with the given
      *         identifier.
      * @exception BAD_PARAM
-     *                      thrown with a standard minor code of 26, if the
-     *                      request's
-     *                      service context does not contain an entry for that
-     *                      ID.
+     *            thrown with a standard minor code of 26, if the
+     *            request's
+     *            service context does not contain an entry for that
+     *            ID.
      */
     org.omg.IOP.ServiceContext get_request_service_context(int id);
 
@@ -281,15 +280,15 @@ public interface RequestInfoOperations {
      * associated with the reply.
      * 
      * @param id
-     *           The <code>IOP.ServiceId</code> of the service context which is
-     *           to be returned.
+     *        The <code>IOP.ServiceId</code> of the service context which is
+     *        to be returned.
      * @return The <code>IOP.ServiceContext</code> obtained with the given
      *         identifier.
      * @exception BAD_PARAM
-     *                      thrown with a standard minor code of 26 if the
-     *                      request's
-     *                      service context does not contain an entry for that
-     *                      ID.
+     *            thrown with a standard minor code of 26 if the
+     *            request's
+     *            service context does not contain an entry for that
+     *            ID.
      */
     org.omg.IOP.ServiceContext get_reply_service_context(int id);
 } // interface RequestInfoOperations

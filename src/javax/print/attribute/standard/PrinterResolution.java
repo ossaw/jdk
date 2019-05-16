@@ -46,8 +46,8 @@ import javax.print.attribute.PrintJobAttribute;
  * @author David Mendenhall
  * @author Alan Kaminsky
  */
-public final class PrinterResolution extends ResolutionSyntax implements
-        DocAttribute, PrintRequestAttribute, PrintJobAttribute {
+public final class PrinterResolution extends ResolutionSyntax implements DocAttribute, PrintRequestAttribute,
+        PrintJobAttribute {
 
     private static final long serialVersionUID = 13090306561090558L;
 
@@ -55,22 +55,20 @@ public final class PrinterResolution extends ResolutionSyntax implements
      * Construct a new printer resolution attribute from the given items.
      *
      * @param crossFeedResolution
-     *                            Cross feed direction resolution.
+     *        Cross feed direction resolution.
      * @param feedResolution
-     *                            Feed direction resolution.
+     *        Feed direction resolution.
      * @param units
-     *                            Unit conversion factor, e.g.
-     *                            <code>ResolutionSyntax.DPI</CODE>
-     *                            or <code>ResolutionSyntax.DPCM</CODE>.
-     *
+     *        Unit conversion factor, e.g.
+     *        <code>ResolutionSyntax.DPI</CODE>
+     *        or <code>ResolutionSyntax.DPCM</CODE>.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code crossFeedResolution < 1} or
-     *                                     {@code feedResolution < 1} or
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code crossFeedResolution < 1} or
+     *            {@code feedResolution < 1} or
+     *            {@code units < 1}.
      */
-    public PrinterResolution(int crossFeedResolution, int feedResolution,
-            int units) {
+    public PrinterResolution(int crossFeedResolution, int feedResolution, int units) {
         super(crossFeedResolution, feedResolution, units);
     }
 
@@ -88,8 +86,7 @@ public final class PrinterResolution extends ResolutionSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this printer
      *         resolution attribute, false otherwise.
      */

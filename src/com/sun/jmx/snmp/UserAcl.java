@@ -34,8 +34,7 @@ public interface UserAcl {
      * Checks whether or not the specified user has <CODE>READ</CODE> access.
      *
      * @param user
-     *             The user name to check.
-     *
+     *        The user name to check.
      * @return <CODE>true</CODE> if the host has read permission,
      *         <CODE>false</CODE> otherwise.
      */
@@ -46,23 +45,21 @@ public interface UserAcl {
      * <CODE>READ</CODE> access.
      *
      * @param user
-     *                      The user name to check.
+     *        The user name to check.
      * @param contextName
-     *                      The context name associated with the user.
+     *        The context name associated with the user.
      * @param securityLevel
-     *                      The request security level.
+     *        The request security level.
      * @return <CODE>true</CODE> if the pair (user, context) has read
      *         permission, <CODE>false</CODE> otherwise.
      */
-    public boolean checkReadPermission(String user, String contextName,
-            int securityLevel);
+    public boolean checkReadPermission(String user, String contextName, int securityLevel);
 
     /**
      * Checks whether or not a context name is defined.
      *
      * @param contextName
-     *                    The context name to check.
-     *
+     *        The context name to check.
      * @return <CODE>true</CODE> if the context is known, <CODE>false</CODE>
      *         otherwise.
      */
@@ -72,8 +69,7 @@ public interface UserAcl {
      * Checks whether or not the specified user has <CODE>WRITE</CODE> access.
      *
      * @param user
-     *             The user to check.
-     *
+     *        The user to check.
      * @return <CODE>true</CODE> if the user has write permission,
      *         <CODE>false</CODE> otherwise.
      */
@@ -84,14 +80,13 @@ public interface UserAcl {
      * <CODE>WRITE</CODE> access.
      *
      * @param user
-     *                      The user name to check.
+     *        The user name to check.
      * @param contextName
-     *                      The context name associated with the user.
+     *        The context name associated with the user.
      * @param securityLevel
-     *                      The request security level.
+     *        The request security level.
      * @return <CODE>true</CODE> if the pair (user, context) has write
      *         permission, <CODE>false</CODE> otherwise.
      */
-    public boolean checkWritePermission(String user, String contextName,
-            int securityLevel);
+    public boolean checkWritePermission(String user, String contextName, int securityLevel);
 }

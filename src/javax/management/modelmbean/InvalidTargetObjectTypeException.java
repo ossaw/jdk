@@ -19,8 +19,6 @@ import java.security.AccessController;
 
 /**
  * Exception thrown when an invalid target object type is specified.
- *
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>1190536278266811217L</code>.
@@ -43,13 +41,12 @@ public class InvalidTargetObjectTypeException extends Exception {
     private static final long newSerialVersionUID = 1190536278266811217L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("msgStr", String.class),
-            new ObjectStreamField("relatedExcept", Exception.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField("msgStr",
+            String.class), new ObjectStreamField("relatedExcept", Exception.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("exception", Exception.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField("exception",
+            Exception.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -95,8 +92,8 @@ public class InvalidTargetObjectTypeException extends Exception {
      * Constructor from a string.
      *
      * @param s
-     *          String value that will be incorporated in the message for this
-     *          exception.
+     *        String value that will be incorporated in the message for this
+     *        exception.
      */
 
     public InvalidTargetObjectTypeException(String s) {
@@ -108,18 +105,17 @@ public class InvalidTargetObjectTypeException extends Exception {
      * Constructor taking an exception and a string.
      *
      * @param e
-     *          Exception that we may have caught to reissue as an
-     *          InvalidTargetObjectTypeException. The message will be used,
-     *          and we may want to consider overriding the printStackTrace()
-     *          methods to get data pointing back to original throw stack.
+     *        Exception that we may have caught to reissue as an
+     *        InvalidTargetObjectTypeException. The message will be used,
+     *        and we may want to consider overriding the printStackTrace()
+     *        methods to get data pointing back to original throw stack.
      * @param s
-     *          String value that will be incorporated in message for this
-     *          exception.
+     *        String value that will be incorporated in message for this
+     *        exception.
      */
 
     public InvalidTargetObjectTypeException(Exception e, String s) {
-        super("InvalidTargetObjectTypeException: " + s + ((e != null)
-                ? ("\n\t triggered by:" + e.toString())
+        super("InvalidTargetObjectTypeException: " + s + ((e != null) ? ("\n\t triggered by:" + e.toString())
                 : ""));
         exception = e;
     }
@@ -128,8 +124,7 @@ public class InvalidTargetObjectTypeException extends Exception {
      * Deserializes an {@link InvalidTargetObjectTypeException} from an
      * {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         if (compat) {
             // Read an object serialized in the old serial form
             //
@@ -155,8 +150,7 @@ public class InvalidTargetObjectTypeException extends Exception {
             //
             ObjectOutputStream.PutField fields = out.putFields();
             fields.put("relatedExcept", exception);
-            fields.put("msgStr", ((exception != null) ? exception.getMessage()
-                    : ""));
+            fields.put("msgStr", ((exception != null) ? exception.getMessage() : ""));
             out.writeFields();
         } else {
             // Serializes this instance in the new serial form

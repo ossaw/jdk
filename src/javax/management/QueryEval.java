@@ -26,15 +26,13 @@ public abstract class QueryEval implements Serializable {
      * is valid for the thread performing the set. It is copied to any threads
      * created by that thread at the moment of their creation.
      * </p>
-     *
      * <p>
      * For historical reasons, this method is not static, but its behavior does
      * not depend on the instance on which it is called.
      * </p>
      *
      * @param s
-     *          The MBean server on which the query is to be performed.
-     *
+     *        The MBean server on which the query is to be performed.
      * @see #getMBeanServer
      */
     public void setMBeanServer(MBeanServer s) {
@@ -51,9 +49,7 @@ public abstract class QueryEval implements Serializable {
      * </p>
      *
      * @return the MBean server.
-     *
      * @see #setMBeanServer
-     *
      */
     public static MBeanServer getMBeanServer() {
         return server.get();

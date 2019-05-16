@@ -9,13 +9,11 @@ import java.util.*;
 
 /**
  * An entry in an access control list (ACL).
- *
  * <p>
  * The ACL entry represented by this class is based on the ACL model specified
  * in <a href="http://www.ietf.org/rfc/rfc3530.txt"><i>RFC&nbsp;3530: Network
  * File System (NFS) version 4 Protocol</i></a>. Each entry has four components
  * as follows:
- *
  * <ol>
  * <li>
  * <p>
@@ -23,7 +21,6 @@ import java.util.*;
  * access.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #principal() principal} component, sometimes called the "who"
@@ -31,14 +28,12 @@ import java.util.*;
  * entry grants or denies access
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #permissions permissions} component is a set of
  * {@link AclEntryPermission permissions}
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #flags flags} component is a set of {@link AclEntryFlag flags} to
@@ -46,11 +41,9 @@ import java.util.*;
  * </p>
  * </li>
  * </ol>
- *
  * <p>
  * ACL entries are created using an associated {@link Builder} object by
  * invoking its {@link Builder#build build} method.
- *
  * <p>
  * ACL entries are immutable and are safe for use by multiple concurrent
  * threads.
@@ -69,8 +62,8 @@ public final class AclEntry {
     private volatile int hash;
 
     // private constructor
-    private AclEntry(AclEntryType type, UserPrincipal who,
-            Set<AclEntryPermission> perms, Set<AclEntryFlag> flags) {
+    private AclEntry(AclEntryType type, UserPrincipal who, Set<AclEntryPermission> perms,
+            Set<AclEntryFlag> flags) {
         this.type = type;
         this.who = who;
         this.perms = perms;
@@ -79,12 +72,10 @@ public final class AclEntry {
 
     /**
      * A builder of {@link AclEntry} objects.
-     *
      * <p>
      * A {@code Builder} object is obtained by invoking one of the
      * {@link AclEntry#newBuilder newBuilder} methods defined by the
      * {@code AclEntry} class.
-     *
      * <p>
      * Builder objects are mutable and are not safe for use by multiple
      * concurrent threads without appropriate synchronization.
@@ -97,8 +88,8 @@ public final class AclEntry {
         private Set<AclEntryPermission> perms;
         private Set<AclEntryFlag> flags;
 
-        private Builder(AclEntryType type, UserPrincipal who,
-                Set<AclEntryPermission> perms, Set<AclEntryFlag> flags) {
+        private Builder(AclEntryType type, UserPrincipal who, Set<AclEntryPermission> perms,
+                Set<AclEntryFlag> flags) {
             assert perms != null && flags != null;
             this.type = type;
             this.who = who;
@@ -112,10 +103,9 @@ public final class AclEntry {
          * construct an {@code AclEntry}.
          *
          * @return a new ACL entry
-         *
          * @throws IllegalStateException
-         *                               if the type or who component have not
-         *                               been set
+         *         if the type or who component have not
+         *         been set
          */
         public AclEntry build() {
             if (type == null)
@@ -129,7 +119,7 @@ public final class AclEntry {
          * Sets the type component of this builder.
          *
          * @param type
-         *             the component type
+         *        the component type
          * @return this builder
          */
         public Builder setType(AclEntryType type) {
@@ -143,7 +133,7 @@ public final class AclEntry {
          * Sets the principal component of this builder.
          *
          * @param who
-         *            the principal component
+         *        the principal component
          * @return this builder
          */
         public Builder setPrincipal(UserPrincipal who) {
@@ -167,12 +157,11 @@ public final class AclEntry {
          * permissions component of this builder is a copy of the given set.
          *
          * @param perms
-         *              the permissions component
+         *        the permissions component
          * @return this builder
-         *
          * @throws ClassCastException
-         *                            if the set contains elements that are not
-         *                            of type {@code
+         *         if the set contains elements that are not
+         *         of type {@code
          *          AclEntryPermission}
          */
         public Builder setPermissions(Set<AclEntryPermission> perms) {
@@ -195,12 +184,11 @@ public final class AclEntry {
          * the given array.
          *
          * @param perms
-         *              the permissions component
+         *        the permissions component
          * @return this builder
          */
         public Builder setPermissions(AclEntryPermission... perms) {
-            Set<AclEntryPermission> set = EnumSet.noneOf(
-                    AclEntryPermission.class);
+            Set<AclEntryPermission> set = EnumSet.noneOf(AclEntryPermission.class);
             // copy and check for null elements
             for (AclEntryPermission p : perms) {
                 if (p == null)
@@ -216,12 +204,11 @@ public final class AclEntry {
          * component of this builder is a copy of the given set.
          *
          * @param flags
-         *              the flags component
+         *        the flags component
          * @return this builder
-         *
          * @throws ClassCastException
-         *                            if the set contains elements that are not
-         *                            of type {@code
+         *         if the set contains elements that are not
+         *         of type {@code
          *          AclEntryFlag}
          */
         public Builder setFlags(Set<AclEntryFlag> flags) {
@@ -243,7 +230,7 @@ public final class AclEntry {
          * component of this builder is a copy of the flags in the given array.
          *
          * @param flags
-         *              the flags component
+         *        the flags component
          * @return this builder
          */
         public Builder setFlags(AclEntryFlag... flags) {
@@ -276,7 +263,7 @@ public final class AclEntry {
      * Constructs a new builder with the components of an existing ACL entry.
      *
      * @param entry
-     *              an ACL entry
+     *        an ACL entry
      * @return a new builder
      */
     public static Builder newBuilder(AclEntry entry) {
@@ -303,7 +290,6 @@ public final class AclEntry {
 
     /**
      * Returns a copy of the permissions component.
-     *
      * <p>
      * The returned set is a modifiable copy of the permissions.
      *
@@ -315,7 +301,6 @@ public final class AclEntry {
 
     /**
      * Returns a copy of the flags component.
-     *
      * <p>
      * The returned set is a modifiable copy of the flags.
      *
@@ -327,24 +312,20 @@ public final class AclEntry {
 
     /**
      * Compares the specified object with this ACL entry for equality.
-     *
      * <p>
      * If the given object is not an {@code AclEntry} then this method
      * immediately returns {@code false}.
-     *
      * <p>
      * For two ACL entries to be considered equals requires that they are both
      * the same type, their who components are equal, their permissions
      * components are equal, and their flags components are equal.
-     *
      * <p>
      * This method satisfies the general contract of the
      * {@link java.lang.Object#equals(Object) Object.equals} method.
      * </p>
      *
      * @param ob
-     *           the object to which this object is to be compared
-     *
+     *        the object to which this object is to be compared
      * @return {@code true} if, and only if, the given object is an AclEntry
      *         that is identical to this AclEntry
      */
@@ -372,7 +353,6 @@ public final class AclEntry {
 
     /**
      * Returns the hash-code value for this ACL entry.
-     *
      * <p>
      * This method satisfies the general contract of the {@link Object#hashCode}
      * method.

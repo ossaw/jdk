@@ -39,8 +39,8 @@ class DirectDoubleBufferRS
     }
 
     public DoubleBuffer duplicate() {
-        return new DirectDoubleBufferRS(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectDoubleBufferRS(this, this.markValue(), this.position(), this.limit(), this
+                .capacity(), 0);
     }
 
     public DoubleBuffer asReadOnlyBuffer() {
@@ -89,8 +89,7 @@ class DirectDoubleBufferRS
 
     public ByteOrder order() {
 
-        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
-                ? ByteOrder.LITTLE_ENDIAN
+        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
                 : ByteOrder.BIG_ENDIAN);
 
     }

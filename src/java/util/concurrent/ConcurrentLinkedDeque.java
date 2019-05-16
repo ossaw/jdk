@@ -28,11 +28,9 @@ import java.util.function.Consumer;
  * when many threads will share access to a common collection. Like most other
  * concurrent collection implementations, this class does not permit the use of
  * {@code null} elements.
- *
  * <p>
  * Iterators and spliterators are
  * <a href="package-summary.html#Weakly"><i>weakly consistent</i></a>.
- *
  * <p>
  * Beware that, unlike in most collections, the {@code size} method is
  * <em>NOT</em> a constant-time operation. Because of the asynchronous nature of
@@ -43,18 +41,15 @@ import java.util.function.Consumer;
  * and {@code toArray} are <em>not</em> guaranteed to be performed atomically.
  * For example, an iterator operating concurrently with an {@code addAll}
  * operation might view only some of the added elements.
- *
  * <p>
  * This class and its iterator implement all of the <em>optional</em> methods of
  * the {@link Deque} and {@link Iterator} interfaces.
- *
  * <p>
  * Memory consistency effects: As with other concurrent collections, actions in
  * a thread prior to placing an object into a {@code ConcurrentLinkedDeque}
  * <a href="package-summary.html#MemoryVisibility"><i>happen-before</i></a>
  * actions subsequent to the access or removal of that element from the
  * {@code ConcurrentLinkedDeque} in another thread.
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -66,8 +61,8 @@ import java.util.function.Consumer;
  * @param <E>
  *        the type of elements held in this collection
  */
-public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
-        Deque<E>, java.io.Serializable {
+public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements Deque<E>,
+        java.io.Serializable {
 
     /*
      * This is an implementation of a concurrent lock-free deque supporting
@@ -266,12 +261,9 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             try {
                 UNSAFE = sun.misc.Unsafe.getUnsafe();
                 Class<?> k = Node.class;
-                prevOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                        "prev"));
-                itemOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                        "item"));
-                nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                        "next"));
+                prevOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("prev"));
+                itemOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("item"));
+                nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("next"));
             } catch (Exception e) {
                 throw new Error(e);
             }
@@ -285,7 +277,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
         checkNotNull(e);
         final Node<E> newNode = new Node<E>(e);
 
-        restartFromHead: for (;;)
+        restartFromHead:
+        for (;;)
             for (Node<E> h = head, p = h, q;;) {
                 if ((q = p.prev) != null && (q = (p = q).prev) != null)
                     // Check for head updates every other hop.
@@ -316,7 +309,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
         checkNotNull(e);
         final Node<E> newNode = new Node<E>(e);
 
-        restartFromTail: for (;;)
+        restartFromTail:
+        for (;;)
             for (Node<E> t = tail, p = t, q;;) {
                 if ((q = p.next) != null && (q = (p = q).next) != null)
                     // Check for tail updates every other hop.
@@ -436,12 +430,9 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             if ((isFirst | isLast) &&
 
             // Recheck expected state of predecessor and successor
-                    (activePred.next == activeSucc)
-                    && (activeSucc.prev == activePred) && (isFirst
-                            ? activePred.prev == null
-                            : activePred.item != null) && (isLast
-                                    ? activeSucc.next == null
-                                    : activeSucc.item != null)) {
+                    (activePred.next == activeSucc) && (activeSucc.prev == activePred) && (isFirst
+                            ? activePred.prev == null : activePred.item != null) && (isLast
+                                    ? activeSucc.next == null : activeSucc.item != null)) {
 
                 updateHead(); // Ensure x is not reachable from head
                 updateTail(); // Ensure x is not reachable from tail
@@ -464,8 +455,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             if (p.item != null || (q = p.next) == null) {
                 if (o != null && p.prev != p && first.casNext(next, p)) {
                     skipDeletedPredecessors(p);
-                    if (first.prev == null && (p.next == null || p.item != null)
-                            && p.prev == first) {
+                    if (first.prev == null && (p.next == null || p.item != null) && p.prev == first) {
 
                         updateHead(); // Ensure o is not reachable from head
                         updateTail(); // Ensure o is not reachable from tail
@@ -496,8 +486,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             if (p.item != null || (q = p.prev) == null) {
                 if (o != null && p.next != p && last.casPrev(prev, p)) {
                     skipDeletedSuccessors(p);
-                    if (last.next == null && (p.prev == null || p.item != null)
-                            && p.next == last) {
+                    if (last.next == null && (p.prev == null || p.item != null) && p.next == last) {
 
                         updateHead(); // Ensure o is not reachable from head
                         updateTail(); // Ensure o is not reachable from tail
@@ -527,8 +516,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
         // Either head already points to an active node, or we keep
         // trying to cas it to the first node until it does.
         Node<E> h, p, q;
-        restartFromHead: while ((h = head).item == null
-                && (p = h.prev) != null) {
+        restartFromHead:
+        while ((h = head).item == null && (p = h.prev) != null) {
             for (;;) {
                 if ((q = p.prev) == null || (q = (p = q).prev) == null) {
                     // It is possible that p is PREV_TERMINATOR,
@@ -555,8 +544,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
         // Either tail already points to an active node, or we keep
         // trying to cas it to the last node until it does.
         Node<E> t, p, q;
-        restartFromTail: while ((t = tail).item == null
-                && (p = t.next) != null) {
+        restartFromTail:
+        while ((t = tail).item == null && (p = t.next) != null) {
             for (;;) {
                 if ((q = p.next) == null || (q = (p = q).next) == null) {
                     // It is possible that p is NEXT_TERMINATOR,
@@ -574,13 +563,15 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
     }
 
     private void skipDeletedPredecessors(Node<E> x) {
-        whileActive: do {
+        whileActive:
+        do {
             Node<E> prev = x.prev;
             // assert prev != null;
             // assert x != NEXT_TERMINATOR;
             // assert x != PREV_TERMINATOR;
             Node<E> p = prev;
-            findActive: for (;;) {
+            findActive:
+            for (;;) {
                 if (p.item != null)
                     break findActive;
                 Node<E> q = p.prev;
@@ -602,13 +593,15 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
     }
 
     private void skipDeletedSuccessors(Node<E> x) {
-        whileActive: do {
+        whileActive:
+        do {
             Node<E> next = x.next;
             // assert next != null;
             // assert x != NEXT_TERMINATOR;
             // assert x != PREV_TERMINATOR;
             Node<E> p = next;
-            findActive: for (;;) {
+            findActive:
+            for (;;) {
                 if (p.item != null)
                     break findActive;
                 Node<E> q = p.next;
@@ -656,7 +649,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Guarantees that head is set to the returned node.
      */
     Node<E> first() {
-        restartFromHead: for (;;)
+        restartFromHead:
+        for (;;)
             for (Node<E> h = head, p = h, q;;) {
                 if ((q = p.prev) != null && (q = (p = q).prev) != null)
                     // Check for head updates every other hop.
@@ -678,7 +672,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Guarantees that tail is set to the returned node.
      */
     Node<E> last() {
-        restartFromTail: for (;;)
+        restartFromTail:
+        for (;;)
             for (Node<E> t = tail, p = t, q;;) {
                 if ((q = p.next) != null && (q = (p = q).next) != null)
                     // Check for tail updates every other hop.
@@ -700,7 +695,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Throws NullPointerException if argument is null.
      *
      * @param v
-     *          the element
+     *        the element
      */
     private static void checkNotNull(Object v) {
         if (v == null)
@@ -712,7 +707,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * NoSuchElementException.
      *
      * @param v
-     *          the element
+     *        the element
      * @return the element
      */
     private E screenNullResult(E v) {
@@ -749,10 +744,10 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * collection, added in traversal order of the collection's iterator.
      *
      * @param c
-     *          the collection of elements to initially contain
+     *        the collection of elements to initially contain
      * @throws NullPointerException
-     *                              if the specified collection or any of its
-     *                              elements are null
+     *         if the specified collection or any of its
+     *         elements are null
      */
     public ConcurrentLinkedDeque(Collection<? extends E> c) {
         // Copy c into a private chain of Nodes
@@ -795,7 +790,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * unbounded, this method will never throw {@link IllegalStateException}.
      *
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void addFirst(E e) {
         linkFirst(e);
@@ -804,12 +799,11 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
     /**
      * Inserts the specified element at the end of this deque. As the deque is
      * unbounded, this method will never throw {@link IllegalStateException}.
-     *
      * <p>
      * This method is equivalent to {@link #add}.
      *
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void addLast(E e) {
         linkLast(e);
@@ -821,7 +815,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      *
      * @return {@code true} (as specified by {@link Deque#offerFirst})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offerFirst(E e) {
         linkFirst(e);
@@ -831,13 +825,12 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
     /**
      * Inserts the specified element at the end of this deque. As the deque is
      * unbounded, this method will never return {@code false}.
-     *
      * <p>
      * This method is equivalent to {@link #add}.
      *
      * @return {@code true} (as specified by {@link Deque#offerLast})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offerLast(E e) {
         linkLast(e);
@@ -864,7 +857,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E getFirst() {
         return screenNullResult(peekFirst());
@@ -872,7 +865,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E getLast() {
         return screenNullResult(peekLast());
@@ -902,7 +895,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E removeFirst() {
         return screenNullResult(pollFirst());
@@ -910,7 +903,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E removeLast() {
         return screenNullResult(pollLast());
@@ -924,7 +917,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      *
      * @return {@code true} (as specified by {@link Queue#offer})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offer(E e) {
         return offerLast(e);
@@ -937,7 +930,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      *
      * @return {@code true} (as specified by {@link Collection#add})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean add(E e) {
         return offerLast(e);
@@ -953,7 +946,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E remove() {
         return removeFirst();
@@ -961,7 +954,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E pop() {
         return removeFirst();
@@ -969,7 +962,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NoSuchElementException
-     *                                {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E element() {
         return getFirst();
@@ -977,7 +970,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void push(E e) {
         addFirst(e);
@@ -989,10 +982,10 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * element, it is unchanged.
      *
      * @param o
-     *          element to be removed from this deque, if present
+     *        element to be removed from this deque, if present
      * @return {@code true} if the deque contained the specified element
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean removeFirstOccurrence(Object o) {
         checkNotNull(o);
@@ -1012,10 +1005,10 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * element, it is unchanged.
      *
      * @param o
-     *          element to be removed from this deque, if present
+     *        element to be removed from this deque, if present
      * @return {@code true} if the deque contained the specified element
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean removeLastOccurrence(Object o) {
         checkNotNull(o);
@@ -1034,7 +1027,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * {@code e} such that {@code o.equals(e)}.
      *
      * @param o
-     *          element whose presence in this deque is to be tested
+     *        element whose presence in this deque is to be tested
      * @return {@code true} if this deque contains the specified element
      */
     public boolean contains(Object o) {
@@ -1061,7 +1054,6 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Returns the number of elements in this deque. If this deque contains more
      * than {@code Integer.MAX_VALUE} elements, it returns
      * {@code Integer.MAX_VALUE}.
-     *
      * <p>
      * Beware that, unlike in most collections, this method is <em>NOT</em> a
      * constant-time operation. Because of the asynchronous nature of these
@@ -1089,10 +1081,10 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * element, it is unchanged.
      *
      * @param o
-     *          element to be removed from this deque, if present
+     *        element to be removed from this deque, if present
      * @return {@code true} if the deque contained the specified element
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean remove(Object o) {
         return removeFirstOccurrence(o);
@@ -1105,13 +1097,13 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * result in {@code IllegalArgumentException}.
      *
      * @param c
-     *          the elements to be inserted into this deque
+     *        the elements to be inserted into this deque
      * @return {@code true} if this deque changed as a result of the call
      * @throws NullPointerException
-     *                                  if the specified collection or any of
-     *                                  its elements are null
+     *         if the specified collection or any of
+     *         its elements are null
      * @throws IllegalArgumentException
-     *                                  if the collection is this deque
+     *         if the collection is this deque
      */
     public boolean addAll(Collection<? extends E> c) {
         if (c == this)
@@ -1135,7 +1127,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             return false;
 
         // Atomically append the chain at the tail of this collection
-        restartFromTail: for (;;)
+        restartFromTail:
+        for (;;)
             for (Node<E> t = tail, p = t, q;;) {
                 if ((q = p.next) != null && (q = (p = q).next) != null)
                     // Check for tail updates every other hop.
@@ -1174,12 +1167,10 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
     /**
      * Returns an array containing all of the elements in this deque, in proper
      * sequence (from first to last element).
-     *
      * <p>
      * The returned array will be "safe" in that no references to it are
      * maintained by this deque. (In other words, this method must allocate a
      * new array). The caller is thus free to modify the returned array.
-     *
      * <p>
      * This method acts as bridge between array-based and collection-based APIs.
      *
@@ -1195,18 +1186,15 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * array is that of the specified array. If the deque fits in the specified
      * array, it is returned therein. Otherwise, a new array is allocated with
      * the runtime type of the specified array and the size of this deque.
-     *
      * <p>
      * If this deque fits in the specified array with room to spare (i.e., the
      * array has more elements than this deque), the element in the array
      * immediately following the end of the deque is set to {@code null}.
-     *
      * <p>
      * Like the {@link #toArray()} method, this method acts as bridge between
      * array-based and collection-based APIs. Further, this method allows
      * precise control over the runtime type of the output array, and may, under
      * certain circumstances, be used to save allocation costs.
-     *
      * <p>
      * Suppose {@code x} is a deque known to contain only strings. The following
      * code can be used to dump the deque into a newly allocated array of
@@ -1223,17 +1211,17 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * {@code toArray()}.
      *
      * @param a
-     *          the array into which the elements of the deque are to be
-     *          stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose
+     *        the array into which the elements of the deque are to be
+     *        stored, if it is big enough; otherwise, a new array of the
+     *        same runtime type is allocated for this purpose
      * @return an array containing all of the elements in this deque
      * @throws ArrayStoreException
-     *                              if the runtime type of the specified array
-     *                              is not a supertype
-     *                              of the runtime type of every element in this
-     *                              deque
+     *         if the runtime type of the specified array
+     *         is not a supertype
+     *         of the runtime type of every element in this
+     *         deque
      * @throws NullPointerException
-     *                              if the specified array is null
+     *         if the specified array is null
      */
     public <T> T[] toArray(T[] a) {
         return toArrayList().toArray(a);
@@ -1242,7 +1230,6 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
     /**
      * Returns an iterator over the elements in this deque in proper sequence.
      * The elements will be returned in order from first (head) to last (tail).
-     *
      * <p>
      * The returned iterator is <a href="package-summary.html#Weakly"><i>weakly
      * consistent</i></a>.
@@ -1257,7 +1244,6 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Returns an iterator over the elements in this deque in reverse sequential
      * order. The elements will be returned in order from last (tail) to first
      * (head).
-     *
      * <p>
      * The returned iterator is <a href="package-summary.html#Weakly"><i>weakly
      * consistent</i></a>.
@@ -1380,8 +1366,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             final ConcurrentLinkedDeque<E> q = this.queue;
             int b = batch;
             int n = (b <= 0) ? 1 : (b >= MAX_BATCH) ? MAX_BATCH : b + 1;
-            if (!exhausted && ((p = current) != null || (p = q
-                    .first()) != null)) {
+            if (!exhausted && ((p = current) != null || (p = q.first()) != null)) {
                 if (p.item == null && p == (p = p.next))
                     current = p = q.first();
                 if (p != null && p.next != null) {
@@ -1397,9 +1382,8 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
                         exhausted = true;
                     if (i > 0) {
                         batch = i;
-                        return Spliterators.spliterator(a, 0, i,
-                                Spliterator.ORDERED | Spliterator.NONNULL
-                                        | Spliterator.CONCURRENT);
+                        return Spliterators.spliterator(a, 0, i, Spliterator.ORDERED | Spliterator.NONNULL
+                                | Spliterator.CONCURRENT);
                     }
                 }
             }
@@ -1411,8 +1395,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             if (action == null)
                 throw new NullPointerException();
             final ConcurrentLinkedDeque<E> q = this.queue;
-            if (!exhausted && ((p = current) != null || (p = q
-                    .first()) != null)) {
+            if (!exhausted && ((p = current) != null || (p = q.first()) != null)) {
                 exhausted = true;
                 do {
                     E e = p.item;
@@ -1429,8 +1412,7 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
             if (action == null)
                 throw new NullPointerException();
             final ConcurrentLinkedDeque<E> q = this.queue;
-            if (!exhausted && ((p = current) != null || (p = q
-                    .first()) != null)) {
+            if (!exhausted && ((p = current) != null || (p = q.first()) != null)) {
                 E e;
                 do {
                     e = p.item;
@@ -1452,25 +1434,21 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
         }
 
         public int characteristics() {
-            return Spliterator.ORDERED | Spliterator.NONNULL
-                    | Spliterator.CONCURRENT;
+            return Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT;
         }
     }
 
     /**
      * Returns a {@link Spliterator} over the elements in this deque.
-     *
      * <p>
      * The returned spliterator is
      * <a href="package-summary.html#Weakly"><i>weakly consistent</i></a>.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#CONCURRENT},
      * {@link Spliterator#ORDERED}, and {@link Spliterator#NONNULL}.
      *
      * @implNote The {@code Spliterator} implements {@code trySplit} to permit
      *           limited parallelism.
-     *
      * @return a {@code Spliterator} over the elements in this deque
      * @since 1.8
      */
@@ -1482,14 +1460,13 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Saves this deque to a stream (that is, serializes it).
      *
      * @param s
-     *          the stream
+     *        the stream
      * @throws java.io.IOException
      *         if an I/O error occurs
      * @serialData All of the elements (each an {@code E}) in the proper order,
      *             followed by a null
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
 
         // Write out any hidden stuff
         s.defaultWriteObject();
@@ -1509,15 +1486,14 @@ public class ConcurrentLinkedDeque<E> extends AbstractCollection<E> implements
      * Reconstitutes this deque from a stream (that is, deserializes it).
      * 
      * @param s
-     *          the stream
+     *        the stream
      * @throws ClassNotFoundException
-     *                                if the class of a serialized object could
-     *                                not be found
-     * @throws                        java.io.IOException
-     *                                if an I/O error occurs
+     *         if the class of a serialized object could
+     *         not be found
+     * @throws java.io.IOException
+     *         if an I/O error occurs
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         s.defaultReadObject();
 
         // Read in elements until trailing null sentinel found

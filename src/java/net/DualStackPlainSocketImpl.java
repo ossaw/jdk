@@ -18,8 +18,7 @@ import sun.misc.JavaIOFileDescriptorAccess;
  */
 
 class DualStackPlainSocketImpl extends AbstractPlainSocketImpl {
-    static JavaIOFileDescriptorAccess fdAccess = SharedSecrets
-            .getJavaIOFileDescriptorAccess();
+    static JavaIOFileDescriptorAccess fdAccess = SharedSecrets.getJavaIOFileDescriptorAccess();
 
     // true if this socket is exclusively bound
     private final boolean exclusiveBind;
@@ -45,8 +44,7 @@ class DualStackPlainSocketImpl extends AbstractPlainSocketImpl {
         fdAccess.set(fd, newfd);
     }
 
-    void socketConnect(InetAddress address, int port, int timeout)
-            throws IOException {
+    void socketConnect(InetAddress address, int port, int timeout) throws IOException {
         int nativefd = checkAndReturnNativeFD();
 
         if (address == null)
@@ -151,8 +149,7 @@ class DualStackPlainSocketImpl extends AbstractPlainSocketImpl {
 
     // Intentional fallthrough after SO_REUSEADDR
     @SuppressWarnings("fallthrough")
-    void socketSetOption(int opt, boolean on, Object value)
-            throws SocketException {
+    void socketSetOption(int opt, boolean on, Object value) throws SocketException {
         int nativefd = checkAndReturnNativeFD();
 
         if (opt == SO_TIMEOUT) { // timeout implemented through select.
@@ -240,29 +237,24 @@ class DualStackPlainSocketImpl extends AbstractPlainSocketImpl {
 
     static native void initIDs();
 
-    static native int socket0(boolean stream, boolean v6Only)
+    static native int socket0(boolean stream, boolean v6Only) throws IOException;
+
+    static native void bind0(int fd, InetAddress localAddress, int localport, boolean exclBind)
             throws IOException;
 
-    static native void bind0(int fd, InetAddress localAddress, int localport,
-            boolean exclBind) throws IOException;
-
-    static native int connect0(int fd, InetAddress remote, int remotePort)
-            throws IOException;
+    static native int connect0(int fd, InetAddress remote, int remotePort) throws IOException;
 
     static native void waitForConnect(int fd, int timeout) throws IOException;
 
     static native int localPort0(int fd) throws IOException;
 
-    static native void localAddress(int fd, InetAddressContainer in)
-            throws SocketException;
+    static native void localAddress(int fd, InetAddressContainer in) throws SocketException;
 
     static native void listen0(int fd, int backlog) throws IOException;
 
-    static native int accept0(int fd, InetSocketAddress[] isaa)
-            throws IOException;
+    static native int accept0(int fd, InetSocketAddress[] isaa) throws IOException;
 
-    static native void waitForNewConnection(int fd, int timeout)
-            throws IOException;
+    static native void waitForNewConnection(int fd, int timeout) throws IOException;
 
     static native int available0(int fd) throws IOException;
 
@@ -270,13 +262,11 @@ class DualStackPlainSocketImpl extends AbstractPlainSocketImpl {
 
     static native void shutdown0(int fd, int howto) throws IOException;
 
-    static native void setIntOption(int fd, int cmd, int optionValue)
-            throws SocketException;
+    static native void setIntOption(int fd, int cmd, int optionValue) throws SocketException;
 
     static native int getIntOption(int fd, int cmd) throws SocketException;
 
     static native void sendOOB(int fd, int data) throws IOException;
 
-    static native void configureBlocking(int fd, boolean blocking)
-            throws IOException;
+    static native void configureBlocking(int fd, boolean blocking) throws IOException;
 }

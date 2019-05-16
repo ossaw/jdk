@@ -20,7 +20,7 @@ public interface Delegate {
      * associated with the Servant.
      * 
      * @param Self
-     *             the servant.
+     *        the servant.
      * @return ORB associated with the Servant.
      */
     org.omg.CORBA.ORB orb(Servant Self);
@@ -30,7 +30,7 @@ public interface Delegate {
      * CORBA Object it is incarnating for that request.
      * 
      * @param Self
-     *             the servant.
+     *        the servant.
      * @return Object reference associated with the request.
      */
     org.omg.CORBA.Object this_object(Servant Self);
@@ -40,7 +40,7 @@ public interface Delegate {
      * PortableServer::Current:get_POA.
      * 
      * @param Self
-     *             the servant.
+     *        the servant.
      * @return POA associated with the servant.
      */
     POA poa(Servant Self);
@@ -50,7 +50,7 @@ public interface Delegate {
      * PortableServer::Current::get_object_id.
      * 
      * @param Self
-     *             the servant.
+     *        the servant.
      * @return ObjectId associated with this servant.
      */
     byte[] object_id(Servant Self);
@@ -60,7 +60,7 @@ public interface Delegate {
      * ORB instance associated with the servant.
      * 
      * @param Self
-     *             the servant.
+     *        the servant.
      * @return POA associated with the servant class.
      */
     POA default_POA(Servant Self);
@@ -71,11 +71,11 @@ public interface Delegate {
      * CORBA Object.
      * 
      * @param Self
-     *                      the servant.
+     *        the servant.
      * @param Repository_Id
-     *                      the repository_id to be checked in the repository
-     *                      list or
-     *                      against the id of generic CORBA object.
+     *        the repository_id to be checked in the repository
+     *        list or
+     *        against the id of generic CORBA object.
      * @return boolean indicating whether the specified repid is in the list or
      *         is same as that got generic CORBA object.
      */
@@ -85,7 +85,7 @@ public interface Delegate {
      * This operation is used to check for the existence of the Object.
      * 
      * @param Self
-     *             the servant.
+     *        the servant.
      * @return boolean true to indicate that object does not exist, and false
      *         otherwise.
      */
@@ -98,7 +98,7 @@ public interface Delegate {
      * provides type information that may be useful to a program.
      * 
      * @param self
-     *             the servant.
+     *        the servant.
      * @return type information corresponding to the object.
      */
     // The get_interface() method has been replaced by get_interface_def()

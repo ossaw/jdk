@@ -16,22 +16,18 @@ import javax.management.MBeanParameterInfo;
  * <p>
  * Describes a constructor of an Open MBean.
  * </p>
- *
  * <p>
  * This interface declares the same methods as the class
  * {@link javax.management.MBeanConstructorInfo}. A class implementing this
  * interface (typically {@link OpenMBeanConstructorInfoSupport}) should extend
  * {@link javax.management.MBeanConstructorInfo}.
  * </p>
- *
  * <p>
  * The {@link #getSignature()} method should return at runtime an array of
  * instances of a subclass of {@link MBeanParameterInfo} which implements the
  * {@link OpenMBeanParameterInfo} interface (typically
  * {@link OpenMBeanParameterInfoSupport}).
  * </p>
- *
- *
  *
  * @since 1.5
  */
@@ -88,9 +84,8 @@ public interface OpenMBeanConstructorInfo {
      * &nbsp;
      * 
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>OpenMBeanConstructorInfo</code> instance;
-     *
+     *        the object to be compared for equality with this
+     *        <code>OpenMBeanConstructorInfo</code> instance;
      * @return <code>true</code> if the specified object is equal to this
      *         <code>OpenMBeanConstructorInfo</code> instance.
      */

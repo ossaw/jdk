@@ -60,7 +60,7 @@ final class UnparsedEntityUriCall extends FunctionCall {
         // ...then the entity name...
         _entity.translate(classGen, methodGen);
         // ...to get the URI from the DOM object.
-        il.append(new INVOKEINTERFACE(cpg.addInterfaceMethodref(DOM_INTF,
-                GET_UNPARSED_ENTITY_URI, GET_UNPARSED_ENTITY_URI_SIG), 2));
+        il.append(new INVOKEINTERFACE(cpg.addInterfaceMethodref(DOM_INTF, GET_UNPARSED_ENTITY_URI,
+                GET_UNPARSED_ENTITY_URI_SIG), 2));
     }
 }

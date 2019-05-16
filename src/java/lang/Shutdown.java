@@ -53,7 +53,6 @@ class Shutdown {
     /**
      * Add a new shutdown hook. Checks the shutdown state and the hook itself,
      * but does not do any security checks.
-     *
      * The registerShutdownInProgress parameter should be false except
      * registering the DeleteOnExitHook since the first file may be added to the
      * delete on exit list by the application shutdown hooks.
@@ -63,24 +62,20 @@ class Shutdown {
      * @params registerShutdownInProgress true to allow the hook to be
      *         registered even if the shutdown is in progress.
      * @params hook the hook to be registered
-     *
      * @throw IllegalStateException if registerShutdownInProgress is false and
      *        shutdown is in progress; or if registerShutdownInProgress is true
      *        and the shutdown process already passes the given slot
      */
-    static void add(int slot, boolean registerShutdownInProgress,
-            Runnable hook) {
+    static void add(int slot, boolean registerShutdownInProgress, Runnable hook) {
         synchronized (lock) {
             if (hooks[slot] != null)
-                throw new InternalError("Shutdown hook at slot " + slot
-                        + " already registered");
+                throw new InternalError("Shutdown hook at slot " + slot + " already registered");
 
             if (!registerShutdownInProgress) {
                 if (state > RUNNING)
                     throw new IllegalStateException("Shutdown in progress");
             } else {
-                if (state > HOOKS || (state == HOOKS
-                        && slot <= currentRunningHook))
+                if (state > HOOKS || (state == HOOKS && slot <= currentRunningHook))
                     throw new IllegalStateException("Shutdown in progress");
             }
 

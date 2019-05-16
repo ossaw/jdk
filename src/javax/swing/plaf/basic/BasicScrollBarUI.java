@@ -27,8 +27,7 @@ import static sun.swing.SwingUtilities2.drawVLine;
  * @author David Kloba
  * @author Hans Muller
  */
-public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
-        SwingConstants {
+public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager, SwingConstants {
     private static final int POSITIVE_SCROLL = 1;
     private static final int NEGATIVE_SCROLL = -1;
 
@@ -129,8 +128,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
     }
 
     protected void configureScrollBarColors() {
-        LookAndFeel.installColors(scrollbar, "ScrollBar.background",
-                "ScrollBar.foreground");
+        LookAndFeel.installColors(scrollbar, "ScrollBar.background", "ScrollBar.foreground");
         thumbHighlightColor = UIManager.getColor("ScrollBar.thumbHighlight");
         thumbLightShadowColor = UIManager.getColor("ScrollBar.thumbShadow");
         thumbDarkShadowColor = UIManager.getColor("ScrollBar.thumbDarkShadow");
@@ -166,19 +164,14 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         if (scrollBarWidth <= 0) {
             scrollBarWidth = 16;
         }
-        minimumThumbSize = (Dimension) UIManager.get(
-                "ScrollBar.minimumThumbSize");
-        maximumThumbSize = (Dimension) UIManager.get(
-                "ScrollBar.maximumThumbSize");
+        minimumThumbSize = (Dimension) UIManager.get("ScrollBar.minimumThumbSize");
+        maximumThumbSize = (Dimension) UIManager.get("ScrollBar.maximumThumbSize");
 
-        Boolean absB = (Boolean) UIManager.get(
-                "ScrollBar.allowsAbsolutePositioning");
-        supportsAbsolutePositioning = (absB != null) ? absB.booleanValue()
-                : false;
+        Boolean absB = (Boolean) UIManager.get("ScrollBar.allowsAbsolutePositioning");
+        supportsAbsolutePositioning = (absB != null) ? absB.booleanValue() : false;
 
         trackHighlight = NO_HIGHLIGHT;
-        if (scrollbar.getLayout() == null || (scrollbar
-                .getLayout() instanceof UIResource)) {
+        if (scrollbar.getLayout() == null || (scrollbar.getLayout() instanceof UIResource)) {
             scrollbar.setLayout(this);
         }
         configureScrollBarColors();
@@ -194,8 +187,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         // handle scaling for sizeVarients for special case components. The
         // key "JComponent.sizeVariant" scales for large/small/mini
         // components are based on Apples LAF
-        String scaleKey = (String) scrollbar.getClientProperty(
-                "JComponent.sizeVariant");
+        String scaleKey = (String) scrollbar.getClientProperty("JComponent.sizeVariant");
         if (scaleKey != null) {
             if ("large".equals(scaleKey)) {
                 scrollBarWidth *= 1.15;
@@ -266,47 +258,37 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
     }
 
     protected void installKeyboardActions() {
-        LazyActionMap.installLazyActionMap(scrollbar, BasicScrollBarUI.class,
-                "ScrollBar.actionMap");
+        LazyActionMap.installLazyActionMap(scrollbar, BasicScrollBarUI.class, "ScrollBar.actionMap");
 
         InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
-        SwingUtilities.replaceUIInputMap(scrollbar, JComponent.WHEN_FOCUSED,
-                inputMap);
+        SwingUtilities.replaceUIInputMap(scrollbar, JComponent.WHEN_FOCUSED, inputMap);
         inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        SwingUtilities.replaceUIInputMap(scrollbar,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
+        SwingUtilities.replaceUIInputMap(scrollbar, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
     }
 
     protected void uninstallKeyboardActions() {
-        SwingUtilities.replaceUIInputMap(scrollbar, JComponent.WHEN_FOCUSED,
-                null);
+        SwingUtilities.replaceUIInputMap(scrollbar, JComponent.WHEN_FOCUSED, null);
         SwingUtilities.replaceUIActionMap(scrollbar, null);
     }
 
     private InputMap getInputMap(int condition) {
         if (condition == JComponent.WHEN_FOCUSED) {
-            InputMap keyMap = (InputMap) DefaultLookup.get(scrollbar, this,
-                    "ScrollBar.focusInputMap");
+            InputMap keyMap = (InputMap) DefaultLookup.get(scrollbar, this, "ScrollBar.focusInputMap");
             InputMap rtlKeyMap;
 
-            if (scrollbar.getComponentOrientation().isLeftToRight()
-                    || ((rtlKeyMap = (InputMap) DefaultLookup.get(scrollbar,
-                            this,
-                            "ScrollBar.focusInputMap.RightToLeft")) == null)) {
+            if (scrollbar.getComponentOrientation().isLeftToRight() || ((rtlKeyMap = (InputMap) DefaultLookup
+                    .get(scrollbar, this, "ScrollBar.focusInputMap.RightToLeft")) == null)) {
                 return keyMap;
             } else {
                 rtlKeyMap.setParent(keyMap);
                 return rtlKeyMap;
             }
         } else if (condition == JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT) {
-            InputMap keyMap = (InputMap) DefaultLookup.get(scrollbar, this,
-                    "ScrollBar.ancestorInputMap");
+            InputMap keyMap = (InputMap) DefaultLookup.get(scrollbar, this, "ScrollBar.ancestorInputMap");
             InputMap rtlKeyMap;
 
-            if (scrollbar.getComponentOrientation().isLeftToRight()
-                    || ((rtlKeyMap = (InputMap) DefaultLookup.get(scrollbar,
-                            this,
-                            "ScrollBar.ancestorInputMap.RightToLeft")) == null)) {
+            if (scrollbar.getComponentOrientation().isLeftToRight() || ((rtlKeyMap = (InputMap) DefaultLookup
+                    .get(scrollbar, this, "ScrollBar.ancestorInputMap.RightToLeft")) == null)) {
                 return keyMap;
             } else {
                 rtlKeyMap.setParent(keyMap);
@@ -379,7 +361,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
      * Sets whether or not the mouse is currently over the thumb.
      *
      * @param active
-     *               True indicates the thumb is currently active.
+     *        True indicates the thumb is currently active.
      * @since 1.5
      */
     protected void setThumbRollover(boolean active) {
@@ -418,21 +400,20 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
      * this method just return a cached size.
      *
      * @param c
-     *          the <code>JScrollBar</code> that's delegating this method to
-     *          us
+     *        the <code>JScrollBar</code> that's delegating this method to
+     *        us
      * @return the preferred size of a Basic JScrollBar
      * @see #getMaximumSize
      * @see #getMinimumSize
      */
     public Dimension getPreferredSize(JComponent c) {
-        return (scrollbar.getOrientation() == JScrollBar.VERTICAL)
-                ? new Dimension(scrollBarWidth, 48)
+        return (scrollbar.getOrientation() == JScrollBar.VERTICAL) ? new Dimension(scrollBarWidth, 48)
                 : new Dimension(48, scrollBarWidth);
     }
 
     /**
      * @param c
-     *          The JScrollBar that's delegating this method to us.
+     *        The JScrollBar that's delegating this method to us.
      * @return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
      * @see #getMinimumSize
      * @see #getPreferredSize
@@ -442,17 +423,15 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
     }
 
     protected JButton createDecreaseButton(int orientation) {
-        return new BasicArrowButton(orientation, UIManager.getColor(
-                "ScrollBar.thumb"), UIManager.getColor("ScrollBar.thumbShadow"),
-                UIManager.getColor("ScrollBar.thumbDarkShadow"), UIManager
-                        .getColor("ScrollBar.thumbHighlight"));
+        return new BasicArrowButton(orientation, UIManager.getColor("ScrollBar.thumb"), UIManager.getColor(
+                "ScrollBar.thumbShadow"), UIManager.getColor("ScrollBar.thumbDarkShadow"), UIManager.getColor(
+                        "ScrollBar.thumbHighlight"));
     }
 
     protected JButton createIncreaseButton(int orientation) {
-        return new BasicArrowButton(orientation, UIManager.getColor(
-                "ScrollBar.thumb"), UIManager.getColor("ScrollBar.thumbShadow"),
-                UIManager.getColor("ScrollBar.thumbDarkShadow"), UIManager
-                        .getColor("ScrollBar.thumbHighlight"));
+        return new BasicArrowButton(orientation, UIManager.getColor("ScrollBar.thumb"), UIManager.getColor(
+                "ScrollBar.thumbShadow"), UIManager.getColor("ScrollBar.thumbDarkShadow"), UIManager.getColor(
+                        "ScrollBar.thumbHighlight"));
     }
 
     protected void paintDecreaseHighlight(Graphics g) {
@@ -523,8 +502,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
 
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
         g.setColor(trackColor);
-        g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width,
-                trackBounds.height);
+        g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
 
         if (trackHighlight == DECREASE_HIGHLIGHT) {
             paintDecreaseHighlight(g);
@@ -623,14 +601,11 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
          * Nominal locations of the buttons, assuming their preferred size will
          * fit.
          */
-        boolean squareButtons = DefaultLookup.getBoolean(scrollbar, this,
-                "ScrollBar.squareButtons", false);
-        int decrButtonH = squareButtons ? itemW
-                : decrButton.getPreferredSize().height;
+        boolean squareButtons = DefaultLookup.getBoolean(scrollbar, this, "ScrollBar.squareButtons", false);
+        int decrButtonH = squareButtons ? itemW : decrButton.getPreferredSize().height;
         int decrButtonY = sbInsets.top;
 
-        int incrButtonH = squareButtons ? itemW
-                : incrButton.getPreferredSize().height;
+        int incrButtonH = squareButtons ? itemW : incrButton.getPreferredSize().height;
         int incrButtonY = sbSize.height - (sbInsets.bottom + incrButtonH);
 
         /*
@@ -653,16 +628,14 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         float range = sb.getMaximum() - min;
         float value = getValue(sb);
 
-        int thumbH = (range <= 0) ? getMaximumThumbSize().height
-                : (int) (trackH * (extent / range));
+        int thumbH = (range <= 0) ? getMaximumThumbSize().height : (int) (trackH * (extent / range));
         thumbH = Math.max(thumbH, getMinimumThumbSize().height);
         thumbH = Math.min(thumbH, getMaximumThumbSize().height);
 
         int thumbY = incrButtonY - incrGap - thumbH;
         if (value < (sb.getMaximum() - sb.getVisibleAmount())) {
             float thumbRange = trackH - thumbH;
-            thumbY = (int) (0.5f + (thumbRange * ((value - min) / (range
-                    - extent))));
+            thumbY = (int) (0.5f + (thumbRange * ((value - min) / (range - extent))));
             thumbY += decrButtonY + decrButtonH + decrGap;
         }
 
@@ -726,12 +699,9 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
          * Nominal locations of the buttons, assuming their preferred size will
          * fit.
          */
-        boolean squareButtons = DefaultLookup.getBoolean(scrollbar, this,
-                "ScrollBar.squareButtons", false);
-        int leftButtonW = squareButtons ? itemH
-                : decrButton.getPreferredSize().width;
-        int rightButtonW = squareButtons ? itemH
-                : incrButton.getPreferredSize().width;
+        boolean squareButtons = DefaultLookup.getBoolean(scrollbar, this, "ScrollBar.squareButtons", false);
+        int leftButtonW = squareButtons ? itemH : decrButton.getPreferredSize().width;
+        int rightButtonW = squareButtons ? itemH : incrButton.getPreferredSize().width;
         if (!ltr) {
             int temp = leftButtonW;
             leftButtonW = rightButtonW;
@@ -748,8 +718,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
          */
         int sbInsetsW = sbInsets.left + sbInsets.right;
         int sbButtonsW = leftButtonW + rightButtonW;
-        float trackW = sbSize.width - (sbInsetsW + sbButtonsW) - (leftGap
-                + rightGap);
+        float trackW = sbSize.width - (sbInsetsW + sbButtonsW) - (leftGap + rightGap);
 
         /*
          * Compute the width and origin of the thumb. Enforce the thumbs min/max
@@ -763,21 +732,17 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         float range = max - min;
         float value = getValue(sb);
 
-        int thumbW = (range <= 0) ? getMaximumThumbSize().width
-                : (int) (trackW * (extent / range));
+        int thumbW = (range <= 0) ? getMaximumThumbSize().width : (int) (trackW * (extent / range));
         thumbW = Math.max(thumbW, getMinimumThumbSize().width);
         thumbW = Math.min(thumbW, getMaximumThumbSize().width);
 
-        int thumbX = ltr ? rightButtonX - rightGap - thumbW
-                : leftButtonX + leftButtonW + leftGap;
+        int thumbX = ltr ? rightButtonX - rightGap - thumbW : leftButtonX + leftButtonW + leftGap;
         if (value < (max - sb.getVisibleAmount())) {
             float thumbRange = trackW - thumbW;
             if (ltr) {
-                thumbX = (int) (0.5f + (thumbRange * ((value - min) / (range
-                        - extent))));
+                thumbX = (int) (0.5f + (thumbRange * ((value - min) / (range - extent))));
             } else {
-                thumbX = (int) (0.5f + (thumbRange * ((max - extent - value)
-                        / (range - extent))));
+                thumbX = (int) (0.5f + (thumbRange * ((max - extent - value) / (range - extent))));
             }
             thumbX += leftButtonX + leftButtonW + leftGap;
         }
@@ -789,14 +754,11 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         int sbAvailButtonW = (sbSize.width - sbInsetsW);
         if (sbAvailButtonW < sbButtonsW) {
             rightButtonW = leftButtonW = sbAvailButtonW / 2;
-            rightButtonX = sbSize.width - (sbInsets.right + rightButtonW
-                    + rightGap);
+            rightButtonX = sbSize.width - (sbInsets.right + rightButtonW + rightGap);
         }
 
-        (ltr ? decrButton : incrButton).setBounds(leftButtonX, itemY,
-                leftButtonW, itemH);
-        (ltr ? incrButton : decrButton).setBounds(rightButtonX, itemY,
-                rightButtonW, itemH);
+        (ltr ? decrButton : incrButton).setBounds(leftButtonX, itemY, leftButtonW, itemH);
+        (ltr ? incrButton : decrButton).setBounds(rightButtonX, itemY, rightButtonW, itemH);
 
         /*
          * Update the trackRect field.
@@ -861,8 +823,8 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         /*
          * If the thumbs bounds haven't changed, we're done.
          */
-        if ((thumbRect.x == x) && (thumbRect.y == y)
-                && (thumbRect.width == width) && (thumbRect.height == height)) {
+        if ((thumbRect.x == x) && (thumbRect.y == y) && (thumbRect.width == width)
+                && (thumbRect.height == height)) {
             return;
         }
 
@@ -935,11 +897,9 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
 
     protected void scrollByBlock(int direction) {
         scrollByBlock(scrollbar, direction);
-        trackHighlight = direction > 0 ? INCREASE_HIGHLIGHT
-                : DECREASE_HIGHLIGHT;
+        trackHighlight = direction > 0 ? INCREASE_HIGHLIGHT : DECREASE_HIGHLIGHT;
         Rectangle dirtyRect = getTrackBounds();
-        scrollbar.repaint(dirtyRect.x, dirtyRect.y, dirtyRect.width,
-                dirtyRect.height);
+        scrollbar.repaint(dirtyRect.x, dirtyRect.y, dirtyRect.width, dirtyRect.height);
     }
 
     /*
@@ -949,8 +909,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
      * increment, but will not scroll farther than the block increment. See
      * BasicScrollPaneUI.Handler.mouseWheelMoved().
      */
-    static void scrollByUnits(JScrollBar scrollbar, int direction, int units,
-            boolean limitToBlock) {
+    static void scrollByUnits(JScrollBar scrollbar, int direction, int units, boolean limitToBlock) {
         // This method is called from BasicScrollPaneUI to implement wheel
         // scrolling, as well as from scrollByUnit().
         int delta;
@@ -958,11 +917,9 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
 
         if (limitToBlock) {
             if (direction < 0) {
-                limit = scrollbar.getValue() - scrollbar.getBlockIncrement(
-                        direction);
+                limit = scrollbar.getValue() - scrollbar.getBlockIncrement(direction);
             } else {
-                limit = scrollbar.getValue() + scrollbar.getBlockIncrement(
-                        direction);
+                limit = scrollbar.getValue() + scrollbar.getBlockIncrement(direction);
             }
         }
 
@@ -988,8 +945,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
 
             if (limitToBlock && i > 0) {
                 assert limit != -1;
-                if ((direction < 0 && newValue < limit) || (direction > 0
-                        && newValue > limit)) {
+                if ((direction < 0 && newValue < limit) || (direction > 0 && newValue > limit)) {
                     break;
                 }
             }
@@ -1014,7 +970,6 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
 
     /**
      * A listener to listen for model changes.
-     *
      */
     protected class ModelListener implements ChangeListener {
         public void stateChanged(ChangeEvent e) {
@@ -1029,8 +984,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
     /**
      * Track mouse drags.
      */
-    protected class TrackListener extends MouseAdapter implements
-            MouseMotionListener {
+    protected class TrackListener extends MouseAdapter implements MouseMotionListener {
         protected transient int offset;
         protected transient int currentMouseX, currentMouseY;
         private transient int direction = +1;
@@ -1039,9 +993,8 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
             if (isDragging) {
                 updateThumbState(e.getX(), e.getY());
             }
-            if (SwingUtilities.isRightMouseButton(e)
-                    || (!getSupportsAbsolutePositioning() && SwingUtilities
-                            .isMiddleMouseButton(e)))
+            if (SwingUtilities.isRightMouseButton(e) || (!getSupportsAbsolutePositioning() && SwingUtilities
+                    .isMiddleMouseButton(e)))
                 return;
             if (!scrollbar.isEnabled())
                 return;
@@ -1064,9 +1017,8 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
          * upper half of the track.
          */
         public void mousePressed(MouseEvent e) {
-            if (SwingUtilities.isRightMouseButton(e)
-                    || (!getSupportsAbsolutePositioning() && SwingUtilities
-                            .isMiddleMouseButton(e)))
+            if (SwingUtilities.isRightMouseButton(e) || (!getSupportsAbsolutePositioning() && SwingUtilities
+                    .isMiddleMouseButton(e)))
                 return;
             if (!scrollbar.isEnabled())
                 return;
@@ -1093,8 +1045,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                 }
                 isDragging = true;
                 return;
-            } else if (getSupportsAbsolutePositioning() && SwingUtilities
-                    .isMiddleMouseButton(e)) {
+            } else if (getSupportsAbsolutePositioning() && SwingUtilities.isMiddleMouseButton(e)) {
                 switch (scrollbar.getOrientation()) {
                     case JScrollBar.VERTICAL:
                         offset = getThumbBounds().height / 2;
@@ -1150,9 +1101,8 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
          * track.
          */
         public void mouseDragged(MouseEvent e) {
-            if (SwingUtilities.isRightMouseButton(e)
-                    || (!getSupportsAbsolutePositioning() && SwingUtilities
-                            .isMiddleMouseButton(e)))
+            if (SwingUtilities.isRightMouseButton(e) || (!getSupportsAbsolutePositioning() && SwingUtilities
+                    .isMiddleMouseButton(e)))
                 return;
             if (!scrollbar.isEnabled() || getThumbBounds().isEmpty()) {
                 return;
@@ -1177,15 +1127,13 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
             if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
                 thumbMin = trackRect.y;
                 thumbMax = trackRect.y + trackRect.height - thumbR.height;
-                thumbPos = Math.min(thumbMax, Math.max(thumbMin, (e.getY()
-                        - offset)));
+                thumbPos = Math.min(thumbMax, Math.max(thumbMin, (e.getY() - offset)));
                 setThumbBounds(thumbR.x, thumbPos, thumbR.width, thumbR.height);
                 trackLength = getTrackBounds().height;
             } else {
                 thumbMin = trackRect.x;
                 thumbMax = trackRect.x + trackRect.width - thumbR.width;
-                thumbPos = Math.min(thumbMax, Math.max(thumbMin, (e.getX()
-                        - offset)));
+                thumbPos = Math.min(thumbMax, Math.max(thumbMin, (e.getX() - offset)));
                 setThumbBounds(thumbPos, thumbR.y, thumbR.width, thumbR.height);
                 trackLength = getTrackBounds().width;
             }
@@ -1196,9 +1144,8 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
              * compute the value as accurately as possible.
              */
             if (thumbPos == thumbMax) {
-                if (scrollbar.getOrientation() == JScrollBar.VERTICAL
-                        || scrollbar.getComponentOrientation()
-                                .isLeftToRight()) {
+                if (scrollbar.getOrientation() == JScrollBar.VERTICAL || scrollbar.getComponentOrientation()
+                        .isLeftToRight()) {
                     scrollbar.setValue(model.getMaximum() - model.getExtent());
                 } else {
                     scrollbar.setValue(model.getMinimum());
@@ -1209,14 +1156,11 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                 float thumbValue = thumbPos - thumbMin;
                 float thumbRange = thumbMax - thumbMin;
                 int value;
-                if (scrollbar.getOrientation() == JScrollBar.VERTICAL
-                        || scrollbar.getComponentOrientation()
-                                .isLeftToRight()) {
-                    value = (int) (0.5 + ((thumbValue / thumbRange)
-                            * valueRange));
+                if (scrollbar.getOrientation() == JScrollBar.VERTICAL || scrollbar.getComponentOrientation()
+                        .isLeftToRight()) {
+                    value = (int) (0.5 + ((thumbValue / thumbRange) * valueRange));
                 } else {
-                    value = (int) (0.5 + (((thumbMax - thumbPos) / thumbRange)
-                            * valueRange));
+                    value = (int) (0.5 + (((thumbMax - thumbPos) / thumbRange) * valueRange));
                 }
 
                 useCachedValue = true;
@@ -1233,29 +1177,22 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                 Component view = viewport.getView();
                 if (view instanceof JList) {
                     JList list = (JList) view;
-                    if (DefaultLookup.getBoolean(list, list.getUI(),
-                            "List.lockToPositionOnScroll", false)) {
+                    if (DefaultLookup.getBoolean(list, list.getUI(), "List.lockToPositionOnScroll", false)) {
                         int adjustedValue = value;
                         int mode = list.getLayoutOrientation();
                         int orientation = scrollbar.getOrientation();
-                        if (orientation == JScrollBar.VERTICAL
-                                && mode == JList.VERTICAL) {
-                            int index = list.locationToIndex(new Point(0,
-                                    value));
+                        if (orientation == JScrollBar.VERTICAL && mode == JList.VERTICAL) {
+                            int index = list.locationToIndex(new Point(0, value));
                             Rectangle rect = list.getCellBounds(index, index);
                             if (rect != null) {
                                 adjustedValue = rect.y;
                             }
                         }
-                        if (orientation == JScrollBar.HORIZONTAL
-                                && (mode == JList.VERTICAL_WRAP
-                                        || mode == JList.HORIZONTAL_WRAP)) {
-                            if (scrollpane.getComponentOrientation()
-                                    .isLeftToRight()) {
-                                int index = list.locationToIndex(new Point(
-                                        value, 0));
-                                Rectangle rect = list.getCellBounds(index,
-                                        index);
+                        if (orientation == JScrollBar.HORIZONTAL && (mode == JList.VERTICAL_WRAP
+                                || mode == JList.HORIZONTAL_WRAP)) {
+                            if (scrollpane.getComponentOrientation().isLeftToRight()) {
+                                int index = list.locationToIndex(new Point(value, 0));
+                                Rectangle rect = list.getCellBounds(index, index);
                                 if (rect != null) {
                                     adjustedValue = rect.x;
                                 }
@@ -1264,11 +1201,9 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                                 int extent = viewport.getExtentSize().width;
                                 loc.x += extent - 1;
                                 int index = list.locationToIndex(loc);
-                                Rectangle rect = list.getCellBounds(index,
-                                        index);
+                                Rectangle rect = list.getCellBounds(index, index);
                                 if (rect != null) {
-                                    adjustedValue = rect.x + rect.width
-                                            - extent;
+                                    adjustedValue = rect.x + rect.width - extent;
                                 }
                             }
                         }
@@ -1298,8 +1233,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                     }
                     break;
                 case JScrollBar.HORIZONTAL:
-                    if ((direction > 0 && isMouseAfterThumb()) || (direction < 0
-                            && isMouseBeforeThumb())) {
+                    if ((direction > 0 && isMouseAfterThumb()) || (direction < 0 && isMouseBeforeThumb())) {
 
                         scrollTimer.start();
                     }
@@ -1317,7 +1251,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
          * Invoked when the mouse exits the scrollbar.
          *
          * @param e
-         *          MouseEvent further describing the event
+         *        MouseEvent further describing the event
          * @since 1.5
          */
         public void mouseExited(MouseEvent e) {
@@ -1398,15 +1332,13 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                 // Stop scrolling if the thumb catches up with the mouse
                 if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
                     if (direction > 0) {
-                        if (getThumbBounds().y
-                                + getThumbBounds().height >= trackListener.currentMouseY)
+                        if (getThumbBounds().y + getThumbBounds().height >= trackListener.currentMouseY)
                             ((Timer) e.getSource()).stop();
                     } else if (getThumbBounds().y <= trackListener.currentMouseY) {
                         ((Timer) e.getSource()).stop();
                     }
                 } else {
-                    if ((direction > 0 && !isMouseAfterThumb())
-                            || (direction < 0 && !isMouseBeforeThumb())) {
+                    if ((direction > 0 && !isMouseAfterThumb()) || (direction < 0 && !isMouseBeforeThumb())) {
 
                         ((Timer) e.getSource()).stop();
                     }
@@ -1415,11 +1347,10 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
                 scrollByUnit(direction);
             }
 
-            if (direction > 0 && scrollbar.getValue() + scrollbar
-                    .getVisibleAmount() >= scrollbar.getMaximum())
+            if (direction > 0 && scrollbar.getValue() + scrollbar.getVisibleAmount() >= scrollbar
+                    .getMaximum())
                 ((Timer) e.getSource()).stop();
-            else if (direction < 0 && scrollbar.getValue() <= scrollbar
-                    .getMinimum())
+            else if (direction < 0 && scrollbar.getValue() <= scrollbar.getMinimum())
                 ((Timer) e.getSource()).stop();
         }
     }
@@ -1434,14 +1365,12 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
     }
 
     private boolean isMouseBeforeThumb() {
-        return scrollbar.getComponentOrientation().isLeftToRight()
-                ? isMouseLeftOfThumb()
+        return scrollbar.getComponentOrientation().isLeftToRight() ? isMouseLeftOfThumb()
                 : isMouseRightOfThumb();
     }
 
     private boolean isMouseAfterThumb() {
-        return scrollbar.getComponentOrientation().isLeftToRight()
-                ? isMouseRightOfThumb()
+        return scrollbar.getComponentOrientation().isLeftToRight() ? isMouseRightOfThumb()
                 : isMouseLeftOfThumb();
     }
 
@@ -1449,21 +1378,17 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
         int orient = scrollbar.getOrientation();
         if (scrollbar.getComponentOrientation().isLeftToRight()) {
             if (incrButton instanceof BasicArrowButton) {
-                ((BasicArrowButton) incrButton).setDirection(
-                        orient == HORIZONTAL ? EAST : SOUTH);
+                ((BasicArrowButton) incrButton).setDirection(orient == HORIZONTAL ? EAST : SOUTH);
             }
             if (decrButton instanceof BasicArrowButton) {
-                ((BasicArrowButton) decrButton).setDirection(
-                        orient == HORIZONTAL ? WEST : NORTH);
+                ((BasicArrowButton) decrButton).setDirection(orient == HORIZONTAL ? WEST : NORTH);
             }
         } else {
             if (incrButton instanceof BasicArrowButton) {
-                ((BasicArrowButton) incrButton).setDirection(
-                        orient == HORIZONTAL ? WEST : SOUTH);
+                ((BasicArrowButton) incrButton).setDirection(orient == HORIZONTAL ? WEST : SOUTH);
             }
             if (decrButton instanceof BasicArrowButton) {
-                ((BasicArrowButton) decrButton).setDirection(
-                        orient == HORIZONTAL ? EAST : NORTH);
+                ((BasicArrowButton) decrButton).setDirection(orient == HORIZONTAL ? EAST : NORTH);
             }
         }
     }
@@ -1563,10 +1488,8 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
             String propertyName = e.getPropertyName();
 
             if ("model" == propertyName) {
-                BoundedRangeModel oldModel = (BoundedRangeModel) e
-                        .getOldValue();
-                BoundedRangeModel newModel = (BoundedRangeModel) e
-                        .getNewValue();
+                BoundedRangeModel oldModel = (BoundedRangeModel) e.getOldValue();
+                BoundedRangeModel newModel = (BoundedRangeModel) e.getNewValue();
                 oldModel.removeChangeListener(modelListener);
                 newModel.addChangeListener(modelListener);
                 scrollBarValue = scrollbar.getValue();
@@ -1577,8 +1500,7 @@ public class BasicScrollBarUI extends ScrollBarUI implements LayoutManager,
             } else if ("componentOrientation" == propertyName) {
                 updateButtonDirections();
                 InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
-                SwingUtilities.replaceUIInputMap(scrollbar,
-                        JComponent.WHEN_FOCUSED, inputMap);
+                SwingUtilities.replaceUIInputMap(scrollbar, JComponent.WHEN_FOCUSED, inputMap);
             }
         }
     }

@@ -47,7 +47,7 @@ public final class ObjectType extends Type {
      * non-static java functions.
      * 
      * @param javaClassName
-     *                      name of the class such as 'com.foo.Processor'
+     *        name of the class such as 'com.foo.Processor'
      */
     protected ObjectType(String javaClassName) {
         _javaClassName = javaClassName;
@@ -108,13 +108,11 @@ public final class ObjectType extends Type {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            Type type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
         if (type == Type.String) {
             translateTo(classGen, methodGen, (StringType) type);
         } else {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), type.toString());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }
@@ -125,15 +123,13 @@ public final class ObjectType extends Type {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            StringType type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, StringType type) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
 
         il.append(DUP);
         final BranchHandle ifNull = il.append(new IFNULL(null));
-        il.append(new INVOKEVIRTUAL(cpg.addMethodref(_javaClassName, "toString",
-                "()" + STRING_SIG)));
+        il.append(new INVOKEVIRTUAL(cpg.addMethodref(_javaClassName, "toString", "()" + STRING_SIG)));
         final BranchHandle gotobh = il.append(new GOTO(null));
         ifNull.setTarget(il.append(POP));
         il.append(new PUSH(cpg, ""));
@@ -145,13 +141,12 @@ public final class ObjectType extends Type {
      * <code>clazz</code>. This method is used to translate parameters when
      * external functions are called.
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            Class clazz) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
         if (clazz.isAssignableFrom(_clazz))
             methodGen.getInstructionList().append(NOP);
         else {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), clazz.getClass().toString());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getClass()
+                    .toString());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }
@@ -159,8 +154,7 @@ public final class ObjectType extends Type {
     /**
      * Translates an external Java type into an Object type
      */
-    public void translateFrom(ClassGenerator classGen,
-            MethodGenerator methodGen, Class clazz) {
+    public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
         methodGen.getInstructionList().append(NOP);
     }
 

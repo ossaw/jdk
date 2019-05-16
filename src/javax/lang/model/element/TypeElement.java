@@ -13,7 +13,6 @@ import javax.lang.model.util.*;
  * Represents a class or interface program element. Provides access to
  * information about the type and its members. Note that an enum type is a kind
  * of class and an annotation type is a kind of interface.
- *
  * <p>
  * <a name="ELEM_VS_TYPE"></a> While a {@code TypeElement} represents a class or
  * interface <i>element</i>, a {@link DeclaredType} represents a class or
@@ -23,7 +22,6 @@ import javax.lang.model.util.*;
  * {@code java.util.Set} corresponds to the parameterized types
  * {@code java.util.Set<String>} and {@code java.util.Set<Number>} (and many
  * others), and to the raw type {@code java.util.Set}.
- *
  * <p>
  * Each method of this interface that returns a list of elements will return
  * them in the order that is natural for the underlying source of program
@@ -36,15 +34,12 @@ import javax.lang.model.util.*;
  * @see DeclaredType
  * @since 1.6
  */
-public interface TypeElement extends Element, Parameterizable,
-        QualifiedNameable {
+public interface TypeElement extends Element, Parameterizable, QualifiedNameable {
     /**
      * Returns the fields, methods, constructors, and member types that are
      * directly declared in this class or interface.
-     *
      * This includes any (implicit) default constructor and the implicit
      * {@code values} and {@code valueOf} methods of an enum type.
-     *
      * <p>
      * Note that as a particular instance of the
      * {@linkplain javax.lang.model.element general accuracy requirements} and
@@ -71,7 +66,6 @@ public interface TypeElement extends Element, Parameterizable,
      * Returns the fully qualified name of this type element. More precisely, it
      * returns the <i>canonical</i> name. For local and anonymous classes, which
      * do not have canonical names, an empty name is returned.
-     *
      * <p>
      * The name of a generic type does not include any reference to its formal
      * type parameters. For example, the fully qualified name of the interface
@@ -80,7 +74,6 @@ public interface TypeElement extends Element, Parameterizable,
      *
      * @return the fully qualified name of this class or interface, or an empty
      *         name if none
-     *
      * @see Elements#getBinaryName
      * @jls 6.7 Fully Qualified Names and Canonical Names
      */
@@ -88,12 +81,10 @@ public interface TypeElement extends Element, Parameterizable,
 
     /**
      * Returns the simple name of this type element.
-     *
      * For an anonymous class, an empty name is returned.
      *
      * @return the simple name of this class or interface, an empty name for an
      *         anonymous class
-     *
      */
     @Override
     Name getSimpleName();

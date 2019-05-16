@@ -47,7 +47,6 @@ import java.beans.*;
  *
  * @beaninfo attribute: isContainer false description: A component that supports
  *           selecting a integer value from a range.
- *
  * @author David Kloba
  */
 public class JSlider extends JComponent implements SwingConstants, Accessible {
@@ -137,8 +136,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
             case HORIZONTAL:
                 break;
             default:
-                throw new IllegalArgumentException(
-                        "orientation must be one of: VERTICAL, HORIZONTAL");
+                throw new IllegalArgumentException("orientation must be one of: VERTICAL, HORIZONTAL");
         }
     }
 
@@ -157,11 +155,11 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * <code>SwingConstants.HORIZONTAL</code>.
      *
      * @param orientation
-     *                    the orientation of the slider
+     *        the orientation of the slider
      * @throws IllegalArgumentException
-     *                                  if orientation is not one of
-     *                                  {@code VERTICAL},
-     *                                  {@code HORIZONTAL}
+     *         if orientation is not one of
+     *         {@code VERTICAL},
+     *         {@code HORIZONTAL}
      * @see #setOrientation
      */
     public JSlider(int orientation) {
@@ -178,10 +176,9 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * details.
      *
      * @param min
-     *            the minimum value of the slider
+     *        the minimum value of the slider
      * @param max
-     *            the maximum value of the slider
-     *
+     *        the maximum value of the slider
      * @see BoundedRangeModel
      * @see #setMinimum
      * @see #setMaximum
@@ -199,12 +196,11 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * documentation for details.
      *
      * @param min
-     *              the minimum value of the slider
+     *        the minimum value of the slider
      * @param max
-     *              the maximum value of the slider
+     *        the maximum value of the slider
      * @param value
-     *              the initial value of the slider
-     *
+     *        the initial value of the slider
      * @see BoundedRangeModel
      * @see #setMinimum
      * @see #setMaximum
@@ -226,19 +222,17 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * documentation for details.
      *
      * @param orientation
-     *                    the orientation of the slider
+     *        the orientation of the slider
      * @param min
-     *                    the minimum value of the slider
+     *        the minimum value of the slider
      * @param max
-     *                    the maximum value of the slider
+     *        the maximum value of the slider
      * @param value
-     *                    the initial value of the slider
-     *
+     *        the initial value of the slider
      * @throws IllegalArgumentException
-     *                                  if orientation is not one of
-     *                                  {@code VERTICAL},
-     *                                  {@code HORIZONTAL}
-     *
+     *         if orientation is not one of
+     *         {@code VERTICAL},
+     *         {@code HORIZONTAL}
      * @see BoundedRangeModel
      * @see #setOrientation
      * @see #setMinimum
@@ -274,7 +268,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * Sets the UI object which implements the L&amp;F for this component.
      *
      * @param ui
-     *           the SliderUI L&amp;F object
+     *        the SliderUI L&amp;F object
      * @see UIDefaults#getUI
      * @beaninfo bound: true hidden: true attribute: visualUpdate true
      *           description: The UI object that implements the slider's
@@ -340,7 +334,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * Adds a ChangeListener to the slider.
      *
      * @param l
-     *          the ChangeListener to add
+     *        the ChangeListener to add
      * @see #fireStateChanged
      * @see #removeChangeListener
      */
@@ -352,10 +346,9 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * Removes a ChangeListener from the slider.
      *
      * @param l
-     *          the ChangeListener to remove
+     *        the ChangeListener to remove
      * @see #fireStateChanged
      * @see #addChangeListener
-     * 
      */
     public void removeChangeListener(ChangeListener l) {
         listenerList.remove(ChangeListener.class, l);
@@ -417,10 +410,9 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * behavior, and, most likely, exceptions.
      *
      * @param newModel
-     *                 the new, {@code non-null} <code>BoundedRangeModel</code>
-     *                 to
-     *                 use
-     *
+     *        the new, {@code non-null} <code>BoundedRangeModel</code>
+     *        to
+     *        use
      * @see #getModel
      * @see BoundedRangeModel
      * @beaninfo bound: true description: The sliders BoundedRangeModel.
@@ -439,11 +431,8 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
         }
 
         if (accessibleContext != null) {
-            accessibleContext.firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VALUE_PROPERTY,
-                    (oldModel == null ? null
-                            : Integer.valueOf(oldModel.getValue())),
-                    (newModel == null ? null
+            accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_VALUE_PROPERTY,
+                    (oldModel == null ? null : Integer.valueOf(oldModel.getValue())), (newModel == null ? null
                             : Integer.valueOf(newModel.getValue())));
         }
 
@@ -473,7 +462,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * listeners are notified.
      *
      * @param n
-     *          the new value
+     *        the new value
      * @see #getValue
      * @see #addChangeListener
      * @see BoundedRangeModel#setValue
@@ -488,9 +477,8 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
         m.setValue(n);
 
         if (accessibleContext != null) {
-            accessibleContext.firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VALUE_PROPERTY, Integer
-                            .valueOf(oldValue), Integer.valueOf(m.getValue()));
+            accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_VALUE_PROPERTY, Integer.valueOf(
+                    oldValue), Integer.valueOf(m.getValue()));
         }
     }
 
@@ -518,7 +506,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * all change listeners are notified.
      *
      * @param minimum
-     *                the new minimum
+     *        the new minimum
      * @see #getMinimum
      * @see #addChangeListener
      * @see BoundedRangeModel#setMinimum
@@ -528,8 +516,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
     public void setMinimum(int minimum) {
         int oldMin = getModel().getMinimum();
         getModel().setMinimum(minimum);
-        firePropertyChange("minimum", Integer.valueOf(oldMin), Integer.valueOf(
-                minimum));
+        firePropertyChange("minimum", Integer.valueOf(oldMin), Integer.valueOf(minimum));
     }
 
     /**
@@ -556,7 +543,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * all change listeners are notified.
      *
      * @param maximum
-     *                the new maximum
+     *        the new maximum
      * @see #getMaximum
      * @see #addChangeListener
      * @see BoundedRangeModel#setMaximum
@@ -566,8 +553,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
     public void setMaximum(int maximum) {
         int oldMax = getModel().getMaximum();
         getModel().setMaximum(maximum);
-        firePropertyChange("maximum", Integer.valueOf(oldMax), Integer.valueOf(
-                maximum));
+        firePropertyChange("maximum", Integer.valueOf(oldMax), Integer.valueOf(maximum));
     }
 
     /**
@@ -587,7 +573,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * begins, and to {@code false} when the drag ends.
      *
      * @param b
-     *          the new value for the {@code valueIsAdjusting} property
+     *        the new value for the {@code valueIsAdjusting} property
      * @see #getValueIsAdjusting
      * @see BoundedRangeModel#setValueIsAdjusting
      * @beaninfo expert: true description: True if the slider knob is being
@@ -599,10 +585,8 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
         m.setValueIsAdjusting(b);
 
         if ((oldValue != b) && (accessibleContext != null)) {
-            accessibleContext.firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_STATE_PROPERTY, ((oldValue)
-                            ? AccessibleState.BUSY
-                            : null), ((b) ? AccessibleState.BUSY : null));
+            accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY, ((oldValue)
+                    ? AccessibleState.BUSY : null), ((b) ? AccessibleState.BUSY : null));
         }
     }
 
@@ -632,7 +616,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * change listeners are notified.
      *
      * @param extent
-     *               the new extent
+     *        the new extent
      * @see #getExtent
      * @see BoundedRangeModel#setExtent
      * @beaninfo expert: true description: Size of the range covered by the
@@ -658,17 +642,16 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * {@code SwingConstants.HORIZONTAL}.
      *
      * @param orientation
-     *                    {@code HORIZONTAL} or {@code VERTICAL}
+     *        {@code HORIZONTAL} or {@code VERTICAL}
      * @throws IllegalArgumentException
-     *                                  if orientation is not one of
-     *                                  {@code VERTICAL},
-     *                                  {@code HORIZONTAL}
+     *         if orientation is not one of
+     *         {@code VERTICAL},
+     *         {@code HORIZONTAL}
      * @see #getOrientation
      * @beaninfo preferred: true bound: true attribute: visualUpdate true
      *           description: Set the scrollbars orientation to either VERTICAL
      *           or HORIZONTAL. enum: VERTICAL JSlider.VERTICAL HORIZONTAL
      *           JSlider.HORIZONTAL
-     *
      */
     public void setOrientation(int orientation) {
         checkOrientation(orientation);
@@ -677,12 +660,9 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
         firePropertyChange("orientation", oldValue, orientation);
 
         if ((oldValue != orientation) && (accessibleContext != null)) {
-            accessibleContext.firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
-                    ((oldValue == VERTICAL) ? AccessibleState.VERTICAL
-                            : AccessibleState.HORIZONTAL),
-                    ((orientation == VERTICAL) ? AccessibleState.VERTICAL
-                            : AccessibleState.HORIZONTAL));
+            accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+                    ((oldValue == VERTICAL) ? AccessibleState.VERTICAL : AccessibleState.HORIZONTAL),
+                    ((orientation == VERTICAL) ? AccessibleState.VERTICAL : AccessibleState.HORIZONTAL));
         }
         if (orientation != oldValue) {
             revalidate();
@@ -704,8 +684,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * 
      * @since 1.7
      */
-    public boolean imageUpdate(Image img, int infoflags, int x, int y, int w,
-            int h) {
+    public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
         if (!isShowing()) {
             return false;
         }
@@ -719,9 +698,8 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
             if (component instanceof JLabel) {
                 JLabel label = (JLabel) component;
 
-                if (SwingUtilities.doesIconReferenceImage(label.getIcon(), img)
-                        || SwingUtilities.doesIconReferenceImage(label
-                                .getDisabledIcon(), img)) {
+                if (SwingUtilities.doesIconReferenceImage(label.getIcon(), img) || SwingUtilities
+                        .doesIconReferenceImage(label.getDisabledIcon(), img)) {
                     return super.imageUpdate(img, infoflags, x, y, w, h);
                 }
             }
@@ -757,8 +735,8 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * is {@code true}.
      *
      * @param labels
-     *               new {@code Dictionary} of labels, or {@code null} to remove
-     *               all labels
+     *        new {@code Dictionary} of labels, or {@code null} to remove
+     *        all labels
      * @see #createStandardLabels(int)
      * @see #getLabelTable
      * @see #setPaintLabels
@@ -793,8 +771,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
         }
         Enumeration labels = labelTable.keys();
         while (labels.hasMoreElements()) {
-            JComponent component = (JComponent) labelTable.get(labels
-                    .nextElement());
+            JComponent component = (JComponent) labelTable.get(labels.nextElement());
             component.updateUI();
             component.setSize(component.getPreferredSize());
         }
@@ -826,13 +803,13 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * the {@code setLabelTable} documentation.
      *
      * @param increment
-     *                  distance between labels in the generated hashtable
+     *        distance between labels in the generated hashtable
      * @return a new {@code Hashtable} of labels
      * @see #setLabelTable
      * @see #setPaintLabels
      * @throws IllegalArgumentException
-     *                                  if {@code increment} is less than or
-     *                                  equal to zero
+     *         if {@code increment} is less than or
+     *         equal to zero
      */
     public Hashtable createStandardLabels(int increment) {
         return createStandardLabels(increment, getMinimum());
@@ -852,29 +829,27 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * the {@code setLabelTable} documentation.
      *
      * @param increment
-     *                  distance between labels in the generated hashtable
+     *        distance between labels in the generated hashtable
      * @param start
-     *                  value at which the labels will begin
+     *        value at which the labels will begin
      * @return a new {@code Hashtable} of labels
      * @see #setLabelTable
      * @see #setPaintLabels
      * @exception IllegalArgumentException
-     *                                     if {@code start} is out of range, or
-     *                                     if {@code increment}
-     *                                     is less than or equal to zero
+     *            if {@code start} is out of range, or
+     *            if {@code increment}
+     *            is less than or equal to zero
      */
     public Hashtable createStandardLabels(int increment, int start) {
         if (start > getMaximum() || start < getMinimum()) {
-            throw new IllegalArgumentException(
-                    "Slider label start point out of range.");
+            throw new IllegalArgumentException("Slider label start point out of range.");
         }
 
         if (increment <= 0) {
             throw new IllegalArgumentException("Label incremement must be > 0");
         }
 
-        class SmartHashtable extends Hashtable<Object, Object> implements
-                PropertyChangeListener {
+        class SmartHashtable extends Hashtable<Object, Object> implements PropertyChangeListener {
             int increment = 0;
             int start = 0;
             boolean startAtMin = false;
@@ -918,8 +893,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
                     start = getMinimum();
                 }
 
-                if (e.getPropertyName().equals("minimum") || e.getPropertyName()
-                        .equals("maximum")) {
+                if (e.getPropertyName().equals("minimum") || e.getPropertyName().equals("maximum")) {
 
                     Enumeration keys = getLabelTable().keys();
                     Hashtable<Object, Object> hashtable = new Hashtable<Object, Object>();
@@ -949,8 +923,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
 
             void createLabels() {
                 for (int labelIndex = start; labelIndex <= getMaximum(); labelIndex += increment) {
-                    put(Integer.valueOf(labelIndex), new LabelUIResource(""
-                            + labelIndex, JLabel.CENTER));
+                    put(Integer.valueOf(labelIndex), new LabelUIResource("" + labelIndex, JLabel.CENTER));
                 }
             }
         }
@@ -959,8 +932,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
 
         Dictionary labelTable = getLabelTable();
 
-        if (labelTable != null
-                && (labelTable instanceof PropertyChangeListener)) {
+        if (labelTable != null && (labelTable instanceof PropertyChangeListener)) {
             removePropertyChangeListener((PropertyChangeListener) labelTable);
         }
 
@@ -994,10 +966,9 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * By default, the value of this property is {@code false}.
      *
      * @param b
-     *          true to reverse the slider values from their normal order
+     *        true to reverse the slider values from their normal order
      * @beaninfo bound: true attribute: visualUpdate true description: If true
      *           reverses the slider values from their normal order
-     *
      */
     public void setInverted(boolean b) {
         boolean oldValue = isInverted;
@@ -1041,20 +1012,18 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * by calling {@code setLabelTable}.
      *
      * @param n
-     *          new value for the {@code majorTickSpacing} property
+     *        new value for the {@code majorTickSpacing} property
      * @see #getMajorTickSpacing
      * @see #setPaintTicks
      * @see #setLabelTable
      * @see #createStandardLabels(int)
      * @beaninfo bound: true attribute: visualUpdate true description: Sets the
      *           number of values between major tick marks.
-     *
      */
     public void setMajorTickSpacing(int n) {
         int oldValue = majorTickSpacing;
         majorTickSpacing = n;
-        if (labelTable == null && getMajorTickSpacing() > 0
-                && getPaintLabels()) {
+        if (labelTable == null && getMajorTickSpacing() > 0 && getPaintLabels()) {
             setLabelTable(createStandardLabels(getMajorTickSpacing()));
         }
         firePropertyChange("majorTickSpacing", oldValue, majorTickSpacing);
@@ -1088,7 +1057,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * to {@code true}.
      *
      * @param n
-     *          new value for the {@code minorTickSpacing} property
+     *        new value for the {@code minorTickSpacing} property
      * @see #getMinorTickSpacing
      * @see #setPaintTicks
      * @beaninfo bound: true attribute: visualUpdate true description: Sets the
@@ -1131,7 +1100,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * default, this property is {@code false}.
      *
      * @param b
-     *          true to snap the knob to the nearest tick mark
+     *        true to snap the knob to the nearest tick mark
      * @see #getSnapToTicks
      * @beaninfo bound: true description: If true snap the knob to the nearest
      *           tick mark.
@@ -1150,7 +1119,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * property is {@code true}.
      *
      * @param b
-     *          true to snap the knob to the nearest slider value
+     *        true to snap the knob to the nearest slider value
      * @see #getSnapToValue
      * @see #setSnapToTicks
      * @beaninfo bound: true description: If true snap the knob to the nearest
@@ -1177,7 +1146,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * property is {@code false}.
      *
      * @param b
-     *          whether or not tick marks should be painted
+     *        whether or not tick marks should be painted
      * @see #getPaintTicks
      * @beaninfo bound: true attribute: visualUpdate true description: If true
      *           tick marks are painted on the slider.
@@ -1207,7 +1176,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * property is {@code true}.
      *
      * @param b
-     *          whether or not to paint the slider track
+     *        whether or not to paint the slider track
      * @see #getPaintTrack
      * @beaninfo bound: true attribute: visualUpdate true description: If true,
      *           the track is painted on the slider.
@@ -1243,7 +1212,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * By default, this property is {@code false}.
      *
      * @param b
-     *          whether or not to paint labels
+     *        whether or not to paint labels
      * @see #getPaintLabels
      * @see #getLabelTable
      * @see #createStandardLabels(int)
@@ -1293,15 +1262,12 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
         String isInvertedString = (isInverted ? "true" : "false");
         String snapToTicksString = (snapToTicks ? "true" : "false");
         String snapToValueString = (snapToValue ? "true" : "false");
-        String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL"
-                : "VERTICAL");
+        String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL" : "VERTICAL");
 
-        return super.paramString() + ",isInverted=" + isInvertedString
-                + ",majorTickSpacing=" + majorTickSpacing + ",minorTickSpacing="
-                + minorTickSpacing + ",orientation=" + orientationString
-                + ",paintLabels=" + paintLabelsString + ",paintTicks="
-                + paintTicksString + ",paintTrack=" + paintTrackString
-                + ",snapToTicks=" + snapToTicksString + ",snapToValue="
+        return super.paramString() + ",isInverted=" + isInvertedString + ",majorTickSpacing="
+                + majorTickSpacing + ",minorTickSpacing=" + minorTickSpacing + ",orientation="
+                + orientationString + ",paintLabels=" + paintLabelsString + ",paintTicks=" + paintTicksString
+                + ",paintTrack=" + paintTrackString + ",snapToTicks=" + snapToTicksString + ",snapToValue="
                 + snapToValueString;
     }
 
@@ -1336,8 +1302,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * all JavaBeans&trade; has been added to the <code>java.beans</code>
      * package. Please see {@link java.beans.XMLEncoder}.
      */
-    protected class AccessibleJSlider extends AccessibleJComponent implements
-            AccessibleValue {
+    protected class AccessibleJSlider extends AccessibleJComponent implements AccessibleValue {
 
         /**
          * Get the state set of this object.

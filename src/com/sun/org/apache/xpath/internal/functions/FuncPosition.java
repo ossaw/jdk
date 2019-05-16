@@ -48,8 +48,7 @@ public class FuncPosition extends Function {
      * Get the position in the current context node list.
      *
      * @param xctxt
-     *              Runtime XPath context.
-     *
+     *        Runtime XPath context.
      * @return The current position of the itteration in the context node list,
      *         or -1 if there is no active context node list.
      */
@@ -85,8 +84,7 @@ public class FuncPosition extends Function {
                 try {
                     cnl = cnl.cloneWithReset();
                 } catch (CloneNotSupportedException cnse) {
-                    throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                            cnse);
+                    throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(cnse);
                 }
                 int currentNode = xctxt.getContextNode();
                 // System.out.println("currentNode: "+currentNode);
@@ -109,13 +107,11 @@ public class FuncPosition extends Function {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         double pos = (double) getPositionInContextNodeList(xctxt);
 
         return new XNumber(pos);

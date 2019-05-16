@@ -42,8 +42,8 @@ public final class TransformAttribute implements Serializable {
      * case.)
      * 
      * @param transform
-     *                  the specified {@link AffineTransform} to be wrapped, or
-     *                  null.
+     *        the specified {@link AffineTransform} to be wrapped, or
+     *        null.
      */
     public TransformAttribute(AffineTransform transform) {
         if (transform != null && !transform.isIdentity()) {
@@ -79,11 +79,10 @@ public final class TransformAttribute implements Serializable {
      * 
      * @since 1.6
      */
-    public static final TransformAttribute IDENTITY = new TransformAttribute(
-            null);
+    public static final TransformAttribute IDENTITY = new TransformAttribute(null);
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.lang.ClassNotFoundException, java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.lang.ClassNotFoundException,
+            java.io.IOException {
         // sigh -- 1.3 expects transform is never null, so we need to always
         // write one out
         if (this.transform == null) {
@@ -118,7 +117,7 @@ public final class TransformAttribute implements Serializable {
      * transform.
      * 
      * @param rhs
-     *            the object to compare to
+     *        the object to compare to
      * @return <code>true</code> if the argument is a
      *         <code>TransformAttribute</code> whose transform is equal to this
      *         <code>TransformAttribute</code>'s transform.
@@ -132,8 +131,7 @@ public final class TransformAttribute implements Serializable {
                     return that.transform == null;
                 }
                 return transform.equals(that.transform);
-            } catch (ClassCastException e) {
-            }
+            } catch (ClassCastException e) {}
         }
         return false;
     }

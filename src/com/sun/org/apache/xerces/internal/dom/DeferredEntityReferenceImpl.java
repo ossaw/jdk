@@ -61,11 +61,9 @@ package com.sun.org.apache.xerces.internal.dom;
  * code I implemented to support DeepNodeList.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
-public class DeferredEntityReferenceImpl extends EntityReferenceImpl implements
-        DeferredNode {
+public class DeferredEntityReferenceImpl extends EntityReferenceImpl implements DeferredNode {
 
     //
     // Constants
@@ -89,8 +87,7 @@ public class DeferredEntityReferenceImpl extends EntityReferenceImpl implements
      * This is the deferred constructor. Only the fNodeIndex is given here. All
      * other data, can be requested from the ownerDocument via the index.
      */
-    DeferredEntityReferenceImpl(DeferredDocumentImpl ownerDocument,
-            int nodeIndex) {
+    DeferredEntityReferenceImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
         super(ownerDocument, null);
 
         fNodeIndex = nodeIndex;

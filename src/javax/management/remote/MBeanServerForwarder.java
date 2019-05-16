@@ -25,7 +25,6 @@ public interface MBeanServerForwarder extends MBeanServer {
      *
      * @return the MBeanServer object to which requests will be forwarded, or
      *         null if there is none.
-     *
      * @see #setMBeanServer
      */
     public MBeanServer getMBeanServer();
@@ -35,16 +34,14 @@ public interface MBeanServerForwarder extends MBeanServer {
      * treatment by this object.
      *
      * @param mbs
-     *            the MBeanServer object to which requests will be forwarded.
-     *
+     *        the MBeanServer object to which requests will be forwarded.
      * @exception IllegalArgumentException
-     *                                     if this object is already forwarding
-     *                                     to an MBeanServer
-     *                                     object or if <code>mbs</code> is null
-     *                                     or if
-     *                                     <code>mbs</code> is identical to this
-     *                                     object.
-     *
+     *            if this object is already forwarding
+     *            to an MBeanServer
+     *            object or if <code>mbs</code> is null
+     *            or if
+     *            <code>mbs</code> is identical to this
+     *            object.
      * @see #getMBeanServer
      */
     public void setMBeanServer(MBeanServer mbs);

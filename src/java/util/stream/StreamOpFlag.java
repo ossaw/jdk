@@ -12,14 +12,12 @@ import java.util.Spliterator;
  * Flags corresponding to characteristics of streams and operations. Flags are
  * utilized by the stream framework to control, specialize or optimize
  * computation.
- *
  * <p>
  * Stream flags may be used to describe characteristics of several different
  * entities associated with streams: stream sources, intermediate operations,
  * and terminal operations. Not all stream flags are meaningful for all
  * entities; the following table summarizes which flags are meaningful in what
  * contexts:
- *
  * <div>
  * <table>
  * <caption>Type Characteristics</caption> <thead class="tableSubHeadingColor">
@@ -89,23 +87,19 @@ import java.util.Spliterator;
  * </tfoot>
  * </table>
  * </div>
- *
  * <p>
  * In the above table, "PCI" means "may preserve, clear, or inject"; "PC" means
  * "may preserve or clear", "PI" means "may preserve or inject", and "N" means
  * "not valid".
- *
  * <p>
  * Stream flags are represented by unioned bit sets, so that a single word may
  * describe all the characteristics of a given stream entity, and that, for
  * example, the flags for a stream source can be efficiently combined with the
  * flags for later operations on that stream.
- *
  * <p>
  * The bit masks {@link #STREAM_MASK}, {@link #OP_MASK}, and
  * {@link #TERMINAL_OP_MASK} can be ANDed with a bit set of stream flags to
  * produce a mask containing only the valid flags for that entity type.
- *
  * <p>
  * When describing a stream source, one only need describe what characteristics
  * that stream has; when describing a stream operation, one need describe
@@ -123,7 +117,6 @@ import java.util.Spliterator;
  * {@code NOT_}. Flags that are not marked with {@code IS_} or {@code NOT_} are
  * implicitly treated as preserved. Care must be taken when combining bitsets
  * that the correct combining operations are applied in the correct order.
- *
  * <p>
  * With the exception of {@link #SHORT_CIRCUIT}, stream characteristics can be
  * derived from the equivalent {@link java.util.Spliterator} characteristics:
@@ -136,7 +129,6 @@ import java.util.Spliterator;
  * {@link #SPLITERATOR_CHARACTERISTICS_MASK} is used to AND with a bit set to
  * produce a valid spliterator characteristics bit set that can be converted to
  * stream flags.)
- *
  * <p>
  * The source of a stream encapsulates a spliterator. The characteristics of
  * that source spliterator when transformed to stream flags will be a proper
@@ -150,7 +142,6 @@ import java.util.Spliterator;
  *     assert(flagsFromSplitr & stream.getStreamFlags() == flagsFromSplitr);
  * }
  * </pre>
- *
  * <p>
  * An intermediate operation, performed on an input stream to create a new
  * output stream, may preserve, clear or inject stream or operation
@@ -162,7 +153,6 @@ import java.util.Spliterator;
  * Injection means that the characteristic is present on the output regardless
  * of the input. If a characteristic is not cleared or injected then it is
  * implicitly preserved.
- *
  * <p>
  * A pipeline consists of a stream source encapsulating a spliterator, one or
  * more intermediate operations, and finally a terminal operation that produces
@@ -170,7 +160,6 @@ import java.util.Spliterator;
  * flags can be calculated, using {@link #combineOpFlags(int, int)}. Such flags
  * ensure that preservation, clearing and injecting information is retained at
  * each stage.
- *
  * The combined stream and operation flags for the source stage of the pipeline
  * is calculated as follows:
  * 
@@ -187,15 +176,13 @@ import java.util.Spliterator;
  * <pre>
  * {
  *     &#64;code
- *     int flagsForThisStage = combineOpFlags(flagsForPreviousStage,
- *             thisOpFlags);
+ *     int flagsForThisStage = combineOpFlags(flagsForPreviousStage, thisOpFlags);
  * }
  * </pre>
  *
  * Finally the flags output from the last intermediate operation of the pipeline
  * are combined with the operation flags of the terminal operation to produce
  * the flags output from the pipeline.
- *
  * <p>
  * Those flags can then be used to apply optimizations. For example, if
  * {@code SIZED.isKnown(flags)} returns true then the stream size remains
@@ -203,7 +190,6 @@ import java.util.Spliterator;
  * pre-allocate data structures and combined with
  * {@link java.util.Spliterator#SUBSIZED} that information can be utilized to
  * perform concurrent in-place updates into a shared array.
- *
  * For specific details see the {@link AbstractPipeline} constructors.
  *
  * @since 1.8
@@ -272,8 +258,7 @@ enum StreamOpFlag {
      */
     // 2, 0x00000010
     // Matches Spliterator.ORDERED
-    ORDERED(2, set(Type.SPLITERATOR).set(Type.STREAM).setAndClear(Type.OP)
-            .clear(Type.TERMINAL_OP).clear(Type.UPSTREAM_TERMINAL_OP)),
+    ORDERED(2, set(Type.SPLITERATOR).set(Type.STREAM).setAndClear(Type.OP).clear(Type.TERMINAL_OP).clear(Type.UPSTREAM_TERMINAL_OP)),
 
     /**
      * Characteristic value signifying that size of the stream is of a known
@@ -474,8 +459,8 @@ enum StreamOpFlag {
      * and injected on combined stream and operation flags.
      *
      * @param flags
-     *              the stream flags, operation flags, or combined stream and
-     *              operation flags
+     *        the stream flags, operation flags, or combined stream and
+     *        operation flags
      * @return true if this flag is known, otherwise false.
      */
     boolean isKnown(int flags) {
@@ -487,7 +472,7 @@ enum StreamOpFlag {
      * operation flags.
      *
      * @param flags
-     *              the operation flags or combined stream and operations flags.
+     *        the operation flags or combined stream and operations flags.
      * @return true if this flag is preserved, otherwise false.
      */
     boolean isCleared(int flags) {
@@ -498,7 +483,7 @@ enum StreamOpFlag {
      * Checks if this flag is preserved on combined stream and operation flags.
      *
      * @param flags
-     *              the combined stream and operations flags.
+     *        the combined stream and operations flags.
      * @return true if this flag is preserved, otherwise false.
      */
     boolean isPreserved(int flags) {
@@ -509,7 +494,7 @@ enum StreamOpFlag {
      * Determines if this flag can be set for a flag type.
      *
      * @param t
-     *          the flag type.
+     *        the flag type.
      * @return true if this flag can be set for the flag type, otherwise false.
      */
     boolean canSet(Type t) {
@@ -519,8 +504,7 @@ enum StreamOpFlag {
     /**
      * The bit mask for spliterator characteristics
      */
-    static final int SPLITERATOR_CHARACTERISTICS_MASK = createMask(
-            Type.SPLITERATOR);
+    static final int SPLITERATOR_CHARACTERISTICS_MASK = createMask(Type.SPLITERATOR);
 
     /**
      * The bit mask for source stream flags.
@@ -540,8 +524,7 @@ enum StreamOpFlag {
     /**
      * The bit mask for upstream terminal operation flags.
      */
-    static final int UPSTREAM_TERMINAL_OP_MASK = createMask(
-            Type.UPSTREAM_TERMINAL_OP);
+    static final int UPSTREAM_TERMINAL_OP_MASK = createMask(Type.UPSTREAM_TERMINAL_OP);
 
     private static int createMask(Type t) {
         int mask = 0;
@@ -627,8 +610,7 @@ enum StreamOpFlag {
 
     private static int getMask(int flags) {
         return (flags == 0) ? FLAG_MASK
-                : ~(flags | ((FLAG_MASK_IS & flags) << 1) | ((FLAG_MASK_NOT
-                        & flags) >> 1));
+                : ~(flags | ((FLAG_MASK_IS & flags) << 1) | ((FLAG_MASK_NOT & flags) >> 1));
     }
 
     /**
@@ -638,49 +620,42 @@ enum StreamOpFlag {
      * A flag set on stream flags or injected on operation flags, and injected
      * combined stream and operation flags, will be injected on the updated
      * combined stream and operation flags.
-     *
      * <p>
      * A flag set on stream flags or injected on operation flags, and cleared on
      * the combined stream and operation flags, will be cleared on the updated
      * combined stream and operation flags.
-     *
      * <p>
      * A flag set on the stream flags or injected on operation flags, and
      * preserved on the combined stream and operation flags, will be injected on
      * the updated combined stream and operation flags.
-     *
      * <p>
      * A flag not set on the stream flags or cleared/preserved on operation
      * flags, and injected on the combined stream and operation flags, will be
      * injected on the updated combined stream and operation flags.
-     *
      * <p>
      * A flag not set on the stream flags or cleared/preserved on operation
      * flags, and cleared on the combined stream and operation flags, will be
      * cleared on the updated combined stream and operation flags.
-     *
      * <p>
      * A flag not set on the stream flags, and preserved on the combined stream
      * and operation flags will be preserved on the updated combined stream and
      * operation flags.
-     *
      * <p>
      * A flag cleared on operation flags, and preserved on the combined stream
      * and operation flags will be cleared on the updated combined stream and
      * operation flags.
-     *
      * <p>
      * A flag preserved on operation flags, and preserved on the combined stream
      * and operation flags will be preserved on the updated combined stream and
      * operation flags.
      *
      * @param newStreamOrOpFlags
-     *                           the stream or operation flags.
+     *        the stream or operation flags.
      * @param prevCombOpFlags
-     *                           previously combined stream and operation flags.
-     *                           The value
-     *                           {#link INITIAL_OPS_VALUE} must be used as the
-     *                           seed value.
+     *        previously combined stream and operation flags.
+     *        The value
+     *        {#link INITIAL_OPS_VALUE} must be used as the
+     *        seed value.
      * @return the updated combined stream and operation flags.
      */
     static int combineOpFlags(int newStreamOrOpFlags, int prevCombOpFlags) {
@@ -688,19 +663,17 @@ enum StreamOpFlag {
         // 0x00 nibbles remain unchanged
         // Then all the bits are flipped
         // Then the result is logically or'ed with the operation flags.
-        return (prevCombOpFlags & StreamOpFlag.getMask(newStreamOrOpFlags))
-                | newStreamOrOpFlags;
+        return (prevCombOpFlags & StreamOpFlag.getMask(newStreamOrOpFlags)) | newStreamOrOpFlags;
     }
 
     /**
      * Converts combined stream and operation flags to stream flags.
-     *
      * <p>
      * Each flag injected on the combined stream and operation flags will be set
      * on the stream flags.
      *
      * @param combOpFlags
-     *                    the combined stream and operation flags.
+     *        the combined stream and operation flags.
      * @return the stream flags.
      */
     static int toStreamFlags(int combOpFlags) {
@@ -714,7 +687,7 @@ enum StreamOpFlag {
      * Converts stream flags to a spliterator characteristic bit set.
      *
      * @param streamFlags
-     *                    the stream flags.
+     *        the stream flags.
      * @return the spliterator characteristic bit set.
      */
     static int toCharacteristics(int streamFlags) {
@@ -728,21 +701,18 @@ enum StreamOpFlag {
      *           {@code Comparator} is {@code null}) then the characteristic is
      *           converted to the {@link #SORTED} flag, otherwise the
      *           characteristic is not converted.
-     *
      * @param spliterator
-     *                    the spliterator from which to obtain characteristic
-     *                    bit set.
+     *        the spliterator from which to obtain characteristic
+     *        bit set.
      * @return the stream flags.
      */
     static int fromCharacteristics(Spliterator<?> spliterator) {
         int characteristics = spliterator.characteristics();
-        if ((characteristics & Spliterator.SORTED) != 0 && spliterator
-                .getComparator() != null) {
+        if ((characteristics & Spliterator.SORTED) != 0 && spliterator.getComparator() != null) {
             // Do not propagate the SORTED characteristic if it does not
             // correspond
             // to a natural sort order
-            return characteristics & SPLITERATOR_CHARACTERISTICS_MASK
-                    & ~Spliterator.SORTED;
+            return characteristics & SPLITERATOR_CHARACTERISTICS_MASK & ~Spliterator.SORTED;
         } else {
             return characteristics & SPLITERATOR_CHARACTERISTICS_MASK;
         }
@@ -752,7 +722,7 @@ enum StreamOpFlag {
      * Converts a spliterator characteristic bit set to stream flags.
      *
      * @param characteristics
-     *                        the spliterator characteristic bit set.
+     *        the spliterator characteristic bit set.
      * @return the stream flags.
      */
     static int fromCharacteristics(int characteristics) {

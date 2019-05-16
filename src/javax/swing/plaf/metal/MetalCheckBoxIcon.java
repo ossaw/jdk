@@ -50,8 +50,7 @@ public class MetalCheckBoxIcon implements Icon, UIResource, Serializable {
                 } else {
                     g.setColor(MetalLookAndFeel.getControlShadow());
                     g.fillRect(x, y, controlSize - 1, controlSize - 1);
-                    MetalUtils.drawPressed3DBorder(g, x, y, controlSize,
-                            controlSize);
+                    MetalUtils.drawPressed3DBorder(g, x, y, controlSize, controlSize);
                 }
             } else if (!cb.isBorderPaintedFlat()) {
                 MetalUtils.drawFlush3DBorder(g, x, y, controlSize, controlSize);

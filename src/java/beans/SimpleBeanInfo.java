@@ -93,9 +93,9 @@ public class SimpleBeanInfo implements BeanInfo {
      * <p>
      * 
      * @param resourceName
-     *                     A pathname relative to the directory holding the
-     *                     class file of
-     *                     the current class. For example, "wombat.gif".
+     *        A pathname relative to the directory holding the
+     *        class file of
+     *        the current class. For example, "wombat.gif".
      * @return an image object. May be null if the load failed.
      */
     public Image loadImage(final String resourceName) {
@@ -107,8 +107,7 @@ public class SimpleBeanInfo implements BeanInfo {
                     return Toolkit.getDefaultToolkit().createImage(ip);
                 }
             }
-        } catch (final Exception ignored) {
-        }
+        } catch (final Exception ignored) {}
         return null;
     }
 }

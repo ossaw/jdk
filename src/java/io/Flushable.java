@@ -20,7 +20,7 @@ public interface Flushable {
      * stream.
      *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     void flush() throws IOException;
 }

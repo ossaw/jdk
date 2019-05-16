@@ -28,9 +28,7 @@ import com.sun.org.apache.xerces.internal.xs.XSObjectList;
  * Store schema model group declaration.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: XSModelGroupImpl.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
 public class XSModelGroupImpl implements XSModelGroup {
@@ -225,16 +223,14 @@ public class XSModelGroupImpl implements XSModelGroup {
      * Optional. Annotation.
      */
     public XSAnnotation getAnnotation() {
-        return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
-                : null;
+        return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
     }
 
     /**
      * Optional. Annotations.
      */
     public XSObjectList getAnnotations() {
-        return (fAnnotations != null) ? fAnnotations
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
     /**

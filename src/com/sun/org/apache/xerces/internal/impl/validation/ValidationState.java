@@ -29,7 +29,6 @@ import java.util.Locale;
  * environment for simple type validation.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  * @version $Id: ValidationState.java,v 1.7 2010-11-01 04:39:53 joehw Exp $
  */

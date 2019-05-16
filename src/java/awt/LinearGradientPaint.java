@@ -38,7 +38,6 @@ import java.beans.ConstructorProperties;
  * <pre>
  *     {Color.BLUE, Color.BLUE, Color.RED, Color.RED}, {0f, .3f, .7f, 1f}
  * </pre>
- *
  * <p>
  * The user may also select what action the {@code LinearGradientPaint} object
  * takes when it is filling the space outside the start and end points by
@@ -52,7 +51,6 @@ import java.beans.ConstructorProperties;
  * <p>
  * The colorSpace parameter allows the user to specify in which colorspace the
  * interpolation should be performed, default sRGB or linearized RGB.
- *
  * <p>
  * The following code demonstrates typical usage of {@code LinearGradientPaint}:
  * 
@@ -67,7 +65,6 @@ import java.beans.ConstructorProperties;
  * This code will create a {@code LinearGradientPaint} which interpolates
  * between red and white for the first 20% of the gradient and between white and
  * blue for the remaining 80%.
- *
  * <p>
  * This image demonstrates the example code above for each of the three cycle
  * methods: <center> <img src = "doc-files/LinearGradientPaint.png" alt=
@@ -88,46 +85,45 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
      * repeating method and {@code SRGB} color space.
      *
      * @param startX
-     *                  the X coordinate of the gradient axis start point in
-     *                  user
-     *                  space
+     *        the X coordinate of the gradient axis start point in
+     *        user
+     *        space
      * @param startY
-     *                  the Y coordinate of the gradient axis start point in
-     *                  user
-     *                  space
+     *        the Y coordinate of the gradient axis start point in
+     *        user
+     *        space
      * @param endX
-     *                  the X coordinate of the gradient axis end point in user
-     *                  space
+     *        the X coordinate of the gradient axis end point in user
+     *        space
      * @param endY
-     *                  the Y coordinate of the gradient axis end point in user
-     *                  space
+     *        the Y coordinate of the gradient axis end point in user
+     *        space
      * @param fractions
-     *                  numbers ranging from 0.0 to 1.0 specifying the
-     *                  distribution of
-     *                  colors along the gradient
+     *        numbers ranging from 0.0 to 1.0 specifying the
+     *        distribution of
+     *        colors along the gradient
      * @param colors
-     *                  array of colors corresponding to each fractional value
-     *
+     *        array of colors corresponding to each fractional value
      * @throws NullPointerException
-     *                                  if {@code fractions} array is null, or
-     *                                  {@code colors} array
-     *                                  is null,
+     *         if {@code fractions} array is null, or
+     *         {@code colors} array
+     *         is null,
      * @throws IllegalArgumentException
-     *                                  if start and end points are the same
-     *                                  points, or
-     *                                  {@code fractions.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code fractions} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code fractions} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if start and end points are the same
+     *         points, or
+     *         {@code fractions.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code fractions} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code fractions} are
+     *         not provided in strictly increasing
+     *         order
      */
-    public LinearGradientPaint(float startX, float startY, float endX,
-            float endY, float[] fractions, Color[] colors) {
-        this(new Point2D.Float(startX, startY), new Point2D.Float(endX, endY),
-                fractions, colors, CycleMethod.NO_CYCLE);
+    public LinearGradientPaint(float startX, float startY, float endX, float endY, float[] fractions,
+            Color[] colors) {
+        this(new Point2D.Float(startX, startY), new Point2D.Float(endX, endY), fractions, colors,
+                CycleMethod.NO_CYCLE);
     }
 
     /**
@@ -135,50 +131,48 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
      * color space.
      *
      * @param startX
-     *                    the X coordinate of the gradient axis start point in
-     *                    user
-     *                    space
+     *        the X coordinate of the gradient axis start point in
+     *        user
+     *        space
      * @param startY
-     *                    the Y coordinate of the gradient axis start point in
-     *                    user
-     *                    space
+     *        the Y coordinate of the gradient axis start point in
+     *        user
+     *        space
      * @param endX
-     *                    the X coordinate of the gradient axis end point in
-     *                    user space
+     *        the X coordinate of the gradient axis end point in
+     *        user space
      * @param endY
-     *                    the Y coordinate of the gradient axis end point in
-     *                    user space
+     *        the Y coordinate of the gradient axis end point in
+     *        user space
      * @param fractions
-     *                    numbers ranging from 0.0 to 1.0 specifying the
-     *                    distribution of
-     *                    colors along the gradient
+     *        numbers ranging from 0.0 to 1.0 specifying the
+     *        distribution of
+     *        colors along the gradient
      * @param colors
-     *                    array of colors corresponding to each fractional value
+     *        array of colors corresponding to each fractional value
      * @param cycleMethod
-     *                    either {@code NO_CYCLE}, {@code REFLECT}, or
-     *                    {@code REPEAT}
-     *
+     *        either {@code NO_CYCLE}, {@code REFLECT}, or
+     *        {@code REPEAT}
      * @throws NullPointerException
-     *                                  if {@code fractions} array is null, or
-     *                                  {@code colors} array
-     *                                  is null, or {@code cycleMethod} is null
+     *         if {@code fractions} array is null, or
+     *         {@code colors} array
+     *         is null, or {@code cycleMethod} is null
      * @throws IllegalArgumentException
-     *                                  if start and end points are the same
-     *                                  points, or
-     *                                  {@code fractions.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code fractions} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code fractions} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if start and end points are the same
+     *         points, or
+     *         {@code fractions.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code fractions} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code fractions} are
+     *         not provided in strictly increasing
+     *         order
      */
-    public LinearGradientPaint(float startX, float startY, float endX,
-            float endY, float[] fractions, Color[] colors,
-            CycleMethod cycleMethod) {
-        this(new Point2D.Float(startX, startY), new Point2D.Float(endX, endY),
-                fractions, colors, cycleMethod);
+    public LinearGradientPaint(float startX, float startY, float endX, float endY, float[] fractions,
+            Color[] colors, CycleMethod cycleMethod) {
+        this(new Point2D.Float(startX, startY), new Point2D.Float(endX, endY), fractions, colors,
+                cycleMethod);
     }
 
     /**
@@ -186,34 +180,32 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
      * repeating method and {@code SRGB} color space.
      *
      * @param start
-     *                  the gradient axis start {@code Point2D} in user space
+     *        the gradient axis start {@code Point2D} in user space
      * @param end
-     *                  the gradient axis end {@code Point2D} in user space
+     *        the gradient axis end {@code Point2D} in user space
      * @param fractions
-     *                  numbers ranging from 0.0 to 1.0 specifying the
-     *                  distribution of
-     *                  colors along the gradient
+     *        numbers ranging from 0.0 to 1.0 specifying the
+     *        distribution of
+     *        colors along the gradient
      * @param colors
-     *                  array of colors corresponding to each fractional value
-     *
+     *        array of colors corresponding to each fractional value
      * @throws NullPointerException
-     *                                  if one of the points is null, or
-     *                                  {@code fractions} array is
-     *                                  null, or {@code colors} array is null
+     *         if one of the points is null, or
+     *         {@code fractions} array is
+     *         null, or {@code colors} array is null
      * @throws IllegalArgumentException
-     *                                  if start and end points are the same
-     *                                  points, or
-     *                                  {@code fractions.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code fractions} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code fractions} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if start and end points are the same
+     *         points, or
+     *         {@code fractions.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code fractions} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code fractions} are
+     *         not provided in strictly increasing
+     *         order
      */
-    public LinearGradientPaint(Point2D start, Point2D end, float[] fractions,
-            Color[] colors) {
+    public LinearGradientPaint(Point2D start, Point2D end, float[] fractions, Color[] colors) {
         this(start, end, fractions, colors, CycleMethod.NO_CYCLE);
     }
 
@@ -222,105 +214,99 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
      * color space.
      *
      * @param start
-     *                    the gradient axis start {@code Point2D} in user space
+     *        the gradient axis start {@code Point2D} in user space
      * @param end
-     *                    the gradient axis end {@code Point2D} in user space
+     *        the gradient axis end {@code Point2D} in user space
      * @param fractions
-     *                    numbers ranging from 0.0 to 1.0 specifying the
-     *                    distribution of
-     *                    colors along the gradient
+     *        numbers ranging from 0.0 to 1.0 specifying the
+     *        distribution of
+     *        colors along the gradient
      * @param colors
-     *                    array of colors corresponding to each fractional value
+     *        array of colors corresponding to each fractional value
      * @param cycleMethod
-     *                    either {@code NO_CYCLE}, {@code REFLECT}, or
-     *                    {@code REPEAT}
-     *
+     *        either {@code NO_CYCLE}, {@code REFLECT}, or
+     *        {@code REPEAT}
      * @throws NullPointerException
-     *                                  if one of the points is null, or
-     *                                  {@code fractions} array is
-     *                                  null, or {@code colors} array is null,
-     *                                  or {@code cycleMethod}
-     *                                  is null
+     *         if one of the points is null, or
+     *         {@code fractions} array is
+     *         null, or {@code colors} array is null,
+     *         or {@code cycleMethod}
+     *         is null
      * @throws IllegalArgumentException
-     *                                  if start and end points are the same
-     *                                  points, or
-     *                                  {@code fractions.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code fractions} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code fractions} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if start and end points are the same
+     *         points, or
+     *         {@code fractions.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code fractions} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code fractions} are
+     *         not provided in strictly increasing
+     *         order
      */
-    public LinearGradientPaint(Point2D start, Point2D end, float[] fractions,
-            Color[] colors, CycleMethod cycleMethod) {
-        this(start, end, fractions, colors, cycleMethod, ColorSpaceType.SRGB,
-                new AffineTransform());
+    public LinearGradientPaint(Point2D start, Point2D end, float[] fractions, Color[] colors,
+            CycleMethod cycleMethod) {
+        this(start, end, fractions, colors, cycleMethod, ColorSpaceType.SRGB, new AffineTransform());
     }
 
     /**
      * Constructs a {@code LinearGradientPaint}.
      *
      * @param start
-     *                          the gradient axis start {@code Point2D} in user
-     *                          space
+     *        the gradient axis start {@code Point2D} in user
+     *        space
      * @param end
-     *                          the gradient axis end {@code Point2D} in user
-     *                          space
+     *        the gradient axis end {@code Point2D} in user
+     *        space
      * @param fractions
-     *                          numbers ranging from 0.0 to 1.0 specifying the
-     *                          distribution of
-     *                          colors along the gradient
+     *        numbers ranging from 0.0 to 1.0 specifying the
+     *        distribution of
+     *        colors along the gradient
      * @param colors
-     *                          array of colors corresponding to each fractional
-     *                          value
+     *        array of colors corresponding to each fractional
+     *        value
      * @param cycleMethod
-     *                          either {@code NO_CYCLE}, {@code REFLECT}, or
-     *                          {@code REPEAT}
+     *        either {@code NO_CYCLE}, {@code REFLECT}, or
+     *        {@code REPEAT}
      * @param colorSpace
-     *                          which color space to use for interpolation,
-     *                          either
-     *                          {@code SRGB} or {@code LINEAR_RGB}
+     *        which color space to use for interpolation,
+     *        either
+     *        {@code SRGB} or {@code LINEAR_RGB}
      * @param gradientTransform
-     *                          transform to apply to the gradient
-     *
+     *        transform to apply to the gradient
      * @throws NullPointerException
-     *                                  if one of the points is null, or
-     *                                  {@code fractions} array is
-     *                                  null, or {@code colors} array is null,
-     *                                  or {@code cycleMethod}
-     *                                  is null, or {@code colorSpace} is null,
-     *                                  or
-     *                                  {@code gradientTransform} is null
+     *         if one of the points is null, or
+     *         {@code fractions} array is
+     *         null, or {@code colors} array is null,
+     *         or {@code cycleMethod}
+     *         is null, or {@code colorSpace} is null,
+     *         or
+     *         {@code gradientTransform} is null
      * @throws IllegalArgumentException
-     *                                  if start and end points are the same
-     *                                  points, or
-     *                                  {@code fractions.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code fractions} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code fractions} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if start and end points are the same
+     *         points, or
+     *         {@code fractions.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code fractions} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code fractions} are
+     *         not provided in strictly increasing
+     *         order
      */
-    @ConstructorProperties({ "startPoint", "endPoint", "fractions", "colors",
-            "cycleMethod", "colorSpace", "transform" })
-    public LinearGradientPaint(Point2D start, Point2D end, float[] fractions,
-            Color[] colors, CycleMethod cycleMethod, ColorSpaceType colorSpace,
-            AffineTransform gradientTransform) {
+    @ConstructorProperties({ "startPoint", "endPoint", "fractions", "colors", "cycleMethod", "colorSpace",
+            "transform" })
+    public LinearGradientPaint(Point2D start, Point2D end, float[] fractions, Color[] colors,
+            CycleMethod cycleMethod, ColorSpaceType colorSpace, AffineTransform gradientTransform) {
         super(fractions, colors, cycleMethod, colorSpace, gradientTransform);
 
         // check input parameters
         if (start == null || end == null) {
-            throw new NullPointerException("Start and end points must be"
-                    + "non-null");
+            throw new NullPointerException("Start and end points must be" + "non-null");
         }
 
         if (start.equals(end)) {
-            throw new IllegalArgumentException("Start point cannot equal"
-                    + "endpoint");
+            throw new IllegalArgumentException("Start point cannot equal" + "endpoint");
         }
 
         // copy the points...
@@ -335,26 +321,26 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
      * parameter handling.
      *
      * @param cm
-     *                     the preferred {@link ColorModel} which represents the
-     *                     most
-     *                     convenient format for the caller to receive the pixel
-     *                     data, or
-     *                     {@code null} if there is no preference.
+     *        the preferred {@link ColorModel} which represents the
+     *        most
+     *        convenient format for the caller to receive the pixel
+     *        data, or
+     *        {@code null} if there is no preference.
      * @param deviceBounds
-     *                     the device space bounding box of the graphics
-     *                     primitive being
-     *                     rendered.
+     *        the device space bounding box of the graphics
+     *        primitive being
+     *        rendered.
      * @param userBounds
-     *                     the user space bounding box of the graphics primitive
-     *                     being
-     *                     rendered.
+     *        the user space bounding box of the graphics primitive
+     *        being
+     *        rendered.
      * @param transform
-     *                     the {@link AffineTransform} from user space into
-     *                     device space.
+     *        the {@link AffineTransform} from user space into
+     *        device space.
      * @param hints
-     *                     the set of hints that the context object can use to
-     *                     choose
-     *                     between rendering alternatives.
+     *        the set of hints that the context object can use to
+     *        choose
+     *        between rendering alternatives.
      * @return the {@code PaintContext} for generating color patterns.
      * @see Paint
      * @see PaintContext
@@ -364,9 +350,8 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
      * @see AffineTransform
      * @see RenderingHints
      */
-    public PaintContext createContext(ColorModel cm, Rectangle deviceBounds,
-            Rectangle2D userBounds, AffineTransform transform,
-            RenderingHints hints) {
+    public PaintContext createContext(ColorModel cm, Rectangle deviceBounds, Rectangle2D userBounds,
+            AffineTransform transform, RenderingHints hints) {
         // avoid modifying the user's transform...
         transform = new AffineTransform(transform);
         // incorporate the gradient transform
@@ -377,12 +362,10 @@ public final class LinearGradientPaint extends MultipleGradientPaint {
             // faster to use the basic GradientPaintContext for this
             // common case
             boolean cyclic = (cycleMethod != CycleMethod.NO_CYCLE);
-            return new GradientPaintContext(cm, start, end, transform,
-                    colors[0], colors[1], cyclic);
+            return new GradientPaintContext(cm, start, end, transform, colors[0], colors[1], cyclic);
         } else {
-            return new LinearGradientPaintContext(this, cm, deviceBounds,
-                    userBounds, transform, hints, start, end, fractions, colors,
-                    cycleMethod, colorSpace);
+            return new LinearGradientPaintContext(this, cm, deviceBounds, userBounds, transform, hints, start,
+                    end, fractions, colors, cycleMethod, colorSpace);
         }
     }
 

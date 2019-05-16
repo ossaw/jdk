@@ -40,9 +40,9 @@ public class ViewportLayout implements LayoutManager, Serializable {
      * Adds the specified component to the layout. Not used by this class.
      * 
      * @param name
-     *             the name of the component
+     *        the name of the component
      * @param c
-     *             the the component to be added
+     *        the the component to be added
      */
     public void addLayoutComponent(String name, Component c) {}
 
@@ -50,7 +50,7 @@ public class ViewportLayout implements LayoutManager, Serializable {
      * Removes the specified component from the layout. Not used by this class.
      * 
      * @param c
-     *          the component to remove
+     *        the component to remove
      */
     public void removeLayoutComponent(Component c) {}
 
@@ -59,7 +59,7 @@ public class ViewportLayout implements LayoutManager, Serializable {
      * the specified target container.
      * 
      * @param parent
-     *               the component which needs to be laid out
+     *        the component which needs to be laid out
      * @return a <code>Dimension</code> object containing the preferred
      *         dimensions
      * @see #minimumLayoutSize
@@ -80,7 +80,7 @@ public class ViewportLayout implements LayoutManager, Serializable {
      * in the specified target container.
      *
      * @param parent
-     *               the component which needs to be laid out
+     *        the component which needs to be laid out
      * @return a <code>Dimension</code> object containing the minimum dimensions
      * @see #preferredLayoutSize
      */
@@ -92,11 +92,10 @@ public class ViewportLayout implements LayoutManager, Serializable {
      * Called by the AWT when the specified container needs to be laid out.
      *
      * @param parent
-     *               the container to lay out
-     *
+     *        the container to lay out
      * @throws AWTError
-     *                  if the target isn't the container specified to the
-     *                  <code>BoxLayout</code> constructor
+     *         if the target isn't the container specified to the
+     *         <code>BoxLayout</code> constructor
      */
     public void layoutContainer(Container parent) {
         JViewport vp = (JViewport) parent;
@@ -136,8 +135,8 @@ public class ViewportLayout implements LayoutManager, Serializable {
          * view, right justify the view or left justify the view when the width
          * of the view is smaller than the container.
          */
-        if (scrollableView == null || vp.getParent() == null || vp.getParent()
-                .getComponentOrientation().isLeftToRight()) {
+        if (scrollableView == null || vp.getParent() == null || vp.getParent().getComponentOrientation()
+                .isLeftToRight()) {
             if ((viewPosition.x + extentSize.width) > viewSize.width) {
                 viewPosition.x = Math.max(0, viewSize.width - extentSize.width);
             }
@@ -145,8 +144,7 @@ public class ViewportLayout implements LayoutManager, Serializable {
             if (extentSize.width > viewSize.width) {
                 viewPosition.x = viewSize.width - extentSize.width;
             } else {
-                viewPosition.x = Math.max(0, Math.min(viewSize.width
-                        - extentSize.width, viewPosition.x));
+                viewPosition.x = Math.max(0, Math.min(viewSize.width - extentSize.width, viewPosition.x));
             }
         }
 
@@ -171,8 +169,7 @@ public class ViewportLayout implements LayoutManager, Serializable {
             if ((viewPosition.x == 0) && (vpSize.width > viewPrefSize.width)) {
                 viewSize.width = vpSize.width;
             }
-            if ((viewPosition.y == 0)
-                    && (vpSize.height > viewPrefSize.height)) {
+            if ((viewPosition.y == 0) && (vpSize.height > viewPrefSize.height)) {
                 viewSize.height = vpSize.height;
             }
         }

@@ -14,14 +14,12 @@ import javax.xml.namespace.NamespaceContext;
  * provided by NamespaceSupport, which implements NamespaceContext from XNI. It
  * would be good if we can change the XNI NamespaceContext interface to
  * implement the JAXP NamespaceContext interface.
- *
  * Note that NamespaceSupport assumes the use of symbols. Since this class can
  * be exposed to the application, we must intern all Strings before calling
  * NamespaceSupport methods.
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Santiago.PericasGeertsen@sun.com
- *
  */
 public class NamespaceContextWrapper implements NamespaceContext {
 
@@ -53,8 +51,7 @@ public class NamespaceContextWrapper implements NamespaceContext {
         if (namespaceURI == null) {
             throw new IllegalArgumentException("URI can't be null.");
         } else {
-            Vector vector = ((NamespaceSupport) fNamespaceContext).getPrefixes(
-                    namespaceURI.intern());
+            Vector vector = ((NamespaceSupport) fNamespaceContext).getPrefixes(namespaceURI.intern());
             return vector.iterator();
         }
     }

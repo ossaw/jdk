@@ -26,11 +26,10 @@ public class LoginException extends java.security.GeneralSecurityException {
     /**
      * Constructs a LoginException with the specified detail message. A detail
      * message is a String that describes this particular exception.
-     *
      * <p>
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public LoginException(String msg) {
         super(msg);

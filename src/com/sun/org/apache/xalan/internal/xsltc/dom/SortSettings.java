@@ -67,30 +67,30 @@ final class SortSettings {
      * Create an instance of <code>SortSettings</code>.
      * 
      * @param translet
-     *                   {@link com.sun.org.apache.xalan.internal.xsltc.runtime.AbstractTranslet}
-     *                   object for the transformation
+     *        {@link com.sun.org.apache.xalan.internal.xsltc.runtime.AbstractTranslet}
+     *        object for the transformation
      * @param sortOrders
-     *                   an array specifying the sort order for each sort level
+     *        an array specifying the sort order for each sort level
      * @param types
-     *                   an array specifying the type of comparison for each
-     *                   sort level
-     *                   (text or number)
+     *        an array specifying the type of comparison for each
+     *        sort level
+     *        (text or number)
      * @param locales
-     *                   an array specifying the Locale for each sort level
+     *        an array specifying the Locale for each sort level
      * @param collators
-     *                   an array specifying the Collation in effect for each
-     *                   sort
-     *                   level
+     *        an array specifying the Collation in effect for each
+     *        sort
+     *        level
      * @param caseOrders
-     *                   an array specifying whether upper-case, lower-case or
-     *                   neither
-     *                   is to take precedence for each sort level. The value of
-     *                   each
-     *                   element is equal to one of
-     *                   <code>"upper-first", "lower-first", or ""</code>.
+     *        an array specifying whether upper-case, lower-case or
+     *        neither
+     *        is to take precedence for each sort level. The value of
+     *        each
+     *        element is equal to one of
+     *        <code>"upper-first", "lower-first", or ""</code>.
      */
-    SortSettings(AbstractTranslet translet, int[] sortOrders, int[] types,
-            Locale[] locales, Collator[] collators, String[] caseOrders) {
+    SortSettings(AbstractTranslet translet, int[] sortOrders, int[] types, Locale[] locales,
+            Collator[] collators, String[] caseOrders) {
         _translet = translet;
         _sortOrders = sortOrders;
         _types = types;

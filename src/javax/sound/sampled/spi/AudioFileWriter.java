@@ -37,7 +37,7 @@ public abstract class AudioFileWriter {
      * provided by this audio file writer.
      * 
      * @param fileType
-     *                 the file type for which write capabilities are queried
+     *        the file type for which write capabilities are queried
      * @return <code>true</code> if the file type is supported, otherwise
      *         <code>false</code>
      */
@@ -58,27 +58,25 @@ public abstract class AudioFileWriter {
      * audio input stream specified.
      * 
      * @param stream
-     *               the audio input stream for which audio file type support is
-     *               queried
+     *        the audio input stream for which audio file type support is
+     *        queried
      * @return array of file types. If no file types are supported, an array of
      *         length 0 is returned.
      */
-    public abstract AudioFileFormat.Type[] getAudioFileTypes(
-            AudioInputStream stream);
+    public abstract AudioFileFormat.Type[] getAudioFileTypes(AudioInputStream stream);
 
     /**
      * Indicates whether an audio file of the type specified can be written from
      * the audio input stream indicated.
      * 
      * @param fileType
-     *                 file type for which write capabilities are queried
+     *        file type for which write capabilities are queried
      * @param stream
-     *                 for which file writing support is queried
+     *        for which file writing support is queried
      * @return <code>true</code> if the file type is supported for this audio
      *         input stream, otherwise <code>false</code>
      */
-    public boolean isFileTypeSupported(AudioFileFormat.Type fileType,
-            AudioInputStream stream) {
+    public boolean isFileTypeSupported(AudioFileFormat.Type fileType, AudioInputStream stream) {
 
         AudioFileFormat.Type types[] = getAudioFileTypes(stream);
 
@@ -100,47 +98,47 @@ public abstract class AudioFileWriter {
      * AudioSystem.NOT_SPECIFIED}.
      * 
      * @param stream
-     *                 the audio input stream containing audio data to be
-     *                 written to
-     *                 the output stream
+     *        the audio input stream containing audio data to be
+     *        written to
+     *        the output stream
      * @param fileType
-     *                 file type to be written to the output stream
+     *        file type to be written to the output stream
      * @param out
-     *                 stream to which the file data should be written
+     *        stream to which the file data should be written
      * @return the number of bytes written to the output stream
      * @throws IOException
-     *                                  if an I/O exception occurs
+     *         if an I/O exception occurs
      * @throws IllegalArgumentException
-     *                                  if the file type is not supported by the
-     *                                  system
+     *         if the file type is not supported by the
+     *         system
      * @see #isFileTypeSupported(AudioFileFormat.Type, AudioInputStream)
      * @see #getAudioFileTypes
      */
-    public abstract int write(AudioInputStream stream,
-            AudioFileFormat.Type fileType, OutputStream out) throws IOException;
+    public abstract int write(AudioInputStream stream, AudioFileFormat.Type fileType, OutputStream out)
+            throws IOException;
 
     /**
      * Writes a stream of bytes representing an audio file of the file format
      * indicated to the external file provided.
      * 
      * @param stream
-     *                 the audio input stream containing audio data to be
-     *                 written to
-     *                 the file
+     *        the audio input stream containing audio data to be
+     *        written to
+     *        the file
      * @param fileType
-     *                 file type to be written to the file
+     *        file type to be written to the file
      * @param out
-     *                 external file to which the file data should be written
+     *        external file to which the file data should be written
      * @return the number of bytes written to the file
      * @throws IOException
-     *                                  if an I/O exception occurs
+     *         if an I/O exception occurs
      * @throws IllegalArgumentException
-     *                                  if the file format is not supported by
-     *                                  the system
+     *         if the file format is not supported by
+     *         the system
      * @see #isFileTypeSupported
      * @see #getAudioFileTypes
      */
-    public abstract int write(AudioInputStream stream,
-            AudioFileFormat.Type fileType, File out) throws IOException;
+    public abstract int write(AudioInputStream stream, AudioFileFormat.Type fileType, File out)
+            throws IOException;
 
 }

@@ -49,7 +49,7 @@ public class XMLMessages {
      * Set the Locale object to use.
      *
      * @param locale
-     *               non-null reference to Locale object.
+     *        non-null reference to Locale object.
      */
     public void setLocale(Locale locale) {
         fLocale = locale;
@@ -69,11 +69,10 @@ public class XMLMessages {
      * localized to the given locale.
      *
      * @param msgKey
-     *               The key for the message text.
+     *        The key for the message text.
      * @param args
-     *               The arguments to be used as replacement text in the message
-     *               created.
-     *
+     *        The arguments to be used as replacement text in the message
+     *        created.
      * @return The formatted message string.
      */
     public static final String createXMLMessage(String msgKey, Object args[]) {
@@ -92,18 +91,16 @@ public class XMLMessages {
      * localized to the given locale.
      *
      * @param fResourceBundle
-     *                        The resource bundle to use.
+     *        The resource bundle to use.
      * @param msgKey
-     *                        The message key to use.
+     *        The message key to use.
      * @param args
-     *                        The arguments to be used as replacement text in
-     *                        the message
-     *                        created.
-     *
+     *        The arguments to be used as replacement text in
+     *        the message
+     *        created.
      * @return The formatted message string.
      */
-    public static final String createMsg(ListResourceBundle fResourceBundle,
-            String msgKey, Object args[]) // throws Exception
+    public static final String createMsg(ListResourceBundle fResourceBundle, String msgKey, Object args[]) // throws Exception
     {
 
         String fmsg = null;

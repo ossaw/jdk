@@ -17,9 +17,7 @@ import java.math.*;
  * <code>FilteredRowSetImpl</code> class provides the reference implementation
  * which may be extended if required. Alternatively, a vendor is free to
  * implement its own version by implementing this interface.
- *
  * <h3>1.0 Background</h3>
- *
  * There are occasions when a <code>RowSet</code> object has a need to provide a
  * degree of filtering to its contents. One possible solution is to provide a
  * query language for all standard <code>RowSet</code> implementations; however,
@@ -33,14 +31,11 @@ import java.math.*;
  * &trade; class. The <code>CachedRowSet</code> class provides a set of
  * protected cursor manipulation methods, which a <code>FilteredRowSet</code>
  * implementation can override to supply filtering support.
- *
  * <h3>2.0 Predicate Sharing</h3>
- *
  * If a <code>FilteredRowSet</code> implementation is shared using the inherited
  * <code>createShared</code> method in parent interfaces, the
  * <code>Predicate</code> should be shared without modification by all
  * <code>FilteredRowSet</code> instance clones.
- *
  * <h3>3.0 Usage</h3>
  * <p>
  * By implementing a <code>Predicate</code> (see example in
@@ -70,7 +65,6 @@ import java.math.*;
  * This framework allows multiple classes implementing predicates to be used in
  * combination to achieved the required filtering result with out the need for
  * query language processing.
- *
  * <h3>4.0 Updating a <code>FilteredRowSet</code> Object</h3> The predicate set
  * on a <code>FilteredRowSet</code> object applies a criterion on all rows in a
  * <code>RowSet</code> object to manage a subset of rows in a
@@ -90,7 +84,6 @@ import java.math.*;
  * immediate effect on criterion enforcement within the
  * <code>FilteredRowSet</code> object, and all subsequent views and updates will
  * be subject to similar enforcement.
- *
  * <h3>5.0 Behavior of Rows Outside the Filter</h3> Rows that fall outside of
  * the filter set on a <code>FilteredRowSet</code> object cannot be modified
  * until the filter is removed or a new filter is applied.
@@ -118,15 +111,14 @@ public interface FilteredRowSet extends WebRowSet {
      * underling <code>Predicate</code> objects change.
      *
      * @param p
-     *          a <code>Predicate</code> object defining the filter for this
-     *          <code>FilteredRowSet</code> object. Setting a <b>null</b>
-     *          value will clear the predicate, allowing all rows to become
-     *          visible.
-     *
+     *        a <code>Predicate</code> object defining the filter for this
+     *        <code>FilteredRowSet</code> object. Setting a <b>null</b>
+     *        value will clear the predicate, allowing all rows to become
+     *        visible.
      * @throws SQLException
-     *                      if an error occurs when setting the
-     *                      <code>Predicate</code>
-     *                      object
+     *         if an error occurs when setting the
+     *         <code>Predicate</code>
+     *         object
      */
     public void setFilter(Predicate p) throws SQLException;
 

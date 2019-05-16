@@ -18,7 +18,6 @@ import com.sun.jmx.mbeanserver.JmxMBeanServer;
  *
  * @see MBeanServer
  * @see MBeanServerFactory
- *
  * @since 1.5
  */
 public class MBeanServerBuilder {
@@ -73,28 +72,25 @@ public class MBeanServerBuilder {
      * returning a pointer to a wrapping object.
      *
      * @param defaultDomain
-     *                      Default domain of the new MBeanServer.
+     *        Default domain of the new MBeanServer.
      * @param outer
-     *                      A pointer to the MBeanServer object that must be
-     *                      passed to the
-     *                      MBeans when invoking their
-     *                      {@link javax.management.MBeanRegistration}
-     *                      interface.
+     *        A pointer to the MBeanServer object that must be
+     *        passed to the
+     *        MBeans when invoking their
+     *        {@link javax.management.MBeanRegistration}
+     *        interface.
      * @param delegate
-     *                      A pointer to the MBeanServerDelegate associated with
-     *                      the new
-     *                      MBeanServer. The new MBeanServer must register this
-     *                      MBean in
-     *                      its MBean repository.
-     *
+     *        A pointer to the MBeanServerDelegate associated with
+     *        the new
+     *        MBeanServer. The new MBeanServer must register this
+     *        MBean in
+     *        its MBean repository.
      * @return A new private implementation of an MBeanServer.
      **/
-    public MBeanServer newMBeanServer(String defaultDomain, MBeanServer outer,
-            MBeanServerDelegate delegate) {
+    public MBeanServer newMBeanServer(String defaultDomain, MBeanServer outer, MBeanServerDelegate delegate) {
         // By default, MBeanServerInterceptors are disabled.
         // Use com.sun.jmx.mbeanserver.MBeanServerBuilder to obtain
         // MBeanServers on which MBeanServerInterceptors are enabled.
-        return JmxMBeanServer.newMBeanServer(defaultDomain, outer, delegate,
-                false);
+        return JmxMBeanServer.newMBeanServer(defaultDomain, outer, delegate, false);
     }
 }

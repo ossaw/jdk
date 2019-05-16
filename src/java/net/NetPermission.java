@@ -24,7 +24,6 @@ import java.util.StringTokenizer;
  * The following table lists all the possible NetPermission target names, and
  * for each provides a description of what the permission allows and a
  * discussion of the risks of granting code the permission.
- *
  * <table border=1 cellpadding=5 summary=
  * "Permission target name, what the permission allows, and associated risks">
  * <tr>
@@ -39,7 +38,6 @@ import java.util.StringTokenizer;
  * information in the HTTP headers (such as cookies) that it might not otherwise
  * have access to.</td>
  * </tr>
- *
  * <tr>
  * <td>getCookieHandler</td>
  * <td>The ability to get the cookie handler that processes highly security
@@ -49,7 +47,6 @@ import java.util.StringTokenizer;
  * user private information such as access control information, or to track user
  * browsing habit.</td>
  * </tr>
- *
  * <tr>
  * <td>getNetworkInformation</td>
  * <td>The ability to retrieve all information about local network interfaces.
@@ -57,7 +54,6 @@ import java.util.StringTokenizer;
  * <td>Malicious code can read information about network hardware such as MAC
  * addresses, which could be used to construct local IPv6 addresses.</td>
  * </tr>
- *
  * <tr>
  * <td>getProxySelector</td>
  * <td>The ability to get the proxy selector used to make decisions on which
@@ -65,7 +61,6 @@ import java.util.StringTokenizer;
  * <td>Malicious code can get a ProxySelector to discover proxy hosts and ports
  * on internal networks, which could then become targets for attack.</td>
  * </tr>
- *
  * <tr>
  * <td>getResponseCache</td>
  * <td>The ability to get the response cache that provides access to a local
@@ -73,14 +68,12 @@ import java.util.StringTokenizer;
  * <td>Malicious code getting access to the local response cache could access
  * security sensitive information.</td>
  * </tr>
- *
  * <tr>
  * <td>requestPasswordAuthentication</td>
  * <td>The ability to ask the authenticator registered with the system for a
  * password</td>
  * <td>Malicious code may steal this password.</td>
  * </tr>
- *
  * <tr>
  * <td>setCookieHandler</td>
  * <td>The ability to set the cookie handler that processes highly security
@@ -90,7 +83,6 @@ import java.util.StringTokenizer;
  * user private information such as access control information, or to track user
  * browsing habit.</td>
  * </tr>
- *
  * <tr>
  * <td>setDefaultAuthenticator</td>
  * <td>The ability to set the way authentication information is retrieved when a
@@ -98,7 +90,6 @@ import java.util.StringTokenizer;
  * <td>Malicious code can set an authenticator that monitors and steals user
  * authentication input as it retrieves the input from the user.</td>
  * </tr>
- *
  * <tr>
  * <td>setProxySelector</td>
  * <td>The ability to set the proxy selector used to make decisions on which
@@ -106,7 +97,6 @@ import java.util.StringTokenizer;
  * <td>Malicious code can set a ProxySelector that directs network traffic to an
  * arbitrary network host.</td>
  * </tr>
- *
  * <tr>
  * <td>setResponseCache</td>
  * <td>The ability to set the response cache that provides access to a local
@@ -115,7 +105,6 @@ import java.util.StringTokenizer;
  * security sensitive information, or create false entries in the response
  * cache.</td>
  * </tr>
- *
  * <tr>
  * <td>specifyStreamHandler</td>
  * <td>The ability to specify a stream handler when constructing a URL</td>
@@ -132,8 +121,6 @@ import java.util.StringTokenizer;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
- *
  * @author Marianne Mueller
  * @author Roland Schemers
  */
@@ -148,12 +135,11 @@ public final class NetPermission extends BasicPermission {
      * by itself, to signify a wildcard match.
      *
      * @param name
-     *             the name of the NetPermission.
-     *
+     *        the name of the NetPermission.
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
 
     public NetPermission(String name) {
@@ -166,14 +152,13 @@ public final class NetPermission extends BasicPermission {
      * currently unused and should be null.
      *
      * @param name
-     *                the name of the NetPermission.
+     *        the name of the NetPermission.
      * @param actions
-     *                should be null.
-     *
+     *        should be null.
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
 
     public NetPermission(String name, String actions) {

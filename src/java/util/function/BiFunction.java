@@ -9,7 +9,6 @@ import java.util.Objects;
 /**
  * Represents a function that accepts two arguments and produces a result. This
  * is the two-arity specialization of {@link Function}.
- *
  * <p>
  * This is a <a href="package-summary.html">functional interface</a> whose
  * functional method is {@link #apply(Object, Object)}.
@@ -20,7 +19,6 @@ import java.util.Objects;
  *        the type of the second argument to the function
  * @param <R>
  *        the type of the result of the function
- *
  * @see Function
  * @since 1.8
  */
@@ -31,9 +29,9 @@ public interface BiFunction<T, U, R> {
      * Applies this function to the given arguments.
      *
      * @param t
-     *          the first function argument
+     *        the first function argument
      * @param u
-     *          the second function argument
+     *        the second function argument
      * @return the function result
      */
     R apply(T t, U u);
@@ -44,18 +42,17 @@ public interface BiFunction<T, U, R> {
      * evaluation of either function throws an exception, it is relayed to the
      * caller of the composed function.
      *
-     * @param       <V>
-     *              the type of output of the {@code after} function, and of the
-     *              composed function
+     * @param <V>
+     *        the type of output of the {@code after} function, and of the
+     *        composed function
      * @param after
-     *              the function to apply after this function is applied
+     *        the function to apply after this function is applied
      * @return a composed function that first applies this function and then
      *         applies the {@code after} function
      * @throws NullPointerException
-     *                              if after is null
+     *         if after is null
      */
-    default <V> BiFunction<T, U, V> andThen(
-            Function<? super R, ? extends V> after) {
+    default <V> BiFunction<T, U, V> andThen(Function<? super R, ? extends V> after) {
         Objects.requireNonNull(after);
         return (T t, U u) -> after.apply(apply(t, u));
     }

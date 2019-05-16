@@ -21,8 +21,7 @@ import java.util.EventListenerProxy;
  * @see VetoableChangeSupport#getVetoableChangeListeners
  * @since 1.4
  */
-public class VetoableChangeListenerProxy extends
-        EventListenerProxy<VetoableChangeListener> implements
+public class VetoableChangeListenerProxy extends EventListenerProxy<VetoableChangeListener> implements
         VetoableChangeListener {
 
     private final String propertyName;
@@ -32,12 +31,11 @@ public class VetoableChangeListenerProxy extends
      * property.
      *
      * @param propertyName
-     *                     the name of the property to listen on
+     *        the name of the property to listen on
      * @param listener
-     *                     the listener object
+     *        the listener object
      */
-    public VetoableChangeListenerProxy(String propertyName,
-            VetoableChangeListener listener) {
+    public VetoableChangeListenerProxy(String propertyName, VetoableChangeListener listener) {
         super(listener);
         this.propertyName = propertyName;
     }
@@ -46,15 +44,13 @@ public class VetoableChangeListenerProxy extends
      * Forwards the property change event to the listener delegate.
      *
      * @param event
-     *              the property change event
-     *
+     *        the property change event
      * @exception PropertyVetoException
-     *                                  if the recipient wishes the property
-     *                                  change to be rolled
-     *                                  back
+     *            if the recipient wishes the property
+     *            change to be rolled
+     *            back
      */
-    public void vetoableChange(PropertyChangeEvent event)
-            throws PropertyVetoException {
+    public void vetoableChange(PropertyChangeEvent event) throws PropertyVetoException {
         getListener().vetoableChange(event);
     }
 

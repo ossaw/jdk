@@ -59,7 +59,6 @@ import sun.awt.AWTAccessor;
  * to Use Drag and Drop and Data Transfer</a>, a section in
  * <em>The Java Tutorial</em>, for more information.
  *
- *
  * @author Timothy Prinzing
  * @author Shannon Hickey
  * @since 1.4
@@ -135,11 +134,11 @@ public class TransferHandler implements Serializable {
          * Constructs a drop location for the given point.
          *
          * @param dropPoint
-         *                  the drop point, representing the mouse's current
-         *                  location
-         *                  within the component.
+         *        the drop point, representing the mouse's current
+         *        location
+         *        within the component.
          * @throws IllegalArgumentException
-         *                                  if the point is <code>null</code>
+         *         if the point is <code>null</code>
          */
         protected DropLocation(Point dropPoint) {
             if (dropPoint == null) {
@@ -213,9 +212,9 @@ public class TransferHandler implements Serializable {
          * <code>true</code> for the given component, event, and index.
          *
          * @param component
-         *                  the target component
+         *        the target component
          * @param event
-         *                  a <code>DropTargetEvent</code>
+         *        a <code>DropTargetEvent</code>
          */
         private TransferSupport(Component component, DropTargetEvent event) {
 
@@ -229,11 +228,11 @@ public class TransferHandler implements Serializable {
          * <code>Transferable</code>.
          *
          * @param component
-         *                     the target component
+         *        the target component
          * @param transferable
-         *                     the transferable
+         *        the transferable
          * @throws NullPointerException
-         *                              if either parameter is <code>null</code>
+         *         if either parameter is <code>null</code>
          */
         public TransferSupport(Component component, Transferable transferable) {
             if (component == null) {
@@ -253,12 +252,11 @@ public class TransferHandler implements Serializable {
          * Allows for a single instance to be reused during DnD.
          *
          * @param component
-         *                  the target component
+         *        the target component
          * @param event
-         *                  a <code>DropTargetEvent</code>
+         *        a <code>DropTargetEvent</code>
          */
-        private void setDNDVariables(Component component,
-                DropTargetEvent event) {
+        private void setDNDVariables(Component component, DropTargetEvent event) {
 
             assert isDrop;
 
@@ -272,17 +270,14 @@ public class TransferHandler implements Serializable {
                 return;
             }
 
-            assert source instanceof DropTargetDragEvent
-                    || source instanceof DropTargetDropEvent;
+            assert source instanceof DropTargetDragEvent || source instanceof DropTargetDropEvent;
 
-            Point p = source instanceof DropTargetDragEvent
-                    ? ((DropTargetDragEvent) source).getLocation()
+            Point p = source instanceof DropTargetDragEvent ? ((DropTargetDragEvent) source).getLocation()
                     : ((DropTargetDropEvent) source).getLocation();
 
-            if (SunToolkit.isInstanceOf(component,
-                    "javax.swing.text.JTextComponent")) {
-                dropLocation = SwingAccessor.getJTextComponentAccessor()
-                        .dropLocationForPoint((JTextComponent) component, p);
+            if (SunToolkit.isInstanceOf(component, "javax.swing.text.JTextComponent")) {
+                dropLocation = SwingAccessor.getJTextComponentAccessor().dropLocationForPoint(
+                        (JTextComponent) component, p);
             } else if (component instanceof JComponent) {
                 dropLocation = ((JComponent) component).dropLocationForPoint(p);
             }
@@ -319,7 +314,7 @@ public class TransferHandler implements Serializable {
          * {@code IllegalStateException} if it isn't.
          *
          * @throws IllegalStateException
-         *                               if {@code isDrop} is false.
+         *         if {@code isDrop} is false.
          */
         private void assureIsDrop() {
             if (!isDrop) {
@@ -341,7 +336,7 @@ public class TransferHandler implements Serializable {
          *
          * @return the drop location
          * @throws IllegalStateException
-         *                               if this is not a drop
+         *         if this is not a drop
          * @see #isDrop()
          */
         public DropLocation getDropLocation() {
@@ -352,8 +347,7 @@ public class TransferHandler implements Serializable {
                  * component didn't give us a custom drop location, so lazily
                  * create a point-only location
                  */
-                Point p = source instanceof DropTargetDragEvent
-                        ? ((DropTargetDragEvent) source).getLocation()
+                Point p = source instanceof DropTargetDragEvent ? ((DropTargetDragEvent) source).getLocation()
                         : ((DropTargetDropEvent) source).getLocation();
 
                 dropLocation = new DropLocation(p);
@@ -377,9 +371,9 @@ public class TransferHandler implements Serializable {
          * {@code IllegalStateException}.
          *
          * @param showDropLocation
-         *                         whether or not to indicate the drop location
+         *        whether or not to indicate the drop location
          * @throws IllegalStateException
-         *                               if this is not a drop
+         *         if this is not a drop
          * @see #isDrop()
          */
         public void setShowDropLocation(boolean showDropLocation) {
@@ -400,11 +394,11 @@ public class TransferHandler implements Serializable {
          * {@code IllegalStateException}.
          *
          * @param dropAction
-         *                   the drop action
+         *        the drop action
          * @throws IllegalStateException
-         *                                  if this is not a drop
+         *         if this is not a drop
          * @throws IllegalArgumentException
-         *                                  if an invalid action is specified
+         *         if an invalid action is specified
          * @see #getDropAction
          * @see #getUserDropAction
          * @see #getSourceDropActions
@@ -416,8 +410,7 @@ public class TransferHandler implements Serializable {
             int action = dropAction & getSourceDropActions();
 
             if (!(action == COPY || action == MOVE || action == LINK)) {
-                throw new IllegalArgumentException("unsupported drop action: "
-                        + dropAction);
+                throw new IllegalArgumentException("unsupported drop action: " + dropAction);
             }
 
             this.dropAction = dropAction;
@@ -440,7 +433,7 @@ public class TransferHandler implements Serializable {
          *
          * @return the action chosen for the drop
          * @throws IllegalStateException
-         *                               if this is not a drop
+         *         if this is not a drop
          * @see #setDropAction
          * @see #getUserDropAction
          * @see #isDrop()
@@ -468,7 +461,7 @@ public class TransferHandler implements Serializable {
          *
          * @return the user drop action
          * @throws IllegalStateException
-         *                               if this is not a drop
+         *         if this is not a drop
          * @see #setDropAction
          * @see #getDropAction
          * @see #isDrop()
@@ -476,8 +469,7 @@ public class TransferHandler implements Serializable {
         public int getUserDropAction() {
             assureIsDrop();
 
-            return (source instanceof DropTargetDragEvent)
-                    ? ((DropTargetDragEvent) source).getDropAction()
+            return (source instanceof DropTargetDragEvent) ? ((DropTargetDragEvent) source).getDropAction()
                     : ((DropTargetDropEvent) source).getDropAction();
         }
 
@@ -505,14 +497,13 @@ public class TransferHandler implements Serializable {
          *
          * @return the drag source's supported drop actions
          * @throws IllegalStateException
-         *                               if this is not a drop
+         *         if this is not a drop
          * @see #isDrop()
          */
         public int getSourceDropActions() {
             assureIsDrop();
 
-            return (source instanceof DropTargetDragEvent)
-                    ? ((DropTargetDragEvent) source).getSourceActions()
+            return (source instanceof DropTargetDragEvent) ? ((DropTargetDragEvent) source).getSourceActions()
                     : ((DropTargetDropEvent) source).getSourceActions();
         }
 
@@ -524,11 +515,9 @@ public class TransferHandler implements Serializable {
         public DataFlavor[] getDataFlavors() {
             if (isDrop) {
                 if (source instanceof DropTargetDragEvent) {
-                    return ((DropTargetDragEvent) source)
-                            .getCurrentDataFlavors();
+                    return ((DropTargetDragEvent) source).getCurrentDataFlavors();
                 } else {
-                    return ((DropTargetDropEvent) source)
-                            .getCurrentDataFlavors();
+                    return ((DropTargetDropEvent) source).getCurrentDataFlavors();
                 }
             }
 
@@ -539,17 +528,15 @@ public class TransferHandler implements Serializable {
          * Returns whether or not the given data flavor is supported.
          *
          * @param df
-         *           the <code>DataFlavor</code> to test
+         *        the <code>DataFlavor</code> to test
          * @return whether or not the given flavor is supported.
          */
         public boolean isDataFlavorSupported(DataFlavor df) {
             if (isDrop) {
                 if (source instanceof DropTargetDragEvent) {
-                    return ((DropTargetDragEvent) source).isDataFlavorSupported(
-                            df);
+                    return ((DropTargetDragEvent) source).isDataFlavorSupported(df);
                 } else {
-                    return ((DropTargetDropEvent) source).isDataFlavorSupported(
-                            df);
+                    return ((DropTargetDropEvent) source).isDataFlavorSupported(df);
                 }
             }
 
@@ -620,12 +607,12 @@ public class TransferHandler implements Serializable {
      * one component to another via the clipboard or a drag and drop operation.
      *
      * @param property
-     *                 the name of the property to transfer; this can be
-     *                 <code>null</code> if there is no property associated with
-     *                 the
-     *                 transfer handler (a subclass that performs some other
-     *                 kind of
-     *                 transfer, for example)
+     *        the name of the property to transfer; this can be
+     *        <code>null</code> if there is no property associated with
+     *        the
+     *        transfer handler (a subclass that performs some other
+     *        kind of
+     *        transfer, for example)
      */
     public TransferHandler(String property) {
         propertyName = property;
@@ -662,7 +649,7 @@ public class TransferHandler implements Serializable {
      * some performance reasons.
      *
      * @param img
-     *            an image to drag
+     *        an image to drag
      */
     public void setDragImage(Image img) {
         dragImage = img;
@@ -682,9 +669,9 @@ public class TransferHandler implements Serializable {
      * Sets an anchor offset for the image to drag. It can not be {@code null}.
      *
      * @param p
-     *          a {@code Point} object that corresponds to coordinates of an
-     *          anchor offset of the image relative to the upper left corner
-     *          of the image
+     *        a {@code Point} object that corresponds to coordinates of an
+     *        anchor offset of the image relative to the upper left corner
+     *        of the image
      */
     public void setDragImageOffset(Point p) {
         dragImageOffset = new Point(p);
@@ -720,16 +707,16 @@ public class TransferHandler implements Serializable {
      * transfer has completed.
      *
      * @param comp
-     *               the component holding the data to be transferred; provided
-     *               to
-     *               enable sharing of <code>TransferHandler</code>s
+     *        the component holding the data to be transferred; provided
+     *        to
+     *        enable sharing of <code>TransferHandler</code>s
      * @param e
-     *               the event that triggered the transfer
+     *        the event that triggered the transfer
      * @param action
-     *               the transfer action initially requested; either
-     *               {@code COPY},
-     *               {@code MOVE} or {@code LINK}; the DnD system may change the
-     *               action used during the course of the drag operation
+     *        the transfer action initially requested; either
+     *        {@code COPY},
+     *        {@code MOVE} or {@code LINK}; the DnD system may change the
+     *        action used during the course of the drag operation
      */
     public void exportAsDrag(JComponent comp, InputEvent e, int action) {
         int srcActions = getSourceActions(comp);
@@ -770,29 +757,27 @@ public class TransferHandler implements Serializable {
      * first be called with an action of <code>NONE</code> for consistency.
      *
      * @param comp
-     *               the component holding the data to be transferred; provided
-     *               to
-     *               enable sharing of <code>TransferHandler</code>s
+     *        the component holding the data to be transferred; provided
+     *        to
+     *        enable sharing of <code>TransferHandler</code>s
      * @param clip
-     *               the clipboard to transfer the data into
+     *        the clipboard to transfer the data into
      * @param action
-     *               the transfer action requested; this should be a value of
-     *               either <code>COPY</code> or <code>MOVE</code>; the
-     *               operation
-     *               performed is the intersection of the transfer capabilities
-     *               given by getSourceActions and the requested action; the
-     *               intersection may result in an action of <code>NONE</code>
-     *               if
-     *               the requested action isn't supported
+     *        the transfer action requested; this should be a value of
+     *        either <code>COPY</code> or <code>MOVE</code>; the
+     *        operation
+     *        performed is the intersection of the transfer capabilities
+     *        given by getSourceActions and the requested action; the
+     *        intersection may result in an action of <code>NONE</code>
+     *        if
+     *        the requested action isn't supported
      * @throws IllegalStateException
-     *                               if the clipboard is currently unavailable
+     *         if the clipboard is currently unavailable
      * @see Clipboard#setContents(Transferable, ClipboardOwner)
      */
-    public void exportToClipboard(JComponent comp, Clipboard clip, int action)
-            throws IllegalStateException {
+    public void exportToClipboard(JComponent comp, Clipboard clip, int action) throws IllegalStateException {
 
-        if ((action == COPY || action == MOVE) && (getSourceActions(comp)
-                & action) != 0) {
+        if ((action == COPY || action == MOVE) && (getSourceActions(comp) & action) != 0) {
 
             Transferable t = createTransferable(comp);
             if (t != null) {
@@ -827,18 +812,17 @@ public class TransferHandler implements Serializable {
      * values it may contain after this method returns.
      *
      * @param support
-     *                the object containing the details of the transfer, not
-     *                <code>null</code>.
+     *        the object containing the details of the transfer, not
+     *        <code>null</code>.
      * @return true if the data was inserted into the component, false otherwise
      * @throws NullPointerException
-     *                              if <code>support</code> is {@code null}
+     *         if <code>support</code> is {@code null}
      * @see #canImport(TransferHandler.TransferSupport)
      * @since 1.6
      */
     public boolean importData(TransferSupport support) {
-        return support.getComponent() instanceof JComponent ? importData(
-                (JComponent) support.getComponent(), support.getTransferable())
-                : false;
+        return support.getComponent() instanceof JComponent ? importData((JComponent) support.getComponent(),
+                support.getTransferable()) : false;
     }
 
     /**
@@ -855,10 +839,10 @@ public class TransferHandler implements Serializable {
      * {@code JComponent}).
      *
      * @param comp
-     *             the component to receive the transfer; provided to enable
-     *             sharing of <code>TransferHandler</code>s
+     *        the component to receive the transfer; provided to enable
+     *        sharing of <code>TransferHandler</code>s
      * @param t
-     *             the data to import
+     *        the data to import
      * @return true if the data was inserted into the component, false otherwise
      * @see #importData(TransferHandler.TransferSupport)
      */
@@ -875,8 +859,7 @@ public class TransferHandler implements Serializable {
                 // zero or more than one argument, ignore
                 return false;
             }
-            DataFlavor flavor = getPropertyDataFlavor(params[0], t
-                    .getTransferDataFlavors());
+            DataFlavor flavor = getPropertyDataFlavor(params[0], t.getTransferDataFlavors());
             if (flavor != null) {
                 try {
                     Object value = t.getTransferData(flavor);
@@ -927,21 +910,20 @@ public class TransferHandler implements Serializable {
      * values it may contain after this method returns.
      *
      * @param support
-     *                the object containing the details of the transfer, not
-     *                <code>null</code>.
+     *        the object containing the details of the transfer, not
+     *        <code>null</code>.
      * @return <code>true</code> if the import can happen, <code>false</code>
      *         otherwise
      * @throws NullPointerException
-     *                              if <code>support</code> is {@code null}
+     *         if <code>support</code> is {@code null}
      * @see #importData(TransferHandler.TransferSupport)
      * @see javax.swing.TransferHandler.TransferSupport#setShowDropLocation
      * @see javax.swing.TransferHandler.TransferSupport#setDropAction
      * @since 1.6
      */
     public boolean canImport(TransferSupport support) {
-        return support.getComponent() instanceof JComponent ? canImport(
-                (JComponent) support.getComponent(), support.getDataFlavors())
-                : false;
+        return support.getComponent() instanceof JComponent ? canImport((JComponent) support.getComponent(),
+                support.getDataFlavors()) : false;
     }
 
     /**
@@ -957,11 +939,11 @@ public class TransferHandler implements Serializable {
      * {@code JFrame} or other non-{@code JComponent}).
      *
      * @param comp
-     *                        the component to receive the transfer; provided to
-     *                        enable
-     *                        sharing of <code>TransferHandler</code>s
+     *        the component to receive the transfer; provided to
+     *        enable
+     *        sharing of <code>TransferHandler</code>s
      * @param transferFlavors
-     *                        the data formats available
+     *        the data formats available
      * @return true if the data can be inserted into the component, false
      *         otherwise
      * @see #canImport(TransferHandler.TransferSupport)
@@ -979,8 +961,7 @@ public class TransferHandler implements Serializable {
                 // zero or more than one argument, ignore
                 return false;
             }
-            DataFlavor flavor = getPropertyDataFlavor(params[0],
-                    transferFlavors);
+            DataFlavor flavor = getPropertyDataFlavor(params[0], transferFlavors);
             if (flavor != null) {
                 return true;
             }
@@ -997,8 +978,8 @@ public class TransferHandler implements Serializable {
      * transfers from the component.
      *
      * @param c
-     *          the component holding the data to be transferred; provided to
-     *          enable sharing of <code>TransferHandler</code>s
+     *        the component holding the data to be transferred; provided to
+     *        enable sharing of <code>TransferHandler</code>s
      * @return {@code COPY} if the transfer property can be found, otherwise
      *         returns <code>NONE</code>
      */
@@ -1026,8 +1007,8 @@ public class TransferHandler implements Serializable {
      * the return is <code>null</code>.
      *
      * @param t
-     *          the data to be transferred; this value is expected to have
-     *          been created by the <code>createTransferable</code> method
+     *        the data to be transferred; this value is expected to have
+     *        been created by the <code>createTransferable</code> method
      * @return <code>null</code>, indicating there is no default visual
      *         representation
      */
@@ -1041,12 +1022,11 @@ public class TransferHandler implements Serializable {
      * <code>null</code> if the component's property is <code>null</code>
      *
      * @param c
-     *          the component holding the data to be transferred; provided to
-     *          enable sharing of <code>TransferHandler</code>s
+     *        the component holding the data to be transferred; provided to
+     *        enable sharing of <code>TransferHandler</code>s
      * @return the representation of the data to be transferred, or
      *         <code>null</code> if the property associated with <code>c</code>
      *         is <code>null</code>
-     *
      */
     protected Transferable createTransferable(JComponent c) {
         PropertyDescriptor property = getPropertyDescriptor(c);
@@ -1065,16 +1045,15 @@ public class TransferHandler implements Serializable {
      * does not include <code>MOVE</code>).
      *
      * @param source
-     *               the component that was the source of the data
+     *        the component that was the source of the data
      * @param data
-     *               The data that was transferred or possibly null if the
-     *               action
-     *               is <code>NONE</code>.
+     *        The data that was transferred or possibly null if the
+     *        action
+     *        is <code>NONE</code>.
      * @param action
-     *               the actual action that was performed
+     *        the actual action that was performed
      */
-    protected void exportDone(JComponent source, Transferable data,
-            int action) {}
+    protected void exportDone(JComponent source, Transferable data, int action) {}
 
     /**
      * Fetches the property descriptor for the property assigned to this
@@ -1119,9 +1098,8 @@ public class TransferHandler implements Serializable {
     private DataFlavor getPropertyDataFlavor(Class<?> k, DataFlavor[] flavors) {
         for (int i = 0; i < flavors.length; i++) {
             DataFlavor flavor = flavors[i];
-            if ("application".equals(flavor.getPrimaryType())
-                    && "x-java-jvm-local-objectref".equals(flavor.getSubType())
-                    && k.isAssignableFrom(flavor.getRepresentationClass())) {
+            if ("application".equals(flavor.getPrimaryType()) && "x-java-jvm-local-objectref".equals(flavor
+                    .getSubType()) && k.isAssignableFrom(flavor.getRepresentationClass())) {
 
                 return flavor;
             }
@@ -1134,8 +1112,7 @@ public class TransferHandler implements Serializable {
 
     private static DropTargetListener getDropTargetListener() {
         synchronized (DropHandler.class) {
-            DropHandler handler = (DropHandler) AppContext.getAppContext().get(
-                    DropHandler.class);
+            DropHandler handler = (DropHandler) AppContext.getAppContext().get(DropHandler.class);
 
             if (handler == null) {
                 handler = new DropHandler();
@@ -1168,8 +1145,7 @@ public class TransferHandler implements Serializable {
         public DataFlavor[] getTransferDataFlavors() {
             DataFlavor[] flavors = new DataFlavor[1];
             Class<?> propertyType = property.getPropertyType();
-            String mimeType = DataFlavor.javaJVMLocalObjectMimeType + ";class="
-                    + propertyType.getName();
+            String mimeType = DataFlavor.javaJVMLocalObjectMimeType + ";class=" + propertyType.getName();
             try {
                 flavors[0] = new DataFlavor(mimeType);
             } catch (ClassNotFoundException cnfe) {
@@ -1183,16 +1159,14 @@ public class TransferHandler implements Serializable {
          * object.
          * 
          * @param flavor
-         *               the requested flavor for the data
+         *        the requested flavor for the data
          * @return true if this <code>DataFlavor</code> is supported, otherwise
          *         false
          */
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             Class<?> propertyType = property.getPropertyType();
-            if ("application".equals(flavor.getPrimaryType())
-                    && "x-java-jvm-local-objectref".equals(flavor.getSubType())
-                    && flavor.getRepresentationClass().isAssignableFrom(
-                            propertyType)) {
+            if ("application".equals(flavor.getPrimaryType()) && "x-java-jvm-local-objectref".equals(flavor
+                    .getSubType()) && flavor.getRepresentationClass().isAssignableFrom(propertyType)) {
 
                 return true;
             }
@@ -1205,18 +1179,17 @@ public class TransferHandler implements Serializable {
          * of the flavor.
          *
          * @param flavor
-         *               the requested flavor for the data
+         *        the requested flavor for the data
          * @see DataFlavor#getRepresentationClass
          * @exception IOException
-         *                                       if the data is no longer
-         *                                       available in the requested
-         *                                       flavor.
+         *            if the data is no longer
+         *            available in the requested
+         *            flavor.
          * @exception UnsupportedFlavorException
-         *                                       if the requested data flavor is
-         *                                       not supported.
+         *            if the requested data flavor is
+         *            not supported.
          */
-        public Object getTransferData(DataFlavor flavor)
-                throws UnsupportedFlavorException, IOException {
+        public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
             if (!isDataFlavorSupported(flavor)) {
                 throw new UnsupportedFlavorException(flavor);
             }
@@ -1225,8 +1198,7 @@ public class TransferHandler implements Serializable {
             try {
                 value = MethodUtil.invoke(reader, component, (Object[]) null);
             } catch (Exception ex) {
-                throw new IOException("Property read failed: " + property
-                        .getName());
+                throw new IOException("Property read failed: " + property.getName());
             }
             return value;
         }
@@ -1252,12 +1224,10 @@ public class TransferHandler implements Serializable {
                 // addDropTargetListener is overridden
                 // we specifically need to add to the superclass
                 super.addDropTargetListener(getDropTargetListener());
-            } catch (TooManyListenersException tmle) {
-            }
+            } catch (TooManyListenersException tmle) {}
         }
 
-        public void addDropTargetListener(DropTargetListener dtl)
-                throws TooManyListenersException {
+        public void addDropTargetListener(DropTargetListener dtl) throws TooManyListenersException {
             // Since the super class only supports one DropTargetListener,
             // and we add one from the constructor, we always add to the
             // extended list.
@@ -1338,8 +1308,7 @@ public class TransferHandler implements Serializable {
                 Object[] listeners = listenerList.getListenerList();
                 for (int i = listeners.length - 2; i >= 0; i -= 2) {
                     if (listeners[i] == DropTargetListener.class) {
-                        ((DropTargetListener) listeners[i + 1])
-                                .dropActionChanged(e);
+                        ((DropTargetListener) listeners[i + 1]).dropActionChanged(e);
                     }
                 }
             }
@@ -1348,8 +1317,7 @@ public class TransferHandler implements Serializable {
         private EventListenerList listenerList;
     }
 
-    private static class DropHandler implements DropTargetListener,
-            Serializable, ActionListener {
+    private static class DropHandler implements DropTargetListener, Serializable, ActionListener {
 
         private Timer timer;
         private Point lastPosition;
@@ -1359,8 +1327,7 @@ public class TransferHandler implements Serializable {
 
         private Component component;
         private Object state;
-        private TransferSupport support = new TransferSupport(null,
-                (DropTargetEvent) null);
+        private TransferSupport support = new TransferSupport(null, (DropTargetEvent) null);
 
         private static final int AUTOSCROLL_INSET = 10;
 
@@ -1379,8 +1346,7 @@ public class TransferHandler implements Serializable {
         private void updateAutoscrollRegion(JComponent c) {
             // compute the outer
             Rectangle visible = c.getVisibleRect();
-            outer.setBounds(visible.x, visible.y, visible.width,
-                    visible.height);
+            outer.setBounds(visible.x, visible.y, visible.width, visible.height);
 
             // compute the insets
             Insets i = new Insets(0, 0, 0, 0);
@@ -1397,8 +1363,8 @@ public class TransferHandler implements Serializable {
             }
 
             // set the inner from the insets
-            inner.setBounds(visible.x + i.left, visible.y + i.top, visible.width
-                    - (i.left + i.right), visible.height - (i.top + i.bottom));
+            inner.setBounds(visible.x + i.left, visible.y + i.top, visible.width - (i.left + i.right),
+                    visible.height - (i.top + i.bottom));
         }
 
         /**
@@ -1412,33 +1378,25 @@ public class TransferHandler implements Serializable {
                 Scrollable s = (Scrollable) c;
                 if (pos.y < inner.y) {
                     // scroll upward
-                    int dy = s.getScrollableUnitIncrement(outer,
-                            SwingConstants.VERTICAL, -1);
-                    Rectangle r = new Rectangle(inner.x, outer.y - dy,
-                            inner.width, dy);
+                    int dy = s.getScrollableUnitIncrement(outer, SwingConstants.VERTICAL, -1);
+                    Rectangle r = new Rectangle(inner.x, outer.y - dy, inner.width, dy);
                     c.scrollRectToVisible(r);
                 } else if (pos.y > (inner.y + inner.height)) {
                     // scroll downard
-                    int dy = s.getScrollableUnitIncrement(outer,
-                            SwingConstants.VERTICAL, 1);
-                    Rectangle r = new Rectangle(inner.x, outer.y + outer.height,
-                            inner.width, dy);
+                    int dy = s.getScrollableUnitIncrement(outer, SwingConstants.VERTICAL, 1);
+                    Rectangle r = new Rectangle(inner.x, outer.y + outer.height, inner.width, dy);
                     c.scrollRectToVisible(r);
                 }
 
                 if (pos.x < inner.x) {
                     // scroll left
-                    int dx = s.getScrollableUnitIncrement(outer,
-                            SwingConstants.HORIZONTAL, -1);
-                    Rectangle r = new Rectangle(outer.x - dx, inner.y, dx,
-                            inner.height);
+                    int dx = s.getScrollableUnitIncrement(outer, SwingConstants.HORIZONTAL, -1);
+                    Rectangle r = new Rectangle(outer.x - dx, inner.y, dx, inner.height);
                     c.scrollRectToVisible(r);
                 } else if (pos.x > (inner.x + inner.width)) {
                     // scroll right
-                    int dx = s.getScrollableUnitIncrement(outer,
-                            SwingConstants.HORIZONTAL, 1);
-                    Rectangle r = new Rectangle(outer.x + outer.width, inner.y,
-                            dx, inner.height);
+                    int dx = s.getScrollableUnitIncrement(outer, SwingConstants.HORIZONTAL, 1);
+                    Rectangle r = new Rectangle(outer.x + outer.width, inner.y, dx, inner.height);
                     c.scrollRectToVisible(r);
                 }
             }
@@ -1453,18 +1411,15 @@ public class TransferHandler implements Serializable {
                 Toolkit t = Toolkit.getDefaultToolkit();
                 Integer prop;
 
-                prop = (Integer) t.getDesktopProperty(
-                        "DnD.Autoscroll.interval");
+                prop = (Integer) t.getDesktopProperty("DnD.Autoscroll.interval");
 
                 timer = new Timer(prop == null ? 100 : prop.intValue(), this);
 
-                prop = (Integer) t.getDesktopProperty(
-                        "DnD.Autoscroll.initialDelay");
+                prop = (Integer) t.getDesktopProperty("DnD.Autoscroll.initialDelay");
 
                 timer.setInitialDelay(prop == null ? 100 : prop.intValue());
 
-                prop = (Integer) t.getDesktopProperty(
-                        "DnD.Autoscroll.cursorHysteresis");
+                prop = (Integer) t.getDesktopProperty("DnD.Autoscroll.cursorHysteresis");
 
                 if (prop != null) {
                     hysteresis = prop.intValue();
@@ -1478,7 +1433,7 @@ public class TransferHandler implements Serializable {
          * <P>
          * 
          * @param e
-         *          the <code>ActionEvent</code>
+         *        the <code>ActionEvent</code>
          */
         public void actionPerformed(ActionEvent e) {
             updateAutoscrollRegion((JComponent) component);
@@ -1489,26 +1444,20 @@ public class TransferHandler implements Serializable {
 
         // --- DropTargetListener methods -----------------------------------
 
-        private void setComponentDropLocation(TransferSupport support,
-                boolean forDrop) {
+        private void setComponentDropLocation(TransferSupport support, boolean forDrop) {
 
-            DropLocation dropLocation = (support == null) ? null
-                    : support.getDropLocation();
+            DropLocation dropLocation = (support == null) ? null : support.getDropLocation();
 
-            if (SunToolkit.isInstanceOf(component,
-                    "javax.swing.text.JTextComponent")) {
-                state = SwingAccessor.getJTextComponentAccessor()
-                        .setDropLocation((JTextComponent) component,
-                                dropLocation, state, forDrop);
+            if (SunToolkit.isInstanceOf(component, "javax.swing.text.JTextComponent")) {
+                state = SwingAccessor.getJTextComponentAccessor().setDropLocation((JTextComponent) component,
+                        dropLocation, state, forDrop);
             } else if (component instanceof JComponent) {
-                state = ((JComponent) component).setDropLocation(dropLocation,
-                        state, forDrop);
+                state = ((JComponent) component).setDropLocation(dropLocation, state, forDrop);
             }
         }
 
         private void handleDrag(DropTargetDragEvent e) {
-            TransferHandler importer = ((HasGetTransferHandler) component)
-                    .getTransferHandler();
+            TransferHandler importer = ((HasGetTransferHandler) component).getTransferHandler();
 
             if (importer == null) {
                 e.rejectDrag();
@@ -1525,9 +1474,7 @@ public class TransferHandler implements Serializable {
                 e.rejectDrag();
             }
 
-            boolean showLocation = support.showDropLocationIsSet
-                    ? support.showDropLocation
-                    : canImport;
+            boolean showLocation = support.showDropLocationIsSet ? support.showDropLocation : canImport;
 
             setComponentDropLocation(showLocation ? support : null, false);
         }
@@ -1554,8 +1501,7 @@ public class TransferHandler implements Serializable {
 
             Point p = e.getLocation();
 
-            if (Math.abs(p.x - lastPosition.x) > hysteresis || Math.abs(p.y
-                    - lastPosition.y) > hysteresis) {
+            if (Math.abs(p.x - lastPosition.x) > hysteresis || Math.abs(p.y - lastPosition.y) > hysteresis) {
                 // no autoscroll
                 if (timer.isRunning())
                     timer.stop();
@@ -1572,8 +1518,7 @@ public class TransferHandler implements Serializable {
         }
 
         public void drop(DropTargetDropEvent e) {
-            TransferHandler importer = ((HasGetTransferHandler) component)
-                    .getTransferHandler();
+            TransferHandler importer = ((HasGetTransferHandler) component).getTransferHandler();
 
             if (importer == null) {
                 e.rejectDrop();
@@ -1587,9 +1532,7 @@ public class TransferHandler implements Serializable {
             if (canImport) {
                 e.acceptDrop(support.getDropAction());
 
-                boolean showLocation = support.showDropLocationIsSet
-                        ? support.showDropLocation
-                        : canImport;
+                boolean showLocation = support.showDropLocationIsSet ? support.showDropLocation : canImport;
 
                 setComponentDropLocation(showLocation ? support : null, false);
 
@@ -1641,8 +1584,7 @@ public class TransferHandler implements Serializable {
      * This is the default drag handler for drag and drop operations that use
      * the <code>TransferHandler</code>.
      */
-    private static class DragHandler implements DragGestureListener,
-            DragSourceListener {
+    private static class DragHandler implements DragGestureListener, DragSourceListener {
 
         private boolean scrolls;
 
@@ -1663,8 +1605,7 @@ public class TransferHandler implements Serializable {
                     if (im == null) {
                         dge.startDrag(null, t, this);
                     } else {
-                        dge.startDrag(null, im, th.getDragImageOffset(), t,
-                                this);
+                        dge.startDrag(null, im, th.getDragImageOffset(), t, this);
                     }
                     return;
                 } catch (RuntimeException re) {
@@ -1699,11 +1640,9 @@ public class TransferHandler implements Serializable {
             DragSourceContext dsc = dsde.getDragSourceContext();
             JComponent c = (JComponent) dsc.getComponent();
             if (dsde.getDropSuccess()) {
-                c.getTransferHandler().exportDone(c, dsc.getTransferable(), dsde
-                        .getDropAction());
+                c.getTransferHandler().exportDone(c, dsc.getTransferable(), dsde.getDropAction());
             } else {
-                c.getTransferHandler().exportDone(c, dsc.getTransferable(),
-                        NONE);
+                c.getTransferHandler().exportDone(c, dsc.getTransferable(), NONE);
             }
             c.setAutoscrolls(scrolls);
         }
@@ -1711,8 +1650,7 @@ public class TransferHandler implements Serializable {
         public void dropActionChanged(DragSourceDragEvent dsde) {}
     }
 
-    private static class SwingDragGestureRecognizer extends
-            DragGestureRecognizer {
+    private static class SwingDragGestureRecognizer extends DragGestureRecognizer {
 
         SwingDragGestureRecognizer(DragGestureListener dgl) {
             super(DragSource.getDefaultDragSource(), null, NONE, dgl);
@@ -1732,7 +1670,6 @@ public class TransferHandler implements Serializable {
 
         /**
          * unregister this DragGestureRecognizer's Listeners with the Component
-         *
          * subclasses must override this method
          */
         protected void unregisterListeners() {}
@@ -1750,16 +1687,14 @@ public class TransferHandler implements Serializable {
         }
 
         public boolean isEnabled(Object sender) {
-            if (sender instanceof JComponent && ((JComponent) sender)
-                    .getTransferHandler() == null) {
+            if (sender instanceof JComponent && ((JComponent) sender).getTransferHandler() == null) {
                 return false;
             }
 
             return true;
         }
 
-        private static final JavaSecurityAccess javaSecurityAccess = SharedSecrets
-                .getJavaSecurityAccess();
+        private static final JavaSecurityAccess javaSecurityAccess = SharedSecrets.getJavaSecurityAccess();
 
         public void actionPerformed(final ActionEvent e) {
             final Object src = e.getSource();
@@ -1772,24 +1707,20 @@ public class TransferHandler implements Serializable {
             };
 
             final AccessControlContext stack = AccessController.getContext();
-            final AccessControlContext srcAcc = AWTAccessor
-                    .getComponentAccessor().getAccessControlContext(
-                            (Component) src);
-            final AccessControlContext eventAcc = AWTAccessor
-                    .getAWTEventAccessor().getAccessControlContext(e);
+            final AccessControlContext srcAcc = AWTAccessor.getComponentAccessor().getAccessControlContext(
+                    (Component) src);
+            final AccessControlContext eventAcc = AWTAccessor.getAWTEventAccessor().getAccessControlContext(
+                    e);
 
             if (srcAcc == null) {
-                javaSecurityAccess.doIntersectionPrivilege(action, stack,
-                        eventAcc);
+                javaSecurityAccess.doIntersectionPrivilege(action, stack, eventAcc);
             } else {
-                javaSecurityAccess.doIntersectionPrivilege(
-                        new PrivilegedAction<Void>() {
-                            public Void run() {
-                                javaSecurityAccess.doIntersectionPrivilege(
-                                        action, eventAcc);
-                                return null;
-                            }
-                        }, stack, srcAcc);
+                javaSecurityAccess.doIntersectionPrivilege(new PrivilegedAction<Void>() {
+                    public Void run() {
+                        javaSecurityAccess.doIntersectionPrivilege(action, eventAcc);
+                        return null;
+                    }
+                }, stack, srcAcc);
             }
         }
 
@@ -1834,12 +1765,10 @@ public class TransferHandler implements Serializable {
             if (SwingUtilities2.canAccessSystemClipboard()) {
                 return c.getToolkit().getSystemClipboard();
             }
-            Clipboard clipboard = (Clipboard) sun.awt.AppContext.getAppContext()
-                    .get(SandboxClipboardKey);
+            Clipboard clipboard = (Clipboard) sun.awt.AppContext.getAppContext().get(SandboxClipboardKey);
             if (clipboard == null) {
                 clipboard = new Clipboard("Sandboxed Component Clipboard");
-                sun.awt.AppContext.getAppContext().put(SandboxClipboardKey,
-                        clipboard);
+                sun.awt.AppContext.getAppContext().put(SandboxClipboardKey, clipboard);
             }
             return clipboard;
         }

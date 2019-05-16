@@ -84,7 +84,7 @@ public final class EncodingInfo extends Object {
      * the encoding.
      * 
      * @param ch
-     *           the char in question.
+     *        the char in question.
      * @xsl.usage internal
      */
     public boolean isInEncoding(char ch) {
@@ -104,9 +104,9 @@ public final class EncodingInfo extends Object {
      * high/low pair is in the encoding.
      * 
      * @param high
-     *             a char that the a high char of a high/low surrogate pair.
+     *        a char that the a high char of a high/low surrogate pair.
      * @param low
-     *             a char that is the low char of a high/low surrogate pair.
+     *        a char that is the low char of a high/low surrogate pair.
      * @xsl.usage internal
      */
     public boolean isInEncoding(char high, char low) {
@@ -128,9 +128,9 @@ public final class EncodingInfo extends Object {
      * state, and has no assciated encoding.
      *
      * @param name
-     *                 reference to the ISO name.
+     *        reference to the ISO name.
      * @param javaName
-     *                 reference to the Java encoding name.
+     *        reference to the Java encoding name.
      */
     public EncodingInfo(String name, String javaName) {
 
@@ -175,8 +175,7 @@ public final class EncodingInfo extends Object {
 
                 // If we don't have an m_before object to delegate to, make one.
                 if (m_before == null)
-                    m_before = new EncodingImpl(m_encoding, m_first, m_explFirst
-                            - 1, codePoint);
+                    m_before = new EncodingImpl(m_encoding, m_first, m_explFirst - 1, codePoint);
                 ret = m_before.isInEncoding(ch1);
             } else if (m_explLast < codePoint) {
                 // The unicode value is after the range
@@ -184,8 +183,7 @@ public final class EncodingInfo extends Object {
 
                 // If we don't have an m_after object to delegate to, make one.
                 if (m_after == null)
-                    m_after = new EncodingImpl(m_encoding, m_explLast + 1,
-                            m_last, codePoint);
+                    m_after = new EncodingImpl(m_encoding, m_explLast + 1, m_last, codePoint);
                 ret = m_after.isInEncoding(ch1);
             } else {
                 // The unicode value is in the range we explitly handle
@@ -214,8 +212,7 @@ public final class EncodingInfo extends Object {
 
                 // If we don't have an m_before object to delegate to, make one.
                 if (m_before == null)
-                    m_before = new EncodingImpl(m_encoding, m_first, m_explFirst
-                            - 1, codePoint);
+                    m_before = new EncodingImpl(m_encoding, m_first, m_explFirst - 1, codePoint);
                 ret = m_before.isInEncoding(high, low);
             } else if (m_explLast < codePoint) {
                 // The unicode value is after the range
@@ -223,8 +220,7 @@ public final class EncodingInfo extends Object {
 
                 // If we don't have an m_after object to delegate to, make one.
                 if (m_after == null)
-                    m_after = new EncodingImpl(m_encoding, m_explLast + 1,
-                            m_last, codePoint);
+                    m_after = new EncodingImpl(m_encoding, m_explLast + 1, m_last, codePoint);
                 ret = m_after.isInEncoding(high, low);
             } else {
                 // The unicode value is in the range we explitly handle
@@ -302,8 +298,7 @@ public final class EncodingInfo extends Object {
             this(javaName, 0, Integer.MAX_VALUE, (char) 0);
         }
 
-        private EncodingImpl(String encoding, int first, int last,
-                int codePoint) {
+        private EncodingImpl(String encoding, int first, int last, int codePoint) {
             // Set the range of unicode values that this object manages
             // either explicitly or implicitly.
             m_first = first;
@@ -323,11 +318,9 @@ public final class EncodingInfo extends Object {
                 if (0 <= m_explFirst && m_explFirst <= 127) {
                     // This particular EncodingImpl explicitly handles
                     // characters in the low range.
-                    if ("UTF8".equals(javaName) || "UTF-16".equals(javaName)
-                            || "ASCII".equals(javaName) || "US-ASCII".equals(
-                                    javaName) || "Unicode".equals(javaName)
-                            || "UNICODE".equals(javaName) || javaName
-                                    .startsWith("ISO8859")) {
+                    if ("UTF8".equals(javaName) || "UTF-16".equals(javaName) || "ASCII".equals(javaName)
+                            || "US-ASCII".equals(javaName) || "Unicode".equals(javaName) || "UNICODE".equals(
+                                    javaName) || javaName.startsWith("ISO8859")) {
 
                         // Not only does this EncodingImpl object explicitly
                         // handle chracters in the low range, it is
@@ -378,14 +371,12 @@ public final class EncodingInfo extends Object {
      * within the serializer.
      * 
      * @param ch
-     *                 the char in question, that is not a high char of a
-     *                 high/low
-     *                 surrogate pair.
+     *        the char in question, that is not a high char of a
+     *        high/low
+     *        surrogate pair.
      * @param encoding
-     *                 the Java name of the enocding.
-     *
+     *        the Java name of the enocding.
      * @xsl.usage internal
-     *
      */
     private static boolean inEncoding(char ch, String encoding) {
         boolean isInEncoding;
@@ -420,14 +411,12 @@ public final class EncodingInfo extends Object {
      * within the serializer.
      * 
      * @param high
-     *                 the high char of a high/low surrogate pair.
+     *        the high char of a high/low surrogate pair.
      * @param low
-     *                 the low char of a high/low surrogate pair.
+     *        the low char of a high/low surrogate pair.
      * @param encoding
-     *                 the Java name of the encoding.
-     *
+     *        the Java name of the encoding.
      * @xsl.usage internal
-     *
      */
     private static boolean inEncoding(char high, char low, String encoding) {
         boolean isInEncoding;
@@ -455,10 +444,10 @@ public final class EncodingInfo extends Object {
      * this method tries it's best.
      * 
      * @param ch
-     *             the char that was converted using getBytes, or the first char
-     *             of a high/low pair that was converted.
+     *        the char that was converted using getBytes, or the first char
+     *        of a high/low pair that was converted.
      * @param data
-     *             the bytes written out by the call to s.getBytes(encoding);
+     *        the bytes written out by the call to s.getBytes(encoding);
      * @return true if the character is in the encoding.
      */
     private static boolean inEncoding(char ch, byte[] data) {

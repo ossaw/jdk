@@ -33,7 +33,7 @@ public final class BAD_CONTEXT extends SystemException {
      * message, a minor code of 0 and a completion state of COMPLETED_NO.
      * 
      * @param s
-     *          a <code>String</code> object containing a detail message
+     *        a <code>String</code> object containing a detail message
      */
     public BAD_CONTEXT(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -44,11 +44,11 @@ public final class BAD_CONTEXT extends SystemException {
      * code and completion status.
      * 
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  an instance of <code>CompletionStatus</code> indicating
-     *                  the
-     *                  completion status
+     *        an instance of <code>CompletionStatus</code> indicating
+     *        the
+     *        completion status
      */
     public BAD_CONTEXT(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -60,13 +60,13 @@ public final class BAD_CONTEXT extends SystemException {
      * that describes this particular exception.
      * 
      * @param s
-     *                  the String containing a detail message
+     *        the String containing a detail message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  an instance of <code>CompletionStatus</code> indicating
-     *                  the
-     *                  completion status
+     *        an instance of <code>CompletionStatus</code> indicating
+     *        the
+     *        completion status
      */
     public BAD_CONTEXT(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);

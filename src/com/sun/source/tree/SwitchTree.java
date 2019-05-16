@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for a 'switch' statement.
- *
  * For example:
  * 
  * <pre>
@@ -19,7 +18,6 @@ import java.util.List;
  * </pre>
  *
  * @jls section 14.11
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

@@ -25,8 +25,8 @@ public class PopupMenuEvent extends EventObject {
      * Constructs a PopupMenuEvent object.
      *
      * @param source
-     *               the Object that originated the event (typically
-     *               <code>this</code>)
+     *        the Object that originated the event (typically
+     *        <code>this</code>)
      */
     public PopupMenuEvent(Object source) {
         super(source);

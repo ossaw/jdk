@@ -34,7 +34,6 @@ import com.sun.xml.internal.stream.Entity.ScannedEntity;
  * use: XML 1.1 or XML 1.0. The version is scanned using XML 1.1. scanner.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
  * @author Elena Litani, IBM
  */
@@ -83,30 +82,23 @@ public class XMLVersionDetector {
 
     private XMLString fVersionNum = new XMLString();
 
-    private final char[] fExpectedVersionString = { '<', '?', 'x', 'm', 'l',
-            ' ', 'v', 'e', 'r', 's', 'i', 'o', 'n', '=', ' ', ' ', ' ', ' ',
-            ' ' };
+    private final char[] fExpectedVersionString = { '<', '?', 'x', 'm', 'l', ' ', 'v', 'e', 'r', 's', 'i',
+            'o', 'n', '=', ' ', ' ', ' ', ' ', ' ' };
 
     /**
-     *
-     *
      * @param componentManager
-     *                         The component manager.
-     *
+     *        The component manager.
      * @throws SAXException
-     *                      Throws exception if required features and properties
-     *                      cannot
-     *                      be found.
+     *         Throws exception if required features and properties
+     *         cannot
+     *         be found.
      */
-    public void reset(XMLComponentManager componentManager)
-            throws XMLConfigurationException {
+    public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
 
         // Xerces properties
         fSymbolTable = (SymbolTable) componentManager.getProperty(SYMBOL_TABLE);
-        fErrorReporter = (XMLErrorReporter) componentManager.getProperty(
-                ERROR_REPORTER);
-        fEntityManager = (XMLEntityManager) componentManager.getProperty(
-                ENTITY_MANAGER);
+        fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
+        fEntityManager = (XMLEntityManager) componentManager.getProperty(ENTITY_MANAGER);
         for (int i = 14; i < fExpectedVersionString.length; i++)
             fExpectedVersionString[i] = ' ';
     } // reset(XMLComponentManager)
@@ -116,9 +108,9 @@ public class XMLVersionDetector {
      * document and start document scanning.
      * 
      * @param scanner
-     *                - the scanner to use
+     *        - the scanner to use
      * @param version
-     *                - the version of the document (XML 1.1 or XML 1.0).
+     *        - the version of the document (XML 1.1 or XML 1.0).
      */
     public void startDocumentParsing(XMLEntityHandler scanner, short version) {
 
@@ -138,8 +130,7 @@ public class XMLVersionDetector {
         //
         fEntityManager.setEntityHandler(scanner);
 
-        scanner.startEntity(fXMLSymbol, fEntityManager
-                .getCurrentResourceIdentifier(), fEncoding, null);
+        scanner.startEntity(fXMLSymbol, fEntityManager.getCurrentResourceIdentifier(), fEncoding, null);
     }
 
     /**
@@ -152,10 +143,8 @@ public class XMLVersionDetector {
      *         otherwise Constants.XML_VERSION_1_0
      * @throws IOException
      */
-    public short determineDocVersion(XMLInputSource inputSource)
-            throws IOException {
-        fEncoding = fEntityManager.setupCurrentEntity(false, fXMLSymbol,
-                inputSource, false, true);
+    public short determineDocVersion(XMLInputSource inputSource) throws IOException {
+        fEncoding = fEntityManager.setupCurrentEntity(false, fXMLSymbol, inputSource, false, true);
 
         // Must use XML 1.0 scanner to handle whitespace correctly
         // in the XML declaration.
@@ -190,16 +179,14 @@ public class XMLVersionDetector {
             int quoteChar = scanner.scanChar(null);
             fExpectedVersionString[14] = (char) quoteChar;
             for (int versionPos = 0; versionPos < XML11_VERSION.length; versionPos++) {
-                fExpectedVersionString[15 + versionPos] = (char) scanner
-                        .scanChar(null);
+                fExpectedVersionString[15 + versionPos] = (char) scanner.scanChar(null);
             }
             // REVISIT: should we check whether this equals quoteChar?
             fExpectedVersionString[18] = (char) scanner.scanChar(null);
             fixupCurrentEntity(fEntityManager, fExpectedVersionString, 19);
             int matched = 0;
             for (; matched < XML11_VERSION.length; matched++) {
-                if (fExpectedVersionString[15
-                        + matched] != XML11_VERSION[matched])
+                if (fExpectedVersionString[15 + matched] != XML11_VERSION[matched])
                     break;
             }
             scanner.detectingVersion = false;
@@ -208,8 +195,7 @@ public class XMLVersionDetector {
             return Constants.XML_VERSION_1_0;
             // premature end of file
         } catch (EOFException e) {
-            fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-                    "PrematureEOF", null,
+            fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "PrematureEOF", null,
                     XMLErrorReporter.SEVERITY_FATAL_ERROR);
             scanner.detectingVersion = false;
             return Constants.XML_VERSION_1_0;
@@ -218,22 +204,18 @@ public class XMLVersionDetector {
 
     // This method prepends "length" chars from the char array,
     // from offset 0, to the manager's fCurrentEntity.ch.
-    private void fixupCurrentEntity(XMLEntityManager manager,
-            char[] scannedChars, int length) {
+    private void fixupCurrentEntity(XMLEntityManager manager, char[] scannedChars, int length) {
         ScannedEntity currentEntity = manager.getCurrentEntity();
-        if (currentEntity.count - currentEntity.position
-                + length > currentEntity.ch.length) {
+        if (currentEntity.count - currentEntity.position + length > currentEntity.ch.length) {
             // resize array; this case is hard to imagine...
             char[] tempCh = currentEntity.ch;
-            currentEntity.ch = new char[length + currentEntity.count
-                    - currentEntity.position + 1];
+            currentEntity.ch = new char[length + currentEntity.count - currentEntity.position + 1];
             System.arraycopy(tempCh, 0, currentEntity.ch, 0, tempCh.length);
         }
         if (currentEntity.position < length) {
             // have to move sensitive stuff out of the way...
-            System.arraycopy(currentEntity.ch, currentEntity.position,
-                    currentEntity.ch, length, currentEntity.count
-                            - currentEntity.position);
+            System.arraycopy(currentEntity.ch, currentEntity.position, currentEntity.ch, length,
+                    currentEntity.count - currentEntity.position);
             currentEntity.count += length - currentEntity.position;
         } else {
             // have to reintroduce some whitespace so this parses:

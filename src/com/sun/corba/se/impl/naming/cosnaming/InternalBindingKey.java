@@ -63,8 +63,7 @@ public class InternalBindingKey {
                 return false;
             }
             // If kind is set it must be equal
-            if (this.kindLen > 0 && this.name.kind.equals(
-                    that.name.kind) == false) {
+            if (this.kindLen > 0 && this.name.kind.equals(that.name.kind) == false) {
                 return false;
             }
             // Must be the same

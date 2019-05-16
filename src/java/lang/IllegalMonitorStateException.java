@@ -34,7 +34,7 @@ public class IllegalMonitorStateException extends RuntimeException {
      * specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IllegalMonitorStateException(String s) {
         super(s);

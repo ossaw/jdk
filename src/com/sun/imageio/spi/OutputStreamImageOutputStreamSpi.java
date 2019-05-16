@@ -38,8 +38,8 @@ public class OutputStreamImageOutputStreamSpi extends ImageOutputStreamSpi {
         return false;
     }
 
-    public ImageOutputStream createOutputStreamInstance(Object output,
-            boolean useCache, File cacheDir) throws IOException {
+    public ImageOutputStream createOutputStreamInstance(Object output, boolean useCache, File cacheDir)
+            throws IOException {
         if (output instanceof OutputStream) {
             OutputStream os = (OutputStream) output;
             if (useCache) {

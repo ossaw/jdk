@@ -23,7 +23,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLLocator;
  * An XMLLocator implementation used for schema error reporting.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  */
 public class SimpleLocator implements XMLLocator {
@@ -42,8 +41,7 @@ public class SimpleLocator implements XMLLocator {
         setValues(lsid, esid, line, column, -1);
     }
 
-    public SimpleLocator(String lsid, String esid, int line, int column,
-            int offset) {
+    public SimpleLocator(String lsid, String esid, int line, int column, int offset) {
         this.line = line;
         this.column = column;
         this.lsid = lsid;
@@ -51,8 +49,7 @@ public class SimpleLocator implements XMLLocator {
         charOffset = offset;
     }
 
-    public void setValues(String lsid, String esid, int line, int column,
-            int offset) {
+    public void setValues(String lsid, String esid, int line, int column, int offset) {
         this.line = line;
         this.column = column;
         this.lsid = lsid;

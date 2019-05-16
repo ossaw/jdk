@@ -8,8 +8,7 @@ package com.sun.corba.se.impl.oa.poa;
 import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 
-final class IdUniquenessPolicyImpl extends org.omg.CORBA.LocalObject implements
-        IdUniquenessPolicy {
+final class IdUniquenessPolicyImpl extends org.omg.CORBA.LocalObject implements IdUniquenessPolicy {
 
     public IdUniquenessPolicyImpl(IdUniquenessPolicyValue value) {
         this.value = value;
@@ -34,8 +33,7 @@ final class IdUniquenessPolicyImpl extends org.omg.CORBA.LocalObject implements
     private IdUniquenessPolicyValue value;
 
     public String toString() {
-        return "IdUniquenessPolicy[" + ((value
-                .value() == IdUniquenessPolicyValue._UNIQUE_ID) ? "UNIQUE_ID"
-                        : "MULTIPLE_ID" + "]");
+        return "IdUniquenessPolicy[" + ((value.value() == IdUniquenessPolicyValue._UNIQUE_ID) ? "UNIQUE_ID"
+                : "MULTIPLE_ID" + "]");
     }
 }

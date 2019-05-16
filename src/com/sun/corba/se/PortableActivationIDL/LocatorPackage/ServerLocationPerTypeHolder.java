@@ -9,8 +9,7 @@ package com.sun.corba.se.PortableActivationIDL.LocatorPackage;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class ServerLocationPerTypeHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ServerLocationPerTypeHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerType value = null;
 
     public ServerLocationPerTypeHolder() {}
@@ -21,18 +20,15 @@ public final class ServerLocationPerTypeHolder implements
     }
 
     public void _read(org.omg.CORBA.portable.InputStream i) {
-        value = com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper
-                .read(i);
+        value = com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper.read(i);
     }
 
     public void _write(org.omg.CORBA.portable.OutputStream o) {
-        com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper
-                .write(o, value);
+        com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper.write(o, value);
     }
 
     public org.omg.CORBA.TypeCode _type() {
-        return com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper
-                .type();
+        return com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper.type();
     }
 
 }

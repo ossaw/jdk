@@ -7,7 +7,6 @@ package javax.lang.model.type;
 
 /**
  * The kind of a type mirror.
- *
  * <p>
  * Note that it is possible additional type kinds will be added to accommodate
  * new, currently unknown, language structures added to future versions of the

@@ -71,7 +71,7 @@ public class JSR extends JsrInstruction implements VariableLengthInstruction {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         index = getTargetOffset();
@@ -106,7 +106,7 @@ public class JSR extends JsrInstruction implements VariableLengthInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

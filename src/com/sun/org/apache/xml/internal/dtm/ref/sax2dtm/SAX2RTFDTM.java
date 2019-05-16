@@ -34,16 +34,13 @@ import org.xml.sax.SAXException;
 /**
  * This is a subclass of SAX2DTM which has been modified to meet the needs of
  * Result Tree Frameworks (RTFs). The differences are:
- *
  * 1) Multiple XML trees may be appended to the single DTM. This means that the
  * root node of each document is _not_ node 0. Some code has had to be
  * deoptimized to support this mode of operation, and an explicit mechanism for
  * obtaining the Node Handle of the root node has been provided.
- *
  * 2) A stack of these documents is maintained, allowing us to "tail-prune" the
  * most recently added trees off the end of the DTM as stylesheet elements (and
  * thus variable contexts) are exited.
- *
  * PLEASE NOTE that this class may be _heavily_ dependent upon the internals of
  * the SAX2DTM superclass, and must be maintained in parallel with that code.
  * Arguably, they should be conditionals within a single class... but they have
@@ -51,7 +48,6 @@ import org.xml.sax.SAXException;
  * which is the superclass and which is the subclass; the current arrangement is
  * as much about preserving stability of existing code during development as
  * anything else.)
- *
  * %REVIEW% In fact, since the differences are so minor, I think it may be
  * possible/practical to fold them back into the base SAX2DTM. Consider that as
  * a future code-size optimization.
@@ -116,19 +112,16 @@ public class SAX2RTFDTM extends SAX2DTM {
      */
     int m_emptyDataQNCount;
 
-    public SAX2RTFDTM(DTMManager mgr, Source source, int dtmIdentity,
-            DTMWSFilter whiteSpaceFilter, XMLStringFactory xstringfactory,
-            boolean doIndexing) {
-        super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory,
-                doIndexing);
+    public SAX2RTFDTM(DTMManager mgr, Source source, int dtmIdentity, DTMWSFilter whiteSpaceFilter,
+            XMLStringFactory xstringfactory, boolean doIndexing) {
+        super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory, doIndexing);
 
         // NEVER track source locators for RTFs; they aren't meaningful. I
         // think.
         // (If we did track them, we'd need to tail-prune these too.)
         // com.sun.org.apache.xalan.internal.processor.TransformerFactoryImpl.m_source_location;
         m_useSourceLocationProperty = false;
-        m_sourceSystemId = (m_useSourceLocationProperty) ? new StringVector()
-                : null;
+        m_sourceSystemId = (m_useSourceLocationProperty) ? new StringVector() : null;
         m_sourceLine = (m_useSourceLocationProperty) ? new IntVector() : null;
         m_sourceColumn = (m_useSourceLocationProperty) ? new IntVector() : null;
 
@@ -136,8 +129,7 @@ public class SAX2RTFDTM extends SAX2DTM {
         // for RTF tail-pruning. More entries can be popped than pushed, so
         // we need this to mark the primordial state of the DTM.
         m_emptyNodeCount = m_size;
-        m_emptyNSDeclSetCount = (m_namespaceDeclSets == null) ? 0
-                : m_namespaceDeclSets.size();
+        m_emptyNSDeclSetCount = (m_namespaceDeclSets == null) ? 0 : m_namespaceDeclSets.size();
         m_emptyNSDeclSetElemsCount = (m_namespaceDeclSetElements == null) ? 0
                 : m_namespaceDeclSetElements.size();
         m_emptyDataCount = m_data.size();
@@ -150,7 +142,6 @@ public class SAX2RTFDTM extends SAX2DTM {
      * which may contain multiple documents, this returns the <b>most recently
      * started</b> document, or null if the DTM is empty or no document is
      * currently under construction.
-     *
      * %REVIEW% Should we continue to report the most recent after construction
      * has ended? I think not, given that it may have been tail-pruned.
      *
@@ -164,18 +155,16 @@ public class SAX2RTFDTM extends SAX2DTM {
     /**
      * Given a node handle, find the owning document node, using DTM semantics
      * (Document owns itself) rather than DOM semantics (Document has no owner).
-     *
      * (I'm counting on the fact that getOwnerDocument() is implemented on top
      * of this call, in the superclass, to avoid having to rewrite that one. Be
      * careful if that code changes!)
      *
      * @param nodeHandle
-     *                   the id of the node.
+     *        the id of the node.
      * @return int Node handle of owning document
      */
     public int getDocumentRoot(int nodeHandle) {
-        for (int id = makeNodeIdentity(nodeHandle); id != NULL; id = _parent(
-                id)) {
+        for (int id = makeNodeIdentity(nodeHandle); id != NULL; id = _parent(id)) {
             if (_type(id) == DTM.DOCUMENT_NODE) {
                 return makeNodeHandle(id);
             }
@@ -190,16 +179,15 @@ public class SAX2RTFDTM extends SAX2DTM {
      * in shared DTMs this may not be zero.
      *
      * @param nodeIdentifier
-     *                       the id of the starting node.
+     *        the id of the starting node.
      * @return int Node identifier of the root of this DTM tree
      */
     protected int _documentRoot(int nodeIdentifier) {
         if (nodeIdentifier == NULL)
             return NULL;
 
-        for (int parent = _parent(
-                nodeIdentifier); parent != NULL; nodeIdentifier = parent, parent = _parent(
-                        nodeIdentifier))
+        for (int parent = _parent(nodeIdentifier); parent != NULL; nodeIdentifier = parent, parent = _parent(
+                nodeIdentifier))
             ;
 
         return nodeIdentifier;
@@ -207,15 +195,14 @@ public class SAX2RTFDTM extends SAX2DTM {
 
     /**
      * Receive notification of the beginning of a new RTF document.
-     *
      * %REVIEW% Y'know, this isn't all that much of a deoptimization. We might
      * want to consider folding the start/endDocument changes back into the main
      * SAX2DTM so we don't have to expose so many fields (even as Protected) and
      * carry the additional code.
      *
      * @throws SAXException
-     *                      Any SAX exception, possibly wrapping another
-     *                      exception.
+     *         Any SAX exception, possibly wrapping another
+     *         exception.
      * @see org.xml.sax.ContentHandler#startDocument
      */
     public void startDocument() throws SAXException {
@@ -231,14 +218,13 @@ public class SAX2RTFDTM extends SAX2DTM {
 
     /**
      * Receive notification of the end of the document.
-     *
      * %REVIEW% Y'know, this isn't all that much of a deoptimization. We might
      * want to consider folding the start/endDocument changes back into the main
      * SAX2DTM so we don't have to expose so many fields (even as Protected).
      *
      * @throws SAXException
-     *                      Any SAX exception, possibly wrapping another
-     *                      exception.
+     *         Any SAX exception, possibly wrapping another
+     *         exception.
      * @see org.xml.sax.ContentHandler#endDocument
      */
     public void endDocument() throws SAXException {
@@ -262,25 +248,21 @@ public class SAX2RTFDTM extends SAX2DTM {
 
     /**
      * "Tail-pruning" support for RTFs.
-     *
      * This function pushes information about the current size of the DTM's data
      * structures onto a stack, for use by popRewindMark() (which see).
-     *
      * %REVIEW% I have no idea how to rewind m_elemIndexes. However, RTFs will
      * not be indexed, so I can simply panic if that case arises. Hey, it
      * works...
      */
     public void pushRewindMark() {
         if (m_indexing || m_elemIndexes != null)
-            throw new java.lang.NullPointerException(
-                    "Coding error; Don't try to mark/rewind an indexed DTM");
+            throw new java.lang.NullPointerException("Coding error; Don't try to mark/rewind an indexed DTM");
 
         // Values from DTMDefaultBase
         // %REVIEW% Can the namespace stack sizes ever differ? If not, save
         // space!
         mark_size.push(m_size);
-        mark_nsdeclset_size.push((m_namespaceDeclSets == null) ? 0
-                : m_namespaceDeclSets.size());
+        mark_nsdeclset_size.push((m_namespaceDeclSets == null) ? 0 : m_namespaceDeclSets.size());
         mark_nsdeclelem_size.push((m_namespaceDeclSetElements == null) ? 0
                 : m_namespaceDeclSetElements.size());
 
@@ -292,19 +274,15 @@ public class SAX2RTFDTM extends SAX2DTM {
 
     /**
      * "Tail-pruning" support for RTFs.
-     *
      * This function pops the information previously saved by pushRewindMark
      * (which see) and uses it to discard all nodes added to the DTM after that
      * time. We expect that this will allow us to reuse storage more
      * effectively.
-     *
      * This is _not_ intended to be called while a document is still being
      * constructed -- only between endDocument and the next startDocument
-     *
      * %REVIEW% WARNING: This is the first use of some of the truncation
      * methods. If Xalan blows up after this is called, that's a likely place to
      * check.
-     *
      * %REVIEW% Our original design for DTMs permitted them to share string
      * pools. If there any risk that this might be happening, we can _not_
      * rewind and recover the string storage. One solution might to assert that

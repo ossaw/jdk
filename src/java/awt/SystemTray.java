@@ -21,27 +21,23 @@ import sun.awt.AWTAccessor;
  * ", on Gnome it is referred to as the "Notification Area
  * ", on KDE it is referred to as the "System Tray". The system tray is shared
  * by all applications running on the desktop.
- *
  * <p>
  * On some platforms the system tray may not be present or may not be supported,
  * in this case {@link SystemTray#getSystemTray()} throws
  * {@link UnsupportedOperationException}. To detect whether the system tray is
  * supported, use {@link SystemTray#isSupported}.
- *
  * <p>
  * The <code>SystemTray</code> may contain one or more {@link TrayIcon
  * TrayIcons}, which are added to the tray using the {@link #add} method, and
  * removed when no longer needed, using the {@link #remove}.
  * <code>TrayIcon</code> consists of an image, a popup menu and a set of
  * associated listeners. Please see the {@link TrayIcon} class for details.
- *
  * <p>
  * Every Java application has a single <code>SystemTray</code> instance that
  * allows the app to interface with the system tray of the desktop while the app
  * is running. The <code>SystemTray</code> instance can be obtained from the
  * {@link #getSystemTray} method. An application may not create its own instance
  * of <code>SystemTray</code>.
- *
  * <p>
  * The following code snippet demonstrates how to access and customize the
  * system tray:
@@ -97,7 +93,6 @@ import sun.awt.AWTAccessor;
  *
  * @since 1.6
  * @see TrayIcon
- *
  * @author Bino George
  * @author Denis Mikhalkin
  * @author Sharon Zakhour
@@ -113,8 +108,8 @@ public class SystemTray {
 
     static {
         AWTAccessor.setSystemTrayAccessor(new AWTAccessor.SystemTrayAccessor() {
-            public void firePropertyChange(SystemTray tray, String propertyName,
-                    Object oldValue, Object newValue) {
+            public void firePropertyChange(SystemTray tray, String propertyName, Object oldValue,
+                    Object newValue) {
                 tray.firePropertyChange(propertyName, oldValue, newValue);
             }
         });
@@ -122,7 +117,6 @@ public class SystemTray {
 
     /**
      * Private <code>SystemTray</code> constructor.
-     *
      */
     private SystemTray() {
         addNotify();
@@ -133,7 +127,6 @@ public class SystemTray {
      * tray area. This always returns the same instance per application. On some
      * platforms the system tray may not be supported. You may use the
      * {@link #isSupported} method to check if the system tray is supported.
-     *
      * <p>
      * If a SecurityManager is installed, the AWTPermission
      * {@code accessSystemTray} must be granted in order to get the
@@ -143,16 +136,16 @@ public class SystemTray {
      * @return the <code>SystemTray</code> instance that represents the
      *         desktop's tray area
      * @throws UnsupportedOperationException
-     *                                       if the system tray isn't supported
-     *                                       by the current platform
+     *         if the system tray isn't supported
+     *         by the current platform
      * @throws HeadlessException
-     *                                       if
-     *                                       <code>GraphicsEnvironment.isHeadless()</code>
-     *                                       returns
-     *                                       <code>true</code>
+     *         if
+     *         <code>GraphicsEnvironment.isHeadless()</code>
+     *         returns
+     *         <code>true</code>
      * @throws SecurityException
-     *                                       if {@code accessSystemTray}
-     *                                       permission is not granted
+     *         if {@code accessSystemTray}
+     *         permission is not granted
      * @see #add(TrayIcon)
      * @see TrayIcon
      * @see #isSupported
@@ -181,14 +174,12 @@ public class SystemTray {
      * includes either a popup menu (see
      * {@link TrayIcon#setPopupMenu(PopupMenu)}) or an action event (see
      * {@link TrayIcon#addActionListener(ActionListener)}).
-     *
      * <p>
      * Developers should not assume that all of the system tray functionality is
      * supported. To guarantee that the tray icon's default action is always
      * accessible, add the default action to both the action listener and the
      * popup menu. See the {@link SystemTray example} for an example of how to
      * do this.
-     *
      * <p>
      * <b>Note</b>: When implementing <code>SystemTray</code> and
      * <code>TrayIcon</code> it is <em>strongly recommended</em> that you assign
@@ -222,23 +213,22 @@ public class SystemTray {
      * icon becomes visible in the system tray once it is added. The order in
      * which icons are displayed in a tray is not specified - it is platform and
      * implementation-dependent.
-     *
      * <p>
      * All icons added by the application are automatically removed from the
      * <code>SystemTray</code> upon application exit and also when the desktop
      * system tray becomes unavailable.
      *
      * @param trayIcon
-     *                 the <code>TrayIcon</code> to be added
+     *        the <code>TrayIcon</code> to be added
      * @throws NullPointerException
-     *                                  if <code>trayIcon</code> is
-     *                                  <code>null</code>
+     *         if <code>trayIcon</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if the same instance of a
-     *                                  <code>TrayIcon</code> is added more
-     *                                  than once
+     *         if the same instance of a
+     *         <code>TrayIcon</code> is added more
+     *         than once
      * @throws AWTException
-     *                                  if the desktop system tray is missing
+     *         if the desktop system tray is missing
      * @see #remove(TrayIcon)
      * @see #getSystemTray
      * @see TrayIcon
@@ -252,15 +242,13 @@ public class SystemTray {
         Vector<TrayIcon> icons = null;
         synchronized (this) {
             oldArray = systemTray.getTrayIcons();
-            icons = (Vector<TrayIcon>) AppContext.getAppContext().get(
-                    TrayIcon.class);
+            icons = (Vector<TrayIcon>) AppContext.getAppContext().get(TrayIcon.class);
             if (icons == null) {
                 icons = new Vector<TrayIcon>(3);
                 AppContext.getAppContext().put(TrayIcon.class, icons);
 
             } else if (icons.contains(trayIcon)) {
-                throw new IllegalArgumentException(
-                        "adding TrayIcon that is already added");
+                throw new IllegalArgumentException("adding TrayIcon that is already added");
             }
             icons.add(trayIcon);
             newArray = systemTray.getTrayIcons();
@@ -279,18 +267,16 @@ public class SystemTray {
     /**
      * Removes the specified <code>TrayIcon</code> from the
      * <code>SystemTray</code>.
-     *
      * <p>
      * All icons added by the application are automatically removed from the
      * <code>SystemTray</code> upon application exit and also when the desktop
      * system tray becomes unavailable.
-     *
      * <p>
      * If <code>trayIcon</code> is <code>null</code> or was not added to the
      * system tray, no exception is thrown and no action is performed.
      *
      * @param trayIcon
-     *                 the <code>TrayIcon</code> to be removed
+     *        the <code>TrayIcon</code> to be removed
      * @see #add(TrayIcon)
      * @see TrayIcon
      */
@@ -301,8 +287,7 @@ public class SystemTray {
         TrayIcon[] oldArray = null, newArray = null;
         synchronized (this) {
             oldArray = systemTray.getTrayIcons();
-            Vector<TrayIcon> icons = (Vector<TrayIcon>) AppContext
-                    .getAppContext().get(TrayIcon.class);
+            Vector<TrayIcon> icons = (Vector<TrayIcon>) AppContext.getAppContext().get(TrayIcon.class);
             // TrayIcon with no peer is not contained in the array.
             if (icons == null || !icons.remove(trayIcon)) {
                 return;
@@ -319,7 +304,6 @@ public class SystemTray {
      * partition applets in different code bases into separate contexts, and
      * establish walls between these contexts. In such a scenario, only the tray
      * icons added from this context will be returned.
-     *
      * <p>
      * The returned array is a copy of the actual array and may be modified in
      * any way without affecting the system tray. To remove a
@@ -332,8 +316,7 @@ public class SystemTray {
      * @see TrayIcon
      */
     public TrayIcon[] getTrayIcons() {
-        Vector<TrayIcon> icons = (Vector<TrayIcon>) AppContext.getAppContext()
-                .get(TrayIcon.class);
+        Vector<TrayIcon> icons = (Vector<TrayIcon>) AppContext.getAppContext().get(TrayIcon.class);
         if (icons != null) {
             return (TrayIcon[]) icons.toArray(new TrayIcon[icons.size()]);
         }
@@ -359,7 +342,6 @@ public class SystemTray {
     /**
      * Adds a {@code PropertyChangeListener} to the list of listeners for the
      * specific property. The following properties are currently supported:
-     *
      * <table border=1 summary="SystemTray properties">
      * <tr>
      * <th>Property</th>
@@ -391,20 +373,17 @@ public class SystemTray {
      * is performed.
      *
      * @param propertyName
-     *                     the specified property
+     *        the specified property
      * @param listener
-     *                     the property change listener to be added
-     *
+     *        the property change listener to be added
      * @see #removePropertyChangeListener
      * @see #getPropertyChangeListeners
      */
-    public synchronized void addPropertyChangeListener(String propertyName,
-            PropertyChangeListener listener) {
+    public synchronized void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         if (listener == null) {
             return;
         }
-        getCurrentChangeSupport().addPropertyChangeListener(propertyName,
-                listener);
+        getCurrentChangeSupport().addPropertyChangeListener(propertyName, listener);
     }
 
     /**
@@ -417,10 +396,9 @@ public class SystemTray {
      * no exception is thrown and no action is taken.
      *
      * @param propertyName
-     *                     the specified property
+     *        the specified property
      * @param listener
-     *                     the PropertyChangeListener to be removed
-     *
+     *        the PropertyChangeListener to be removed
      * @see #addPropertyChangeListener
      * @see #getPropertyChangeListeners
      */
@@ -429,8 +407,7 @@ public class SystemTray {
         if (listener == null) {
             return;
         }
-        getCurrentChangeSupport().removePropertyChangeListener(propertyName,
-                listener);
+        getCurrentChangeSupport().removePropertyChangeListener(propertyName, listener);
     }
 
     /**
@@ -440,19 +417,16 @@ public class SystemTray {
      * Only the listeners in this context are returned.
      *
      * @param propertyName
-     *                     the specified property
+     *        the specified property
      * @return all of the {@code PropertyChangeListener}s associated with the
      *         named property; if no such listeners have been added or if
      *         {@code propertyName} is {@code null} or invalid, an empty array
      *         is returned
-     *
      * @see #addPropertyChangeListener
      * @see #removePropertyChangeListener
      */
-    public synchronized PropertyChangeListener[] getPropertyChangeListeners(
-            String propertyName) {
-        return getCurrentChangeSupport().getPropertyChangeListeners(
-                propertyName);
+    public synchronized PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
+        return getCurrentChangeSupport().getPropertyChangeListeners(propertyName);
     }
 
     // ***************************************************************
@@ -465,19 +439,17 @@ public class SystemTray {
      * PropertyChangeListeners.
      *
      * @param propertyName
-     *                     the property whose value has changed
+     *        the property whose value has changed
      * @param oldValue
-     *                     the property's previous value
+     *        the property's previous value
      * @param newValue
-     *                     the property's new value
+     *        the property's new value
      */
-    private void firePropertyChange(String propertyName, Object oldValue,
-            Object newValue) {
+    private void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         if (oldValue != null && newValue != null && oldValue.equals(newValue)) {
             return;
         }
-        getCurrentChangeSupport().firePropertyChange(propertyName, oldValue,
-                newValue);
+        getCurrentChangeSupport().firePropertyChange(propertyName, oldValue, newValue);
     }
 
     /**
@@ -487,8 +459,8 @@ public class SystemTray {
      * @return this thread's context's PropertyChangeSupport
      */
     private synchronized PropertyChangeSupport getCurrentChangeSupport() {
-        PropertyChangeSupport changeSupport = (PropertyChangeSupport) AppContext
-                .getAppContext().get(SystemTray.class);
+        PropertyChangeSupport changeSupport = (PropertyChangeSupport) AppContext.getAppContext().get(
+                SystemTray.class);
 
         if (changeSupport == null) {
             changeSupport = new PropertyChangeSupport(this);
@@ -501,11 +473,9 @@ public class SystemTray {
         if (peer == null) {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             if (toolkit instanceof SunToolkit) {
-                peer = ((SunToolkit) Toolkit.getDefaultToolkit())
-                        .createSystemTray(this);
+                peer = ((SunToolkit) Toolkit.getDefaultToolkit()).createSystemTray(this);
             } else if (toolkit instanceof HeadlessToolkit) {
-                peer = ((HeadlessToolkit) Toolkit.getDefaultToolkit())
-                        .createSystemTray(this);
+                peer = ((HeadlessToolkit) Toolkit.getDefaultToolkit()).createSystemTray(this);
             }
         }
     }
@@ -513,8 +483,7 @@ public class SystemTray {
     static void checkSystemTrayAllowed() {
         SecurityManager security = System.getSecurityManager();
         if (security != null) {
-            security.checkPermission(
-                    SecurityConstants.AWT.ACCESS_SYSTEM_TRAY_PERMISSION);
+            security.checkPermission(SecurityConstants.AWT.ACCESS_SYSTEM_TRAY_PERMISSION);
         }
     }
 

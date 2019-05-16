@@ -49,10 +49,10 @@ public final class TypeCodeHolder implements Streamable {
      * object.
      * 
      * @param initial
-     *                the <code>TypeCode</code> object with which to initialize
-     *                the
-     *                <code>value</code> field of the newly-created
-     *                <code>TypeCodeHolder</code> object
+     *        the <code>TypeCode</code> object with which to initialize
+     *        the
+     *        <code>value</code> field of the newly-created
+     *        <code>TypeCodeHolder</code> object
      */
     public TypeCodeHolder(TypeCode initial) {
         value = initial;
@@ -63,7 +63,7 @@ public final class TypeCodeHolder implements Streamable {
      * <code>TypeCodeHolder</code> object with the unmarshalled data.
      *
      * @param input
-     *              the InputStream containing CDR formatted data from the wire
+     *        the InputStream containing CDR formatted data from the wire
      */
     public void _read(InputStream input) {
         value = input.read_TypeCode();
@@ -74,7 +74,7 @@ public final class TypeCodeHolder implements Streamable {
      * <code>TypeCodeHolder</code> object.
      *
      * @param output
-     *               the OutputStream which will contain the CDR formatted data
+     *        the OutputStream which will contain the CDR formatted data
      */
     public void _write(OutputStream output) {
         output.write_TypeCode(value);

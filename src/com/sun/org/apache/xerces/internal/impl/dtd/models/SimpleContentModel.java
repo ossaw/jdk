@@ -76,7 +76,6 @@ import com.sun.org.apache.xerces.internal.impl.dtd.XMLContentSpec;
  * such a simple check.
  *
  * @xerces.internal
- *
  */
 public class SimpleContentModel implements ContentModelValidator {
 
@@ -127,15 +126,13 @@ public class SimpleContentModel implements ContentModelValidator {
      * Constructs a simple content model.
      *
      * @param operator
-     *                    The content model operator.
+     *        The content model operator.
      * @param firstChild
-     *                    qualified name of the first child
+     *        qualified name of the first child
      * @param secondChild
-     *                    qualified name of the second child
-     *
+     *        qualified name of the second child
      */
-    public SimpleContentModel(short operator, QName firstChild,
-            QName secondChild) {
+    public SimpleContentModel(short operator, QName firstChild, QName secondChild) {
         //
         // Store away the children and operation. This is all we need to
         // do the content model check.
@@ -166,21 +163,19 @@ public class SimpleContentModel implements ContentModelValidator {
      * confirmed.
      *
      * @param children
-     *                 The children of this element. Each integer is an index
-     *                 within
-     *                 the <code>StringPool</code> of the child element name. An
-     *                 index of -1 is used to indicate an occurrence of
-     *                 non-whitespace character data.
+     *        The children of this element. Each integer is an index
+     *        within
+     *        the <code>StringPool</code> of the child element name. An
+     *        index of -1 is used to indicate an occurrence of
+     *        non-whitespace character data.
      * @param offset
-     *                 Offset into the array where the children starts.
+     *        Offset into the array where the children starts.
      * @param length
-     *                 The number of entries in the <code>children</code> array.
-     *
+     *        The number of entries in the <code>children</code> array.
      * @return The value -1 if fully valid, else the 0 based index of the child
      *         that first failed. If the value returned is equal to the number
      *         of children, then the specified children are valid but additional
      *         content is required to reach a valid ending state.
-     *
      */
     public int validate(QName[] children, int offset, int length) {
 
@@ -232,8 +227,7 @@ public class SimpleContentModel implements ContentModelValidator {
                 //
                 if (length > 0) {
                     for (int index = 0; index < length; index++) {
-                        if (children[offset
-                                + index].rawname != fFirstChild.rawname) {
+                        if (children[offset + index].rawname != fFirstChild.rawname) {
                             return index;
                         }
                     }
@@ -254,8 +248,7 @@ public class SimpleContentModel implements ContentModelValidator {
                 // of the first one that is not.
                 //
                 for (int index = 0; index < length; index++) {
-                    if (children[offset
-                            + index].rawname != fFirstChild.rawname) {
+                    if (children[offset + index].rawname != fFirstChild.rawname) {
                         return index;
                     }
                 }

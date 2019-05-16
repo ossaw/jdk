@@ -30,7 +30,7 @@ public class BasicTextPaneUI extends BasicEditorPaneUI {
      * Creates a UI for the JTextPane.
      *
      * @param c
-     *          the JTextPane object
+     *        the JTextPane object
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {
@@ -66,7 +66,7 @@ public class BasicTextPaneUI extends BasicEditorPaneUI {
      * appropriate property is set in the default style of the document.
      *
      * @param evt
-     *            the property change event
+     *        the property change event
      */
     protected void propertyChange(PropertyChangeEvent evt) {
         super.propertyChange(evt);

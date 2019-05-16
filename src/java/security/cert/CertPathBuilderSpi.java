@@ -43,17 +43,17 @@ public abstract class CertPathBuilderSpi {
      * parameter set.
      *
      * @param params
-     *               the algorithm parameters
+     *        the algorithm parameters
      * @return the result of the build algorithm
      * @throws CertPathBuilderException
-     *                                            if the builder is unable to
-     *                                            construct a certification path
-     *                                            that satisfies the specified
-     *                                            parameters
+     *         if the builder is unable to
+     *         construct a certification path
+     *         that satisfies the specified
+     *         parameters
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for this
-     *                                            {@code CertPathBuilder}
+     *         if the specified parameters
+     *         are inappropriate for this
+     *         {@code CertPathBuilder}
      */
     public abstract CertPathBuilderResult engineBuild(CertPathParameters params)
             throws CertPathBuilderException, InvalidAlgorithmParameterException;
@@ -62,12 +62,10 @@ public abstract class CertPathBuilderSpi {
      * Returns a {@code CertPathChecker} that this implementation uses to check
      * the revocation status of certificates. A PKIX implementation returns
      * objects of type {@code PKIXRevocationChecker}.
-     *
      * <p>
      * The primary purpose of this method is to allow callers to specify
      * additional input parameters and options specific to revocation checking.
      * See the class description of {@code CertPathBuilder} for an example.
-     *
      * <p>
      * This method was added to version 1.8 of the Java Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
@@ -77,7 +75,7 @@ public abstract class CertPathBuilderSpi {
      * @return a {@code CertPathChecker} that this implementation uses to check
      *         the revocation status of certificates
      * @throws UnsupportedOperationException
-     *                                       if this method is not supported
+     *         if this method is not supported
      * @since 1.8
      */
     public CertPathChecker engineGetRevocationChecker() {

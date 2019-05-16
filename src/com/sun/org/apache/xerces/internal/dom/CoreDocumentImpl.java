@@ -74,7 +74,6 @@ import org.w3c.dom.ls.LSSerializer;
  * is serialized along with it.
  *
  * @xerces.internal
- *
  * @author Arnaud Le Hors, IBM
  * @author Joe Kesselman, IBM
  * @author Andy Clark, IBM
@@ -87,7 +86,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * TODO:: 1. Change XML11Char method names similar to XMLChar. That will
      * prevent lot of dirty version checking code.
-     *
      * 2. IMO during cloneNode qname/isXMLName check should not be made.
      */
     //
@@ -166,7 +164,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * "false negatives", though that's the difference between "wildly unlikely
      * " and "absurdly unlikely". IF we start maintaining digests, we should
      * consider taking advantage of them.
-     *
      * Note: This used to be done a node basis, so that we knew what subtree
      * changed. But since only DeepNodeList really use this today, the gain
      * appears to be really small compared to the cost of having an int on every
@@ -212,14 +209,12 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
         kidOK = new int[13];
 
-        kidOK[DOCUMENT_NODE] = 1 << ELEMENT_NODE
-                | 1 << PROCESSING_INSTRUCTION_NODE | 1 << COMMENT_NODE
+        kidOK[DOCUMENT_NODE] = 1 << ELEMENT_NODE | 1 << PROCESSING_INSTRUCTION_NODE | 1 << COMMENT_NODE
                 | 1 << DOCUMENT_TYPE_NODE;
 
         kidOK[DOCUMENT_FRAGMENT_NODE] = kidOK[ENTITY_NODE] = kidOK[ENTITY_REFERENCE_NODE] = kidOK[ELEMENT_NODE] = 1 << ELEMENT_NODE
-                | 1 << PROCESSING_INSTRUCTION_NODE | 1 << COMMENT_NODE
-                | 1 << TEXT_NODE | 1 << CDATA_SECTION_NODE
-                | 1 << ENTITY_REFERENCE_NODE;
+                | 1 << PROCESSING_INSTRUCTION_NODE | 1 << COMMENT_NODE | 1 << TEXT_NODE
+                | 1 << CDATA_SECTION_NODE | 1 << ENTITY_REFERENCE_NODE;
 
         kidOK[ATTRIBUTE_NODE] = 1 << TEXT_NODE | 1 << ENTITY_REFERENCE_NODE;
 
@@ -271,25 +266,19 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      *              boolean XML version
      */
     private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[] {
-            new ObjectStreamField("docType", DocumentTypeImpl.class),
-            new ObjectStreamField("docElement", ElementImpl.class),
-            new ObjectStreamField("fFreeNLCache", NodeListCache.class),
-            new ObjectStreamField("encoding", String.class),
-            new ObjectStreamField("actualEncoding", String.class),
-            new ObjectStreamField("version", String.class),
-            new ObjectStreamField("standalone", boolean.class),
-            new ObjectStreamField("fDocumentURI", String.class),
-            new ObjectStreamField("userData", Hashtable.class),
-            new ObjectStreamField("identifiers", Hashtable.class),
-            new ObjectStreamField("changes", int.class), new ObjectStreamField(
-                    "allowGrammarAccess", boolean.class), new ObjectStreamField(
-                            "errorChecking", boolean.class),
-            new ObjectStreamField("ancestorChecking", boolean.class),
-            new ObjectStreamField("xmlVersionChanged", boolean.class),
-            new ObjectStreamField("documentNumber", int.class),
-            new ObjectStreamField("nodeCounter", int.class),
-            new ObjectStreamField("nodeTable", Hashtable.class),
-            new ObjectStreamField("xml11Version", boolean.class), };
+            new ObjectStreamField("docType", DocumentTypeImpl.class), new ObjectStreamField("docElement",
+                    ElementImpl.class), new ObjectStreamField("fFreeNLCache", NodeListCache.class),
+            new ObjectStreamField("encoding", String.class), new ObjectStreamField("actualEncoding",
+                    String.class), new ObjectStreamField("version", String.class), new ObjectStreamField(
+                            "standalone", boolean.class), new ObjectStreamField("fDocumentURI", String.class),
+            new ObjectStreamField("userData", Hashtable.class), new ObjectStreamField("identifiers",
+                    Hashtable.class), new ObjectStreamField("changes", int.class), new ObjectStreamField(
+                            "allowGrammarAccess", boolean.class), new ObjectStreamField("errorChecking",
+                                    boolean.class), new ObjectStreamField("ancestorChecking", boolean.class),
+            new ObjectStreamField("xmlVersionChanged", boolean.class), new ObjectStreamField("documentNumber",
+                    int.class), new ObjectStreamField("nodeCounter", int.class), new ObjectStreamField(
+                            "nodeTable", Hashtable.class), new ObjectStreamField("xml11Version",
+                                    boolean.class), };
 
     //
     // Constructors
@@ -308,9 +297,8 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         super(null);
         ownerDocument = this;
         allowGrammarAccess = grammarAccess;
-        String systemProp = SecuritySupport.getSystemProperty(
-                Constants.SUN_DOM_PROPERTY_PREFIX
-                        + Constants.SUN_DOM_ANCESTOR_CHECCK);
+        String systemProp = SecuritySupport.getSystemProperty(Constants.SUN_DOM_PROPERTY_PREFIX
+                + Constants.SUN_DOM_ANCESTOR_CHECCK);
         if (systemProp != null) {
             if (systemProp.equalsIgnoreCase("false")) {
                 ancestorChecking = false;
@@ -334,9 +322,8 @@ public class CoreDocumentImpl extends ParentNode implements Document {
             try {
                 doctypeImpl = (DocumentTypeImpl) doctype;
             } catch (ClassCastException e) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "WRONG_DOCUMENT_ERR", null);
                 throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
             }
             doctypeImpl.ownerDocument = this;
@@ -371,7 +358,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      *
      * @return org.w3c.dom.Node
      * @param deep
-     *             boolean, iff true replicate children
+     *        boolean, iff true replicate children
      */
     public Node cloneNode(boolean deep) {
 
@@ -400,15 +387,13 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                 // Build a reverse mapping from element to identifier.
                 reversedIdentifiers = new HashMap<>(identifiers.size());
                 for (String elementId : identifiers.keySet()) {
-                    reversedIdentifiers.put(identifiers.get(elementId),
-                            elementId);
+                    reversedIdentifiers.put(identifiers.get(elementId), elementId);
                 }
             }
 
             // Copy children into new document.
             for (ChildNode kid = firstChild; kid != null; kid = kid.nextSibling) {
-                newdoc.appendChild(newdoc.importNode(kid, true, true,
-                        reversedIdentifiers));
+                newdoc.appendChild(newdoc.importNode(kid, true, true, reversedIdentifiers));
             }
         }
 
@@ -426,7 +411,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * <p>
      * While I'm doing so, I've taken advantage of the opportunity to cache
      * documentElement and docType so we don't have to search for them.
-     *
      * REVISIT: According to the spec it is not allowed to alter neither the
      * document element nor the document type in any way
      */
@@ -435,17 +419,15 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         // Only one such child permitted
         int type = newChild.getNodeType();
         if (errorChecking) {
-            if ((type == Node.ELEMENT_NODE && docElement != null)
-                    || (type == Node.DOCUMENT_TYPE_NODE && docType != null)) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
-                        null);
+            if ((type == Node.ELEMENT_NODE && docElement != null) || (type == Node.DOCUMENT_TYPE_NODE
+                    && docType != null)) {
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "HIERARCHY_REQUEST_ERR", null);
                 throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, msg);
             }
         }
         // Adopt orphan doctypes
-        if (newChild.getOwnerDocument() == null
-                && newChild instanceof DocumentTypeImpl) {
+        if (newChild.getOwnerDocument() == null && newChild instanceof DocumentTypeImpl) {
             ((DocumentTypeImpl) newChild).ownerDocument = this;
         }
         super.insertBefore(newChild, refChild);
@@ -464,7 +446,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * Since insertBefore caches the docElement (and, currently, docType),
      * removeChild has to know how to undo the cache
-     *
      * REVISIT: According to the spec it is not allowed to alter neither the
      * document element nor the document type in any way
      */
@@ -487,29 +468,23 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * Since we cache the docElement (and, currently, docType), replaceChild has
      * to update the cache
-     *
      * REVISIT: According to the spec it is not allowed to alter neither the
      * document element nor the document type in any way
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
 
         // Adopt orphan doctypes
-        if (newChild.getOwnerDocument() == null
-                && newChild instanceof DocumentTypeImpl) {
+        if (newChild.getOwnerDocument() == null && newChild instanceof DocumentTypeImpl) {
             ((DocumentTypeImpl) newChild).ownerDocument = this;
         }
 
-        if (errorChecking && ((docType != null && oldChild
-                .getNodeType() != Node.DOCUMENT_TYPE_NODE && newChild
-                        .getNodeType() == Node.DOCUMENT_TYPE_NODE)
-                || (docElement != null && oldChild
+        if (errorChecking && ((docType != null && oldChild.getNodeType() != Node.DOCUMENT_TYPE_NODE
+                && newChild.getNodeType() == Node.DOCUMENT_TYPE_NODE) || (docElement != null && oldChild
                         .getNodeType() != Node.ELEMENT_NODE && newChild
                                 .getNodeType() == Node.ELEMENT_NODE))) {
 
-            throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR,
-                    DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "HIERARCHY_REQUEST_ERR", null));
+            throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, DOMMessageFormatter.formatMessage(
+                    DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR", null));
         }
         super.replaceChild(newChild, oldChild);
 
@@ -550,8 +525,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         // castable DOMImplementation.getFeature(feature, version). Without a
         // plus, only features whose interfaces are directly castable are
         // considered.
-        if ((feature.equalsIgnoreCase("+XPath")) && (anyVersion || version
-                .equals("3.0"))) {
+        if ((feature.equalsIgnoreCase("+XPath")) && (anyVersion || version.equals("3.0"))) {
 
             // If an XPathEvaluator was created previously
             // return it otherwise create a new one.
@@ -561,19 +535,15 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
             try {
                 Class xpathClass = ObjectFactory.findProviderClass(
-                        "com.sun.org.apache.xpath.internal.domapi.XPathEvaluatorImpl",
-                        true);
-                Constructor xpathClassConstr = xpathClass.getConstructor(
-                        new Class[] { Document.class });
+                        "com.sun.org.apache.xpath.internal.domapi.XPathEvaluatorImpl", true);
+                Constructor xpathClassConstr = xpathClass.getConstructor(new Class[] { Document.class });
 
                 // Check if the DOM XPath implementation implements
                 // the interface org.w3c.dom.XPathEvaluator
                 Class interfaces[] = xpathClass.getInterfaces();
                 for (int i = 0; i < interfaces.length; i++) {
-                    if (interfaces[i].getName().equals(
-                            "org.w3c.dom.xpath.XPathEvaluator")) {
-                        fXPathEvaluator = xpathClassConstr.newInstance(
-                                new Object[] { this });
+                    if (interfaces[i].getName().equals("org.w3c.dom.xpath.XPathEvaluator")) {
+                        fXPathEvaluator = xpathClassConstr.newInstance(new Object[] { this });
                         return fXPathEvaluator;
                     }
                 }
@@ -596,19 +566,17 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * OwnerDoc.
      *
      * @param name
-     *             The name of the attribute. Note that the attribute's value is
-     *             _not_ established at the factory; remember to set it!
-     *
+     *        The name of the attribute. Note that the attribute's value is
+     *        _not_ established at the factory; remember to set it!
      * @throws DOMException(INVALID_NAME_ERR)
-     *                                        if the attribute name is not
-     *                                        acceptable.
+     *         if the attribute name is not
+     *         acceptable.
      */
     public Attr createAttribute(String name) throws DOMException {
 
         if (errorChecking && !isXMLName(name, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new AttrImpl(this, name);
@@ -620,11 +588,10 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * OwnerDoc.
      *
      * @param data
-     *             The initial contents of the CDATA
-     *
+     *        The initial contents of the CDATA
      * @throws DOMException(NOT_SUPPORTED_ERR)
-     *                                         for HTML documents. (HTML not yet
-     *                                         implemented.)
+     *         for HTML documents. (HTML not yet
+     *         implemented.)
      */
     public CDATASection createCDATASection(String data) throws DOMException {
         return new CDATASectionImpl(this, data);
@@ -634,7 +601,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Factory method; creates a Comment having this Document as its OwnerDoc.
      *
      * @param data
-     *             The initial contents of the Comment.
+     *        The initial contents of the Comment.
      */
     public Comment createComment(String data) {
         return new CommentImpl(this, data);
@@ -652,22 +619,20 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Factory method; creates an Element having this Document as its OwnerDoc.
      *
      * @param tagName
-     *                The name of the element type to instantiate. For XML, this
-     *                is
-     *                case-sensitive. For HTML, the tagName parameter may be
-     *                provided in any case, but it must be mapped to the
-     *                canonical
-     *                uppercase form by the DOM implementation.
-     *
+     *        The name of the element type to instantiate. For XML, this
+     *        is
+     *        case-sensitive. For HTML, the tagName parameter may be
+     *        provided in any case, but it must be mapped to the
+     *        canonical
+     *        uppercase form by the DOM implementation.
      * @throws DOMException(INVALID_NAME_ERR)
-     *                                        if the tag name is not acceptable.
+     *         if the tag name is not acceptable.
      */
     public Element createElement(String tagName) throws DOMException {
 
         if (errorChecking && !isXMLName(tagName, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new ElementImpl(this, tagName);
@@ -679,21 +644,18 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * OwnerDoc.
      *
      * @param name
-     *             The name of the Entity we wish to refer to
-     *
+     *        The name of the Entity we wish to refer to
      * @throws DOMException(NOT_SUPPORTED_ERR)
-     *                                         for HTML documents, where
-     *                                         nonstandard entities are not
-     *                                         permitted. (HTML not yet
-     *                                         implemented.)
+     *         for HTML documents, where
+     *         nonstandard entities are not
+     *         permitted. (HTML not yet
+     *         implemented.)
      */
-    public EntityReference createEntityReference(String name)
-            throws DOMException {
+    public EntityReference createEntityReference(String name) throws DOMException {
 
         if (errorChecking && !isXMLName(name, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new EntityReferenceImpl(this, name);
@@ -705,25 +667,21 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * its OwnerDoc.
      *
      * @param target
-     *               The target "processor channel"
+     *        The target "processor channel"
      * @param data
-     *               Parameter string to be passed to the target.
-     *
+     *        Parameter string to be passed to the target.
      * @throws DOMException(INVALID_NAME_ERR)
-     *                                         if the target name is not
-     *                                         acceptable.
-     *
+     *         if the target name is not
+     *         acceptable.
      * @throws DOMException(NOT_SUPPORTED_ERR)
-     *                                         for HTML documents. (HTML not yet
-     *                                         implemented.)
+     *         for HTML documents. (HTML not yet
+     *         implemented.)
      */
-    public ProcessingInstruction createProcessingInstruction(String target,
-            String data) throws DOMException {
+    public ProcessingInstruction createProcessingInstruction(String target, String data) throws DOMException {
 
         if (errorChecking && !isXMLName(target, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new ProcessingInstructionImpl(this, target, data);
@@ -734,7 +692,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Factory method; creates a Text node having this Document as its OwnerDoc.
      *
      * @param data
-     *             The initial contents of the Text.
+     *        The initial contents of the Text.
      */
     public Text createTextNode(String data) {
         return new TextImpl(this, data);
@@ -759,7 +717,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * legal to have more than one Element at the top level of the document, we
      * pick the one with the tagName "HTML". For XML there should be only one
      * top-level
-     *
      * (HTML not yet supported.)
      */
     public Element getDocumentElement() {
@@ -774,10 +731,9 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * immediate children) having the specified tag name.
      *
      * @param tagname
-     *                The type of Element we want to gather. "*" will be taken
-     *                as a
-     *                wildcard, meaning "all elements in the document."
-     *
+     *        The type of Element we want to gather. "*" will be taken
+     *        as a
+     *        wildcard, meaning "all elements in the document."
      * @see DeepNodeListImpl
      */
     public NodeList getElementsByTagName(String tagname) {
@@ -847,7 +803,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
     /**
      * DOM Level 3 CR - Experimental. (Was getActualEncoding)
-     *
      * An attribute specifying the encoding used for this document at the time
      * of the parsing. This is <code>null</code> when it is not known, such as
      * when the <code>Document</code> was created in memory.
@@ -861,7 +816,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * DOM Internal (Was a DOM L3 Core WD public interface method
      * setActualEncoding )
-     *
      * An attribute specifying the actual encoding of this document. This is
      * <code>null</code> otherwise. <br>
      * This attribute represents the property [character encoding scheme]
@@ -874,7 +828,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * DOM Internal (Was a DOM L3 Core WD public interface method setXMLEncoding
      * )
-     *
      * An attribute specifying, as part of the XML declaration, the encoding of
      * this document. This is null when unspecified.
      */
@@ -927,8 +880,8 @@ public class CoreDocumentImpl extends ParentNode implements Document {
             // not supported by
             // this document
             // we dont support any other XML version
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
 
         }
@@ -968,14 +921,13 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
     /**
      * DOM Level 3 CR - Experimental.
-     *
      * Xmlstandalone - An attribute specifying, as part of the XML declaration,
      * whether this document is standalone
      * 
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: Raised if this document does
-     *                         not
-     *                         support the "XML" feature.
+     *            NOT_SUPPORTED_ERR: Raised if this document does
+     *            not
+     *            support the "XML" feature.
      * @since DOM Level 3
      */
     public void setXmlStandalone(boolean value) throws DOMException {
@@ -1024,12 +976,11 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * DOM Level 3 WD - Experimental. Renaming node
      */
-    public Node renameNode(Node n, String namespaceURI, String name)
-            throws DOMException {
+    public Node renameNode(Node n, String namespaceURI, String name) throws DOMException {
 
         if (errorChecking && n.getOwnerDocument() != this && n != this) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "WRONG_DOCUMENT_ERR", null);
             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
         }
         switch (n.getNodeType()) {
@@ -1039,44 +990,35 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                     ((ElementNSImpl) el).rename(namespaceURI, name);
 
                     // fire user data NODE_RENAMED event
-                    callUserDataHandlers(el, null,
-                            UserDataHandler.NODE_RENAMED);
+                    callUserDataHandlers(el, null, UserDataHandler.NODE_RENAMED);
                 } else {
                     if (namespaceURI == null) {
                         if (errorChecking) {
                             int colon1 = name.indexOf(':');
                             if (colon1 != -1) {
-                                String msg = DOMMessageFormatter.formatMessage(
-                                        DOMMessageFormatter.DOM_DOMAIN,
+                                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                                         "NAMESPACE_ERR", null);
-                                throw new DOMException(
-                                        DOMException.NAMESPACE_ERR, msg);
+                                throw new DOMException(DOMException.NAMESPACE_ERR, msg);
                             }
                             if (!isXMLName(name, xml11Version)) {
-                                String msg = DOMMessageFormatter.formatMessage(
-                                        DOMMessageFormatter.DOM_DOMAIN,
+                                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                                         "INVALID_CHARACTER_ERR", null);
-                                throw new DOMException(
-                                        DOMException.INVALID_CHARACTER_ERR,
-                                        msg);
+                                throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
                             }
                         }
                         el.rename(name);
 
                         // fire user data NODE_RENAMED event
-                        callUserDataHandlers(el, null,
-                                UserDataHandler.NODE_RENAMED);
+                        callUserDataHandlers(el, null, UserDataHandler.NODE_RENAMED);
                     } else {
                         // we need to create a new object
-                        ElementNSImpl nel = new ElementNSImpl(this,
-                                namespaceURI, name);
+                        ElementNSImpl nel = new ElementNSImpl(this, namespaceURI, name);
 
                         // register event listeners on new node
                         copyEventListeners(el, nel);
 
                         // remove user data from old node
-                        Map<String, UserDataRecord> data = removeUserDataTable(
-                                el);
+                        Map<String, UserDataRecord> data = removeUserDataTable(el);
 
                         // remove old node from parent if any
                         Node parent = el.getParentNode();
@@ -1098,8 +1040,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                         setUserDataTable(nel, data);
 
                         // and fire user data NODE_RENAMED event
-                        callUserDataHandlers(el, nel,
-                                UserDataHandler.NODE_RENAMED);
+                        callUserDataHandlers(el, nel, UserDataHandler.NODE_RENAMED);
 
                         // insert new node where old one was
                         if (parent != null) {
@@ -1128,8 +1069,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                     }
 
                     // fire user data NODE_RENAMED event
-                    callUserDataHandlers(at, null,
-                            UserDataHandler.NODE_RENAMED);
+                    callUserDataHandlers(at, null, UserDataHandler.NODE_RENAMED);
                 } else {
                     if (namespaceURI == null) {
                         at.rename(name);
@@ -1139,19 +1079,16 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                         }
 
                         // fire user data NODE_RENAMED event
-                        callUserDataHandlers(at, null,
-                                UserDataHandler.NODE_RENAMED);
+                        callUserDataHandlers(at, null, UserDataHandler.NODE_RENAMED);
                     } else {
                         // we need to create a new object
-                        AttrNSImpl nat = new AttrNSImpl(this, namespaceURI,
-                                name);
+                        AttrNSImpl nat = new AttrNSImpl(this, namespaceURI, name);
 
                         // register event listeners on new node
                         copyEventListeners(at, nat);
 
                         // remove user data from old node
-                        Map<String, UserDataRecord> data = removeUserDataTable(
-                                at);
+                        Map<String, UserDataRecord> data = removeUserDataTable(at);
 
                         // move children to new node
                         Node child = at.getFirstChild();
@@ -1165,8 +1102,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                         setUserDataTable(nat, data);
 
                         // and fire user data NODE_RENAMED event
-                        callUserDataHandlers(at, nat,
-                                UserDataHandler.NODE_RENAMED);
+                        callUserDataHandlers(at, nat, UserDataHandler.NODE_RENAMED);
 
                         // reattach attr to element
                         if (el != null) {
@@ -1181,9 +1117,8 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                 return at;
             }
             default: {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_SUPPORTED_ERR", null);
                 throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
             }
         }
@@ -1221,7 +1156,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
     /**
      * DOM Level 3 CR - Experimental
-     *
      * The configuration used when <code>Document.normalizeDocument</code> is
      * invoked.
      * 
@@ -1300,8 +1234,8 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      */
     public void setAsync(boolean async) {
         if (async) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
     }
@@ -1316,7 +1250,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
     /**
      * DOM Level 3 WD - Experimental.
-     *
      * Replaces the content of the document with the result of parsing the given
      * URI. Invoking this method will either block the caller or return to the
      * caller immediately depending on the value of the async attribute. Once
@@ -1340,9 +1273,9 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * and the action <code>ACTION_REPLACE_CHILDREN</code>.
      * 
      * @param uri
-     *            The URI reference for the XML file to be loaded. If this is a
-     *            relative URI, the base URI used by the implementation is
-     *            implementation dependent.
+     *        The URI reference for the XML file to be loaded. If this is a
+     *        relative URI, the base URI used by the implementation is
+     *        implementation dependent.
      * @return If async is set to <code>true</code> <code>load</code> returns
      *         <code>true</code> if the document load was successfully
      *         initiated. If an error occurred when initiating the document
@@ -1362,7 +1295,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * synchronous.
      * 
      * @param source
-     *               A string containing an XML document.
+     *        A string containing an XML document.
      * @return <code>true</code> if parsing the input string succeeded without
      *         errors, otherwise <code>false</code>.
      */
@@ -1381,24 +1314,23 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * write.
      * 
      * @param node
-     *             Specifies what to serialize, if this parameter is
-     *             <code>null</code> the whole document is serialized, if it's
-     *             non-null the given node is serialized.
+     *        Specifies what to serialize, if this parameter is
+     *        <code>null</code> the whole document is serialized, if it's
+     *        non-null the given node is serialized.
      * @return The serialized document or <code>null</code> in case an error
      *         occurred.
      * @exception DOMException
-     *                         WRONG_DOCUMENT_ERR: Raised if the node passed in
-     *                         as the
-     *                         node parameter is from an other document.
+     *            WRONG_DOCUMENT_ERR: Raised if the node passed in
+     *            as the
+     *            node parameter is from an other document.
      */
     public String saveXML(Node node) throws DOMException {
         if (errorChecking && node != null && this != node.getOwnerDocument()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "WRONG_DOCUMENT_ERR", null);
             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
         }
-        DOMImplementationLS domImplLS = (DOMImplementationLS) DOMImplementationImpl
-                .getDOMImplementation();
+        DOMImplementationLS domImplLS = (DOMImplementationLS) DOMImplementationImpl.getDOMImplementation();
         LSSerializer xmlWriter = domImplLS.createLSSerializer();
         if (node == null) {
             node = this;
@@ -1429,15 +1361,14 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * information unspecified.)
      *
      * @param name
-     *             The name of the Entity we wish to provide a value for.
-     *
+     *        The name of the Entity we wish to provide a value for.
      * @throws DOMException(NOT_SUPPORTED_ERR)
-     *                                         for HTML documents, where DTDs
-     *                                         are not permitted. (HTML not
-     *                                         yet implemented.)
+     *         for HTML documents, where DTDs
+     *         are not permitted. (HTML not
+     *         yet implemented.)
      */
-    public DocumentType createDocumentType(String qualifiedName,
-            String publicID, String systemID) throws DOMException {
+    public DocumentType createDocumentType(String qualifiedName, String publicID, String systemID)
+            throws DOMException {
 
         return new DocumentTypeImpl(this, qualifiedName, publicID, systemID);
 
@@ -1449,20 +1380,18 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * information unspecified.)
      *
      * @param name
-     *             The name of the Entity we wish to provide a value for.
-     *
+     *        The name of the Entity we wish to provide a value for.
      * @throws DOMException(NOT_SUPPORTED_ERR)
-     *                                         for HTML documents, where
-     *                                         nonstandard entities are not
-     *                                         permitted. (HTML not yet
-     *                                         implemented.)
+     *         for HTML documents, where
+     *         nonstandard entities are not
+     *         permitted. (HTML not yet
+     *         implemented.)
      */
     public Entity createEntity(String name) throws DOMException {
 
         if (errorChecking && !isXMLName(name, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new EntityImpl(this, name);
@@ -1475,20 +1404,18 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * information unspecified.)
      *
      * @param name
-     *             The name of the Notation we wish to describe
-     *
+     *        The name of the Notation we wish to describe
      * @throws DOMException(NOT_SUPPORTED_ERR)
-     *                                         for HTML documents, where
-     *                                         notations are not permitted.
-     *                                         (HTML
-     *                                         not yet implemented.)
+     *         for HTML documents, where
+     *         notations are not permitted.
+     *         (HTML
+     *         not yet implemented.)
      */
     public Notation createNotation(String name) throws DOMException {
 
         if (errorChecking && !isXMLName(name, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new NotationImpl(this, name);
@@ -1499,13 +1426,11 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * NON-DOM Factory method: creates an element definition. Element
      * definitions hold default attribute values.
      */
-    public ElementDefinitionImpl createElementDefinition(String name)
-            throws DOMException {
+    public ElementDefinitionImpl createElementDefinition(String name) throws DOMException {
 
         if (errorChecking && !isXMLName(name, xml11Version)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         return new ElementDefinitionImpl(this, name);
@@ -1572,7 +1497,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Overloaded implementation of DOM's importNode method. This method
      * provides the core functionality for the public importNode and cloneNode
      * methods.
-     *
      * The reversedIdentifiers parameter is provided for cloneNode to preserve
      * the document's identifiers. The Map has Elements as the keys and their
      * identifiers as the values. When an element is being imported, a check is
@@ -1603,14 +1527,12 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         switch (type) {
             case ELEMENT_NODE: {
                 Element newElement;
-                boolean domLevel20 = source.getOwnerDocument()
-                        .getImplementation().hasFeature("XML", "2.0");
+                boolean domLevel20 = source.getOwnerDocument().getImplementation().hasFeature("XML", "2.0");
                 // Create element according to namespace support/qualification.
                 if (domLevel20 == false || source.getLocalName() == null)
                     newElement = createElement(source.getNodeName());
                 else
-                    newElement = createElementNS(source.getNamespaceURI(),
-                            source.getNodeName());
+                    newElement = createElementNS(source.getNamespaceURI(), source.getNodeName());
 
                 // Copy element's attributes, if any.
                 NamedNodeMap sourceAttrs = source.getAttributes();
@@ -1624,13 +1546,11 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                         // clonning default attributes should be copied.
                         // But for importNode defaults should be ignored.
                         if (attr.getSpecified() || cloningDoc) {
-                            Attr newAttr = (Attr) importNode(attr, true,
-                                    cloningDoc, reversedIdentifiers);
+                            Attr newAttr = (Attr) importNode(attr, true, cloningDoc, reversedIdentifiers);
 
                             // Attach attribute according to namespace
                             // support/qualification.
-                            if (domLevel20 == false || attr
-                                    .getLocalName() == null)
+                            if (domLevel20 == false || attr.getLocalName() == null)
                                 newElement.setAttributeNode(newAttr);
                             else
                                 newElement.setAttributeNodeNS(newAttr);
@@ -1657,13 +1577,11 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
             case ATTRIBUTE_NODE: {
 
-                if (source.getOwnerDocument().getImplementation().hasFeature(
-                        "XML", "2.0")) {
+                if (source.getOwnerDocument().getImplementation().hasFeature("XML", "2.0")) {
                     if (source.getLocalName() == null) {
                         newnode = createAttribute(source.getNodeName());
                     } else {
-                        newnode = createAttributeNS(source.getNamespaceURI(),
-                                source.getNodeName());
+                        newnode = createAttributeNS(source.getNamespaceURI(), source.getNodeName());
                     }
                 } else {
                     newnode = createAttribute(source.getNodeName());
@@ -1715,8 +1633,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
             case ENTITY_NODE: {
                 Entity srcentity = (Entity) source;
-                EntityImpl newentity = (EntityImpl) createEntity(source
-                        .getNodeName());
+                EntityImpl newentity = (EntityImpl) createEntity(source.getNodeName());
                 newentity.setPublicId(srcentity.getPublicId());
                 newentity.setSystemId(srcentity.getSystemId());
                 newentity.setNotationName(srcentity.getNotationName());
@@ -1728,8 +1645,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
             }
 
             case PROCESSING_INSTRUCTION_NODE: {
-                newnode = createProcessingInstruction(source.getNodeName(),
-                        source.getNodeValue());
+                newnode = createProcessingInstruction(source.getNodeName(), source.getNodeValue());
                 break;
             }
 
@@ -1742,30 +1658,26 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                 // unless this is used as part of cloning a Document
                 // forbid it for the sake of being compliant to the DOM spec
                 if (!cloningDoc) {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR",
-                            null);
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "NOT_SUPPORTED_ERR", null);
                     throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
                 }
                 DocumentType srcdoctype = (DocumentType) source;
-                DocumentTypeImpl newdoctype = (DocumentTypeImpl) createDocumentType(
-                        srcdoctype.getNodeName(), srcdoctype.getPublicId(),
-                        srcdoctype.getSystemId());
+                DocumentTypeImpl newdoctype = (DocumentTypeImpl) createDocumentType(srcdoctype.getNodeName(),
+                        srcdoctype.getPublicId(), srcdoctype.getSystemId());
                 // Values are on NamedNodeMaps
                 NamedNodeMap smap = srcdoctype.getEntities();
                 NamedNodeMap tmap = newdoctype.getEntities();
                 if (smap != null) {
                     for (int i = 0; i < smap.getLength(); i++) {
-                        tmap.setNamedItem(importNode(smap.item(i), true, true,
-                                reversedIdentifiers));
+                        tmap.setNamedItem(importNode(smap.item(i), true, true, reversedIdentifiers));
                     }
                 }
                 smap = srcdoctype.getNotations();
                 tmap = newdoctype.getNotations();
                 if (smap != null) {
                     for (int i = 0; i < smap.getLength(); i++) {
-                        tmap.setNamedItem(importNode(smap.item(i), true, true,
-                                reversedIdentifiers));
+                        tmap.setNamedItem(importNode(smap.item(i), true, true, reversedIdentifiers));
                     }
                 }
 
@@ -1786,8 +1698,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
             case NOTATION_NODE: {
                 Notation srcnotation = (Notation) source;
-                NotationImpl newnotation = (NotationImpl) createNotation(source
-                        .getNodeName());
+                NotationImpl newnotation = (NotationImpl) createNotation(source.getNodeName());
                 newnotation.setPublicId(srcnotation.getPublicId());
                 newnotation.setSystemId(srcnotation.getSystemId());
                 // Kids carry additional value
@@ -1797,24 +1708,19 @@ public class CoreDocumentImpl extends ParentNode implements Document {
             }
             case DOCUMENT_NODE: // Can't import document nodes
             default: { // Unknown node type
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_SUPPORTED_ERR", null);
                 throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
             }
         }
 
         if (userData != null)
-            callUserDataHandlers(source, newnode, UserDataHandler.NODE_IMPORTED,
-                    userData);
+            callUserDataHandlers(source, newnode, UserDataHandler.NODE_IMPORTED, userData);
 
         // If deep, replicate and attach the kids.
         if (deep) {
-            for (Node srckid = source
-                    .getFirstChild(); srckid != null; srckid = srckid
-                            .getNextSibling()) {
-                newnode.appendChild(importNode(srckid, true, cloningDoc,
-                        reversedIdentifiers));
+            for (Node srckid = source.getFirstChild(); srckid != null; srckid = srckid.getNextSibling()) {
+                newnode.appendChild(importNode(srckid, true, cloningDoc, reversedIdentifiers));
             }
         }
         if (newnode.getNodeType() == Node.ENTITY_NODE) {
@@ -1829,7 +1735,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * subtree, to this Document
      *
      * @param source
-     *               The node to adopt.
+     *        The node to adopt.
      * @see #importNode
      **/
     public Node adoptNode(Node source) {
@@ -1849,8 +1755,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         } else if (source.getOwnerDocument() != null) {
 
             DOMImplementation thisImpl = this.getImplementation();
-            DOMImplementation otherImpl = source.getOwnerDocument()
-                    .getImplementation();
+            DOMImplementation otherImpl = source.getOwnerDocument().getImplementation();
 
             // when the source node comes from a different implementation.
             if (thisImpl != otherImpl) {
@@ -1896,20 +1801,17 @@ public class CoreDocumentImpl extends ParentNode implements Document {
             // runtime will fall through to NOTATION_NODE
             case ENTITY_NODE:
             case NOTATION_NODE: {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
 
             }
             // document, documentype nodes can't be adopted.
             // runtime will fall through to DocumentTypeNode
             case DOCUMENT_NODE:
             case DOCUMENT_TYPE_NODE: {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_SUPPORTED_ERR", null);
                 throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
             }
             case ENTITY_REFERENCE_NODE: {
@@ -1938,9 +1840,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                 if (entityNode == null) {
                     break;
                 }
-                for (child = entityNode
-                        .getFirstChild(); child != null; child = child
-                                .getNextSibling()) {
+                for (child = entityNode.getFirstChild(); child != null; child = child.getNextSibling()) {
                     Node childClone = child.cloneNode(true);
                     node.appendChild(childClone);
                 }
@@ -1980,8 +1880,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         // DOM L3 Core CR
         // http://www.w3.org/TR/2003/CR-DOM-Level-3-Core-20031107/core.html#UserDataHandler-ADOPTED
         if (userData != null) {
-            callUserDataHandlers(source, null, UserDataHandler.NODE_ADOPTED,
-                    userData);
+            callUserDataHandlers(source, null, UserDataHandler.NODE_ADOPTED, userData);
         }
 
         return node;
@@ -1989,7 +1888,6 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
     /**
      * Traverses the DOM Tree and expands deferred nodes and their children.
-     *
      */
     protected void undeferChildren(Node node) {
 
@@ -2150,29 +2048,28 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * namespace "http://www.w3.org/XML/1998/namespace" [Namespaces].
      * 
      * @param namespaceURI
-     *                      The namespace URI of the element to create.
+     *        The namespace URI of the element to create.
      * @param qualifiedName
-     *                      The qualified name of the element type to
-     *                      instantiate.
+     *        The qualified name of the element type to
+     *        instantiate.
      * @return Element A new Element object with the following attributes:
      * @throws DOMException
-     *                      INVALID_CHARACTER_ERR: Raised if the specified name
-     *                      contains
-     *                      an invalid character.
+     *         INVALID_CHARACTER_ERR: Raised if the specified name
+     *         contains
+     *         an invalid character.
      * @throws DOMException
-     *                      NAMESPACE_ERR: Raised if the qualifiedName has a
-     *                      prefix that
-     *                      is "xml" and the namespaceURI is neither null nor an
-     *                      empty
-     *                      string nor "http://www.w3.org/XML/1998/namespace",
-     *                      or if the
-     *                      qualifiedName has a prefix different from "xml" and
-     *                      the
-     *                      namespaceURI is null or an empty string.
+     *         NAMESPACE_ERR: Raised if the qualifiedName has a
+     *         prefix that
+     *         is "xml" and the namespaceURI is neither null nor an
+     *         empty
+     *         string nor "http://www.w3.org/XML/1998/namespace",
+     *         or if the
+     *         qualifiedName has a prefix different from "xml" and
+     *         the
+     *         namespaceURI is null or an empty string.
      * @since WD-DOM-Level-2-19990923
      */
-    public Element createElementNS(String namespaceURI, String qualifiedName)
-            throws DOMException {
+    public Element createElementNS(String namespaceURI, String qualifiedName) throws DOMException {
         return new ElementNSImpl(this, namespaceURI, qualifiedName);
     }
 
@@ -2181,21 +2078,20 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * element.
      *
      * @param namespaceURI
-     *                      The namespace URI of the element to create.
+     *        The namespace URI of the element to create.
      * @param qualifiedName
-     *                      The qualified name of the element type to
-     *                      instantiate.
+     *        The qualified name of the element type to
+     *        instantiate.
      * @param localpart
-     *                      The local name of the attribute to instantiate.
-     *
+     *        The local name of the attribute to instantiate.
      * @return Element A new Element object with the following attributes:
      * @exception DOMException
-     *                         INVALID_CHARACTER_ERR: Raised if the specified
-     *                         name
-     *                         contains an invalid character.
+     *            INVALID_CHARACTER_ERR: Raised if the specified
+     *            name
+     *            contains an invalid character.
      */
-    public Element createElementNS(String namespaceURI, String qualifiedName,
-            String localpart) throws DOMException {
+    public Element createElementNS(String namespaceURI, String qualifiedName, String localpart)
+            throws DOMException {
         return new ElementNSImpl(this, namespaceURI, qualifiedName, localpart);
     }
 
@@ -2208,21 +2104,20 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * predefined namespace "http://www.w3.org/XML/1998/namespace" [Namespaces].
      *
      * @param namespaceURI
-     *                      The namespace URI of the attribute to create. When
-     *                      it is null
-     *                      or an empty string, this method behaves like
-     *                      createAttribute.
+     *        The namespace URI of the attribute to create. When
+     *        it is null
+     *        or an empty string, this method behaves like
+     *        createAttribute.
      * @param qualifiedName
-     *                      The qualified name of the attribute to instantiate.
+     *        The qualified name of the attribute to instantiate.
      * @return Attr A new Attr object.
      * @throws DOMException
-     *                      INVALID_CHARACTER_ERR: Raised if the specified name
-     *                      contains
-     *                      an invalid character.
+     *         INVALID_CHARACTER_ERR: Raised if the specified name
+     *         contains
+     *         an invalid character.
      * @since WD-DOM-Level-2-19990923
      */
-    public Attr createAttributeNS(String namespaceURI, String qualifiedName)
-            throws DOMException {
+    public Attr createAttributeNS(String namespaceURI, String qualifiedName) throws DOMException {
         return new AttrNSImpl(this, namespaceURI, qualifiedName);
     }
 
@@ -2231,23 +2126,22 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * element.
      *
      * @param namespaceURI
-     *                      The namespace URI of the attribute to create. When
-     *                      it is null
-     *                      or an empty string, this method behaves like
-     *                      createAttribute.
+     *        The namespace URI of the attribute to create. When
+     *        it is null
+     *        or an empty string, this method behaves like
+     *        createAttribute.
      * @param qualifiedName
-     *                      The qualified name of the attribute to instantiate.
+     *        The qualified name of the attribute to instantiate.
      * @param localpart
-     *                      The local name of the attribute to instantiate.
-     *
+     *        The local name of the attribute to instantiate.
      * @return Attr A new Attr object.
      * @throws DOMException
-     *                      INVALID_CHARACTER_ERR: Raised if the specified name
-     *                      contains
-     *                      an invalid character.
+     *         INVALID_CHARACTER_ERR: Raised if the specified name
+     *         contains
+     *         an invalid character.
      */
-    public Attr createAttributeNS(String namespaceURI, String qualifiedName,
-            String localpart) throws DOMException {
+    public Attr createAttributeNS(String namespaceURI, String qualifiedName, String localpart)
+            throws DOMException {
         return new AttrNSImpl(this, namespaceURI, qualifiedName, localpart);
     }
 
@@ -2259,22 +2153,21 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * preorder traversal of the Document tree.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the elements to match on. The
-     *                     special
-     *                     value "*" matches all namespaces. When it is null or
-     *                     an empty
-     *                     string, this method behaves like
-     *                     getElementsByTagName.
+     *        The namespace URI of the elements to match on. The
+     *        special
+     *        value "*" matches all namespaces. When it is null or
+     *        an empty
+     *        string, this method behaves like
+     *        getElementsByTagName.
      * @param localName
-     *                     The local name of the elements to match on. The
-     *                     special value
-     *                     "*" matches all local names.
+     *        The local name of the elements to match on. The
+     *        special value
+     *        "*" matches all local names.
      * @return NodeList A new NodeList object containing all the matched
      *         Elements.
      * @since WD-DOM-Level-2-19990923
      */
-    public NodeList getElementsByTagNameNS(String namespaceURI,
-            String localName) {
+    public NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
         return new DeepNodeListImpl(this, namespaceURI, localName);
     }
 
@@ -2317,12 +2210,11 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * of XML to which this document must conform.
      *
      * @param prefix
-     *               prefix of qualified name
+     *        prefix of qualified name
      * @param local
-     *               local part of qualified name
+     *        local part of qualified name
      */
-    public static final boolean isValidQName(String prefix, String local,
-            boolean xml11Version) {
+    public static final boolean isValidQName(String prefix, String local, boolean xml11Version) {
 
         // check that both prefix and local part match NCName
         if (local == null)
@@ -2330,11 +2222,10 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         boolean validNCName = false;
 
         if (!xml11Version) {
-            validNCName = (prefix == null || XMLChar.isValidNCName(prefix))
-                    && XMLChar.isValidNCName(local);
+            validNCName = (prefix == null || XMLChar.isValidNCName(prefix)) && XMLChar.isValidNCName(local);
         } else {
-            validNCName = (prefix == null || XML11Char.isXML11ValidNCName(
-                    prefix)) && XML11Char.isXML11ValidNCName(local);
+            validNCName = (prefix == null || XML11Char.isXML11ValidNCName(prefix)) && XML11Char
+                    .isXML11ValidNCName(local);
         }
 
         return validNCName;
@@ -2348,8 +2239,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * is legal.
      */
     protected boolean isKidOK(Node parent, Node child) {
-        if (allowGrammarAccess && parent
-                .getNodeType() == Node.DOCUMENT_TYPE_NODE) {
+        if (allowGrammarAccess && parent.getNodeType() == Node.DOCUMENT_TYPE_NODE) {
             return child.getNodeType() == Node.ELEMENT_NODE;
         }
         return 0 != (kidOK[parent.getNodeType()] & 1 << child.getNodeType());
@@ -2407,24 +2297,22 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * same key.
      * 
      * @param n
-     *                The node to associate the object to.
+     *        The node to associate the object to.
      * @param key
-     *                The key to associate the object to.
+     *        The key to associate the object to.
      * @param data
-     *                The object to associate to the given key, or
-     *                <code>null</code>
-     *                to remove any existing association to that key.
+     *        The object to associate to the given key, or
+     *        <code>null</code>
+     *        to remove any existing association to that key.
      * @param handler
-     *                The handler to associate to that key, or
-     *                <code>null</code>.
+     *        The handler to associate to that key, or
+     *        <code>null</code>.
      * @return Returns the <code>DOMObject</code> previously associated to the
      *         given key on this node, or <code>null</code> if there was none.
      * @since DOM Level 3
-     *
      *        REVISIT: we could use a free list of UserDataRecord here
      */
-    public Object setUserData(Node n, String key, Object data,
-            UserDataHandler handler) {
+    public Object setUserData(Node n, String key, Object data, UserDataHandler handler) {
         if (data == null) {
             if (nodeUserData != null) {
                 Map<String, UserDataRecord> t = nodeUserData.get(n);
@@ -2463,9 +2351,9 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * the same key.
      * 
      * @param n
-     *            The node the object is associated to.
+     *        The node the object is associated to.
      * @param key
-     *            The key the object is associated to.
+     *        The key the object is associated to.
      * @return Returns the <code>DOMObject</code> associated to the given key on
      *         this node, or <code>null</code> if there was none.
      * @since DOM Level 3
@@ -2500,7 +2388,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Remove user data table for the given node.
      * 
      * @param n
-     *          The node this operation applies to.
+     *        The node this operation applies to.
      * @return The removed table.
      */
     Map<String, UserDataRecord> removeUserDataTable(Node n) {
@@ -2514,9 +2402,9 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Set user data table for the given node.
      * 
      * @param n
-     *             The node this operation applies to.
+     *        The node this operation applies to.
      * @param data
-     *             The user data table.
+     *        The user data table.
      */
     void setUserDataTable(Node n, Map<String, UserDataRecord> data) {
         if (nodeUserData == null) {
@@ -2532,11 +2420,11 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Call user data handlers when a node is deleted (finalized)
      * 
      * @param n
-     *                  The node this operation applies to.
+     *        The node this operation applies to.
      * @param c
-     *                  The copy node or null.
+     *        The copy node or null.
      * @param operation
-     *                  The operation - import, clone, or delete.
+     *        The operation - import, clone, or delete.
      */
     void callUserDataHandlers(Node n, Node c, short operation) {
         if (nodeUserData == null) {
@@ -2556,16 +2444,15 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * Call user data handlers when a node is deleted (finalized)
      * 
      * @param n
-     *                  The node this operation applies to.
+     *        The node this operation applies to.
      * @param c
-     *                  The copy node or null.
+     *        The copy node or null.
      * @param operation
-     *                  The operation - import, clone, or delete.
+     *        The operation - import, clone, or delete.
      * @param handlers
-     *                  Data associated with n.
+     *        Data associated with n.
      */
-    void callUserDataHandlers(Node n, Node c, short operation,
-            Map<String, UserDataRecord> userData) {
+    void callUserDataHandlers(Node n, Node c, short operation, Map<String, UserDataRecord> userData) {
         if (userData == null || userData.isEmpty()) {
             return;
         }
@@ -2601,8 +2488,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * null); } } } } }
      */
 
-    protected final void checkNamespaceWF(String qname, int colon1,
-            int colon2) {
+    protected final void checkNamespaceWF(String qname, int colon1, int colon2) {
 
         if (!errorChecking) {
             return;
@@ -2611,8 +2497,8 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         // check if it is valid QName [Namespace in XML production 6]
         // :camera , nikon:camera:minolta, camera:
         if (colon1 == 0 || colon1 == qname.length() - 1 || colon2 != colon1) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+                    null);
             throw new DOMException(DOMException.NAMESPACE_ERR, msg);
         }
     }
@@ -2620,19 +2506,17 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     protected final void checkDOMNSErr(String prefix, String namespace) {
         if (errorChecking) {
             if (namespace == null) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NAMESPACE_ERR", null);
                 throw new DOMException(DOMException.NAMESPACE_ERR, msg);
-            } else if (prefix.equals("xml") && !namespace.equals(
-                    NamespaceContext.XML_URI)) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+            } else if (prefix.equals("xml") && !namespace.equals(NamespaceContext.XML_URI)) {
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NAMESPACE_ERR", null);
                 throw new DOMException(DOMException.NAMESPACE_ERR, msg);
-            } else if (prefix.equals("xmlns") && !namespace.equals(
-                    NamespaceContext.XMLNS_URI) || (!prefix.equals("xmlns")
-                            && namespace.equals(NamespaceContext.XMLNS_URI))) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+            } else if (prefix.equals("xmlns") && !namespace.equals(NamespaceContext.XMLNS_URI) || (!prefix
+                    .equals("xmlns") && namespace.equals(NamespaceContext.XMLNS_URI))) {
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NAMESPACE_ERR", null);
                 throw new DOMException(DOMException.NAMESPACE_ERR, msg);
             }
         }
@@ -2643,9 +2527,9 @@ public class CoreDocumentImpl extends ParentNode implements Document {
      * of XML to which this document must conform.
      *
      * @param prefix
-     *               prefix of qualified name
+     *        prefix of qualified name
      * @param local
-     *               local part of qualified name
+     *        local part of qualified name
      */
     protected final void checkQName(String prefix, String local) {
         if (!errorChecking) {
@@ -2655,18 +2539,16 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         // check that both prefix and local part match NCName
         boolean validNCName = false;
         if (!xml11Version) {
-            validNCName = (prefix == null || XMLChar.isValidNCName(prefix))
-                    && XMLChar.isValidNCName(local);
+            validNCName = (prefix == null || XMLChar.isValidNCName(prefix)) && XMLChar.isValidNCName(local);
         } else {
-            validNCName = (prefix == null || XML11Char.isXML11ValidNCName(
-                    prefix)) && XML11Char.isXML11ValidNCName(local);
+            validNCName = (prefix == null || XML11Char.isXML11ValidNCName(prefix)) && XML11Char
+                    .isXML11ValidNCName(local);
         }
 
         if (!validNCName) {
             // REVISIT: add qname parameter to the message
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
     }
@@ -2712,13 +2594,12 @@ public class CoreDocumentImpl extends ParentNode implements Document {
 
     // Event related methods overidden in subclass
 
-    protected void addEventListener(NodeImpl node, String type,
-            EventListener listener, boolean useCapture) {
+    protected void addEventListener(NodeImpl node, String type, EventListener listener, boolean useCapture) {
         // does nothing by default - overidden in subclass
     }
 
-    protected void removeEventListener(NodeImpl node, String type,
-            EventListener listener, boolean useCapture) {
+    protected void removeEventListener(NodeImpl node, String type, EventListener listener,
+            boolean useCapture) {
         // does nothing by default - overidden in subclass
     }
 
@@ -2759,8 +2640,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     /**
      * A method to be called when a character data node has been modified
      */
-    void modifiedCharacterData(NodeImpl node, String oldvalue, String value,
-            boolean replace) {}
+    void modifiedCharacterData(NodeImpl node, String oldvalue, String value, boolean replace) {}
 
     /**
      * A method to be called when a node is about to be inserted in the tree.
@@ -2836,18 +2716,15 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         Hashtable<Node, Hashtable<String, UserDataRecord>> nud = null;
         if (nodeUserData != null) {
             nud = new Hashtable<>();
-            for (Map.Entry<Node, Map<String, UserDataRecord>> e : nodeUserData
-                    .entrySet()) {
+            for (Map.Entry<Node, Map<String, UserDataRecord>> e : nodeUserData.entrySet()) {
                 // e.getValue() will not be null since an entry is always put
                 // with a non-null value
                 nud.put(e.getKey(), new Hashtable<>(e.getValue()));
             }
         }
 
-        Hashtable<String, Node> ids = (identifiers == null) ? null
-                : new Hashtable<>(identifiers);
-        Hashtable<Node, Integer> nt = (nodeTable == null) ? null
-                : new Hashtable<>(nodeTable);
+        Hashtable<String, Node> ids = (identifiers == null) ? null : new Hashtable<>(identifiers);
+        Hashtable<Node, Integer> nt = (nodeTable == null) ? null : new Hashtable<>(nodeTable);
 
         // Write serialized fields
         ObjectOutputStream.PutField pf = out.putFields();
@@ -2877,8 +2754,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
     }
 
     @SuppressWarnings("unchecked")
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // We have to read serialized fields first.
         ObjectInputStream.GetField gf = in.readFields();
         docType = (DocumentTypeImpl) gf.get("docType", null);
@@ -2895,8 +2771,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         Hashtable<Node, Hashtable<String, UserDataRecord>> nud = (Hashtable<Node, Hashtable<String, UserDataRecord>>) gf
                 .get("userData", null);
 
-        Hashtable<String, Node> ids = (Hashtable<String, Node>) gf.get(
-                "identifiers", null);
+        Hashtable<String, Node> ids = (Hashtable<String, Node>) gf.get("identifiers", null);
 
         changes = gf.get("changes", 0);
         allowGrammarAccess = gf.get("allowGrammarAccess", false);
@@ -2906,16 +2781,14 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         documentNumber = gf.get("documentNumber", 0);
         nodeCounter = gf.get("nodeCounter", 0);
 
-        Hashtable<Node, Integer> nt = (Hashtable<Node, Integer>) gf.get(
-                "nodeTable", null);
+        Hashtable<Node, Integer> nt = (Hashtable<Node, Integer>) gf.get("nodeTable", null);
 
         xml11Version = gf.get("xml11Version", false);
 
         // convert Hashtables back to HashMaps
         if (nud != null) {
             nodeUserData = new HashMap<>();
-            for (Map.Entry<Node, Hashtable<String, UserDataRecord>> e : nud
-                    .entrySet()) {
+            for (Map.Entry<Node, Hashtable<String, UserDataRecord>> e : nud.entrySet()) {
                 nodeUserData.put(e.getKey(), new HashMap<>(e.getValue()));
             }
         }

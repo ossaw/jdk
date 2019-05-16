@@ -71,7 +71,7 @@ public class DUP2_X1 extends StackInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackInstruction(this);

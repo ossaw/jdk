@@ -24,10 +24,8 @@ import com.sun.org.apache.xerces.internal.util.SymbolHash;
  * the factory to create/return built-in schema DVs and create user-defined DVs
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  * @version $Id: SchemaDVFactoryImpl.java,v 1.7 2010-11-01 04:39:47 joehw Exp $
  */
 public class SchemaDVFactoryImpl extends BaseSchemaDVFactory {
@@ -53,7 +51,7 @@ public class SchemaDVFactoryImpl extends BaseSchemaDVFactory {
      * base of anySimpleType. It needs to be changed as per the decision taken.
      *
      * @param name
-     *             the name of the datatype
+     *        the name of the datatype
      * @return the datatype validator of the given name
      */
     public XSSimpleType getBuiltInType(String name) {

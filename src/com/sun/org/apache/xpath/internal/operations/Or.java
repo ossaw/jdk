@@ -34,17 +34,14 @@ public class Or extends Operation {
      * method for optimization purposes.
      *
      * @param xctxt
-     *              The runtime execution context.
-     *
+     *        The runtime execution context.
      * @return {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_TRUE}
      *         or
      *         {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_FALSE}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         XObject expr1 = m_left.execute(xctxt);
 
@@ -60,14 +57,11 @@ public class Or extends Operation {
      * Evaluate this operation directly to a boolean.
      *
      * @param xctxt
-     *              The runtime execution context.
-     *
+     *        The runtime execution context.
      * @return The result of the operation as a boolean.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public boolean bool(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public boolean bool(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return (m_left.bool(xctxt) || m_right.bool(xctxt));
     }
 

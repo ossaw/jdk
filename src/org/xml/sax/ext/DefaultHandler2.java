@@ -22,11 +22,9 @@ import org.xml.sax.helpers.DefaultHandler;
  * {@link DefaultHandler#resolveEntity resolveEntity()} method the added handler
  * methods just return. Subclassers may override everything on a
  * method-by-method basis.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
  * </blockquote>
- *
  * <p>
  * <em>Note:</em> this class might yet learn that the
  * <em>ContentHandler.setDocumentLocator()</em> call might be passed a
@@ -36,8 +34,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @since SAX 2.0 (extensions 1.1 alpha)
  * @author David Brownell
  */
-public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
-        DeclHandler, EntityResolver2 {
+public class DefaultHandler2 extends DefaultHandler implements LexicalHandler, DeclHandler, EntityResolver2 {
     /** Constructs a handler which ignores all parsing events. */
     public DefaultHandler2() {}
 
@@ -47,8 +44,7 @@ public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
 
     public void endCDATA() throws SAXException {}
 
-    public void startDTD(String name, String publicId, String systemId)
-            throws SAXException {}
+    public void startDTD(String name, String publicId, String systemId) throws SAXException {}
 
     public void endDTD() throws SAXException {}
 
@@ -60,16 +56,14 @@ public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
 
     // SAX2 ext-1.0 DeclHandler
 
-    public void attributeDecl(String eName, String aName, String type,
-            String mode, String value) throws SAXException {}
+    public void attributeDecl(String eName, String aName, String type, String mode, String value)
+            throws SAXException {}
 
     public void elementDecl(String name, String model) throws SAXException {}
 
-    public void externalEntityDecl(String name, String publicId,
-            String systemId) throws SAXException {}
+    public void externalEntityDecl(String name, String publicId, String systemId) throws SAXException {}
 
-    public void internalEntityDecl(String name, String value)
-            throws SAXException {}
+    public void internalEntityDecl(String name, String value) throws SAXException {}
 
     // SAX2 ext-1.1 EntityResolver2
 
@@ -77,8 +71,7 @@ public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
      * Tells the parser that if no external subset has been declared in the
      * document text, none should be used.
      */
-    public InputSource getExternalSubset(String name, String baseURI)
-            throws SAXException, IOException {
+    public InputSource getExternalSubset(String name, String baseURI) throws SAXException, IOException {
         return null;
     }
 
@@ -90,8 +83,8 @@ public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
      * invoked with null <em>name</em> and <em>baseURI</em>, and with the
      * <em>systemId</em> already absolutized.
      */
-    public InputSource resolveEntity(String name, String publicId,
-            String baseURI, String systemId) throws SAXException, IOException {
+    public InputSource resolveEntity(String name, String publicId, String baseURI, String systemId)
+            throws SAXException, IOException {
         return null;
     }
 
@@ -102,8 +95,7 @@ public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
      * EntityResolver2.resolveEntity()} with null entity name and base URI. You
      * only need to override that method to use this class.
      */
-    public InputSource resolveEntity(String publicId, String systemId)
-            throws SAXException, IOException {
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
         return resolveEntity(null, publicId, null, systemId);
     }
 }

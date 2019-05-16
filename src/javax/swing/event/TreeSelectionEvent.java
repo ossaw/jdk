@@ -23,7 +23,6 @@ import javax.swing.tree.TreePath;
  *
  * @see TreeSelectionListener
  * @see javax.swing.tree.TreeSelectionModel
- *
  * @author Scott Violet
  */
 public class TreeSelectionEvent extends EventObject {
@@ -42,9 +41,9 @@ public class TreeSelectionEvent extends EventObject {
      * selection.
      *
      * @param source
-     *               source of event
+     *        source of event
      * @param paths
-     *               the paths that have changed in the selection
+     *        the paths that have changed in the selection
      */
     public TreeSelectionEvent(Object source, TreePath[] paths, boolean[] areNew,
             TreePath oldLeadSelectionPath, TreePath newLeadSelectionPath) {
@@ -61,16 +60,16 @@ public class TreeSelectionEvent extends EventObject {
      * selection.
      *
      * @param source
-     *               source of event
+     *        source of event
      * @param path
-     *               the path that has changed in the selection
+     *        the path that has changed in the selection
      * @param isNew
-     *               whether or not the path is new to the selection, false
-     *               means
-     *               path was removed from the selection.
+     *        whether or not the path is new to the selection, false
+     *        means
+     *        path was removed from the selection.
      */
-    public TreeSelectionEvent(Object source, TreePath path, boolean isNew,
-            TreePath oldLeadSelectionPath, TreePath newLeadSelectionPath) {
+    public TreeSelectionEvent(Object source, TreePath path, boolean isNew, TreePath oldLeadSelectionPath,
+            TreePath newLeadSelectionPath) {
         super(source);
         paths = new TreePath[1];
         paths[0] = path;
@@ -123,20 +122,19 @@ public class TreeSelectionEvent extends EventObject {
      * in {@code getPaths()} throws an {@code IllegalArgumentException}.
      *
      * @param path
-     *             the path to test
+     *        the path to test
      * @return {@code true} if {@code path} was added to the selection,
      *         {@code false} otherwise
      * @throws IllegalArgumentException
-     *                                  if {@code path} is not contained in
-     *                                  {@code getPaths}
+     *         if {@code path} is not contained in
+     *         {@code getPaths}
      * @see #getPaths
      */
     public boolean isAddedPath(TreePath path) {
         for (int counter = paths.length - 1; counter >= 0; counter--)
             if (paths[counter].equals(path))
                 return areNew[counter];
-        throw new IllegalArgumentException(
-                "path is not a path identified by the TreeSelectionEvent");
+        throw new IllegalArgumentException("path is not a path identified by the TreeSelectionEvent");
     }
 
     /**
@@ -146,14 +144,13 @@ public class TreeSelectionEvent extends EventObject {
      * longer selected.
      *
      * @param index
-     *              the index of the path to test
+     *        the index of the path to test
      * @return {@code true} if the path was added to the selection,
      *         {@code false} otherwise
      * @throws IllegalArgumentException
-     *                                  if index is outside the range of
-     *                                  {@code getPaths}
+     *         if index is outside the range of
+     *         {@code getPaths}
      * @see #getPaths
-     *
      * @since 1.3
      */
     public boolean isAddedPath(int index) {
@@ -183,7 +180,6 @@ public class TreeSelectionEvent extends EventObject {
      */
     public Object cloneWithSource(Object newSource) {
         // Fix for IE bug - crashing
-        return new TreeSelectionEvent(newSource, paths, areNew,
-                oldLeadSelectionPath, newLeadSelectionPath);
+        return new TreeSelectionEvent(newSource, paths, areNew, oldLeadSelectionPath, newLeadSelectionPath);
     }
 }

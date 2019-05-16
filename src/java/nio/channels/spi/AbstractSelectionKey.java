@@ -9,7 +9,6 @@ import java.nio.channels.*;
 
 /**
  * Base implementation class for selection keys.
- *
  * <p>
  * This class tracks the validity of the key and implements cancellation.
  *
@@ -37,7 +36,6 @@ public abstract class AbstractSelectionKey extends SelectionKey {
 
     /**
      * Cancels this key.
-     *
      * <p>
      * If this key has not yet been cancelled then it is added to its selector's
      * cancelled-key set while synchronized on that set.

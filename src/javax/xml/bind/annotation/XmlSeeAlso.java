@@ -13,13 +13,11 @@ import java.lang.annotation.Target;
 
 /**
  * Instructs JAXB to also bind other classes when binding this class.
- *
  * <p>
  * Java makes it impractical/impossible to list all sub-classes of a given
  * class. This often gets in a way of JAXB users, as it JAXB cannot
  * automatically list up the classes that need to be known to
  * {@link JAXBContext}.
- *
  * <p>
  * For example, with the following class definitions:
  *
@@ -30,12 +28,10 @@ import java.lang.annotation.Target;
  * 
  * class Cat extends Animal {}
  * </pre>
- *
  * <p>
  * The user would be required to create {@link JAXBContext} as
  * <tt>JAXBContext.newInstance(Dog.class,Cat.class)</tt> (<tt>Animal</tt> will
  * be automatically picked up since <tt>Dog</tt> and <tt>Cat</tt> refers to it.)
- *
  * <p>
  * {@link XmlSeeAlso} annotation would allow you to write:
  * 
@@ -47,7 +43,6 @@ import java.lang.annotation.Target;
  * 
  * class Cat extends Animal {}
  * </pre>
- *
  * <p>
  * This would allow you to do <tt>JAXBContext.newInstance(Animal.class)</tt>. By
  * the help of this annotation, JAXB implementations will be able to correctly

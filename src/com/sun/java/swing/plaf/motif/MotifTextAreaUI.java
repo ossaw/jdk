@@ -27,7 +27,7 @@ public class MotifTextAreaUI extends BasicTextAreaUI {
      * Creates a UI for a JTextArea.
      *
      * @param ta
-     *           a text area
+     *        a text area
      * @return the UI
      */
     public static ComponentUI createUI(JComponent ta) {

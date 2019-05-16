@@ -24,9 +24,7 @@ package com.sun.org.apache.xerces.internal.xni.parser;
  * when feature and property values change.
  *
  * @see XMLComponentManager
- *
  * @author Andy Clark, IBM
- *
  */
 public interface XMLComponent {
 
@@ -39,13 +37,11 @@ public interface XMLComponent {
      * any features and properties that affect the operation of the component.
      *
      * @param componentManager
-     *                         The component manager.
-     *
+     *        The component manager.
      * @throws XNIException
-     *                      Thrown by component on initialization error.
+     *         Thrown by component on initialization error.
      */
-    public void reset(XMLComponentManager componentManager)
-            throws XMLConfigurationException;
+    public void reset(XMLComponentManager componentManager) throws XMLConfigurationException;
 
     /**
      * Returns a list of feature identifiers that are recognized by this
@@ -62,19 +58,17 @@ public interface XMLComponent {
      * not affect the operation of the component.
      *
      * @param featureId
-     *                  The feature identifier.
+     *        The feature identifier.
      * @param state
-     *                  The state of the feature.
-     *
+     *        The state of the feature.
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    public void setFeature(String featureId, boolean state)
-            throws XMLConfigurationException;
+    public void setFeature(String featureId, boolean state) throws XMLConfigurationException;
 
     /**
      * Returns a list of property identifiers that are recognized by this
@@ -91,27 +85,24 @@ public interface XMLComponent {
      * do not affect the operation of the component.
      *
      * @param propertyId
-     *                   The property identifier.
+     *        The property identifier.
      * @param value
-     *                   The value of the property.
-     *
+     *        The value of the property.
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    public void setProperty(String propertyId, Object value)
-            throws XMLConfigurationException;
+    public void setProperty(String propertyId, Object value) throws XMLConfigurationException;
 
     /**
      * Returns the default state for a feature, or null if this component does
      * not want to report a default value for this feature.
      *
      * @param featureId
-     *                  The feature identifier.
-     *
+     *        The feature identifier.
      * @since Xerces 2.2.0
      */
     public Boolean getFeatureDefault(String featureId);
@@ -121,8 +112,7 @@ public interface XMLComponent {
      * not want to report a default value for this property.
      *
      * @param propertyId
-     *                   The property identifier.
-     *
+     *        The property identifier.
      * @since Xerces 2.2.0
      */
     public Object getPropertyDefault(String propertyId);

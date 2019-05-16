@@ -50,17 +50,14 @@ import com.sun.corba.se.impl.logging.UtilSystemException;
  * @since JDK1.1.6
  */
 
-public class IIOPOutputStream extends
-        com.sun.corba.se.impl.io.OutputStreamHook {
-    private UtilSystemException wrapper = UtilSystemException.get(
-            CORBALogDomains.RPC_ENCODING);
+public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook {
+    private UtilSystemException wrapper = UtilSystemException.get(CORBALogDomains.RPC_ENCODING);
 
-    private static Bridge bridge = (Bridge) AccessController.doPrivileged(
-            new PrivilegedAction() {
-                public Object run() {
-                    return Bridge.get();
-                }
-            });
+    private static Bridge bridge = (Bridge) AccessController.doPrivileged(new PrivilegedAction() {
+        public Object run() {
+            return Bridge.get();
+        }
+    });
 
     private org.omg.CORBA_2_3.portable.OutputStream orbStream;
 
@@ -191,8 +188,7 @@ public class IIOPOutputStream extends
 
             ObjectStreamField[] fields = currentClassDesc.getFieldsNoCopy();
             if (fields.length > 0) {
-                outputClassFields(currentObject, currentClassDesc.forClass(),
-                        fields);
+                outputClassFields(currentObject, currentClassDesc.forClass(), fields);
             }
         } catch (IOException ioe) {
             bridge.throwException(ioe);
@@ -440,8 +436,7 @@ public class IIOPOutputStream extends
      * orbutil.IIOPInputStream_1_3 in order to interoperate with our legacy
      * ORBs.
      */
-    protected void internalWriteUTF(org.omg.CORBA.portable.OutputStream stream,
-            String data) {
+    protected void internalWriteUTF(org.omg.CORBA.portable.OutputStream stream, String data) {
         stream.write_wstring(data);
     }
 
@@ -473,8 +468,7 @@ public class IIOPOutputStream extends
 
         if (obj instanceof ObjectStreamClass) {
             // XXX I18N, Logging needed.
-            throw new IOException(
-                    "Serialization of ObjectStreamClass not supported");
+            throw new IOException("Serialization of ObjectStreamClass not supported");
         }
 
         return false;
@@ -484,8 +478,7 @@ public class IIOPOutputStream extends
      * Check for special cases of substitutable serializing objects. These
      * classes are replaceable.
      */
-    private boolean checkSubstitutableSpecialClasses(Object obj)
-            throws IOException {
+    private boolean checkSubstitutableSpecialClasses(Object obj) throws IOException {
         if (obj instanceof String) {
             orbStream.write_value((java.io.Serializable) obj);
             return true;
@@ -536,8 +529,7 @@ public class IIOPOutputStream extends
              * Remember the stack pointer where this set of classes is being
              * pushed.
              */
-            if (currentClassDesc.forClass().getName().equals(
-                    "java.lang.String")) {
+            if (currentClassDesc.forClass().getName().equals("java.lang.String")) {
                 this.writeUTF((String) obj);
                 return;
             }
@@ -573,8 +565,7 @@ public class IIOPOutputStream extends
                     }
 
                 } while (classDescStack.size() > stackMark
-                        && (currentClassDesc = (ObjectStreamClass) classDescStack
-                                .pop()) != null);
+                        && (currentClassDesc = (ObjectStreamClass) classDescStack.pop()) != null);
             } finally {
                 classDescStack.setSize(stackMark);
             }
@@ -586,8 +577,7 @@ public class IIOPOutputStream extends
      * inconsistently with each other since the reader returns a boolean...fix
      * later
      */
-    private void invokeObjectWriter(ObjectStreamClass osc, Object obj)
-            throws IOException {
+    private void invokeObjectWriter(ObjectStreamClass osc, Object obj) throws IOException {
         Class c = osc.forClass();
 
         try {
@@ -679,8 +669,7 @@ public class IIOPOutputStream extends
         }
     }
 
-    private void writeObjectField(ObjectStreamField field, Object objectValue)
-            throws IOException {
+    private void writeObjectField(ObjectStreamField field, Object objectValue) throws IOException {
 
         if (ObjectStreamClassCorbaExt.isAny(field.getTypeString())) {
             javax.rmi.CORBA.Util.writeAny(orbStream, objectValue);
@@ -705,8 +694,7 @@ public class IIOPOutputStream extends
                 } else if (RepositoryId.isAbstractBase(type)) {
                     // IDL Abstract Object reference...
                     callType = ValueHandlerImpl.kAbstractType;
-                } else if (ObjectStreamClassCorbaExt.isAbstractInterface(
-                        type)) {
+                } else if (ObjectStreamClassCorbaExt.isAbstractInterface(type)) {
                     callType = ValueHandlerImpl.kAbstractType;
                 }
             }
@@ -720,14 +708,12 @@ public class IIOPOutputStream extends
                     break;
                 case ValueHandlerImpl.kValueType:
                     try {
-                        orbStream.write_value(
-                                (java.io.Serializable) objectValue, type);
+                        orbStream.write_value((java.io.Serializable) objectValue, type);
                     } catch (ClassCastException cce) {
                         if (objectValue instanceof java.io.Serializable)
                             throw cce;
                         else
-                            Utility.throwNotSerializableForCorba(objectValue
-                                    .getClass().getName());
+                            Utility.throwNotSerializableForCorba(objectValue.getClass().getName());
                     }
             }
         }
@@ -737,15 +723,13 @@ public class IIOPOutputStream extends
      * Write the fields of the specified class by invoking the appropriate
      * write* method on this class.
      */
-    private void outputClassFields(Object o, Class cl,
-            ObjectStreamField[] fields) throws IOException,
+    private void outputClassFields(Object o, Class cl, ObjectStreamField[] fields) throws IOException,
             InvalidClassException {
 
         for (int i = 0; i < fields.length; i++) {
             if (fields[i].getField() == null)
                 // XXX I18N, Logging needed.
-                throw new InvalidClassException(cl.getName(),
-                        "Nonexistent field " + fields[i].getName());
+                throw new InvalidClassException(cl.getName(), "Nonexistent field " + fields[i].getName());
 
             try {
                 switch (fields[i].getTypeCode()) {
@@ -778,8 +762,7 @@ public class IIOPOutputStream extends
                         orbStream.write_short(shortValue);
                         break;
                     case 'Z':
-                        boolean booleanValue = fields[i].getField().getBoolean(
-                                o);
+                        boolean booleanValue = fields[i].getField().getBoolean(o);
                         orbStream.write_boolean(booleanValue);
                         break;
                     case '[':

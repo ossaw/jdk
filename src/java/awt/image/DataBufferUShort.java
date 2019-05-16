@@ -41,7 +41,7 @@ public final class DataBufferUShort extends DataBuffer {
      * bank and the specified size.
      *
      * @param size
-     *             The size of the <CODE>DataBuffer</CODE>.
+     *        The size of the <CODE>DataBuffer</CODE>.
      */
     public DataBufferUShort(int size) {
         super(STABLE, TYPE_USHORT, size);
@@ -55,9 +55,9 @@ public final class DataBufferUShort extends DataBuffer {
      * specified number of banks, all of which are the specified size.
      *
      * @param size
-     *                 The size of the banks in the <CODE>DataBuffer</CODE>.
+     *        The size of the banks in the <CODE>DataBuffer</CODE>.
      * @param numBanks
-     *                 The number of banks in the a<CODE>DataBuffer</CODE>.
+     *        The number of banks in the a<CODE>DataBuffer</CODE>.
      */
     public DataBufferUShort(int size, int numBanks) {
         super(STABLE, TYPE_USHORT, size, numBanks);
@@ -81,10 +81,10 @@ public final class DataBufferUShort extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The unsigned-short array for the
-     *                  <CODE>DataBuffer</CODE>.
+     *        The unsigned-short array for the
+     *        <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the <CODE>DataBuffer</CODE> bank.
+     *        The size of the <CODE>DataBuffer</CODE> bank.
      */
     public DataBufferUShort(short dataArray[], int size) {
         super(UNTRACKABLE, TYPE_USHORT, size);
@@ -110,12 +110,12 @@ public final class DataBufferUShort extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The unsigned-short array for the
-     *                  <CODE>DataBuffer</CODE>.
+     *        The unsigned-short array for the
+     *        <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the <CODE>DataBuffer</CODE> bank.
+     *        The size of the <CODE>DataBuffer</CODE> bank.
      * @param offset
-     *                  The offset into the <CODE>dataArray</CODE>.
+     *        The offset into the <CODE>dataArray</CODE>.
      */
     public DataBufferUShort(short dataArray[], int size, int offset) {
         super(UNTRACKABLE, TYPE_USHORT, size, 1, offset);
@@ -123,8 +123,7 @@ public final class DataBufferUShort extends DataBuffer {
             throw new NullPointerException("dataArray is null");
         }
         if ((size + offset) > dataArray.length) {
-            throw new IllegalArgumentException("Length of dataArray is less "
-                    + " than size+offset.");
+            throw new IllegalArgumentException("Length of dataArray is less " + " than size+offset.");
         }
         data = dataArray;
         bankdata = new short[1][];
@@ -144,10 +143,10 @@ public final class DataBufferUShort extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The unsigned-short arrays for the
-     *                  <CODE>DataBuffer</CODE>.
+     *        The unsigned-short arrays for the
+     *        <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the banks in the <CODE>DataBuffer</CODE>.
+     *        The size of the banks in the <CODE>DataBuffer</CODE>.
      */
     public DataBufferUShort(short dataArray[][], int size) {
         super(UNTRACKABLE, TYPE_USHORT, size, dataArray.length);
@@ -180,12 +179,12 @@ public final class DataBufferUShort extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The unsigned-short arrays for the
-     *                  <CODE>DataBuffer</CODE>.
+     *        The unsigned-short arrays for the
+     *        <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the banks in the <CODE>DataBuffer</CODE>.
+     *        The size of the banks in the <CODE>DataBuffer</CODE>.
      * @param offsets
-     *                  The offsets into each array.
+     *        The offsets into each array.
      */
     public DataBufferUShort(short dataArray[][], int size, int offsets[]) {
         super(UNTRACKABLE, TYPE_USHORT, size, dataArray.length, offsets);
@@ -197,8 +196,8 @@ public final class DataBufferUShort extends DataBuffer {
                 throw new NullPointerException("dataArray[" + i + "] is null");
             }
             if ((size + offsets[i]) > dataArray[i].length) {
-                throw new IllegalArgumentException("Length of dataArray[" + i
-                        + "] is less than size+" + "offsets[" + i + "].");
+                throw new IllegalArgumentException("Length of dataArray[" + i + "] is less than size+"
+                        + "offsets[" + i + "].");
             }
 
         }
@@ -230,7 +229,7 @@ public final class DataBufferUShort extends DataBuffer {
      * associated image in video memory).
      *
      * @param bank
-     *             The bank whose data array you want to get.
+     *        The bank whose data array you want to get.
      * @return The data array for the specified bank.
      */
     public short[] getData(int bank) {
@@ -257,7 +256,7 @@ public final class DataBufferUShort extends DataBuffer {
      * Returns the requested data array element from the first (default) bank.
      *
      * @param i
-     *          The data array element you want to get.
+     *        The data array element you want to get.
      * @return The requested data array element as an integer.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -270,9 +269,9 @@ public final class DataBufferUShort extends DataBuffer {
      * Returns the requested data array element from the specified bank.
      *
      * @param bank
-     *             The bank from which you want to get a data array element.
+     *        The bank from which you want to get a data array element.
      * @param i
-     *             The data array element you want to get.
+     *        The data array element you want to get.
      * @return The requested data array element as an integer.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -286,10 +285,10 @@ public final class DataBufferUShort extends DataBuffer {
      * specified value.
      *
      * @param i
-     *            The data array element you want to set.
+     *        The data array element you want to set.
      * @param val
-     *            The integer value to which you want to set the data array
-     *            element.
+     *        The integer value to which you want to set the data array
+     *        element.
      * @see #getElem(int)
      * @see #getElem(int, int)
      */
@@ -303,12 +302,12 @@ public final class DataBufferUShort extends DataBuffer {
      * given integer.
      * 
      * @param bank
-     *             The bank in which you want to set the data array element.
+     *        The bank in which you want to set the data array element.
      * @param i
-     *             The data array element you want to set.
+     *        The data array element you want to set.
      * @param val
-     *             The integer value to which you want to set the specified data
-     *             array element.
+     *        The integer value to which you want to set the specified data
+     *        array element.
      * @see #getElem(int)
      * @see #getElem(int, int)
      */

@@ -66,7 +66,6 @@ import java.util.Locale;
  *           classes operate correctly. All implementations must be singletons -
  *           final, immutable and thread-safe. It is recommended to use an enum
  *           whenever possible.
- *
  * @since 1.8
  */
 public interface Era extends TemporalAccessor, TemporalAdjuster {
@@ -108,7 +107,7 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * determined by the field.
      *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if the field is supported on this era, false if not
      */
     @Override
@@ -141,13 +140,13 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * to one, suitable for two era calendar systems such as ISO.
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      */
     @Override // override for Javadoc
     default ValueRange range(TemporalField field) {
@@ -173,19 +172,19 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained or the value is
-     *                                          outside the range of valid
-     *                                          values for the field
+     *         if a value for the field cannot
+     *         be obtained or the value is
+     *         outside the range of valid
+     *         values for the field
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported or
-     *                                          the range of values exceeds
-     *                                          an {@code int}
+     *         if the field is not supported or
+     *         the range of values exceeds
+     *         an {@code int}
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override // override for Javadoc and performance
     default int get(TemporalField field) {
@@ -213,23 +212,22 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained
+     *         if a value for the field cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     default long getLong(TemporalField field) {
         if (field == ERA) {
             return getValue();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.getFrom(this);
     }
@@ -247,16 +245,16 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
      * query passing {@code this} as the argument.
      *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query (defined by the query)
+     *         if unable to query (defined by the query)
      * @throws ArithmeticException
-     *                             if numeric overflow occurs (defined by the
-     *                             query)
+     *         if numeric overflow occurs (defined by the
+     *         query)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -290,12 +288,12 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the target object to be adjusted, not null
+     *        the target object to be adjusted, not null
      * @return the adjusted object, not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     default Temporal adjustInto(Temporal temporal) {
@@ -316,14 +314,13 @@ public interface Era extends TemporalAccessor, TemporalAdjuster {
      * This default implementation is suitable for all implementations.
      *
      * @param style
-     *               the style of the text required, not null
+     *        the style of the text required, not null
      * @param locale
-     *               the locale to use, not null
+     *        the locale to use, not null
      * @return the text value of the era, not null
      */
     default String getDisplayName(TextStyle style, Locale locale) {
-        return new DateTimeFormatterBuilder().appendText(ERA, style)
-                .toFormatter(locale).format(this);
+        return new DateTimeFormatterBuilder().appendText(ERA, style).toFormatter(locale).format(this);
     }
 
     // NOTE: methods to convert year-of-era/proleptic-year cannot be here as

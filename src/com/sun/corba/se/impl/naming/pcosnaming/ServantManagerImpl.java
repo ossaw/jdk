@@ -33,8 +33,7 @@ import com.sun.corba.se.spi.orb.ORB;
  * @since JDK1.2
  */
 
-public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
-        ServantLocator {
+public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements ServantLocator {
 
     // computed using serialver tool
 
@@ -62,8 +61,8 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
         theNameService = aNameService;
     }
 
-    public Servant preinvoke(byte[] oid, POA adapter, String operation,
-            CookieHolder cookie) throws ForwardRequest {
+    public Servant preinvoke(byte[] oid, POA adapter, String operation, CookieHolder cookie)
+            throws ForwardRequest {
 
         String objKey = new String(oid);
 
@@ -76,8 +75,8 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
         return servant;
     }
 
-    public void postinvoke(byte[] oid, POA adapter, String operation,
-            java.lang.Object cookie, Servant servant) {
+    public void postinvoke(byte[] oid, POA adapter, String operation, java.lang.Object cookie,
+            Servant servant) {
         // nada
     }
 
@@ -98,8 +97,7 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
                 context.setServantManagerImpl(this);
                 context.setRootNameService(theNameService);
                 ois.close();
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
         }
 
         if (context != null) {
@@ -108,8 +106,7 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
         return context;
     }
 
-    public NamingContextImpl addContext(String objKey,
-            NamingContextImpl context) {
+    public NamingContextImpl addContext(String objKey, NamingContextImpl context) {
         File contextFile = new File(logDir, objKey);
 
         if (contextFile.exists()) {
@@ -120,13 +117,11 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(context);
                 oos.close();
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
         }
         try {
             contexts.remove(objKey);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         contexts.put(objKey, context);
 
         return context;
@@ -178,8 +173,7 @@ class CounterDB implements Serializable {
             ObjectInputStream ois = new ObjectInputStream(fis);
             counter = (Integer) ois.readObject();
             ois.close();
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
     }
 
     private void writeCounter() {
@@ -191,8 +185,7 @@ class CounterDB implements Serializable {
             oos.flush();
             oos.close();
 
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
     }
 
     public synchronized int getNextCounter() {

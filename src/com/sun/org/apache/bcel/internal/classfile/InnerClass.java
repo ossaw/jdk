@@ -70,34 +70,33 @@ public final class InnerClass implements Cloneable, Node {
      * Initialize from another object.
      */
     public InnerClass(InnerClass c) {
-        this(c.getInnerClassIndex(), c.getOuterClassIndex(), c
-                .getInnerNameIndex(), c.getInnerAccessFlags());
+        this(c.getInnerClassIndex(), c.getOuterClassIndex(), c.getInnerNameIndex(), c.getInnerAccessFlags());
     }
 
     /**
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     InnerClass(DataInputStream file) throws IOException {
-        this(file.readUnsignedShort(), file.readUnsignedShort(), file
-                .readUnsignedShort(), file.readUnsignedShort());
+        this(file.readUnsignedShort(), file.readUnsignedShort(), file.readUnsignedShort(), file
+                .readUnsignedShort());
     }
 
     /**
      * @param inner_class_index
-     *                           Class index in constant pool of inner class
+     *        Class index in constant pool of inner class
      * @param outer_class_index
-     *                           Class index in constant pool of outer class
+     *        Class index in constant pool of outer class
      * @param inner_name_index
-     *                           Name index in constant pool of inner class
+     *        Name index in constant pool of inner class
      * @param inner_access_flags
-     *                           Access flags of inner class
+     *        Access flags of inner class
      */
-    public InnerClass(int inner_class_index, int outer_class_index,
-            int inner_name_index, int inner_access_flags) {
+    public InnerClass(int inner_class_index, int outer_class_index, int inner_name_index,
+            int inner_access_flags) {
         this.inner_class_index = inner_class_index;
         this.outer_class_index = outer_class_index;
         this.inner_name_index = inner_name_index;
@@ -110,7 +109,7 @@ public final class InnerClass implements Cloneable, Node {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitInnerClass(this);
@@ -120,7 +119,7 @@ public final class InnerClass implements Cloneable, Node {
      * Dump inner class attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -190,8 +189,8 @@ public final class InnerClass implements Cloneable, Node {
      * @return String representation.
      */
     public final String toString() {
-        return "InnerClass(" + inner_class_index + ", " + outer_class_index
-                + ", " + inner_name_index + ", " + inner_access_flags + ")";
+        return "InnerClass(" + inner_class_index + ", " + outer_class_index + ", " + inner_name_index + ", "
+                + inner_access_flags + ")";
     }
 
     /**
@@ -200,28 +199,26 @@ public final class InnerClass implements Cloneable, Node {
     public final String toString(ConstantPool constant_pool) {
         String inner_class_name, outer_class_name, inner_name, access;
 
-        inner_class_name = constant_pool.getConstantString(inner_class_index,
-                Constants.CONSTANT_Class);
+        inner_class_name = constant_pool.getConstantString(inner_class_index, Constants.CONSTANT_Class);
         inner_class_name = Utility.compactClassName(inner_class_name);
 
         if (outer_class_index != 0) {
-            outer_class_name = constant_pool.getConstantString(
-                    outer_class_index, Constants.CONSTANT_Class);
+            outer_class_name = constant_pool.getConstantString(outer_class_index, Constants.CONSTANT_Class);
             outer_class_name = Utility.compactClassName(outer_class_name);
         } else
             outer_class_name = "<not a member>";
 
         if (inner_name_index != 0)
-            inner_name = ((ConstantUtf8) constant_pool.getConstant(
-                    inner_name_index, Constants.CONSTANT_Utf8)).getBytes();
+            inner_name = ((ConstantUtf8) constant_pool.getConstant(inner_name_index, Constants.CONSTANT_Utf8))
+                    .getBytes();
         else
             inner_name = "<anonymous>";
 
         access = Utility.accessToString(inner_access_flags, true);
         access = access.equals("") ? "" : (access + " ");
 
-        return "InnerClass:" + access + inner_class_name + "(\""
-                + outer_class_name + "\", \"" + inner_name + "\")";
+        return "InnerClass:" + access + inner_class_name + "(\"" + outer_class_name + "\", \"" + inner_name
+                + "\")";
     }
 
     /**
@@ -230,8 +227,7 @@ public final class InnerClass implements Cloneable, Node {
     public InnerClass copy() {
         try {
             return (InnerClass) clone();
-        } catch (CloneNotSupportedException e) {
-        }
+        } catch (CloneNotSupportedException e) {}
 
         return null;
     }

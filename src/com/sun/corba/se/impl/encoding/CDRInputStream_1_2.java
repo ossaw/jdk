@@ -116,7 +116,6 @@ public class CDRInputStream_1_2 extends CDRInputStream_1_1 {
 
         checkForNegativeLength(len);
 
-        return new String(getConvertedChars(len, getWCharConverter()), 0,
-                getWCharConverter().getNumChars());
+        return new String(getConvertedChars(len, getWCharConverter()), 0, getWCharConverter().getNumChars());
     }
 }

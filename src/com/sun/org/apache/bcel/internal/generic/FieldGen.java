@@ -72,16 +72,15 @@ public class FieldGen extends FieldGenOrMethodGen {
      * as defined by setInitValue().
      *
      * @param access_flags
-     *                     access qualifiers
+     *        access qualifiers
      * @param type
-     *                     field type
+     *        field type
      * @param name
-     *                     field name
+     *        field name
      * @param cp
-     *                     constant pool
+     *        constant pool
      */
-    public FieldGen(int access_flags, Type type, String name,
-            ConstantPoolGen cp) {
+    public FieldGen(int access_flags, Type type, String name, ConstantPoolGen cp) {
         setAccessFlags(access_flags);
         setType(type);
         setName(name);
@@ -92,14 +91,13 @@ public class FieldGen extends FieldGenOrMethodGen {
      * Instantiate from existing field.
      *
      * @param field
-     *              Field object
+     *        Field object
      * @param cp
-     *              constant pool (must contain the same entries as the field's
-     *              constant pool)
+     *        constant pool (must contain the same entries as the field's
+     *        constant pool)
      */
     public FieldGen(Field field, ConstantPoolGen cp) {
-        this(field.getAccessFlags(), Type.getType(field.getSignature()), field
-                .getName(), cp);
+        this(field.getAccessFlags(), Type.getType(field.getSignature()), field.getName(), cp);
 
         Attribute[] attrs = field.getAttributes();
 
@@ -193,16 +191,13 @@ public class FieldGen extends FieldGenOrMethodGen {
 
     private void checkType(Type atype) {
         if (type == null)
-            throw new ClassGenException(
-                    "You haven't defined the type of the field yet");
+            throw new ClassGenException("You haven't defined the type of the field yet");
 
         if (!isFinal())
-            throw new ClassGenException(
-                    "Only final fields may have an initial value!");
+            throw new ClassGenException("Only final fields may have an initial value!");
 
         if (!type.equals(atype))
-            throw new ClassGenException("Types are not compatible: " + type
-                    + " vs. " + atype);
+            throw new ClassGenException("Types are not compatible: " + type + " vs. " + atype);
     }
 
     /**
@@ -216,12 +211,10 @@ public class FieldGen extends FieldGenOrMethodGen {
         if (value != null) {
             checkType(type);
             int index = addConstant();
-            addAttribute(new ConstantValue(cp.addUtf8("ConstantValue"), 2,
-                    index, cp.getConstantPool()));
+            addAttribute(new ConstantValue(cp.addUtf8("ConstantValue"), 2, index, cp.getConstantPool()));
         }
 
-        return new Field(access_flags, name_index, signature_index,
-                getAttributes(), cp.getConstantPool());
+        return new Field(access_flags, name_index, signature_index, getAttributes(), cp.getConstantPool());
     }
 
     private int addConstant() {
@@ -246,8 +239,7 @@ public class FieldGen extends FieldGenOrMethodGen {
                 return cp.addString(((String) value));
 
             default:
-                throw new RuntimeException("Oops: Unhandled : " + type
-                        .getType());
+                throw new RuntimeException("Oops: Unhandled : " + type.getType());
         }
     }
 

@@ -12,9 +12,8 @@ package org.omg.PortableServer;
  * When the POA has the RETAIN policy it uses servant managers that are
  * ServantActivators.
  */
-public abstract class ServantActivatorPOA extends org.omg.PortableServer.Servant
-        implements org.omg.PortableServer.ServantActivatorOperations,
-        org.omg.CORBA.portable.InvokeHandler {
+public abstract class ServantActivatorPOA extends org.omg.PortableServer.Servant implements
+        org.omg.PortableServer.ServantActivatorOperations, org.omg.CORBA.portable.InvokeHandler {
 
     // Constructors
 
@@ -24,19 +23,16 @@ public abstract class ServantActivatorPOA extends org.omg.PortableServer.Servant
         _methods.put("etherealize", new java.lang.Integer(1));
     }
 
-    public org.omg.CORBA.portable.OutputStream _invoke(String $method,
-            org.omg.CORBA.portable.InputStream in,
+    public org.omg.CORBA.portable.OutputStream _invoke(String $method, org.omg.CORBA.portable.InputStream in,
             org.omg.CORBA.portable.ResponseHandler $rh) {
         throw new org.omg.CORBA.BAD_OPERATION();
     } // _invoke
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/PortableServer/ServantActivator:2.3",
+    private static String[] __ids = { "IDL:omg.org/PortableServer/ServantActivator:2.3",
             "IDL:omg.org/PortableServer/ServantManager:1.0" };
 
-    public String[] _all_interfaces(org.omg.PortableServer.POA poa,
-            byte[] objectId) {
+    public String[] _all_interfaces(org.omg.PortableServer.POA poa, byte[] objectId) {
         return (String[]) __ids.clone();
     }
 

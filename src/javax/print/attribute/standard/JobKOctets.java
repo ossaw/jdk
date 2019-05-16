@@ -104,11 +104,9 @@ import javax.print.attribute.PrintJobAttribute;
  * @see JobKOctetsProcessed
  * @see JobImpressions
  * @see JobMediaSheets
- *
  * @author Alan Kaminsky
  */
-public final class JobKOctets extends IntegerSyntax implements
-        PrintRequestAttribute, PrintJobAttribute {
+public final class JobKOctets extends IntegerSyntax implements PrintRequestAttribute, PrintJobAttribute {
 
     private static final long serialVersionUID = -8959710146498202869L;
 
@@ -116,12 +114,11 @@ public final class JobKOctets extends IntegerSyntax implements
      * Construct a new job K octets attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public JobKOctets(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -139,8 +136,7 @@ public final class JobKOctets extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this job K octets
      *         attribute, false otherwise.
      */

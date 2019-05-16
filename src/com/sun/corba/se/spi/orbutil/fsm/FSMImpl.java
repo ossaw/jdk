@@ -80,15 +80,13 @@ public class FSMImpl implements FSM {
 
     public void internalSetState(State nextState) {
         if (debug) {
-            ORBUtility.dprint(this, "Calling internalSetState with nextState = "
-                    + nextState);
+            ORBUtility.dprint(this, "Calling internalSetState with nextState = " + nextState);
         }
 
         state = nextState;
 
         if (debug) {
-            ORBUtility.dprint(this, "Exiting internalSetState with state = "
-                    + state);
+            ORBUtility.dprint(this, "Exiting internalSetState with state = " + state);
         }
     }
 }

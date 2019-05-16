@@ -17,7 +17,6 @@ import java.util.List;
  *   ...
  *   segmentCache.releaseSegment(segment);
  * </pre>
- *
  */
 class SegmentCache {
     /**

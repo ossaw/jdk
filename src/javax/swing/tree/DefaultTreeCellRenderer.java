@@ -76,7 +76,6 @@ import sun.swing.DefaultLookup;
  * unnecessary for the default tree cell renderer. If you write your own
  * renderer, take care to weigh the benefits and drawbacks of overriding these
  * methods.
- *
  * <p>
  * <strong>Warning:</strong> Serialized objects of this class will not be
  * compatible with future Swing releases. The current serialization support is
@@ -89,8 +88,7 @@ import sun.swing.DefaultLookup;
  * @author Ray Ryan
  * @author Scott Violet
  */
-public class DefaultTreeCellRenderer extends JLabel implements
-        TreeCellRenderer {
+public class DefaultTreeCellRenderer extends JLabel implements TreeCellRenderer {
     /** Last tree the renderer was painted in. */
     private JTree tree;
 
@@ -180,38 +178,28 @@ public class DefaultTreeCellRenderer extends JLabel implements
             setOpenIcon(DefaultLookup.getIcon(this, ui, "Tree.openIcon"));
         }
         if (!inited || (getTextSelectionColor() instanceof UIResource)) {
-            setTextSelectionColor(DefaultLookup.getColor(this, ui,
-                    "Tree.selectionForeground"));
+            setTextSelectionColor(DefaultLookup.getColor(this, ui, "Tree.selectionForeground"));
         }
         if (!inited || (getTextNonSelectionColor() instanceof UIResource)) {
-            setTextNonSelectionColor(DefaultLookup.getColor(this, ui,
-                    "Tree.textForeground"));
+            setTextNonSelectionColor(DefaultLookup.getColor(this, ui, "Tree.textForeground"));
         }
         if (!inited || (getBackgroundSelectionColor() instanceof UIResource)) {
-            setBackgroundSelectionColor(DefaultLookup.getColor(this, ui,
-                    "Tree.selectionBackground"));
+            setBackgroundSelectionColor(DefaultLookup.getColor(this, ui, "Tree.selectionBackground"));
         }
-        if (!inited
-                || (getBackgroundNonSelectionColor() instanceof UIResource)) {
-            setBackgroundNonSelectionColor(DefaultLookup.getColor(this, ui,
-                    "Tree.textBackground"));
+        if (!inited || (getBackgroundNonSelectionColor() instanceof UIResource)) {
+            setBackgroundNonSelectionColor(DefaultLookup.getColor(this, ui, "Tree.textBackground"));
         }
         if (!inited || (getBorderSelectionColor() instanceof UIResource)) {
-            setBorderSelectionColor(DefaultLookup.getColor(this, ui,
-                    "Tree.selectionBorderColor"));
+            setBorderSelectionColor(DefaultLookup.getColor(this, ui, "Tree.selectionBorderColor"));
         }
-        drawsFocusBorderAroundIcon = DefaultLookup.getBoolean(this, ui,
-                "Tree.drawsFocusBorderAroundIcon", false);
-        drawDashedFocusIndicator = DefaultLookup.getBoolean(this, ui,
-                "Tree.drawDashedFocusIndicator", false);
+        drawsFocusBorderAroundIcon = DefaultLookup.getBoolean(this, ui, "Tree.drawsFocusBorderAroundIcon",
+                false);
+        drawDashedFocusIndicator = DefaultLookup.getBoolean(this, ui, "Tree.drawDashedFocusIndicator", false);
 
-        fillBackground = DefaultLookup.getBoolean(this, ui,
-                "Tree.rendererFillBackground", true);
-        Insets margins = DefaultLookup.getInsets(this, ui,
-                "Tree.rendererMargins");
+        fillBackground = DefaultLookup.getBoolean(this, ui, "Tree.rendererFillBackground", true);
+        Insets margins = DefaultLookup.getInsets(this, ui, "Tree.rendererMargins");
         if (margins != null) {
-            setBorder(new EmptyBorder(margins.top, margins.left, margins.bottom,
-                    margins.right));
+            setBorder(new EmptyBorder(margins.top, margins.left, margins.bottom, margins.right));
         }
 
         setName("Tree.cellRenderer");
@@ -403,11 +391,9 @@ public class DefaultTreeCellRenderer extends JLabel implements
      * foreground color is set based on the selection and the icon is set based
      * on the <code>leaf</code> and <code>expanded</code> parameters.
      */
-    public Component getTreeCellRendererComponent(JTree tree, Object value,
-            boolean sel, boolean expanded, boolean leaf, int row,
-            boolean hasFocus) {
-        String stringValue = tree.convertValueToText(value, sel, expanded, leaf,
-                row, hasFocus);
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
+            boolean leaf, int row, boolean hasFocus) {
+        String stringValue = tree.convertValueToText(value, sel, expanded, leaf, row, hasFocus);
 
         this.tree = tree;
         this.hasFocus = hasFocus;
@@ -417,11 +403,10 @@ public class DefaultTreeCellRenderer extends JLabel implements
         isDropCell = false;
 
         JTree.DropLocation dropLocation = tree.getDropLocation();
-        if (dropLocation != null && dropLocation.getChildIndex() == -1 && tree
-                .getRowForPath(dropLocation.getPath()) == row) {
+        if (dropLocation != null && dropLocation.getChildIndex() == -1 && tree.getRowForPath(dropLocation
+                .getPath()) == row) {
 
-            Color col = DefaultLookup.getColor(this, ui,
-                    "Tree.dropCellForeground");
+            Color col = DefaultLookup.getColor(this, ui, "Tree.dropCellForeground");
             if (col != null) {
                 fg = col;
             } else {
@@ -471,8 +456,7 @@ public class DefaultTreeCellRenderer extends JLabel implements
         Color bColor;
 
         if (isDropCell) {
-            bColor = DefaultLookup.getColor(this, ui,
-                    "Tree.dropCellBackground");
+            bColor = DefaultLookup.getColor(this, ui, "Tree.dropCellBackground");
             if (bColor == null) {
                 bColor = getBackgroundSelectionColor();
             }
@@ -490,8 +474,7 @@ public class DefaultTreeCellRenderer extends JLabel implements
             imageOffset = getLabelStart();
             g.setColor(bColor);
             if (getComponentOrientation().isLeftToRight()) {
-                g.fillRect(imageOffset, 0, getWidth() - imageOffset,
-                        getHeight());
+                g.fillRect(imageOffset, 0, getWidth() - imageOffset, getHeight());
             } else {
                 g.fillRect(0, 0, getWidth() - imageOffset, getHeight());
             }
@@ -504,18 +487,15 @@ public class DefaultTreeCellRenderer extends JLabel implements
                 imageOffset = getLabelStart();
             }
             if (getComponentOrientation().isLeftToRight()) {
-                paintFocus(g, imageOffset, 0, getWidth() - imageOffset,
-                        getHeight(), bColor);
+                paintFocus(g, imageOffset, 0, getWidth() - imageOffset, getHeight(), bColor);
             } else {
-                paintFocus(g, 0, 0, getWidth() - imageOffset, getHeight(),
-                        bColor);
+                paintFocus(g, 0, 0, getWidth() - imageOffset, getHeight(), bColor);
             }
         }
         super.paint(g);
     }
 
-    private void paintFocus(Graphics g, int x, int y, int w, int h,
-            Color notColor) {
+    private void paintFocus(Graphics g, int x, int y, int w, int h, Color notColor) {
         Color bsColor = getBorderSelectionColor();
 
         if (bsColor != null && (selected || !drawDashedFocusIndicator)) {
@@ -548,8 +528,7 @@ public class DefaultTreeCellRenderer extends JLabel implements
         Dimension retDimension = super.getPreferredSize();
 
         if (retDimension != null)
-            retDimension = new Dimension(retDimension.width + 3,
-                    retDimension.height);
+            retDimension = new Dimension(retDimension.width + 3, retDimension.height);
         return retDimension;
     }
 
@@ -597,12 +576,10 @@ public class DefaultTreeCellRenderer extends JLabel implements
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    protected void firePropertyChange(String propertyName, Object oldValue,
-            Object newValue) {
+    protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         // Strings get interned...
-        if (propertyName == "text" || ((propertyName == "font"
-                || propertyName == "foreground") && oldValue != newValue
-                && getClientProperty(
+        if (propertyName == "text" || ((propertyName == "font" || propertyName == "foreground")
+                && oldValue != newValue && getClientProperty(
                         javax.swing.plaf.basic.BasicHTML.propertyKey) != null)) {
 
             super.firePropertyChange(propertyName, oldValue, newValue);
@@ -613,56 +590,48 @@ public class DefaultTreeCellRenderer extends JLabel implements
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, byte oldValue,
-            byte newValue) {}
+    public void firePropertyChange(String propertyName, byte oldValue, byte newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, char oldValue,
-            char newValue) {}
+    public void firePropertyChange(String propertyName, char oldValue, char newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, short oldValue,
-            short newValue) {}
+    public void firePropertyChange(String propertyName, short oldValue, short newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, int oldValue,
-            int newValue) {}
+    public void firePropertyChange(String propertyName, int oldValue, int newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, long oldValue,
-            long newValue) {}
+    public void firePropertyChange(String propertyName, long oldValue, long newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, float oldValue,
-            float newValue) {}
+    public void firePropertyChange(String propertyName, float oldValue, float newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, double oldValue,
-            double newValue) {}
+    public void firePropertyChange(String propertyName, double oldValue, double newValue) {}
 
     /**
      * Overridden for performance reasons. See the
      * <a href="#override">Implementation Note</a> for more information.
      */
-    public void firePropertyChange(String propertyName, boolean oldValue,
-            boolean newValue) {}
+    public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {}
 
 }

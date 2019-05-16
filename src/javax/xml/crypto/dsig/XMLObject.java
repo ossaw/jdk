@@ -46,7 +46,6 @@ import javax.xml.crypto.XMLStructure;
  *   List content = Collections.singletonList(fac.newManifest(references)));
  *   XMLObject object = factory.newXMLObject(content, "object-1", null, null);
  * </pre>
- *
  * <p>
  * Note that this class is named <code>XMLObject</code> rather than
  * <code>Object</code> to avoid naming clashes with the existing
@@ -71,7 +70,6 @@ public interface XMLObject extends XMLStructure {
      * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
      * list} of {@link XMLStructure}s contained in this <code>XMLObject</code>,
      * which represent elements from any namespace.
-     *
      * <p>
      * If there is a public subclass representing the type of
      * <code>XMLStructure</code>, it is returned as an instance of that class

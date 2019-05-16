@@ -25,8 +25,7 @@ package org.omg.CORBA;
  * Example:
  * 
  * <PRE>
- * org.omg.CORBA.TCKind k = org.omg.CORBA.TCKind.from_int(
- *         org.omg.CORBA.TCKind._tk_string);
+ * org.omg.CORBA.TCKind k = org.omg.CORBA.TCKind.from_int(org.omg.CORBA.TCKind._tk_string);
  * </PRE>
  * 
  * The variable <code>k</code> represents the <code>TCKind</code> instance for
@@ -424,8 +423,7 @@ public class TCKind {
      * The <code>TCKind</code> constant whose <code>value</code> field is
      * initialized with <code>TCKind._tk_abstract_interface</code>.
      */
-    public static final TCKind tk_abstract_interface = new TCKind(
-            _tk_abstract_interface);
+    public static final TCKind tk_abstract_interface = new TCKind(_tk_abstract_interface);
 
     /**
      * Retrieves the value of this <code>TCKind</code> instance.
@@ -442,14 +440,14 @@ public class TCKind {
      * <code>TCKind</code> instance.
      *
      * @param i
-     *          the <code>int</code> to convert. It must be one of the
-     *          <code>int</code> constants in the class <code>TCKind</code>.
+     *        the <code>int</code> to convert. It must be one of the
+     *        <code>int</code> constants in the class <code>TCKind</code>.
      * @return the <code>TCKind</code> instance whose <code>value</code> field
      *         matches the given <code>int</code>
      * @exception BAD_PARAM
-     *                      if the given <code>int</code> does not match the
-     *                      <code>_value</code> field of any <code>TCKind</code>
-     *                      instance
+     *            if the given <code>int</code> does not match the
+     *            <code>_value</code> field of any <code>TCKind</code>
+     *            instance
      */
     public static TCKind from_int(int i) {
         switch (i) {
@@ -531,11 +529,10 @@ public class TCKind {
      * @deprecated Do not use this constructor as this method should be private
      *             according to the OMG specification. Use
      *             {@link #from_int(int)} instead.
-     *
      * @param _value
-     *               the <code>int</code> to convert. It must be one of the
-     *               <code>int</code> constants in the class
-     *               <code>TCKind</code>.
+     *        the <code>int</code> to convert. It must be one of the
+     *        <code>int</code> constants in the class
+     *        <code>TCKind</code>.
      */
     @Deprecated
     protected TCKind(int _value) {

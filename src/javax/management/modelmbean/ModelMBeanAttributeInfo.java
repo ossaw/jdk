@@ -32,13 +32,11 @@ import javax.management.RuntimeOperationsException;
  * It is a subclass of MBeanAttributeInfo with the addition of an associated
  * Descriptor and an implementation of the DescriptorAccess interface.
  * </p>
- *
  * <P id="descriptor">
  * The fields in the descriptor are defined, but not limited to, the following.
  * Note that when the Type in this table is Number, a String that is the decimal
  * representation of a Long can also be used.
  * </P>
- *
  * <table border="1" cellpadding="5" summary="ModelMBeanAttributeInfo Fields">
  * <tr>
  * <th>Name</th>
@@ -121,13 +119,11 @@ import javax.management.RuntimeOperationsException;
  * <td>XML formatted string to allow presentation of data.</td>
  * </tr>
  * </table>
- *
  * <p>
  * The default descriptor contains the name, descriptorType and displayName
  * fields. The default value of the name and displayName fields is the name of
  * the attribute.
  * </p>
- *
  * <p>
  * <b>Note:</b> because of inconsistencies in previous versions of this
  * specification, it is recommended not to use negative or zero values for
@@ -135,7 +131,6 @@ import javax.management.RuntimeOperationsException;
  * valid, omit the <code>currencyTimeLimit</code> field. To indicate that it is
  * always valid, use a very large number for this field.
  * </p>
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>6181543027787327345L</code>.
@@ -144,8 +139,7 @@ import javax.management.RuntimeOperationsException;
  */
 
 @SuppressWarnings("serial") // serialVersionUID is not constant
-public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
-        DescriptorAccess {
+public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements DescriptorAccess {
 
     // Serialization compatibility stuff:
     // Two serial forms are supported in this class. The selected form depends
@@ -160,13 +154,12 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
     private static final long newSerialVersionUID = 6181543027787327345L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("attrDescriptor", Descriptor.class),
-            new ObjectStreamField("currClass", String.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField(
+            "attrDescriptor", Descriptor.class), new ObjectStreamField("currClass", String.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("attrDescriptor", Descriptor.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField(
+            "attrDescriptor", Descriptor.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -211,33 +204,30 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * the {@link DescriptorKey} meta-annotation.
      *
      * @param name
-     *                    The name of the attribute.
+     *        The name of the attribute.
      * @param description
-     *                    A human readable description of the attribute.
-     *                    Optional.
+     *        A human readable description of the attribute.
+     *        Optional.
      * @param getter
-     *                    The method used for reading the attribute value. May
-     *                    be null
-     *                    if the property is write-only.
+     *        The method used for reading the attribute value. May
+     *        be null
+     *        if the property is write-only.
      * @param setter
-     *                    The method used for writing the attribute value. May
-     *                    be null
-     *                    if the attribute is read-only.
+     *        The method used for writing the attribute value. May
+     *        be null
+     *        if the attribute is read-only.
      * @exception javax.management.IntrospectionException
      *            There is a consistency problem in the definition of this
      *            attribute.
-     *
      */
 
-    public ModelMBeanAttributeInfo(String name, String description,
-            Method getter, Method setter)
+    public ModelMBeanAttributeInfo(String name, String description, Method getter, Method setter)
             throws javax.management.IntrospectionException {
         super(name, description, getter, setter);
 
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(), "ModelMBeanAttributeInfo("
-                            + "String,String,Method,Method)", "Entry", name);
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(),
+                    "ModelMBeanAttributeInfo(" + "String,String,Method,Method)", "Entry", name);
         }
 
         attrDescriptor = validDescriptor(null);
@@ -253,54 +243,50 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * meta-annotation.
      *
      * @param name
-     *                    The name of the attribute.
+     *        The name of the attribute.
      * @param description
-     *                    A human readable description of the attribute.
-     *                    Optional.
+     *        A human readable description of the attribute.
+     *        Optional.
      * @param getter
-     *                    The method used for reading the attribute value. May
-     *                    be null
-     *                    if the property is write-only.
+     *        The method used for reading the attribute value. May
+     *        be null
+     *        if the property is write-only.
      * @param setter
-     *                    The method used for writing the attribute value. May
-     *                    be null
-     *                    if the attribute is read-only.
+     *        The method used for writing the attribute value. May
+     *        be null
+     *        if the attribute is read-only.
      * @param descriptor
-     *                    An instance of Descriptor containing the appropriate
-     *                    metadata
-     *                    for this instance of the Attribute. If it is null,
-     *                    then a
-     *                    default descriptor will be created. If the descriptor
-     *                    does not
-     *                    contain the field "displayName" this field is added in
-     *                    the
-     *                    descriptor with its default value.
-     * @exception                            javax.management.IntrospectionException
-     *                                       There is a consistency problem in
-     *                                       the definition of this
-     *                                       attribute.
+     *        An instance of Descriptor containing the appropriate
+     *        metadata
+     *        for this instance of the Attribute. If it is null,
+     *        then a
+     *        default descriptor will be created. If the descriptor
+     *        does not
+     *        contain the field "displayName" this field is added in
+     *        the
+     *        descriptor with its default value.
+     * @exception javax.management.IntrospectionException
+     *            There is a consistency problem in
+     *            the definition of this
+     *            attribute.
      * @exception RuntimeOperationsException
-     *                                       Wraps an IllegalArgumentException.
-     *                                       The descriptor is
-     *                                       invalid, or descriptor field "name"
-     *                                       is not equal to name
-     *                                       parameter, or descriptor field
-     *                                       "descriptorType" is not
-     *                                       equal to "attribute".
-     *
+     *            Wraps an IllegalArgumentException.
+     *            The descriptor is
+     *            invalid, or descriptor field "name"
+     *            is not equal to name
+     *            parameter, or descriptor field
+     *            "descriptorType" is not
+     *            equal to "attribute".
      */
 
-    public ModelMBeanAttributeInfo(String name, String description,
-            Method getter, Method setter, Descriptor descriptor)
-            throws javax.management.IntrospectionException {
+    public ModelMBeanAttributeInfo(String name, String description, Method getter, Method setter,
+            Descriptor descriptor) throws javax.management.IntrospectionException {
 
         super(name, description, getter, setter);
         // put getter and setter methods in operations list
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(), "ModelMBeanAttributeInfo("
-                            + "String,String,Method,Method,Descriptor)",
-                    "Entry", name);
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(),
+                    "ModelMBeanAttributeInfo(" + "String,String,Method,Method,Descriptor)", "Entry", name);
         }
         attrDescriptor = validDescriptor(descriptor);
     }
@@ -309,32 +295,30 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * Constructs a ModelMBeanAttributeInfo object with a default descriptor.
      *
      * @param name
-     *                    The name of the attribute
+     *        The name of the attribute
      * @param type
-     *                    The type or class name of the attribute
+     *        The type or class name of the attribute
      * @param description
-     *                    A human readable description of the attribute.
+     *        A human readable description of the attribute.
      * @param isReadable
-     *                    True if the attribute has a getter method, false
-     *                    otherwise.
+     *        True if the attribute has a getter method, false
+     *        otherwise.
      * @param isWritable
-     *                    True if the attribute has a setter method, false
-     *                    otherwise.
+     *        True if the attribute has a setter method, false
+     *        otherwise.
      * @param isIs
-     *                    True if the attribute has an "is" getter, false
-     *                    otherwise.
-     *
+     *        True if the attribute has an "is" getter, false
+     *        otherwise.
      */
-    public ModelMBeanAttributeInfo(String name, String type, String description,
-            boolean isReadable, boolean isWritable, boolean isIs) {
+    public ModelMBeanAttributeInfo(String name, String type, String description, boolean isReadable,
+            boolean isWritable, boolean isIs) {
 
         super(name, type, description, isReadable, isWritable, isIs);
         // create default descriptor
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(), "ModelMBeanAttributeInfo("
-                            + "String,String,String,boolean,boolean,boolean)",
-                    "Entry", name);
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(),
+                    "ModelMBeanAttributeInfo(" + "String,String,String,boolean,boolean,boolean)", "Entry",
+                    name);
         }
         attrDescriptor = validDescriptor(null);
     }
@@ -343,49 +327,46 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * Constructs a ModelMBeanAttributeInfo object.
      *
      * @param name
-     *                    The name of the attribute
+     *        The name of the attribute
      * @param type
-     *                    The type or class name of the attribute
+     *        The type or class name of the attribute
      * @param description
-     *                    A human readable description of the attribute.
+     *        A human readable description of the attribute.
      * @param isReadable
-     *                    True if the attribute has a getter method, false
-     *                    otherwise.
+     *        True if the attribute has a getter method, false
+     *        otherwise.
      * @param isWritable
-     *                    True if the attribute has a setter method, false
-     *                    otherwise.
+     *        True if the attribute has a setter method, false
+     *        otherwise.
      * @param isIs
-     *                    True if the attribute has an "is" getter, false
-     *                    otherwise.
+     *        True if the attribute has an "is" getter, false
+     *        otherwise.
      * @param descriptor
-     *                    An instance of Descriptor containing the appropriate
-     *                    metadata
-     *                    for this instance of the Attribute. If it is null then
-     *                    a
-     *                    default descriptor will be created. If the descriptor
-     *                    does not
-     *                    contain the field "displayName" this field is added in
-     *                    the
-     *                    descriptor with its default value.
+     *        An instance of Descriptor containing the appropriate
+     *        metadata
+     *        for this instance of the Attribute. If it is null then
+     *        a
+     *        default descriptor will be created. If the descriptor
+     *        does not
+     *        contain the field "displayName" this field is added in
+     *        the
+     *        descriptor with its default value.
      * @exception RuntimeOperationsException
-     *                                       Wraps an IllegalArgumentException.
-     *                                       The descriptor is
-     *                                       invalid, or descriptor field "name"
-     *                                       is not equal to name
-     *                                       parameter, or descriptor field
-     *                                       "descriptorType" is not
-     *                                       equal to "attribute".
-     *
+     *            Wraps an IllegalArgumentException.
+     *            The descriptor is
+     *            invalid, or descriptor field "name"
+     *            is not equal to name
+     *            parameter, or descriptor field
+     *            "descriptorType" is not
+     *            equal to "attribute".
      */
-    public ModelMBeanAttributeInfo(String name, String type, String description,
-            boolean isReadable, boolean isWritable, boolean isIs,
-            Descriptor descriptor) {
+    public ModelMBeanAttributeInfo(String name, String type, String description, boolean isReadable,
+            boolean isWritable, boolean isIs, Descriptor descriptor) {
         super(name, type, description, isReadable, isWritable, isIs);
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(), "ModelMBeanAttributeInfo(String,String,String,"
-                            + "boolean,boolean,boolean,Descriptor)", "Entry",
-                    name);
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(),
+                    "ModelMBeanAttributeInfo(String,String,String," + "boolean,boolean,boolean,Descriptor)",
+                    "Entry", name);
         }
         attrDescriptor = validDescriptor(descriptor);
     }
@@ -395,17 +376,15 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * ModelMBeanAttributeInfo Object. A default descriptor will be created.
      *
      * @param inInfo
-     *               the ModelMBeanAttributeInfo to be duplicated
+     *        the ModelMBeanAttributeInfo to be duplicated
      */
 
     public ModelMBeanAttributeInfo(ModelMBeanAttributeInfo inInfo) {
-        super(inInfo.getName(), inInfo.getType(), inInfo.getDescription(),
-                inInfo.isReadable(), inInfo.isWritable(), inInfo.isIs());
+        super(inInfo.getName(), inInfo.getType(), inInfo.getDescription(), inInfo.isReadable(), inInfo
+                .isWritable(), inInfo.isIs());
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(),
-                    "ModelMBeanAttributeInfo(ModelMBeanAttributeInfo)",
-                    "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(),
+                    "ModelMBeanAttributeInfo(ModelMBeanAttributeInfo)", "Entry");
         }
         Descriptor newDesc = inInfo.getDescriptor();
         attrDescriptor = validDescriptor(newDesc);
@@ -415,14 +394,13 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * Gets a copy of the associated Descriptor for the ModelMBeanAttributeInfo.
      *
      * @return Descriptor associated with the ModelMBeanAttributeInfo object.
-     *
      * @see #setDescriptor
      */
 
     public Descriptor getDescriptor() {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(), "getDescriptor()", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(), "getDescriptor()",
+                    "Entry");
         }
         if (attrDescriptor == null) {
             attrDescriptor = validDescriptor(null);
@@ -439,14 +417,12 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * thrown.
      * 
      * @param inDescriptor
-     *                     replaces the Descriptor associated with the
-     *                     ModelMBeanAttributeInfo
-     *
+     *        replaces the Descriptor associated with the
+     *        ModelMBeanAttributeInfo
      * @exception RuntimeOperationsException
-     *                                       Wraps an IllegalArgumentException
-     *                                       for an invalid
-     *                                       Descriptor
-     *
+     *            Wraps an IllegalArgumentException
+     *            for an invalid
+     *            Descriptor
      * @see #getDescriptor
      */
     public void setDescriptor(Descriptor inDescriptor) {
@@ -458,18 +434,17 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * this ModelMBeanAttributeInfo.
      *
      * @exception RuntimeOperationsException
-     *                                       for illegal value for field Names
-     *                                       or field Values. If the
-     *                                       descriptor construction fails for
-     *                                       any reason, this
-     *                                       exception will be thrown.
+     *            for illegal value for field Names
+     *            or field Values. If the
+     *            descriptor construction fails for
+     *            any reason, this
+     *            exception will be thrown.
      */
 
     @Override
     public Object clone() {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class
-                    .getName(), "clone()", "Entry");
+            MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanAttributeInfo.class.getName(), "clone()", "Entry");
         }
         return (new ModelMBeanAttributeInfo(this));
     }
@@ -479,9 +454,8 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      */
     @Override
     public String toString() {
-        return "ModelMBeanAttributeInfo: " + this.getName() + " ; Description: "
-                + this.getDescription() + " ; Types: " + this.getType()
-                + " ; isReadable: " + this.isReadable() + " ; isWritable: "
+        return "ModelMBeanAttributeInfo: " + this.getName() + " ; Description: " + this.getDescription()
+                + " ; Types: " + this.getType() + " ; isReadable: " + this.isReadable() + " ; isWritable: "
                 + this.isWritable() + " ; Descriptor: " + this.getDescriptor();
     }
 
@@ -490,19 +464,17 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * validity. If the Descriptor is invalid (for instance by having the wrong
      * "name"), this indicates programming error and a
      * RuntimeOperationsException will be thrown.
-     *
      * The following fields will be defaulted if they are not already set:
      * displayName=this.getName(),name=this.getName(),descriptorType =
      * "attribute"
      *
      * @param in
-     *           Descriptor to be checked, or null which is equivalent to an
-     *           empty Descriptor.
+     *        Descriptor to be checked, or null which is equivalent to an
+     *        empty Descriptor.
      * @exception RuntimeOperationsException
-     *                                       if Descriptor is invalid
+     *            if Descriptor is invalid
      */
-    private Descriptor validDescriptor(final Descriptor in)
-            throws RuntimeOperationsException {
+    private Descriptor validDescriptor(final Descriptor in) throws RuntimeOperationsException {
 
         Descriptor clone;
         boolean defaulted = (in == null);
@@ -516,43 +488,34 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
         // Setting defaults.
         if (defaulted && clone.getFieldValue("name") == null) {
             clone.setField("name", this.getName());
-            MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this
-                    .getName());
+            MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this.getName());
         }
         if (defaulted && clone.getFieldValue("descriptorType") == null) {
             clone.setField("descriptorType", "attribute");
-            MODELMBEAN_LOGGER.finer(
-                    "Defaulting descriptorType to \"attribute\"");
+            MODELMBEAN_LOGGER.finer("Defaulting descriptorType to \"attribute\"");
         }
         if (clone.getFieldValue("displayName") == null) {
             clone.setField("displayName", this.getName());
-            MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to "
-                    + this.getName());
+            MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to " + this.getName());
         }
 
         // Checking validity
         if (!clone.isValid()) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
                     "The isValid() method of the Descriptor object itself returned false,"
-                            + "one or more required fields are invalid. Descriptor:"
-                            + clone.toString());
+                            + "one or more required fields are invalid. Descriptor:" + clone.toString());
         }
         if (!getName().equalsIgnoreCase((String) clone.getFieldValue("name"))) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
-                    "The Descriptor \"name\" field does not match the object described. "
-                            + " Expected: " + this.getName() + " , was: "
-                            + clone.getFieldValue("name"));
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
+                    "The Descriptor \"name\" field does not match the object described. " + " Expected: "
+                            + this.getName() + " , was: " + clone.getFieldValue("name"));
         }
 
-        if (!"attribute".equalsIgnoreCase((String) clone.getFieldValue(
-                "descriptorType"))) {
-            throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Invalid Descriptor argument"),
+        if (!"attribute".equalsIgnoreCase((String) clone.getFieldValue("descriptorType"))) {
+            throw new RuntimeOperationsException(new IllegalArgumentException("Invalid Descriptor argument"),
                     "The Descriptor \"descriptorType\" field does not match the object described. "
-                            + " Expected: \"attribute\" ," + " was: " + clone
-                                    .getFieldValue("descriptorType"));
+                            + " Expected: \"attribute\" ," + " was: " + clone.getFieldValue(
+                                    "descriptorType"));
         }
 
         return clone;
@@ -562,8 +525,7 @@ public class ModelMBeanAttributeInfo extends MBeanAttributeInfo implements
      * Deserializes a {@link ModelMBeanAttributeInfo} from an
      * {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // New serial form ignores extra field "currClass"
         in.defaultReadObject();
     }

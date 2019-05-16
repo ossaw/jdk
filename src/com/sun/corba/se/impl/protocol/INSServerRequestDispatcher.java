@@ -29,16 +29,14 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * XXX PI points are not invoked in either dispatch() or locate() method this
  * should be fixed in Tiger.
  */
-public class INSServerRequestDispatcher implements
-        CorbaServerRequestDispatcher {
+public class INSServerRequestDispatcher implements CorbaServerRequestDispatcher {
 
     private ORB orb = null;
     private ORBUtilSystemException wrapper;
 
     public INSServerRequestDispatcher(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
     }
 
     // Need to signal one of OBJECT_HERE, OBJECT_FORWARD, OBJECT_NOT_EXIST.
@@ -54,8 +52,7 @@ public class INSServerRequestDispatcher implements
         // send a locate forward with the right IOR. If the insKey is not
         // registered then it will throw OBJECT_NOT_EXIST Exception
         String insKey = new String(request.getObjectKey().getBytes(orb));
-        request.getProtocolHandler().createLocationForward(request,
-                getINSReference(insKey), null);
+        request.getProtocolHandler().createLocationForward(request, getINSReference(insKey), null);
         return;
     }
 

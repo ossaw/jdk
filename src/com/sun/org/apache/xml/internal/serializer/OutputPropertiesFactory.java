@@ -54,23 +54,19 @@ import com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException;
  * the indentation amount. The "indent" key needs to have a value of "yes", and
  * this properties value is a the number of whitespaces to indent by per
  * indentation level.
- *
  * <li><b>S_KEY_CONTENT_HANDLER </b> - This non-standard property key is used to
  * set the name of the fully qualified Java class that implements the
  * ContentHandler interface. The output of the serializer will be SAX events
  * sent to this an object of this class.
- *
  * <li><b>S_KEY_ENTITIES </b> - This non-standard property key is used to
  * specify the name of the property file that specifies character to entity
  * reference mappings. A line in such a file is has the name of the entity and
  * the numeric (base 10) value of the corresponding character, like this one:
  * <br>
  * quot=34 <br>
- *
  * <li><b>S_USE_URL_ESCAPING </b> - This non-standard property key is used to
  * set a value of "yes" if the href values for HTML serialization should use %xx
  * escaping.
- *
  * <li><b>S_OMIT_META_TAG </b> - This non-standard property key is used to set a
  * value of "yes" if the META tag should be omitted where it would otherwise be
  * supplied.
@@ -103,8 +99,7 @@ public final class OutputPropertiesFactory {
      * reexpressed in {namespaceURI} syntax suitable for prepending to a
      * localname to produce a "universal name".
      */
-    public static final String S_BUILTIN_EXTENSIONS_UNIVERSAL = "{"
-            + S_BUILTIN_EXTENSIONS_URL + "}";
+    public static final String S_BUILTIN_EXTENSIONS_UNIVERSAL = "{" + S_BUILTIN_EXTENSIONS_URL + "}";
 
     // Some special Xalan keys.
 
@@ -112,15 +107,13 @@ public final class OutputPropertiesFactory {
      * The non-standard property key to use to set the number of whitepaces to
      * indent by, per indentation level, if indent="yes".
      */
-    public static final String S_KEY_INDENT_AMOUNT = S_BUILTIN_EXTENSIONS_UNIVERSAL
-            + "indent-amount";
+    public static final String S_KEY_INDENT_AMOUNT = S_BUILTIN_EXTENSIONS_UNIVERSAL + "indent-amount";
 
     /**
      * The non-standard property key to use to set the number of whitepaces to
      * indent by, per indentation level, if indent="yes".
      */
-    public static final String S_KEY_LINE_SEPARATOR = S_BUILTIN_EXTENSIONS_UNIVERSAL
-            + "line-separator";
+    public static final String S_KEY_LINE_SEPARATOR = S_BUILTIN_EXTENSIONS_UNIVERSAL + "line-separator";
 
     /**
      * This non-standard property key is used to set the name of the fully
@@ -129,35 +122,30 @@ public final class OutputPropertiesFactory {
      * ContentHandler interface, where the result tree events will be sent to.
      */
 
-    public static final String S_KEY_CONTENT_HANDLER = S_BUILTIN_EXTENSIONS_UNIVERSAL
-            + "content-handler";
+    public static final String S_KEY_CONTENT_HANDLER = S_BUILTIN_EXTENSIONS_UNIVERSAL + "content-handler";
 
     /**
      * This non-standard property key is used to specify the name of the
      * property file that specifies character to entity reference mappings.
      */
-    public static final String S_KEY_ENTITIES = S_BUILTIN_EXTENSIONS_UNIVERSAL
-            + "entities";
+    public static final String S_KEY_ENTITIES = S_BUILTIN_EXTENSIONS_UNIVERSAL + "entities";
 
     /**
      * This non-standard property key is used to set a value of "yes" if the
      * href values for HTML serialization should use %xx escaping.
      */
-    public static final String S_USE_URL_ESCAPING = S_BUILTIN_EXTENSIONS_UNIVERSAL
-            + "use-url-escaping";
+    public static final String S_USE_URL_ESCAPING = S_BUILTIN_EXTENSIONS_UNIVERSAL + "use-url-escaping";
 
     /**
      * This non-standard property key is used to set a value of "yes" if the
      * META tag should be omitted where it would otherwise be supplied.
      */
-    public static final String S_OMIT_META_TAG = S_BUILTIN_EXTENSIONS_UNIVERSAL
-            + "omit-meta-tag";
+    public static final String S_OMIT_META_TAG = S_BUILTIN_EXTENSIONS_UNIVERSAL + "omit-meta-tag";
 
     /**
      * The old built-in extension namespace, this is not a public API.
      */
-    public static final String S_BUILTIN_OLD_EXTENSIONS_UNIVERSAL = "{"
-            + S_BUILTIN_OLD_EXTENSIONS_URL + "}";
+    public static final String S_BUILTIN_OLD_EXTENSIONS_UNIVERSAL = "{" + S_BUILTIN_OLD_EXTENSIONS_URL + "}";
 
     /**
      * This is not a public API, it is only public because it is used by outside
@@ -178,7 +166,6 @@ public final class OutputPropertiesFactory {
      * <p>
      * Is Standalone
      * </p>
-     *
      * <ul>
      * <li><code>yes</code> to indicate the output is intended to be used as
      * standalone</li>
@@ -257,15 +244,13 @@ public final class OutputPropertiesFactory {
      * string of the form output_[method].properties (for instance,
      * output_html.properties). The output_xml.properties file is always used as
      * the base.
-     *
      * <p>
      * Anything other than 'text', 'xml', and 'html', will use the
      * output_xml.properties file.
      * </p>
      *
      * @param method
-     *               non-null reference to method name.
-     *
+     *        non-null reference to method name.
      * @return Properties object that holds the defaults for the given method.
      */
     static public final Properties getDefaultMethodProperties(String method) {
@@ -288,8 +273,7 @@ public final class OutputPropertiesFactory {
                 if (null == m_html_properties) // double check
                 {
                     fileName = PROP_FILE_HTML;
-                    m_html_properties = loadPropertiesFile(fileName,
-                            m_xml_properties);
+                    m_html_properties = loadPropertiesFile(fileName, m_xml_properties);
                 }
 
                 defaultProperties = m_html_properties;
@@ -297,24 +281,19 @@ public final class OutputPropertiesFactory {
                 if (null == m_text_properties) // double check
                 {
                     fileName = PROP_FILE_TEXT;
-                    m_text_properties = loadPropertiesFile(fileName,
-                            m_xml_properties);
-                    if (null == m_text_properties.getProperty(
-                            OutputKeys.ENCODING)) {
+                    m_text_properties = loadPropertiesFile(fileName, m_xml_properties);
+                    if (null == m_text_properties.getProperty(OutputKeys.ENCODING)) {
                         String mimeEncoding = Encodings.getMimeEncoding(null);
-                        m_text_properties.put(OutputKeys.ENCODING,
-                                mimeEncoding);
+                        m_text_properties.put(OutputKeys.ENCODING, mimeEncoding);
                     }
                 }
 
                 defaultProperties = m_text_properties;
-            } else if (method.equals(
-                    com.sun.org.apache.xml.internal.serializer.Method.UNKNOWN)) {
+            } else if (method.equals(com.sun.org.apache.xml.internal.serializer.Method.UNKNOWN)) {
                 if (null == m_unknown_properties) // double check
                 {
                     fileName = PROP_FILE_UNKNOWN;
-                    m_unknown_properties = loadPropertiesFile(fileName,
-                            m_xml_properties);
+                    m_unknown_properties = loadPropertiesFile(fileName, m_xml_properties);
                 }
 
                 defaultProperties = m_unknown_properties;
@@ -324,8 +303,7 @@ public final class OutputPropertiesFactory {
             }
         } catch (IOException ioe) {
             throw new WrappedRuntimeException(Utils.messages.createMessage(
-                    MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY, new Object[] {
-                            fileName, method }), ioe);
+                    MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY, new Object[] { fileName, method }), ioe);
         }
         // wrap these cached defaultProperties in a new Property object just so
         // that the caller of this method can't modify the default values
@@ -341,12 +319,12 @@ public final class OutputPropertiesFactory {
      * the JDK do not handle the escape sequence (at least in key names).
      *
      * @param resourceName
-     *                     non-null reference to resource name.
+     *        non-null reference to resource name.
      * @param defaults
-     *                     Default properties, which may be null.
+     *        Default properties, which may be null.
      */
-    static private Properties loadPropertiesFile(final String resourceName,
-            Properties defaults) throws IOException {
+    static private Properties loadPropertiesFile(final String resourceName, Properties defaults)
+            throws IOException {
 
         // This static method should eventually be moved to a thread-specific
         // class
@@ -361,17 +339,14 @@ public final class OutputPropertiesFactory {
 
         try {
             if (ACCESS_CONTROLLER_CLASS != null) {
-                is = (InputStream) AccessController.doPrivileged(
-                        new PrivilegedAction() {
-                            public Object run() {
-                                return OutputPropertiesFactory.class
-                                        .getResourceAsStream(resourceName);
-                            }
-                        });
+                is = (InputStream) AccessController.doPrivileged(new PrivilegedAction() {
+                    public Object run() {
+                        return OutputPropertiesFactory.class.getResourceAsStream(resourceName);
+                    }
+                });
             } else {
                 // User may be using older JDK ( JDK < 1.2 )
-                is = OutputPropertiesFactory.class.getResourceAsStream(
-                        resourceName);
+                is = OutputPropertiesFactory.class.getResourceAsStream(resourceName);
             }
 
             bis = new BufferedInputStream(is);
@@ -381,8 +356,7 @@ public final class OutputPropertiesFactory {
                 throw ioe;
             } else {
                 throw new WrappedRuntimeException(Utils.messages.createMessage(
-                        MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] {
-                                resourceName }), ioe);
+                        MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] { resourceName }), ioe);
                 // "Could not load '"+resourceName+"' (check CLASSPATH), now
                 // using just the defaults ", ioe);
             }
@@ -392,8 +366,7 @@ public final class OutputPropertiesFactory {
                 throw se;
             } else {
                 throw new WrappedRuntimeException(Utils.messages.createMessage(
-                        MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] {
-                                resourceName }), se);
+                        MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] { resourceName }), se);
                 // "Could not load '"+resourceName+"' (check CLASSPATH, applet
                 // security), now using just the defaults ", se);
             }
@@ -462,7 +435,7 @@ public final class OutputPropertiesFactory {
      * {@link #loadPropertiesFile}.
      *
      * @param s
-     *          non-null reference to string that may need to be fixed up.
+     *        non-null reference to string that may need to be fixed up.
      * @return A new string if fixup occured, otherwise the s argument.
      */
     static private String fixupPropertyString(String s, boolean doClipping) {
@@ -471,8 +444,7 @@ public final class OutputPropertiesFactory {
             s = s.substring(S_XSLT_PREFIX_LEN);
         }
         if (s.startsWith(S_XALAN_PREFIX)) {
-            s = S_BUILTIN_EXTENSIONS_UNIVERSAL + s.substring(
-                    S_XALAN_PREFIX_LEN);
+            s = S_BUILTIN_EXTENSIONS_UNIVERSAL + s.substring(S_XALAN_PREFIX_LEN);
         }
         if ((index = s.indexOf("\\u003a")) > 0) {
             String temp = s.substring(index + 6);

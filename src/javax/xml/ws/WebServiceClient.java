@@ -13,7 +13,6 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Used to annotate a generated service interface.
- *
  * <p>
  * The information specified in this annotation is sufficient to uniquely
  * identify a <code>wsdl:service</code> element inside a WSDL document. This

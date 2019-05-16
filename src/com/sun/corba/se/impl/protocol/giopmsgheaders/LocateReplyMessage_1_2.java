@@ -31,8 +31,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateReplyMessage_1_2 extends Message_1_2 implements
-        LocateReplyMessage {
+public final class LocateReplyMessage_1_2 extends Message_1_2 implements LocateReplyMessage {
 
     // Instance variables
 
@@ -49,17 +48,13 @@ public final class LocateReplyMessage_1_2 extends Message_1_2 implements
 
     LocateReplyMessage_1_2(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
     }
 
-    LocateReplyMessage_1_2(ORB orb, int _request_id, int _reply_status,
-            IOR _ior) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPLocateReply, 0);
+    LocateReplyMessage_1_2(ORB orb, int _request_id, int _reply_status, IOR _ior) {
+        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPLocateReply, 0);
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         request_id = _request_id;
         reply_status = _reply_status;
         ior = _ior;
@@ -80,8 +75,7 @@ public final class LocateReplyMessage_1_2 extends Message_1_2 implements
     }
 
     public SystemException getSystemException(String message) {
-        return MessageBase.getSystemException(exClassName, minorCode,
-                completionStatus, message, wrapper);
+        return MessageBase.getSystemException(exClassName, minorCode, completionStatus, message, wrapper);
     }
 
     public IOR getIOR() {
@@ -120,12 +114,10 @@ public final class LocateReplyMessage_1_2 extends Message_1_2 implements
                     this.completionStatus = CompletionStatus.COMPLETED_MAYBE;
                     break;
                 default:
-                    throw wrapper.badCompletionStatusInLocateReply(
-                            CompletionStatus.COMPLETED_MAYBE, new Integer(
-                                    status));
+                    throw wrapper.badCompletionStatusInLocateReply(CompletionStatus.COMPLETED_MAYBE,
+                            new Integer(status));
             }
-        } else if ((this.reply_status == OBJECT_FORWARD)
-                || (this.reply_status == OBJECT_FORWARD_PERM)) {
+        } else if ((this.reply_status == OBJECT_FORWARD) || (this.reply_status == OBJECT_FORWARD_PERM)) {
             CDRInputStream cdr = (CDRInputStream) istream;
             this.ior = IORFactories.makeIOR(cdr);
         } else if (this.reply_status == LOC_NEEDS_ADDRESSING_MODE) {
@@ -160,10 +152,9 @@ public final class LocateReplyMessage_1_2 extends Message_1_2 implements
             case LOC_NEEDS_ADDRESSING_MODE:
                 break;
             default:
-                ORBUtilSystemException localWrapper = ORBUtilSystemException
-                        .get(CORBALogDomains.RPC_PROTOCOL);
-                throw localWrapper.illegalReplyStatus(
-                        CompletionStatus.COMPLETED_MAYBE);
+                ORBUtilSystemException localWrapper = ORBUtilSystemException.get(
+                        CORBALogDomains.RPC_PROTOCOL);
+                throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 

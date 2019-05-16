@@ -26,8 +26,7 @@ package java.awt.event;
  * @see HierarchyEvent
  * @since 1.3
  */
-public abstract class HierarchyBoundsAdapter implements
-        HierarchyBoundsListener {
+public abstract class HierarchyBoundsAdapter implements HierarchyBoundsListener {
     /**
      * Called when an ancestor of the source is moved.
      */

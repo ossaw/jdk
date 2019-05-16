@@ -8,7 +8,6 @@ package java.util;
 /**
  * Unchecked exception thrown when duplicate flags are provided in the format
  * specifier.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method or
  * constructor in this class will cause a {@link NullPointerException} to be
@@ -26,7 +25,7 @@ public class DuplicateFormatFlagsException extends IllegalFormatException {
      * Constructs an instance of this class with the specified flags.
      *
      * @param f
-     *          The set of format flags which contain a duplicate flag.
+     *        The set of format flags which contain a duplicate flag.
      */
     public DuplicateFormatFlagsException(String f) {
         if (f == null)

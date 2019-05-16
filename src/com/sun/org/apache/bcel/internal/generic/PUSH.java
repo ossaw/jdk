@@ -58,17 +58,16 @@ import java.io.*;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public final class PUSH implements CompoundInstruction,
-        VariableLengthInstruction, InstructionConstants {
+public final class PUSH implements CompoundInstruction, VariableLengthInstruction, InstructionConstants {
     private Instruction instruction;
 
     /**
      * This constructor also applies for values of type short, char, byte
      *
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, int value) {
         if ((value >= -1) && (value <= 5)) // Use ICONST_n
@@ -83,9 +82,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, boolean value) {
         instruction = INSTRUCTIONS[Constants.ICONST_0 + (value ? 1 : 0)];
@@ -93,9 +92,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, float value) {
         if (value == 0.0)
@@ -110,9 +109,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, long value) {
         if (value == 0)
@@ -125,9 +124,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, double value) {
         if (value == 0.0)
@@ -140,9 +139,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, String value) {
         if (value == null)
@@ -153,13 +152,12 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, Number value) {
-        if ((value instanceof Integer) || (value instanceof Short)
-                || (value instanceof Byte))
+        if ((value instanceof Integer) || (value instanceof Short) || (value instanceof Byte))
             instruction = new PUSH(cp, value.intValue()).instruction;
         else if (value instanceof Double)
             instruction = new PUSH(cp, value.doubleValue()).instruction;
@@ -173,9 +171,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, Character value) {
         this(cp, (int) value.charValue());
@@ -183,9 +181,9 @@ public final class PUSH implements CompoundInstruction,
 
     /**
      * @param cp
-     *              Constant pool
+     *        Constant pool
      * @param value
-     *              to be pushed
+     *        to be pushed
      */
     public PUSH(ConstantPoolGen cp, Boolean value) {
         this(cp, value.booleanValue());

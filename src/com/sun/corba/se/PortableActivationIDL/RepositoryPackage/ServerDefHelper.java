@@ -32,39 +32,27 @@ abstract public class ServerDefHelper {
             synchronized (org.omg.CORBA.TypeCode.class) {
                 if (__typeCode == null) {
                     if (__active) {
-                        return org.omg.CORBA.ORB.init().create_recursive_tc(
-                                _id);
+                        return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
                     }
                     __active = true;
                     org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[6];
                     org.omg.CORBA.TypeCode _tcOf_members0 = null;
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
-                    _members0[0] = new org.omg.CORBA.StructMember(
-                            "applicationName", _tcOf_members0, null);
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
-                    _members0[1] = new org.omg.CORBA.StructMember("serverName",
-                            _tcOf_members0, null);
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
-                    _members0[2] = new org.omg.CORBA.StructMember(
-                            "serverClassPath", _tcOf_members0, null);
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
-                    _members0[3] = new org.omg.CORBA.StructMember("serverArgs",
-                            _tcOf_members0, null);
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
-                    _members0[4] = new org.omg.CORBA.StructMember(
-                            "serverVmArgs", _tcOf_members0, null);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
+                    _members0[0] = new org.omg.CORBA.StructMember("applicationName", _tcOf_members0, null);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
+                    _members0[1] = new org.omg.CORBA.StructMember("serverName", _tcOf_members0, null);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
+                    _members0[2] = new org.omg.CORBA.StructMember("serverClassPath", _tcOf_members0, null);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
+                    _members0[3] = new org.omg.CORBA.StructMember("serverArgs", _tcOf_members0, null);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
+                    _members0[4] = new org.omg.CORBA.StructMember("serverVmArgs", _tcOf_members0, null);
                     _tcOf_members0 = org.omg.CORBA.ORB.init().get_primitive_tc(
                             org.omg.CORBA.TCKind.tk_boolean);
-                    _members0[5] = new org.omg.CORBA.StructMember("isInstalled",
-                            _tcOf_members0, null);
+                    _members0[5] = new org.omg.CORBA.StructMember("isInstalled", _tcOf_members0, null);
                     __typeCode = org.omg.CORBA.ORB.init().create_struct_tc(
-                            com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper
-                                    .id(), "ServerDef", _members0);
+                            com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper.id(),
+                            "ServerDef", _members0);
                     __active = false;
                 }
             }

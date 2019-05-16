@@ -11,7 +11,6 @@ package java.rmi;
  * remote method call. Each method of a remote interface, an interface that
  * extends <code>java.rmi.Remote</code>, must list <code>RemoteException</code>
  * in its throws clause.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "wrapped remote exception"
@@ -19,7 +18,6 @@ package java.rmi;
  * {@link #detail} field is now known as the <i>cause</i>, and may be accessed
  * via the {@link Throwable#getCause()} method, as well as the aforementioned
  * "legacy field."
- *
  * <p>
  * Invoking the method {@link Throwable#initCause(Throwable)} on an instance of
  * <code>RemoteException</code> always throws {@link IllegalStateException}.
@@ -34,7 +32,6 @@ public class RemoteException extends java.io.IOException {
 
     /**
      * The cause of the remote exception.
-     *
      * <p>
      * This field predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of
@@ -56,7 +53,7 @@ public class RemoteException extends java.io.IOException {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      */
     public RemoteException(String s) {
         super(s);
@@ -69,9 +66,9 @@ public class RemoteException extends java.io.IOException {
      * specified <code>Throwable</code>.
      *
      * @param s
-     *              the detail message
+     *        the detail message
      * @param cause
-     *              the cause
+     *        the cause
      */
     public RemoteException(String s, Throwable cause) {
         super(s);
@@ -89,8 +86,7 @@ public class RemoteException extends java.io.IOException {
         if (detail == null) {
             return super.getMessage();
         } else {
-            return super.getMessage() + "; nested exception is: \n\t" + detail
-                    .toString();
+            return super.getMessage() + "; nested exception is: \n\t" + detail.toString();
         }
     }
 

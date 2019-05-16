@@ -48,7 +48,7 @@ public interface CSSValueList extends CSSValue {
      * the list, this returns <code>null</code>.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The <code>CSSValue</code> at the <code>index</code> position in
      *         the <code>CSSValueList</code>, or <code>null</code> if that is
      *         not a valid index.

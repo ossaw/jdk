@@ -23,13 +23,11 @@ import java.rmi.activation.UnknownObjectException;
  * specific group identifier is not already executing, the activator initiates
  * the execution of a VM for the group.
  * <p>
- *
  * The <code>Activator</code> works closely with <code>ActivationSystem</code>,
  * which provides a means for registering groups and objects within those
  * groups, and <code>ActivationMonitor</code>, which recives information about
  * active and inactive objects and inactive groups.
  * <p>
- *
  * The activator is responsible for monitoring and detecting when activation
  * groups fail so that it can remove stale remote references to groups and
  * active object's within those groups.
@@ -55,7 +53,6 @@ public interface Activator extends Remote {
      * <code>newInstance</code> method passing it the object's id and
      * descriptor.
      * <p>
-     *
      * If the activation group for the object's group descriptor does not yet
      * exist, the activator starts an <code>ActivationInstantiator</code>
      * executing (by spawning a child process, for example). When the activator
@@ -67,7 +64,6 @@ public interface Activator extends Remote {
      * return the result (a marshalled remote object reference, a stub) to the
      * caller.
      * <p>
-     *
      * Note that the activator receives a "marshalled" object instead of a
      * Remote object so that the activator does not need to load the code for
      * that object, or participate in distributed garbage collection for that
@@ -77,23 +73,22 @@ public interface Activator extends Remote {
      * <p>
      *
      * @param id
-     *              the activation identifier for the object being activated
+     *        the activation identifier for the object being activated
      * @param force
-     *              if true, the activator contacts the group to obtain the
-     *              remote
-     *              object's reference; if false, returning the cached value is
-     *              allowed.
+     *        if true, the activator contacts the group to obtain the
+     *        remote
+     *        object's reference; if false, returning the cached value is
+     *        allowed.
      * @return the remote object (a stub) in a marshalled form
      * @exception ActivationException
-     *                                   if object activation fails
+     *            if object activation fails
      * @exception UnknownObjectException
-     *                                   if object is unknown (not registered)
+     *            if object is unknown (not registered)
      * @exception RemoteException
-     *                                   if remote call fails
+     *            if remote call fails
      * @since 1.2
      */
-    public MarshalledObject<? extends Remote> activate(ActivationID id,
-            boolean force) throws ActivationException, UnknownObjectException,
-            RemoteException;
+    public MarshalledObject<? extends Remote> activate(ActivationID id, boolean force)
+            throws ActivationException, UnknownObjectException, RemoteException;
 
 }

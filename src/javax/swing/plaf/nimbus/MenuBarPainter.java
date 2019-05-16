@@ -25,8 +25,7 @@ final class MenuBarPainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -34,14 +33,10 @@ final class MenuBarPainter extends AbstractRegionPainter {
     // by a particular instance of MenuBarPainter would be created. For the
     // moment at least,
     // however, all are created for each instance.
-    private Color color1 = decodeColor("nimbusBlueGrey", 0.0f, -0.07016757f,
-            0.12941176f, 0);
-    private Color color2 = decodeColor("nimbusBlueGrey", -0.027777791f,
-            -0.10255819f, 0.23921567f, 0);
-    private Color color3 = decodeColor("nimbusBlueGrey", -0.111111104f,
-            -0.10654225f, 0.23921567f, -29);
-    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
-            0.25490195f, -255);
+    private Color color1 = decodeColor("nimbusBlueGrey", 0.0f, -0.07016757f, 0.12941176f, 0);
+    private Color color2 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.10255819f, 0.23921567f, 0);
+    private Color color3 = decodeColor("nimbusBlueGrey", -0.111111104f, -0.10654225f, 0.23921567f, -29);
+    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, -255);
     private Color color5 = decodeColor("nimbusBorder", 0.0f, 0.0f, 0.0f, 0);
 
     // Array of current component colors, updated in each paint call
@@ -54,8 +49,7 @@ final class MenuBarPainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -124,11 +118,9 @@ final class MenuBarPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((1.0f * w) + x, (0.0f * h) + y, (1.0f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.015f, 0.03f, 0.23354445f,
-                        0.7569444f }, new Color[] { color2, decodeColor(color2,
-                                color3, 0.5f), color3, decodeColor(color3,
-                                        color4, 0.5f), color4 });
+        return decodeGradient((1.0f * w) + x, (0.0f * h) + y, (1.0f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.015f, 0.03f, 0.23354445f, 0.7569444f }, new Color[] { color2, decodeColor(color2,
+                        color3, 0.5f), color3, decodeColor(color3, color4, 0.5f), color4 });
     }
 
 }

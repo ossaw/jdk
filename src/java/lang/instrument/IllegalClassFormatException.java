@@ -35,7 +35,7 @@ public class IllegalClassFormatException extends Exception {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IllegalClassFormatException(String s) {
         super(s);

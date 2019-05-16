@@ -64,7 +64,7 @@ public class StringToIntTable {
      * Construct a StringToIntTable, using the given block size.
      *
      * @param blocksize
-     *                  Size of block to allocate
+     *        Size of block to allocate
      */
     public StringToIntTable(int blocksize) {
 
@@ -87,9 +87,9 @@ public class StringToIntTable {
      * Append a string onto the vector.
      *
      * @param key
-     *              String to append
+     *        String to append
      * @param value
-     *              The int value of the string
+     *        The int value of the string
      */
     public final void put(String key, int value) {
 
@@ -119,10 +119,8 @@ public class StringToIntTable {
      * Tell if the table contains the given string.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return The String's int value
-     *
      */
     public final int get(String key) {
 
@@ -138,8 +136,7 @@ public class StringToIntTable {
      * Tell if the table contains the given string. Ignore case.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return The string's int value
      */
     public final int getIgnoreCase(String key) {
@@ -159,8 +156,7 @@ public class StringToIntTable {
      * Tell if the table contains the given string.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return True if the string is in the table
      */
     public final boolean contains(String key) {

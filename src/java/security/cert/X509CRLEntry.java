@@ -15,7 +15,6 @@ import sun.security.x509.X509CRLEntryImpl;
  * <p>
  * Abstract class for a revoked certificate in a CRL (Certificate Revocation
  * List).
- *
  * The ASN.1 definition for <em>revokedCertificates</em> is:
  * 
  * <pre>
@@ -42,7 +41,6 @@ import sun.security.x509.X509CRLEntryImpl;
  *
  * @see X509CRL
  * @see X509Extension
- *
  * @author Hemma Prafullchandra
  */
 
@@ -55,7 +53,7 @@ public abstract class X509CRLEntry implements X509Extension {
      * encoded form of this CRL entry.
      *
      * @param other
-     *              the object to test for equality with this CRL entry.
+     *        the object to test for equality with this CRL entry.
      * @return true iff the encoded forms of the two CRL entries match, false
      *         otherwise.
      */
@@ -103,7 +101,7 @@ public abstract class X509CRLEntry implements X509Extension {
      *
      * @return the encoded form of this certificate
      * @exception CRLException
-     *                         if an encoding error occurs.
+     *            if an encoding error occurs.
      */
     public abstract byte[] getEncoded() throws CRLException;
 
@@ -118,7 +116,6 @@ public abstract class X509CRLEntry implements X509Extension {
     /**
      * Get the issuer of the X509Certificate described by this entry. If the
      * certificate issuer is also the CRL issuer, this method returns null.
-     *
      * <p>
      * This method is used with indirect CRLs. The default implementation always
      * returns null. Subclasses that wish to support indirect CRLs should
@@ -126,7 +123,6 @@ public abstract class X509CRLEntry implements X509Extension {
      *
      * @return the issuer of the X509Certificate described by this entry or null
      *         if it is issued by the CRL issuer.
-     *
      * @since 1.5
      */
     public X500Principal getCertificateIssuer() {

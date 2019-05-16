@@ -34,7 +34,7 @@ public class XMLStreamException extends Exception {
      * Construct an exception with the assocated message.
      *
      * @param msg
-     *            the message to report
+     *        the message to report
      */
     public XMLStreamException(String msg) {
         super(msg);
@@ -44,7 +44,7 @@ public class XMLStreamException extends Exception {
      * Construct an exception with the assocated exception
      *
      * @param th
-     *           a nested exception
+     *        a nested exception
      */
     public XMLStreamException(Throwable th) {
         super(th);
@@ -55,9 +55,9 @@ public class XMLStreamException extends Exception {
      * Construct an exception with the assocated message and exception
      *
      * @param th
-     *            a nested exception
+     *        a nested exception
      * @param msg
-     *            the message to report
+     *        the message to report
      */
     public XMLStreamException(String msg, Throwable th) {
         super(msg, th);
@@ -69,15 +69,15 @@ public class XMLStreamException extends Exception {
      * location.
      *
      * @param th
-     *                 a nested exception
+     *        a nested exception
      * @param msg
-     *                 the message to report
+     *        the message to report
      * @param location
-     *                 the location of the error
+     *        the location of the error
      */
     public XMLStreamException(String msg, Location location, Throwable th) {
-        super("ParseError at [row,col]:[" + location.getLineNumber() + ","
-                + location.getColumnNumber() + "]\n" + "Message: " + msg);
+        super("ParseError at [row,col]:[" + location.getLineNumber() + "," + location.getColumnNumber()
+                + "]\n" + "Message: " + msg);
         nested = th;
         this.location = location;
     }
@@ -87,13 +87,13 @@ public class XMLStreamException extends Exception {
      * location.
      *
      * @param msg
-     *                 the message to report
+     *        the message to report
      * @param location
-     *                 the location of the error
+     *        the location of the error
      */
     public XMLStreamException(String msg, Location location) {
-        super("ParseError at [row,col]:[" + location.getLineNumber() + ","
-                + location.getColumnNumber() + "]\n" + "Message: " + msg);
+        super("ParseError at [row,col]:[" + location.getLineNumber() + "," + location.getColumnNumber()
+                + "]\n" + "Message: " + msg);
         this.location = location;
     }
 

@@ -191,22 +191,21 @@ class SynthParser extends DefaultHandler {
      * of the URL or the Class must be null but not both at the same time.
      *
      * @param inputStream
-     *                          XML document containing the styles to read
+     *        XML document containing the styles to read
      * @param factory
-     *                          DefaultSynthStyleFactory that new styles are
-     *                          added to
+     *        DefaultSynthStyleFactory that new styles are
+     *        added to
      * @param urlResourceBase
-     *                          the URL used to resolve any resources, such as
-     *                          Images
+     *        the URL used to resolve any resources, such as
+     *        Images
      * @param classResourceBase
-     *                          the Class used to resolve any resources, such as
-     *                          Images
+     *        the Class used to resolve any resources, such as
+     *        Images
      * @param defaultsMap
-     *                          Map that UIDefaults properties are placed in
+     *        Map that UIDefaults properties are placed in
      */
-    public void parse(InputStream inputStream, DefaultSynthStyleFactory factory,
-            URL urlResourceBase, Class<?> classResourceBase,
-            Map<String, Object> defaultsMap) throws ParseException,
+    public void parse(InputStream inputStream, DefaultSynthStyleFactory factory, URL urlResourceBase,
+            Class<?> classResourceBase, Map<String, Object> defaultsMap) throws ParseException,
             IllegalArgumentException {
         if (inputStream == null || factory == null || (urlResourceBase == null
                 && classResourceBase == null)) {
@@ -222,14 +221,12 @@ class SynthParser extends DefaultHandler {
         _defaultsMap = defaultsMap;
         try {
             try {
-                SAXParser saxParser = SAXParserFactory.newInstance()
-                        .newSAXParser();
+                SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
                 saxParser.parse(new BufferedInputStream(inputStream), this);
             } catch (ParserConfigurationException e) {
                 throw new ParseException("Error parsing: " + e, 0);
             } catch (SAXException se) {
-                throw new ParseException("Error parsing: " + se + " " + se
-                        .getException(), 0);
+                throw new ParseException("Error parsing: " + se + " " + se.getException(), 0);
             } catch (IOException ioe) {
                 throw new ParseException("Error parsing: " + ioe, 0);
             }
@@ -287,8 +284,7 @@ class SynthParser extends DefaultHandler {
                 // containing the resources in the case the resource base is a
                 // .class file.
                 URL[] urls = new URL[] { getResource(".") };
-                ClassLoader parent = Thread.currentThread()
-                        .getContextClassLoader();
+                ClassLoader parent = Thread.currentThread().getContextClassLoader();
                 ClassLoader urlLoader = new URLClassLoader(urls, parent);
                 _handler.setClassLoader(urlLoader);
             } else {
@@ -308,8 +304,7 @@ class SynthParser extends DefaultHandler {
      */
     private Object checkCast(Object value, Class type) throws SAXException {
         if (!type.isInstance(value)) {
-            throw new SAXException("Expected type " + type + " got " + value
-                    .getClass());
+            throw new SAXException("Expected type " + type + " got " + value.getClass());
         }
         return value;
     }
@@ -338,8 +333,7 @@ class SynthParser extends DefaultHandler {
      */
     private void register(String key, Object value) throws SAXException {
         if (key != null) {
-            if (_mapping.get(key) != null || (_handler != null && _handler
-                    .hasVariable(key))) {
+            if (_mapping.get(key) != null || (_handler != null && _handler.hasVariable(key))) {
                 throw new SAXException("ID " + key + " is already defined");
             }
             if (_handler != null) {
@@ -354,8 +348,7 @@ class SynthParser extends DefaultHandler {
      * Convenience method to return the next int, or throw if there are no more
      * valid ints.
      */
-    private int nextInt(StringTokenizer tok, String errorMsg)
-            throws SAXException {
+    private int nextInt(StringTokenizer tok, String errorMsg) throws SAXException {
         if (!tok.hasMoreTokens()) {
             throw new SAXException(errorMsg);
         }
@@ -369,12 +362,10 @@ class SynthParser extends DefaultHandler {
     /**
      * Convenience method to return an Insets object.
      */
-    private Insets parseInsets(String insets, String errorMsg)
-            throws SAXException {
+    private Insets parseInsets(String insets, String errorMsg) throws SAXException {
         StringTokenizer tokenizer = new StringTokenizer(insets);
-        return new Insets(nextInt(tokenizer, errorMsg), nextInt(tokenizer,
-                errorMsg), nextInt(tokenizer, errorMsg), nextInt(tokenizer,
-                        errorMsg));
+        return new Insets(nextInt(tokenizer, errorMsg), nextInt(tokenizer, errorMsg), nextInt(tokenizer,
+                errorMsg), nextInt(tokenizer, errorMsg));
     }
 
     //
@@ -388,9 +379,8 @@ class SynthParser extends DefaultHandler {
         for (int i = attributes.getLength() - 1; i >= 0; i--) {
             String key = attributes.getQName(i);
             if (key.equals(ATTRIBUTE_CLONE)) {
-                _style = (ParsedSynthStyle) ((ParsedSynthStyle) lookup(
-                        attributes.getValue(i), ParsedSynthStyle.class))
-                                .clone();
+                _style = (ParsedSynthStyle) ((ParsedSynthStyle) lookup(attributes.getValue(i),
+                        ParsedSynthStyle.class)).clone();
             } else if (key.equals(ATTRIBUTE_ID)) {
                 id = attributes.getValue(i);
             }
@@ -404,14 +394,12 @@ class SynthParser extends DefaultHandler {
     private void endStyle() {
         int size = _stylePainters.size();
         if (size > 0) {
-            _style.setPainters(_stylePainters.toArray(
-                    new ParsedSynthStyle.PainterInfo[size]));
+            _style.setPainters(_stylePainters.toArray(new ParsedSynthStyle.PainterInfo[size]));
             _stylePainters.clear();
         }
         size = _stateInfos.size();
         if (size > 0) {
-            _style.setStateInfo(_stateInfos.toArray(
-                    new ParsedSynthStyle.StateInfo[size]));
+            _style.setStateInfo(_stateInfos.toArray(new ParsedSynthStyle.StateInfo[size]));
             _stateInfos.clear();
         }
         _style = null;
@@ -428,18 +416,15 @@ class SynthParser extends DefaultHandler {
             if (key.equals(ATTRIBUTE_ID)) {
                 id = attributes.getValue(i);
             } else if (key.equals(ATTRIBUTE_IDREF)) {
-                _stateInfo = (ParsedSynthStyle.StateInfo) lookup(attributes
-                        .getValue(i), ParsedSynthStyle.StateInfo.class);
+                _stateInfo = (ParsedSynthStyle.StateInfo) lookup(attributes.getValue(i),
+                        ParsedSynthStyle.StateInfo.class);
             } else if (key.equals(ATTRIBUTE_CLONE)) {
-                _stateInfo = (ParsedSynthStyle.StateInfo) ((ParsedSynthStyle.StateInfo) lookup(
-                        attributes.getValue(i),
-                        ParsedSynthStyle.StateInfo.class)).clone();
+                _stateInfo = (ParsedSynthStyle.StateInfo) ((ParsedSynthStyle.StateInfo) lookup(attributes
+                        .getValue(i), ParsedSynthStyle.StateInfo.class)).clone();
             } else if (key.equals(ATTRIBUTE_VALUE)) {
-                StringTokenizer tokenizer = new StringTokenizer(attributes
-                        .getValue(i));
+                StringTokenizer tokenizer = new StringTokenizer(attributes.getValue(i));
                 while (tokenizer.hasMoreTokens()) {
-                    String stateString = tokenizer.nextToken().toUpperCase()
-                            .intern();
+                    String stateString = tokenizer.nextToken().toUpperCase().intern();
                     if (stateString == "ENABLED") {
                         state |= SynthConstants.ENABLED;
                     } else if (stateString == "MOUSE_OVER") {
@@ -471,8 +456,7 @@ class SynthParser extends DefaultHandler {
     private void endState() {
         int size = _statePainters.size();
         if (size > 0) {
-            _stateInfo.setPainters(_statePainters.toArray(
-                    new ParsedSynthStyle.PainterInfo[size]));
+            _stateInfo.setPainters(_statePainters.toArray(new ParsedSynthStyle.PainterInfo[size]));
             _statePainters.clear();
         }
         _stateInfo = null;
@@ -497,12 +481,10 @@ class SynthParser extends DefaultHandler {
                 try {
                     size = Integer.parseInt(attributes.getValue(i));
                 } catch (NumberFormatException nfe) {
-                    throw new SAXException("Invalid font size: " + attributes
-                            .getValue(i));
+                    throw new SAXException("Invalid font size: " + attributes.getValue(i));
                 }
             } else if (key.equals(ATTRIBUTE_STYLE)) {
-                StringTokenizer tok = new StringTokenizer(attributes.getValue(
-                        i));
+                StringTokenizer tok = new StringTokenizer(attributes.getValue(i));
                 while (tok.hasMoreTokens()) {
                     String token = tok.nextToken().intern();
                     if (token == "BOLD") {
@@ -522,8 +504,7 @@ class SynthParser extends DefaultHandler {
             }
             font = new FontUIResource(name, style, size);
         } else if (name != null || size != 0 || style != Font.PLAIN) {
-            throw new SAXException("Name, size and style are not for use "
-                    + "with idref");
+            throw new SAXException("Name, size and style are not for use " + "with idref");
         }
         register(id, font);
         if (_stateInfo != null) {
@@ -544,8 +525,7 @@ class SynthParser extends DefaultHandler {
                 id = attributes.getValue(i);
             } else if (key.equals(ATTRIBUTE_IDREF)) {
                 color = (Color) lookup(attributes.getValue(i), Color.class);
-            } else if (key.equals(ATTRIBUTE_NAME)) {
-            } else if (key.equals(ATTRIBUTE_VALUE)) {
+            } else if (key.equals(ATTRIBUTE_NAME)) {} else if (key.equals(ATTRIBUTE_VALUE)) {
                 String value = attributes.getValue(i);
 
                 if (value.startsWith("#")) {
@@ -570,14 +550,12 @@ class SynthParser extends DefaultHandler {
                             // hexadecimal values higher than #7FFFFFFF.
                             // Thus, when an alpha channel is detected, it is
                             // decoded separately from the RGB channels.
-                            int rgb = Integer.decode('#' + value.substring(3,
-                                    9));
+                            int rgb = Integer.decode('#' + value.substring(3, 9));
                             int a = Integer.decode(value.substring(0, 3));
                             argb = (a << 24) | rgb;
                             hasAlpha = true;
                         } else {
-                            throw new SAXException("Invalid Color value: "
-                                    + value);
+                            throw new SAXException("Invalid Color value: " + value);
                         }
 
                         color = new ColorUIResource(new Color(argb, hasAlpha));
@@ -586,9 +564,8 @@ class SynthParser extends DefaultHandler {
                     }
                 } else {
                     try {
-                        color = new ColorUIResource((Color) Color.class
-                                .getField(value.toUpperCase()).get(
-                                        Color.class));
+                        color = new ColorUIResource((Color) Color.class.getField(value.toUpperCase()).get(
+                                Color.class));
                     } catch (NoSuchFieldException nsfe) {
                         throw new SAXException("Invalid color name: " + value);
                     } catch (IllegalAccessException iae) {
@@ -596,8 +573,7 @@ class SynthParser extends DefaultHandler {
                     }
                 }
             } else if (key.equals(ATTRIBUTE_TYPE)) {
-                StringTokenizer tokenizer = new StringTokenizer(attributes
-                        .getValue(i));
+                StringTokenizer tokenizer = new StringTokenizer(attributes.getValue(i));
                 while (tokenizer.hasMoreTokens()) {
                     String typeName = tokenizer.nextToken();
                     int classIndex = typeName.lastIndexOf('.');
@@ -608,24 +584,19 @@ class SynthParser extends DefaultHandler {
                         classIndex = 0;
                     } else {
                         try {
-                            typeClass = ReflectUtil.forName(typeName.substring(
-                                    0, classIndex));
+                            typeClass = ReflectUtil.forName(typeName.substring(0, classIndex));
                         } catch (ClassNotFoundException cnfe) {
-                            throw new SAXException("Unknown class: " + typeName
-                                    .substring(0, classIndex));
+                            throw new SAXException("Unknown class: " + typeName.substring(0, classIndex));
                         }
                         classIndex++;
                     }
                     try {
-                        _colorTypes.add((ColorType) checkCast(typeClass
-                                .getField(typeName.substring(classIndex)).get(
-                                        typeClass), ColorType.class));
+                        _colorTypes.add((ColorType) checkCast(typeClass.getField(typeName.substring(
+                                classIndex)).get(typeClass), ColorType.class));
                     } catch (NoSuchFieldException nsfe) {
-                        throw new SAXException("Unable to find color type: "
-                                + typeName);
+                        throw new SAXException("Unable to find color type: " + typeName);
                     } catch (IllegalAccessException iae) {
-                        throw new SAXException("Unable to find color type: "
-                                + typeName);
+                        throw new SAXException("Unable to find color type: " + typeName);
                     }
                 }
             }
@@ -637,8 +608,7 @@ class SynthParser extends DefaultHandler {
         if (_stateInfo != null && _colorTypes.size() > 0) {
             Color[] colors = _stateInfo.getColors();
             int max = 0;
-            for (int counter = _colorTypes.size()
-                    - 1; counter >= 0; counter--) {
+            for (int counter = _colorTypes.size() - 1; counter >= 0; counter--) {
                 max = Math.max(max, _colorTypes.get(counter).getID());
             }
             if (colors == null || colors.length <= max) {
@@ -648,16 +618,14 @@ class SynthParser extends DefaultHandler {
                 }
                 colors = newColors;
             }
-            for (int counter = _colorTypes.size()
-                    - 1; counter >= 0; counter--) {
+            for (int counter = _colorTypes.size() - 1; counter >= 0; counter--) {
                 colors[_colorTypes.get(counter).getID()] = color;
             }
             _stateInfo.setColors(colors);
         }
     }
 
-    private void startProperty(Attributes attributes, Object property)
-            throws SAXException {
+    private void startProperty(Attributes attributes, Object property) throws SAXException {
         Object value = null;
         String key = null;
         // Type of the value: 0=idref, 1=boolean, 2=dimension, 3=insets,
@@ -705,9 +673,8 @@ class SynthParser extends DefaultHandler {
                     break;
                 case 2: // dimension
                     StringTokenizer tok = new StringTokenizer(aValue);
-                    value = new DimensionUIResource(nextInt(tok,
-                            "Invalid dimension"), nextInt(tok,
-                                    "Invalid dimension"));
+                    value = new DimensionUIResource(nextInt(tok, "Invalid dimension"), nextInt(tok,
+                            "Invalid dimension"));
                     break;
                 case 3: // insets
                     value = parseInsets(aValue, property + " invalid insets");
@@ -725,8 +692,7 @@ class SynthParser extends DefaultHandler {
             }
         }
         if (value == null || key == null) {
-            throw new SAXException(property + ": you must supply a "
-                    + "key and value");
+            throw new SAXException(property + ": you must supply a " + "key and value");
         }
         if (property == ELEMENT_DEFAULTS_PROPERTY) {
             _defaultsMap.put(key, value);
@@ -749,8 +715,7 @@ class SynthParser extends DefaultHandler {
         for (int i = attributes.getLength() - 1; i >= 0; i--) {
             String key = attributes.getQName(i);
             if (key.equals(ATTRIBUTE_IDREF)) {
-                graphics = (SynthGraphicsUtils) lookup(attributes.getValue(i),
-                        SynthGraphicsUtils.class);
+                graphics = (SynthGraphicsUtils) lookup(attributes.getValue(i), SynthGraphicsUtils.class);
             }
         }
         if (graphics == null) {
@@ -774,8 +739,7 @@ class SynthParser extends DefaultHandler {
 
             try {
                 if (key.equals(ATTRIBUTE_IDREF)) {
-                    insets = (Insets) lookup(attributes.getValue(i),
-                            Insets.class);
+                    insets = (Insets) lookup(attributes.getValue(i), Insets.class);
                 } else if (key.equals(ATTRIBUTE_ID)) {
                     id = attributes.getValue(i);
                 } else if (key.equals(ATTRIBUTE_TOP)) {
@@ -788,8 +752,7 @@ class SynthParser extends DefaultHandler {
                     right = Integer.parseInt(attributes.getValue(i));
                 }
             } catch (NumberFormatException nfe) {
-                throw new SAXException("insets: bad integer value for "
-                        + attributes.getValue(i));
+                throw new SAXException("insets: bad integer value for " + attributes.getValue(i));
             }
         }
         if (insets == null) {
@@ -810,8 +773,7 @@ class SynthParser extends DefaultHandler {
             String key = attributes.getQName(i);
 
             if (key.equals(ATTRIBUTE_STYLE)) {
-                style = (ParsedSynthStyle) lookup(attributes.getValue(i),
-                        ParsedSynthStyle.class);
+                style = (ParsedSynthStyle) lookup(attributes.getValue(i), ParsedSynthStyle.class);
             } else if (key.equals(ATTRIBUTE_TYPE)) {
                 String typeS = attributes.getValue(i).toUpperCase();
 
@@ -827,19 +789,16 @@ class SynthParser extends DefaultHandler {
             }
         }
         if (style == null || path == null || type == -1) {
-            throw new SAXException("bind: you must specify a style, type "
-                    + "and key");
+            throw new SAXException("bind: you must specify a style, type " + "and key");
         }
         try {
             _factory.addStyle(style, path, type);
         } catch (PatternSyntaxException pse) {
-            throw new SAXException("bind: " + path + " is not a valid "
-                    + "regular expression");
+            throw new SAXException("bind: " + path + " is not a valid " + "regular expression");
         }
     }
 
-    private void startPainter(Attributes attributes, String type)
-            throws SAXException {
+    private void startPainter(Attributes attributes, String type) throws SAXException {
         Insets sourceInsets = null;
         Insets destInsets = null;
         String path = null;
@@ -867,11 +826,9 @@ class SynthParser extends DefaultHandler {
             } else if (key.equals(ATTRIBUTE_PATH)) {
                 path = value;
             } else if (key.equals(ATTRIBUTE_SOURCE_INSETS)) {
-                sourceInsets = parseInsets(value, type
-                        + ": sourceInsets must be top left bottom right");
+                sourceInsets = parseInsets(value, type + ": sourceInsets must be top left bottom right");
             } else if (key.equals(ATTRIBUTE_DEST_INSETS)) {
-                destInsets = parseInsets(value, type
-                        + ": destinationInsets must be top left bottom right");
+                destInsets = parseInsets(value, type + ": destinationInsets must be top left bottom right");
             } else if (key.equals(ATTRIBUTE_PAINT_CENTER)) {
                 paintCenter = value.toLowerCase().equals("true");
                 paintCenterSpecified = true;
@@ -916,20 +873,19 @@ class SynthParser extends DefaultHandler {
                 throw new SAXException(type + ": you must specify an idref");
             }
             if (sourceInsets == null && !center) {
-                throw new SAXException(
-                        "property: you must specify sourceInsets");
+                throw new SAXException("property: you must specify sourceInsets");
             }
             if (path == null) {
                 throw new SAXException("property: you must specify a path");
             }
-            if (center && (sourceInsets != null || destInsets != null
-                    || paintCenterSpecified || stretchSpecified)) {
+            if (center && (sourceInsets != null || destInsets != null || paintCenterSpecified
+                    || stretchSpecified)) {
                 throw new SAXException("The attributes: sourceInsets, "
                         + "destinationInsets, paintCenter and stretch "
                         + " are not legal when center is true");
             }
-            painter = new ImagePainter(!stretch, paintCenter, sourceInsets,
-                    destInsets, getResource(path), center);
+            painter = new ImagePainter(!stretch, paintCenter, sourceInsets, destInsets, getResource(path),
+                    center);
         }
         register(id, painter);
         if (_stateInfo != null) {
@@ -939,11 +895,10 @@ class SynthParser extends DefaultHandler {
         }
     }
 
-    private void addPainterOrMerge(List<ParsedSynthStyle.PainterInfo> painters,
-            String method, SynthPainter painter, int direction) {
+    private void addPainterOrMerge(List<ParsedSynthStyle.PainterInfo> painters, String method,
+            SynthPainter painter, int direction) {
         ParsedSynthStyle.PainterInfo painterInfo;
-        painterInfo = new ParsedSynthStyle.PainterInfo(method, painter,
-                direction);
+        painterInfo = new ParsedSynthStyle.PainterInfo(method, painter, direction);
 
         for (Object infoObject : painters) {
             ParsedSynthStyle.PainterInfo info;
@@ -984,8 +939,7 @@ class SynthParser extends DefaultHandler {
                 String key = attributes.getQName(i);
 
                 if (key.equals(ATTRIBUTE_VALUE)) {
-                    _style.setOpaque("true".equals(attributes.getValue(i)
-                            .toLowerCase()));
+                    _style.setOpaque("true".equals(attributes.getValue(i).toLowerCase()));
                 }
             }
         }
@@ -1007,8 +961,8 @@ class SynthParser extends DefaultHandler {
 
     private void endInputMap() throws SAXException {
         if (_inputMapID != null) {
-            register(_inputMapID, new UIDefaults.LazyInputMap(_inputMapBindings
-                    .toArray(new Object[_inputMapBindings.size()])));
+            register(_inputMapID, new UIDefaults.LazyInputMap(_inputMapBindings.toArray(
+                    new Object[_inputMapBindings.size()])));
         }
         _inputMapBindings.clear();
         _inputMapID = null;
@@ -1032,8 +986,7 @@ class SynthParser extends DefaultHandler {
                 }
             }
             if (key == null || value == null) {
-                throw new SAXException(
-                        "bindKey: you must supply a key and action");
+                throw new SAXException("bindKey: you must supply a key and action");
             }
             _inputMapBindings.add(key);
             _inputMapBindings.add(value);
@@ -1045,26 +998,23 @@ class SynthParser extends DefaultHandler {
     // the element name.
     //
 
-    public InputSource resolveEntity(String publicId, String systemId)
-            throws IOException, SAXException {
+    public InputSource resolveEntity(String publicId, String systemId) throws IOException, SAXException {
         if (isForwarding()) {
             return getHandler().resolveEntity(publicId, systemId);
         }
         return null;
     }
 
-    public void notationDecl(String name, String publicId, String systemId)
-            throws SAXException {
+    public void notationDecl(String name, String publicId, String systemId) throws SAXException {
         if (isForwarding()) {
             getHandler().notationDecl(name, publicId, systemId);
         }
     }
 
-    public void unparsedEntityDecl(String name, String publicId,
-            String systemId, String notationName) throws SAXException {
+    public void unparsedEntityDecl(String name, String publicId, String systemId, String notationName)
+            throws SAXException {
         if (isForwarding()) {
-            getHandler().unparsedEntityDecl(name, publicId, systemId,
-                    notationName);
+            getHandler().unparsedEntityDecl(name, publicId, systemId, notationName);
         }
     }
 
@@ -1086,8 +1036,8 @@ class SynthParser extends DefaultHandler {
         }
     }
 
-    public void startElement(String uri, String local, String name,
-            Attributes attributes) throws SAXException {
+    public void startElement(String uri, String local, String name, Attributes attributes)
+            throws SAXException {
         name = name.intern();
         if (name == ELEMENT_STYLE) {
             startStyle(attributes);
@@ -1127,8 +1077,7 @@ class SynthParser extends DefaultHandler {
         }
     }
 
-    public void endElement(String uri, String local, String name)
-            throws SAXException {
+    public void endElement(String uri, String local, String name) throws SAXException {
         if (isForwarding()) {
             getHandler().endElement(uri, local, name);
             _depth--;
@@ -1147,22 +1096,19 @@ class SynthParser extends DefaultHandler {
         }
     }
 
-    public void characters(char ch[], int start, int length)
-            throws SAXException {
+    public void characters(char ch[], int start, int length) throws SAXException {
         if (isForwarding()) {
             getHandler().characters(ch, start, length);
         }
     }
 
-    public void ignorableWhitespace(char ch[], int start, int length)
-            throws SAXException {
+    public void ignorableWhitespace(char ch[], int start, int length) throws SAXException {
         if (isForwarding()) {
             getHandler().ignorableWhitespace(ch, start, length);
         }
     }
 
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         if (isForwarding()) {
             getHandler().processingInstruction(target, data);
         }

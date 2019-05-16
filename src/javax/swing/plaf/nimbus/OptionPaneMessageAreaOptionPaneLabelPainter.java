@@ -10,8 +10,7 @@ import java.awt.image.*;
 import javax.swing.*;
 import javax.swing.Painter;
 
-final class OptionPaneMessageAreaOptionPaneLabelPainter extends
-        AbstractRegionPainter {
+final class OptionPaneMessageAreaOptionPaneLabelPainter extends AbstractRegionPainter {
     // package private integers representing the available states that
     // this painter will paint. These are used when creating a new instance
     // of OptionPaneMessageAreaOptionPaneLabelPainter to determine which
@@ -26,8 +25,7 @@ final class OptionPaneMessageAreaOptionPaneLabelPainter extends
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -40,16 +38,14 @@ final class OptionPaneMessageAreaOptionPaneLabelPainter extends
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
 
-    public OptionPaneMessageAreaOptionPaneLabelPainter(PaintContext ctx,
-            int state) {
+    public OptionPaneMessageAreaOptionPaneLabelPainter(PaintContext ctx, int state) {
         super();
         this.state = state;
         this.ctx = ctx;
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;

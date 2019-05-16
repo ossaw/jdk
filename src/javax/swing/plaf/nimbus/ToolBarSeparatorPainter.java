@@ -31,13 +31,12 @@ final class ToolBarSeparatorPainter extends AbstractRegionPainter {
         // but calculates where to paint the circles manually. As such, we
         // only need to indicate in our PaintContext that we don't want this
         // to ever be cached
-        return new PaintContext(new Insets(1, 0, 1, 0), new Dimension(38, 7),
-                false, CacheMode.NO_CACHING, 1, 1);
+        return new PaintContext(new Insets(1, 0, 1, 0), new Dimension(38, 7), false, CacheMode.NO_CACHING, 1,
+                1);
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // it is assumed that in the normal orientation the separator renders
         // horizontally. Other code rotates it as necessary for a vertical
         // separator.

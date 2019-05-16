@@ -7,11 +7,9 @@ package java.net;
 
 /**
  * Defines the <em>standard</em> socket options.
- *
  * <p>
  * The {@link SocketOption#name name} of each socket option defined by this
  * class is its field name.
- *
  * <p>
  * In this release, the socket options defined here are used by
  * {@link java.nio.channels.NetworkChannel network} channels in the
@@ -27,14 +25,12 @@ public final class StandardSocketOptions {
 
     /**
      * Allow transmission of broadcast datagrams.
-     *
      * <p>
      * The value of this socket option is a {@code Boolean} that represents
      * whether the option is enabled or disabled. The option is specific to
      * datagram-oriented sockets sending to {@link java.net.Inet4Address IPv4}
      * broadcast addresses. When the socket option is enabled then the socket
      * can be used to send <em>broadcast datagrams</em>.
-     *
      * <p>
      * The initial value of this socket option is {@code FALSE}. The socket
      * option may be enabled or disabled at any time. Some operating systems may
@@ -45,12 +41,11 @@ public final class StandardSocketOptions {
      *      Broadcasting Internet Datagrams</a>
      * @see DatagramSocket#setBroadcast
      */
-    public static final SocketOption<Boolean> SO_BROADCAST = new StdSocketOption<Boolean>(
-            "SO_BROADCAST", Boolean.class);
+    public static final SocketOption<Boolean> SO_BROADCAST = new StdSocketOption<Boolean>("SO_BROADCAST",
+            Boolean.class);
 
     /**
      * Keep connection alive.
-     *
      * <p>
      * The value of this socket option is a {@code Boolean} that represents
      * whether the option is enabled or disabled. When the {@code SO_KEEPALIVE}
@@ -58,7 +53,6 @@ public final class StandardSocketOptions {
      * mechanism to periodically probe the other end of a connection when the
      * connection is otherwise idle. The exact semantics of the keep alive
      * mechanism is system dependent and therefore unspecified.
-     *
      * <p>
      * The initial value of this socket option is {@code FALSE}. The socket
      * option may be enabled or disabled at any time.
@@ -67,12 +61,11 @@ public final class StandardSocketOptions {
      *      Requirements for Internet Hosts -- Communication Layers</a>
      * @see Socket#setKeepAlive
      */
-    public static final SocketOption<Boolean> SO_KEEPALIVE = new StdSocketOption<Boolean>(
-            "SO_KEEPALIVE", Boolean.class);
+    public static final SocketOption<Boolean> SO_KEEPALIVE = new StdSocketOption<Boolean>("SO_KEEPALIVE",
+            Boolean.class);
 
     /**
      * The size of the socket send buffer.
-     *
      * <p>
      * The value of this socket option is an {@code Integer} that is the size of
      * the socket send buffer in bytes. The socket send buffer is an output
@@ -81,18 +74,15 @@ public final class StandardSocketOptions {
      * <em>hint</em> to the implementation to size the buffer and the actual
      * size may differ. The socket option can be queried to retrieve the actual
      * size.
-     *
      * <p>
      * For datagram-oriented sockets, the size of the send buffer may limit the
      * size of the datagrams that may be sent by the socket. Whether datagrams
      * larger than the buffer size are sent or discarded is system dependent.
-     *
      * <p>
      * The initial/default size of the socket send buffer and the range of
      * allowable values is system dependent although a negative size is not
      * allowed. An attempt to set the socket send buffer to larger than its
      * maximum size causes it to be set to its maximum size.
-     *
      * <p>
      * An implementation allows this socket option to be set before the socket
      * is bound or connected. Whether an implementation allows the socket send
@@ -100,12 +90,11 @@ public final class StandardSocketOptions {
      *
      * @see Socket#setSendBufferSize
      */
-    public static final SocketOption<Integer> SO_SNDBUF = new StdSocketOption<Integer>(
-            "SO_SNDBUF", Integer.class);
+    public static final SocketOption<Integer> SO_SNDBUF = new StdSocketOption<Integer>("SO_SNDBUF",
+            Integer.class);
 
     /**
      * The size of the socket receive buffer.
-     *
      * <p>
      * The value of this socket option is an {@code Integer} that is the size of
      * the socket receive buffer in bytes. The socket receive buffer is an input
@@ -113,25 +102,21 @@ public final class StandardSocketOptions {
      * for high-volume connections or decreased to limit the possible backlog of
      * incoming data. The value of the socket option is a <em>hint</em> to the
      * implementation to size the buffer and the actual size may differ.
-     *
      * <p>
      * For datagram-oriented sockets, the size of the receive buffer may limit
      * the size of the datagrams that can be received. Whether datagrams larger
      * than the buffer size can be received is system dependent. Increasing the
      * socket receive buffer may be important for cases where datagrams arrive
      * in bursts faster than they can be processed.
-     *
      * <p>
      * In the case of stream-oriented sockets and the TCP/IP protocol, the size
      * of the socket receive buffer may be used when advertising the size of the
      * TCP receive window to the remote peer.
-     *
      * <p>
      * The initial/default size of the socket receive buffer and the range of
      * allowable values is system dependent although a negative size is not
      * allowed. An attempt to set the socket receive buffer to larger than its
      * maximum size causes it to be set to its maximum size.
-     *
      * <p>
      * An implementation allows this socket option to be set before the socket
      * is bound or connected. Whether an implementation allows the socket
@@ -143,17 +128,15 @@ public final class StandardSocketOptions {
      * @see Socket#setReceiveBufferSize
      * @see ServerSocket#setReceiveBufferSize
      */
-    public static final SocketOption<Integer> SO_RCVBUF = new StdSocketOption<Integer>(
-            "SO_RCVBUF", Integer.class);
+    public static final SocketOption<Integer> SO_RCVBUF = new StdSocketOption<Integer>("SO_RCVBUF",
+            Integer.class);
 
     /**
      * Re-use address.
-     *
      * <p>
      * The value of this socket option is a {@code Boolean} that represents
      * whether the option is enabled or disabled. The exact semantics of this
      * socket option are socket type and system dependent.
-     *
      * <p>
      * In the case of stream-oriented sockets, this socket option will usually
      * determine whether the socket can be bound to a socket address when a
@@ -162,12 +145,10 @@ public final class StandardSocketOptions {
      * and the socket option is not required to be enabled in order to bind the
      * socket when a previous connection is in this state, then the
      * implementation may choose to ignore this option.
-     *
      * <p>
      * For datagram-oriented sockets the socket option is used to allow multiple
      * programs bind to the same address. This option should be enabled when the
      * socket is to be used for Internet Protocol (IP) multicasting.
-     *
      * <p>
      * An implementation allows this socket option to be set before the socket
      * is bound or connected. Changing the value of this socket option after the
@@ -178,12 +159,11 @@ public final class StandardSocketOptions {
      *      Transmission Control Protocol</a>
      * @see ServerSocket#setReuseAddress
      */
-    public static final SocketOption<Boolean> SO_REUSEADDR = new StdSocketOption<Boolean>(
-            "SO_REUSEADDR", Boolean.class);
+    public static final SocketOption<Boolean> SO_REUSEADDR = new StdSocketOption<Boolean>("SO_REUSEADDR",
+            Boolean.class);
 
     /**
      * Linger on close if data is present.
-     *
      * <p>
      * The value of this socket option is an {@code Integer} that controls the
      * action taken when unsent data is queued on the socket and a method to
@@ -196,13 +176,11 @@ public final class StandardSocketOptions {
      * is disabled. In that case the {@code close} method does not wait until
      * unsent data is transmitted; if possible the operating system will
      * transmit any unsent data before the connection is closed.
-     *
      * <p>
      * This socket option is intended for use with sockets that are configured
      * in {@link java.nio.channels.SelectableChannel#isBlocking() blocking} mode
      * only. The behavior of the {@code close} method when this option is
      * enabled on a non-blocking socket is not defined.
-     *
      * <p>
      * The initial value of this socket option is a negative value, meaning that
      * the option is disabled. The option may be enabled, or the linger interval
@@ -213,14 +191,13 @@ public final class StandardSocketOptions {
      *
      * @see Socket#setSoLinger
      */
-    public static final SocketOption<Integer> SO_LINGER = new StdSocketOption<Integer>(
-            "SO_LINGER", Integer.class);
+    public static final SocketOption<Integer> SO_LINGER = new StdSocketOption<Integer>("SO_LINGER",
+            Integer.class);
 
     // -- IPPROTO_IP --
 
     /**
      * The Type of Service (ToS) octet in the Internet Protocol (IP) header.
-     *
      * <p>
      * The value of this socket option is an {@code Integer} representing the
      * value of the ToS octet in IP packets sent by sockets to an
@@ -231,7 +208,6 @@ public final class StandardSocketOptions {
      * <a href="http://www.ietf.org/rfc/rfc2474.txt">RFC&nbsp;2474</a>. The
      * value of the socket option is a <em>hint</em>. An implementation may
      * ignore the value, or ignore specific values.
-     *
      * <p>
      * The initial/default value of the TOS field in the ToS octet is
      * implementation specific but will typically be {@code 0}. For
@@ -239,7 +215,6 @@ public final class StandardSocketOptions {
      * the socket has been bound. The new value of the octet is used when
      * sending subsequent datagrams. It is system dependent whether this option
      * can be queried or changed prior to binding the socket.
-     *
      * <p>
      * The behavior of this socket option on a stream-oriented socket, or an
      * {@link StandardProtocolFamily#INET6 IPv6} socket, is not defined in this
@@ -247,19 +222,16 @@ public final class StandardSocketOptions {
      *
      * @see DatagramSocket#setTrafficClass
      */
-    public static final SocketOption<Integer> IP_TOS = new StdSocketOption<Integer>(
-            "IP_TOS", Integer.class);
+    public static final SocketOption<Integer> IP_TOS = new StdSocketOption<Integer>("IP_TOS", Integer.class);
 
     /**
      * The network interface for Internet Protocol (IP) multicast datagrams.
-     *
      * <p>
      * The value of this socket option is a {@link NetworkInterface} that
      * represents the outgoing interface for multicast datagrams sent by the
      * datagram-oriented socket. For {@link StandardProtocolFamily#INET6 IPv6}
      * sockets then it is system dependent whether setting this option also sets
      * the outgoing interface for multicast datagrams sent to IPv4 addresses.
-     *
      * <p>
      * The initial/default value of this socket option may be {@code null} to
      * indicate that outgoing interface will be selected by the operating
@@ -276,7 +248,6 @@ public final class StandardSocketOptions {
 
     /**
      * The <em>time-to-live</em> for Internet Protocol (IP) multicast datagrams.
-     *
      * <p>
      * The value of this socket option is an {@code Integer} in the range
      * {@code 0 <= value <= 255}. It is used to control the scope of multicast
@@ -290,7 +261,6 @@ public final class StandardSocketOptions {
      * network. For IPv6 sockets it is system dependent whether the option also
      * sets the <em>time-to-live</em> on multicast datagrams sent to IPv4
      * addresses.
-     *
      * <p>
      * The initial/default value of the time-to-live setting is typically
      * {@code 1}. An implementation allows this socket option to be set after
@@ -305,12 +275,10 @@ public final class StandardSocketOptions {
 
     /**
      * Loopback for Internet Protocol (IP) multicast datagrams.
-     *
      * <p>
      * The value of this socket option is a {@code Boolean} that controls the
      * <em>loopback</em> of multicast datagrams. The value of the socket option
      * represents if the option is enabled or disabled.
-     *
      * <p>
      * The exact semantics of this socket options are system dependent. In
      * particular, it is system dependent whether the loopback applies to
@@ -318,7 +286,6 @@ public final class StandardSocketOptions {
      * {@link StandardProtocolFamily#INET6 IPv6} sockets then it is system
      * dependent whether the option also applies to multicast datagrams sent to
      * IPv4 addresses.
-     *
      * <p>
      * The initial/default value of this socket option is {@code TRUE}. An
      * implementation allows this socket option to be set after the socket is
@@ -335,14 +302,12 @@ public final class StandardSocketOptions {
 
     /**
      * Disable the Nagle algorithm.
-     *
      * <p>
      * The value of this socket option is a {@code Boolean} that represents
      * whether the option is enabled or disabled. The socket option is specific
      * to stream-oriented sockets using the TCP/IP protocol. TCP/IP uses an
      * algorithm known as <em>The Nagle Algorithm</em> to coalesce short
      * segments and improve network efficiency.
-     *
      * <p>
      * The default value of this socket option is {@code FALSE}. The socket
      * option should only be enabled in cases where it is known that the
@@ -356,8 +321,8 @@ public final class StandardSocketOptions {
      *      Requirements for Internet Hosts -- Communication Layers</a>
      * @see Socket#setTcpNoDelay
      */
-    public static final SocketOption<Boolean> TCP_NODELAY = new StdSocketOption<Boolean>(
-            "TCP_NODELAY", Boolean.class);
+    public static final SocketOption<Boolean> TCP_NODELAY = new StdSocketOption<Boolean>("TCP_NODELAY",
+            Boolean.class);
 
     private static class StdSocketOption<T> implements SocketOption<T> {
         private final String name;

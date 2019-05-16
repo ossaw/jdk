@@ -28,7 +28,7 @@ public class ClassFormatError extends LinkageError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public ClassFormatError(String s) {
         super(s);

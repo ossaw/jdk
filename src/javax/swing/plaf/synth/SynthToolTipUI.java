@@ -21,15 +21,14 @@ import javax.swing.text.View;
  * @author Joshua Outwater
  * @since 1.7
  */
-public class SynthToolTipUI extends BasicToolTipUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthToolTipUI extends BasicToolTipUI implements PropertyChangeListener, SynthUI {
     private SynthStyle style;
 
     /**
      * Creates a new UI object for the given component.
      *
      * @param c
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent c) {
@@ -102,15 +101,14 @@ public class SynthToolTipUI extends BasicToolTipUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -118,8 +116,7 @@ public class SynthToolTipUI extends BasicToolTipUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintToolTipBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintToolTipBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -128,8 +125,7 @@ public class SynthToolTipUI extends BasicToolTipUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintToolTipBorder(context, g, x, y, w, h);
     }
 
@@ -140,9 +136,9 @@ public class SynthToolTipUI extends BasicToolTipUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -157,9 +153,9 @@ public class SynthToolTipUI extends BasicToolTipUI implements
      * Paints the specified component.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
@@ -168,16 +164,14 @@ public class SynthToolTipUI extends BasicToolTipUI implements
         Insets insets = tip.getInsets();
         View v = (View) tip.getClientProperty(BasicHTML.propertyKey);
         if (v != null) {
-            Rectangle paintTextR = new Rectangle(insets.left, insets.top, tip
-                    .getWidth() - (insets.left + insets.right), tip.getHeight()
-                            - (insets.top + insets.bottom));
+            Rectangle paintTextR = new Rectangle(insets.left, insets.top, tip.getWidth() - (insets.left
+                    + insets.right), tip.getHeight() - (insets.top + insets.bottom));
             v.paint(g, paintTextR);
         } else {
-            g.setColor(context.getStyle().getColor(context,
-                    ColorType.TEXT_FOREGROUND));
+            g.setColor(context.getStyle().getColor(context, ColorType.TEXT_FOREGROUND));
             g.setFont(style.getFont(context));
-            context.getStyle().getGraphicsUtils(context).paintText(context, g,
-                    tip.getTipText(), insets.left, insets.top, -1);
+            context.getStyle().getGraphicsUtils(context).paintText(context, g, tip.getTipText(), insets.left,
+                    insets.top, -1);
         }
     }
 
@@ -188,8 +182,7 @@ public class SynthToolTipUI extends BasicToolTipUI implements
     public Dimension getPreferredSize(JComponent c) {
         SynthContext context = getContext(c);
         Insets insets = c.getInsets();
-        Dimension prefSize = new Dimension(insets.left + insets.right,
-                insets.top + insets.bottom);
+        Dimension prefSize = new Dimension(insets.left + insets.right, insets.top + insets.bottom);
         String text = ((JToolTip) c).getTipText();
 
         if (text != null) {
@@ -200,8 +193,8 @@ public class SynthToolTipUI extends BasicToolTipUI implements
             } else {
                 Font font = context.getStyle().getFont(context);
                 FontMetrics fm = c.getFontMetrics(font);
-                prefSize.width += context.getStyle().getGraphicsUtils(context)
-                        .computeStringWidth(context, font, fm, text);
+                prefSize.width += context.getStyle().getGraphicsUtils(context).computeStringWidth(context,
+                        font, fm, text);
                 prefSize.height += fm.getHeight();
             }
         }
@@ -218,8 +211,7 @@ public class SynthToolTipUI extends BasicToolTipUI implements
             updateStyle((JToolTip) e.getSource());
         }
         String name = e.getPropertyName();
-        if (name.equals("tiptext") || "font".equals(name) || "foreground"
-                .equals(name)) {
+        if (name.equals("tiptext") || "font".equals(name) || "foreground".equals(name)) {
             // remove the old html view client property if one
             // existed, and install a new one if the text installed
             // into the JLabel is html source.

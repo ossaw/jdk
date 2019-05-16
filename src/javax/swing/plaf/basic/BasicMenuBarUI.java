@@ -56,16 +56,13 @@ public class BasicMenuBarUI extends MenuBarUI {
     }
 
     protected void installDefaults() {
-        if (menuBar.getLayout() == null || menuBar
-                .getLayout() instanceof UIResource) {
-            menuBar.setLayout(new DefaultMenuLayout(menuBar,
-                    BoxLayout.LINE_AXIS));
+        if (menuBar.getLayout() == null || menuBar.getLayout() instanceof UIResource) {
+            menuBar.setLayout(new DefaultMenuLayout(menuBar, BoxLayout.LINE_AXIS));
         }
 
         LookAndFeel.installProperty(menuBar, "opaque", Boolean.TRUE);
         LookAndFeel.installBorder(menuBar, "MenuBar.border");
-        LookAndFeel.installColorsAndFont(menuBar, "MenuBar.background",
-                "MenuBar.foreground", "MenuBar.font");
+        LookAndFeel.installColorsAndFont(menuBar, "MenuBar.background", "MenuBar.foreground", "MenuBar.font");
     }
 
     protected void installListeners() {
@@ -83,17 +80,14 @@ public class BasicMenuBarUI extends MenuBarUI {
     protected void installKeyboardActions() {
         InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-        SwingUtilities.replaceUIInputMap(menuBar,
-                JComponent.WHEN_IN_FOCUSED_WINDOW, inputMap);
+        SwingUtilities.replaceUIInputMap(menuBar, JComponent.WHEN_IN_FOCUSED_WINDOW, inputMap);
 
-        LazyActionMap.installLazyActionMap(menuBar, BasicMenuBarUI.class,
-                "MenuBar.actionMap");
+        LazyActionMap.installLazyActionMap(menuBar, BasicMenuBarUI.class, "MenuBar.actionMap");
     }
 
     InputMap getInputMap(int condition) {
         if (condition == JComponent.WHEN_IN_FOCUSED_WINDOW) {
-            Object[] bindings = (Object[]) DefaultLookup.get(menuBar, this,
-                    "MenuBar.windowBindings");
+            Object[] bindings = (Object[]) DefaultLookup.get(menuBar, this, "MenuBar.windowBindings");
             if (bindings != null) {
                 return LookAndFeel.makeComponentInputMap(menuBar, bindings);
             }
@@ -130,8 +124,7 @@ public class BasicMenuBarUI extends MenuBarUI {
     }
 
     protected void uninstallKeyboardActions() {
-        SwingUtilities.replaceUIInputMap(menuBar,
-                JComponent.WHEN_IN_FOCUSED_WINDOW, null);
+        SwingUtilities.replaceUIInputMap(menuBar, JComponent.WHEN_IN_FOCUSED_WINDOW, null);
         SwingUtilities.replaceUIActionMap(menuBar, null);
     }
 
@@ -199,8 +192,7 @@ public class BasicMenuBarUI extends MenuBarUI {
         public void actionPerformed(ActionEvent e) {
             // TAKE_FOCUS
             JMenuBar menuBar = (JMenuBar) e.getSource();
-            MenuSelectionManager defaultManager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager defaultManager = MenuSelectionManager.defaultManager();
             MenuElement me[];
             MenuElement subElements[];
             JMenu menu = menuBar.getMenu(0);

@@ -18,15 +18,11 @@ import java.io.IOException;
  * @see java.security.Permission
  * @see java.security.Permissions
  * @see java.security.UnresolvedPermission
- *
- *
  * @author Roland Schemers
- *
  * @serial include
  */
 
-final class UnresolvedPermissionCollection extends PermissionCollection
-        implements java.io.Serializable {
+final class UnresolvedPermissionCollection extends PermissionCollection implements java.io.Serializable {
     /**
      * Key is permission type, value is a list of the UnresolvedPermissions of
      * the same type. Not serialized; see serialization section at end of class.
@@ -35,7 +31,6 @@ final class UnresolvedPermissionCollection extends PermissionCollection
 
     /**
      * Create an empty UnresolvedPermissionCollection object.
-     *
      */
     public UnresolvedPermissionCollection() {
         perms = new HashMap<String, List<UnresolvedPermission>>(11);
@@ -46,13 +41,12 @@ final class UnresolvedPermissionCollection extends PermissionCollection
      * hash is the unresolved permission's type (class) name.
      *
      * @param permission
-     *                   the Permission object to add.
+     *        the Permission object to add.
      */
 
     public void add(Permission permission) {
         if (!(permission instanceof UnresolvedPermission))
-            throw new IllegalArgumentException("invalid permission: "
-                    + permission);
+            throw new IllegalArgumentException("invalid permission: " + permission);
         UnresolvedPermission up = (UnresolvedPermission) permission;
 
         List<UnresolvedPermission> v;
@@ -80,7 +74,6 @@ final class UnresolvedPermissionCollection extends PermissionCollection
 
     /**
      * always returns false for unresolved permissions
-     *
      */
     public boolean implies(Permission permission) {
         return false;
@@ -120,8 +113,8 @@ final class UnresolvedPermissionCollection extends PermissionCollection
      *              java.util.Hashtable A table of the UnresolvedPermissions
      *              keyed on type, value is Vector of permissions
      */
-    private static final ObjectStreamField[] serialPersistentFields = {
-            new ObjectStreamField("permissions", Hashtable.class), };
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("permissions",
+            Hashtable.class), };
 
     /**
      * @serialData Default field.
@@ -134,13 +127,11 @@ final class UnresolvedPermissionCollection extends PermissionCollection
         // Don't call out.defaultWriteObject()
 
         // Copy perms into a Hashtable
-        Hashtable<String, Vector<UnresolvedPermission>> permissions = new Hashtable<>(
-                perms.size() * 2);
+        Hashtable<String, Vector<UnresolvedPermission>> permissions = new Hashtable<>(perms.size() * 2);
 
         // Convert each entry (List) into a Vector
         synchronized (this) {
-            Set<Map.Entry<String, List<UnresolvedPermission>>> set = perms
-                    .entrySet();
+            Set<Map.Entry<String, List<UnresolvedPermission>>> set = perms.entrySet();
             for (Map.Entry<String, List<UnresolvedPermission>> e : set) {
                 // Convert list into Vector
                 List<UnresolvedPermission> list = e.getValue();
@@ -164,8 +155,7 @@ final class UnresolvedPermissionCollection extends PermissionCollection
      * Reads in a Hashtable in which the values are Vectors of
      * UnresolvedPermissions and saves them in the perms field.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // Don't call defaultReadObject()
 
         // Read in serialized fields
@@ -178,12 +168,10 @@ final class UnresolvedPermissionCollection extends PermissionCollection
         // corrupt.
         Hashtable<String, Vector<UnresolvedPermission>> permissions = (Hashtable<String, Vector<UnresolvedPermission>>) gfields
                 .get("permissions", null);
-        perms = new HashMap<String, List<UnresolvedPermission>>(permissions
-                .size() * 2);
+        perms = new HashMap<String, List<UnresolvedPermission>>(permissions.size() * 2);
 
         // Convert each entry (Vector) into a List
-        Set<Map.Entry<String, Vector<UnresolvedPermission>>> set = permissions
-                .entrySet();
+        Set<Map.Entry<String, Vector<UnresolvedPermission>>> set = permissions.entrySet();
         for (Map.Entry<String, Vector<UnresolvedPermission>> e : set) {
             // Convert Vector into ArrayList
             Vector<UnresolvedPermission> vec = e.getValue();

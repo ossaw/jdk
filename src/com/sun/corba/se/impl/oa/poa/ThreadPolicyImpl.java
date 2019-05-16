@@ -8,8 +8,7 @@ package com.sun.corba.se.impl.oa.poa;
 import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 
-final class ThreadPolicyImpl extends org.omg.CORBA.LocalObject implements
-        ThreadPolicy {
+final class ThreadPolicyImpl extends org.omg.CORBA.LocalObject implements ThreadPolicy {
 
     public ThreadPolicyImpl(ThreadPolicyValue value) {
         this.value = value;
@@ -34,9 +33,7 @@ final class ThreadPolicyImpl extends org.omg.CORBA.LocalObject implements
     private ThreadPolicyValue value;
 
     public String toString() {
-        return "ThreadPolicy[" + ((value
-                .value() == ThreadPolicyValue._SINGLE_THREAD_MODEL)
-                        ? "SINGLE_THREAD_MODEL"
-                        : "ORB_CTRL_MODEL" + "]");
+        return "ThreadPolicy[" + ((value.value() == ThreadPolicyValue._SINGLE_THREAD_MODEL)
+                ? "SINGLE_THREAD_MODEL" : "ORB_CTRL_MODEL" + "]");
     }
 }

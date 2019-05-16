@@ -25,10 +25,8 @@ import org.w3c.dom.traversal.NodeIterator;
 /**
  * DefaultNodeIterator implements a NodeIterator, which iterates a DOM tree in
  * the expected depth first way.
- *
  * <p>
  * The whatToShow and filter functionality is implemented as expected.
- *
  * <p>
  * This class also has method removeNode to enable iterator "fix-up" on DOM
  * remove. It is expected that the DOM implementation call removeNode right
@@ -36,7 +34,6 @@ import org.w3c.dom.traversal.NodeIterator;
  * could call it before doing the removal.
  *
  * @xerces.internal
- *
  */
 public class NodeIteratorImpl implements NodeIterator {
 
@@ -92,8 +89,8 @@ public class NodeIteratorImpl implements NodeIterator {
     //
 
     /** Public constructor */
-    public NodeIteratorImpl(DocumentImpl document, Node root, int whatToShow,
-            NodeFilter nodeFilter, boolean entityReferenceExpansion) {
+    public NodeIteratorImpl(DocumentImpl document, Node root, int whatToShow, NodeFilter nodeFilter,
+            boolean entityReferenceExpansion) {
         fDocument = document;
         fRoot = root;
         fCurrentNode = null;
@@ -135,10 +132,8 @@ public class NodeIteratorImpl implements NodeIterator {
     public Node nextNode() {
 
         if (fDetach) {
-            throw new DOMException(DOMException.INVALID_STATE_ERR,
-                    DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR",
-                            null));
+            throw new DOMException(DOMException.INVALID_STATE_ERR, DOMMessageFormatter.formatMessage(
+                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR", null));
         }
 
         // if root is null there is no next node.
@@ -148,7 +143,8 @@ public class NodeIteratorImpl implements NodeIterator {
         Node nextNode = fCurrentNode;
         boolean accepted = false; // the next node has not been accepted.
 
-        accepted_loop: while (!accepted) {
+        accepted_loop:
+        while (!accepted) {
 
             // if last direction is not forward, repeat node.
             if (!fForward && nextNode != null) {
@@ -195,10 +191,8 @@ public class NodeIteratorImpl implements NodeIterator {
     public Node previousNode() {
 
         if (fDetach) {
-            throw new DOMException(DOMException.INVALID_STATE_ERR,
-                    DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR",
-                            null));
+            throw new DOMException(DOMException.INVALID_STATE_ERR, DOMMessageFormatter.formatMessage(
+                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR", null));
         }
 
         // if the root is null, or the current node is null, return null.
@@ -208,7 +202,8 @@ public class NodeIteratorImpl implements NodeIterator {
         Node previousNode = fCurrentNode;
         boolean accepted = false;
 
-        accepted_loop: while (!accepted) {
+        accepted_loop:
+        while (!accepted) {
 
             if (fForward && previousNode != null) {
                 // repeat last node.
@@ -245,8 +240,8 @@ public class NodeIteratorImpl implements NodeIterator {
         if (fNodeFilter == null) {
             return (fWhatToShow & (1 << node.getNodeType() - 1)) != 0;
         } else {
-            return ((fWhatToShow & (1 << node.getNodeType() - 1)) != 0)
-                    && fNodeFilter.acceptNode(node) == NodeFilter.FILTER_ACCEPT;
+            return ((fWhatToShow & (1 << node.getNodeType() - 1)) != 0) && fNodeFilter.acceptNode(
+                    node) == NodeFilter.FILTER_ACCEPT;
         }
     }
 
@@ -269,7 +264,6 @@ public class NodeIteratorImpl implements NodeIterator {
     /**
      * The method nextNode(Node, boolean) returns the next node from the actual
      * DOM tree.
-     *
      * The boolean visitChildren determines whether to visit the children. The
      * result is the nextNode.
      */
@@ -334,9 +328,8 @@ public class NodeIteratorImpl implements NodeIterator {
         }
 
         // if sibling has children, keep getting last child of child.
-        if (result.hasChildNodes() && !(!fEntityReferenceExpansion
-                && result != null && result
-                        .getNodeType() == Node.ENTITY_REFERENCE_NODE))
+        if (result.hasChildNodes() && !(!fEntityReferenceExpansion && result != null && result
+                .getNodeType() == Node.ENTITY_REFERENCE_NODE))
 
         {
             while (result.hasChildNodes()) {

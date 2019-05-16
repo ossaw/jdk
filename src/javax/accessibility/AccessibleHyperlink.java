@@ -18,7 +18,6 @@ import javax.swing.text.*;
  * @see AccessibleContext
  * @see AccessibleText
  * @see AccessibleContext#getAccessibleText
- *
  * @author Peter Korn
  */
 public abstract class AccessibleHyperlink implements AccessibleAction {
@@ -47,7 +46,7 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
      * Performs the specified Action on the object
      *
      * @param i
-     *          zero-based index of actions
+     *        zero-based index of actions
      * @return true if the action was performed; otherwise false.
      * @see #getAccessibleActionCount
      */
@@ -59,12 +58,11 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
      * anchor text. E.g. from HTML: &lt;a
      * HREF="http://www.sun.com/access"&gt;Accessibility&lt;/a&gt; this method
      * would return "Accessibility".
-     *
      * Similarly, from this HTML: &lt;a HREF="#top"&gt;&lt;img src="top-hat.gif"
      * alt="top hat"&gt;&lt;/a&gt; this method would return "top hat"
      *
      * @param i
-     *          zero-based index of the actions
+     *        zero-based index of the actions
      * @return a String description of the action
      * @see #getAccessibleActionCount
      */
@@ -77,7 +75,7 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
      * would return a java.net.URL("http://www.sun.com/access.html");
      *
      * @param i
-     *          zero-based index of the actions
+     *        zero-based index of the actions
      * @return an Object representing the hypertext link itself
      * @see #getAccessibleActionCount
      */
@@ -88,13 +86,12 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
      * that link. E.g. from HTML: &lt;a
      * href="http://www.sun.com/access"&gt;Accessibility&lt;/a&gt; this method
      * would return a String containing the text: "Accessibility".
-     *
      * Similarly, from this HTML: &lt;a HREF="#top"&gt;&lt;img src="top-hat.gif"
      * alt="top hat"&gt;&lt;/a&gt; this might return the object
      * ImageIcon("top-hat.gif", "top hat");
      *
      * @param i
-     *          zero-based index of the actions
+     *        zero-based index of the actions
      * @return an Object representing the hypertext anchor
      * @see #getAccessibleActionCount
      */

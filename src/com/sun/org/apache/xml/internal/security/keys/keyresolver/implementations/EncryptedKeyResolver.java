@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -44,7 +42,6 @@ import org.w3c.dom.Element;
  * be for specific instantiations, as the key being unwrapped will always be of
  * a particular type and will always have been wrapped by another key which
  * needs to be recursively resolved.
- *
  * The <code>EncryptedKeyResolver</code> can therefore only be instantiated with
  * an algorithm. It can also be instantiated with a key (the KEK) or will search
  * the static KeyResolvers to find the appropriate key.
@@ -54,8 +51,8 @@ import org.w3c.dom.Element;
 public class EncryptedKeyResolver extends KeyResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(EncryptedKeyResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(
+            EncryptedKeyResolver.class.getName());
 
     private Key kek;
     private String algorithm;
@@ -96,24 +93,23 @@ public class EncryptedKeyResolver extends KeyResolverSpi {
     }
 
     /** @inheritDoc */
-    public PublicKey engineLookupAndResolvePublicKey(Element element,
-            String BaseURI, StorageResolver storage) {
+    public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 
     /** @inheritDoc */
-    public X509Certificate engineLookupResolveX509Certificate(Element element,
-            String BaseURI, StorageResolver storage) {
+    public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 
     /** @inheritDoc */
-    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-            Element element, String BaseURI, StorageResolver storage) {
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
+            StorageResolver storage) {
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE,
-                    "EncryptedKeyResolver - Can I resolve " + element
-                            .getTagName());
+            log.log(java.util.logging.Level.FINE, "EncryptedKeyResolver - Can I resolve " + element
+                    .getTagName());
         }
 
         if (element == null) {
@@ -125,8 +121,7 @@ public class EncryptedKeyResolver extends KeyResolverSpi {
                 EncryptionConstants._TAG_ENCRYPTEDKEY);
         if (isEncryptedKey) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE,
-                        "Passed an Encrypted Key");
+                log.log(java.util.logging.Level.FINE, "Passed an Encrypted Key");
             }
             try {
                 XMLCipher cipher = XMLCipher.getInstance();
@@ -134,8 +129,7 @@ public class EncryptedKeyResolver extends KeyResolverSpi {
                 if (internalKeyResolvers != null) {
                     int size = internalKeyResolvers.size();
                     for (int i = 0; i < size; i++) {
-                        cipher.registerInternalKeyResolver(internalKeyResolvers
-                                .get(i));
+                        cipher.registerInternalKeyResolver(internalKeyResolvers.get(i));
                     }
                 }
                 EncryptedKey ek = cipher.loadEncryptedKey(element);

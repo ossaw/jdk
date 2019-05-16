@@ -9,8 +9,7 @@ package org.omg.CORBA;
  */
 
 /** An array of Strings */
-public final class StringSeqHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class StringSeqHolder implements org.omg.CORBA.portable.Streamable {
     public String value[] = null;
 
     public StringSeqHolder() {}

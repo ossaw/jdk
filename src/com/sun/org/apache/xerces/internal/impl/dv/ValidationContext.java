@@ -24,7 +24,6 @@ import java.util.Locale;
  * idref, entity, notation, qname
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @version $Id: ValidationContext.java,v 1.6 2010/07/23 02:09:29 joehw Exp $
  */

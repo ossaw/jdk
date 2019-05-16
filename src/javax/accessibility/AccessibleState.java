@@ -55,8 +55,7 @@ public class AccessibleState extends AccessibleBundle {
      * 
      * @see AccessibleRole#PUSH_BUTTON
      */
-    public static final AccessibleState PRESSED = new AccessibleState(
-            "pressed");
+    public static final AccessibleState PRESSED = new AccessibleState("pressed");
 
     /**
      * Indicates that the object is armed. This is usually used on buttons that
@@ -86,8 +85,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleRole#RADIO_BUTTON
      * @see AccessibleRole#CHECK_BOX
      */
-    public static final AccessibleState CHECKED = new AccessibleState(
-            "checked");
+    public static final AccessibleState CHECKED = new AccessibleState("checked");
 
     /**
      * Indicates the user can change the contents of this object. This is
@@ -97,8 +95,7 @@ public class AccessibleState extends AccessibleBundle {
      * 
      * @see #ENABLED
      */
-    public static final AccessibleState EDITABLE = new AccessibleState(
-            "editable");
+    public static final AccessibleState EDITABLE = new AccessibleState("editable");
 
     /**
      * Indicates this object allows progressive disclosure of its children. This
@@ -109,8 +106,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see #COLLAPSED
      * @see AccessibleRole#TREE
      */
-    public static final AccessibleState EXPANDABLE = new AccessibleState(
-            "expandable");
+    public static final AccessibleState EXPANDABLE = new AccessibleState("expandable");
 
     /**
      * Indicates this object is collapsed. This is usually paired with the
@@ -121,8 +117,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see #EXPANDED
      * @see AccessibleRole#TREE
      */
-    public static final AccessibleState COLLAPSED = new AccessibleState(
-            "collapsed");
+    public static final AccessibleState COLLAPSED = new AccessibleState("collapsed");
 
     /**
      * Indicates this object is expanded. This is usually paired with the
@@ -133,8 +128,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see #COLLAPSED
      * @see AccessibleRole#TREE
      */
-    public static final AccessibleState EXPANDED = new AccessibleState(
-            "expanded");
+    public static final AccessibleState EXPANDED = new AccessibleState("expanded");
 
     /**
      * Indicates this object is enabled. The absence of this state from an
@@ -142,8 +136,7 @@ public class AccessibleState extends AccessibleBundle {
      * is not enabled cannot be manipulated by the user. In a graphical display,
      * it is usually grayed out.
      */
-    public static final AccessibleState ENABLED = new AccessibleState(
-            "enabled");
+    public static final AccessibleState ENABLED = new AccessibleState("enabled");
 
     /**
      * Indicates this object can accept keyboard focus, which means all events
@@ -152,16 +145,14 @@ public class AccessibleState extends AccessibleBundle {
      * 
      * @see #FOCUSED
      */
-    public static final AccessibleState FOCUSABLE = new AccessibleState(
-            "focusable");
+    public static final AccessibleState FOCUSABLE = new AccessibleState("focusable");
 
     /**
      * Indicates this object currently has the keyboard focus.
      * 
      * @see #FOCUSABLE
      */
-    public static final AccessibleState FOCUSED = new AccessibleState(
-            "focused");
+    public static final AccessibleState FOCUSED = new AccessibleState("focused");
 
     /**
      * Indicates this object is minimized and is represented only by an icon.
@@ -170,8 +161,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleRole#FRAME
      * @see AccessibleRole#INTERNAL_FRAME
      */
-    public static final AccessibleState ICONIFIED = new AccessibleState(
-            "iconified");
+    public static final AccessibleState ICONIFIED = new AccessibleState("iconified");
 
     /**
      * Indicates something must be done with this object before the user can
@@ -202,8 +192,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleComponent#getSize
      * @see AccessibleComponent#setSize
      */
-    public static final AccessibleState RESIZABLE = new AccessibleState(
-            "resizable");
+    public static final AccessibleState RESIZABLE = new AccessibleState("resizable");
 
     /**
      * Indicates this object allows more than one of its children to be selected
@@ -213,8 +202,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleContext#getAccessibleSelection
      * @see AccessibleSelection
      */
-    public static final AccessibleState MULTISELECTABLE = new AccessibleState(
-            "multiselectable");
+    public static final AccessibleState MULTISELECTABLE = new AccessibleState("multiselectable");
 
     /**
      * Indicates this object is the child of an object that allows its children
@@ -226,8 +214,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleContext#getAccessibleSelection
      * @see AccessibleSelection
      */
-    public static final AccessibleState SELECTABLE = new AccessibleState(
-            "selectable");
+    public static final AccessibleState SELECTABLE = new AccessibleState("selectable");
 
     /**
      * Indicates this object is the child of an object that allows its children
@@ -239,8 +226,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleContext#getAccessibleSelection
      * @see AccessibleSelection
      */
-    public static final AccessibleState SELECTED = new AccessibleState(
-            "selected");
+    public static final AccessibleState SELECTED = new AccessibleState("selected");
 
     /**
      * Indicates this object, the object's parent, the object's parent's parent,
@@ -250,8 +236,7 @@ public class AccessibleState extends AccessibleBundle {
      * 
      * @see #VISIBLE
      */
-    public static final AccessibleState SHOWING = new AccessibleState(
-            "showing");
+    public static final AccessibleState SHOWING = new AccessibleState("showing");
 
     /**
      * Indicates this object is visible. Note: this means that the object
@@ -261,8 +246,7 @@ public class AccessibleState extends AccessibleBundle {
      * 
      * @see #SHOWING
      */
-    public static final AccessibleState VISIBLE = new AccessibleState(
-            "visible");
+    public static final AccessibleState VISIBLE = new AccessibleState("visible");
 
     /**
      * Indicates the orientation of this object is vertical. This is usually
@@ -273,8 +257,7 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleRole#SLIDER
      * @see AccessibleRole#PROGRESS_BAR
      */
-    public static final AccessibleState VERTICAL = new AccessibleState(
-            "vertical");
+    public static final AccessibleState VERTICAL = new AccessibleState("vertical");
 
     /**
      * Indicates the orientation of this object is horizontal. This is usually
@@ -285,20 +268,17 @@ public class AccessibleState extends AccessibleBundle {
      * @see AccessibleRole#SLIDER
      * @see AccessibleRole#PROGRESS_BAR
      */
-    public static final AccessibleState HORIZONTAL = new AccessibleState(
-            "horizontal");
+    public static final AccessibleState HORIZONTAL = new AccessibleState("horizontal");
 
     /**
      * Indicates this (text) object can contain only a single line of text
      */
-    public static final AccessibleState SINGLE_LINE = new AccessibleState(
-            "singleline");
+    public static final AccessibleState SINGLE_LINE = new AccessibleState("singleline");
 
     /**
      * Indicates this (text) object can contain multiple lines of text
      */
-    public static final AccessibleState MULTI_LINE = new AccessibleState(
-            "multiline");
+    public static final AccessibleState MULTI_LINE = new AccessibleState("multiline");
 
     /**
      * Indicates this object is transient. An assistive technology should not
@@ -311,10 +291,8 @@ public class AccessibleState extends AccessibleBundle {
      * underneath the actual list/table/tree elements).
      *
      * @since 1.5
-     *
      */
-    public static final AccessibleState TRANSIENT = new AccessibleState(
-            "transient");
+    public static final AccessibleState TRANSIENT = new AccessibleState("transient");
 
     /**
      * Indicates this object is responsible for managing its subcomponents. This
@@ -325,8 +303,7 @@ public class AccessibleState extends AccessibleBundle {
      *
      * @since 1.5
      */
-    public static final AccessibleState MANAGES_DESCENDANTS = new AccessibleState(
-            "managesDescendants");
+    public static final AccessibleState MANAGES_DESCENDANTS = new AccessibleState("managesDescendants");
 
     /**
      * Indicates that the object state is indeterminate. An example is selected
@@ -335,8 +312,7 @@ public class AccessibleState extends AccessibleBundle {
      *
      * @since 1.5
      */
-    public static final AccessibleState INDETERMINATE = new AccessibleState(
-            "indeterminate");
+    public static final AccessibleState INDETERMINATE = new AccessibleState("indeterminate");
 
     /**
      * A state indicating that text is truncated by a bounding rectangle and
@@ -345,8 +321,7 @@ public class AccessibleState extends AccessibleBundle {
      *
      * @since 1.5
      */
-    static public final AccessibleState TRUNCATED = new AccessibleState(
-            "truncated");
+    static public final AccessibleState TRUNCATED = new AccessibleState("truncated");
 
     /**
      * Creates a new AccessibleState using the given locale independent key.
@@ -359,7 +334,7 @@ public class AccessibleState extends AccessibleBundle {
      * get the localized string, use toDisplayString.
      *
      * @param key
-     *            the locale independent name of the state.
+     *        the locale independent name of the state.
      * @see AccessibleBundle#toDisplayString
      */
     protected AccessibleState(String key) {

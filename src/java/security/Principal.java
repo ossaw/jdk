@@ -13,7 +13,6 @@ import javax.security.auth.Subject;
  * login id.
  *
  * @see java.security.cert.X509Certificate
- *
  * @author Li Gong
  */
 public interface Principal {
@@ -24,8 +23,7 @@ public interface Principal {
      * of this interface.
      *
      * @param another
-     *                principal to compare with.
-     *
+     *        principal to compare with.
      * @return true if the principal passed in is the same as that encapsulated
      *         by this principal, and false otherwise.
      */
@@ -54,18 +52,16 @@ public interface Principal {
 
     /**
      * Returns true if the specified subject is implied by this principal.
-     *
      * <p>
      * The default implementation of this method returns true if {@code subject}
      * is non-null and contains at least one principal that is equal to this
      * principal.
-     *
      * <p>
      * Subclasses may override this with a different implementation, if
      * necessary.
      *
      * @param subject
-     *                the {@code Subject}
+     *        the {@code Subject}
      * @return true if {@code subject} is non-null and is implied by this
      *         principal, or false otherwise.
      * @since 1.8

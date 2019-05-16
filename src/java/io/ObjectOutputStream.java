@@ -24,26 +24,22 @@ import sun.reflect.misc.ReflectUtil;
  * ObjectInputStream. Persistent storage of objects can be accomplished by using
  * a file for the stream. If the stream is a network socket stream, the objects
  * can be reconstituted on another host or in another process.
- *
  * <p>
  * Only objects that support the java.io.Serializable interface can be written
  * to streams. The class of each serializable object is encoded including the
  * class name and signature of the class, the values of the object's fields and
  * arrays, and the closure of any other objects referenced from the initial
  * objects.
- *
  * <p>
  * The method writeObject is used to write an object to the stream. Any object,
  * including Strings and arrays, is written with writeObject. Multiple objects
  * or primitives can be written to the stream. The objects must be read back
  * from the corresponding ObjectInputstream with the same types and in the same
  * order as they were written.
- *
  * <p>
  * Primitive data types can also be written to the stream using the appropriate
  * methods from DataOutput. Strings can also be written using the writeUTF
  * method.
- *
  * <p>
  * The default serialization mechanism for an object writes the class of the
  * object, the class signature, and the values of all non-transient and
@@ -52,7 +48,6 @@ import sun.reflect.misc.ReflectUtil;
  * single object are encoded using a reference sharing mechanism so that graphs
  * of objects can be restored to the same shape as when the original was
  * written.
- *
  * <p>
  * For example to write an object that can be read by the example in
  * ObjectInputStream: <br>
@@ -67,7 +62,6 @@ import sun.reflect.misc.ReflectUtil;
  *
  * oos.close();
  * </pre>
- *
  * <p>
  * Classes that require special handling during the serialization and
  * deserialization process must implement special methods with these exact
@@ -81,7 +75,6 @@ import sun.reflect.misc.ReflectUtil;
  * private void readObjectNoData()
  *     throws ObjectStreamException;
  * </pre>
- *
  * <p>
  * The writeObject method is responsible for writing the state of the object for
  * its particular class so that the corresponding readObject method can restore
@@ -89,7 +82,6 @@ import sun.reflect.misc.ReflectUtil;
  * the object's superclasses or subclasses. State is saved by writing the
  * individual fields to the ObjectOutputStream using the writeObject method or
  * by using the methods for primitive data types supported by DataOutput.
- *
  * <p>
  * Serialization does not write out the fields of any object that does not
  * implement the java.io.Serializable interface. Subclasses of Objects that are
@@ -99,12 +91,10 @@ import sun.reflect.misc.ReflectUtil;
  * of the non-serializable class. It is frequently the case that the fields of
  * that class are accessible (public, package, or protected) or that there are
  * get and set methods that can be used to restore the state.
- *
  * <p>
  * Serialization of an object can be prevented by implementing writeObject and
  * readObject methods that throw the NotSerializableException. The exception
  * will be caught by the ObjectOutputStream and abort the serialization process.
- *
  * <p>
  * Implementing the Externalizable interface allows the object to assume
  * complete control over the contents and format of the object's serialized
@@ -113,7 +103,6 @@ import sun.reflect.misc.ReflectUtil;
  * implemented by a class they can write and read their own state using all of
  * the methods of ObjectOutput and ObjectInput. It is the responsibility of the
  * objects to handle any versioning that occurs.
- *
  * <p>
  * Enum constants are serialized differently than ordinary serializable or
  * externalizable objects. The serialized form of an enum constant consists
@@ -127,7 +116,6 @@ import sun.reflect.misc.ReflectUtil;
  * serialization. Similarly, any serialPersistentFields or serialVersionUID
  * field declarations are also ignored--all enum types have a fixed
  * serialVersionUID of 0L.
- *
  * <p>
  * Primitive data, excluding serializable fields and externalizable data, is
  * written to the ObjectOutputStream in block-data records. A block data record
@@ -149,8 +137,7 @@ import sun.reflect.misc.ReflectUtil;
  *      Serialization Specification, Section 2, Object Output Classes</a>
  * @since JDK1.1
  */
-public class ObjectOutputStream extends OutputStream implements ObjectOutput,
-        ObjectStreamConstants {
+public class ObjectOutputStream extends OutputStream implements ObjectOutput, ObjectStreamConstants {
 
     private static class Caches {
         /** cache of subclass security audit results */
@@ -196,9 +183,9 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * value of "sun.io.serialization.extendedDebugInfo" property, as true or
      * false for extended information about exception's place
      */
-    private static final boolean extendedDebugInfo = java.security.AccessController
-            .doPrivileged(new sun.security.action.GetBooleanAction(
-                    "sun.io.serialization.extendedDebugInfo")).booleanValue();
+    private static final boolean extendedDebugInfo = java.security.AccessController.doPrivileged(
+            new sun.security.action.GetBooleanAction("sun.io.serialization.extendedDebugInfo"))
+            .booleanValue();
 
     /**
      * Creates an ObjectOutputStream that writes to the specified OutputStream.
@@ -206,7 +193,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * stream; callers may wish to flush the stream immediately to ensure that
      * constructors for receiving ObjectInputStreams will not block when reading
      * the header.
-     *
      * <p>
      * If a security manager is installed, this constructor will check for the
      * "enableSubclassImplementation" SerializablePermission when invoked
@@ -215,16 +201,16 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * methods.
      *
      * @param out
-     *            output stream to write to
+     *        output stream to write to
      * @throws IOException
-     *                              if an I/O error occurs while writing stream
-     *                              header
+     *         if an I/O error occurs while writing stream
+     *         header
      * @throws SecurityException
-     *                              if untrusted subclass illegally overrides
-     *                              security-sensitive
-     *                              methods
+     *         if untrusted subclass illegally overrides
+     *         security-sensitive
+     *         methods
      * @throws NullPointerException
-     *                              if <code>out</code> is <code>null</code>
+     *         if <code>out</code> is <code>null</code>
      * @since 1.4
      * @see ObjectOutputStream#ObjectOutputStream()
      * @see ObjectOutputStream#putFields()
@@ -249,7 +235,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Provide a way for subclasses that are completely reimplementing
      * ObjectOutputStream to not have to allocate private data just used by this
      * implementation of ObjectOutputStream.
-     *
      * <p>
      * If there is a security manager installed, this method first calls the
      * security manager's <code>checkPermission</code> method with a
@@ -257,13 +242,13 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * permission to ensure it's ok to enable subclassing.
      *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkPermission</code> method denies
-     *                           enabling
-     *                           subclassing.
+     *         if a security manager exists and its
+     *         <code>checkPermission</code> method denies
+     *         enabling
+     *         subclassing.
      * @throws IOException
-     *                           if an I/O error occurs while creating this
-     *                           stream
+     *         if an I/O error occurs while creating this
+     *         stream
      * @see SecurityManager#checkPermission
      * @see java.io.SerializablePermission
      */
@@ -281,25 +266,23 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
 
     /**
      * Specify stream protocol version to use when writing the stream.
-     *
      * <p>
      * This routine provides a hook to enable the current version of
      * Serialization to write in a format that is backwards compatible to a
      * previous version of the stream format.
-     *
      * <p>
      * Every effort will be made to avoid introducing additional backwards
      * incompatibilities; however, sometimes there is no other alternative.
      *
      * @param version
-     *                use ProtocolVersion from java.io.ObjectStreamConstants.
+     *        use ProtocolVersion from java.io.ObjectStreamConstants.
      * @throws IllegalStateException
-     *                                  if called after any objects have been
-     *                                  serialized.
+     *         if called after any objects have been
+     *         serialized.
      * @throws IllegalArgumentException
-     *                                  if invalid version is passed in.
+     *         if invalid version is passed in.
      * @throws IOException
-     *                                  if I/O errors occur
+     *         if I/O errors occur
      * @see java.io.ObjectStreamConstants#PROTOCOL_VERSION_1
      * @see java.io.ObjectStreamConstants#PROTOCOL_VERSION_2
      * @since 1.2
@@ -316,8 +299,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
                 break;
 
             default:
-                throw new IllegalArgumentException("unknown version: "
-                        + version);
+                throw new IllegalArgumentException("unknown version: " + version);
         }
     }
 
@@ -329,7 +311,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * and the readObject methods. Objects referenced by this object are written
      * transitively so that a complete equivalent graph of objects can be
      * reconstructed by an ObjectInputStream.
-     *
      * <p>
      * Exceptions are thrown for problems with the OutputStream and for classes
      * that should not be serialized. All exceptions are fatal to the
@@ -337,15 +318,15 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * the caller to ignore or recover the stream state.
      *
      * @throws InvalidClassException
-     *                                  Something is wrong with a class used by
-     *                                  serialization.
+     *         Something is wrong with a class used by
+     *         serialization.
      * @throws NotSerializableException
-     *                                  Some object to be serialized does not
-     *                                  implement the
-     *                                  java.io.Serializable interface.
+     *         Some object to be serialized does not
+     *         implement the
+     *         java.io.Serializable interface.
      * @throws IOException
-     *                                  Any exception thrown by the underlying
-     *                                  OutputStream.
+     *         Any exception thrown by the underlying
+     *         OutputStream.
      */
     public final void writeObject(Object obj) throws IOException {
         if (enableOverride) {
@@ -370,11 +351,11 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * "final".
      *
      * @param obj
-     *            object to be written to the underlying stream
+     *        object to be written to the underlying stream
      * @throws IOException
-     *                     if there are I/O errors while writing to the
-     *                     underlying
-     *                     stream
+     *         if there are I/O errors while writing to the
+     *         underlying
+     *         stream
      * @see #ObjectOutputStream()
      * @see #writeObject(Object)
      * @since 1.2
@@ -391,7 +372,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * manner as a newly appearing object (an object that has not been written
      * to the stream yet), regardless of whether or not the object has been
      * written previously.
-     *
      * <li>If writeObject is used to write an object that has been previously
      * written with writeUnshared, the previous writeUnshared operation is
      * treated as if it were a write of a separate object. In other words,
@@ -405,7 +385,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * rules described above only apply to the base-level object written with
      * writeUnshared, and not to any transitively referenced sub-objects in the
      * object graph to be serialized.
-     *
      * <p>
      * ObjectOutputStream subclasses which override this method can only be
      * constructed in security contexts possessing the
@@ -414,18 +393,18 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * SecurityException to be thrown.
      *
      * @param obj
-     *            object to write to stream
+     *        object to write to stream
      * @throws NotSerializableException
-     *                                  if an object in the graph to be
-     *                                  serialized does not implement
-     *                                  the Serializable interface
+     *         if an object in the graph to be
+     *         serialized does not implement
+     *         the Serializable interface
      * @throws InvalidClassException
-     *                                  if a problem exists with the class of an
-     *                                  object to be
-     *                                  serialized
+     *         if a problem exists with the class of an
+     *         object to be
+     *         serialized
      * @throws IOException
-     *                                  if an I/O error occurs during
-     *                                  serialization
+     *         if an I/O error occurs during
+     *         serialization
      * @since 1.4
      */
     public void writeUnshared(Object obj) throws IOException {
@@ -446,8 +425,8 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * called otherwise.
      *
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     <code>OutputStream</code>
+     *         if I/O errors occur while writing to the underlying
+     *         <code>OutputStream</code>
      */
     public void defaultWriteObject() throws IOException {
         SerialCallbackContext ctx = curContext;
@@ -469,7 +448,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * @return an instance of the class Putfield that holds the serializable
      *         fields
      * @throws IOException
-     *                     if I/O errors occur
+     *         if I/O errors occur
      * @since 1.2
      */
     public ObjectOutputStream.PutField putFields() throws IOException {
@@ -489,12 +468,12 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Write the buffered fields to the stream.
      *
      * @throws IOException
-     *                            if I/O errors occur while writing to the
-     *                            underlying stream
+     *         if I/O errors occur while writing to the
+     *         underlying stream
      * @throws NotActiveException
-     *                            Called when a classes writeObject method was
-     *                            not called to
-     *                            write the state of the object.
+     *         Called when a classes writeObject method was
+     *         not called to
+     *         write the state of the object.
      * @since 1.2
      */
     public void writeFields() throws IOException {
@@ -515,7 +494,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * stream. They will be written to the stream again.
      *
      * @throws IOException
-     *                     if reset() is invoked while serializing an object.
+     *         if reset() is invoked while serializing an object.
      */
     public void reset() throws IOException {
         if (depth != 0) {
@@ -539,21 +518,19 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * use any data or objects written by annotateClass.
      *
      * @param cl
-     *           the class to annotate custom data for
+     *        the class to annotate custom data for
      * @throws IOException
-     *                     Any exception thrown by the underlying OutputStream.
+     *         Any exception thrown by the underlying OutputStream.
      */
     protected void annotateClass(Class<?> cl) throws IOException {}
 
     /**
      * Subclasses may implement this method to store custom data in the stream
      * along with descriptors for dynamic proxy classes.
-     *
      * <p>
      * This method is called exactly once for each unique proxy class descriptor
      * in the stream. The default implementation of this method in
      * <code>ObjectOutputStream</code> does nothing.
-     *
      * <p>
      * The corresponding method in <code>ObjectInputStream</code> is
      * <code>resolveProxyClass</code>. For a given subclass of
@@ -563,10 +540,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * <code>annotateProxyClass</code>.
      *
      * @param cl
-     *           the proxy class to annotate custom data for
+     *        the proxy class to annotate custom data for
      * @throws IOException
-     *                     any exception thrown by the underlying
-     *                     <code>OutputStream</code>
+     *         any exception thrown by the underlying
+     *         <code>OutputStream</code>
      * @see ObjectInputStream#resolveProxyClass(String[])
      * @since 1.3
      */
@@ -582,12 +559,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * the object are replaced by the object returned by the original call to
      * replaceObject. To ensure that the private state of objects is not
      * unintentionally exposed, only trusted streams may use replaceObject.
-     *
      * <p>
      * The ObjectOutputStream.writeObject method takes a parameter of type
      * Object (as opposed to type Serializable) to allow for cases where
      * non-serializable objects are replaced by serializable ones.
-     *
      * <p>
      * When a subclass is replacing objects it must insure that either a
      * complementary substitution must be made during deserialization or that
@@ -595,23 +570,21 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * will be stored. Objects whose type is not a subclass of the type of the
      * field or array element abort the serialization by raising an exception
      * and the object is not be stored.
-     *
      * <p>
      * This method is called only once when each object is first encountered.
      * All subsequent references to the object will be redirected to the new
      * object. This method should return the object to be substituted or the
      * original object.
-     *
      * <p>
      * Null can be returned as the object to be substituted, but may cause
      * NullReferenceException in classes that contain references to the original
      * object since they may be expecting an object instead of null.
      *
      * @param obj
-     *            the object to be replaced
+     *        the object to be replaced
      * @return the alternate object that replaced the specified one
      * @throws IOException
-     *                     Any exception thrown by the underlying OutputStream.
+     *         Any exception thrown by the underlying OutputStream.
      */
     protected Object replaceObject(Object obj) throws IOException {
         return obj;
@@ -621,7 +594,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Enable the stream to do replacement of objects in the stream. When
      * enabled, the replaceObject method is called for every object being
      * serialized.
-     *
      * <p>
      * If <code>enable</code> is true, and there is a security manager
      * installed, this method first calls the security manager's
@@ -631,19 +603,18 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * stream.
      *
      * @param enable
-     *               boolean parameter to enable replacement of objects
+     *        boolean parameter to enable replacement of objects
      * @return the previous setting before this method was invoked
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkPermission</code> method denies
-     *                           enabling the
-     *                           stream to do replacement of objects in the
-     *                           stream.
+     *         if a security manager exists and its
+     *         <code>checkPermission</code> method denies
+     *         enabling the
+     *         stream to do replacement of objects in the
+     *         stream.
      * @see SecurityManager#checkPermission
      * @see java.io.SerializablePermission
      */
-    protected boolean enableReplaceObject(boolean enable)
-            throws SecurityException {
+    protected boolean enableReplaceObject(boolean enable) throws SecurityException {
         if (enable == enableReplace) {
             return enable;
         }
@@ -663,8 +634,8 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * version to the stream.
      *
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     protected void writeStreamHeader() throws IOException {
         bout.writeShort(STREAM_MAGIC);
@@ -681,7 +652,6 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * reconstitute the class descriptor from its custom stream representation.
      * By default, this method writes class descriptors according to the format
      * defined in the Object Serialization specification.
-     *
      * <p>
      * Note that this method will only be called if the ObjectOutputStream is
      * not using the old serialization stream format (set by calling
@@ -691,16 +661,15 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * internally in a manner that cannot be overridden or customized.
      *
      * @param desc
-     *             class descriptor to write to the stream
+     *        class descriptor to write to the stream
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      * @see java.io.ObjectInputStream#readClassDescriptor()
      * @see #useProtocolVersion(int)
      * @see java.io.ObjectStreamConstants#PROTOCOL_VERSION_1
      * @since 1.3
      */
-    protected void writeClassDescriptor(ObjectStreamClass desc)
-            throws IOException {
+    protected void writeClassDescriptor(ObjectStreamClass desc) throws IOException {
         desc.writeNonProxy(this);
     }
 
@@ -708,9 +677,9 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a byte. This method will block until the byte is actually written.
      *
      * @param val
-     *            the byte to be written to the stream
+     *        the byte to be written to the stream
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public void write(int val) throws IOException {
         bout.write(val);
@@ -721,9 +690,9 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * actually written.
      *
      * @param buf
-     *            the data to be written
+     *        the data to be written
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public void write(byte[] buf) throws IOException {
         bout.write(buf, 0, buf.length, false);
@@ -733,13 +702,13 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a sub array of bytes.
      *
      * @param buf
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset in the data
+     *        the start offset in the data
      * @param len
-     *            the number of bytes that are written
+     *        the number of bytes that are written
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public void write(byte[] buf, int off, int len) throws IOException {
         if (buf == null) {
@@ -757,7 +726,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * through to the underlying stream.
      *
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public void flush() throws IOException {
         bout.flush();
@@ -768,8 +737,8 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * not propagate the flush to the underlying stream.
      *
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     protected void drain() throws IOException {
         bout.drain();
@@ -780,7 +749,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * associated with the stream.
      *
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public void close() throws IOException {
         flush();
@@ -792,10 +761,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a boolean.
      *
      * @param val
-     *            the boolean to be written
+     *        the boolean to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeBoolean(boolean val) throws IOException {
         bout.writeBoolean(val);
@@ -805,10 +774,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes an 8 bit byte.
      *
      * @param val
-     *            the byte value to be written
+     *        the byte value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeByte(int val) throws IOException {
         bout.writeByte(val);
@@ -818,10 +787,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a 16 bit short.
      *
      * @param val
-     *            the short value to be written
+     *        the short value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeShort(int val) throws IOException {
         bout.writeShort(val);
@@ -831,10 +800,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a 16 bit char.
      *
      * @param val
-     *            the char value to be written
+     *        the char value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeChar(int val) throws IOException {
         bout.writeChar(val);
@@ -844,10 +813,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a 32 bit int.
      *
      * @param val
-     *            the integer value to be written
+     *        the integer value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeInt(int val) throws IOException {
         bout.writeInt(val);
@@ -857,10 +826,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a 64 bit long.
      *
      * @param val
-     *            the long value to be written
+     *        the long value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeLong(long val) throws IOException {
         bout.writeLong(val);
@@ -870,10 +839,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a 32 bit float.
      *
      * @param val
-     *            the float value to be written
+     *        the float value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeFloat(float val) throws IOException {
         bout.writeFloat(val);
@@ -883,10 +852,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a 64 bit double.
      *
      * @param val
-     *            the double value to be written
+     *        the double value to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeDouble(double val) throws IOException {
         bout.writeDouble(val);
@@ -896,10 +865,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a String as a sequence of bytes.
      *
      * @param str
-     *            the String of bytes to be written
+     *        the String of bytes to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeBytes(String str) throws IOException {
         bout.writeBytes(str);
@@ -909,10 +878,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes a String as a sequence of chars.
      *
      * @param str
-     *            the String of chars to be written
+     *        the String of chars to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeChars(String str) throws IOException {
         bout.writeChars(str);
@@ -927,10 +896,10 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * writeObject() calls write references to the string into the stream.
      *
      * @param str
-     *            the String to be written
+     *        the String to be written
      * @throws IOException
-     *                     if I/O errors occur while writing to the underlying
-     *                     stream
+     *         if I/O errors occur while writing to the underlying
+     *         stream
      */
     public void writeUTF(String str) throws IOException {
         bout.writeUTF(str);
@@ -948,17 +917,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named boolean field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>boolean</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>boolean</code>
          */
         public abstract void put(String name, boolean val);
 
@@ -966,17 +935,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named byte field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>byte</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>byte</code>
          */
         public abstract void put(String name, byte val);
 
@@ -984,17 +953,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named char field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>char</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>char</code>
          */
         public abstract void put(String name, char val);
 
@@ -1002,17 +971,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named short field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>short</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>short</code>
          */
         public abstract void put(String name, short val);
 
@@ -1020,17 +989,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named int field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>int</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>int</code>
          */
         public abstract void put(String name, int val);
 
@@ -1038,17 +1007,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named long field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>long</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>long</code>
          */
         public abstract void put(String name, long val);
 
@@ -1056,17 +1025,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named float field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>float</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>float</code>
          */
         public abstract void put(String name, float val);
 
@@ -1074,17 +1043,17 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named double field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field
+         *        the value to assign to the field
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not
-         *                                  <code>double</code>
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not
+         *         <code>double</code>
          */
         public abstract void put(String name, double val);
 
@@ -1092,18 +1061,18 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * Put the value of the named Object field into the persistent field.
          *
          * @param name
-         *             the name of the serializable field
+         *        the name of the serializable field
          * @param val
-         *             the value to assign to the field (which may be
-         *             <code>null</code>)
+         *        the value to assign to the field (which may be
+         *        <code>null</code>)
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not match
-         *                                  the name of a
-         *                                  serializable field for the class
-         *                                  whose fields are being
-         *                                  written, or if the type of the named
-         *                                  field is not a
-         *                                  reference type
+         *         if <code>name</code> does not match
+         *         the name of a
+         *         serializable field for the class
+         *         whose fields are being
+         *         written, or if the type of the named
+         *         field is not a
+         *         reference type
          */
         public abstract void put(String name, Object val);
 
@@ -1113,16 +1082,16 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * object.
          *
          * @param out
-         *            the stream to write the data and fields to
+         *        the stream to write the data and fields to
          * @throws IOException
-         *                                  if I/O errors occur while writing to
-         *                                  the underlying
-         *                                  stream
+         *         if I/O errors occur while writing to
+         *         the underlying
+         *         stream
          * @throws IllegalArgumentException
-         *                                  if the specified stream is not the
-         *                                  same stream that
-         *                                  produced this <code>PutField</code>
-         *                                  object
+         *         if the specified stream is not the
+         *         same stream that
+         *         produced this <code>PutField</code>
+         *         object
          * @deprecated This method does not write the values contained by this
          *             <code>PutField</code> object in a proper format, and may
          *             result in corruption of the serialization stream. The
@@ -1190,27 +1159,21 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * is "safe", false otherwise.
      */
     private static boolean auditSubclass(final Class<?> subcl) {
-        Boolean result = AccessController.doPrivileged(
-                new PrivilegedAction<Boolean>() {
-                    public Boolean run() {
-                        for (Class<?> cl = subcl; cl != ObjectOutputStream.class; cl = cl
-                                .getSuperclass()) {
-                            try {
-                                cl.getDeclaredMethod("writeUnshared",
-                                        new Class<?>[] { Object.class });
-                                return Boolean.FALSE;
-                            } catch (NoSuchMethodException ex) {
-                            }
-                            try {
-                                cl.getDeclaredMethod("putFields",
-                                        (Class<?>[]) null);
-                                return Boolean.FALSE;
-                            } catch (NoSuchMethodException ex) {
-                            }
-                        }
-                        return Boolean.TRUE;
-                    }
-                });
+        Boolean result = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+            public Boolean run() {
+                for (Class<?> cl = subcl; cl != ObjectOutputStream.class; cl = cl.getSuperclass()) {
+                    try {
+                        cl.getDeclaredMethod("writeUnshared", new Class<?>[] { Object.class });
+                        return Boolean.FALSE;
+                    } catch (NoSuchMethodException ex) {}
+                    try {
+                        cl.getDeclaredMethod("putFields", (Class<?>[]) null);
+                        return Boolean.FALSE;
+                    } catch (NoSuchMethodException ex) {}
+                }
+                return Boolean.TRUE;
+            }
+        });
         return result.booleanValue();
     }
 
@@ -1253,9 +1216,8 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
                 // REMIND: skip this check for strings/arrays?
                 Class<?> repCl;
                 desc = ObjectStreamClass.lookup(cl, true);
-                if (!desc.hasWriteReplaceMethod() || (obj = desc
-                        .invokeWriteReplace(obj)) == null || (repCl = obj
-                                .getClass()) == cl) {
+                if (!desc.hasWriteReplaceMethod() || (obj = desc.invokeWriteReplace(obj)) == null
+                        || (repCl = obj.getClass()) == cl) {
                     break;
                 }
                 cl = repCl;
@@ -1298,8 +1260,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
                 writeOrdinaryObject(obj, desc, unshared);
             } else {
                 if (extendedDebugInfo) {
-                    throw new NotSerializableException(cl.getName() + "\n"
-                            + debugInfoStack.toString());
+                    throw new NotSerializableException(cl.getName() + "\n" + debugInfoStack.toString());
                 } else {
                     throw new NotSerializableException(cl.getName());
                 }
@@ -1337,8 +1298,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
     /**
      * Writes representation of given class descriptor to stream.
      */
-    private void writeClassDesc(ObjectStreamClass desc, boolean unshared)
-            throws IOException {
+    private void writeClassDesc(ObjectStreamClass desc, boolean unshared) throws IOException {
         int handle;
         if (desc == null) {
             writeNull();
@@ -1353,15 +1313,13 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
 
     private boolean isCustomSubclass() {
         // Return true if this class is a custom subclass of ObjectOutputStream
-        return getClass().getClassLoader() != ObjectOutputStream.class
-                .getClassLoader();
+        return getClass().getClassLoader() != ObjectOutputStream.class.getClassLoader();
     }
 
     /**
      * Writes class descriptor representing a dynamic proxy class to stream.
      */
-    private void writeProxyDesc(ObjectStreamClass desc, boolean unshared)
-            throws IOException {
+    private void writeProxyDesc(ObjectStreamClass desc, boolean unshared) throws IOException {
         bout.writeByte(TC_PROXYCLASSDESC);
         handles.assign(unshared ? null : desc);
 
@@ -1387,8 +1345,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes class descriptor representing a standard (i.e., not a dynamic
      * proxy) class to stream.
      */
-    private void writeNonProxyDesc(ObjectStreamClass desc, boolean unshared)
-            throws IOException {
+    private void writeNonProxyDesc(ObjectStreamClass desc, boolean unshared) throws IOException {
         bout.writeByte(TC_CLASSDESC);
         handles.assign(unshared ? null : desc);
 
@@ -1430,8 +1387,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
     /**
      * Writes given array object to stream.
      */
-    private void writeArray(Object array, ObjectStreamClass desc,
-            boolean unshared) throws IOException {
+    private void writeArray(Object array, ObjectStreamClass desc, boolean unshared) throws IOException {
         bout.writeByte(TC_ARRAY);
         writeClassDesc(desc, false);
         handles.assign(unshared ? null : array);
@@ -1478,14 +1434,13 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
             int len = objs.length;
             bout.writeInt(len);
             if (extendedDebugInfo) {
-                debugInfoStack.push("array (class \"" + array.getClass()
-                        .getName() + "\", size: " + len + ")");
+                debugInfoStack.push("array (class \"" + array.getClass().getName() + "\", size: " + len
+                        + ")");
             }
             try {
                 for (int i = 0; i < len; i++) {
                     if (extendedDebugInfo) {
-                        debugInfoStack.push("element of array (index: " + i
-                                + ")");
+                        debugInfoStack.push("element of array (index: " + i + ")");
                     }
                     try {
                         writeObject0(objs[i], false);
@@ -1506,8 +1461,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
     /**
      * Writes given enum constant to stream.
      */
-    private void writeEnum(Enum<?> en, ObjectStreamClass desc, boolean unshared)
-            throws IOException {
+    private void writeEnum(Enum<?> en, ObjectStreamClass desc, boolean unshared) throws IOException {
         bout.writeByte(TC_ENUM);
         ObjectStreamClass sdesc = desc.getSuperDesc();
         writeClassDesc((sdesc.forClass() == Enum.class) ? desc : sdesc, false);
@@ -1520,11 +1474,11 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * ObjectStreamClass, array, or enum constant) serializable object to the
      * stream.
      */
-    private void writeOrdinaryObject(Object obj, ObjectStreamClass desc,
-            boolean unshared) throws IOException {
+    private void writeOrdinaryObject(Object obj, ObjectStreamClass desc, boolean unshared)
+            throws IOException {
         if (extendedDebugInfo) {
-            debugInfoStack.push((depth == 1 ? "root " : "") + "object (class \""
-                    + obj.getClass().getName() + "\", " + obj.toString() + ")");
+            debugInfoStack.push((depth == 1 ? "root " : "") + "object (class \"" + obj.getClass().getName()
+                    + "\", " + obj.toString() + ")");
         }
         try {
             desc.checkSerialize();
@@ -1580,8 +1534,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Writes instance data for each serializable class of given object, from
      * superclass to subclass.
      */
-    private void writeSerialData(Object obj, ObjectStreamClass desc)
-            throws IOException {
+    private void writeSerialData(Object obj, ObjectStreamClass desc) throws IOException {
         ObjectStreamClass.ClassDataSlot[] slots = desc.getClassDataLayout();
         for (int i = 0; i < slots.length; i++) {
             ObjectStreamClass slotDesc = slots[i].desc;
@@ -1591,8 +1544,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
                 SerialCallbackContext oldContext = curContext;
 
                 if (extendedDebugInfo) {
-                    debugInfoStack.push("custom writeObject data (class \""
-                            + slotDesc.getName() + "\")");
+                    debugInfoStack.push("custom writeObject data (class \"" + slotDesc.getName() + "\")");
                 }
                 try {
                     curContext = new SerialCallbackContext(obj, slotDesc);
@@ -1620,8 +1572,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * stream. The given class descriptor specifies which field values to write,
      * and in which order they should be written.
      */
-    private void defaultWriteFields(Object obj, ObjectStreamClass desc)
-            throws IOException {
+    private void defaultWriteFields(Object obj, ObjectStreamClass desc) throws IOException {
         Class<?> cl = desc.forClass();
         if (cl != null && obj != null && !cl.isInstance(obj)) {
             throw new ClassCastException();
@@ -1642,14 +1593,11 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
         desc.getObjFieldValues(obj, objVals);
         for (int i = 0; i < objVals.length; i++) {
             if (extendedDebugInfo) {
-                debugInfoStack.push("field (class \"" + desc.getName()
-                        + "\", name: \"" + fields[numPrimFields + i].getName()
-                        + "\", type: \"" + fields[numPrimFields + i].getType()
-                        + "\")");
+                debugInfoStack.push("field (class \"" + desc.getName() + "\", name: \"" + fields[numPrimFields
+                        + i].getName() + "\", type: \"" + fields[numPrimFields + i].getType() + "\")");
             }
             try {
-                writeObject0(objVals[i], fields[numPrimFields + i]
-                        .isUnshared());
+                writeObject0(objVals[i], fields[numPrimFields + i].isUnshared());
             } finally {
                 if (extendedDebugInfo) {
                     debugInfoStack.pop();
@@ -1688,15 +1636,13 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * Converts specified span of float values into byte values.
      */
     // REMIND: remove once hotspot inlines Float.floatToIntBits
-    private static native void floatsToBytes(float[] src, int srcpos,
-            byte[] dst, int dstpos, int nfloats);
+    private static native void floatsToBytes(float[] src, int srcpos, byte[] dst, int dstpos, int nfloats);
 
     /**
      * Converts specified span of double values into byte values.
      */
     // REMIND: remove once hotspot inlines Double.doubleToLongBits
-    private static native void doublesToBytes(double[] src, int srcpos,
-            byte[] dst, int dstpos, int ndoubles);
+    private static native void doublesToBytes(double[] src, int srcpos, byte[] dst, int dstpos, int ndoubles);
 
     /**
      * Default PutField implementation.
@@ -1798,14 +1744,12 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
             int numPrimFields = fields.length - objVals.length;
             for (int i = 0; i < objVals.length; i++) {
                 if (extendedDebugInfo) {
-                    debugInfoStack.push("field (class \"" + desc.getName()
-                            + "\", name: \"" + fields[numPrimFields + i]
-                                    .getName() + "\", type: \""
-                            + fields[numPrimFields + i].getType() + "\")");
+                    debugInfoStack.push("field (class \"" + desc.getName() + "\", name: \""
+                            + fields[numPrimFields + i].getName() + "\", type: \"" + fields[numPrimFields + i]
+                                    .getType() + "\")");
                 }
                 try {
-                    writeObject0(objVals[i], fields[numPrimFields + i]
-                            .isUnshared());
+                    writeObject0(objVals[i], fields[numPrimFields + i].isUnshared());
                 } finally {
                     if (extendedDebugInfo) {
                         debugInfoStack.pop();
@@ -1823,8 +1767,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
         private int getFieldOffset(String name, Class<?> type) {
             ObjectStreamField field = desc.getField(name, type);
             if (field == null) {
-                throw new IllegalArgumentException("no such field " + name
-                        + " with type " + type);
+                throw new IllegalArgumentException("no such field " + name + " with type " + type);
             }
             return field.getOffset();
         }
@@ -1836,8 +1779,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
      * bracketed by block data markers (see object serialization specification
      * for details).
      */
-    private static class BlockDataOutputStream extends OutputStream implements
-            DataOutput {
+    private static class BlockDataOutputStream extends OutputStream implements DataOutput {
         /** maximum data block length */
         private static final int MAX_BLOCK_SIZE = 1024;
         /** maximum data block header length */
@@ -1932,8 +1874,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput,
          * to underlying stream (to avoid exposing a reference to the original
          * byte array).
          */
-        void write(byte[] b, int off, int len, boolean copy)
-                throws IOException {
+        void write(byte[] b, int off, int len, boolean copy) throws IOException {
             if (!(copy || blkmode)) { // write directly
                 drain();
                 out.write(b, off, len);

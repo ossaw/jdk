@@ -26,7 +26,7 @@ public class MalformedObjectNameException extends OperationsException {
      * Constructor that allows a specific error message to be specified.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public MalformedObjectNameException(String message) {
         super(message);

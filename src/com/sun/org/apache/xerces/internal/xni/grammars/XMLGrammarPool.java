@@ -24,7 +24,6 @@ package com.sun.org.apache.xerces.internal.xni.grammars;
  * instance document. It makes no assumptions about the kind of Grammar
  * involved, or about how the application's storage mechanism works.
  * </p>
- *
  * <p>
  * The interaction works as follows:
  * <ul>
@@ -59,9 +58,9 @@ public interface XMLGrammarPool {
      * </p>
      * 
      * @param grammarType
-     *                    the type of the grammar, from the
-     *                    <code>com.sun.org.apache.xerces.internal.xni.grammars.Grammar</code>
-     *                    interface.
+     *        the type of the grammar, from the
+     *        <code>com.sun.org.apache.xerces.internal.xni.grammars.Grammar</code>
+     *        interface.
      * @return the set of grammars the validator may put in its "bucket"
      */
     public Grammar[] retrieveInitialGrammarSet(String grammarType);
@@ -74,11 +73,11 @@ public interface XMLGrammarPool {
      * </p>
      * 
      * @param grammarType
-     *                    the type of the grammars being returned;
+     *        the type of the grammars being returned;
      * @param grammars
-     *                    an array containing the set of grammars being
-     *                    returned; order
-     *                    is not significant.
+     *        an array containing the set of grammars being
+     *        returned; order
+     *        is not significant.
      */
     public void cacheGrammars(String grammarType, Grammar[] grammars);
 
@@ -91,7 +90,7 @@ public interface XMLGrammarPool {
      * method; this may result in infinite recursions.</strong>
      * 
      * @param desc
-     *             The description of the Grammar being requested.
+     *        The description of the Grammar being requested.
      * @return the Grammar corresponding to this description or null if no such
      *         Grammar is known.
      */

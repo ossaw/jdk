@@ -26,7 +26,6 @@ package com.sun.org.apache.xml.internal.dtm;
  * document (ignoring attribute and namespace nodes): they do not overlap and
  * together they contain all the nodes in the document.
  * </p>
- *
  */
 public final class Axis {
 

@@ -47,8 +47,7 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
         locator = null;
     }
 
-    protected java.lang.Object internalGetServant(byte[] id, String operation)
-            throws ForwardRequest {
+    protected java.lang.Object internalGetServant(byte[] id, String operation) throws ForwardRequest {
         if (locator == null)
             throw poa.invocationWrapper().poaNoServantManager();
 
@@ -61,8 +60,7 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
 
             servant = locator.preinvoke(id, poa, operation, cookieHolder);
             if (servant == null)
-                servant = new NullServantImpl(poa.omgInvocationWrapper()
-                        .nullServantReturned());
+                servant = new NullServantImpl(poa.omgInvocationWrapper().nullServantReturned());
             else
                 setDelegate((Servant) servant, id);
         } finally {
@@ -79,9 +77,8 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
 
         try {
             poa.unlock();
-            locator.postinvoke(info.id(), (POA) (info.oa()), info
-                    .getOperation(), info.getCookieHolder().value,
-                    (Servant) (info.getServantContainer()));
+            locator.postinvoke(info.id(), (POA) (info.oa()), info.getOperation(), info
+                    .getCookieHolder().value, (Servant) (info.getServantContainer()));
         } finally {
             poa.lock();
         }
@@ -99,8 +96,7 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
         return locator;
     }
 
-    public void setServantManager(ServantManager servantManager)
-            throws WrongPolicy {
+    public void setServantManager(ServantManager servantManager) throws WrongPolicy {
         if (locator != null)
             throw poa.invocationWrapper().servantManagerAlreadySet();
 
@@ -118,18 +114,16 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
         throw new WrongPolicy();
     }
 
-    public final void activateObject(byte[] id, Servant servant)
-            throws WrongPolicy, ServantAlreadyActive, ObjectAlreadyActive {
+    public final void activateObject(byte[] id, Servant servant) throws WrongPolicy, ServantAlreadyActive,
+            ObjectAlreadyActive {
         throw new WrongPolicy();
     }
 
-    public Servant deactivateObject(byte[] id) throws ObjectNotActive,
-            WrongPolicy {
+    public Servant deactivateObject(byte[] id) throws ObjectNotActive, WrongPolicy {
         throw new WrongPolicy();
     }
 
-    public byte[] servantToId(Servant servant) throws ServantNotActive,
-            WrongPolicy {
+    public byte[] servantToId(Servant servant) throws ServantNotActive, WrongPolicy {
         throw new WrongPolicy();
     }
 

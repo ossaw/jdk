@@ -57,7 +57,6 @@ import java.util.Objects;
  * appropriate.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
 final class ZoneRegion extends ZoneId implements Serializable {
@@ -79,15 +78,15 @@ final class ZoneRegion extends ZoneId implements Serializable {
      * Obtains an instance of {@code ZoneId} from an identifier.
      *
      * @param zoneId
-     *                       the time-zone ID, not null
+     *        the time-zone ID, not null
      * @param checkAvailable
-     *                       whether to check if the zone ID is available
+     *        whether to check if the zone ID is available
      * @return the zone ID, not null
      * @throws DateTimeException
-     *                            if the ID format is invalid
+     *         if the ID format is invalid
      * @throws ZoneRulesException
-     *                            if checking availability and the ID cannot be
-     *                            found
+     *         if checking availability and the ID cannot be
+     *         found
      */
     static ZoneRegion ofId(String zoneId, boolean checkAvailable) {
         Objects.requireNonNull(zoneId, "zoneId");
@@ -108,16 +107,14 @@ final class ZoneRegion extends ZoneId implements Serializable {
      * Checks that the given string is a legal ZondId name.
      *
      * @param zoneId
-     *               the time-zone ID, not null
+     *        the time-zone ID, not null
      * @throws DateTimeException
-     *                           if the ID format is invalid
+     *         if the ID format is invalid
      */
     private static void checkName(String zoneId) {
         int n = zoneId.length();
         if (n < 2) {
-            throw new DateTimeException(
-                    "Invalid ID for region-based ZoneId, invalid format: "
-                            + zoneId);
+            throw new DateTimeException("Invalid ID for region-based ZoneId, invalid format: " + zoneId);
         }
         for (int i = 0; i < n; i++) {
             char c = zoneId.charAt(i);
@@ -139,9 +136,7 @@ final class ZoneRegion extends ZoneId implements Serializable {
                 continue;
             if (c == '-' && i != 0)
                 continue;
-            throw new DateTimeException(
-                    "Invalid ID for region-based ZoneId, invalid format: "
-                            + zoneId);
+            throw new DateTimeException("Invalid ID for region-based ZoneId, invalid format: " + zoneId);
         }
     }
 
@@ -150,9 +145,9 @@ final class ZoneRegion extends ZoneId implements Serializable {
      * Constructor.
      *
      * @param id
-     *              the time-zone ID, not null
+     *        the time-zone ID, not null
      * @param rules
-     *              the rules, null for lazy lookup
+     *        the rules, null for lazy lookup
      */
     ZoneRegion(String id, ZoneRules rules) {
         this.id = id;
@@ -195,13 +190,12 @@ final class ZoneRegion extends ZoneId implements Serializable {
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     @Override

@@ -17,7 +17,6 @@ import javax.naming.NamingException;
  * @author Rosanna Lee
  * @author Scott Seligman
  * @author Vincent Ryan
- *
  * @see ExtendedResponse
  * @see UnsolicitedNotificationEvent
  * @see UnsolicitedNotificationListener

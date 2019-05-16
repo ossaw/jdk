@@ -14,8 +14,7 @@ public final class Parameter implements org.omg.CORBA.portable.IDLEntity {
 
     public Parameter() {} // ctor
 
-    public Parameter(org.omg.CORBA.Any _argument,
-            org.omg.CORBA.ParameterMode _mode) {
+    public Parameter(org.omg.CORBA.Any _argument, org.omg.CORBA.ParameterMode _mode) {
         argument = _argument;
         mode = _mode;
     } // ctor

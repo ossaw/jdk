@@ -15,10 +15,8 @@ public class MonitoringManagerImpl implements MonitoringManager {
     private final MonitoredObject rootMonitoredObject;
 
     MonitoringManagerImpl(String nameOfTheRoot, String description) {
-        MonitoredObjectFactory f = MonitoringFactories
-                .getMonitoredObjectFactory();
-        rootMonitoredObject = f.createMonitoredObject(nameOfTheRoot,
-                description);
+        MonitoredObjectFactory f = MonitoringFactories.getMonitoredObjectFactory();
+        rootMonitoredObject = f.createMonitoredObject(nameOfTheRoot, description);
     }
 
     public void clearState() {
@@ -30,8 +28,7 @@ public class MonitoringManagerImpl implements MonitoringManager {
     }
 
     public void close() {
-        MonitoringManagerFactory f = MonitoringFactories
-                .getMonitoringManagerFactory();
+        MonitoringManagerFactory f = MonitoringFactories.getMonitoringManagerFactory();
         f.remove(rootMonitoredObject.getName());
     }
 }

@@ -71,20 +71,17 @@ final class TzdbZoneRulesProvider extends ZoneRulesProvider {
      * Creates an instance. Created by the {@code ServiceLoader}.
      *
      * @throws ZoneRulesException
-     *                            if unable to load
+     *         if unable to load
      */
     public TzdbZoneRulesProvider() {
         try {
-            String libDir = System.getProperty("java.home") + File.separator
-                    + "lib";
-            try (DataInputStream dis = new DataInputStream(
-                    new BufferedInputStream(new FileInputStream(new File(libDir,
-                            "tzdb.dat"))))) {
+            String libDir = System.getProperty("java.home") + File.separator + "lib";
+            try (DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(
+                    new File(libDir, "tzdb.dat"))))) {
                 load(dis);
             }
         } catch (Exception ex) {
-            throw new ZoneRulesException("Unable to load TZDB time-zone rules",
-                    ex);
+            throw new ZoneRulesException("Unable to load TZDB time-zone rules", ex);
         }
     }
 
@@ -103,15 +100,14 @@ final class TzdbZoneRulesProvider extends ZoneRulesProvider {
         try {
             if (obj instanceof byte[]) {
                 byte[] bytes = (byte[]) obj;
-                DataInputStream dis = new DataInputStream(
-                        new ByteArrayInputStream(bytes));
+                DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bytes));
                 obj = Ser.read(dis);
                 regionToRules.put(zoneId, obj);
             }
             return (ZoneRules) obj;
         } catch (Exception ex) {
-            throw new ZoneRulesException("Invalid binary time-zone data: TZDB:"
-                    + zoneId + ", version: " + versionId, ex);
+            throw new ZoneRulesException("Invalid binary time-zone data: TZDB:" + zoneId + ", version: "
+                    + versionId, ex);
         }
     }
 
@@ -129,9 +125,9 @@ final class TzdbZoneRulesProvider extends ZoneRulesProvider {
      * Loads the rules from a DateInputStream, often in a jar file.
      *
      * @param dis
-     *            the DateInputStream to load, not null
+     *        the DateInputStream to load, not null
      * @throws Exception
-     *                   if an error occurs
+     *         if an error occurs
      */
     private void load(DataInputStream dis) throws Exception {
         if (dis.readByte() != 1) {

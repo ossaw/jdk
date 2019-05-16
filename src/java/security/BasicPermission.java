@@ -38,13 +38,11 @@ import java.io.IOException;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
  * @author Marianne Mueller
  * @author Roland Schemers
  */
 
-public abstract class BasicPermission extends Permission implements
-        java.io.Serializable {
+public abstract class BasicPermission extends Permission implements java.io.Serializable {
 
     private static final long serialVersionUID = 6279438298436773498L;
 
@@ -97,12 +95,11 @@ public abstract class BasicPermission extends Permission implements
      * or "topLevelWindow", etc.
      *
      * @param name
-     *             the name of the BasicPermission.
-     *
+     *        the name of the BasicPermission.
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
     public BasicPermission(String name) {
         super(name);
@@ -115,14 +112,13 @@ public abstract class BasicPermission extends Permission implements
      * currently unused.
      *
      * @param name
-     *                the name of the BasicPermission.
+     *        the name of the BasicPermission.
      * @param actions
-     *                ignored.
-     *
+     *        ignored.
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
     public BasicPermission(String name, String actions) {
         super(name);
@@ -140,8 +136,7 @@ public abstract class BasicPermission extends Permission implements
      * </ul>
      *
      * @param p
-     *          the permission to check against.
-     *
+     *        the permission to check against.
      * @return true if the passed permission is equal to or implied by this
      *         permission, false otherwise.
      */
@@ -157,8 +152,7 @@ public abstract class BasicPermission extends Permission implements
                 return that.path.startsWith(path);
             } else {
                 // make sure ap.path is longer so a.b.* doesn't imply a.b
-                return (that.path.length() > this.path.length()) && that.path
-                        .startsWith(this.path);
+                return (that.path.length() > this.path.length()) && that.path.startsWith(this.path);
             }
         } else {
             if (that.wildcard) {
@@ -177,7 +171,7 @@ public abstract class BasicPermission extends Permission implements
      * <P>
      * 
      * @param obj
-     *            the object we are testing for equality with this object.
+     *        the object we are testing for equality with this object.
      * @return true if <i>obj</i>'s class is the same as this object's class and
      *         has the same name as this BasicPermission object, false
      *         otherwise.
@@ -219,7 +213,6 @@ public abstract class BasicPermission extends Permission implements
     /**
      * Returns a new PermissionCollection object for storing BasicPermission
      * objects.
-     *
      * <p>
      * BasicPermission objects must be stored in a manner that allows them to be
      * inserted in any order, but that also enables the PermissionCollection
@@ -237,8 +230,7 @@ public abstract class BasicPermission extends Permission implements
      * readObject is called to restore the state of the BasicPermission from a
      * stream.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         // init is called to initialize the rest of the values.
         init(getName());
@@ -262,21 +254,16 @@ public abstract class BasicPermission extends Permission implements
  * permissions. BasicPermission objects must be stored in a manner that allows
  * them to be inserted in any order, but enable the implies function to evaluate
  * the implies method in an efficient (and consistent) manner.
- *
  * A BasicPermissionCollection handles comparing a permission like "a.b.c.d.e"
  * with a Permission such as "a.b.*", or "*".
  *
  * @see java.security.Permission
  * @see java.security.Permissions
- *
- *
  * @author Roland Schemers
- *
  * @serial include
  */
 
-final class BasicPermissionCollection extends PermissionCollection implements
-        java.io.Serializable {
+final class BasicPermissionCollection extends PermissionCollection implements java.io.Serializable {
 
     private static final long serialVersionUID = 739301742472979399L;
 
@@ -305,7 +292,6 @@ final class BasicPermissionCollection extends PermissionCollection implements
 
     /**
      * Create an empty BasicPermissionCollection object.
-     *
      */
 
     public BasicPermissionCollection(Class<?> clazz) {
@@ -319,27 +305,23 @@ final class BasicPermissionCollection extends PermissionCollection implements
      * permission.path.
      *
      * @param permission
-     *                   the Permission object to add.
-     *
+     *        the Permission object to add.
      * @exception IllegalArgumentException
-     *                                     - if the permission is not a
-     *                                     BasicPermission, or if the
-     *                                     permission is not of the same Class
-     *                                     as the other
-     *                                     permissions in this collection.
-     *
+     *            - if the permission is not a
+     *            BasicPermission, or if the
+     *            permission is not of the same Class
+     *            as the other
+     *            permissions in this collection.
      * @exception SecurityException
-     *                                     - if this BasicPermissionCollection
-     *                                     object has been marked
-     *                                     readonly
+     *            - if this BasicPermissionCollection
+     *            object has been marked
+     *            readonly
      */
     public void add(Permission permission) {
         if (!(permission instanceof BasicPermission))
-            throw new IllegalArgumentException("invalid permission: "
-                    + permission);
+            throw new IllegalArgumentException("invalid permission: " + permission);
         if (isReadOnly())
-            throw new SecurityException(
-                    "attempt to add a Permission to a readonly PermissionCollection");
+            throw new SecurityException("attempt to add a Permission to a readonly PermissionCollection");
 
         BasicPermission bp = (BasicPermission) permission;
 
@@ -351,8 +333,7 @@ final class BasicPermissionCollection extends PermissionCollection implements
             permClass = bp.getClass();
         } else {
             if (bp.getClass() != permClass)
-                throw new IllegalArgumentException("invalid permission: "
-                        + permission);
+                throw new IllegalArgumentException("invalid permission: " + permission);
         }
 
         synchronized (this) {
@@ -371,8 +352,7 @@ final class BasicPermissionCollection extends PermissionCollection implements
      * expressed in "permission".
      *
      * @param permission
-     *                   the Permission object to compare
-     *
+     *        the Permission object to compare
      * @return true if "permission" is a proper subset of a permission in the
      *         set, false if not.
      */
@@ -467,10 +447,9 @@ final class BasicPermissionCollection extends PermissionCollection implements
      *              java.lang.Class The class to which all BasicPermissions
      *              in this BasicPermissionCollection belongs.
      */
-    private static final ObjectStreamField[] serialPersistentFields = {
-            new ObjectStreamField("permissions", Hashtable.class),
-            new ObjectStreamField("all_allowed", Boolean.TYPE),
-            new ObjectStreamField("permClass", Class.class), };
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("permissions",
+            Hashtable.class), new ObjectStreamField("all_allowed", Boolean.TYPE), new ObjectStreamField(
+                    "permClass", Class.class), };
 
     /**
      * @serialData Default fields.
@@ -484,8 +463,7 @@ final class BasicPermissionCollection extends PermissionCollection implements
         // Don't call out.defaultWriteObject()
 
         // Copy perms into a Hashtable
-        Hashtable<String, Permission> permissions = new Hashtable<>(perms.size()
-                * 2);
+        Hashtable<String, Permission> permissions = new Hashtable<>(perms.size() * 2);
 
         synchronized (this) {
             permissions.putAll(perms);
@@ -503,8 +481,7 @@ final class BasicPermissionCollection extends PermissionCollection implements
      * readObject is called to restore the state of the
      * BasicPermissionCollection from a stream.
      */
-    private void readObject(java.io.ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
         // Don't call defaultReadObject()
 
         // Read in serialized fields
@@ -514,8 +491,8 @@ final class BasicPermissionCollection extends PermissionCollection implements
         // writeObject writes a Hashtable<String, Permission> for the
         // permissions key, so this cast is safe, unless the data is corrupt.
         @SuppressWarnings("unchecked")
-        Hashtable<String, Permission> permissions = (Hashtable<String, Permission>) gfields
-                .get("permissions", null);
+        Hashtable<String, Permission> permissions = (Hashtable<String, Permission>) gfields.get("permissions",
+                null);
         perms = new HashMap<String, Permission>(permissions.size() * 2);
         perms.putAll(permissions);
 

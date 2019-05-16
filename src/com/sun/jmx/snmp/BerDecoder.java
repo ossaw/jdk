@@ -7,16 +7,12 @@ package com.sun.jmx.snmp;
 
 /**
  * The <CODE>BerDecoder</CODE> class is used for decoding BER-encoded data.
- *
  * A <CODE>BerDecoder</CODE> needs to be set up with the byte string containing
  * the encoding. It maintains a current position in the byte string.
- *
  * Methods allows to fetch integer, string, OID, etc., from the current
  * position. After a fetch the current position is moved forward.
- *
  * A fetch throws a <CODE>BerException</CODE> if the encoding is not of the
  * expected type.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -31,7 +27,7 @@ public class BerDecoder {
      * Constructs a new decoder and attaches it to the specified byte string.
      *
      * @param b
-     *          The byte string containing the encoded data.
+     *        The byte string containing the encoded data.
      */
 
     public BerDecoder(byte b[]) {
@@ -48,9 +44,8 @@ public class BerDecoder {
      * Fetch an integer.
      *
      * @return The decoded integer.
-     *
      * @exception BerException
-     *                         Current position does not point to an integer.
+     *            Current position does not point to an integer.
      */
 
     public int fetchInteger() throws BerException {
@@ -61,14 +56,12 @@ public class BerDecoder {
      * Fetch an integer with the specified tag.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @return The decoded integer.
-     *
      * @exception BerException
-     *                         Current position does not point to an integer or
-     *                         the tag
-     *                         is not the expected one.
+     *            Current position does not point to an integer or
+     *            the tag
+     *            is not the expected one.
      */
 
     public int fetchInteger(int tag) throws BerException {
@@ -91,9 +84,8 @@ public class BerDecoder {
      * Fetch an integer and return a long value.
      *
      * @return The decoded integer.
-     *
      * @exception BerException
-     *                         Current position does not point to an integer.
+     *            Current position does not point to an integer.
      */
 
     public long fetchIntegerAsLong() throws BerException {
@@ -104,14 +96,12 @@ public class BerDecoder {
      * Fetch an integer with the specified tag and return a long value.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @return The decoded integer.
-     *
      * @exception BerException
-     *                         Current position does not point to an integer or
-     *                         the tag
-     *                         is not the expected one.
+     *            Current position does not point to an integer or
+     *            the tag
+     *            is not the expected one.
      */
 
     public long fetchIntegerAsLong(int tag) throws BerException {
@@ -134,10 +124,9 @@ public class BerDecoder {
      * Fetch an octet string.
      *
      * @return The decoded string.
-     *
      * @exception BerException
-     *                         Current position does not point to an octet
-     *                         string.
+     *            Current position does not point to an octet
+     *            string.
      */
 
     public byte[] fetchOctetString() throws BerException {
@@ -148,14 +137,12 @@ public class BerDecoder {
      * Fetch an octet string with a specified tag.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @return The decoded string.
-     *
      * @exception BerException
-     *                         Current position does not point to an octet
-     *                         string or the
-     *                         tag is not the expected one.
+     *            Current position does not point to an octet
+     *            string or the
+     *            tag is not the expected one.
      */
 
     public byte[] fetchOctetString(int tag) throws BerException {
@@ -188,14 +175,12 @@ public class BerDecoder {
      * Fetch an object identifier with a specified tag.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @return The decoded object identifier as an array of long.
-     *
      * @exception BerException
-     *                         Current position does not point to an oid or the
-     *                         tag is
-     *                         not the expected one.
+     *            Current position does not point to an oid or the
+     *            tag is
+     *            not the expected one.
      */
 
     public long[] fetchOid(int tag) throws BerException {
@@ -218,9 +203,9 @@ public class BerDecoder {
      * Fetch a <CODE>NULL</CODE> value.
      *
      * @exception BerException
-     *                         Current position does not point to
-     *                         <CODE>NULL</CODE>
-     *                         value.
+     *            Current position does not point to
+     *            <CODE>NULL</CODE>
+     *            value.
      */
 
     public void fetchNull() throws BerException {
@@ -231,12 +216,11 @@ public class BerDecoder {
      * Fetch a <CODE>NULL</CODE> value with a specified tag.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @exception BerException
-     *                         Current position does not point to
-     *                         <CODE>NULL</CODE> value
-     *                         or the tag is not the expected one.
+     *            Current position does not point to
+     *            <CODE>NULL</CODE> value
+     *            or the tag is not the expected one.
      */
 
     public void fetchNull(int tag) throws BerException {
@@ -259,9 +243,8 @@ public class BerDecoder {
      * anything it simply returns the next TLV as an array of bytes.
      *
      * @return The TLV as a byte array.
-     *
      * @exception BerException
-     *                         The next TLV is really badly encoded...
+     *            The next TLV is really badly encoded...
      */
 
     public byte[] fetchAny() throws BerException {
@@ -274,8 +257,7 @@ public class BerDecoder {
                 throw new BerException();
             final int tlvLength = next + contentLength - backup;
             if (contentLength > (bytes.length - next))
-                throw new IndexOutOfBoundsException(
-                        "Decoded length exceeds buffer");
+                throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
             final byte[] data = new byte[tlvLength];
             java.lang.System.arraycopy(bytes, backup, data, 0, tlvLength);
             // for (int i = 0 ; i < tlvLength ; i++) {
@@ -299,12 +281,10 @@ public class BerDecoder {
      * Fetch an <CODE>ANY</CODE> value with a specific tag.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @return The TLV as a byte array.
-     *
      * @exception BerException
-     *                         The next TLV is really badly encoded...
+     *            The next TLV is really badly encoded...
      */
 
     public byte[] fetchAny(int tag) throws BerException {
@@ -319,8 +299,8 @@ public class BerDecoder {
      * sequence and push it on its stack.
      *
      * @exception BerException
-     *                         Current position does not point to a sequence
-     *                         header.
+     *            Current position does not point to a sequence
+     *            header.
      */
 
     public void openSequence() throws BerException {
@@ -331,12 +311,11 @@ public class BerDecoder {
      * Fetch a sequence header with a specific tag.
      *
      * @param tag
-     *            The expected tag.
-     *
+     *        The expected tag.
      * @exception BerException
-     *                         Current position does not point to a sequence
-     *                         header or
-     *                         the tag is not the expected one.
+     *            Current position does not point to a sequence
+     *            header or
+     *            the tag is not the expected one.
      */
 
     public void openSequence(int tag) throws BerException {
@@ -363,7 +342,7 @@ public class BerDecoder {
      * throws an exception.
      *
      * @exception BerException
-     *                         The sequence is not expected to finish here.
+     *            The sequence is not expected to finish here.
      */
 
     public void closeSequence() throws BerException {
@@ -508,8 +487,7 @@ public class BerDecoder {
             if (length <= 0)
                 throw new BerException();
             if (length > (bytes.length - next))
-                throw new IndexOutOfBoundsException(
-                        "Decoded length exceeds buffer");
+                throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
             final int end = next + length;
             result = bytes[next++];
             while (next < end) {
@@ -549,8 +527,7 @@ public class BerDecoder {
             if (length <= 0)
                 throw new BerException();
             if (length > (bytes.length - next))
-                throw new IndexOutOfBoundsException(
-                        "Decoded length exceeds buffer");
+                throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
 
             final int end = next + length;
             result = bytes[next++];
@@ -590,8 +567,7 @@ public class BerDecoder {
             if (length < 0)
                 throw new BerException();
             if (length > (bytes.length - next))
-                throw new IndexOutOfBoundsException(
-                        "Decoded length exceeds buffer");
+                throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
             final byte data[] = new byte[length];
             java.lang.System.arraycopy(bytes, next, data, 0, length);
             next += length;
@@ -633,8 +609,7 @@ public class BerDecoder {
             if (length <= 0)
                 throw new BerException();
             if (length > (bytes.length - next))
-                throw new IndexOutOfBoundsException(
-                        "Decoded length exceeds buffer");
+                throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
             // Count how many bytes have their 8th bit to 0
             // -> this gives the number of components in the oid
             int subidCount = 2;

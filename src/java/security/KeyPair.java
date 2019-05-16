@@ -14,7 +14,6 @@ import java.util.*;
  *
  * @see PublicKey
  * @see PrivateKey
- *
  * @author Benjamin Renaud
  */
 
@@ -27,17 +26,15 @@ public final class KeyPair implements java.io.Serializable {
 
     /**
      * Constructs a key pair from the given public key and private key.
-     *
      * <p>
      * Note that this constructor only stores references to the public and
      * private key components in the generated key pair. This is safe, because
      * {@code Key} objects are immutable.
      *
      * @param publicKey
-     *                   the public key.
-     *
+     *        the public key.
      * @param privateKey
-     *                   the private key.
+     *        the private key.
      */
     public KeyPair(PublicKey publicKey, PrivateKey privateKey) {
         this.publicKey = publicKey;

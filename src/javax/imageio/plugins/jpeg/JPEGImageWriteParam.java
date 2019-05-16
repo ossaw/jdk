@@ -16,25 +16,21 @@ import com.sun.imageio.plugins.jpeg.JPEG;
  * tables be computed for an image. An instance of this class will be returned
  * from the <code>getDefaultImageWriteParam</code> methods of the built-in JPEG
  * <code>ImageWriter</code>.
- * 
  * <p>
  * The principal purpose of these additions is to allow the specification of
  * tables to use in encoding abbreviated streams. The built-in JPEG writer will
  * also accept an ordinary <code>ImageWriteParam</code>, in which case the
  * writer will construct the necessary tables internally.
- *
  * <p>
  * In either case, the quality setting in an <code>ImageWriteParam</code> has
  * the same meaning as for the underlying library: 1.00 means a quantization
  * table of all 1's, 0.75 means the "standard", visually lossless quantization
  * table, and 0.00 means aquantization table of all 255's.
- *
  * <p>
  * While tables for abbreviated streams are often specified by first writing an
  * abbreviated stream containing only the tables, in some applications the
  * tables are fixed ahead of time. This class allows the tables to be specified
  * directly from client code.
- *
  * <p>
  * Normally, the tables are specified in the <code>IIOMetadata</code> objects
  * passed in to the writer, and any tables included in these objects are written
@@ -48,13 +44,11 @@ import com.sun.imageio.plugins.jpeg.JPEG;
  * no stream metadata must be provided. See {@link JPEGQTable JPEGQTable} and
  * {@link JPEGHuffmanTable JPEGHuffmanTable} for more information on the default
  * tables.
- *
  * <p>
  * The default <code>JPEGImageWriteParam</code> returned by the
  * <code>getDefaultWriteParam</code> method of the writer contains no tables.
  * Default tables are included in the default <code>IIOMetadata</code> objects
  * returned by the writer.
- *
  * <p>
  * If the metadata does contain tables, the tables given in a
  * <code>JPEGImageWriteParam</code> are ignored. Furthermore, once a set of
@@ -63,12 +57,10 @@ import com.sun.imageio.plugins.jpeg.JPEG;
  * specify new tables using this class, the
  * {@link javax.imageio.ImageWriter#reset reset} method of the writer must be
  * called.
- *
  * <p>
  * For more information about the operation of the built-in JPEG plug-ins, see
  * the <A HREF="../../metadata/doc-files/jpeg_metadata.html">JPEG metadata
  * format specification and usage notes</A>.
- *
  */
 public class JPEGImageWriteParam extends ImageWriteParam {
 
@@ -90,10 +82,10 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      * The default compression quality is 0.75.
      *
      * @param locale
-     *               a <code>Locale</code> to be used by the superclass to
-     *               localize
-     *               compression type names and quality descriptions, or
-     *               <code>null</code>.
+     *        a <code>Locale</code> to be used by the superclass to
+     *        localize
+     *        compression type names and quality descriptions, or
+     *        <code>null</code>.
      */
     public JPEGImageWriteParam(Locale locale) {
         super(locale);
@@ -107,19 +99,17 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 
     /**
      * Removes any previous compression quality setting.
-     *
      * <p>
      * The default implementation resets the compression quality to
      * <code>0.75F</code>.
      *
      * @exception IllegalStateException
-     *                                  if the compression mode is not
-     *                                  <code>MODE_EXPLICIT</code>.
+     *            if the compression mode is not
+     *            <code>MODE_EXPLICIT</code>.
      */
     public void unsetCompression() {
         if (getCompressionMode() != MODE_EXPLICIT) {
-            throw new IllegalStateException(
-                    "Compression mode not MODE_EXPLICIT!");
+            throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
         }
         this.compressionQuality = JPEG.DEFAULT_QUALITY;
     }
@@ -129,23 +119,20 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      * compression.
      *
      * @return <code>false</code>.
-     *
      * @exception IllegalStateException
-     *                                  if the compression mode is not
-     *                                  <code>MODE_EXPLICIT</code>.
+     *            if the compression mode is not
+     *            <code>MODE_EXPLICIT</code>.
      */
     public boolean isCompressionLossless() {
         if (getCompressionMode() != MODE_EXPLICIT) {
-            throw new IllegalStateException(
-                    "Compression mode not MODE_EXPLICIT!");
+            throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
         }
         return false;
     }
 
     public String[] getCompressionQualityDescriptions() {
         if (getCompressionMode() != MODE_EXPLICIT) {
-            throw new IllegalStateException(
-                    "Compression mode not MODE_EXPLICIT!");
+            throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
         }
         if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
             throw new IllegalStateException("No compression type set!");
@@ -155,8 +142,7 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 
     public float[] getCompressionQualityValues() {
         if (getCompressionMode() != MODE_EXPLICIT) {
-            throw new IllegalStateException(
-                    "Compression mode not MODE_EXPLICIT!");
+            throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
         }
         if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
             throw new IllegalStateException("No compression type set!");
@@ -183,27 +169,23 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      * these arrays. The argument arrays are copied by this method.
      *
      * @param qTables
-     *                        An array of quantization table objects.
+     *        An array of quantization table objects.
      * @param DCHuffmanTables
-     *                        An array of Huffman table objects.
+     *        An array of Huffman table objects.
      * @param ACHuffmanTables
-     *                        An array of Huffman table objects.
-     *
+     *        An array of Huffman table objects.
      * @exception IllegalArgumentException
-     *                                     if any of the arguments is
-     *                                     <code>null</code> or has more
-     *                                     than 4 elements, or if the numbers of
-     *                                     DC and AC tables
-     *                                     differ.
-     *
+     *            if any of the arguments is
+     *            <code>null</code> or has more
+     *            than 4 elements, or if the numbers of
+     *            DC and AC tables
+     *            differ.
      * @see #unsetEncodeTables
      */
-    public void setEncodeTables(JPEGQTable[] qTables,
-            JPEGHuffmanTable[] DCHuffmanTables,
+    public void setEncodeTables(JPEGQTable[] qTables, JPEGHuffmanTable[] DCHuffmanTables,
             JPEGHuffmanTable[] ACHuffmanTables) {
-        if ((qTables == null) || (DCHuffmanTables == null)
-                || (ACHuffmanTables == null) || (qTables.length > 4)
-                || (DCHuffmanTables.length > 4) || (ACHuffmanTables.length > 4)
+        if ((qTables == null) || (DCHuffmanTables == null) || (ACHuffmanTables == null)
+                || (qTables.length > 4) || (DCHuffmanTables.length > 4) || (ACHuffmanTables.length > 4)
                 || (DCHuffmanTables.length != ACHuffmanTables.length)) {
             throw new IllegalArgumentException("Invalid JPEG table arrays");
         }
@@ -230,7 +212,6 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      *
      * @return an array of <code>JPEGQTable</code> objects, or <code>null</code>
      *         .
-     *
      * @see #setEncodeTables
      */
     public JPEGQTable[] getQTables() {
@@ -244,12 +225,10 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      *
      * @return an array of <code>JPEGHuffmanTable</code> objects, or
      *         <code>null</code>.
-     *
      * @see #setEncodeTables
      */
     public JPEGHuffmanTable[] getDCHuffmanTables() {
-        return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables
-                .clone() : null;
+        return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables.clone() : null;
     }
 
     /**
@@ -259,12 +238,10 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      *
      * @return an array of <code>JPEGHuffmanTable</code> objects, or
      *         <code>null</code>.
-     *
      * @see #setEncodeTables
      */
     public JPEGHuffmanTable[] getACHuffmanTables() {
-        return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables
-                .clone() : null;
+        return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables.clone() : null;
     }
 
     /**
@@ -275,10 +252,9 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      * set to <code>true</code> will always contain Huffman tables.
      *
      * @param optimize
-     *                 A boolean indicating whether to generate optimized
-     *                 Huffman
-     *                 tables when writing.
-     *
+     *        A boolean indicating whether to generate optimized
+     *        Huffman
+     *        tables when writing.
      * @see #getOptimizeHuffmanTables
      */
     public void setOptimizeHuffmanTables(boolean optimize) {
@@ -292,7 +268,6 @@ public class JPEGImageWriteParam extends ImageWriteParam {
      *
      * @return <code>true</code> if the writer will generate optimized Huffman
      *         tables.
-     *
      * @see #setOptimizeHuffmanTables
      */
     public boolean getOptimizeHuffmanTables() {

@@ -7,7 +7,6 @@ package java.net;
 
 /**
  * A socket option associated with a socket.
- *
  * <p>
  * In the {@link java.nio.channels channels} package, the
  * {@link java.nio.channels.NetworkChannel} interface defines the
@@ -18,9 +17,7 @@ package java.net;
  *
  * @param <T>
  *        The type of the socket option value.
- *
  * @since 1.7
- *
  * @see StandardSocketOptions
  */
 

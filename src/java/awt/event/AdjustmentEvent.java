@@ -33,7 +33,6 @@ import java.lang.annotation.Native;
  * 
  * @see java.awt.Adjustable
  * @see AdjustmentListener
- *
  * @author Amy Fowler
  * @since 1.1
  */
@@ -135,21 +134,21 @@ public class AdjustmentEvent extends AWTEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *               The <code>Adjustable</code> object where the event
-     *               originated
+     *        The <code>Adjustable</code> object where the event
+     *        originated
      * @param id
-     *               An integer indicating the type of event. For information on
-     *               allowable values, see the class description for
-     *               {@link AdjustmentEvent}
+     *        An integer indicating the type of event. For information on
+     *        allowable values, see the class description for
+     *        {@link AdjustmentEvent}
      * @param type
-     *               An integer indicating the adjustment type. For information
-     *               on
-     *               allowable values, see the class description for
-     *               {@link AdjustmentEvent}
+     *        An integer indicating the adjustment type. For information
+     *        on
+     *        allowable values, see the class description for
+     *        {@link AdjustmentEvent}
      * @param value
-     *               The current value of the adjustment
+     *        The current value of the adjustment
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getSource()
      * @see #getID()
      * @see #getAdjustmentType()
@@ -167,27 +166,27 @@ public class AdjustmentEvent extends AWTEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                    The <code>Adjustable</code> object where the event
-     *                    originated
+     *        The <code>Adjustable</code> object where the event
+     *        originated
      * @param id
-     *                    An integer indicating the type of event. For
-     *                    information on
-     *                    allowable values, see the class description for
-     *                    {@link AdjustmentEvent}
+     *        An integer indicating the type of event. For
+     *        information on
+     *        allowable values, see the class description for
+     *        {@link AdjustmentEvent}
      * @param type
-     *                    An integer indicating the adjustment type. For
-     *                    information on
-     *                    allowable values, see the class description for
-     *                    {@link AdjustmentEvent}
+     *        An integer indicating the adjustment type. For
+     *        information on
+     *        allowable values, see the class description for
+     *        {@link AdjustmentEvent}
      * @param value
-     *                    The current value of the adjustment
+     *        The current value of the adjustment
      * @param isAdjusting
-     *                    A boolean that equals <code>true</code> if the event
-     *                    is one of
-     *                    a series of multiple adjusting events, otherwise
-     *                    <code>false</code>
+     *        A boolean that equals <code>true</code> if the event
+     *        is one of
+     *        a series of multiple adjusting events, otherwise
+     *        <code>false</code>
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @since 1.4
      * @see #getSource()
      * @see #getID()
@@ -195,8 +194,7 @@ public class AdjustmentEvent extends AWTEvent {
      * @see #getValue()
      * @see #getValueIsAdjusting()
      */
-    public AdjustmentEvent(Adjustable source, int id, int type, int value,
-            boolean isAdjusting) {
+    public AdjustmentEvent(Adjustable source, int id, int type, int value, boolean isAdjusting) {
         super(source, id);
         adjustable = source;
         this.adjustmentType = type;
@@ -279,7 +277,6 @@ public class AdjustmentEvent extends AWTEvent {
             default:
                 adjTypeStr = "unknown type";
         }
-        return typeStr + ",adjType=" + adjTypeStr + ",value=" + value
-                + ",isAdjusting=" + isAdjusting;
+        return typeStr + ",adjType=" + adjTypeStr + ",value=" + value + ",isAdjusting=" + isAdjusting;
     }
 }

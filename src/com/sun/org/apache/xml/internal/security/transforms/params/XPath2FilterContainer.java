@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -40,8 +38,7 @@ import org.w3c.dom.NodeList;
  * @see <A HREF="http://www.w3.org/TR/xmldsig-filter2/">XPath Filter v2.0
  *      (TR)</A>
  */
-public class XPath2FilterContainer extends ElementProxy implements
-        TransformParam {
+public class XPath2FilterContainer extends ElementProxy implements TransformParam {
 
     /** Field _ATT_FILTER */
     private static final String _ATT_FILTER = "Filter";
@@ -72,7 +69,6 @@ public class XPath2FilterContainer extends ElementProxy implements
 
     /**
      * Constructor XPath2FilterContainer
-     *
      */
     private XPath2FilterContainer() {
         // no instantiation
@@ -85,12 +81,10 @@ public class XPath2FilterContainer extends ElementProxy implements
      * @param xpath2filter
      * @param filterType
      */
-    private XPath2FilterContainer(Document doc, String xpath2filter,
-            String filterType) {
+    private XPath2FilterContainer(Document doc, String xpath2filter, String filterType) {
         super(doc);
 
-        this.constructionElement.setAttributeNS(null,
-                XPath2FilterContainer._ATT_FILTER, filterType);
+        this.constructionElement.setAttributeNS(null, XPath2FilterContainer._ATT_FILTER, filterType);
         this.constructionElement.appendChild(doc.createTextNode(xpath2filter));
     }
 
@@ -101,23 +95,18 @@ public class XPath2FilterContainer extends ElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    private XPath2FilterContainer(Element element, String BaseURI)
-            throws XMLSecurityException {
+    private XPath2FilterContainer(Element element, String BaseURI) throws XMLSecurityException {
 
         super(element, BaseURI);
 
-        String filterStr = this.constructionElement.getAttributeNS(null,
-                XPath2FilterContainer._ATT_FILTER);
+        String filterStr = this.constructionElement.getAttributeNS(null, XPath2FilterContainer._ATT_FILTER);
 
-        if (!filterStr.equals(XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT)
-                && !filterStr.equals(
-                        XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT)
-                && !filterStr.equals(
+        if (!filterStr.equals(XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT) && !filterStr.equals(
+                XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT) && !filterStr.equals(
                         XPath2FilterContainer._ATT_FILTER_VALUE_UNION)) {
             Object exArgs[] = { XPath2FilterContainer._ATT_FILTER, filterStr,
                     XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT + ", "
-                            + XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT
-                            + " or "
+                            + XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT + " or "
                             + XPath2FilterContainer._ATT_FILTER_VALUE_UNION };
 
             throw new XMLSecurityException("attributeValueIllegal", exArgs);
@@ -131,8 +120,7 @@ public class XPath2FilterContainer extends ElementProxy implements
      * @param xpath2filter
      * @return the filter.
      */
-    public static XPath2FilterContainer newInstanceIntersect(Document doc,
-            String xpath2filter) {
+    public static XPath2FilterContainer newInstanceIntersect(Document doc, String xpath2filter) {
         return new XPath2FilterContainer(doc, xpath2filter,
                 XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT);
     }
@@ -144,10 +132,8 @@ public class XPath2FilterContainer extends ElementProxy implements
      * @param xpath2filter
      * @return the filter.
      */
-    public static XPath2FilterContainer newInstanceSubtract(Document doc,
-            String xpath2filter) {
-        return new XPath2FilterContainer(doc, xpath2filter,
-                XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT);
+    public static XPath2FilterContainer newInstanceSubtract(Document doc, String xpath2filter) {
+        return new XPath2FilterContainer(doc, xpath2filter, XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT);
     }
 
     /**
@@ -157,10 +143,8 @@ public class XPath2FilterContainer extends ElementProxy implements
      * @param xpath2filter
      * @return the filter
      */
-    public static XPath2FilterContainer newInstanceUnion(Document doc,
-            String xpath2filter) {
-        return new XPath2FilterContainer(doc, xpath2filter,
-                XPath2FilterContainer._ATT_FILTER_VALUE_UNION);
+    public static XPath2FilterContainer newInstanceUnion(Document doc, String xpath2filter) {
+        return new XPath2FilterContainer(doc, xpath2filter, XPath2FilterContainer._ATT_FILTER_VALUE_UNION);
     }
 
     /**
@@ -179,17 +163,13 @@ public class XPath2FilterContainer extends ElementProxy implements
             String type = params[i][0];
             String xpath = params[i][1];
 
-            if (!(type.equals(XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT)
-                    || type.equals(
-                            XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT)
-                    || type.equals(
+            if (!(type.equals(XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT) || type.equals(
+                    XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT) || type.equals(
                             XPath2FilterContainer._ATT_FILTER_VALUE_UNION))) {
-                throw new IllegalArgumentException("The type(" + i + ")=\""
-                        + type + "\" is illegal");
+                throw new IllegalArgumentException("The type(" + i + ")=\"" + type + "\" is illegal");
             }
 
-            XPath2FilterContainer c = new XPath2FilterContainer(doc, xpath,
-                    type);
+            XPath2FilterContainer c = new XPath2FilterContainer(doc, xpath, type);
 
             nl.appendChild(c.getElement());
             XMLUtils.addReturnToElement(doc, nl);
@@ -205,11 +185,10 @@ public class XPath2FilterContainer extends ElementProxy implements
      * @param element
      * @param BaseURI
      * @return the filter
-     *
      * @throws XMLSecurityException
      */
-    public static XPath2FilterContainer newInstance(Element element,
-            String BaseURI) throws XMLSecurityException {
+    public static XPath2FilterContainer newInstance(Element element, String BaseURI)
+            throws XMLSecurityException {
         return new XPath2FilterContainer(element, BaseURI);
     }
 
@@ -221,9 +200,8 @@ public class XPath2FilterContainer extends ElementProxy implements
      *         "intersect".
      */
     public boolean isIntersect() {
-        return this.constructionElement.getAttributeNS(null,
-                XPath2FilterContainer._ATT_FILTER).equals(
-                        XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT);
+        return this.constructionElement.getAttributeNS(null, XPath2FilterContainer._ATT_FILTER).equals(
+                XPath2FilterContainer._ATT_FILTER_VALUE_INTERSECT);
     }
 
     /**
@@ -234,9 +212,8 @@ public class XPath2FilterContainer extends ElementProxy implements
      *         "subtract".
      */
     public boolean isSubtract() {
-        return this.constructionElement.getAttributeNS(null,
-                XPath2FilterContainer._ATT_FILTER).equals(
-                        XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT);
+        return this.constructionElement.getAttributeNS(null, XPath2FilterContainer._ATT_FILTER).equals(
+                XPath2FilterContainer._ATT_FILTER_VALUE_SUBTRACT);
     }
 
     /**
@@ -247,9 +224,8 @@ public class XPath2FilterContainer extends ElementProxy implements
      *         "union".
      */
     public boolean isUnion() {
-        return this.constructionElement.getAttributeNS(null,
-                XPath2FilterContainer._ATT_FILTER).equals(
-                        XPath2FilterContainer._ATT_FILTER_VALUE_UNION);
+        return this.constructionElement.getAttributeNS(null, XPath2FilterContainer._ATT_FILTER).equals(
+                XPath2FilterContainer._ATT_FILTER_VALUE_UNION);
     }
 
     /**
@@ -265,7 +241,6 @@ public class XPath2FilterContainer extends ElementProxy implements
      * Returns the first Text node which contains information from the XPath 2
      * Filter String. We must use this stupid hook to enable the here() function
      * to work.
-     *
      * $todo$ I dunno whether this crashes: <XPath> here()<!-- comment
      * -->/ds:Signature[1]</XPath>
      * 

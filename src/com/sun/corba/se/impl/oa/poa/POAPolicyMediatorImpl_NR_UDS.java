@@ -41,8 +41,7 @@ public class POAPolicyMediatorImpl_NR_UDS extends POAPolicyMediatorBase {
         defaultServant = null;
     }
 
-    protected java.lang.Object internalGetServant(byte[] id, String operation)
-            throws ForwardRequest {
+    protected java.lang.Object internalGetServant(byte[] id, String operation) throws ForwardRequest {
         if (defaultServant == null)
             throw poa.invocationWrapper().poaNoDefaultServant();
 
@@ -65,8 +64,7 @@ public class POAPolicyMediatorImpl_NR_UDS extends POAPolicyMediatorBase {
         throw new WrongPolicy();
     }
 
-    public void setServantManager(ServantManager servantManager)
-            throws WrongPolicy {
+    public void setServantManager(ServantManager servantManager) throws WrongPolicy {
         throw new WrongPolicy();
     }
 
@@ -81,18 +79,16 @@ public class POAPolicyMediatorImpl_NR_UDS extends POAPolicyMediatorBase {
         setDelegate(defaultServant, "DefaultServant".getBytes());
     }
 
-    public final void activateObject(byte[] id, Servant servant)
-            throws WrongPolicy, ServantAlreadyActive, ObjectAlreadyActive {
+    public final void activateObject(byte[] id, Servant servant) throws WrongPolicy, ServantAlreadyActive,
+            ObjectAlreadyActive {
         throw new WrongPolicy();
     }
 
-    public Servant deactivateObject(byte[] id) throws ObjectNotActive,
-            WrongPolicy {
+    public Servant deactivateObject(byte[] id) throws ObjectNotActive, WrongPolicy {
         throw new WrongPolicy();
     }
 
-    public byte[] servantToId(Servant servant) throws ServantNotActive,
-            WrongPolicy {
+    public byte[] servantToId(Servant servant) throws ServantNotActive, WrongPolicy {
         throw new WrongPolicy();
     }
 

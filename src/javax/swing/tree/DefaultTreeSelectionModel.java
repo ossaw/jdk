@@ -27,7 +27,6 @@ import javax.swing.DefaultListSelectionModel;
  * paths. If you subclass any of these methods to filter what is allowed to be
  * selected, be sure and message <code>resetRowSelection</code> if you do not
  * message super.
- *
  * <strong>Warning:</strong> Serialized objects of this class will not be
  * compatible with future Swing releases. The current serialization support is
  * appropriate for short term storage or RMI between applications running the
@@ -36,12 +35,10 @@ import javax.swing.DefaultListSelectionModel;
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @see javax.swing.JTree
- *
  * @author Scott Violet
  */
 @SuppressWarnings("serial")
-public class DefaultTreeSelectionModel implements Cloneable, Serializable,
-        TreeSelectionModel {
+public class DefaultTreeSelectionModel implements Cloneable, Serializable, TreeSelectionModel {
     /** Property name for selectionMode. */
     public static final String SELECTION_MODE_PROPERTY = "selectionMode";
 
@@ -140,8 +137,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                 && selectionMode != TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION)
             selectionMode = TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION;
         if (oldMode != selectionMode && changeSupport != null)
-            changeSupport.firePropertyChange(SELECTION_MODE_PROPERTY, Integer
-                    .valueOf(oldMode), Integer.valueOf(selectionMode));
+            changeSupport.firePropertyChange(SELECTION_MODE_PROPERTY, Integer.valueOf(oldMode), Integer
+                    .valueOf(selectionMode));
     }
 
     /**
@@ -159,7 +156,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * has the same effect as invoking <code>clearSelection</code>.
      *
      * @param path
-     *             new path to select
+     *        new path to select
      */
     public void setSelectionPath(TreePath path) {
         if (path == null)
@@ -193,7 +190,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * as those supplied to this method.
      *
      * @param pPaths
-     *               the new selection
+     *        the new selection
      */
     public void setSelectionPaths(TreePath[] pPaths) {
         int newCount, newCounter, oldCount, oldCounter;
@@ -230,10 +227,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
             }
 
             TreePath beginLeadPath = leadPath;
-            Vector<PathPlaceHolder> cPaths = new Vector<PathPlaceHolder>(
-                    newCount + oldCount);
-            List<TreePath> newSelectionAsList = new ArrayList<TreePath>(
-                    newCount);
+            Vector<PathPlaceHolder> cPaths = new Vector<PathPlaceHolder>(newCount + oldCount);
+            List<TreePath> newSelectionAsList = new ArrayList<TreePath>(newCount);
 
             lastPaths.clear();
             leadPath = null;
@@ -250,15 +245,12 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                 }
             }
 
-            TreePath[] newSelection = newSelectionAsList.toArray(
-                    new TreePath[newSelectionAsList.size()]);
+            TreePath[] newSelection = newSelectionAsList.toArray(new TreePath[newSelectionAsList.size()]);
 
             /* Get the paths that were selected but no longer selected. */
             for (oldCounter = 0; oldCounter < oldCount; oldCounter++)
-                if (selection[oldCounter] != null && lastPaths.get(
-                        selection[oldCounter]) == null)
-                    cPaths.addElement(new PathPlaceHolder(selection[oldCounter],
-                            false));
+                if (selection[oldCounter] != null && lastPaths.get(selection[oldCounter]) == null)
+                    cPaths.addElement(new PathPlaceHolder(selection[oldCounter], false));
 
             selection = newSelection;
 
@@ -286,7 +278,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * <code>path</code> is null.
      *
      * @param path
-     *             the new path to add to the current selection
+     *        the new path to add to the current selection
      */
     public void addSelectionPath(TreePath path) {
         if (path != null) {
@@ -312,7 +304,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * <code>paths</code>.
      *
      * @param paths
-     *              the new path to add to the current selection
+     *        the new path to add to the current selection
      */
     public void addSelectionPaths(TreePath[] paths) {
         int newPathLength = ((paths == null) ? 0 : paths.length);
@@ -320,8 +312,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
         if (newPathLength > 0) {
             if (selectionMode == TreeSelectionModel.SINGLE_TREE_SELECTION) {
                 setSelectionPaths(paths);
-            } else if (selectionMode == TreeSelectionModel.CONTIGUOUS_TREE_SELECTION
-                    && !canPathsBeAdded(paths)) {
+            } else if (selectionMode == TreeSelectionModel.CONTIGUOUS_TREE_SELECTION && !canPathsBeAdded(
+                    paths)) {
                 if (arePathsContiguous(paths)) {
                     setSelectionPaths(paths);
                 } else {
@@ -350,8 +342,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                             validCount++;
                             if (cPaths == null)
                                 cPaths = new Vector<PathPlaceHolder>();
-                            cPaths.addElement(new PathPlaceHolder(
-                                    paths[counter], true));
+                            cPaths.addElement(new PathPlaceHolder(paths[counter], true));
                             uniquePaths.put(paths[counter], Boolean.TRUE);
                             lastPaths.put(paths[counter], Boolean.TRUE);
                         }
@@ -364,13 +355,11 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                 }
 
                 if (validCount > 0) {
-                    TreePath newSelection[] = new TreePath[oldCount
-                            + validCount];
+                    TreePath newSelection[] = new TreePath[oldCount + validCount];
 
                     /* And build the new selection. */
                     if (oldCount > 0)
-                        System.arraycopy(selection, 0, newSelection, 0,
-                                oldCount);
+                        System.arraycopy(selection, 0, newSelection, 0, oldCount);
                     if (validCount != paths.length) {
                         /*
                          * Some of the paths in paths are already in the
@@ -383,8 +372,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                             newSelection[counter++] = newPaths.nextElement();
                         }
                     } else {
-                        System.arraycopy(paths, 0, newSelection, oldCount,
-                                validCount);
+                        System.arraycopy(paths, 0, newSelection, oldCount, validCount);
                     }
 
                     selection = newSelection;
@@ -409,7 +397,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * <code>path</code> is null.
      *
      * @param path
-     *             the path to remove from the selection
+     *        the path to remove from the selection
      */
     public void removeSelectionPath(TreePath path) {
         if (path != null) {
@@ -426,7 +414,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * <code>paths</code> is null.
      *
      * @param paths
-     *              the paths to remove from the selection
+     *        the paths to remove from the selection
      */
     public void removeSelectionPaths(TreePath[] paths) {
         if (paths != null && selection != null && paths.length > 0) {
@@ -437,16 +425,13 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                 Vector<PathPlaceHolder> pathsToRemove = null;
 
                 /* Find the paths that can be removed. */
-                for (int removeCounter = paths.length
-                        - 1; removeCounter >= 0; removeCounter--) {
+                for (int removeCounter = paths.length - 1; removeCounter >= 0; removeCounter--) {
                     if (paths[removeCounter] != null) {
                         if (uniquePaths.get(paths[removeCounter]) != null) {
                             if (pathsToRemove == null)
-                                pathsToRemove = new Vector<PathPlaceHolder>(
-                                        paths.length);
+                                pathsToRemove = new Vector<PathPlaceHolder>(paths.length);
                             uniquePaths.remove(paths[removeCounter]);
-                            pathsToRemove.addElement(new PathPlaceHolder(
-                                    paths[removeCounter], false));
+                            pathsToRemove.addElement(new PathPlaceHolder(paths[removeCounter], false));
                         }
                     }
                 }
@@ -460,8 +445,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                         Enumeration<TreePath> pEnum = uniquePaths.keys();
                         int validCount = 0;
 
-                        selection = new TreePath[selection.length
-                                - removeCount];
+                        selection = new TreePath[selection.length - removeCount];
                         while (pEnum.hasMoreElements()) {
                             selection[validCount++] = pEnum.nextElement();
                         }
@@ -547,8 +531,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
             for (int counter = 0; counter < selSize; counter++)
                 newness[counter] = false;
 
-            TreeSelectionEvent event = new TreeSelectionEvent(this, selection,
-                    newness, leadPath, null);
+            TreeSelectionEvent event = new TreeSelectionEvent(this, selection, newness, leadPath, null);
 
             leadPath = null;
             leadIndex = leadRow = -1;
@@ -564,7 +547,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * selected TreePaths changes.
      *
      * @param x
-     *          the new listener to be added
+     *        the new listener to be added
      */
     public void addTreeSelectionListener(TreeSelectionListener x) {
         listenerList.add(TreeSelectionListener.class, x);
@@ -575,7 +558,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * of selected TreePaths changes.
      *
      * @param x
-     *          the listener to remove
+     *        the listener to remove
      */
     public void removeTreeSelectionListener(TreeSelectionListener x) {
         listenerList.remove(TreeSelectionListener.class, x);
@@ -588,10 +571,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * @return all of this model's <code>TreeSelectionListener</code>s or an
      *         empty array if no tree selection listeners are currently
      *         registered
-     *
      * @see #addTreeSelectionListener
      * @see #removeTreeSelectionListener
-     *
      * @since 1.4
      */
     public TreeSelectionListener[] getTreeSelectionListeners() {
@@ -626,38 +607,33 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * <code><em>Foo</em>Listener</code>s upon this model. <code><em>Foo</em>
      * Listener</code>s are registered using the <code>add<em>Foo</em>
      * Listener</code> method.
-     *
      * <p>
-     *
      * You can specify the <code>listenerType</code> argument with a class
      * literal, such as <code><em>Foo</em>Listener.class</code>. For example,
      * you can query a <code>DefaultTreeSelectionModel</code> <code>m</code> for
      * its tree selection listeners with the following code:
      *
      * <pre>
-     * TreeSelectionListener[] tsls = (TreeSelectionListener[]) (m.getListeners(
-     *         TreeSelectionListener.class));
+     * TreeSelectionListener[] tsls = (TreeSelectionListener[]) (m.getListeners(TreeSelectionListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this component, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getTreeSelectionListeners
      * @see #getPropertyChangeListeners
-     *
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
@@ -698,8 +674,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                     } else {
                         int[] tempRows = new int[rows.length - invisCount];
 
-                        for (int counter = rows.length
-                                - 1, visCounter = 0; counter >= 0; counter--) {
+                        for (int counter = rows.length - 1, visCounter = 0; counter >= 0; counter--) {
                             if (rows[counter] != -1) {
                                 tempRows[visCounter++] = rows[counter];
                             }
@@ -801,10 +776,9 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * A PropertyChangeEvent will get fired when the selection mode changes.
      *
      * @param listener
-     *                 the PropertyChangeListener to be added
+     *        the PropertyChangeListener to be added
      */
-    public synchronized void addPropertyChangeListener(
-            PropertyChangeListener listener) {
+    public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
         if (changeSupport == null) {
             changeSupport = new SwingPropertyChangeSupport(this);
         }
@@ -816,11 +790,10 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * PropertyChangeListener that was registered for all properties.
      *
      * @param listener
-     *                 the PropertyChangeListener to be removed
+     *        the PropertyChangeListener to be removed
      */
 
-    public synchronized void removePropertyChangeListener(
-            PropertyChangeListener listener) {
+    public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
         if (changeSupport == null) {
             return;
         }
@@ -834,10 +807,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * @return all of this model's <code>PropertyChangeListener</code>s or an
      *         empty array if no property change listeners are currently
      *         registered
-     *
      * @see #addPropertyChangeListener
      * @see #removePropertyChangeListener
-     *
      * @since 1.4
      */
     public PropertyChangeListener[] getPropertyChangeListeners() {
@@ -861,8 +832,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * path currently selected.
      */
     protected void insureRowContinuity() {
-        if (selectionMode == TreeSelectionModel.CONTIGUOUS_TREE_SELECTION
-                && selection != null && rowMapper != null) {
+        if (selectionMode == TreeSelectionModel.CONTIGUOUS_TREE_SELECTION && selection != null
+                && rowMapper != null) {
             DefaultListSelectionModel lModel = listSelectionModel;
             int min = lModel.getMinSelectionIndex();
 
@@ -874,15 +845,13 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                             clearSelection();
                         } else {
                             TreePath[] newSel = new TreePath[counter - min];
-                            int selectionIndex[] = rowMapper.getRowsForPaths(
-                                    selection);
+                            int selectionIndex[] = rowMapper.getRowsForPaths(selection);
                             // find the actual selection pathes corresponded to
                             // the
                             // rows of the new selection
                             for (int i = 0; i < selectionIndex.length; i++) {
                                 if (selectionIndex[i] < counter) {
-                                    newSel[selectionIndex[i]
-                                            - min] = selection[i];
+                                    newSel[selectionIndex[i] - min] = selection[i];
                                 }
                             }
                             setSelectionPaths(newSel);
@@ -891,8 +860,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                     }
                 }
             }
-        } else if (selectionMode == TreeSelectionModel.SINGLE_TREE_SELECTION
-                && selection != null && selection.length > 1) {
+        } else if (selectionMode == TreeSelectionModel.SINGLE_TREE_SELECTION && selection != null
+                && selection.length > 1) {
             setSelectionPath(selection[0]);
         }
     }
@@ -921,8 +890,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                         return false;
                     }
                     anIndex = rows[0];
-                    if (anIndex == -1 || anIndex < (min - pathCount)
-                            || anIndex > (min + pathCount))
+                    if (anIndex == -1 || anIndex < (min - pathCount) || anIndex > (min + pathCount))
                         return false;
                     if (anIndex < min)
                         min = anIndex;
@@ -950,8 +918,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * <code>TreePath</code>s.
      */
     protected boolean canPathsBeAdded(TreePath[] paths) {
-        if (paths == null || paths.length == 0 || rowMapper == null
-                || selection == null
+        if (paths == null || paths.length == 0 || rowMapper == null || selection == null
                 || selectionMode == TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION)
             return true;
         else {
@@ -1051,8 +1018,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * @deprecated As of JDK version 1.7
      */
     @Deprecated
-    protected void notifyPathChange(Vector<?> changedPaths,
-            TreePath oldLeadSelection) {
+    protected void notifyPathChange(Vector<?> changedPaths, TreePath oldLeadSelection) {
         int cPathCount = changedPaths.size();
         boolean[] newness = new boolean[cPathCount];
         TreePath[] paths = new TreePath[cPathCount];
@@ -1064,8 +1030,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
             paths[counter] = placeholder.path;
         }
 
-        TreeSelectionEvent event = new TreeSelectionEvent(this, paths, newness,
-                oldLeadSelection, leadPath);
+        TreeSelectionEvent event = new TreeSelectionEvent(this, paths, newness, oldLeadSelection, leadPath);
 
         fireValueChanged(event);
     }
@@ -1080,8 +1045,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
                 leadIndex = leadRow = -1;
             } else {
                 leadRow = leadIndex = -1;
-                for (int counter = selection.length
-                        - 1; counter >= 0; counter--) {
+                for (int counter = selection.length - 1; counter >= 0; counter--) {
                     // Can use == here since we know leadPath came from
                     // selection
                     if (selection[counter] == leadPath) {
@@ -1119,8 +1083,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
         retBuffer.append(getClass().getName() + " " + hashCode() + " [ ");
         for (int counter = 0; counter < selCount; counter++) {
             if (rows != null)
-                retBuffer.append(selection[counter].toString() + "@" + Integer
-                        .toString(rows[counter]) + " ");
+                retBuffer.append(selection[counter].toString() + "@" + Integer.toString(rows[counter]) + " ");
             else
                 retBuffer.append(selection[counter].toString() + " ");
         }
@@ -1133,8 +1096,8 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
      * not duplicate selection listeners and property listeners.
      *
      * @exception CloneNotSupportedException
-     *                                       never thrown by instances of this
-     *                                       class
+     *            never thrown by instances of this
+     *            class
      */
     public Object clone() throws CloneNotSupportedException {
         DefaultTreeSelectionModel clone = (DefaultTreeSelectionModel) super.clone();
@@ -1147,8 +1110,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
             System.arraycopy(selection, 0, clone.selection, 0, selLength);
         }
         clone.listenerList = new EventListenerList();
-        clone.listSelectionModel = (DefaultListSelectionModel) listSelectionModel
-                .clone();
+        clone.listSelectionModel = (DefaultListSelectionModel) listSelectionModel.clone();
         clone.uniquePaths = new Hashtable<TreePath, Boolean>();
         clone.lastPaths = new Hashtable<TreePath, Boolean>();
         clone.tempPaths = new TreePath[1];
@@ -1170,8 +1132,7 @@ public class DefaultTreeSelectionModel implements Cloneable, Serializable,
         s.writeObject(tValues);
     }
 
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         Object[] tValues;
 
         s.defaultReadObject();

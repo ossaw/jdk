@@ -63,15 +63,14 @@ public final class ConstantInterfaceMethodref extends ConstantCP {
      * Initialize from another object.
      */
     public ConstantInterfaceMethodref(ConstantInterfaceMethodref c) {
-        super(Constants.CONSTANT_InterfaceMethodref, c.getClassIndex(), c
-                .getNameAndTypeIndex());
+        super(Constants.CONSTANT_InterfaceMethodref, c.getClassIndex(), c.getNameAndTypeIndex());
     }
 
     /**
      * Initialize instance from file data.
      *
      * @param file
-     *             input stream
+     *        input stream
      * @throws IOException
      */
     ConstantInterfaceMethodref(DataInputStream file) throws IOException {
@@ -80,14 +79,12 @@ public final class ConstantInterfaceMethodref extends ConstantCP {
 
     /**
      * @param class_index
-     *                            Reference to the class containing the method
+     *        Reference to the class containing the method
      * @param name_and_type_index
-     *                            and the method signature
+     *        and the method signature
      */
-    public ConstantInterfaceMethodref(int class_index,
-            int name_and_type_index) {
-        super(Constants.CONSTANT_InterfaceMethodref, class_index,
-                name_and_type_index);
+    public ConstantInterfaceMethodref(int class_index, int name_and_type_index) {
+        super(Constants.CONSTANT_InterfaceMethodref, class_index, name_and_type_index);
     }
 
     /**
@@ -96,7 +93,7 @@ public final class ConstantInterfaceMethodref extends ConstantCP {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantInterfaceMethodref(this);

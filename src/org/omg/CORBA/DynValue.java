@@ -45,11 +45,10 @@ public interface DynValue extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * represents to the given array of <code>NameValuePair</code> objects.
      *
      * @param value
-     *              the array of name-value pairs to be set
+     *        the array of name-value pairs to be set
      * @throws org.omg.CORBA.DynAnyPackage.InvalidSeq
      *         if an inconsistent value is part of the given array
      * @see #get_members
      */
-    void set_members(NameValuePair[] value)
-            throws org.omg.CORBA.DynAnyPackage.InvalidSeq;
+    void set_members(NameValuePair[] value) throws org.omg.CORBA.DynAnyPackage.InvalidSeq;
 }

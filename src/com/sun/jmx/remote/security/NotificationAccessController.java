@@ -17,7 +17,6 @@ import javax.security.auth.Subject;
  * {@code NotificationListener} and also allows to control remote access to the
  * notifications being forwarded to the interested remote listeners.
  * </p>
- *
  * <p>
  * An implementation of this interface can be supplied to a
  * {@code JMXConnectorServer} in the environment map through the
@@ -36,25 +35,24 @@ public interface NotificationAccessController {
      * .
      *
      * @param connectionId
-     *                     the {@code connectionId} of the remote client adding
-     *                     the
-     *                     listener.
+     *        the {@code connectionId} of the remote client adding
+     *        the
+     *        listener.
      * @param name
-     *                     the name of the MBean where the listener is to be
-     *                     added.
+     *        the name of the MBean where the listener is to be
+     *        added.
      * @param subject
-     *                     the authenticated subject representing the remote
-     *                     client.
-     *
+     *        the authenticated subject representing the remote
+     *        client.
      * @throws SecurityException
-     *                           if the remote client with the supplied
-     *                           authenticated subject
-     *                           does not have the rights to add a listener to
-     *                           the supplied
-     *                           MBean.
+     *         if the remote client with the supplied
+     *         authenticated subject
+     *         does not have the rights to add a listener to
+     *         the supplied
+     *         MBean.
      */
-    public void addNotificationListener(String connectionId, ObjectName name,
-            Subject subject) throws SecurityException;
+    public void addNotificationListener(String connectionId, ObjectName name, Subject subject)
+            throws SecurityException;
 
     /**
      * This method is called when a remote
@@ -65,25 +63,24 @@ public interface NotificationAccessController {
      * .
      *
      * @param connectionId
-     *                     the {@code connectionId} of the remote client
-     *                     removing the
-     *                     listener.
+     *        the {@code connectionId} of the remote client
+     *        removing the
+     *        listener.
      * @param name
-     *                     the name of the MBean where the listener is to be
-     *                     removed.
+     *        the name of the MBean where the listener is to be
+     *        removed.
      * @param subject
-     *                     the authenticated subject representing the remote
-     *                     client.
-     *
+     *        the authenticated subject representing the remote
+     *        client.
      * @throws SecurityException
-     *                           if the remote client with the supplied
-     *                           authenticated subject
-     *                           does not have the rights to remove a listener
-     *                           from the
-     *                           supplied MBean.
+     *         if the remote client with the supplied
+     *         authenticated subject
+     *         does not have the rights to remove a listener
+     *         from the
+     *         supplied MBean.
      */
-    public void removeNotificationListener(String connectionId, ObjectName name,
-            Subject subject) throws SecurityException;
+    public void removeNotificationListener(String connectionId, ObjectName name, Subject subject)
+            throws SecurityException;
 
     /**
      * This method is called before the
@@ -92,26 +89,24 @@ public interface NotificationAccessController {
      * authenticated subject.
      *
      * @param connectionId
-     *                     the {@code connectionId} of the remote client
-     *                     receiving the
-     *                     notification.
+     *        the {@code connectionId} of the remote client
+     *        receiving the
+     *        notification.
      * @param name
-     *                     the name of the MBean forwarding the notification.
+     *        the name of the MBean forwarding the notification.
      * @param notification
-     *                     the notification to be forwarded to the interested
-     *                     remote
-     *                     listener.
+     *        the notification to be forwarded to the interested
+     *        remote
+     *        listener.
      * @param subject
-     *                     the authenticated subject representing the remote
-     *                     client.
-     *
+     *        the authenticated subject representing the remote
+     *        client.
      * @throws SecurityException
-     *                           if the remote client with the supplied
-     *                           authenticated subject
-     *                           does not have the rights to receive the
-     *                           notification.
+     *         if the remote client with the supplied
+     *         authenticated subject
+     *         does not have the rights to receive the
+     *         notification.
      */
-    public void fetchNotification(String connectionId, ObjectName name,
-            Notification notification, Subject subject)
-            throws SecurityException;
+    public void fetchNotification(String connectionId, ObjectName name, Notification notification,
+            Subject subject) throws SecurityException;
 }

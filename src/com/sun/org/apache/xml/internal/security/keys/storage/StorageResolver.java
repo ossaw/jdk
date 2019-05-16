@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,15 +37,14 @@ import com.sun.org.apache.xml.internal.security.keys.storage.implementations.Sin
 public class StorageResolver {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(StorageResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(StorageResolver.class
+            .getName());
 
     /** Field storageResolvers */
     private List<StorageResolverSpi> storageResolvers = null;
 
     /**
      * Constructor StorageResolver
-     *
      */
     public StorageResolver() {}
 
@@ -90,8 +87,7 @@ public class StorageResolver {
         try {
             this.add(new KeyStoreResolver(keyStore));
         } catch (StorageResolverException ex) {
-            log.log(java.util.logging.Level.SEVERE,
-                    "Could not add KeyStore because of: ", ex);
+            log.log(java.util.logging.Level.SEVERE, "Could not add KeyStore because of: ", ex);
         }
     }
 
@@ -171,8 +167,7 @@ public class StorageResolver {
          * Method remove
          */
         public void remove() {
-            throw new UnsupportedOperationException(
-                    "Can't remove keys from KeyStore");
+            throw new UnsupportedOperationException("Can't remove keys from KeyStore");
         }
 
         // Find the next storage with at least one element and return its

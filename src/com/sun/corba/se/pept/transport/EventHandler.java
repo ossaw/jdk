@@ -12,7 +12,6 @@ import com.sun.corba.se.spi.orbutil.threadpool.Work;
 
 /**
  * @author Harold Carr
- *
  *         This should only be registered with ONE selector.
  */
 public interface EventHandler {

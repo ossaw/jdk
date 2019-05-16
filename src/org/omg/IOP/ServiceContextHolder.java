@@ -8,8 +8,7 @@ package org.omg.IOP;
  * PDT
  */
 
-public final class ServiceContextHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ServiceContextHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.IOP.ServiceContext value = null;
 
     public ServiceContextHolder() {}

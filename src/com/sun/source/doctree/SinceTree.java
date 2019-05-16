@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for an @since block tag.
- *
  * <p>
  * &#064;since since-text
  *

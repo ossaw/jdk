@@ -66,13 +66,13 @@ public interface SocketOptions {
      * closed, or some low-level error occurred <BR>
      * 
      * @param optID
-     *              identifies the option
+     *        identifies the option
      * @param value
-     *              the parameter of the socket option
+     *        the parameter of the socket option
      * @throws SocketException
-     *                         if the option is unrecognized, the socket is
-     *                         closed, or some
-     *                         low-level error occurred
+     *         if the option is unrecognized, the socket is
+     *         closed, or some
+     *         low-level error occurred
      * @see #getOption(int)
      */
     public void setOption(int optID, Object value) throws SocketException;
@@ -106,14 +106,14 @@ public interface SocketOptions {
      * </PRE>
      *
      * @param optID
-     *              an {@code int} identifying the option to fetch
+     *        an {@code int} identifying the option to fetch
      * @return the value of the option
      * @throws SocketException
-     *                         if the socket is closed
+     *         if the socket is closed
      * @throws SocketException
-     *                         if <I>optID</I> is unknown along the protocol
-     *                         stack
-     *                         (including the SocketImpl)
+     *         if <I>optID</I> is unknown along the protocol
+     *         stack
+     *         (including the SocketImpl)
      * @see #setOption(int, java.lang.Object)
      */
     public Object getOption(int optID) throws SocketException;
@@ -199,7 +199,6 @@ public interface SocketOptions {
      * IP_MULTICAST_IF will be kept the same as before, while this new option
      * can support setting outgoing interfaces with either IPv4 and IPv6
      * addresses.
-     *
      * NOTE: make sure there is no conflict with this
      * 
      * @see MulticastSocket#setNetworkInterface(NetworkInterface)
@@ -256,13 +255,11 @@ public interface SocketOptions {
      * SocketInputStream.read();
      * DatagramSocket.receive();
      * </PRE>
-     *
      * <P>
      * The option must be set prior to entering a blocking operation to take
      * effect. If the timeout expires and the operation would continue to block,
      * <B>java.io.InterruptedIOException</B> is raised. The Socket is not closed
      * in this case.
-     *
      * <P>
      * Valid for all sockets: SocketImpl, DatagramSocketImpl
      *
@@ -280,7 +277,6 @@ public interface SocketOptions {
      * to be sent over the socket. When used in get, this must return the size
      * of the buffer actually used by the platform when sending out data on this
      * socket.
-     *
      * Valid for all sockets: SocketImpl, DatagramSocketImpl
      *
      * @see Socket#setSendBufferSize
@@ -298,7 +294,6 @@ public interface SocketOptions {
      * to be received over the socket. When used in get, this must return the
      * size of the buffer actually used by the platform when receiving in data
      * on this socket.
-     *
      * Valid for all sockets: SocketImpl, DatagramSocketImpl
      *
      * @see Socket#setReceiveBufferSize
@@ -320,9 +315,7 @@ public interface SocketOptions {
      * of inactivity. 2. The peer responds with an RST, which tells the local
      * TCP that the peer host has crashed and rebooted. The socket is closed. 3.
      * There is no response from the peer. The socket is closed.
-     *
      * The purpose of this option is to detect if the peer host crashes.
-     *
      * Valid only for TCP socket: SocketImpl
      *
      * @see Socket#setKeepAlive

@@ -10,20 +10,17 @@ import java.util.Properties;
 /**
  * An instance of this abstract class can transform a source tree into a result
  * tree.
- *
  * <p>
  * An instance of this class can be obtained with the
  * {@link TransformerFactory#newTransformer TransformerFactory.newTransformer}
  * method. This instance may then be used to process XML from a variety of
  * sources and write the transformation output to a variety of sinks.
  * </p>
- *
  * <p>
  * An object of this class may not be used in multiple threads running
  * concurrently. Different Transformers may be used concurrently by different
  * threads.
  * </p>
- *
  * <p>
  * A <code>Transformer</code> may be used multiple times. Parameters and output
  * properties are preserved across transformations.
@@ -42,7 +39,6 @@ public abstract class Transformer {
      * <p>
      * Reset this <code>Transformer</code> to its original configuration.
      * </p>
-     *
      * <p>
      * <code>Transformer</code> is reset to the same state as when it was
      * created with {@link TransformerFactory#newTransformer()},
@@ -51,7 +47,6 @@ public abstract class Transformer {
      * allow the reuse of existing <code>Transformer</code>s thus saving
      * resources associated with the creation of new <code>Transformer</code>s.
      * </p>
-     *
      * <p>
      * The reset <code>Transformer</code> is not guaranteed to have the same
      * {@link URIResolver} or {@link ErrorListener} <code>Object</code>s, e.g.
@@ -61,21 +56,17 @@ public abstract class Transformer {
      * </p>
      *
      * @throws UnsupportedOperationException
-     *                                       When implementation does not
-     *                                       override this method.
-     *
+     *         When implementation does not
+     *         override this method.
      * @since 1.5
      */
     public void reset() {
 
         // implementors should override this method
-        throw new UnsupportedOperationException("This Transformer, \"" + this
-                .getClass().getName()
-                + "\", does not support the reset functionality."
-                + "  Specification \"" + this.getClass().getPackage()
-                        .getSpecificationTitle() + "\"" + " version \"" + this
-                                .getClass().getPackage()
-                                .getSpecificationVersion() + "\"");
+        throw new UnsupportedOperationException("This Transformer, \"" + this.getClass().getName()
+                + "\", does not support the reset functionality." + "  Specification \"" + this.getClass()
+                        .getPackage().getSpecificationTitle() + "\"" + " version \"" + this.getClass()
+                                .getPackage().getSpecificationVersion() + "\"");
     }
 
     /**
@@ -86,7 +77,6 @@ public abstract class Transformer {
      * <code>Transformer</code> was instantiated and any modifications made to
      * the <code>Transformer</code> instance.
      * </p>
-     *
      * <p>
      * An empty <code>Source</code> is represented as an empty document as
      * constructed by {@link javax.xml.parsers.DocumentBuilder#newDocument()}.
@@ -95,22 +85,19 @@ public abstract class Transformer {
      * </p>
      *
      * @param xmlSource
-     *                     The XML input to transform.
+     *        The XML input to transform.
      * @param outputTarget
-     *                     The <code>Result</code> of transforming the
-     *                     <code>xmlSource</code>.
-     *
+     *        The <code>Result</code> of transforming the
+     *        <code>xmlSource</code>.
      * @throws TransformerException
-     *                              If an unrecoverable error occurs during the
-     *                              course of the
-     *                              transformation.
+     *         If an unrecoverable error occurs during the
+     *         course of the
+     *         transformation.
      */
-    public abstract void transform(Source xmlSource, Result outputTarget)
-            throws TransformerException;
+    public abstract void transform(Source xmlSource, Result outputTarget) throws TransformerException;
 
     /**
      * Add a parameter for the transformation.
-     *
      * <p>
      * Pass a qualified name as a two-part string, the namespace URI enclosed in
      * curly braces ({}), followed by the local name. If the name has a null
@@ -127,30 +114,27 @@ public abstract class Transformer {
      * </p>
      *
      * @param name
-     *              The name of the parameter, which may begin with a namespace
-     *              URI in curly braces ({}).
+     *        The name of the parameter, which may begin with a namespace
+     *        URI in curly braces ({}).
      * @param value
-     *              The value object. This can be any valid Java object. It is
-     *              up
-     *              to the processor to provide the proper object coersion or to
-     *              simply pass the object on for use in an extension.
-     *
+     *        The value object. This can be any valid Java object. It is
+     *        up
+     *        to the processor to provide the proper object coersion or to
+     *        simply pass the object on for use in an extension.
      * @throws NullPointerException
-     *                              If value is null.
+     *         If value is null.
      */
     public abstract void setParameter(String name, Object value);
 
     /**
      * Get a parameter that was explicitly set with setParameter.
-     *
      * <p>
      * This method does not return a default parameter value, which cannot be
      * determined until the node context is evaluated during the transformation
      * process.
      *
      * @param name
-     *             of <code>Object</code> to get
-     *
+     *        of <code>Object</code> to get
      * @return A parameter that has been set with setParameter.
      */
     public abstract Object getParameter(String name);
@@ -159,7 +143,6 @@ public abstract class Transformer {
      * <p>
      * Set a list of parameters.
      * </p>
-     *
      * <p>
      * Note that the list of parameters is specified as a
      * <code>Properties</code> <code>Object</code> which limits the parameter
@@ -171,7 +154,6 @@ public abstract class Transformer {
      * <code>IllegalArgumentException</code> is thrown if any names do not
      * conform.
      * </p>
-     *
      * <p>
      * New parameters in the list are added to any existing parameters. If the
      * name of a new parameter is equal to the name of an existing parameter as
@@ -180,11 +162,10 @@ public abstract class Transformer {
      * </p>
      *
      * @param params
-     *               Parameters to set.
-     *
+     *        Parameters to set.
      * @throws IllegalArgumentException
-     *                                  If any parameter names do not conform to
-     *                                  the naming rules.
+     *         If any parameter names do not conform to
+     *         the naming rules.
      */
 
     /**
@@ -194,15 +175,14 @@ public abstract class Transformer {
 
     /**
      * Set an object that will be used to resolve URIs used in document().
-     *
      * <p>
      * If the resolver argument is null, the URIResolver value will be cleared
      * and the transformer will no longer have a resolver.
      * </p>
      *
      * @param resolver
-     *                 An object that implements the URIResolver interface, or
-     *                 null.
+     *        An object that implements the URIResolver interface, or
+     *        null.
      */
     public abstract void setURIResolver(URIResolver resolver);
 
@@ -216,13 +196,11 @@ public abstract class Transformer {
     /**
      * Set the output properties for the transformation. These properties will
      * override properties set in the Templates with xsl:output.
-     *
      * <p>
      * If argument to this function is null, any properties previously set are
      * removed, and the value will revert to the value defined in the templates
      * object.
      * </p>
-     *
      * <p>
      * Pass a qualified property key name as a two-part string, the namespace
      * URI enclosed in curly braces ({}), followed by the local name. If the
@@ -241,17 +219,14 @@ public abstract class Transformer {
      * keys are not recognized and are not namespace qualified.
      *
      * @param oformat
-     *                A set of output properties that will be used to override
-     *                any
-     *                of the same properties in affect for the transformation.
-     *
+     *        A set of output properties that will be used to override
+     *        any
+     *        of the same properties in affect for the transformation.
      * @throws IllegalArgumentException
-     *                                  When keys are not recognized and are not
-     *                                  namespace qualified.
-     *
+     *         When keys are not recognized and are not
+     *         namespace qualified.
      * @see javax.xml.transform.OutputKeys
      * @see java.util.Properties
-     *
      */
     public abstract void setOutputProperties(Properties oformat);
 
@@ -259,7 +234,6 @@ public abstract class Transformer {
      * <p>
      * Get a copy of the output properties for the transformation.
      * </p>
-     *
      * <p>
      * The properties returned should contain properties set by the user, and
      * properties set by the stylesheet, and these properties are "defaulted" by
@@ -276,12 +250,10 @@ public abstract class Transformer {
      * were explicitly set by {@link #setOutputProperty},
      * {@link #setOutputProperties}, or in the stylesheet.
      * </p>
-     *
      * <p>
      * Note that mutation of the Properties object returned will not effect the
      * properties that the transformer contains.
      * </p>
-     *
      * <p>
      * If any of the argument keys are not recognized and are not namespace
      * qualified, the property will be ignored and not returned. In other words
@@ -291,7 +263,6 @@ public abstract class Transformer {
      *
      * @return A copy of the set of output properties in effect for the next
      *         transformation.
-     *
      * @see javax.xml.transform.OutputKeys
      * @see java.util.Properties
      * @see <a href="http://www.w3.org/TR/xslt#output"> XSL Transformations
@@ -301,7 +272,6 @@ public abstract class Transformer {
 
     /**
      * Set an output property that will be in effect for the transformation.
-     *
      * <p>
      * Pass a qualified property name as a two-part string, the namespace URI
      * enclosed in curly braces ({}), followed by the local name. If the name
@@ -316,33 +286,28 @@ public abstract class Transformer {
      * name would be "{http://xyz.foo.com/yada/baz.html}foo". Note that no
      * prefix is used.
      * </p>
-     *
      * <p>
      * The Properties object that was passed to {@link #setOutputProperties}
      * won't be effected by calling this method.
      * </p>
      *
      * @param name
-     *              A non-null String that specifies an output property name,
-     *              which may be namespace qualified.
+     *        A non-null String that specifies an output property name,
+     *        which may be namespace qualified.
      * @param value
-     *              The non-null string value of the output property.
-     *
+     *        The non-null string value of the output property.
      * @throws IllegalArgumentException
-     *                                  If the property is not supported, and is
-     *                                  not qualified with a
-     *                                  namespace.
-     *
+     *         If the property is not supported, and is
+     *         not qualified with a
+     *         namespace.
      * @see javax.xml.transform.OutputKeys
      */
-    public abstract void setOutputProperty(String name, String value)
-            throws IllegalArgumentException;
+    public abstract void setOutputProperty(String name, String value) throws IllegalArgumentException;
 
     /**
      * <p>
      * Get an output property that is in effect for the transformer.
      * </p>
-     *
      * <p>
      * If a property has been set using {@link #setOutputProperty}, that value
      * will be returned. Otherwise, if a property is explicitly specified in the
@@ -353,31 +318,25 @@ public abstract class Transformer {
      * </p>
      *
      * @param name
-     *             A non-null String that specifies an output property name,
-     *             which may be namespace qualified.
-     *
+     *        A non-null String that specifies an output property name,
+     *        which may be namespace qualified.
      * @return The string value of the output property, or null if no property
      *         was found.
-     *
      * @throws IllegalArgumentException
-     *                                  If the property is not supported.
-     *
+     *         If the property is not supported.
      * @see javax.xml.transform.OutputKeys
      */
-    public abstract String getOutputProperty(String name)
-            throws IllegalArgumentException;
+    public abstract String getOutputProperty(String name) throws IllegalArgumentException;
 
     /**
      * Set the error event listener in effect for the transformation.
      *
      * @param listener
-     *                 The new error listener.
-     *
+     *        The new error listener.
      * @throws IllegalArgumentException
-     *                                  if listener is null.
+     *         if listener is null.
      */
-    public abstract void setErrorListener(ErrorListener listener)
-            throws IllegalArgumentException;
+    public abstract void setErrorListener(ErrorListener listener) throws IllegalArgumentException;
 
     /**
      * Get the error event handler in effect for the transformation.

@@ -22,7 +22,7 @@ public class AWTError extends Error {
      * message.
      * 
      * @param msg
-     *            the detail message.
+     *        the detail message.
      * @since JDK1.0
      */
     public AWTError(String msg) {

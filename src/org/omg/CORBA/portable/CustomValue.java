@@ -6,7 +6,6 @@
 /**
  * Defines the base interface for all custom value types
  * generated from IDL.
- *
  * All value types implement ValueBase either directly
  * or indirectly by implementing either the StreamableValue
  * or CustomValue interface.

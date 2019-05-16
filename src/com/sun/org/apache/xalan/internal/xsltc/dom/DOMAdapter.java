@@ -53,8 +53,8 @@ public final class DOMAdapter implements DOM {
 
     private int _multiDOMMask;
 
-    public DOMAdapter(DOM dom, String[] namesArray, String[] urisArray,
-            int[] typesArray, String[] namespaceArray) {
+    public DOMAdapter(DOM dom, String[] namesArray, String[] urisArray, int[] typesArray,
+            String[] namespaceArray) {
         if (dom instanceof DOMEnhancedForDTM) {
             _enhancedDOM = (DOMEnhancedForDTM) dom;
         }
@@ -66,8 +66,7 @@ public final class DOMAdapter implements DOM {
         _namespaceArray = namespaceArray;
     }
 
-    public void setupMapping(String[] names, String[] urisArray,
-            int[] typesArray, String[] namespaces) {
+    public void setupMapping(String[] names, String[] urisArray, int[] typesArray, String[] namespaces) {
         _namesArray = names;
         _urisArray = urisArray;
         _typesArray = typesArray;
@@ -97,8 +96,7 @@ public final class DOMAdapter implements DOM {
     private short[] getMapping() {
         if (_mapping == null) {
             if (_enhancedDOM != null) {
-                _mapping = _enhancedDOM.getMapping(_namesArray, _urisArray,
-                        _typesArray);
+                _mapping = _enhancedDOM.getMapping(_namesArray, _urisArray, _typesArray);
             }
         }
         return _mapping;
@@ -107,8 +105,7 @@ public final class DOMAdapter implements DOM {
     private int[] getReverse() {
         if (_reverse == null) {
             if (_enhancedDOM != null) {
-                _reverse = _enhancedDOM.getReverseMapping(_namesArray,
-                        _urisArray, _typesArray);
+                _reverse = _enhancedDOM.getReverseMapping(_namesArray, _urisArray, _typesArray);
             }
         }
         return _reverse;
@@ -126,8 +123,7 @@ public final class DOMAdapter implements DOM {
     private short[] getNSReverse() {
         if (_NSreverse == null) {
             if (_enhancedDOM != null) {
-                _NSreverse = _enhancedDOM.getReverseNamespaceMapping(
-                        _namespaceArray);
+                _NSreverse = _enhancedDOM.getReverseNamespaceMapping(_namespaceArray);
             }
         }
         return _NSreverse;
@@ -165,8 +161,7 @@ public final class DOMAdapter implements DOM {
         }
     }
 
-    public DTMAxisIterator getNamespaceAxisIterator(final int axis,
-            final int ns) {
+    public DTMAxisIterator getNamespaceAxisIterator(final int axis, final int ns) {
         return _dom.getNamespaceAxisIterator(axis, getNSReverse()[ns]);
     }
 
@@ -178,8 +173,7 @@ public final class DOMAdapter implements DOM {
         }
     }
 
-    public DTMAxisIterator getTypedAxisIterator(final int axis,
-            final int type) {
+    public DTMAxisIterator getTypedAxisIterator(final int axis, final int type) {
         final int[] reverse = getReverse();
         if (_enhancedDOM != null) {
             return _enhancedDOM.getTypedAxisIterator(axis, reverse[type]);
@@ -196,13 +190,12 @@ public final class DOMAdapter implements DOM {
         _multiDOMMask = mask;
     }
 
-    public DTMAxisIterator getNthDescendant(int type, int n,
-            boolean includeself) {
+    public DTMAxisIterator getNthDescendant(int type, int n, boolean includeself) {
         return _dom.getNthDescendant(getReverse()[type], n, includeself);
     }
 
-    public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iterator,
-            int type, String value, boolean op) {
+    public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iterator, int type, String value,
+            boolean op) {
         return _dom.getNodeValueIterator(iterator, type, value, op);
     }
 
@@ -273,18 +266,15 @@ public final class DOMAdapter implements DOM {
         }
     }
 
-    public void copy(final int node, SerializationHandler handler)
-            throws TransletException {
+    public void copy(final int node, SerializationHandler handler) throws TransletException {
         _dom.copy(node, handler);
     }
 
-    public void copy(DTMAxisIterator nodes, SerializationHandler handler)
-            throws TransletException {
+    public void copy(DTMAxisIterator nodes, SerializationHandler handler) throws TransletException {
         _dom.copy(nodes, handler);
     }
 
-    public String shallowCopy(final int node, SerializationHandler handler)
-            throws TransletException {
+    public String shallowCopy(final int node, SerializationHandler handler) throws TransletException {
         if (_enhancedDOM != null) {
             return _enhancedDOM.shallowCopy(node, handler);
         } else {
@@ -296,8 +286,7 @@ public final class DOMAdapter implements DOM {
         return _dom.lessThan(node1, node2);
     }
 
-    public void characters(final int textNode, SerializationHandler handler)
-            throws TransletException {
+    public void characters(final int textNode, SerializationHandler handler) throws TransletException {
         if (_enhancedDOM != null) {
             _enhancedDOM.characters(textNode, handler);
         } else {
@@ -381,11 +370,9 @@ public final class DOMAdapter implements DOM {
     /**
      * Return a instance of a DOM class to be used as an RTF
      */
-    public DOM getResultTreeFrag(int initSize, int rtfType,
-            boolean addToManager) {
+    public DOM getResultTreeFrag(int initSize, int rtfType, boolean addToManager) {
         if (_enhancedDOM != null) {
-            return _enhancedDOM.getResultTreeFrag(initSize, rtfType,
-                    addToManager);
+            return _enhancedDOM.getResultTreeFrag(initSize, rtfType, addToManager);
         } else {
             return _dom.getResultTreeFrag(initSize, rtfType, addToManager);
         }
@@ -398,8 +385,7 @@ public final class DOMAdapter implements DOM {
         return _dom.getOutputDomBuilder();
     }
 
-    public String lookupNamespace(int node, String prefix)
-            throws TransletException {
+    public String lookupNamespace(int node, String prefix) throws TransletException {
         return _dom.lookupNamespace(node, prefix);
     }
 

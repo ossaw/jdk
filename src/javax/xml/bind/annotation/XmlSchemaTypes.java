@@ -13,7 +13,6 @@ import java.lang.annotation.Target;
 /**
  * <p>
  * A container for multiple @{@link XmlSchemaType} annotations.
- *
  * <p>
  * Multiple annotations of the same type are not allowed on a program element.
  * This annotation therefore serves as a container annotation for multiple
@@ -25,7 +24,6 @@ import java.lang.annotation.Target;
  * <p>
  * The <tt>@XmlSchemaTypes</tt> annnotation can be used to define
  * {@link XmlSchemaType} for different types at the package level.
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.

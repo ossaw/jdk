@@ -73,7 +73,7 @@ public class ISTORE extends StoreInstruction {
      * Store int into local variable
      * 
      * @param n
-     *          index of local variable
+     *        index of local variable
      */
     public ISTORE(int n) {
         super(com.sun.org.apache.bcel.internal.Constants.ISTORE,
@@ -87,7 +87,7 @@ public class ISTORE extends StoreInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         super.accept(v);

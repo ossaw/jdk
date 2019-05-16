@@ -62,14 +62,12 @@ public class MBeanInstantiator {
      * Loads the class with the specified name using this object's Default
      * Loader Repository.
      **/
-    public Class<?> findClassWithDefaultLoaderRepository(String className)
-            throws ReflectionException {
+    public Class<?> findClassWithDefaultLoaderRepository(String className) throws ReflectionException {
 
         Class<?> theClass;
         if (className == null) {
             throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "The class name cannot be null"),
-                    "Exception occurred during object instantiation");
+                    "The class name cannot be null"), "Exception occurred during object instantiation");
         }
 
         ReflectUtil.checkPackageAccess(className);
@@ -89,8 +87,7 @@ public class MBeanInstantiator {
      * Gets the class for the specified class name using the MBean Interceptor's
      * classloader
      */
-    public Class<?> findClass(String className, ClassLoader loader)
-            throws ReflectionException {
+    public Class<?> findClass(String className, ClassLoader loader) throws ReflectionException {
 
         return loadClass(className, loader);
     }
@@ -99,8 +96,8 @@ public class MBeanInstantiator {
      * Gets the class for the specified class name using the specified class
      * loader
      */
-    public Class<?> findClass(String className, ObjectName aLoader)
-            throws ReflectionException, InstanceNotFoundException {
+    public Class<?> findClass(String className, ObjectName aLoader) throws ReflectionException,
+            InstanceNotFoundException {
 
         if (aLoader == null)
             throw new RuntimeOperationsException(new IllegalArgumentException(),
@@ -122,8 +119,8 @@ public class MBeanInstantiator {
      * Return an array of Class corresponding to the given signature, using the
      * specified class loader.
      */
-    public Class<?>[] findSignatureClasses(String signature[],
-            ClassLoader loader) throws ReflectionException {
+    public Class<?>[] findSignatureClasses(String signature[], ClassLoader loader)
+            throws ReflectionException {
 
         if (signature == null)
             return null;
@@ -157,23 +154,19 @@ public class MBeanInstantiator {
                 } else {
                     // Load through the default class loader
                     //
-                    tab[i] = findClass(signature[i], this.getClass()
-                            .getClassLoader());
+                    tab[i] = findClass(signature[i], this.getClass().getClassLoader());
                 }
             }
         } catch (ClassNotFoundException e) {
             if (MBEANSERVER_LOGGER.isLoggable(Level.FINEST)) {
-                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class
-                        .getName(), "findSignatureClasses",
-                        "The parameter class could not be found", e);
+                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class.getName(),
+                        "findSignatureClasses", "The parameter class could not be found", e);
             }
-            throw new ReflectionException(e,
-                    "The parameter class could not be found");
+            throw new ReflectionException(e, "The parameter class could not be found");
         } catch (RuntimeException e) {
             if (MBEANSERVER_LOGGER.isLoggable(Level.FINEST)) {
-                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class
-                        .getName(), "findSignatureClasses",
-                        "Unexpected exception", e);
+                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class.getName(),
+                        "findSignatureClasses", "Unexpected exception", e);
             }
             throw e;
         }
@@ -184,8 +177,7 @@ public class MBeanInstantiator {
      * Instantiates an object given its class, using its empty constructor. The
      * call returns a reference to the newly created object.
      */
-    public Object instantiate(Class<?> theClass) throws ReflectionException,
-            MBeanException {
+    public Object instantiate(Class<?> theClass) throws ReflectionException, MBeanException {
 
         checkMBeanPermission(theClass, null, null, "instantiate");
 
@@ -195,8 +187,7 @@ public class MBeanInstantiator {
         // ------------------------------
         Constructor<?> cons = findConstructor(theClass, null);
         if (cons == null) {
-            throw new ReflectionException(new NoSuchMethodException(
-                    "No such constructor"));
+            throw new ReflectionException(new NoSuchMethodException("No such constructor"));
         }
         // Instantiate the new object
         try {
@@ -210,15 +201,12 @@ public class MBeanInstantiator {
                 throw new RuntimeMBeanException((RuntimeException) t,
                         "RuntimeException thrown in the MBean's empty constructor");
             } else if (t instanceof Error) {
-                throw new RuntimeErrorException((Error) t,
-                        "Error thrown in the MBean's empty constructor");
+                throw new RuntimeErrorException((Error) t, "Error thrown in the MBean's empty constructor");
             } else {
-                throw new MBeanException((Exception) t,
-                        "Exception thrown in the MBean's empty constructor");
+                throw new MBeanException((Exception) t, "Exception thrown in the MBean's empty constructor");
             }
         } catch (NoSuchMethodError error) {
-            throw new ReflectionException(new NoSuchMethodException(
-                    "No constructor"), "No such constructor");
+            throw new ReflectionException(new NoSuchMethodException("No constructor"), "No such constructor");
         } catch (InstantiationException e) {
             throw new ReflectionException(e,
                     "Exception thrown trying to invoke the MBean's empty constructor");
@@ -237,9 +225,8 @@ public class MBeanInstantiator {
      * Instantiates an object given its class, the parameters and signature of
      * its constructor The call returns a reference to the newly created object.
      */
-    public Object instantiate(Class<?> theClass, Object params[],
-            String signature[], ClassLoader loader) throws ReflectionException,
-            MBeanException {
+    public Object instantiate(Class<?> theClass, Object params[], String signature[], ClassLoader loader)
+            throws ReflectionException, MBeanException {
 
         checkMBeanPermission(theClass, null, null, "instantiate");
 
@@ -254,35 +241,30 @@ public class MBeanInstantiator {
             ClassLoader aLoader = theClass.getClassLoader();
             // Build the signature of the method
             //
-            tab = ((signature == null) ? null
-                    : findSignatureClasses(signature, aLoader));
+            tab = ((signature == null) ? null : findSignatureClasses(signature, aLoader));
         }
         // Exception IllegalArgumentException raised in Jdk1.1.8
         catch (IllegalArgumentException e) {
-            throw new ReflectionException(e,
-                    "The constructor parameter classes could not be loaded");
+            throw new ReflectionException(e, "The constructor parameter classes could not be loaded");
         }
 
         // Query the metadata service to get the right constructor
         Constructor<?> cons = findConstructor(theClass, tab);
 
         if (cons == null) {
-            throw new ReflectionException(new NoSuchMethodException(
-                    "No such constructor"));
+            throw new ReflectionException(new NoSuchMethodException("No such constructor"));
         }
         try {
             ReflectUtil.checkPackageAccess(theClass);
             ensureClassAccess(theClass);
             moi = cons.newInstance(params);
         } catch (NoSuchMethodError error) {
-            throw new ReflectionException(new NoSuchMethodException(
-                    "No such constructor found"), "No such constructor");
+            throw new ReflectionException(new NoSuchMethodException("No such constructor found"),
+                    "No such constructor");
         } catch (InstantiationException e) {
-            throw new ReflectionException(e,
-                    "Exception thrown trying to invoke the MBean's constructor");
+            throw new ReflectionException(e, "Exception thrown trying to invoke the MBean's constructor");
         } catch (IllegalAccessException e) {
-            throw new ReflectionException(e,
-                    "Exception thrown trying to invoke the MBean's constructor");
+            throw new ReflectionException(e, "Exception thrown trying to invoke the MBean's constructor");
         } catch (InvocationTargetException e) {
             // Wrap the exception.
             Throwable th = e.getTargetException();
@@ -290,11 +272,9 @@ public class MBeanInstantiator {
                 throw new RuntimeMBeanException((RuntimeException) th,
                         "RuntimeException thrown in the MBean's constructor");
             } else if (th instanceof Error) {
-                throw new RuntimeErrorException((Error) th,
-                        "Error thrown in the MBean's constructor");
+                throw new RuntimeErrorException((Error) th, "Error thrown in the MBean's constructor");
             } else {
-                throw new MBeanException((Exception) th,
-                        "Exception thrown in the MBean's constructor");
+                throw new MBeanException((Exception) th, "Exception thrown in the MBean's constructor");
             }
         }
         return moi;
@@ -304,18 +284,15 @@ public class MBeanInstantiator {
      * De-serializes a byte array in the context of a classloader.
      *
      * @param loader
-     *               the classloader to use for de-serialization
+     *        the classloader to use for de-serialization
      * @param data
-     *               The byte array to be de-sererialized.
-     *
+     *        The byte array to be de-sererialized.
      * @return The de-serialized object stream.
-     *
      * @exception OperationsException
-     *                                Any of the usual Input/Output related
-     *                                exceptions.
+     *            Any of the usual Input/Output related
+     *            exceptions.
      */
-    public ObjectInputStream deserialize(ClassLoader loader, byte[] data)
-            throws OperationsException {
+    public ObjectInputStream deserialize(ClassLoader loader, byte[] data) throws OperationsException {
 
         // Check parameter validity
         if (data == null) {
@@ -335,8 +312,7 @@ public class MBeanInstantiator {
         try {
             objIn = new ObjectInputStreamWithLoader(bIn, loader);
         } catch (IOException e) {
-            throw new OperationsException(
-                    "An IOException occurred trying to de-serialize the data");
+            throw new OperationsException("An IOException occurred trying to de-serialize the data");
         }
 
         return objIn;
@@ -352,35 +328,31 @@ public class MBeanInstantiator {
      * Server, its own class loader will be used).
      *
      * @param className
-     *                   The name of the class whose class loader should be used
-     *                   for
-     *                   the de-serialization.
+     *        The name of the class whose class loader should be used
+     *        for
+     *        the de-serialization.
      * @param data
-     *                   The byte array to be de-sererialized.
+     *        The byte array to be de-sererialized.
      * @param loaderName
-     *                   The name of the class loader to be used for loading the
-     *                   specified class. If null, a default one has to be
-     *                   provided
-     *                   (for a MBean Server, its own class loader will be
-     *                   used).
-     *
+     *        The name of the class loader to be used for loading the
+     *        specified class. If null, a default one has to be
+     *        provided
+     *        (for a MBean Server, its own class loader will be
+     *        used).
      * @return The de-serialized object stream.
-     *
      * @exception InstanceNotFoundException
-     *                                      The specified class loader MBean is
-     *                                      not found.
+     *            The specified class loader MBean is
+     *            not found.
      * @exception OperationsException
-     *                                      Any of the usual Input/Output
-     *                                      related exceptions.
+     *            Any of the usual Input/Output
+     *            related exceptions.
      * @exception ReflectionException
-     *                                      The specified class could not be
-     *                                      loaded by the specified
-     *                                      class loader.
+     *            The specified class could not be
+     *            loaded by the specified
+     *            class loader.
      */
-    public ObjectInputStream deserialize(String className,
-            ObjectName loaderName, byte[] data, ClassLoader loader)
-            throws InstanceNotFoundException, OperationsException,
-            ReflectionException {
+    public ObjectInputStream deserialize(String className, ObjectName loaderName, byte[] data,
+            ClassLoader loader) throws InstanceNotFoundException, OperationsException, ReflectionException {
 
         // Check parameter validity
         if (data == null) {
@@ -412,9 +384,8 @@ public class MBeanInstantiator {
                     throw new ClassNotFoundException(className);
                 theClass = Class.forName(className, false, instance);
             } catch (ClassNotFoundException e) {
-                throw new ReflectionException(e,
-                        "The MBean class could not be loaded by the "
-                                + loaderName.toString() + " class loader");
+                throw new ReflectionException(e, "The MBean class could not be loaded by the " + loaderName
+                        .toString() + " class loader");
             }
         }
 
@@ -424,11 +395,9 @@ public class MBeanInstantiator {
 
         bIn = new ByteArrayInputStream(data);
         try {
-            objIn = new ObjectInputStreamWithLoader(bIn, theClass
-                    .getClassLoader());
+            objIn = new ObjectInputStreamWithLoader(bIn, theClass.getClassLoader());
         } catch (IOException e) {
-            throw new OperationsException(
-                    "An IOException occurred trying to de-serialize the data");
+            throw new OperationsException("An IOException occurred trying to de-serialize the data");
         }
 
         return objIn;
@@ -446,30 +415,27 @@ public class MBeanInstantiator {
      * The newly created object is not registered in the MBean Interceptor.
      *
      * @param className
-     *                  The class name of the object to be instantiated.
-     *
+     *        The class name of the object to be instantiated.
      * @return The newly instantiated object.
-     *
      * @exception ReflectionException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.ClassNotFoundException</CODE>
-     *                                       or
-     *                                       the
-     *                                       <CODE>java.lang.Exception</CODE>
-     *                                       that occurred when
-     *                                       trying to invoke the object's
-     *                                       constructor.
+     *            Wraps a
+     *            <CODE>java.lang.ClassNotFoundException</CODE>
+     *            or
+     *            the
+     *            <CODE>java.lang.Exception</CODE>
+     *            that occurred when
+     *            trying to invoke the object's
+     *            constructor.
      * @exception MBeanException
-     *                                       The constructor of the object has
-     *                                       thrown an exception
+     *            The constructor of the object has
+     *            thrown an exception
      * @exception RuntimeOperationsException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.IllegalArgumentException</CODE>:
-     *                                       the className passed in parameter
-     *                                       is null.
+     *            Wraps a
+     *            <CODE>java.lang.IllegalArgumentException</CODE>:
+     *            the className passed in parameter
+     *            is null.
      */
-    public Object instantiate(String className) throws ReflectionException,
-            MBeanException {
+    public Object instantiate(String className) throws ReflectionException, MBeanException {
 
         return instantiate(className, (Object[]) null, (String[]) null, null);
     }
@@ -488,40 +454,36 @@ public class MBeanInstantiator {
      * The newly created object is not registered in the MBean Interceptor.
      *
      * @param className
-     *                   The class name of the MBean to be instantiated.
+     *        The class name of the MBean to be instantiated.
      * @param loaderName
-     *                   The object name of the class loader to be used.
-     *
+     *        The object name of the class loader to be used.
      * @return The newly instantiated object.
-     *
      * @exception ReflectionException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.ClassNotFoundException</CODE>
-     *                                       or
-     *                                       the
-     *                                       <CODE>java.lang.Exception</CODE>
-     *                                       that occurred when
-     *                                       trying to invoke the object's
-     *                                       constructor.
+     *            Wraps a
+     *            <CODE>java.lang.ClassNotFoundException</CODE>
+     *            or
+     *            the
+     *            <CODE>java.lang.Exception</CODE>
+     *            that occurred when
+     *            trying to invoke the object's
+     *            constructor.
      * @exception MBeanException
-     *                                       The constructor of the object has
-     *                                       thrown an exception.
+     *            The constructor of the object has
+     *            thrown an exception.
      * @exception InstanceNotFoundException
-     *                                       The specified class loader is not
-     *                                       registered in the
-     *                                       MBeanServerInterceptor.
+     *            The specified class loader is not
+     *            registered in the
+     *            MBeanServerInterceptor.
      * @exception RuntimeOperationsException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.IllegalArgumentException</CODE>:
-     *                                       the className passed in parameter
-     *                                       is null.
+     *            Wraps a
+     *            <CODE>java.lang.IllegalArgumentException</CODE>:
+     *            the className passed in parameter
+     *            is null.
      */
-    public Object instantiate(String className, ObjectName loaderName,
-            ClassLoader loader) throws ReflectionException, MBeanException,
-            InstanceNotFoundException {
+    public Object instantiate(String className, ObjectName loaderName, ClassLoader loader)
+            throws ReflectionException, MBeanException, InstanceNotFoundException {
 
-        return instantiate(className, loaderName, (Object[]) null,
-                (String[]) null, loader);
+        return instantiate(className, loaderName, (Object[]) null, (String[]) null, loader);
     }
 
     /**
@@ -536,39 +498,36 @@ public class MBeanInstantiator {
      * The newly created object is not registered in the MBean Interceptor.
      *
      * @param className
-     *                  The class name of the object to be instantiated.
+     *        The class name of the object to be instantiated.
      * @param params
-     *                  An array containing the parameters of the constructor to
-     *                  be
-     *                  invoked.
+     *        An array containing the parameters of the constructor to
+     *        be
+     *        invoked.
      * @param signature
-     *                  An array containing the signature of the constructor to
-     *                  be
-     *                  invoked.
-     *
+     *        An array containing the signature of the constructor to
+     *        be
+     *        invoked.
      * @return The newly instantiated object.
-     *
      * @exception ReflectionException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.ClassNotFoundException</CODE>
-     *                                       or
-     *                                       the
-     *                                       <CODE>java.lang.Exception</CODE>
-     *                                       that occurred when
-     *                                       trying to invoke the object's
-     *                                       constructor.
+     *            Wraps a
+     *            <CODE>java.lang.ClassNotFoundException</CODE>
+     *            or
+     *            the
+     *            <CODE>java.lang.Exception</CODE>
+     *            that occurred when
+     *            trying to invoke the object's
+     *            constructor.
      * @exception MBeanException
-     *                                       The constructor of the object has
-     *                                       thrown an exception
+     *            The constructor of the object has
+     *            thrown an exception
      * @exception RuntimeOperationsException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.IllegalArgumentException</CODE>:
-     *                                       the className passed in parameter
-     *                                       is null.
+     *            Wraps a
+     *            <CODE>java.lang.IllegalArgumentException</CODE>:
+     *            the className passed in parameter
+     *            is null.
      */
-    public Object instantiate(String className, Object params[],
-            String signature[], ClassLoader loader) throws ReflectionException,
-            MBeanException {
+    public Object instantiate(String className, Object params[], String signature[], ClassLoader loader)
+            throws ReflectionException, MBeanException {
 
         Class<?> theClass = findClassWithDefaultLoaderRepository(className);
         return instantiate(theClass, params, signature, loader);
@@ -589,46 +548,42 @@ public class MBeanInstantiator {
      * The newly created object is not registered in the MBean server.
      *
      * @param className
-     *                   The class name of the object to be instantiated.
+     *        The class name of the object to be instantiated.
      * @param params
-     *                   An array containing the parameters of the constructor
-     *                   to be
-     *                   invoked.
+     *        An array containing the parameters of the constructor
+     *        to be
+     *        invoked.
      * @param signature
-     *                   An array containing the signature of the constructor to
-     *                   be
-     *                   invoked.
+     *        An array containing the signature of the constructor to
+     *        be
+     *        invoked.
      * @param loaderName
-     *                   The object name of the class loader to be used.
-     *
+     *        The object name of the class loader to be used.
      * @return The newly instantiated object.
-     *
      * @exception ReflectionException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.ClassNotFoundException</CODE>
-     *                                       or
-     *                                       the
-     *                                       <CODE>java.lang.Exception</CODE>
-     *                                       that occurred when
-     *                                       trying to invoke the object's
-     *                                       constructor.
+     *            Wraps a
+     *            <CODE>java.lang.ClassNotFoundException</CODE>
+     *            or
+     *            the
+     *            <CODE>java.lang.Exception</CODE>
+     *            that occurred when
+     *            trying to invoke the object's
+     *            constructor.
      * @exception MBeanException
-     *                                       The constructor of the object has
-     *                                       thrown an exception
+     *            The constructor of the object has
+     *            thrown an exception
      * @exception InstanceNotFoundException
-     *                                       The specified class loader is not
-     *                                       registered in the MBean
-     *                                       Interceptor.
+     *            The specified class loader is not
+     *            registered in the MBean
+     *            Interceptor.
      * @exception RuntimeOperationsException
-     *                                       Wraps a
-     *                                       <CODE>java.lang.IllegalArgumentException</CODE>:
-     *                                       the className passed in parameter
-     *                                       is null.
+     *            Wraps a
+     *            <CODE>java.lang.IllegalArgumentException</CODE>:
+     *            the className passed in parameter
+     *            is null.
      */
-    public Object instantiate(String className, ObjectName loaderName,
-            Object params[], String signature[], ClassLoader loader)
-            throws ReflectionException, MBeanException,
-            InstanceNotFoundException {
+    public Object instantiate(String className, ObjectName loaderName, Object params[], String signature[],
+            ClassLoader loader) throws ReflectionException, MBeanException, InstanceNotFoundException {
 
         // ------------------------------
         // ------------------------------
@@ -646,8 +601,7 @@ public class MBeanInstantiator {
      * Return the Default Loader Repository used by this instantiator object.
      **/
     public ModifiableClassLoaderRepository getClassLoaderRepository() {
-        checkMBeanPermission((String) null, null, null,
-                "getClassLoaderRepository");
+        checkMBeanPermission((String) null, null, null, "getClassLoaderRepository");
         return clr;
     }
 
@@ -655,13 +609,11 @@ public class MBeanInstantiator {
      * Load a class with the specified loader, or with this object class loader
      * if the specified loader is null.
      **/
-    static Class<?> loadClass(String className, ClassLoader loader)
-            throws ReflectionException {
+    static Class<?> loadClass(String className, ClassLoader loader) throws ReflectionException {
         Class<?> theClass;
         if (className == null) {
             throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "The class name cannot be null"),
-                    "Exception occurred during object instantiation");
+                    "The class name cannot be null"), "Exception occurred during object instantiation");
         }
         ReflectUtil.checkPackageAccess(className);
         try {
@@ -673,8 +625,7 @@ public class MBeanInstantiator {
                 theClass = Class.forName(className);
             }
         } catch (ClassNotFoundException e) {
-            throw new ReflectionException(e,
-                    "The MBean class could not be loaded");
+            throw new ReflectionException(e, "The MBean class could not be loaded");
         }
         return theClass;
     }
@@ -683,13 +634,12 @@ public class MBeanInstantiator {
      * Load the classes specified in the signature with the given loader, or
      * with this object class loader.
      **/
-    static Class<?>[] loadSignatureClasses(String signature[],
-            ClassLoader loader) throws ReflectionException {
+    static Class<?>[] loadSignatureClasses(String signature[], ClassLoader loader)
+            throws ReflectionException {
 
         if (signature == null)
             return null;
-        final ClassLoader aLoader = (loader == null ? MBeanInstantiator.class
-                .getClassLoader() : loader);
+        final ClassLoader aLoader = (loader == null ? MBeanInstantiator.class.getClassLoader() : loader);
         final int length = signature.length;
         final Class<?> tab[] = new Class<?>[length];
 
@@ -718,17 +668,14 @@ public class MBeanInstantiator {
             }
         } catch (ClassNotFoundException e) {
             if (MBEANSERVER_LOGGER.isLoggable(Level.FINEST)) {
-                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class
-                        .getName(), "findSignatureClasses",
-                        "The parameter class could not be found", e);
+                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class.getName(),
+                        "findSignatureClasses", "The parameter class could not be found", e);
             }
-            throw new ReflectionException(e,
-                    "The parameter class could not be found");
+            throw new ReflectionException(e, "The parameter class could not be found");
         } catch (RuntimeException e) {
             if (MBEANSERVER_LOGGER.isLoggable(Level.FINEST)) {
-                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class
-                        .getName(), "findSignatureClasses",
-                        "Unexpected exception", e);
+                MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanInstantiator.class.getName(),
+                        "findSignatureClasses", "Unexpected exception", e);
             }
             throw e;
         }
@@ -745,35 +692,31 @@ public class MBeanInstantiator {
 
     private static final Map<String, Class<?>> primitiveClasses = Util.newMap();
     static {
-        for (Class<?> c : new Class<?>[] { byte.class, short.class, int.class,
-                long.class, float.class, double.class, char.class,
-                boolean.class })
+        for (Class<?> c : new Class<?>[] { byte.class, short.class, int.class, long.class, float.class,
+                double.class, char.class, boolean.class })
             primitiveClasses.put(c.getName(), c);
     }
 
-    private static void checkMBeanPermission(Class<?> clazz, String member,
-            ObjectName objectName, String actions) {
+    private static void checkMBeanPermission(Class<?> clazz, String member, ObjectName objectName,
+            String actions) {
         if (clazz != null) {
             checkMBeanPermission(clazz.getName(), member, objectName, actions);
         }
     }
 
-    private static void checkMBeanPermission(String classname, String member,
-            ObjectName objectName, String actions) throws SecurityException {
+    private static void checkMBeanPermission(String classname, String member, ObjectName objectName,
+            String actions) throws SecurityException {
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
-            Permission perm = new MBeanPermission(classname, member, objectName,
-                    actions);
+            Permission perm = new MBeanPermission(classname, member, objectName, actions);
             sm.checkPermission(perm);
         }
     }
 
-    private static void ensureClassAccess(Class clazz)
-            throws IllegalAccessException {
+    private static void ensureClassAccess(Class clazz) throws IllegalAccessException {
         int mod = clazz.getModifiers();
         if (!Modifier.isPublic(mod)) {
-            throw new IllegalAccessException(
-                    "Class is not public and can't be instantiated");
+            throw new IllegalAccessException("Class is not public and can't be instantiated");
         }
     }
 
@@ -784,16 +727,14 @@ public class MBeanInstantiator {
         // Restrict to getClassLoader permission only
         Permissions permissions = new Permissions();
         permissions.add(new MBeanPermission("*", null, name, "getClassLoader"));
-        ProtectionDomain protectionDomain = new ProtectionDomain(null,
-                permissions);
+        ProtectionDomain protectionDomain = new ProtectionDomain(null, permissions);
         ProtectionDomain[] domains = { protectionDomain };
         AccessControlContext ctx = new AccessControlContext(domains);
-        ClassLoader loader = AccessController.doPrivileged(
-                new PrivilegedAction<ClassLoader>() {
-                    public ClassLoader run() {
-                        return clr.getClassLoader(name);
-                    }
-                }, ctx);
+        ClassLoader loader = AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
+            public ClassLoader run() {
+                return clr.getClassLoader(name);
+            }
+        }, ctx);
         return loader;
     }
 }

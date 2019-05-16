@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for a lambda expression.
- *
  * For example:
  * 
  * <pre>
@@ -29,10 +28,10 @@ public interface LambdaExpressionTree extends ExpressionTree {
      */
     @jdk.Exported
     public enum BodyKind {
-    /** enum constant for expression lambdas */
-    EXPRESSION,
-    /** enum constant for statement lambdas */
-    STATEMENT;
+        /** enum constant for expression lambdas */
+        EXPRESSION,
+        /** enum constant for statement lambdas */
+        STATEMENT;
     }
 
     List<? extends VariableTree> getParameters();

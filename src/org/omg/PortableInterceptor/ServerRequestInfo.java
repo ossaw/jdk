@@ -17,8 +17,6 @@ package org.omg.PortableInterceptor;
  * result in a <code>BAD_INV_ORDER</code> being thrown with a standard minor
  * code of 14.
  * <p>
- *
- *
  * <table border=1 summary="Shows the validity of each attribute or operation">
  * <thead>
  * <tr>
@@ -31,12 +29,9 @@ package org.omg.PortableInterceptor;
  * <th id="send_oth" valign="bottom">send_other</th>
  * </tr>
  * </thead> <tbody>
- *
- *
  * <tr>
  * <td id="ri" colspan=6><i>Inherited from RequestInfo:</i></td>
  * </tr>
- *
  * <tr>
  * <th id="req_id">
  * <p align="left">
@@ -49,7 +44,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri req_id send_exc">yes</td>
  * <td headers="ri req_id send_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="op">
  * <p align="left">
@@ -62,7 +56,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri op send_exc">yes</td>
  * <td headers="ri op send_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="args">
  * <p align="left">
@@ -75,7 +68,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri args send_exc">no<sub>2</sub></td>
  * <td headers="ri args send_oth">no<sub>2</sub></td>
  * </tr>
- *
  * <tr>
  * <th id="exps">
  * <p align="left">
@@ -88,7 +80,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri exps send_exc">yes</td>
  * <td headers="ri exps send_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="contexts">
  * <p align="left">
@@ -101,7 +92,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri contexts send_exc">yes</td>
  * <td headers="ri contexts send_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="op_con">
  * <p align="left">
@@ -114,7 +104,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri op_con send_exc">no</td>
  * <td headers="ri op_con send_oth">no</td>
  * </tr>
- * 
  * <tr>
  * <th id="result">
  * <p align="left">
@@ -127,7 +116,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri result send_exc">no</td>
  * <td headers="ri result send_oth">no</td>
  * </tr>
- *
  * <tr>
  * <th id="res_ex">
  * <p align="left">
@@ -140,7 +128,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri res_ex send_exc">yes</td>
  * <td headers="ri res_ex send_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="syn_scp">
  * <p align="left">
@@ -153,7 +140,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri syn_scp send_exc">yes</td>
  * <td headers="ri syn_scp send_oth">yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>request_id</b></td>
  * <td>yes</td>
@@ -162,7 +148,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>operation</b></td>
  * <td>yes</td>
@@ -171,7 +156,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>arguments</b></td>
  * <td>no</td>
@@ -180,7 +164,6 @@ package org.omg.PortableInterceptor;
  * <td>no<sub>2</sub></td>
  * <td>no<sub>2</sub></td>
  * </tr>
- * 
  * <tr>
  * <td><b>exceptions</b></td>
  * <td>no</td>
@@ -189,7 +172,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>contexts</b></td>
  * <td>no</td>
@@ -198,7 +180,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>operation_context</b></td>
  * <td>no</td>
@@ -207,7 +188,6 @@ package org.omg.PortableInterceptor;
  * <td>no</td>
  * <td>no</td>
  * </tr>
- * 
  * <tr>
  * <td><b>result</b></td>
  * <td>no</td>
@@ -216,7 +196,6 @@ package org.omg.PortableInterceptor;
  * <td>no</td>
  * <td>no</td>
  * </tr>
- * 
  * <tr>
  * <td><b>response_expected</b></td>
  * <td>yes</td>
@@ -225,7 +204,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>sync_scope</b></td>
  * <td>yes</td>
@@ -234,7 +212,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>reply_status</b></td>
  * <td>no</td>
@@ -243,7 +220,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>forward_reference</b></td>
  * <td>no</td>
@@ -252,7 +228,6 @@ package org.omg.PortableInterceptor;
  * <td>no</td>
  * <td>yes<sub>2</sub></td>
  * </tr>
- * 
  * <tr>
  * <td><b>get_slot</b></td>
  * <td>yes</td>
@@ -261,7 +236,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>get_request_service_context</b></td>
  * <td>yes</td>
@@ -270,7 +244,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>get_reply_service_context</b></td>
  * <td>no</td>
@@ -279,11 +252,9 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td colspan=6><i>ServerRequestInfo-specific:</i></td>
  * </tr>
- * 
  * <tr>
  * <td><b>sending_exception</b></td>
  * <td>no</td>
@@ -292,7 +263,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>no</td>
  * </tr>
- * 
  * <tr>
  * <td><b>object_id</b></td>
  * <td>no</td>
@@ -301,7 +271,6 @@ package org.omg.PortableInterceptor;
  * <td>yes<sub>3</sub></td>
  * <td>yes<sub>3</sub></td>
  * </tr>
- * 
  * <tr>
  * <td><b>adapter_id</b></td>
  * <td>no</td>
@@ -310,7 +279,6 @@ package org.omg.PortableInterceptor;
  * <td>yes<sub>3</sub></td>
  * <td>yes<sub>3</sub></td>
  * </tr>
- * 
  * <tr>
  * <td><b>server_id</b></td>
  * <td>no</td>
@@ -319,7 +287,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- *
  * <tr>
  * <td><b>orb_id</b></td>
  * <td>no</td>
@@ -328,7 +295,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- *
  * <tr>
  * <td><b>adapter_name</b></td>
  * <td>no</td>
@@ -337,7 +303,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- *
  * <tr>
  * <td><b>target_most_derived_interface</b></td>
  * <td>no</td>
@@ -346,7 +311,6 @@ package org.omg.PortableInterceptor;
  * <td>no<sub>4</sub></td>
  * <td>no<sub>4</sub></td>
  * </tr>
- * 
  * <tr>
  * <td><b>get_server_policy</b></td>
  * <td>yes</td>
@@ -355,7 +319,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>set_slot</b></td>
  * <td>yes</td>
@@ -364,7 +327,6 @@ package org.omg.PortableInterceptor;
  * <td>yes</td>
  * <td>yes</td>
  * </tr>
- * 
  * <tr>
  * <td><b>target_is_a</b></td>
  * <td>no</td>
@@ -373,7 +335,6 @@ package org.omg.PortableInterceptor;
  * <td>no<sub>4</sub></td>
  * <td>no<sub>4</sub></td>
  * </tr>
- * 
  * <tr>
  * <td><b>add_reply_service_context</b></td>
  * <td>yes</td>
@@ -384,7 +345,6 @@ package org.omg.PortableInterceptor;
  * </tr>
  * </tbody>
  * </table>
- *
  * <ol>
  * <li>When <code>ServerRequestInfo</code> is passed to
  * <code>receive_request</code>, there is an entry in the list for every
@@ -408,5 +368,4 @@ package org.omg.PortableInterceptor;
  * @see ServerRequestInterceptor
  */
 public interface ServerRequestInfo extends ServerRequestInfoOperations,
-        org.omg.PortableInterceptor.RequestInfo,
-        org.omg.CORBA.portable.IDLEntity {} // interface ServerRequestInfo
+        org.omg.PortableInterceptor.RequestInfo, org.omg.CORBA.portable.IDLEntity {} // interface ServerRequestInfo

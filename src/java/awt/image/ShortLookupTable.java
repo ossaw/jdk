@@ -33,12 +33,12 @@ public class ShortLookupTable extends LookupTable {
      * stored as a reference.
      * 
      * @param offset
-     *               the value subtracted from the input values before indexing
-     *               into the arrays
+     *        the value subtracted from the input values before indexing
+     *        into the arrays
      * @param data
-     *               an array of short arrays representing a lookup table for
-     *               each
-     *               band
+     *        an array of short arrays representing a lookup table for
+     *        each
+     *        band
      */
     public ShortLookupTable(int offset, short data[][]) {
         super(offset, data.length);
@@ -58,10 +58,10 @@ public class ShortLookupTable extends LookupTable {
      * a reference.
      * 
      * @param offset
-     *               the value subtracted from the input values before indexing
-     *               into the arrays
+     *        the value subtracted from the input values before indexing
+     *        into the arrays
      * @param data
-     *               an array of shorts
+     *        an array of shorts
      */
     public ShortLookupTable(int offset, short data[]) {
         super(offset, data.length);
@@ -88,23 +88,23 @@ public class ShortLookupTable extends LookupTable {
      * <code>dst</code> is returned.
      *
      * @param src
-     *            the source array.
+     *        the source array.
      * @param dst
-     *            the destination array. This array must be at least as long as
-     *            <code>src</code>. If <code>dst</code> is <code>null</code>, a
-     *            new array will be allocated having the same length as
-     *            <code>src</code>.
+     *        the destination array. This array must be at least as long as
+     *        <code>src</code>. If <code>dst</code> is <code>null</code>, a
+     *        new array will be allocated having the same length as
+     *        <code>src</code>.
      * @return the array <code>dst</code>, an <code>int</code> array of samples.
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if <code>src</code> is longer
-     *                                           than <code>dst</code> or if
-     *                                           for any element <code>i</code>
-     *                                           of <code>src</code>,
-     *                                           {@code (src[i]&0xffff)-offset}
-     *                                           is either less than zero or
-     *                                           greater than or equal to the
-     *                                           length of the lookup table
-     *                                           for any band.
+     *            if <code>src</code> is longer
+     *            than <code>dst</code> or if
+     *            for any element <code>i</code>
+     *            of <code>src</code>,
+     *            {@code (src[i]&0xffff)-offset}
+     *            is either less than zero or
+     *            greater than or equal to the
+     *            length of the lookup table
+     *            for any band.
      */
     public int[] lookupPixel(int[] src, int[] dst) {
         if (dst == null) {
@@ -117,8 +117,7 @@ public class ShortLookupTable extends LookupTable {
             for (int i = 0; i < src.length; i++) {
                 int s = (src[i] & 0xffff) - offset;
                 if (s < 0) {
-                    throw new ArrayIndexOutOfBoundsException("src[" + i
-                            + "]-offset is " + "less than zero");
+                    throw new ArrayIndexOutOfBoundsException("src[" + i + "]-offset is " + "less than zero");
                 }
                 dst[i] = (int) data[0][s];
             }
@@ -126,8 +125,7 @@ public class ShortLookupTable extends LookupTable {
             for (int i = 0; i < src.length; i++) {
                 int s = (src[i] & 0xffff) - offset;
                 if (s < 0) {
-                    throw new ArrayIndexOutOfBoundsException("src[" + i
-                            + "]-offset is " + "less than zero");
+                    throw new ArrayIndexOutOfBoundsException("src[" + i + "]-offset is " + "less than zero");
                 }
                 dst[i] = (int) data[i][s];
             }
@@ -141,23 +139,23 @@ public class ShortLookupTable extends LookupTable {
      * <code>dst</code> is returned.
      *
      * @param src
-     *            the source array.
+     *        the source array.
      * @param dst
-     *            the destination array. This array must be at least as long as
-     *            <code>src</code>. If <code>dst</code> is <code>null</code>, a
-     *            new array will be allocated having the same length as
-     *            <code>src</code>.
+     *        the destination array. This array must be at least as long as
+     *        <code>src</code>. If <code>dst</code> is <code>null</code>, a
+     *        new array will be allocated having the same length as
+     *        <code>src</code>.
      * @return the array <code>dst</code>, an <code>int</code> array of samples.
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if <code>src</code> is longer
-     *                                           than <code>dst</code> or if
-     *                                           for any element <code>i</code>
-     *                                           of <code>src</code>,
-     *                                           {@code (src[i]&0xffff)-offset}
-     *                                           is either less than zero or
-     *                                           greater than or equal to the
-     *                                           length of the lookup table
-     *                                           for any band.
+     *            if <code>src</code> is longer
+     *            than <code>dst</code> or if
+     *            for any element <code>i</code>
+     *            of <code>src</code>,
+     *            {@code (src[i]&0xffff)-offset}
+     *            is either less than zero or
+     *            greater than or equal to the
+     *            length of the lookup table
+     *            for any band.
      */
     public short[] lookupPixel(short[] src, short[] dst) {
         if (dst == null) {
@@ -170,8 +168,7 @@ public class ShortLookupTable extends LookupTable {
             for (int i = 0; i < src.length; i++) {
                 int s = (src[i] & 0xffff) - offset;
                 if (s < 0) {
-                    throw new ArrayIndexOutOfBoundsException("src[" + i
-                            + "]-offset is " + "less than zero");
+                    throw new ArrayIndexOutOfBoundsException("src[" + i + "]-offset is " + "less than zero");
                 }
                 dst[i] = data[0][s];
             }
@@ -179,8 +176,7 @@ public class ShortLookupTable extends LookupTable {
             for (int i = 0; i < src.length; i++) {
                 int s = (src[i] & 0xffff) - offset;
                 if (s < 0) {
-                    throw new ArrayIndexOutOfBoundsException("src[" + i
-                            + "]-offset is " + "less than zero");
+                    throw new ArrayIndexOutOfBoundsException("src[" + i + "]-offset is " + "less than zero");
                 }
                 dst[i] = data[i][s];
             }

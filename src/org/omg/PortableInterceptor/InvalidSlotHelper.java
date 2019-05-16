@@ -11,16 +11,14 @@ package org.omg.PortableInterceptor;
 abstract public class InvalidSlotHelper {
     private static String _id = "IDL:omg.org/PortableInterceptor/InvalidSlot:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.PortableInterceptor.InvalidSlot that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.PortableInterceptor.InvalidSlot that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.PortableInterceptor.InvalidSlot extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.PortableInterceptor.InvalidSlot extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -32,15 +30,13 @@ abstract public class InvalidSlotHelper {
             synchronized (org.omg.CORBA.TypeCode.class) {
                 if (__typeCode == null) {
                     if (__active) {
-                        return org.omg.CORBA.ORB.init().create_recursive_tc(
-                                _id);
+                        return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
                     }
                     __active = true;
                     org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[0];
                     org.omg.CORBA.TypeCode _tcOf_members0 = null;
                     __typeCode = org.omg.CORBA.ORB.init().create_exception_tc(
-                            org.omg.PortableInterceptor.InvalidSlotHelper.id(),
-                            "InvalidSlot", _members0);
+                            org.omg.PortableInterceptor.InvalidSlotHelper.id(), "InvalidSlot", _members0);
                     __active = false;
                 }
             }
@@ -52,8 +48,7 @@ abstract public class InvalidSlotHelper {
         return _id;
     }
 
-    public static org.omg.PortableInterceptor.InvalidSlot read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.PortableInterceptor.InvalidSlot read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.PortableInterceptor.InvalidSlot value = new org.omg.PortableInterceptor.InvalidSlot();
         // read and discard the repository ID
         istream.read_string();

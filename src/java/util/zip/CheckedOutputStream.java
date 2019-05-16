@@ -23,9 +23,9 @@ public class CheckedOutputStream extends FilterOutputStream {
      * Creates an output stream with the specified Checksum.
      * 
      * @param out
-     *              the output stream
+     *        the output stream
      * @param cksum
-     *              the checksum
+     *        the checksum
      */
     public CheckedOutputStream(OutputStream out, Checksum cksum) {
         super(out);
@@ -36,9 +36,9 @@ public class CheckedOutputStream extends FilterOutputStream {
      * Writes a byte. Will block until the byte is actually written.
      * 
      * @param b
-     *          the byte to be written
+     *        the byte to be written
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public void write(int b) throws IOException {
         out.write(b);
@@ -50,13 +50,13 @@ public class CheckedOutputStream extends FilterOutputStream {
      * written.
      * 
      * @param b
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the number of bytes to be written
+     *        the number of bytes to be written
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public void write(byte[] b, int off, int len) throws IOException {
         out.write(b, off, len);

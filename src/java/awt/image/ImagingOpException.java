@@ -17,8 +17,8 @@ public class ImagingOpException extends java.lang.RuntimeException {
      * message.
      * 
      * @param s
-     *          the message to generate when a <code>ImagingOpException</code>
-     *          is thrown
+     *        the message to generate when a <code>ImagingOpException</code>
+     *        is thrown
      */
     public ImagingOpException(String s) {
         super(s);

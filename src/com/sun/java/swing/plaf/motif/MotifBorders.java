@@ -33,21 +33,18 @@ import java.awt.Rectangle;
  */
 public class MotifBorders {
 
-    public static class BevelBorder extends AbstractBorder implements
-            UIResource {
+    public static class BevelBorder extends AbstractBorder implements UIResource {
         private Color darkShadow = UIManager.getColor("controlShadow");
         private Color lightShadow = UIManager.getColor("controlLtHighlight");
         private boolean isRaised;
 
-        public BevelBorder(boolean isRaised, Color darkShadow,
-                Color lightShadow) {
+        public BevelBorder(boolean isRaised, Color darkShadow, Color lightShadow) {
             this.isRaised = isRaised;
             this.darkShadow = darkShadow;
             this.lightShadow = lightShadow;
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             g.setColor((isRaised) ? lightShadow : darkShadow);
             g.drawLine(x, y, x + w - 1, y); // top
             g.drawLine(x, y + h - 1, x, y + 1); // left
@@ -68,8 +65,7 @@ public class MotifBorders {
 
     }
 
-    public static class FocusBorder extends AbstractBorder implements
-            UIResource {
+    public static class FocusBorder extends AbstractBorder implements UIResource {
         private Color focus;
         private Color control;
 
@@ -78,8 +74,7 @@ public class MotifBorders {
             this.focus = focus;
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             if (c.hasFocus()) {
                 g.setColor(focus);
                 g.drawRect(x, y, w - 1, h - 1);
@@ -95,23 +90,20 @@ public class MotifBorders {
         }
     }
 
-    public static class ButtonBorder extends AbstractBorder implements
-            UIResource {
+    public static class ButtonBorder extends AbstractBorder implements UIResource {
         protected Color focus = UIManager.getColor("activeCaptionBorder");
         protected Color shadow = UIManager.getColor("Button.shadow");
         protected Color highlight = UIManager.getColor("Button.light");
         protected Color darkShadow;
 
-        public ButtonBorder(Color shadow, Color highlight, Color darkShadow,
-                Color focus) {
+        public ButtonBorder(Color shadow, Color highlight, Color darkShadow, Color focus) {
             this.shadow = shadow;
             this.highlight = highlight;
             this.darkShadow = darkShadow;
             this.focus = focus;
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             boolean isPressed = false;
             boolean hasFocus = false;
             boolean canBeDefault = false;
@@ -122,8 +114,7 @@ public class MotifBorders {
                 ButtonModel model = b.getModel();
 
                 isPressed = (model.isArmed() && model.isPressed());
-                hasFocus = (model.isArmed() && isPressed) || (b.isFocusPainted()
-                        && b.hasFocus());
+                hasFocus = (model.isArmed() && isPressed) || (b.isFocusPainted() && b.hasFocus());
                 if (b instanceof JButton) {
                     canBeDefault = ((JButton) b).isDefaultCapable();
                     isDefault = ((JButton) b).isDefaultButton();
@@ -169,8 +160,7 @@ public class MotifBorders {
         }
 
         public Insets getBorderInsets(Component c, Insets insets) {
-            int thickness = (c instanceof JButton && ((JButton) c)
-                    .isDefaultCapable()) ? 8 : 2;
+            int thickness = (c instanceof JButton && ((JButton) c).isDefaultCapable()) ? 8 : 2;
             insets.set(thickness, thickness, thickness, thickness);
             return insets;
         }
@@ -179,31 +169,24 @@ public class MotifBorders {
 
     public static class ToggleButtonBorder extends ButtonBorder {
 
-        public ToggleButtonBorder(Color shadow, Color highlight,
-                Color darkShadow, Color focus) {
+        public ToggleButtonBorder(Color shadow, Color highlight, Color darkShadow, Color focus) {
             super(shadow, highlight, darkShadow, focus);
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             if (c instanceof AbstractButton) {
                 AbstractButton b = (AbstractButton) c;
                 ButtonModel model = b.getModel();
 
-                if (model.isArmed() && model.isPressed() || model
-                        .isSelected()) {
-                    drawBezel(g, x, y, width, height, (model.isPressed()
-                            || model.isSelected()), b.isFocusPainted() && b
-                                    .hasFocus(), shadow, highlight, darkShadow,
-                            focus);
+                if (model.isArmed() && model.isPressed() || model.isSelected()) {
+                    drawBezel(g, x, y, width, height, (model.isPressed() || model.isSelected()), b
+                            .isFocusPainted() && b.hasFocus(), shadow, highlight, darkShadow, focus);
                 } else {
-                    drawBezel(g, x, y, width, height, false, b.isFocusPainted()
-                            && b.hasFocus(), shadow, highlight, darkShadow,
-                            focus);
+                    drawBezel(g, x, y, width, height, false, b.isFocusPainted() && b.hasFocus(), shadow,
+                            highlight, darkShadow, focus);
                 }
             } else {
-                drawBezel(g, x, y, width, height, false, false, shadow,
-                        highlight, darkShadow, focus);
+                drawBezel(g, x, y, width, height, false, false, shadow, highlight, darkShadow, focus);
             }
         }
 
@@ -215,13 +198,11 @@ public class MotifBorders {
 
     public static class MenuBarBorder extends ButtonBorder {
 
-        public MenuBarBorder(Color shadow, Color highlight, Color darkShadow,
-                Color focus) {
+        public MenuBarBorder(Color shadow, Color highlight, Color darkShadow, Color focus) {
             super(shadow, highlight, darkShadow, focus);
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             if (!(c instanceof JMenuBar)) {
                 return;
             }
@@ -229,8 +210,8 @@ public class MotifBorders {
             if (menuBar.isBorderPainted() == true) {
                 // this draws the MenuBar border
                 Dimension size = menuBar.getSize();
-                drawBezel(g, x, y, size.width, size.height, false, false,
-                        shadow, highlight, darkShadow, focus);
+                drawBezel(g, x, y, size.width, size.height, false, false, shadow, highlight, darkShadow,
+                        focus);
             }
         }
 
@@ -240,8 +221,7 @@ public class MotifBorders {
         }
     }
 
-    public static class FrameBorder extends AbstractBorder implements
-            UIResource {
+    public static class FrameBorder extends AbstractBorder implements UIResource {
 
         JComponent jcomp;
         Color frameHighlight;
@@ -294,8 +274,7 @@ public class MotifBorders {
         /**
          * Draws the FrameBorder's top border.
          */
-        protected boolean drawTopBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        protected boolean drawTopBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Rectangle titleBarRect = new Rectangle(x, y, width, BORDER_SIZE);
             if (!g.getClipBounds().intersects(titleBarRect)) {
                 return false;
@@ -329,10 +308,8 @@ public class MotifBorders {
         /**
          * Draws the FrameBorder's left border.
          */
-        protected boolean drawLeftBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            Rectangle borderRect = new Rectangle(0, 0, getBorderInsets(c).left,
-                    height);
+        protected boolean drawLeftBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Rectangle borderRect = new Rectangle(0, 0, getBorderInsets(c).left, height);
             if (!g.getClipBounds().intersects(borderRect)) {
                 return false;
             }
@@ -355,10 +332,9 @@ public class MotifBorders {
         /**
          * Draws the FrameBorder's right border.
          */
-        protected boolean drawRightBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            Rectangle borderRect = new Rectangle(width - getBorderInsets(
-                    c).right, 0, getBorderInsets(c).right, height);
+        protected boolean drawRightBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Rectangle borderRect = new Rectangle(width - getBorderInsets(c).right, 0, getBorderInsets(
+                    c).right, height);
             if (!g.getClipBounds().intersects(borderRect)) {
                 return false;
             }
@@ -381,13 +357,12 @@ public class MotifBorders {
         /**
          * Draws the FrameBorder's bottom border.
          */
-        protected boolean drawBottomBorder(Component c, Graphics g, int x,
-                int y, int width, int height) {
+        protected boolean drawBottomBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Rectangle borderRect;
             int marginHeight, startY;
 
-            borderRect = new Rectangle(0, height - getBorderInsets(c).bottom,
-                    width, getBorderInsets(c).bottom);
+            borderRect = new Rectangle(0, height - getBorderInsets(c).bottom, width, getBorderInsets(
+                    c).bottom);
             if (!g.getClipBounds().intersects(borderRect)) {
                 return false;
             }
@@ -417,8 +392,7 @@ public class MotifBorders {
          * <b>drawLeftBorder</b>, <b>drawRightBorder</b> and
          * <b>drawBottomBorder</b>.
          */
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             if (isActiveFrame()) {
                 frameColor = UIManager.getColor("activeCaptionBorder");
             } else {
@@ -485,14 +459,11 @@ public class MotifBorders {
         /**
          * Draws the InternalFrameBorder's top border.
          */
-        protected boolean drawTopBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            if (super.drawTopBorder(c, g, x, y, width, height) && frame
-                    .isResizable()) {
+        protected boolean drawTopBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            if (super.drawTopBorder(c, g, x, y, width, height) && frame.isResizable()) {
                 g.setColor(getFrameShadow());
                 g.drawLine(CORNER_SIZE - 1, y + 1, CORNER_SIZE - 1, y + 4);
-                g.drawLine(width - CORNER_SIZE - 1, y + 1, width - CORNER_SIZE
-                        - 1, y + 4);
+                g.drawLine(width - CORNER_SIZE - 1, y + 1, width - CORNER_SIZE - 1, y + 4);
 
                 g.setColor(getFrameHighlight());
                 g.drawLine(CORNER_SIZE, y, CORNER_SIZE, y + 4);
@@ -505,10 +476,8 @@ public class MotifBorders {
         /**
          * Draws the InternalFrameBorder's left border.
          */
-        protected boolean drawLeftBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            if (super.drawLeftBorder(c, g, x, y, width, height) && frame
-                    .isResizable()) {
+        protected boolean drawLeftBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            if (super.drawLeftBorder(c, g, x, y, width, height) && frame.isResizable()) {
                 g.setColor(getFrameHighlight());
                 int topY = y + CORNER_SIZE;
                 g.drawLine(x, topY, x + 4, topY);
@@ -525,10 +494,8 @@ public class MotifBorders {
         /**
          * Draws the InternalFrameBorder's right border.
          */
-        protected boolean drawRightBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            if (super.drawRightBorder(c, g, x, y, width, height) && frame
-                    .isResizable()) {
+        protected boolean drawRightBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            if (super.drawRightBorder(c, g, x, y, width, height) && frame.isResizable()) {
                 int startX = width - getBorderInsets(c).right;
                 g.setColor(getFrameHighlight());
                 int topY = y + CORNER_SIZE;
@@ -546,22 +513,17 @@ public class MotifBorders {
         /**
          * Draws the InternalFrameBorder's bottom border.
          */
-        protected boolean drawBottomBorder(Component c, Graphics g, int x,
-                int y, int width, int height) {
-            if (super.drawBottomBorder(c, g, x, y, width, height) && frame
-                    .isResizable()) {
+        protected boolean drawBottomBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            if (super.drawBottomBorder(c, g, x, y, width, height) && frame.isResizable()) {
                 int startY = height - getBorderInsets(c).bottom;
 
                 g.setColor(getFrameShadow());
-                g.drawLine(CORNER_SIZE - 1, startY + 1, CORNER_SIZE - 1, height
-                        - 1);
-                g.drawLine(width - CORNER_SIZE, startY + 1, width - CORNER_SIZE,
-                        height - 1);
+                g.drawLine(CORNER_SIZE - 1, startY + 1, CORNER_SIZE - 1, height - 1);
+                g.drawLine(width - CORNER_SIZE, startY + 1, width - CORNER_SIZE, height - 1);
 
                 g.setColor(getFrameHighlight());
                 g.drawLine(CORNER_SIZE, startY, CORNER_SIZE, height - 2);
-                g.drawLine(width - CORNER_SIZE + 1, startY, width - CORNER_SIZE
-                        + 1, height - 2);
+                g.drawLine(width - CORNER_SIZE + 1, startY, width - CORNER_SIZE + 1, height - 2);
                 return true;
             }
             return false;
@@ -573,9 +535,8 @@ public class MotifBorders {
         }
     }
 
-    public static void drawBezel(Graphics g, int x, int y, int w, int h,
-            boolean isPressed, boolean hasFocus, Color shadow, Color highlight,
-            Color darkShadow, Color focus) {
+    public static void drawBezel(Graphics g, int x, int y, int w, int h, boolean isPressed, boolean hasFocus,
+            Color shadow, Color highlight, Color darkShadow, Color focus) {
 
         Color oldColor = g.getColor();
         g.translate(x, y);
@@ -626,8 +587,7 @@ public class MotifBorders {
         g.setColor(oldColor);
     }
 
-    public static class MotifPopupMenuBorder extends AbstractBorder implements
-            UIResource {
+    public static class MotifPopupMenuBorder extends AbstractBorder implements UIResource {
         protected Font font;
         protected Color background;
         protected Color foreground;
@@ -642,10 +602,9 @@ public class MotifBorders {
 
         /**
          * Creates a MotifPopupMenuBorder instance
-         *
          */
-        public MotifPopupMenuBorder(Font titleFont, Color bgColor,
-                Color fgColor, Color shadow, Color highlight) {
+        public MotifPopupMenuBorder(Font titleFont, Color bgColor, Color fgColor, Color shadow,
+                Color highlight) {
             this.font = titleFont;
             this.background = bgColor;
             this.foreground = fgColor;
@@ -658,20 +617,19 @@ public class MotifBorders {
          * position and size.
          * 
          * @param c
-         *               the component for which this border is being painted
+         *        the component for which this border is being painted
          * @param g
-         *               the paint graphics
+         *        the paint graphics
          * @param x
-         *               the x position of the painted border
+         *        the x position of the painted border
          * @param y
-         *               the y position of the painted border
+         *        the y position of the painted border
          * @param width
-         *               the width of the painted border
+         *        the width of the painted border
          * @param height
-         *               the height of the painted border
+         *        the height of the painted border
          */
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             if (!(c instanceof JPopupMenu)) {
                 return;
             }
@@ -698,14 +656,13 @@ public class MotifBorders {
             textLoc.x = x + ((width - stringWidth) / 2);
 
             g.setColor(background);
-            g.fillRect(textLoc.x - TEXT_SPACING, textLoc.y - (fontHeight
-                    - descent), stringWidth + (2 * TEXT_SPACING), fontHeight
-                            - descent);
+            g.fillRect(textLoc.x - TEXT_SPACING, textLoc.y - (fontHeight - descent), stringWidth + (2
+                    * TEXT_SPACING), fontHeight - descent);
             g.setColor(foreground);
             SwingUtilities2.drawString(popup, g, title, textLoc.x, textLoc.y);
 
-            MotifGraphicsUtils.drawGroove(g, x, textLoc.y + TEXT_SPACING, width,
-                    GROOVE_HEIGHT, shadowColor, highlightColor);
+            MotifGraphicsUtils.drawGroove(g, x, textLoc.y + TEXT_SPACING, width, GROOVE_HEIGHT, shadowColor,
+                    highlightColor);
 
             g.setFont(origFont);
             g.setColor(origColor);
@@ -715,10 +672,10 @@ public class MotifBorders {
          * Reinitialize the insets parameter with this Border's current Insets.
          * 
          * @param c
-         *               the component for which this border insets value
-         *               applies
+         *        the component for which this border insets value
+         *        applies
          * @param insets
-         *               the object to be reinitialized
+         *        the object to be reinitialized
          */
         public Insets getBorderInsets(Component c, Insets insets) {
             if (!(c instanceof JPopupMenu)) {

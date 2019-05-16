@@ -26,7 +26,6 @@ import java.io.IOException;
  * <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/text.html">Using
  * Text Components</a>, a section in <em>The Java Tutorial.</em>
- *
  * <p>
  * This component has capabilities not found in the
  * <code>java.awt.TextArea</code> class. The superclass should be consulted for
@@ -69,13 +68,11 @@ import java.io.IOException;
  *    JTextArea myArea = ??;
  *    myArea.getDocument().addDocumentListener(myListener);
  * </pre>
- *
  * <dl>
  * <dt><b><font size=+1>Newlines</font></b>
  * <dd>For a discussion on how newlines are handled, see
  * <a href="text/DefaultEditorKit.html">DefaultEditorKit</a>.
  * </dl>
- *
  * <p>
  * <strong>Warning:</strong> Swing is not thread safe. For more information see
  * <a href="package-summary.html#threading">Swing's Threading Policy</a>.
@@ -89,7 +86,6 @@ import java.io.IOException;
  *
  * @beaninfo attribute: isContainer false description: A multi-line area that
  *           displays plain text.
- *
  * @author Timothy Prinzing
  * @see JTextPane
  * @see JEditorPane
@@ -115,7 +111,7 @@ public class JTextArea extends JTextComponent {
      * model is created and rows/columns are set to 0.
      *
      * @param text
-     *             the text to be displayed, or null
+     *        the text to be displayed, or null
      */
     public JTextArea(String text) {
         this(null, text, 0, 0);
@@ -126,12 +122,12 @@ public class JTextArea extends JTextComponent {
      * columns. A default model is created, and the initial string is null.
      *
      * @param rows
-     *                the number of rows &gt;= 0
+     *        the number of rows &gt;= 0
      * @param columns
-     *                the number of columns &gt;= 0
+     *        the number of columns &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if the rows or columns arguments are
-     *                                     negative.
+     *            if the rows or columns arguments are
+     *            negative.
      */
     public JTextArea(int rows, int columns) {
         this(null, null, rows, columns);
@@ -142,14 +138,14 @@ public class JTextArea extends JTextComponent {
      * columns. A default model is created.
      *
      * @param text
-     *                the text to be displayed, or null
+     *        the text to be displayed, or null
      * @param rows
-     *                the number of rows &gt;= 0
+     *        the number of rows &gt;= 0
      * @param columns
-     *                the number of columns &gt;= 0
+     *        the number of columns &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if the rows or columns arguments are
-     *                                     negative.
+     *            if the rows or columns arguments are
+     *            negative.
      */
     public JTextArea(String text, int rows, int columns) {
         this(null, text, rows, columns);
@@ -160,7 +156,7 @@ public class JTextArea extends JTextComponent {
      * for all of the other arguments (null, 0, 0).
      *
      * @param doc
-     *            the model to use
+     *        the model to use
      */
     public JTextArea(Document doc) {
         this(doc, null, 0, 0);
@@ -172,16 +168,16 @@ public class JTextArea extends JTextComponent {
      * constructor.
      *
      * @param doc
-     *                the model to use, or create a default one if null
+     *        the model to use, or create a default one if null
      * @param text
-     *                the text to be displayed, null if none
+     *        the text to be displayed, null if none
      * @param rows
-     *                the number of rows &gt;= 0
+     *        the number of rows &gt;= 0
      * @param columns
-     *                the number of columns &gt;= 0
+     *        the number of columns &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if the rows or columns arguments are
-     *                                     negative.
+     *            if the rows or columns arguments are
+     *            negative.
      */
     public JTextArea(Document doc, String text, int rows, int columns) {
         super();
@@ -201,10 +197,10 @@ public class JTextArea extends JTextComponent {
         if (columns < 0) {
             throw new IllegalArgumentException("columns: " + columns);
         }
-        LookAndFeel.installProperty(this, "focusTraversalKeysForward",
-                JComponent.getManagingFocusForwardTraversalKeys());
-        LookAndFeel.installProperty(this, "focusTraversalKeysBackward",
-                JComponent.getManagingFocusBackwardTraversalKeys());
+        LookAndFeel.installProperty(this, "focusTraversalKeysForward", JComponent
+                .getManagingFocusForwardTraversalKeys());
+        LookAndFeel.installProperty(this, "focusTraversalKeysBackward", JComponent
+                .getManagingFocusBackwardTraversalKeys());
     }
 
     /**
@@ -235,7 +231,7 @@ public class JTextArea extends JTextComponent {
      * ("tabSize") is fired when the tab size changes.
      *
      * @param size
-     *             number of characters to expand to
+     *        number of characters to expand to
      * @see #getTabSize
      * @beaninfo preferred: true bound: true description: the number of
      *           characters to expand tabs to
@@ -244,8 +240,7 @@ public class JTextArea extends JTextComponent {
         Document doc = getDocument();
         if (doc != null) {
             int old = getTabSize();
-            doc.putProperty(PlainDocument.tabSizeAttribute, Integer.valueOf(
-                    size));
+            doc.putProperty(PlainDocument.tabSizeAttribute, Integer.valueOf(size));
             firePropertyChange("tabSize", old, size);
         }
     }
@@ -260,8 +255,7 @@ public class JTextArea extends JTextComponent {
         int size = 8;
         Document doc = getDocument();
         if (doc != null) {
-            Integer i = (Integer) doc.getProperty(
-                    PlainDocument.tabSizeAttribute);
+            Integer i = (Integer) doc.getProperty(PlainDocument.tabSizeAttribute);
             if (i != null) {
                 size = i.intValue();
             }
@@ -277,7 +271,7 @@ public class JTextArea extends JTextComponent {
      * is changed. By default this property is false.
      *
      * @param wrap
-     *             indicates if lines should be wrapped
+     *        indicates if lines should be wrapped
      * @see #getLineWrap
      * @beaninfo preferred: true bound: true description: should lines be
      *           wrapped
@@ -307,7 +301,7 @@ public class JTextArea extends JTextComponent {
      * is false.
      *
      * @param word
-     *             indicates if word boundaries should be used for line wrapping
+     *        indicates if word boundaries should be used for line wrapping
      * @see #getWrapStyleWord
      * @beaninfo preferred: false bound: true description: should wrapping occur
      *           at word boundaries
@@ -336,21 +330,19 @@ public class JTextArea extends JTextComponent {
      * Translates an offset into the components text to a line number.
      *
      * @param offset
-     *               the offset &gt;= 0
+     *        the offset &gt;= 0
      * @return the line number &gt;= 0
      * @exception BadLocationException
-     *                                 thrown if the offset is less than zero or
-     *                                 greater than the
-     *                                 document length.
+     *            thrown if the offset is less than zero or
+     *            greater than the
+     *            document length.
      */
     public int getLineOfOffset(int offset) throws BadLocationException {
         Document doc = getDocument();
         if (offset < 0) {
-            throw new BadLocationException("Can't translate offset to line",
-                    -1);
+            throw new BadLocationException("Can't translate offset to line", -1);
         } else if (offset > doc.getLength()) {
-            throw new BadLocationException("Can't translate offset to line", doc
-                    .getLength() + 1);
+            throw new BadLocationException("Can't translate offset to line", doc.getLength() + 1);
         } else {
             Element map = getDocument().getDefaultRootElement();
             return map.getElementIndex(offset);
@@ -371,22 +363,21 @@ public class JTextArea extends JTextComponent {
      * Determines the offset of the start of the given line.
      *
      * @param line
-     *             the line number to translate &gt;= 0
+     *        the line number to translate &gt;= 0
      * @return the offset &gt;= 0
      * @exception BadLocationException
-     *                                 thrown if the line is less than zero or
-     *                                 greater or equal
-     *                                 to the number of lines contained in the
-     *                                 document (as
-     *                                 reported by getLineCount).
+     *            thrown if the line is less than zero or
+     *            greater or equal
+     *            to the number of lines contained in the
+     *            document (as
+     *            reported by getLineCount).
      */
     public int getLineStartOffset(int line) throws BadLocationException {
         int lineCount = getLineCount();
         if (line < 0) {
             throw new BadLocationException("Negative line", -1);
         } else if (line >= lineCount) {
-            throw new BadLocationException("No such line", getDocument()
-                    .getLength() + 1);
+            throw new BadLocationException("No such line", getDocument().getLength() + 1);
         } else {
             Element map = getDocument().getDefaultRootElement();
             Element lineElem = map.getElement(line);
@@ -398,22 +389,21 @@ public class JTextArea extends JTextComponent {
      * Determines the offset of the end of the given line.
      *
      * @param line
-     *             the line &gt;= 0
+     *        the line &gt;= 0
      * @return the offset &gt;= 0
      * @exception BadLocationException
-     *                                 Thrown if the line is less than zero or
-     *                                 greater or equal
-     *                                 to the number of lines contained in the
-     *                                 document (as
-     *                                 reported by getLineCount).
+     *            Thrown if the line is less than zero or
+     *            greater or equal
+     *            to the number of lines contained in the
+     *            document (as
+     *            reported by getLineCount).
      */
     public int getLineEndOffset(int line) throws BadLocationException {
         int lineCount = getLineCount();
         if (line < 0) {
             throw new BadLocationException("Negative line", -1);
         } else if (line >= lineCount) {
-            throw new BadLocationException("No such line", getDocument()
-                    .getLength() + 1);
+            throw new BadLocationException("No such line", getDocument().getLength() + 1);
         } else {
             Element map = getDocument().getDefaultRootElement();
             Element lineElem = map.getElement(line);
@@ -430,12 +420,12 @@ public class JTextArea extends JTextComponent {
      * model is null or if the text is null or empty.
      *
      * @param str
-     *            the text to insert
+     *        the text to insert
      * @param pos
-     *            the position at which to insert &gt;= 0
+     *        the position at which to insert &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if pos is an invalid position in the
-     *                                     model
+     *            if pos is an invalid position in the
+     *            model
      * @see TextComponent#setText
      * @see #replaceRange
      */
@@ -455,7 +445,7 @@ public class JTextArea extends JTextComponent {
      * model is null or the string is null or empty.
      *
      * @param str
-     *            the text to insert
+     *        the text to insert
      * @see #insert
      */
     public void append(String str) {
@@ -463,8 +453,7 @@ public class JTextArea extends JTextComponent {
         if (doc != null) {
             try {
                 doc.insertString(doc.getLength(), str, null);
-            } catch (BadLocationException e) {
-            }
+            } catch (BadLocationException e) {}
         }
     }
 
@@ -474,14 +463,14 @@ public class JTextArea extends JTextComponent {
      * new string is null or empty.
      *
      * @param str
-     *              the text to use as the replacement
+     *        the text to use as the replacement
      * @param start
-     *              the start position &gt;= 0
+     *        the start position &gt;= 0
      * @param end
-     *              the end position &gt;= start
+     *        the end position &gt;= start
      * @exception IllegalArgumentException
-     *                                     if part of the range is an invalid
-     *                                     position in the model
+     *            if part of the range is an invalid
+     *            position in the model
      * @see #insert
      */
     public void replaceRange(String str, int start, int end) {
@@ -492,8 +481,7 @@ public class JTextArea extends JTextComponent {
         if (doc != null) {
             try {
                 if (doc instanceof AbstractDocument) {
-                    ((AbstractDocument) doc).replace(start, end - start, str,
-                            null);
+                    ((AbstractDocument) doc).replace(start, end - start, str, null);
                 } else {
                     doc.remove(start, end - start);
                     doc.insertString(start, str, null);
@@ -518,9 +506,9 @@ public class JTextArea extends JTextComponent {
      * setting the new value.
      *
      * @param rows
-     *             the number of rows &gt;= 0
+     *        the number of rows &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if rows is less than 0
+     *            if rows is less than 0
      * @see #getRows
      * @beaninfo description: the number of rows preferred for display
      */
@@ -563,9 +551,9 @@ public class JTextArea extends JTextComponent {
      * setting the new value.
      *
      * @param columns
-     *                the number of columns &gt;= 0
+     *        the number of columns &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if columns is less than 0
+     *            if columns is less than 0
      * @see #getColumns
      * @beaninfo description: the number of columns preferred for display
      */
@@ -611,12 +599,10 @@ public class JTextArea extends JTextComponent {
         Insets insets = getInsets();
 
         if (columns != 0) {
-            d.width = Math.max(d.width, columns * getColumnWidth() + insets.left
-                    + insets.right);
+            d.width = Math.max(d.width, columns * getColumnWidth() + insets.left + insets.right);
         }
         if (rows != 0) {
-            d.height = Math.max(d.height, rows * getRowHeight() + insets.top
-                    + insets.bottom);
+            d.height = Math.max(d.height, rows * getRowHeight() + insets.top + insets.bottom);
         }
         return d;
     }
@@ -626,7 +612,7 @@ public class JTextArea extends JTextComponent {
      * the new font will be reflected, and calls revalidate().
      *
      * @param f
-     *          the font to use as the current font
+     *        the font to use as the current font
      */
     public void setFont(Font f) {
         super.setFont(f);
@@ -646,9 +632,8 @@ public class JTextArea extends JTextComponent {
         String wrapString = (wrap ? "true" : "false");
         String wordString = (word ? "true" : "false");
 
-        return super.paramString() + ",colums=" + columns + ",columWidth="
-                + columnWidth + ",rows=" + rows + ",rowHeight=" + rowHeight
-                + ",word=" + wordString + ",wrap=" + wrapString;
+        return super.paramString() + ",colums=" + columns + ",columWidth=" + columnWidth + ",rows=" + rows
+                + ",rowHeight=" + rowHeight + ",word=" + wordString + ",wrap=" + wrapString;
     }
 
     // --- Scrollable methods ----------------------------------------
@@ -679,10 +664,8 @@ public class JTextArea extends JTextComponent {
         size = (size == null) ? new Dimension(400, 400) : size;
         Insets insets = getInsets();
 
-        size.width = (columns == 0) ? size.width
-                : columns * getColumnWidth() + insets.left + insets.right;
-        size.height = (rows == 0) ? size.height
-                : rows * getRowHeight() + insets.top + insets.bottom;
+        size.width = (columns == 0) ? size.width : columns * getColumnWidth() + insets.left + insets.right;
+        size.height = (rows == 0) ? size.height : rows * getRowHeight() + insets.top + insets.bottom;
         return size;
     }
 
@@ -696,31 +679,29 @@ public class JTextArea extends JTextComponent {
      * the user requests a unit scroll.
      *
      * @param visibleRect
-     *                    the view area visible within the viewport
+     *        the view area visible within the viewport
      * @param orientation
-     *                    Either SwingConstants.VERTICAL or
-     *                    SwingConstants.HORIZONTAL.
+     *        Either SwingConstants.VERTICAL or
+     *        SwingConstants.HORIZONTAL.
      * @param direction
-     *                    Less than zero to scroll up/left, greater than zero
-     *                    for
-     *                    down/right.
+     *        Less than zero to scroll up/left, greater than zero
+     *        for
+     *        down/right.
      * @return The "unit" increment for scrolling in the specified direction
      * @exception IllegalArgumentException
-     *                                     for an invalid orientation
+     *            for an invalid orientation
      * @see JScrollBar#setUnitIncrement
      * @see #getRowHeight
      * @see #getColumnWidth
      */
-    public int getScrollableUnitIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+    public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
         switch (orientation) {
             case SwingConstants.VERTICAL:
                 return getRowHeight();
             case SwingConstants.HORIZONTAL:
                 return getColumnWidth();
             default:
-                throw new IllegalArgumentException("Invalid orientation: "
-                        + orientation);
+                throw new IllegalArgumentException("Invalid orientation: " + orientation);
         }
     }
 

@@ -13,7 +13,6 @@ import java.lang.annotation.Target;
 /**
  * <p>
  * Maps a class or an enum type to a XML Schema type.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -24,12 +23,10 @@ import java.lang.annotation.Target;
  * <li>a top level class</li>
  * <li>an enum type</li>
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * <h3>Mapping a Class</h3>
  * <p>
  * A class maps to a XML Schema type. A class is a data container for values
@@ -57,11 +54,9 @@ import java.lang.annotation.Target;
  * <li><b>global element: </b> A global element of an anonymous type can be
  * derived by annotating the class with @{@link XmlRootElement}. See Example 3
  * below.</li>
- *
  * <li><b>local element: </b> A JavaBean property that references a class
  * annotated with @XmlType(name="") and is mapped to the element associated with
  * the anonymous type. See Example 4 below.</li>
- *
  * <li><b>attribute: </b> A JavaBean property that references a class annotated
  * with @XmlType(name="") and is mapped to the attribute associated with the
  * anonymous type. See Example 5 below.</li>
@@ -71,20 +66,16 @@ import java.lang.annotation.Target;
  * <li>If class is annotated with <tt>@XmlType(name="") </tt>, it is mapped to
  * an anonymous type otherwise, the class name maps to a complex type name. The
  * <tt>XmlName()</tt> annotation element can be used to customize the name.</li>
- *
  * <li>Properties and fields that are mapped to elements are mapped to a content
  * model within a complex type. The annotation element <tt>propOrder()</tt> can
  * be used to customize the content model to be <tt>xs:all</tt> or
  * <tt>xs:sequence</tt>. It is used for specifying the order of XML elements in
  * <tt>xs:sequence</tt>.</li>
- *
  * <li>Properties and fields can be mapped to attributes within the complex
  * type.</li>
- *
  * <li>The targetnamespace of the XML Schema type can be customized using the
  * annotation element <tt>namespace()</tt>.</li>
  * </ul>
- *
  * <p>
  * <b> Mapping class to XML Schema simple type </b>
  * <p>
@@ -111,7 +102,6 @@ import java.lang.annotation.Target;
  * <td><b>ComplexType</b></td>
  * <td><b>SimpleType</b></td>
  * </tr>
- *
  * <tr valign="top">
  * <td>Class</td>
  * <td>{}</td>
@@ -120,7 +110,6 @@ import java.lang.annotation.Target;
  * xs:all</td>
  * <td></td>
  * </tr>
- *
  * <tr valign="top">
  * <td>Class</td>
  * <td>non empty</td>
@@ -129,7 +118,6 @@ import java.lang.annotation.Target;
  * xs:sequence</td>
  * <td></td>
  * </tr>
- *
  * <tr valign="top">
  * <td>Class</td>
  * <td>X</td>
@@ -138,7 +126,6 @@ import java.lang.annotation.Target;
  * empty sequence</td>
  * <td></td>
  * </tr>
- *
  * <tr valign="top">
  * <td>Class</td>
  * <td>X</td>
@@ -147,7 +134,6 @@ import java.lang.annotation.Target;
  * <td>simplecontent</td>
  * <td></td>
  * </tr>
- *
  * <tr valign="top">
  * <td>Class</td>
  * <td>X</td>
@@ -160,13 +146,10 @@ import java.lang.annotation.Target;
  * </tbody>
  * </table>
  * </blockquote>
- *
  * <h3>Mapping an enum type</h3>
- *
  * An enum type maps to a XML schema simple type with enumeration facets. The
  * following annotation elements are ignored since they are not meaningful:
  * <tt>propOrder()</tt> , <tt>factoryMethod()</tt> , <tt>factoryClass()</tt> .
- *
  * <h3>Usage with other annotations</h3>
  * <p>
  * This annotation can be used with the following annotations:
@@ -174,7 +157,6 @@ import java.lang.annotation.Target;
  * {@link XmlEnum}. However, {@link XmlAccessorOrder} and
  * {@link XmlAccessorType} are ignored when this annotation is used on an enum
  * type.
- *
  * <p>
  * <b> Example 1: </b> Map a class to a complex type with xs:sequence with a
  * customized ordering of JavaBean properties.
@@ -251,7 +233,6 @@ import java.lang.annotation.Target;
  *     &lt;/xs:complexType>
  *   &lt;/xs:element>
  * </pre>
- *
  * <p>
  * <b> Example 4: </b> Map a property to a local element with anonmyous type.
  * 
@@ -281,7 +262,6 @@ import java.lang.annotation.Target;
  *     &lt;/xs:sequence>
  *   &lt;/xs:complexType>
  * </pre>
- *
  * <p>
  * <b> Example 5: </b> Map a property to an attribute with anonymous type.
  *
@@ -313,7 +293,6 @@ import java.lang.annotation.Target;
  *       &lt;/xs:sequence>
  *     &lt;/xs:complexType>
  * </pre>
- *
  * <p>
  * <b> Example 6: </b> Define a factoryClass and factoryMethod
  *
@@ -343,9 +322,7 @@ import java.lang.annotation.Target;
  *       return new USAddress("Mark Baker", "23 Elm St",
  *          "Dayton", "OH", 90952);
  *  }
- *
  * </pre>
- *
  * <p>
  * <b> Example 7: </b> Define factoryMethod and use the default factoryClass
  *
@@ -386,11 +363,9 @@ public @interface XmlType {
     /**
      * Specifies the order for XML Schema elements when class is mapped to a XML
      * Schema complex type.
-     *
      * <p>
      * Refer to the table for how the propOrder affects the mapping of class
      * </p>
-     *
      * <p>
      * The propOrder is a list of names of JavaBean properties in the class.
      * Each name in the list is the name of a Java identifier of the JavaBean
@@ -418,16 +393,13 @@ public @interface XmlType {
     /**
      * Class containing a no-arg factory method for creating an instance of this
      * class. The default is this class.
-     *
      * <p>
      * If <tt>factoryClass</tt> is DEFAULT.class and <tt>factoryMethod</tt> is
      * "", then there is no static factory method.
-     *
      * <p>
      * If <tt>factoryClass</tt> is DEFAULT.class and <tt>factoryMethod</tt> is
      * not "", then <tt>factoryMethod</tt> is the name of a static factory
      * method in this class.
-     *
      * <p>
      * If <tt>factoryClass</tt> is not DEFAULT.class, then
      * <tt>factoryMethod</tt> must not be "" and must be the name of a static
@@ -445,7 +417,6 @@ public @interface XmlType {
     /**
      * Name of a no-arg factory method in the class specified in
      * <tt>factoryClass</tt> factoryClass().
-     *
      */
     String factoryMethod() default "";
 }

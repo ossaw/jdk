@@ -21,7 +21,6 @@ package com.sun.org.apache.xerces.internal.dom;
  * Represents an XML (or HTML) comment.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeferredCommentImpl extends CommentImpl implements DeferredNode {
@@ -76,8 +75,7 @@ public class DeferredCommentImpl extends CommentImpl implements DeferredNode {
         needsSyncData(false);
 
         // fluff data
-        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-                .ownerDocument();
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument();
         data = ownerDocument.getNodeValueString(fNodeIndex);
 
     } // synchronizeData()

@@ -11,7 +11,6 @@ import java.util.Objects;
  * and returns no result. This is the primitive type specialization of
  * {@link Consumer} for {@code double}. Unlike most other functional interfaces,
  * {@code DoubleConsumer} is expected to operate via side-effects.
- *
  * <p>
  * This is a <a href="package-summary.html">functional interface</a> whose
  * functional method is {@link #accept(double)}.
@@ -26,7 +25,7 @@ public interface DoubleConsumer {
      * Performs this operation on the given argument.
      *
      * @param value
-     *              the input argument
+     *        the input argument
      */
     void accept(double value);
 
@@ -38,11 +37,11 @@ public interface DoubleConsumer {
      * {@code after} operation will not be performed.
      *
      * @param after
-     *              the operation to perform after this operation
+     *        the operation to perform after this operation
      * @return a composed {@code DoubleConsumer} that performs in sequence this
      *         operation followed by the {@code after} operation
      * @throws NullPointerException
-     *                              if {@code after} is null
+     *         if {@code after} is null
      */
     default DoubleConsumer andThen(DoubleConsumer after) {
         Objects.requireNonNull(after);

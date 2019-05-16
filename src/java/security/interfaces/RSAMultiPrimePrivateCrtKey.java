@@ -13,13 +13,10 @@ import java.security.spec.RSAOtherPrimeInfo;
  * v2.1, using the <i>Chinese Remainder Theorem</i> (CRT) information values.
  *
  * @author Valerie Peng
- *
- *
  * @see java.security.spec.RSAPrivateKeySpec
  * @see java.security.spec.RSAMultiPrimePrivateCrtKeySpec
  * @see RSAPrivateKey
  * @see RSAPrivateCrtKey
- *
  * @since 1.4
  */
 

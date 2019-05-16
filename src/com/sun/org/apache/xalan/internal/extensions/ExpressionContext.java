@@ -56,7 +56,7 @@ public interface ExpressionContext {
      * Get the value of a node as a number.
      * 
      * @param n
-     *          Node to be converted to a number. May be null.
+     *        Node to be converted to a number. May be null.
      * @return value of n as a number.
      */
     public double toNumber(Node n);
@@ -65,7 +65,7 @@ public interface ExpressionContext {
      * Get the value of a node as a string.
      * 
      * @param n
-     *          Node to be converted to a string. May be null.
+     *        Node to be converted to a string. May be null.
      * @return value of n as a string, or an empty string if n is null.
      */
     public String toString(Node n);
@@ -74,19 +74,15 @@ public interface ExpressionContext {
      * Get a variable based on it's qualified name.
      *
      * @param qname
-     *              The qualified name of the variable.
-     *
+     *        The qualified name of the variable.
      * @return The evaluated value of the variable.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject getVariableOrParam(
-            com.sun.org.apache.xml.internal.utils.QName qname)
+    public XObject getVariableOrParam(com.sun.org.apache.xml.internal.utils.QName qname)
             throws javax.xml.transform.TransformerException;
 
     /**
      * Get the XPathContext that owns this ExpressionContext.
-     *
      * Note: exslt:function requires the XPathContext to access the variable
      * stack and TransformerImpl.
      *

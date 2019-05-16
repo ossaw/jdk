@@ -39,7 +39,6 @@ import java.time.DateTimeException;
  * rules.
  *
  * @implSpec This class is intended for use in a single thread.
- *
  * @since 1.8
  */
 public class ZoneRulesException extends DateTimeException {
@@ -53,7 +52,7 @@ public class ZoneRulesException extends DateTimeException {
      * Constructs a new date-time exception with the specified message.
      *
      * @param message
-     *                the message to use for this exception, may be null
+     *        the message to use for this exception, may be null
      */
     public ZoneRulesException(String message) {
         super(message);
@@ -64,9 +63,9 @@ public class ZoneRulesException extends DateTimeException {
      * cause.
      *
      * @param message
-     *                the message to use for this exception, may be null
+     *        the message to use for this exception, may be null
      * @param cause
-     *                the cause of the exception, may be null
+     *        the cause of the exception, may be null
      */
     public ZoneRulesException(String message, Throwable cause) {
         super(message, cause);

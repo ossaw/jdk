@@ -16,7 +16,6 @@ package com.sun.jmx.snmp;
  * The <CODE>varBindCount</CODE> property contains the number of
  * <CODE>SnmpVarBind</CODE> successfully encoded before the exception was
  * thrown. Its value is 0 when this number is unknown.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -39,7 +38,7 @@ public class SnmpTooBigException extends Exception {
      * set to the specified value.
      * 
      * @param n
-     *          The <CODE>varBindCount</CODE> value.
+     *        The <CODE>varBindCount</CODE> value.
      */
     public SnmpTooBigException(int n) {
         varBindCount = n;

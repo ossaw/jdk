@@ -19,7 +19,7 @@ public class NoSuchFileException extends FileSystemException {
      * Constructs an instance of this class.
      *
      * @param file
-     *             a string identifying the file or {@code null} if not known.
+     *        a string identifying the file or {@code null} if not known.
      */
     public NoSuchFileException(String file) {
         super(file);
@@ -29,13 +29,13 @@ public class NoSuchFileException extends FileSystemException {
      * Constructs an instance of this class.
      *
      * @param file
-     *               a string identifying the file or {@code null} if not known.
+     *        a string identifying the file or {@code null} if not known.
      * @param other
-     *               a string identifying the other file or {@code null} if not
-     *               known.
+     *        a string identifying the other file or {@code null} if not
+     *        known.
      * @param reason
-     *               a reason message with additional information or
-     *               {@code null}
+     *        a reason message with additional information or
+     *        {@code null}
      */
     public NoSuchFileException(String file, String other, String reason) {
         super(file, other, reason);

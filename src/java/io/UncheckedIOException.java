@@ -18,12 +18,11 @@ public class UncheckedIOException extends RuntimeException {
      * Constructs an instance of this class.
      *
      * @param message
-     *                the detail message, can be null
+     *        the detail message, can be null
      * @param cause
-     *                the {@code IOException}
-     *
+     *        the {@code IOException}
      * @throws NullPointerException
-     *                              if the cause is {@code null}
+     *         if the cause is {@code null}
      */
     public UncheckedIOException(String message, IOException cause) {
         super(message, Objects.requireNonNull(cause));
@@ -33,10 +32,9 @@ public class UncheckedIOException extends RuntimeException {
      * Constructs an instance of this class.
      *
      * @param cause
-     *              the {@code IOException}
-     *
+     *        the {@code IOException}
      * @throws NullPointerException
-     *                              if the cause is {@code null}
+     *         if the cause is {@code null}
      */
     public UncheckedIOException(IOException cause) {
         super(Objects.requireNonNull(cause));
@@ -56,12 +54,11 @@ public class UncheckedIOException extends RuntimeException {
      * Called to read the object from a stream.
      *
      * @throws InvalidObjectException
-     *                                if the object is invalid or has a cause
-     *                                that is not an
-     *                                {@code IOException}
+     *         if the object is invalid or has a cause
+     *         that is not an
+     *         {@code IOException}
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         Throwable cause = super.getCause();
         if (!(cause instanceof IOException))

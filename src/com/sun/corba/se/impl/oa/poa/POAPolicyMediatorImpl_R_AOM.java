@@ -39,12 +39,10 @@ public class POAPolicyMediatorImpl_R_AOM extends POAPolicyMediatorBase_R {
             throw poa.invocationWrapper().policyMediatorBadPolicyInFactory();
     }
 
-    protected java.lang.Object internalGetServant(byte[] id, String operation)
-            throws ForwardRequest {
+    protected java.lang.Object internalGetServant(byte[] id, String operation) throws ForwardRequest {
         java.lang.Object servant = internalIdToServant(id);
         if (servant == null)
-            servant = new NullServantImpl(poa.invocationWrapper()
-                    .nullServant());
+            servant = new NullServantImpl(poa.invocationWrapper().nullServant());
         return servant;
     }
 
@@ -56,8 +54,7 @@ public class POAPolicyMediatorImpl_R_AOM extends POAPolicyMediatorBase_R {
         throw new WrongPolicy();
     }
 
-    public void setServantManager(ServantManager servantManager)
-            throws WrongPolicy {
+    public void setServantManager(ServantManager servantManager) throws WrongPolicy {
         throw new WrongPolicy();
     }
 

@@ -11,12 +11,10 @@ import java.security.spec.AlgorithmParameterSpec;
  * This class defines the <i>Service Provider Interface</i> (<b>SPI</b>) for the
  * {@code AlgorithmParameterGenerator} class, which is used to generate a set of
  * parameters to be used with a certain algorithm.
- *
  * <p>
  * All the abstract methods in this class must be implemented by each
  * cryptographic service provider who wishes to supply the implementation of a
  * parameter generator for a particular algorithm.
- *
  * <p>
  * In case the client does not explicitly initialize the
  * AlgorithmParameterGenerator (via a call to an {@code engineInit} method),
@@ -25,12 +23,9 @@ import java.security.spec.AlgorithmParameterSpec;
  * the generation of DSA parameters.
  *
  * @author Jan Luehe
- *
- *
  * @see AlgorithmParameterGenerator
  * @see AlgorithmParameters
  * @see java.security.spec.AlgorithmParameterSpec
- *
  * @since 1.2
  */
 
@@ -41,9 +36,9 @@ public abstract class AlgorithmParameterGeneratorSpi {
      * randomness.
      *
      * @param size
-     *               the size (number of bits).
+     *        the size (number of bits).
      * @param random
-     *               the source of randomness.
+     *        the source of randomness.
      */
     protected abstract void engineInit(int size, SecureRandom random);
 
@@ -52,20 +47,19 @@ public abstract class AlgorithmParameterGeneratorSpi {
      * parameter generation values.
      *
      * @param genParamSpec
-     *                     the set of algorithm-specific parameter generation
-     *                     values.
+     *        the set of algorithm-specific parameter generation
+     *        values.
      * @param random
-     *                     the source of randomness.
-     *
+     *        the source of randomness.
      * @exception InvalidAlgorithmParameterException
-     *                                               if the given parameter
-     *                                               generation values are
-     *                                               inappropriate
-     *                                               for this parameter
-     *                                               generator.
+     *            if the given parameter
+     *            generation values are
+     *            inappropriate
+     *            for this parameter
+     *            generator.
      */
-    protected abstract void engineInit(AlgorithmParameterSpec genParamSpec,
-            SecureRandom random) throws InvalidAlgorithmParameterException;
+    protected abstract void engineInit(AlgorithmParameterSpec genParamSpec, SecureRandom random)
+            throws InvalidAlgorithmParameterException;
 
     /**
      * Generates the parameters.

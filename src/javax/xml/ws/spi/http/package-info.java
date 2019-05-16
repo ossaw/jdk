@@ -8,7 +8,6 @@
  * in containers(for e.g. servlet containers). This SPI is not for end
  * developers but provides a way for the container developers to deploy JAX-WS
  * services portably.
- * 
  * <p>
  * The portable deployment is done as below:
  * <ol>
@@ -42,7 +41,6 @@
     ...
 10. EndpointN.publish(HttpContextN)  --> 11. creates HttpHandlerN
                                         HttpContextN.setHandler(HttpHandlerN)
- * 
  * </pre>
  * 
  * The request processing is done as below(for every request):
@@ -57,7 +55,6 @@
  6. Invokes the actual instance
                                          7. Writes the response to HttpExchange
  * </pre>
- * 
  * <p>
  * The portable undeployment is done as below:
  * 

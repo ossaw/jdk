@@ -59,8 +59,8 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class INSTANCEOF extends CPInstruction implements LoadClass,
-        ExceptionThrower, StackProducer, StackConsumer {
+public class INSTANCEOF extends CPInstruction implements LoadClass, ExceptionThrower, StackProducer,
+        StackConsumer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -91,7 +91,7 @@ public class INSTANCEOF extends CPInstruction implements LoadClass,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLoadClass(this);

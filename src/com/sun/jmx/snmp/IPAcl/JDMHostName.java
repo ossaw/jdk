@@ -34,8 +34,7 @@ class JDMHostName extends Host {
         return name.toString();
     }
 
-    protected PrincipalImpl createAssociatedPrincipal()
-            throws UnknownHostException {
+    protected PrincipalImpl createAssociatedPrincipal() throws UnknownHostException {
         return new PrincipalImpl(name.toString());
     }
 }

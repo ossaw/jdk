@@ -121,8 +121,7 @@ final class ApplyImports extends Instruction {
         // parameters. The apply-imports has nothing that it can pass.
         if (stylesheet.hasLocalParams()) {
             il.append(classGen.loadTranslet());
-            final int pushFrame = cpg.addMethodref(TRANSLET_CLASS,
-                    PUSH_PARAM_FRAME, PUSH_PARAM_FRAME_SIG);
+            final int pushFrame = cpg.addMethodref(TRANSLET_CLASS, PUSH_PARAM_FRAME, PUSH_PARAM_FRAME_SIG);
             il.append(new INVOKEVIRTUAL(pushFrame));
         }
 
@@ -139,15 +138,13 @@ final class ApplyImports extends Instruction {
         // Construct the translet class-name and the signature of the method
         final String className = classGen.getStylesheet().getClassName();
         final String signature = classGen.getApplyTemplatesSigForImport();
-        final int applyTemplates = cpg.addMethodref(className, functionName,
-                signature);
+        final int applyTemplates = cpg.addMethodref(className, functionName, signature);
         il.append(new INVOKEVIRTUAL(applyTemplates));
 
         // Pop any parameter frame that was pushed above.
         if (stylesheet.hasLocalParams()) {
             il.append(classGen.loadTranslet());
-            final int pushFrame = cpg.addMethodref(TRANSLET_CLASS,
-                    POP_PARAM_FRAME, POP_PARAM_FRAME_SIG);
+            final int pushFrame = cpg.addMethodref(TRANSLET_CLASS, POP_PARAM_FRAME, POP_PARAM_FRAME_SIG);
             il.append(new INVOKEVIRTUAL(pushFrame));
         }
     }

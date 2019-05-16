@@ -19,16 +19,15 @@ public class AtomicMoveNotSupportedException extends FileSystemException {
      * Constructs an instance of this class.
      *
      * @param source
-     *               a string identifying the source file or {@code null} if not
-     *               known
+     *        a string identifying the source file or {@code null} if not
+     *        known
      * @param target
-     *               a string identifying the target file or {@code null} if not
-     *               known
+     *        a string identifying the target file or {@code null} if not
+     *        known
      * @param reason
-     *               a reason message with additional information
+     *        a reason message with additional information
      */
-    public AtomicMoveNotSupportedException(String source, String target,
-            String reason) {
+    public AtomicMoveNotSupportedException(String source, String target, String reason) {
         super(source, target, reason);
     }
 }

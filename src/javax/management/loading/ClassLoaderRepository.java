@@ -13,12 +13,10 @@ import javax.management.MBeanServer; // for Javadoc
  * registered in an MBean Server. They provide the necessary methods to load
  * classes using the registered ClassLoaders.
  * </p>
- *
  * <p>
  * The first ClassLoader in a <code>ClassLoaderRepository</code> is always the
  * MBean Server's own ClassLoader.
  * </p>
- *
  * <p>
  * When an MBean is registered in an MBean Server, if it is of a subclass of
  * {@link java.lang.ClassLoader} and if it does not implement the interface
@@ -26,7 +24,6 @@ import javax.management.MBeanServer; // for Javadoc
  * <code>ClassLoaderRepository</code>. If it is subsequently unregistered from
  * the MBean Server, it is removed from the <code>ClassLoaderRepository</code>.
  * </p>
- *
  * <p>
  * The order of MBeans in the <code>ClassLoaderRepository</code> is significant.
  * For any two MBeans <em>X</em> and <em>Y</em> in the
@@ -39,7 +36,6 @@ import javax.management.MBeanServer; // for Javadoc
  * </p>
  *
  * @see javax.management.MBeanServerFactory
- *
  * @since 1.5
  */
 public interface ClassLoaderRepository {
@@ -57,12 +53,10 @@ public interface ClassLoaderRepository {
      * </p>
      *
      * @param className
-     *                  The name of the class to be loaded.
-     *
+     *        The name of the class to be loaded.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
+     *            The specified class could not be found.
      */
     public Class<?> loadClass(String className) throws ClassNotFoundException;
 
@@ -78,7 +72,6 @@ public interface ClassLoaderRepository {
      * from this method. If the end of the list is reached, a
      * {@link ClassNotFoundException} is thrown.
      * </p>
-     *
      * <p>
      * Be aware that if a ClassLoader in the ClassLoaderRepository calls this
      * method from its {@link ClassLoader#loadClass(String) loadClass} method,
@@ -89,20 +82,17 @@ public interface ClassLoaderRepository {
      * </p>
      *
      * @param className
-     *                  The name of the class to be loaded.
+     *        The name of the class to be loaded.
      * @param exclude
-     *                  The class loader to be excluded. May be null, in which
-     *                  case
-     *                  this method is equivalent to {@link #loadClass
-     *                  loadClass(className)}.
-     *
+     *        The class loader to be excluded. May be null, in which
+     *        case
+     *        this method is equivalent to {@link #loadClass
+     *        loadClass(className)}.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
+     *            The specified class could not be found.
      */
-    public Class<?> loadClassWithout(ClassLoader exclude, String className)
-            throws ClassNotFoundException;
+    public Class<?> loadClassWithout(ClassLoader exclude, String className) throws ClassNotFoundException;
 
     /**
      * <p>
@@ -116,7 +106,6 @@ public interface ClassLoaderRepository {
      * reaches <code>stop</code> or the end of the list, a
      * {@link ClassNotFoundException} is thrown.
      * </p>
-     *
      * <p>
      * Typically this method is called from the
      * {@link ClassLoader#loadClass(String) loadClass} method of
@@ -127,20 +116,16 @@ public interface ClassLoaderRepository {
      * </p>
      *
      * @param className
-     *                  The name of the class to be loaded.
+     *        The name of the class to be loaded.
      * @param stop
-     *                  The class loader at which to stop. May be null, in which
-     *                  case
-     *                  this method is equivalent to {@link #loadClass(String)
-     *                  loadClass(className)}.
-     *
+     *        The class loader at which to stop. May be null, in which
+     *        case
+     *        this method is equivalent to {@link #loadClass(String)
+     *        loadClass(className)}.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
-     *
+     *            The specified class could not be found.
      */
-    public Class<?> loadClassBefore(ClassLoader stop, String className)
-            throws ClassNotFoundException;
+    public Class<?> loadClassBefore(ClassLoader stop, String className) throws ClassNotFoundException;
 
 }

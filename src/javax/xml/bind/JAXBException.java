@@ -23,13 +23,11 @@ public class JAXBException extends Exception {
 
     /**
      * Vendor specific error code
-     *
      */
     private String errorCode;
 
     /**
      * Exception reference
-     *
      */
     private volatile Throwable linkedException;
 
@@ -40,7 +38,7 @@ public class JAXBException extends Exception {
      * errorCode and linkedException will default to null.
      *
      * @param message
-     *                a description of the exception
+     *        a description of the exception
      */
     public JAXBException(String message) {
         this(message, null, null);
@@ -51,9 +49,9 @@ public class JAXBException extends Exception {
      * specific errorCode. The linkedException will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      */
     public JAXBException(String message, String errorCode) {
         this(message, errorCode, null);
@@ -64,7 +62,7 @@ public class JAXBException extends Exception {
      * vendor specific errorCode will default to null.
      *
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public JAXBException(Throwable exception) {
         this(null, null, exception);
@@ -75,9 +73,9 @@ public class JAXBException extends Exception {
      * linkedException. The errorCode will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public JAXBException(String message, Throwable exception) {
         this(message, null, exception);
@@ -88,14 +86,13 @@ public class JAXBException extends Exception {
      * specific errorCode, and linkedException.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
-    public JAXBException(String message, String errorCode,
-            Throwable exception) {
+    public JAXBException(String message, String errorCode, Throwable exception) {
         super(message);
         this.errorCode = errorCode;
         this.linkedException = exception;
@@ -123,9 +120,9 @@ public class JAXBException extends Exception {
      * Add a linked Exception.
      *
      * @param exception
-     *                  the linked Exception (A null value is permitted and
-     *                  indicates
-     *                  that the linked exception does not exist or is unknown).
+     *        the linked Exception (A null value is permitted and
+     *        indicates
+     *        that the linked exception does not exist or is unknown).
      */
     public void setLinkedException(Throwable exception) {
         this.linkedException = exception;
@@ -133,12 +130,10 @@ public class JAXBException extends Exception {
 
     /**
      * Returns a short description of this JAXBException.
-     *
      */
     public String toString() {
         return linkedException == null ? super.toString()
-                : super.toString() + "\n - with linked exception:\n["
-                        + linkedException.toString() + "]";
+                : super.toString() + "\n - with linked exception:\n[" + linkedException.toString() + "]";
     }
 
     /**
@@ -146,7 +141,7 @@ public class JAXBException extends Exception {
      * of the linkedException if it is non-null) to the PrintStream.
      *
      * @param s
-     *          PrintStream to use for output
+     *        PrintStream to use for output
      */
     public void printStackTrace(java.io.PrintStream s) {
         super.printStackTrace(s);
@@ -155,7 +150,6 @@ public class JAXBException extends Exception {
     /**
      * Prints this JAXBException and its stack trace (including the stack trace
      * of the linkedException if it is non-null) to <tt>System.err</tt>.
-     *
      */
     public void printStackTrace() {
         super.printStackTrace();
@@ -166,7 +160,7 @@ public class JAXBException extends Exception {
      * of the linkedException if it is non-null) to the PrintWriter.
      *
      * @param s
-     *          PrintWriter to use for output
+     *        PrintWriter to use for output
      */
     public void printStackTrace(PrintWriter s) {
         super.printStackTrace(s);

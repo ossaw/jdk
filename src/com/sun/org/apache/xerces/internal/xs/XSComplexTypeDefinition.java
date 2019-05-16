@@ -93,8 +93,8 @@ public interface XSComplexTypeDefinition extends XSTypeDefinition {
      * [prohibited substitutions]: a subset of {extension, restriction}
      * 
      * @param restriction
-     *                    Extension or restriction constants (see
-     *                    <code>XSConstants</code>).
+     *        Extension or restriction constants (see
+     *        <code>XSConstants</code>).
      * @return True if <code>restriction</code> is a prohibited substitution,
      *         otherwise false.
      */

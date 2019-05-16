@@ -9,7 +9,6 @@ import java.util.EventListener;
 
 /**
  * The listener interface for receiving text events.
- *
  * The class that is interested in processing a text event implements this
  * interface. The object created with that class is then registered with a
  * component using the component's <code>addTextListener</code> method. When the
@@ -17,9 +16,7 @@ import java.util.EventListener;
  * method is invoked.
  *
  * @author Georges Saab
- *
  * @see TextEvent
- *
  * @since 1.1
  */
 public interface TextListener extends EventListener {

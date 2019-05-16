@@ -37,7 +37,6 @@ package javax.sound.midi;
  * mapped to volume and/or brightness.
  *
  * @see Synthesizer#getChannels
- *
  * @author David Rivas
  * @author Kara Kytle
  */
@@ -51,10 +50,9 @@ public interface MidiChannel {
      * the note.
      *
      * @param noteNumber
-     *                   the MIDI note number, from 0 to 127 (60 = Middle C)
+     *        the MIDI note number, from 0 to 127 (60 = Middle C)
      * @param velocity
-     *                   the speed with which the key was depressed
-     *
+     *        the speed with which the key was depressed
      * @see #noteOff(int, int)
      */
     public void noteOn(int noteNumber, int velocity);
@@ -67,12 +65,10 @@ public interface MidiChannel {
      * controller; see {@link #controlChange(int, int) controlChange}) is down,
      * the effect of this method is deferred until the pedal is released.
      *
-     *
      * @param noteNumber
-     *                   the MIDI note number, from 0 to 127 (60 = Middle C)
+     *        the MIDI note number, from 0 to 127 (60 = Middle C)
      * @param velocity
-     *                   the speed with which the key was released
-     *
+     *        the speed with which the key was released
      * @see #noteOff(int)
      * @see #noteOn
      * @see #allNotesOff
@@ -84,8 +80,7 @@ public interface MidiChannel {
      * Turns the specified note off.
      *
      * @param noteNumber
-     *                   the MIDI note number, from 0 to 127 (60 = Middle C)
-     *
+     *        the MIDI note number, from 0 to 127 (60 = Middle C)
      * @see #noteOff(int, int)
      */
     public void noteOff(int noteNumber);
@@ -96,18 +91,16 @@ public interface MidiChannel {
      * each with a different amount of pressure. The pressure, if not ignored,
      * is typically used to vary such features as the volume, brightness, or
      * vibrato of the note.
-     *
      * It is possible that the underlying synthesizer does not support this MIDI
      * message. In order to verify that <code>setPolyPressure</code> was
      * successful, use <code>getPolyPressure</code>.
      *
      * @param noteNumber
-     *                   the MIDI note number, from 0 to 127 (60 = Middle C)
+     *        the MIDI note number, from 0 to 127 (60 = Middle C)
      * @param pressure
-     *                   value for the specified key, from 0 to 127 (127 =
-     *                   maximum
-     *                   pressure)
-     *
+     *        value for the specified key, from 0 to 127 (127 =
+     *        maximum
+     *        pressure)
      * @see #getPolyPressure(int)
      */
     public void setPolyPressure(int noteNumber, int pressure);
@@ -116,17 +109,14 @@ public interface MidiChannel {
      * Obtains the pressure with which the specified key is being depressed.
      *
      * @param noteNumber
-     *                   the MIDI note number, from 0 to 127 (60 = Middle C)
-     *
-     *                   If the device does not support setting poly pressure,
-     *                   this
-     *                   method always returns 0. Calling
-     *                   <code>setPolyPressure</code>
-     *                   will have no effect then.
-     *
+     *        the MIDI note number, from 0 to 127 (60 = Middle C)
+     *        If the device does not support setting poly pressure,
+     *        this
+     *        method always returns 0. Calling
+     *        <code>setPolyPressure</code>
+     *        will have no effect then.
      * @return the amount of pressure for that note, from 0 to 127 (127 =
      *         maximum pressure)
-     *
      * @see #setPolyPressure(int, int)
      */
     public int getPolyPressure(int noteNumber);
@@ -139,15 +129,14 @@ public interface MidiChannel {
      * single sensor on a device that doesn't implement polyphonic key pressure.
      * Pressure can be used to control various aspects of the sound, as
      * described under {@link #setPolyPressure(int, int) setPolyPressure}.
-     *
      * It is possible that the underlying synthesizer does not support this MIDI
      * message. In order to verify that <code>setChannelPressure</code> was
      * successful, use <code>getChannelPressure</code>.
      *
      * @param pressure
-     *                 the pressure with which the keyboard is being depressed,
-     *                 from
-     *                 0 to 127 (127 = maximum pressure)
+     *        the pressure with which the keyboard is being depressed,
+     *        from
+     *        0 to 127 (127 = maximum pressure)
      * @see #setPolyPressure(int, int)
      * @see #getChannelPressure
      */
@@ -160,7 +149,6 @@ public interface MidiChannel {
      *
      * @return the amount of pressure for that note, from 0 to 127 (127 =
      *         maximum pressure)
-     *
      * @see #setChannelPressure(int)
      */
     public int getChannelPressure();
@@ -195,20 +183,18 @@ public interface MidiChannel {
      * controller numbers 0 through 31), the lower 7 bits are automatically set
      * to 0. The corresponding controller number for the lower 7 bits may then
      * be used to further modulate the controller value.
-     *
      * It is possible that the underlying synthesizer does not support a
      * specific controller message. In order to verify that a call to
      * <code>controlChange</code> was successful, use <code>getController</code>
      * .
      *
      * @param controller
-     *                   the controller number (0 to 127; see the MIDI 1.0
-     *                   Specification for the interpretation)
+     *        the controller number (0 to 127; see the MIDI 1.0
+     *        Specification for the interpretation)
      * @param value
-     *                   the value to which the specified controller is changed
-     *                   (0 to
-     *                   127)
-     *
+     *        the value to which the specified controller is changed
+     *        (0 to
+     *        127)
      * @see #getController(int)
      */
     public void controlChange(int controller, int value);
@@ -220,20 +206,17 @@ public interface MidiChannel {
      * value of the volume controller can be calculated by multiplying the value
      * of controller 7 (0x07, channel volume MSB) with 128 and adding the value
      * of controller 39 (0x27, channel volume LSB).
-     *
      * If the device does not support setting a specific controller, this method
      * returns 0 for that controller. Calling <code>controlChange</code> will
      * have no effect then.
      *
      * @param controller
-     *                   the number of the controller whose value is desired.
-     *                   The
-     *                   allowed range is 0-127; see the MIDI 1.0 Specification
-     *                   for the
-     *                   interpretation.
-     *
+     *        the number of the controller whose value is desired.
+     *        The
+     *        allowed range is 0-127; see the MIDI 1.0 Specification
+     *        for the
+     *        interpretation.
      * @return the current value of the specified controller (0 to 127)
-     *
      * @see #controlChange(int, int)
      */
     public int getController(int controller);
@@ -249,14 +232,12 @@ public interface MidiChannel {
      * The program number is zero-based (expressed from 0 to 127). Note that
      * MIDI hardware displays and literature about MIDI typically use the range
      * 1 to 128 instead.
-     *
      * It is possible that the underlying synthesizer does not support a
      * specific program. In order to verify that a call to
      * <code>programChange</code> was successful, use <code>getProgram</code>.
      *
      * @param program
-     *                the program number to switch to (0 to 127)
-     *
+     *        the program number to switch to (0 to 127)
      * @see #programChange(int, int)
      * @see #getProgram()
      */
@@ -264,7 +245,6 @@ public interface MidiChannel {
 
     /**
      * Changes the program using bank and program (patch) numbers.
-     *
      * It is possible that the underlying synthesizer does not support a
      * specific bank, or program. In order to verify that a call to
      * <code>programChange</code> was successful, use <code>getProgram</code>
@@ -276,10 +256,10 @@ public interface MidiChannel {
      * </pre>
      *
      * @param bank
-     *                the bank number to switch to (0 to 16383)
+     *        the bank number to switch to (0 to 16383)
      * @param program
-     *                the program (patch) to use in the specified bank (0 to
-     *                127)
+     *        the program (patch) to use in the specified bank (0 to
+     *        127)
      * @see #programChange(int)
      * @see #getProgram()
      */
@@ -306,15 +286,13 @@ public interface MidiChannel {
      * not specified; it can be changed by a pitch-bend sensitivity setting.
      * However, the General MIDI specification says that the default range
      * should be two semitones up and down from center.
-     *
      * It is possible that the underlying synthesizer does not support this MIDI
      * message. In order to verify that <code>setPitchBend</code> was
      * successful, use <code>getPitchBend</code>.
      *
      * @param bend
-     *             the amount of pitch change, as a nonnegative 14-bit value
-     *             (8192 = no bend)
-     *
+     *        the amount of pitch change, as a nonnegative 14-bit value
+     *        (8192 = no bend)
      * @see #getPitchBend
      */
     public void setPitchBend(int bend);
@@ -325,7 +303,6 @@ public interface MidiChannel {
      * 8192. Calling <code>setPitchBend</code> will have no effect then.
      *
      * @return bend amount, as a nonnegative 14-bit value (8192 = no bend)
-     *
      * @see #setPitchBend(int)
      */
     public int getPitchBend();
@@ -366,17 +343,15 @@ public interface MidiChannel {
      * It will also respond to messages received from other transmitting
      * devices. The "off" setting means that the synthesizer will ignore its own
      * transmitted MIDI messages, but not those received from other devices.
-     *
      * It is possible that the underlying synthesizer does not support local
      * control. In order to verify that a call to <code>localControl</code> was
      * successful, check the return value.
      *
      * @param on
-     *           <code>true</code> to turn local control on, <code>false</code>
-     *           to turn local control off
+     *        <code>true</code> to turn local control on, <code>false</code>
+     *        to turn local control off
      * @return the new local-control value, or false if local control is not
      *         supported
-     *
      */
     public boolean localControl(boolean on);
 
@@ -390,15 +365,13 @@ public interface MidiChannel {
      * opposed to the word "polyphonic" and refers to a single synthesizer voice
      * per MIDI channel. It has nothing to do with how many audio channels there
      * might be (as in "monophonic" versus "stereophonic" recordings).
-     *
      * It is possible that the underlying synthesizer does not support mono
      * mode. In order to verify that a call to <code>setMono</code> was
      * successful, use <code>getMono</code>.
      *
      * @param on
-     *           <code>true</code> to turn mono mode on, <code>false</code> to
-     *           turn it off (which means turning poly mode on).
-     *
+     *        <code>true</code> to turn mono mode on, <code>false</code> to
+     *        turn it off (which means turning poly mode on).
      * @see #getMono
      * @see VoiceStatus
      */
@@ -411,7 +384,6 @@ public interface MidiChannel {
      * 
      * @return <code>true</code> if mono mode is on, otherwise
      *         <code>false</code> (meaning poly mode is on).
-     *
      * @see #setMono(boolean)
      */
     public boolean getMono();
@@ -420,15 +392,13 @@ public interface MidiChannel {
      * Turns omni mode on or off. In omni mode, the channel responds to messages
      * sent on all channels. When omni is off, the channel responds only to
      * messages sent on its channel number. The default is omni off.
-     *
      * It is possible that the underlying synthesizer does not support omni
      * mode. In order to verify that <code>setOmni</code> was successful, use
      * <code>getOmni</code>.
      *
      * @param on
-     *           <code>true</code> to turn omni mode on, <code>false</code> to
-     *           turn it off.
-     *
+     *        <code>true</code> to turn omni mode on, <code>false</code> to
+     *        turn it off.
      * @see #getOmni
      * @see VoiceStatus
      */
@@ -441,7 +411,6 @@ public interface MidiChannel {
      * 
      * @return <code>true</code> if omni mode is on, otherwise
      *         <code>false</code> (meaning omni mode is off).
-     *
      * @see #setOmni(boolean)
      */
     public boolean getOmni();
@@ -454,14 +423,12 @@ public interface MidiChannel {
      * Unlike {@link #allSoundOff()}, this method applies to only a specific
      * channel, not to all channels. Further, it silences not only currently
      * sounding notes, but also subsequently received notes.
-     *
      * It is possible that the underlying synthesizer does not support muting
      * channels. In order to verify that a call to <code>setMute</code> was
      * successful, use <code>getMute</code>.
      *
      * @param mute
-     *             the new mute state
-     *
+     *        the new mute state
      * @see #getMute
      * @see #setSolo(boolean)
      */
@@ -474,7 +441,6 @@ public interface MidiChannel {
      *
      * @return <code>true</code> the channel is muted, or <code>false</code> if
      *         not
-     *
      * @see #setMute(boolean)
      */
     public boolean getMute();
@@ -485,13 +451,12 @@ public interface MidiChannel {
      * If <code>solo</code> is <code>false</code> then only other soloed
      * channels will sound, unless no channels are soloed, in which case all
      * unmuted channels will sound.
-     *
      * It is possible that the underlying synthesizer does not support solo
      * channels. In order to verify that a call to <code>setSolo</code> was
      * successful, use <code>getSolo</code>.
      *
      * @param soloState
-     *                  new solo state for the channel
+     *        new solo state for the channel
      * @see #getSolo()
      */
     public void setSolo(boolean soloState);
@@ -503,7 +468,6 @@ public interface MidiChannel {
      *
      * @return <code>true</code> the channel is solo, or <code>false</code> if
      *         not
-     *
      * @see #setSolo(boolean)
      */
     public boolean getSolo();

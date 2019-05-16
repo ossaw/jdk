@@ -31,10 +31,8 @@ import com.sun.org.apache.xerces.internal.xs.XSObjectList;
  * <any> or <anyAttribute> element information item
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @author Rahul Srivastava, Sun Microsystems Inc.
- *
  * @version $Id: XSWildcardDecl.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
 public class XSWildcardDecl implements XSWildcard {
@@ -159,14 +157,13 @@ public class XSWildcardDecl implements XSWildcard {
         // * since we store ##other as not(list), we acturally need to make sure
         // that none of the namespaces in super.list is in sub.list.
         if (fType == NSCONSTRAINT_LIST) {
-            if (superWildcard.fType == NSCONSTRAINT_LIST && subset2sets(
-                    fNamespaceList, superWildcard.fNamespaceList)) {
+            if (superWildcard.fType == NSCONSTRAINT_LIST && subset2sets(fNamespaceList,
+                    superWildcard.fNamespaceList)) {
                 return true;
             }
 
-            if (superWildcard.fType == NSCONSTRAINT_NOT && !elementInSet(
-                    superWildcard.fNamespaceList[0], fNamespaceList)
-                    && !elementInSet(ABSENT, fNamespaceList)) {
+            if (superWildcard.fType == NSCONSTRAINT_NOT && !elementInSet(superWildcard.fNamespaceList[0],
+                    fNamespaceList) && !elementInSet(ABSENT, fNamespaceList)) {
                 return true;
             }
         }
@@ -189,8 +186,7 @@ public class XSWildcardDecl implements XSWildcard {
     /**
      * Schema Component Constraint: Attribute Wildcard Union
      */
-    public XSWildcardDecl performUnionWith(XSWildcardDecl wildcard,
-            short processContents) {
+    public XSWildcardDecl performUnionWith(XSWildcardDecl wildcard, short processContents) {
         // if the other wildcard is not expressible, the result is still not
         // expressible
         if (wildcard == null)
@@ -212,19 +208,16 @@ public class XSWildcardDecl implements XSWildcard {
         }
 
         // 2 If either O1 or O2 is any, then any must be the value.
-        else if ((fType == NSCONSTRAINT_ANY)
-                || (wildcard.fType == NSCONSTRAINT_ANY)) {
+        else if ((fType == NSCONSTRAINT_ANY) || (wildcard.fType == NSCONSTRAINT_ANY)) {
             unionWildcard.fType = NSCONSTRAINT_ANY;
         }
 
         // 3 If both O1 and O2 are sets of (namespace names or absent), then the
         // union of
         // those sets must be the value.
-        else if ((fType == NSCONSTRAINT_LIST)
-                && (wildcard.fType == NSCONSTRAINT_LIST)) {
+        else if ((fType == NSCONSTRAINT_LIST) && (wildcard.fType == NSCONSTRAINT_LIST)) {
             unionWildcard.fType = NSCONSTRAINT_LIST;
-            unionWildcard.fNamespaceList = union2sets(fNamespaceList,
-                    wildcard.fNamespaceList);
+            unionWildcard.fNamespaceList = union2sets(fNamespaceList, wildcard.fNamespaceList);
         }
 
         // -4 If the two are negations of different namespace names, then the
@@ -235,8 +228,7 @@ public class XSWildcardDecl implements XSWildcard {
         // a pair of not and absent must be the value.
         // * now we store ##other as not(list), the result should be
         // not(intersection of two lists).
-        else if (fType == NSCONSTRAINT_NOT
-                && wildcard.fType == NSCONSTRAINT_NOT) {
+        else if (fType == NSCONSTRAINT_NOT && wildcard.fType == NSCONSTRAINT_NOT) {
             unionWildcard.fType = NSCONSTRAINT_NOT;
             unionWildcard.fNamespaceList = new String[2];
             unionWildcard.fNamespaceList[0] = ABSENT;
@@ -275,10 +267,8 @@ public class XSWildcardDecl implements XSWildcard {
         // is
         // a pair of not and a namespace name must be the value.
         // * when we have not(list), the operation is just not(otherlist-list)
-        else if (((fType == NSCONSTRAINT_NOT)
-                && (wildcard.fType == NSCONSTRAINT_LIST))
-                || ((fType == NSCONSTRAINT_LIST)
-                        && (wildcard.fType == NSCONSTRAINT_NOT))) {
+        else if (((fType == NSCONSTRAINT_NOT) && (wildcard.fType == NSCONSTRAINT_LIST))
+                || ((fType == NSCONSTRAINT_LIST) && (wildcard.fType == NSCONSTRAINT_NOT))) {
             String[] other = null;
             String[] list = null;
 
@@ -324,8 +314,7 @@ public class XSWildcardDecl implements XSWildcard {
     /**
      * Schema Component Constraint: Attribute Wildcard Intersection
      */
-    public XSWildcardDecl performIntersectionWith(XSWildcardDecl wildcard,
-            short processContents) {
+    public XSWildcardDecl performIntersectionWith(XSWildcardDecl wildcard, short processContents) {
         // if the other wildcard is not expressible, the result is still not
         // expressible
         if (wildcard == null)
@@ -347,8 +336,7 @@ public class XSWildcardDecl implements XSWildcard {
         }
 
         // 2 If either O1 or O2 is any, then the other must be the value.
-        else if ((fType == NSCONSTRAINT_ANY)
-                || (wildcard.fType == NSCONSTRAINT_ANY)) {
+        else if ((fType == NSCONSTRAINT_ANY) || (wildcard.fType == NSCONSTRAINT_ANY)) {
             // both cannot be ANY, if we have reached here.
             XSWildcardDecl other = this;
 
@@ -372,10 +360,8 @@ public class XSWildcardDecl implements XSWildcard {
         // the
         // set, must be the value.
         // * when we have not(list), the operation is just list-otherlist
-        else if (((fType == NSCONSTRAINT_NOT)
-                && (wildcard.fType == NSCONSTRAINT_LIST))
-                || ((fType == NSCONSTRAINT_LIST)
-                        && (wildcard.fType == NSCONSTRAINT_NOT))) {
+        else if (((fType == NSCONSTRAINT_NOT) && (wildcard.fType == NSCONSTRAINT_LIST))
+                || ((fType == NSCONSTRAINT_LIST) && (wildcard.fType == NSCONSTRAINT_NOT))) {
             String[] list = null;
             String[] other = null;
 
@@ -397,18 +383,15 @@ public class XSWildcardDecl implements XSWildcard {
 
             intersectWildcard.fType = NSCONSTRAINT_LIST;
             intersectWildcard.fNamespaceList = new String[newSize];
-            System.arraycopy(intersect, 0, intersectWildcard.fNamespaceList, 0,
-                    newSize);
+            System.arraycopy(intersect, 0, intersectWildcard.fNamespaceList, 0, newSize);
         }
 
         // 4 If both O1 and O2 are sets of (namespace names or absent), then the
         // intersection of those
         // sets must be the value.
-        else if ((fType == NSCONSTRAINT_LIST)
-                && (wildcard.fType == NSCONSTRAINT_LIST)) {
+        else if ((fType == NSCONSTRAINT_LIST) && (wildcard.fType == NSCONSTRAINT_LIST)) {
             intersectWildcard.fType = NSCONSTRAINT_LIST;
-            intersectWildcard.fNamespaceList = intersect2sets(fNamespaceList,
-                    wildcard.fNamespaceList);
+            intersectWildcard.fNamespaceList = intersect2sets(fNamespaceList, wildcard.fNamespaceList);
         }
 
         // -5 If the two are negations of different namespace names, then the
@@ -421,10 +404,8 @@ public class XSWildcardDecl implements XSWildcard {
         // the value.
         // * when we have not(list), the operation is just
         // not(onelist+otherlist)
-        else if (fType == NSCONSTRAINT_NOT
-                && wildcard.fType == NSCONSTRAINT_NOT) {
-            if (fNamespaceList[0] != ABSENT
-                    && wildcard.fNamespaceList[0] != ABSENT)
+        else if (fType == NSCONSTRAINT_NOT && wildcard.fType == NSCONSTRAINT_NOT) {
+            if (fNamespaceList[0] != ABSENT && wildcard.fNamespaceList[0] != ABSENT)
                 return null;
 
             XSWildcardDecl other = this;
@@ -456,8 +437,7 @@ public class XSWildcardDecl implements XSWildcard {
             // (we are assuming that there are no duplicate items in a list)
             if (fNamespaceList.length == wildcard.fNamespaceList.length) {
                 for (int i = 0; i < fNamespaceList.length; i++) {
-                    if (!elementInSet(fNamespaceList[i],
-                            wildcard.fNamespaceList))
+                    if (!elementInSet(fNamespaceList[i], wildcard.fNamespaceList))
                         return false;
                 }
                 return true;
@@ -598,8 +578,7 @@ public class XSWildcardDecl implements XSWildcard {
      * NOT_NSCONSTRAINT, the list contains disallowed namespaces.
      */
     public StringList getNsConstraintList() {
-        return new StringListImpl(fNamespaceList, fNamespaceList == null ? 0
-                : fNamespaceList.length);
+        return new StringListImpl(fNamespaceList, fNamespaceList == null ? 0 : fNamespaceList.length);
     }
 
     /**
@@ -630,16 +609,14 @@ public class XSWildcardDecl implements XSWildcard {
      * Optional. Annotation.
      */
     public XSAnnotation getAnnotation() {
-        return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
-                : null;
+        return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
     }
 
     /**
      * Optional. Annotations.
      */
     public XSObjectList getAnnotations() {
-        return (fAnnotations != null) ? fAnnotations
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
     /**

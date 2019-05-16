@@ -16,7 +16,6 @@ import com.sun.imageio.stream.StreamCloser;
  * An implementation of <code>ImageOutputStream</code> that writes its output to
  * a regular <code>OutputStream</code>. A file is used to cache data until it is
  * flushed to the output stream.
- *
  */
 public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
 
@@ -38,7 +37,6 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
     /**
      * Constructs a <code>FileCacheImageOutputStream</code> that will write to a
      * given <code>outputStream</code>.
-     *
      * <p>
      * A temporary file is used as a cache. If <code>cacheDir</code>is non-
      * <code>null</code> and is a directory, the file will be created there. If
@@ -47,25 +45,23 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
      * <code>File.createTempFile</code> for details).
      *
      * @param stream
-     *                 an <code>OutputStream</code> to write to.
+     *        an <code>OutputStream</code> to write to.
      * @param cacheDir
-     *                 a <code>File</code> indicating where the cache file
-     *                 should be
-     *                 created, or <code>null</code> to use the system
-     *                 directory.
-     *
+     *        a <code>File</code> indicating where the cache file
+     *        should be
+     *        created, or <code>null</code> to use the system
+     *        directory.
      * @exception IllegalArgumentException
-     *                                     if <code>stream</code> is
-     *                                     <code>null</code>.
+     *            if <code>stream</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if <code>cacheDir</code> is
-     *                                     non-<code>null</code> but is
-     *                                     not a directory.
+     *            if <code>cacheDir</code> is
+     *            non-<code>null</code> but is
+     *            not a directory.
      * @exception IOException
-     *                                     if a cache file cannot be created.
+     *            if a cache file cannot be created.
      */
-    public FileCacheImageOutputStream(OutputStream stream, File cacheDir)
-            throws IOException {
+    public FileCacheImageOutputStream(OutputStream stream, File cacheDir) throws IOException {
         if (stream == null) {
             throw new IllegalArgumentException("stream == null!");
         }
@@ -76,8 +72,7 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
         if (cacheDir == null)
             this.cacheFile = Files.createTempFile("imageio", ".tmp").toFile();
         else
-            this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio",
-                    ".tmp").toFile();
+            this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio", ".tmp").toFile();
         this.cache = new RandomAccessFile(cacheFile, "rw");
 
         this.closeAction = StreamCloser.createCloseAction(this);
@@ -101,8 +96,7 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
             throw new NullPointerException("b == null!");
         }
         if (off < 0 || len < 0 || off + len > b.length || off + len < 0) {
-            throw new IndexOutOfBoundsException(
-                    "off < 0 || len < 0 || off+len > b.length || off+len < 0!");
+            throw new IndexOutOfBoundsException("off < 0 || len < 0 || off+len > b.length || off+len < 0!");
         }
 
         bitOffset = 0;
@@ -148,10 +142,10 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
      * increased until a write is performed.
      *
      * @exception IndexOutOfBoundsException
-     *                                      if <code>pos</code> is smaller than
-     *                                      the flushed position.
+     *            if <code>pos</code> is smaller than
+     *            the flushed position.
      * @exception IOException
-     *                                      if any other I/O error occurs.
+     *            if any other I/O error occurs.
      */
     public void seek(long pos) throws IOException {
         checkClosed();
@@ -171,7 +165,6 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
      * caches data in order to allow seeking backwards.
      *
      * @return <code>true</code>.
-     *
      * @see #isCachedMemory
      * @see #isCachedFile
      */
@@ -184,7 +177,6 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
      * maintains a file cache.
      *
      * @return <code>true</code>.
-     *
      * @see #isCached
      * @see #isCachedMemory
      */
@@ -197,7 +189,6 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
      * not maintain a main memory cache.
      *
      * @return <code>false</code>.
-     *
      * @see #isCached
      * @see #isCachedFile
      */
@@ -211,7 +202,7 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
      * destination <code>OutputStream</code> is not closed.
      *
      * @exception IOException
-     *                        if an error occurs.
+     *            if an error occurs.
      */
     public void close() throws IOException {
         maxStreamPos = cache.length();

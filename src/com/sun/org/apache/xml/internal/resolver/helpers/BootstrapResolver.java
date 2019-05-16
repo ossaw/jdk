@@ -33,23 +33,19 @@ import org.xml.sax.InputSource;
 
 /**
  * A simple bootstrapping resolver.
- *
  * <p>
  * This class is used as the entity resolver when reading XML Catalogs. It
  * searches for the OASIS XML Catalog DTD, Relax NG Grammar and W3C XML Schema
  * as resources (e.g., in the resolver jar file).
  * </p>
- *
  * <p>
  * If you have your own DTDs or schemas, you can extend this class and set the
  * BootstrapResolver in your CatalogManager.
  * </p>
  *
  * @see com.sun.org.apache.xml.internal.resolver.CatalogManager
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  */
 public class BootstrapResolver implements EntityResolver, URIResolver {
     /** URI of the W3C XML Schema for OASIS XML Catalog files. */
@@ -75,21 +71,18 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
 
     /** Constructor. */
     public BootstrapResolver() {
-        URL url = this.getClass().getResource(
-                "/com/sun/org/apache/xml/internal/resolver/etc/catalog.dtd");
+        URL url = this.getClass().getResource("/com/sun/org/apache/xml/internal/resolver/etc/catalog.dtd");
         if (url != null) {
             publicMap.put(xmlCatalogPubId, url.toString());
             systemMap.put(xmlCatalogSysId, url.toString());
         }
 
-        url = this.getClass().getResource(
-                "/com/sun/org/apache/xml/internal/resolver/etc/catalog.rng");
+        url = this.getClass().getResource("/com/sun/org/apache/xml/internal/resolver/etc/catalog.rng");
         if (url != null) {
             uriMap.put(xmlCatalogRNG, url.toString());
         }
 
-        url = this.getClass().getResource(
-                "/com/sun/org/apache/xml/internal/resolver/etc/catalog.xsd");
+        url = this.getClass().getResource("/com/sun/org/apache/xml/internal/resolver/etc/catalog.xsd");
         if (url != null) {
             uriMap.put(xmlCatalogXSD, url.toString());
         }
@@ -136,8 +129,7 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
     }
 
     /** Transformer resolve API. */
-    public Source resolve(String href, String base)
-            throws TransformerException {
+    public Source resolve(String href, String base) throws TransformerException {
 
         String uri = href;
         String fragment = null;
@@ -161,8 +153,7 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
                     result = url.toString();
                 } else {
                     URL baseURL = new URL(base);
-                    url = (href.length() == 0 ? baseURL
-                            : new URL(baseURL, uri));
+                    url = (href.length() == 0 ? baseURL : new URL(baseURL, uri));
                     result = url.toString();
                 }
             } catch (java.net.MalformedURLException mue) {
@@ -172,8 +163,7 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
                     // don't bother if the absBase isn't different!
                     return resolve(href, absBase);
                 } else {
-                    throw new TransformerException("Malformed URL " + href
-                            + "(base " + base + ")", mue);
+                    throw new TransformerException("Malformed URL " + href + "(base " + base + ")", mue);
                 }
             }
         }

@@ -59,12 +59,10 @@ import com.sun.org.apache.bcel.internal.classfile.*;
 
 /**
  * The repository maintains information about which classes have been loaded.
- *
  * It loads its data from the ClassLoader implementation passed into its
  * constructor.
  *
  * @see com.sun.org.apache.bcel.internal.Repository
- *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  * @author David Dixon-Peugh
  */

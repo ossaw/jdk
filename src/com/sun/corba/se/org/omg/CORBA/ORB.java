@@ -21,20 +21,19 @@ abstract public class ORB extends org.omg.CORBA_2_3.ORB {
      * <code>YY</code>.
      *
      * @param id
-     *            The ID by which the initial reference will be known.
+     *        The ID by which the initial reference will be known.
      * @param obj
-     *            The initial reference itself.
+     *        The initial reference itself.
      * @throws InvalidName
-     *                     if this operation is called with an empty string id
-     *                     or this
-     *                     operation is called with an id that is already
-     *                     registered,
-     *                     including the default names defined by OMG.
+     *         if this operation is called with an empty string id
+     *         or this
+     *         operation is called with an id that is already
+     *         registered,
+     *         including the default names defined by OMG.
      * @throws BAD_PARAM
-     *                     if the obj parameter is null.
+     *         if the obj parameter is null.
      */
-    public void register_initial_reference(String id, org.omg.CORBA.Object obj)
-            throws InvalidName {
+    public void register_initial_reference(String id, org.omg.CORBA.Object obj) throws InvalidName {
         throw new org.omg.CORBA.NO_IMPLEMENT();
     }
 }

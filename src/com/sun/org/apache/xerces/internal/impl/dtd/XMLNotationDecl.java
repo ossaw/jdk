@@ -82,8 +82,7 @@ public class XMLNotationDecl {
      * @param publicId
      * @param systemId
      */
-    public void setValues(String name, String publicId, String systemId,
-            String baseSystemId) {
+    public void setValues(String name, String publicId, String systemId, String baseSystemId) {
         this.name = name;
         this.publicId = publicId;
         this.systemId = systemId;

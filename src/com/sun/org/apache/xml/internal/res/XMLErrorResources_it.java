@@ -175,26 +175,21 @@ public class XMLErrorResources_it extends ListResourceBundle {
 
             { ER_CANNOT_OVERWRITE_CAUSE, "Impossibile sovrascrivere la causa" },
 
-            { ER_NO_DEFAULT_IMPL,
-                    "Nessuna implementazione predefinita trovata " },
+            { ER_NO_DEFAULT_IMPL, "Nessuna implementazione predefinita trovata " },
 
-            { ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
-                    "ChunkedIntArray({0}) non supportato al momento" },
+            { ER_CHUNKEDINTARRAY_NOT_SUPPORTED, "ChunkedIntArray({0}) non supportato al momento" },
 
             { ER_OFFSET_BIGGER_THAN_SLOT, "Offset pi\u00F9 grande dello slot" },
 
             { ER_COROUTINE_NOT_AVAIL, "Co-routine non disponibile, ID={0}" },
 
-            { ER_COROUTINE_CO_EXIT,
-                    "CoroutineManager ha ricevuto una richiesta co_exit()" },
+            { ER_COROUTINE_CO_EXIT, "CoroutineManager ha ricevuto una richiesta co_exit()" },
 
-            { ER_COJOINROUTINESET_FAILED,
-                    "co_joinCoroutineSet() non riuscito" },
+            { ER_COJOINROUTINESET_FAILED, "co_joinCoroutineSet() non riuscito" },
 
             { ER_COROUTINE_PARAM, "Errore del parametro di co-routine ({0})" },
 
-            { ER_PARSER_DOTERMINATE_ANSWERS,
-                    "\nIMPREVISTO: risposte doTerminate del parser {0}" },
+            { ER_PARSER_DOTERMINATE_ANSWERS, "\nIMPREVISTO: risposte doTerminate del parser {0}" },
 
             { ER_NO_PARSE_CALL_WHILE_PARSING,
                     "impossibile richiamare parse mentre \u00E8 in corso un'analisi" },
@@ -205,11 +200,9 @@ public class XMLErrorResources_it extends ListResourceBundle {
             { ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
                     "Errore: l''iteratore per l''asse {0} non \u00E8 implementato " },
 
-            { ER_ITERATOR_CLONE_NOT_SUPPORTED,
-                    "Duplicazione dell'iteratore non supportata" },
+            { ER_ITERATOR_CLONE_NOT_SUPPORTED, "Duplicazione dell'iteratore non supportata" },
 
-            { ER_UNKNOWN_AXIS_TYPE,
-                    "Tipo di asse trasversale sconosciuto: {0}" },
+            { ER_UNKNOWN_AXIS_TYPE, "Tipo di asse trasversale sconosciuto: {0}" },
 
             { ER_AXIS_NOT_SUPPORTED, "Asse trasversale non supportato: {0}" },
 
@@ -217,23 +210,18 @@ public class XMLErrorResources_it extends ListResourceBundle {
 
             { ER_NOT_SUPPORTED, "Non supportato: {0}" },
 
-            { ER_NODE_NON_NULL,
-                    "Il nodo deve essere non nullo per getDTMHandleFromNode" },
+            { ER_NODE_NON_NULL, "Il nodo deve essere non nullo per getDTMHandleFromNode" },
 
-            { ER_COULD_NOT_RESOLVE_NODE,
-                    "Impossibile risolvere il nodo in un handle" },
+            { ER_COULD_NOT_RESOLVE_NODE, "Impossibile risolvere il nodo in un handle" },
 
             { ER_STARTPARSE_WHILE_PARSING,
                     "impossibile richiamare startParse mentre \u00E8 in corso un'analisi" },
 
-            { ER_STARTPARSE_NEEDS_SAXPARSER,
-                    "startParse richiede un valore non nullo per SAXParser" },
+            { ER_STARTPARSE_NEEDS_SAXPARSER, "startParse richiede un valore non nullo per SAXParser" },
 
-            { ER_COULD_NOT_INIT_PARSER,
-                    "impossibile inizializzare il parser con" },
+            { ER_COULD_NOT_INIT_PARSER, "impossibile inizializzare il parser con" },
 
-            { ER_EXCEPTION_CREATING_POOL,
-                    "eccezione durante la creazione di una nuova istanza per il pool" },
+            { ER_EXCEPTION_CREATING_POOL, "eccezione durante la creazione di una nuova istanza per il pool" },
 
             { ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                     "Il percorso contiene sequenza di escape non valida" },
@@ -244,38 +232,30 @@ public class XMLErrorResources_it extends ListResourceBundle {
 
             { ER_NO_SCHEME_INURI, "Nessuno schema trovato nell'URI" },
 
-            { ER_PATH_INVALID_CHAR,
-                    "Il percorso contiene un carattere non valido: {0}" },
+            { ER_PATH_INVALID_CHAR, "Il percorso contiene un carattere non valido: {0}" },
 
-            { ER_SCHEME_FROM_NULL_STRING,
-                    "Impossibile impostare lo schema da una stringa nulla" },
+            { ER_SCHEME_FROM_NULL_STRING, "Impossibile impostare lo schema da una stringa nulla" },
 
             { ER_SCHEME_NOT_CONFORMANT, "Lo schema non \u00E8 conforme." },
 
-            { ER_HOST_ADDRESS_NOT_WELLFORMED,
-                    "Host non \u00E8 un indirizzo corretto" },
+            { ER_HOST_ADDRESS_NOT_WELLFORMED, "Host non \u00E8 un indirizzo corretto" },
 
-            { ER_PORT_WHEN_HOST_NULL,
-                    "La porta non pu\u00F2 essere impostata se l'host \u00E8 nullo" },
+            { ER_PORT_WHEN_HOST_NULL, "La porta non pu\u00F2 essere impostata se l'host \u00E8 nullo" },
 
             { ER_INVALID_PORT, "Numero di porta non valido" },
 
-            { ER_FRAG_FOR_GENERIC_URI,
-                    "Il frammento pu\u00F2 essere impostato solo per un URI generico" },
+            { ER_FRAG_FOR_GENERIC_URI, "Il frammento pu\u00F2 essere impostato solo per un URI generico" },
 
             { ER_FRAG_WHEN_PATH_NULL,
                     "Il frammento non pu\u00F2 essere impostato se il percorso \u00E8 nullo" },
 
-            { ER_FRAG_INVALID_CHAR,
-                    "Il frammento contiene un carattere non valido" },
+            { ER_FRAG_INVALID_CHAR, "Il frammento contiene un carattere non valido" },
 
             { ER_PARSER_IN_USE, "Parser gi\u00E0 in uso" },
 
-            { ER_CANNOT_CHANGE_WHILE_PARSING,
-                    "Impossibile modificare {0} {1} durante l''analisi" },
+            { ER_CANNOT_CHANGE_WHILE_PARSING, "Impossibile modificare {0} {1} durante l''analisi" },
 
-            { ER_SELF_CAUSATION_NOT_PERMITTED,
-                    "Creazione automatica della causa non consentita" },
+            { ER_SELF_CAUSATION_NOT_PERMITTED, "Creazione automatica della causa non consentita" },
 
             { ER_NO_USERINFO_IF_NO_HOST,
                     "Userinfo non pu\u00F2 essere specificato se l'host non \u00E8 specificato" },
@@ -289,19 +269,16 @@ public class XMLErrorResources_it extends ListResourceBundle {
             { ER_NO_FRAGMENT_STRING_IN_PATH,
                     "Il frammento non pu\u00F2 essere specificato sia nel percorso che nel frammento" },
 
-            { ER_CANNOT_INIT_URI_EMPTY_PARMS,
-                    "Impossibile inizializzare l'URI con i parametri vuoti" },
+            { ER_CANNOT_INIT_URI_EMPTY_PARMS, "Impossibile inizializzare l'URI con i parametri vuoti" },
 
             { ER_METHOD_NOT_SUPPORTED, "Metodo attualmente non supportato " },
 
             { ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
                     "IncrementalSAXSource_Filter attualmente non riavviabile" },
 
-            { ER_XMLRDR_NOT_BEFORE_STARTPARSE,
-                    "XMLReader non si trova prima della richiesta startParse" },
+            { ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader non si trova prima della richiesta startParse" },
 
-            { ER_AXIS_TRAVERSER_NOT_SUPPORTED,
-                    "Asse trasversale non supportato: {0}" },
+            { ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Asse trasversale non supportato: {0}" },
 
             { ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
                     "ListingErrorHandler creato con PrintWriter nullo." },
@@ -310,11 +287,9 @@ public class XMLErrorResources_it extends ListResourceBundle {
 
             { ER_LOCATION_UNKNOWN, "Posizione sconosciuta dell'errore" },
 
-            { ER_PREFIX_MUST_RESOLVE,
-                    "Il prefisso deve essere risolto in uno spazio di nomi: {0}" },
+            { ER_PREFIX_MUST_RESOLVE, "Il prefisso deve essere risolto in uno spazio di nomi: {0}" },
 
-            { ER_CREATEDOCUMENT_NOT_SUPPORTED,
-                    "createDocument() non supportato in XPathContext" },
+            { ER_CREATEDOCUMENT_NOT_SUPPORTED, "createDocument() non supportato in XPathContext" },
 
             { ER_CHILD_HAS_NO_OWNER_DOCUMENT,
                     "L'elemento figlio dell'attributo non dispone di un documento proprietario." },
@@ -325,8 +300,7 @@ public class XMLErrorResources_it extends ListResourceBundle {
             { ER_CANT_OUTPUT_TEXT_BEFORE_DOC,
                     "Avvertenza: impossibile creare l'output del testo prima dell'elemento del documento. Operazione ignorata..." },
 
-            { ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
-                    "Non possono esistere pi\u00F9 radici in un DOM." },
+            { ER_CANT_HAVE_MORE_THAN_ONE_ROOT, "Non possono esistere pi\u00F9 radici in un DOM." },
 
             { ER_ARG_LOCALNAME_NULL, "L'argomento 'localName' \u00E8 nullo" },
 
@@ -335,38 +309,31 @@ public class XMLErrorResources_it extends ListResourceBundle {
             // The localname is the portion after the optional colon; the
             // message indicates
             // that there is a problem with that part of the QNAME.
-            { ER_ARG_LOCALNAME_INVALID,
-                    "Localname in QNAME deve essere un NCName valido" },
+            { ER_ARG_LOCALNAME_INVALID, "Localname in QNAME deve essere un NCName valido" },
 
             // Note to translators: A QNAME has the syntactic form
             // [NCName:]NCName
             // The prefix is the portion before the optional colon; the message
             // indicates
             // that there is a problem with that part of the QNAME.
-            { ER_ARG_PREFIX_INVALID,
-                    "Il prefisso in QNAME deve essere un NCName valido" },
+            { ER_ARG_PREFIX_INVALID, "Il prefisso in QNAME deve essere un NCName valido" },
 
-            { ER_NAME_CANT_START_WITH_COLON,
-                    "Il nome non pu\u00F2 iniziare con i due punti" },
+            { ER_NAME_CANT_START_WITH_COLON, "Il nome non pu\u00F2 iniziare con i due punti" },
 
-            { "BAD_CODE", "Parametro per createMessage fuori limite" }, {
-                    "FORMAT_FAILED",
-                    "Eccezione durante la chiamata messageFormat" }, { "line",
-                            "N. riga" }, { "column", "N. colonna" },
+            { "BAD_CODE", "Parametro per createMessage fuori limite" }, { "FORMAT_FAILED",
+                    "Eccezione durante la chiamata messageFormat" }, { "line", "N. riga" }, { "column",
+                            "N. colonna" },
 
             { ER_SERIALIZER_NOT_CONTENTHANDLER,
                     "La classe serializzatore ''{0}'' non implementa org.xml.sax.ContentHandler." },
 
-            { ER_RESOURCE_COULD_NOT_FIND,
-                    "Risorsa [ {0} ] non trovata.\n {1}" },
+            { ER_RESOURCE_COULD_NOT_FIND, "Risorsa [ {0} ] non trovata.\n {1}" },
 
-            { ER_RESOURCE_COULD_NOT_LOAD,
-                    "Impossibile caricare la risorsa [ {0} ]: {1} \n {2} \t {3}" },
+            { ER_RESOURCE_COULD_NOT_LOAD, "Impossibile caricare la risorsa [ {0} ]: {1} \n {2} \t {3}" },
 
             { ER_BUFFER_SIZE_LESSTHAN_ZERO, "Dimensione buffer <=0" },
 
-            { ER_INVALID_UTF16_SURROGATE,
-                    "Rilevato surrogato UTF-16 non valido: {0}?" },
+            { ER_INVALID_UTF16_SURROGATE, "Rilevato surrogato UTF-16 non valido: {0}?" },
 
             { ER_OIERROR, "Errore IO" },
 
@@ -378,16 +345,14 @@ public class XMLErrorResources_it extends ListResourceBundle {
              * namespace prefix that was undefined. The value of the
              * substitution text is the name of the prefix.
              */
-            { ER_NAMESPACE_PREFIX,
-                    "Lo spazio di nomi per il prefisso ''{0}'' non \u00E8 stato dichiarato." },
+            { ER_NAMESPACE_PREFIX, "Lo spazio di nomi per il prefisso ''{0}'' non \u00E8 stato dichiarato." },
             /*
              * Note to translators: This message is reported if the stylesheet
              * being processed attempted to construct an XML document with an
              * attribute in a place other than on an element. The substitution
              * text specifies the name of the attribute.
              */
-            { ER_STRAY_ATTRIBUTE,
-                    "Attributo ''{0}'' al di fuori dell''elemento." },
+            { ER_STRAY_ATTRIBUTE, "Attributo ''{0}'' al di fuori dell''elemento." },
 
             /*
              * Note to translators: As with the preceding message, a namespace

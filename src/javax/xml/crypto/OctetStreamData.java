@@ -24,10 +24,10 @@ public class OctetStreamData implements Data {
      * Creates a new <code>OctetStreamData</code>.
      *
      * @param octetStream
-     *                    the input stream containing the octets
+     *        the input stream containing the octets
      * @throws NullPointerException
-     *                              if <code>octetStream</code> is
-     *                              <code>null</code>
+     *         if <code>octetStream</code> is
+     *         <code>null</code>
      */
     public OctetStreamData(InputStream octetStream) {
         if (octetStream == null) {
@@ -40,19 +40,18 @@ public class OctetStreamData implements Data {
      * Creates a new <code>OctetStreamData</code>.
      *
      * @param octetStream
-     *                    the input stream containing the octets
+     *        the input stream containing the octets
      * @param uri
-     *                    the URI String identifying the data object (may be
-     *                    <code>null</code>)
+     *        the URI String identifying the data object (may be
+     *        <code>null</code>)
      * @param mimeType
-     *                    the MIME type associated with the data object (may be
-     *                    <code>null</code>)
+     *        the MIME type associated with the data object (may be
+     *        <code>null</code>)
      * @throws NullPointerException
-     *                              if <code>octetStream</code> is
-     *                              <code>null</code>
+     *         if <code>octetStream</code> is
+     *         <code>null</code>
      */
-    public OctetStreamData(InputStream octetStream, String uri,
-            String mimeType) {
+    public OctetStreamData(InputStream octetStream, String uri, String mimeType) {
         if (octetStream == null) {
             throw new NullPointerException("octetStream is null");
         }

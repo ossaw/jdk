@@ -61,8 +61,7 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class FieldInstruction extends FieldOrMethod implements
-        TypedInstruction {
+public abstract class FieldInstruction extends FieldOrMethod implements TypedInstruction {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -71,7 +70,7 @@ public abstract class FieldInstruction extends FieldOrMethod implements
 
     /**
      * @param index
-     *              to constant pool
+     *        to constant pool
      */
     protected FieldInstruction(short opcode, int index) {
         super(opcode, index);
@@ -81,9 +80,8 @@ public abstract class FieldInstruction extends FieldOrMethod implements
      * @return mnemonic for instruction with symbolic references resolved
      */
     public String toString(ConstantPool cp) {
-        return com.sun.org.apache.bcel.internal.Constants.OPCODE_NAMES[opcode]
-                + " " + cp.constantToString(index,
-                        com.sun.org.apache.bcel.internal.Constants.CONSTANT_Fieldref);
+        return com.sun.org.apache.bcel.internal.Constants.OPCODE_NAMES[opcode] + " " + cp.constantToString(
+                index, com.sun.org.apache.bcel.internal.Constants.CONSTANT_Fieldref);
     }
 
     /**

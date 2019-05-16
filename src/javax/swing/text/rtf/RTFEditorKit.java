@@ -43,19 +43,18 @@ public class RTFEditorKit extends StyledEditorKit {
      * appropriate for this kind of content handler.
      *
      * @param in
-     *            The stream to read from
+     *        The stream to read from
      * @param doc
-     *            The destination for the insertion.
+     *        The destination for the insertion.
      * @param pos
-     *            The location in the document to place the content.
+     *        The location in the document to place the content.
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    public void read(InputStream in, Document doc, int pos) throws IOException,
-            BadLocationException {
+    public void read(InputStream in, Document doc, int pos) throws IOException, BadLocationException {
 
         if (doc instanceof StyledDocument) {
             // PENDING(prinz) this needs to be fixed to
@@ -74,21 +73,21 @@ public class RTFEditorKit extends StyledEditorKit {
      * for this kind of content handler.
      *
      * @param out
-     *            The stream to write to
+     *        The stream to write to
      * @param doc
-     *            The source for the write.
+     *        The source for the write.
      * @param pos
-     *            The location in the document to fetch the content.
+     *        The location in the document to fetch the content.
      * @param len
-     *            The amount to write out.
+     *        The amount to write out.
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    public void write(OutputStream out, Document doc, int pos, int len)
-            throws IOException, BadLocationException {
+    public void write(OutputStream out, Document doc, int pos, int len) throws IOException,
+            BadLocationException {
 
         // PENDING(prinz) this needs to be fixed to
         // use the given document range.
@@ -100,19 +99,18 @@ public class RTFEditorKit extends StyledEditorKit {
      * text.
      *
      * @param in
-     *            The stream to read from
+     *        The stream to read from
      * @param doc
-     *            The destination for the insertion.
+     *        The destination for the insertion.
      * @param pos
-     *            The location in the document to place the content.
+     *        The location in the document to place the content.
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    public void read(Reader in, Document doc, int pos) throws IOException,
-            BadLocationException {
+    public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
 
         if (doc instanceof StyledDocument) {
             RTFReader rdr = new RTFReader((StyledDocument) doc);
@@ -128,21 +126,20 @@ public class RTFEditorKit extends StyledEditorKit {
      * Write content from a document to the given stream as plain text.
      *
      * @param out
-     *            The stream to write to
+     *        The stream to write to
      * @param doc
-     *            The source for the write.
+     *        The source for the write.
      * @param pos
-     *            The location in the document to fetch the content.
+     *        The location in the document to fetch the content.
      * @param len
-     *            The amount to write out.
+     *        The amount to write out.
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    public void write(Writer out, Document doc, int pos, int len)
-            throws IOException, BadLocationException {
+    public void write(Writer out, Document doc, int pos, int len) throws IOException, BadLocationException {
 
         throw new IOException("RTF is an 8-bit format");
     }

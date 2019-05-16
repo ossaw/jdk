@@ -17,7 +17,6 @@ import java.util.StringTokenizer;
  * specification of fractional seconds to a precision of nanoseconds. A
  * Timestamp also provides formatting and parsing operations to support the JDBC
  * escape syntax for timestamp values.
- *
  * <p>
  * The precision of a Timestamp object is calculated to be either:
  * <ul>
@@ -27,7 +26,6 @@ import java.util.StringTokenizer;
  * yyyy-mm-dd hh:mm:ss.[fff...] and <code>s</code> represents the scale of the
  * given Timestamp, its fractional seconds precision.
  * </ul>
- *
  * <P>
  * <B>Note:</B> This type is a composite of a <code>java.util.Date</code> and a
  * separate nanoseconds value. Only integral seconds are stored in the
@@ -55,27 +53,26 @@ public class Timestamp extends java.util.Date {
      * values.
      *
      * @param year
-     *               the year minus 1900
+     *        the year minus 1900
      * @param month
-     *               0 to 11
+     *        0 to 11
      * @param date
-     *               1 to 31
+     *        1 to 31
      * @param hour
-     *               0 to 23
+     *        0 to 23
      * @param minute
-     *               0 to 59
+     *        0 to 59
      * @param second
-     *               0 to 59
+     *        0 to 59
      * @param nano
-     *               0 to 999,999,999
+     *        0 to 999,999,999
      * @deprecated instead use the constructor
      *             <code>Timestamp(long millis)</code>
      * @exception IllegalArgumentException
-     *                                     if the nano argument is out of bounds
+     *            if the nano argument is out of bounds
      */
     @Deprecated
-    public Timestamp(int year, int month, int date, int hour, int minute,
-            int second, int nano) {
+    public Timestamp(int year, int month, int date, int hour, int minute, int second, int nano) {
         super(year, month, date, hour, minute, second);
         if (nano > 999999999 || nano < 0) {
             throw new IllegalArgumentException("nanos > 999999999 or < 0");
@@ -90,9 +87,9 @@ public class Timestamp extends java.util.Date {
      * <code>Timestamp</code> object.
      *
      * @param time
-     *             milliseconds since January 1, 1970, 00:00:00 GMT. A negative
-     *             number is the number of milliseconds before January 1, 1970,
-     *             00:00:00 GMT.
+     *        milliseconds since January 1, 1970, 00:00:00 GMT. A negative
+     *        number is the number of milliseconds before January 1, 1970,
+     *        00:00:00 GMT.
      * @see java.util.Calendar
      */
     public Timestamp(long time) {
@@ -109,7 +106,7 @@ public class Timestamp extends java.util.Date {
      * is <tt>time</tt> milliseconds after January 1, 1970 00:00:00 GMT.
      *
      * @param time
-     *             the number of milliseconds.
+     *        the number of milliseconds.
      * @see #getTime
      * @see #Timestamp(long time)
      * @see java.util.Calendar
@@ -146,11 +143,10 @@ public class Timestamp extends java.util.Date {
      * a <code>Timestamp</code> value.
      *
      * @param s
-     *          timestamp in format
-     *          <code>yyyy-[m]m-[d]d hh:mm:ss[.f...]</code>. The fractional
-     *          seconds may be omitted. The leading zero for <code>mm</code>
-     *          and <code>dd</code> may also be omitted.
-     *
+     *        timestamp in format
+     *        <code>yyyy-[m]m-[d]d hh:mm:ss[.f...]</code>. The fractional
+     *        seconds may be omitted. The leading zero for <code>mm</code>
+     *        and <code>dd</code> may also be omitted.
      * @return corresponding <code>Timestamp</code> value
      * @exception java.lang.IllegalArgumentException
      *            if the given argument does not have the format
@@ -209,20 +205,17 @@ public class Timestamp extends java.util.Date {
 
         // Convert the date
         boolean parsedDate = false;
-        if ((firstDash > 0) && (secondDash > 0) && (secondDash < date_s.length()
-                - 1)) {
+        if ((firstDash > 0) && (secondDash > 0) && (secondDash < date_s.length() - 1)) {
             String yyyy = date_s.substring(0, firstDash);
             String mm = date_s.substring(firstDash + 1, secondDash);
             String dd = date_s.substring(secondDash + 1);
-            if (yyyy.length() == YEAR_LENGTH && (mm.length() >= 1 && mm
-                    .length() <= MONTH_LENGTH) && (dd.length() >= 1 && dd
-                            .length() <= DAY_LENGTH)) {
+            if (yyyy.length() == YEAR_LENGTH && (mm.length() >= 1 && mm.length() <= MONTH_LENGTH) && (dd
+                    .length() >= 1 && dd.length() <= DAY_LENGTH)) {
                 year = Integer.parseInt(yyyy);
                 month = Integer.parseInt(mm);
                 day = Integer.parseInt(dd);
 
-                if ((month >= 1 && month <= MAX_MONTH) && (day >= 1
-                        && day <= MAX_DAY)) {
+                if ((month >= 1 && month <= MAX_MONTH) && (day >= 1 && day <= MAX_DAY)) {
                     parsedDate = true;
                 }
             }
@@ -232,14 +225,11 @@ public class Timestamp extends java.util.Date {
         }
 
         // Convert the time; default missing nanos
-        if ((firstColon > 0) & (secondColon > 0) & (secondColon < time_s
-                .length() - 1)) {
+        if ((firstColon > 0) & (secondColon > 0) & (secondColon < time_s.length() - 1)) {
             hour = Integer.parseInt(time_s.substring(0, firstColon));
-            minute = Integer.parseInt(time_s.substring(firstColon + 1,
-                    secondColon));
+            minute = Integer.parseInt(time_s.substring(firstColon + 1, secondColon));
             if ((period > 0) & (period < time_s.length() - 1)) {
-                second = Integer.parseInt(time_s.substring(secondColon + 1,
-                        period));
+                second = Integer.parseInt(time_s.substring(secondColon + 1, period));
                 nanos_s = time_s.substring(period + 1);
                 if (nanos_s.length() > 9)
                     throw new java.lang.IllegalArgumentException(formatError);
@@ -256,8 +246,7 @@ public class Timestamp extends java.util.Date {
             throw new java.lang.IllegalArgumentException(formatError);
         }
 
-        return new Timestamp(year - 1900, month - 1, day, hour, minute, second,
-                a_nanos);
+        return new Timestamp(year - 1900, month - 1, day, hour, minute, second, a_nanos);
     }
 
     /**
@@ -292,8 +281,7 @@ public class Timestamp extends java.util.Date {
         if (year < 1000) {
             // Add leading zeros
             yearString = "" + year;
-            yearString = yearZeros.substring(0, (4 - yearString.length()))
-                    + yearString;
+            yearString = yearZeros.substring(0, (4 - yearString.length())) + yearString;
         } else {
             yearString = "" + year;
         }
@@ -328,8 +316,7 @@ public class Timestamp extends java.util.Date {
             nanosString = Integer.toString(nanos);
 
             // Add leading zeros
-            nanosString = zeros.substring(0, (9 - nanosString.length()))
-                    + nanosString;
+            nanosString = zeros.substring(0, (9 - nanosString.length())) + nanosString;
 
             // Truncate trailing zeros
             char[] nanosChar = new char[nanosString.length()];
@@ -376,7 +363,7 @@ public class Timestamp extends java.util.Date {
      * given value.
      *
      * @param n
-     *          the new fractional seconds component
+     *        the new fractional seconds component
      * @exception java.lang.IllegalArgumentException
      *            if the given argument is greater than 999999999 or less
      *            than 0
@@ -394,7 +381,7 @@ public class Timestamp extends java.util.Date {
      * <code>Timestamp</code> object.
      *
      * @param ts
-     *           the <code>Timestamp</code> value to compare with
+     *        the <code>Timestamp</code> value to compare with
      * @return <code>true</code> if the given <code>Timestamp</code> object is
      *         equal to this <code>Timestamp</code> object; <code>false</code>
      *         otherwise
@@ -414,16 +401,14 @@ public class Timestamp extends java.util.Date {
     /**
      * Tests to see if this <code>Timestamp</code> object is equal to the given
      * object.
-     *
      * This version of the method <code>equals</code> has been added to fix the
      * incorrect signature of <code>Timestamp.equals(Timestamp)</code> and to
      * preserve backward compatibility with existing class files.
-     *
      * Note: This method is not symmetric with respect to the
      * <code>equals(Object)</code> method in the base class.
      *
      * @param ts
-     *           the <code>Object</code> value to compare with
+     *        the <code>Object</code> value to compare with
      * @return <code>true</code> if the given <code>Object</code> is an instance
      *         of a <code>Timestamp</code> that is equal to this
      *         <code>Timestamp</code> object; <code>false</code> otherwise
@@ -441,7 +426,7 @@ public class Timestamp extends java.util.Date {
      * given <code>Timestamp</code> object.
      *
      * @param ts
-     *           the <code>Timestamp</code> value to compare with
+     *        the <code>Timestamp</code> value to compare with
      * @return <code>true</code> if this <code>Timestamp</code> object is
      *         earlier; <code>false</code> otherwise
      */
@@ -454,7 +439,7 @@ public class Timestamp extends java.util.Date {
      * given <code>Timestamp</code> object.
      *
      * @param ts
-     *           the <code>Timestamp</code> value to compare with
+     *        the <code>Timestamp</code> value to compare with
      * @return <code>true</code> if this <code>Timestamp</code> object is later;
      *         <code>false</code> otherwise
      */
@@ -467,8 +452,8 @@ public class Timestamp extends java.util.Date {
      * <code>Timestamp</code> object.
      *
      * @param ts
-     *           the <code>Timestamp</code> object to be compared to this
-     *           <code>Timestamp</code> object
+     *        the <code>Timestamp</code> object to be compared to this
+     *        <code>Timestamp</code> object
      * @return the value <code>0</code> if the two <code>Timestamp</code>
      *         objects are equal; a value less than <code>0</code> if this
      *         <code>Timestamp</code> object is before the given argument; and a
@@ -479,8 +464,7 @@ public class Timestamp extends java.util.Date {
     public int compareTo(Timestamp ts) {
         long thisTime = this.getTime();
         long anotherTime = ts.getTime();
-        int i = (thisTime < anotherTime ? -1
-                : (thisTime == anotherTime ? 0 : 1));
+        int i = (thisTime < anotherTime ? -1 : (thisTime == anotherTime ? 0 : 1));
         if (i == 0) {
             if (nanos > ts.nanos) {
                 return 1;
@@ -496,14 +480,13 @@ public class Timestamp extends java.util.Date {
      * <code>Date</code> object.
      *
      * @param o
-     *          the <code>Date</code> to be compared to this
-     *          <code>Timestamp</code> object
+     *        the <code>Date</code> to be compared to this
+     *        <code>Timestamp</code> object
      * @return the value <code>0</code> if this <code>Timestamp</code> object
      *         and the given object are equal; a value less than <code>0</code>
      *         if this <code>Timestamp</code> object is before the given
      *         argument; and a value greater than <code>0</code> if this
      *         <code>Timestamp</code> object is after the given argument.
-     *
      * @since 1.5
      */
     public int compareTo(java.util.Date o) {
@@ -522,10 +505,8 @@ public class Timestamp extends java.util.Date {
 
     /**
      * {@inheritDoc}
-     *
      * The {@code hashCode} method uses the underlying {@code java.util.Date}
      * implementation and therefore does not include nanos in its computation.
-     *
      */
     @Override
     public int hashCode() {
@@ -545,17 +526,17 @@ public class Timestamp extends java.util.Date {
      * in the local time zone.
      *
      * @param dateTime
-     *                 a {@code LocalDateTime} to convert
+     *        a {@code LocalDateTime} to convert
      * @return a {@code Timestamp} object
      * @exception NullPointerException
-     *                                 if {@code dateTime} is null.
+     *            if {@code dateTime} is null.
      * @since 1.8
      */
     @SuppressWarnings("deprecation")
     public static Timestamp valueOf(LocalDateTime dateTime) {
-        return new Timestamp(dateTime.getYear() - 1900, dateTime.getMonthValue()
-                - 1, dateTime.getDayOfMonth(), dateTime.getHour(), dateTime
-                        .getMinute(), dateTime.getSecond(), dateTime.getNano());
+        return new Timestamp(dateTime.getYear() - 1900, dateTime.getMonthValue() - 1, dateTime
+                .getDayOfMonth(), dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond(), dateTime
+                        .getNano());
     }
 
     /**
@@ -571,8 +552,8 @@ public class Timestamp extends java.util.Date {
      */
     @SuppressWarnings("deprecation")
     public LocalDateTime toLocalDateTime() {
-        return LocalDateTime.of(getYear() + 1900, getMonth() + 1, getDate(),
-                getHours(), getMinutes(), getSeconds(), getNanos());
+        return LocalDateTime.of(getYear() + 1900, getMonth() + 1, getDate(), getHours(), getMinutes(),
+                getSeconds(), getNanos());
     }
 
     /**
@@ -583,21 +564,20 @@ public class Timestamp extends java.util.Date {
      * will throw an exception.
      *
      * @param instant
-     *                the instant to convert
+     *        the instant to convert
      * @return an {@code Timestamp} representing the same point on the time-line
      *         as the provided instant
      * @exception NullPointerException
-     *                                     if {@code instant} is null.
+     *            if {@code instant} is null.
      * @exception IllegalArgumentException
-     *                                     if the instant is too large to
-     *                                     represent as a
-     *                                     {@code Timesamp}
+     *            if the instant is too large to
+     *            represent as a
+     *            {@code Timesamp}
      * @since 1.8
      */
     public static Timestamp from(Instant instant) {
         try {
-            Timestamp stamp = new Timestamp(instant.getEpochSecond()
-                    * MILLIS_PER_SECOND);
+            Timestamp stamp = new Timestamp(instant.getEpochSecond() * MILLIS_PER_SECOND);
             stamp.nanos = instant.getNano();
             return stamp;
         } catch (ArithmeticException ex) {
@@ -616,7 +596,6 @@ public class Timestamp extends java.util.Date {
      */
     @Override
     public Instant toInstant() {
-        return Instant.ofEpochSecond(super.getTime() / MILLIS_PER_SECOND,
-                nanos);
+        return Instant.ofEpochSecond(super.getTime() / MILLIS_PER_SECOND, nanos);
     }
 }

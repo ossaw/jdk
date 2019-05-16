@@ -23,7 +23,7 @@ public interface PrintServiceAttributeListener {
      * notifications may be blocked.
      * 
      * @param psae
-     *             the event being notified
+     *        the event being notified
      */
     public void attributeUpdate(PrintServiceAttributeEvent psae);
 

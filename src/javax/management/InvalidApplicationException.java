@@ -28,7 +28,7 @@ public class InvalidApplicationException extends Exception {
      * <CODE>Object</CODE>.
      *
      * @param val
-     *            the detail message of this exception.
+     *        the detail message of this exception.
      */
     public InvalidApplicationException(Object val) {
         this.val = val;

@@ -14,8 +14,7 @@ package org.omg.CORBA;
  * GMT+00:00
  */
 
-public final class LongLongSeqHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class LongLongSeqHolder implements org.omg.CORBA.portable.Streamable {
     public long value[] = null;
 
     public LongLongSeqHolder() {}

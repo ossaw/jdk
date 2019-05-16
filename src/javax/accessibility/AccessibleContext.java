@@ -49,11 +49,8 @@ import java.awt.IllegalComponentStateException;
  * support this interface.
  * </ul>
  *
- *
  * @beaninfo attribute: isContainer false description: Minimal information that
  *           all accessible objects return
- *
- * 
  * @author Peter Korn
  * @author Hans Muller
  * @author Willie Walker
@@ -68,21 +65,17 @@ public abstract class AccessibleContext {
     private volatile AppContext targetAppContext;
 
     static {
-        AWTAccessor.setAccessibleContextAccessor(
-                new AWTAccessor.AccessibleContextAccessor() {
-                    @Override
-                    public void setAppContext(
-                            AccessibleContext accessibleContext,
-                            AppContext appContext) {
-                        accessibleContext.targetAppContext = appContext;
-                    }
+        AWTAccessor.setAccessibleContextAccessor(new AWTAccessor.AccessibleContextAccessor() {
+            @Override
+            public void setAppContext(AccessibleContext accessibleContext, AppContext appContext) {
+                accessibleContext.targetAppContext = appContext;
+            }
 
-                    @Override
-                    public AppContext getAppContext(
-                            AccessibleContext accessibleContext) {
-                        return accessibleContext.targetAppContext;
-                    }
-                });
+            @Override
+            public AppContext getAppContext(AccessibleContext accessibleContext) {
+                return accessibleContext.targetAppContext;
+            }
+        });
     }
 
     /**
@@ -306,7 +299,6 @@ public abstract class AccessibleContext {
      * @see #getAccessibleText
      * @see #addPropertyChangeListener
      * @see AccessibleTextSequence
-     *
      * @since 1.5
      */
     public static final String ACCESSIBLE_INVALIDATE_CHILDREN = "accessibleInvalidateChildren";
@@ -327,7 +319,6 @@ public abstract class AccessibleContext {
      * @see #getAccessibleText
      * @see #addPropertyChangeListener
      * @see AccessibleAttributeSequence
-     *
      * @since 1.5
      */
     public static final String ACCESSIBLE_TEXT_ATTRIBUTES_CHANGED = "accessibleTextAttributesChanged";
@@ -338,7 +329,6 @@ public abstract class AccessibleContext {
      * newValue is the new component bounds.
      *
      * @see #addPropertyChangeListener
-     *
      * @since 1.5
      */
     public static final String ACCESSIBLE_COMPONENT_BOUNDS_CHANGED = "accessibleComponentBoundsChanged";
@@ -396,7 +386,6 @@ public abstract class AccessibleContext {
      *
      * @return the localized name of the object; null if this object does not
      *         have a name
-     *
      * @see #setAccessibleName
      */
     public String getAccessibleName() {
@@ -409,11 +398,9 @@ public abstract class AccessibleContext {
      * property.
      *
      * @param s
-     *          the new localized name of the object.
-     *
+     *        the new localized name of the object.
      * @see #getAccessibleName
      * @see #addPropertyChangeListener
-     *
      * @beaninfo preferred: true description: Sets the accessible name for the
      *           component.
      */
@@ -432,7 +419,6 @@ public abstract class AccessibleContext {
      *
      * @return the localized description of the object; null if this object does
      *         not have a description
-     *
      * @see #setAccessibleDescription
      */
     public String getAccessibleDescription() {
@@ -445,19 +431,16 @@ public abstract class AccessibleContext {
      * ACCESSIBLE_DESCRIPTION_PROPERTY property.
      *
      * @param s
-     *          the new localized description of the object
-     *
+     *        the new localized description of the object
      * @see #setAccessibleName
      * @see #addPropertyChangeListener
-     *
      * @beaninfo preferred: true description: Sets the accessible description
      *           for the component.
      */
     public void setAccessibleDescription(String s) {
         String oldDescription = accessibleDescription;
         accessibleDescription = s;
-        firePropertyChange(ACCESSIBLE_DESCRIPTION_PROPERTY, oldDescription,
-                accessibleDescription);
+        firePropertyChange(ACCESSIBLE_DESCRIPTION_PROPERTY, oldDescription, accessibleDescription);
     }
 
     /**
@@ -512,7 +495,7 @@ public abstract class AccessibleContext {
      * only be called by the parent of the accessible child.
      *
      * @param a
-     *          - Accessible to be set as the parent
+     *        - Accessible to be set as the parent
      */
     public void setAccessibleParent(Accessible a) {
         accessibleParent = a;
@@ -523,7 +506,6 @@ public abstract class AccessibleContext {
      *
      * @return the 0-based index of this object in its parent; -1 if this object
      *         does not have an accessible parent.
-     *
      * @see #getAccessibleParent
      * @see #getAccessibleChildrenCount
      * @see #getAccessibleChild
@@ -544,7 +526,7 @@ public abstract class AccessibleContext {
      * on.
      *
      * @param i
-     *          zero-based index of child
+     *        zero-based index of child
      * @return the Accessible child of the object
      * @see #getAccessibleChildrenCount
      */
@@ -556,14 +538,13 @@ public abstract class AccessibleContext {
      *
      * @return this component's locale. If this component does not have a
      *         locale, the locale of its parent is returned.
-     *
      * @exception IllegalComponentStateException
-     *                                           If the Component does not have
-     *                                           its own locale and has not
-     *                                           yet been added to a containment
-     *                                           hierarchy such that the
-     *                                           locale can be determined from
-     *                                           the containing parent.
+     *            If the Component does not have
+     *            its own locale and has not
+     *            yet been added to a containment
+     *            hierarchy such that the
+     *            locale can be determined from
+     *            the containing parent.
      */
     public abstract Locale getLocale() throws IllegalComponentStateException;
 
@@ -579,9 +560,8 @@ public abstract class AccessibleContext {
      * @see #ACCESSIBLE_SELECTION_PROPERTY
      * @see #ACCESSIBLE_TEXT_PROPERTY
      * @see #ACCESSIBLE_VISIBLE_DATA_PROPERTY
-     *
      * @param listener
-     *                 The PropertyChangeListener to be added
+     *        The PropertyChangeListener to be added
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         if (accessibleChangeSupport == null) {
@@ -595,7 +575,7 @@ public abstract class AccessibleContext {
      * PropertyChangeListener that was registered for all properties.
      *
      * @param listener
-     *                 The PropertyChangeListener to be removed
+     *        The PropertyChangeListener to be removed
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         if (accessibleChangeSupport != null) {
@@ -714,12 +694,12 @@ public abstract class AccessibleContext {
      * an application program.
      * 
      * @param propertyName
-     *                     The programmatic name of the property that was
-     *                     changed.
+     *        The programmatic name of the property that was
+     *        changed.
      * @param oldValue
-     *                     The old value of the property.
+     *        The old value of the property.
      * @param newValue
-     *                     The new value of the property.
+     *        The new value of the property.
      * @see java.beans.PropertyChangeSupport
      * @see #addPropertyChangeListener
      * @see #removePropertyChangeListener
@@ -731,15 +711,13 @@ public abstract class AccessibleContext {
      * @see #ACCESSIBLE_TEXT_PROPERTY
      * @see #ACCESSIBLE_VISIBLE_DATA_PROPERTY
      */
-    public void firePropertyChange(String propertyName, Object oldValue,
-            Object newValue) {
+    public void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         if (accessibleChangeSupport != null) {
             if (newValue instanceof PropertyChangeEvent) {
                 PropertyChangeEvent pce = (PropertyChangeEvent) newValue;
                 accessibleChangeSupport.firePropertyChange(pce);
             } else {
-                accessibleChangeSupport.firePropertyChange(propertyName,
-                        oldValue, newValue);
+                accessibleChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
             }
         }
     }

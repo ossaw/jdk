@@ -7,9 +7,7 @@
  * Provides classes and interfaces for parsing and managing certificates,
  * certificate revocation lists (CRLs), and certification paths. It contains
  * support for X.509 v3 certificates and X.509 v2 CRLs.
- *
  * <h2>Package Specification</h2>
- *
  * <ul>
  * <li><a href="{@docRoot}/../technotes/guides/security/crypto/CryptoSpec.html"
  * > <b>Java&trade; Cryptography Architecture (JCA) Reference Guide</b></a>
@@ -21,9 +19,7 @@
  * > <b>Java&trade; Cryptography Architecture Standard Algorithm Name
  * Documentation</b></a></li>
  * </ul>
- *
  * <h2>Related Documentation</h2>
- *
  * For information about X.509 certificates and CRLs, please see:
  * <ul>
  * <li><a href="http://www.ietf.org/rfc/rfc5280.txt"> http://www.ietf.org/rfc/

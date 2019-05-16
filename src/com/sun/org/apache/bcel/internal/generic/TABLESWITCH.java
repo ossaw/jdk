@@ -67,17 +67,15 @@ public class TABLESWITCH extends Select {
 
     /**
      * @param match
-     *                sorted array of match values, match[0] must be low value,
-     *                match[match_length - 1] high value
+     *        sorted array of match values, match[0] must be low value,
+     *        match[match_length - 1] high value
      * @param targets
-     *                where to branch for matched values
+     *        where to branch for matched values
      * @param target
-     *                default branch
+     *        default branch
      */
-    public TABLESWITCH(int[] match, InstructionHandle[] targets,
-            InstructionHandle target) {
-        super(com.sun.org.apache.bcel.internal.Constants.TABLESWITCH, match,
-                targets, target);
+    public TABLESWITCH(int[] match, InstructionHandle[] targets, InstructionHandle target) {
+        super(com.sun.org.apache.bcel.internal.Constants.TABLESWITCH, match, targets, target);
 
         length = (short) (13 + match_length * 4); /*
                                                    * Alignment remainder
@@ -91,7 +89,7 @@ public class TABLESWITCH extends Select {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         super.dump(out);
@@ -109,8 +107,7 @@ public class TABLESWITCH extends Select {
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         super.initFromFile(bytes, wide);
 
         int low = bytes.readInt();
@@ -139,7 +136,7 @@ public class TABLESWITCH extends Select {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitVariableLengthInstruction(this);

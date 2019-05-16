@@ -37,7 +37,7 @@ public interface Stroke {
      * defined by the object implementing the <code>Stroke</code> interface.
      * 
      * @param p
-     *          a <code>Shape</code> to be stroked
+     *        a <code>Shape</code> to be stroked
      * @return the stroked outline <code>Shape</code>.
      */
     Shape createStrokedShape(Shape p);

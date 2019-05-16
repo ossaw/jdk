@@ -29,8 +29,8 @@ import javax.print.attribute.PrintRequestAttribute;
  *
  * @author Phil Race.
  */
-public final class PresentationDirection extends EnumSyntax implements
-        PrintJobAttribute, PrintRequestAttribute {
+public final class PresentationDirection extends EnumSyntax implements PrintJobAttribute,
+        PrintRequestAttribute {
 
     private static final long serialVersionUID = 8294728067230931780L;
 
@@ -38,77 +38,66 @@ public final class PresentationDirection extends EnumSyntax implements
      * Pages are laid out in columns starting at the top left, proceeding
      * towards the bottom {@literal &} right.
      */
-    public static final PresentationDirection TOBOTTOM_TORIGHT = new PresentationDirection(
-            0);
+    public static final PresentationDirection TOBOTTOM_TORIGHT = new PresentationDirection(0);
 
     /**
      * Pages are laid out in columns starting at the top right, proceeding
      * towards the bottom {@literal &} left.
      */
-    public static final PresentationDirection TOBOTTOM_TOLEFT = new PresentationDirection(
-            1);
+    public static final PresentationDirection TOBOTTOM_TOLEFT = new PresentationDirection(1);
 
     /**
      * Pages are laid out in columns starting at the bottom left, proceeding
      * towards the top {@literal &} right.
      */
-    public static final PresentationDirection TOTOP_TORIGHT = new PresentationDirection(
-            2);
+    public static final PresentationDirection TOTOP_TORIGHT = new PresentationDirection(2);
 
     /**
      * Pages are laid out in columns starting at the bottom right, proceeding
      * towards the top {@literal &} left.
      */
-    public static final PresentationDirection TOTOP_TOLEFT = new PresentationDirection(
-            3);
+    public static final PresentationDirection TOTOP_TOLEFT = new PresentationDirection(3);
 
     /**
      * Pages are laid out in rows starting at the top left, proceeding towards
      * the right {@literal &} bottom.
      */
-    public static final PresentationDirection TORIGHT_TOBOTTOM = new PresentationDirection(
-            4);
+    public static final PresentationDirection TORIGHT_TOBOTTOM = new PresentationDirection(4);
 
     /**
      * Pages are laid out in rows starting at the bottom left, proceeding
      * towards the right {@literal &} top.
      */
-    public static final PresentationDirection TORIGHT_TOTOP = new PresentationDirection(
-            5);
+    public static final PresentationDirection TORIGHT_TOTOP = new PresentationDirection(5);
 
     /**
      * Pages are laid out in rows starting at the top right, proceeding towards
      * the left {@literal &} bottom.
      */
-    public static final PresentationDirection TOLEFT_TOBOTTOM = new PresentationDirection(
-            6);
+    public static final PresentationDirection TOLEFT_TOBOTTOM = new PresentationDirection(6);
 
     /**
      * Pages are laid out in rows starting at the bottom right, proceeding
      * towards the left {@literal &} top.
      */
-    public static final PresentationDirection TOLEFT_TOTOP = new PresentationDirection(
-            7);
+    public static final PresentationDirection TOLEFT_TOTOP = new PresentationDirection(7);
 
     /**
      * Construct a new presentation direction enumeration value with the given
      * integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     private PresentationDirection(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "tobottom-toright",
-            "tobottom-toleft", "totop-toright", "totop-toleft",
-            "toright-tobottom", "toright-totop", "toleft-tobottom",
-            "toleft-totop", };
+    private static final String[] myStringTable = { "tobottom-toright", "tobottom-toleft", "totop-toright",
+            "totop-toleft", "toright-tobottom", "toright-totop", "toleft-tobottom", "toleft-totop", };
 
-    private static final PresentationDirection[] myEnumValueTable = {
-            TOBOTTOM_TORIGHT, TOBOTTOM_TOLEFT, TOTOP_TORIGHT, TOTOP_TOLEFT,
-            TORIGHT_TOBOTTOM, TORIGHT_TOTOP, TOLEFT_TOBOTTOM, TOLEFT_TOTOP, };
+    private static final PresentationDirection[] myEnumValueTable = { TOBOTTOM_TORIGHT, TOBOTTOM_TOLEFT,
+            TOTOP_TORIGHT, TOTOP_TOLEFT, TORIGHT_TOBOTTOM, TORIGHT_TOTOP, TOLEFT_TOBOTTOM, TOLEFT_TOTOP, };
 
     /**
      * Returns the string table for class PresentationDirection.

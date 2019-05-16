@@ -9,14 +9,12 @@ import java.security.Principal;
 
 /**
  * A user principal identified by a username or account name.
- *
  * <p>
  * After successful authentication, a user {@link java.security.Principal} can
  * be associated with a particular {@link javax.security.auth.Subject} to
  * augment that <code>Subject</code> with an additional identity. Authorization
  * decisions can then be based upon the <code>Principal</code>s that are
  * associated with a <code>Subject</code>.
- *
  * <p>
  * This class is immutable.
  *
@@ -38,10 +36,10 @@ public final class UserPrincipal implements Principal, java.io.Serializable {
      * Creates a principal.
      *
      * @param name
-     *             The principal's string name.
+     *        The principal's string name.
      * @exception NullPointerException
-     *                                 If the <code>name</code> is
-     *                                 <code>null</code>.
+     *            If the <code>name</code> is
+     *            <code>null</code>.
      */
     public UserPrincipal(String name) {
         if (name == null) {
@@ -54,7 +52,7 @@ public final class UserPrincipal implements Principal, java.io.Serializable {
      * Compares this principal to the specified object.
      *
      * @param object
-     *               The object to compare this principal against.
+     *        The object to compare this principal against.
      * @return true if they are equal; false otherwise.
      */
     public boolean equals(Object object) {

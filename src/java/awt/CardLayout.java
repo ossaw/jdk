@@ -94,12 +94,10 @@ public class CardLayout implements LayoutManager2, Serializable {
      * @serialField currentCard
      *              int
      */
-    private static final ObjectStreamField[] serialPersistentFields = {
-            new ObjectStreamField("tab", Hashtable.class),
-            new ObjectStreamField("hgap", Integer.TYPE), new ObjectStreamField(
-                    "vgap", Integer.TYPE), new ObjectStreamField("vector",
-                            Vector.class), new ObjectStreamField("currentCard",
-                                    Integer.TYPE) };
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("tab",
+            Hashtable.class), new ObjectStreamField("hgap", Integer.TYPE), new ObjectStreamField("vgap",
+                    Integer.TYPE), new ObjectStreamField("vector", Vector.class), new ObjectStreamField(
+                            "currentCard", Integer.TYPE) };
 
     /**
      * Creates a new card layout with gaps of size zero.
@@ -114,9 +112,9 @@ public class CardLayout implements LayoutManager2, Serializable {
      * vertical gaps are placed at the top and bottom edges.
      * 
      * @param hgap
-     *             the horizontal gap.
+     *        the horizontal gap.
      * @param vgap
-     *             the vertical gap.
+     *        the vertical gap.
      */
     public CardLayout(int hgap, int vgap) {
         this.hgap = hgap;
@@ -139,7 +137,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * Sets the horizontal gap between components.
      * 
      * @param hgap
-     *             the horizontal gap between components.
+     *        the horizontal gap between components.
      * @see java.awt.CardLayout#getHgap()
      * @see java.awt.CardLayout#setVgap(int)
      * @since JDK1.1
@@ -163,7 +161,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * Sets the vertical gap between components.
      * 
      * @param vgap
-     *             the vertical gap between components.
+     *        the vertical gap between components.
      * @see java.awt.CardLayout#getVgap()
      * @see java.awt.CardLayout#setHgap(int)
      * @since JDK1.1
@@ -180,12 +178,12 @@ public class CardLayout implements LayoutManager2, Serializable {
      * method, an application can display the component with the specified name.
      * 
      * @param comp
-     *                    the component to be added.
+     *        the component to be added.
      * @param constraints
-     *                    a tag that identifies a particular card in the layout.
+     *        a tag that identifies a particular card in the layout.
      * @see java.awt.CardLayout#show(java.awt.Container, java.lang.String)
      * @exception IllegalArgumentException
-     *                                     if the constraint is not a string.
+     *            if the constraint is not a string.
      */
     public void addLayoutComponent(Component comp, Object constraints) {
         synchronized (comp.getTreeLock()) {
@@ -195,8 +193,7 @@ public class CardLayout implements LayoutManager2, Serializable {
             if (constraints instanceof String) {
                 addLayoutComponent((String) constraints, comp);
             } else {
-                throw new IllegalArgumentException(
-                        "cannot add to layout: constraint must be a string");
+                throw new IllegalArgumentException("cannot add to layout: constraint must be a string");
             }
         }
     }
@@ -226,7 +223,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * on top, the next card underneath it is shown.
      * 
      * @param comp
-     *             the component to be removed.
+     *        the component to be removed.
      * @see java.awt.Container#remove(java.awt.Component)
      * @see java.awt.Container#removeAll()
      */
@@ -256,7 +253,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * layout.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @return the preferred dimensions to lay out the subcomponents of the
      *         specified container
      * @see java.awt.Container#getPreferredSize
@@ -279,8 +276,8 @@ public class CardLayout implements LayoutManager2, Serializable {
                     h = d.height;
                 }
             }
-            return new Dimension(insets.left + insets.right + w + hgap * 2,
-                    insets.top + insets.bottom + h + vgap * 2);
+            return new Dimension(insets.left + insets.right + w + hgap * 2, insets.top + insets.bottom + h
+                    + vgap * 2);
         }
     }
 
@@ -288,7 +285,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * Calculates the minimum size for the specified panel.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @return the minimum dimensions required to lay out the subcomponents of
      *         the specified container
      * @see java.awt.Container#doLayout
@@ -311,8 +308,8 @@ public class CardLayout implements LayoutManager2, Serializable {
                     h = d.height;
                 }
             }
-            return new Dimension(insets.left + insets.right + w + hgap * 2,
-                    insets.top + insets.bottom + h + vgap * 2);
+            return new Dimension(insets.left + insets.right + w + hgap * 2, insets.top + insets.bottom + h
+                    + vgap * 2);
         }
     }
 
@@ -321,7 +318,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * the specified target container.
      * 
      * @param target
-     *               the component which needs to be laid out
+     *        the component which needs to be laid out
      * @see Container
      * @see #minimumLayoutSize
      * @see #preferredLayoutSize
@@ -366,7 +363,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * gaps, and vertical gaps.
      *
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @see java.awt.Container#doLayout
      */
     public void layoutContainer(Container parent) {
@@ -378,10 +375,8 @@ public class CardLayout implements LayoutManager2, Serializable {
 
             for (int i = 0; i < ncomponents; i++) {
                 comp = parent.getComponent(i);
-                comp.setBounds(hgap + insets.left, vgap + insets.top,
-                        parent.width - (hgap * 2 + insets.left + insets.right),
-                        parent.height - (vgap * 2 + insets.top
-                                + insets.bottom));
+                comp.setBounds(hgap + insets.left, vgap + insets.top, parent.width - (hgap * 2 + insets.left
+                        + insets.right), parent.height - (vgap * 2 + insets.top + insets.bottom));
                 if (comp.isVisible()) {
                     currentFound = true;
                 }
@@ -407,7 +402,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * Flips to the first card of the container.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @see java.awt.CardLayout#last
      */
     public void first(Container parent) {
@@ -435,7 +430,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * layout.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @see java.awt.CardLayout#previous
      */
     public void next(Container parent) {
@@ -463,7 +458,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * layout.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @see java.awt.CardLayout#next
      */
     public void previous(Container parent) {
@@ -497,7 +492,7 @@ public class CardLayout implements LayoutManager2, Serializable {
      * Flips to the last card of the container.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @see java.awt.CardLayout#first
      */
     public void last(Container parent) {
@@ -525,9 +520,9 @@ public class CardLayout implements LayoutManager2, Serializable {
      * component exists, then nothing happens.
      * 
      * @param parent
-     *               the parent container in which to do the layout
+     *        the parent container in which to do the layout
      * @param name
-     *               the component name
+     *        the component name
      * @see java.awt.CardLayout#addLayoutComponent(java.awt.Component,
      *      java.lang.Object)
      */
@@ -571,8 +566,7 @@ public class CardLayout implements LayoutManager2, Serializable {
     /**
      * Reads serializable fields from stream.
      */
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         ObjectInputStream.GetField f = s.readFields();
 
         hgap = f.get("hgap", 0);

@@ -12,8 +12,7 @@ package org.omg.PortableInterceptor;
  * Sequence of object reference templates is used for reporting state changes
  * that do not occur on the adapter manager.
  */
-public final class ObjectReferenceTemplateSeqHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ObjectReferenceTemplateSeqHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.PortableInterceptor.ObjectReferenceTemplate value[] = null;
 
     public ObjectReferenceTemplateSeqHolder() {}
@@ -24,18 +23,15 @@ public final class ObjectReferenceTemplateSeqHolder implements
     }
 
     public void _read(org.omg.CORBA.portable.InputStream i) {
-        value = org.omg.PortableInterceptor.ObjectReferenceTemplateSeqHelper
-                .read(i);
+        value = org.omg.PortableInterceptor.ObjectReferenceTemplateSeqHelper.read(i);
     }
 
     public void _write(org.omg.CORBA.portable.OutputStream o) {
-        org.omg.PortableInterceptor.ObjectReferenceTemplateSeqHelper.write(o,
-                value);
+        org.omg.PortableInterceptor.ObjectReferenceTemplateSeqHelper.write(o, value);
     }
 
     public org.omg.CORBA.TypeCode _type() {
-        return org.omg.PortableInterceptor.ObjectReferenceTemplateSeqHelper
-                .type();
+        return org.omg.PortableInterceptor.ObjectReferenceTemplateSeqHelper.type();
     }
 
 }

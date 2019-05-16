@@ -23,14 +23,13 @@ final class SecureClassLoaderRepository implements ClassLoaderRepository {
      * implementation.
      * 
      * @param clr
-     *            Unsecure {@link ClassLoaderRepository} implementation to wrap.
+     *        Unsecure {@link ClassLoaderRepository} implementation to wrap.
      **/
     public SecureClassLoaderRepository(ClassLoaderRepository clr) {
         this.clr = clr;
     }
 
-    public final Class<?> loadClass(String className)
-            throws ClassNotFoundException {
+    public final Class<?> loadClass(String className) throws ClassNotFoundException {
         return clr.loadClass(className);
     }
 

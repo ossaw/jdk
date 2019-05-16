@@ -18,8 +18,7 @@ import com.sun.corba.se.pept.transport.Selector;
 public interface TransportManager {
     public ByteBufferPool getByteBufferPool(int id);
 
-    public OutboundConnectionCache getOutboundConnectionCache(
-            ContactInfo contactInfo);
+    public OutboundConnectionCache getOutboundConnectionCache(ContactInfo contactInfo);
 
     public Collection getOutboundConnectionCaches();
 

@@ -22,7 +22,6 @@ package com.sun.org.apache.xerces.internal.impl.dv;
  * tries to get a DV factory instance.
  *
  * @xerces.internal
- *
  */
 public class DVFactoryException extends RuntimeException {
 

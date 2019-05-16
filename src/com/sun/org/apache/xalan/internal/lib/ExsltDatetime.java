@@ -82,8 +82,7 @@ public class ExsltDatetime {
         StringBuffer buff = new StringBuffer(dateFormat.format(datetime));
         // Must also include offset from UTF.
         // Get the offset (in milliseconds).
-        int offset = cal.get(Calendar.ZONE_OFFSET) + cal.get(
-                Calendar.DST_OFFSET);
+        int offset = cal.get(Calendar.ZONE_OFFSET) + cal.get(Calendar.DST_OFFSET);
         // If there is no offset, we have "Coordinated
         // Universal Time."
         if (offset == 0)
@@ -94,8 +93,7 @@ public class ExsltDatetime {
             // In a few cases, the time zone may be +/-hh:30.
             int min = offset % (60 * 60 * 1000);
             char posneg = hrs < 0 ? '-' : '+';
-            buff.append(posneg).append(formatDigits(hrs)).append(':').append(
-                    formatDigits(min));
+            buff.append(posneg).append(formatDigits(hrs)).append(':').append(formatDigits(min));
         }
         return buff.toString();
     }
@@ -104,7 +102,7 @@ public class ExsltDatetime {
      * Represent the hours and minutes with two-digit strings.
      * 
      * @param q
-     *          hrs or minutes.
+     *        hrs or minutes.
      * @return two-digit String representation of hrs or minutes.
      */
     private static String formatDigits(int q) {
@@ -394,8 +392,7 @@ public class ExsltDatetime {
      * xs:dateTime (CCYY-MM-DDThh:mm:ss) xs:date (CCYY-MM-DD) If the date/time
      * string is not in one of these formats, then NaN is returned.
      */
-    public static double dayOfWeekInMonth(String datetimeIn)
-            throws ParseException {
+    public static double dayOfWeekInMonth(String datetimeIn) throws ParseException {
         String[] edz = getEraDatetimeZone(datetimeIn);
         String datetime = edz[1];
         if (datetime == null)
@@ -513,8 +510,7 @@ public class ExsltDatetime {
      * xs:dateTime (CCYY-MM-DDThh:mm:ss) xs:time (hh:mm:ss) If the date/time
      * string is not in one of these formats, then NaN is returned.
      */
-    public static double secondInMinute(String datetimeIn)
-            throws ParseException {
+    public static double secondInMinute(String datetimeIn) throws ParseException {
         String[] edz = getEraDatetimeZone(datetimeIn);
         String datetime = edz[1];
         if (datetime == null)
@@ -620,8 +616,7 @@ public class ExsltDatetime {
      * implementation of this extension function in the EXSLT date namespace
      * must conform to the behaviour described in this document.
      */
-    public static String monthAbbreviation(String datetimeIn)
-            throws ParseException {
+    public static String monthAbbreviation(String datetimeIn) throws ParseException {
         String[] edz = getEraDatetimeZone(datetimeIn);
         String datetime = edz[1];
         if (datetime == null)
@@ -690,8 +685,7 @@ public class ExsltDatetime {
      * function in the EXSLT date namespace must conform to the behaviour
      * described in this document.
      */
-    public static String dayAbbreviation(String datetimeIn)
-            throws ParseException {
+    public static String dayAbbreviation(String datetimeIn) throws ParseException {
         String[] edz = getEraDatetimeZone(datetimeIn);
         String datetime = edz[1];
         if (datetime == null)
@@ -741,14 +735,12 @@ public class ExsltDatetime {
     private static int getZoneStart(String datetime) {
         if (datetime.indexOf("Z") == datetime.length() - 1)
             return datetime.length() - 1;
-        else if (datetime.length() >= 6 && datetime.charAt(datetime.length()
-                - 3) == ':' && (datetime.charAt(datetime.length() - 6) == '+'
-                        || datetime.charAt(datetime.length() - 6) == '-')) {
+        else if (datetime.length() >= 6 && datetime.charAt(datetime.length() - 3) == ':' && (datetime.charAt(
+                datetime.length() - 6) == '+' || datetime.charAt(datetime.length() - 6) == '-')) {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
                 dateFormat.setLenient(false);
-                Date d = dateFormat.parse(datetime.substring(datetime.length()
-                        - 5));
+                Date d = dateFormat.parse(datetime.substring(datetime.length() - 5));
                 return datetime.length() - 6;
             } catch (ParseException pe) {
                 System.out.println("ParseException " + pe.getErrorOffset());
@@ -763,15 +755,13 @@ public class ExsltDatetime {
      * Attempt to parse an input string with the allowed formats, returning null
      * if none of the formats work.
      */
-    private static Date testFormats(String in, String[] formats)
-            throws ParseException {
+    private static Date testFormats(String in, String[] formats) throws ParseException {
         for (int i = 0; i < formats.length; i++) {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat(formats[i]);
                 dateFormat.setLenient(false);
                 return dateFormat.parse(in);
-            } catch (ParseException pe) {
-            }
+            } catch (ParseException pe) {}
         }
         return null;
     }
@@ -780,8 +770,7 @@ public class ExsltDatetime {
      * Parse the input string and return the corresponding calendar field
      * number.
      */
-    private static double getNumber(String in, String[] formats, int calField)
-            throws ParseException {
+    private static double getNumber(String in, String[] formats, int calField) throws ParseException {
         Calendar cal = Calendar.getInstance();
         cal.setLenient(false);
         // Try the allowed formats, from longest to shortest.
@@ -795,19 +784,17 @@ public class ExsltDatetime {
     /**
      * Get the full name or abbreviation of the month or day.
      */
-    private static String getNameOrAbbrev(String in, String[] formatsIn,
-            String formatOut) throws ParseException {
+    private static String getNameOrAbbrev(String in, String[] formatsIn, String formatOut)
+            throws ParseException {
         for (int i = 0; i < formatsIn.length; i++) // from longest to shortest.
         {
             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat(formatsIn[i],
-                        Locale.ENGLISH);
+                SimpleDateFormat dateFormat = new SimpleDateFormat(formatsIn[i], Locale.ENGLISH);
                 dateFormat.setLenient(false);
                 Date dt = dateFormat.parse(in);
                 dateFormat.applyPattern(formatOut);
                 return dateFormat.format(dt);
-            } catch (ParseException pe) {
-            }
+            } catch (ParseException pe) {}
         }
         return "";
     }
@@ -818,8 +805,7 @@ public class ExsltDatetime {
      */
     private static String getNameOrAbbrev(String format) {
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format,
-                Locale.ENGLISH);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         return dateFormat.format(cal.getTime());
     }
 
@@ -855,7 +841,6 @@ public class ExsltDatetime {
      * xs:gMonth or xs:gDay) and the format pattern has a token that uses a
      * component that is missing from the date/time format used, then that token
      * is replaced with an empty string ('') within the result.
-     *
      * The author is Helg Bredow (helg.bredow@kalido.com)
      */
     public static String formatDate(String dateTime, String pattern) {
@@ -871,10 +856,8 @@ public class ExsltDatetime {
             timeZone = TimeZone.getTimeZone("GMT");
             dateTime = dateTime.substring(0, dateTime.length() - 1) + "GMT";
             zone = "z";
-        } else if ((dateTime.length() >= 6) && (dateTime.charAt(dateTime
-                .length() - 3) == ':') && ((dateTime.charAt(dateTime.length()
-                        - 6) == '+') || (dateTime.charAt(dateTime.length()
-                                - 6) == '-'))) {
+        } else if ((dateTime.length() >= 6) && (dateTime.charAt(dateTime.length() - 3) == ':') && ((dateTime
+                .charAt(dateTime.length() - 6) == '+') || (dateTime.charAt(dateTime.length() - 6) == '-'))) {
             String offset = dateTime.substring(dateTime.length() - 6);
 
             if ("+00:00".equals(offset) || "-00:00".equals(offset)) {
@@ -885,8 +868,7 @@ public class ExsltDatetime {
             zone = "z";
             // Need to adjust it since SimpleDateFormat requires GMT+hh:mm but
             // we have +hh:mm.
-            dateTime = dateTime.substring(0, dateTime.length() - 6) + "GMT"
-                    + offset;
+            dateTime = dateTime.substring(0, dateTime.length() - 6) + "GMT" + offset;
         } else {
             // Assume local time.
             timeZone = TimeZone.getDefault();
@@ -903,12 +885,11 @@ public class ExsltDatetime {
             SimpleDateFormat inFormat = new SimpleDateFormat(t + zone);
             inFormat.setLenient(false);
             Date d = inFormat.parse(dateTime);
-            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols
-                    + monthSymbols + daySymbols, pattern));
+            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols + monthSymbols + daySymbols,
+                    pattern));
             outFormat.setTimeZone(timeZone);
             return outFormat.format(d);
-        } catch (ParseException pe) {
-        }
+        } catch (ParseException pe) {}
 
         // Try the right truncated formats.
         for (int i = 0; i < formats.length; i++) {
@@ -919,8 +900,7 @@ public class ExsltDatetime {
                 SimpleDateFormat outFormat = new SimpleDateFormat(pattern);
                 outFormat.setTimeZone(timeZone);
                 return outFormat.format(d);
-            } catch (ParseException pe) {
-            }
+            } catch (ParseException pe) {}
         }
 
         // Now try the left truncated ones. The Java format() function doesn't
@@ -931,32 +911,26 @@ public class ExsltDatetime {
             SimpleDateFormat inFormat = new SimpleDateFormat(gmd);
             inFormat.setLenient(false);
             Date d = inFormat.parse(dateTime);
-            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols,
-                    pattern));
+            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols, pattern));
             outFormat.setTimeZone(timeZone);
             return outFormat.format(d);
-        } catch (ParseException pe) {
-        }
+        } catch (ParseException pe) {}
         try {
             SimpleDateFormat inFormat = new SimpleDateFormat(gm);
             inFormat.setLenient(false);
             Date d = inFormat.parse(dateTime);
-            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols,
-                    pattern));
+            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols, pattern));
             outFormat.setTimeZone(timeZone);
             return outFormat.format(d);
-        } catch (ParseException pe) {
-        }
+        } catch (ParseException pe) {}
         try {
             SimpleDateFormat inFormat = new SimpleDateFormat(gd);
             inFormat.setLenient(false);
             Date d = inFormat.parse(dateTime);
-            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols
-                    + monthSymbols, pattern));
+            SimpleDateFormat outFormat = new SimpleDateFormat(strip(yearSymbols + monthSymbols, pattern));
             outFormat.setTimeZone(timeZone);
             return outFormat.format(d);
-        } catch (ParseException pe) {
-        }
+        } catch (ParseException pe) {}
         return EMPTY_STR;
     }
 
@@ -964,7 +938,7 @@ public class ExsltDatetime {
      * Strips occurrences of the given character from a date format pattern.
      * 
      * @param symbols
-     *                list of symbols to strip.
+     *        list of symbols to strip.
      * @param pattern
      * @return
      */

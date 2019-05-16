@@ -39,7 +39,6 @@ public class FunctionPattern extends StepPattern {
     /**
      * Construct a FunctionPattern from a
      * {@link com.sun.org.apache.xpath.internal.functions.Function expression}.
-     *
      * NEEDSDOC @param expr
      */
     public FunctionPattern(Expression expr, int axis, int predaxis) {
@@ -73,13 +72,13 @@ public class FunctionPattern extends StepPattern {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);
@@ -90,8 +89,7 @@ public class FunctionPattern extends StepPattern {
      * Test a node to see if it matches the given node test.
      *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -102,11 +100,9 @@ public class FunctionPattern extends StepPattern {
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt, int context)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt, int context) throws javax.xml.transform.TransformerException {
 
         DTMIterator nl = m_functionExpr.asIterator(xctxt, context);
         XNumber score = SCORE_NONE;
@@ -135,8 +131,7 @@ public class FunctionPattern extends StepPattern {
      * Test a node to see if it matches the given node test.
      *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -147,11 +142,10 @@ public class FunctionPattern extends StepPattern {
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt, int context, DTM dtm,
-            int expType) throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt, int context, DTM dtm, int expType)
+            throws javax.xml.transform.TransformerException {
 
         DTMIterator nl = m_functionExpr.asIterator(xctxt, context);
         XNumber score = SCORE_NONE;
@@ -179,8 +173,7 @@ public class FunctionPattern extends StepPattern {
      * Test a node to see if it matches the given node test.
      *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -191,11 +184,9 @@ public class FunctionPattern extends StepPattern {
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         int context = xctxt.getCurrentNode();
         DTMIterator nl = m_functionExpr.asIterator(xctxt, context);

@@ -59,8 +59,7 @@ class COMMarkerSegment extends MarkerSegment {
             data = (byte[]) ourNode.getUserObject();
         }
         if (data == null) {
-            String comment = node.getAttributes().getNamedItem("comment")
-                    .getNodeValue();
+            String comment = node.getAttributes().getNamedItem("comment").getNodeValue();
             if (comment != null) {
                 data = comment.getBytes(); // Default encoding
             } else {
@@ -77,8 +76,7 @@ class COMMarkerSegment extends MarkerSegment {
     String getComment() {
         try {
             return new String(data, ENCODING);
-        } catch (UnsupportedEncodingException e) {
-        } // Won't happen
+        } catch (UnsupportedEncodingException e) {} // Won't happen
         return null;
     }
 

@@ -149,11 +149,11 @@ public final class GlyphMetrics {
      * Constructs a <code>GlyphMetrics</code> object.
      * 
      * @param advance
-     *                  the advance width of the glyph
+     *        the advance width of the glyph
      * @param bounds
-     *                  the black box bounds of the glyph
+     *        the black box bounds of the glyph
      * @param glyphType
-     *                  the type of the glyph
+     *        the type of the glyph
      */
     public GlyphMetrics(float advance, Rectangle2D bounds, byte glyphType) {
         this.horizontal = true;
@@ -168,21 +168,21 @@ public final class GlyphMetrics {
      * Constructs a <code>GlyphMetrics</code> object.
      * 
      * @param horizontal
-     *                   if true, metrics are for a horizontal baseline,
-     *                   otherwise they
-     *                   are for a vertical baseline
+     *        if true, metrics are for a horizontal baseline,
+     *        otherwise they
+     *        are for a vertical baseline
      * @param advanceX
-     *                   the X-component of the glyph's advance
+     *        the X-component of the glyph's advance
      * @param advanceY
-     *                   the Y-component of the glyph's advance
+     *        the Y-component of the glyph's advance
      * @param bounds
-     *                   the visual bounds of the glyph
+     *        the visual bounds of the glyph
      * @param glyphType
-     *                   the type of the glyph
+     *        the type of the glyph
      * @since 1.4
      */
-    public GlyphMetrics(boolean horizontal, float advanceX, float advanceY,
-            Rectangle2D bounds, byte glyphType) {
+    public GlyphMetrics(boolean horizontal, float advanceX, float advanceY, Rectangle2D bounds,
+            byte glyphType) {
 
         this.horizontal = horizontal;
         this.advanceX = advanceX;
@@ -231,8 +231,7 @@ public final class GlyphMetrics {
      * @return a {@link Rectangle2D} that is the bounds of the glyph.
      */
     public Rectangle2D getBounds2D() {
-        return new Rectangle2D.Float(bounds.x, bounds.y, bounds.width,
-                bounds.height);
+        return new Rectangle2D.Float(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     /**
@@ -258,8 +257,7 @@ public final class GlyphMetrics {
      * @return the right side bearing of the glyph.
      */
     public float getRSB() {
-        return horizontal ? advanceX - bounds.x - bounds.width
-                : advanceY - bounds.y - bounds.height;
+        return horizontal ? advanceX - bounds.x - bounds.width : advanceY - bounds.y - bounds.height;
     }
 
     /**

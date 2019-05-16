@@ -34,7 +34,6 @@ import org.xml.sax.ext.LexicalHandler;
 /**
  * This class converts SAX-like event to SAX events for xsl:output method
  * "text".
- *
  * This class is only to be used internally. This class is not a public API.
  *
  * @xsl.usage internal
@@ -53,14 +52,12 @@ public final class ToTextSAXHandler extends ToSAXHandler {
     /**
      * @see org.xml.sax.ContentHandler#endElement(String, String, String)
      */
-    public void endElement(String arg0, String arg1, String arg2)
-            throws SAXException {
+    public void endElement(String arg0, String arg1, String arg2) throws SAXException {
         if (m_tracer != null)
             super.fireEndElem(arg2);
     }
 
-    public ToTextSAXHandler(ContentHandler hdlr, LexicalHandler lex,
-            String encoding) {
+    public ToTextSAXHandler(ContentHandler hdlr, LexicalHandler lex, String encoding) {
         super(hdlr, lex, encoding);
     }
 
@@ -71,8 +68,7 @@ public final class ToTextSAXHandler extends ToSAXHandler {
         super(handler, encoding);
     }
 
-    public void comment(char ch[], int start, int length)
-            throws org.xml.sax.SAXException {
+    public void comment(char ch[], int start, int length) throws org.xml.sax.SAXException {
         if (m_tracer != null)
             super.fireCommentEvent(ch, start, length);
     }
@@ -109,7 +105,6 @@ public final class ToTextSAXHandler extends ToSAXHandler {
 
     /**
      * Does nothing because the indent attribute is ignored for text output.
-     *
      */
     public void indent(int n) throws SAXException {}
 
@@ -156,15 +151,15 @@ public final class ToTextSAXHandler extends ToSAXHandler {
      * @see ExtendedContentHandler#addAttribute(String, String, String, String,
      *      String)
      */
-    public void addAttribute(String uri, String localName, String rawName,
-            String type, String value, boolean XSLAttribute) {}
+    public void addAttribute(String uri, String localName, String rawName, String type, String value,
+            boolean XSLAttribute) {}
 
     /**
      * @see org.xml.sax.ext.DeclHandler#attributeDecl(String, String, String,
      *      String, String)
      */
-    public void attributeDecl(String arg0, String arg1, String arg2,
-            String arg3, String arg4) throws SAXException {}
+    public void attributeDecl(String arg0, String arg1, String arg2, String arg3, String arg4)
+            throws SAXException {}
 
     /**
      * @see org.xml.sax.ext.DeclHandler#elementDecl(String, String)
@@ -175,14 +170,12 @@ public final class ToTextSAXHandler extends ToSAXHandler {
      * @see org.xml.sax.ext.DeclHandler#externalEntityDecl(String, String,
      *      String)
      */
-    public void externalEntityDecl(String arg0, String arg1, String arg2)
-            throws SAXException {}
+    public void externalEntityDecl(String arg0, String arg1, String arg2) throws SAXException {}
 
     /**
      * @see org.xml.sax.ext.DeclHandler#internalEntityDecl(String, String)
      */
-    public void internalEntityDecl(String arg0, String arg1)
-            throws SAXException {}
+    public void internalEntityDecl(String arg0, String arg1) throws SAXException {}
 
     /**
      * @see org.xml.sax.ContentHandler#endPrefixMapping(String)
@@ -192,16 +185,14 @@ public final class ToTextSAXHandler extends ToSAXHandler {
     /**
      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
      */
-    public void ignorableWhitespace(char[] arg0, int arg1, int arg2)
-            throws SAXException {}
+    public void ignorableWhitespace(char[] arg0, int arg1, int arg2) throws SAXException {}
 
     /**
      * From XSLTC
      * 
      * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
      */
-    public void processingInstruction(String arg0, String arg1)
-            throws SAXException {
+    public void processingInstruction(String arg0, String arg1) throws SAXException {
         if (m_tracer != null)
             super.fireEscapingEvent(arg0, arg1);
     }
@@ -222,8 +213,7 @@ public final class ToTextSAXHandler extends ToSAXHandler {
      * @see org.xml.sax.ContentHandler#startElement(String, String, String,
      *      Attributes)
      */
-    public void startElement(String arg0, String arg1, String arg2,
-            Attributes arg3) throws SAXException {
+    public void startElement(String arg0, String arg1, String arg2, Attributes arg3) throws SAXException {
         flushPending();
         super.startElement(arg0, arg1, arg2, arg3);
     }
@@ -253,8 +243,8 @@ public final class ToTextSAXHandler extends ToSAXHandler {
      * 
      * @see ExtendedContentHandler#startElement(String)
      */
-    public void startElement(String elementNamespaceURI,
-            String elementLocalName, String elementName) throws SAXException {
+    public void startElement(String elementNamespaceURI, String elementLocalName, String elementName)
+            throws SAXException {
         super.startElement(elementNamespaceURI, elementLocalName, elementName);
     }
 
@@ -277,7 +267,6 @@ public final class ToTextSAXHandler extends ToSAXHandler {
     }
 
     /**
-     *
      * @see ExtendedContentHandler#characters(String)
      */
     public void characters(String characters) throws SAXException {
@@ -294,8 +283,7 @@ public final class ToTextSAXHandler extends ToSAXHandler {
     /**
      * @see org.xml.sax.ContentHandler#characters(char[], int, int)
      */
-    public void characters(char[] characters, int offset, int length)
-            throws SAXException {
+    public void characters(char[] characters, int offset, int length) throws SAXException {
 
         m_saxHandler.characters(characters, offset, length);
 
@@ -311,19 +299,16 @@ public final class ToTextSAXHandler extends ToSAXHandler {
         // do nothing
     }
 
-    public boolean startPrefixMapping(String prefix, String uri,
-            boolean shouldFlush) throws SAXException {
+    public boolean startPrefixMapping(String prefix, String uri, boolean shouldFlush) throws SAXException {
         // no namespace support for HTML
         return false;
     }
 
-    public void startPrefixMapping(String prefix, String uri)
-            throws org.xml.sax.SAXException {
+    public void startPrefixMapping(String prefix, String uri) throws org.xml.sax.SAXException {
         // no namespace support for HTML
     }
 
-    public void namespaceAfterStartElement(final String prefix,
-            final String uri) throws SAXException {
+    public void namespaceAfterStartElement(final String prefix, final String uri) throws SAXException {
         // no namespace support for HTML
     }
 

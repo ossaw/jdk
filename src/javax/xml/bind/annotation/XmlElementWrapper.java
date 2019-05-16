@@ -14,7 +14,6 @@ import java.lang.annotation.Target;
 
 /**
  * Generates a wrapper element around XML representation.
- *
  * This is primarily intended to be used to produce a wrapper XML element around
  * collections. The annotation therefore supports two forms of serialization
  * shown below.
@@ -34,11 +33,9 @@ import java.lang.annotation.Target;
  *       ....
  *    &lt;/wrapperElement>
  * </pre>
- *
  * <p>
  * The two serialized XML forms allow a null collection to be represented either
  * by absence or presence of an element with a nillable attribute.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -49,7 +46,6 @@ import java.lang.annotation.Target;
  * <li>JavaBean property</li>
  * <li>non static, non transient field</li>
  * </ul>
- *
  * <p>
  * The usage is subject to the following constraints:
  * <ul>
@@ -58,7 +54,6 @@ import java.lang.annotation.Target;
  * {@link XmlElement}, {@link XmlElements}, {@link XmlElementRef},
  * {@link XmlElementRefs}, {@link XmlJavaTypeAdapter}.</li>
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
@@ -74,7 +69,6 @@ import java.lang.annotation.Target;
  * @see XmlElementRef
  * @see XmlElementRefs
  * @since JAXB2.0
- *
  */
 
 @Retention(RUNTIME)
@@ -95,7 +89,6 @@ public @interface XmlElementWrapper {
      * {@link XmlSchema#elementFormDefault() elementFormDefault} is
      * {@link XmlNsForm#QUALIFIED QUALIFIED}, then the namespace of the
      * enclosing class.
-     *
      * <li>Otherwise "" (which produces unqualified element in the default
      * namespace.
      * </ol>
@@ -111,12 +104,10 @@ public @interface XmlElementWrapper {
 
     /**
      * Customize the wrapper element declaration to be required.
-     *
      * <p>
      * If required() is true, then the corresponding generated XML schema
      * element declaration will have <tt>minOccurs="1"</tt>, to indicate that
      * the wrapper element is always expected.
-     *
      * <p>
      * Note that this only affects the schema generation, and not the
      * unmarshalling or marshalling capability. This is simply a mechanism to

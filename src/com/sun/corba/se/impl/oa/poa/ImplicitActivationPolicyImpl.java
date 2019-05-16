@@ -8,8 +8,8 @@ package com.sun.corba.se.impl.oa.poa;
 import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 
-final class ImplicitActivationPolicyImpl extends org.omg.CORBA.LocalObject
-        implements ImplicitActivationPolicy {
+final class ImplicitActivationPolicyImpl extends org.omg.CORBA.LocalObject implements
+        ImplicitActivationPolicy {
 
     public ImplicitActivationPolicyImpl(ImplicitActivationPolicyValue value) {
         this.value = value;
@@ -35,8 +35,7 @@ final class ImplicitActivationPolicyImpl extends org.omg.CORBA.LocalObject
 
     public String toString() {
         return "ImplicitActivationPolicy[" + ((value
-                .value() == ImplicitActivationPolicyValue._IMPLICIT_ACTIVATION)
-                        ? "IMPLICIT_ACTIVATION"
+                .value() == ImplicitActivationPolicyValue._IMPLICIT_ACTIVATION) ? "IMPLICIT_ACTIVATION"
                         : "NO_IMPLICIT_ACTIVATION" + "]");
     }
 }

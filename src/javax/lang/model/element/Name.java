@@ -12,10 +12,8 @@ package javax.lang.model.element;
  * Therefore, {@code Name} objects from the same implementation are usable in
  * collections while {@code Name}s from different implementations may not work
  * properly in collections.
- *
  * <p>
  * An empty {@code Name} has a length of zero.
- *
  * <p>
  * In the context of
  * {@linkplain javax.annotation.processing.ProcessingEnvironment annotation
@@ -35,14 +33,13 @@ public interface Name extends CharSequence {
     /**
      * Returns {@code true} if the argument represents the same name as
      * {@code this}, and {@code false} otherwise.
-     *
      * <p>
      * Note that the identity of a {@code Name} is a function both of its
      * content in terms of a sequence of characters as well as the
      * implementation which created it.
      *
      * @param obj
-     *            the object to be compared with this element
+     *        the object to be compared with this element
      * @return {@code true} if the specified object represents the same name as
      *         this
      * @see Element#equals
@@ -64,9 +61,8 @@ public interface Name extends CharSequence {
      * @return {@code true} if this name represents the same sequence of
      *         {@code char} values as the specified sequence, {@code false}
      *         otherwise
-     *
      * @param cs
-     *           The sequence to compare this name against
+     *        The sequence to compare this name against
      * @see String#contentEquals(CharSequence)
      */
     boolean contentEquals(CharSequence cs);

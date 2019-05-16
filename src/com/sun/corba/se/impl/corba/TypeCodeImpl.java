@@ -104,12 +104,10 @@ public final class TypeCodeImpl extends TypeCode {
 
     // Maps TCKind values to names
     // This is also used in AnyImpl.
-    static final String[] kindNames = { "null", "void", "short", "long",
-            "ushort", "ulong", "float", "double", "boolean", "char", "octet",
-            "any", "typecode", "principal", "objref", "struct", "union", "enum",
-            "string", "sequence", "array", "alias", "exception", "longlong",
-            "ulonglong", "longdouble", "wchar", "wstring", "fixed", "value",
-            "valueBox", "native", "abstractInterface" };
+    static final String[] kindNames = { "null", "void", "short", "long", "ushort", "ulong", "float", "double",
+            "boolean", "char", "octet", "any", "typecode", "principal", "objref", "struct", "union", "enum",
+            "string", "sequence", "array", "alias", "exception", "longlong", "ulonglong", "longdouble",
+            "wchar", "wstring", "fixed", "value", "valueBox", "native", "abstractInterface" };
 
     private int _kind = 0; // the typecode kind
 
@@ -206,8 +204,7 @@ public final class TypeCodeImpl extends TypeCode {
                     // set up member types
                     _memberTypes = new TypeCodeImpl[tc.member_count()];
                     for (int i = 0; i < tc.member_count(); i++) {
-                        _memberTypes[i] = convertToNative(_orb, tc.member_type(
-                                i));
+                        _memberTypes[i] = convertToNative(_orb, tc.member_type(i));
                         _memberTypes[i].setParent(this);
                     }
                 case TCKind._tk_enum:
@@ -231,8 +228,7 @@ public final class TypeCodeImpl extends TypeCode {
             // set up stuff for unions
             switch (_kind) {
                 case TCKind._tk_union:
-                    _discriminator = convertToNative(_orb, tc
-                            .discriminator_type());
+                    _discriminator = convertToNative(_orb, tc.discriminator_type());
                     _defaultIndex = tc.default_index();
                     _unionLabels = new AnyImpl[_memberCount];
                     for (int i = 0; i < _memberCount; i++)
@@ -257,9 +253,7 @@ public final class TypeCodeImpl extends TypeCode {
                 case TCKind._tk_value_box:
                     _contentType = convertToNative(_orb, tc.content_type());
             }
-        } catch (org.omg.CORBA.TypeCodePackage.Bounds e) {
-        } catch (BadKind e) {
-        }
+        } catch (org.omg.CORBA.TypeCodePackage.Bounds e) {} catch (BadKind e) {}
         // dont have to worry about these since code ensures we dont step
         // out of bounds.
     }
@@ -296,14 +290,12 @@ public final class TypeCodeImpl extends TypeCode {
         }
     }
 
-    public TypeCodeImpl(ORB orb, int creationKind, String id, String name,
-            StructMember[] members)
+    public TypeCodeImpl(ORB orb, int creationKind, String id, String name, StructMember[] members)
     // for structs and exceptions
     {
         this(orb);
 
-        if ((creationKind == TCKind._tk_struct)
-                || (creationKind == TCKind._tk_except)) {
+        if ((creationKind == TCKind._tk_struct) || (creationKind == TCKind._tk_except)) {
             _kind = creationKind;
             setId(id);
             _name = name;
@@ -320,8 +312,8 @@ public final class TypeCodeImpl extends TypeCode {
         } // else initializes to null
     }
 
-    public TypeCodeImpl(ORB orb, int creationKind, String id, String name,
-            TypeCode discriminator_type, UnionMember[] members)
+    public TypeCodeImpl(ORB orb, int creationKind, String id, String name, TypeCode discriminator_type,
+            UnionMember[] members)
     // for unions
     {
         this(orb);
@@ -352,8 +344,8 @@ public final class TypeCodeImpl extends TypeCode {
         } // else initializes to null
     }
 
-    public TypeCodeImpl(ORB orb, int creationKind, String id, String name,
-            short type_modifier, TypeCode concrete_base, ValueMember[] members)
+    public TypeCodeImpl(ORB orb, int creationKind, String id, String name, short type_modifier,
+            TypeCode concrete_base, ValueMember[] members)
     // for value types
     {
         this(orb);
@@ -381,8 +373,7 @@ public final class TypeCodeImpl extends TypeCode {
         } // else initializes to null
     }
 
-    public TypeCodeImpl(ORB orb, int creationKind, String id, String name,
-            String[] members)
+    public TypeCodeImpl(ORB orb, int creationKind, String id, String name, String[] members)
     // for enums
     {
         this(orb);
@@ -400,14 +391,12 @@ public final class TypeCodeImpl extends TypeCode {
         } // else initializes to null
     }
 
-    public TypeCodeImpl(ORB orb, int creationKind, String id, String name,
-            TypeCode original_type)
+    public TypeCodeImpl(ORB orb, int creationKind, String id, String name, TypeCode original_type)
     // for aliases and value boxes
     {
         this(orb);
 
-        if (creationKind == TCKind._tk_alias
-                || creationKind == TCKind._tk_value_box) {
+        if (creationKind == TCKind._tk_alias || creationKind == TCKind._tk_value_box) {
             _kind = creationKind;
             setId(id);
             _name = name;
@@ -420,8 +409,7 @@ public final class TypeCodeImpl extends TypeCode {
     public TypeCodeImpl(ORB orb, int creationKind, String id, String name) {
         this(orb);
 
-        if (creationKind == TCKind._tk_objref
-                || creationKind == TCKind._tk_native
+        if (creationKind == TCKind._tk_objref || creationKind == TCKind._tk_native
                 || creationKind == TCKind._tk_abstract_interface) {
             _kind = creationKind;
             setId(id);
@@ -437,21 +425,18 @@ public final class TypeCodeImpl extends TypeCode {
         if (bound < 0)
             throw wrapper.negativeBounds();
 
-        if ((creationKind == TCKind._tk_string)
-                || (creationKind == TCKind._tk_wstring)) {
+        if ((creationKind == TCKind._tk_string) || (creationKind == TCKind._tk_wstring)) {
             _kind = creationKind;
             _length = bound;
         } // else initializes to null
     }
 
-    public TypeCodeImpl(ORB orb, int creationKind, int bound,
-            TypeCode element_type)
+    public TypeCodeImpl(ORB orb, int creationKind, int bound, TypeCode element_type)
     // for sequences and arrays
     {
         this(orb);
 
-        if (creationKind == TCKind._tk_sequence
-                || creationKind == TCKind._tk_array) {
+        if (creationKind == TCKind._tk_sequence || creationKind == TCKind._tk_array) {
             _kind = creationKind;
             _length = bound;
             _contentType = convertToNative(_orb, element_type);
@@ -514,8 +499,7 @@ public final class TypeCodeImpl extends TypeCode {
     }
 
     public static CDROutputStream newOutputStream(ORB orb) {
-        TypeCodeOutputStream tcos = sun.corba.OutputStreamFactory
-                .newTypeCodeOutputStream(orb);
+        TypeCodeOutputStream tcos = sun.corba.OutputStreamFactory.newTypeCodeOutputStream(orb);
         // if (debug) System.out.println("Created TypeCodeOutputStream " + tcos
         // +
         // " with no parent");
@@ -580,8 +564,7 @@ public final class TypeCodeImpl extends TypeCode {
 
     private TypeCodeImpl lazy_content_type() {
         if (_contentType == null) {
-            if (_kind == TCKind._tk_sequence && _parentOffset > 0
-                    && _parent != null) {
+            if (_kind == TCKind._tk_sequence && _parentOffset > 0 && _parent != null) {
                 // This is an unresolved recursive sequence tc.
                 // Try to resolve it now if the hierarchy is complete.
                 TypeCodeImpl realParent = getParentAtLevel(_parentOffset);
@@ -649,8 +632,7 @@ public final class TypeCodeImpl extends TypeCode {
                             return (_length == tc.length());
 
                         case TCKind._tk_fixed:
-                            return (_digits == tc.fixed_digits() && _scale == tc
-                                    .fixed_scale());
+                            return (_digits == tc.fixed_digits() && _scale == tc.fixed_scale());
                         default:
                             return false;
                     }
@@ -665,13 +647,11 @@ public final class TypeCodeImpl extends TypeCode {
                                 return true;
                             }
 
-                            if (_id.compareTo((_orb.get_primitive_tc(_kind))
-                                    .id()) == 0) {
+                            if (_id.compareTo((_orb.get_primitive_tc(_kind)).id()) == 0) {
                                 return true;
                             }
 
-                            if (tc.id().compareTo((_orb.get_primitive_tc(_kind))
-                                    .id()) == 0) {
+                            if (tc.id().compareTo((_orb.get_primitive_tc(_kind)).id()) == 0) {
                                 return true;
                             }
 
@@ -764,17 +744,15 @@ public final class TypeCodeImpl extends TypeCode {
                                 return false;
                             // check for member types.
                             for (int i = 0; i < _memberCount; i++)
-                                if (_memberAccess[i] != tc.member_visibility(i)
-                                        || !_memberTypes[i].equal(tc
-                                                .member_type(i)))
+                                if (_memberAccess[i] != tc.member_visibility(i) || !_memberTypes[i].equal(tc
+                                        .member_type(i)))
                                     return false;
                             if (_type_modifier == tc.type_modifier())
                                 return false;
                             // concrete_base may be null
                             TypeCode tccb = tc.concrete_base_type();
-                            if ((_concrete_base == null && tccb != null)
-                                    || (_concrete_base != null && tccb == null)
-                                    || !_concrete_base.equal(tccb)) {
+                            if ((_concrete_base == null && tccb != null) || (_concrete_base != null
+                                    && tccb == null) || !_concrete_base.equal(tccb)) {
                                 return false;
                             }
                             // ignore id and names since those are optional.
@@ -792,9 +770,7 @@ public final class TypeCodeImpl extends TypeCode {
                         }
                     }
             }
-        } catch (org.omg.CORBA.TypeCodePackage.Bounds e) {
-        } catch (BadKind e) {
-        }
+        } catch (org.omg.CORBA.TypeCodePackage.Bounds e) {} catch (BadKind e) {}
         // dont have to worry about these since the code ensures these dont
         // arise.
         return false;
@@ -850,9 +826,8 @@ public final class TypeCodeImpl extends TypeCode {
 
         int myKind = myRealType.kind().value();
         try {
-            if (myKind == TCKind._tk_struct || myKind == TCKind._tk_union
-                    || myKind == TCKind._tk_enum || myKind == TCKind._tk_except
-                    || myKind == TCKind._tk_value) {
+            if (myKind == TCKind._tk_struct || myKind == TCKind._tk_union || myKind == TCKind._tk_enum
+                    || myKind == TCKind._tk_except || myKind == TCKind._tk_value) {
                 if (myRealType.member_count() != otherRealType.member_count())
                     return false;
             }
@@ -860,41 +835,33 @@ public final class TypeCodeImpl extends TypeCode {
                 if (myRealType.default_index() != otherRealType.default_index())
                     return false;
             }
-            if (myKind == TCKind._tk_string || myKind == TCKind._tk_wstring
-                    || myKind == TCKind._tk_sequence
+            if (myKind == TCKind._tk_string || myKind == TCKind._tk_wstring || myKind == TCKind._tk_sequence
                     || myKind == TCKind._tk_array) {
                 if (myRealType.length() != otherRealType.length())
                     return false;
             }
             if (myKind == TCKind._tk_fixed) {
-                if (myRealType.fixed_digits() != otherRealType.fixed_digits()
-                        || myRealType.fixed_scale() != otherRealType
-                                .fixed_scale())
+                if (myRealType.fixed_digits() != otherRealType.fixed_digits() || myRealType
+                        .fixed_scale() != otherRealType.fixed_scale())
                     return false;
             }
             if (myKind == TCKind._tk_union) {
                 for (int i = 0; i < myRealType.member_count(); i++) {
-                    if (myRealType.member_label(i) != otherRealType
-                            .member_label(i))
+                    if (myRealType.member_label(i) != otherRealType.member_label(i))
                         return false;
                 }
-                if (!myRealType.discriminator_type().equivalent(otherRealType
-                        .discriminator_type()))
+                if (!myRealType.discriminator_type().equivalent(otherRealType.discriminator_type()))
                     return false;
             }
-            if (myKind == TCKind._tk_alias || myKind == TCKind._tk_value_box
-                    || myKind == TCKind._tk_sequence
+            if (myKind == TCKind._tk_alias || myKind == TCKind._tk_value_box || myKind == TCKind._tk_sequence
                     || myKind == TCKind._tk_array) {
-                if (!myRealType.content_type().equivalent(otherRealType
-                        .content_type()))
+                if (!myRealType.content_type().equivalent(otherRealType.content_type()))
                     return false;
             }
-            if (myKind == TCKind._tk_struct || myKind == TCKind._tk_union
-                    || myKind == TCKind._tk_except
+            if (myKind == TCKind._tk_struct || myKind == TCKind._tk_union || myKind == TCKind._tk_except
                     || myKind == TCKind._tk_value) {
                 for (int i = 0; i < myRealType.member_count(); i++) {
-                    if (!myRealType.member_type(i).equivalent(otherRealType
-                            .member_type(i)))
+                    if (!myRealType.member_type(i).equivalent(otherRealType.member_type(i)))
                         return false;
                 }
             }
@@ -989,8 +956,7 @@ public final class TypeCodeImpl extends TypeCode {
         }
     }
 
-    public String member_name(int index) throws BadKind,
-            org.omg.CORBA.TypeCodePackage.Bounds {
+    public String member_name(int index) throws BadKind, org.omg.CORBA.TypeCodePackage.Bounds {
         switch (_kind) {
             case tk_indirect:
                 return indirectType().member_name(index);
@@ -1009,8 +975,7 @@ public final class TypeCodeImpl extends TypeCode {
         }
     }
 
-    public TypeCode member_type(int index) throws BadKind,
-            org.omg.CORBA.TypeCodePackage.Bounds {
+    public TypeCode member_type(int index) throws BadKind, org.omg.CORBA.TypeCodePackage.Bounds {
         switch (_kind) {
             case tk_indirect:
                 return indirectType().member_type(index);
@@ -1028,8 +993,7 @@ public final class TypeCodeImpl extends TypeCode {
         }
     }
 
-    public Any member_label(int index) throws BadKind,
-            org.omg.CORBA.TypeCodePackage.Bounds {
+    public Any member_label(int index) throws BadKind, org.omg.CORBA.TypeCodePackage.Bounds {
         switch (_kind) {
             case tk_indirect:
                 return indirectType().member_label(index);
@@ -1114,8 +1078,7 @@ public final class TypeCodeImpl extends TypeCode {
         }
     }
 
-    public short member_visibility(int index) throws BadKind,
-            org.omg.CORBA.TypeCodePackage.Bounds {
+    public short member_visibility(int index) throws BadKind, org.omg.CORBA.TypeCodePackage.Bounds {
         switch (_kind) {
             case tk_indirect:
                 return indirectType().member_visibility(index);
@@ -1158,8 +1121,7 @@ public final class TypeCodeImpl extends TypeCode {
             if (read_value_kind((TypeCodeReader) is))
                 read_value_body(is);
         } else if (is instanceof CDRInputStream) {
-            WrapperInputStream wrapper = new WrapperInputStream(
-                    (CDRInputStream) is);
+            WrapperInputStream wrapper = new WrapperInputStream((CDRInputStream) is);
             // if (debug) System.out.println("Created WrapperInputStream " +
             // wrapper +
             // " with no parent");
@@ -1221,11 +1183,9 @@ public final class TypeCodeImpl extends TypeCode {
             // "TypeCodeImpl looking up indirection at position topPos " +
             // topPos + " - 4 + offset " + streamOffset + " = " +
             // indirectTypePosition);
-            TypeCodeImpl type = topStream.getTypeCodeAtPosition(
-                    indirectTypePosition);
+            TypeCodeImpl type = topStream.getTypeCodeAtPosition(indirectTypePosition);
             if (type == null)
-                throw wrapper.indirectionNotFound(new Integer(
-                        indirectTypePosition));
+                throw wrapper.indirectionNotFound(new Integer(indirectTypePosition));
             setIndirectType(type);
             return false;
         }
@@ -1276,8 +1236,7 @@ public final class TypeCodeImpl extends TypeCode {
                 break;
 
             case COMPLEX: {
-                TypeCodeInputStream _encap = TypeCodeInputStream
-                        .readEncapsulation(is, is.orb());
+                TypeCodeInputStream _encap = TypeCodeInputStream.readEncapsulation(is, is.orb());
 
                 switch (_kind) {
 
@@ -1318,63 +1277,49 @@ public final class TypeCodeImpl extends TypeCode {
                             _unionLabels[i] = new AnyImpl((ORB) is.orb());
                             if (i == _defaultIndex)
                                 // for the default case, read off the zero octet
-                                _unionLabels[i].insert_octet(_encap
-                                        .read_octet());
+                                _unionLabels[i].insert_octet(_encap.read_octet());
                             else {
-                                switch (realType(_discriminator).kind()
-                                        .value()) {
+                                switch (realType(_discriminator).kind().value()) {
                                     case TCKind._tk_short:
-                                        _unionLabels[i].insert_short(_encap
-                                                .read_short());
+                                        _unionLabels[i].insert_short(_encap.read_short());
                                         break;
                                     case TCKind._tk_long:
-                                        _unionLabels[i].insert_long(_encap
-                                                .read_long());
+                                        _unionLabels[i].insert_long(_encap.read_long());
                                         break;
                                     case TCKind._tk_ushort:
-                                        _unionLabels[i].insert_ushort(_encap
-                                                .read_short());
+                                        _unionLabels[i].insert_ushort(_encap.read_short());
                                         break;
                                     case TCKind._tk_ulong:
-                                        _unionLabels[i].insert_ulong(_encap
-                                                .read_long());
+                                        _unionLabels[i].insert_ulong(_encap.read_long());
                                         break;
                                     case TCKind._tk_float:
-                                        _unionLabels[i].insert_float(_encap
-                                                .read_float());
+                                        _unionLabels[i].insert_float(_encap.read_float());
                                         break;
                                     case TCKind._tk_double:
-                                        _unionLabels[i].insert_double(_encap
-                                                .read_double());
+                                        _unionLabels[i].insert_double(_encap.read_double());
                                         break;
                                     case TCKind._tk_boolean:
-                                        _unionLabels[i].insert_boolean(_encap
-                                                .read_boolean());
+                                        _unionLabels[i].insert_boolean(_encap.read_boolean());
                                         break;
                                     case TCKind._tk_char:
-                                        _unionLabels[i].insert_char(_encap
-                                                .read_char());
+                                        _unionLabels[i].insert_char(_encap.read_char());
                                         break;
                                     case TCKind._tk_enum:
                                         _unionLabels[i].type(_discriminator);
-                                        _unionLabels[i].insert_long(_encap
-                                                .read_long());
+                                        _unionLabels[i].insert_long(_encap.read_long());
                                         break;
                                     case TCKind._tk_longlong:
-                                        _unionLabels[i].insert_longlong(_encap
-                                                .read_longlong());
+                                        _unionLabels[i].insert_longlong(_encap.read_longlong());
                                         break;
                                     case TCKind._tk_ulonglong:
-                                        _unionLabels[i].insert_ulonglong(_encap
-                                                .read_longlong());
+                                        _unionLabels[i].insert_ulonglong(_encap.read_longlong());
                                         break;
                                     // _REVISIT_ figure out long double mapping
                                     // case TCKind.tk_longdouble:
                                     // _unionLabels[i].insert_longdouble(_encap.getDouble());
                                     // break;
                                     case TCKind._tk_wchar:
-                                        _unionLabels[i].insert_wchar(_encap
-                                                .read_wchar());
+                                        _unionLabels[i].insert_wchar(_encap.read_wchar());
                                         break;
                                     default:
                                         throw wrapper.invalidComplexTypecode();
@@ -1616,8 +1561,7 @@ public final class TypeCodeImpl extends TypeCode {
 
             case COMPLEX: {
                 // create an encapsulation
-                TypeCodeOutputStream _encap = tcos.createEncapsulation(tcos
-                        .orb());
+                TypeCodeOutputStream _encap = tcos.createEncapsulation(tcos.orb());
 
                 switch (_kind) {
 
@@ -1652,63 +1596,49 @@ public final class TypeCodeImpl extends TypeCode {
 
                             // for the default case, marshal the zero octet
                             if (i == _defaultIndex)
-                                _encap.write_octet(_unionLabels[i]
-                                        .extract_octet());
+                                _encap.write_octet(_unionLabels[i].extract_octet());
 
                             else {
-                                switch (realType(_discriminator).kind()
-                                        .value()) {
+                                switch (realType(_discriminator).kind().value()) {
                                     case TCKind._tk_short:
-                                        _encap.write_short(_unionLabels[i]
-                                                .extract_short());
+                                        _encap.write_short(_unionLabels[i].extract_short());
                                         break;
                                     case TCKind._tk_long:
-                                        _encap.write_long(_unionLabels[i]
-                                                .extract_long());
+                                        _encap.write_long(_unionLabels[i].extract_long());
                                         break;
                                     case TCKind._tk_ushort:
-                                        _encap.write_short(_unionLabels[i]
-                                                .extract_ushort());
+                                        _encap.write_short(_unionLabels[i].extract_ushort());
                                         break;
                                     case TCKind._tk_ulong:
-                                        _encap.write_long(_unionLabels[i]
-                                                .extract_ulong());
+                                        _encap.write_long(_unionLabels[i].extract_ulong());
                                         break;
                                     case TCKind._tk_float:
-                                        _encap.write_float(_unionLabels[i]
-                                                .extract_float());
+                                        _encap.write_float(_unionLabels[i].extract_float());
                                         break;
                                     case TCKind._tk_double:
-                                        _encap.write_double(_unionLabels[i]
-                                                .extract_double());
+                                        _encap.write_double(_unionLabels[i].extract_double());
                                         break;
                                     case TCKind._tk_boolean:
-                                        _encap.write_boolean(_unionLabels[i]
-                                                .extract_boolean());
+                                        _encap.write_boolean(_unionLabels[i].extract_boolean());
                                         break;
                                     case TCKind._tk_char:
-                                        _encap.write_char(_unionLabels[i]
-                                                .extract_char());
+                                        _encap.write_char(_unionLabels[i].extract_char());
                                         break;
                                     case TCKind._tk_enum:
-                                        _encap.write_long(_unionLabels[i]
-                                                .extract_long());
+                                        _encap.write_long(_unionLabels[i].extract_long());
                                         break;
                                     case TCKind._tk_longlong:
-                                        _encap.write_longlong(_unionLabels[i]
-                                                .extract_longlong());
+                                        _encap.write_longlong(_unionLabels[i].extract_longlong());
                                         break;
                                     case TCKind._tk_ulonglong:
-                                        _encap.write_longlong(_unionLabels[i]
-                                                .extract_ulonglong());
+                                        _encap.write_longlong(_unionLabels[i].extract_ulonglong());
                                         break;
                                     // _REVISIT_ figure out long double mapping
                                     // case TCKind.tk_longdouble:
                                     // _encap.putDouble(_unionLabels[i].extract_longdouble());
                                     // break;
                                     case TCKind._tk_wchar:
-                                        _encap.write_wchar(_unionLabels[i]
-                                                .extract_wchar());
+                                        _encap.write_wchar(_unionLabels[i].extract_wchar());
                                         break;
                                     default:
                                         throw wrapper.invalidComplexTypecode();
@@ -1800,8 +1730,7 @@ public final class TypeCodeImpl extends TypeCode {
 
                         // put the type aliased
                         if (_concrete_base == null) {
-                            _orb.get_primitive_tc(TCKind._tk_null).write_value(
-                                    _encap);
+                            _orb.get_primitive_tc(TCKind._tk_null).write_value(_encap);
                         } else {
                             _concrete_base.write_value(_encap);
                         }
@@ -1837,8 +1766,7 @@ public final class TypeCodeImpl extends TypeCode {
      * write_value for usage. The state of this TypeCodeImpl instance isn't
      * changed, only used by the Any to do the correct copy.
      */
-    protected void copy(org.omg.CORBA.portable.InputStream src,
-            org.omg.CORBA.portable.OutputStream dst) {
+    protected void copy(org.omg.CORBA.portable.InputStream src, org.omg.CORBA.portable.OutputStream dst) {
         switch (_kind) {
 
             case TCKind._tk_null:
@@ -1894,8 +1822,7 @@ public final class TypeCodeImpl extends TypeCode {
                 s = src.read_string();
                 // make sure length bound in typecode is not violated
                 if ((_length != 0) && (s.length() > _length))
-                    throw wrapper.badStringBounds(new Integer(s.length()),
-                            new Integer(_length));
+                    throw wrapper.badStringBounds(new Integer(s.length()), new Integer(_length));
                 dst.write_string(s);
             }
                 break;
@@ -1905,8 +1832,7 @@ public final class TypeCodeImpl extends TypeCode {
                 s = src.read_wstring();
                 // make sure length bound in typecode is not violated
                 if ((_length != 0) && (s.length() > _length))
-                    throw wrapper.badStringBounds(new Integer(s.length()),
-                            new Integer(_length));
+                    throw wrapper.badStringBounds(new Integer(s.length()), new Integer(_length));
                 dst.write_wstring(s);
             }
                 break;
@@ -2094,8 +2020,7 @@ public final class TypeCodeImpl extends TypeCode {
 
                 // check for sequence bound violated
                 if ((_length != 0) && (seqLength > _length))
-                    throw wrapper.badSequenceBounds(new Integer(seqLength),
-                            new Integer(_length));
+                    throw wrapper.badSequenceBounds(new Integer(seqLength), new Integer(_length));
 
                 // write the length of the sequence
                 dst.write_long(seqLength);
@@ -2164,9 +2089,7 @@ public final class TypeCodeImpl extends TypeCode {
             if (_defaultIndex != -1) {
                 return _defaultIndex;
             }
-        } catch (BadKind bad) {
-        } catch (org.omg.CORBA.TypeCodePackage.Bounds bounds) {
-        }
+        } catch (BadKind bad) {} catch (org.omg.CORBA.TypeCodePackage.Bounds bounds) {}
         return -1;
     }
 
@@ -2248,8 +2171,7 @@ public final class TypeCodeImpl extends TypeCode {
 
             case TCKind._tk_sequence:
             case TCKind._tk_array:
-                s.println(kindNames[_kind] + "[" + _length + "] " + _name
-                        + " = {");
+                s.println(kindNames[_kind] + "[" + _length + "] " + _name + " = {");
                 s.print(indent(level + 1));
                 if (lazy_content_type() != null) {
                     lazy_content_type().printStream(s, level + 1);
@@ -2258,8 +2180,7 @@ public final class TypeCodeImpl extends TypeCode {
                 break;
 
             case TCKind._tk_alias:
-                s.print("alias " + _name + " = " + (_contentType != null
-                        ? _contentType._name
+                s.print("alias " + _name + " = " + (_contentType != null ? _contentType._name
                         : "<unresolved>"));
                 break;
 

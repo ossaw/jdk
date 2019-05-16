@@ -56,9 +56,9 @@ public interface ListSelectionModel {
      * {@code ListSelectionListener} is notified of the change.
      *
      * @param index0
-     *               one end of the interval.
+     *        one end of the interval.
      * @param index1
-     *               other end of the interval
+     *        other end of the interval
      * @see #addListSelectionListener
      */
     void setSelectionInterval(int index0, int index1);
@@ -79,9 +79,9 @@ public interface ListSelectionModel {
      * {@code ListSelectionListener} is notified of the change.
      *
      * @param index0
-     *               one end of the interval.
+     *        one end of the interval.
      * @param index1
-     *               other end of the interval
+     *        other end of the interval
      * @see #addListSelectionListener
      * @see #setSelectionInterval
      */
@@ -102,9 +102,9 @@ public interface ListSelectionModel {
      * {@code ListSelectionListener} is notified of the change.
      *
      * @param index0
-     *               one end of the interval.
+     *        one end of the interval.
      * @param index1
-     *               other end of the interval
+     *        other end of the interval
      * @see #addListSelectionListener
      */
     void removeSelectionInterval(int index0, int index1);
@@ -213,7 +213,7 @@ public interface ListSelectionModel {
      * {@code valueIsAdjusting} property set to {@code false}.
      *
      * @param valueIsAdjusting
-     *                         the new value of the property
+     *        the new value of the property
      * @see #getValueIsAdjusting
      * @see javax.swing.event.ListSelectionEvent#getValueIsAdjusting
      */
@@ -247,8 +247,8 @@ public interface ListSelectionModel {
      *
      * @see #getSelectionMode
      * @throws IllegalArgumentException
-     *                                  if the selection mode isn't one of those
-     *                                  allowed
+     *         if the selection mode isn't one of those
+     *         allowed
      */
     void setSelectionMode(int selectionMode);
 
@@ -265,7 +265,7 @@ public interface ListSelectionModel {
      * selection occurs.
      *
      * @param x
-     *          the ListSelectionListener
+     *        the ListSelectionListener
      * @see #removeListSelectionListener
      * @see #setSelectionInterval
      * @see #addSelectionInterval
@@ -281,7 +281,7 @@ public interface ListSelectionModel {
      * selection occurs.
      *
      * @param x
-     *          the ListSelectionListener
+     *        the ListSelectionListener
      * @see #addListSelectionListener
      */
     void removeListSelectionListener(ListSelectionListener x);

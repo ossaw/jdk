@@ -23,7 +23,6 @@ import java.util.Hashtable;
 /**
  * A description of a field in a serializable class. A array of these is used to
  * declare the persistent fields of a class.
- *
  */
 class ObjectStreamField implements Comparable {
     /**
@@ -194,8 +193,7 @@ class ObjectStreamField implements Comparable {
         if (typeString == null && other.typeString == null)
             return true;
 
-        return ObjectStreamClass_1_3_1.compareClassNames(typeString,
-                other.typeString, '/');
+        return ObjectStreamClass_1_3_1.compareClassNames(typeString, other.typeString, '/');
     }
 
     /*

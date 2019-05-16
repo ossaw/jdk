@@ -23,7 +23,6 @@ public class FormattableFlags {
      * at the end of the converted value as required to fill the minimum width
      * of the field. If this flag is not set then the output will be
      * right-justified.
-     *
      * <p>
      * This flag corresponds to <tt>'-'</tt> (<tt>'&#92;u002d'</tt>) in the
      * format specifier.
@@ -40,7 +39,6 @@ public class FormattableFlags {
      * <pre>
      * out.toUpperCase()
      * </pre>
-     *
      * <p>
      * This flag corresponds to <tt>'S'</tt> (<tt>'&#92;u0053'</tt>) in the
      * format specifier.
@@ -50,7 +48,6 @@ public class FormattableFlags {
     /**
      * Requires the output to use an alternate form. The definition of the form
      * is specified by the <tt>Formattable</tt>.
-     *
      * <p>
      * This flag corresponds to <tt>'#'</tt> (<tt>'&#92;u0023'</tt>) in the
      * format specifier.

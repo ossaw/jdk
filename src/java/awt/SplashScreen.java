@@ -85,13 +85,13 @@ public final class SplashScreen {
      * screen control on systems that support display.
      *
      * @throws UnsupportedOperationException
-     *                                       if the splash screen feature is not
-     *                                       supported by the current
-     *                                       toolkit
+     *         if the splash screen feature is not
+     *         supported by the current
+     *         toolkit
      * @throws HeadlessException
-     *                                       if
-     *                                       {@code GraphicsEnvironment.isHeadless()}
-     *                                       returns true
+     *         if
+     *         {@code GraphicsEnvironment.isHeadless()}
+     *         returns true
      * @return the {@link SplashScreen} instance, or <code>null</code> if there
      *         is none or it has already been closed
      */
@@ -102,13 +102,12 @@ public final class SplashScreen {
             }
             // SplashScreen class is now a singleton
             if (!wasClosed && theInstance == null) {
-                java.security.AccessController.doPrivileged(
-                        new java.security.PrivilegedAction<Void>() {
-                            public Void run() {
-                                System.loadLibrary("splashscreen");
-                                return null;
-                            }
-                        });
+                java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
+                    public Void run() {
+                        System.loadLibrary("splashscreen");
+                        return null;
+                    }
+                });
                 long ptr = _getInstance();
                 if (ptr != 0 && _isVisible(ptr)) {
                     theInstance = new SplashScreen(ptr);
@@ -126,19 +125,18 @@ public final class SplashScreen {
      * image and is centered on the screen.
      *
      * @param imageURL
-     *                 the non-<code>null</code> URL for the new splash screen
-     *                 image
+     *        the non-<code>null</code> URL for the new splash screen
+     *        image
      * @throws NullPointerException
-     *                               if {@code imageURL} is <code>null</code>
+     *         if {@code imageURL} is <code>null</code>
      * @throws IOException
-     *                               if there was an error while loading the
-     *                               image
+     *         if there was an error while loading the
+     *         image
      * @throws IllegalStateException
-     *                               if the splash screen has already been
-     *                               closed
+     *         if the splash screen has already been
+     *         closed
      */
-    public void setImageURL(URL imageURL) throws NullPointerException,
-            IOException, IllegalStateException {
+    public void setImageURL(URL imageURL) throws NullPointerException, IOException, IllegalStateException {
         checkVisible();
         URLConnection connection = imageURL.openConnection();
         connection.connect();
@@ -175,8 +173,7 @@ public final class SplashScreen {
         synchronized (SplashScreen.class) {
             checkVisible();
             if (!_setImageData(splashPtr, buf)) {
-                throw new IOException(
-                        "Bad image format or i/o error when loading image");
+                throw new IOException("Bad image format or i/o error when loading image");
             }
             this.imageURL = imageURL;
         }
@@ -193,8 +190,8 @@ public final class SplashScreen {
      *
      * @return URL for the current splash screen image file
      * @throws IllegalStateException
-     *                               if the splash screen has already been
-     *                               closed
+     *         if the splash screen has already been
+     *         closed
      */
     public URL getImageURL() throws IllegalStateException {
         synchronized (SplashScreen.class) {
@@ -205,17 +202,15 @@ public final class SplashScreen {
                     String jarName = _getImageJarName(splashPtr);
                     if (fileName != null) {
                         if (jarName != null) {
-                            imageURL = new URL("jar:" + (new File(jarName)
-                                    .toURL().toString()) + "!/" + fileName);
+                            imageURL = new URL("jar:" + (new File(jarName).toURL().toString()) + "!/"
+                                    + fileName);
                         } else {
                             imageURL = new File(fileName).toURL();
                         }
                     }
                 } catch (java.net.MalformedURLException e) {
                     if (log.isLoggable(PlatformLogger.Level.FINE)) {
-                        log.fine(
-                                "MalformedURLException caught in the getImageURL() method",
-                                e);
+                        log.fine("MalformedURLException caught in the getImageURL() method", e);
                     }
                 }
             }
@@ -236,8 +231,8 @@ public final class SplashScreen {
      *
      * @return a {@code Rectangle} containing the splash screen bounds
      * @throws IllegalStateException
-     *                               if the splash screen has already been
-     *                               closed
+     *         if the splash screen has already been
+     *         closed
      */
     public Rectangle getBounds() throws IllegalStateException {
         synchronized (SplashScreen.class) {
@@ -246,8 +241,7 @@ public final class SplashScreen {
             Rectangle bounds = _getBounds(splashPtr);
             assert scale > 0;
             if (scale > 0 && scale != 1) {
-                bounds.setSize((int) (bounds.getWidth() / scale), (int) (bounds
-                        .getHeight() / scale));
+                bounds.setSize((int) (bounds.getWidth() / scale), (int) (bounds.getHeight() / scale));
             }
             return bounds;
         }
@@ -266,8 +260,8 @@ public final class SplashScreen {
      *
      * @return a {@link Dimension} object indicating the splash screen size
      * @throws IllegalStateException
-     *                               if the splash screen has already been
-     *                               closed
+     *         if the splash screen has already been
+     *         closed
      */
     public Dimension getSize() throws IllegalStateException {
         return getBounds().getSize();
@@ -289,8 +283,8 @@ public final class SplashScreen {
      *
      * @return graphics context for the splash screen overlay surface
      * @throws IllegalStateException
-     *                               if the splash screen has already been
-     *                               closed
+     *         if the splash screen has already been
+     *         closed
      */
     public Graphics2D createGraphics() throws IllegalStateException {
         synchronized (SplashScreen.class) {
@@ -298,8 +292,7 @@ public final class SplashScreen {
             if (image == null) {
                 // get unscaled splash image size
                 Dimension dim = _getBounds(splashPtr).getSize();
-                image = new BufferedImage(dim.width, dim.height,
-                        BufferedImage.TYPE_INT_ARGB);
+                image = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_ARGB);
             }
             float scale = _getScaleFactor(splashPtr);
             Graphics2D g = image.createGraphics();
@@ -316,11 +309,11 @@ public final class SplashScreen {
      * Updates the splash window with current contents of the overlay image.
      *
      * @throws IllegalStateException
-     *                               if the overlay image does not exist; for
-     *                               example, if
-     *                               {@code createGraphics} has never been
-     *                               called, or if the
-     *                               splash screen has already been closed
+     *         if the overlay image does not exist; for
+     *         example, if
+     *         {@code createGraphics} has never been
+     *         called, or if the
+     *         splash screen has already been closed
      */
     public void update() throws IllegalStateException {
         BufferedImage image;
@@ -333,9 +326,8 @@ public final class SplashScreen {
         }
         DataBuffer buf = image.getRaster().getDataBuffer();
         if (!(buf instanceof DataBufferInt)) {
-            throw new AssertionError(
-                    "Overlay image DataBuffer is of invalid type == " + buf
-                            .getClass().getName());
+            throw new AssertionError("Overlay image DataBuffer is of invalid type == " + buf.getClass()
+                    .getName());
         }
         int numBanks = buf.getNumBanks();
         if (numBanks != 1) {
@@ -343,12 +335,10 @@ public final class SplashScreen {
                     + " in overlay image DataBuffer");
         }
         if (!(image.getSampleModel() instanceof SinglePixelPackedSampleModel)) {
-            throw new AssertionError(
-                    "Overlay image has invalid sample model == " + image
-                            .getSampleModel().getClass().getName());
+            throw new AssertionError("Overlay image has invalid sample model == " + image.getSampleModel()
+                    .getClass().getName());
         }
-        SinglePixelPackedSampleModel sm = (SinglePixelPackedSampleModel) image
-                .getSampleModel();
+        SinglePixelPackedSampleModel sm = (SinglePixelPackedSampleModel) image.getSampleModel();
         int scanlineStride = sm.getScanlineStride();
         Rectangle rect = image.getRaster().getBounds();
         // Note that we steal the data array here, but just for reading
@@ -356,8 +346,7 @@ public final class SplashScreen {
         int[] data = SunWritableRaster.stealData((DataBufferInt) buf, 0);
         synchronized (SplashScreen.class) {
             checkVisible();
-            _update(splashPtr, data, rect.x, rect.y, rect.width, rect.height,
-                    scanlineStride);
+            _update(splashPtr, data, rect.x, rect.y, rect.width, rect.height, scanlineStride);
         }
     }
 
@@ -366,8 +355,8 @@ public final class SplashScreen {
      * resources.
      *
      * @throws IllegalStateException
-     *                               if the splash screen has already been
-     *                               closed
+     *         if the splash screen has already been
+     *         closed
      */
     public void close() throws IllegalStateException {
         synchronized (SplashScreen.class) {
@@ -420,11 +409,10 @@ public final class SplashScreen {
      */
     private static SplashScreen theInstance = null;
 
-    private static final PlatformLogger log = PlatformLogger.getLogger(
-            "java.awt.SplashScreen");
+    private static final PlatformLogger log = PlatformLogger.getLogger("java.awt.SplashScreen");
 
-    private native static void _update(long splashPtr, int[] data, int x, int y,
-            int width, int height, int scanlineStride);
+    private native static void _update(long splashPtr, int[] data, int x, int y, int width, int height,
+            int scanlineStride);
 
     private native static boolean _isVisible(long splashPtr);
 

@@ -23,7 +23,6 @@ import java.net.URL;
  * </pre>
  *
  * <h3>Thread safety</h3>
- *
  * A SerialDatalink is not safe for use by multiple concurrent threads. If a
  * SerialDatalink is to be used by more than one thread then access to the
  * SerialDatalink should be controlled by appropriate synchronization.
@@ -60,9 +59,9 @@ public class SerialDatalink implements Serializable, Cloneable {
      * <P>
      * 
      * @param url
-     *            the {@code URL} to create the {@code SerialDataLink} from
+     *        the {@code URL} to create the {@code SerialDataLink} from
      * @throws SerialException
-     *                         if url parameter is a null
+     *         if url parameter is a null
      */
     public SerialDatalink(URL url) throws SerialException {
         if (url == null) {
@@ -78,8 +77,8 @@ public class SerialDatalink implements Serializable, Cloneable {
      * @return a copy of this <code>SerialDatalink</code> object as a
      *         <code>URL</code> object in the Java programming language.
      * @throws SerialException
-     *                         if the <code>URL</code> object cannot be
-     *                         de-serialized
+     *         if the <code>URL</code> object cannot be
+     *         de-serialized
      */
     public URL getDatalink() throws SerialException {
 
@@ -88,8 +87,7 @@ public class SerialDatalink implements Serializable, Cloneable {
         try {
             aURL = new URL((this.url).toString());
         } catch (java.net.MalformedURLException e) {
-            throw new SerialException("MalformedURLException: " + e
-                    .getMessage());
+            throw new SerialException("MalformedURLException: " + e.getMessage());
         }
         return aURL;
     }
@@ -100,12 +98,10 @@ public class SerialDatalink implements Serializable, Cloneable {
      * {@code SerialDatalink} object whose URL is identical to this object's URL
      *
      * @param obj
-     *            The object to compare this {@code SerialDatalink} against
-     *
+     *        The object to compare this {@code SerialDatalink} against
      * @return {@code true} if the given object represents a
      *         {@code SerialDatalink} equivalent to this SerialDatalink,
      *         {@code false} otherwise
-     *
      */
     public boolean equals(Object obj) {
         if (this == obj) {

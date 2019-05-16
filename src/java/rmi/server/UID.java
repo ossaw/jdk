@@ -14,13 +14,11 @@ import java.security.SecureRandom;
  * A <code>UID</code> represents an identifier that is unique over time with
  * respect to the host it is generated on, or one of 2<sup>16</sup> "well-known"
  * identifiers.
- *
  * <p>
  * The {@link #UID()} constructor can be used to generate an identifier that is
  * unique over time with respect to the host it is generated on. The
  * {@link #UID(short)} constructor can be used to create one of 2<sup>16</sup>
  * well-known identifiers.
- *
  * <p>
  * A <code>UID</code> instance contains three primitive values:
  * <ul>
@@ -36,7 +34,6 @@ import java.security.SecureRandom;
  * <li><code>count</code>, a <code>short</code> to distinguish <code>UID</code>s
  * generated in the same VM with the same <code>time</code> value
  * </ul>
- *
  * <p>
  * An independently generated <code>UID</code> instance is unique over time with
  * respect to the host it is generated on as long as the host requires more than
@@ -127,15 +124,13 @@ public final class UID implements Serializable {
 
     /**
      * Creates a "well-known" <code>UID</code>.
-     *
      * There are 2<sup>16</sup> possible such well-known ids.
-     *
      * <p>
      * A <code>UID</code> created via this constructor will not clash with any
      * <code>UID</code>s generated via the no-arg constructor.
      *
      * @param num
-     *            number for well-known <code>UID</code>
+     *        number for well-known <code>UID</code>
      */
     public UID(short num) {
         unique = 0;
@@ -163,22 +158,19 @@ public final class UID implements Serializable {
 
     /**
      * Compares the specified object with this <code>UID</code> for equality.
-     *
      * This method returns <code>true</code> if and only if the specified object
      * is a <code>UID</code> instance with the same <code>unique</code>,
      * <code>time</code>, and <code>count</code> values as this one.
      *
      * @param obj
-     *            the object to compare this <code>UID</code> to
-     *
+     *        the object to compare this <code>UID</code> to
      * @return <code>true</code> if the given object is equivalent to this one,
      *         and <code>false</code> otherwise
      */
     public boolean equals(Object obj) {
         if (obj instanceof UID) {
             UID uid = (UID) obj;
-            return (unique == uid.unique && count == uid.count
-                    && time == uid.time);
+            return (unique == uid.unique && count == uid.count && time == uid.time);
         } else {
             return false;
         }
@@ -190,14 +182,13 @@ public final class UID implements Serializable {
      * @return a string representation of this <code>UID</code>
      */
     public String toString() {
-        return Integer.toString(unique, 16) + ":" + Long.toString(time, 16)
-                + ":" + Integer.toString(count, 16);
+        return Integer.toString(unique, 16) + ":" + Long.toString(time, 16) + ":" + Integer.toString(count,
+                16);
     }
 
     /**
      * Marshals a binary representation of this <code>UID</code> to a
      * <code>DataOutput</code> instance.
-     *
      * <p>
      * Specifically, this method first invokes the given stream's
      * {@link DataOutput#writeInt(int)} method with this <code>UID</code>'s
@@ -208,12 +199,11 @@ public final class UID implements Serializable {
      * <code>count</code> value.
      *
      * @param out
-     *            the <code>DataOutput</code> instance to write this
-     *            <code>UID</code> to
-     *
+     *        the <code>DataOutput</code> instance to write this
+     *        <code>UID</code> to
      * @throws IOException
-     *                     if an I/O error occurs while performing this
-     *                     operation
+     *         if an I/O error occurs while performing this
+     *         operation
      */
     public void write(DataOutput out) throws IOException {
         out.writeInt(unique);
@@ -224,7 +214,6 @@ public final class UID implements Serializable {
     /**
      * Constructs and returns a new <code>UID</code> instance by unmarshalling a
      * binary representation from an <code>DataInput</code> instance.
-     *
      * <p>
      * Specifically, this method first invokes the given stream's
      * {@link DataInput#readInt()} method to read a <code>unique</code> value,
@@ -236,14 +225,12 @@ public final class UID implements Serializable {
      * <code>count</code> values that were read from the stream.
      *
      * @param in
-     *           the <code>DataInput</code> instance to read <code>UID</code>
-     *           from
-     *
+     *        the <code>DataInput</code> instance to read <code>UID</code>
+     *        from
      * @return unmarshalled <code>UID</code> instance
-     *
      * @throws IOException
-     *                     if an I/O error occurs while performing this
-     *                     operation
+     *         if an I/O error occurs while performing this
+     *         operation
      */
     public static UID read(DataInput in) throws IOException {
         int unique = in.readInt();

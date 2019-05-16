@@ -76,7 +76,7 @@ public final class LineNumber implements Cloneable, Node, Serializable {
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     LineNumber(DataInputStream file) throws IOException {
@@ -85,9 +85,9 @@ public final class LineNumber implements Cloneable, Node, Serializable {
 
     /**
      * @param start_pc
-     *                    Program Counter (PC) corresponds to
+     *        Program Counter (PC) corresponds to
      * @param line_number
-     *                    line number in source file
+     *        line number in source file
      */
     public LineNumber(int start_pc, int line_number) {
         this.start_pc = start_pc;
@@ -100,7 +100,7 @@ public final class LineNumber implements Cloneable, Node, Serializable {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLineNumber(this);
@@ -110,7 +110,7 @@ public final class LineNumber implements Cloneable, Node, Serializable {
      * Dump line number/pc pair to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -160,8 +160,7 @@ public final class LineNumber implements Cloneable, Node, Serializable {
     public LineNumber copy() {
         try {
             return (LineNumber) clone();
-        } catch (CloneNotSupportedException e) {
-        }
+        } catch (CloneNotSupportedException e) {}
 
         return null;
     }

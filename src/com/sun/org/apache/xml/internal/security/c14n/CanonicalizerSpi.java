@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -51,22 +49,18 @@ public abstract class CanonicalizerSpi {
      *
      * @param inputBytes
      * @return the c14n bytes.
-     *
      * @throws CanonicalizationException
-     * @throws                           java.io.IOException
-     * @throws                           javax.xml.parsers.ParserConfigurationException
-     * @throws                           org.xml.sax.SAXException
+     * @throws java.io.IOException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
      */
-    public byte[] engineCanonicalize(byte[] inputBytes)
-            throws javax.xml.parsers.ParserConfigurationException,
-            java.io.IOException, org.xml.sax.SAXException,
-            CanonicalizationException {
+    public byte[] engineCanonicalize(byte[] inputBytes) throws javax.xml.parsers.ParserConfigurationException,
+            java.io.IOException, org.xml.sax.SAXException, CanonicalizationException {
 
         java.io.InputStream bais = new ByteArrayInputStream(inputBytes);
         InputSource in = new InputSource(bais);
         DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
-        dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                Boolean.TRUE);
+        dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
 
         // needs to validate for ID attribute normalization
         dfactory.setNamespaceAware(true);
@@ -84,10 +78,8 @@ public abstract class CanonicalizerSpi {
      * @return the c14n bytes
      * @throws CanonicalizationException
      */
-    public byte[] engineCanonicalizeXPathNodeSet(NodeList xpathNodeSet)
-            throws CanonicalizationException {
-        return this.engineCanonicalizeXPathNodeSet(XMLUtils
-                .convertNodelistToSet(xpathNodeSet));
+    public byte[] engineCanonicalizeXPathNodeSet(NodeList xpathNodeSet) throws CanonicalizationException {
+        return this.engineCanonicalizeXPathNodeSet(XMLUtils.convertNodelistToSet(xpathNodeSet));
     }
 
     /**
@@ -98,10 +90,10 @@ public abstract class CanonicalizerSpi {
      * @return the c14n bytes
      * @throws CanonicalizationException
      */
-    public byte[] engineCanonicalizeXPathNodeSet(NodeList xpathNodeSet,
-            String inclusiveNamespaces) throws CanonicalizationException {
-        return this.engineCanonicalizeXPathNodeSet(XMLUtils
-                .convertNodelistToSet(xpathNodeSet), inclusiveNamespaces);
+    public byte[] engineCanonicalizeXPathNodeSet(NodeList xpathNodeSet, String inclusiveNamespaces)
+            throws CanonicalizationException {
+        return this.engineCanonicalizeXPathNodeSet(XMLUtils.convertNodelistToSet(xpathNodeSet),
+                inclusiveNamespaces);
     }
 
     /**
@@ -125,8 +117,8 @@ public abstract class CanonicalizerSpi {
      * @return the c14n bytes
      * @throws CanonicalizationException
      */
-    public abstract byte[] engineCanonicalizeXPathNodeSet(
-            Set<Node> xpathNodeSet) throws CanonicalizationException;
+    public abstract byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet)
+            throws CanonicalizationException;
 
     /**
      * C14n a nodeset
@@ -136,8 +128,7 @@ public abstract class CanonicalizerSpi {
      * @return the c14n bytes
      * @throws CanonicalizationException
      */
-    public abstract byte[] engineCanonicalizeXPathNodeSet(
-            Set<Node> xpathNodeSet, String inclusiveNamespaces)
+    public abstract byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet, String inclusiveNamespaces)
             throws CanonicalizationException;
 
     /**
@@ -147,8 +138,7 @@ public abstract class CanonicalizerSpi {
      * @return the c14n bytes
      * @throws CanonicalizationException
      */
-    public abstract byte[] engineCanonicalizeSubTree(Node rootNode)
-            throws CanonicalizationException;
+    public abstract byte[] engineCanonicalizeSubTree(Node rootNode) throws CanonicalizationException;
 
     /**
      * C14n a node tree.
@@ -158,8 +148,8 @@ public abstract class CanonicalizerSpi {
      * @return the c14n bytes
      * @throws CanonicalizationException
      */
-    public abstract byte[] engineCanonicalizeSubTree(Node rootNode,
-            String inclusiveNamespaces) throws CanonicalizationException;
+    public abstract byte[] engineCanonicalizeSubTree(Node rootNode, String inclusiveNamespaces)
+            throws CanonicalizationException;
 
     /**
      * Sets the writer where the canonicalization ends. ByteArrayOutputStream if

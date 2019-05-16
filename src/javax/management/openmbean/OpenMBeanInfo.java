@@ -22,14 +22,12 @@ import javax.management.MBeanNotificationInfo;
  * returns an instance of a class which implements the {@link OpenMBeanInfo}
  * interface, typically {@link OpenMBeanInfoSupport}.
  * </p>
- *
  * <p>
  * This interface declares the same methods as the class
  * {@link javax.management.MBeanInfo}. A class implementing this interface
  * (typically {@link OpenMBeanInfoSupport}) should extend
  * {@link javax.management.MBeanInfo}.
  * </p>
- *
  * <p>
  * The {@link #getAttributes()}, {@link #getOperations()} and
  * {@link #getConstructors()} methods of the implementing class should return at
@@ -37,7 +35,6 @@ import javax.management.MBeanNotificationInfo;
  * {@link MBeanOperationInfo} or {@link MBeanConstructorInfo} respectively which
  * implement the {@link OpenMBeanAttributeInfo}, {@link OpenMBeanOperationInfo}
  * or {@link OpenMBeanConstructorInfo} interface respectively.
- *
  *
  * @since 1.5
  */
@@ -131,9 +128,8 @@ public interface OpenMBeanInfo {
      * &nbsp;
      * 
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>OpenMBeanInfo</code> instance;
-     *
+     *        the object to be compared for equality with this
+     *        <code>OpenMBeanInfo</code> instance;
      * @return <code>true</code> if the specified object is equal to this
      *         <code>OpenMBeanInfo</code> instance.
      */

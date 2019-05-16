@@ -46,7 +46,6 @@
  * withLocale(Locale)} on the formatter. Further customization is possible using
  * {@link java.time.format.DecimalStyle DecimalStyle}.
  * </p>
- *
  * <h3>Package specification</h3>
  * <p>
  * Unless otherwise noted, passing a null argument to a constructor or method in

@@ -23,36 +23,30 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-public abstract class StubFactoryFactoryDynamicBase extends
-        StubFactoryFactoryBase {
+public abstract class StubFactoryFactoryDynamicBase extends StubFactoryFactoryBase {
     protected final ORBUtilSystemException wrapper;
 
     public StubFactoryFactoryDynamicBase() {
         wrapper = ORBUtilSystemException.get(CORBALogDomains.RPC_PRESENTATION);
     }
 
-    public PresentationManager.StubFactory createStubFactory(String className,
-            boolean isIDLStub, String remoteCodeBase, Class expectedClass,
-            ClassLoader classLoader) {
+    public PresentationManager.StubFactory createStubFactory(String className, boolean isIDLStub,
+            String remoteCodeBase, Class expectedClass, ClassLoader classLoader) {
         Class cls = null;
 
         try {
             cls = Util.loadClass(className, remoteCodeBase, classLoader);
         } catch (ClassNotFoundException exc) {
-            throw wrapper.classNotFound3(CompletionStatus.COMPLETED_MAYBE, exc,
-                    className);
+            throw wrapper.classNotFound3(CompletionStatus.COMPLETED_MAYBE, exc, className);
         }
 
         PresentationManager pm = ORB.getPresentationManager();
 
-        if (IDLEntity.class.isAssignableFrom(cls) && !Remote.class
-                .isAssignableFrom(cls)) {
+        if (IDLEntity.class.isAssignableFrom(cls) && !Remote.class.isAssignableFrom(cls)) {
             // IDL stubs must always use static factories.
-            PresentationManager.StubFactoryFactory sff = pm
-                    .getStubFactoryFactory(false);
-            PresentationManager.StubFactory sf = sff.createStubFactory(
-                    className, true, remoteCodeBase, expectedClass,
-                    classLoader);
+            PresentationManager.StubFactoryFactory sff = pm.getStubFactoryFactory(false);
+            PresentationManager.StubFactory sf = sff.createStubFactory(className, true, remoteCodeBase,
+                    expectedClass, classLoader);
             return sf;
         } else {
             PresentationManager.ClassData classData = pm.getClassData(cls);
@@ -60,9 +54,8 @@ public abstract class StubFactoryFactoryDynamicBase extends
         }
     }
 
-    public abstract PresentationManager.StubFactory makeDynamicStubFactory(
-            PresentationManager pm, PresentationManager.ClassData classData,
-            ClassLoader classLoader);
+    public abstract PresentationManager.StubFactory makeDynamicStubFactory(PresentationManager pm,
+            PresentationManager.ClassData classData, ClassLoader classLoader);
 
     public Tie getTie(Class cls) {
         PresentationManager pm = ORB.getPresentationManager();

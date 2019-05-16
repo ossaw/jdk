@@ -25,7 +25,6 @@ package java.security.cert;
  * synchronize.
  *
  * @see CertPathBuilder
- *
  * @since 1.4
  * @author Sean Mullan
  */

@@ -79,24 +79,21 @@ public class ExceptionHandlerImpl implements ExceptionHandler {
 
             try {
                 helperClass = Class.forName(helperName, true, loader);
-                Method idMethod = helperClass.getDeclaredMethod("id",
-                        (Class[]) null);
+                Method idMethod = helperClass.getDeclaredMethod("id", (Class[]) null);
                 setId((String) idMethod.invoke(null, (Object[]) null));
             } catch (Exception ex) {
                 throw wrapper.badHelperIdMethod(ex, helperName);
             }
 
             try {
-                Class[] argTypes = new Class[] {
-                        org.omg.CORBA.portable.OutputStream.class, cls };
+                Class[] argTypes = new Class[] { org.omg.CORBA.portable.OutputStream.class, cls };
                 writeMethod = helperClass.getDeclaredMethod("write", argTypes);
             } catch (Exception ex) {
                 throw wrapper.badHelperWriteMethod(ex, helperName);
             }
 
             try {
-                Class[] argTypes = new Class[] {
-                        org.omg.CORBA.portable.InputStream.class };
+                Class[] argTypes = new Class[] { org.omg.CORBA.portable.InputStream.class };
                 readMethod = helperClass.getDeclaredMethod("read", argTypes);
             } catch (Exception ex) {
                 throw wrapper.badHelperReadMethod(ex, helperName);
@@ -108,8 +105,7 @@ public class ExceptionHandlerImpl implements ExceptionHandler {
                 Object[] args = new Object[] { os, ex };
                 writeMethod.invoke(null, args);
             } catch (Exception exc) {
-                throw wrapper.badHelperWriteMethod(exc, writeMethod
-                        .getDeclaringClass().getName());
+                throw wrapper.badHelperWriteMethod(exc, writeMethod.getDeclaringClass().getName());
             }
         }
 
@@ -118,8 +114,7 @@ public class ExceptionHandlerImpl implements ExceptionHandler {
                 Object[] args = new Object[] { is };
                 return (Exception) readMethod.invoke(null, args);
             } catch (Exception ex) {
-                throw wrapper.badHelperReadMethod(ex, readMethod
-                        .getDeclaringClass().getName());
+                throw wrapper.badHelperReadMethod(ex, readMethod.getDeclaringClass().getName());
             }
         }
     }

@@ -34,7 +34,6 @@ final class ArgumentList {
     }
 
     public String toString() {
-        return _rest == null ? _arg.toString()
-                : _arg.toString() + ", " + _rest.toString();
+        return _rest == null ? _arg.toString() : _arg.toString() + ", " + _rest.toString();
     }
 }

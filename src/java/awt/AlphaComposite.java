@@ -17,13 +17,11 @@ import sun.java2d.SunCompositeContext;
  * Duff, "Compositing Digital Images", SIGGRAPH 84, 253-259. The rest of this
  * documentation assumes some familiarity with the definitions and concepts
  * outlined in that paper.
- *
  * <p>
  * This class extends the standard equations defined by Porter and Duff to
  * include one additional factor. An instance of the <code>AlphaComposite</code>
  * class can contain an alpha value that is used to modify the opacity or
  * coverage of every source pixel before it is used in the blending equations.
- *
  * <p>
  * It is important to note that the equations defined by the Porter and Duff
  * paper are all defined to operate on color components that are premultiplied
@@ -33,18 +31,15 @@ import sun.java2d.SunCompositeContext;
  * into premultiplied form before applying the equations and all results might
  * need to be adjusted back to the form required by the destination before the
  * pixel values are stored.
- *
  * <p>
  * Also note that this class defines only the equations for combining color and
  * alpha values in a purely mathematical sense. The accurate application of its
  * equations depends on the way the data is retrieved from its sources and
  * stored in its destinations. See <a href="#caveats">Implementation Caveats</a>
  * for further information.
- *
  * <p>
  * The following factors are used in the description of the blending equation in
  * the Porter and Duff paper:
- *
  * <blockquote>
  * <table summary="layout">
  * <tr>
@@ -76,7 +71,6 @@ import sun.java2d.SunCompositeContext;
  * <td>a color component of the result in premultiplied form
  * </table>
  * </blockquote>
- *
  * <p>
  * Using these factors, Porter and Duff define 12 ways of choosing the blending
  * factors <em>F<sub>s</sub></em> and <em>F<sub>d</sub></em> to produce each of
@@ -95,11 +89,9 @@ import sun.java2d.SunCompositeContext;
  *      <em>A<sub>r</sub></em> = <em>A<sub>s</sub></em>*<em>F<sub>s</sub></em> + <em>A<sub>d</sub></em>*<em>F<sub>d</sub></em>
  *      <em>C<sub>r</sub></em> = <em>C<sub>s</sub></em>*<em>F<sub>s</sub></em> + <em>C<sub>d</sub></em>*<em>F<sub>d</sub></em>
  * </pre>
- *
  * <p>
  * The following factors will be used to discuss our extensions to the blending
  * equation in the Porter and Duff paper:
- *
  * <blockquote>
  * <table summary="layout">
  * <tr>
@@ -128,9 +120,7 @@ import sun.java2d.SunCompositeContext;
  * <td>the final raw color component stored in the destination
  * </table>
  * </blockquote>
- *
  * <h3>Preparing Inputs</h3>
- *
  * <p>
  * The <code>AlphaComposite</code> class defines an additional alpha value that
  * is applied to the source alpha. This value is applied as if an implicit
@@ -161,7 +151,6 @@ import sun.java2d.SunCompositeContext;
  * <pre>
  *      <em>A<sub>d</sub></em> = <em>A<sub>dr</sub></em>
  * </pre>
- *
  * <p>
  * The destination color components need to be adjusted only if they are not in
  * premultiplied form:
@@ -172,16 +161,13 @@ import sun.java2d.SunCompositeContext;
  * </pre>
  *
  * <h3>Applying the Blending Equation</h3>
- *
  * <p>
  * The adjusted <em>A<sub>s</sub></em>, <em>A<sub>d</sub></em>,
  * <em>C<sub>s</sub></em>, and <em>C<sub>d</sub></em> are used in the standard
  * Porter and Duff equations to calculate the blending factors
  * <em>F<sub>s</sub></em> and <em>F<sub>d</sub></em> and then the resulting
  * premultiplied components <em>A<sub>r</sub></em> and <em>C<sub>r</sub></em>.
- *
  * <h3>Preparing Results</h3>
- *
  * <p>
  * The results only need to be adjusted if they are to be stored back into a
  * destination buffer that holds data that is not premultiplied, using the
@@ -196,9 +182,7 @@ import sun.java2d.SunCompositeContext;
  * Note that since the division is undefined if the resulting alpha is zero, the
  * division in that case is omitted to avoid the "divide by zero" and the color
  * components are left as all zeros.
- *
  * <h3>Performance Considerations</h3>
- *
  * <p>
  * For performance reasons, it is preferable that <code>Raster</code> objects
  * passed to the <code>compose</code> method of a {@link CompositeContext}
@@ -206,14 +190,11 @@ import sun.java2d.SunCompositeContext;
  * data. If either the source <code>Raster</code> or the destination
  * <code>Raster</code> is not premultiplied, however, appropriate conversions
  * are performed before and after the compositing operation.
- *
  * <h3><a name="caveats">Implementation Caveats</a></h3>
- *
  * <ul>
  * <li>Many sources, such as some of the opaque image types listed in the
  * <code>BufferedImage</code> class, do not store alpha values for their pixels.
  * Such sources supply an alpha of 1.0 for all of their pixels.
- *
  * <li>Many destinations also have no place to store the alpha values that
  * result from the blending calculations performed by this class. Such
  * destinations thus implicitly discard the resulting alpha values that this
@@ -221,7 +202,6 @@ import sun.java2d.SunCompositeContext;
  * stored color values as non-premultiplied and divide the resulting color
  * values by the resulting alpha value before storing the color values and
  * discarding the alpha value.
- *
  * <li>The accuracy of the results depends on the manner in which pixels are
  * stored in the destination. An image format that provides at least 8 bits of
  * storage per color and alpha component is at least adequate for use as a
@@ -234,21 +214,18 @@ import sun.java2d.SunCompositeContext;
  * destination for a blending operation because every operation can introduce
  * large errors, due to the need to choose a pixel from a limited palette to
  * match the results of the blending equations.
- *
  * <li>Nearly all formats store pixels as discrete integers rather than the
  * floating point values used in the reference equations above. The
  * implementation can either scale the integer pixel values into floating point
  * values in the range 0.0 to 1.0 or use slightly modified versions of the
  * equations that operate entirely in the integer domain and yet produce
  * analogous results to the reference equations.
- *
  * <p>
  * Typically the integer values are related to the floating point values in such
  * a way that the integer 0 is equated to the floating point value 0.0 and the
  * integer 2^<em>n</em>-1 (where <em>n</em> is the number of bits in the
  * representation) is equated to 1.0. For 8-bit representations, this means that
  * 0x00 represents 0.0 and 0xff represents 1.0.
- *
  * <li>The internal implementation can approximate some of the equations and it
  * can also eliminate some steps to avoid unnecessary operations. For example,
  * consider a discrete integer image with non-premultiplied alpha values that
@@ -258,7 +235,6 @@ import sun.java2d.SunCompositeContext;
  * <pre>
  *    (A, R, G, B) = (0x01, 0xb0, 0x00, 0x00)
  * </pre>
- *
  * <p>
  * If integer math were being used and this value were being composited in
  * <a href="#SRC"><code>SRC</code></a> mode with no extra alpha, then the math
@@ -267,7 +243,6 @@ import sun.java2d.SunCompositeContext;
  * <pre>
  *    (A, R, G, B) = (0x01, 0x01, 0x00, 0x00)
  * </pre>
- *
  * <p>
  * Note that the intermediate values, which are always in premultiplied form,
  * would only allow the integer red component to be either 0x00 or 0x01. When we
@@ -280,11 +255,9 @@ import sun.java2d.SunCompositeContext;
  * <pre>
  *    (A, R, G, B) = (0x01, 0xff, 0x00, 0x00)
  * </pre>
- *
  * <p>
  * (Note that 0x01 divided by 0x01 gives you 1.0, which is equivalent to the
  * value 0xff in an 8-bit storage format.)
- *
  * <p>
  * Alternately, an implementation that uses floating point math might produce
  * more accurate results and end up returning to the original pixel value with
@@ -292,7 +265,6 @@ import sun.java2d.SunCompositeContext;
  * might decide that since the equations boil down to a virtual NOP on the color
  * values if performed in a floating point space, it can transfer the pixel
  * untouched to the destination and avoid all the math entirely.
- *
  * <p>
  * These implementations all attempt to honor the same equations, but use
  * different tradeoffs of integer and floating point math and reduced or full
@@ -304,10 +276,8 @@ import sun.java2d.SunCompositeContext;
  * <pre>
  *    (A, R, G, B) = (0x01, 0x01, 0x00, 0x00)
  * </pre>
- *
  * <p>
  * and thus they would all match.
- *
  * <li>Because of the technique of simplifying the equations for calculation
  * efficiency, some implementations might perform differently when encountering
  * result alpha values of 0.0 on a non-premultiplied destination. Note that the
@@ -643,17 +613,17 @@ public final class AlphaComposite implements Composite {
      * Creates an <code>AlphaComposite</code> object with the specified rule.
      * 
      * @param rule
-     *             the compositing rule
+     *        the compositing rule
      * @throws IllegalArgumentException
-     *                                  if <code>rule</code> is not one of the
-     *                                  following:
-     *                                  {@link #CLEAR}, {@link #SRC},
-     *                                  {@link #DST}, {@link #SRC_OVER}
-     *                                  , {@link #DST_OVER}, {@link #SRC_IN},
-     *                                  {@link #DST_IN},
-     *                                  {@link #SRC_OUT}, {@link #DST_OUT},
-     *                                  {@link #SRC_ATOP},
-     *                                  {@link #DST_ATOP}, or {@link #XOR}
+     *         if <code>rule</code> is not one of the
+     *         following:
+     *         {@link #CLEAR}, {@link #SRC},
+     *         {@link #DST}, {@link #SRC_OVER}
+     *         , {@link #DST_OVER}, {@link #SRC_IN},
+     *         {@link #DST_IN},
+     *         {@link #SRC_OUT}, {@link #DST_OUT},
+     *         {@link #SRC_ATOP},
+     *         {@link #DST_ATOP}, or {@link #XOR}
      */
     public static AlphaComposite getInstance(int rule) {
         switch (rule) {
@@ -693,24 +663,24 @@ public final class AlphaComposite implements Composite {
      * destination.
      * 
      * @param rule
-     *              the compositing rule
+     *        the compositing rule
      * @param alpha
-     *              the constant alpha to be multiplied with the alpha of the
-     *              source. <code>alpha</code> must be a floating point number
-     *              in
-     *              the inclusive range [0.0,&nbsp;1.0].
+     *        the constant alpha to be multiplied with the alpha of the
+     *        source. <code>alpha</code> must be a floating point number
+     *        in
+     *        the inclusive range [0.0,&nbsp;1.0].
      * @throws IllegalArgumentException
-     *                                  if <code>alpha</code> is less than 0.0
-     *                                  or greater than 1.0,
-     *                                  or if <code>rule</code> is not one of
-     *                                  the following:
-     *                                  {@link #CLEAR}, {@link #SRC},
-     *                                  {@link #DST}, {@link #SRC_OVER}
-     *                                  , {@link #DST_OVER}, {@link #SRC_IN},
-     *                                  {@link #DST_IN},
-     *                                  {@link #SRC_OUT}, {@link #DST_OUT},
-     *                                  {@link #SRC_ATOP},
-     *                                  {@link #DST_ATOP}, or {@link #XOR}
+     *         if <code>alpha</code> is less than 0.0
+     *         or greater than 1.0,
+     *         or if <code>rule</code> is not one of
+     *         the following:
+     *         {@link #CLEAR}, {@link #SRC},
+     *         {@link #DST}, {@link #SRC_OVER}
+     *         , {@link #DST_OVER}, {@link #SRC_IN},
+     *         {@link #DST_IN},
+     *         {@link #SRC_OUT}, {@link #DST_OUT},
+     *         {@link #SRC_ATOP},
+     *         {@link #DST_ATOP}, or {@link #XOR}
      */
     public static AlphaComposite getInstance(int rule, float alpha) {
         if (alpha == 1.0f) {
@@ -724,14 +694,14 @@ public final class AlphaComposite implements Composite {
      * state that is used in performing the compositing operation.
      * 
      * @param srcColorModel
-     *                      the {@link ColorModel} of the source
+     *        the {@link ColorModel} of the source
      * @param dstColorModel
-     *                      the <code>ColorModel</code> of the destination
+     *        the <code>ColorModel</code> of the destination
      * @return the <code>CompositeContext</code> object to be used to perform
      *         compositing operations.
      */
-    public CompositeContext createContext(ColorModel srcColorModel,
-            ColorModel dstColorModel, RenderingHints hints) {
+    public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel,
+            RenderingHints hints) {
         return new SunCompositeContext(this, srcColorModel, dstColorModel);
     }
 
@@ -763,17 +733,17 @@ public final class AlphaComposite implements Composite {
      * @return an <code>AlphaComposite</code> object derived from this object
      *         that uses the specified compositing rule.
      * @param rule
-     *             the compositing rule
+     *        the compositing rule
      * @throws IllegalArgumentException
-     *                                  if <code>rule</code> is not one of the
-     *                                  following:
-     *                                  {@link #CLEAR}, {@link #SRC},
-     *                                  {@link #DST}, {@link #SRC_OVER}
-     *                                  , {@link #DST_OVER}, {@link #SRC_IN},
-     *                                  {@link #DST_IN},
-     *                                  {@link #SRC_OUT}, {@link #DST_OUT},
-     *                                  {@link #SRC_ATOP},
-     *                                  {@link #DST_ATOP}, or {@link #XOR}
+     *         if <code>rule</code> is not one of the
+     *         following:
+     *         {@link #CLEAR}, {@link #SRC},
+     *         {@link #DST}, {@link #SRC_OVER}
+     *         , {@link #DST_OVER}, {@link #SRC_IN},
+     *         {@link #DST_IN},
+     *         {@link #SRC_OUT}, {@link #DST_OUT},
+     *         {@link #SRC_ATOP},
+     *         {@link #DST_ATOP}, or {@link #XOR}
      * @since 1.6
      */
     public AlphaComposite derive(int rule) {
@@ -788,18 +758,17 @@ public final class AlphaComposite implements Composite {
      * @return an <code>AlphaComposite</code> object derived from this object
      *         that uses the specified alpha value.
      * @param alpha
-     *              the constant alpha to be multiplied with the alpha of the
-     *              source. <code>alpha</code> must be a floating point number
-     *              in
-     *              the inclusive range [0.0,&nbsp;1.0].
+     *        the constant alpha to be multiplied with the alpha of the
+     *        source. <code>alpha</code> must be a floating point number
+     *        in
+     *        the inclusive range [0.0,&nbsp;1.0].
      * @throws IllegalArgumentException
-     *                                  if <code>alpha</code> is less than 0.0
-     *                                  or greater than 1.0
+     *         if <code>alpha</code> is less than 0.0
+     *         or greater than 1.0
      * @since 1.6
      */
     public AlphaComposite derive(float alpha) {
-        return (this.extraAlpha == alpha) ? this
-                : getInstance(this.rule, alpha);
+        return (this.extraAlpha == alpha) ? this : getInstance(this.rule, alpha);
     }
 
     /**
@@ -820,7 +789,7 @@ public final class AlphaComposite implements Composite {
      * the same compositing rule and alpha value as this object.
      *
      * @param obj
-     *            the <code>Object</code> to test for equality
+     *        the <code>Object</code> to test for equality
      * @return <code>true</code> if <code>obj</code> equals this
      *         <code>AlphaComposite</code>; <code>false</code> otherwise.
      */

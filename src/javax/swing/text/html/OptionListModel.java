@@ -21,8 +21,7 @@ import java.io.Serializable;
  * @author Sunita Mani
  */
 
-class OptionListModel<E> extends DefaultListModel<E> implements
-        ListSelectionModel, Serializable {
+class OptionListModel<E> extends DefaultListModel<E> implements ListSelectionModel, Serializable {
 
     private static final int MIN = -1;
     private static final int MAX = Integer.MAX_VALUE;
@@ -69,8 +68,7 @@ class OptionListModel<E> extends DefaultListModel<E> implements
     }
 
     public boolean isSelectedIndex(int index) {
-        return ((index < minIndex) || (index > maxIndex)) ? false
-                : value.get(index);
+        return ((index < minIndex) || (index > maxIndex)) ? false : value.get(index);
     }
 
     public boolean isSelectionEmpty() {
@@ -102,8 +100,7 @@ class OptionListModel<E> extends DefaultListModel<E> implements
      * changes
      */
     protected void fireValueChanged(boolean isAdjusting) {
-        fireValueChanged(getMinSelectionIndex(), getMaxSelectionIndex(),
-                isAdjusting);
+        fireValueChanged(getMinSelectionIndex(), getMaxSelectionIndex(), isAdjusting);
     }
 
     /**
@@ -116,23 +113,21 @@ class OptionListModel<E> extends DefaultListModel<E> implements
 
     /**
      * @param firstIndex
-     *                    The first index in the interval.
+     *        The first index in the interval.
      * @param lastIndex
-     *                    The last index in the interval.
+     *        The last index in the interval.
      * @param isAdjusting
-     *                    True if this is the final change in a series of them.
+     *        True if this is the final change in a series of them.
      * @see EventListenerList
      */
-    protected void fireValueChanged(int firstIndex, int lastIndex,
-            boolean isAdjusting) {
+    protected void fireValueChanged(int firstIndex, int lastIndex, boolean isAdjusting) {
         Object[] listeners = listenerList.getListenerList();
         ListSelectionEvent e = null;
 
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == ListSelectionListener.class) {
                 if (e == null) {
-                    e = new ListSelectionEvent(this, firstIndex, lastIndex,
-                            isAdjusting);
+                    e = new ListSelectionEvent(this, firstIndex, lastIndex, isAdjusting);
                 }
                 ((ListSelectionListener) listeners[i + 1]).valueChanged(e);
             }
@@ -282,10 +277,8 @@ class OptionListModel<E> extends DefaultListModel<E> implements
         return (i >= a) && (i <= b);
     }
 
-    private void changeSelection(int clearMin, int clearMax, int setMin,
-            int setMax, boolean clearFirst) {
-        for (int i = Math.min(setMin, clearMin); i <= Math.max(setMax,
-                clearMax); i++) {
+    private void changeSelection(int clearMin, int clearMax, int setMin, int setMax, boolean clearFirst) {
+        for (int i = Math.min(setMin, clearMin); i <= Math.max(setMax, clearMax); i++) {
 
             boolean shouldClear = contains(clearMin, clearMax, i);
             boolean shouldSet = contains(setMin, setMax, i);
@@ -314,8 +307,7 @@ class OptionListModel<E> extends DefaultListModel<E> implements
      * inclusive range [setMin, setMax]. Do this in one pass so that no values
      * are cleared if they would later be set.
      */
-    private void changeSelection(int clearMin, int clearMax, int setMin,
-            int setMax) {
+    private void changeSelection(int clearMin, int clearMax, int setMin, int setMax) {
         changeSelection(clearMin, clearMax, setMin, setMax, true);
     }
 
@@ -441,8 +433,7 @@ class OptionListModel<E> extends DefaultListModel<E> implements
 
     public String toString() {
         String s = ((getValueIsAdjusting()) ? "~" : "=") + value.toString();
-        return getClass().getName() + " " + Integer.toString(hashCode()) + " "
-                + s;
+        return getClass().getName() + " " + Integer.toString(hashCode()) + " " + s;
     }
 
     /**
@@ -451,11 +442,11 @@ class OptionListModel<E> extends DefaultListModel<E> implements
      *
      * @return a clone of the receiver
      * @exception CloneNotSupportedException
-     *                                       if the receiver does not both (a)
-     *                                       implement the
-     *                                       <code>Cloneable</code> interface
-     *                                       and (b) define a
-     *                                       <code>clone</code> method
+     *            if the receiver does not both (a)
+     *            implement the
+     *            <code>Cloneable</code> interface
+     *            and (b) define a
+     *            <code>clone</code> method
      */
     public Object clone() throws CloneNotSupportedException {
         OptionListModel clone = (OptionListModel) super.clone();

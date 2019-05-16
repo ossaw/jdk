@@ -56,8 +56,7 @@ import javax.naming.NamingException;
  * </blockquote> A program would use then these classes as follows: <blockquote>
  * 
  * <pre>
- * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(
- *         new GetTimeRequest());
+ * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(new GetTimeRequest());
  * long time = resp.getTime();
  * </pre>
  * 
@@ -66,7 +65,6 @@ import javax.naming.NamingException;
  * @author Rosanna Lee
  * @author Scott Seligman
  * @author Vincent Ryan
- *
  * @see ExtendedResponse
  * @see LdapContext#extendedOperation
  * @since 1.3
@@ -84,7 +82,6 @@ public interface ExtendedRequest extends java.io.Serializable {
     /**
      * Retrieves the ASN.1 BER encoded value of the LDAP extended operation
      * request. Null is returned if the value is absent.
-     *
      * The result is the raw BER bytes including the tag and length of the
      * request value. It does not include the request OID. This method is called
      * by the service provider to get the bits to put into the extended
@@ -94,10 +91,10 @@ public interface ExtendedRequest extends java.io.Serializable {
      *         contents of the LDAP <tt>ExtendedRequest.requestValue</tt>
      *         component.
      * @exception IllegalStateException
-     *                                  If the encoded value cannot be retrieved
-     *                                  because the
-     *                                  request contains insufficient or invalid
-     *                                  data/state.
+     *            If the encoded value cannot be retrieved
+     *            because the
+     *            request contains insufficient or invalid
+     *            data/state.
      */
     public byte[] getEncodedValue();
 
@@ -117,27 +114,26 @@ public interface ExtendedRequest extends java.io.Serializable {
      * that implements ExtendedResponse.
      *
      * @param id
-     *                 The possibly null object identifier of the response
-     *                 control.
+     *        The possibly null object identifier of the response
+     *        control.
      * @param berValue
-     *                 The possibly null ASN.1 BER encoded value of the response
-     *                 control. This is the raw BER bytes including the tag and
-     *                 length of the response value. It does not include the
-     *                 response
-     *                 OID.
+     *        The possibly null ASN.1 BER encoded value of the response
+     *        control. This is the raw BER bytes including the tag and
+     *        length of the response value. It does not include the
+     *        response
+     *        OID.
      * @param offset
-     *                 The starting position in berValue of the bytes to use.
+     *        The starting position in berValue of the bytes to use.
      * @param length
-     *                 The number of bytes in berValue to use.
-     *
+     *        The number of bytes in berValue to use.
      * @return A non-null object.
      * @exception NamingException
-     *                            if cannot create extended response due to an
-     *                            error.
+     *            if cannot create extended response due to an
+     *            error.
      * @see ExtendedResponse
      */
-    public ExtendedResponse createExtendedResponse(String id, byte[] berValue,
-            int offset, int length) throws NamingException;
+    public ExtendedResponse createExtendedResponse(String id, byte[] berValue, int offset, int length)
+            throws NamingException;
 
     // static final long serialVersionUID = -7560110759229059814L;
 }

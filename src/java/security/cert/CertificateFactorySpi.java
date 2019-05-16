@@ -19,12 +19,10 @@ import java.security.NoSuchProviderException;
  * be implemented by each cryptographic service provider who wishes to supply
  * the implementation of a certificate factory for a particular certificate
  * type, e.g., X.509.
- *
  * <p>
  * Certificate factories are used to generate certificate, certification path (
  * {@code CertPath}) and certificate revocation list (CRL) objects from their
  * encodings.
- *
  * <p>
  * A certificate factory for X.509 must return certificates that are an instance
  * of {@code java.security.cert.X509Certificate}, and CRLs that are an instance
@@ -33,15 +31,12 @@ import java.security.NoSuchProviderException;
  * @author Hemma Prafullchandra
  * @author Jan Luehe
  * @author Sean Mullan
- *
- *
  * @see CertificateFactory
  * @see Certificate
  * @see X509Certificate
  * @see CertPath
  * @see CRL
  * @see X509CRL
- *
  * @since 1.2
  */
 
@@ -50,14 +45,12 @@ public abstract class CertificateFactorySpi {
     /**
      * Generates a certificate object and initializes it with the data read from
      * the input stream {@code inStream}.
-     *
      * <p>
      * In order to take advantage of the specialized certificate format
      * supported by this certificate factory, the returned certificate object
      * can be typecast to the corresponding certificate class. For example, if
      * this certificate factory implements X.509 certificates, the returned
      * certificate object can be typecast to the {@code X509Certificate} class.
-     *
      * <p>
      * In the case of a certificate factory for X.509 certificates, the
      * certificate provided in {@code inStream} must be DER-encoded and may be
@@ -65,7 +58,6 @@ public abstract class CertificateFactorySpi {
      * provided in Base64 encoding, it must be bounded at the beginning by
      * -----BEGIN CERTIFICATE-----, and must be bounded at the end by -----END
      * CERTIFICATE-----.
-     *
      * <p>
      * Note that if the given input stream does not support
      * {@link java.io.InputStream#mark(int) mark} and
@@ -79,22 +71,18 @@ public abstract class CertificateFactorySpi {
      * thrown.
      *
      * @param inStream
-     *                 an input stream with the certificate data.
-     *
+     *        an input stream with the certificate data.
      * @return a certificate object initialized with the data from the input
      *         stream.
-     *
      * @exception CertificateException
-     *                                 on parsing errors.
+     *            on parsing errors.
      */
-    public abstract Certificate engineGenerateCertificate(InputStream inStream)
-            throws CertificateException;
+    public abstract Certificate engineGenerateCertificate(InputStream inStream) throws CertificateException;
 
     /**
      * Generates a {@code CertPath} object and initializes it with the data read
      * from the {@code InputStream} inStream. The data is assumed to be in the
      * default encoding.
-     *
      * <p>
      * This method was added to version 1.4 of the Java 2 Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
@@ -102,18 +90,17 @@ public abstract class CertificateFactorySpi {
      * throws an {@code UnsupportedOperationException}.
      *
      * @param inStream
-     *                 an {@code InputStream} containing the data
+     *        an {@code InputStream} containing the data
      * @return a {@code CertPath} initialized with the data from the
      *         {@code InputStream}
      * @exception CertificateException
-     *                                          if an exception occurs while
-     *                                          decoding
+     *            if an exception occurs while
+     *            decoding
      * @exception UnsupportedOperationException
-     *                                          if the method is not supported
+     *            if the method is not supported
      * @since 1.4
      */
-    public CertPath engineGenerateCertPath(InputStream inStream)
-            throws CertificateException {
+    public CertPath engineGenerateCertPath(InputStream inStream) throws CertificateException {
         throw new UnsupportedOperationException();
     }
 
@@ -121,7 +108,6 @@ public abstract class CertificateFactorySpi {
      * Generates a {@code CertPath} object and initializes it with the data read
      * from the {@code InputStream} inStream. The data is assumed to be in the
      * specified encoding.
-     *
      * <p>
      * This method was added to version 1.4 of the Java 2 Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
@@ -129,21 +115,21 @@ public abstract class CertificateFactorySpi {
      * throws an {@code UnsupportedOperationException}.
      *
      * @param inStream
-     *                 an {@code InputStream} containing the data
+     *        an {@code InputStream} containing the data
      * @param encoding
-     *                 the encoding used for the data
+     *        the encoding used for the data
      * @return a {@code CertPath} initialized with the data from the
      *         {@code InputStream}
      * @exception CertificateException
-     *                                          if an exception occurs while
-     *                                          decoding or the encoding
-     *                                          requested is not supported
+     *            if an exception occurs while
+     *            decoding or the encoding
+     *            requested is not supported
      * @exception UnsupportedOperationException
-     *                                          if the method is not supported
+     *            if the method is not supported
      * @since 1.4
      */
-    public CertPath engineGenerateCertPath(InputStream inStream,
-            String encoding) throws CertificateException {
+    public CertPath engineGenerateCertPath(InputStream inStream, String encoding)
+            throws CertificateException {
         throw new UnsupportedOperationException();
     }
 
@@ -154,7 +140,6 @@ public abstract class CertificateFactorySpi {
      * The certificates supplied must be of a type supported by the
      * {@code CertificateFactory}. They will be copied out of the supplied
      * {@code List} object.
-     *
      * <p>
      * This method was added to version 1.4 of the Java 2 Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
@@ -162,17 +147,16 @@ public abstract class CertificateFactorySpi {
      * throws an {@code UnsupportedOperationException}.
      *
      * @param certificates
-     *                     a {@code List} of {@code Certificate}s
+     *        a {@code List} of {@code Certificate}s
      * @return a {@code CertPath} initialized with the supplied list of
      *         certificates
      * @exception CertificateException
-     *                                          if an exception occurs
+     *            if an exception occurs
      * @exception UnsupportedOperationException
-     *                                          if the method is not supported
+     *            if the method is not supported
      * @since 1.4
      */
-    public CertPath engineGenerateCertPath(
-            List<? extends Certificate> certificates)
+    public CertPath engineGenerateCertPath(List<? extends Certificate> certificates)
             throws CertificateException {
         throw new UnsupportedOperationException();
     }
@@ -188,7 +172,6 @@ public abstract class CertificateFactorySpi {
      * <p>
      * Attempts to modify the returned {@code Iterator} via its {@code remove}
      * method result in an {@code UnsupportedOperationException}.
-     *
      * <p>
      * This method was added to version 1.4 of the Java 2 Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
@@ -198,7 +181,7 @@ public abstract class CertificateFactorySpi {
      * @return an {@code Iterator} over the names of the supported
      *         {@code CertPath} encodings (as {@code String}s)
      * @exception UnsupportedOperationException
-     *                                          if the method is not supported
+     *            if the method is not supported
      * @since 1.4
      */
     public Iterator<String> engineGetCertPathEncodings() {
@@ -208,7 +191,6 @@ public abstract class CertificateFactorySpi {
     /**
      * Returns a (possibly empty) collection view of the certificates read from
      * the given input stream {@code inStream}.
-     *
      * <p>
      * In order to take advantage of the specialized certificate format
      * supported by this certificate factory, each element in the returned
@@ -216,7 +198,6 @@ public abstract class CertificateFactorySpi {
      * For example, if this certificate factory implements X.509 certificates,
      * the elements in the returned collection can be typecast to the
      * {@code X509Certificate} class.
-     *
      * <p>
      * In the case of a certificate factory for X.509 certificates,
      * {@code inStream} may contain a single DER-encoded certificate in the
@@ -228,7 +209,6 @@ public abstract class CertificateFactorySpi {
      * signature and the contents are ignored. This format allows multiple
      * certificates to be downloaded at once. If no certificates are present, an
      * empty collection is returned.
-     *
      * <p>
      * Note that if the given input stream does not support
      * {@link java.io.InputStream#mark(int) mark} and
@@ -236,29 +216,25 @@ public abstract class CertificateFactorySpi {
      * entire input stream.
      *
      * @param inStream
-     *                 the input stream with the certificates.
-     *
+     *        the input stream with the certificates.
      * @return a (possibly empty) collection view of
      *         java.security.cert.Certificate objects initialized with the data
      *         from the input stream.
-     *
      * @exception CertificateException
-     *                                 on parsing errors.
+     *            on parsing errors.
      */
-    public abstract Collection<? extends Certificate> engineGenerateCertificates(
-            InputStream inStream) throws CertificateException;
+    public abstract Collection<? extends Certificate> engineGenerateCertificates(InputStream inStream)
+            throws CertificateException;
 
     /**
      * Generates a certificate revocation list (CRL) object and initializes it
      * with the data read from the input stream {@code inStream}.
-     *
      * <p>
      * In order to take advantage of the specialized CRL format supported by
      * this certificate factory, the returned CRL object can be typecast to the
      * corresponding CRL class. For example, if this certificate factory
      * implements X.509 CRLs, the returned CRL object can be typecast to the
      * {@code X509CRL} class.
-     *
      * <p>
      * Note that if the given input stream does not support
      * {@link java.io.InputStream#mark(int) mark} and
@@ -271,27 +247,22 @@ public abstract class CertificateFactorySpi {
      * {@code CRLException} is thrown.
      *
      * @param inStream
-     *                 an input stream with the CRL data.
-     *
+     *        an input stream with the CRL data.
      * @return a CRL object initialized with the data from the input stream.
-     *
      * @exception CRLException
-     *                         on parsing errors.
+     *            on parsing errors.
      */
-    public abstract CRL engineGenerateCRL(InputStream inStream)
-            throws CRLException;
+    public abstract CRL engineGenerateCRL(InputStream inStream) throws CRLException;
 
     /**
      * Returns a (possibly empty) collection view of the CRLs read from the
      * given input stream {@code inStream}.
-     *
      * <p>
      * In order to take advantage of the specialized CRL format supported by
      * this certificate factory, each element in the returned collection view
      * can be typecast to the corresponding CRL class. For example, if this
      * certificate factory implements X.509 CRLs, the elements in the returned
      * collection can be typecast to the {@code X509CRL} class.
-     *
      * <p>
      * In the case of a certificate factory for X.509 CRLs, {@code inStream} may
      * contain a single DER-encoded CRL. In addition, {@code inStream} may
@@ -300,7 +271,6 @@ public abstract class CertificateFactorySpi {
      * signature and the contents are ignored. This format allows multiple CRLs
      * to be downloaded at once. If no CRLs are present, an empty collection is
      * returned.
-     *
      * <p>
      * Note that if the given input stream does not support
      * {@link java.io.InputStream#mark(int) mark} and
@@ -308,14 +278,11 @@ public abstract class CertificateFactorySpi {
      * entire input stream.
      *
      * @param inStream
-     *                 the input stream with the CRLs.
-     *
+     *        the input stream with the CRLs.
      * @return a (possibly empty) collection view of java.security.cert.CRL
      *         objects initialized with the data from the input stream.
-     *
      * @exception CRLException
-     *                         on parsing errors.
+     *            on parsing errors.
      */
-    public abstract Collection<? extends CRL> engineGenerateCRLs(
-            InputStream inStream) throws CRLException;
+    public abstract Collection<? extends CRL> engineGenerateCRLs(InputStream inStream) throws CRLException;
 }

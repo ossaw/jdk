@@ -39,7 +39,6 @@ import java.util.ArrayList;
 import javax.xml.namespace.QName;
 
 /**
- *
  * @author Ramesh Mandava ( ramesh.mandava@sun.com )
  */
 public class JAXPExtensionsProvider implements ExtensionsProvider {
@@ -52,8 +51,8 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
         this.extensionInvocationDisabled = false;
     }
 
-    public JAXPExtensionsProvider(XPathFunctionResolver resolver,
-            boolean featureSecureProcessing, FeatureManager featureManager) {
+    public JAXPExtensionsProvider(XPathFunctionResolver resolver, boolean featureSecureProcessing,
+            FeatureManager featureManager) {
         this.resolver = resolver;
         if (featureSecureProcessing && !featureManager.isFeatureEnabled(
                 FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION)) {
@@ -69,15 +68,13 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             throws javax.xml.transform.TransformerException {
         try {
             if (funcName == null) {
-                String fmsg = XSLMessages.createXPATHMessage(
-                        XPATHErrorResources.ER_ARG_CANNOT_BE_NULL,
+                String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_ARG_CANNOT_BE_NULL,
                         new Object[] { "Function Name" });
                 throw new NullPointerException(fmsg);
             }
             // Find the XPathFunction corresponding to namespace and funcName
             javax.xml.namespace.QName myQName = new QName(ns, funcName);
-            javax.xml.xpath.XPathFunction xpathFunction = resolver
-                    .resolveFunction(myQName, 0);
+            javax.xml.xpath.XPathFunction xpathFunction = resolver.resolveFunction(myQName, 0);
             if (xpathFunction == null) {
                 return false;
             }
@@ -99,13 +96,12 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
     /**
      * Execute the extension function.
      */
-    public Object extFunction(String ns, String funcName, Vector argVec,
-            Object methodKey) throws javax.xml.transform.TransformerException {
+    public Object extFunction(String ns, String funcName, Vector argVec, Object methodKey)
+            throws javax.xml.transform.TransformerException {
         try {
 
             if (funcName == null) {
-                String fmsg = XSLMessages.createXPATHMessage(
-                        XPATHErrorResources.ER_ARG_CANNOT_BE_NULL,
+                String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_ARG_CANNOT_BE_NULL,
                         new Object[] { "Function Name" });
                 throw new NullPointerException(fmsg);
             }
@@ -117,8 +113,8 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // throw XPathFunctionException
             if (extensionInvocationDisabled) {
                 String fmsg = XSLMessages.createXPATHMessage(
-                        XPATHErrorResources.ER_EXTENSION_FUNCTION_CANNOT_BE_INVOKED,
-                        new Object[] { myQName.toString() });
+                        XPATHErrorResources.ER_EXTENSION_FUNCTION_CANNOT_BE_INVOKED, new Object[] { myQName
+                                .toString() });
                 throw new XPathFunctionException(fmsg);
             }
 
@@ -126,8 +122,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // default values )
             int arity = argVec.size();
 
-            javax.xml.xpath.XPathFunction xpathFunction = resolver
-                    .resolveFunction(myQName, arity);
+            javax.xml.xpath.XPathFunction xpathFunction = resolver.resolveFunction(myQName, arity);
 
             // not using methodKey
             ArrayList argList = new ArrayList(arity);
@@ -149,8 +144,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
         } catch (XPathFunctionException xfe) {
             // If we get XPathFunctionException then we want to terminate
             // further execution by throwing WrappedRuntimeException
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    xfe);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(xfe);
         } catch (Exception e) {
             throw new javax.xml.transform.TransformerException(e);
         }
@@ -166,21 +160,19 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             String namespace = extFunction.getNamespace();
             String functionName = extFunction.getFunctionName();
             int arity = extFunction.getArgCount();
-            javax.xml.namespace.QName myQName = new javax.xml.namespace.QName(
-                    namespace, functionName);
+            javax.xml.namespace.QName myQName = new javax.xml.namespace.QName(namespace, functionName);
 
             // JAXP 1.3 spec says When XMLConstants.FEATURE_SECURE_PROCESSING
             // feature is set then invocation of extension functions need to
             // throw XPathFunctionException
             if (extensionInvocationDisabled) {
                 String fmsg = XSLMessages.createXPATHMessage(
-                        XPATHErrorResources.ER_EXTENSION_FUNCTION_CANNOT_BE_INVOKED,
-                        new Object[] { myQName.toString() });
+                        XPATHErrorResources.ER_EXTENSION_FUNCTION_CANNOT_BE_INVOKED, new Object[] { myQName
+                                .toString() });
                 throw new XPathFunctionException(fmsg);
             }
 
-            XPathFunction xpathFunction = resolver.resolveFunction(myQName,
-                    arity);
+            XPathFunction xpathFunction = resolver.resolveFunction(myQName, arity);
 
             ArrayList argList = new ArrayList(arity);
             for (int i = 0; i < arity; i++) {
@@ -202,8 +194,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
         } catch (XPathFunctionException xfe) {
             // If we get XPathFunctionException then we want to terminate
             // further execution by throwing WrappedRuntimeException
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    xfe);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(xfe);
         } catch (Exception e) {
             throw new javax.xml.transform.TransformerException(e);
         }

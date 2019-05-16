@@ -33,51 +33,48 @@ final class LinearGradientPaintContext extends MultipleGradientPaintContext {
      * Constructor for LinearGradientPaintContext.
      *
      * @param paint
-     *                     the {@code LinearGradientPaint} from which this
-     *                     context is
-     *                     created
+     *        the {@code LinearGradientPaint} from which this
+     *        context is
+     *        created
      * @param cm
-     *                     {@code ColorModel} that receives the
-     *                     <code>Paint</code> data.
-     *                     This is used only as a hint.
+     *        {@code ColorModel} that receives the
+     *        <code>Paint</code> data.
+     *        This is used only as a hint.
      * @param deviceBounds
-     *                     the device space bounding box of the graphics
-     *                     primitive being
-     *                     rendered
+     *        the device space bounding box of the graphics
+     *        primitive being
+     *        rendered
      * @param userBounds
-     *                     the user space bounding box of the graphics primitive
-     *                     being
-     *                     rendered
+     *        the user space bounding box of the graphics primitive
+     *        being
+     *        rendered
      * @param t
-     *                     the {@code AffineTransform} from user space into
-     *                     device space
-     *                     (gradientTransform should be concatenated with this)
+     *        the {@code AffineTransform} from user space into
+     *        device space
+     *        (gradientTransform should be concatenated with this)
      * @param hints
-     *                     the hints that the context object uses to choose
-     *                     between
-     *                     rendering alternatives
+     *        the hints that the context object uses to choose
+     *        between
+     *        rendering alternatives
      * @param start
-     *                     gradient start point, in user space
+     *        gradient start point, in user space
      * @param end
-     *                     gradient end point, in user space
+     *        gradient end point, in user space
      * @param fractions
-     *                     the fractions specifying the gradient distribution
+     *        the fractions specifying the gradient distribution
      * @param colors
-     *                     the gradient colors
+     *        the gradient colors
      * @param cycleMethod
-     *                     either NO_CYCLE, REFLECT, or REPEAT
+     *        either NO_CYCLE, REFLECT, or REPEAT
      * @param colorSpace
-     *                     which colorspace to use for interpolation, either
-     *                     SRGB or
-     *                     LINEAR_RGB
+     *        which colorspace to use for interpolation, either
+     *        SRGB or
+     *        LINEAR_RGB
      */
-    LinearGradientPaintContext(LinearGradientPaint paint, ColorModel cm,
-            Rectangle deviceBounds, Rectangle2D userBounds, AffineTransform t,
-            RenderingHints hints, Point2D start, Point2D end, float[] fractions,
-            Color[] colors, CycleMethod cycleMethod,
-            ColorSpaceType colorSpace) {
-        super(paint, cm, deviceBounds, userBounds, t, hints, fractions, colors,
-                cycleMethod, colorSpace);
+    LinearGradientPaintContext(LinearGradientPaint paint, ColorModel cm, Rectangle deviceBounds,
+            Rectangle2D userBounds, AffineTransform t, RenderingHints hints, Point2D start, Point2D end,
+            float[] fractions, Color[] colors, CycleMethod cycleMethod, ColorSpaceType colorSpace) {
+        super(paint, cm, deviceBounds, userBounds, t, hints, fractions, colors, cycleMethod, colorSpace);
 
         // A given point in the raster should take on the same color as its
         // projection onto the gradient vector.
@@ -119,8 +116,7 @@ final class LinearGradientPaintContext extends MultipleGradientPaintContext {
      * @param x,y,w,h
      *        the area in device space for which colors are generated.
      */
-    protected void fillRaster(int[] pixels, int off, int adjust, int x, int y,
-            int w, int h) {
+    protected void fillRaster(int[] pixels, int off, int adjust, int x, int y, int w, int h) {
         // current value for row gradients
         float g = 0;
 

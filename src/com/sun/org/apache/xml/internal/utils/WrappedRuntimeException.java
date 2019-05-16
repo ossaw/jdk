@@ -38,7 +38,7 @@ public class WrappedRuntimeException extends RuntimeException {
      * Construct a WrappedRuntimeException from a checked exception.
      *
      * @param e
-     *          Primary checked exception
+     *        Primary checked exception
      */
     public WrappedRuntimeException(Exception e) {
 
@@ -50,11 +50,10 @@ public class WrappedRuntimeException extends RuntimeException {
     /**
      * Constructor WrappedRuntimeException
      *
-     *
      * @param msg
-     *            Exception information.
+     *        Exception information.
      * @param e
-     *            Primary checked exception
+     *        Primary checked exception
      */
     public WrappedRuntimeException(String msg, Exception e) {
 

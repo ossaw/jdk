@@ -33,12 +33,10 @@ class SynthSplitPaneDivider extends BasicSplitPaneDivider {
         if (e.getSource() == splitPane) {
             if (e.getPropertyName() == JSplitPane.ORIENTATION_PROPERTY) {
                 if (leftButton instanceof SynthArrowButton) {
-                    ((SynthArrowButton) leftButton).setDirection(mapDirection(
-                            true));
+                    ((SynthArrowButton) leftButton).setDirection(mapDirection(true));
                 }
                 if (rightButton instanceof SynthArrowButton) {
-                    ((SynthArrowButton) rightButton).setDirection(mapDirection(
-                            false));
+                    ((SynthArrowButton) rightButton).setDirection(mapDirection(false));
                 }
             }
         }
@@ -47,26 +45,25 @@ class SynthSplitPaneDivider extends BasicSplitPaneDivider {
     public void paint(Graphics g) {
         Graphics g2 = g.create();
 
-        SynthContext context = ((SynthSplitPaneUI) splitPaneUI).getContext(
-                splitPane, Region.SPLIT_PANE_DIVIDER);
+        SynthContext context = ((SynthSplitPaneUI) splitPaneUI).getContext(splitPane,
+                Region.SPLIT_PANE_DIVIDER);
         Rectangle bounds = getBounds();
         bounds.x = bounds.y = 0;
         SynthLookAndFeel.updateSubregion(context, g, bounds);
-        context.getPainter().paintSplitPaneDividerBackground(context, g, 0, 0,
-                bounds.width, bounds.height, splitPane.getOrientation());
+        context.getPainter().paintSplitPaneDividerBackground(context, g, 0, 0, bounds.width, bounds.height,
+                splitPane.getOrientation());
 
         SynthPainter foreground = null;
 
-        context.getPainter().paintSplitPaneDividerForeground(context, g, 0, 0,
-                getWidth(), getHeight(), splitPane.getOrientation());
+        context.getPainter().paintSplitPaneDividerForeground(context, g, 0, 0, getWidth(), getHeight(),
+                splitPane.getOrientation());
         context.dispose();
 
         // super.paint(g2);
         for (int counter = 0; counter < getComponentCount(); counter++) {
             Component child = getComponent(counter);
             Rectangle childBounds = child.getBounds();
-            Graphics childG = g.create(childBounds.x, childBounds.y,
-                    childBounds.width, childBounds.height);
+            Graphics childG = g.create(childBounds.x, childBounds.y, childBounds.width, childBounds.height);
             child.paint(childG);
             childG.dispose();
         }

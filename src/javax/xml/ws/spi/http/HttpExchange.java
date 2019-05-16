@@ -46,7 +46,6 @@ public abstract class HttpExchange {
 
     /**
      * Standard property: A SSL certificate, if any, associated with the request
-     *
      * <p>
      * Type: java.security.cert.X509Certificate[] The order of this array is
      * defined as being in ascending order of trust. The first certificate in
@@ -79,7 +78,7 @@ public abstract class HttpExchange {
      * {@link #getRequestHeaders}).
      *
      * @param name
-     *             the name of the request header
+     *        the name of the request header
      * @return returns the value of the requested header, or null if the request
      *         does not have a header of that name
      */
@@ -105,12 +104,11 @@ public abstract class HttpExchange {
      * {@link #getResponseHeaders()}).
      *
      * @param name
-     *              the name of the header
+     *        the name of the header
      * @param value
-     *              the additional header value. If it contains octet string, it
-     *              should be encoded according to RFC 2047
-     *              (http://www.ietf.org/rfc/rfc2047.txt)
-     *
+     *        the additional header value. If it contains octet string, it
+     *        should be encoded according to RFC 2047
+     *        (http://www.ietf.org/rfc/rfc2047.txt)
      * @see #getResponseHeaders
      */
     public abstract void addResponseHeader(String name, String value);
@@ -131,7 +129,6 @@ public abstract class HttpExchange {
      * starts with a "/" character but does not end with a "/" character. If
      * this method returns "", the request is for default context. The container
      * does not decode this string.
-     *
      * <p>
      * Context path is used in computing the endpoint address. See
      * {@link HttpContext#getPath}
@@ -162,7 +159,7 @@ public abstract class HttpExchange {
      * can free or reuse underlying resources.
      *
      * @throws IOException
-     *                     if any i/o error
+     *         if any i/o error
      */
     public abstract void close() throws IOException;
 
@@ -172,7 +169,7 @@ public abstract class HttpExchange {
      *
      * @return the stream from which the request body can be read.
      * @throws IOException
-     *                     if any i/o error during request processing
+     *         if any i/o error during request processing
      */
     public abstract InputStream getRequestBody() throws IOException;
 
@@ -183,18 +180,17 @@ public abstract class HttpExchange {
      *
      * @return the stream to which the response body is written
      * @throws IOException
-     *                     if any i/o error during response processing
+     *         if any i/o error during response processing
      */
     public abstract OutputStream getResponseBody() throws IOException;
 
     /**
      * Sets the HTTP status code for the response.
-     *
      * <p>
      * This method must be called prior to calling {@link #getResponseBody}.
      *
      * @param status
-     *               the response code to send
+     *        the response code to send
      * @see #getResponseBody
      */
     public abstract void setStatus(int status);
@@ -234,7 +230,6 @@ public abstract class HttpExchange {
      * Returns the extra path information that follows the web service path but
      * precedes the query string in the request URI and will start with a "/"
      * character.
-     *
      * <p>
      * This can be used for {@link MessageContext#PATH_INFO}
      *
@@ -248,7 +243,6 @@ public abstract class HttpExchange {
     /**
      * Returns the query string that is contained in the request URI after the
      * path.
-     *
      * <p>
      * This can be used for {@link MessageContext#QUERY_STRING}
      *
@@ -265,7 +259,6 @@ public abstract class HttpExchange {
      * Servlet containers must expose {@link MessageContext#SERVLET_CONTEXT},
      * {@link MessageContext#SERVLET_REQUEST}, and
      * {@link MessageContext#SERVLET_RESPONSE} as attributes.
-     *
      * <p>
      * If the request has been received by the container using HTTPS, the
      * following information must be exposed as attributes. These attributes are
@@ -274,7 +267,7 @@ public abstract class HttpExchange {
      * {@link #REQUEST_X509CERTIFICATE}
      *
      * @param name
-     *             attribute name
+     *        attribute name
      * @return the attribute value, or <tt>null</tt> if the attribute doesn't
      *         exist
      */
@@ -303,7 +296,7 @@ public abstract class HttpExchange {
      * logical "role".
      *
      * @param role
-     *             specifies the name of the role
+     *        specifies the name of the role
      * @return <tt>true</tt> if the user making this request belongs to a given
      *         role
      */

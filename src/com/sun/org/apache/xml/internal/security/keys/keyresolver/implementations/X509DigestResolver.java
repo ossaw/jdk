@@ -31,14 +31,12 @@ import org.w3c.dom.Element;
 public class X509DigestResolver extends KeyResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(X509DigestResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(X509DigestResolver.class
+            .getName());
 
     /** {@inheritDoc}. */
-    public boolean engineCanResolve(Element element, String baseURI,
-            StorageResolver storage) {
-        if (XMLUtils.elementIsInSignatureSpace(element,
-                Constants._TAG_X509DATA)) {
+    public boolean engineCanResolve(Element element, String baseURI, StorageResolver storage) {
+        if (XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_X509DATA)) {
             try {
                 X509Data x509Data = new X509Data(element, baseURI);
                 return x509Data.containsDigest();
@@ -51,12 +49,10 @@ public class X509DigestResolver extends KeyResolverSpi {
     }
 
     /** {@inheritDoc}. */
-    public PublicKey engineLookupAndResolvePublicKey(Element element,
-            String baseURI, StorageResolver storage)
+    public PublicKey engineLookupAndResolvePublicKey(Element element, String baseURI, StorageResolver storage)
             throws KeyResolverException {
 
-        X509Certificate cert = this.engineLookupResolveX509Certificate(element,
-                baseURI, storage);
+        X509Certificate cert = this.engineLookupResolveX509Certificate(element, baseURI, storage);
 
         if (cert != null) {
             return cert.getPublicKey();
@@ -66,13 +62,11 @@ public class X509DigestResolver extends KeyResolverSpi {
     }
 
     /** {@inheritDoc}. */
-    public X509Certificate engineLookupResolveX509Certificate(Element element,
-            String baseURI, StorageResolver storage)
-            throws KeyResolverException {
+    public X509Certificate engineLookupResolveX509Certificate(Element element, String baseURI,
+            StorageResolver storage) throws KeyResolverException {
 
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE, "Can I resolve " + element
-                    .getTagName());
+            log.log(java.util.logging.Level.FINE, "Can I resolve " + element.getTagName());
         }
 
         if (!engineCanResolve(element, baseURI, storage)) {
@@ -83,8 +77,7 @@ public class X509DigestResolver extends KeyResolverSpi {
             return resolveCertificate(element, baseURI, storage);
         } catch (XMLSecurityException e) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE, "XMLSecurityException",
-                        e);
+                log.log(java.util.logging.Level.FINE, "XMLSecurityException", e);
             }
         }
 
@@ -92,8 +85,7 @@ public class X509DigestResolver extends KeyResolverSpi {
     }
 
     /** {@inheritDoc}. */
-    public SecretKey engineLookupAndResolveSecretKey(Element element,
-            String baseURI, StorageResolver storage)
+    public SecretKey engineLookupAndResolveSecretKey(Element element, String baseURI, StorageResolver storage)
             throws KeyResolverException {
         return null;
     }
@@ -108,13 +100,13 @@ public class X509DigestResolver extends KeyResolverSpi {
      * @return
      * @throws XMLSecurityException
      */
-    private X509Certificate resolveCertificate(Element element, String baseURI,
-            StorageResolver storage) throws XMLSecurityException {
+    private X509Certificate resolveCertificate(Element element, String baseURI, StorageResolver storage)
+            throws XMLSecurityException {
 
         XMLX509Digest x509Digests[] = null;
 
-        Element x509childNodes[] = XMLUtils.selectDs11Nodes(element
-                .getFirstChild(), Constants._TAG_X509DIGEST);
+        Element x509childNodes[] = XMLUtils.selectDs11Nodes(element.getFirstChild(),
+                Constants._TAG_X509DIGEST);
 
         if (x509childNodes == null || x509childNodes.length <= 0) {
             return null;
@@ -135,17 +127,13 @@ public class X509DigestResolver extends KeyResolverSpi {
 
                 for (int i = 0; i < x509Digests.length; i++) {
                     XMLX509Digest keyInfoDigest = x509Digests[i];
-                    byte[] certDigestBytes = XMLX509Digest
-                            .getDigestBytesFromCert(cert, keyInfoDigest
-                                    .getAlgorithm());
+                    byte[] certDigestBytes = XMLX509Digest.getDigestBytesFromCert(cert, keyInfoDigest
+                            .getAlgorithm());
 
-                    if (Arrays.equals(keyInfoDigest.getDigestBytes(),
-                            certDigestBytes)) {
+                    if (Arrays.equals(keyInfoDigest.getDigestBytes(), certDigestBytes)) {
                         if (log.isLoggable(java.util.logging.Level.FINE)) {
-                            log.log(java.util.logging.Level.FINE,
-                                    "Found certificate with: " + cert
-                                            .getSubjectX500Principal()
-                                            .getName());
+                            log.log(java.util.logging.Level.FINE, "Found certificate with: " + cert
+                                    .getSubjectX500Principal().getName());
                         }
                         return cert;
                     }
@@ -166,12 +154,10 @@ public class X509DigestResolver extends KeyResolverSpi {
      * @param storage
      * @throws KeyResolverException
      */
-    private void checkStorage(StorageResolver storage)
-            throws KeyResolverException {
+    private void checkStorage(StorageResolver storage) throws KeyResolverException {
         if (storage == null) {
             Object exArgs[] = { Constants._TAG_X509DIGEST };
-            KeyResolverException ex = new KeyResolverException(
-                    "KeyResolver.needStorageResolver", exArgs);
+            KeyResolverException ex = new KeyResolverException("KeyResolver.needStorageResolver", exArgs);
             if (log.isLoggable(java.util.logging.Level.FINE)) {
                 log.log(java.util.logging.Level.FINE, "", ex);
             }

@@ -31,11 +31,11 @@ public interface XPathVisitable {
      * called.
      *
      * @param owner
-     *                The owner of the visitor, where that path may be rewritten
-     *                if
-     *                needed.
+     *        The owner of the visitor, where that path may be rewritten
+     *        if
+     *        needed.
      * @param visitor
-     *                The visitor whose appropriate method will be called.
+     *        The visitor whose appropriate method will be called.
      */
     public void callVisitors(ExpressionOwner owner, XPathVisitor visitor);
 }

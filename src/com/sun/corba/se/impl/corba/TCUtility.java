@@ -40,8 +40,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  */
 public final class TCUtility {
 
-    static void marshalIn(org.omg.CORBA.portable.OutputStream s,
-            TypeCode typeCode, long l, Object o) {
+    static void marshalIn(org.omg.CORBA.portable.OutputStream s, TypeCode typeCode, long l, Object o) {
         switch (typeCode.kind().value()) {
             case TCKind._tk_null:
             case TCKind._tk_void:
@@ -127,8 +126,7 @@ public final class TCUtility {
 
             case TCKind._tk_value:
             case TCKind._tk_value_box:
-                ((org.omg.CORBA_2_3.portable.OutputStream) s).write_value(
-                        (Serializable) o);
+                ((org.omg.CORBA_2_3.portable.OutputStream) s).write_value((Serializable) o);
                 break;
 
             case TCKind._tk_fixed:
@@ -137,9 +135,8 @@ public final class TCUtility {
                 // OutputStream, this check will be unnecessary
                 if (s instanceof CDROutputStream) {
                     try {
-                        ((CDROutputStream) s).write_fixed((BigDecimal) o,
-                                typeCode.fixed_digits(), typeCode
-                                        .fixed_scale());
+                        ((CDROutputStream) s).write_fixed((BigDecimal) o, typeCode.fixed_digits(), typeCode
+                                .fixed_scale());
                     } catch (BadKind badKind) { // impossible
                     }
                 } else {
@@ -157,22 +154,19 @@ public final class TCUtility {
                 break;
 
             case TCKind._tk_abstract_interface:
-                ((org.omg.CORBA_2_3.portable.OutputStream) s)
-                        .write_abstract_interface(o);
+                ((org.omg.CORBA_2_3.portable.OutputStream) s).write_abstract_interface(o);
                 break;
 
             case TCKind._tk_longdouble:
                 // Unspecified for Java
             default:
-                ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                        (com.sun.corba.se.spi.orb.ORB) s.orb(),
-                        CORBALogDomains.RPC_PRESENTATION);
+                ORBUtilSystemException wrapper = ORBUtilSystemException.get((com.sun.corba.se.spi.orb.ORB) s
+                        .orb(), CORBALogDomains.RPC_PRESENTATION);
                 throw wrapper.typecodeNotSupported();
         }
     }
 
-    static void unmarshalIn(org.omg.CORBA.portable.InputStream s,
-            TypeCode typeCode, long[] la, Object[] oa) {
+    static void unmarshalIn(org.omg.CORBA.portable.InputStream s, TypeCode typeCode, long[] la, Object[] oa) {
         int type = typeCode.kind().value();
         long l = 0;
         Object o = oa[0];
@@ -274,12 +268,10 @@ public final class TCUtility {
                     // parameters to
                     // InputStream, this check will be unnecessary
                     if (s instanceof CDRInputStream) {
-                        o = ((CDRInputStream) s).read_fixed(typeCode
-                                .fixed_digits(), typeCode.fixed_scale());
+                        o = ((CDRInputStream) s).read_fixed(typeCode.fixed_digits(), typeCode.fixed_scale());
                     } else {
                         BigDecimal bigDecimal = s.read_fixed();
-                        o = bigDecimal.movePointLeft((int) typeCode
-                                .fixed_scale());
+                        o = bigDecimal.movePointLeft((int) typeCode.fixed_scale());
                     }
                 } catch (BadKind badKind) { // impossible
                 }
@@ -295,16 +287,14 @@ public final class TCUtility {
                 break;
 
             case TCKind._tk_abstract_interface:
-                o = ((org.omg.CORBA_2_3.portable.InputStream) s)
-                        .read_abstract_interface();
+                o = ((org.omg.CORBA_2_3.portable.InputStream) s).read_abstract_interface();
                 break;
 
             case TCKind._tk_longdouble:
                 // Unspecified for Java
             default:
-                ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                        (com.sun.corba.se.spi.orb.ORB) s.orb(),
-                        CORBALogDomains.RPC_PRESENTATION);
+                ORBUtilSystemException wrapper = ORBUtilSystemException.get((com.sun.corba.se.spi.orb.ORB) s
+                        .orb(), CORBALogDomains.RPC_PRESENTATION);
                 throw wrapper.typecodeNotSupported();
         }
 

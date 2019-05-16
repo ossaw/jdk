@@ -75,8 +75,7 @@ public final class KeyTab {
 
     // Set up JavaxSecurityAuthKerberosAccess in KerberosSecrets
     static {
-        KerberosSecrets.setJavaxSecurityAuthKerberosAccess(
-                new JavaxSecurityAuthKerberosAccessImpl());
+        KerberosSecrets.setJavaxSecurityAuthKerberosAccess(new JavaxSecurityAuthKerberosAccessImpl());
     }
 
     private KeyTab(KerberosPrincipal princ, File file, boolean bound) {
@@ -96,10 +95,10 @@ public final class KeyTab {
      * the bound service principal is known.
      * 
      * @param file
-     *             the keytab {@code File} object, must not be null
+     *        the keytab {@code File} object, must not be null
      * @return the keytab instance
      * @throws NullPointerException
-     *                              if the {@code file} argument is null
+     *         if the {@code file} argument is null
      */
     public static KeyTab getInstance(File file) {
         if (file == null) {
@@ -115,10 +114,10 @@ public final class KeyTab {
      * returned {@code KeyTab} object with the file and does not read it.
      * 
      * @param file
-     *             the keytab {@code File} object, must not be null
+     *        the keytab {@code File} object, must not be null
      * @return the keytab instance
      * @throws NullPointerException
-     *                              if the file argument is null
+     *         if the file argument is null
      * @since 1.8
      */
     public static KeyTab getUnboundInstance(File file) {
@@ -136,12 +135,12 @@ public final class KeyTab {
      * returned {@code KeyTab} object with the file and does not read it.
      * 
      * @param princ
-     *              the bound service principal, must not be null
+     *        the bound service principal, must not be null
      * @param file
-     *              the keytab {@code File} object, must not be null
+     *        the keytab {@code File} object, must not be null
      * @return the keytab instance
      * @throws NullPointerException
-     *                              if either of the arguments is null
+     *         if either of the arguments is null
      * @since 1.8
      */
     public static KeyTab getInstance(KerberosPrincipal princ, File file) {
@@ -194,10 +193,10 @@ public final class KeyTab {
      * read it.
      * 
      * @param princ
-     *              the bound service principal, must not be null
+     *        the bound service principal, must not be null
      * @return the default keytab instance
      * @throws NullPointerException
-     *                              if {@code princ} is null
+     *         if {@code princ} is null
      * @since 1.8
      */
     public static KeyTab getInstance(KerberosPrincipal princ) {
@@ -259,14 +258,14 @@ public final class KeyTab {
      * another principal will return an empty array.
      *
      * @param principal
-     *                  the Kerberos principal, must not be null.
+     *        the Kerberos principal, must not be null.
      * @return the keys (never null, may be empty)
      * @throws NullPointerException
-     *                              if the {@code principal} argument is null
+     *         if the {@code principal} argument is null
      * @throws SecurityException
-     *                              if a security manager exists and the read
-     *                              access to the
-     *                              keytab file is not permitted
+     *         if a security manager exists and the read
+     *         access to the
+     *         keytab file is not permitted
      */
     public KerberosKey[] getKeys(KerberosPrincipal principal) {
         try {
@@ -278,8 +277,8 @@ public final class KeyTab {
             KerberosKey[] kks = new KerberosKey[keys.length];
             for (int i = 0; i < kks.length; i++) {
                 Integer tmp = keys[i].getKeyVersionNumber();
-                kks[i] = new KerberosKey(principal, keys[i].getBytes(), keys[i]
-                        .getEType(), tmp == null ? 0 : tmp.intValue());
+                kks[i] = new KerberosKey(principal, keys[i].getBytes(), keys[i].getEType(), tmp == null ? 0
+                        : tmp.intValue());
                 keys[i].destroy();
             }
             return kks;
@@ -301,9 +300,9 @@ public final class KeyTab {
      * 
      * @return true if the keytab file exists; false otherwise.
      * @throws SecurityException
-     *                           if a security manager exists and the read
-     *                           access to the
-     *                           keytab file is not permitted
+     *         if a security manager exists and the read
+     *         access to the
+     *         keytab file is not permitted
      */
     public boolean exists() {
         return !takeSnapshot().isMissing();
@@ -334,7 +333,7 @@ public final class KeyTab {
      * instances are equivalent.
      *
      * @param other
-     *              the Object to compare to
+     *        the Object to compare to
      * @return true if the specified object is equal to this KeyTab
      */
     public boolean equals(Object other) {
@@ -346,8 +345,8 @@ public final class KeyTab {
         }
 
         KeyTab otherKtab = (KeyTab) other;
-        return Objects.equals(otherKtab.princ, princ) && Objects.equals(
-                otherKtab.file, file) && bound == otherKtab.bound;
+        return Objects.equals(otherKtab.princ, princ) && Objects.equals(otherKtab.file, file)
+                && bound == otherKtab.bound;
     }
 
     /**

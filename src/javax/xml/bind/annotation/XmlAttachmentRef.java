@@ -14,9 +14,7 @@ import java.lang.annotation.Target;
 /**
  * Marks a field/property that its XML form is a uri reference to mime content.
  * The mime content is optimally stored out-of-line as an attachment.
- *
  * A field/property must always map to the {@link DataHandler} class.
- *
  * <h2>Usage</h2>
  * 
  * <pre>
@@ -44,7 +42,6 @@ import java.lang.annotation.Target;
  *   &lt;/xs:complexType>
  * &lt;/xs:element>
  * </pre>
- *
  * <p>
  * The above binding supports WS-I AP 1.0 <a href=
  * "http://www.ws-i.org/Profiles/AttachmentsProfile-1.0-2004-08-24.html#Referencing_Attachments_from_the_SOAP_Envelope">
@@ -55,5 +52,4 @@ import java.lang.annotation.Target;
  */
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD, PARAMETER })
-public @interface XmlAttachmentRef {
-}
+public @interface XmlAttachmentRef {}

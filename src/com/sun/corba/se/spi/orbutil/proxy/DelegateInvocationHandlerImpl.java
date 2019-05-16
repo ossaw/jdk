@@ -25,8 +25,7 @@ public abstract class DelegateInvocationHandlerImpl {
             s.checkPermission(new DynamicAccessPermission("access"));
         }
         return new InvocationHandler() {
-            public Object invoke(Object proxy, Method method, Object[] args)
-                    throws Throwable {
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 // This throws an IllegalArgument exception if the delegate
                 // is not assignable from method.getDeclaring class.
                 try {

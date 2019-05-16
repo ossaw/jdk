@@ -9,7 +9,6 @@ package java.lang.reflect;
  * Thrown when {@link java.lang.reflect.Executable#getParameters the
  * java.lang.reflect package} attempts to read method parameters from a class
  * file and determines that one or more parameters are malformed.
- *
  * <p>
  * The following is a list of conditions under which this exception can be
  * thrown:
@@ -21,7 +20,6 @@ package java.lang.reflect;
  * <li>The flags field contains an illegal flag (something other than FINAL,
  * SYNTHETIC, or MANDATED)
  * </ul>
- *
  * See {@link java.lang.reflect.Executable#getParameters} for more information.
  *
  * @see java.lang.reflect.Executable#getParameters
@@ -43,7 +41,7 @@ public class MalformedParametersException extends RuntimeException {
      * Create a {@code MalformedParametersException}.
      *
      * @param reason
-     *               The reason for the exception.
+     *        The reason for the exception.
      */
     public MalformedParametersException(String reason) {
         super(reason);

@@ -48,27 +48,22 @@ public class PaletteBuilder {
     /**
      * Creates an image representing given image <code>src</code> using
      * <code>IndexColorModel</code>.
-     *
      * Lossless conversion is not always possible (e.g. if number of colors in
      * the given image exceeds maximum palette size). Result image then is an
      * approximation constructed by octree quantization method.
      *
      * @exception IllegalArgumentException
-     *                                          if <code>src</code> is
-     *                                          <code>null</code>.
-     *
+     *            if <code>src</code> is
+     *            <code>null</code>.
      * @exception UnsupportedOperationException
-     *                                          if implemented method is unable
-     *                                          to create approximation of
-     *                                          <code>src</code> and
-     *                                          <code>canCreatePalette</code>
-     *                                          returns
-     *                                          <code>false</code>.
-     *
+     *            if implemented method is unable
+     *            to create approximation of
+     *            <code>src</code> and
+     *            <code>canCreatePalette</code>
+     *            returns
+     *            <code>false</code>.
      * @see createIndexColorModel
-     *
      * @see canCreatePalette
-     *
      */
     public static RenderedImage createIndexedImage(RenderedImage src) {
         PaletteBuilder pb = new PaletteBuilder(src);
@@ -82,21 +77,17 @@ public class PaletteBuilder {
      * closest colors would be merged.
      *
      * @exception IllegalArgumentException
-     *                                          if <code>img</code> is
-     *                                          <code>null</code>.
-     *
+     *            if <code>img</code> is
+     *            <code>null</code>.
      * @exception UnsupportedOperationException
-     *                                          if implemented method is unable
-     *                                          to create approximation of
-     *                                          <code>img</code> and
-     *                                          <code>canCreatePalette</code>
-     *                                          returns
-     *                                          <code>false</code>.
-     *
+     *            if implemented method is unable
+     *            to create approximation of
+     *            <code>img</code> and
+     *            <code>canCreatePalette</code>
+     *            returns
+     *            <code>false</code>.
      * @see createIndexedImage
-     *
      * @see canCreatePalette
-     *
      */
     public static IndexColorModel createIndexColorModel(RenderedImage img) {
         PaletteBuilder pb = new PaletteBuilder(img);
@@ -109,14 +100,12 @@ public class PaletteBuilder {
      * given image type.
      *
      * @param type
-     *             an instance of <code>ImageTypeSpecifier</code> to be indexed.
-     *
+     *        an instance of <code>ImageTypeSpecifier</code> to be indexed.
      * @return <code>true</code> if the <code>PaletteBuilder</code> is likely to
      *         be able to create palette for this image type.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>type</code> is
-     *                                     <code>null</code>.
+     *            if <code>type</code> is
+     *            <code>null</code>.
      */
     public static boolean canCreatePalette(ImageTypeSpecifier type) {
         if (type == null) {
@@ -130,14 +119,12 @@ public class PaletteBuilder {
      * given rendered image.
      *
      * @param image
-     *              an instance of <code>RenderedImage</code> to be indexed.
-     *
+     *        an instance of <code>RenderedImage</code> to be indexed.
      * @return <code>true</code> if the <code>PaletteBuilder</code> is likely to
      *         be able to create palette for this image type.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>image</code> is
-     *                                     <code>null</code>.
+     *            if <code>image</code> is
+     *            <code>null</code>.
      */
     public static boolean canCreatePalette(RenderedImage image) {
         if (image == null) {
@@ -223,8 +210,7 @@ public class PaletteBuilder {
                  * If transparency of given image is not opaque we assume all
                  * colors with alpha less than 1.0 as fully transparent.
                  */
-                if (transparency != Transparency.OPAQUE && aColor
-                        .getAlpha() != 0xff) {
+                if (transparency != Transparency.OPAQUE && aColor.getAlpha() != 0xff) {
                     if (transColor == null) {
                         this.requiredSize--; // one slot for transparent color
 
@@ -270,8 +256,7 @@ public class PaletteBuilder {
                     reduceList[aLevel] = aNode;
                 }
             }
-            aNode.children[branchIndex] = insertNode(
-                    aNode.children[branchIndex], aColor, aLevel + 1);
+            aNode.children[branchIndex] = insertNode(aNode.children[branchIndex], aColor, aLevel + 1);
         }
         return aNode;
     }
@@ -305,8 +290,7 @@ public class PaletteBuilder {
         return icm;
     }
 
-    protected int findPaletteEntry(ColorNode aNode, int index, byte[] red,
-            byte[] green, byte[] blue) {
+    protected int findPaletteEntry(ColorNode aNode, int index, byte[] red, byte[] green, byte[] blue) {
         if (aNode.isLeaf) {
             red[index] = (byte) (aNode.red / aNode.colorCount);
             green[index] = (byte) (aNode.green / aNode.colorCount);
@@ -319,8 +303,7 @@ public class PaletteBuilder {
         } else {
             for (int i = 0; i < 8; i++) {
                 if (aNode.children[i] != null) {
-                    index = findPaletteEntry(aNode.children[i], index, red,
-                            green, blue);
+                    index = findPaletteEntry(aNode.children[i], index, red, green, blue);
                 }
             }
         }
@@ -329,8 +312,7 @@ public class PaletteBuilder {
 
     protected int getBranchIndex(Color aColor, int aLevel) {
         if (aLevel > MAXLEVEL || aLevel < 0) {
-            throw new IllegalArgumentException("Invalid octree node depth: "
-                    + aLevel);
+            throw new IllegalArgumentException("Invalid octree node depth: " + aLevel);
         }
 
         int shift = MAXLEVEL - aLevel;
@@ -459,8 +441,7 @@ public class PaletteBuilder {
             int g = (int) green / colorCount;
             int b = (int) blue / colorCount;
 
-            int c = 0xff << 24 | (0xff & r) << 16 | (0xff & g) << 8 | (0xff
-                    & b);
+            int c = 0xff << 24 | (0xff & r) << 16 | (0xff & g) << 8 | (0xff & b);
             return c;
         }
     }

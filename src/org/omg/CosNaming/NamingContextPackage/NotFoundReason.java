@@ -30,8 +30,7 @@ public class NotFoundReason implements org.omg.CORBA.portable.IDLEntity {
         return __value;
     }
 
-    public static org.omg.CosNaming.NamingContextPackage.NotFoundReason from_int(
-            int value) {
+    public static org.omg.CosNaming.NamingContextPackage.NotFoundReason from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

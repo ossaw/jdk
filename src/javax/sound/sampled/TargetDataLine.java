@@ -61,37 +61,34 @@ public interface TargetDataLine extends DataLine {
      * line will always result in a <code>LineUnavailableException</code>.
      *
      * @param format
-     *                   the desired audio format
+     *        the desired audio format
      * @param bufferSize
-     *                   the desired buffer size, in bytes.
+     *        the desired buffer size, in bytes.
      * @throws LineUnavailableException
-     *                                  if the line cannot be opened due to
-     *                                  resource restrictions
+     *         if the line cannot be opened due to
+     *         resource restrictions
      * @throws IllegalArgumentException
-     *                                  if the buffer size does not represent an
-     *                                  integral number of
-     *                                  sample frames, or if <code>format</code>
-     *                                  is not fully
-     *                                  specified or invalid
+     *         if the buffer size does not represent an
+     *         integral number of
+     *         sample frames, or if <code>format</code>
+     *         is not fully
+     *         specified or invalid
      * @throws IllegalStateException
-     *                                  if the line is already open
+     *         if the line is already open
      * @throws SecurityException
-     *                                  if the line cannot be opened due to
-     *                                  security restrictions
-     *
+     *         if the line cannot be opened due to
+     *         security restrictions
      * @see #open(AudioFormat)
      * @see Line#open
      * @see Line#close
      * @see Line#isOpen
      * @see LineEvent
      */
-    public void open(AudioFormat format, int bufferSize)
-            throws LineUnavailableException;
+    public void open(AudioFormat format, int bufferSize) throws LineUnavailableException;
 
     /**
      * Opens the line with the specified format, causing the line to acquire any
      * required system resources and become operational.
-     *
      * <p>
      * The implementation chooses a buffer size, which is measured in bytes but
      * which encompasses an integral number of sample frames. The buffer size
@@ -109,19 +106,18 @@ public interface TargetDataLine extends DataLine {
      * line will always result in a <code>LineUnavailableException</code>.
      *
      * @param format
-     *               the desired audio format
+     *        the desired audio format
      * @throws LineUnavailableException
-     *                                  if the line cannot be opened due to
-     *                                  resource restrictions
+     *         if the line cannot be opened due to
+     *         resource restrictions
      * @throws IllegalArgumentException
-     *                                  if <code>format</code> is not fully
-     *                                  specified or invalid
+     *         if <code>format</code> is not fully
+     *         specified or invalid
      * @throws IllegalStateException
-     *                                  if the line is already open
+     *         if the line is already open
      * @throws SecurityException
-     *                                  if the line cannot be opened due to
-     *                                  security restrictions
-     *
+     *         if the line cannot be opened due to
+     *         security restrictions
      * @see #open(AudioFormat, int)
      * @see Line#open
      * @see Line#close
@@ -154,25 +150,24 @@ public interface TargetDataLine extends DataLine {
      * cannot be fulfilled and may result in an IllegalArgumentException.
      *
      * @param b
-     *            a byte array that will contain the requested input data when
-     *            this method returns
+     *        a byte array that will contain the requested input data when
+     *        this method returns
      * @param off
-     *            the offset from the beginning of the array, in bytes
+     *        the offset from the beginning of the array, in bytes
      * @param len
-     *            the requested number of bytes to read
+     *        the requested number of bytes to read
      * @return the number of bytes actually read
      * @throws IllegalArgumentException
-     *                                        if the requested number of bytes
-     *                                        does not represent an
-     *                                        integral number of sample frames.
-     *                                        or if <code>len</code> is
-     *                                        negative.
+     *         if the requested number of bytes
+     *         does not represent an
+     *         integral number of sample frames.
+     *         or if <code>len</code> is
+     *         negative.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if <code>off</code> is negative,
-     *                                        or <code>off+len</code> is
-     *                                        greater than the length of the
-     *                                        array <code>b</code>.
-     *
+     *         if <code>off</code> is negative,
+     *         or <code>off+len</code> is
+     *         greater than the length of the
+     *         array <code>b</code>.
      * @see SourceDataLine#write
      * @see DataLine#available
      */

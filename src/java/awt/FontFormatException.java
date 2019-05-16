@@ -23,9 +23,9 @@ public class FontFormatException extends Exception {
      * Report a FontFormatException for the reason specified.
      * 
      * @param reason
-     *               a <code>String</code> message indicating why the font is
-     *               not
-     *               accepted.
+     *        a <code>String</code> message indicating why the font is
+     *        not
+     *        accepted.
      */
     public FontFormatException(String reason) {
         super(reason);

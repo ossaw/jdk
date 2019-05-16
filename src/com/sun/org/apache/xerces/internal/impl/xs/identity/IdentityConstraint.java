@@ -30,7 +30,6 @@ import com.sun.org.apache.xerces.internal.impl.xs.XSAnnotationImpl;
  * Base class of Schema identity constraint.
  *
  * @xerces.internal
- *
  * @author Andy Clark, IBM
  */
 public abstract class IdentityConstraint implements XSIDCDefinition {
@@ -71,8 +70,7 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
     //
 
     /** Default constructor. */
-    protected IdentityConstraint(String namespace,
-            String identityConstraintName, String elemName) {
+    protected IdentityConstraint(String namespace, String identityConstraintName, String elemName) {
         fNamespace = namespace;
         fIdentityConstraintName = identityConstraintName;
         fElementName = elemName;
@@ -143,8 +141,7 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
     // representations of all members of both objects (except for
     // the elenemtName field) are equal.
     public boolean equals(IdentityConstraint id) {
-        boolean areEqual = fIdentityConstraintName.equals(
-                id.fIdentityConstraintName);
+        boolean areEqual = fIdentityConstraintName.equals(id.fIdentityConstraintName);
         if (!areEqual)
             return false;
         areEqual = fSelector.toString().equals(id.fSelector.toString());

@@ -11,8 +11,7 @@ import java.util.Properties;
 public class AppletDataCollector extends DataCollectorBase {
     private Applet applet;
 
-    AppletDataCollector(Applet app, Properties props, String localHostName,
-            String configurationHostName) {
+    AppletDataCollector(Applet app, Properties props, String localHostName, String configurationHostName) {
         super(props, localHostName, configurationHostName);
         this.applet = app;
     }

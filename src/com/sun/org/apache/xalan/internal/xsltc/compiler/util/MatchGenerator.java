@@ -41,11 +41,9 @@ public final class MatchGenerator extends MethodGenerator {
     private final Instruction _istoreCurrent;
     private Instruction _aloadDom;
 
-    public MatchGenerator(int access_flags, Type return_type, Type[] arg_types,
-            String[] arg_names, String method_name, String class_name,
-            InstructionList il, ConstantPoolGen cp) {
-        super(access_flags, return_type, arg_types, arg_names, method_name,
-                class_name, il, cp);
+    public MatchGenerator(int access_flags, Type return_type, Type[] arg_types, String[] arg_names,
+            String method_name, String class_name, InstructionList il, ConstantPoolGen cp) {
+        super(access_flags, return_type, arg_types, arg_names, method_name, class_name, il, cp);
 
         _iloadCurrent = new ILOAD(CURRENT_INDEX);
         _istoreCurrent = new ISTORE(CURRENT_INDEX);

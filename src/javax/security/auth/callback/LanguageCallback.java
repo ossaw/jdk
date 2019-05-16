@@ -32,12 +32,10 @@ public class LanguageCallback implements Callback, java.io.Serializable {
 
     /**
      * Set the retrieved {@code Locale}.
-     *
      * <p>
      *
      * @param locale
-     *               the retrieved {@code Locale}.
-     *
+     *        the retrieved {@code Locale}.
      * @see #getLocale
      */
     public void setLocale(Locale locale) {
@@ -46,12 +44,10 @@ public class LanguageCallback implements Callback, java.io.Serializable {
 
     /**
      * Get the retrieved {@code Locale}.
-     *
      * <p>
      *
      * @return the retrieved {@code Locale}, or null if no {@code Locale} could
      *         be retrieved.
-     *
      * @see #setLocale
      */
     public Locale getLocale() {

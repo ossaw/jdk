@@ -21,7 +21,7 @@ public class ConnectException extends SocketException {
      * specific description of this error.
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public ConnectException(String msg) {
         super(msg);

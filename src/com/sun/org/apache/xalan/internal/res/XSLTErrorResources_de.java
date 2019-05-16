@@ -334,37 +334,29 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                  */
                 { "ER0000", "{0}" },
 
-                { ER_NO_CURLYBRACE,
-                        "Fehler: \"{\" darf nicht im Ausdruck enthalten sein" },
+                { ER_NO_CURLYBRACE, "Fehler: \"{\" darf nicht im Ausdruck enthalten sein" },
 
-                { ER_ILLEGAL_ATTRIBUTE,
-                        "{0} hat ein ung\u00FCltiges Attribut: {1}" },
+                { ER_ILLEGAL_ATTRIBUTE, "{0} hat ein ung\u00FCltiges Attribut: {1}" },
 
-                { ER_NULL_SOURCENODE_APPLYIMPORTS,
-                        "sourceNode ist null in xsl:apply-imports." },
+                { ER_NULL_SOURCENODE_APPLYIMPORTS, "sourceNode ist null in xsl:apply-imports." },
 
-                { ER_CANNOT_ADD,
-                        "{0} kann nicht zu {1} hinzugef\u00FCgt werden" },
+                { ER_CANNOT_ADD, "{0} kann nicht zu {1} hinzugef\u00FCgt werden" },
 
                 { ER_NULL_SOURCENODE_HANDLEAPPLYTEMPLATES,
                         "sourceNode ist null in handleApplyTemplatesInstruction." },
 
-                { ER_NO_NAME_ATTRIB,
-                        "{0} muss \u00FCber ein \"name\"-Attribut verf\u00FCgen." },
+                { ER_NO_NAME_ATTRIB, "{0} muss \u00FCber ein \"name\"-Attribut verf\u00FCgen." },
 
-                { ER_TEMPLATE_NOT_FOUND,
-                        "Vorlage mit Namen {0} konnte nicht gefunden werden" },
+                { ER_TEMPLATE_NOT_FOUND, "Vorlage mit Namen {0} konnte nicht gefunden werden" },
 
                 { ER_CANT_RESOLVE_NAME_AVT,
                         "Namens-AVT in xsl:call-template konnte nicht aufgel\u00F6st werden." },
 
                 { ER_REQUIRES_ATTRIB, "{0} erfordert Attribut: {1}" },
 
-                { ER_MUST_HAVE_TEST_ATTRIB,
-                        "{0} muss \u00FCber ein \"test\"-Attribut verf\u00FCgen." },
+                { ER_MUST_HAVE_TEST_ATTRIB, "{0} muss \u00FCber ein \"test\"-Attribut verf\u00FCgen." },
 
-                { ER_BAD_VAL_ON_LEVEL_ATTRIB,
-                        "Ung\u00FCltiger Wert bei Ebenenattribut: {0}" },
+                { ER_BAD_VAL_ON_LEVEL_ATTRIB, "Ung\u00FCltiger Wert bei Ebenenattribut: {0}" },
 
                 { ER_PROCESSINGINSTRUCTION_NAME_CANT_BE_XML,
                         "processing-instruction-Name darf nicht \"xml\" lauten" },
@@ -378,66 +370,49 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_NEED_NAME_OR_MATCH_ATTRIB,
                         "{0} erfordert entweder ein \"name\"- oder ein \"match\"-Attribut." },
 
-                { ER_CANT_RESOLVE_NSPREFIX,
-                        "Namespace-Pr\u00E4fix kann nicht aufgel\u00F6st werden: {0}" },
+                { ER_CANT_RESOLVE_NSPREFIX, "Namespace-Pr\u00E4fix kann nicht aufgel\u00F6st werden: {0}" },
 
-                { ER_ILLEGAL_VALUE,
-                        "xml:space hat einen ung\u00FCltigen Wert: {0}" },
+                { ER_ILLEGAL_VALUE, "xml:space hat einen ung\u00FCltigen Wert: {0}" },
 
-                { ER_NO_OWNERDOC,
-                        "Der untergeordnete Knoten hat kein Eigent\u00FCmerdokument." },
+                { ER_NO_OWNERDOC, "Der untergeordnete Knoten hat kein Eigent\u00FCmerdokument." },
 
                 { ER_ELEMTEMPLATEELEM_ERR, "ElemTemplateElement-Fehler: {0}" },
 
-                { ER_NULL_CHILD,
-                        "Es wird versucht, ein leeres untergeordnetes Element hinzuzuf\u00FCgen." },
+                { ER_NULL_CHILD, "Es wird versucht, ein leeres untergeordnetes Element hinzuzuf\u00FCgen." },
 
-                { ER_NEED_SELECT_ATTRIB,
-                        "{0} erfordert ein \"select\"-Attribut." },
+                { ER_NEED_SELECT_ATTRIB, "{0} erfordert ein \"select\"-Attribut." },
 
-                { ER_NEED_TEST_ATTRIB,
-                        "xsl:when muss \u00FCber ein \"test\"-Attribut verf\u00FCgen." },
+                { ER_NEED_TEST_ATTRIB, "xsl:when muss \u00FCber ein \"test\"-Attribut verf\u00FCgen." },
 
-                { ER_NEED_NAME_ATTRIB,
-                        "xsl:with-param muss \u00FCber ein \"name\"-Attribut verf\u00FCgen." },
+                { ER_NEED_NAME_ATTRIB, "xsl:with-param muss \u00FCber ein \"name\"-Attribut verf\u00FCgen." },
 
-                { ER_NO_CONTEXT_OWNERDOC,
-                        "Kontext hat kein Eigent\u00FCmerdokument." },
+                { ER_NO_CONTEXT_OWNERDOC, "Kontext hat kein Eigent\u00FCmerdokument." },
 
                 { ER_COULD_NOT_CREATE_XML_PROC_LIAISON,
                         "XML-TransformerFactory-Liaison konnte nicht erstellt werden: {0}" },
 
-                { ER_PROCESS_NOT_SUCCESSFUL,
-                        "Xalan: Prozess war nicht erfolgreich." },
+                { ER_PROCESS_NOT_SUCCESSFUL, "Xalan: Prozess war nicht erfolgreich." },
 
                 { ER_NOT_SUCCESSFUL, "Xalan: War nicht erfolgreich." },
 
-                { ER_ENCODING_NOT_SUPPORTED,
-                        "Codierung nicht unterst\u00FCtzt: {0}" },
+                { ER_ENCODING_NOT_SUPPORTED, "Codierung nicht unterst\u00FCtzt: {0}" },
 
-                { ER_COULD_NOT_CREATE_TRACELISTENER,
-                        "TraceListener konnte nicht erstellt werden: {0}" },
+                { ER_COULD_NOT_CREATE_TRACELISTENER, "TraceListener konnte nicht erstellt werden: {0}" },
 
-                { ER_KEY_REQUIRES_NAME_ATTRIB,
-                        "xsl:key erfordert ein \"name\"-Attribut." },
+                { ER_KEY_REQUIRES_NAME_ATTRIB, "xsl:key erfordert ein \"name\"-Attribut." },
 
-                { ER_KEY_REQUIRES_MATCH_ATTRIB,
-                        "xsl:key erfordert ein \"match\"-Attribut." },
+                { ER_KEY_REQUIRES_MATCH_ATTRIB, "xsl:key erfordert ein \"match\"-Attribut." },
 
-                { ER_KEY_REQUIRES_USE_ATTRIB,
-                        "xsl:key erfordert ein \"use\"-Attribut." },
+                { ER_KEY_REQUIRES_USE_ATTRIB, "xsl:key erfordert ein \"use\"-Attribut." },
 
                 { ER_REQUIRES_ELEMENTS_ATTRIB,
                         "(StylesheetHandler) {0} erfordert ein \"elements\"-Attribut." },
 
-                { ER_MISSING_PREFIX_ATTRIB,
-                        "(StylesheetHandler) {0} Attribut \"prefix\" fehlt" },
+                { ER_MISSING_PREFIX_ATTRIB, "(StylesheetHandler) {0} Attribut \"prefix\" fehlt" },
 
-                { ER_BAD_STYLESHEET_URL,
-                        "Stylesheet-URL ist ung\u00FCltig: {0}" },
+                { ER_BAD_STYLESHEET_URL, "Stylesheet-URL ist ung\u00FCltig: {0}" },
 
-                { ER_FILE_NOT_FOUND,
-                        "Stylesheet-Datei wurde nicht gefunden: {0}" },
+                { ER_FILE_NOT_FOUND, "Stylesheet-Datei wurde nicht gefunden: {0}" },
 
                 { ER_IOEXCEPTION, "IO-Ausnahme bei Stylesheet-Datei: {0}" },
 
@@ -447,11 +422,9 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_STYLESHEET_INCLUDES_ITSELF,
                         "(StylesheetHandler) {0} schlie\u00DFt sich direkt oder indirekt selbst mit ein." },
 
-                { ER_PROCESSINCLUDE_ERROR,
-                        "StylesheetHandler.processInclude-Fehler, {0}" },
+                { ER_PROCESSINCLUDE_ERROR, "StylesheetHandler.processInclude-Fehler, {0}" },
 
-                { ER_MISSING_LANG_ATTRIB,
-                        "(StylesheetHandler) {0}: Das Attribut \"lang\" fehlt" },
+                { ER_MISSING_LANG_ATTRIB, "(StylesheetHandler) {0}: Das Attribut \"lang\" fehlt" },
 
                 { ER_MISSING_CONTAINER_ELEMENT_COMPONENT,
                         "(StylesheetHandler) Element {0} an falscher Position?? Fehlendes Containerelement ''component''" },
@@ -463,26 +436,19 @@ public class XSLTErrorResources_de extends ListResourceBundle {
 
                 { ER_UNIMPLNODE_ERROR, "UnImplNode-Fehler: {0}" },
 
-                { ER_NO_SELECT_EXPRESSION,
-                        "Fehler. xpath-Auswahlausdruck (-select) nicht gefunden." },
+                { ER_NO_SELECT_EXPRESSION, "Fehler. xpath-Auswahlausdruck (-select) nicht gefunden." },
 
-                { ER_CANNOT_SERIALIZE_XSLPROCESSOR,
-                        "XSLProcessor kann nicht serialisiert werden." },
+                { ER_CANNOT_SERIALIZE_XSLPROCESSOR, "XSLProcessor kann nicht serialisiert werden." },
 
-                { ER_NO_INPUT_STYLESHEET,
-                        "Stylesheet-Eingabe wurde nicht angegeben." },
+                { ER_NO_INPUT_STYLESHEET, "Stylesheet-Eingabe wurde nicht angegeben." },
 
-                { ER_FAILED_PROCESS_STYLESHEET,
-                        "Verarbeitung des Stylesheet nicht erfolgreich." },
+                { ER_FAILED_PROCESS_STYLESHEET, "Verarbeitung des Stylesheet nicht erfolgreich." },
 
-                { ER_COULDNT_PARSE_DOC,
-                        "{0}-Dokument konnte nicht geparst werden." },
+                { ER_COULDNT_PARSE_DOC, "{0}-Dokument konnte nicht geparst werden." },
 
-                { ER_COULDNT_FIND_FRAGMENT,
-                        "Fragment konnte nicht gefunden werden: {0}" },
+                { ER_COULDNT_FIND_FRAGMENT, "Fragment konnte nicht gefunden werden: {0}" },
 
-                { ER_NODE_NOT_ELEMENT,
-                        "Fragment-ID verwies auf einen Knoten, der kein Element war: {0}" },
+                { ER_NODE_NOT_ELEMENT, "Fragment-ID verwies auf einen Knoten, der kein Element war: {0}" },
 
                 { ER_FOREACH_NEED_MATCH_OR_NAME_ATTRIB,
                         "for-each muss entweder ein \"match\"- oder ein \"name\"-Attribut haben" },
@@ -490,23 +456,17 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_TEMPLATES_NEED_MATCH_OR_NAME_ATTRIB,
                         "Vorlagen m\u00FCssen entweder ein \"match\"- oder ein \"name\"-Attribut haben" },
 
-                { ER_NO_CLONE_OF_DOCUMENT_FRAG,
-                        "Kein Clone eines Dokumentfragments." },
+                { ER_NO_CLONE_OF_DOCUMENT_FRAG, "Kein Clone eines Dokumentfragments." },
 
-                { ER_CANT_CREATE_ITEM,
-                        "Element in Ergebnisbaum kann nicht erstellt werden: {0}" },
+                { ER_CANT_CREATE_ITEM, "Element in Ergebnisbaum kann nicht erstellt werden: {0}" },
 
-                { ER_XMLSPACE_ILLEGAL_VALUE,
-                        "xml:space in Quell-XML hat einen ung\u00FCltigen Wert: {0}" },
+                { ER_XMLSPACE_ILLEGAL_VALUE, "xml:space in Quell-XML hat einen ung\u00FCltigen Wert: {0}" },
 
-                { ER_NO_XSLKEY_DECLARATION,
-                        "Keine xsl:key-Deklaration f\u00FCr {0} vorhanden." },
+                { ER_NO_XSLKEY_DECLARATION, "Keine xsl:key-Deklaration f\u00FCr {0} vorhanden." },
 
-                { ER_CANT_CREATE_URL,
-                        "Fehler. URL f\u00FCr {0} kann nicht erstellt werden" },
+                { ER_CANT_CREATE_URL, "Fehler. URL f\u00FCr {0} kann nicht erstellt werden" },
 
-                { ER_XSLFUNCTIONS_UNSUPPORTED,
-                        "xsl:functions nicht unterst\u00FCtzt" },
+                { ER_XSLFUNCTIONS_UNSUPPORTED, "xsl:functions nicht unterst\u00FCtzt" },
 
                 { ER_PROCESSOR_ERROR, "XSLT-TransformerFactory-Fehler" },
 
@@ -522,16 +482,14 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_INDENTRESULT_NOT_SUPPORTED,
                         "indent-result wird nicht mehr unterst\u00FCtzt. Verwenden Sie stattdessen xsl:output." },
 
-                { ER_ILLEGAL_ATTRIB,
-                        "(StylesheetHandler) {0} hat ein ung\u00FCltiges Attribut: {1}" },
+                { ER_ILLEGAL_ATTRIB, "(StylesheetHandler) {0} hat ein ung\u00FCltiges Attribut: {1}" },
 
                 { ER_UNKNOWN_XSL_ELEM, "Unbekanntes XSL-Element: {0}" },
 
                 { ER_BAD_XSLSORT_USE,
                         "(StylesheetHandler) xsl:sort kann nur mit xsl:apply-templates oder xsl:for-each verwendet werden." },
 
-                { ER_MISPLACED_XSLWHEN,
-                        "(StylesheetHandler) xsl:when steht an der falschen Position." },
+                { ER_MISPLACED_XSLWHEN, "(StylesheetHandler) xsl:when steht an der falschen Position." },
 
                 { ER_XSLWHEN_NOT_PARENTED_BY_XSLCHOOSE,
                         "(StylesheetHandler) xsl:when hat nicht das \u00FCbergeordnete Element xsl:choose." },
@@ -557,14 +515,12 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_XMLSPACE_ILLEGAL_VAL,
                         "(StylesheetHandler) xml:space hat einen ung\u00FCltigen Wert: {0}" },
 
-                { ER_PROCESSSTYLESHEET_NOT_SUCCESSFUL,
-                        "processStylesheet nicht erfolgreich." },
+                { ER_PROCESSSTYLESHEET_NOT_SUCCESSFUL, "processStylesheet nicht erfolgreich." },
 
                 { ER_SAX_EXCEPTION, "SAX-Ausnahme" },
 
                 // add this message to fix bug 21478
-                { ER_FUNCTION_NOT_SUPPORTED,
-                        "Funktion nicht unterst\u00FCtzt." },
+                { ER_FUNCTION_NOT_SUPPORTED, "Funktion nicht unterst\u00FCtzt." },
 
                 { ER_XSLT_ERROR, "XSLT-Fehler" },
 
@@ -586,27 +542,22 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_INVALID_PREFIX_IN_EXCLUDERESULTPREFIX,
                         "Pr\u00E4fix in exclude-result-prefixes ist nicht g\u00FCltig: {0}" },
 
-                { ER_MISSING_NS_URI,
-                        "Fehlender Namespace-URI f\u00FCr angegebenes Pr\u00E4fix" },
+                { ER_MISSING_NS_URI, "Fehlender Namespace-URI f\u00FCr angegebenes Pr\u00E4fix" },
 
-                { ER_MISSING_ARG_FOR_OPTION,
-                        "Fehlendes Argument f\u00FCr Option: {0}" },
+                { ER_MISSING_ARG_FOR_OPTION, "Fehlendes Argument f\u00FCr Option: {0}" },
 
                 { ER_INVALID_OPTION, "Ung\u00FCltige Option: {0}" },
 
-                { ER_MALFORMED_FORMAT_STRING,
-                        "Fehlerhafte Formatzeichenfolge: {0}" },
+                { ER_MALFORMED_FORMAT_STRING, "Fehlerhafte Formatzeichenfolge: {0}" },
 
                 { ER_STYLESHEET_REQUIRES_VERSION_ATTRIB,
                         "xsl:stylesheet erfordert ein \"version\"-Attribut." },
 
-                { ER_ILLEGAL_ATTRIBUTE_VALUE,
-                        "Attribut {0} hat einen ung\u00FCltigen Wert: {1}" },
+                { ER_ILLEGAL_ATTRIBUTE_VALUE, "Attribut {0} hat einen ung\u00FCltigen Wert: {1}" },
 
                 { ER_CHOOSE_REQUIRES_WHEN, "xsl:choose erfordert xsl:when" },
 
-                { ER_NO_APPLY_IMPORT_IN_FOR_EACH,
-                        "xsl:apply-imports nicht zul\u00E4ssig in xsl:for-each" },
+                { ER_NO_APPLY_IMPORT_IN_FOR_EACH, "xsl:apply-imports nicht zul\u00E4ssig in xsl:for-each" },
 
                 { ER_CANT_USE_DTM_FOR_OUTPUT,
                         "DTMLiaison kann nicht f\u00FCr einen Ausgabe-DOM-Knoten verwendet werden. \u00DCbergeben Sie stattdessen einen com.sun.org.apache.xpath.internal.DOM2Helper." },
@@ -614,14 +565,11 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_CANT_USE_DTM_FOR_INPUT,
                         "DTMLiaison kann nicht f\u00FCr einen Eingabe-DOM-Knoten verwendet werden. \u00DCbergeben Sie stattdessen einen com.sun.org.apache.xpath.internal.DOM2Helper." },
 
-                { ER_CALL_TO_EXT_FAILED,
-                        "Aufruf von Erweiterungselement nicht erfolgreich: {0}" },
+                { ER_CALL_TO_EXT_FAILED, "Aufruf von Erweiterungselement nicht erfolgreich: {0}" },
 
-                { ER_PREFIX_MUST_RESOLVE,
-                        "Pr\u00E4fix muss in einen Namespace aufgel\u00F6st werden: {0}" },
+                { ER_PREFIX_MUST_RESOLVE, "Pr\u00E4fix muss in einen Namespace aufgel\u00F6st werden: {0}" },
 
-                { ER_INVALID_UTF16_SURROGATE,
-                        "Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
+                { ER_INVALID_UTF16_SURROGATE, "Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
 
                 { ER_XSLATTRSET_USED_ITSELF,
                         "xsl:attribute-set {0} hat sich selbst verwendet. Dies f\u00FChrt zu einer Endlosschleife." },
@@ -629,29 +577,23 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_CANNOT_MIX_XERCESDOM,
                         "Nicht-Xerces-DOM-Eingabe kann nicht mit Xerces-DOM-Ausgabe gemischt werden." },
 
-                { ER_TOO_MANY_LISTENERS,
-                        "addTraceListenersToStylesheet - TooManyListenersException" },
+                { ER_TOO_MANY_LISTENERS, "addTraceListenersToStylesheet - TooManyListenersException" },
 
-                { ER_IN_ELEMTEMPLATEELEM_READOBJECT,
-                        "In ElemTemplateElement.readObject: {0}" },
+                { ER_IN_ELEMTEMPLATEELEM_READOBJECT, "In ElemTemplateElement.readObject: {0}" },
 
-                { ER_DUPLICATE_NAMED_TEMPLATE,
-                        "Mehrere Vorlagen mit den Namen {0} gefunden" },
+                { ER_DUPLICATE_NAMED_TEMPLATE, "Mehrere Vorlagen mit den Namen {0} gefunden" },
 
                 { ER_INVALID_KEY_CALL,
                         "Ung\u00FCltiger Funktionsaufruf: Rekursive key()-Aufrufe sind nicht zul\u00E4ssig" },
 
-                { ER_REFERENCING_ITSELF,
-                        "Variable {0} verweist direkt oder indirekt auf sich selbst." },
+                { ER_REFERENCING_ITSELF, "Variable {0} verweist direkt oder indirekt auf sich selbst." },
 
                 { ER_ILLEGAL_DOMSOURCE_INPUT,
                         "Der Eingabeknoten darf nicht null sein f\u00FCr eine DOMSource f\u00FCr newTemplates." },
 
-                { ER_CLASS_NOT_FOUND_FOR_OPTION,
-                        "Klassendatei nicht gefunden f\u00FCr Option {0}" },
+                { ER_CLASS_NOT_FOUND_FOR_OPTION, "Klassendatei nicht gefunden f\u00FCr Option {0}" },
 
-                { ER_REQUIRED_ELEM_NOT_FOUND,
-                        "Erforderliches Element nicht gefunden: {0}" },
+                { ER_REQUIRED_ELEM_NOT_FOUND, "Erforderliches Element nicht gefunden: {0}" },
 
                 { ER_INPUT_CANNOT_BE_NULL, "InputStream darf nicht null sein" },
 
@@ -659,35 +601,27 @@ public class XSLTErrorResources_de extends ListResourceBundle {
 
                 { ER_FILE_CANNOT_BE_NULL, "Datei darf nicht null sein" },
 
-                { ER_SOURCE_CANNOT_BE_NULL,
-                        "InputSource darf nicht null sein" },
+                { ER_SOURCE_CANNOT_BE_NULL, "InputSource darf nicht null sein" },
 
-                { ER_CANNOT_INIT_BSFMGR,
-                        "BSF-Manager konnte nicht initialisiert werden" },
+                { ER_CANNOT_INIT_BSFMGR, "BSF-Manager konnte nicht initialisiert werden" },
 
-                { ER_CANNOT_CMPL_EXTENSN,
-                        "Erweiterung konnte nicht kompiliert werden" },
+                { ER_CANNOT_CMPL_EXTENSN, "Erweiterung konnte nicht kompiliert werden" },
 
-                { ER_CANNOT_CREATE_EXTENSN,
-                        "Erweiterung {0} konnte nicht erstellt werden; Grund: {1}" },
+                { ER_CANNOT_CREATE_EXTENSN, "Erweiterung {0} konnte nicht erstellt werden; Grund: {1}" },
 
                 { ER_INSTANCE_MTHD_CALL_REQUIRES,
                         "Der Aufruf einer Instanzmethode von Methode {0} erfordert eine Objektinstanz als erstes Argument" },
 
-                { ER_INVALID_ELEMENT_NAME,
-                        "Ung\u00FCltiger Elementname angegeben {0}" },
+                { ER_INVALID_ELEMENT_NAME, "Ung\u00FCltiger Elementname angegeben {0}" },
 
-                { ER_ELEMENT_NAME_METHOD_STATIC,
-                        "Elementnamenmethode muss statisch sein {0}" },
+                { ER_ELEMENT_NAME_METHOD_STATIC, "Elementnamenmethode muss statisch sein {0}" },
 
-                { ER_EXTENSION_FUNC_UNKNOWN,
-                        "Erweiterungsfunktion {0} : {1} ist unbekannt" },
+                { ER_EXTENSION_FUNC_UNKNOWN, "Erweiterungsfunktion {0} : {1} ist unbekannt" },
 
                 { ER_MORE_MATCH_CONSTRUCTOR,
                         "Mehrere passende \u00DCbereinstimmungen f\u00FCr Constructor f\u00FCr {0}" },
 
-                { ER_MORE_MATCH_METHOD,
-                        "Mehrere passende \u00DCbereinstimmungen f\u00FCr Methode {0}" },
+                { ER_MORE_MATCH_METHOD, "Mehrere passende \u00DCbereinstimmungen f\u00FCr Methode {0}" },
 
                 { ER_MORE_MATCH_ELEMENT,
                         "Mehrere passende \u00DCbereinstimmungen f\u00FCr Elementmethode {0}" },
@@ -701,36 +635,29 @@ public class XSLTErrorResources_de extends ListResourceBundle {
 
                 { ER_NO_URL, "Keine URL angegeben" },
 
-                { ER_POOL_SIZE_LESSTHAN_ONE,
-                        "Poolgr\u00F6\u00DFe ist kleiner als eins." },
+                { ER_POOL_SIZE_LESSTHAN_ONE, "Poolgr\u00F6\u00DFe ist kleiner als eins." },
 
                 { ER_INVALID_DRIVER, "Ung\u00FCltiger Treibername angegeben." },
 
-                { ER_NO_STYLESHEETROOT,
-                        "Stylesheet-Root wurde nicht gefunden." },
+                { ER_NO_STYLESHEETROOT, "Stylesheet-Root wurde nicht gefunden." },
 
-                { ER_ILLEGAL_XMLSPACE_VALUE,
-                        "Ung\u00FCltiger Wert f\u00FCr xml:space" },
+                { ER_ILLEGAL_XMLSPACE_VALUE, "Ung\u00FCltiger Wert f\u00FCr xml:space" },
 
-                { ER_PROCESSFROMNODE_FAILED,
-                        "processFromNode nicht erfolgreich" },
+                { ER_PROCESSFROMNODE_FAILED, "processFromNode nicht erfolgreich" },
 
                 { ER_RESOURCE_COULD_NOT_LOAD,
                         "Ressource [ {0} ] konnte nicht geladen werden: {1} \n {2} \t {3}" },
 
                 { ER_BUFFER_SIZE_LESSTHAN_ZERO, "Puffergr\u00F6\u00DFe <=0" },
 
-                { ER_UNKNOWN_ERROR_CALLING_EXTENSION,
-                        "Unbekannter Fehler bei Aufruf von Erweiterung" },
+                { ER_UNKNOWN_ERROR_CALLING_EXTENSION, "Unbekannter Fehler bei Aufruf von Erweiterung" },
 
-                { ER_NO_NAMESPACE_DECL,
-                        "Pr\u00E4fix {0} hat keine entsprechende Namespace-Deklaration" },
+                { ER_NO_NAMESPACE_DECL, "Pr\u00E4fix {0} hat keine entsprechende Namespace-Deklaration" },
 
                 { ER_ELEM_CONTENT_NOT_ALLOWED,
                         "Element-Content nicht zul\u00E4ssig f\u00FCr lang=javaclass {0}" },
 
-                { ER_STYLESHEET_DIRECTED_TERMINATION,
-                        "Stylesheet f\u00FChrte zu Abbruch" },
+                { ER_STYLESHEET_DIRECTED_TERMINATION, "Stylesheet f\u00FChrte zu Abbruch" },
 
                 { ER_ONE_OR_TWO, "1 oder 2" },
 
@@ -744,8 +671,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
 
                 { ER_RESULT_NULL, "Ergebnis darf nicht null sein" },
 
-                { ER_RESULT_COULD_NOT_BE_SET,
-                        "Ergebnis konnte nicht festgelegt werden" },
+                { ER_RESULT_COULD_NOT_BE_SET, "Ergebnis konnte nicht festgelegt werden" },
 
                 { ER_NO_OUTPUT_SPECIFIED, "Keine Ausgabe angegeben" },
 
@@ -762,11 +688,9 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_CANNOT_CALL_PARSE,
                         "Parsen kann nicht aufgerufen werden, wenn der ContentHandler nicht festgelegt wurde" },
 
-                { ER_NO_PARENT_FOR_FILTER,
-                        "Kein \u00FCbergeordnetes Objekt f\u00FCr Filter" },
+                { ER_NO_PARENT_FOR_FILTER, "Kein \u00FCbergeordnetes Objekt f\u00FCr Filter" },
 
-                { ER_NO_STYLESHEET_IN_MEDIA,
-                        "Kein Stylesheet gefunden in: {0}, Datentr\u00E4ger = {1}" },
+                { ER_NO_STYLESHEET_IN_MEDIA, "Kein Stylesheet gefunden in: {0}, Datentr\u00E4ger = {1}" },
 
                 { ER_NO_STYLESHEET_PI,
                         "Keine Verarbeitungsanweisung f\u00FCr xml-stylesheet gefunden in: {0}" },
@@ -776,17 +700,13 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_PROPERTY_VALUE_BOOLEAN,
                         "Wert f\u00FCr Eigenschaft {0} muss eine boolesche Instanz sein" },
 
-                { ER_COULD_NOT_FIND_EXTERN_SCRIPT,
-                        "Externes Skript bei {0} konnte nicht abgerufen werden" },
+                { ER_COULD_NOT_FIND_EXTERN_SCRIPT, "Externes Skript bei {0} konnte nicht abgerufen werden" },
 
-                { ER_RESOURCE_COULD_NOT_FIND,
-                        "Ressource [ {0} ] konnte nicht gefunden werden.\n {1}" },
+                { ER_RESOURCE_COULD_NOT_FIND, "Ressource [ {0} ] konnte nicht gefunden werden.\n {1}" },
 
-                { ER_OUTPUT_PROPERTY_NOT_RECOGNIZED,
-                        "Ausgabeeigenschaft nicht erkannt: {0}" },
+                { ER_OUTPUT_PROPERTY_NOT_RECOGNIZED, "Ausgabeeigenschaft nicht erkannt: {0}" },
 
-                { ER_FAILED_CREATING_ELEMLITRSLT,
-                        "ElemLiteralResult-Instanz konnte nicht erstellt werden" },
+                { ER_FAILED_CREATING_ELEMLITRSLT, "ElemLiteralResult-Instanz konnte nicht erstellt werden" },
 
                 // Earlier (JDK 1.4 XALAN 2.2-D11) at key code '204' the key
                 // name was ER_PRIORITY_NOT_PARSABLE
@@ -799,28 +719,21 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_VALUE_SHOULD_BE_NUMBER,
                         "Wert f\u00FCr {0} sollte eine parsef\u00E4hige Zahl enthalten" },
 
-                { ER_VALUE_SHOULD_EQUAL,
-                        "Wert f\u00FCr {0} muss \"Ja\" oder \"Nein\" entsprechen" },
+                { ER_VALUE_SHOULD_EQUAL, "Wert f\u00FCr {0} muss \"Ja\" oder \"Nein\" entsprechen" },
 
-                { ER_FAILED_CALLING_METHOD,
-                        "{0}-Methode konnte nicht aufgerufen werden" },
+                { ER_FAILED_CALLING_METHOD, "{0}-Methode konnte nicht aufgerufen werden" },
 
-                { ER_FAILED_CREATING_ELEMTMPL,
-                        "ElemTemplateElement-Instanz konnte nicht erstellt werden" },
+                { ER_FAILED_CREATING_ELEMTMPL, "ElemTemplateElement-Instanz konnte nicht erstellt werden" },
 
-                { ER_CHARS_NOT_ALLOWED,
-                        "An dieser Stelle im Dokument sind keine Zeichen zul\u00E4ssig" },
+                { ER_CHARS_NOT_ALLOWED, "An dieser Stelle im Dokument sind keine Zeichen zul\u00E4ssig" },
 
-                { ER_ATTR_NOT_ALLOWED,
-                        "\"{0}\"-Attribut ist nicht zul\u00E4ssig beim {1}-Element." },
+                { ER_ATTR_NOT_ALLOWED, "\"{0}\"-Attribut ist nicht zul\u00E4ssig beim {1}-Element." },
 
                 { ER_BAD_VALUE, "{0} ung\u00FCltiger Wert {1} " },
 
-                { ER_ATTRIB_VALUE_NOT_FOUND,
-                        "{0}-Attributwert nicht gefunden " },
+                { ER_ATTRIB_VALUE_NOT_FOUND, "{0}-Attributwert nicht gefunden " },
 
-                { ER_ATTRIB_VALUE_NOT_RECOGNIZED,
-                        "{0}-Attributwert nicht erkannt " },
+                { ER_ATTRIB_VALUE_NOT_RECOGNIZED, "{0}-Attributwert nicht erkannt " },
 
                 { ER_NULL_URI_NAMESPACE,
                         "Versuch, ein Namespace-Pr\u00E4fix mit einem Null-URI zu generieren" },
@@ -828,8 +741,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_NUMBER_TOO_BIG,
                         "Versuch, eine Zahl zu formatieren, die gr\u00F6\u00DFer als die gr\u00F6\u00DFte Long-Ganzzahl ist" },
 
-                { ER_CANNOT_FIND_SAX1_DRIVER,
-                        "SAX1-Treiberklasse {0} kann nicht gefunden werden" },
+                { ER_CANNOT_FIND_SAX1_DRIVER, "SAX1-Treiberklasse {0} kann nicht gefunden werden" },
 
                 { ER_SAX1_DRIVER_NOT_LOADED,
                         "SAX1-Treiberklasse {0} gefunden, kann aber nicht geladen werden" },
@@ -843,8 +755,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_PARSER_PROPERTY_NOT_SPECIFIED,
                         "Systemeigenschaft \"org.xml.sax.parser\" nicht angegeben" },
 
-                { ER_PARSER_ARG_CANNOT_BE_NULL,
-                        "Parserargument darf nicht null sein" },
+                { ER_PARSER_ARG_CANNOT_BE_NULL, "Parserargument darf nicht null sein" },
 
                 { ER_FEATURE, "Feature: {0}" },
 
@@ -858,11 +769,9 @@ public class XSLTErrorResources_de extends ListResourceBundle {
 
                 { ER_NO_URL_SPECIFIED, "Keine URL angegeben." },
 
-                { ER_POOLSIZE_LESS_THAN_ONE,
-                        "Poolgr\u00F6\u00DFe ist kleiner als 1." },
+                { ER_POOLSIZE_LESS_THAN_ONE, "Poolgr\u00F6\u00DFe ist kleiner als 1." },
 
-                { ER_INVALID_DRIVER_NAME,
-                        "Ung\u00FCltiger Treibername angegeben." },
+                { ER_INVALID_DRIVER_NAME, "Ung\u00FCltiger Treibername angegeben." },
 
                 { ER_ERRORLISTENER, "ErrorListener" },
 
@@ -914,8 +823,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // text {1} is
                 // the attribute value and {0} is the attribute name.
                 // The following codes are shared with the warning codes...
-                { INVALID_QNAME,
-                        "Ung\u00FCltiger Wert {1} f\u00FCr QNAME-Attribut {0} verwendet" },
+                { INVALID_QNAME, "Ung\u00FCltiger Wert {1} f\u00FCr QNAME-Attribut {0} verwendet" },
 
                 // Note to translators: The following message is used if the
                 // value of
@@ -936,8 +844,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // of the attribute, and should not be translated. The
                 // substitution text {1} is
                 // the attribute value and {0} is the attribute name.
-                { INVALID_NMTOKEN,
-                        "Ung\u00FCltiger Wert {1} f\u00FCr NMTOKEN-Attribut {0} verwendet " },
+                { INVALID_NMTOKEN, "Ung\u00FCltiger Wert {1} f\u00FCr NMTOKEN-Attribut {0} verwendet " },
 
                 // Note to translators: The following message is used if the
                 // value of
@@ -946,8 +853,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // of the attribute, and should not be translated. The
                 // substitution text {1} is
                 // the attribute value and {0} is the attribute name.
-                { INVALID_NCNAME,
-                        "Ung\u00FCltiger Wert {1} f\u00FCr NCNAME-Attribut {0} verwendet " },
+                { INVALID_NCNAME, "Ung\u00FCltiger Wert {1} f\u00FCr NCNAME-Attribut {0} verwendet " },
 
                 // Note to translators: The following message is used if the
                 // value of
@@ -956,8 +862,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // of the attribute, and should not be translated. The
                 // substitution text {1} is
                 // the attribute value and {0} is the attribute name.
-                { INVALID_BOOLEAN,
-                        "Ung\u00FCltiger Wert {1} f\u00FCr \"Boolean\"-Attribut {0} verwendet " },
+                { INVALID_BOOLEAN, "Ung\u00FCltiger Wert {1} f\u00FCr \"Boolean\"-Attribut {0} verwendet " },
 
                 // Note to translators: The following message is used if the
                 // value of
@@ -966,8 +871,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // of the attribute, and should not be translated. The
                 // substitution text {1} is
                 // the attribute value and {0} is the attribute name.
-                { INVALID_NUMBER,
-                        "Ung\u00FCltiger Wert {1} f\u00FCr \"Number\"-Attribut {0} verwendet " },
+                { INVALID_NUMBER, "Ung\u00FCltiger Wert {1} f\u00FCr \"Number\"-Attribut {0} verwendet " },
 
                 // End of shared codes...
 
@@ -980,8 +884,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // a match pattern, its argument must be a string literal (or
                 // constant.)
                 // ER_ARG_LITERAL - new error message for bugzilla //5202
-                { ER_ARG_LITERAL,
-                        "Argument f\u00FCr {0} in Vergleichsmuster muss ein Literal sein." },
+                { ER_ARG_LITERAL, "Argument f\u00FCr {0} in Vergleichsmuster muss ein Literal sein." },
 
                 // Note to translators: The following message indicates that two
                 // definitions of
@@ -989,8 +892,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // accessible everywher
                 // in the stylesheet.
                 // ER_DUPLICATE_GLOBAL_VAR - new error message for bugzilla #790
-                { ER_DUPLICATE_GLOBAL_VAR,
-                        "Doppelte Deklaration einer globalen Variable." },
+                { ER_DUPLICATE_GLOBAL_VAR, "Doppelte Deklaration einer globalen Variable." },
 
                 // Note to translators: The following message indicates that two
                 // definitions of
@@ -1013,8 +915,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // exclude-result-prefixes attribute
                 // was in error.
                 // ER_INVALID_PREFIX - new error message for bugzilla #788
-                { ER_INVALID_PREFIX,
-                        "Pr\u00E4fix in exclude-result-prefixes ist nicht g\u00FCltig: {0}" },
+                { ER_INVALID_PREFIX, "Pr\u00E4fix in exclude-result-prefixes ist nicht g\u00FCltig: {0}" },
 
                 // Note to translators: An "attribute set" is a set of
                 // attributes that can
@@ -1024,15 +925,13 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // named {0} that
                 // was never defined.
                 // ER_NO_ATTRIB_SET - new error message for bugzilla #782
-                { ER_NO_ATTRIB_SET,
-                        "attribute-set mit Namen {0} ist nicht vorhanden" },
+                { ER_NO_ATTRIB_SET, "attribute-set mit Namen {0} ist nicht vorhanden" },
 
                 // Note to translators: This message indicates that there was a
                 // reference
                 // to a function named {0} for which no function definition
                 // could be found.
-                { ER_FUNCTION_NOT_FOUND,
-                        "Funktion mit Namen {0} ist nicht vorhanden" },
+                { ER_FUNCTION_NOT_FOUND, "Funktion mit Namen {0} ist nicht vorhanden" },
 
                 // Note to translators: This message indicates that the XSLT
                 // instruction
@@ -1074,15 +973,12 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { ER_NAMESPACE_CONTEXT_NULL_PREFIX,
                         "Namespace-URI f\u00FCr Nullpr\u00E4fix kann nicht abgerufen werden." },
 
-                { ER_XPATH_RESOLVER_NULL_QNAME,
-                        "Funktionsname darf nicht null sein." },
+                { ER_XPATH_RESOLVER_NULL_QNAME, "Funktionsname darf nicht null sein." },
 
-                { ER_XPATH_RESOLVER_NEGATIVE_ARITY,
-                        "Argumentanzahl darf nicht negativ sein." },
+                { ER_XPATH_RESOLVER_NEGATIVE_ARITY, "Argumentanzahl darf nicht negativ sein." },
                 // Warnings...
 
-                { WG_FOUND_CURLYBRACE,
-                        "\"}\" gefunden, aber keine Attributvorlage ist ge\u00F6ffnet." },
+                { WG_FOUND_CURLYBRACE, "\"}\" gefunden, aber keine Attributvorlage ist ge\u00F6ffnet." },
 
                 { WG_COUNT_ATTRIB_MATCHES_NO_ANCESTOR,
                         "Warnung: \"count\"-Attribut entspricht keinem Vorg\u00E4nger in xsl:number. Ziel = {0}" },
@@ -1096,11 +992,9 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { WG_LOCALE_NOT_FOUND,
                         "Warnung: Gebietsschema f\u00FCr xml:lang={0} konnte nicht gefunden werden" },
 
-                { WG_CANNOT_MAKE_URL_FROM,
-                        "URL kann nicht erstellt werden aus: {0}" },
+                { WG_CANNOT_MAKE_URL_FROM, "URL kann nicht erstellt werden aus: {0}" },
 
-                { WG_CANNOT_LOAD_REQUESTED_DOC,
-                        "Angefordertes Dokument kann nicht geladen werden: {0}" },
+                { WG_CANNOT_LOAD_REQUESTED_DOC, "Angefordertes Dokument kann nicht geladen werden: {0}" },
 
                 { WG_CANNOT_FIND_COLLATOR,
                         "Collator f\u00FCr <sort xml:lang={0} konnte nicht gefunden werden" },
@@ -1117,19 +1011,16 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { WG_SPECIFICITY_CONFLICTS,
                         "Genauigkeitskonflikte gefunden: {0} Letzte in Stylesheet gefundene Angabe wird verwendet." },
 
-                { WG_PARSING_AND_PREPARING,
-                        "========= {0} wird geparst und vorbereitet ==========" },
+                { WG_PARSING_AND_PREPARING, "========= {0} wird geparst und vorbereitet ==========" },
 
                 { WG_ATTR_TEMPLATE, "Attributvorlage {0}" },
 
                 { WG_CONFLICT_BETWEEN_XSLSTRIPSPACE_AND_XSLPRESERVESPACE,
                         "\u00DCbereinstimmungskonflikt zwischen xsl:strip-space und xsl:preserve-space" },
 
-                { WG_ATTRIB_NOT_HANDLED,
-                        "Xalan verarbeitet noch nicht das {0}-Attribut." },
+                { WG_ATTRIB_NOT_HANDLED, "Xalan verarbeitet noch nicht das {0}-Attribut." },
 
-                { WG_NO_DECIMALFORMAT_DECLARATION,
-                        "Keine Deklaration f\u00FCr Dezimalformat gefunden: {0}" },
+                { WG_NO_DECIMALFORMAT_DECLARATION, "Keine Deklaration f\u00FCr Dezimalformat gefunden: {0}" },
 
                 { WG_OLD_XSLT_NS, "Fehlender oder falscher XSLT-Namespace. " },
 
@@ -1139,8 +1030,7 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { WG_XSLDECIMALFORMAT_NAMES_MUST_BE_UNIQUE,
                         "xsl:decimal-format-Namen m\u00FCssen eindeutig sein. Name \"{0}\" wurde dupliziert." },
 
-                { WG_ILLEGAL_ATTRIBUTE,
-                        "{0} hat ein ung\u00FCltiges Attribut: {1}" },
+                { WG_ILLEGAL_ATTRIBUTE, "{0} hat ein ung\u00FCltiges Attribut: {1}" },
 
                 { WG_COULD_NOT_RESOLVE_PREFIX,
                         "Namespace-Pr\u00E4fix konnte nicht aufgel\u00F6st werden: {0}. Der Knoten wird ignoriert." },
@@ -1148,11 +1038,9 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 { WG_STYLESHEET_REQUIRES_VERSION_ATTRIB,
                         "xsl:stylesheet erfordert ein \"version\"-Attribut." },
 
-                { WG_ILLEGAL_ATTRIBUTE_NAME,
-                        "Ung\u00FCltiger Attributname: {0}" },
+                { WG_ILLEGAL_ATTRIBUTE_NAME, "Ung\u00FCltiger Attributname: {0}" },
 
-                { WG_ILLEGAL_ATTRIBUTE_VALUE,
-                        "Ung\u00FCltiger Wert f\u00FCr Attribut {0}: {1}" },
+                { WG_ILLEGAL_ATTRIBUTE_VALUE, "Ung\u00FCltiger Wert f\u00FCr Attribut {0}: {1}" },
 
                 { WG_EMPTY_SECOND_ARG,
                         "Resultierendes NodeSet aus zweitem Argument von Dokumentfunktion ist leer. Geben Sie ein leeres NodeSet zur\u00FCck." },
@@ -1191,39 +1079,31 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // XSLTErrorResources properties file?
 
                 // Other miscellaneous text used inside the code...
-                { "ui_language", "de" }, { "help_language", "de" }, {
-                        "language", "de" }, { "BAD_CODE",
-                                "Parameter f\u00FCr createMessage war au\u00DFerhalb des g\u00FCltigen Bereichs" },
-                { "FORMAT_FAILED",
-                        "Ausnahme bei messageFormat-Aufruf ausgel\u00F6st" }, {
-                                "version", ">>>>>>> Xalan-Version " }, {
-                                        "version2", "<<<<<<<" }, { "yes",
-                                                "Ja" }, { "line",
-                                                        "Zeilennummer" }, {
-                                                                "column",
-                                                                "Spaltennummer" },
-                { "xsldone", "XSLProcessor: Fertig" },
+                { "ui_language", "de" }, { "help_language", "de" }, { "language", "de" }, { "BAD_CODE",
+                        "Parameter f\u00FCr createMessage war au\u00DFerhalb des g\u00FCltigen Bereichs" }, {
+                                "FORMAT_FAILED", "Ausnahme bei messageFormat-Aufruf ausgel\u00F6st" }, {
+                                        "version", ">>>>>>> Xalan-Version " }, { "version2", "<<<<<<<" }, {
+                                                "yes", "Ja" }, { "line", "Zeilennummer" }, { "column",
+                                                        "Spaltennummer" }, { "xsldone",
+                                                                "XSLProcessor: Fertig" },
 
                 // Note to translators: The following messages provide usage
                 // information
                 // for the Xalan Process command line. "Process" is the name of
                 // a Java class,
                 // and should not be translated.
-                { "xslProc_option",
-                        "Xalan-J-Befehlszeile - \"Process\"-Klassenoptionen:" },
-                { "xslProc_option",
-                        "Xalan-J-Befehlszeile - \"Process\"-Klassenoptionen:" },
-                { "xslProc_invalid_xsltc_option",
-                        "Option {0} wird im XSLTC-Modus nicht unterst\u00FCtzt." },
-                { "xslProc_invalid_xalan_option",
-                        "Option {0} kann nur mit -XSLTC verwendet werden." }, {
-                                "xslProc_no_input",
-                                "Fehler: Kein Stylesheet und keine Eingabe-XML angegeben. F\u00FChren Sie diesen Befehl ohne Optionen f\u00FCr Verwendungsanweisungen aus." },
-                { "xslProc_common_options", "-Allgemeine Optionen-" }, {
-                        "xslProc_xalan_options", "-Optionen f\u00FCr Xalan-" },
-                { "xslProc_xsltc_options", "-Optionen f\u00FCr XSLTC-" }, {
-                        "xslProc_return_to_continue",
-                        "(dr\u00FCcken Sie die <Eingabetaste>, um fortzufahren)" },
+                { "xslProc_option", "Xalan-J-Befehlszeile - \"Process\"-Klassenoptionen:" }, {
+                        "xslProc_option", "Xalan-J-Befehlszeile - \"Process\"-Klassenoptionen:" }, {
+                                "xslProc_invalid_xsltc_option",
+                                "Option {0} wird im XSLTC-Modus nicht unterst\u00FCtzt." }, {
+                                        "xslProc_invalid_xalan_option",
+                                        "Option {0} kann nur mit -XSLTC verwendet werden." }, {
+                                                "xslProc_no_input",
+                                                "Fehler: Kein Stylesheet und keine Eingabe-XML angegeben. F\u00FChren Sie diesen Befehl ohne Optionen f\u00FCr Verwendungsanweisungen aus." },
+                { "xslProc_common_options", "-Allgemeine Optionen-" }, { "xslProc_xalan_options",
+                        "-Optionen f\u00FCr Xalan-" }, { "xslProc_xsltc_options",
+                                "-Optionen f\u00FCr XSLTC-" }, { "xslProc_return_to_continue",
+                                        "(dr\u00FCcken Sie die <Eingabetaste>, um fortzufahren)" },
 
                 // Note to translators: The option name and the parameter name
                 // do not need to
@@ -1233,71 +1113,47 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // usage information
                 // for each option in the English messages.
                 // Do not translate the keywords: XSLTC, SAX, DOM and DTM.
-                { "optionXSLTC",
-                        "   [-XSLTC (XSLTC f\u00FCr Transformation verwenden)]" },
-                { "optionIN", "   [-IN inputXMLURL]" }, { "optionXSL",
-                        "   [-XSL XSLTransformationURL]" }, { "optionOUT",
-                                "   [-OUT outputFileName]" }, { "optionLXCIN",
-                                        "   [-LXCIN compiledStylesheetFileNameIn]" },
-                { "optionLXCOUT",
-                        "   [-LXCOUT compiledStylesheetFileNameOutOut]" }, {
-                                "optionPARSER",
-                                "   [-PARSER fully qualified class name of parser liaison]" },
-                { "optionE", "   [-E (Entityreferenzen nicht einblenden)]" }, {
-                        "optionV",
-                        "   [-E (Entityreferenzen nicht einblenden)]" }, {
-                                "optionQC",
-                                "   [-QC (Stille Musterkonfliktwarnungen)]" }, {
-                                        "optionQ", "   [-Q  (Silent-Modus)]" },
-                { "optionLF",
-                        "   [-LF (Nur Zeilenvorsch\u00FCbe bei Ausgabe verwenden {Standard ist CR/LF})]" },
-                { "optionCR",
-                        "   [-CR (Nur Zeilenschaltungen bei Ausgabe verwenden {Standard ist CR/LF})]" },
-                { "optionESCAPE",
-                        "   [-ESCAPE (Escapezeichen {Standard ist <>&\"'\r\n}]" },
-                { "optionINDENT",
+                { "optionXSLTC", "   [-XSLTC (XSLTC f\u00FCr Transformation verwenden)]" }, { "optionIN",
+                        "   [-IN inputXMLURL]" }, { "optionXSL", "   [-XSL XSLTransformationURL]" }, {
+                                "optionOUT", "   [-OUT outputFileName]" }, { "optionLXCIN",
+                                        "   [-LXCIN compiledStylesheetFileNameIn]" }, { "optionLXCOUT",
+                                                "   [-LXCOUT compiledStylesheetFileNameOutOut]" }, {
+                                                        "optionPARSER",
+                                                        "   [-PARSER fully qualified class name of parser liaison]" },
+                { "optionE", "   [-E (Entityreferenzen nicht einblenden)]" }, { "optionV",
+                        "   [-E (Entityreferenzen nicht einblenden)]" }, { "optionQC",
+                                "   [-QC (Stille Musterkonfliktwarnungen)]" }, { "optionQ",
+                                        "   [-Q  (Silent-Modus)]" }, { "optionLF",
+                                                "   [-LF (Nur Zeilenvorsch\u00FCbe bei Ausgabe verwenden {Standard ist CR/LF})]" },
+                { "optionCR", "   [-CR (Nur Zeilenschaltungen bei Ausgabe verwenden {Standard ist CR/LF})]" },
+                { "optionESCAPE", "   [-ESCAPE (Escapezeichen {Standard ist <>&\"'\r\n}]" }, { "optionINDENT",
                         "   [-INDENT (Steuern, wie viele Leerzeichen der Einzug enthalten soll {Standard ist 0})]" },
-                { "optionTT",
-                        "   [-TT (Vorlagen verfolgen, wenn diese aufgerufen werden.)]" },
-                { "optionTG",
-                        "   [-TG (Jedes Generierungsereignis verfolgen.)]" }, {
-                                "optionTS",
-                                "   [-TS (Jedes Auswahlereignis verfolgen.)]" },
-                { "optionTTC",
-                        "   [-TTC (Untergeordnete Vorlagen verfolgen, wenn diese verarbeitet werden.)]" },
-                { "optionTCLASS",
-                        "   [-TCLASS (TraceListener-Klasse f\u00FCr Traceerweiterungen.)]" },
-                { "optionVALIDATE",
+                { "optionTT", "   [-TT (Vorlagen verfolgen, wenn diese aufgerufen werden.)]" }, { "optionTG",
+                        "   [-TG (Jedes Generierungsereignis verfolgen.)]" }, { "optionTS",
+                                "   [-TS (Jedes Auswahlereignis verfolgen.)]" }, { "optionTTC",
+                                        "   [-TTC (Untergeordnete Vorlagen verfolgen, wenn diese verarbeitet werden.)]" },
+                { "optionTCLASS", "   [-TCLASS (TraceListener-Klasse f\u00FCr Traceerweiterungen.)]" }, {
+                        "optionVALIDATE",
                         "   [-VALIDATE (Festlegen, ob die Validierung ausgef\u00FChrt wird. Validierung ist standardm\u00E4\u00DFig ausgeschaltet.)]" },
-                { "optionEDUMP",
-                        "   [-EDUMP {optionaler Dateiname} (Stack Dump bei Fehler vornehmen.)]" },
-                { "optionXML",
-                        "   [-XML (XML-Formatter verwenden und XML-Header hinzuf\u00FCgen.)]" },
-                { "optionTEXT",
-                        "   [-TEXT (Einfachen Text-Formatter verwenden.)]" }, {
-                                "optionHTML",
-                                "   [-HTML (HTML-Formatter verwenden.)]" }, {
-                                        "optionPARAM",
-                                        "   [-PARAM name expression (Stylesheet-Parameter festlegen)]" },
-                { "noParsermsg1", "XSL-Prozess war nicht erfolgreich." }, {
-                        "noParsermsg2",
-                        "** Parser konnte nicht gefunden werden **" }, {
-                                "noParsermsg3",
-                                "Pr\u00FCfen Sie den Classpath." }, {
-                                        "noParsermsg4",
-                                        "Wenn Sie nicht \u00FCber den XML-Parser f\u00FCr Java von IBM verf\u00FCgen, k\u00F6nnen Sie ihn hier herunterladen:" },
-                { "noParsermsg5",
-                        "IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-                { "optionURIRESOLVER",
+                { "optionEDUMP", "   [-EDUMP {optionaler Dateiname} (Stack Dump bei Fehler vornehmen.)]" }, {
+                        "optionXML", "   [-XML (XML-Formatter verwenden und XML-Header hinzuf\u00FCgen.)]" },
+                { "optionTEXT", "   [-TEXT (Einfachen Text-Formatter verwenden.)]" }, { "optionHTML",
+                        "   [-HTML (HTML-Formatter verwenden.)]" }, { "optionPARAM",
+                                "   [-PARAM name expression (Stylesheet-Parameter festlegen)]" }, {
+                                        "noParsermsg1", "XSL-Prozess war nicht erfolgreich." }, {
+                                                "noParsermsg2", "** Parser konnte nicht gefunden werden **" },
+                { "noParsermsg3", "Pr\u00FCfen Sie den Classpath." }, { "noParsermsg4",
+                        "Wenn Sie nicht \u00FCber den XML-Parser f\u00FCr Java von IBM verf\u00FCgen, k\u00F6nnen Sie ihn hier herunterladen:" },
+                { "noParsermsg5", "IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" }, {
+                        "optionURIRESOLVER",
                         "   [-URIRESOLVER full class name (URIResolver f\u00FCr die Aufl\u00F6sung von URIs)]" },
                 { "optionENTITYRESOLVER",
                         "   [-ENTITYRESOLVER full class name (EntityResolver f\u00FCr die Aufl\u00F6sung von Entitys)]" },
                 { "optionCONTENTHANDLER",
                         "   [-CONTENTHANDLER full class name (ContentHandler f\u00FCr die Serialisierung der Ausgabe)]" },
-                { "optionLINENUMBERS",
-                        "   [-L use line numbers for source document]" }, {
-                                "optionSECUREPROCESSING",
-                                "   [-SECURE (Feature f\u00FCr die sichere Verarbeitung auf \"true\" setzen.)]" },
+                { "optionLINENUMBERS", "   [-L use line numbers for source document]" }, {
+                        "optionSECUREPROCESSING",
+                        "   [-SECURE (Feature f\u00FCr die sichere Verarbeitung auf \"true\" setzen.)]" },
 
                 // Following are the new options added in
                 // XSLTErrorResources.properties files after Jdk 1.4 (Xalan
@@ -1310,20 +1166,18 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // by
                 // sboag/scurcuru;
                 // experimental
-                { "optionDIAG",
-                        "   [-DIAG (Gesamtdauer der Transformation in Millisekunden drucken.)]" },
-                { "optionINCREMENTAL",
+                { "optionDIAG", "   [-DIAG (Gesamtdauer der Transformation in Millisekunden drucken.)]" }, {
+                        "optionINCREMENTAL",
                         "   [-INCREMENTAL (inkrementelle DTM-Konstruktion anfordern, indem http://xml.apache.org/xalan/features/incremental auf \"true\" gesetzt wird.)]" },
                 { "optionNOOPTIMIMIZE",
                         "   [-NOOPTIMIMIZE (keine Stylesheet-Optimierungsverarbeitung anfordern, indem http://xml.apache.org/xalan/features/optimize auf \"false\" gesetzt wird.)]" },
                 { "optionRL",
                         "   [-RL recursionlimit (numerischen Grenzwert f\u00FCr Stylesheet-Rekursionstiefe bekannt machen.)]" },
-                { "optionXO",
-                        "   [-XO [transletName] (Name dem generierten Translet zuweisen)]" },
-                { "optionXD",
-                        "   [-XD destinationDirectory (Zielverzeichnis f\u00FCr Translet angeben)]" },
-                { "optionXJ",
-                        "   [-XJ jarfile (verpackt Translet-Klassen in einer JAR-Datei mit dem Namen <jarfile>)]" },
+                { "optionXO", "   [-XO [transletName] (Name dem generierten Translet zuweisen)]" }, {
+                        "optionXD",
+                        "   [-XD destinationDirectory (Zielverzeichnis f\u00FCr Translet angeben)]" }, {
+                                "optionXJ",
+                                "   [-XJ jarfile (verpackt Translet-Klassen in einer JAR-Datei mit dem Namen <jarfile>)]" },
                 { "optionXP",
                         "   [-XP package (gibt ein Packagenamenspr\u00E4fix f\u00FCr alle generierten Translet-Klassen an)]" },
 
@@ -1336,17 +1190,14 @@ public class XSLTErrorResources_de extends ListResourceBundle {
                 // code
                 // generated for a template in another template that refers to
                 // it.
-                { "optionXN", "   [-XN (aktiviert Vorlagen-Inlining)]" }, {
-                        "optionXX",
-                        "   [-XX (schaltet die zus\u00E4tzliche Debugging-Meldungsausgabe ein)]" },
-                { "optionXT",
-                        "   [-XT (wenn m\u00F6glich, Translet f\u00FCr Transformation verwenden)]" },
-                { "diagTiming",
-                        " --------- Transformation von {0} \u00FCber {1} dauerte {2} ms" },
-                { "recursionTooDeep",
-                        "Vorlagenverschachtelung zu tief. Verschachtelung = {0}, Vorlage {1} {2}" },
-                { "nameIs", "Name ist" }, { "matchPatternIs",
-                        "Vergleichsmuster ist" }
+                { "optionXN", "   [-XN (aktiviert Vorlagen-Inlining)]" }, { "optionXX",
+                        "   [-XX (schaltet die zus\u00E4tzliche Debugging-Meldungsausgabe ein)]" }, {
+                                "optionXT",
+                                "   [-XT (wenn m\u00F6glich, Translet f\u00FCr Transformation verwenden)]" },
+                { "diagTiming", " --------- Transformation von {0} \u00FCber {1} dauerte {2} ms" }, {
+                        "recursionTooDeep",
+                        "Vorlagenverschachtelung zu tief. Verschachtelung = {0}, Vorlage {1} {2}" }, {
+                                "nameIs", "Name ist" }, { "matchPatternIs", "Vergleichsmuster ist" }
 
         };
 

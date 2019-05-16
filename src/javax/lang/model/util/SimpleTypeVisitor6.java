@@ -13,20 +13,16 @@ import static javax.lang.model.SourceVersion.*;
 /**
  * A simple visitor of types with default behavior appropriate for the
  * {@link SourceVersion#RELEASE_6 RELEASE_6} source version.
- *
  * Visit methods corresponding to {@code RELEASE_6} language constructs call
  * {@link #defaultAction defaultAction}, passing their arguments to
  * {@code defaultAction}'s corresponding parameters.
- *
  * For constructs introduced in {@code RELEASE_7} and later, {@code
  * visitUnknown} is called instead.
- *
  * <p>
  * Methods in this class may be overridden subject to their general contract.
  * Note that annotating methods in concrete subclasses with
  * {@link java.lang.Override @Override} will help ensure that methods are
  * overridden as intended.
- *
  * <p>
  * <b>WARNING:</b> The {@code TypeVisitor} interface implemented by this class
  * may have methods added to it in the future to accommodate new, currently
@@ -35,7 +31,6 @@ import static javax.lang.model.SourceVersion.*;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -43,7 +38,6 @@ import static javax.lang.model.SourceVersion.*;
  * language level; this visitor will have different default behavior for the
  * visit method in question. When the new visitor is introduced, all or portions
  * of this visitor may be deprecated.
- *
  * <p>
  * Note that adding a default implementation of a new visit method in a visitor
  * class will occur instead of adding a <em>default
@@ -60,11 +54,9 @@ import static javax.lang.model.SourceVersion.*;
  *        the type of the additional parameter to this visitor's methods.
  *        Use {@code Void} for visitors that do not need an additional
  *        parameter.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
- *
  * @see SimpleTypeVisitor7
  * @see SimpleTypeVisitor8
  * @since 1.6
@@ -90,7 +82,7 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * value.
      *
      * @param defaultValue
-     *                     the value to assign to {@link #DEFAULT_VALUE}
+     *        the value to assign to {@link #DEFAULT_VALUE}
      */
     protected SimpleTypeVisitor6(R defaultValue) {
         DEFAULT_VALUE = defaultValue;
@@ -102,9 +94,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * this method.
      *
      * @param e
-     *          the type to process
+     *        the type to process
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return {@code DEFAULT_VALUE} unless overridden
      */
     protected R defaultAction(TypeMirror e, P p) {
@@ -115,9 +107,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitPrimitive(PrimitiveType t, P p) {
@@ -128,9 +120,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitNull(NullType t, P p) {
@@ -141,9 +133,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitArray(ArrayType t, P p) {
@@ -154,9 +146,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitDeclared(DeclaredType t, P p) {
@@ -167,9 +159,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitError(ErrorType t, P p) {
@@ -180,9 +172,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitTypeVariable(TypeVariable t, P p) {
@@ -193,9 +185,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitWildcard(WildcardType t, P p) {
@@ -206,9 +198,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitExecutable(ExecutableType t, P p) {
@@ -219,9 +211,9 @@ public class SimpleTypeVisitor6<R, P> extends AbstractTypeVisitor6<R, P> {
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitNoType(NoType t, P p) {

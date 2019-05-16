@@ -44,14 +44,12 @@ public interface MessageMediator {
 
     /**
      * Used to initialize message headers.
-     *
      * Note: this should be moved to a <code>RequestDispatcher</code>.
      */
     public void initializeMessage();
 
     /**
      * Used to send the message (or its last fragment).
-     *
      * Note: this should be moved to a <code>RequestDispatcher</code>.
      */
     public void finishSendingRequest();

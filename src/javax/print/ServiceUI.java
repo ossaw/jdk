@@ -89,7 +89,6 @@ public class ServiceUI {
      * <p>
      * If the user cancels the dialog, the returned attributes will not reflect
      * any changes made by the user.
-     *
      * A typical basic usage of this method may be :
      * 
      * <pre>
@@ -111,49 +110,47 @@ public class ServiceUI {
      * <p>
      * 
      * @param gc
-     *                       used to select screen. null means primary or
-     *                       default screen.
+     *        used to select screen. null means primary or
+     *        default screen.
      * @param x
-     *                       location of dialog including border in screen
-     *                       coordinates
+     *        location of dialog including border in screen
+     *        coordinates
      * @param y
-     *                       location of dialog including border in screen
-     *                       coordinates
+     *        location of dialog including border in screen
+     *        coordinates
      * @param services
-     *                       to be browsable, must be non-null.
+     *        to be browsable, must be non-null.
      * @param defaultService
-     *                       - initial PrintService to display.
+     *        - initial PrintService to display.
      * @param flavor
-     *                       - the flavor to be printed, or null.
+     *        - the flavor to be printed, or null.
      * @param attributes
-     *                       on input is the initial application supplied
-     *                       preferences. This
-     *                       cannot be null but may be empty. On output the
-     *                       attributes
-     *                       reflect changes made by the user.
+     *        on input is the initial application supplied
+     *        preferences. This
+     *        cannot be null but may be empty. On output the
+     *        attributes
+     *        reflect changes made by the user.
      * @return print service selected by the user, or null if the user cancelled
      *         the dialog.
      * @throws HeadlessException
-     *                                  if GraphicsEnvironment.isHeadless()
-     *                                  returns true.
+     *         if GraphicsEnvironment.isHeadless()
+     *         returns true.
      * @throws IllegalArgumentException
-     *                                  if services is null or empty, or
-     *                                  attributes is null, or the
-     *                                  initial PrintService is not in the list
-     *                                  of browsable
-     *                                  services.
+     *         if services is null or empty, or
+     *         attributes is null, or the
+     *         initial PrintService is not in the list
+     *         of browsable
+     *         services.
      */
-    public static PrintService printDialog(GraphicsConfiguration gc, int x,
-            int y, PrintService[] services, PrintService defaultService,
-            DocFlavor flavor, PrintRequestAttributeSet attributes)
+    public static PrintService printDialog(GraphicsConfiguration gc, int x, int y, PrintService[] services,
+            PrintService defaultService, DocFlavor flavor, PrintRequestAttributeSet attributes)
             throws HeadlessException {
         int defaultIndex = -1;
 
         if (GraphicsEnvironment.isHeadless()) {
             throw new HeadlessException();
         } else if ((services == null) || (services.length == 0)) {
-            throw new IllegalArgumentException("services must be non-null "
-                    + "and non-empty");
+            throw new IllegalArgumentException("services must be non-null " + "and non-empty");
         } else if (attributes == null) {
             throw new IllegalArgumentException("attributes must be non-null");
         }
@@ -167,8 +164,7 @@ public class ServiceUI {
             }
 
             if (defaultIndex < 0) {
-                throw new IllegalArgumentException("services must contain "
-                        + "defaultService");
+                throw new IllegalArgumentException("services must contain " + "defaultService");
             }
         } else {
             defaultIndex = 0;
@@ -178,27 +174,24 @@ public class ServiceUI {
         // as an argument.
         Window owner = null;
 
-        Rectangle gcBounds = (gc == null) ? GraphicsEnvironment
-                .getLocalGraphicsEnvironment().getDefaultScreenDevice()
-                .getDefaultConfiguration().getBounds() : gc.getBounds();
+        Rectangle gcBounds = (gc == null) ? GraphicsEnvironment.getLocalGraphicsEnvironment()
+                .getDefaultScreenDevice().getDefaultConfiguration().getBounds() : gc.getBounds();
 
         ServiceDialog dialog;
         if (owner instanceof Frame) {
-            dialog = new ServiceDialog(gc, x + gcBounds.x, y + gcBounds.y,
-                    services, defaultIndex, flavor, attributes, (Frame) owner);
+            dialog = new ServiceDialog(gc, x + gcBounds.x, y + gcBounds.y, services, defaultIndex, flavor,
+                    attributes, (Frame) owner);
         } else {
-            dialog = new ServiceDialog(gc, x + gcBounds.x, y + gcBounds.y,
-                    services, defaultIndex, flavor, attributes, (Dialog) owner);
+            dialog = new ServiceDialog(gc, x + gcBounds.x, y + gcBounds.y, services, defaultIndex, flavor,
+                    attributes, (Dialog) owner);
         }
         Rectangle dlgBounds = dialog.getBounds();
 
         // get union of all GC bounds
-        GraphicsEnvironment ge = GraphicsEnvironment
-                .getLocalGraphicsEnvironment();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gs = ge.getScreenDevices();
         for (int j = 0; j < gs.length; j++) {
-            gcBounds = gcBounds.union(gs[j].getDefaultConfiguration()
-                    .getBounds());
+            gcBounds = gcBounds.union(gs[j].getDefaultConfiguration().getBounds());
         }
 
         // if portion of dialog is not within the gc boundary
@@ -214,13 +207,11 @@ public class ServiceUI {
             Class amCategory = SunAlternateMedia.class;
             Class fdCategory = Fidelity.class;
 
-            if (attributes.containsKey(dstCategory) && !newas.containsKey(
-                    dstCategory)) {
+            if (attributes.containsKey(dstCategory) && !newas.containsKey(dstCategory)) {
                 attributes.remove(dstCategory);
             }
 
-            if (attributes.containsKey(amCategory) && !newas.containsKey(
-                    amCategory)) {
+            if (attributes.containsKey(amCategory) && !newas.containsKey(amCategory)) {
                 attributes.remove(amCategory);
             }
 
@@ -229,8 +220,7 @@ public class ServiceUI {
             Fidelity fd = (Fidelity) attributes.get(fdCategory);
             if (fd != null) {
                 if (fd == Fidelity.FIDELITY_TRUE) {
-                    removeUnsupportedAttributes(dialog.getPrintService(),
-                            flavor, attributes);
+                    removeUnsupportedAttributes(dialog.getPrintService(), flavor, attributes);
                 }
             }
         }
@@ -266,8 +256,7 @@ public class ServiceUI {
      * Removes any attributes from the given AttributeSet that are unsupported
      * by the given PrintService/DocFlavor combination.
      */
-    private static void removeUnsupportedAttributes(PrintService ps,
-            DocFlavor flavor, AttributeSet aset) {
+    private static void removeUnsupportedAttributes(PrintService ps, DocFlavor flavor, AttributeSet aset) {
         AttributeSet asUnsupported = ps.getUnsupportedAttributes(flavor, aset);
 
         if (asUnsupported != null) {
@@ -277,8 +266,7 @@ public class ServiceUI {
                 Class category = usAttrs[i].getCategory();
 
                 if (ps.isAttributeCategorySupported(category)) {
-                    Attribute attr = (Attribute) ps.getDefaultAttributeValue(
-                            category);
+                    Attribute attr = (Attribute) ps.getDefaultAttributeValue(category);
 
                     if (attr != null) {
                         aset.add(attr);

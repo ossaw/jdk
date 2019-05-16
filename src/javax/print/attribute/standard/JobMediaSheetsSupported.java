@@ -26,8 +26,7 @@ import javax.print.attribute.SupportedValuesAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobMediaSheetsSupported extends SetOfIntegerSyntax implements
-        SupportedValuesAttribute {
+public final class JobMediaSheetsSupported extends SetOfIntegerSyntax implements SupportedValuesAttribute {
 
     private static final long serialVersionUID = 2953685470388672940L;
 
@@ -37,24 +36,22 @@ public final class JobMediaSheetsSupported extends SetOfIntegerSyntax implements
      * one range are supported.
      *
      * @param lowerBound
-     *                   Lower bound of the range.
+     *        Lower bound of the range.
      * @param upperBound
-     *                   Upper bound of the range.
-     *
+     *        Upper bound of the range.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if a
-     *                                     null range is specified
-     *                                     or if a non-null range is specified
-     *                                     with
-     *                                     <CODE>lowerBound</CODE> less than 0.
+     *            (Unchecked exception) Thrown if a
+     *            null range is specified
+     *            or if a non-null range is specified
+     *            with
+     *            <CODE>lowerBound</CODE> less than 0.
      */
     public JobMediaSheetsSupported(int lowerBound, int upperBound) {
         super(lowerBound, upperBound);
         if (lowerBound > upperBound) {
             throw new IllegalArgumentException("Null range specified");
         } else if (lowerBound < 0) {
-            throw new IllegalArgumentException(
-                    "Job K octets value < 0 specified");
+            throw new IllegalArgumentException("Job K octets value < 0 specified");
         }
     }
 
@@ -70,14 +67,12 @@ public final class JobMediaSheetsSupported extends SetOfIntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this job media
      *         sheets supported attribute, false otherwise.
      */
     public boolean equals(Object object) {
-        return (super.equals(object)
-                && object instanceof JobMediaSheetsSupported);
+        return (super.equals(object) && object instanceof JobMediaSheetsSupported);
     }
 
     /**

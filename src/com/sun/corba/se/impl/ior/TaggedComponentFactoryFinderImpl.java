@@ -26,8 +26,8 @@ import org.omg.CORBA_2_3.portable.InputStream;
 /**
  * @author Ken Cavanaugh
  */
-public class TaggedComponentFactoryFinderImpl extends
-        IdentifiableFactoryFinderBase implements TaggedComponentFactoryFinder {
+public class TaggedComponentFactoryFinderImpl extends IdentifiableFactoryFinderBase implements
+        TaggedComponentFactoryFinder {
     public TaggedComponentFactoryFinderImpl(ORB orb) {
         super(orb);
     }
@@ -36,10 +36,8 @@ public class TaggedComponentFactoryFinderImpl extends
         return new GenericTaggedComponent(id, is);
     }
 
-    public TaggedComponent create(org.omg.CORBA.ORB orb,
-            org.omg.IOP.TaggedComponent comp) {
-        EncapsOutputStream os = sun.corba.OutputStreamFactory
-                .newEncapsOutputStream((ORB) orb);
+    public TaggedComponent create(org.omg.CORBA.ORB orb, org.omg.IOP.TaggedComponent comp) {
+        EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream((ORB) orb);
         org.omg.IOP.TaggedComponentHelper.write(os, comp);
         InputStream is = (InputStream) (os.create_input_stream());
         // Skip the component ID: we just wrote it out above

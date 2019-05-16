@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 /**
  * A utility class for issuing error messages.
- *
  * A user of this class normally would create a singleton instance of this
  * class, passing the name of the message class on the constructor. For example:
  * <CODE>
@@ -41,17 +40,14 @@ import java.util.ResourceBundle;
  * String msg = x.createMessage(org.package.MyMessages.KEY_TWO,
  *   new Object[] {filename, directory) );
  * </CODE>
- *
  * The constructor of an instance of this class must be given the class name of
  * a class that extends java.util.ListResourceBundle ("org.package.MyMessages"
  * in the example above). The name should not have any language suffix which
  * will be added automatically by this utility class.
- *
  * The message class ("org.package.MyMessages") must define the abstract method
  * getContents() that is declared in its base class, for example: <CODE>
  * public Object[][] getContents() {return contents;}
  * </CODE>
- *
  * It is suggested that the message class expose its message keys like this:
  * <CODE>
  *   public static final String KEY_ONE = "KEY1";
@@ -59,7 +55,6 @@ import java.util.ResourceBundle;
  *   . . .
  * </CODE> and used through their names (KEY_ONE ...) rather than their values
  * ("KEY1" ...).
- *
  * The field contents (returned by getContents() should be initialized something
  * like this: <CODE>
  * public static final Object[][] contents = {
@@ -68,13 +63,10 @@ import java.util.ResourceBundle;
  * . . .
  * { KEY_N, "Message N" }  }
  * </CODE>
- *
  * Where that section of code with the KEY to Message mappings (where the
  * message classes 'contents' field is initialized) can have the Message strings
  * translated in an alternate language in a errorResourceClass with a language
  * suffix.
- *
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -96,17 +88,16 @@ public final class Messages {
      * Constructor.
      * 
      * @param resourceBundle
-     *                       the class name of the ListResourceBundle that the
-     *                       instance of
-     *                       this class is associated with and will use when
-     *                       creating
-     *                       messages. The class name is without a language
-     *                       suffix. If the
-     *                       value passed is null then
-     *                       loadResourceBundle(errorResourceClass) needs to be
-     *                       called
-     *                       explicitly before any messages are created.
-     *
+     *        the class name of the ListResourceBundle that the
+     *        instance of
+     *        this class is associated with and will use when
+     *        creating
+     *        messages. The class name is without a language
+     *        suffix. If the
+     *        value passed is null then
+     *        loadResourceBundle(errorResourceClass) needs to be
+     *        called
+     *        explicitly before any messages are created.
      * @xsl.usage internal
      */
     Messages(String resourceBundle) {
@@ -129,24 +120,21 @@ public final class Messages {
      * localized to the given locale.
      *
      * @param msgKey
-     *               The key for the message text.
+     *        The key for the message text.
      * @param args
-     *               The arguments to be used as replacement text in the message
-     *               created.
-     *
+     *        The arguments to be used as replacement text in the message
+     *        created.
      * @return The formatted message string.
      * @xsl.usage internal
      */
     public final String createMessage(String msgKey, Object args[]) {
         if (m_resourceBundle == null)
-            m_resourceBundle = SecuritySupport.getResourceBundle(
-                    m_resourceBundleName);
+            m_resourceBundle = SecuritySupport.getResourceBundle(m_resourceBundleName);
 
         if (m_resourceBundle != null) {
             return createMsg(m_resourceBundle, msgKey, args);
         } else
-            return "Could not load the resource bundles: "
-                    + m_resourceBundleName;
+            return "Could not load the resource bundles: " + m_resourceBundleName;
     }
 
     /**
@@ -154,23 +142,20 @@ public final class Messages {
      * localized to the given locale.
      *
      * @param errorCode
-     *                        The key for the message text.
-     *
+     *        The key for the message text.
      * @param fResourceBundle
-     *                        The resource bundle to use.
+     *        The resource bundle to use.
      * @param msgKey
-     *                        The message key to use.
+     *        The message key to use.
      * @param args
-     *                        The arguments to be used as replacement text in
-     *                        the message
-     *                        created.
-     *
+     *        The arguments to be used as replacement text in
+     *        the message
+     *        created.
      * @return The formatted message string.
      * @xsl.usage internal
      */
-    private final String createMsg(ListResourceBundle fResourceBundle,
-            String msgKey, Object args[]) // throws
-                                                                                                             // Exception
+    private final String createMsg(ListResourceBundle fResourceBundle, String msgKey, Object args[]) // throws
+                                                                                                     // Exception
     {
 
         String fmsg = null;
@@ -190,16 +175,15 @@ public final class Messages {
              */
             try {
 
-                msg = java.text.MessageFormat.format(MsgKey.BAD_MSGKEY,
-                        new Object[] { msgKey, m_resourceBundleName });
+                msg = java.text.MessageFormat.format(MsgKey.BAD_MSGKEY, new Object[] { msgKey,
+                        m_resourceBundleName });
             } catch (Exception e) {
                 /*
                  * even the message that the message is not in the bundle is not
                  * there ... this is really bad
                  */
-                msg = "The message key '" + msgKey
-                        + "' is not in the message class '"
-                        + m_resourceBundleName + "'";
+                msg = "The message key '" + msgKey + "' is not in the message class '" + m_resourceBundleName
+                        + "'";
             }
         } else if (args != null) {
             try {
@@ -220,14 +204,13 @@ public final class Messages {
                 throwex = true;
                 try {
                     // Get the message that the format failed.
-                    fmsg = java.text.MessageFormat.format(MsgKey.BAD_MSGFORMAT,
-                            new Object[] { msgKey, m_resourceBundleName });
+                    fmsg = java.text.MessageFormat.format(MsgKey.BAD_MSGFORMAT, new Object[] { msgKey,
+                            m_resourceBundleName });
                     fmsg += " " + msg;
                 } catch (Exception formatfailed) {
                     // We couldn't even get the message that the format of
                     // the message failed ... so fall back to English.
-                    fmsg = "The format of message '" + msgKey
-                            + "' in message class '" + m_resourceBundleName
+                    fmsg = "The format of message '" + msgKey + "' in message class '" + m_resourceBundleName
                             + "' failed.";
                 }
             }

@@ -12,12 +12,10 @@ package org.xml.sax;
 
 /**
  * Basic interface for SAX error handlers.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * If a SAX application needs to implement customized error handling, it must
  * implement this interface and then register an instance with the XML reader
@@ -25,7 +23,6 @@ package org.xml.sax;
  * method. The parser will then report all errors and warnings through this
  * interface.
  * </p>
- *
  * <p>
  * <strong>WARNING:</strong> If an application does <em>not</em> register an
  * ErrorHandler, XML parsing errors will go unreported, except that
@@ -33,7 +30,6 @@ package org.xml.sax;
  * detect validity errors, an ErrorHandler that does something with
  * {@link #error error()} calls must be registered.
  * </p>
- *
  * <p>
  * For XML processing errors, a SAX driver must use this interface in preference
  * to throwing an exception: it is up to the application to decide whether to
@@ -55,43 +51,37 @@ public interface ErrorHandler {
 
     /**
      * Receive notification of a warning.
-     *
      * <p>
      * SAX parsers will use this method to report conditions that are not errors
      * or fatal errors as defined by the XML recommendation. The default
      * behaviour is to take no action.
      * </p>
-     *
      * <p>
      * The SAX parser must continue to provide normal parsing events after
      * invoking this method: it should still be possible for the application to
      * process the document through to the end.
      * </p>
-     *
      * <p>
      * Filters may use this method to report other, non-XML warnings as well.
      * </p>
      *
      * @param exception
-     *                  The warning information encapsulated in a SAX parse
-     *                  exception.
+     *        The warning information encapsulated in a SAX parse
+     *        exception.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.SAXParseException
      */
-    public abstract void warning(SAXParseException exception)
-            throws SAXException;
+    public abstract void warning(SAXParseException exception) throws SAXException;
 
     /**
      * Receive notification of a recoverable error.
-     *
      * <p>
      * This corresponds to the definition of "error" in section 1.2 of the W3C
      * XML 1.0 Recommendation. For example, a validating parser would use this
      * callback to report the violation of a validity constraint. The default
      * behaviour is to take no action.
      * </p>
-     *
      * <p>
      * The SAX parser must continue to provide normal parsing events after
      * invoking this method: it should still be possible for the application to
@@ -99,14 +89,13 @@ public interface ErrorHandler {
      * then the parser should report a fatal error even if the XML
      * recommendation does not require it to do so.
      * </p>
-     *
      * <p>
      * Filters may use this method to report other, non-XML errors as well.
      * </p>
      *
      * @param exception
-     *                  The error information encapsulated in a SAX parse
-     *                  exception.
+     *        The error information encapsulated in a SAX parse
+     *        exception.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.SAXParseException
@@ -115,7 +104,6 @@ public interface ErrorHandler {
 
     /**
      * Receive notification of a non-recoverable error.
-     *
      * <p>
      * <strong>There is an apparent contradiction between the documentation for
      * this method and the documentation for
@@ -124,13 +112,11 @@ public interface ErrorHandler {
      * about whether endDocument() will or will not be invoked when the parser
      * has reported a fatalError() or thrown an exception.</strong>
      * </p>
-     *
      * <p>
      * This corresponds to the definition of "fatal error" in section 1.2 of the
      * W3C XML 1.0 Recommendation. For example, a parser would use this callback
      * to report the violation of a well-formedness constraint.
      * </p>
-     *
      * <p>
      * The application must assume that the document is unusable after the
      * parser has invoked this method, and should continue (if at all) only for
@@ -140,14 +126,13 @@ public interface ErrorHandler {
      * </p>
      *
      * @param exception
-     *                  The error information encapsulated in a SAX parse
-     *                  exception.
+     *        The error information encapsulated in a SAX parse
+     *        exception.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.SAXParseException
      */
-    public abstract void fatalError(SAXParseException exception)
-            throws SAXException;
+    public abstract void fatalError(SAXParseException exception) throws SAXException;
 
 }
 

@@ -25,7 +25,7 @@ public interface RowSetInternal {
      * @return an array of the current parameter values for this
      *         <code>RowSet</code> object's command
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     Object[] getParams() throws SQLException;
 
@@ -36,7 +36,7 @@ public interface RowSetInternal {
      * @return the <code>Connection</code> object passed to the rowset or
      *         <code>null</code> if none was passed
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     Connection getConnection() throws SQLException;
 
@@ -48,11 +48,10 @@ public interface RowSetInternal {
      * about the rowset's columns.
      *
      * @param md
-     *           the <code>RowSetMetaData</code> object that will be set with
-     *           information about the rowset's columns
-     *
+     *        the <code>RowSetMetaData</code> object that will be set with
+     *        information about the rowset's columns
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setMetaData(RowSetMetaData md) throws SQLException;
 
@@ -66,7 +65,7 @@ public interface RowSetInternal {
      *
      * @return the original value of the rowset
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     public ResultSet getOriginal() throws SQLException;
 
@@ -79,11 +78,11 @@ public interface RowSetInternal {
      * @return the original value of the current row as a <code>ResultSet</code>
      *         object
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         while the cursor is on the insert row, before the
-     *                         first
-     *                         row, or after the last row
+     *            if a database access error occurs or this method
+     *            is called
+     *            while the cursor is on the insert row, before the
+     *            first
+     *            row, or after the last row
      */
     public ResultSet getOriginalRow() throws SQLException;
 

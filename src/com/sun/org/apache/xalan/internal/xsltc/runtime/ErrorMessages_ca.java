@@ -134,8 +134,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * error situation in XSLTC. The processor was unable to create
                  * a copy of an iterator. (See definition of iterator above.)
                  */
-                { BasisLibrary.ITERATOR_CLONE_ERR,
-                        "No es pot clonar l''iterador ''{0}''." },
+                { BasisLibrary.ITERATOR_CLONE_ERR, "No es pot clonar l''iterador ''{0}''." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -143,8 +142,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "L''iterador de l''eix ''{0}'' no t\u00e9 suport." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "L''iterador de l''eix ''{0}'' no t\u00e9 suport." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -162,8 +160,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "L''atribut ''{0}'' es troba fora de l''element." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "L''atribut ''{0}'' es troba fora de l''element." },
 
                 /*
                  * Note to translators: As with the preceding message, a

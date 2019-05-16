@@ -39,8 +39,8 @@ public class MotifRadioButtonUI extends BasicRadioButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent c) {
         AppContext appContext = AppContext.getAppContext();
-        MotifRadioButtonUI motifRadioButtonUI = (MotifRadioButtonUI) appContext
-                .get(MOTIF_RADIO_BUTTON_UI_KEY);
+        MotifRadioButtonUI motifRadioButtonUI = (MotifRadioButtonUI) appContext.get(
+                MOTIF_RADIO_BUTTON_UI_KEY);
         if (motifRadioButtonUI == null) {
             motifRadioButtonUI = new MotifRadioButtonUI();
             appContext.put(MOTIF_RADIO_BUTTON_UI_KEY, motifRadioButtonUI);

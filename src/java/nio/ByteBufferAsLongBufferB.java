@@ -26,8 +26,7 @@ class ByteBufferAsLongBufferB // package-private
 
     }
 
-    ByteBufferAsLongBufferB(ByteBuffer bb, int mark, int pos, int lim, int cap,
-            int off) {
+    ByteBufferAsLongBufferB(ByteBuffer bb, int mark, int pos, int lim, int cap, int off) {
 
         super(mark, pos, lim, cap);
         this.bb = bb;
@@ -46,14 +45,14 @@ class ByteBufferAsLongBufferB // package-private
     }
 
     public LongBuffer duplicate() {
-        return new ByteBufferAsLongBufferB(bb, this.markValue(), this
-                .position(), this.limit(), this.capacity(), offset);
+        return new ByteBufferAsLongBufferB(bb, this.markValue(), this.position(), this.limit(), this
+                .capacity(), offset);
     }
 
     public LongBuffer asReadOnlyBuffer() {
 
-        return new ByteBufferAsLongBufferRB(bb, this.markValue(), this
-                .position(), this.limit(), this.capacity(), offset);
+        return new ByteBufferAsLongBufferRB(bb, this.markValue(), this.position(), this.limit(), this
+                .capacity(), offset);
 
     }
 

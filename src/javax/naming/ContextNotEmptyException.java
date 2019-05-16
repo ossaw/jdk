@@ -20,7 +20,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Context#destroySubcontext
  * @since 1.3
  */
@@ -30,9 +29,9 @@ public class ContextNotEmptyException extends NamingException {
      * explanation. All other fields default to null.
      *
      * @param explanation
-     *                    Possibly null string containing additional detail
-     *                    about this
-     *                    exception.
+     *        Possibly null string containing additional detail
+     *        about this
+     *        exception.
      * @see java.lang.Throwable#getMessage
      */
     public ContextNotEmptyException(String explanation) {

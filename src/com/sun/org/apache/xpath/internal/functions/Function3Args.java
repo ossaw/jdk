@@ -54,13 +54,13 @@ public class Function3Args extends Function2Args {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);
@@ -73,16 +73,14 @@ public class Function3Args extends Function2Args {
      * XPath compiler.
      *
      * @param arg
-     *               non-null expression that represents the argument.
+     *        non-null expression that represents the argument.
      * @param argNum
-     *               The argument number index.
-     *
+     *        The argument number index.
      * @throws WrongNumberArgsException
-     *                                  If the argNum parameter is greater than
-     *                                  2.
+     *         If the argNum parameter is greater than
+     *         2.
      */
-    public void setArg(Expression arg, int argNum)
-            throws WrongNumberArgsException {
+    public void setArg(Expression arg, int argNum) throws WrongNumberArgsException {
 
         if (argNum < 2)
             super.setArg(arg, argNum);
@@ -96,11 +94,9 @@ public class Function3Args extends Function2Args {
     /**
      * Check that the number of arguments passed to this function is correct.
      *
-     *
      * @param argNum
-     *               The number of arguments that is being passed to the
-     *               function.
-     *
+     *        The number of arguments that is being passed to the
+     *        function.
      * @throws WrongNumberArgsException
      */
     public void checkNumberArgs(int argNum) throws WrongNumberArgsException {
@@ -115,8 +111,7 @@ public class Function3Args extends Function2Args {
      * @throws WrongNumberArgsException
      */
     protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(
-                "three", null));
+        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("three", null));
     }
 
     /**
@@ -126,8 +121,7 @@ public class Function3Args extends Function2Args {
      * @return true if traversal outside the context node's subtree can occur.
      */
     public boolean canTraverseOutsideSubtree() {
-        return super.canTraverseOutsideSubtree() ? true
-                : m_arg2.canTraverseOutsideSubtree();
+        return super.canTraverseOutsideSubtree() ? true : m_arg2.canTraverseOutsideSubtree();
     }
 
     class Arg2Owner implements ExpressionOwner {

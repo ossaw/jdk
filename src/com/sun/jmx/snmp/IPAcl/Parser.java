@@ -9,8 +9,11 @@ package com.sun.jmx.snmp.IPAcl;
 import java.io.*;
 
 @SuppressWarnings("unchecked") // generated code, not worth fixing
-class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
-        ParserConstants {/* @bgen(jjtree) */
+class Parser/* @bgen(jjtree) */ implements ParserTreeConstants, ParserConstants {/*
+                                                                                  * @bgen
+                                                                                  * (
+                                                                                  * jjtree)
+                                                                                  */
     protected JJTParserState jjtree = new JJTParserState();
 
     // A file can contain several acl definitions
@@ -92,7 +95,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(ACL);
             jj_consume_token(ASSIGN);
             jj_consume_token(LBRACE);
-            label_1: while (true) {
+            label_1:
+            while (true) {
                 AclItem();
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case LBRACE:
@@ -184,7 +188,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(COMMUNITIES);
             jj_consume_token(ASSIGN);
             Community();
-            label_2: while (true) {
+            label_2:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case COMMA:
                         ;
@@ -296,7 +301,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(MANAGERS);
             jj_consume_token(ASSIGN);
             Host();
-            label_3: while (true) {
+            label_3:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case COMMA:
                         ;
@@ -411,7 +417,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
         try {
             t = jj_consume_token(IDENTIFIER);
             jjtn000.name.append(t.image);
-            label_4: while (true) {
+            label_4:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case DOT:
                         ;
@@ -440,7 +447,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
         try {
             t = jj_consume_token(INTEGER_LITERAL);
             jjtn000.address.append(t.image);
-            label_5: while (true) {
+            label_5:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case DOT:
                         ;
@@ -487,7 +495,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
         try {
             t = jj_consume_token(INTEGER_LITERAL);
             jjtn000.address.append(t.image);
-            label_6: while (true) {
+            label_6:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case MARK:
                         ;
@@ -516,7 +525,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
         try {
             t = jj_consume_token(INTEGER_LITERAL);
             jjtn000.address.append(t.image);
-            label_7: while (true) {
+            label_7:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case DOT:
                         ;
@@ -571,7 +581,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(TRAP);
             jj_consume_token(ASSIGN);
             jj_consume_token(LBRACE);
-            label_8: while (true) {
+            label_8:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case LBRACE:
                         ;
@@ -622,7 +633,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(LBRACE);
             jjtn000.comm = TrapCommunity();
             TrapInterestedHost();
-            label_9: while (true) {
+            label_9:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case LBRACE:
                         ;
@@ -691,15 +703,15 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
 
     final public void TrapInterestedHost() throws ParseException {
         /* @bgen(jjtree) TrapInterestedHost */
-        JDMTrapInterestedHost jjtn000 = new JDMTrapInterestedHost(
-                JJTTRAPINTERESTEDHOST);
+        JDMTrapInterestedHost jjtn000 = new JDMTrapInterestedHost(JJTTRAPINTERESTEDHOST);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
         try {
             jj_consume_token(HOSTS);
             jj_consume_token(ASSIGN);
             HostTrap();
-            label_10: while (true) {
+            label_10:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case COMMA:
                         ;
@@ -808,7 +820,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(TRAPNUM);
             jj_consume_token(ASSIGN);
             TrapNum();
-            label_11: while (true) {
+            label_11:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case COMMA:
                         ;
@@ -886,7 +899,8 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
             jj_consume_token(INFORM);
             jj_consume_token(ASSIGN);
             jj_consume_token(LBRACE);
-            label_12: while (true) {
+            label_12:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case LBRACE:
                         ;
@@ -995,15 +1009,15 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
 
     final public void InformInterestedHost() throws ParseException {
         /* @bgen(jjtree) InformInterestedHost */
-        JDMInformInterestedHost jjtn000 = new JDMInformInterestedHost(
-                JJTINFORMINTERESTEDHOST);
+        JDMInformInterestedHost jjtn000 = new JDMInformInterestedHost(JJTINFORMINTERESTEDHOST);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
         try {
             jj_consume_token(HOSTS);
             jj_consume_token(ASSIGN);
             HostInform();
-            label_13: while (true) {
+            label_13:
+            while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                     case COMMA:
                         ;
@@ -1197,12 +1211,11 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
     private boolean jj_semLA;
     private int jj_gen;
     final private int[] jj_la1 = new int[22];
-    final private int[] jj_la1_0 = { 0x100, 0x80000, 0x100000, 0x2000, 0x0,
-            0x60000, 0x0, 0x80000000, 0x11000000, 0x0, 0x0, 0x0, 0x0, 0x2000,
-            0x2000, 0x0, 0x91000000, 0x0, 0x8000, 0x2000, 0x0, 0x91000000, };
-    final private int[] jj_la1_1 = { 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x10, 0x0,
-            0x0, 0x20, 0x20, 0x40, 0x20, 0x0, 0x0, 0x10, 0x0, 0x10, 0x0, 0x0,
-            0x10, 0x0, };
+    final private int[] jj_la1_0 = { 0x100, 0x80000, 0x100000, 0x2000, 0x0, 0x60000, 0x0, 0x80000000,
+            0x11000000, 0x0, 0x0, 0x0, 0x0, 0x2000, 0x2000, 0x0, 0x91000000, 0x0, 0x8000, 0x2000, 0x0,
+            0x91000000, };
+    final private int[] jj_la1_1 = { 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x10, 0x0, 0x0, 0x20, 0x20, 0x40, 0x20,
+            0x0, 0x0, 0x10, 0x0, 0x10, 0x0, 0x0, 0x10, 0x0, };
     final private JJCalls[] jj_2_rtns = new JJCalls[3];
     private boolean jj_rescan = false;
     private int jj_gc = 0;
@@ -1311,8 +1324,7 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
         if (jj_scanpos == jj_lastpos) {
             jj_la--;
             if (jj_scanpos.next == null) {
-                jj_lastpos = jj_scanpos = jj_scanpos.next = token_source
-                        .getNextToken();
+                jj_lastpos = jj_scanpos = jj_scanpos.next = token_source.getNextToken();
             } else {
                 jj_lastpos = jj_scanpos = jj_scanpos.next;
             }
@@ -1377,8 +1389,7 @@ class Parser/* @bgen(jjtree) */ implements ParserTreeConstants,
                 jj_expentry[i] = jj_lasttokens[i];
             }
             boolean exists = false;
-            for (java.util.Enumeration<int[]> enumv = jj_expentries
-                    .elements(); enumv.hasMoreElements();) {
+            for (java.util.Enumeration<int[]> enumv = jj_expentries.elements(); enumv.hasMoreElements();) {
                 int[] oldentry = enumv.nextElement();
                 if (oldentry.length == jj_expentry.length) {
                     exists = true;

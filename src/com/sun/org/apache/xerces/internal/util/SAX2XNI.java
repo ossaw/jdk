@@ -120,18 +120,15 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
         }
     }
 
-    public void startElement(String uri, String local, String qname,
-            Attributes att) throws SAXException {
+    public void startElement(String uri, String local, String qname, Attributes att) throws SAXException {
         try {
-            fCore.startElement(createQName(uri, local, qname), createAttributes(
-                    att), null);
+            fCore.startElement(createQName(uri, local, qname), createAttributes(att), null);
         } catch (WrappedSAXException e) {
             throw e.exception;
         }
     }
 
-    public void endElement(String uri, String local, String qname)
-            throws SAXException {
+    public void endElement(String uri, String local, String qname) throws SAXException {
         try {
             fCore.endElement(createQName(uri, local, qname), null);
         } catch (WrappedSAXException e) {
@@ -139,8 +136,7 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
         }
     }
 
-    public void characters(char[] buf, int offset, int len)
-            throws SAXException {
+    public void characters(char[] buf, int offset, int len) throws SAXException {
         try {
             fCore.characters(new XMLString(buf, offset, len), null);
         } catch (WrappedSAXException e) {
@@ -148,8 +144,7 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
         }
     }
 
-    public void ignorableWhitespace(char[] buf, int offset, int len)
-            throws SAXException {
+    public void ignorableWhitespace(char[] buf, int offset, int len) throws SAXException {
         try {
             fCore.ignorableWhitespace(new XMLString(buf, offset, len), null);
         } catch (WrappedSAXException e) {
@@ -166,11 +161,9 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
         nsContext.popContext();
     }
 
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         try {
-            fCore.processingInstruction(symbolize(target), createXMLString(
-                    data), null);
+            fCore.processingInstruction(symbolize(target), createXMLString(data), null);
         } catch (WrappedSAXException e) {
             throw e.exception;
         }
@@ -208,8 +201,7 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
         if (uri != null && uri.length() == 0)
             uri = null; // XNI uses null whereas SAX uses the empty string
 
-        return new QName(symbolize(prefix), symbolize(local), symbolize(raw),
-                symbolize(uri));
+        return new QName(symbolize(prefix), symbolize(local), symbolize(raw), symbolize(uri));
     }
 
     /** Symbolizes the specified string. */
@@ -236,8 +228,8 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
         xa.removeAllAttributes();
         int len = att.getLength();
         for (int i = 0; i < len; i++)
-            xa.addAttribute(createQName(att.getURI(i), att.getLocalName(i), att
-                    .getQName(i)), att.getType(i), att.getValue(i));
+            xa.addAttribute(createQName(att.getURI(i), att.getLocalName(i), att.getQName(i)), att.getType(i),
+                    att.getValue(i));
         return xa;
     }
 }

@@ -14,7 +14,6 @@ import static java.lang.annotation.ElementType.PARAMETER;
 
 /**
  * Used to map a property to a list simple type.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -25,7 +24,6 @@ import static java.lang.annotation.ElementType.PARAMETER;
  * <li>JavaBean property</li>
  * <li>field</li>
  * </ul>
- *
  * <p>
  * When a collection property is annotated just with @XmlElement, each item in
  * the collection will be wrapped by an element. For example,
@@ -66,7 +64,6 @@ import static java.lang.annotation.ElementType.PARAMETER;
  *   &lt;data>abc def</data>
  * &lt;/foo>
  * </pre>
- *
  * <p>
  * This annotation can be used with the following annotations:
  * {@link XmlElement}, {@link XmlAttribute}, {@link XmlValue}, {@link XmlIDREF}.
@@ -74,7 +71,6 @@ import static java.lang.annotation.ElementType.PARAMETER;
  * <li>The use of <tt>@XmlList</tt> with {@link XmlValue} while allowed, is
  * redundant since {@link XmlList} maps a collection type to a simple schema
  * type that derives by list just as {@link XmlValue} would.</li>
- *
  * <li>The use of <tt>@XmlList</tt> with {@link XmlAttribute} while allowed, is
  * redundant since {@link XmlList} maps a collection type to a simple schema
  * type that derives by list just as {@link XmlAttribute} would.</li>
@@ -89,5 +85,4 @@ import static java.lang.annotation.ElementType.PARAMETER;
  */
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD, PARAMETER })
-public @interface XmlList {
-}
+public @interface XmlList {}

@@ -33,19 +33,15 @@ import sun.security.jca.GetInstance.Instance;
  * A factory for creating {@link XMLSignature} objects from scratch or for
  * unmarshalling an <code>XMLSignature</code> object from a corresponding XML
  * representation.
- *
  * <h2>XMLSignatureFactory Type</h2>
- *
  * <p>
  * Each instance of <code>XMLSignatureFactory</code> supports a specific XML
  * mechanism type. To create an <code>XMLSignatureFactory</code>, call one of
  * the static {@link #getInstance getInstance} methods, passing in the XML
  * mechanism type desired, for example:
- *
  * <blockquote><code>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
  * </code></blockquote>
- *
  * <p>
  * The objects that this factory produces will be based on DOM and abide by the
  * DOM interoperability requirements as defined in the <a href=
@@ -57,7 +53,6 @@ import sun.security.jca.GetInstance.Instance;
  * Provider"
  * > Service Providers</a> section of the API overview for a list of standard
  * mechanism types.
- *
  * <p>
  * <code>XMLSignatureFactory</code> implementations are registered and loaded
  * using the {@link java.security.Provider} mechanism. For example, a service
@@ -67,32 +62,25 @@ import sun.security.jca.GetInstance.Instance;
  * <pre>
  * put("XMLSignatureFactory.DOM", "org.example.DOMXMLSignatureFactory");
  * </pre>
- *
  * <p>
  * An implementation MUST minimally support the default mechanism type: DOM.
- *
  * <p>
  * Note that a caller must use the same <code>XMLSignatureFactory</code>
  * instance to create the <code>XMLStructure</code>s of a particular
  * <code>XMLSignature</code> that is to be generated. The behavior is undefined
  * if <code>XMLStructure</code>s from different providers or different mechanism
  * types are used together.
- *
  * <p>
  * Also, the <code>XMLStructure</code>s that are created by this factory may
  * contain state specific to the <code>XMLSignature</code> and are not intended
  * to be reusable.
- *
  * <h2>Creating XMLSignatures from scratch</h2>
- *
  * <p>
  * Once the <code>XMLSignatureFactory</code> has been created, objects can be
  * instantiated by calling the appropriate method. For example, a
  * {@link Reference} instance may be created by invoking one of the
  * {@link #newReference newReference} methods.
- *
  * <h2>Unmarshalling XMLSignatures from XML</h2>
- *
  * <p>
  * Alternatively, an <code>XMLSignature</code> may be created from an existing
  * XML representation by invoking the {@link #unmarshalXMLSignature
@@ -108,9 +96,7 @@ import sun.security.jca.GetInstance.Instance;
  * <code>XMLValidateContext</code> types for that factory type, but may support
  * others. A DOM <code>XMLSignatureFactory</code> must support
  * {@link DOMValidateContext} objects.
- *
  * <h2>Signing and marshalling XMLSignatures to XML</h2>
- *
  * Each <code>XMLSignature</code> created by the factory can also be marshalled
  * to an XML representation and signed, by invoking the {@link XMLSignature#sign
  * sign} method of the {@link XMLSignature} object and passing it a
@@ -127,7 +113,6 @@ import sun.security.jca.GetInstance.Instance;
  * The static methods of this class are guaranteed to be thread-safe. Multiple
  * threads may concurrently invoke the static methods defined in this class with
  * no ill effects.
- *
  * <p>
  * However, this is not true for the non-static methods defined by this class.
  * Unless otherwise documented by a specific provider, threads that need to
@@ -153,7 +138,6 @@ public abstract class XMLSignatureFactory {
     /**
      * Returns an <code>XMLSignatureFactory</code> that supports the specified
      * XML processing mechanism and representation type (ex: "DOM").
-     *
      * <p>
      * This method uses the standard JCA provider lookup mechanism to locate and
      * instantiate an <code>XMLSignatureFactory</code> implementation of the
@@ -162,29 +146,28 @@ public abstract class XMLSignatureFactory {
      * <code>Provider</code>. A new <code>XMLSignatureFactory</code> object from
      * the first <code>Provider</code> that supports the specified mechanism is
      * returned.
-     *
      * <p>
      * Note that the list of registered providers may be retrieved via the
      * {@link Security#getProviders() Security.getProviders()} method.
      *
      * @param mechanismType
-     *                      the type of the XML processing mechanism and
-     *                      representation.
-     *                      See the <a href=
-     *                      "../../../../../technotes/guides/security/xmldsig/overview.html#Service
-     *                      Provider"
-     *                      > Service Providers</a> section of the API overview
-     *                      for a list
-     *                      of standard mechanism types.
+     *        the type of the XML processing mechanism and
+     *        representation.
+     *        See the <a href=
+     *        "../../../../../technotes/guides/security/xmldsig/overview.html#Service
+     *        Provider"
+     *        > Service Providers</a> section of the API overview
+     *        for a list
+     *        of standard mechanism types.
      * @return a new <code>XMLSignatureFactory</code>
      * @throws NullPointerException
-     *                                  if <code>mechanismType</code> is
-     *                                  <code>null</code>
+     *         if <code>mechanismType</code> is
+     *         <code>null</code>
      * @throws NoSuchMechanismException
-     *                                  if no <code>Provider</code> supports an
-     *                                  <code>XMLSignatureFactory</code>
-     *                                  implementation for the
-     *                                  specified mechanism
+     *         if no <code>Provider</code> supports an
+     *         <code>XMLSignatureFactory</code>
+     *         implementation for the
+     *         specified mechanism
      * @see Provider
      */
     public static XMLSignatureFactory getInstance(String mechanismType) {
@@ -193,8 +176,7 @@ public abstract class XMLSignatureFactory {
         }
         Instance instance;
         try {
-            instance = GetInstance.getInstance("XMLSignatureFactory", null,
-                    mechanismType);
+            instance = GetInstance.getInstance("XMLSignatureFactory", null, mechanismType);
         } catch (NoSuchAlgorithmException nsae) {
             throw new NoSuchMechanismException(nsae);
         }
@@ -211,31 +193,30 @@ public abstract class XMLSignatureFactory {
      * object does not have to be registered in the provider list.
      *
      * @param mechanismType
-     *                      the type of the XML processing mechanism and
-     *                      representation.
-     *                      See the <a href=
-     *                      "../../../../../technotes/guides/security/xmldsig/overview.html#Service
-     *                      Provider"
-     *                      > Service Providers</a> section of the API overview
-     *                      for a list
-     *                      of standard mechanism types.
+     *        the type of the XML processing mechanism and
+     *        representation.
+     *        See the <a href=
+     *        "../../../../../technotes/guides/security/xmldsig/overview.html#Service
+     *        Provider"
+     *        > Service Providers</a> section of the API overview
+     *        for a list
+     *        of standard mechanism types.
      * @param provider
-     *                      the <code>Provider</code> object
+     *        the <code>Provider</code> object
      * @return a new <code>XMLSignatureFactory</code>
      * @throws NullPointerException
-     *                                  if <code>provider</code> or
-     *                                  <code>mechanismType</code> is
-     *                                  <code>null</code>
+     *         if <code>provider</code> or
+     *         <code>mechanismType</code> is
+     *         <code>null</code>
      * @throws NoSuchMechanismException
-     *                                  if an <code>XMLSignatureFactory</code>
-     *                                  implementation for the
-     *                                  specified mechanism is not available
-     *                                  from the specified
-     *                                  <code>Provider</code> object
+     *         if an <code>XMLSignatureFactory</code>
+     *         implementation for the
+     *         specified mechanism is not available
+     *         from the specified
+     *         <code>Provider</code> object
      * @see Provider
      */
-    public static XMLSignatureFactory getInstance(String mechanismType,
-            Provider provider) {
+    public static XMLSignatureFactory getInstance(String mechanismType, Provider provider) {
         if (mechanismType == null) {
             throw new NullPointerException("mechanismType cannot be null");
         } else if (provider == null) {
@@ -244,8 +225,7 @@ public abstract class XMLSignatureFactory {
 
         Instance instance;
         try {
-            instance = GetInstance.getInstance("XMLSignatureFactory", null,
-                    mechanismType, provider);
+            instance = GetInstance.getInstance("XMLSignatureFactory", null, mechanismType, provider);
         } catch (NoSuchAlgorithmException nsae) {
             throw new NoSuchMechanismException(nsae);
         }
@@ -260,41 +240,40 @@ public abstract class XMLSignatureFactory {
      * XML processing mechanism and representation type (ex: "DOM"), as supplied
      * by the specified provider. The specified provider must be registered in
      * the security provider list.
-     *
      * <p>
      * Note that the list of registered providers may be retrieved via the
      * {@link Security#getProviders() Security.getProviders()} method.
      *
      * @param mechanismType
-     *                      the type of the XML processing mechanism and
-     *                      representation.
-     *                      See the <a href=
-     *                      "../../../../../technotes/guides/security/xmldsig/overview.html#Service
-     *                      Provider"
-     *                      > Service Providers</a> section of the API overview
-     *                      for a list
-     *                      of standard mechanism types.
+     *        the type of the XML processing mechanism and
+     *        representation.
+     *        See the <a href=
+     *        "../../../../../technotes/guides/security/xmldsig/overview.html#Service
+     *        Provider"
+     *        > Service Providers</a> section of the API overview
+     *        for a list
+     *        of standard mechanism types.
      * @param provider
-     *                      the string name of the provider
+     *        the string name of the provider
      * @return a new <code>XMLSignatureFactory</code>
      * @throws NoSuchProviderException
-     *                                  if the specified provider is not
-     *                                  registered in the security
-     *                                  provider list
+     *         if the specified provider is not
+     *         registered in the security
+     *         provider list
      * @throws NullPointerException
-     *                                  if <code>provider</code> or
-     *                                  <code>mechanismType</code> is
-     *                                  <code>null</code>
+     *         if <code>provider</code> or
+     *         <code>mechanismType</code> is
+     *         <code>null</code>
      * @throws NoSuchMechanismException
-     *                                  if an <code>XMLSignatureFactory</code>
-     *                                  implementation for the
-     *                                  specified mechanism is not available
-     *                                  from the specified
-     *                                  provider
+     *         if an <code>XMLSignatureFactory</code>
+     *         implementation for the
+     *         specified mechanism is not available
+     *         from the specified
+     *         provider
      * @see Provider
      */
-    public static XMLSignatureFactory getInstance(String mechanismType,
-            String provider) throws NoSuchProviderException {
+    public static XMLSignatureFactory getInstance(String mechanismType, String provider)
+            throws NoSuchProviderException {
         if (mechanismType == null) {
             throw new NullPointerException("mechanismType cannot be null");
         } else if (provider == null) {
@@ -305,8 +284,7 @@ public abstract class XMLSignatureFactory {
 
         Instance instance;
         try {
-            instance = GetInstance.getInstance("XMLSignatureFactory", null,
-                    mechanismType, provider);
+            instance = GetInstance.getInstance("XMLSignatureFactory", null, mechanismType, provider);
         } catch (NoSuchAlgorithmException nsae) {
             throw new NoSuchMechanismException(nsae);
         }
@@ -319,7 +297,6 @@ public abstract class XMLSignatureFactory {
     /**
      * Returns an <code>XMLSignatureFactory</code> that supports the default XML
      * processing mechanism and representation type ("DOM").
-     *
      * <p>
      * This method uses the standard JCA provider lookup mechanism to locate and
      * instantiate an <code>XMLSignatureFactory</code> implementation of the
@@ -328,17 +305,16 @@ public abstract class XMLSignatureFactory {
      * <code>Provider</code>. A new <code>XMLSignatureFactory</code> object from
      * the first <code>Provider</code> that supports the DOM mechanism is
      * returned.
-     *
      * <p>
      * Note that the list of registered providers may be retrieved via the
      * {@link Security#getProviders() Security.getProviders()} method.
      *
      * @return a new <code>XMLSignatureFactory</code>
      * @throws NoSuchMechanismException
-     *                                  if no <code>Provider</code> supports an
-     *                                  <code>XMLSignatureFactory</code>
-     *                                  implementation for the DOM
-     *                                  mechanism
+     *         if no <code>Provider</code> supports an
+     *         <code>XMLSignatureFactory</code>
+     *         implementation for the DOM
+     *         mechanism
      * @see Provider
      */
     public static XMLSignatureFactory getInstance() {
@@ -371,12 +347,12 @@ public abstract class XMLSignatureFactory {
      * objects.
      *
      * @param si
-     *           the signed info
+     *        the signed info
      * @param ki
-     *           the key info (may be <code>null</code>)
+     *        the key info (may be <code>null</code>)
      * @return an <code>XMLSignature</code>
      * @throws NullPointerException
-     *                              if <code>si</code> is <code>null</code>
+     *         if <code>si</code> is <code>null</code>
      */
     public abstract XMLSignature newXMLSignature(SignedInfo si, KeyInfo ki);
 
@@ -385,42 +361,42 @@ public abstract class XMLSignatureFactory {
      * specified parameters.
      *
      * @param si
-     *                         the signed info
+     *        the signed info
      * @param ki
-     *                         the key info (may be <code>null</code>)
+     *        the key info (may be <code>null</code>)
      * @param objects
-     *                         a list of {@link XMLObject}s (may be empty or
-     *                         <code>null</code>)
+     *        a list of {@link XMLObject}s (may be empty or
+     *        <code>null</code>)
      * @param id
-     *                         the Id (may be <code>null</code>)
+     *        the Id (may be <code>null</code>)
      * @param signatureValueId
-     *                         the SignatureValue Id (may be <code>null</code>)
+     *        the SignatureValue Id (may be <code>null</code>)
      * @return an <code>XMLSignature</code>
      * @throws NullPointerException
-     *                              if <code>si</code> is <code>null</code>
+     *         if <code>si</code> is <code>null</code>
      * @throws ClassCastException
-     *                              if any of the <code>objects</code> are not
-     *                              of type
-     *                              <code>XMLObject</code>
+     *         if any of the <code>objects</code> are not
+     *         of type
+     *         <code>XMLObject</code>
      */
     @SuppressWarnings("rawtypes")
-    public abstract XMLSignature newXMLSignature(SignedInfo si, KeyInfo ki,
-            List objects, String id, String signatureValueId);
+    public abstract XMLSignature newXMLSignature(SignedInfo si, KeyInfo ki, List objects, String id,
+            String signatureValueId);
 
     /**
      * Creates a <code>Reference</code> with the specified URI and digest
      * method.
      *
      * @param uri
-     *            the reference URI (may be <code>null</code>)
+     *        the reference URI (may be <code>null</code>)
      * @param dm
-     *            the digest method
+     *        the digest method
      * @return a <code>Reference</code>
      * @throws IllegalArgumentException
-     *                                  if <code>uri</code> is not RFC 2396
-     *                                  compliant
+     *         if <code>uri</code> is not RFC 2396
+     *         compliant
      * @throws NullPointerException
-     *                                  if <code>dm</code> is <code>null</code>
+     *         if <code>dm</code> is <code>null</code>
      */
     public abstract Reference newReference(String uri, DigestMethod dm);
 
@@ -428,37 +404,36 @@ public abstract class XMLSignatureFactory {
      * Creates a <code>Reference</code> with the specified parameters.
      *
      * @param uri
-     *                   the reference URI (may be <code>null</code>)
+     *        the reference URI (may be <code>null</code>)
      * @param dm
-     *                   the digest method
+     *        the digest method
      * @param transforms
-     *                   a list of {@link Transform}s. The list is defensively
-     *                   copied
-     *                   to protect against subsequent modification. May be
-     *                   <code>null</code> or empty.
+     *        a list of {@link Transform}s. The list is defensively
+     *        copied
+     *        to protect against subsequent modification. May be
+     *        <code>null</code> or empty.
      * @param type
-     *                   the reference type, as a URI (may be <code>null</code>)
+     *        the reference type, as a URI (may be <code>null</code>)
      * @param id
-     *                   the reference ID (may be <code>null</code>)
+     *        the reference ID (may be <code>null</code>)
      * @return a <code>Reference</code>
      * @throws ClassCastException
-     *                                  if any of the <code>transforms</code>
-     *                                  are not of type
-     *                                  <code>Transform</code>
+     *         if any of the <code>transforms</code>
+     *         are not of type
+     *         <code>Transform</code>
      * @throws IllegalArgumentException
-     *                                  if <code>uri</code> is not RFC 2396
-     *                                  compliant
+     *         if <code>uri</code> is not RFC 2396
+     *         compliant
      * @throws NullPointerException
-     *                                  if <code>dm</code> is <code>null</code>
+     *         if <code>dm</code> is <code>null</code>
      */
     @SuppressWarnings("rawtypes")
-    public abstract Reference newReference(String uri, DigestMethod dm,
-            List transforms, String type, String id);
+    public abstract Reference newReference(String uri, DigestMethod dm, List transforms, String type,
+            String id);
 
     /**
      * Creates a <code>Reference</code> with the specified parameters and
      * pre-calculated digest value.
-     *
      * <p>
      * This method is useful when the digest value of a <code>Reference</code>
      * has been previously computed. See for example, the
@@ -466,49 +441,47 @@ public abstract class XMLSignatureFactory {
      * OASIS-DSS (Digital Signature Services)</a> specification.
      *
      * @param uri
-     *                    the reference URI (may be <code>null</code>)
+     *        the reference URI (may be <code>null</code>)
      * @param dm
-     *                    the digest method
+     *        the digest method
      * @param transforms
-     *                    a list of {@link Transform}s. The list is defensively
-     *                    copied
-     *                    to protect against subsequent modification. May be
-     *                    <code>null</code> or empty.
+     *        a list of {@link Transform}s. The list is defensively
+     *        copied
+     *        to protect against subsequent modification. May be
+     *        <code>null</code> or empty.
      * @param type
-     *                    the reference type, as a URI (may be
-     *                    <code>null</code>)
+     *        the reference type, as a URI (may be
+     *        <code>null</code>)
      * @param id
-     *                    the reference ID (may be <code>null</code>)
+     *        the reference ID (may be <code>null</code>)
      * @param digestValue
-     *                    the digest value. The array is cloned to protect
-     *                    against
-     *                    subsequent modification.
+     *        the digest value. The array is cloned to protect
+     *        against
+     *        subsequent modification.
      * @return a <code>Reference</code>
      * @throws ClassCastException
-     *                                  if any of the <code>transforms</code>
-     *                                  are not of type
-     *                                  <code>Transform</code>
+     *         if any of the <code>transforms</code>
+     *         are not of type
+     *         <code>Transform</code>
      * @throws IllegalArgumentException
-     *                                  if <code>uri</code> is not RFC 2396
-     *                                  compliant
+     *         if <code>uri</code> is not RFC 2396
+     *         compliant
      * @throws NullPointerException
-     *                                  if <code>dm</code> or
-     *                                  <code>digestValue</code> is
-     *                                  <code>null</code>
+     *         if <code>dm</code> or
+     *         <code>digestValue</code> is
+     *         <code>null</code>
      */
     @SuppressWarnings("rawtypes")
-    public abstract Reference newReference(String uri, DigestMethod dm,
-            List transforms, String type, String id, byte[] digestValue);
+    public abstract Reference newReference(String uri, DigestMethod dm, List transforms, String type,
+            String id, byte[] digestValue);
 
     /**
      * Creates a <code>Reference</code> with the specified parameters.
-     *
      * <p>
      * This method is useful when a list of transforms have already been applied
      * to the <code>Reference</code>. See for example, the
      * <a href="http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=dss">
      * OASIS-DSS (Digital Signature Services)</a> specification.
-     *
      * <p>
      * When an <code>XMLSignature</code> containing this reference is generated,
      * the specified <code>transforms</code> (if non-null) are applied to the
@@ -517,147 +490,144 @@ public abstract class XMLSignatureFactory {
      * the <code>appliedTransforms</code> and <code>transforms</code>.
      *
      * @param uri
-     *                          the reference URI (may be <code>null</code>)
+     *        the reference URI (may be <code>null</code>)
      * @param dm
-     *                          the digest method
+     *        the digest method
      * @param appliedTransforms
-     *                          a list of {@link Transform}s that have already
-     *                          been applied.
-     *                          The list is defensively copied to protect
-     *                          against subsequent
-     *                          modification. The list must contain at least one
-     *                          entry.
+     *        a list of {@link Transform}s that have already
+     *        been applied.
+     *        The list is defensively copied to protect
+     *        against subsequent
+     *        modification. The list must contain at least one
+     *        entry.
      * @param result
-     *                          the result of processing the sequence of
-     *                          <code>appliedTransforms</code>
+     *        the result of processing the sequence of
+     *        <code>appliedTransforms</code>
      * @param transforms
-     *                          a list of {@link Transform}s that are to be
-     *                          applied when
-     *                          generating the signature. The list is
-     *                          defensively copied to
-     *                          protect against subsequent modification. May be
-     *                          <code>null</code> or empty.
+     *        a list of {@link Transform}s that are to be
+     *        applied when
+     *        generating the signature. The list is
+     *        defensively copied to
+     *        protect against subsequent modification. May be
+     *        <code>null</code> or empty.
      * @param type
-     *                          the reference type, as a URI (may be
-     *                          <code>null</code>)
+     *        the reference type, as a URI (may be
+     *        <code>null</code>)
      * @param id
-     *                          the reference ID (may be <code>null</code>)
+     *        the reference ID (may be <code>null</code>)
      * @return a <code>Reference</code>
      * @throws ClassCastException
-     *                                  if any of the transforms (in either
-     *                                  list) are not of type
-     *                                  <code>Transform</code>
+     *         if any of the transforms (in either
+     *         list) are not of type
+     *         <code>Transform</code>
      * @throws IllegalArgumentException
-     *                                  if <code>uri</code> is not RFC 2396
-     *                                  compliant or
-     *                                  <code>appliedTransforms</code> is empty
+     *         if <code>uri</code> is not RFC 2396
+     *         compliant or
+     *         <code>appliedTransforms</code> is empty
      * @throws NullPointerException
-     *                                  if <code>dm</code>,
-     *                                  <code>appliedTransforms</code> or
-     *                                  <code>result</code> is <code>null</code>
+     *         if <code>dm</code>,
+     *         <code>appliedTransforms</code> or
+     *         <code>result</code> is <code>null</code>
      */
     @SuppressWarnings("rawtypes")
-    public abstract Reference newReference(String uri, DigestMethod dm,
-            List appliedTransforms, Data result, List transforms, String type,
-            String id);
+    public abstract Reference newReference(String uri, DigestMethod dm, List appliedTransforms, Data result,
+            List transforms, String type, String id);
 
     /**
      * Creates a <code>SignedInfo</code> with the specified canonicalization and
      * signature methods, and list of one or more references.
      *
      * @param cm
-     *                   the canonicalization method
+     *        the canonicalization method
      * @param sm
-     *                   the signature method
+     *        the signature method
      * @param references
-     *                   a list of one or more {@link Reference}s. The list is
-     *                   defensively copied to protect against subsequent
-     *                   modification.
+     *        a list of one or more {@link Reference}s. The list is
+     *        defensively copied to protect against subsequent
+     *        modification.
      * @return a <code>SignedInfo</code>
      * @throws ClassCastException
-     *                                  if any of the references are not of type
-     *                                  <code>Reference</code>
+     *         if any of the references are not of type
+     *         <code>Reference</code>
      * @throws IllegalArgumentException
-     *                                  if <code>references</code> is empty
+     *         if <code>references</code> is empty
      * @throws NullPointerException
-     *                                  if any of the parameters are
-     *                                  <code>null</code>
+     *         if any of the parameters are
+     *         <code>null</code>
      */
     @SuppressWarnings("rawtypes")
-    public abstract SignedInfo newSignedInfo(CanonicalizationMethod cm,
-            SignatureMethod sm, List references);
+    public abstract SignedInfo newSignedInfo(CanonicalizationMethod cm, SignatureMethod sm, List references);
 
     /**
      * Creates a <code>SignedInfo</code> with the specified parameters.
      *
      * @param cm
-     *                   the canonicalization method
+     *        the canonicalization method
      * @param sm
-     *                   the signature method
+     *        the signature method
      * @param references
-     *                   a list of one or more {@link Reference}s. The list is
-     *                   defensively copied to protect against subsequent
-     *                   modification.
+     *        a list of one or more {@link Reference}s. The list is
+     *        defensively copied to protect against subsequent
+     *        modification.
      * @param id
-     *                   the id (may be <code>null</code>)
+     *        the id (may be <code>null</code>)
      * @return a <code>SignedInfo</code>
      * @throws ClassCastException
-     *                                  if any of the references are not of type
-     *                                  <code>Reference</code>
+     *         if any of the references are not of type
+     *         <code>Reference</code>
      * @throws IllegalArgumentException
-     *                                  if <code>references</code> is empty
+     *         if <code>references</code> is empty
      * @throws NullPointerException
-     *                                  if <code>cm</code>, <code>sm</code>, or
-     *                                  <code>references</code> are
-     *                                  <code>null</code>
+     *         if <code>cm</code>, <code>sm</code>, or
+     *         <code>references</code> are
+     *         <code>null</code>
      */
     @SuppressWarnings("rawtypes")
-    public abstract SignedInfo newSignedInfo(CanonicalizationMethod cm,
-            SignatureMethod sm, List references, String id);
+    public abstract SignedInfo newSignedInfo(CanonicalizationMethod cm, SignatureMethod sm, List references,
+            String id);
 
     // Object factory methods
     /**
      * Creates an <code>XMLObject</code> from the specified parameters.
      *
      * @param content
-     *                 a list of {@link XMLStructure}s. The list is defensively
-     *                 copied to protect against subsequent modification. May be
-     *                 <code>null</code> or empty.
+     *        a list of {@link XMLStructure}s. The list is defensively
+     *        copied to protect against subsequent modification. May be
+     *        <code>null</code> or empty.
      * @param id
-     *                 the Id (may be <code>null</code>)
+     *        the Id (may be <code>null</code>)
      * @param mimeType
-     *                 the mime type (may be <code>null</code>)
+     *        the mime type (may be <code>null</code>)
      * @param encoding
-     *                 the encoding (may be <code>null</code>)
+     *        the encoding (may be <code>null</code>)
      * @return an <code>XMLObject</code>
      * @throws ClassCastException
-     *                            if <code>content</code> contains any entries
-     *                            that are not of
-     *                            type {@link XMLStructure}
+     *         if <code>content</code> contains any entries
+     *         that are not of
+     *         type {@link XMLStructure}
      */
     @SuppressWarnings("rawtypes")
-    public abstract XMLObject newXMLObject(List content, String id,
-            String mimeType, String encoding);
+    public abstract XMLObject newXMLObject(List content, String id, String mimeType, String encoding);
 
     /**
      * Creates a <code>Manifest</code> containing the specified list of
      * {@link Reference}s.
      *
      * @param references
-     *                   a list of one or more <code>Reference</code>s. The list
-     *                   is
-     *                   defensively copied to protect against subsequent
-     *                   modification.
+     *        a list of one or more <code>Reference</code>s. The list
+     *        is
+     *        defensively copied to protect against subsequent
+     *        modification.
      * @return a <code>Manifest</code>
      * @throws NullPointerException
-     *                                  if <code>references</code> is
-     *                                  <code>null</code>
+     *         if <code>references</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if <code>references</code> is empty
+     *         if <code>references</code> is empty
      * @throws ClassCastException
-     *                                  if <code>references</code> contains any
-     *                                  entries that are not
-     *                                  of type {@link Reference}
+     *         if <code>references</code> contains any
+     *         entries that are not
+     *         of type {@link Reference}
      */
     @SuppressWarnings("rawtypes")
     public abstract Manifest newManifest(List references);
@@ -667,22 +637,22 @@ public abstract class XMLSignatureFactory {
      * {@link Reference}s and optional id.
      *
      * @param references
-     *                   a list of one or more <code>Reference</code>s. The list
-     *                   is
-     *                   defensively copied to protect against subsequent
-     *                   modification.
+     *        a list of one or more <code>Reference</code>s. The list
+     *        is
+     *        defensively copied to protect against subsequent
+     *        modification.
      * @param id
-     *                   the id (may be <code>null</code>)
+     *        the id (may be <code>null</code>)
      * @return a <code>Manifest</code>
      * @throws NullPointerException
-     *                                  if <code>references</code> is
-     *                                  <code>null</code>
+     *         if <code>references</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if <code>references</code> is empty
+     *         if <code>references</code> is empty
      * @throws ClassCastException
-     *                                  if <code>references</code> contains any
-     *                                  entries that are not
-     *                                  of type {@link Reference}
+     *         if <code>references</code> contains any
+     *         entries that are not
+     *         of type {@link Reference}
      */
     @SuppressWarnings("rawtypes")
     public abstract Manifest newManifest(List references, String id);
@@ -692,57 +662,55 @@ public abstract class XMLSignatureFactory {
      * {@link XMLStructure}s, target URI and optional id.
      *
      * @param content
-     *                a list of one or more <code>XMLStructure</code>s. The list
-     *                is
-     *                defensively copied to protect against subsequent
-     *                modification.
+     *        a list of one or more <code>XMLStructure</code>s. The list
+     *        is
+     *        defensively copied to protect against subsequent
+     *        modification.
      * @param target
-     *                the target URI of the Signature that this property applies
-     *                to
+     *        the target URI of the Signature that this property applies
+     *        to
      * @param id
-     *                the id (may be <code>null</code>)
+     *        the id (may be <code>null</code>)
      * @return a <code>SignatureProperty</code>
      * @throws NullPointerException
-     *                                  if <code>content</code> or
-     *                                  <code>target</code> is
-     *                                  <code>null</code>
+     *         if <code>content</code> or
+     *         <code>target</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if <code>content</code> is empty
+     *         if <code>content</code> is empty
      * @throws ClassCastException
-     *                                  if <code>content</code> contains any
-     *                                  entries that are not of
-     *                                  type {@link XMLStructure}
+     *         if <code>content</code> contains any
+     *         entries that are not of
+     *         type {@link XMLStructure}
      */
     @SuppressWarnings("rawtypes")
-    public abstract SignatureProperty newSignatureProperty(List content,
-            String target, String id);
+    public abstract SignatureProperty newSignatureProperty(List content, String target, String id);
 
     /**
      * Creates a <code>SignatureProperties</code> containing the specified list
      * of {@link SignatureProperty}s and optional id.
      *
      * @param properties
-     *                   a list of one or more <code>SignatureProperty</code>s.
-     *                   The
-     *                   list is defensively copied to protect against
-     *                   subsequent
-     *                   modification.
+     *        a list of one or more <code>SignatureProperty</code>s.
+     *        The
+     *        list is defensively copied to protect against
+     *        subsequent
+     *        modification.
      * @param id
-     *                   the id (may be <code>null</code>)
+     *        the id (may be <code>null</code>)
      * @return a <code>SignatureProperties</code>
      * @throws NullPointerException
-     *                                  if <code>properties</code> is
-     *                                  <code>null</code>
+     *         if <code>properties</code> is
+     *         <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if <code>properties</code> is empty
+     *         if <code>properties</code> is empty
      * @throws ClassCastException
-     *                                  if <code>properties</code> contains any
-     *                                  entries that are not
-     *                                  of type {@link SignatureProperty}
+     *         if <code>properties</code> contains any
+     *         entries that are not
+     *         of type {@link SignatureProperty}
      */
     @SuppressWarnings("rawtypes")
-    public abstract SignatureProperties newSignatureProperties(List properties,
-            String id);
+    public abstract SignatureProperties newSignatureProperties(List properties, String id);
 
     // Algorithm factory methods
     /**
@@ -750,52 +718,50 @@ public abstract class XMLSignatureFactory {
      * parameters.
      *
      * @param algorithm
-     *                  the URI identifying the digest algorithm
+     *        the URI identifying the digest algorithm
      * @param params
-     *                  algorithm-specific digest parameters (may be
-     *                  <code>null</code>
-     *                  )
+     *        algorithm-specific digest parameters (may be
+     *        <code>null</code>
+     *        )
      * @return the <code>DigestMethod</code>
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for the
-     *                                            requested algorithm
+     *         if the specified parameters
+     *         are inappropriate for the
+     *         requested algorithm
      * @throws NoSuchAlgorithmException
-     *                                            if an implementation of the
-     *                                            specified algorithm cannot be
-     *                                            found
+     *         if an implementation of the
+     *         specified algorithm cannot be
+     *         found
      * @throws NullPointerException
-     *                                            if <code>algorithm</code> is
-     *                                            <code>null</code>
+     *         if <code>algorithm</code> is
+     *         <code>null</code>
      */
-    public abstract DigestMethod newDigestMethod(String algorithm,
-            DigestMethodParameterSpec params) throws NoSuchAlgorithmException,
-            InvalidAlgorithmParameterException;
+    public abstract DigestMethod newDigestMethod(String algorithm, DigestMethodParameterSpec params)
+            throws NoSuchAlgorithmException, InvalidAlgorithmParameterException;
 
     /**
      * Creates a <code>SignatureMethod</code> for the specified algorithm URI
      * and parameters.
      *
      * @param algorithm
-     *                  the URI identifying the signature algorithm
+     *        the URI identifying the signature algorithm
      * @param params
-     *                  algorithm-specific signature parameters (may be
-     *                  <code>null</code>)
+     *        algorithm-specific signature parameters (may be
+     *        <code>null</code>)
      * @return the <code>SignatureMethod</code>
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for the
-     *                                            requested algorithm
+     *         if the specified parameters
+     *         are inappropriate for the
+     *         requested algorithm
      * @throws NoSuchAlgorithmException
-     *                                            if an implementation of the
-     *                                            specified algorithm cannot be
-     *                                            found
+     *         if an implementation of the
+     *         specified algorithm cannot be
+     *         found
      * @throws NullPointerException
-     *                                            if <code>algorithm</code> is
-     *                                            <code>null</code>
+     *         if <code>algorithm</code> is
+     *         <code>null</code>
      */
-    public abstract SignatureMethod newSignatureMethod(String algorithm,
-            SignatureMethodParameterSpec params)
+    public abstract SignatureMethod newSignatureMethod(String algorithm, SignatureMethodParameterSpec params)
             throws NoSuchAlgorithmException, InvalidAlgorithmParameterException;
 
     /**
@@ -803,26 +769,25 @@ public abstract class XMLSignatureFactory {
      * parameters.
      *
      * @param algorithm
-     *                  the URI identifying the transform algorithm
+     *        the URI identifying the transform algorithm
      * @param params
-     *                  algorithm-specific transform parameters (may be
-     *                  <code>null</code>)
+     *        algorithm-specific transform parameters (may be
+     *        <code>null</code>)
      * @return the <code>Transform</code>
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for the
-     *                                            requested algorithm
+     *         if the specified parameters
+     *         are inappropriate for the
+     *         requested algorithm
      * @throws NoSuchAlgorithmException
-     *                                            if an implementation of the
-     *                                            specified algorithm cannot be
-     *                                            found
+     *         if an implementation of the
+     *         specified algorithm cannot be
+     *         found
      * @throws NullPointerException
-     *                                            if <code>algorithm</code> is
-     *                                            <code>null</code>
+     *         if <code>algorithm</code> is
+     *         <code>null</code>
      */
-    public abstract Transform newTransform(String algorithm,
-            TransformParameterSpec params) throws NoSuchAlgorithmException,
-            InvalidAlgorithmParameterException;
+    public abstract Transform newTransform(String algorithm, TransformParameterSpec params)
+            throws NoSuchAlgorithmException, InvalidAlgorithmParameterException;
 
     /**
      * Creates a <code>Transform</code> for the specified algorithm URI and
@@ -832,60 +797,59 @@ public abstract class XMLSignatureFactory {
      * for specifying the parameters.
      *
      * @param algorithm
-     *                  the URI identifying the transform algorithm
+     *        the URI identifying the transform algorithm
      * @param params
-     *                  a mechanism-specific XML structure from which to
-     *                  unmarshal the
-     *                  parameters from (may be <code>null</code> if not
-     *                  required or
-     *                  optional)
+     *        a mechanism-specific XML structure from which to
+     *        unmarshal the
+     *        parameters from (may be <code>null</code> if not
+     *        required or
+     *        optional)
      * @return the <code>Transform</code>
      * @throws ClassCastException
-     *                                            if the type of
-     *                                            <code>params</code> is
-     *                                            inappropriate for this
-     *                                            <code>XMLSignatureFactory</code>
+     *         if the type of
+     *         <code>params</code> is
+     *         inappropriate for this
+     *         <code>XMLSignatureFactory</code>
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for the
-     *                                            requested algorithm
+     *         if the specified parameters
+     *         are inappropriate for the
+     *         requested algorithm
      * @throws NoSuchAlgorithmException
-     *                                            if an implementation of the
-     *                                            specified algorithm cannot be
-     *                                            found
+     *         if an implementation of the
+     *         specified algorithm cannot be
+     *         found
      * @throws NullPointerException
-     *                                            if <code>algorithm</code> is
-     *                                            <code>null</code>
+     *         if <code>algorithm</code> is
+     *         <code>null</code>
      */
-    public abstract Transform newTransform(String algorithm,
-            XMLStructure params) throws NoSuchAlgorithmException,
-            InvalidAlgorithmParameterException;
+    public abstract Transform newTransform(String algorithm, XMLStructure params)
+            throws NoSuchAlgorithmException, InvalidAlgorithmParameterException;
 
     /**
      * Creates a <code>CanonicalizationMethod</code> for the specified algorithm
      * URI and parameters.
      *
      * @param algorithm
-     *                  the URI identifying the canonicalization algorithm
+     *        the URI identifying the canonicalization algorithm
      * @param params
-     *                  algorithm-specific canonicalization parameters (may be
-     *                  <code>null</code>)
+     *        algorithm-specific canonicalization parameters (may be
+     *        <code>null</code>)
      * @return the <code>CanonicalizationMethod</code>
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for the
-     *                                            requested algorithm
+     *         if the specified parameters
+     *         are inappropriate for the
+     *         requested algorithm
      * @throws NoSuchAlgorithmException
-     *                                            if an implementation of the
-     *                                            specified algorithm cannot be
-     *                                            found
+     *         if an implementation of the
+     *         specified algorithm cannot be
+     *         found
      * @throws NullPointerException
-     *                                            if <code>algorithm</code> is
-     *                                            <code>null</code>
+     *         if <code>algorithm</code> is
+     *         <code>null</code>
      */
-    public abstract CanonicalizationMethod newCanonicalizationMethod(
-            String algorithm, C14NMethodParameterSpec params)
-            throws NoSuchAlgorithmException, InvalidAlgorithmParameterException;
+    public abstract CanonicalizationMethod newCanonicalizationMethod(String algorithm,
+            C14NMethodParameterSpec params) throws NoSuchAlgorithmException,
+            InvalidAlgorithmParameterException;
 
     /**
      * Creates a <code>CanonicalizationMethod</code> for the specified algorithm
@@ -895,33 +859,32 @@ public abstract class XMLSignatureFactory {
      * for specifying the parameters.
      *
      * @param algorithm
-     *                  the URI identifying the canonicalization algorithm
+     *        the URI identifying the canonicalization algorithm
      * @param params
-     *                  a mechanism-specific XML structure from which to
-     *                  unmarshal the
-     *                  parameters from (may be <code>null</code> if not
-     *                  required or
-     *                  optional)
+     *        a mechanism-specific XML structure from which to
+     *        unmarshal the
+     *        parameters from (may be <code>null</code> if not
+     *        required or
+     *        optional)
      * @return the <code>CanonicalizationMethod</code>
      * @throws ClassCastException
-     *                                            if the type of
-     *                                            <code>params</code> is
-     *                                            inappropriate for this
-     *                                            <code>XMLSignatureFactory</code>
+     *         if the type of
+     *         <code>params</code> is
+     *         inappropriate for this
+     *         <code>XMLSignatureFactory</code>
      * @throws InvalidAlgorithmParameterException
-     *                                            if the specified parameters
-     *                                            are inappropriate for the
-     *                                            requested algorithm
+     *         if the specified parameters
+     *         are inappropriate for the
+     *         requested algorithm
      * @throws NoSuchAlgorithmException
-     *                                            if an implementation of the
-     *                                            specified algorithm cannot be
-     *                                            found
+     *         if an implementation of the
+     *         specified algorithm cannot be
+     *         found
      * @throws NullPointerException
-     *                                            if <code>algorithm</code> is
-     *                                            <code>null</code>
+     *         if <code>algorithm</code> is
+     *         <code>null</code>
      */
-    public abstract CanonicalizationMethod newCanonicalizationMethod(
-            String algorithm, XMLStructure params)
+    public abstract CanonicalizationMethod newCanonicalizationMethod(String algorithm, XMLStructure params)
             throws NoSuchAlgorithmException, InvalidAlgorithmParameterException;
 
     /**
@@ -931,10 +894,10 @@ public abstract class XMLSignatureFactory {
      *
      * @return a <code>KeyInfoFactory</code>
      * @throws NoSuchMechanismException
-     *                                  if a <code>KeyFactory</code>
-     *                                  implementation with the same
-     *                                  mechanism type and provider is not
-     *                                  available
+     *         if a <code>KeyFactory</code>
+     *         implementation with the same
+     *         mechanism type and provider is not
+     *         available
      */
     public final KeyInfoFactory getKeyInfoFactory() {
         return KeyInfoFactory.getInstance(getMechanismType(), getProvider());
@@ -945,21 +908,20 @@ public abstract class XMLSignatureFactory {
      * mechanism-specific <code>XMLValidateContext</code> instance.
      *
      * @param context
-     *                a mechanism-specific context from which to unmarshal the
-     *                signature from
+     *        a mechanism-specific context from which to unmarshal the
+     *        signature from
      * @return the <code>XMLSignature</code>
      * @throws NullPointerException
-     *                              if <code>context</code> is <code>null</code>
+     *         if <code>context</code> is <code>null</code>
      * @throws ClassCastException
-     *                              if the type of <code>context</code> is
-     *                              inappropriate for this
-     *                              factory
+     *         if the type of <code>context</code> is
+     *         inappropriate for this
+     *         factory
      * @throws MarshalException
-     *                              if an unrecoverable exception occurs during
-     *                              unmarshalling
+     *         if an unrecoverable exception occurs during
+     *         unmarshalling
      */
-    public abstract XMLSignature unmarshalXMLSignature(
-            XMLValidateContext context) throws MarshalException;
+    public abstract XMLSignature unmarshalXMLSignature(XMLValidateContext context) throws MarshalException;
 
     /**
      * Unmarshals a new <code>XMLSignature</code> instance from a
@@ -968,33 +930,32 @@ public abstract class XMLSignatureFactory {
      * <code>XMLSignature</code>.
      *
      * @param xmlStructure
-     *                     a mechanism-specific XML structure from which to
-     *                     unmarshal the
-     *                     signature from
+     *        a mechanism-specific XML structure from which to
+     *        unmarshal the
+     *        signature from
      * @return the <code>XMLSignature</code>
      * @throws NullPointerException
-     *                              if <code>xmlStructure</code> is
-     *                              <code>null</code>
+     *         if <code>xmlStructure</code> is
+     *         <code>null</code>
      * @throws ClassCastException
-     *                              if the type of <code>xmlStructure</code> is
-     *                              inappropriate for
-     *                              this factory
+     *         if the type of <code>xmlStructure</code> is
+     *         inappropriate for
+     *         this factory
      * @throws MarshalException
-     *                              if an unrecoverable exception occurs during
-     *                              unmarshalling
+     *         if an unrecoverable exception occurs during
+     *         unmarshalling
      */
-    public abstract XMLSignature unmarshalXMLSignature(
-            XMLStructure xmlStructure) throws MarshalException;
+    public abstract XMLSignature unmarshalXMLSignature(XMLStructure xmlStructure) throws MarshalException;
 
     /**
      * Indicates whether a specified feature is supported.
      *
      * @param feature
-     *                the feature name (as an absolute URI)
+     *        the feature name (as an absolute URI)
      * @return <code>true</code> if the specified feature is supported,
      *         <code>false</code> otherwise
      * @throws NullPointerException
-     *                              if <code>feature</code> is <code>null</code>
+     *         if <code>feature</code> is <code>null</code>
      */
     public abstract boolean isFeatureSupported(String feature);
 

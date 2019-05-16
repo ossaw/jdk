@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ICONST extends Instruction implements ConstantPushInstruction,
-        TypedInstruction {
+public class ICONST extends Instruction implements ConstantPushInstruction, TypedInstruction {
     private int value;
 
     /**
@@ -73,16 +72,14 @@ public class ICONST extends Instruction implements ConstantPushInstruction,
         super(com.sun.org.apache.bcel.internal.Constants.ICONST_0, (short) 1);
 
         if ((i >= -1) && (i <= 5))
-            opcode = (short) (com.sun.org.apache.bcel.internal.Constants.ICONST_0
-                    + i); // Even
-                                                                                                // works
-                                                                                                // for
-                                                                                                // i
-                                                                                                // ==
-                                                                                                // -1
+            opcode = (short) (com.sun.org.apache.bcel.internal.Constants.ICONST_0 + i); // Even
+                                                                                        // works
+                                                                                        // for
+                                                                                        // i
+                                                                                        // ==
+                                                                                        // -1
         else
-            throw new ClassGenException(
-                    "ICONST can be used only for value between -1 and 5: " + i);
+            throw new ClassGenException("ICONST can be used only for value between -1 and 5: " + i);
         value = i;
     }
 
@@ -104,7 +101,7 @@ public class ICONST extends Instruction implements ConstantPushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitPushInstruction(this);

@@ -62,8 +62,8 @@ public interface MonitoredObject {
      * <p>
      * 
      * @param name
-     *             of the ChildMonitored Object
-     *             </p>
+     *        of the ChildMonitored Object
+     *        </p>
      */
     public void removeChild(String name);
 
@@ -79,8 +79,8 @@ public interface MonitoredObject {
      *         </p>
      *         <p>
      * @param name
-     *             of the ChildMonitored Object
-     *             </p>
+     *        of the ChildMonitored Object
+     *        </p>
      */
     public MonitoredObject getChild(String name);
 
@@ -123,14 +123,13 @@ public interface MonitoredObject {
      * Adds the attribute with the given name.
      * </p>
      * <p>
-     *
      * </p>
      * <p>
      * 
      * @param value
-     *              is the MonitoredAttribute which will be set as one of the
-     *              attribute of this MonitoredObject.
-     *              </p>
+     *        is the MonitoredAttribute which will be set as one of the
+     *        attribute of this MonitoredObject.
+     *        </p>
      */
     public void addAttribute(MonitoredAttribute value);
 
@@ -139,13 +138,12 @@ public interface MonitoredObject {
      * Removes the attribute with the given name.
      * </p>
      * <p>
-     *
      * </p>
      * <p>
      * 
      * @param name
-     *             is the MonitoredAttribute name
-     *             </p>
+     *        is the MonitoredAttribute name
+     *        </p>
      */
     public void removeAttribute(String name);
 
@@ -153,15 +151,14 @@ public interface MonitoredObject {
      * <p>
      * Gets the Monitored Object registered by the given name
      * </p>
-     *
      * <p>
      * 
      * @return a MonitoredAttribute identified by the given name
      *         </p>
      *         <p>
      * @param name
-     *             of the attribute
-     *             </p>
+     *        of the attribute
+     *        </p>
      */
     public MonitoredAttribute getAttribute(String name);
 
@@ -185,7 +182,6 @@ public interface MonitoredObject {
      * Monitored Object. The call to clearState will be initiated from
      * CORBAMBean.startMonitoring() call.
      * </p>
-     *
      */
     public void clearState();
 

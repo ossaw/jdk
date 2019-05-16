@@ -24,7 +24,6 @@ import org.w3c.dom.DOMImplementation;
  * the Document Object Model. As such its data is static, shared by all
  * instances of this implementation.
  * </p>
- *
  * <p>
  * This implementation simply extends DOMImplementationImpl to differentiate
  * between the Deferred DOM Implementations and Non-Deferred DOM
@@ -32,9 +31,7 @@ import org.w3c.dom.DOMImplementation;
  * </p>
  *
  * @xerces.internal
- *
  * @author Neil Delima, IBM
- *
  */
 public class DeferredDOMImplementationImpl extends DOMImplementationImpl {
 

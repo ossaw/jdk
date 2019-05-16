@@ -15,7 +15,6 @@ package java.lang.annotation;
  * hierarchy (Object) is reached. If no superclass has an annotation for this
  * type, then the query will indicate that the class in question has no such
  * annotation.
- *
  * <p>
  * Note that this meta-annotation type has no effect if the annotated type is
  * used to annotate anything other than a class. Note also that this
@@ -29,5 +28,4 @@ package java.lang.annotation;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.ANNOTATION_TYPE)
-public @interface Inherited {
-}
+public @interface Inherited {}

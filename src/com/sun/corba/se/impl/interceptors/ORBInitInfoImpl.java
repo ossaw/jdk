@@ -36,8 +36,7 @@ import com.sun.corba.se.impl.logging.OMGSystemException;
  * ORBInitInfoImpl is the implementation of the ORBInitInfo class to be passed
  * to ORBInitializers, as described in orbos/99-12-02.
  */
-public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
-        ORBInitInfo, ORBInitInfoExt {
+public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements ORBInitInfo, ORBInitInfoExt {
     // The ORB we are initializing
     private ORB orb;
 
@@ -73,16 +72,13 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * Creates a new ORBInitInfoImpl object (scoped to package)
      *
      * @param args
-     *             The arguments passed to ORB_init.
+     *        The arguments passed to ORB_init.
      */
-    ORBInitInfoImpl(ORB orb, String[] args, String orbId,
-            CodecFactory codecFactory) {
+    ORBInitInfoImpl(ORB orb, String[] args, String orbId, CodecFactory codecFactory) {
         this.orb = orb;
 
-        wrapper = InterceptorsSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
-        orbutilWrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        wrapper = InterceptorsSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+        orbutilWrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         omgWrapper = OMGSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
 
         this.args = args;
@@ -159,8 +155,7 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * <p>
      * This method may not be called during post_init.
      */
-    public void register_initial_reference(String id, org.omg.CORBA.Object obj)
-            throws InvalidName {
+    public void register_initial_reference(String id, org.omg.CORBA.Object obj) throws InvalidName {
         checkStage();
         if (id == null)
             nullParam();
@@ -206,8 +201,7 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * <p>
      * This method may not be called during pre_init.
      */
-    public org.omg.CORBA.Object resolve_initial_references(String id)
-            throws InvalidName {
+    public org.omg.CORBA.Object resolve_initial_references(String id) throws InvalidName {
         checkStage();
         if (id == null)
             nullParam();
@@ -234,9 +228,8 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
     }
 
     // New method from CORBA 3.1
-    public void add_client_request_interceptor_with_policy(
-            ClientRequestInterceptor interceptor, Policy[] policies)
-            throws DuplicateName {
+    public void add_client_request_interceptor_with_policy(ClientRequestInterceptor interceptor,
+            Policy[] policies) throws DuplicateName {
         // XXX ignore policies for now
         add_client_request_interceptor(interceptor);
     }
@@ -248,20 +241,17 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * If a client-side request Interceptor has already been registered with
      * this Interceptor's name, DuplicateName is raised.
      */
-    public void add_client_request_interceptor(
-            ClientRequestInterceptor interceptor) throws DuplicateName {
+    public void add_client_request_interceptor(ClientRequestInterceptor interceptor) throws DuplicateName {
         checkStage();
         if (interceptor == null)
             nullParam();
 
-        orb.getPIHandler().register_interceptor(interceptor,
-                InterceptorList.INTERCEPTOR_TYPE_CLIENT);
+        orb.getPIHandler().register_interceptor(interceptor, InterceptorList.INTERCEPTOR_TYPE_CLIENT);
     }
 
     // New method from CORBA 3.1
-    public void add_server_request_interceptor_with_policy(
-            ServerRequestInterceptor interceptor, Policy[] policies)
-            throws DuplicateName, PolicyError {
+    public void add_server_request_interceptor_with_policy(ServerRequestInterceptor interceptor,
+            Policy[] policies) throws DuplicateName, PolicyError {
         // XXX ignore policies for now
         add_server_request_interceptor(interceptor);
     }
@@ -273,19 +263,17 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * If a server-side request Interceptor has already been registered with
      * this Interceptor's name, DuplicateName is raised.
      */
-    public void add_server_request_interceptor(
-            ServerRequestInterceptor interceptor) throws DuplicateName {
+    public void add_server_request_interceptor(ServerRequestInterceptor interceptor) throws DuplicateName {
         checkStage();
         if (interceptor == null)
             nullParam();
 
-        orb.getPIHandler().register_interceptor(interceptor,
-                InterceptorList.INTERCEPTOR_TYPE_SERVER);
+        orb.getPIHandler().register_interceptor(interceptor, InterceptorList.INTERCEPTOR_TYPE_SERVER);
     }
 
     // New method from CORBA 3.1
-    public void add_ior_interceptor_with_policy(IORInterceptor interceptor,
-            Policy[] policies) throws DuplicateName, PolicyError {
+    public void add_ior_interceptor_with_policy(IORInterceptor interceptor, Policy[] policies)
+            throws DuplicateName, PolicyError {
         // XXX ignore policies for now
         add_ior_interceptor(interceptor);
     }
@@ -297,14 +285,12 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * If an IOR Interceptor has already been registered with this Interceptor's
      * name, DuplicateName is raised.
      */
-    public void add_ior_interceptor(IORInterceptor interceptor)
-            throws DuplicateName {
+    public void add_ior_interceptor(IORInterceptor interceptor) throws DuplicateName {
         checkStage();
         if (interceptor == null)
             nullParam();
 
-        orb.getPIHandler().register_interceptor(interceptor,
-                InterceptorList.INTERCEPTOR_TYPE_IOR);
+        orb.getPIHandler().register_interceptor(interceptor, InterceptorList.INTERCEPTOR_TYPE_IOR);
     }
 
     /**
@@ -326,8 +312,7 @@ public final class ORBInitInfoImpl extends org.omg.CORBA.LocalObject implements
      * If a PolicyFactory already exists for the given PolicyType, BAD_INV_ORDER
      * is raised with a minor code of TBD_BIO+2.
      */
-    public void register_policy_factory(int type,
-            PolicyFactory policy_factory) {
+    public void register_policy_factory(int type, PolicyFactory policy_factory) {
         checkStage();
         if (policy_factory == null)
             nullParam();

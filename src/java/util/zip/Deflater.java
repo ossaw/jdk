@@ -12,11 +12,9 @@ package java.util.zip;
  * patents. It is fully described in the specifications at the
  * <a href="package-summary.html#package_description">java.util.zip package
  * description</a>.
- *
  * <p>
  * The following code fragment demonstrates a trivial compression and
  * decompression of a string using <tt>Deflater</tt> and <tt>Inflater</tt>.
- *
  * <blockquote>
  * 
  * <pre>
@@ -146,9 +144,9 @@ public class Deflater {
      * PKZIP.
      * 
      * @param level
-     *               the compression level (0-9)
+     *        the compression level (0-9)
      * @param nowrap
-     *               if true then use GZIP compatible compression
+     *        if true then use GZIP compatible compression
      */
     public Deflater(int level, boolean nowrap) {
         this.level = level;
@@ -161,7 +159,7 @@ public class Deflater {
      * Compressed data will be generated in ZLIB format.
      * 
      * @param level
-     *              the compression level (0-9)
+     *        the compression level (0-9)
      */
     public Deflater(int level) {
         this(level, false);
@@ -180,11 +178,11 @@ public class Deflater {
      * needsInput() returns true indicating that more input data is required.
      * 
      * @param b
-     *            the input data bytes
+     *        the input data bytes
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the length of the data
+     *        the length of the data
      * @see Deflater#needsInput
      */
     public void setInput(byte[] b, int off, int len) {
@@ -206,7 +204,7 @@ public class Deflater {
      * needsInput() returns true indicating that more input data is required.
      * 
      * @param b
-     *          the input data bytes
+     *        the input data bytes
      * @see Deflater#needsInput
      */
     public void setInput(byte[] b) {
@@ -221,11 +219,11 @@ public class Deflater {
      * decompression.
      * 
      * @param b
-     *            the dictionary data bytes
+     *        the dictionary data bytes
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the length of the data
+     *        the length of the data
      * @see Inflater#inflate
      * @see Inflater#getAdler
      */
@@ -250,7 +248,7 @@ public class Deflater {
      * decompression.
      * 
      * @param b
-     *          the dictionary data bytes
+     *        the dictionary data bytes
      * @see Inflater#inflate
      * @see Inflater#getAdler
      */
@@ -260,7 +258,6 @@ public class Deflater {
 
     /**
      * Sets the compression strategy to the specified value.
-     *
      * <p>
      * If the compression strategy is changed, the next invocation of
      * {@code deflate} will compress the input available so far with the old
@@ -268,10 +265,10 @@ public class Deflater {
      * after that invocation.
      *
      * @param strategy
-     *                 the new compression strategy
+     *        the new compression strategy
      * @exception IllegalArgumentException
-     *                                     if the compression strategy is
-     *                                     invalid
+     *            if the compression strategy is
+     *            invalid
      */
     public void setStrategy(int strategy) {
         switch (strategy) {
@@ -292,7 +289,6 @@ public class Deflater {
 
     /**
      * Sets the compression level to the specified value.
-     *
      * <p>
      * If the compression level is changed, the next invocation of
      * {@code deflate} will compress the input available so far with the old
@@ -300,9 +296,9 @@ public class Deflater {
      * that invocation.
      *
      * @param level
-     *              the new compression level (0-9)
+     *        the new compression level (0-9)
      * @exception IllegalArgumentException
-     *                                     if the compression level is invalid
+     *            if the compression level is invalid
      */
     public void setLevel(int level) {
         if ((level < 0 || level > 9) && level != DEFAULT_COMPRESSION) {
@@ -357,7 +353,6 @@ public class Deflater {
      * data. Returns actual number of bytes of compressed data. A return value
      * of 0 indicates that {@link #needsInput() needsInput} should be called in
      * order to determine if more input data is required.
-     *
      * <p>
      * This method uses {@link #NO_FLUSH} as its compression flush mode. An
      * invocation of this method of the form
@@ -365,11 +360,11 @@ public class Deflater {
      * invocation of {@code deflater.deflate(b, off, len, Deflater.NO_FLUSH)}.
      *
      * @param b
-     *            the buffer for the compressed data
+     *        the buffer for the compressed data
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the maximum number of bytes of compressed data
+     *        the maximum number of bytes of compressed data
      * @return the actual number of bytes of compressed data written to the
      *         output buffer
      */
@@ -382,7 +377,6 @@ public class Deflater {
      * data. Returns actual number of bytes of compressed data. A return value
      * of 0 indicates that {@link #needsInput() needsInput} should be called in
      * order to determine if more input data is required.
-     *
      * <p>
      * This method uses {@link #NO_FLUSH} as its compression flush mode. An
      * invocation of this method of the form {@code deflater.deflate(b)} yields
@@ -390,7 +384,7 @@ public class Deflater {
      * {@code deflater.deflate(b, 0, b.length, Deflater.NO_FLUSH)}.
      *
      * @param b
-     *          the buffer for the compressed data
+     *        the buffer for the compressed data
      * @return the actual number of bytes of compressed data written to the
      *         output buffer
      */
@@ -401,17 +395,14 @@ public class Deflater {
     /**
      * Compresses the input data and fills the specified buffer with compressed
      * data. Returns actual number of bytes of data compressed.
-     *
      * <p>
      * Compression flush mode is one of the following three modes:
-     *
      * <ul>
      * <li>{@link #NO_FLUSH}: allows the deflater to decide how much data to
      * accumulate, before producing output, in order to achieve the best
      * compression (should be used in normal use scenario). A return value of 0
      * in this flush mode indicates that {@link #needsInput()} should be called
      * in order to determine if more input data is required.
-     *
      * <li>{@link #SYNC_FLUSH}: all pending output in the deflater is flushed,
      * to the specified output buffer, so that an inflater that works on
      * compressed data can get all input data available so far (In particular
@@ -419,14 +410,12 @@ public class Deflater {
      * enough output space is provided). Flushing with {@link #SYNC_FLUSH} may
      * degrade compression for some compression algorithms and so it should be
      * used only when necessary.
-     *
      * <li>{@link #FULL_FLUSH}: all pending output is flushed out as with
      * {@link #SYNC_FLUSH}. The compression state is reset so that the inflater
      * that works on the compressed output data can restart from this point if
      * previous compressed data has been damaged or if random access is desired.
      * Using {@link #FULL_FLUSH} too often can seriously degrade compression.
      * </ul>
-     *
      * <p>
      * In the case of {@link #FULL_FLUSH} or {@link #SYNC_FLUSH}, if the return
      * value is {@code len}, the space available in output buffer {@code b},
@@ -434,18 +423,17 @@ public class Deflater {
      * and more output space.
      *
      * @param b
-     *              the buffer for the compressed data
+     *        the buffer for the compressed data
      * @param off
-     *              the start offset of the data
+     *        the start offset of the data
      * @param len
-     *              the maximum number of bytes of compressed data
+     *        the maximum number of bytes of compressed data
      * @param flush
-     *              the compression flush mode
+     *        the compression flush mode
      * @return the actual number of bytes of compressed data written to the
      *         output buffer
-     *
      * @throws IllegalArgumentException
-     *                                  if the flush mode is invalid
+     *         if the flush mode is invalid
      * @since 1.7
      */
     public int deflate(byte[] b, int off, int len, int flush) {
@@ -457,8 +445,7 @@ public class Deflater {
         }
         synchronized (zsRef) {
             ensureOpen();
-            if (flush == NO_FLUSH || flush == SYNC_FLUSH
-                    || flush == FULL_FLUSH) {
+            if (flush == NO_FLUSH || flush == SYNC_FLUSH || flush == FULL_FLUSH) {
                 int thisLen = this.len;
                 int n = deflateBytes(zsRef.address(), b, off, len, flush);
                 bytesWritten += n;
@@ -483,7 +470,6 @@ public class Deflater {
 
     /**
      * Returns the total number of uncompressed bytes input so far.
-     *
      * <p>
      * Since the number of bytes may be greater than Integer.MAX_VALUE, the
      * {@link #getBytesRead()} method is now the preferred means of obtaining
@@ -512,7 +498,6 @@ public class Deflater {
 
     /**
      * Returns the total number of compressed bytes output so far.
-     *
      * <p>
      * Since the number of bytes may be greater than Integer.MAX_VALUE, the
      * {@link #getBytesWritten()} method is now the preferred means of obtaining
@@ -587,11 +572,9 @@ public class Deflater {
 
     private native static long init(int level, int strategy, boolean nowrap);
 
-    private native static void setDictionary(long addr, byte[] b, int off,
-            int len);
+    private native static void setDictionary(long addr, byte[] b, int off, int len);
 
-    private native int deflateBytes(long addr, byte[] b, int off, int len,
-            int flush);
+    private native int deflateBytes(long addr, byte[] b, int off, int len, int flush);
 
     private native static int getAdler(long addr);
 

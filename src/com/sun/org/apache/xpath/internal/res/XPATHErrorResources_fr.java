@@ -268,76 +268,56 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { ER_CURRENT_NOT_ALLOWED_IN_MATCH,
                     "La fonction current() n'est pas autoris\u00E9e dans un mod\u00E8le de recherche." },
 
-            { ER_CURRENT_TAKES_NO_ARGS,
-                    "La fonction current() n'accepte pas d'argument." },
+            { ER_CURRENT_TAKES_NO_ARGS, "La fonction current() n'accepte pas d'argument." },
 
             { ER_DOCUMENT_REPLACED,
                     "L'impl\u00E9mentation de la fonction document() a \u00E9t\u00E9 remplac\u00E9e par com.sun.org.apache.xalan.internal.xslt.FuncDocument." },
 
-            { ER_CONTEXT_HAS_NO_OWNERDOC,
-                    "le contexte ne poss\u00E8de pas de document propri\u00E9taire." },
+            { ER_CONTEXT_HAS_NO_OWNERDOC, "le contexte ne poss\u00E8de pas de document propri\u00E9taire." },
 
-            { ER_LOCALNAME_HAS_TOO_MANY_ARGS,
-                    "local-name() poss\u00E8de trop d'arguments." },
+            { ER_LOCALNAME_HAS_TOO_MANY_ARGS, "local-name() poss\u00E8de trop d'arguments." },
 
-            { ER_NAMESPACEURI_HAS_TOO_MANY_ARGS,
-                    "namespace-uri() poss\u00E8de trop d'arguments." },
+            { ER_NAMESPACEURI_HAS_TOO_MANY_ARGS, "namespace-uri() poss\u00E8de trop d'arguments." },
 
-            { ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS,
-                    "normalize-space() poss\u00E8de trop d'arguments." },
+            { ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS, "normalize-space() poss\u00E8de trop d'arguments." },
 
-            { ER_NUMBER_HAS_TOO_MANY_ARGS,
-                    "number() poss\u00E8de trop d'arguments." },
+            { ER_NUMBER_HAS_TOO_MANY_ARGS, "number() poss\u00E8de trop d'arguments." },
 
-            { ER_NAME_HAS_TOO_MANY_ARGS,
-                    "name() poss\u00E8de trop d'arguments." },
+            { ER_NAME_HAS_TOO_MANY_ARGS, "name() poss\u00E8de trop d'arguments." },
 
-            { ER_STRING_HAS_TOO_MANY_ARGS,
-                    "string() poss\u00E8de trop d'arguments." },
+            { ER_STRING_HAS_TOO_MANY_ARGS, "string() poss\u00E8de trop d'arguments." },
 
-            { ER_STRINGLENGTH_HAS_TOO_MANY_ARGS,
-                    "string-length() poss\u00E8de trop d'arguments." },
+            { ER_STRINGLENGTH_HAS_TOO_MANY_ARGS, "string-length() poss\u00E8de trop d'arguments." },
 
-            { ER_TRANSLATE_TAKES_3_ARGS,
-                    "La fonction translate() accepte trois arguments." },
+            { ER_TRANSLATE_TAKES_3_ARGS, "La fonction translate() accepte trois arguments." },
 
             { ER_UNPARSEDENTITYURI_TAKES_1_ARG,
                     "Un argument doit \u00EAtre fourni \u00E0 la fonction unparsed-entity-uri." },
 
-            { ER_NAMESPACEAXIS_NOT_IMPLEMENTED,
-                    "l'axe de l'espace de noms n'est pas impl\u00E9ment\u00E9." },
+            { ER_NAMESPACEAXIS_NOT_IMPLEMENTED, "l'axe de l'espace de noms n'est pas impl\u00E9ment\u00E9." },
 
             { ER_UNKNOWN_AXIS, "axe inconnu : {0}" },
 
-            { ER_UNKNOWN_MATCH_OPERATION,
-                    "op\u00E9ration de correspondance inconnue." },
+            { ER_UNKNOWN_MATCH_OPERATION, "op\u00E9ration de correspondance inconnue." },
 
             { ER_INCORRECT_ARG_LENGTH,
                     "La longueur d'argument du test du noeud processing-instruction() n'est pas correcte." },
 
-            { ER_CANT_CONVERT_TO_NUMBER,
-                    "Impossible de convertir {0} en nombre" },
+            { ER_CANT_CONVERT_TO_NUMBER, "Impossible de convertir {0} en nombre" },
 
-            { ER_CANT_CONVERT_TO_NODELIST,
-                    "Impossible de convertir {0} en NodeList." },
+            { ER_CANT_CONVERT_TO_NODELIST, "Impossible de convertir {0} en NodeList." },
 
-            { ER_CANT_CONVERT_TO_MUTABLENODELIST,
-                    "Impossible de convertir {0} en NodeSetDTM." },
+            { ER_CANT_CONVERT_TO_MUTABLENODELIST, "Impossible de convertir {0} en NodeSetDTM." },
 
-            { ER_CANT_CONVERT_TO_TYPE,
-                    "Impossible de convertir {0} en type#{1}" },
+            { ER_CANT_CONVERT_TO_TYPE, "Impossible de convertir {0} en type#{1}" },
 
-            { ER_EXPECTED_MATCH_PATTERN,
-                    "Mod\u00E8le de recherche attendu dans getMatchScore." },
+            { ER_EXPECTED_MATCH_PATTERN, "Mod\u00E8le de recherche attendu dans getMatchScore." },
 
-            { ER_COULDNOT_GET_VAR_NAMED,
-                    "Impossible d''obtenir la variable nomm\u00E9e {0}" },
+            { ER_COULDNOT_GET_VAR_NAMED, "Impossible d''obtenir la variable nomm\u00E9e {0}" },
 
-            { ER_UNKNOWN_OPCODE,
-                    "ERREUR. Code d''op\u00E9ration inconnu : {0}" },
+            { ER_UNKNOWN_OPCODE, "ERREUR. Code d''op\u00E9ration inconnu : {0}" },
 
-            { ER_EXTRA_ILLEGAL_TOKENS,
-                    "Jetons non admis suppl\u00E9mentaires : {0}" },
+            { ER_EXTRA_ILLEGAL_TOKENS, "Jetons non admis suppl\u00E9mentaires : {0}" },
 
             { ER_EXPECTED_DOUBLE_QUOTE,
                     "Erreur de guillemets dans un litt\u00E9ral... Guillemets obligatoires." },
@@ -347,11 +327,9 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
 
             { ER_EMPTY_EXPRESSION, "Expression vide." },
 
-            { ER_EXPECTED_BUT_FOUND,
-                    "Valeur attendue : {0}, mais {1} a \u00E9t\u00E9 trouv\u00E9" },
+            { ER_EXPECTED_BUT_FOUND, "Valeur attendue : {0}, mais {1} a \u00E9t\u00E9 trouv\u00E9" },
 
-            { ER_INCORRECT_PROGRAMMER_ASSERTION,
-                    "Assertion de programmeur incorrecte. - {0}" },
+            { ER_INCORRECT_PROGRAMMER_ASSERTION, "Assertion de programmeur incorrecte. - {0}" },
 
             { ER_BOOLEAN_ARG_NO_LONGER_OPTIONAL,
                     "L'argument boolean(...) n'est plus facultatif avec le brouillon (draft) XPath 19990709." },
@@ -372,8 +350,7 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { ER_PATTERN_LITERAL_NEEDS_BE_QUOTED,
                     "Le litt\u00E9ral de mod\u00E8le ({0}) doit figurer entre guillemets." },
 
-            { ER_COULDNOT_BE_FORMATTED_TO_NUMBER,
-                    "Impossible de formater {0} en nombre." },
+            { ER_COULDNOT_BE_FORMATTED_TO_NUMBER, "Impossible de formater {0} en nombre." },
 
             { ER_COULDNOT_CREATE_XMLPROCESSORLIAISON,
                     "Impossible de cr\u00E9er la liaison XML TransformerFactory : {0}" },
@@ -392,14 +369,12 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { ER_AXES_NOT_ALLOWED,
                     "Seuls les axes child:: et attribute:: sont autoris\u00E9s dans des mod\u00E8les de recherche. Axes en cause = {0}" },
 
-            { ER_KEY_HAS_TOO_MANY_ARGS,
-                    "key() poss\u00E8de un nombre incorrect d'arguments." },
+            { ER_KEY_HAS_TOO_MANY_ARGS, "key() poss\u00E8de un nombre incorrect d'arguments." },
 
             { ER_COUNT_TAKES_1_ARG,
                     "Un seul argument doit \u00EAtre fourni \u00E0 la fonction de d\u00E9compte." },
 
-            { ER_COULDNOT_FIND_FUNCTION,
-                    "Impossible de trouver la fonction : {0}" },
+            { ER_COULDNOT_FIND_FUNCTION, "Impossible de trouver la fonction : {0}" },
 
             { ER_UNSUPPORTED_ENCODING, "Encodage non pris en charge : {0}" },
 
@@ -409,11 +384,9 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { ER_CANNOT_WRITE_TO_EMPTYNODELISTIMPL,
                     "Erreur de programmeur : \u00E9criture impossible dans EmptyNodeList." },
 
-            { ER_SETDOMFACTORY_NOT_SUPPORTED,
-                    "SetDOMFactory n'est pas pris en charge par XPathContext." },
+            { ER_SETDOMFACTORY_NOT_SUPPORTED, "SetDOMFactory n'est pas pris en charge par XPathContext." },
 
-            { ER_PREFIX_MUST_RESOLVE,
-                    "Le pr\u00E9fixe doit produire un espace de noms : {0}" },
+            { ER_PREFIX_MUST_RESOLVE, "Le pr\u00E9fixe doit produire un espace de noms : {0}" },
 
             { ER_PARSE_NOT_SUPPORTED,
                     "analyse (source InputSource) non prise en charge dans XPathContext. Impossible d''ouvrir {0}" },
@@ -424,38 +397,31 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { ER_IGNORABLE_WHITESPACE_NOT_HANDLED,
                     "ignorableWhitespace(char ch[]... non pris en charge par le DTM." },
 
-            { ER_DTM_CANNOT_HANDLE_NODES,
-                    "DTMLiaison ne prend pas en charge les noeuds de type {0}" },
+            { ER_DTM_CANNOT_HANDLE_NODES, "DTMLiaison ne prend pas en charge les noeuds de type {0}" },
 
-            { ER_XERCES_CANNOT_HANDLE_NODES,
-                    "DOM2Helper ne prend pas en charge les noeuds de type {0}" },
+            { ER_XERCES_CANNOT_HANDLE_NODES, "DOM2Helper ne prend pas en charge les noeuds de type {0}" },
 
-            { ER_XERCES_PARSE_ERROR_DETAILS,
-                    "Erreur de DOM2Helper.parse : SystemID - {0} ligne - {1}" },
+            { ER_XERCES_PARSE_ERROR_DETAILS, "Erreur de DOM2Helper.parse : SystemID - {0} ligne - {1}" },
 
             { ER_XERCES_PARSE_ERROR, "Erreur de DOM2Helper.parse" },
 
-            { ER_INVALID_UTF16_SURROGATE,
-                    "Substitut UTF-16 non valide d\u00E9tect\u00E9 : {0} ?" },
+            { ER_INVALID_UTF16_SURROGATE, "Substitut UTF-16 non valide d\u00E9tect\u00E9 : {0} ?" },
 
             { ER_OIERROR, "Erreur d'E/S" },
 
-            { ER_CANNOT_CREATE_URL,
-                    "Impossible de cr\u00E9er une URL pour : {0}" },
+            { ER_CANNOT_CREATE_URL, "Impossible de cr\u00E9er une URL pour : {0}" },
 
             { ER_XPATH_READOBJECT, "Dans XPath.readObject : {0}" },
 
             { ER_FUNCTION_TOKEN_NOT_FOUND, "jeton de fonction introuvable." },
 
-            { ER_CANNOT_DEAL_XPATH_TYPE,
-                    "Impossible de traiter le type XPath : {0}" },
+            { ER_CANNOT_DEAL_XPATH_TYPE, "Impossible de traiter le type XPath : {0}" },
 
             { ER_NODESET_NOT_MUTABLE, "NodeSet non mutable" },
 
             { ER_NODESETDTM_NOT_MUTABLE, "NodeSetDTM non mutable" },
 
-            { ER_VAR_NOT_RESOLVABLE,
-                    "Impossible de r\u00E9soudre la variable : {0}" },
+            { ER_VAR_NOT_RESOLVABLE, "Impossible de r\u00E9soudre la variable : {0}" },
 
             { ER_NULL_ERROR_HANDLER, "Gestionnaire d'erreurs NULL" },
 
@@ -486,25 +452,21 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { ER_STR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
                     "str() non pris en charge par XRTreeFragSelectWrapper" },
 
-            { ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS,
-                    "fsb() non pris en charge pour XStringForChars" },
+            { ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS, "fsb() non pris en charge pour XStringForChars" },
 
-            { ER_COULD_NOT_FIND_VAR,
-                    "Impossible de trouver la variable portant le nom {0}" },
+            { ER_COULD_NOT_FIND_VAR, "Impossible de trouver la variable portant le nom {0}" },
 
             { ER_XSTRINGFORCHARS_CANNOT_TAKE_STRING,
                     "XStringForChars n'accepte pas de cha\u00EEne comme argument" },
 
-            { ER_FASTSTRINGBUFFER_CANNOT_BE_NULL,
-                    "L'argument FastStringBuffer ne doit pas \u00EAtre NULL" },
+            { ER_FASTSTRINGBUFFER_CANNOT_BE_NULL, "L'argument FastStringBuffer ne doit pas \u00EAtre NULL" },
 
             { ER_TWO_OR_THREE, "2 ou 3" },
 
             { ER_VARIABLE_ACCESSED_BEFORE_BIND,
                     "L'acc\u00E8s \u00E0 la variable a pr\u00E9c\u00E9d\u00E9 la liaison de celle-ci." },
 
-            { ER_FSB_CANNOT_TAKE_STRING,
-                    "XStringForFSB n'accepte pas de cha\u00EEne comme argument." },
+            { ER_FSB_CANNOT_TAKE_STRING, "XStringForFSB n'accepte pas de cha\u00EEne comme argument." },
 
             { ER_SETTING_WALKER_ROOT_TO_NULL,
                     "\n Erreur. D\u00E9finition de la racine d'un composant d'exploration sur NULL." },
@@ -526,8 +488,7 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
 
             { ER_ONLY_ALLOWS, "{0} accepte uniquement {1} arguments" },
 
-            { ER_UNKNOWN_STEP,
-                    "Assertion du programmeur dans getNextStepPos : stepType inconnu : {0}" },
+            { ER_UNKNOWN_STEP, "Assertion du programmeur dans getNextStepPos : stepType inconnu : {0}" },
 
             // Note to translators: A relative location path is a form of XPath
             // expression.
@@ -585,8 +546,7 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             // The message indicates that syntactically such an expression was
             // expected,
             // but was not found.
-            { ER_EXPECTED_REL_PATH_PATTERN,
-                    "Un mod\u00E8le de chemin relatif \u00E9tait attendu." },
+            { ER_EXPECTED_REL_PATH_PATTERN, "Un mod\u00E8le de chemin relatif \u00E9tait attendu." },
 
             // Note to translators: The substitution text is the name of a data
             // type. The
@@ -653,11 +613,9 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             // Note to translators: The XPath expression cannot be evaluated
             // with respect
             // to this type of node.
-            { ER_WRONG_NODETYPE,
-                    "Le type de noeud de contexte n'est pas pris en charge." },
+            { ER_WRONG_NODETYPE, "Le type de noeud de contexte n'est pas pris en charge." },
 
-            { ER_XPATH_ERROR,
-                    "Erreur inconnue d\u00E9tect\u00E9e dans XPath." },
+            { ER_XPATH_ERROR, "Erreur inconnue d\u00E9tect\u00E9e dans XPath." },
 
             { ER_CANT_CONVERT_XPATHRESULTTYPE_TO_NUMBER,
                     "L''\u00E9l\u00E9ment XPathResult de l''expression XPath ''{0}'' comporte un \u00E9l\u00E9ment XPathResultType de {1} qui ne peut pas \u00EAtre converti en nombre" },
@@ -677,8 +635,7 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
 
             /** Field ER_UNSUPPORTED_RETURN_TYPE */
 
-            { ER_UNSUPPORTED_RETURN_TYPE,
-                    "Type de retour non pris en charge : {0}" },
+            { ER_UNSUPPORTED_RETURN_TYPE, "Type de retour non pris en charge : {0}" },
 
             /** Field ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL */
 
@@ -692,8 +649,7 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
 
             /** Field ER_ARG_CANNOT_BE_NULL */
 
-            { ER_ARG_CANNOT_BE_NULL,
-                    "L''argument {0} ne doit pas \u00EAtre NULL" },
+            { ER_ARG_CANNOT_BE_NULL, "L''argument {0} ne doit pas \u00EAtre NULL" },
 
             /** Field ER_OBJECT_MODEL_NULL */
 
@@ -746,8 +702,7 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { WG_LOCALE_NAME_NOT_HANDLED,
                     "le nom d'environnement local de la fonction format-number n'est pas encore pris en charge." },
 
-            { WG_PROPERTY_NOT_SUPPORTED,
-                    "Propri\u00E9t\u00E9 XSL non prise en charge : {0}" },
+            { WG_PROPERTY_NOT_SUPPORTED, "Propri\u00E9t\u00E9 XSL non prise en charge : {0}" },
 
             { WG_DONT_DO_ANYTHING_WITH_NS,
                     "Espace de noms {0} inexploitable dans la propri\u00E9t\u00E9 : {1}" },
@@ -755,19 +710,16 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { WG_SECURITY_EXCEPTION,
                     "Exception SecurityException g\u00E9n\u00E9r\u00E9e lors de la tentative d''acc\u00E8s \u00E0 la propri\u00E9t\u00E9 syst\u00E8me XSL : {0}" },
 
-            { WG_QUO_NO_LONGER_DEFINED,
-                    "L'ancienne syntaxe quo(...) n'est plus d\u00E9finie dans XPath." },
+            { WG_QUO_NO_LONGER_DEFINED, "L'ancienne syntaxe quo(...) n'est plus d\u00E9finie dans XPath." },
 
             { WG_NEED_DERIVED_OBJECT_TO_IMPLEMENT_NODETEST,
                     "XPath requiert un objet d\u00E9riv\u00E9 pour impl\u00E9menter nodeTest." },
 
             { WG_FUNCTION_TOKEN_NOT_FOUND, "jeton de fonction introuvable." },
 
-            { WG_COULDNOT_FIND_FUNCTION,
-                    "Impossible de trouver la fonction : {0}" },
+            { WG_COULDNOT_FIND_FUNCTION, "Impossible de trouver la fonction : {0}" },
 
-            { WG_CANNOT_MAKE_URL_FROM,
-                    "Impossible de cr\u00E9er l''URL \u00E0 partir de : {0}" },
+            { WG_CANNOT_MAKE_URL_FROM, "Impossible de cr\u00E9er l''URL \u00E0 partir de : {0}" },
 
             { WG_EXPAND_ENTITIES_NOT_SUPPORTED,
                     "L'option -E n'est pas prise en charge pour l'analyseur DTM" },
@@ -778,31 +730,27 @@ public class XPATHErrorResources_fr extends ListResourceBundle {
             { WG_UNSUPPORTED_ENCODING, "Encodage non pris en charge : {0}" },
 
             // Other miscellaneous text used inside the code...
-            { "ui_language", "fr" }, { "help_language", "fr" }, { "language",
-                    "fr" }, { "BAD_CODE",
-                            "Le param\u00E8tre de createMessage est hors limites" },
-            { "FORMAT_FAILED",
-                    "Exception g\u00E9n\u00E9r\u00E9e lors de l'appel de messageFormat" },
-            { "version", ">>>>>>> Version de Xalan " }, { "version2",
-                    "<<<<<<<" }, { "yes", "oui" }, { "line", "Ligne n\u00B0" },
-            { "column", "Colonne n\u00B0" }, { "xsldone",
-                    "XSLProcessor : termin\u00E9" }, { "xpath_option",
-                            "options xpath : " }, { "optionIN",
-                                    "   [-in inputXMLURL]" }, { "optionSelect",
-                                            "   [-select xpath expression]" }, {
-                                                    "optionMatch",
-                                                    "   [-match match pattern (pour les diagnostics de correspondance)]" },
-            { "optionAnyExpr",
-                    "Ou seulement une expression XPath g\u00E9n\u00E9rera un fichier dump de diagnostic" },
-            { "noParsermsg1", "Echec du processus XSL." }, { "noParsermsg2",
-                    "** Analyseur introuvable **" }, { "noParsermsg3",
-                            "V\u00E9rifiez votre variable d'environnement CLASSPATH." },
-            { "noParsermsg4",
-                    "Si vous ne disposez pas de l'analyseur XML pour Java d'IBM, vous pouvez le t\u00E9l\u00E9charger sur le site" },
-            { "noParsermsg5",
-                    "AlphaWorks d'IBM : http://www.alphaworks.ibm.com/formula/xml" },
-            { "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
-            { "three", "3" }
+            { "ui_language", "fr" }, { "help_language", "fr" }, { "language", "fr" }, { "BAD_CODE",
+                    "Le param\u00E8tre de createMessage est hors limites" }, { "FORMAT_FAILED",
+                            "Exception g\u00E9n\u00E9r\u00E9e lors de l'appel de messageFormat" }, {
+                                    "version", ">>>>>>> Version de Xalan " }, { "version2", "<<<<<<<" }, {
+                                            "yes", "oui" }, { "line", "Ligne n\u00B0" }, { "column",
+                                                    "Colonne n\u00B0" }, { "xsldone",
+                                                            "XSLProcessor : termin\u00E9" }, { "xpath_option",
+                                                                    "options xpath : " }, { "optionIN",
+                                                                            "   [-in inputXMLURL]" }, {
+                                                                                    "optionSelect",
+                                                                                    "   [-select xpath expression]" },
+            { "optionMatch", "   [-match match pattern (pour les diagnostics de correspondance)]" }, {
+                    "optionAnyExpr",
+                    "Ou seulement une expression XPath g\u00E9n\u00E9rera un fichier dump de diagnostic" }, {
+                            "noParsermsg1", "Echec du processus XSL." }, { "noParsermsg2",
+                                    "** Analyseur introuvable **" }, { "noParsermsg3",
+                                            "V\u00E9rifiez votre variable d'environnement CLASSPATH." }, {
+                                                    "noParsermsg4",
+                                                    "Si vous ne disposez pas de l'analyseur XML pour Java d'IBM, vous pouvez le t\u00E9l\u00E9charger sur le site" },
+            { "noParsermsg5", "AlphaWorks d'IBM : http://www.alphaworks.ibm.com/formula/xml" }, { "gtone",
+                    ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
 
     };
 

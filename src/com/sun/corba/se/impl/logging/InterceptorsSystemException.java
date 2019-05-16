@@ -42,14 +42,14 @@ public class InterceptorsSystemException extends LogWrapperBase {
     };
 
     public static InterceptorsSystemException get(ORB orb, String logDomain) {
-        InterceptorsSystemException wrapper = (InterceptorsSystemException) orb
-                .getLogWrapper(logDomain, "INTERCEPTORS", factory);
+        InterceptorsSystemException wrapper = (InterceptorsSystemException) orb.getLogWrapper(logDomain,
+                "INTERCEPTORS", factory);
         return wrapper;
     }
 
     public static InterceptorsSystemException get(String logDomain) {
-        InterceptorsSystemException wrapper = (InterceptorsSystemException) ORB
-                .staticGetLogWrapper(logDomain, "INTERCEPTORS", factory);
+        InterceptorsSystemException wrapper = (InterceptorsSystemException) ORB.staticGetLogWrapper(logDomain,
+                "INTERCEPTORS", factory);
         return wrapper;
     }
 
@@ -59,8 +59,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
     public static final int TYPE_OUT_OF_RANGE = SUNVMCID.value + 801;
 
-    public BAD_PARAM typeOutOfRange(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public BAD_PARAM typeOutOfRange(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_PARAM exc = new BAD_PARAM(TYPE_OUT_OF_RANGE, cs);
         if (t != null)
             exc.initCause(t);
@@ -68,8 +67,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "INTERCEPTORS.typeOutOfRange", parameters,
-                    InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.typeOutOfRange", parameters, InterceptorsSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -96,8 +95,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.nameNull", parameters,
-                    InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.nameNull", parameters, InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -149,8 +147,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
     public static final int BAD_STATE1 = SUNVMCID.value + 802;
 
-    public BAD_INV_ORDER badState1(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1) {
+    public BAD_INV_ORDER badState1(CompletionStatus cs, Throwable t, Object arg0, Object arg1) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(BAD_STATE1, cs);
         if (t != null)
             exc.initCause(t);
@@ -159,15 +156,14 @@ public class InterceptorsSystemException extends LogWrapperBase {
             Object[] parameters = new Object[2];
             parameters[0] = arg0;
             parameters[1] = arg1;
-            doLog(Level.WARNING, "INTERCEPTORS.badState1", parameters,
-                    InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.badState1", parameters, InterceptorsSystemException.class,
+                    exc);
         }
 
         return exc;
     }
 
-    public BAD_INV_ORDER badState1(CompletionStatus cs, Object arg0,
-            Object arg1) {
+    public BAD_INV_ORDER badState1(CompletionStatus cs, Object arg0, Object arg1) {
         return badState1(cs, null, arg0, arg1);
     }
 
@@ -181,8 +177,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
     public static final int BAD_STATE2 = SUNVMCID.value + 803;
 
-    public BAD_INV_ORDER badState2(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public BAD_INV_ORDER badState2(CompletionStatus cs, Throwable t, Object arg0, Object arg1, Object arg2) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(BAD_STATE2, cs);
         if (t != null)
             exc.initCause(t);
@@ -192,20 +187,18 @@ public class InterceptorsSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "INTERCEPTORS.badState2", parameters,
-                    InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.badState2", parameters, InterceptorsSystemException.class,
+                    exc);
         }
 
         return exc;
     }
 
-    public BAD_INV_ORDER badState2(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public BAD_INV_ORDER badState2(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return badState2(cs, null, arg0, arg1, arg2);
     }
 
-    public BAD_INV_ORDER badState2(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
+    public BAD_INV_ORDER badState2(Throwable t, Object arg0, Object arg1, Object arg2) {
         return badState2(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
@@ -217,20 +210,17 @@ public class InterceptorsSystemException extends LogWrapperBase {
     // COMM_FAILURE
     ///////////////////////////////////////////////////////////
 
-    public static final int IOEXCEPTION_DURING_CANCEL_REQUEST = SUNVMCID.value
-            + 801;
+    public static final int IOEXCEPTION_DURING_CANCEL_REQUEST = SUNVMCID.value + 801;
 
-    public COMM_FAILURE ioexceptionDuringCancelRequest(CompletionStatus cs,
-            Throwable t) {
-        COMM_FAILURE exc = new COMM_FAILURE(IOEXCEPTION_DURING_CANCEL_REQUEST,
-                cs);
+    public COMM_FAILURE ioexceptionDuringCancelRequest(CompletionStatus cs, Throwable t) {
+        COMM_FAILURE exc = new COMM_FAILURE(IOEXCEPTION_DURING_CANCEL_REQUEST, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.ioexceptionDuringCancelRequest",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.ioexceptionDuringCancelRequest", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -245,8 +235,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
     }
 
     public COMM_FAILURE ioexceptionDuringCancelRequest() {
-        return ioexceptionDuringCancelRequest(CompletionStatus.COMPLETED_NO,
-                null);
+        return ioexceptionDuringCancelRequest(CompletionStatus.COMPLETED_NO, null);
     }
 
     ///////////////////////////////////////////////////////////
@@ -318,8 +307,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.delegateNotClientsub",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.delegateNotClientsub", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -430,8 +419,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.exceptionInArguments",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.exceptionInArguments", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -458,8 +447,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.exceptionInExceptions",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.exceptionInExceptions", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -542,8 +531,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.servantInvalid", parameters,
-                    InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.servantInvalid", parameters, InterceptorsSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -570,8 +559,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.cantPopOnlyPicurrent",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.cantPopOnlyPicurrent", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -682,8 +671,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.exceptionUnavailable",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.exceptionUnavailable", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -787,8 +776,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
     public static final int SLOT_TABLE_INVARIANT = SUNVMCID.value + 820;
 
-    public INTERNAL slotTableInvariant(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1) {
+    public INTERNAL slotTableInvariant(CompletionStatus cs, Throwable t, Object arg0, Object arg1) {
         INTERNAL exc = new INTERNAL(SLOT_TABLE_INVARIANT, cs);
         if (t != null)
             exc.initCause(t);
@@ -804,8 +792,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
         return exc;
     }
 
-    public INTERNAL slotTableInvariant(CompletionStatus cs, Object arg0,
-            Object arg1) {
+    public INTERNAL slotTableInvariant(CompletionStatus cs, Object arg0, Object arg1) {
         return slotTableInvariant(cs, null, arg0, arg1);
     }
 
@@ -814,8 +801,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
     }
 
     public INTERNAL slotTableInvariant(Object arg0, Object arg1) {
-        return slotTableInvariant(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1);
+        return slotTableInvariant(CompletionStatus.COMPLETED_NO, null, arg0, arg1);
     }
 
     public static final int INTERCEPTOR_LIST_LOCKED = SUNVMCID.value + 821;
@@ -827,8 +813,8 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "INTERCEPTORS.interceptorListLocked",
-                    parameters, InterceptorsSystemException.class, exc);
+            doLog(Level.WARNING, "INTERCEPTORS.interceptorListLocked", parameters,
+                    InterceptorsSystemException.class, exc);
         }
 
         return exc;
@@ -912,8 +898,7 @@ public class InterceptorsSystemException extends LogWrapperBase {
 
     public static final int ORBINITINFO_INVALID = SUNVMCID.value + 801;
 
-    public OBJECT_NOT_EXIST orbinitinfoInvalid(CompletionStatus cs,
-            Throwable t) {
+    public OBJECT_NOT_EXIST orbinitinfoInvalid(CompletionStatus cs, Throwable t) {
         OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(ORBINITINFO_INVALID, cs);
         if (t != null)
             exc.initCause(t);

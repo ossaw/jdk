@@ -141,18 +141,15 @@ public class XMLSimpleType {
      * @param nonNormalizedDefaultValue
      * @param datatypeValidator
      */
-    public void setValues(short type, String name, String[] enumeration,
-            boolean list, short defaultType, String defaultValue,
-            String nonNormalizedDefaultValue,
-            DatatypeValidator datatypeValidator) {
+    public void setValues(short type, String name, String[] enumeration, boolean list, short defaultType,
+            String defaultValue, String nonNormalizedDefaultValue, DatatypeValidator datatypeValidator) {
 
         this.type = type;
         this.name = name;
         // REVISIT: Should this be a copy? -Ac
         if (enumeration != null && enumeration.length > 0) {
             this.enumeration = new String[enumeration.length];
-            System.arraycopy(enumeration, 0, this.enumeration, 0,
-                    this.enumeration.length);
+            System.arraycopy(enumeration, 0, this.enumeration, 0, this.enumeration.length);
         } else {
             this.enumeration = null;
         }
@@ -170,11 +167,9 @@ public class XMLSimpleType {
         type = simpleType.type;
         name = simpleType.name;
         // REVISIT: Should this be a copy? -Ac
-        if (simpleType.enumeration != null
-                && simpleType.enumeration.length > 0) {
+        if (simpleType.enumeration != null && simpleType.enumeration.length > 0) {
             enumeration = new String[simpleType.enumeration.length];
-            System.arraycopy(simpleType.enumeration, 0, enumeration, 0,
-                    enumeration.length);
+            System.arraycopy(simpleType.enumeration, 0, enumeration, 0, enumeration.length);
         } else {
             enumeration = null;
         }

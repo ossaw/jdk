@@ -30,9 +30,9 @@ public class AsyncBoxView extends View {
      * Construct a box view that does asynchronous layout.
      *
      * @param elem
-     *             the element of the model to represent
+     *        the element of the model to represent
      * @param axis
-     *             the axis to tile along. This can be either X_AXIS or Y_AXIS.
+     *        the axis to tile along. This can be either X_AXIS or Y_AXIS.
      */
     public AsyncBoxView(Element elem, int axis) {
         super(elem);
@@ -71,7 +71,7 @@ public class AsyncBoxView extends View {
      * Set the top part of the margin around the view.
      *
      * @param i
-     *          the value of the inset
+     *        the value of the inset
      */
     public void setTopInset(float i) {
         topInset = i;
@@ -88,7 +88,7 @@ public class AsyncBoxView extends View {
      * Set the bottom part of the margin around the view.
      *
      * @param i
-     *          the value of the inset
+     *        the value of the inset
      */
     public void setBottomInset(float i) {
         bottomInset = i;
@@ -105,7 +105,7 @@ public class AsyncBoxView extends View {
      * Set the left part of the margin around the view.
      *
      * @param i
-     *          the value of the inset
+     *        the value of the inset
      */
     public void setLeftInset(float i) {
         leftInset = i;
@@ -122,7 +122,7 @@ public class AsyncBoxView extends View {
      * Set the right part of the margin around the view.
      *
      * @param i
-     *          the value of the inset
+     *        the value of the inset
      */
     public void setRightInset(float i) {
         rightInset = i;
@@ -132,14 +132,13 @@ public class AsyncBoxView extends View {
      * Fetch the span along an axis that is taken up by the insets.
      *
      * @param axis
-     *             the axis to determine the total insets along, either X_AXIS
-     *             or
-     *             Y_AXIS.
+     *        the axis to determine the total insets along, either X_AXIS
+     *        or
+     *        Y_AXIS.
      * @since 1.4
      */
     protected float getInsetSpan(int axis) {
-        float margin = (axis == X_AXIS) ? getLeftInset() + getRightInset()
-                : getTopInset() + getBottomInset();
+        float margin = (axis == X_AXIS) ? getLeftInset() + getRightInset() : getTopInset() + getBottomInset();
         return margin;
     }
 
@@ -173,8 +172,8 @@ public class AsyncBoxView extends View {
      * given index.
      *
      * @param index
-     *              the child index. This should be a value &gt;= 0 and &lt;
-     *              getViewCount().
+     *        the child index. This should be a value &gt;= 0 and &lt;
+     *        getViewCount().
      */
     protected ChildState getChildState(int index) {
         synchronized (stats) {
@@ -213,8 +212,7 @@ public class AsyncBoxView extends View {
      * axis is not estimated, it is updated by the given delta to reflect the
      * incremental change. The delta is ignored if the major span is estimated.
      */
-    protected synchronized void majorRequirementChange(ChildState cs,
-            float delta) {
+    protected synchronized void majorRequirementChange(ChildState cs, float delta) {
         if (estimatedMajorSpan == false) {
             majorSpan += delta;
         }
@@ -323,11 +321,11 @@ public class AsyncBoxView extends View {
      * anything).
      *
      * @param offset
-     *               the starting offset into the child views &gt;= 0
+     *        the starting offset into the child views &gt;= 0
      * @param length
-     *               the number of existing views to replace &gt;= 0
+     *        the number of existing views to replace &gt;= 0
      * @param views
-     *               the child views to insert
+     *        the child views to insert
      */
     public void replace(int offset, int length, View[] views) {
         synchronized (stats) {
@@ -370,7 +368,7 @@ public class AsyncBoxView extends View {
      * preferenceChanged while we are initializing.
      *
      * @param f
-     *          the view factory
+     *        the view factory
      * @see #setParent
      */
     protected void loadChildren(ViewFactory f) {
@@ -391,12 +389,11 @@ public class AsyncBoxView extends View {
      * child view for each child element.
      *
      * @param pos
-     *            the position &gt;= 0
+     *        the position &gt;= 0
      * @return index of the view representing the given position, or -1 if no
      *         view represents that position
      */
-    protected synchronized int getViewIndexAtPosition(int pos,
-            Position.Bias b) {
+    protected synchronized int getViewIndexAtPosition(int pos, Position.Bias b) {
         boolean isBackward = (b == Position.Bias.Backward);
         pos = (isBackward) ? Math.max(0, pos - 1) : pos;
         Element elem = getElement();
@@ -409,18 +406,17 @@ public class AsyncBoxView extends View {
      * that offsets of the children will be correctly computed.
      *
      * @param ec
-     *           changes to the element this view is responsible for (may be
-     *           null if there were no changes).
+     *        changes to the element this view is responsible for (may be
+     *        null if there were no changes).
      * @param e
-     *           the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *           the current allocation of the view
+     *        the current allocation of the view
      * @see #insertUpdate
      * @see #removeUpdate
      * @see #changedUpdate
      */
-    protected void updateLayout(DocumentEvent.ElementChange ec, DocumentEvent e,
-            Shape a) {
+    protected void updateLayout(DocumentEvent.ElementChange ec, DocumentEvent e, Shape a) {
         if (ec != null) {
             // the newly inserted children don't have a valid
             // offset so the child locator needs to be messaged
@@ -445,7 +441,7 @@ public class AsyncBoxView extends View {
      * <code>loadChildren</code> method will not be called.
      *
      * @param parent
-     *               the parent of the view, null if none
+     *        the parent of the view, null if none
      */
     public void setParent(View parent) {
         super.setParent(parent);
@@ -462,15 +458,14 @@ public class AsyncBoxView extends View {
      * multiple threads via the children.
      *
      * @param child
-     *               the child view
+     *        the child view
      * @param width
-     *               true if the width preference has changed
+     *        true if the width preference has changed
      * @param height
-     *               true if the height preference has changed
+     *        true if the height preference has changed
      * @see javax.swing.JComponent#revalidate
      */
-    public synchronized void preferenceChanged(View child, boolean width,
-            boolean height) {
+    public synchronized void preferenceChanged(View child, boolean width, boolean height) {
         if (child == null) {
             getParent().preferenceChanged(this, width, height);
         } else {
@@ -483,8 +478,7 @@ public class AsyncBoxView extends View {
                     return;
                 }
             }
-            int index = getViewIndex(child.getStartOffset(),
-                    Position.Bias.Forward);
+            int index = getViewIndex(child.getStartOffset(), Position.Bias.Forward);
             ChildState cs = getChildState(index);
             cs.preferenceChanged(width, height);
             LayoutQueue q = getLayoutQueue();
@@ -503,9 +497,9 @@ public class AsyncBoxView extends View {
      * minor span changes.
      *
      * @param width
-     *               the width &gt;= 0
+     *        the width &gt;= 0
      * @param height
-     *               the height &gt;= 0
+     *        the height &gt;= 0
      */
     public void setSize(float width, float height) {
         setSpanOnAxis(X_AXIS, width);
@@ -516,8 +510,8 @@ public class AsyncBoxView extends View {
      * Retrieves the size of the view along an axis.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the current span of the view along the given axis, >= 0
      */
     float getSpanOnAxis(int axis) {
@@ -534,10 +528,10 @@ public class AsyncBoxView extends View {
      * queued to resize the children if the minor span changes.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @param span
-     *             the span to layout to >= 0
+     *        the span to layout to >= 0
      */
     void setSpanOnAxis(int axis, float span) {
         float margin = getInsetSpan(axis);
@@ -580,9 +574,9 @@ public class AsyncBoxView extends View {
      * time if not ready (since paint requests can be rescheduled).
      *
      * @param g
-     *              the rendering surface to use
+     *        the rendering surface to use
      * @param alloc
-     *              the allocated region to render into
+     *        the allocated region to render into
      * @see View#paint
      */
     public void paint(Graphics g, Shape alloc) {
@@ -596,13 +590,13 @@ public class AsyncBoxView extends View {
      * Determines the preferred span for this view along an axis.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into &gt;= 0.
      *         Typically the view is told to render into the span that is
      *         returned, although there is no guarantee. The parent may choose
      *         to resize or break the view.
      * @exception IllegalArgumentException
-     *                                     for an invalid axis type
+     *            for an invalid axis type
      */
     public float getPreferredSpan(int axis) {
         float margin = getInsetSpan(axis);
@@ -622,13 +616,13 @@ public class AsyncBoxView extends View {
      * Determines the minimum span for this view along an axis.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into &gt;= 0.
      *         Typically the view is told to render into the span that is
      *         returned, although there is no guarantee. The parent may choose
      *         to resize or break the view.
      * @exception IllegalArgumentException
-     *                                     for an invalid axis type
+     *            for an invalid axis type
      */
     public float getMinimumSpan(int axis) {
         if (axis == this.axis) {
@@ -651,13 +645,13 @@ public class AsyncBoxView extends View {
      * Determines the maximum span for this view along an axis.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into &gt;= 0.
      *         Typically the view is told to render into the span that is
      *         returned, although there is no guarantee. The parent may choose
      *         to resize or break the view.
      * @exception IllegalArgumentException
-     *                                     for an invalid axis type
+     *            for an invalid axis type
      */
     public float getMaximumSpan(int axis) {
         if (axis == this.axis) {
@@ -684,8 +678,8 @@ public class AsyncBoxView extends View {
      * returns null.
      *
      * @param n
-     *          the number of the view to get, &gt;= 0 &amp;&amp; &lt;
-     *          getViewCount()
+     *        the number of the view to get, &gt;= 0 &amp;&amp; &lt;
+     *        getViewCount()
      * @return the view
      */
     public View getView(int n) {
@@ -703,10 +697,10 @@ public class AsyncBoxView extends View {
      * views.
      *
      * @param index
-     *              the index of the child, &gt;= 0 &amp;&amp; &lt;
-     *              getViewCount()
+     *        the index of the child, &gt;= 0 &amp;&amp; &lt;
+     *        getViewCount()
      * @param a
-     *              the allocation to this view.
+     *        the allocation to this view.
      * @return the allocation to the child
      */
     public Shape getChildAllocation(int index, Shape a) {
@@ -720,7 +714,7 @@ public class AsyncBoxView extends View {
      * -1 to indicate there is no valid child index for any position.
      *
      * @param pos
-     *            the position &gt;= 0
+     *        the position &gt;= 0
      * @return index of the view representing the given position, or -1 if no
      *         view represents that position
      * @since 1.3
@@ -734,24 +728,23 @@ public class AsyncBoxView extends View {
      * coordinate space of the view mapped to it.
      *
      * @param pos
-     *            the position to convert &gt;= 0
+     *        the position to convert &gt;= 0
      * @param a
-     *            the allocated region to render into
+     *        the allocated region to render into
      * @param b
-     *            the bias toward the previous character or the next character
-     *            represented by the offset, in case the position is a boundary
-     *            of two views.
+     *        the bias toward the previous character or the next character
+     *        represented by the offset, in case the position is a boundary
+     *        of two views.
      * @return the bounding box of the given position is returned
      * @exception BadLocationException
-     *                                     if the given position does not
-     *                                     represent a valid location
-     *                                     in the associated document
+     *            if the given position does not
+     *            represent a valid location
+     *            in the associated document
      * @exception IllegalArgumentException
-     *                                     for an invalid bias argument
+     *            for an invalid bias argument
      * @see View#viewToModel
      */
-    public Shape modelToView(int pos, Shape a, Position.Bias b)
-            throws BadLocationException {
+    public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
         int index = getViewIndex(pos, b);
         Shape ca = locator.getChildAllocation(index, a);
 
@@ -779,18 +772,17 @@ public class AsyncBoxView extends View {
      * to avoid interaction with the layout thread.
      *
      * @param x
-     *          the X coordinate &gt;= 0
+     *        the X coordinate &gt;= 0
      * @param y
-     *          the Y coordinate &gt;= 0
+     *        the Y coordinate &gt;= 0
      * @param a
-     *          the allocated region to render into
+     *        the allocated region to render into
      * @return the location within the model that best represents the given
      *         point in the view &gt;= 0. The biasReturn argument will be filled
      *         in to indicate that the point given is closer to the next
      *         character in the model or the previous character in the model.
      */
-    public int viewToModel(float x, float y, Shape a,
-            Position.Bias[] biasReturn) {
+    public int viewToModel(float x, float y, Shape a, Position.Bias[] biasReturn) {
         int pos; // return position
         int index; // child index to forward to
         Shape ca; // child allocation
@@ -826,40 +818,38 @@ public class AsyncBoxView extends View {
      * the {@code BadLocationException} will be thrown.
      *
      * @param pos
-     *                  the position to convert
+     *        the position to convert
      * @param a
-     *                  the allocated region to render into
+     *        the allocated region to render into
      * @param direction
-     *                  the direction from the current position that can be
-     *                  thought of
-     *                  as the arrow keys typically found on a keyboard; this
-     *                  may be
-     *                  one of the following:
-     *                  <ul style="list-style-type:none">
-     *                  <li><code>SwingConstants.WEST</code></li>
-     *                  <li><code>SwingConstants.EAST</code></li>
-     *                  <li><code>SwingConstants.NORTH</code></li>
-     *                  <li><code>SwingConstants.SOUTH</code></li>
-     *                  </ul>
+     *        the direction from the current position that can be
+     *        thought of
+     *        as the arrow keys typically found on a keyboard; this
+     *        may be
+     *        one of the following:
+     *        <ul style="list-style-type:none">
+     *        <li><code>SwingConstants.WEST</code></li>
+     *        <li><code>SwingConstants.EAST</code></li>
+     *        <li><code>SwingConstants.NORTH</code></li>
+     *        <li><code>SwingConstants.SOUTH</code></li>
+     *        </ul>
      * @param biasRet
-     *                  an array contain the bias that was checked
+     *        an array contain the bias that was checked
      * @return the location within the model that best represents the next
      *         location visual position
      * @exception BadLocationException
-     *                                     the given position is not a valid
-     *                                     position within the
-     *                                     document
+     *            the given position is not a valid
+     *            position within the
+     *            document
      * @exception IllegalArgumentException
-     *                                     if <code>direction</code> is invalid
+     *            if <code>direction</code> is invalid
      */
-    public int getNextVisualPositionFrom(int pos, Position.Bias b, Shape a,
-            int direction, Position.Bias[] biasRet)
-            throws BadLocationException {
+    public int getNextVisualPositionFrom(int pos, Position.Bias b, Shape a, int direction,
+            Position.Bias[] biasRet) throws BadLocationException {
         if (pos < -1) {
             throw new BadLocationException("invalid position", pos);
         }
-        return Utilities.getNextVisualPositionFrom(this, pos, b, a, direction,
-                biasRet);
+        return Utilities.getNextVisualPositionFrom(this, pos, b, a, direction, biasRet);
     }
 
     // --- variables -----------------------------------------
@@ -945,8 +935,7 @@ public class AsyncBoxView extends View {
         public synchronized void childChanged(ChildState cs) {
             if (lastValidOffset == null) {
                 lastValidOffset = cs;
-            } else if (cs.getChildView().getStartOffset() < lastValidOffset
-                    .getChildView().getStartOffset()) {
+            } else if (cs.getChildView().getStartOffset() < lastValidOffset.getChildView().getStartOffset()) {
                 lastValidOffset = cs;
             }
         }
@@ -956,8 +945,7 @@ public class AsyncBoxView extends View {
          */
         public synchronized void paintChildren(Graphics g) {
             Rectangle clip = g.getClipBounds();
-            float targetOffset = (axis == X_AXIS) ? clip.x - lastAlloc.x
-                    : clip.y - lastAlloc.y;
+            float targetOffset = (axis == X_AXIS) ? clip.x - lastAlloc.x : clip.y - lastAlloc.y;
             int index = getViewIndexAtVisualOffset(targetOffset);
             int n = getViewCount();
             float offs = getChildState(index).getMajorOffset();
@@ -991,8 +979,7 @@ public class AsyncBoxView extends View {
             if (lastValidOffset == null) {
                 lastValidOffset = getChildState(0);
             }
-            if (cs.getChildView().getStartOffset() > lastValidOffset
-                    .getChildView().getStartOffset()) {
+            if (cs.getChildView().getStartOffset() > lastValidOffset.getChildView().getStartOffset()) {
                 // offsets need to be updated
                 updateChildOffsetsToIndex(index);
             }
@@ -1009,17 +996,16 @@ public class AsyncBoxView extends View {
          * block.
          *
          * @param x
-         *          the X coordinate &gt;= 0
+         *        the X coordinate &gt;= 0
          * @param y
-         *          the Y coordinate &gt;= 0
+         *        the Y coordinate &gt;= 0
          * @param a
-         *          the allocation to the View
+         *        the allocation to the View
          * @return the nearest child index
          */
         public int getViewIndexAtPoint(float x, float y, Shape a) {
             setAllocation(a);
-            float targetOffset = (axis == X_AXIS) ? x - lastAlloc.x
-                    : y - lastAlloc.y;
+            float targetOffset = (axis == X_AXIS) ? x - lastAlloc.x : y - lastAlloc.y;
             int index = getViewIndexAtVisualOffset(targetOffset);
             return index;
         }
@@ -1149,8 +1135,7 @@ public class AsyncBoxView extends View {
         }
 
         boolean intersectsClip(Shape childAlloc, Rectangle clip) {
-            Rectangle cs = (childAlloc instanceof Rectangle)
-                    ? (Rectangle) childAlloc
+            Rectangle cs = (childAlloc instanceof Rectangle) ? (Rectangle) childAlloc
                     : childAlloc.getBounds();
             if (cs.intersects(clip)) {
                 // Make sure that lastAlloc also contains childAlloc,
@@ -1359,9 +1344,9 @@ public class AsyncBoxView extends View {
          * Mark preferences changed for this child.
          *
          * @param width
-         *               true if the width preference has changed
+         *        true if the width preference has changed
          * @param height
-         *               true if the height preference has changed
+         *        true if the height preference has changed
          * @see javax.swing.JComponent#revalidate
          */
         public void preferenceChanged(boolean width, boolean height) {

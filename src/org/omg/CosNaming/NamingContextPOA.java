@@ -13,14 +13,12 @@ package org.omg.CosNaming;
  * each name is unique. Different names can be bound to an object in the same or
  * different contexts at the same time.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
  */
-public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
-        implements org.omg.CosNaming.NamingContextOperations,
-        org.omg.CORBA.portable.InvokeHandler {
+public abstract class NamingContextPOA extends org.omg.PortableServer.Servant implements
+        org.omg.CosNaming.NamingContextOperations, org.omg.CORBA.portable.InvokeHandler {
 
     // Constructors
 
@@ -38,14 +36,12 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
         _methods.put("destroy", new java.lang.Integer(9));
     }
 
-    public org.omg.CORBA.portable.OutputStream _invoke(String $method,
-            org.omg.CORBA.portable.InputStream in,
+    public org.omg.CORBA.portable.OutputStream _invoke(String $method, org.omg.CORBA.portable.InputStream in,
             org.omg.CORBA.portable.ResponseHandler $rh) {
         org.omg.CORBA.portable.OutputStream out = null;
         java.lang.Integer __method = (java.lang.Integer) _methods.get($method);
         if (__method == null)
-            throw new org.omg.CORBA.BAD_OPERATION(0,
-                    org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+            throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
 
         switch (__method.intValue()) {
 
@@ -56,27 +52,22 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * resolution when compound names are passed to be resolved.
              * 
              * @param n
-             *            Name of the object
-             *            <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @param obj
-             *            The Object to bind with the given name
-             *            <p>
-             * 
+             *        The Object to bind with the given name
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
-             *
              * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
              *            Indicates an object is already bound to the specified
              *            name.
@@ -85,28 +76,22 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 0: // CosNaming/NamingContext/bind
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
-                    org.omg.CORBA.Object obj = org.omg.CORBA.ObjectHelper.read(
-                            in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
+                    org.omg.CORBA.Object obj = org.omg.CORBA.ObjectHelper.read(in);
                     this.bind(n, obj);
                     out = $rh.createReply();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.AlreadyBound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.write(out, $ex);
                 }
                 break;
             }
@@ -118,27 +103,22 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * compound names are passed to be resolved.
              * 
              * @param n
-             *           Name of the object
-             *           <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @param nc
-             *           NamingContect object to bind with the given name
-             *           <p>
-             * 
+             *        NamingContect object to bind with the given name
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
-             *
              * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
              *            Indicates an object is already bound to the specified
              *            name.
@@ -147,28 +127,22 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 1: // CosNaming/NamingContext/bind_context
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
-                    org.omg.CosNaming.NamingContext nc = org.omg.CosNaming.NamingContextHelper
-                            .read(in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
+                    org.omg.CosNaming.NamingContext nc = org.omg.CosNaming.NamingContextHelper.read(in);
                     this.bind_context(n, nc);
                     out = $rh.createReply();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.AlreadyBound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.write(out, $ex);
                 }
                 break;
             }
@@ -182,23 +156,19 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * compound names are passed to be resolved.
              * 
              * @param n
-             *            Name of the object
-             *            <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @param obj
-             *            The Object to rebind with the given name
-             *            <p>
-             * 
+             *        The Object to rebind with the given name
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
@@ -206,24 +176,19 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 2: // CosNaming/NamingContext/rebind
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
-                    org.omg.CORBA.Object obj = org.omg.CORBA.ObjectHelper.read(
-                            in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
+                    org.omg.CORBA.Object obj = org.omg.CORBA.ObjectHelper.read(in);
                     this.rebind(n, obj);
                     out = $rh.createReply();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 }
                 break;
             }
@@ -236,23 +201,19 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * resolution when compound names are passed to be resolved.
              * 
              * @param n
-             *           Name of the object
-             *           <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @param nc
-             *           NamingContect object to rebind with the given name
-             *           <p>
-             * 
+             *        NamingContect object to rebind with the given name
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
@@ -260,24 +221,19 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 3: // CosNaming/NamingContext/rebind_context
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
-                    org.omg.CosNaming.NamingContext nc = org.omg.CosNaming.NamingContextHelper
-                            .read(in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
+                    org.omg.CosNaming.NamingContext nc = org.omg.CosNaming.NamingContextHelper.read(in);
                     this.rebind_context(n, nc);
                     out = $rh.createReply();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 }
                 break;
             }
@@ -293,19 +249,16 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * from Object to a more specialized interface.
              * 
              * @param n
-             *          Name of the object
-             *          <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
@@ -313,24 +266,20 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 4: // CosNaming/NamingContext/resolve
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
                     org.omg.CORBA.Object $result = null;
                     $result = this.resolve(n);
                     out = $rh.createReply();
                     org.omg.CORBA.ObjectHelper.write(out, $result);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 }
                 break;
             }
@@ -339,19 +288,16 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * The unbind operation removes a name binding from a context.
              * 
              * @param n
-             *          Name of the object
-             *          <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
@@ -359,22 +305,18 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 5: // CosNaming/NamingContext/unbind
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
                     this.unbind(n);
                     out = $rh.createReply();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 }
                 break;
             }
@@ -383,7 +325,6 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * The list operation allows a client to iterate through a set of
              * bindings in a naming context.
              * <p>
-             * 
              * The list operation returns at most the requested number of
              * bindings
              * in BindingList bl.
@@ -396,16 +337,14 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * </ul>
              * 
              * @param how_many
-             *                 the maximum number of bindings to return
-             *                 <p>
-             * 
+             *        the maximum number of bindings to return
+             *        <p>
              * @param bl
-             *                 the returned list of bindings
-             *                 <p>
-             * 
+             *        the returned list of bindings
+             *        <p>
              * @param bi
-             *                 the returned binding iterator
-             *                 <p>
+             *        the returned binding iterator
+             *        <p>
              */
             case 6: // CosNaming/NamingContext/list
             {
@@ -444,24 +383,20 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
              * argument excluding the last component).
              * 
              * @param n
-             *          Name of the object
-             *          <p>
-             * 
+             *        Name of the object
+             *        <p>
              * @exception org.omg.CosNaming.NamingContextPackage.NotFound
              *            Indicates the name does not identify a binding.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
              *            Indicates an object is already bound to the specified
              *            name.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
              *            Indicates that the implementation has given up for
              *            some reason. The client, however, may be able to
              *            continue the operation at the returned naming context.
              *            <p>
-             * 
              * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
              *            Indicates that the name is invalid.
              *            <p>
@@ -469,28 +404,23 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
             case 8: // CosNaming/NamingContext/bind_new_context
             {
                 try {
-                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper
-                            .read(in);
+                    org.omg.CosNaming.NameComponent n[] = org.omg.CosNaming.NameHelper.read(in);
                     org.omg.CosNaming.NamingContext $result = null;
                     $result = this.bind_new_context(n);
                     out = $rh.createReply();
                     org.omg.CosNaming.NamingContextHelper.write(out, $result);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.AlreadyBound $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.write(out, $ex);
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .write(out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.write(out, $ex);
                 }
                 break;
             }
@@ -510,26 +440,22 @@ public abstract class NamingContextPOA extends org.omg.PortableServer.Servant
                     out = $rh.createReply();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotEmpty $ex) {
                     out = $rh.createExceptionReply();
-                    org.omg.CosNaming.NamingContextPackage.NotEmptyHelper.write(
-                            out, $ex);
+                    org.omg.CosNaming.NamingContextPackage.NotEmptyHelper.write(out, $ex);
                 }
                 break;
             }
 
             default:
-                throw new org.omg.CORBA.BAD_OPERATION(0,
-                        org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+                throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
 
         return out;
     } // _invoke
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/CosNaming/NamingContext:1.0" };
+    private static String[] __ids = { "IDL:omg.org/CosNaming/NamingContext:1.0" };
 
-    public String[] _all_interfaces(org.omg.PortableServer.POA poa,
-            byte[] objectId) {
+    public String[] _all_interfaces(org.omg.PortableServer.POA poa, byte[] objectId) {
         return (String[]) __ids.clone();
     }
 

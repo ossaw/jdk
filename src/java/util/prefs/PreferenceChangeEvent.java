@@ -11,7 +11,6 @@ import java.io.NotSerializableException;
  * An event emitted by a <tt>Preferences</tt> node to indicate that a preference
  * has been added, removed or has had its value changed.
  * <p>
- *
  * Note, that although PreferenceChangeEvent inherits Serializable interface
  * from EventObject, it is not intended to be Serializable. Appropriate
  * serialization methods are implemented to throw NotSerializableException.
@@ -43,15 +42,14 @@ public class PreferenceChangeEvent extends java.util.EventObject {
      * Constructs a new <code>PreferenceChangeEvent</code> instance.
      *
      * @param node
-     *                 The Preferences node that emitted the event.
+     *        The Preferences node that emitted the event.
      * @param key
-     *                 The key of the preference that was changed.
+     *        The key of the preference that was changed.
      * @param newValue
-     *                 The new value of the preference, or <tt>null</tt> if the
-     *                 preference is being removed.
+     *        The new value of the preference, or <tt>null</tt> if the
+     *        preference is being removed.
      */
-    public PreferenceChangeEvent(Preferences node, String key,
-            String newValue) {
+    public PreferenceChangeEvent(Preferences node, String key, String newValue) {
         super(node);
         this.key = key;
         this.newValue = newValue;
@@ -89,8 +87,7 @@ public class PreferenceChangeEvent extends java.util.EventObject {
      * Throws NotSerializableException, since NodeChangeEvent objects are not
      * intended to be serializable.
      */
-    private void writeObject(java.io.ObjectOutputStream out)
-            throws NotSerializableException {
+    private void writeObject(java.io.ObjectOutputStream out) throws NotSerializableException {
         throw new NotSerializableException("Not serializable.");
     }
 
@@ -98,8 +95,7 @@ public class PreferenceChangeEvent extends java.util.EventObject {
      * Throws NotSerializableException, since PreferenceChangeEvent objects are
      * not intended to be serializable.
      */
-    private void readObject(java.io.ObjectInputStream in)
-            throws NotSerializableException {
+    private void readObject(java.io.ObjectInputStream in) throws NotSerializableException {
         throw new NotSerializableException("Not serializable.");
     }
 

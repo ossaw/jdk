@@ -40,14 +40,13 @@ public class CharArrayWriter extends Writer {
      * Creates a new CharArrayWriter with the specified initial size.
      *
      * @param initialSize
-     *                    an int specifying the initial buffer size.
+     *        an int specifying the initial buffer size.
      * @exception IllegalArgumentException
-     *                                     if initialSize is negative
+     *            if initialSize is negative
      */
     public CharArrayWriter(int initialSize) {
         if (initialSize < 0) {
-            throw new IllegalArgumentException("Negative initial size: "
-                    + initialSize);
+            throw new IllegalArgumentException("Negative initial size: " + initialSize);
         }
         buf = new char[initialSize];
     }
@@ -70,15 +69,14 @@ public class CharArrayWriter extends Writer {
      * Writes characters to the buffer.
      * 
      * @param c
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset in the data
+     *        the start offset in the data
      * @param len
-     *            the number of chars that are written
+     *        the number of chars that are written
      */
     public void write(char c[], int off, int len) {
-        if ((off < 0) || (off > c.length) || (len < 0) || ((off
-                + len) > c.length) || ((off + len) < 0)) {
+        if ((off < 0) || (off > c.length) || (len < 0) || ((off + len) > c.length) || ((off + len) < 0)) {
             throw new IndexOutOfBoundsException();
         } else if (len == 0) {
             return;
@@ -97,11 +95,11 @@ public class CharArrayWriter extends Writer {
      * Write a portion of a string to the buffer.
      * 
      * @param str
-     *            String to be written from
+     *        String to be written from
      * @param off
-     *            Offset from which to start reading characters
+     *        Offset from which to start reading characters
      * @param len
-     *            Number of characters to be written
+     *        Number of characters to be written
      */
     public void write(String str, int off, int len) {
         synchronized (lock) {
@@ -118,9 +116,9 @@ public class CharArrayWriter extends Writer {
      * Writes the contents of the buffer to another character stream.
      *
      * @param out
-     *            the output stream to write to
+     *        the output stream to write to
      * @throws IOException
-     *                     If an I/O error occurs.
+     *         If an I/O error occurs.
      */
     public void writeTo(Writer out) throws IOException {
         synchronized (lock) {
@@ -130,7 +128,6 @@ public class CharArrayWriter extends Writer {
 
     /**
      * Appends the specified character sequence to this writer.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.append(csq)</tt> behaves
      * in exactly the same way as the invocation
@@ -138,7 +135,6 @@ public class CharArrayWriter extends Writer {
      * <pre>
      * out.write(csq.toString())
      * </pre>
-     *
      * <p>
      * Depending on the specification of <tt>toString</tt> for the character
      * sequence <tt>csq</tt>, the entire sequence may not be appended. For
@@ -147,12 +143,10 @@ public class CharArrayWriter extends Writer {
      * position and limit.
      *
      * @param csq
-     *            The character sequence to append. If <tt>csq</tt> is
-     *            <tt>null</tt>, then the four characters <tt>"null"</tt> are
-     *            appended to this writer.
-     *
+     *        The character sequence to append. If <tt>csq</tt> is
+     *        <tt>null</tt>, then the four characters <tt>"null"</tt> are
+     *        appended to this writer.
      * @return This writer
-     *
      * @since 1.5
      */
     public CharArrayWriter append(CharSequence csq) {
@@ -163,7 +157,6 @@ public class CharArrayWriter extends Writer {
 
     /**
      * Appends a subsequence of the specified character sequence to this writer.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.append(csq, start,
      * end)</tt> when <tt>csq</tt> is not <tt>null</tt>, behaves in exactly the
@@ -174,40 +167,33 @@ public class CharArrayWriter extends Writer {
      * </pre>
      *
      * @param csq
-     *              The character sequence from which a subsequence will be
-     *              appended. If <tt>csq</tt> is <tt>null</tt>, then characters
-     *              will be appended as if <tt>csq</tt> contained the four
-     *              characters <tt>"null"</tt>.
-     *
+     *        The character sequence from which a subsequence will be
+     *        appended. If <tt>csq</tt> is <tt>null</tt>, then characters
+     *        will be appended as if <tt>csq</tt> contained the four
+     *        characters <tt>"null"</tt>.
      * @param start
-     *              The index of the first character in the subsequence
-     *
+     *        The index of the first character in the subsequence
      * @param end
-     *              The index of the character following the last character in
-     *              the
-     *              subsequence
-     *
+     *        The index of the character following the last character in
+     *        the
+     *        subsequence
      * @return This writer
-     *
      * @throws IndexOutOfBoundsException
-     *                                   If <tt>start</tt> or <tt>end</tt> are
-     *                                   negative,
-     *                                   <tt>start</tt> is greater than
-     *                                   <tt>end</tt>, or <tt>end</tt>
-     *                                   is greater than <tt>csq.length()</tt>
-     *
+     *         If <tt>start</tt> or <tt>end</tt> are
+     *         negative,
+     *         <tt>start</tt> is greater than
+     *         <tt>end</tt>, or <tt>end</tt>
+     *         is greater than <tt>csq.length()</tt>
      * @since 1.5
      */
     public CharArrayWriter append(CharSequence csq, int start, int end) {
-        String s = (csq == null ? "null" : csq).subSequence(start, end)
-                .toString();
+        String s = (csq == null ? "null" : csq).subSequence(start, end).toString();
         write(s, 0, s.length());
         return this;
     }
 
     /**
      * Appends the specified character to this writer.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.append(c)</tt> behaves
      * in exactly the same way as the invocation
@@ -217,10 +203,8 @@ public class CharArrayWriter extends Writer {
      * </pre>
      *
      * @param c
-     *          The 16-bit character to append
-     *
+     *        The 16-bit character to append
      * @return This writer
-     *
      * @since 1.5
      */
     public CharArrayWriter append(char c) {

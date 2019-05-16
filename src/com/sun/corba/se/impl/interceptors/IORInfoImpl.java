@@ -43,8 +43,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * IORInfoImpl is the implementation of the IORInfo class, as described in
  * orbos/99-12-02, section 7.
  */
-public final class IORInfoImpl extends LocalObject implements IORInfo,
-        IORInfoExt {
+public final class IORInfoImpl extends LocalObject implements IORInfo, IORInfoExt {
     // State values that determine which methods are allowed.
     // get_effective_policy, manager_id, and adapter_state are valid unless
     // STATE_DONE
@@ -77,10 +76,8 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
     IORInfoImpl(ObjectAdapter adapter) {
         this.orb = adapter.getORB();
 
-        orbutilWrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
-        wrapper = InterceptorsSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        orbutilWrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+        wrapper = InterceptorsSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         omgWrapper = OMGSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
 
         this.adapter = adapter;
@@ -98,8 +95,8 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
      * operation will raise INV_POLICY with a standard minor code of 2.
      *
      * @param type
-     *             The CORBA::PolicyType specifying the type of policy to
-     *             return.
+     *        The CORBA::PolicyType specifying the type of policy to
+     *        return.
      * @return The effective CORBA::Policy object of the requested type. If the
      *         given policy type is known, but no policy of that tpye is in
      *         effect, then this operation will return a nil object reference.
@@ -119,15 +116,14 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
      * Any number of components may exist with the same component ID.
      *
      * @param tagged_component
-     *                         The IOP::TaggedComponent to add
+     *        The IOP::TaggedComponent to add
      */
     public void add_ior_component(TaggedComponent tagged_component) {
         checkState(STATE_INITIAL);
 
         if (tagged_component == null)
             nullParam();
-        addIORComponentToProfileInternal(tagged_component, adapter
-                .getIORTemplate().iterator());
+        addIORComponentToProfileInternal(tagged_component, adapter.getIORTemplate().iterator());
     }
 
     /**
@@ -143,35 +139,32 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
      * minor code of TBD_BP + 3.
      *
      * @param tagged_component
-     *                         The IOP::TaggedComponent to add.
+     *        The IOP::TaggedComponent to add.
      * @param profile_id
-     *                         The IOP::ProfileId tof the profile to which this
-     *                         component
-     *                         will be added.
+     *        The IOP::ProfileId tof the profile to which this
+     *        component
+     *        will be added.
      */
-    public void add_ior_component_to_profile(TaggedComponent tagged_component,
-            int profile_id) {
+    public void add_ior_component_to_profile(TaggedComponent tagged_component, int profile_id) {
         checkState(STATE_INITIAL);
 
         if (tagged_component == null)
             nullParam();
-        addIORComponentToProfileInternal(tagged_component, adapter
-                .getIORTemplate().iteratorById(profile_id));
+        addIORComponentToProfileInternal(tagged_component, adapter.getIORTemplate().iteratorById(profile_id));
     }
 
     /**
      * @param type
-     *             The type of the server port (see connection.ORBSocketFactory
-     *             for discussion).
+     *        The type of the server port (see connection.ORBSocketFactory
+     *        for discussion).
      * @return The listen port number for that type.
      * @throws UnknownType
-     *                     if no port of the given type is found.
+     *         if no port of the given type is found.
      */
     public int getServerPort(String type) throws UnknownType {
         checkState(STATE_INITIAL, STATE_ESTABLISHED);
 
-        int port = orb.getLegacyServerSocketManager()
-                .legacyGetTransientOrPersistentServerPort(type);
+        int port = orb.getLegacyServerSocketManager().legacyGetTransientOrPersistentServerPort(type);
         if (port == -1) {
             throw new UnknownType();
         }
@@ -228,12 +221,10 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
      * Internal utility method to add an IOR component to the set of profiles
      * present in the iterator.
      */
-    private void addIORComponentToProfileInternal(
-            TaggedComponent tagged_component, Iterator iterator) {
+    private void addIORComponentToProfileInternal(TaggedComponent tagged_component, Iterator iterator) {
         // Convert the given IOP::TaggedComponent into the appropriate
         // type for the TaggedProfileTemplate
-        TaggedComponentFactoryFinder finder = orb
-                .getTaggedComponentFactoryFinder();
+        TaggedComponentFactoryFinder finder = orb.getTaggedComponentFactoryFinder();
         Object newTaggedComponent = finder.create(orb, tagged_component);
 
         // Iterate through TaggedProfileTemplates and add the given tagged
@@ -241,8 +232,7 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
         boolean found = false;
         while (iterator.hasNext()) {
             found = true;
-            TaggedProfileTemplate taggedProfileTemplate = (TaggedProfileTemplate) iterator
-                    .next();
+            TaggedProfileTemplate taggedProfileTemplate = (TaggedProfileTemplate) iterator.next();
             taggedProfileTemplate.add(newTaggedComponent);
         }
 
@@ -265,14 +255,13 @@ public final class IORInfoImpl extends LocalObject implements IORInfo,
 
     private void checkState(int expectedState) {
         if (expectedState != state)
-            throw wrapper.badState1(new Integer(expectedState), new Integer(
-                    state));
+            throw wrapper.badState1(new Integer(expectedState), new Integer(state));
     }
 
     private void checkState(int expectedState1, int expectedState2) {
         if ((expectedState1 != state) && (expectedState2 != state))
-            throw wrapper.badState2(new Integer(expectedState1), new Integer(
-                    expectedState2), new Integer(state));
+            throw wrapper.badState2(new Integer(expectedState1), new Integer(expectedState2), new Integer(
+                    state));
     }
 
     void makeStateEstablished() {

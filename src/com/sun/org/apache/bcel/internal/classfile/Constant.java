@@ -81,7 +81,7 @@ public abstract class Constant implements Cloneable, Node, Serializable {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public abstract void accept(Visitor v);
 
@@ -108,8 +108,7 @@ public abstract class Constant implements Cloneable, Node, Serializable {
     public Constant copy() {
         try {
             return (Constant) super.clone();
-        } catch (CloneNotSupportedException e) {
-        }
+        } catch (CloneNotSupportedException e) {}
 
         return null;
     }
@@ -122,11 +121,10 @@ public abstract class Constant implements Cloneable, Node, Serializable {
      * Read one constant from the given file, the type depends on a tag byte.
      *
      * @param file
-     *             Input stream
+     *        Input stream
      * @return Constant object
      */
-    static final Constant readConstant(DataInputStream file) throws IOException,
-            ClassFormatException {
+    static final Constant readConstant(DataInputStream file) throws IOException, ClassFormatException {
         byte b = file.readByte(); // Read tag byte
 
         switch (b) {
@@ -153,8 +151,7 @@ public abstract class Constant implements Cloneable, Node, Serializable {
             case Constants.CONSTANT_Utf8:
                 return new ConstantUtf8(file);
             default:
-                throw new ClassFormatException(
-                        "Invalid byte tag in constant pool: " + b);
+                throw new ClassFormatException("Invalid byte tag in constant pool: " + b);
         }
     }
 }

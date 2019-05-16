@@ -21,7 +21,7 @@ public interface Handler<C extends MessageContext> {
      * framework in the JAX-WS specification for full details.
      *
      * @param context
-     *                the message context.
+     *        the message context.
      * @return An indication of whether handler processing should continue for
      *         the current message
      *         <ul>
@@ -29,13 +29,13 @@ public interface Handler<C extends MessageContext> {
      *         <li>Return <code>false</code> to block processing.</li>
      *         </ul>
      * @throws RuntimeException
-     *                           Causes the JAX-WS runtime to cease handler
-     *                           processing and
-     *                           generate a fault.
+     *         Causes the JAX-WS runtime to cease handler
+     *         processing and
+     *         generate a fault.
      * @throws ProtocolException
-     *                           Causes the JAX-WS runtime to switch to fault
-     *                           message
-     *                           processing.
+     *         Causes the JAX-WS runtime to switch to fault
+     *         message
+     *         processing.
      **/
     public boolean handleMessage(C context);
 
@@ -45,7 +45,7 @@ public interface Handler<C extends MessageContext> {
      * JAX-WS specification for full details.
      *
      * @param context
-     *                the message context
+     *        the message context
      * @return An indication of whether handler fault processing should continue
      *         for the current message
      *         <ul>
@@ -53,13 +53,13 @@ public interface Handler<C extends MessageContext> {
      *         <li>Return <code>false</code> to block processing.</li>
      *         </ul>
      * @throws RuntimeException
-     *                           Causes the JAX-WS runtime to cease handler
-     *                           fault processing
-     *                           and dispatch the fault.
+     *         Causes the JAX-WS runtime to cease handler
+     *         fault processing
+     *         and dispatch the fault.
      * @throws ProtocolException
-     *                           Causes the JAX-WS runtime to cease handler
-     *                           fault processing
-     *                           and dispatch the fault.
+     *         Causes the JAX-WS runtime to cease handler
+     *         fault processing
+     *         and dispatch the fault.
      **/
     public boolean handleFault(C context);
 
@@ -70,7 +70,7 @@ public interface Handler<C extends MessageContext> {
      * details.
      *
      * @param context
-     *                the message context
+     *        the message context
      **/
     public void close(MessageContext context);
 }

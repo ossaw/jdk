@@ -25,21 +25,16 @@ import com.sun.org.apache.xerces.internal.xs.datatypes.XSDouble;
  * Represent the schema type "double"
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  * @version $Id: DoubleDV.java,v 1.7 2010-11-01 04:39:46 joehw Exp $
  */
 public class DoubleDV extends TypeValidator {
 
     public short getAllowedFacets() {
-        return (XSSimpleTypeDecl.FACET_PATTERN
-                | XSSimpleTypeDecl.FACET_WHITESPACE
-                | XSSimpleTypeDecl.FACET_ENUMERATION
-                | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
-                | XSSimpleTypeDecl.FACET_MININCLUSIVE
-                | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
+        return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE
+                | XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
+                | XSSimpleTypeDecl.FACET_MININCLUSIVE | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
                 | XSSimpleTypeDecl.FACET_MINEXCLUSIVE);
     }// getAllowedFacets()
 
@@ -50,8 +45,8 @@ public class DoubleDV extends TypeValidator {
         try {
             return new XDouble(content);
         } catch (NumberFormatException ex) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "double" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "double" });
         }
     }// getActualValue()
 
@@ -77,8 +72,7 @@ public class DoubleDV extends TypeValidator {
         final int length = val.length();
         for (int i = 0; i < length; ++i) {
             char c = val.charAt(i);
-            if (!(c >= '0' && c <= '9' || c == '.' || c == '-' || c == '+'
-                    || c == 'E' || c == 'e')) {
+            if (!(c >= '0' && c <= '9' || c == '.' || c == '-' || c == '+' || c == 'E' || c == 'e')) {
                 return false;
             }
         }
@@ -137,8 +131,8 @@ public class DoubleDV extends TypeValidator {
             }
 
             if (value == val.value) {
-                return (value != 0.0d || (Double.doubleToLongBits(
-                        value) == Double.doubleToLongBits(val.value)));
+                return (value != 0.0d || (Double.doubleToLongBits(value) == Double.doubleToLongBits(
+                        val.value)));
             }
 
             if (value != value && val.value != val.value)
@@ -234,8 +228,7 @@ public class DoubleDV extends TypeValidator {
                             chars[edp - 1] = chars[nzp];
                             chars[edp] = '.';
                             // move other digits (non-zero) to the right of '.'
-                            for (int i = nzp + 1, j = edp
-                                    + 1; i < len; i++, j++)
+                            for (int i = nzp + 1, j = edp + 1; i < len; i++, j++)
                                 chars[j] = chars[i];
                             // adjust the length
                             len -= nzp - edp;

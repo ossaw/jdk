@@ -58,7 +58,6 @@
  * boundaries, such as to the database or across the network. The calendar
  * neutral API should be reserved for interactions with users.
  * </p>
- *
  * <h3>Dates and Times</h3>
  * <p>
  * {@link java.time.Instant} is essentially a numeric timestamp. The current
@@ -87,7 +86,6 @@
  * The widespread use of time-zones tends to add considerable complexity to an
  * application.
  * </p>
- *
  * <h3>Duration and Period</h3>
  * <p>
  * Beyond dates and times, the API also allows the storage of periods and
@@ -95,7 +93,6 @@
  * along the time-line in nanoseconds. A {@link java.time.Period} expresses an
  * amount of time in units meaningful to humans, such as years or days.
  * </p>
- *
  * <h3>Additional value types</h3>
  * <p>
  * {@link java.time.Month} stores a month on its own. This stores a single
@@ -130,7 +127,6 @@
  * found in XML messages and other forms of persistence, but contains less
  * information than a full time-zone.
  * </p>
- *
  * <h3>Package specification</h3>
  * <p>
  * Unless otherwise noted, passing a null argument to a constructor or method in
@@ -145,7 +141,6 @@
  * {@link java.lang.ArithmeticException} or a
  * {@link java.time.DateTimeException}.
  * </p>
- *
  * <h3>Design notes (non normative)</h3>
  * <p>
  * The API has been designed to reject null early and to be clear about this

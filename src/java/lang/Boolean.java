@@ -18,8 +18,7 @@ package java.lang;
  * @author Arthur van Hoff
  * @since JDK1.0
  */
-public final class Boolean implements java.io.Serializable,
-        Comparable<Boolean> {
+public final class Boolean implements java.io.Serializable, Comparable<Boolean> {
     /**
      * The {@code Boolean} object corresponding to the primitive value
      * {@code true}.
@@ -38,8 +37,7 @@ public final class Boolean implements java.io.Serializable,
      * @since JDK1.1
      */
     @SuppressWarnings("unchecked")
-    public static final Class<Boolean> TYPE = (Class<Boolean>) Class
-            .getPrimitiveClass("boolean");
+    public static final Class<Boolean> TYPE = (Class<Boolean>) Class.getPrimitiveClass("boolean");
 
     /**
      * The value of the Boolean.
@@ -54,7 +52,6 @@ public final class Boolean implements java.io.Serializable,
     /**
      * Allocates a {@code Boolean} object representing the {@code value}
      * argument.
-     *
      * <p>
      * <b>Note: It is rarely appropriate to use this constructor. Unless a
      * <i>new</i> instance is required, the static factory
@@ -62,7 +59,7 @@ public final class Boolean implements java.io.Serializable,
      * yield significantly better space and time performance.</b>
      *
      * @param value
-     *              the value of the {@code Boolean}.
+     *        the value of the {@code Boolean}.
      */
     public Boolean(boolean value) {
         this.value = value;
@@ -80,7 +77,7 @@ public final class Boolean implements java.io.Serializable,
      * represents {@code false}.
      *
      * @param s
-     *          the string to be converted to a {@code Boolean}.
+     *        the string to be converted to a {@code Boolean}.
      */
     public Boolean(String s) {
         this(parseBoolean(s));
@@ -95,8 +92,8 @@ public final class Boolean implements java.io.Serializable,
      * Example: {@code Boolean.parseBoolean("yes")} returns {@code false}.
      *
      * @param s
-     *          the {@code String} containing the boolean representation to be
-     *          parsed
+     *        the {@code String} containing the boolean representation to be
+     *        parsed
      * @return the boolean represented by the string argument
      * @since 1.5
      */
@@ -124,7 +121,7 @@ public final class Boolean implements java.io.Serializable,
      * performance.
      *
      * @param b
-     *          a boolean value.
+     *        a boolean value.
      * @return a {@code Boolean} instance representing {@code b}.
      * @since 1.4
      */
@@ -139,7 +136,7 @@ public final class Boolean implements java.io.Serializable,
      * string {@code "true"}.
      *
      * @param s
-     *          a string.
+     *        a string.
      * @return the {@code Boolean} value represented by the string.
      */
     public static Boolean valueOf(String s) {
@@ -152,7 +149,7 @@ public final class Boolean implements java.io.Serializable,
      * will be returned, otherwise the string {@code "false"} will be returned.
      *
      * @param b
-     *          the boolean to be converted
+     *        the boolean to be converted
      * @return the string representation of the specified {@code boolean}
      * @since 1.4
      */
@@ -189,7 +186,7 @@ public final class Boolean implements java.io.Serializable,
      * {@code Boolean.hashCode()}.
      *
      * @param value
-     *              the value to hash
+     *        the value to hash
      * @return a hash code value for a {@code boolean} value.
      * @since 1.8
      */
@@ -203,7 +200,7 @@ public final class Boolean implements java.io.Serializable,
      * value as this object.
      *
      * @param obj
-     *            the object to compare with.
+     *        the object to compare with.
      * @return {@code true} if the Boolean objects represent the same value;
      *         {@code false} otherwise.
      */
@@ -226,12 +223,12 @@ public final class Boolean implements java.io.Serializable,
      * is empty or null, then {@code false} is returned.
      *
      * @param name
-     *             the system property name.
+     *        the system property name.
      * @return the {@code boolean} value of the system property.
      * @throws SecurityException
-     *                           for the same reasons as
-     *                           {@link System#getProperty(String)
-     *                           System.getProperty}
+     *         for the same reasons as
+     *         {@link System#getProperty(String)
+     *         System.getProperty}
      * @see java.lang.System#getProperty(java.lang.String)
      * @see java.lang.System#getProperty(java.lang.String, java.lang.String)
      */
@@ -239,8 +236,7 @@ public final class Boolean implements java.io.Serializable,
         boolean result = false;
         try {
             result = parseBoolean(System.getProperty(name));
-        } catch (IllegalArgumentException | NullPointerException e) {
-        }
+        } catch (IllegalArgumentException | NullPointerException e) {}
         return result;
     }
 
@@ -248,13 +244,13 @@ public final class Boolean implements java.io.Serializable,
      * Compares this {@code Boolean} instance with another.
      *
      * @param b
-     *          the {@code Boolean} instance to be compared
+     *        the {@code Boolean} instance to be compared
      * @return zero if this object represents the same boolean value as the
      *         argument; a positive value if this object represents true and the
      *         argument represents false; and a negative value if this object
      *         represents false and the argument represents true
      * @throws NullPointerException
-     *                              if the argument is {@code null}
+     *         if the argument is {@code null}
      * @see Comparable
      * @since 1.5
      */
@@ -271,9 +267,9 @@ public final class Boolean implements java.io.Serializable,
      * </pre>
      *
      * @param x
-     *          the first {@code boolean} to compare
+     *        the first {@code boolean} to compare
      * @param y
-     *          the second {@code boolean} to compare
+     *        the second {@code boolean} to compare
      * @return the value {@code 0} if {@code x == y}; a value less than
      *         {@code 0} if {@code !x && y}; and a value greater than {@code 0}
      *         if {@code x && !y}
@@ -288,9 +284,9 @@ public final class Boolean implements java.io.Serializable,
      * {@code boolean} operands.
      *
      * @param a
-     *          the first operand
+     *        the first operand
      * @param b
-     *          the second operand
+     *        the second operand
      * @return the logical AND of {@code a} and {@code b}
      * @see java.util.function.BinaryOperator
      * @since 1.8
@@ -304,9 +300,9 @@ public final class Boolean implements java.io.Serializable,
      * {@code boolean} operands.
      *
      * @param a
-     *          the first operand
+     *        the first operand
      * @param b
-     *          the second operand
+     *        the second operand
      * @return the logical OR of {@code a} and {@code b}
      * @see java.util.function.BinaryOperator
      * @since 1.8
@@ -320,9 +316,9 @@ public final class Boolean implements java.io.Serializable,
      * {@code boolean} operands.
      *
      * @param a
-     *          the first operand
+     *        the first operand
      * @param b
-     *          the second operand
+     *        the second operand
      * @return the logical XOR of {@code a} and {@code b}
      * @see java.util.function.BinaryOperator
      * @since 1.8

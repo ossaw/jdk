@@ -16,7 +16,6 @@ import sun.security.util.ResourcesMgr;
  * This class is used to protect access to private Credentials belonging to a
  * particular {@code Subject}. The {@code Subject} is represented by a Set of
  * Principals.
- *
  * <p>
  * The target name of this {@code Permission} specifies a Credential class name,
  * and a Set of Principals. The only valid value for this Permission's actions
@@ -59,7 +58,6 @@ import sun.security.util.ResourcesMgr;
  *
  * If both the PrincipalClass and "PrincipalName" are "*", then access is
  * granted to the specified Credential owned by any {@code Subject}.
- *
  * <p>
  * In addition, the PrincipalClass/PrincipalName pairing may be repeated:
  *
@@ -75,7 +73,6 @@ import sun.security.util.ResourcesMgr;
  * belonging to a {@code Subject} with at least two associated Principals:
  * "a.b.Principal" with the name, "duke", and "c.d.Principal", with the name,
  * "dukette".
- *
  */
 public final class PrivateCredentialPermission extends Permission {
 
@@ -105,8 +102,7 @@ public final class PrivateCredentialPermission extends Permission {
      * Create a new {@code PrivateCredentialPermission} with the specified
      * {@code credentialClass} and Principals.
      */
-    PrivateCredentialPermission(String credentialClass,
-            Set<Principal> principals) {
+    PrivateCredentialPermission(String credentialClass, Set<Principal> principals) {
 
         super(credentialClass);
         this.credentialClass = credentialClass;
@@ -120,8 +116,7 @@ public final class PrivateCredentialPermission extends Permission {
                 Iterator<Principal> i = principals.iterator();
                 while (i.hasNext()) {
                     Principal p = i.next();
-                    this.credOwners[index++] = new CredOwner(p.getClass()
-                            .getName(), p.getName());
+                    this.credOwners[index++] = new CredOwner(p.getClass().getName(), p.getName());
                 }
             }
         }
@@ -131,36 +126,31 @@ public final class PrivateCredentialPermission extends Permission {
      * Creates a new {@code PrivateCredentialPermission} with the specified
      * {@code name}. The {@code name} specifies both a Credential class and a
      * {@code Principal} Set.
-     *
      * <p>
      *
      * @param name
-     *                the name specifying the Credential class and
-     *                {@code Principal}
-     *                Set.
-     *                <p>
-     *
+     *        the name specifying the Credential class and
+     *        {@code Principal}
+     *        Set.
+     *        <p>
      * @param actions
-     *                the actions specifying that the Credential can be read.
-     *
+     *        the actions specifying that the Credential can be read.
      * @throws IllegalArgumentException
-     *                                  if {@code name} does not conform to the
-     *                                  correct syntax or if
-     *                                  {@code actions} is not "read".
+     *         if {@code name} does not conform to the
+     *         correct syntax or if
+     *         {@code actions} is not "read".
      */
     public PrivateCredentialPermission(String name, String actions) {
         super(name);
 
         if (!"read".equalsIgnoreCase(actions))
-            throw new IllegalArgumentException(ResourcesMgr.getString(
-                    "actions.can.only.be.read."));
+            throw new IllegalArgumentException(ResourcesMgr.getString("actions.can.only.be.read."));
         init(name);
     }
 
     /**
      * Returns the Class name of the Credential associated with this
      * {@code PrivateCredentialPermission}.
-     *
      * <p>
      *
      * @return the Class name of the Credential associated with this
@@ -180,7 +170,6 @@ public final class PrivateCredentialPermission extends Permission {
      * corresponds to the class name of the first {@code Principal} in the
      * array. array[0][1] corresponds to the {@code Principal} name of the first
      * {@code Principal} in the array.
-     *
      * <p>
      *
      * @return the {@code Principal} class and names associated with this
@@ -203,9 +192,7 @@ public final class PrivateCredentialPermission extends Permission {
     /**
      * Checks if this {@code PrivateCredentialPermission} implies the specified
      * {@code Permission}.
-     *
      * <p>
-     *
      * This method returns true if:
      * <ul>
      * <li><i>p</i> is an instanceof PrivateCredentialPermission and
@@ -218,12 +205,10 @@ public final class PrivateCredentialPermission extends Permission {
      *  [C1 P2 "dukette"] implies [C1 P1 "duke" P2 "dukette"].
      * </pre>
      * </ul>
-     *
      * <p>
      *
      * @param p
-     *          the {@code Permission} to check against.
-     *
+     *        the {@code Permission} to check against.
      * @return true if this {@code PrivateCredentialPermission} implies the
      *         specified {@code Permission}, false if not.
      */
@@ -246,12 +231,10 @@ public final class PrivateCredentialPermission extends Permission {
      * the same credential class as this object, as well as the same Principals
      * as this object. The order of the Principals in the respective
      * Permission's target names is not relevant.
-     *
      * <p>
      *
      * @param obj
-     *            the object we are testing for equality with this object.
-     *
+     *        the object we are testing for equality with this object.
      * @return true if obj is a {@code PrivateCredentialPermission}, has the
      *         same credential class as this object, and has the same Principals
      *         as this object.
@@ -280,7 +263,6 @@ public final class PrivateCredentialPermission extends Permission {
     /**
      * Returns the "canonical string representation" of the actions. This method
      * always returns the String, "read".
-     *
      * <p>
      *
      * @return the actions (always returns "read").
@@ -293,7 +275,6 @@ public final class PrivateCredentialPermission extends Permission {
      * Return a homogeneous collection of PrivateCredentialPermissions in a
      * {@code PermissionCollection}. No such {@code PermissionCollection} is
      * defined, so this method always returns {@code null}.
-     *
      * <p>
      *
      * @return null in all cases.
@@ -325,9 +306,8 @@ public final class PrivateCredentialPermission extends Permission {
             MessageFormat form = new MessageFormat(ResourcesMgr.getString(
                     "permission.name.name.syntax.invalid."));
             Object[] source = { name };
-            throw new IllegalArgumentException(form.format(source)
-                    + ResourcesMgr.getString(
-                            "Credential.Class.not.followed.by.a.Principal.Class.and.Name"));
+            throw new IllegalArgumentException(form.format(source) + ResourcesMgr.getString(
+                    "Credential.Class.not.followed.by.a.Principal.Class.and.Name"));
         }
 
         while (tokenizer.hasMoreTokens()) {
@@ -344,9 +324,8 @@ public final class PrivateCredentialPermission extends Permission {
                 MessageFormat form = new MessageFormat(ResourcesMgr.getString(
                         "permission.name.name.syntax.invalid."));
                 Object[] source = { name };
-                throw new IllegalArgumentException(form.format(source)
-                        + ResourcesMgr.getString(
-                                "Principal.Class.not.followed.by.a.Principal.Name"));
+                throw new IllegalArgumentException(form.format(source) + ResourcesMgr.getString(
+                        "Principal.Class.not.followed.by.a.Principal.Name"));
             }
 
             // skip delimiter
@@ -359,9 +338,8 @@ public final class PrivateCredentialPermission extends Permission {
                 MessageFormat form = new MessageFormat(ResourcesMgr.getString(
                         "permission.name.name.syntax.invalid."));
                 Object[] source = { name };
-                throw new IllegalArgumentException(form.format(source)
-                        + ResourcesMgr.getString(
-                                "Principal.Name.must.be.surrounded.by.quotes"));
+                throw new IllegalArgumentException(form.format(source) + ResourcesMgr.getString(
+                        "Principal.Name.must.be.surrounded.by.quotes"));
             }
 
             if (!principalName.endsWith("\"")) {
@@ -377,20 +355,18 @@ public final class PrivateCredentialPermission extends Permission {
                 }
 
                 if (!principalName.endsWith("\"")) {
-                    MessageFormat form = new MessageFormat(ResourcesMgr
-                            .getString("permission.name.name.syntax.invalid."));
+                    MessageFormat form = new MessageFormat(ResourcesMgr.getString(
+                            "permission.name.name.syntax.invalid."));
                     Object[] source = { name };
-                    throw new IllegalArgumentException(form.format(source)
-                            + ResourcesMgr.getString(
-                                    "Principal.Name.missing.end.quote"));
+                    throw new IllegalArgumentException(form.format(source) + ResourcesMgr.getString(
+                            "Principal.Name.missing.end.quote"));
                 }
             }
 
             if (testing)
                 System.out.println("\tprincipalName = '" + principalName + "'");
 
-            principalName = principalName.substring(1, principalName.length()
-                    - 1);
+            principalName = principalName.substring(1, principalName.length() - 1);
 
             if (principalClass.equals("*") && !principalName.equals("*")) {
                 throw new IllegalArgumentException(ResourcesMgr.getString(
@@ -414,8 +390,7 @@ public final class PrivateCredentialPermission extends Permission {
             return false;
 
         if (testing)
-            System.out.println("credential class comparison: " + thisC + "/"
-                    + thatC);
+            System.out.println("credential class comparison: " + thisC + "/" + thatC);
 
         if (thisC.equals("*"))
             return true;
@@ -462,8 +437,7 @@ public final class PrivateCredentialPermission extends Permission {
     /**
      * Reads this object from a stream (i.e., deserializes it)
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
 
         s.defaultReadObject();
 
@@ -509,11 +483,9 @@ public final class PrivateCredentialPermission extends Permission {
 
             CredOwner that = (CredOwner) obj;
 
-            if (principalClass.equals("*") || principalClass.equals(
-                    that.principalClass)) {
+            if (principalClass.equals("*") || principalClass.equals(that.principalClass)) {
 
-                if (principalName.equals("*") || principalName.equals(
-                        that.principalName)) {
+                if (principalName.equals("*") || principalName.equals(that.principalName)) {
                     return true;
                 }
             }

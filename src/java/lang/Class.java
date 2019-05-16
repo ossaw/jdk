@@ -60,32 +60,26 @@ import sun.reflect.misc.ReflectUtil;
  * {@code byte}, {@code char}, {@code short}, {@code int}, {@code long},
  * {@code float}, and {@code double}), and the keyword {@code void} are also
  * represented as {@code Class} objects.
- *
  * <p>
  * {@code Class} has no public constructor. Instead {@code Class} objects are
  * constructed automatically by the Java Virtual Machine as classes are loaded
  * and by calls to the {@code defineClass} method in the class loader.
- *
  * <p>
  * The following example uses a {@code Class} object to print the class name of
  * an object:
- *
  * <blockquote>
  * 
  * <pre>
  * void printClassName(Object obj) {
- *     System.out.println("The class of " + obj + " is " + obj.getClass()
- *             .getName());
+ *     System.out.println("The class of " + obj + " is " + obj.getClass().getName());
  * }
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * It is also possible to get the {@code Class} object for a named type (or for
  * void) using a class literal. See Section 15.8.2 of <cite>The Java&trade;
  * Language Specification</cite>. For example:
- *
  * <blockquote>
  * {@code System.out.println("The name of class Foo is: "+Foo.class.getName());}
  * </blockquote>
@@ -94,13 +88,11 @@ import sun.reflect.misc.ReflectUtil;
  *        the type of the class modeled by this {@code Class} object. For
  *        example, the type of {@code String.class} is {@code
  * Class<String>}. Use {@code Class<?>} if the class being modeled is unknown.
- *
  * @author unascribed
  * @see java.lang.ClassLoader#defineClass(byte[], int, int)
  * @since JDK1.0
  */
-public final class Class<T> implements java.io.Serializable, GenericDeclaration,
-        Type, AnnotatedElement {
+public final class Class<T> implements java.io.Serializable, GenericDeclaration, Type, AnnotatedElement {
     private static final int ANNOTATION = 0x00002000;
     private static final int ENUM = 0x00004000;
     private static final int SYNTHETIC = 0x00001000;
@@ -135,26 +127,22 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return a string representation of this class object.
      */
     public String toString() {
-        return (isInterface() ? "interface " : (isPrimitive() ? "" : "class "))
-                + getName();
+        return (isInterface() ? "interface " : (isPrimitive() ? "" : "class ")) + getName();
     }
 
     /**
      * Returns a string describing this {@code Class}, including information
      * about modifiers and type parameters.
-     *
      * The string is formatted as a list of type modifiers, if any, followed by
      * the kind of type (empty string for primitive types and {@code class},
      * {@code enum}, {@code interface}, or <code>&#64;</code>{@code interface},
      * as appropriate), followed by the type's name, followed by an
      * angle-bracketed comma-separated list of the type's type parameters, if
      * any.
-     *
      * A space is used to separate modifiers from one another and to separate
      * any modifiers from the kind of type. The modifiers occur in canonical
      * order. If there are no type parameters, the type parameter list is
      * elided.
-     *
      * <p>
      * Note that since information about the runtime representation of a type is
      * being generated, modifiers not present on the originating source code or
@@ -162,7 +150,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      *
      * @return a string describing this {@code Class}, including information
      *         about modifiers and type parameters
-     *
      * @since 1.8
      */
     public String toGenericString() {
@@ -212,17 +199,13 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     /**
      * Returns the {@code Class} object associated with the class or interface
      * with the given string name. Invoking this method is equivalent to:
-     *
      * <blockquote> {@code Class.forName(className, true, currentLoader)}
      * </blockquote>
-     *
      * where {@code currentLoader} denotes the defining class loader of the
      * current class.
-     *
      * <p>
      * For example, the following code fragment returns the runtime
      * {@code Class} descriptor for the class named {@code java.lang.Thread}:
-     *
      * <blockquote> {@code Class t = Class.forName("java.lang.Thread")}
      * </blockquote>
      * <p>
@@ -230,22 +213,20 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * initialized.
      *
      * @param className
-     *                  the fully qualified name of the desired class.
+     *        the fully qualified name of the desired class.
      * @return the {@code Class} object for the class with the specified name.
      * @exception LinkageError
-     *                                        if the linkage fails
+     *            if the linkage fails
      * @exception ExceptionInInitializerError
-     *                                        if the initialization provoked by
-     *                                        this method fails
+     *            if the initialization provoked by
+     *            this method fails
      * @exception ClassNotFoundException
-     *                                        if the class cannot be located
+     *            if the class cannot be located
      */
     @CallerSensitive
-    public static Class<?> forName(String className)
-            throws ClassNotFoundException {
+    public static Class<?> forName(String className) throws ClassNotFoundException {
         Class<?> caller = Reflection.getCallerClass();
-        return forName0(className, true, ClassLoader.getClassLoader(caller),
-                caller);
+        return forName0(className, true, ClassLoader.getClassLoader(caller), caller);
     }
 
     /**
@@ -258,33 +239,25 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * through the bootstrap class loader. The class is initialized only if the
      * {@code initialize} parameter is {@code true} and if it has not been
      * initialized earlier.
-     *
      * <p>
      * If {@code name} denotes a primitive type or void, an attempt will be made
      * to locate a user-defined class in the unnamed package whose name is
      * {@code name}. Therefore, this method cannot be used to obtain any of the
      * {@code Class} objects representing primitive types or void.
-     *
      * <p>
      * If {@code name} denotes an array class, the component type of the array
      * class is loaded but not initialized.
-     *
      * <p>
      * For example, in an instance method the expression:
-     *
      * <blockquote> {@code Class.forName("Foo")} </blockquote>
-     *
      * is equivalent to:
-     *
      * <blockquote>
      * {@code Class.forName("Foo", true, this.getClass().getClassLoader())}
      * </blockquote>
-     *
      * Note that this method throws errors related to loading, linking or
      * initializing as specified in Sections 12.2, 12.3 and 12.4 of <em>The
      * Java Language Specification</em>. Note that this method does not check
      * whether the requested class is accessible to its caller.
-     *
      * <p>
      * If the {@code loader} is {@code null}, and a security manager is present,
      * and the caller's class loader is not null, then this method calls the
@@ -293,32 +266,30 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * to access the bootstrap class loader.
      *
      * @param name
-     *                   fully qualified name of the desired class
+     *        fully qualified name of the desired class
      * @param initialize
-     *                   if {@code true} the class will be initialized. See
-     *                   Section
-     *                   12.4 of <em>The Java Language Specification</em>.
+     *        if {@code true} the class will be initialized. See
+     *        Section
+     *        12.4 of <em>The Java Language Specification</em>.
      * @param loader
-     *                   class loader from which the class must be loaded
+     *        class loader from which the class must be loaded
      * @return class object representing the desired class
-     *
      * @exception LinkageError
-     *                                        if the linkage fails
+     *            if the linkage fails
      * @exception ExceptionInInitializerError
-     *                                        if the initialization provoked by
-     *                                        this method fails
+     *            if the initialization provoked by
+     *            this method fails
      * @exception ClassNotFoundException
-     *                                        if the class cannot be located by
-     *                                        the specified class
-     *                                        loader
-     *
+     *            if the class cannot be located by
+     *            the specified class
+     *            loader
      * @see java.lang.Class#forName(String)
      * @see java.lang.ClassLoader
      * @since 1.2
      */
     @CallerSensitive
-    public static Class<?> forName(String name, boolean initialize,
-            ClassLoader loader) throws ClassNotFoundException {
+    public static Class<?> forName(String name, boolean initialize, ClassLoader loader)
+            throws ClassNotFoundException {
         Class<?> caller = null;
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
@@ -329,8 +300,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             if (sun.misc.VM.isSystemDomainLoader(loader)) {
                 ClassLoader ccl = ClassLoader.getClassLoader(caller);
                 if (!sun.misc.VM.isSystemDomainLoader(ccl)) {
-                    sm.checkPermission(
-                            SecurityConstants.GET_CLASSLOADER_PERMISSION);
+                    sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);
                 }
             }
         }
@@ -341,15 +311,14 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * Called after security check for system loader access checks have been
      * made.
      */
-    private static native Class<?> forName0(String name, boolean initialize,
-            ClassLoader loader, Class<?> caller) throws ClassNotFoundException;
+    private static native Class<?> forName0(String name, boolean initialize, ClassLoader loader,
+            Class<?> caller) throws ClassNotFoundException;
 
     /**
      * Creates a new instance of the class represented by this {@code Class}
      * object. The class is instantiated as if by a {@code new} expression with
      * an empty argument list. The class is initialized if it has not already
      * been initialized.
-     *
      * <p>
      * Note that this method propagates any exception thrown by the nullary
      * constructor, including a checked exception. Use of this method
@@ -363,37 +332,35 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return a newly allocated instance of the class represented by this
      *         object.
      * @throws IllegalAccessException
-     *                                     if the class or its nullary
-     *                                     constructor is not accessible.
+     *         if the class or its nullary
+     *         constructor is not accessible.
      * @throws InstantiationException
-     *                                     if this {@code Class} represents an
-     *                                     abstract class, an
-     *                                     interface, an array class, a
-     *                                     primitive type, or void; or if
-     *                                     the class has no nullary constructor;
-     *                                     or if the instantiation
-     *                                     fails for some other reason.
+     *         if this {@code Class} represents an
+     *         abstract class, an
+     *         interface, an array class, a
+     *         primitive type, or void; or if
+     *         the class has no nullary constructor;
+     *         or if the instantiation
+     *         fails for some other reason.
      * @throws ExceptionInInitializerError
-     *                                     if the initialization provoked by
-     *                                     this method fails.
+     *         if the initialization provoked by
+     *         this method fails.
      * @throws SecurityException
-     *                                     If a security manager, <i>s</i>, is
-     *                                     present and the caller's
-     *                                     class loader is not the same as or an
-     *                                     ancestor of the class
-     *                                     loader for the current class and
-     *                                     invocation of
-     *                                     {@link SecurityManager#checkPackageAccess
-     *                                     s.checkPackageAccess()} denies access
-     *                                     to the package of this
-     *                                     class.
+     *         If a security manager, <i>s</i>, is
+     *         present and the caller's
+     *         class loader is not the same as or an
+     *         ancestor of the class
+     *         loader for the current class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access
+     *         to the package of this
+     *         class.
      */
     @CallerSensitive
-    public T newInstance() throws InstantiationException,
-            IllegalAccessException {
+    public T newInstance() throws InstantiationException, IllegalAccessException {
         if (System.getSecurityManager() != null) {
-            checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(),
-                    false);
+            checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), false);
         }
 
         // NOTE: the following code may not be strictly correct under
@@ -407,23 +374,20 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             }
             try {
                 Class<?>[] empty = {};
-                final Constructor<T> c = getConstructor0(empty,
-                        Member.DECLARED);
+                final Constructor<T> c = getConstructor0(empty, Member.DECLARED);
                 // Disable accessibility checks on the constructor
                 // since we have to do the security check here anyway
                 // (the stack depth is wrong for the Constructor's
                 // security check to work)
-                java.security.AccessController.doPrivileged(
-                        new java.security.PrivilegedAction<Void>() {
-                            public Void run() {
-                                c.setAccessible(true);
-                                return null;
-                            }
-                        });
+                java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
+                    public Void run() {
+                        c.setAccessible(true);
+                        return null;
+                    }
+                });
                 cachedConstructor = c;
             } catch (NoSuchMethodException e) {
-                throw (InstantiationException) new InstantiationException(
-                        getName()).initCause(e);
+                throw (InstantiationException) new InstantiationException(getName()).initCause(e);
             }
         }
         Constructor<T> tmpConstructor = cachedConstructor;
@@ -457,7 +421,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * and can be cast to the reference type represented by this {@code Class}
      * object without raising a {@code ClassCastException.} It returns
      * {@code false} otherwise.
-     *
      * <p>
      * Specifically, if this {@code Class} object represents a declared class,
      * this method returns {@code true} if the specified {@code Object} argument
@@ -473,9 +436,8 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * object represents a primitive type, this method returns {@code false}.
      *
      * @param obj
-     *            the object to check
+     *        the object to check
      * @return true if {@code obj} is an instance of this class
-     *
      * @since JDK1.1
      */
     public native boolean isInstance(Object obj);
@@ -488,7 +450,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * {@code false}. If this {@code Class} object represents a primitive type,
      * this method returns {@code true} if the specified {@code Class} parameter
      * is exactly this {@code Class} object; otherwise it returns {@code false}.
-     *
      * <p>
      * Specifically, this method tests whether the type represented by the
      * specified {@code Class} parameter can be converted to the type
@@ -497,11 +458,11 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * Specification</em>, sections 5.1.1 and 5.1.4 , for details.
      *
      * @param cls
-     *            the {@code Class} object to be checked
+     *        the {@code Class} object to be checked
      * @return the {@code boolean} value indicating whether objects of the type
      *         {@code cls} can be assigned to objects of this class
      * @exception NullPointerException
-     *                                 if the specified Class parameter is null.
+     *            if the specified Class parameter is null.
      * @since JDK1.1
      */
     public native boolean isAssignableFrom(Class<?> cls);
@@ -527,21 +488,18 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     /**
      * Determines if the specified {@code Class} object represents a primitive
      * type.
-     *
      * <p>
      * There are nine predefined {@code Class} objects to represent the eight
      * primitive types and void. These are created by the Java Virtual Machine,
      * and have the same names as the primitive types that they represent,
      * namely {@code boolean}, {@code byte}, {@code char}, {@code short},
      * {@code int}, {@code long}, {@code float}, and {@code double}.
-     *
      * <p>
      * These objects may only be accessed via the following public static final
      * variables, and are the only {@code Class} objects for which this method
      * returns {@code true}.
      *
      * @return true if and only if this class represents a primitive type
-     *
      * @see java.lang.Boolean#TYPE
      * @see java.lang.Character#TYPE
      * @see java.lang.Byte#TYPE
@@ -585,23 +543,19 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * Returns the name of the entity (class, interface, array class, primitive
      * type, or void) represented by this {@code Class} object, as a
      * {@code String}.
-     *
      * <p>
      * If this class object represents a reference type that is not an array
      * type then the binary name of the class is returned, as specified by
      * <cite>The Java&trade; Language Specification</cite>.
-     *
      * <p>
      * If this class object represents a primitive type or void, then the name
      * returned is a {@code String} equal to the Java language keyword
      * corresponding to the primitive type or void.
-     *
      * <p>
      * If this class object represents a class of arrays, then the internal form
      * of the name consists of the name of the element type preceded by one or
      * more '{@code [}' characters representing the depth of the array nesting.
      * The encoding of element type names is as follows:
-     *
      * <blockquote>
      * <table summary="Element types and encodings">
      * <tr>
@@ -646,11 +600,9 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * <td align=center>S
      * </table>
      * </blockquote>
-     *
      * <p>
      * The class or interface name <i>classname</i> is the binary name of the
      * class specified above.
-     *
      * <p>
      * Examples: <blockquote>
      * 
@@ -686,7 +638,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * to represent the bootstrap class loader. This method will return null in
      * such implementations if this class was loaded by the bootstrap class
      * loader.
-     *
      * <p>
      * If a security manager is present, and the caller's class loader is not
      * null and the caller's class loader is not the same as or an ancestor of
@@ -694,17 +645,16 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * method calls the security manager's {@code checkPermission} method with a
      * {@code RuntimePermission("getClassLoader")} permission to ensure it's ok
      * to access the class loader for the class.
-     *
      * <p>
      * If this object represents a primitive type or void, null is returned.
      *
      * @return the class loader that loaded the class or interface represented
      *         by this object.
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method denies access to the class loader for
-     *                           the class.
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method denies access to the class loader for
+     *         the class.
      * @see java.lang.ClassLoader
      * @see SecurityManager#checkPermission
      * @see java.lang.RuntimePermission
@@ -716,8 +666,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             return null;
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
-            ClassLoader.checkClassLoaderPermission(cl, Reflection
-                    .getCallerClass());
+            ClassLoader.checkClassLoaderPermission(cl, Reflection.getCallerClass());
         }
         return cl;
     }
@@ -772,7 +721,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * Returns the {@code Type} representing the direct superclass of the entity
      * (class, interface, primitive type or void) represented by this
      * {@code Class}.
-     *
      * <p>
      * If the superclass is a parameterized type, the {@code Type} object
      * returned must accurately reflect the actual type parameters used in the
@@ -785,20 +733,20 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * an array class then the {@code Class} object representing the
      * {@code Object} class is returned.
      *
-     * @throws                         java.lang.reflect.GenericSignatureFormatError
-     *                                 if the generic class signature does not
-     *                                 conform to the format
-     *                                 specified in <cite>The Java&trade;
-     *                                 Virtual Machine
-     *                                 Specification</cite>
+     * @throws java.lang.reflect.GenericSignatureFormatError
+     *         if the generic class signature does not
+     *         conform to the format
+     *         specified in <cite>The Java&trade;
+     *         Virtual Machine
+     *         Specification</cite>
      * @throws TypeNotPresentException
-     *                                 if the generic superclass refers to a
-     *                                 non-existent type
-     *                                 declaration
-     * @throws                         java.lang.reflect.MalformedParameterizedTypeException
-     *                                 if the generic superclass refers to a
-     *                                 parameterized type that
-     *                                 cannot be instantiated for any reason
+     *         if the generic superclass refers to a
+     *         non-existent type
+     *         declaration
+     * @throws java.lang.reflect.MalformedParameterizedTypeException
+     *         if the generic superclass refers to a
+     *         parameterized type that
+     *         cannot be instantiated for any reason
      * @return the superclass of the class represented by this object
      * @since 1.5
      */
@@ -824,7 +772,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * loader the set of packages loaded from CLASSPATH is searched to find the
      * package of the class. Null is returned if no package object was created
      * by the class loader of this class.
-     *
      * <p>
      * Packages have attributes for versions and specifications only if the
      * information was defined in the manifests that accompany the classes, and
@@ -841,7 +788,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     /**
      * Determines the interfaces implemented by the class or interface
      * represented by this object.
-     *
      * <p>
      * If this object represents a class, the return value is an array
      * containing objects representing all interfaces implemented by the class.
@@ -856,22 +802,18 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * value of:
      * <blockquote> {@code s.getClass().getInterfaces()[1]} </blockquote> is the
      * {@code Class} object that represents interface {@code DessertTopping}.
-     *
      * <p>
      * If this object represents an interface, the array contains objects
      * representing all interfaces extended by the interface. The order of the
      * interface objects in the array corresponds to the order of the interface
      * names in the {@code extends} clause of the declaration of the interface
      * represented by this object.
-     *
      * <p>
      * If this object represents a class or interface that implements no
      * interfaces, the method returns an array of length 0.
-     *
      * <p>
      * If this object represents a primitive type or void, the method returns an
      * array of length 0.
-     *
      * <p>
      * If this {@code Class} object represents an array type, the interfaces
      * {@code Cloneable} and {@code java.io.Serializable} are returned in that
@@ -900,7 +842,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     /**
      * Returns the {@code Type}s representing the interfaces directly
      * implemented by the class or interface represented by this object.
-     *
      * <p>
      * If a superinterface is a parameterized type, the {@code Type} object
      * returned for it must accurately reflect the actual type parameters used
@@ -909,7 +850,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * declaration of {@link java.lang.reflect.ParameterizedType
      * ParameterizedType} for the semantics of the creation process for
      * parameterized types.
-     *
      * <p>
      * If this object represents a class, the return value is an array
      * containing objects representing all interfaces implemented by the class.
@@ -918,37 +858,34 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * declaration of the class represented by this object. In the case of an
      * array class, the interfaces {@code Cloneable} and {@code Serializable}
      * are returned in that order.
-     *
      * <p>
      * If this object represents an interface, the array contains objects
      * representing all interfaces directly extended by the interface. The order
      * of the interface objects in the array corresponds to the order of the
      * interface names in the {@code extends} clause of the declaration of the
      * interface represented by this object.
-     *
      * <p>
      * If this object represents a class or interface that implements no
      * interfaces, the method returns an array of length 0.
-     *
      * <p>
      * If this object represents a primitive type or void, the method returns an
      * array of length 0.
      *
-     * @throws                         java.lang.reflect.GenericSignatureFormatError
-     *                                 if the generic class signature does not
-     *                                 conform to the format
-     *                                 specified in <cite>The Java&trade;
-     *                                 Virtual Machine
-     *                                 Specification</cite>
+     * @throws java.lang.reflect.GenericSignatureFormatError
+     *         if the generic class signature does not
+     *         conform to the format
+     *         specified in <cite>The Java&trade;
+     *         Virtual Machine
+     *         Specification</cite>
      * @throws TypeNotPresentException
-     *                                 if any of the generic superinterfaces
-     *                                 refers to a
-     *                                 non-existent type declaration
-     * @throws                         java.lang.reflect.MalformedParameterizedTypeException
-     *                                 if any of the generic superinterfaces
-     *                                 refer to a
-     *                                 parameterized type that cannot be
-     *                                 instantiated for any reason
+     *         if any of the generic superinterfaces
+     *         refers to a
+     *         non-existent type declaration
+     * @throws java.lang.reflect.MalformedParameterizedTypeException
+     *         if any of the generic superinterfaces
+     *         refer to a
+     *         parameterized type that cannot be
+     *         instantiated for any reason
      * @return an array of interfaces implemented by this class
      * @since 1.5
      */
@@ -974,7 +911,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * constants for {@code public}, {@code protected}, {@code private},
      * {@code final}, {@code static}, {@code abstract} and {@code interface};
      * they should be decoded using the methods of class {@code Modifier}.
-     *
      * <p>
      * If the underlying class is an array class, then its {@code public},
      * {@code private} and {@code protected} modifiers are the same as those of
@@ -985,7 +921,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * its {@code final} modifier is always {@code true} and its interface
      * modifier is always {@code false}. The values of its other modifiers are
      * not determined by this specification.
-     *
      * <p>
      * The modifier encodings are defined in <em>The Java Virtual Machine
      * Specification</em>, table 4.1.
@@ -1016,43 +951,37 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * a method, returns a {@link java.lang.reflect.Method Method} object
      * representing the immediately enclosing method of the underlying class.
      * Returns {@code null} otherwise.
-     *
      * In particular, this method returns {@code null} if the underlying class
      * is a local or anonymous class immediately enclosed by a type declaration,
      * instance initializer or static initializer.
      *
      * @return the immediately enclosing method of the underlying class, if that
      *         class is a local or anonymous class; otherwise {@code null}.
-     *
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           any of the
-     *                           following conditions is met:
-     *
-     *                           <ul>
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as the class
-     *                           loader of the enclosing class and invocation of
-     *                           {@link SecurityManager#checkPermission
-     *                           s.checkPermission}
-     *                           method with
-     *                           {@code RuntimePermission("accessDeclaredMembers")}
-     *                           denies
-     *                           access to the methods within the enclosing
-     *                           class
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as or an
-     *                           ancestor of the class loader for the enclosing
-     *                           class and
-     *                           invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of the
-     *                           enclosing class
-     *
-     *                           </ul>
+     *         If a security manager, <i>s</i>, is present and
+     *         any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the same
+     *         as the class
+     *         loader of the enclosing class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the methods within the enclosing
+     *         class
+     *         <li>the caller's class loader is not the same
+     *         as or an
+     *         ancestor of the class loader for the enclosing
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of the
+     *         enclosing class
+     *         </ul>
      * @since 1.5
      */
     @CallerSensitive
@@ -1065,8 +994,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             if (!enclosingInfo.isMethod())
                 return null;
 
-            MethodRepository typeInfo = MethodRepository.make(enclosingInfo
-                    .getDescriptor(), getFactory());
+            MethodRepository typeInfo = MethodRepository.make(enclosingInfo.getDescriptor(), getFactory());
             Class<?> returnType = toClass(typeInfo.getReturnType());
             Type[] parameterTypes = typeInfo.getParameterTypes();
             Class<?>[] parameterClasses = new Class<?>[parameterTypes.length];
@@ -1079,8 +1007,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
             // Perform access check
             Class<?> enclosingCandidate = enclosingInfo.getEnclosingClass();
-            enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection
-                    .getCallerClass(), true);
+            enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
             /*
              * Loop over all declared methods; match method name, number of and
              * type of parameters, *and* return type. Matching return type is
@@ -1092,8 +1019,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
                     if (candidateParamClasses.length == parameterClasses.length) {
                         boolean matches = true;
                         for (int i = 0; i < candidateParamClasses.length; i++) {
-                            if (!candidateParamClasses[i].equals(
-                                    parameterClasses[i])) {
+                            if (!candidateParamClasses[i].equals(parameterClasses[i])) {
                                 matches = false;
                                 break;
                             }
@@ -1129,8 +1055,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
         private EnclosingMethodInfo(Object[] enclosingInfo) {
             if (enclosingInfo.length != 3)
-                throw new InternalError(
-                        "Malformed enclosing method information");
+                throw new InternalError("Malformed enclosing method information");
             try {
                 // The array is expected to have three elements:
 
@@ -1145,11 +1070,9 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
                 // the immediately enclosing method or constructor's
                 // descriptor (null iff name is).
                 descriptor = (String) enclosingInfo[2];
-                assert ((name != null && descriptor != null)
-                        || name == descriptor);
+                assert ((name != null && descriptor != null) || name == descriptor);
             } catch (ClassCastException cce) {
-                throw new InternalError(
-                        "Invalid type in enclosing method information", cce);
+                throw new InternalError("Invalid type in enclosing method information", cce);
             }
         }
 
@@ -1181,8 +1104,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     private static Class<?> toClass(Type o) {
         if (o instanceof GenericArrayType)
-            return Array.newInstance(toClass(((GenericArrayType) o)
-                    .getGenericComponentType()), 0).getClass();
+            return Array.newInstance(toClass(((GenericArrayType) o).getGenericComponentType()), 0).getClass();
         return (Class<?>) o;
     }
 
@@ -1198,34 +1120,30 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the immediately enclosing constructor of the underlying class, if
      *         that class is a local or anonymous class; otherwise {@code null}.
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           any of the
-     *                           following conditions is met:
-     *
-     *                           <ul>
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as the class
-     *                           loader of the enclosing class and invocation of
-     *                           {@link SecurityManager#checkPermission
-     *                           s.checkPermission}
-     *                           method with
-     *                           {@code RuntimePermission("accessDeclaredMembers")}
-     *                           denies
-     *                           access to the constructors within the enclosing
-     *                           class
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as or an
-     *                           ancestor of the class loader for the enclosing
-     *                           class and
-     *                           invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of the
-     *                           enclosing class
-     *
-     *                           </ul>
+     *         If a security manager, <i>s</i>, is present and
+     *         any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the same
+     *         as the class
+     *         loader of the enclosing class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the constructors within the enclosing
+     *         class
+     *         <li>the caller's class loader is not the same
+     *         as or an
+     *         ancestor of the class loader for the enclosing
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of the
+     *         enclosing class
+     *         </ul>
      * @since 1.5
      */
     @CallerSensitive
@@ -1238,8 +1156,8 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             if (!enclosingInfo.isConstructor())
                 return null;
 
-            ConstructorRepository typeInfo = ConstructorRepository.make(
-                    enclosingInfo.getDescriptor(), getFactory());
+            ConstructorRepository typeInfo = ConstructorRepository.make(enclosingInfo.getDescriptor(),
+                    getFactory());
             Type[] parameterTypes = typeInfo.getParameterTypes();
             Class<?>[] parameterClasses = new Class<?>[parameterTypes.length];
 
@@ -1251,20 +1169,17 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
             // Perform access check
             Class<?> enclosingCandidate = enclosingInfo.getEnclosingClass();
-            enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection
-                    .getCallerClass(), true);
+            enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
             /*
              * Loop over all declared constructors; match number of and type of
              * parameters.
              */
-            for (Constructor<?> c : enclosingCandidate
-                    .getDeclaredConstructors()) {
+            for (Constructor<?> c : enclosingCandidate.getDeclaredConstructors()) {
                 Class<?>[] candidateParamClasses = c.getParameterTypes();
                 if (candidateParamClasses.length == parameterClasses.length) {
                     boolean matches = true;
                     for (int i = 0; i < candidateParamClasses.length; i++) {
-                        if (!candidateParamClasses[i].equals(
-                                parameterClasses[i])) {
+                        if (!candidateParamClasses[i].equals(parameterClasses[i])) {
                             matches = false;
                             break;
                         }
@@ -1289,16 +1204,16 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      *
      * @return the declaring class for this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           the caller's
-     *                           class loader is not the same as or an ancestor
-     *                           of the class
-     *                           loader for the declaring class and invocation
-     *                           of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of the
-     *                           declaring class
+     *         If a security manager, <i>s</i>, is present and
+     *         the caller's
+     *         class loader is not the same as or an ancestor
+     *         of the class
+     *         loader for the declaring class and invocation
+     *         of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of the
+     *         declaring class
      * @since JDK1.1
      */
     @CallerSensitive
@@ -1306,8 +1221,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         final Class<?> candidate = getDeclaringClass0();
 
         if (candidate != null)
-            candidate.checkPackageAccess(ClassLoader.getClassLoader(Reflection
-                    .getCallerClass()), true);
+            candidate.checkPackageAccess(ClassLoader.getClassLoader(Reflection.getCallerClass()), true);
         return candidate;
     }
 
@@ -1319,16 +1233,16 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * 
      * @return the immediately enclosing class of the underlying class
      * @exception SecurityException
-     *                              If a security manager, <i>s</i>, is present
-     *                              and the
-     *                              caller's class loader is not the same as or
-     *                              an ancestor of
-     *                              the class loader for the enclosing class and
-     *                              invocation of
-     *                              {@link SecurityManager#checkPackageAccess
-     *                              s.checkPackageAccess()} denies access to the
-     *                              package of
-     *                              the enclosing class
+     *            If a security manager, <i>s</i>, is present
+     *            and the
+     *            caller's class loader is not the same as or
+     *            an ancestor of
+     *            the class loader for the enclosing class and
+     *            invocation of
+     *            {@link SecurityManager#checkPackageAccess
+     *            s.checkPackageAccess()} denies access to the
+     *            package of
+     *            the enclosing class
      * @since 1.5
      */
     @CallerSensitive
@@ -1354,22 +1268,20 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             Class<?> enclosingClass = enclosingInfo.getEnclosingClass();
             // This is a local class or an anonymous class (d or e)
             if (enclosingClass == this || enclosingClass == null)
-                throw new InternalError(
-                        "Malformed enclosing method information");
+                throw new InternalError("Malformed enclosing method information");
             else
                 enclosingCandidate = enclosingClass;
         }
 
         if (enclosingCandidate != null)
-            enclosingCandidate.checkPackageAccess(ClassLoader.getClassLoader(
-                    Reflection.getCallerClass()), true);
+            enclosingCandidate.checkPackageAccess(ClassLoader.getClassLoader(Reflection.getCallerClass()),
+                    true);
         return enclosingCandidate;
     }
 
     /**
      * Returns the simple name of the underlying class as given in the source
      * code. Returns an empty string if the underlying class is anonymous.
-     *
      * <p>
      * The simple name of an array is the simple name of the component type with
      * "[]" appended. In particular the simple name of an array whose component
@@ -1555,16 +1467,15 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the array of {@code Class} objects representing the public
      *         members of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           the caller's
-     *                           class loader is not the same as or an ancestor
-     *                           of the class
-     *                           loader for the current class and invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class.
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         the caller's
+     *         class loader is not the same as or an ancestor
+     *         of the class
+     *         loader for the current class and invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class.
      * @since JDK1.1
      */
     @CallerSensitive
@@ -1577,64 +1488,55 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         // out anything other than public members and (2) public member access
         // has already been ok'd by the SecurityManager.
 
-        return java.security.AccessController.doPrivileged(
-                new java.security.PrivilegedAction<Class<?>[]>() {
-                    public Class<?>[] run() {
-                        List<Class<?>> list = new ArrayList<>();
-                        Class<?> currentClass = Class.this;
-                        while (currentClass != null) {
-                            Class<?>[] members = currentClass
-                                    .getDeclaredClasses();
-                            for (int i = 0; i < members.length; i++) {
-                                if (Modifier.isPublic(members[i]
-                                        .getModifiers())) {
-                                    list.add(members[i]);
-                                }
-                            }
-                            currentClass = currentClass.getSuperclass();
+        return java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Class<?>[]>() {
+            public Class<?>[] run() {
+                List<Class<?>> list = new ArrayList<>();
+                Class<?> currentClass = Class.this;
+                while (currentClass != null) {
+                    Class<?>[] members = currentClass.getDeclaredClasses();
+                    for (int i = 0; i < members.length; i++) {
+                        if (Modifier.isPublic(members[i].getModifiers())) {
+                            list.add(members[i]);
                         }
-                        return list.toArray(new Class<?>[0]);
                     }
-                });
+                    currentClass = currentClass.getSuperclass();
+                }
+                return list.toArray(new Class<?>[0]);
+            }
+        });
     }
 
     /**
      * Returns an array containing {@code Field} objects reflecting all the
      * accessible public fields of the class or interface represented by this
      * {@code Class} object.
-     *
      * <p>
      * If this {@code Class} object represents a class or interface with no no
      * accessible public fields, then this method returns an array of length 0.
-     *
      * <p>
      * If this {@code Class} object represents a class, then this method returns
      * the public fields of the class and of all its superclasses.
-     *
      * <p>
      * If this {@code Class} object represents an interface, then this method
      * returns the fields of the interface and of all its superinterfaces.
-     *
      * <p>
      * If this {@code Class} object represents an array type, a primitive type,
      * or void, then this method returns an array of length 0.
-     *
      * <p>
      * The elements in the returned array are not sorted and are not in any
      * particular order.
      *
      * @return the array of {@code Field} objects representing the public fields
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           the caller's
-     *                           class loader is not the same as or an ancestor
-     *                           of the class
-     *                           loader for the current class and invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class.
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         the caller's
+     *         class loader is not the same as or an ancestor
+     *         of the class
+     *         loader for the current class and invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class.
      * @since JDK1.1
      * @jls 8.2 Class Members
      * @jls 8.3 Field Declarations
@@ -1650,24 +1552,20 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * public methods of the class or interface represented by this {@code
      * Class} object, including those declared by the class or interface and
      * those inherited from superclasses and superinterfaces.
-     *
      * <p>
      * If this {@code Class} object represents a type that has multiple public
      * methods with the same name and parameter types, but different return
      * types, then the returned array has a {@code Method} object for each such
      * method.
-     *
      * <p>
      * If this {@code Class} object represents a type with a class
      * initialization method {@code <clinit>}, then the returned array does
      * <em>not</em> have a corresponding {@code Method} object.
-     *
      * <p>
      * If this {@code Class} object represents an array type, then the returned
      * array has a {@code Method} object for each of the public methods
      * inherited by the array type from {@code Object}. It does not contain a
      * {@code Method} object for {@code clone()}.
-     *
      * <p>
      * If this {@code Class} object represents an interface then the returned
      * array does not contain any implicitly declared methods from
@@ -1675,16 +1573,13 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * interface or any of its superinterfaces then the returned array has
      * length 0. (Note that a {@code Class} object which represents a class
      * always has public methods, inherited from {@code Object}.)
-     *
      * <p>
      * If this {@code Class} object represents a primitive type or void, then
      * the returned array has length 0.
-     *
      * <p>
      * Static methods declared in superinterfaces of the class or interface
      * represented by this {@code Class} object are not considered members of
      * the class or interface.
-     *
      * <p>
      * The elements in the returned array are not sorted and are not in any
      * particular order.
@@ -1692,16 +1587,15 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the array of {@code Method} objects representing the public
      *         methods of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           the caller's
-     *                           class loader is not the same as or an ancestor
-     *                           of the class
-     *                           loader for the current class and invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class.
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         the caller's
+     *         class loader is not the same as or an ancestor
+     *         of the class
+     *         loader for the current class and invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class.
      * @jls 8.2 Class Members
      * @jls 8.4 Method Declarations
      * @since JDK1.1
@@ -1718,7 +1612,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * object. An array of length 0 is returned if the class has no public
      * constructors, or if the class is an array class, or if the class reflects
      * a primitive type or void.
-     *
      * Note that while this method returns an array of {@code
      * Constructor<T>} objects (that is an array of constructors from this
      * class), the return type of this method is {@code
@@ -1731,16 +1624,15 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the array of {@code Constructor} objects representing the public
      *         constructors of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           the caller's
-     *                           class loader is not the same as or an ancestor
-     *                           of the class
-     *                           loader for the current class and invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class.
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         the caller's
+     *         class loader is not the same as or an ancestor
+     *         of the class
+     *         loader for the current class and invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class.
      * @since JDK1.1
      */
     @CallerSensitive
@@ -1754,11 +1646,9 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * field of the class or interface represented by this {@code Class} object.
      * The {@code name} parameter is a {@code String} specifying the simple name
      * of the desired field.
-     *
      * <p>
      * The field to be reflected is determined by the algorithm that follows.
      * Let C be the class or interface represented by this object:
-     *
      * <OL>
      * <LI>If C declares a public field with the name specified, that is the
      * field to be reflected.</LI>
@@ -1769,38 +1659,35 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * S, then this algorithm is invoked recursively upon S. If C has no
      * superclass, then a {@code NoSuchFieldException} is thrown.</LI>
      * </OL>
-     *
      * <p>
      * If this {@code Class} object represents an array type, then this method
      * does not find the {@code length} field of the array type.
      *
      * @param name
-     *             the field name
+     *        the field name
      * @return the {@code Field} object of this class specified by {@code name}
      * @throws NoSuchFieldException
-     *                              if a field with the specified name is not
-     *                              found.
+     *         if a field with the specified name is not
+     *         found.
      * @throws NullPointerException
-     *                              if {@code name} is {@code null}
+     *         if {@code name} is {@code null}
      * @throws SecurityException
-     *                              If a security manager, <i>s</i>, is present
-     *                              and the caller's
-     *                              class loader is not the same as or an
-     *                              ancestor of the class
-     *                              loader for the current class and invocation
-     *                              of
-     *                              {@link SecurityManager#checkPackageAccess
-     *                              s.checkPackageAccess()} denies access to the
-     *                              package of this
-     *                              class.
-     *
+     *         If a security manager, <i>s</i>, is present
+     *         and the caller's
+     *         class loader is not the same as or an
+     *         ancestor of the class
+     *         loader for the current class and invocation
+     *         of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class.
      * @since JDK1.1
      * @jls 8.2 Class Members
      * @jls 8.3 Field Declarations
      */
     @CallerSensitive
-    public Field getField(String name) throws NoSuchFieldException,
-            SecurityException {
+    public Field getField(String name) throws NoSuchFieldException, SecurityException {
         checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), true);
         Field field = getField0(name);
         if (field == null) {
@@ -1817,7 +1704,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * is an array of {@code Class} objects that identify the method's formal
      * parameter types, in declared order. If {@code parameterTypes} is
      * {@code null}, it is treated as if it were an empty array.
-     *
      * <p>
      * If the {@code name} is "{@code <init>}" or "{@code <clinit>}" a
      * {@code NoSuchMethodException} is raised. Otherwise, the method to be
@@ -1836,7 +1722,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * </OL>
      * </LI>
      * </OL>
-     *
      * <p>
      * To find a matching method in a class or interface C:&nbsp; If C declares
      * exactly one public method with the specified name and exactly the same
@@ -1844,7 +1729,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * such method is found in C, and one of these methods has a return type
      * that is more specific than any of the others, that method is reflected;
      * otherwise one of the methods is chosen arbitrarily.
-     *
      * <p>
      * Note that there may be more than one matching method in a class because
      * while the Java language forbids a class to declare multiple methods with
@@ -1854,52 +1738,48 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * can be implemented with {@linkplain java.lang.reflect.Method#isBridge
      * bridge methods}; the bridge method and the method being overridden would
      * have the same signature but different return types.
-     *
      * <p>
      * If this {@code Class} object represents an array type, then this method
      * does not find the {@code clone()} method.
-     *
      * <p>
      * Static methods declared in superinterfaces of the class or interface
      * represented by this {@code Class} object are not considered members of
      * the class or interface.
      *
      * @param name
-     *                       the name of the method
+     *        the name of the method
      * @param parameterTypes
-     *                       the list of parameters
+     *        the list of parameters
      * @return the {@code Method} object that matches the specified {@code name}
      *         and {@code parameterTypes}
      * @throws NoSuchMethodException
-     *                               if a matching method is not found or if the
-     *                               name is
-     *                               "&lt;init&gt;"or "&lt;clinit&gt;".
+     *         if a matching method is not found or if the
+     *         name is
+     *         "&lt;init&gt;"or "&lt;clinit&gt;".
      * @throws NullPointerException
-     *                               if {@code name} is {@code null}
+     *         if {@code name} is {@code null}
      * @throws SecurityException
-     *                               If a security manager, <i>s</i>, is present
-     *                               and the caller's
-     *                               class loader is not the same as or an
-     *                               ancestor of the class
-     *                               loader for the current class and invocation
-     *                               of
-     *                               {@link SecurityManager#checkPackageAccess
-     *                               s.checkPackageAccess()} denies access to
-     *                               the package of this
-     *                               class.
-     *
+     *         If a security manager, <i>s</i>, is present
+     *         and the caller's
+     *         class loader is not the same as or an
+     *         ancestor of the class
+     *         loader for the current class and invocation
+     *         of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to
+     *         the package of this
+     *         class.
      * @jls 8.2 Class Members
      * @jls 8.4 Method Declarations
      * @since JDK1.1
      */
     @CallerSensitive
-    public Method getMethod(String name, Class<?>... parameterTypes)
-            throws NoSuchMethodException, SecurityException {
+    public Method getMethod(String name, Class<?>... parameterTypes) throws NoSuchMethodException,
+            SecurityException {
         checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), true);
         Method method = getMethod0(name, parameterTypes, true);
         if (method == null) {
-            throw new NoSuchMethodException(getName() + "." + name
-                    + argumentTypesToString(parameterTypes));
+            throw new NoSuchMethodException(getName() + "." + name + argumentTypesToString(parameterTypes));
         }
         return method;
     }
@@ -1910,39 +1790,36 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * {@code parameterTypes} parameter is an array of {@code Class} objects
      * that identify the constructor's formal parameter types, in declared
      * order.
-     *
      * If this {@code Class} object represents an inner class declared in a
      * non-static context, the formal parameter types include the explicit
      * enclosing instance as the first parameter.
-     *
      * <p>
      * The constructor to reflect is the public constructor of the class
      * represented by this {@code Class} object whose formal parameter types
      * match those specified by {@code parameterTypes}.
      *
      * @param parameterTypes
-     *                       the parameter array
+     *        the parameter array
      * @return the {@code Constructor} object of the public constructor that
      *         matches the specified {@code parameterTypes}
      * @throws NoSuchMethodException
-     *                               if a matching method is not found.
+     *         if a matching method is not found.
      * @throws SecurityException
-     *                               If a security manager, <i>s</i>, is present
-     *                               and the caller's
-     *                               class loader is not the same as or an
-     *                               ancestor of the class
-     *                               loader for the current class and invocation
-     *                               of
-     *                               {@link SecurityManager#checkPackageAccess
-     *                               s.checkPackageAccess()} denies access to
-     *                               the package of this
-     *                               class.
-     *
+     *         If a security manager, <i>s</i>, is present
+     *         and the caller's
+     *         class loader is not the same as or an
+     *         ancestor of the class
+     *         loader for the current class and invocation
+     *         of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to
+     *         the package of this
+     *         class.
      * @since JDK1.1
      */
     @CallerSensitive
-    public Constructor<T> getConstructor(Class<?>... parameterTypes)
-            throws NoSuchMethodException, SecurityException {
+    public Constructor<T> getConstructor(Class<?>... parameterTypes) throws NoSuchMethodException,
+            SecurityException {
         checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), true);
         return getConstructor0(parameterTypes, Member.PUBLIC);
     }
@@ -1960,35 +1837,30 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the array of {@code Class} objects representing all the declared
      *         members of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           any of the
-     *                           following conditions is met:
-     *
-     *                           <ul>
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as the class
-     *                           loader of this class and invocation of
-     *                           {@link SecurityManager#checkPermission
-     *                           s.checkPermission}
-     *                           method with
-     *                           {@code RuntimePermission("accessDeclaredMembers")}
-     *                           denies
-     *                           access to the declared classes within this
-     *                           class
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as or an
-     *                           ancestor of the class loader for the current
-     *                           class and
-     *                           invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class
-     *
-     *                           </ul>
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the same
+     *         as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared classes within this
+     *         class
+     *         <li>the caller's class loader is not the same
+     *         as or an
+     *         ancestor of the class loader for the current
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class
+     *         </ul>
      * @since JDK1.1
      */
     @CallerSensitive
@@ -2002,15 +1874,12 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * declared by the class or interface represented by this {@code Class}
      * object. This includes public, protected, default (package) access, and
      * private fields, but excludes inherited fields.
-     *
      * <p>
      * If this {@code Class} object represents a class or interface with no
      * declared fields, then this method returns an array of length 0.
-     *
      * <p>
      * If this {@code Class} object represents an array type, a primitive type,
      * or void, then this method returns an array of length 0.
-     *
      * <p>
      * The elements in the returned array are not sorted and are not in any
      * particular order.
@@ -2018,34 +1887,29 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the array of {@code Field} objects representing all the declared
      *         fields of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           any of the
-     *                           following conditions is met:
-     *
-     *                           <ul>
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as the class
-     *                           loader of this class and invocation of
-     *                           {@link SecurityManager#checkPermission
-     *                           s.checkPermission}
-     *                           method with
-     *                           {@code RuntimePermission("accessDeclaredMembers")}
-     *                           denies
-     *                           access to the declared fields within this class
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as or an
-     *                           ancestor of the class loader for the current
-     *                           class and
-     *                           invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class
-     *
-     *                           </ul>
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the same
+     *         as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared fields within this class
+     *         <li>the caller's class loader is not the same
+     *         as or an
+     *         ancestor of the class loader for the current
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class
+     *         </ul>
      * @since JDK1.1
      * @jls 8.2 Class Members
      * @jls 8.3 Field Declarations
@@ -2057,31 +1921,25 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     }
 
     /**
-     *
      * Returns an array containing {@code Method} objects reflecting all the
      * declared methods of the class or interface represented by this {@code
      * Class} object, including public, protected, default (package) access, and
      * private methods, but excluding inherited methods.
-     *
      * <p>
      * If this {@code Class} object represents a type that has multiple declared
      * methods with the same name and parameter types, but different return
      * types, then the returned array has a {@code Method} object for each such
      * method.
-     *
      * <p>
      * If this {@code Class} object represents a type that has a class
      * initialization method {@code <clinit>}, then the returned array does
      * <em>not</em> have a corresponding {@code Method} object.
-     *
      * <p>
      * If this {@code Class} object represents a class or interface with no
      * declared methods, then the returned array has length 0.
-     *
      * <p>
      * If this {@code Class} object represents an array type, a primitive type,
      * or void, then the returned array has length 0.
-     *
      * <p>
      * The elements in the returned array are not sorted and are not in any
      * particular order.
@@ -2089,35 +1947,30 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @return the array of {@code Method} objects representing all the declared
      *         methods of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           any of the
-     *                           following conditions is met:
-     *
-     *                           <ul>
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as the class
-     *                           loader of this class and invocation of
-     *                           {@link SecurityManager#checkPermission
-     *                           s.checkPermission}
-     *                           method with
-     *                           {@code RuntimePermission("accessDeclaredMembers")}
-     *                           denies
-     *                           access to the declared methods within this
-     *                           class
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as or an
-     *                           ancestor of the class loader for the current
-     *                           class and
-     *                           invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class
-     *
-     *                           </ul>
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the same
+     *         as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared methods within this
+     *         class
+     *         <li>the caller's class loader is not the same
+     *         as or an
+     *         ancestor of the class loader for the current
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class
+     *         </ul>
      * @jls 8.2 Class Members
      * @jls 8.4 Method Declarations
      * @since JDK1.1
@@ -2137,42 +1990,36 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * constructor, it is included in the returned array. This method returns an
      * array of length 0 if this {@code Class} object represents an interface, a
      * primitive type, an array class, or void.
-     *
      * <p>
      * See <em>The Java Language Specification</em>, section 8.2.
      *
      * @return the array of {@code Constructor} objects representing all the
      *         declared constructors of this class
      * @throws SecurityException
-     *                           If a security manager, <i>s</i>, is present and
-     *                           any of the
-     *                           following conditions is met:
-     *
-     *                           <ul>
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as the class
-     *                           loader of this class and invocation of
-     *                           {@link SecurityManager#checkPermission
-     *                           s.checkPermission}
-     *                           method with
-     *                           {@code RuntimePermission("accessDeclaredMembers")}
-     *                           denies
-     *                           access to the declared constructors within this
-     *                           class
-     *
-     *                           <li>the caller's class loader is not the same
-     *                           as or an
-     *                           ancestor of the class loader for the current
-     *                           class and
-     *                           invocation of
-     *                           {@link SecurityManager#checkPackageAccess
-     *                           s.checkPackageAccess()} denies access to the
-     *                           package of this
-     *                           class
-     *
-     *                           </ul>
-     *
+     *         If a security manager, <i>s</i>, is present and
+     *         any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the same
+     *         as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared constructors within this
+     *         class
+     *         <li>the caller's class loader is not the same
+     *         as or an
+     *         ancestor of the class loader for the current
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class
+     *         </ul>
      * @since JDK1.1
      */
     @CallerSensitive
@@ -2186,55 +2033,48 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * of the class or interface represented by this {@code Class} object. The
      * {@code name} parameter is a {@code String} that specifies the simple name
      * of the desired field.
-     *
      * <p>
      * If this {@code Class} object represents an array type, then this method
      * does not find the {@code length} field of the array type.
      *
      * @param name
-     *             the name of the field
+     *        the name of the field
      * @return the {@code Field} object for the specified field in this class
      * @throws NoSuchFieldException
-     *                              if a field with the specified name is not
-     *                              found.
+     *         if a field with the specified name is not
+     *         found.
      * @throws NullPointerException
-     *                              if {@code name} is {@code null}
+     *         if {@code name} is {@code null}
      * @throws SecurityException
-     *                              If a security manager, <i>s</i>, is present
-     *                              and any of the
-     *                              following conditions is met:
-     *
-     *                              <ul>
-     *
-     *                              <li>the caller's class loader is not the
-     *                              same as the class
-     *                              loader of this class and invocation of
-     *                              {@link SecurityManager#checkPermission
-     *                              s.checkPermission}
-     *                              method with
-     *                              {@code RuntimePermission("accessDeclaredMembers")}
-     *                              denies
-     *                              access to the declared field
-     *
-     *                              <li>the caller's class loader is not the
-     *                              same as or an
-     *                              ancestor of the class loader for the current
-     *                              class and
-     *                              invocation of
-     *                              {@link SecurityManager#checkPackageAccess
-     *                              s.checkPackageAccess()} denies access to the
-     *                              package of this
-     *                              class
-     *
-     *                              </ul>
-     *
+     *         If a security manager, <i>s</i>, is present
+     *         and any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the
+     *         same as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared field
+     *         <li>the caller's class loader is not the
+     *         same as or an
+     *         ancestor of the class loader for the current
+     *         class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to the
+     *         package of this
+     *         class
+     *         </ul>
      * @since JDK1.1
      * @jls 8.2 Class Members
      * @jls 8.3 Field Declarations
      */
     @CallerSensitive
-    public Field getDeclaredField(String name) throws NoSuchFieldException,
-            SecurityException {
+    public Field getDeclaredField(String name) throws NoSuchFieldException, SecurityException {
         checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
         Field field = searchFields(privateGetDeclaredFields(false), name);
         if (field == null) {
@@ -2255,63 +2095,55 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * method is returned; otherwise one of the methods is chosen arbitrarily.
      * If the name is "&lt;init&gt;"or "&lt;clinit&gt;" a
      * {@code NoSuchMethodException} is raised.
-     *
      * <p>
      * If this {@code Class} object represents an array type, then this method
      * does not find the {@code clone()} method.
      *
      * @param name
-     *                       the name of the method
+     *        the name of the method
      * @param parameterTypes
-     *                       the parameter array
+     *        the parameter array
      * @return the {@code Method} object for the method of this class matching
      *         the specified name and parameters
      * @throws NoSuchMethodException
-     *                               if a matching method is not found.
+     *         if a matching method is not found.
      * @throws NullPointerException
-     *                               if {@code name} is {@code null}
+     *         if {@code name} is {@code null}
      * @throws SecurityException
-     *                               If a security manager, <i>s</i>, is present
-     *                               and any of the
-     *                               following conditions is met:
-     *
-     *                               <ul>
-     *
-     *                               <li>the caller's class loader is not the
-     *                               same as the class
-     *                               loader of this class and invocation of
-     *                               {@link SecurityManager#checkPermission
-     *                               s.checkPermission}
-     *                               method with
-     *                               {@code RuntimePermission("accessDeclaredMembers")}
-     *                               denies
-     *                               access to the declared method
-     *
-     *                               <li>the caller's class loader is not the
-     *                               same as or an
-     *                               ancestor of the class loader for the
-     *                               current class and
-     *                               invocation of
-     *                               {@link SecurityManager#checkPackageAccess
-     *                               s.checkPackageAccess()} denies access to
-     *                               the package of this
-     *                               class
-     *
-     *                               </ul>
-     *
+     *         If a security manager, <i>s</i>, is present
+     *         and any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the
+     *         same as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared method
+     *         <li>the caller's class loader is not the
+     *         same as or an
+     *         ancestor of the class loader for the
+     *         current class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to
+     *         the package of this
+     *         class
+     *         </ul>
      * @jls 8.2 Class Members
      * @jls 8.4 Method Declarations
      * @since JDK1.1
      */
     @CallerSensitive
-    public Method getDeclaredMethod(String name, Class<?>... parameterTypes)
-            throws NoSuchMethodException, SecurityException {
+    public Method getDeclaredMethod(String name, Class<?>... parameterTypes) throws NoSuchMethodException,
+            SecurityException {
         checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
-        Method method = searchMethods(privateGetDeclaredMethods(false), name,
-                parameterTypes);
+        Method method = searchMethods(privateGetDeclaredMethods(false), name, parameterTypes);
         if (method == null) {
-            throw new NoSuchMethodException(getName() + "." + name
-                    + argumentTypesToString(parameterTypes));
+            throw new NoSuchMethodException(getName() + "." + name + argumentTypesToString(parameterTypes));
         }
         return method;
     }
@@ -2322,51 +2154,45 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * object. The {@code parameterTypes} parameter is an array of {@code Class}
      * objects that identify the constructor's formal parameter types, in
      * declared order.
-     *
      * If this {@code Class} object represents an inner class declared in a
      * non-static context, the formal parameter types include the explicit
      * enclosing instance as the first parameter.
      *
      * @param parameterTypes
-     *                       the parameter array
+     *        the parameter array
      * @return The {@code Constructor} object for the constructor with the
      *         specified parameter list
      * @throws NoSuchMethodException
-     *                               if a matching method is not found.
+     *         if a matching method is not found.
      * @throws SecurityException
-     *                               If a security manager, <i>s</i>, is present
-     *                               and any of the
-     *                               following conditions is met:
-     *
-     *                               <ul>
-     *
-     *                               <li>the caller's class loader is not the
-     *                               same as the class
-     *                               loader of this class and invocation of
-     *                               {@link SecurityManager#checkPermission
-     *                               s.checkPermission}
-     *                               method with
-     *                               {@code RuntimePermission("accessDeclaredMembers")}
-     *                               denies
-     *                               access to the declared constructor
-     *
-     *                               <li>the caller's class loader is not the
-     *                               same as or an
-     *                               ancestor of the class loader for the
-     *                               current class and
-     *                               invocation of
-     *                               {@link SecurityManager#checkPackageAccess
-     *                               s.checkPackageAccess()} denies access to
-     *                               the package of this
-     *                               class
-     *
-     *                               </ul>
-     *
+     *         If a security manager, <i>s</i>, is present
+     *         and any of the
+     *         following conditions is met:
+     *         <ul>
+     *         <li>the caller's class loader is not the
+     *         same as the class
+     *         loader of this class and invocation of
+     *         {@link SecurityManager#checkPermission
+     *         s.checkPermission}
+     *         method with
+     *         {@code RuntimePermission("accessDeclaredMembers")}
+     *         denies
+     *         access to the declared constructor
+     *         <li>the caller's class loader is not the
+     *         same as or an
+     *         ancestor of the class loader for the
+     *         current class and
+     *         invocation of
+     *         {@link SecurityManager#checkPackageAccess
+     *         s.checkPackageAccess()} denies access to
+     *         the package of this
+     *         class
+     *         </ul>
      * @since JDK1.1
      */
     @CallerSensitive
-    public Constructor<T> getDeclaredConstructor(Class<?>... parameterTypes)
-            throws NoSuchMethodException, SecurityException {
+    public Constructor<T> getDeclaredConstructor(Class<?>... parameterTypes) throws NoSuchMethodException,
+            SecurityException {
         checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
         return getConstructor0(parameterTypes, Member.DECLARED);
     }
@@ -2378,34 +2204,27 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * to this object's class loader. If this object was loaded by the bootstrap
      * class loader, the method delegates to
      * {@link ClassLoader#getSystemResourceAsStream}.
-     *
      * <p>
      * Before delegation, an absolute resource name is constructed from the
      * given resource name using this algorithm:
-     *
      * <ul>
-     *
      * <li>If the {@code name} begins with a {@code '/'} (<tt>'&#92;u002f'</tt>
      * ), then the absolute name of the resource is the portion of the
      * {@code name} following the {@code '/'}.
-     *
      * <li>Otherwise, the absolute name is of the following form:
-     *
      * <blockquote> {@code modified_package_name/name} </blockquote>
-     *
      * <p>
      * Where the {@code modified_package_name} is the package name of this
      * object with {@code '/'} substituted for {@code '.'} (
      * <tt>'&#92;u002e'</tt>).
-     *
      * </ul>
      *
      * @param name
-     *             name of the desired resource
+     *        name of the desired resource
      * @return A {@link java.io.InputStream} object or {@code null} if no
      *         resource with this name is found
      * @throws NullPointerException
-     *                              If {@code name} is {@code null}
+     *         If {@code name} is {@code null}
      * @since JDK1.1
      */
     public InputStream getResourceAsStream(String name) {
@@ -2425,30 +2244,23 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * to this object's class loader. If this object was loaded by the bootstrap
      * class loader, the method delegates to
      * {@link ClassLoader#getSystemResource}.
-     *
      * <p>
      * Before delegation, an absolute resource name is constructed from the
      * given resource name using this algorithm:
-     *
      * <ul>
-     *
      * <li>If the {@code name} begins with a {@code '/'} (<tt>'&#92;u002f'</tt>
      * ), then the absolute name of the resource is the portion of the
      * {@code name} following the {@code '/'}.
-     *
      * <li>Otherwise, the absolute name is of the following form:
-     *
      * <blockquote> {@code modified_package_name/name} </blockquote>
-     *
      * <p>
      * Where the {@code modified_package_name} is the package name of this
      * object with {@code '/'} substituted for {@code '.'} (
      * <tt>'&#92;u002e'</tt>).
-     *
      * </ul>
      *
      * @param name
-     *             name of the desired resource
+     *        name of the desired resource
      * @return A {@link java.net.URL} object or {@code null} if no resource with
      *         this name is found
      * @since JDK1.1
@@ -2474,13 +2286,11 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * it's ok to get the {@code ProtectionDomain}.
      *
      * @return the ProtectionDomain of this class
-     *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method doesn't allow getting the
-     *                           ProtectionDomain.
-     *
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method doesn't allow getting the
+     *         ProtectionDomain.
      * @see java.security.ProtectionDomain
      * @see SecurityManager#checkPermission
      * @see java.lang.RuntimePermission
@@ -2520,8 +2330,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * <p> Default policy: allow all clients access with normal Java access
      * control.
      */
-    private void checkMemberAccess(int which, Class<?> caller,
-            boolean checkProxyInterfaces) {
+    private void checkMemberAccess(int which, Class<?> caller, boolean checkProxyInterfaces) {
         final SecurityManager s = System.getSecurityManager();
         if (s != null) {
             /*
@@ -2534,8 +2343,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             final ClassLoader cl = getClassLoader0();
             if (which != Member.PUBLIC) {
                 if (ccl != cl) {
-                    s.checkPermission(
-                            SecurityConstants.CHECK_MEMBER_ACCESS_PERMISSION);
+                    s.checkPermission(SecurityConstants.CHECK_MEMBER_ACCESS_PERMISSION);
                 }
             }
             this.checkPackageAccess(ccl, checkProxyInterfaces);
@@ -2547,8 +2355,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * class under the current package access policy. If access is denied, throw
      * a SecurityException.
      */
-    private void checkPackageAccess(final ClassLoader ccl,
-            boolean checkProxyInterfaces) {
+    private void checkPackageAccess(final ClassLoader ccl, boolean checkProxyInterfaces) {
         final SecurityManager s = System.getSecurityManager();
         if (s != null) {
             final ClassLoader cl = getClassLoader0();
@@ -2560,8 +2367,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
                     // skip the package access check on a proxy class in default
                     // proxy package
                     String pkg = name.substring(0, i);
-                    if (!Proxy.isProxyClass(this) || ReflectUtil
-                            .isNonPublicProxyClass(this)) {
+                    if (!Proxy.isProxyClass(this) || ReflectUtil.isNonPublicProxyClass(this)) {
                         s.checkPackageAccess(pkg);
                     }
                 }
@@ -2589,8 +2395,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             String baseName = c.getName();
             int index = baseName.lastIndexOf('.');
             if (index != -1) {
-                name = baseName.substring(0, index).replace('.', '/') + "/"
-                        + name;
+                name = baseName.substring(0, index).replace('.', '/') + "/" + name;
             }
         } else {
             name = name.substring(1);
@@ -2622,33 +2427,25 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             annotationDataOffset = objectFieldOffset(fields, "annotationData");
         }
 
-        private static long objectFieldOffset(Field[] fields,
-                String fieldName) {
+        private static long objectFieldOffset(Field[] fields, String fieldName) {
             Field field = searchFields(fields, fieldName);
             if (field == null) {
-                throw new Error("No " + fieldName
-                        + " field found in java.lang.Class");
+                throw new Error("No " + fieldName + " field found in java.lang.Class");
             }
             return unsafe.objectFieldOffset(field);
         }
 
-        static <T> boolean casReflectionData(Class<?> clazz,
-                SoftReference<ReflectionData<T>> oldData,
+        static <T> boolean casReflectionData(Class<?> clazz, SoftReference<ReflectionData<T>> oldData,
                 SoftReference<ReflectionData<T>> newData) {
-            return unsafe.compareAndSwapObject(clazz, reflectionDataOffset,
-                    oldData, newData);
+            return unsafe.compareAndSwapObject(clazz, reflectionDataOffset, oldData, newData);
         }
 
-        static <T> boolean casAnnotationType(Class<?> clazz,
-                AnnotationType oldType, AnnotationType newType) {
-            return unsafe.compareAndSwapObject(clazz, annotationTypeOffset,
-                    oldType, newType);
+        static <T> boolean casAnnotationType(Class<?> clazz, AnnotationType oldType, AnnotationType newType) {
+            return unsafe.compareAndSwapObject(clazz, annotationTypeOffset, oldType, newType);
         }
 
-        static <T> boolean casAnnotationData(Class<?> clazz,
-                AnnotationData oldData, AnnotationData newData) {
-            return unsafe.compareAndSwapObject(clazz, annotationDataOffset,
-                    oldData, newData);
+        static <T> boolean casAnnotationData(Class<?> clazz, AnnotationData oldData, AnnotationData newData) {
+            return unsafe.compareAndSwapObject(clazz, annotationDataOffset, oldData, newData);
         }
     }
 
@@ -2693,8 +2490,8 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         SoftReference<ReflectionData<T>> reflectionData = this.reflectionData;
         int classRedefinedCount = this.classRedefinedCount;
         ReflectionData<T> rd;
-        if (useCaches && reflectionData != null && (rd = reflectionData
-                .get()) != null && rd.redefinedCount == classRedefinedCount) {
+        if (useCaches && reflectionData != null && (rd = reflectionData.get()) != null
+                && rd.redefinedCount == classRedefinedCount) {
             return rd;
         }
         // else no SoftReference or cleared SoftReference or stale
@@ -2703,8 +2500,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         return newReflectionData(reflectionData, classRedefinedCount);
     }
 
-    private ReflectionData<T> newReflectionData(
-            SoftReference<ReflectionData<T>> oldReflectionData,
+    private ReflectionData<T> newReflectionData(SoftReference<ReflectionData<T>> oldReflectionData,
             int classRedefinedCount) {
         if (!useCaches)
             return null;
@@ -2712,15 +2508,13 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         while (true) {
             ReflectionData<T> rd = new ReflectionData<>(classRedefinedCount);
             // try to CAS it...
-            if (Atomic.casReflectionData(this, oldReflectionData,
-                    new SoftReference<>(rd))) {
+            if (Atomic.casReflectionData(this, oldReflectionData, new SoftReference<>(rd))) {
                 return rd;
             }
             // else retry
             oldReflectionData = this.reflectionData;
             classRedefinedCount = this.classRedefinedCount;
-            if (oldReflectionData != null && (rd = oldReflectionData
-                    .get()) != null
+            if (oldReflectionData != null && (rd = oldReflectionData.get()) != null
                     && rd.redefinedCount == classRedefinedCount) {
                 return rd;
             }
@@ -2860,8 +2654,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     // Returns an array of "root" constructors. These Constructor
     // objects must NOT be propagated to the outside world, but must
     // instead be copied via ReflectionFactory.copyConstructor.
-    private Constructor<T>[] privateGetDeclaredConstructors(
-            boolean publicOnly) {
+    private Constructor<T>[] privateGetDeclaredConstructors(boolean publicOnly) {
         checkInitted();
         Constructor<T>[] res;
         ReflectionData<T> rd = reflectionData();
@@ -3025,15 +2818,13 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         }
 
         private boolean matchesNameAndDescriptor(Method m1, Method m2) {
-            return m1.getReturnType() == m2.getReturnType() && m1
-                    .getName() == m2.getName() && // name
-                                                                                                       // is
-                                                                                                       // guaranteed
-                                                                                                       // to
-                                                                                                       // be
-                                                                                                       // interned
-                    arrayContentsEq(m1.getParameterTypes(), m2
-                            .getParameterTypes());
+            return m1.getReturnType() == m2.getReturnType() && m1.getName() == m2.getName() && // name
+                                                                                               // is
+                                                                                               // guaranteed
+                                                                                               // to
+                                                                                               // be
+                                                                                               // interned
+                    arrayContentsEq(m1.getParameterTypes(), m2.getParameterTypes());
         }
 
         void compactAndTrim() {
@@ -3134,8 +2925,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
                 // interface methods
                 for (int i = 0; i < supers.length(); i++) {
                     Method m = supers.get(i);
-                    if (m != null && !Modifier.isAbstract(m.getModifiers())
-                            && !m.isDefault()) {
+                    if (m != null && !Modifier.isAbstract(m.getModifiers()) && !m.isDefault()) {
                         inheritedMethods.removeByNameAndDescriptor(m);
                     }
                 }
@@ -3185,8 +2975,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         // class which is being queried.
         Field res;
         // Search declared public fields
-        if ((res = searchFields(privateGetDeclaredFields(true),
-                name)) != null) {
+        if ((res = searchFields(privateGetDeclaredFields(true), name)) != null) {
             return res;
         }
         // Direct superinterfaces, recursively
@@ -3209,26 +2998,23 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         return null;
     }
 
-    private static Method searchMethods(Method[] methods, String name,
-            Class<?>[] parameterTypes) {
+    private static Method searchMethods(Method[] methods, String name, Class<?>[] parameterTypes) {
         Method res = null;
         String internedName = name.intern();
         for (int i = 0; i < methods.length; i++) {
             Method m = methods[i];
-            if (m.getName() == internedName && arrayContentsEq(parameterTypes, m
-                    .getParameterTypes()) && (res == null || res.getReturnType()
-                            .isAssignableFrom(m.getReturnType())))
+            if (m.getName() == internedName && arrayContentsEq(parameterTypes, m.getParameterTypes())
+                    && (res == null || res.getReturnType().isAssignableFrom(m.getReturnType())))
                 res = m;
         }
 
         return (res == null ? res : getReflectionFactory().copyMethod(res));
     }
 
-    private Method getMethod0(String name, Class<?>[] parameterTypes,
-            boolean includeStaticMethods) {
+    private Method getMethod0(String name, Class<?>[] parameterTypes, boolean includeStaticMethods) {
         MethodArray interfaceCandidates = new MethodArray(2);
-        Method res = privateGetMethodRecursive(name, parameterTypes,
-                includeStaticMethods, interfaceCandidates);
+        Method res = privateGetMethodRecursive(name, parameterTypes, includeStaticMethods,
+                interfaceCandidates);
         if (res != null)
             return res;
 
@@ -3237,9 +3023,8 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         return interfaceCandidates.getFirst(); // may be null
     }
 
-    private Method privateGetMethodRecursive(String name,
-            Class<?>[] parameterTypes, boolean includeStaticMethods,
-            MethodArray allInterfaceCandidates) {
+    private Method privateGetMethodRecursive(String name, Class<?>[] parameterTypes,
+            boolean includeStaticMethods, MethodArray allInterfaceCandidates) {
         // Note: the intent is that the search algorithm this routine
         // uses be equivalent to the ordering imposed by
         // privateGetPublicMethods(). It fetches only the declared
@@ -3257,8 +3042,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         // Must _not_ return root methods
         Method res;
         // Search declared public methods
-        if ((res = searchMethods(privateGetDeclaredMethods(true), name,
-                parameterTypes)) != null) {
+        if ((res = searchMethods(privateGetDeclaredMethods(true), name, parameterTypes)) != null) {
             if (includeStaticMethods || !Modifier.isStatic(res.getModifiers()))
                 return res;
         }
@@ -3282,16 +3066,13 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     private Constructor<T> getConstructor0(Class<?>[] parameterTypes, int which)
             throws NoSuchMethodException {
-        Constructor<T>[] constructors = privateGetDeclaredConstructors(
-                (which == Member.PUBLIC));
+        Constructor<T>[] constructors = privateGetDeclaredConstructors((which == Member.PUBLIC));
         for (Constructor<T> constructor : constructors) {
-            if (arrayContentsEq(parameterTypes, constructor
-                    .getParameterTypes())) {
+            if (arrayContentsEq(parameterTypes, constructor.getParameterTypes())) {
                 return getReflectionFactory().copyConstructor(constructor);
             }
         }
-        throw new NoSuchMethodException(getName() + ".<init>"
-                + argumentTypesToString(parameterTypes));
+        throw new NoSuchMethodException(getName() + ".<init>" + argumentTypesToString(parameterTypes));
     }
 
     //
@@ -3351,8 +3132,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     private native Method[] getDeclaredMethods0(boolean publicOnly);
 
-    private native Constructor<T>[] getDeclaredConstructors0(
-            boolean publicOnly);
+    private native Constructor<T>[] getDeclaredConstructors0(boolean publicOnly);
 
     private native Class<?>[] getDeclaredClasses0();
 
@@ -3377,7 +3157,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     /**
      * Class Class is special cased within the Serialization Stream Protocol.
-     *
      * A Class instance is written initially into an ObjectOutputStream in the
      * following format:
      * 
@@ -3450,8 +3229,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         // An enum must both directly extend java.lang.Enum and have
         // the ENUM bit set; classes for specialized enum constants
         // don't do the former.
-        return (this.getModifiers() & ENUM) != 0 && this
-                .getSuperclass() == java.lang.Enum.class;
+        return (this.getModifiers() & ENUM) != 0 && this.getSuperclass() == java.lang.Enum.class;
     }
 
     // Fetches the factory for reflective objects
@@ -3524,21 +3302,19 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
                 return null;
             try {
                 final Method values = getMethod("values");
-                java.security.AccessController.doPrivileged(
-                        new java.security.PrivilegedAction<Void>() {
-                            public Void run() {
-                                values.setAccessible(true);
-                                return null;
-                            }
-                        });
+                java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
+                    public Void run() {
+                        values.setAccessible(true);
+                        return null;
+                    }
+                });
                 @SuppressWarnings("unchecked")
                 T[] temporaryConstants = (T[]) values.invoke(null);
                 enumConstants = temporaryConstants;
             }
             // These can happen when users concoct enum-like classes
             // that don't comply with the enum spec.
-            catch (InvocationTargetException | NoSuchMethodException
-                    | IllegalAccessException ex) {
+            catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException ex) {
                 return null;
             }
         }
@@ -3558,8 +3334,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         if (enumConstantDirectory == null) {
             T[] universe = getEnumConstantsShared();
             if (universe == null)
-                throw new IllegalArgumentException(getName()
-                        + " is not an enum type");
+                throw new IllegalArgumentException(getName() + " is not an enum type");
             Map<String, T> m = new HashMap<>(2 * universe.length);
             for (T constant : universe)
                 m.put(((Enum<?>) constant).name(), constant);
@@ -3575,14 +3350,12 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * {@code Class} object.
      *
      * @param obj
-     *            the object to be cast
+     *        the object to be cast
      * @return the object after casting, or null if obj is null
-     *
      * @throws ClassCastException
-     *                            if the object is not null and is not
-     *                            assignable to the type
-     *                            T.
-     *
+     *         if the object is not null and is not
+     *         assignable to the type
+     *         T.
      * @since 1.5
      */
     @SuppressWarnings("unchecked")
@@ -3601,7 +3374,6 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * represented by the specified class object. Checks that the cast is valid,
      * and throws a {@code ClassCastException} if it is not. If this method
      * succeeds, it always returns a reference to this class object.
-     *
      * <p>
      * This method is useful when a client needs to "narrow" the type of a
      * {@code Class} object to pass it to an API that restricts the
@@ -3609,18 +3381,18 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * a compile-time warning, as the correctness of the cast could not be
      * checked at runtime (because generic types are implemented by erasure).
      *
-     * @param       <U>
-     *              the type to cast this class object to
+     * @param <U>
+     *        the type to cast this class object to
      * @param clazz
-     *              the class of the type to cast this class object to
+     *        the class of the type to cast this class object to
      * @return this {@code Class} object, cast to represent a subclass of the
      *         specified class object.
      * @throws ClassCastException
-     *                            if this {@code Class} object does not
-     *                            represent a subclass of
-     *                            the specified class (here "subclass" includes
-     *                            the class
-     *                            itself).
+     *         if this {@code Class} object does not
+     *         represent a subclass of
+     *         the specified class (here "subclass" includes
+     *         the class
+     *         itself).
      * @since 1.5
      */
     @SuppressWarnings("unchecked")
@@ -3633,7 +3405,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @SuppressWarnings("unchecked")
@@ -3647,28 +3419,26 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * {@inheritDoc}
      * 
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
-    public boolean isAnnotationPresent(
-            Class<? extends Annotation> annotationClass) {
+    public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
         return GenericDeclaration.super.isAnnotationPresent(annotationClass);
     }
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <A extends Annotation> A[] getAnnotationsByType(
-            Class<A> annotationClass) {
+    public <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationClass) {
         Objects.requireNonNull(annotationClass);
 
         AnnotationData annotationData = annotationData();
-        return AnnotationSupport.getAssociatedAnnotations(
-                annotationData.declaredAnnotations, this, annotationClass);
+        return AnnotationSupport.getAssociatedAnnotations(annotationData.declaredAnnotations, this,
+                annotationClass);
     }
 
     /**
@@ -3680,13 +3450,12 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
     @SuppressWarnings("unchecked")
-    public <A extends Annotation> A getDeclaredAnnotation(
-            Class<A> annotationClass) {
+    public <A extends Annotation> A getDeclaredAnnotation(Class<A> annotationClass) {
         Objects.requireNonNull(annotationClass);
 
         return (A) annotationData().declaredAnnotations.get(annotationClass);
@@ -3694,16 +3463,15 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <A extends Annotation> A[] getDeclaredAnnotationsByType(
-            Class<A> annotationClass) {
+    public <A extends Annotation> A[] getDeclaredAnnotationsByType(Class<A> annotationClass) {
         Objects.requireNonNull(annotationClass);
 
-        return AnnotationSupport.getDirectlyAndIndirectlyPresent(
-                annotationData().declaredAnnotations, annotationClass);
+        return AnnotationSupport.getDirectlyAndIndirectlyPresent(annotationData().declaredAnnotations,
+                annotationClass);
     }
 
     /**
@@ -3724,8 +3492,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         final int redefinedCount;
 
         AnnotationData(Map<Class<? extends Annotation>, Annotation> annotations,
-                Map<Class<? extends Annotation>, Annotation> declaredAnnotations,
-                int redefinedCount) {
+                Map<Class<? extends Annotation>, Annotation> declaredAnnotations, int redefinedCount) {
             this.annotations = annotations;
             this.declaredAnnotations = declaredAnnotations;
             this.redefinedCount = redefinedCount;
@@ -3740,17 +3507,14 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
         while (true) { // retry loop
             AnnotationData annotationData = this.annotationData;
             int classRedefinedCount = this.classRedefinedCount;
-            if (annotationData != null
-                    && annotationData.redefinedCount == classRedefinedCount) {
+            if (annotationData != null && annotationData.redefinedCount == classRedefinedCount) {
                 return annotationData;
             }
             // null or stale annotationData -> optimistically create new
             // instance
-            AnnotationData newAnnotationData = createAnnotationData(
-                    classRedefinedCount);
+            AnnotationData newAnnotationData = createAnnotationData(classRedefinedCount);
             // try to install it
-            if (Atomic.casAnnotationData(this, annotationData,
-                    newAnnotationData)) {
+            if (Atomic.casAnnotationData(this, annotationData, newAnnotationData)) {
                 // successfully installed new AnnotationData
                 return newAnnotationData;
             }
@@ -3758,23 +3522,19 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
     }
 
     private AnnotationData createAnnotationData(int classRedefinedCount) {
-        Map<Class<? extends Annotation>, Annotation> declaredAnnotations = AnnotationParser
-                .parseAnnotations(getRawAnnotations(), getConstantPool(), this);
+        Map<Class<? extends Annotation>, Annotation> declaredAnnotations = AnnotationParser.parseAnnotations(
+                getRawAnnotations(), getConstantPool(), this);
         Class<?> superClass = getSuperclass();
         Map<Class<? extends Annotation>, Annotation> annotations = null;
         if (superClass != null) {
             Map<Class<? extends Annotation>, Annotation> superAnnotations = superClass
                     .annotationData().annotations;
-            for (Map.Entry<Class<? extends Annotation>, Annotation> e : superAnnotations
-                    .entrySet()) {
+            for (Map.Entry<Class<? extends Annotation>, Annotation> e : superAnnotations.entrySet()) {
                 Class<? extends Annotation> annotationClass = e.getKey();
                 if (AnnotationType.getInstance(annotationClass).isInherited()) {
                     if (annotations == null) { // lazy construction
-                        annotations = new LinkedHashMap<>((Math.max(
-                                declaredAnnotations.size(), Math.min(12,
-                                        declaredAnnotations.size()
-                                                + superAnnotations.size())) * 4
-                                + 2) / 3);
+                        annotations = new LinkedHashMap<>((Math.max(declaredAnnotations.size(), Math.min(12,
+                                declaredAnnotations.size() + superAnnotations.size())) * 4 + 2) / 3);
                     }
                     annotations.put(annotationClass, e.getValue());
                 }
@@ -3789,8 +3549,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
             // inherited
             annotations.putAll(declaredAnnotations);
         }
-        return new AnnotationData(annotations, declaredAnnotations,
-                classRedefinedCount);
+        return new AnnotationData(annotations, declaredAnnotations, classRedefinedCount);
     }
 
     // Annotation types cache their internal (AnnotationType) form
@@ -3821,12 +3580,10 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * to specify the superclass of the entity represented by this {@code
      * Class} object. (The <em>use</em> of type Foo to specify the superclass in
      * '... extends Foo' is distinct from the <em>declaration</em> of type Foo.)
-     *
      * <p>
      * If this {@code Class} object represents a type whose declaration does not
      * explicitly indicate an annotated superclass, then the return value is an
      * {@code AnnotatedType} object representing an element with no annotations.
-     *
      * <p>
      * If this {@code Class} represents either the {@code Object} class, an
      * interface type, an array type, a primitive type, or void, the return
@@ -3836,13 +3593,12 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @since 1.8
      */
     public AnnotatedType getAnnotatedSuperclass() {
-        if (this == Object.class || isInterface() || isArray() || isPrimitive()
-                || this == Void.TYPE) {
+        if (this == Object.class || isInterface() || isArray() || isPrimitive() || this == Void.TYPE) {
             return null;
         }
 
-        return TypeAnnotationParser.buildAnnotatedSuperclass(
-                getRawTypeAnnotations(), getConstantPool(), this);
+        return TypeAnnotationParser.buildAnnotatedSuperclass(getRawTypeAnnotations(), getConstantPool(),
+                this);
     }
 
     /**
@@ -3851,26 +3607,22 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * {@code Class} object. (The <em>use</em> of type Foo to specify a
      * superinterface in '... implements Foo' is distinct from the
      * <em>declaration</em> of type Foo.)
-     *
      * <p>
      * If this {@code Class} object represents a class, the return value is an
      * array containing objects representing the uses of interface types to
      * specify interfaces implemented by the class. The order of the objects in
      * the array corresponds to the order of the interface types used in the
      * 'implements' clause of the declaration of this {@code Class} object.
-     *
      * <p>
      * If this {@code Class} object represents an interface, the return value is
      * an array containing objects representing the uses of interface types to
      * specify interfaces directly extended by the interface. The order of the
      * objects in the array corresponds to the order of the interface types used
      * in the 'extends' clause of the declaration of this {@code Class} object.
-     *
      * <p>
      * If this {@code Class} object represents a class or interface whose
      * declaration does not explicitly indicate any annotated superinterfaces,
      * the return value is an array of length 0.
-     *
      * <p>
      * If this {@code Class} object represents either the {@code Object} class,
      * an array type, a primitive type, or void, the return value is an array of
@@ -3880,7 +3632,7 @@ public final class Class<T> implements java.io.Serializable, GenericDeclaration,
      * @since 1.8
      */
     public AnnotatedType[] getAnnotatedInterfaces() {
-        return TypeAnnotationParser.buildAnnotatedInterfaces(
-                getRawTypeAnnotations(), getConstantPool(), this);
+        return TypeAnnotationParser.buildAnnotatedInterfaces(getRawTypeAnnotations(), getConstantPool(),
+                this);
     }
 }

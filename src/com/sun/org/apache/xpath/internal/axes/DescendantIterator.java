@@ -46,12 +46,11 @@ public class DescendantIterator extends LocPathIterator {
      * Create a DescendantIterator object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
-     *
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @throws javax.xml.transform.TransformerException
      */
     DescendantIterator(Compiler compiler, int opPos, int analysis)
@@ -107,21 +106,18 @@ public class DescendantIterator extends LocPathIterator {
 
         int whatToShow = compiler.getWhatToShow(firstStepPos);
 
-        if ((0 == (whatToShow & (DTMFilter.SHOW_ATTRIBUTE
-                | DTMFilter.SHOW_ELEMENT
-                | DTMFilter.SHOW_PROCESSING_INSTRUCTION)))
-                || (whatToShow == DTMFilter.SHOW_ALL))
+        if ((0 == (whatToShow & (DTMFilter.SHOW_ATTRIBUTE | DTMFilter.SHOW_ELEMENT
+                | DTMFilter.SHOW_PROCESSING_INSTRUCTION))) || (whatToShow == DTMFilter.SHOW_ALL))
             initNodeTest(whatToShow);
         else {
-            initNodeTest(whatToShow, compiler.getStepNS(firstStepPos), compiler
-                    .getStepLocalName(firstStepPos));
+            initNodeTest(whatToShow, compiler.getStepNS(firstStepPos), compiler.getStepLocalName(
+                    firstStepPos));
         }
         initPredicateInfo(compiler, firstStepPos);
     }
 
     /**
      * Create a DescendantIterator object.
-     *
      */
     public DescendantIterator() {
         super(null);
@@ -134,7 +130,6 @@ public class DescendantIterator extends LocPathIterator {
      * Get a cloned Iterator that is reset to the beginning of the query.
      *
      * @return A cloned NodeIterator set of the start of the query.
-     *
      * @throws CloneNotSupportedException
      */
     public DTMIterator cloneWithReset() throws CloneNotSupportedException {
@@ -154,11 +149,10 @@ public class DescendantIterator extends LocPathIterator {
      *
      * @return The next <code>Node</code> in the set being iterated over, or
      *         <code>null</code> if there are no more members in that set.
-     *
      * @throws DOMException
-     *                      INVALID_STATE_ERR: Raised if this method is called
-     *                      after the
-     *                      <code>detach</code> method was invoked.
+     *         INVALID_STATE_ERR: Raised if this method is called
+     *         after the
+     *         <code>detach</code> method was invoked.
      */
     public int nextNode() {
         if (m_foundLast)
@@ -188,14 +182,11 @@ public class DescendantIterator extends LocPathIterator {
         try {
             do {
                 if (0 == m_extendedTypeID) {
-                    next = m_lastFetched = (DTM.NULL == m_lastFetched)
-                            ? m_traverser.first(m_context)
+                    next = m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(m_context)
                             : m_traverser.next(m_context, m_lastFetched);
                 } else {
-                    next = m_lastFetched = (DTM.NULL == m_lastFetched)
-                            ? m_traverser.first(m_context, m_extendedTypeID)
-                            : m_traverser.next(m_context, m_lastFetched,
-                                    m_extendedTypeID);
+                    next = m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(m_context,
+                            m_extendedTypeID) : m_traverser.next(m_context, m_lastFetched, m_extendedTypeID);
                 }
 
                 if (DTM.NULL != next) {
@@ -227,7 +218,7 @@ public class DescendantIterator extends LocPathIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);
@@ -238,13 +229,12 @@ public class DescendantIterator extends LocPathIterator {
         int what = m_whatToShow;
         // System.out.println("what: ");
         // NodeTest.debugWhatToShow(what);
-        if (DTMFilter.SHOW_ALL == what || NodeTest.WILD.equals(localName)
-                || NodeTest.WILD.equals(namespace)) {
+        if (DTMFilter.SHOW_ALL == what || NodeTest.WILD.equals(localName) || NodeTest.WILD.equals(
+                namespace)) {
             m_extendedTypeID = 0;
         } else {
             int type = getNodeTypeTest(what);
-            m_extendedTypeID = m_cdtm.getExpandedTypeID(namespace, localName,
-                    type);
+            m_extendedTypeID = m_cdtm.getExpandedTypeID(namespace, localName, type);
         }
 
     }
@@ -257,11 +247,10 @@ public class DescendantIterator extends LocPathIterator {
      * </p>
      * 
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return the first node out of the nodeset, or DTM.NULL.
      */
-    public int asNode(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         if (getPredicateCount() > 0)
             return super.asNode(xctxt);
 
@@ -278,13 +267,11 @@ public class DescendantIterator extends LocPathIterator {
 
         // System.out.println("what: ");
         // NodeTest.debugWhatToShow(what);
-        if (DTMFilter.SHOW_ALL == what || localName == NodeTest.WILD
-                || namespace == NodeTest.WILD) {
+        if (DTMFilter.SHOW_ALL == what || localName == NodeTest.WILD || namespace == NodeTest.WILD) {
             return traverser.first(current);
         } else {
             int type = getNodeTypeTest(what);
-            int extendedType = dtm.getExpandedTypeID(namespace, localName,
-                    type);
+            int extendedType = dtm.getExpandedTypeID(namespace, localName, type);
             return traverser.first(current, extendedType);
         }
     }

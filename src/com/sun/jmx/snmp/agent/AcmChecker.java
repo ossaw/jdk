@@ -49,13 +49,11 @@ class AcmChecker {
             if (engine.isCheckOidActivated()) {
                 try {
                     if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                        SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class
-                                .getName(), "AcmChecker(SnmpMibRequest)",
-                                "SNMP V3 Access Control to be done");
+                        SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class.getName(),
+                                "AcmChecker(SnmpMibRequest)", "SNMP V3 Access Control to be done");
                     }
-                    model = (SnmpAccessControlModel) engine
-                            .getAccessControlSubSystem().getModel(
-                                    SnmpDefinitions.snmpVersionThree);
+                    model = (SnmpAccessControlModel) engine.getAccessControlSubSystem().getModel(
+                            SnmpDefinitions.snmpVersionThree);
                     principal = req.getPrincipal();
                     securityLevel = req.getSecurityLevel();
                     pduType = req.getPdu().type;
@@ -65,23 +63,19 @@ class AcmChecker {
                     l = new LongList();
                     if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
                         final StringBuilder strb = new StringBuilder().append(
-                                "Will check oid for : principal : ").append(
-                                        principal).append("; securityLevel : ")
-                                .append(securityLevel).append("; pduType : ")
-                                .append(pduType).append("; version : ").append(
-                                        version).append("; securityModel : ")
-                                .append(securityModel).append(
-                                        "; contextName : ").append(contextName);
-                        SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class
-                                .getName(), "AcmChecker(SnmpMibRequest)", strb
-                                        .toString());
+                                "Will check oid for : principal : ").append(principal).append(
+                                        "; securityLevel : ").append(securityLevel).append("; pduType : ")
+                                .append(pduType).append("; version : ").append(version).append(
+                                        "; securityModel : ").append(securityModel).append("; contextName : ")
+                                .append(contextName);
+                        SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class.getName(),
+                                "AcmChecker(SnmpMibRequest)", strb.toString());
                     }
 
                 } catch (SnmpUnknownModelException e) {
                     if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                        SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class
-                                .getName(), "AcmChecker(SnmpMibRequest)",
-                                "Unknown Model, no ACM check.");
+                        SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class.getName(),
+                                "AcmChecker(SnmpMibRequest)", "Unknown Model, no ACM check.");
                     }
                 }
             }
@@ -112,11 +106,10 @@ class AcmChecker {
         if (model != null) {
             SnmpOid oid = new SnmpOid(l.toArray());
             if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class.getName(),
-                        "checkCurrentOid", "Checking access for : " + oid);
+                SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpMib.class.getName(), "checkCurrentOid",
+                        "Checking access for : " + oid);
             }
-            model.checkAccess(version, principal, securityLevel, pduType,
-                    securityModel, contextName, oid);
+            model.checkAccess(version, principal, securityLevel, pduType, securityModel, contextName, oid);
         }
     }
 

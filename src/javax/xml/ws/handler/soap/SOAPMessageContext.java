@@ -17,11 +17,9 @@ import java.util.Set;
  * the representation of a SOAP 1.1 message with attachments.
  *
  * @see javax.xml.soap.SOAPMessage
- *
  * @since JAX-WS 2.0
  **/
-public interface SOAPMessageContext extends
-        javax.xml.ws.handler.MessageContext {
+public interface SOAPMessageContext extends javax.xml.ws.handler.MessageContext {
 
     /**
      * Gets the <code>SOAPMessage</code> from this message context.
@@ -37,13 +35,13 @@ public interface SOAPMessageContext extends
      * Sets the SOAPMessage in this message context
      *
      * @param message
-     *                SOAP message
+     *        SOAP message
      * @throws WebServiceException
-     *                             If any error during the setting of the
-     *                             <code>SOAPMessage</code> in this message
-     *                             context
-     * @throws                     java.lang.UnsupportedOperationException
-     *                             If this operation is not supported
+     *         If any error during the setting of the
+     *         <code>SOAPMessage</code> in this message
+     *         context
+     * @throws java.lang.UnsupportedOperationException
+     *         If this operation is not supported
      **/
     public void setMessage(SOAPMessage message);
 
@@ -53,30 +51,29 @@ public interface SOAPMessageContext extends
      * headers with the same qualified name.
      *
      * @param header
-     *                 The XML qualified name of the SOAP header(s).
+     *        The XML qualified name of the SOAP header(s).
      * @param context
-     *                 The JAXBContext that should be used to unmarshall the
-     *                 header
+     *        The JAXBContext that should be used to unmarshall the
+     *        header
      * @param allRoles
-     *                 If <code>true</code> then returns headers for all SOAP
-     *                 roles,
-     *                 if <code>false</code> then only returns headers targetted
-     *                 at
-     *                 the roles currently being played by this SOAP node, see
-     *                 <code>getRoles</code>.
+     *        If <code>true</code> then returns headers for all SOAP
+     *        roles,
+     *        if <code>false</code> then only returns headers targetted
+     *        at
+     *        the roles currently being played by this SOAP node, see
+     *        <code>getRoles</code>.
      * @return An array of unmarshalled headers; returns an empty array if no
      *         message is present in this message context or no headers match
      *         the supplied qualified name.
      * @throws WebServiceException
-     *                             If an error occurs when using the supplied
-     *                             <code>JAXBContext</code> to unmarshall. The
-     *                             cause of the
-     *                             <code>WebServiceException</code> is the
-     *                             original
-     *                             <code>JAXBException</code>.
+     *         If an error occurs when using the supplied
+     *         <code>JAXBContext</code> to unmarshall. The
+     *         cause of the
+     *         <code>WebServiceException</code> is the
+     *         original
+     *         <code>JAXBException</code>.
      **/
-    public Object[] getHeaders(QName header, JAXBContext context,
-            boolean allRoles);
+    public Object[] getHeaders(QName header, JAXBContext context, boolean allRoles);
 
     /**
      * Gets the SOAP actor roles associated with an execution of the handler

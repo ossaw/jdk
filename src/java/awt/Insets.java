@@ -72,13 +72,13 @@ public class Insets implements Cloneable, java.io.Serializable {
      * specified top, left, bottom, and right insets.
      * 
      * @param top
-     *               the inset from the top.
+     *        the inset from the top.
      * @param left
-     *               the inset from the left.
+     *        the inset from the left.
      * @param bottom
-     *               the inset from the bottom.
+     *        the inset from the bottom.
      * @param right
-     *               the inset from the right.
+     *        the inset from the right.
      */
     public Insets(int top, int left, int bottom, int right) {
         this.top = top;
@@ -91,13 +91,13 @@ public class Insets implements Cloneable, java.io.Serializable {
      * Set top, left, bottom, and right to the specified values
      *
      * @param top
-     *               the inset from the top.
+     *        the inset from the top.
      * @param left
-     *               the inset from the left.
+     *        the inset from the left.
      * @param bottom
-     *               the inset from the bottom.
+     *        the inset from the bottom.
      * @param right
-     *               the inset from the right.
+     *        the inset from the right.
      * @since 1.5
      */
     public void set(int top, int left, int bottom, int right) {
@@ -120,8 +120,8 @@ public class Insets implements Cloneable, java.io.Serializable {
     public boolean equals(Object obj) {
         if (obj instanceof Insets) {
             Insets insets = (Insets) obj;
-            return ((top == insets.top) && (left == insets.left)
-                    && (bottom == insets.bottom) && (right == insets.right));
+            return ((top == insets.top) && (left == insets.left) && (bottom == insets.bottom)
+                    && (right == insets.right));
         }
         return false;
     }
@@ -150,8 +150,8 @@ public class Insets implements Cloneable, java.io.Serializable {
      * @return a string representation of this <code>Insets</code> object.
      */
     public String toString() {
-        return getClass().getName() + "[top=" + top + ",left=" + left
-                + ",bottom=" + bottom + ",right=" + right + "]";
+        return getClass().getName() + "[top=" + top + ",left=" + left + ",bottom=" + bottom + ",right="
+                + right + "]";
     }
 
     /**

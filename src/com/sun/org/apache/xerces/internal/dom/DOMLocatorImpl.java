@@ -29,7 +29,6 @@ import org.w3c.dom.Node;
  * Object Model (DOM) Level 3 Core Specification</a>.
  *
  * @xerces.internal
- *
  * @author Gopal Sharma, SUN Microsystems Inc.
  */
 
@@ -84,8 +83,7 @@ public class DOMLocatorImpl implements DOMLocator {
         fUri = uri;
     } // DOMLocatorImpl (int lineNumber, int columnNumber, String uri )
 
-    public DOMLocatorImpl(int lineNumber, int columnNumber, int utf16Offset,
-            String uri) {
+    public DOMLocatorImpl(int lineNumber, int columnNumber, int utf16Offset, String uri) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;
         fUri = uri;
@@ -93,8 +91,7 @@ public class DOMLocatorImpl implements DOMLocator {
     } // DOMLocatorImpl (int lineNumber, int columnNumber, int utf16Offset,
       // String uri )
 
-    public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset,
-            Node relatedData, String uri) {
+    public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset, Node relatedData, String uri) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;
         fByteOffset = byteoffset;
@@ -103,8 +100,8 @@ public class DOMLocatorImpl implements DOMLocator {
     } // DOMLocatorImpl (int lineNumber, int columnNumber, int offset, Node
       // errorNode, String uri )
 
-    public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset,
-            Node relatedData, String uri, int utf16Offset) {
+    public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset, Node relatedData, String uri,
+            int utf16Offset) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;
         fByteOffset = byteoffset;

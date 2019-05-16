@@ -52,14 +52,13 @@ public class DOM2Helper extends DOMHelper {
      * com.sun.org.apache.xerces.internal.dom.NodeImpl.
      *
      * @param node
-     *             The node to be tested.
-     *
+     *        The node to be tested.
      * @throws TransformerException
-     *                              if the node is not one which this DOM2Helper
-     *                              can support. If
-     *                              we return without throwing the exception,
-     *                              the node is
-     *                              compatable.
+     *         if the node is not one which this DOM2Helper
+     *         can support. If
+     *         we return without throwing the exception,
+     *         the node is
+     *         compatable.
      * @xsl.usage internal
      */
     public void checkNode(Node node) throws TransformerException {
@@ -96,7 +95,7 @@ public class DOM2Helper extends DOMHelper {
      * Specify which document this helper is currently operating on.
      *
      * @param doc
-     *            The DOM Document node for this document.
+     *        The DOM Document node for this document.
      * @see #getDocument
      */
     public void setDocument(Document doc) {
@@ -115,18 +114,15 @@ public class DOM2Helper extends DOMHelper {
 
     /**
      * Parse an XML document.
-     *
      * <p>
      * Right now the Xerces DOMParser class is used. This needs fixing, either
      * via jaxp, or via some other, standard method.
      * </p>
-     *
      * <p>
      * The application can use this method to instruct the SAX parser to begin
      * parsing an XML document from any valid input source (a character stream,
      * a byte stream, or a URI).
      * </p>
-     *
      * <p>
      * Applications may not invoke this method while a parse is in progress
      * (they should create a new Parser instead for each additional XML
@@ -135,10 +131,9 @@ public class DOM2Helper extends DOMHelper {
      * </p>
      *
      * @param source
-     *               The input source for the top-level of the XML document.
-     *
+     *        The input source for the top-level of the XML document.
      * @throws TransformerException
-     *                              if any checked exception is thrown.
+     *         if any checked exception is thrown.
      * @xsl.usage internal
      */
     public void parse(InputSource source) throws TransformerException {
@@ -148,8 +143,7 @@ public class DOM2Helper extends DOMHelper {
             // I guess I should use JAXP factory here... when it's legal.
             // com.sun.org.apache.xerces.internal.parsers.DOMParser parser
             // = new com.sun.org.apache.xerces.internal.parsers.DOMParser();
-            DocumentBuilderFactory builderFactory = DocumentBuilderFactory
-                    .newInstance();
+            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 
             builderFactory.setNamespaceAware(true);
             builderFactory.setValidating(true);
@@ -170,8 +164,7 @@ public class DOM2Helper extends DOMHelper {
              * "http://apache.org/xml/features/allow-java-encodings", true);
              */
 
-            parser.setErrorHandler(
-                    new com.sun.org.apache.xml.internal.utils.DefaultErrorHandler());
+            parser.setErrorHandler(new com.sun.org.apache.xml.internal.utils.DefaultErrorHandler());
 
             // if(null != m_entityResolver)
             // {
@@ -199,9 +192,9 @@ public class DOM2Helper extends DOMHelper {
      * not turned on.
      *
      * @param id
-     *            The ID to search for, as a String.
+     *        The ID to search for, as a String.
      * @param doc
-     *            The document to search within, as a DOM Document node.
+     *        The document to search within, as a DOM Document node.
      * @return DOM Element node with an attribute of type ID whose value
      *         uniquely matches the requested id string, or null if there isn't
      *         such an element or if the DOM can't answer the question for other
@@ -222,10 +215,9 @@ public class DOM2Helper extends DOMHelper {
      * TODO: Make sure this does the right thing with attribute nodes!!!
      *
      * @param node1
-     *              DOM Node to perform position comparison on.
+     *        DOM Node to perform position comparison on.
      * @param node2
-     *              DOM Node to perform position comparison on .
-     *
+     *        DOM Node to perform position comparison on .
      * @return false if node2 comes before node1, otherwise return true. You can
      *         think of this as
      *         <code>(node1.documentOrderPosition &lt;= node2.documentOrderPosition)</code>
@@ -255,8 +247,7 @@ public class DOM2Helper extends DOMHelper {
      * document to find an Attr's parent.
      *
      * @param node
-     *             Node to be examined
-     *
+     *        Node to be examined
      * @return the DOM parent of the input node, if there is one, or the
      *         ownerElement if the input node is an Attr, or null if the node is
      *         a Document, a DocumentFragment, or an orphan.
@@ -275,8 +266,7 @@ public class DOM2Helper extends DOMHelper {
      * node name.
      *
      * @param n
-     *          Node to be examined
-     *
+     *        Node to be examined
      * @return String containing the local name, or null if the node was not
      *         assigned a Namespace.
      */
@@ -297,8 +287,7 @@ public class DOM2Helper extends DOMHelper {
      * TODO: Reconcile with getLocalNameOfNode.
      *
      * @param n
-     *          Node to be examined
-     *
+     *        Node to be examined
      * @return String containing the Namespace URI bound to this DOM node at the
      *         time the Node was created.
      */

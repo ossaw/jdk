@@ -61,7 +61,6 @@ import java.time.chrono.ChronoZonedDateTime;
  *           classes operate correctly. All implementations that can be
  *           instantiated must be final, immutable and thread-safe. It is
  *           recommended to use an enum where possible.
- *
  * @since 1.8
  */
 public interface TemporalUnit {
@@ -133,7 +132,7 @@ public interface TemporalUnit {
      * {@link Temporal#plus(long, TemporalUnit)}.
      *
      * @param temporal
-     *                 the temporal object to check, not null
+     *        the temporal object to check, not null
      * @return true if the unit is supported
      */
     default boolean isSupportedBy(Temporal temporal) {
@@ -143,8 +142,7 @@ public interface TemporalUnit {
         if (temporal instanceof ChronoLocalDate) {
             return isDateBased();
         }
-        if (temporal instanceof ChronoLocalDateTime
-                || temporal instanceof ChronoZonedDateTime) {
+        if (temporal instanceof ChronoLocalDateTime || temporal instanceof ChronoZonedDateTime) {
             return true;
         }
         try {
@@ -193,18 +191,18 @@ public interface TemporalUnit {
      * adjusted copy of the original must be returned. This provides equivalent,
      * safe behavior for immutable and mutable implementations.
      *
-     * @param          <R>
-     *                 the type of the Temporal object
+     * @param <R>
+     *        the type of the Temporal object
      * @param temporal
-     *                 the temporal object to adjust, not null
+     *        the temporal object to adjust, not null
      * @param amount
-     *                 the amount of this unit to add, positive or negative
+     *        the amount of this unit to add, positive or negative
      * @return the adjusted temporal object, not null
      * @throws DateTimeException
-     *                                          if the amount cannot be added
+     *         if the amount cannot be added
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported by
-     *                                          the temporal
+     *         if the unit is not supported by
+     *         the temporal
      */
     <R extends Temporal> R addTo(R temporal, long amount);
 
@@ -256,25 +254,24 @@ public interface TemporalUnit {
      *           have the same type using {@code getClass()}. If they do not,
      *           then the result must be obtained by calling
      *           {@code temporal1Inclusive.until(temporal2Exclusive, this)}.
-     *
      * @param temporal1Inclusive
-     *                           the base temporal object, not null
+     *        the base temporal object, not null
      * @param temporal2Exclusive
-     *                           the other temporal object, exclusive, not null
+     *        the other temporal object, exclusive, not null
      * @return the amount of time between temporal1Inclusive and
      *         temporal2Exclusive in terms of this unit; positive if
      *         temporal2Exclusive is later than temporal1Inclusive, negative if
      *         earlier
      * @throws DateTimeException
-     *                                          if the amount cannot be
-     *                                          calculated, or the end temporal
-     *                                          cannot be converted to the same
-     *                                          type as the start temporal
+     *         if the amount cannot be
+     *         calculated, or the end temporal
+     *         cannot be converted to the same
+     *         type as the start temporal
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported by
-     *                                          the temporal
+     *         if the unit is not supported by
+     *         the temporal
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     long between(Temporal temporal1Inclusive, Temporal temporal2Exclusive);
 

@@ -48,11 +48,11 @@ public class XStringForFSB extends XString {
      * Construct a XNodeSet object.
      *
      * @param val
-     *               FastStringBuffer object this will wrap, must be non-null.
+     *        FastStringBuffer object this will wrap, must be non-null.
      * @param start
-     *               The start position in the array.
+     *        The start position in the array.
      * @param length
-     *               The number of characters to read from the array.
+     *        The number of characters to read from the array.
      */
     public XStringForFSB(FastStringBuffer val, int start, int length) {
 
@@ -63,15 +63,14 @@ public class XStringForFSB extends XString {
 
         if (null == val)
             throw new IllegalArgumentException(XSLMessages.createXPATHMessage(
-                    XPATHErrorResources.ER_FASTSTRINGBUFFER_CANNOT_BE_NULL,
-                    null));
+                    XPATHErrorResources.ER_FASTSTRINGBUFFER_CANNOT_BE_NULL, null));
     }
 
     /**
      * Construct a XNodeSet object.
      *
      * @param val
-     *            String object this will wrap.
+     *        String object this will wrap.
      */
     private XStringForFSB(String val) {
 
@@ -103,8 +102,7 @@ public class XStringForFSB extends XString {
      *
      * @return The string this wraps or the empty string if null
      */
-    public void appendToFsb(
-            com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
+    public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
         // %OPT% !!! FSB has to be updated to take partial fsb's for append.
         fsb.append(str());
     }
@@ -177,12 +175,10 @@ public class XStringForFSB extends XString {
      * may well occur for a single call to this method.
      *
      * @param ch
-     *           A non-null reference to a ContentHandler.
-     *
+     *        A non-null reference to a ContentHandler.
      * @throws org.xml.sax.SAXException
      */
-    public void dispatchCharactersEvents(org.xml.sax.ContentHandler ch)
-            throws org.xml.sax.SAXException {
+    public void dispatchCharactersEvents(org.xml.sax.ContentHandler ch) throws org.xml.sax.SAXException {
         fsb().sendSAXcharacters(ch, m_start, m_length);
     }
 
@@ -191,12 +187,10 @@ public class XStringForFSB extends XString {
      * string-value.
      *
      * @param lh
-     *           A non-null reference to a LexicalHandler.
-     *
+     *        A non-null reference to a LexicalHandler.
      * @throws org.xml.sax.SAXException
      */
-    public void dispatchAsComment(org.xml.sax.ext.LexicalHandler lh)
-            throws org.xml.sax.SAXException {
+    public void dispatchAsComment(org.xml.sax.ext.LexicalHandler lh) throws org.xml.sax.SAXException {
         fsb().sendSAXComment(lh, m_start, m_length);
     }
 
@@ -217,13 +211,13 @@ public class XStringForFSB extends XString {
      * and so on, as for array indexing.
      *
      * @param index
-     *              the index of the character.
+     *        the index of the character.
      * @return the character at the specified index of this string. The first
      *         character is at index <code>0</code>.
      * @exception IndexOutOfBoundsException
-     *                                      if the <code>index</code> argument
-     *                                      is negative or not less
-     *                                      than the length of this string.
+     *            if the <code>index</code> argument
+     *            is negative or not less
+     *            than the length of this string.
      */
     public char charAt(int index) {
         return fsb().charAt(m_start + index);
@@ -233,33 +227,33 @@ public class XStringForFSB extends XString {
      * Copies characters from this string into the destination character array.
      *
      * @param srcBegin
-     *                 index of the first character in the string to copy.
+     *        index of the first character in the string to copy.
      * @param srcEnd
-     *                 index after the last character in the string to copy.
+     *        index after the last character in the string to copy.
      * @param dst
-     *                 the destination array.
+     *        the destination array.
      * @param dstBegin
-     *                 the start offset in the destination array.
+     *        the start offset in the destination array.
      * @exception IndexOutOfBoundsException
-     *                                      If any of the following is true:
-     *                                      <ul>
-     *                                      <li><code>srcBegin</code> is
-     *                                      negative.
-     *                                      <li><code>srcBegin</code> is greater
-     *                                      than
-     *                                      <code>srcEnd</code>
-     *                                      <li><code>srcEnd</code> is greater
-     *                                      than the length of this
-     *                                      string
-     *                                      <li><code>dstBegin</code> is
-     *                                      negative
-     *                                      <li><code>dstBegin+(srcEnd-srcBegin)</code>
-     *                                      is larger than
-     *                                      <code>dst.length</code>
-     *                                      </ul>
+     *            If any of the following is true:
+     *            <ul>
+     *            <li><code>srcBegin</code> is
+     *            negative.
+     *            <li><code>srcBegin</code> is greater
+     *            than
+     *            <code>srcEnd</code>
+     *            <li><code>srcEnd</code> is greater
+     *            than the length of this
+     *            string
+     *            <li><code>dstBegin</code> is
+     *            negative
+     *            <li><code>dstBegin+(srcEnd-srcBegin)</code>
+     *            is larger than
+     *            <code>dst.length</code>
+     *            </ul>
      * @exception NullPointerException
-     *                                      if <code>dst</code> is
-     *                                      <code>null</code>
+     *            if <code>dst</code> is
+     *            <code>null</code>
      */
     public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
 
@@ -289,8 +283,7 @@ public class XStringForFSB extends XString {
      * characters as this object.
      *
      * @param obj2
-     *             the object to compare this <code>String</code> against.
-     *
+     *        the object to compare this <code>String</code> against.
      * @return <code>true</code> if the <code>String </code>are equal;
      *         <code>false</code> otherwise.
      * @see java.lang.String#compareTo(java.lang.String)
@@ -328,10 +321,8 @@ public class XStringForFSB extends XString {
      * Tell if two objects are functionally equal.
      *
      * @param obj2
-     *             Object to compare this to
-     *
+     *        Object to compare this to
      * @return true if the two objects are equal
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public boolean equals(XObject obj2) {
@@ -369,10 +360,8 @@ public class XStringForFSB extends XString {
      * Tell if two objects are functionally equal.
      *
      * @param anotherString
-     *                      Object to compare this to
-     *
+     *        Object to compare this to
      * @return true if the two objects are equal
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public boolean equals(String anotherString) {
@@ -406,8 +395,7 @@ public class XStringForFSB extends XString {
      * characters as this object.
      *
      * @param obj2
-     *             the object to compare this <code>String</code> against.
-     *
+     *        the object to compare this <code>String</code> against.
      * @return <code>true</code> if the <code>String </code>are equal;
      *         <code>false</code> otherwise.
      * @see java.lang.String#compareTo(java.lang.String)
@@ -439,9 +427,9 @@ public class XStringForFSB extends XString {
      * two strings are equal ignoring case.
      *
      * @param anotherString
-     *                      the <code>String</code> to compare this
-     *                      <code>String</code>
-     *                      against.
+     *        the <code>String</code> to compare this
+     *        <code>String</code>
+     *        against.
      * @return <code>true</code> if the argument is not <code>null</code> and
      *         the <code>String</code>s are equal, ignoring case;
      *         <code>false</code> otherwise.
@@ -450,16 +438,14 @@ public class XStringForFSB extends XString {
      * @see java.lang.Character#toUpperCase(char)
      */
     public boolean equalsIgnoreCase(String anotherString) {
-        return (m_length == anotherString.length()) ? str().equalsIgnoreCase(
-                anotherString) : false;
+        return (m_length == anotherString.length()) ? str().equalsIgnoreCase(anotherString) : false;
     }
 
     /**
      * Compares two strings lexicographically.
      *
      * @param xstr
-     *             the <code>String</code> to be compared.
-     *
+     *        the <code>String</code> to be compared.
      * @return the value <code>0</code> if the argument string is equal to this
      *         string; a value less than <code>0</code> if this string is
      *         lexicographically less than the string argument; and a value
@@ -504,8 +490,7 @@ public class XStringForFSB extends XString {
      * ordering.
      *
      * @param xstr
-     *             the <code>String</code> to be compared.
-     *
+     *        the <code>String</code> to be compared.
      * @return a negative integer, zero, or a positive integer as the the
      *         specified String is greater than, equal to, or less than this
      *         String, ignoring case considerations.
@@ -575,9 +560,9 @@ public class XStringForFSB extends XString {
      * specified index.
      *
      * @param prefix
-     *                the prefix.
+     *        the prefix.
      * @param toffset
-     *                where to begin looking in the string.
+     *        where to begin looking in the string.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a prefix of the substring of this object starting at
      *         index <code>toffset</code>; <code>false</code> otherwise. The
@@ -621,7 +606,7 @@ public class XStringForFSB extends XString {
      * Tests if this string starts with the specified prefix.
      *
      * @param prefix
-     *               the prefix.
+     *        the prefix.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a prefix of the character sequence represented by
      *         this string; <code>false</code> otherwise. Note also that
@@ -651,7 +636,7 @@ public class XStringForFSB extends XString {
      * string, then <code>-1</code> is returned.
      *
      * @param ch
-     *           a character.
+     *        a character.
      * @return the index of the first occurrence of the character in the
      *         character sequence represented by this object, or <code>-1</code>
      *         if the character does not occur.
@@ -684,9 +669,9 @@ public class XStringForFSB extends XString {
      * <code>-1</code> is returned.
      *
      * @param ch
-     *                  a character.
+     *        a character.
      * @param fromIndex
-     *                  the index to start the search from.
+     *        the index to start the search from.
      * @return the index of the first occurrence of the character in the
      *         character sequence represented by this object that is greater
      *         than or equal to <code>fromIndex</code>, or <code>-1</code> if
@@ -730,13 +715,13 @@ public class XStringForFSB extends XString {
      * </blockquote>
      *
      * @param beginIndex
-     *                   the beginning index, inclusive.
+     *        the beginning index, inclusive.
      * @return the specified substring.
      * @exception IndexOutOfBoundsException
-     *                                      if <code>beginIndex</code> is
-     *                                      negative or larger than the
-     *                                      length of this <code>String</code>
-     *                                      object.
+     *            if <code>beginIndex</code> is
+     *            negative or larger than the
+     *            length of this <code>String</code>
+     *            object.
      */
     public XMLString substring(int beginIndex) {
 
@@ -758,18 +743,18 @@ public class XStringForFSB extends XString {
      * substring is <code>endIndex-beginIndex</code>.
      *
      * @param beginIndex
-     *                   the beginning index, inclusive.
+     *        the beginning index, inclusive.
      * @param endIndex
-     *                   the ending index, exclusive.
+     *        the ending index, exclusive.
      * @return the specified substring.
      * @exception IndexOutOfBoundsException
-     *                                      if the <code>beginIndex</code> is
-     *                                      negative, or
-     *                                      <code>endIndex</code> is larger than
-     *                                      the length of this
-     *                                      <code>String</code> object, or
-     *                                      <code>beginIndex</code> is
-     *                                      larger than <code>endIndex</code>.
+     *            if the <code>beginIndex</code> is
+     *            negative, or
+     *            <code>endIndex</code> is larger than
+     *            the length of this
+     *            <code>String</code> object, or
+     *            <code>beginIndex</code> is
+     *            larger than <code>endIndex</code>.
      */
     public XMLString substring(int beginIndex, int endIndex) {
 
@@ -791,8 +776,8 @@ public class XStringForFSB extends XString {
      * Concatenates the specified string to the end of this string.
      *
      * @param str
-     *            the <code>String</code> that is concatenated to the end of
-     *            this <code>String</code>.
+     *        the <code>String</code> that is concatenated to the end of
+     *        this <code>String</code>.
      * @return a string that represents the concatenation of this object's
      *         characters followed by the string argument's characters.
      * @exception java.lang.NullPointerException
@@ -820,7 +805,7 @@ public class XStringForFSB extends XString {
      * of <CODE>S</CODE></A> for details.
      * 
      * @param ch
-     *           Character to check as XML whitespace.
+     *        Character to check as XML whitespace.
      * @return =true if <var>ch</var> is XML whitespace; otherwise =false.
      */
     private static boolean isSpace(char ch) {
@@ -838,15 +823,14 @@ public class XStringForFSB extends XString {
      * formatting object.
      *
      * @param trimHead
-     *                                Trim leading whitespace?
+     *        Trim leading whitespace?
      * @param trimTail
-     *                                Trim trailing whitespace?
+     *        Trim trailing whitespace?
      * @param doublePunctuationSpaces
-     *                                Use double spaces for punctuation?
+     *        Use double spaces for punctuation?
      * @return The trimmed string.
      */
-    public XMLString fixWhiteSpace(boolean trimHead, boolean trimTail,
-            boolean doublePunctuationSpaces) {
+    public XMLString fixWhiteSpace(boolean trimHead, boolean trimTail, boolean doublePunctuationSpaces) {
 
         int end = m_length + m_start;
         char[] buf = new char[m_length];
@@ -871,8 +855,7 @@ public class XStringForFSB extends XString {
                     if (doublePunctuationSpaces && (d != 0)) {
                         char prevChar = buf[d - 1];
 
-                        if (!((prevChar == '.') || (prevChar == '!')
-                                || (prevChar == '?'))) {
+                        if (!((prevChar == '.') || (prevChar == '!') || (prevChar == '?'))) {
                             pres = true;
                         }
                     } else {
@@ -910,13 +893,11 @@ public class XStringForFSB extends XString {
     /**
      * Convert a string to a double -- Allowed input is in fixed notation
      * ddd.fff.
-     *
      * %OPT% CHECK PERFORMANCE against generating a Java String and converting
      * it to double. The advantage of running in native machine code -- perhaps
      * even microcode, on some systems -- may more than make up for the cost of
      * allocating and discarding the additional object. We need to benchmark
      * this.
-     *
      * %OPT% More importantly, we need to decide whether we _care_ about the
      * performance of this operation. Does XString.toDouble constitute any
      * measurable percentage of our typical runtime? I suspect not!

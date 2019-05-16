@@ -7,11 +7,9 @@ package javax.security.auth;
 
 /**
  * Signals that a {@code refresh} operation failed.
- *
  * <p>
  * This exception is thrown by credentials implementing the {@code Refreshable}
  * interface when the {@code refresh} method fails.
- *
  */
 public class RefreshFailedException extends Exception {
 
@@ -28,11 +26,10 @@ public class RefreshFailedException extends Exception {
     /**
      * Constructs a RefreshFailedException with the specified detail message. A
      * detail message is a String that describes this particular exception.
-     *
      * <p>
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public RefreshFailedException(String msg) {
         super(msg);

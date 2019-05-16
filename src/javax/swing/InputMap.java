@@ -49,7 +49,7 @@ public class InputMap implements Serializable {
      * Sets this <code>InputMap</code>'s parent.
      *
      * @param map
-     *            the <code>InputMap</code> that is the parent of this one
+     *        the <code>InputMap</code> that is the parent of this one
      */
     public void setParent(InputMap map) {
         this.parent = map;
@@ -202,8 +202,7 @@ public class InputMap implements Serializable {
         ArrayTable.writeArrayTable(s, arrayTable);
     }
 
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
         for (int counter = s.readInt() - 1; counter >= 0; counter--) {
             put((KeyStroke) s.readObject(), s.readObject());

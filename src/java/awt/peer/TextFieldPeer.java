@@ -9,7 +9,6 @@ import java.awt.TextField;
 
 /**
  * The peer interface for {@link TextField}.
- *
  * The peer interfaces are intended only for use in porting the AWT. They are
  * not intended for use by application developers, and developers should not
  * implement peers nor invoke any of the peer methods directly on the peer
@@ -21,8 +20,7 @@ public interface TextFieldPeer extends TextComponentPeer {
      * Sets the echo character.
      *
      * @param echoChar
-     *                 the echo character to set
-     *
+     *        the echo character to set
      * @see TextField#getEchoChar()
      */
     void setEchoChar(char echoChar);
@@ -32,10 +30,8 @@ public interface TextFieldPeer extends TextComponentPeer {
      * columns.
      *
      * @param columns
-     *                the number of columns
-     *
+     *        the number of columns
      * @return the preferred size of the text field
-     *
      * @see TextField#getPreferredSize(int)
      */
     Dimension getPreferredSize(int columns);
@@ -45,10 +41,8 @@ public interface TextFieldPeer extends TextComponentPeer {
      * columns.
      *
      * @param columns
-     *                the number of columns
-     *
+     *        the number of columns
      * @return the minimum size of the text field
-     *
      * @see TextField#getMinimumSize(int)
      */
     Dimension getMinimumSize(int columns);

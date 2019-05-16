@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * {@link javax.xml.bind.ValidationEventHandler ValidationEventHandler}
  * implementation that collects all events.
- *
  * <p>
  * To use this class, create a new instance and pass it to the setEventHandler
  * method of the Validator, Unmarshaller, Marshaller class. After the call to
@@ -79,8 +78,7 @@ public class ValidationEventCollector implements ValidationEventHandler {
                 retVal = false; // halt validation
                 break;
             default:
-                _assert(false, Messages.format(Messages.UNRECOGNIZED_SEVERITY,
-                        event.getSeverity()));
+                _assert(false, Messages.format(Messages.UNRECOGNIZED_SEVERITY, event.getSeverity()));
                 break;
         }
 

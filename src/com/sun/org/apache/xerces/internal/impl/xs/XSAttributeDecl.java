@@ -35,7 +35,6 @@ import com.sun.org.apache.xerces.internal.xs.XSSimpleTypeDefinition;
  * <attribute> element information item
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  * @author Sandy Gao, IBM
  * @version $Id: XSAttributeDecl.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
@@ -70,10 +69,8 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
     // otherwise.
     private XSNamespaceItem fNamespaceItem = null;
 
-    public void setValues(String name, String targetNamespace,
-            XSSimpleType simpleType, short constraintType, short scope,
-            ValidatedInfo valInfo, XSComplexTypeDecl enclosingCT,
-            XSObjectList annotations) {
+    public void setValues(String name, String targetNamespace, XSSimpleType simpleType, short constraintType,
+            short scope, ValidatedInfo valInfo, XSComplexTypeDecl enclosingCT, XSObjectList annotations) {
         fName = name;
         fTargetNamespace = targetNamespace;
         fType = simpleType;
@@ -158,24 +155,21 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
      */
     public String getConstraintValue() {
         // REVISIT: SCAPI: what's the proper representation
-        return getConstraintType() == XSConstants.VC_NONE ? null
-                : fDefault.stringValue();
+        return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.stringValue();
     }
 
     /**
      * Optional. Annotation.
      */
     public XSAnnotation getAnnotation() {
-        return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
-                : null;
+        return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
     }
 
     /**
      * Optional. Annotations.
      */
     public XSObjectList getAnnotations() {
-        return (fAnnotations != null) ? fAnnotations
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
     public ValidatedInfo getValInfo() {
@@ -194,19 +188,16 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
     }
 
     public Object getActualVC() {
-        return getConstraintType() == XSConstants.VC_NONE ? null
-                : fDefault.actualValue;
+        return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.actualValue;
     }
 
     public short getActualVCType() {
-        return getConstraintType() == XSConstants.VC_NONE
-                ? XSConstants.UNAVAILABLE_DT
+        return getConstraintType() == XSConstants.VC_NONE ? XSConstants.UNAVAILABLE_DT
                 : fDefault.actualValueType;
     }
 
     public ShortList getItemValueTypes() {
-        return getConstraintType() == XSConstants.VC_NONE ? null
-                : fDefault.itemValueTypes;
+        return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.itemValueTypes;
     }
 
 } // class XSAttributeDecl

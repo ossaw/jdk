@@ -26,32 +26,28 @@ public class DefaultSocketFactoryImpl implements ORBSocketFactory {
     private static final boolean keepAlive;
 
     static {
-        keepAlive = java.security.AccessController.doPrivileged(
-                new PrivilegedAction<Boolean>() {
-                    @Override
-                    public Boolean run() {
-                        String value = System.getProperty(
-                                "com.sun.CORBA.transport.enableTcpKeepAlive");
-                        if (value != null)
-                            return new Boolean(!"false".equalsIgnoreCase(
-                                    value));
+        keepAlive = java.security.AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+            @Override
+            public Boolean run() {
+                String value = System.getProperty("com.sun.CORBA.transport.enableTcpKeepAlive");
+                if (value != null)
+                    return new Boolean(!"false".equalsIgnoreCase(value));
 
-                        return Boolean.FALSE;
-                    }
-                });
+                return Boolean.FALSE;
+            }
+        });
     }
 
     public void setORB(ORB orb) {
         this.orb = orb;
     }
 
-    public ServerSocket createServerSocket(String type,
-            InetSocketAddress inetSocketAddress) throws IOException {
+    public ServerSocket createServerSocket(String type, InetSocketAddress inetSocketAddress)
+            throws IOException {
         ServerSocketChannel serverSocketChannel = null;
         ServerSocket serverSocket = null;
 
-        if (orb.getORBData().acceptorSocketType().equals(
-                ORBConstants.SOCKETCHANNEL)) {
+        if (orb.getORBData().acceptorSocketType().equals(ORBConstants.SOCKETCHANNEL)) {
             serverSocketChannel = ServerSocketChannel.open();
             serverSocket = serverSocketChannel.socket();
         } else {
@@ -61,18 +57,15 @@ public class DefaultSocketFactoryImpl implements ORBSocketFactory {
         return serverSocket;
     }
 
-    public Socket createSocket(String type, InetSocketAddress inetSocketAddress)
-            throws IOException {
+    public Socket createSocket(String type, InetSocketAddress inetSocketAddress) throws IOException {
         SocketChannel socketChannel = null;
         Socket socket = null;
 
-        if (orb.getORBData().connectionSocketType().equals(
-                ORBConstants.SOCKETCHANNEL)) {
+        if (orb.getORBData().connectionSocketType().equals(ORBConstants.SOCKETCHANNEL)) {
             socketChannel = SocketChannel.open(inetSocketAddress);
             socket = socketChannel.socket();
         } else {
-            socket = new Socket(inetSocketAddress.getHostName(),
-                    inetSocketAddress.getPort());
+            socket = new Socket(inetSocketAddress.getHostName(), inetSocketAddress.getPort());
         }
 
         // Disable Nagle's algorithm (i.e., always send immediately).
@@ -84,8 +77,8 @@ public class DefaultSocketFactoryImpl implements ORBSocketFactory {
         return socket;
     }
 
-    public void setAcceptedSocketOptions(Acceptor acceptor,
-            ServerSocket serverSocket, Socket socket) throws SocketException {
+    public void setAcceptedSocketOptions(Acceptor acceptor, ServerSocket serverSocket, Socket socket)
+            throws SocketException {
         // Disable Nagle's algorithm (i.e., always send immediately).
         socket.setTcpNoDelay(true);
         if (keepAlive)

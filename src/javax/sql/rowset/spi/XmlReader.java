@@ -39,20 +39,19 @@ public interface XmlReader extends RowSetReader {
      * information about the location of the error in the original XML document.
      *
      * @param caller
-     *               the <code>WebRowSet</code> object to be parsed, whose
-     *               <code>xmlReader</code> field must contain a reference to
-     *               this
-     *               <code>XmlReader</code> object
+     *        the <code>WebRowSet</code> object to be parsed, whose
+     *        <code>xmlReader</code> field must contain a reference to
+     *        this
+     *        <code>XmlReader</code> object
      * @param reader
-     *               the <code>java.io.Reader</code> object from which
-     *               <code>caller</code> will be read
+     *        the <code>java.io.Reader</code> object from which
+     *        <code>caller</code> will be read
      * @throws SQLException
-     *                      if a database access error occurs or this
-     *                      <code>XmlReader</code> object is not the reader for
-     *                      the given
-     *                      rowset
+     *         if a database access error occurs or this
+     *         <code>XmlReader</code> object is not the reader for
+     *         the given
+     *         rowset
      */
-    public void readXML(WebRowSet caller, java.io.Reader reader)
-            throws SQLException;
+    public void readXML(WebRowSet caller, java.io.Reader reader) throws SQLException;
 
 }

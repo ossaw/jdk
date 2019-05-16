@@ -53,7 +53,7 @@ public class Arg {
      * Set the qualified name for this argument.
      *
      * @param name
-     *             QName object representing the new Qualified Name.
+     *        QName object representing the new Qualified Name.
      */
     public final void setQName(QName name) {
         m_qname = name;
@@ -81,7 +81,7 @@ public class Arg {
      * Set the value of this argument.
      *
      * @param val
-     *            an XObject representing the arguments's value.
+     *        an XObject representing the arguments's value.
      * @see #getVal()
      */
     public final void setVal(XObject val) {
@@ -122,8 +122,8 @@ public class Arg {
      * Set the value expression for this argument.
      *
      * @param expr
-     *             String containing the expression to be stored as this
-     *             argument's value.
+     *        String containing the expression to be stored as this
+     *        argument's value.
      * @see #getExpression
      */
     public void setExpression(String expr) {
@@ -184,12 +184,12 @@ public class Arg {
      * Construct a parameter argument that contains an expression.
      *
      * @param qname
-     *                        Name of the argument, expressed as a QName object.
+     *        Name of the argument, expressed as a QName object.
      * @param expression
-     *                        String to be stored as this argument's value
-     *                        expression.
+     *        String to be stored as this argument's value
+     *        expression.
      * @param isFromWithParam
-     *                        True if this is a parameter variable.
+     *        True if this is a parameter variable.
      */
     public Arg(QName qname, String expression, boolean isFromWithParam) {
 
@@ -205,9 +205,9 @@ public class Arg {
      * defaults to true.
      *
      * @param qname
-     *              Name of the argument, expressed as a QName object.
+     *        Name of the argument, expressed as a QName object.
      * @param val
-     *              Value of the argument, expressed as an XObject
+     *        Value of the argument, expressed as an XObject
      */
     public Arg(QName qname, XObject val) {
 
@@ -228,7 +228,7 @@ public class Arg {
      * not a qname, it will deligate to the super class.
      *
      * @param obj
-     *            the reference object with which to compare.
+     *        the reference object with which to compare.
      * @return <code>true</code> if this object is the same as the obj argument;
      *         <code>false</code> otherwise.
      */
@@ -244,11 +244,11 @@ public class Arg {
      * Construct a parameter argument.
      *
      * @param qname
-     *                        Name of the argument, expressed as a QName object.
+     *        Name of the argument, expressed as a QName object.
      * @param val
-     *                        Value of the argument, expressed as an XObject
+     *        Value of the argument, expressed as an XObject
      * @param isFromWithParam
-     *                        True if this is a parameter variable.
+     *        True if this is a parameter variable.
      */
     public Arg(QName qname, XObject val, boolean isFromWithParam) {
 

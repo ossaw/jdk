@@ -8,38 +8,30 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
-        implements com.sun.corba.se.PortableActivationIDL.Repository {
+public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl implements
+        com.sun.corba.se.PortableActivationIDL.Repository {
 
     /**
      * register server definition. This returns the serverId of the server. A
      * newly created server is always uninstalled.
      */
-    public String registerServer(
-            com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef serverDef)
+    public String registerServer(com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef serverDef)
             throws com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegistered,
             com.sun.corba.se.PortableActivationIDL.BadServerDefinition {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request(
-                    "registerServer", true);
-            com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper
-                    .write($out, serverDef);
+            org.omg.CORBA.portable.OutputStream $out = _request("registerServer", true);
+            com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper.write($out, serverDef);
             $in = _invoke($out);
-            String $result = org.omg.PortableInterceptor.ServerIdHelper.read(
-                    $in);
+            String $result = org.omg.PortableInterceptor.ServerIdHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
-            if (_id.equals(
-                    "IDL:PortableActivationIDL/ServerAlreadyRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegisteredHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:PortableActivationIDL/BadServerDefinition:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.BadServerDefinitionHelper
-                        .read($in);
+            if (_id.equals("IDL:PortableActivationIDL/ServerAlreadyRegistered:1.0"))
+                throw com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegisteredHelper.read($in);
+            else if (_id.equals("IDL:PortableActivationIDL/BadServerDefinition:1.0"))
+                throw com.sun.corba.se.PortableActivationIDL.BadServerDefinitionHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -56,8 +48,7 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request(
-                    "unregisterServer", true);
+            org.omg.CORBA.portable.OutputStream $out = _request("unregisterServer", true);
             org.omg.PortableInterceptor.ServerIdHelper.write($out, serverId);
             $in = _invoke($out);
             return;
@@ -65,8 +56,7 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:PortableActivationIDL/ServerNotRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                        .read($in);
+                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -79,13 +69,11 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * get server definition
      */
-    public com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef getServer(
-            String serverId)
+    public com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef getServer(String serverId)
             throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("getServer",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("getServer", true);
             org.omg.PortableInterceptor.ServerIdHelper.write($out, serverId);
             $in = _invoke($out);
             com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef $result = com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper
@@ -95,8 +83,7 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:PortableActivationIDL/ServerNotRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                        .read($in);
+                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -113,8 +100,7 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("isInstalled",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("isInstalled", true);
             org.omg.PortableInterceptor.ServerIdHelper.write($out, serverId);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
@@ -123,8 +109,7 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:PortableActivationIDL/ServerNotRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                        .read($in);
+                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -138,13 +123,11 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
      * Mark the server as being installed. Raises ServerAlreadyInstalled if the
      * server is currently marked as installed.
      */
-    public void install(String serverId)
-            throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
+    public void install(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
             com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalled {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("install",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("install", true);
             org.omg.PortableInterceptor.ServerIdHelper.write($out, serverId);
             $in = _invoke($out);
             return;
@@ -152,12 +135,9 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:PortableActivationIDL/ServerNotRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:PortableActivationIDL/ServerAlreadyInstalled:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalledHelper
-                        .read($in);
+                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.read($in);
+            else if (_id.equals("IDL:PortableActivationIDL/ServerAlreadyInstalled:1.0"))
+                throw com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalledHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -171,13 +151,11 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
      * Mark the server as being uninstalled. Raises ServerAlreadyUninstalled if
      * the server is currently marked as uninstalled.
      */
-    public void uninstall(String serverId)
-            throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
+    public void uninstall(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
             com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalled {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("uninstall",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("uninstall", true);
             org.omg.PortableInterceptor.ServerIdHelper.write($out, serverId);
             $in = _invoke($out);
             return;
@@ -185,12 +163,9 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:PortableActivationIDL/ServerNotRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:PortableActivationIDL/ServerAlreadyUninstalled:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalledHelper
-                        .read($in);
+                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.read($in);
+            else if (_id.equals("IDL:PortableActivationIDL/ServerAlreadyUninstalled:1.0"))
+                throw com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalledHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -206,11 +181,9 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
     public String[] listRegisteredServers() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request(
-                    "listRegisteredServers", true);
+            org.omg.CORBA.portable.OutputStream $out = _request("listRegisteredServers", true);
             $in = _invoke($out);
-            String $result[] = com.sun.corba.se.PortableActivationIDL.ServerIdsHelper
-                    .read($in);
+            String $result[] = com.sun.corba.se.PortableActivationIDL.ServerIdsHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
@@ -230,11 +203,10 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
     public String[] getApplicationNames() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request(
-                    "getApplicationNames", true);
+            org.omg.CORBA.portable.OutputStream $out = _request("getApplicationNames", true);
             $in = _invoke($out);
-            String $result[] = com.sun.corba.se.PortableActivationIDL.RepositoryPackage.AppNamesHelper
-                    .read($in);
+            String $result[] = com.sun.corba.se.PortableActivationIDL.RepositoryPackage.AppNamesHelper.read(
+                    $in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
@@ -254,19 +226,16 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
             throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("getServerID",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("getServerID", true);
             $out.write_string(applicationName);
             $in = _invoke($out);
-            String $result = org.omg.PortableInterceptor.ServerIdHelper.read(
-                    $in);
+            String $result = org.omg.PortableInterceptor.ServerIdHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:PortableActivationIDL/ServerNotRegistered:1.0"))
-                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                        .read($in);
+                throw com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -277,15 +246,13 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
     } // getServerID
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:PortableActivationIDL/Repository:1.0" };
+    private static String[] __ids = { "IDL:PortableActivationIDL/Repository:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -300,8 +267,7 @@ public class _RepositoryStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

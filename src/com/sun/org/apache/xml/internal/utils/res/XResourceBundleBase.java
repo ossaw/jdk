@@ -34,8 +34,7 @@ abstract public class XResourceBundleBase extends ListResourceBundle {
      * Get the error string associated with the error code
      *
      * @param errorCode
-     *                  Error code
-     *
+     *        Error code
      * @return error string associated with the given error code
      */
     abstract public String getMessageKey(int errorCode);
@@ -44,8 +43,7 @@ abstract public class XResourceBundleBase extends ListResourceBundle {
      * Get the warning string associated with the error code
      *
      * @param errorCode
-     *                  Error code
-     *
+     *        Error code
      * @return warning string associated with the given error code
      */
     abstract public String getWarningKey(int errorCode);

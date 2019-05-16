@@ -30,9 +30,9 @@ public class VolatileCallSite extends CallSite {
      * {@code IllegalStateException} if called.
      * 
      * @param type
-     *             the method type that this call site will have
+     *        the method type that this call site will have
      * @throws NullPointerException
-     *                              if the proposed type is null
+     *         if the proposed type is null
      */
     public VolatileCallSite(MethodType type) {
         super(type);
@@ -43,11 +43,11 @@ public class VolatileCallSite extends CallSite {
      * set to the given value.
      * 
      * @param target
-     *               the method handle that will be the initial target of the
-     *               call
-     *               site
+     *        the method handle that will be the initial target of the
+     *        call
+     *        site
      * @throws NullPointerException
-     *                              if the proposed target is null
+     *         if the proposed target is null
      */
     public VolatileCallSite(MethodHandle target) {
         super(target);
@@ -82,13 +82,13 @@ public class VolatileCallSite extends CallSite {
      * the next time it calls {@code getTarget}.
      * 
      * @param newTarget
-     *                  the new target
+     *        the new target
      * @throws NullPointerException
-     *                                  if the proposed new target is null
+     *         if the proposed new target is null
      * @throws WrongMethodTypeException
-     *                                  if the proposed new target has a method
-     *                                  type that differs
-     *                                  from the previous target
+     *         if the proposed new target has a method
+     *         type that differs
+     *         from the previous target
      * @see #getTarget
      */
     @Override

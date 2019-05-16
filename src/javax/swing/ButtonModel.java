@@ -92,7 +92,7 @@ public interface ButtonModel extends ItemSelectable {
      * Marks the button as armed or unarmed.
      *
      * @param b
-     *          whether or not the button should be armed
+     *        whether or not the button should be armed
      */
     public void setArmed(boolean b);
 
@@ -100,8 +100,8 @@ public interface ButtonModel extends ItemSelectable {
      * Selects or deselects the button.
      *
      * @param b
-     *          <code>true</code> selects the button, <code>false</code>
-     *          deselects the button
+     *        <code>true</code> selects the button, <code>false</code>
+     *        deselects the button
      */
     public void setSelected(boolean b);
 
@@ -109,7 +109,7 @@ public interface ButtonModel extends ItemSelectable {
      * Enables or disables the button.
      *
      * @param b
-     *          whether or not the button should be enabled
+     *        whether or not the button should be enabled
      * @see #isEnabled
      */
     public void setEnabled(boolean b);
@@ -118,7 +118,7 @@ public interface ButtonModel extends ItemSelectable {
      * Sets the button to pressed or unpressed.
      *
      * @param b
-     *          whether or not the button should be pressed
+     *        whether or not the button should be pressed
      * @see #isPressed
      */
     public void setPressed(boolean b);
@@ -127,7 +127,7 @@ public interface ButtonModel extends ItemSelectable {
      * Sets or clears the button's rollover state
      *
      * @param b
-     *          whether or not the button is in the rollover state
+     *        whether or not the button is in the rollover state
      * @see #isRollover
      */
     public void setRollover(boolean b);
@@ -137,7 +137,7 @@ public interface ButtonModel extends ItemSelectable {
      * button.
      *
      * @param key
-     *            an int specifying the accelerator key
+     *        an int specifying the accelerator key
      */
     public void setMnemonic(int key);
 
@@ -154,7 +154,7 @@ public interface ButtonModel extends ItemSelectable {
      * <code>ActionEvent</code> when the button is triggered.
      *
      * @param s
-     *          the <code>String</code> that identifies the generated event
+     *        the <code>String</code> that identifies the generated event
      * @see #getActionCommand
      * @see java.awt.event.ActionEvent#getActionCommand
      */
@@ -173,7 +173,7 @@ public interface ButtonModel extends ItemSelectable {
      * which are mutually exclusive within their group.
      *
      * @param group
-     *              the <code>ButtonGroup</code> the button belongs to
+     *        the <code>ButtonGroup</code> the button belongs to
      */
     public void setGroup(ButtonGroup group);
 
@@ -181,7 +181,7 @@ public interface ButtonModel extends ItemSelectable {
      * Adds an <code>ActionListener</code> to the model.
      *
      * @param l
-     *          the listener to add
+     *        the listener to add
      */
     void addActionListener(ActionListener l);
 
@@ -189,7 +189,7 @@ public interface ButtonModel extends ItemSelectable {
      * Removes an <code>ActionListener</code> from the model.
      *
      * @param l
-     *          the listener to remove
+     *        the listener to remove
      */
     void removeActionListener(ActionListener l);
 
@@ -197,7 +197,7 @@ public interface ButtonModel extends ItemSelectable {
      * Adds an <code>ItemListener</code> to the model.
      *
      * @param l
-     *          the listener to add
+     *        the listener to add
      */
     void addItemListener(ItemListener l);
 
@@ -205,7 +205,7 @@ public interface ButtonModel extends ItemSelectable {
      * Removes an <code>ItemListener</code> from the model.
      *
      * @param l
-     *          the listener to remove
+     *        the listener to remove
      */
     void removeItemListener(ItemListener l);
 
@@ -213,7 +213,7 @@ public interface ButtonModel extends ItemSelectable {
      * Adds a <code>ChangeListener</code> to the model.
      *
      * @param l
-     *          the listener to add
+     *        the listener to add
      */
     void addChangeListener(ChangeListener l);
 
@@ -221,7 +221,7 @@ public interface ButtonModel extends ItemSelectable {
      * Removes a <code>ChangeListener</code> from the model.
      *
      * @param l
-     *          the listener to remove
+     *        the listener to remove
      */
     void removeChangeListener(ChangeListener l);
 

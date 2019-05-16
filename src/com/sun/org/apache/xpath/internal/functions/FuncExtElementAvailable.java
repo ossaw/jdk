@@ -43,13 +43,11 @@ public class FuncExtElementAvailable extends FunctionOneArg {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         String prefix;
         String namespace;
@@ -64,8 +62,7 @@ public class FuncExtElementAvailable extends FunctionOneArg {
             methName = fullName;
         } else {
             prefix = fullName.substring(0, indexOfNSSep);
-            namespace = xctxt.getNamespaceContext().getNamespaceForPrefix(
-                    prefix);
+            namespace = xctxt.getNamespaceContext().getNamespaceForPrefix(prefix);
             if (null == namespace)
                 return XBoolean.S_FALSE;
             methName = fullName.substring(indexOfNSSep + 1);
@@ -86,11 +83,8 @@ public class FuncExtElementAvailable extends FunctionOneArg {
             return XBoolean.S_FALSE;
         } else {
             // dml
-            ExtensionsProvider extProvider = (ExtensionsProvider) xctxt
-                    .getOwnerObject();
-            return extProvider.elementAvailable(namespace, methName)
-                    ? XBoolean.S_TRUE
-                    : XBoolean.S_FALSE;
+            ExtensionsProvider extProvider = (ExtensionsProvider) xctxt.getOwnerObject();
+            return extProvider.elementAvailable(namespace, methName) ? XBoolean.S_TRUE : XBoolean.S_FALSE;
         }
     }
 }

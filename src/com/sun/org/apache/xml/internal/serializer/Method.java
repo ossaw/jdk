@@ -27,12 +27,10 @@ package com.sun.org.apache.xml.internal.serializer;
  * constants can be used as an argument to the
  * OutputPropertiesFactory.getDefaultMethodProperties() method to get the
  * properties to create a serializer.
- *
  * This class is a public API.
  *
  * @see OutputPropertiesFactory
  * @see Serializer
- *
  * @xsl.usage general
  */
 public final class Method {

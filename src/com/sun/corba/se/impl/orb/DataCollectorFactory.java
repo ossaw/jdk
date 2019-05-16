@@ -14,8 +14,7 @@ import com.sun.corba.se.spi.orb.DataCollector;
 public abstract class DataCollectorFactory {
     private DataCollectorFactory() {}
 
-    public static DataCollector create(Applet app, Properties props,
-            String localHostName) {
+    public static DataCollector create(Applet app, Properties props, String localHostName) {
         String appletHost = localHostName;
 
         if (app != null) {
@@ -28,14 +27,11 @@ public abstract class DataCollectorFactory {
         return new AppletDataCollector(app, props, localHostName, appletHost);
     }
 
-    public static DataCollector create(String[] args, Properties props,
-            String localHostName) {
-        return new NormalDataCollector(args, props, localHostName,
-                localHostName);
+    public static DataCollector create(String[] args, Properties props, String localHostName) {
+        return new NormalDataCollector(args, props, localHostName, localHostName);
     }
 
     public static DataCollector create(Properties props, String localHostName) {
-        return new PropertyOnlyDataCollector(props, localHostName,
-                localHostName);
+        return new PropertyOnlyDataCollector(props, localHostName, localHostName);
     }
 }

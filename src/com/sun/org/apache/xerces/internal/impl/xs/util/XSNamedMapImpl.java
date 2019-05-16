@@ -35,9 +35,7 @@ import com.sun.org.apache.xerces.internal.xs.XSObject;
  * Containts the map between qnames and XSObject's.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: XSNamedMapImpl.java,v 1.7 2010-11-01 04:40:06 joehw Exp $
  */
 public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
@@ -45,8 +43,7 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
     /**
      * An immutable empty map.
      */
-    public static final XSNamedMapImpl EMPTY_MAP = new XSNamedMapImpl(
-            new XSObject[0], 0);
+    public static final XSNamedMapImpl EMPTY_MAP = new XSNamedMapImpl(new XSObject[0], 0);
 
     // components of these namespaces are stored in this map
     final String[] fNamespaces;
@@ -67,9 +64,9 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
      * Construct an XSNamedMap implementation for one namespace
      *
      * @param namespace
-     *                  the namespace to which the components belong
+     *        the namespace to which the components belong
      * @param map
-     *                  the map from local names to components
+     *        the map from local names to components
      */
     public XSNamedMapImpl(String namespace, SymbolHash map) {
         fNamespaces = new String[] { namespace };
@@ -81,11 +78,11 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
      * Construct an XSNamedMap implementation for a list of namespaces
      *
      * @param namespaces
-     *                   the namespaces to which the components belong
+     *        the namespaces to which the components belong
      * @param maps
-     *                   the maps from local names to components
+     *        the maps from local names to components
      * @param num
-     *                   the number of namespaces
+     *        the number of namespaces
      */
     public XSNamedMapImpl(String[] namespaces, SymbolHash[] maps, int num) {
         fNamespaces = namespaces;
@@ -97,9 +94,9 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
      * Construct an XSNamedMap implementation one namespace from an array
      *
      * @param array
-     *               containing all components
+     *        containing all components
      * @param length
-     *               number of components
+     *        number of components
      */
     public XSNamedMapImpl(XSObject[] array, int length) {
         if (length == 0) {
@@ -143,12 +140,12 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
      * no namespace.
      * 
      * @param namespace
-     *                  The namespace URI of the <code>XSObject</code> to
-     *                  retrieve, or
-     *                  <code>null</code> if the <code>XSObject</code> has no
-     *                  namespace.
+     *        The namespace URI of the <code>XSObject</code> to
+     *        retrieve, or
+     *        <code>null</code> if the <code>XSObject</code> has no
+     *        namespace.
      * @param localName
-     *                  The local name of the <code>XSObject</code> to retrieve.
+     *        The local name of the <code>XSObject</code> to retrieve.
      * @return A <code>XSObject</code> (of any type) with the specified local
      *         name and namespace URI, or <code>null</code> if they do not
      *         identify any object in this map.
@@ -182,7 +179,7 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
      * number of objects in the list. The index starts at 0.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The <code>XSObject</code> at the <code>index</code>th position in
      *         the <code>XSObjectList</code>, or <code>null</code> if the index
      *         specified is not valid.
@@ -240,8 +237,7 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
             final XSNamedMapEntry[] entries = new XSNamedMapEntry[length];
             for (int i = 0; i < length; ++i) {
                 XSObject xso = item(i);
-                entries[i] = new XSNamedMapEntry(new QName(xso.getNamespace(),
-                        xso.getName()), xso);
+                entries[i] = new XSNamedMapEntry(new QName(xso.getNamespace(), xso.getName()), xso);
             }
             // Create a view of this immutable map.
             fEntrySet = new AbstractSet() {
@@ -301,16 +297,14 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
                 Map.Entry e = (Map.Entry) o;
                 Object otherKey = e.getKey();
                 Object otherValue = e.getValue();
-                return (key == null ? otherKey == null : key.equals(otherKey))
-                        && (value == null ? otherValue == null
-                                : value.equals(otherValue));
+                return (key == null ? otherKey == null : key.equals(otherKey)) && (value == null
+                        ? otherValue == null : value.equals(otherValue));
             }
             return false;
         }
 
         public int hashCode() {
-            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0
-                    : value.hashCode());
+            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0 : value.hashCode());
         }
 
         public String toString() {

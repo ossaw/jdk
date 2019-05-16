@@ -262,7 +262,6 @@ public class Color implements Paint, java.io.Serializable {
         /**
          * 4112352 - Calling getDefaultToolkit() here can cause this class to be
          * accessed before it is fully initialized. DON'T DO IT!!!
-         **
          ** Toolkit.getDefaultToolkit();
          **/
 
@@ -278,11 +277,11 @@ public class Color implements Paint, java.io.Serializable {
      * {@link IllegalArgumentException} if the value is out of range.
      * 
      * @param r
-     *          the Red component
+     *        the Red component
      * @param g
-     *          the Green component
+     *        the Green component
      * @param b
-     *          the Blue component
+     *        the Blue component
      **/
     private static void testColorValueRange(int r, int g, int b, int a) {
         boolean rangeError = false;
@@ -305,9 +304,8 @@ public class Color implements Paint, java.io.Serializable {
             badComponentString = badComponentString + " Blue";
         }
         if (rangeError == true) {
-            throw new IllegalArgumentException(
-                    "Color parameter outside of expected range:"
-                            + badComponentString);
+            throw new IllegalArgumentException("Color parameter outside of expected range:"
+                    + badComponentString);
         }
     }
 
@@ -317,14 +315,13 @@ public class Color implements Paint, java.io.Serializable {
      * range.
      * 
      * @param r
-     *          the Red component
+     *        the Red component
      * @param g
-     *          the Green component
+     *        the Green component
      * @param b
-     *          the Blue component
+     *        the Blue component
      **/
-    private static void testColorValueRange(float r, float g, float b,
-            float a) {
+    private static void testColorValueRange(float r, float g, float b, float a) {
         boolean rangeError = false;
         String badComponentString = "";
         if (a < 0.0 || a > 1.0) {
@@ -344,9 +341,8 @@ public class Color implements Paint, java.io.Serializable {
             badComponentString = badComponentString + " Blue";
         }
         if (rangeError == true) {
-            throw new IllegalArgumentException(
-                    "Color parameter outside of expected range:"
-                            + badComponentString);
+            throw new IllegalArgumentException("Color parameter outside of expected range:"
+                    + badComponentString);
         }
     }
 
@@ -357,15 +353,15 @@ public class Color implements Paint, java.io.Serializable {
      * output device. Alpha is defaulted to 255.
      *
      * @throws IllegalArgumentException
-     *                                  if <code>r</code>, <code>g</code> or
-     *                                  <code>b</code> are
-     *                                  outside of the range 0 to 255, inclusive
+     *         if <code>r</code>, <code>g</code> or
+     *         <code>b</code> are
+     *         outside of the range 0 to 255, inclusive
      * @param r
-     *          the red component
+     *        the red component
      * @param g
-     *          the green component
+     *        the green component
      * @param b
-     *          the blue component
+     *        the blue component
      * @see #getRed
      * @see #getGreen
      * @see #getBlue
@@ -380,18 +376,18 @@ public class Color implements Paint, java.io.Serializable {
      * values in the range (0 - 255).
      *
      * @throws IllegalArgumentException
-     *                                  if <code>r</code>, <code>g</code>,
-     *                                  <code>b</code> or
-     *                                  <code>a</code> are outside of the range
-     *                                  0 to 255, inclusive
+     *         if <code>r</code>, <code>g</code>,
+     *         <code>b</code> or
+     *         <code>a</code> are outside of the range
+     *         0 to 255, inclusive
      * @param r
-     *          the red component
+     *        the red component
      * @param g
-     *          the green component
+     *        the green component
      * @param b
-     *          the blue component
+     *        the blue component
      * @param a
-     *          the alpha component
+     *        the alpha component
      * @see #getRed
      * @see #getGreen
      * @see #getBlue
@@ -400,8 +396,7 @@ public class Color implements Paint, java.io.Serializable {
      */
     @ConstructorProperties({ "red", "green", "blue", "alpha" })
     public Color(int r, int g, int b, int a) {
-        value = ((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8)
-                | ((b & 0xFF) << 0);
+        value = ((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF) << 0);
         testColorValueRange(r, g, b, a);
     }
 
@@ -413,7 +408,7 @@ public class Color implements Paint, java.io.Serializable {
      * available for a particular output device. Alpha is defaulted to 255.
      *
      * @param rgb
-     *            the combined RGB components
+     *        the combined RGB components
      * @see java.awt.image.ColorModel#getRGBdefault
      * @see #getRed
      * @see #getGreen
@@ -432,10 +427,10 @@ public class Color implements Paint, java.io.Serializable {
      * defaulted to 255.
      *
      * @param rgba
-     *                 the combined RGBA components
+     *        the combined RGBA components
      * @param hasalpha
-     *                 <code>true</code> if the alpha bits are valid;
-     *                 <code>false</code> otherwise
+     *        <code>true</code> if the alpha bits are valid;
+     *        <code>false</code> otherwise
      * @see java.awt.image.ColorModel#getRGBdefault
      * @see #getRed
      * @see #getGreen
@@ -458,24 +453,23 @@ public class Color implements Paint, java.io.Serializable {
      * space available for a particular output device.
      *
      * @throws IllegalArgumentException
-     *                                  if <code>r</code>, <code>g</code> or
-     *                                  <code>b</code> are
-     *                                  outside of the range 0.0 to 1.0,
-     *                                  inclusive
+     *         if <code>r</code>, <code>g</code> or
+     *         <code>b</code> are
+     *         outside of the range 0.0 to 1.0,
+     *         inclusive
      * @param r
-     *          the red component
+     *        the red component
      * @param g
-     *          the green component
+     *        the green component
      * @param b
-     *          the blue component
+     *        the blue component
      * @see #getRed
      * @see #getGreen
      * @see #getBlue
      * @see #getRGB
      */
     public Color(float r, float g, float b) {
-        this((int) (r * 255 + 0.5), (int) (g * 255 + 0.5), (int) (b * 255
-                + 0.5));
+        this((int) (r * 255 + 0.5), (int) (g * 255 + 0.5), (int) (b * 255 + 0.5));
         testColorValueRange(r, g, b, 1.0f);
         frgbvalue = new float[3];
         frgbvalue[0] = r;
@@ -492,18 +486,18 @@ public class Color implements Paint, java.io.Serializable {
      * particular output device.
      * 
      * @throws IllegalArgumentException
-     *                                  if <code>r</code>, <code>g</code>
-     *                                  <code>b</code> or
-     *                                  <code>a</code> are outside of the range
-     *                                  0.0 to 1.0, inclusive
+     *         if <code>r</code>, <code>g</code>
+     *         <code>b</code> or
+     *         <code>a</code> are outside of the range
+     *         0.0 to 1.0, inclusive
      * @param r
-     *          the red component
+     *        the red component
      * @param g
-     *          the green component
+     *        the green component
      * @param b
-     *          the blue component
+     *        the blue component
      * @param a
-     *          the alpha component
+     *        the alpha component
      * @see #getRed
      * @see #getGreen
      * @see #getBlue
@@ -511,8 +505,7 @@ public class Color implements Paint, java.io.Serializable {
      * @see #getRGB
      */
     public Color(float r, float g, float b, float a) {
-        this((int) (r * 255 + 0.5), (int) (g * 255 + 0.5), (int) (b * 255
-                + 0.5), (int) (a * 255 + 0.5));
+        this((int) (r * 255 + 0.5), (int) (g * 255 + 0.5), (int) (b * 255 + 0.5), (int) (a * 255 + 0.5));
         frgbvalue = new float[3];
         frgbvalue[0] = r;
         frgbvalue[1] = g;
@@ -529,19 +522,19 @@ public class Color implements Paint, java.io.Serializable {
      * requires 4 components.
      * 
      * @param cspace
-     *                   the <code>ColorSpace</code> to be used to interpret the
-     *                   components
+     *        the <code>ColorSpace</code> to be used to interpret the
+     *        components
      * @param components
-     *                   an arbitrary number of color components that is
-     *                   compatible
-     *                   with the <code>ColorSpace</code>
+     *        an arbitrary number of color components that is
+     *        compatible
+     *        with the <code>ColorSpace</code>
      * @param alpha
-     *                   alpha value
+     *        alpha value
      * @throws IllegalArgumentException
-     *                                  if any of the values in the
-     *                                  <code>components</code> array or
-     *                                  <code>alpha</code> is outside of the
-     *                                  range 0.0 to 1.0
+     *         if any of the values in the
+     *         <code>components</code> array or
+     *         <code>alpha</code> is outside of the
+     *         range 0.0 to 1.0
      * @see #getComponents
      * @see #getColorComponents
      */
@@ -553,8 +546,7 @@ public class Color implements Paint, java.io.Serializable {
         for (int i = 0; i < n; i++) {
             if (components[i] < 0.0 || components[i] > 1.0) {
                 rangeError = true;
-                badComponentString = badComponentString + "Component " + i
-                        + " ";
+                badComponentString = badComponentString + "Component " + i + " ";
             } else {
                 fvalue[i] = components[i];
             }
@@ -566,16 +558,13 @@ public class Color implements Paint, java.io.Serializable {
             falpha = alpha;
         }
         if (rangeError) {
-            throw new IllegalArgumentException(
-                    "Color parameter outside of expected range: "
-                            + badComponentString);
+            throw new IllegalArgumentException("Color parameter outside of expected range: "
+                    + badComponentString);
         }
         frgbvalue = cspace.toRGB(fvalue);
         cs = cspace;
-        value = ((((int) (falpha * 255)) & 0xFF) << 24) | ((((int) (frgbvalue[0]
-                * 255)) & 0xFF) << 16) | ((((int) (frgbvalue[1] * 255))
-                        & 0xFF) << 8) | ((((int) (frgbvalue[2] * 255))
-                                & 0xFF) << 0);
+        value = ((((int) (falpha * 255)) & 0xFF) << 24) | ((((int) (frgbvalue[0] * 255)) & 0xFF) << 16)
+                | ((((int) (frgbvalue[1] * 255)) & 0xFF) << 8) | ((((int) (frgbvalue[2] * 255)) & 0xFF) << 0);
     }
 
     /**
@@ -675,8 +664,8 @@ public class Color implements Paint, java.io.Serializable {
         if (b > 0 && b < i)
             b = i;
 
-        return new Color(Math.min((int) (r / FACTOR), 255), Math.min((int) (g
-                / FACTOR), 255), Math.min((int) (b / FACTOR), 255), alpha);
+        return new Color(Math.min((int) (r / FACTOR), 255), Math.min((int) (g / FACTOR), 255), Math.min(
+                (int) (b / FACTOR), 255), alpha);
     }
 
     /**
@@ -696,9 +685,8 @@ public class Color implements Paint, java.io.Serializable {
      * @since JDK1.0
      */
     public Color darker() {
-        return new Color(Math.max((int) (getRed() * FACTOR), 0), Math.max(
-                (int) (getGreen() * FACTOR), 0), Math.max((int) (getBlue()
-                        * FACTOR), 0), getAlpha());
+        return new Color(Math.max((int) (getRed() * FACTOR), 0), Math.max((int) (getGreen() * FACTOR), 0),
+                Math.max((int) (getBlue() * FACTOR), 0), getAlpha());
     }
 
     /**
@@ -719,7 +707,7 @@ public class Color implements Paint, java.io.Serializable {
      * red, green, blue, and alpha values as this object.
      * 
      * @param obj
-     *            the object to test for equality with this <code>Color</code>
+     *        the object to test for equality with this <code>Color</code>
      * @return <code>true</code> if the objects are the same; <code>false</code>
      *         otherwise.
      * @since JDK1.0
@@ -737,8 +725,7 @@ public class Color implements Paint, java.io.Serializable {
      * @return a string representation of this <code>Color</code>.
      */
     public String toString() {
-        return getClass().getName() + "[r=" + getRed() + ",g=" + getGreen()
-                + ",b=" + getBlue() + "]";
+        return getClass().getName() + "[r=" + getRed() + ",g=" + getGreen() + ",b=" + getBlue() + "]";
     }
 
     /**
@@ -747,14 +734,14 @@ public class Color implements Paint, java.io.Serializable {
      * used to represent octal and hexadecimal numbers.
      * 
      * @param nm
-     *           a <code>String</code> that represents an opaque color as a
-     *           24-bit integer
+     *        a <code>String</code> that represents an opaque color as a
+     *        24-bit integer
      * @return the new <code>Color</code> object.
      * @see java.lang.Integer#decode
      * @exception NumberFormatException
-     *                                  if the specified string cannot be
-     *                                  interpreted as a
-     *                                  decimal, octal, or hexadecimal integer.
+     *            if the specified string cannot be
+     *            interpreted as a
+     *            decimal, octal, or hexadecimal integer.
      * @since JDK1.1
      */
     public static Color decode(String nm) throws NumberFormatException {
@@ -774,7 +761,7 @@ public class Color implements Paint, java.io.Serializable {
      * integer then <code>null</code> is returned.
      * 
      * @param nm
-     *           the name of the color property
+     *        the name of the color property
      * @return the <code>Color</code> converted from the system property.
      * @see java.lang.System#getProperty(java.lang.String)
      * @see java.lang.Integer#getInteger(java.lang.String)
@@ -797,9 +784,9 @@ public class Color implements Paint, java.io.Serializable {
      * instead.
      * 
      * @param nm
-     *           the name of the color property
+     *        the name of the color property
      * @param v
-     *           the default <code>Color</code>
+     *        the default <code>Color</code>
      * @return the <code>Color</code> converted from the system property, or the
      *         specified <code>Color</code>.
      * @see java.lang.System#getProperty(java.lang.String)
@@ -828,9 +815,9 @@ public class Color implements Paint, java.io.Serializable {
      * converted to a <code>Color</code> object.
      * 
      * @param nm
-     *           the name of the color property
+     *        the name of the color property
      * @param v
-     *           the default color value, as an integer
+     *        the default color value, as an integer
      * @return the <code>Color</code> converted from the system property or the
      *         <code>Color</code> converted from the specified integer.
      * @see java.lang.System#getProperty(java.lang.String)
@@ -862,11 +849,11 @@ public class Color implements Paint, java.io.Serializable {
      * integer argument.
      * 
      * @param hue
-     *                   the hue component of the color
+     *        the hue component of the color
      * @param saturation
-     *                   the saturation of the color
+     *        the saturation of the color
      * @param brightness
-     *                   the brightness of the color
+     *        the brightness of the color
      * @return the RGB value of the color with the indicated hue, saturation,
      *         and brightness.
      * @see java.awt.Color#getRGB()
@@ -930,14 +917,14 @@ public class Color implements Paint, java.io.Serializable {
      * the array <code>hsbvals</code>, with the values put into that array.
      * 
      * @param r
-     *                the red component of the color
+     *        the red component of the color
      * @param g
-     *                the green component of the color
+     *        the green component of the color
      * @param b
-     *                the blue component of the color
+     *        the blue component of the color
      * @param hsbvals
-     *                the array used to return the three HSB values, or
-     *                <code>null</code>
+     *        the array used to return the three HSB values, or
+     *        <code>null</code>
      * @return an array of three elements containing the hue, saturation, and
      *         brightness (in that order), of the color with the indicated red,
      *         green, and blue components.
@@ -997,11 +984,11 @@ public class Color implements Paint, java.io.Serializable {
      * in the HSB color model.
      * 
      * @param h
-     *          the hue component
+     *        the hue component
      * @param s
-     *          the saturation of the color
+     *        the saturation of the color
      * @param b
-     *          the brightness of the color
+     *        the brightness of the color
      * @return a <code>Color</code> object with the specified hue, saturation,
      *         and brightness.
      * @since JDK1.0
@@ -1019,8 +1006,8 @@ public class Color implements Paint, java.io.Serializable {
      * with the components and returned.
      * 
      * @param compArray
-     *                  an array that this method fills with color and alpha
-     *                  components and returns
+     *        an array that this method fills with color and alpha
+     *        components and returns
      * @return the RGBA components in a <code>float</code> array.
      */
     public float[] getRGBComponents(float[] compArray) {
@@ -1053,9 +1040,9 @@ public class Color implements Paint, java.io.Serializable {
      * returned.
      * 
      * @param compArray
-     *                  an array that this method fills with color components
-     *                  and
-     *                  returns
+     *        an array that this method fills with color components
+     *        and
+     *        returns
      * @return the RGB components in a <code>float</code> array.
      */
     public float[] getRGBColorComponents(float[] compArray) {
@@ -1087,9 +1074,9 @@ public class Color implements Paint, java.io.Serializable {
      * is filled in with the components and returned.
      * 
      * @param compArray
-     *                  an array that this method fills with the color and alpha
-     *                  components of this <code>Color</code> in its
-     *                  <code>ColorSpace</code> and returns
+     *        an array that this method fills with the color and alpha
+     *        components of this <code>Color</code> in its
+     *        <code>ColorSpace</code> and returns
      * @return the color and alpha components in a <code>float</code> array.
      */
     public float[] getComponents(float[] compArray) {
@@ -1119,11 +1106,11 @@ public class Color implements Paint, java.io.Serializable {
      * with the components and returned.
      * 
      * @param compArray
-     *                  an array that this method fills with the color
-     *                  components of
-     *                  this <code>Color</code> in its <code>ColorSpace</code>
-     *                  and
-     *                  returns
+     *        an array that this method fills with the color
+     *        components of
+     *        this <code>Color</code> in its <code>ColorSpace</code>
+     *        and
+     *        returns
      * @return the color components in a <code>float</code> array.
      */
     public float[] getColorComponents(float[] compArray) {
@@ -1152,11 +1139,11 @@ public class Color implements Paint, java.io.Serializable {
      * and it is filled in with the components and returned.
      * 
      * @param cspace
-     *                  a specified <code>ColorSpace</code>
+     *        a specified <code>ColorSpace</code>
      * @param compArray
-     *                  an array that this method fills with the color and alpha
-     *                  components of this <code>Color</code> in the specified
-     *                  <code>ColorSpace</code> and returns
+     *        an array that this method fills with the color and alpha
+     *        components of this <code>Color</code> in the specified
+     *        <code>ColorSpace</code> and returns
      * @return the color and alpha components in a <code>float</code> array.
      */
     public float[] getComponents(ColorSpace cspace, float[] compArray) {
@@ -1198,12 +1185,12 @@ public class Color implements Paint, java.io.Serializable {
      * in with the components and returned.
      * 
      * @param cspace
-     *                  a specified <code>ColorSpace</code>
+     *        a specified <code>ColorSpace</code>
      * @param compArray
-     *                  an array that this method fills with the color
-     *                  components of
-     *                  this <code>Color</code> in the specified
-     *                  <code>ColorSpace</code>
+     *        an array that this method fills with the color
+     *        components of
+     *        this <code>Color</code> in the specified
+     *        <code>ColorSpace</code>
      * @return the color components in a <code>float</code> array.
      */
     public float[] getColorComponents(ColorSpace cspace, float[] compArray) {
@@ -1249,23 +1236,23 @@ public class Color implements Paint, java.io.Serializable {
      * handling.
      *
      * @param cm
-     *              the preferred {@link ColorModel} which represents the most
-     *              convenient format for the caller to receive the pixel data,
-     *              or
-     *              {@code null} if there is no preference.
+     *        the preferred {@link ColorModel} which represents the most
+     *        convenient format for the caller to receive the pixel data,
+     *        or
+     *        {@code null} if there is no preference.
      * @param r
-     *              the device space bounding box of the graphics primitive
-     *              being
-     *              rendered.
+     *        the device space bounding box of the graphics primitive
+     *        being
+     *        rendered.
      * @param r2d
-     *              the user space bounding box of the graphics primitive being
-     *              rendered.
+     *        the user space bounding box of the graphics primitive being
+     *        rendered.
      * @param xform
-     *              the {@link AffineTransform} from user space into device
-     *              space.
+     *        the {@link AffineTransform} from user space into device
+     *        space.
      * @param hints
-     *              the set of hints that the context object can use to choose
-     *              between rendering alternatives.
+     *        the set of hints that the context object can use to choose
+     *        between rendering alternatives.
      * @return the {@code PaintContext} for generating color patterns.
      * @see Paint
      * @see PaintContext
@@ -1275,8 +1262,8 @@ public class Color implements Paint, java.io.Serializable {
      * @see AffineTransform
      * @see RenderingHints
      */
-    public synchronized PaintContext createContext(ColorModel cm, Rectangle r,
-            Rectangle2D r2d, AffineTransform xform, RenderingHints hints) {
+    public synchronized PaintContext createContext(ColorModel cm, Rectangle r, Rectangle2D r2d,
+            AffineTransform xform, RenderingHints hints) {
         return new ColorPaintContext(getRGB(), cm);
     }
 

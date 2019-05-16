@@ -18,8 +18,7 @@ public interface MonitoringManagerFactory {
     /**
      * A Simple Factory Method to create the Monitored Attribute Info.
      */
-    MonitoringManager createMonitoringManager(String nameOfTheRoot,
-            String description);
+    MonitoringManager createMonitoringManager(String nameOfTheRoot, String description);
 
     void remove(String nameOfTheRoot);
 }

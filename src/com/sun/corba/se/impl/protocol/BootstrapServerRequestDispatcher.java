@@ -35,8 +35,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * LocateRequests are also handled for graceful interoperability. The
  * BootstrapServerRequestDispatcher handles one request at a time.
  */
-public class BootstrapServerRequestDispatcher implements
-        CorbaServerRequestDispatcher {
+public class BootstrapServerRequestDispatcher implements CorbaServerRequestDispatcher {
     private ORB orb;
 
     ORBUtilSystemException wrapper;
@@ -45,8 +44,7 @@ public class BootstrapServerRequestDispatcher implements
 
     public BootstrapServerRequestDispatcher(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
     }
 
     /**
@@ -58,21 +56,17 @@ public class BootstrapServerRequestDispatcher implements
         CorbaMessageMediator response = null;
 
         try {
-            MarshalInputStream is = (MarshalInputStream) request
-                    .getInputObject();
+            MarshalInputStream is = (MarshalInputStream) request.getInputObject();
             String method = request.getOperationName();
-            response = request.getProtocolHandler().createResponse(request,
-                    null);
-            MarshalOutputStream os = (MarshalOutputStream) response
-                    .getOutputObject();
+            response = request.getProtocolHandler().createResponse(request, null);
+            MarshalOutputStream os = (MarshalOutputStream) response.getOutputObject();
 
             if (method.equals("get")) {
                 // Get the name of the requested service
                 String serviceKey = is.read_string();
 
                 // Look it up
-                org.omg.CORBA.Object serviceObject = orb.getLocalResolver()
-                        .resolve(serviceKey);
+                org.omg.CORBA.Object serviceObject = orb.getLocalResolver().resolve(serviceKey);
 
                 // Write reply value
                 os.write_Object(serviceObject);
@@ -90,18 +84,15 @@ public class BootstrapServerRequestDispatcher implements
 
         } catch (org.omg.CORBA.SystemException ex) {
             // Marshal the exception thrown
-            response = request.getProtocolHandler()
-                    .createSystemExceptionResponse(request, ex, null);
+            response = request.getProtocolHandler().createSystemExceptionResponse(request, ex, null);
         } catch (java.lang.RuntimeException ex) {
             // Unknown exception
             SystemException sysex = wrapper.bootstrapRuntimeException(ex);
-            response = request.getProtocolHandler()
-                    .createSystemExceptionResponse(request, sysex, null);
+            response = request.getProtocolHandler().createSystemExceptionResponse(request, sysex, null);
         } catch (java.lang.Exception ex) {
             // Unknown exception
             SystemException sysex = wrapper.bootstrapException(ex);
-            response = request.getProtocolHandler()
-                    .createSystemExceptionResponse(request, sysex, null);
+            response = request.getProtocolHandler().createSystemExceptionResponse(request, sysex, null);
         }
 
         return;

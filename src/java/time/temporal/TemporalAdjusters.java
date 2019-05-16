@@ -78,7 +78,6 @@ import java.util.function.UnaryOperator;
  *
  * @implSpec All the implementations supplied by the static methods are
  *           immutable.
- *
  * @see TemporalAdjuster
  * @since 1.8
  */
@@ -103,17 +102,15 @@ public final class TemporalAdjusters {
      * <pre>
      * {
      *     &#64;code
-     *     static TemporalAdjuster TWO_DAYS_LATER = TemporalAdjusters
-     *             .ofDateAdjuster(date -> date.plusDays(2));
+     *     static TemporalAdjuster TWO_DAYS_LATER = TemporalAdjusters.ofDateAdjuster(date -> date.plusDays(2));
      * }
      * </pre>
      *
      * @param dateBasedAdjuster
-     *                          the date-based adjuster, not null
+     *        the date-based adjuster, not null
      * @return the temporal adjuster wrapping on the date adjuster, not null
      */
-    public static TemporalAdjuster ofDateAdjuster(
-            UnaryOperator<LocalDate> dateBasedAdjuster) {
+    public static TemporalAdjuster ofDateAdjuster(UnaryOperator<LocalDate> dateBasedAdjuster) {
         Objects.requireNonNull(dateBasedAdjuster, "dateBasedAdjuster");
         return (temporal) -> {
             LocalDate input = LocalDate.from(temporal);
@@ -165,8 +162,7 @@ public final class TemporalAdjusters {
      * @return the last day-of-month adjuster, not null
      */
     public static TemporalAdjuster lastDayOfMonth() {
-        return (temporal) -> temporal.with(DAY_OF_MONTH, temporal.range(
-                DAY_OF_MONTH).getMaximum());
+        return (temporal) -> temporal.with(DAY_OF_MONTH, temporal.range(DAY_OF_MONTH).getMaximum());
     }
 
     /**
@@ -231,8 +227,7 @@ public final class TemporalAdjusters {
      * @return the last day-of-year adjuster, not null
      */
     public static TemporalAdjuster lastDayOfYear() {
-        return (temporal) -> temporal.with(DAY_OF_YEAR, temporal.range(
-                DAY_OF_YEAR).getMaximum());
+        return (temporal) -> temporal.with(DAY_OF_YEAR, temporal.range(DAY_OF_YEAR).getMaximum());
     }
 
     /**
@@ -270,7 +265,7 @@ public final class TemporalAdjusters {
      * unit, and assumes a seven day week.
      *
      * @param dayOfWeek
-     *                  the day-of-week, not null
+     *        the day-of-week, not null
      * @return the first in month adjuster, not null
      */
     public static TemporalAdjuster firstInMonth(DayOfWeek dayOfWeek) {
@@ -291,7 +286,7 @@ public final class TemporalAdjusters {
      * unit, and assumes a seven day week.
      *
      * @param dayOfWeek
-     *                  the day-of-week, not null
+     *        the day-of-week, not null
      * @return the first in month adjuster, not null
      */
     public static TemporalAdjuster lastInMonth(DayOfWeek dayOfWeek) {
@@ -332,15 +327,14 @@ public final class TemporalAdjusters {
      * unit, and assumes a seven day week.
      *
      * @param ordinal
-     *                  the week within the month, unbounded but typically from
-     *                  -5 to
-     *                  5
+     *        the week within the month, unbounded but typically from
+     *        -5 to
+     *        5
      * @param dayOfWeek
-     *                  the day-of-week, not null
+     *        the day-of-week, not null
      * @return the day-of-week in month adjuster, not null
      */
-    public static TemporalAdjuster dayOfWeekInMonth(int ordinal,
-            DayOfWeek dayOfWeek) {
+    public static TemporalAdjuster dayOfWeekInMonth(int ordinal, DayOfWeek dayOfWeek) {
         Objects.requireNonNull(dayOfWeek, "dayOfWeek");
         int dowValue = dayOfWeek.getValue();
         if (ordinal >= 0) {
@@ -353,12 +347,10 @@ public final class TemporalAdjusters {
             };
         } else {
             return (temporal) -> {
-                Temporal temp = temporal.with(DAY_OF_MONTH, temporal.range(
-                        DAY_OF_MONTH).getMaximum());
+                Temporal temp = temporal.with(DAY_OF_MONTH, temporal.range(DAY_OF_MONTH).getMaximum());
                 int curDow = temp.get(DAY_OF_WEEK);
                 int daysDiff = dowValue - curDow;
-                daysDiff = (daysDiff == 0 ? 0
-                        : (daysDiff > 0 ? daysDiff - 7 : daysDiff));
+                daysDiff = (daysDiff == 0 ? 0 : (daysDiff > 0 ? daysDiff - 7 : daysDiff));
                 daysDiff -= (-ordinal - 1L) * 7L; // safe from overflow
                 return temp.plus(daysDiff, DAYS);
             };
@@ -384,7 +376,7 @@ public final class TemporalAdjusters {
      * day week.
      *
      * @param dayOfWeek
-     *                  the day-of-week to move the date to, not null
+     *        the day-of-week to move the date to, not null
      * @return the next day-of-week adjuster, not null
      */
     public static TemporalAdjuster next(DayOfWeek dayOfWeek) {
@@ -392,8 +384,7 @@ public final class TemporalAdjusters {
         return (temporal) -> {
             int calDow = temporal.get(DAY_OF_WEEK);
             int daysDiff = calDow - dowValue;
-            return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff,
-                    DAYS);
+            return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, DAYS);
         };
     }
 
@@ -416,8 +407,8 @@ public final class TemporalAdjusters {
      * day week.
      *
      * @param dayOfWeek
-     *                  the day-of-week to check for or move the date to, not
-     *                  null
+     *        the day-of-week to check for or move the date to, not
+     *        null
      * @return the next-or-same day-of-week adjuster, not null
      */
     public static TemporalAdjuster nextOrSame(DayOfWeek dayOfWeek) {
@@ -428,8 +419,7 @@ public final class TemporalAdjusters {
                 return temporal;
             }
             int daysDiff = calDow - dowValue;
-            return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff,
-                    DAYS);
+            return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, DAYS);
         };
     }
 
@@ -451,7 +441,7 @@ public final class TemporalAdjusters {
      * day week.
      *
      * @param dayOfWeek
-     *                  the day-of-week to move the date to, not null
+     *        the day-of-week to move the date to, not null
      * @return the previous day-of-week adjuster, not null
      */
     public static TemporalAdjuster previous(DayOfWeek dayOfWeek) {
@@ -459,8 +449,7 @@ public final class TemporalAdjusters {
         return (temporal) -> {
             int calDow = temporal.get(DAY_OF_WEEK);
             int daysDiff = dowValue - calDow;
-            return temporal.minus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff,
-                    DAYS);
+            return temporal.minus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, DAYS);
         };
     }
 
@@ -483,8 +472,8 @@ public final class TemporalAdjusters {
      * day week.
      *
      * @param dayOfWeek
-     *                  the day-of-week to check for or move the date to, not
-     *                  null
+     *        the day-of-week to check for or move the date to, not
+     *        null
      * @return the previous-or-same day-of-week adjuster, not null
      */
     public static TemporalAdjuster previousOrSame(DayOfWeek dayOfWeek) {
@@ -495,8 +484,7 @@ public final class TemporalAdjusters {
                 return temporal;
             }
             int daysDiff = dowValue - calDow;
-            return temporal.minus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff,
-                    DAYS);
+            return temporal.minus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, DAYS);
         };
     }
 

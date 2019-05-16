@@ -25,7 +25,7 @@ public interface AccessibleTable {
      * Sets the caption for the table.
      *
      * @param a
-     *          the caption for the table
+     *        the caption for the table
      */
     public void setAccessibleCaption(Accessible a);
 
@@ -40,7 +40,7 @@ public interface AccessibleTable {
      * Sets the summary description of the table
      *
      * @param a
-     *          the summary description of the table
+     *        the summary description of the table
      */
     public void setAccessibleSummary(Accessible a);
 
@@ -62,9 +62,9 @@ public interface AccessibleTable {
      * Returns the Accessible at a specified row and column in the table.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @return the Accessible at the specified row and column
      */
     public Accessible getAccessibleAt(int r, int c);
@@ -74,9 +74,9 @@ public interface AccessibleTable {
      * and column in the table.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @return the number of rows occupied by the Accessible at a given
      *         specified (row, column)
      */
@@ -87,9 +87,9 @@ public interface AccessibleTable {
      * row and column in the table.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @return the number of columns occupied by the Accessible at a given
      *         specified row and column
      */
@@ -106,7 +106,7 @@ public interface AccessibleTable {
      * Sets the row headers.
      *
      * @param table
-     *              an AccessibleTable representing the row headers
+     *        an AccessibleTable representing the row headers
      */
     public void setAccessibleRowHeader(AccessibleTable table);
 
@@ -121,7 +121,7 @@ public interface AccessibleTable {
      * Sets the column headers.
      *
      * @param table
-     *              an AccessibleTable representing the column headers
+     *        an AccessibleTable representing the column headers
      */
     public void setAccessibleColumnHeader(AccessibleTable table);
 
@@ -129,7 +129,7 @@ public interface AccessibleTable {
      * Returns the description of the specified row in the table.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @return the description of the row
      */
     public Accessible getAccessibleRowDescription(int r);
@@ -138,9 +138,9 @@ public interface AccessibleTable {
      * Sets the description text of the specified row of the table.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @param a
-     *          the description of the row
+     *        the description of the row
      */
     public void setAccessibleRowDescription(int r, Accessible a);
 
@@ -148,7 +148,7 @@ public interface AccessibleTable {
      * Returns the description text of the specified column in the table.
      *
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @return the text description of the column
      */
     public Accessible getAccessibleColumnDescription(int c);
@@ -157,9 +157,9 @@ public interface AccessibleTable {
      * Sets the description text of the specified column in the table.
      *
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @param a
-     *          the text description of the column
+     *        the text description of the column
      */
     public void setAccessibleColumnDescription(int c, Accessible a);
 
@@ -168,9 +168,9 @@ public interface AccessibleTable {
      * row and column is selected.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @return the boolean value true if the accessible at the row and column is
      *         selected. Otherwise, the boolean value false
      */
@@ -180,7 +180,7 @@ public interface AccessibleTable {
      * Returns a boolean value indicating whether the specified row is selected.
      *
      * @param r
-     *          zero-based row of the table
+     *        zero-based row of the table
      * @return the boolean value true if the specified row is selected.
      *         Otherwise, false.
      */
@@ -191,7 +191,7 @@ public interface AccessibleTable {
      * selected.
      *
      * @param c
-     *          zero-based column of the table
+     *        zero-based column of the table
      * @return the boolean value true if the specified column is selected.
      *         Otherwise, false.
      */

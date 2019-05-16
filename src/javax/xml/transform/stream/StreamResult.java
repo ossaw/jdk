@@ -40,7 +40,7 @@ public class StreamResult implements Result {
      * contained in the transformation instructions to control the encoding.
      *
      * @param outputStream
-     *                     A valid OutputStream reference.
+     *        A valid OutputStream reference.
      */
     public StreamResult(OutputStream outputStream) {
         setOutputStream(outputStream);
@@ -54,7 +54,7 @@ public class StreamResult implements Result {
      * character stream, such as when using a StringWriter.
      *
      * @param writer
-     *               A valid Writer reference.
+     *        A valid Writer reference.
      */
     public StreamResult(Writer writer) {
         setWriter(writer);
@@ -64,7 +64,7 @@ public class StreamResult implements Result {
      * Construct a StreamResult from a URL.
      *
      * @param systemId
-     *                 Must be a String that conforms to the URI syntax.
+     *        Must be a String that conforms to the URI syntax.
      */
     public StreamResult(String systemId) {
         this.systemId = systemId;
@@ -74,7 +74,7 @@ public class StreamResult implements Result {
      * Construct a StreamResult from a File.
      *
      * @param f
-     *          Must a non-null File reference.
+     *        Must a non-null File reference.
      */
     public StreamResult(File f) {
         // convert file to appropriate URI, f.toURI().toASCIIString()
@@ -89,7 +89,7 @@ public class StreamResult implements Result {
      * contained in the transformation instructions to control the encoding.
      *
      * @param outputStream
-     *                     A valid OutputStream reference.
+     *        A valid OutputStream reference.
      */
     public void setOutputStream(OutputStream outputStream) {
         this.outputStream = outputStream;
@@ -113,7 +113,7 @@ public class StreamResult implements Result {
      * writer, such as when using a StringWriter.
      *
      * @param writer
-     *               A valid Writer reference.
+     *        A valid Writer reference.
      */
     public void setWriter(Writer writer) {
         this.writer = writer;
@@ -135,7 +135,7 @@ public class StreamResult implements Result {
      * URI (probably a file name).
      *
      * @param systemId
-     *                 The system identifier as a URI string.
+     *        The system identifier as a URI string.
      */
     public void setSystemId(String systemId) {
         this.systemId = systemId;
@@ -146,9 +146,8 @@ public class StreamResult implements Result {
      * Set the system ID from a <code>File</code> reference.
      * </p>
      *
-     *
      * @param f
-     *          Must a non-null File reference.
+     *        Must a non-null File reference.
      */
     public void setSystemId(File f) {
         // convert file to appropriate URI, f.toURI().toASCIIString()

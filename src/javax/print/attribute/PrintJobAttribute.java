@@ -18,7 +18,6 @@ package javax.print.attribute;
  *
  * @see PrintRequestAttributeSet
  * @see PrintJobAttributeSet
- *
  * @author Alan Kaminsky
  */
 public interface PrintJobAttribute extends Attribute {}

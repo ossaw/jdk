@@ -30,8 +30,7 @@ abstract public class AnyImplHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    org.omg.CORBA.TCKind.tk_any);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_any);
         }
         return __typeCode;
     }
@@ -40,13 +39,11 @@ abstract public class AnyImplHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.Any read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.Any read(org.omg.CORBA.portable.InputStream istream) {
         return istream.read_any();
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CORBA.Any value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CORBA.Any value) {
         ostream.write_any(value);
     }
 

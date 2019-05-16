@@ -12,14 +12,12 @@ import java.util.function.Supplier;
  * A container object which may or may not contain a {@code int} value. If a
  * value is present, {@code isPresent()} will return {@code true} and
  * {@code getAsInt()} will return the value.
- *
  * <p>
  * Additional methods that depend on the presence or absence of a contained
  * value are provided, such as {@link #orElse(int) orElse()} (return a default
  * value if value not present) and
  * {@link #ifPresent(java.util.function.IntConsumer) ifPresent()} (execute a
  * block of code if the value is present).
- *
  * <p>
  * This is a <a href="../lang/doc-files/ValueBased.html">value-based</a> class;
  * use of identity-sensitive operations (including reference equality (
@@ -60,7 +58,6 @@ public final class OptionalInt {
      *          is empty by comparing with {@code ==} against instances returned
      *          by {@code Option.empty()}. There is no guarantee that it is a
      *          singleton. Instead, use {@link #isPresent()}.
-     *
      * @return an empty {@code OptionalInt}
      */
     public static OptionalInt empty() {
@@ -71,7 +68,7 @@ public final class OptionalInt {
      * Construct an instance with the value present.
      *
      * @param value
-     *              the int value to be present
+     *        the int value to be present
      */
     private OptionalInt(int value) {
         this.isPresent = true;
@@ -82,7 +79,7 @@ public final class OptionalInt {
      * Return an {@code OptionalInt} with the specified value present.
      *
      * @param value
-     *              the value to be present
+     *        the value to be present
      * @return an {@code OptionalInt} with the value present
      */
     public static OptionalInt of(int value) {
@@ -95,8 +92,7 @@ public final class OptionalInt {
      *
      * @return the value held by this {@code OptionalInt}
      * @throws NoSuchElementException
-     *                                if there is no value present
-     *
+     *         if there is no value present
      * @see OptionalInt#isPresent()
      */
     public int getAsInt() {
@@ -120,10 +116,10 @@ public final class OptionalInt {
      * otherwise do nothing.
      *
      * @param consumer
-     *                 block to be executed if a value is present
+     *        block to be executed if a value is present
      * @throws NullPointerException
-     *                              if value is present and {@code consumer} is
-     *                              null
+     *         if value is present and {@code consumer} is
+     *         null
      */
     public void ifPresent(IntConsumer consumer) {
         if (isPresent)
@@ -134,7 +130,7 @@ public final class OptionalInt {
      * Return the value if present, otherwise return {@code other}.
      *
      * @param other
-     *              the value to be returned if there is no value present
+     *        the value to be returned if there is no value present
      * @return the value, if present, otherwise {@code other}
      */
     public int orElse(int other) {
@@ -146,14 +142,14 @@ public final class OptionalInt {
      * the result of that invocation.
      *
      * @param other
-     *              a {@code IntSupplier} whose result is returned if no value
-     *              is
-     *              present
+     *        a {@code IntSupplier} whose result is returned if no value
+     *        is
+     *        present
      * @return the value if present otherwise the result of
      *         {@code other.getAsInt()}
      * @throws NullPointerException
-     *                              if value is not present and {@code other} is
-     *                              null
+     *         if value is not present and {@code other} is
+     *         null
      */
     public int orElseGet(IntSupplier other) {
         return isPresent ? value : other.getAsInt();
@@ -166,21 +162,19 @@ public final class OptionalInt {
      * @apiNote A method reference to the exception constructor with an empty
      *          argument list can be used as the supplier. For example,
      *          {@code IllegalStateException::new}
-     *
-     * @param                   <X>
-     *                          Type of the exception to be thrown
+     * @param <X>
+     *        Type of the exception to be thrown
      * @param exceptionSupplier
-     *                          The supplier which will return the exception to
-     *                          be thrown
+     *        The supplier which will return the exception to
+     *        be thrown
      * @return the present value
      * @throws X
-     *                              if there is no value present
+     *         if there is no value present
      * @throws NullPointerException
-     *                              if no value is present and
-     *                              {@code exceptionSupplier} is null
+     *         if no value is present and
+     *         {@code exceptionSupplier} is null
      */
-    public <X extends Throwable> int orElseThrow(Supplier<X> exceptionSupplier)
-            throws X {
+    public <X extends Throwable> int orElseThrow(Supplier<X> exceptionSupplier) throws X {
         if (isPresent) {
             return value;
         } else {
@@ -198,7 +192,7 @@ public final class OptionalInt {
      * </ul>
      *
      * @param obj
-     *            an object to be tested for equality
+     *        an object to be tested for equality
      * @return {code true} if the other object is "equal to" this object
      *         otherwise {@code false}
      */
@@ -213,8 +207,7 @@ public final class OptionalInt {
         }
 
         OptionalInt other = (OptionalInt) obj;
-        return (isPresent && other.isPresent) ? value == other.value
-                : isPresent == other.isPresent;
+        return (isPresent && other.isPresent) ? value == other.value : isPresent == other.isPresent;
     }
 
     /**
@@ -230,7 +223,6 @@ public final class OptionalInt {
 
     /**
      * {@inheritDoc}
-     *
      * Returns a non-empty string representation of this object suitable for
      * debugging. The exact presentation format is unspecified and may vary
      * between implementations and versions.
@@ -238,12 +230,10 @@ public final class OptionalInt {
      * @implSpec If a value is present the result must include its string
      *           representation in the result. Empty and present instances must
      *           be unambiguously differentiable.
-     *
      * @return the string representation of this instance
      */
     @Override
     public String toString() {
-        return isPresent ? String.format("OptionalInt[%s]", value)
-                : "OptionalInt.empty";
+        return isPresent ? String.format("OptionalInt[%s]", value) : "OptionalInt.empty";
     }
 }

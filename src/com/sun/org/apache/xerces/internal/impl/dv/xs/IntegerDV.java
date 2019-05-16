@@ -24,9 +24,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Represent the schema type "integer"
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class IntegerDV extends DecimalDV {
 
@@ -35,8 +33,8 @@ public class IntegerDV extends DecimalDV {
         try {
             return new XDecimal(content, true);
         } catch (NumberFormatException nfe) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "integer" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "integer" });
         }
     }
 

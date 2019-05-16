@@ -30,8 +30,8 @@ public class ProtocolException extends WebServiceException {
      * call to <code>Throwable.initCause(java.lang.Throwable)</code>.
      *
      * @param message
-     *                the detail message. The detail message is saved for later
-     *                retrieval by the Throwable.getMessage() method.
+     *        the detail message. The detail message is saved for later
+     *        retrieval by the Throwable.getMessage() method.
      */
     public ProtocolException(String message) {
         super(message);
@@ -40,20 +40,19 @@ public class ProtocolException extends WebServiceException {
     /**
      * Constructs a new runtime exception with the specified detail message and
      * cause.
-     *
      * Note that the detail message associated with cause is not automatically
      * incorporated in this runtime exception's detail message.
      *
      * @param message
-     *                the detail message (which is saved for later retrieval by
-     *                the
-     *                Throwable.getMessage() method).
+     *        the detail message (which is saved for later retrieval by
+     *        the
+     *        Throwable.getMessage() method).
      * @param cause
-     *                the cause (which is saved for later retrieval by the
-     *                <code>Throwable.getCause()</code> method). (A
-     *                <code>null</code> value is permitted, and indicates that
-     *                the
-     *                cause is nonexistent or unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        <code>Throwable.getCause()</code> method). (A
+     *        <code>null</code> value is permitted, and indicates that
+     *        the
+     *        cause is nonexistent or unknown.)
      */
     public ProtocolException(String message, Throwable cause) {
         super(message, cause);
@@ -67,10 +66,10 @@ public class ProtocolException extends WebServiceException {
      * wrappers for other throwables.
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              <code>Throwable.getCause()</code> method). (A
-     *              <code>null</code> value is permitted, and indicates that the
-     *              cause is nonexistent or unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        <code>Throwable.getCause()</code> method). (A
+     *        <code>null</code> value is permitted, and indicates that the
+     *        cause is nonexistent or unknown.)
      */
     public ProtocolException(Throwable cause) {
         super(cause);

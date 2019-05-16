@@ -29,14 +29,14 @@ public interface StateEngine {
      * only be called before done(). An attempt to call it after done() results
      * in an IllegalStateException.
      */
-    public StateEngine add(State oldState, Input input, Guard guard,
-            Action action, State newState) throws IllegalStateException;
+    public StateEngine add(State oldState, Input input, Guard guard, Action action, State newState)
+            throws IllegalStateException;
 
     /**
      * Add a transition with a guard that always evaluates to true.
      */
-    public StateEngine add(State oldState, Input input, Action action,
-            State newState) throws IllegalStateException;
+    public StateEngine add(State oldState, Input input, Action action, State newState)
+            throws IllegalStateException;
 
     /**
      * Set the default transition and action for a state. This transition will
@@ -45,15 +45,13 @@ public interface StateEngine {
      * only be called before done(). An attempt to call it after done() results
      * in an IllegalStateException.
      */
-    public StateEngine setDefault(State oldState, Action action, State newState)
-            throws IllegalStateException;
+    public StateEngine setDefault(State oldState, Action action, State newState) throws IllegalStateException;
 
     /**
      * Equivalent to setDefault( oldState, act, newState ) where act is an
      * action that does nothing.
      */
-    public StateEngine setDefault(State oldState, State newState)
-            throws IllegalStateException;
+    public StateEngine setDefault(State oldState, State newState) throws IllegalStateException;
 
     /**
      * Euaivalent to setDefault( oldState, oldState )

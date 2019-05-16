@@ -33,7 +33,7 @@ public interface NodeList {
      * list, this returns <code>null</code>.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The node at the <code>index</code>th position in the
      *         <code>NodeList</code>, or <code>null</code> if that is not a
      *         valid index.

@@ -17,9 +17,9 @@ public class PropertyVetoException extends Exception {
      * Constructs a <code>PropertyVetoException</code> with a detailed message.
      *
      * @param mess
-     *             Descriptive message
+     *        Descriptive message
      * @param evt
-     *             A PropertyChangeEvent describing the vetoed change.
+     *        A PropertyChangeEvent describing the vetoed change.
      */
     public PropertyVetoException(String mess, PropertyChangeEvent evt) {
         super(mess);

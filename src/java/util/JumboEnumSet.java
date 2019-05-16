@@ -35,8 +35,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
         int toIndex = to.ordinal() >>> 6;
 
         if (fromIndex == toIndex) {
-            elements[fromIndex] = (-1L >>> (from.ordinal() - to.ordinal()
-                    - 1)) << from.ordinal();
+            elements[fromIndex] = (-1L >>> (from.ordinal() - to.ordinal() - 1)) << from.ordinal();
         } else {
             elements[fromIndex] = (-1L << from.ordinal());
             for (int i = fromIndex + 1; i < toIndex; i++)
@@ -115,8 +114,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
             lastReturned = unseen & -unseen;
             lastReturnedIndex = unseenIndex;
             unseen -= lastReturned;
-            return (E) universe[(lastReturnedIndex << 6) + Long
-                    .numberOfTrailingZeros(lastReturned)];
+            return (E) universe[(lastReturnedIndex << 6) + Long.numberOfTrailingZeros(lastReturned)];
         }
 
         @Override
@@ -154,7 +152,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * Returns <tt>true</tt> if this set contains the specified element.
      *
      * @param e
-     *          element to be checked for containment in this collection
+     *        element to be checked for containment in this collection
      * @return <tt>true</tt> if this set contains the specified element
      */
     public boolean contains(Object e) {
@@ -174,11 +172,10 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * Adds the specified element to this set if it is not already present.
      *
      * @param e
-     *          element to be added to this set
+     *        element to be added to this set
      * @return <tt>true</tt> if the set changed as a result of the call
-     *
      * @throws NullPointerException
-     *                              if <tt>e</tt> is null
+     *         if <tt>e</tt> is null
      */
     public boolean add(E e) {
         typeCheck(e);
@@ -198,7 +195,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * Removes the specified element from this set if it is present.
      *
      * @param e
-     *          element to be removed from this set, if present
+     *        element to be removed from this set, if present
      * @return <tt>true</tt> if the set contained the specified element
      */
     public boolean remove(Object e) {
@@ -225,11 +222,11 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * specified collection.
      *
      * @param c
-     *          collection to be checked for containment in this set
+     *        collection to be checked for containment in this set
      * @return <tt>true</tt> if this set contains all of the elements in the
      *         specified collection
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public boolean containsAll(Collection<?> c) {
         if (!(c instanceof JumboEnumSet))
@@ -249,11 +246,11 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * Adds all of the elements in the specified collection to this set.
      *
      * @param c
-     *          collection whose elements are to be added to this set
+     *        collection whose elements are to be added to this set
      * @return <tt>true</tt> if this set changed as a result of the call
      * @throws NullPointerException
-     *                              if the specified collection or any of its
-     *                              elements are null
+     *         if the specified collection or any of its
+     *         elements are null
      */
     public boolean addAll(Collection<? extends E> c) {
         if (!(c instanceof JumboEnumSet))
@@ -264,8 +261,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
             if (es.isEmpty())
                 return false;
             else
-                throw new ClassCastException(es.elementType + " != "
-                        + elementType);
+                throw new ClassCastException(es.elementType + " != " + elementType);
         }
 
         for (int i = 0; i < elements.length; i++)
@@ -278,10 +274,10 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * specified collection.
      *
      * @param c
-     *          elements to be removed from this set
+     *        elements to be removed from this set
      * @return <tt>true</tt> if this set changed as a result of the call
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public boolean removeAll(Collection<?> c) {
         if (!(c instanceof JumboEnumSet))
@@ -301,10 +297,10 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * collection.
      *
      * @param c
-     *          elements to be retained in this set
+     *        elements to be retained in this set
      * @return <tt>true</tt> if this set changed as a result of the call
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public boolean retainAll(Collection<?> c) {
         if (!(c instanceof JumboEnumSet))
@@ -336,7 +332,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * same size, and every member of the given set is contained in this set.
      *
      * @param o
-     *          object to be compared for equality with this set
+     *        object to be compared for equality with this set
      * @return <tt>true</tt> if the specified object is equal to this set
      */
     public boolean equals(Object o) {

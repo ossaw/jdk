@@ -63,8 +63,7 @@ public class CorbaInvocationInfo implements ClientInvocationInfo {
         entryCount--;
     }
 
-    public void setClientRequestDispatcher(
-            ClientRequestDispatcher clientRequestDispatcher) {
+    public void setClientRequestDispatcher(ClientRequestDispatcher clientRequestDispatcher) {
         this.clientRequestDispatcher = clientRequestDispatcher;
     }
 

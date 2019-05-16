@@ -28,12 +28,10 @@ public class virtual_parse_stack {
     /*-----------------------------------------------------------*/
 
     /** Constructor to build a virtual stack out of a real stack. */
-    public virtual_parse_stack(Stack shadowing_stack)
-            throws java.lang.Exception {
+    public virtual_parse_stack(Stack shadowing_stack) throws java.lang.Exception {
         /* sanity check */
         if (shadowing_stack == null)
-            throw new Exception(
-                    "Internal parser error: attempt to create null virtual stack");
+            throw new Exception("Internal parser error: attempt to create null virtual stack");
 
         /* set up our internals */
         real_stack = shadowing_stack;
@@ -91,8 +89,7 @@ public class virtual_parse_stack {
             return;
 
         /* get a copy of the first Symbol we have not transfered */
-        stack_sym = (Symbol) real_stack.elementAt(real_stack.size() - 1
-                - real_next);
+        stack_sym = (Symbol) real_stack.elementAt(real_stack.size() - 1 - real_next);
 
         /* record the transfer */
         real_next++;
@@ -117,8 +114,7 @@ public class virtual_parse_stack {
     /** Return value on the top of the stack (without popping it). */
     public int top() throws java.lang.Exception {
         if (vstack.empty())
-            throw new Exception(
-                    "Internal parser error: top() called on empty virtual stack");
+            throw new Exception("Internal parser error: top() called on empty virtual stack");
 
         return ((Integer) vstack.peek()).intValue();
     }
@@ -128,8 +124,7 @@ public class virtual_parse_stack {
     /** Pop the stack. */
     public void pop() throws java.lang.Exception {
         if (vstack.empty())
-            throw new Exception(
-                    "Internal parser error: pop from empty virtual stack");
+            throw new Exception("Internal parser error: pop from empty virtual stack");
 
         /* pop it */
         vstack.pop();

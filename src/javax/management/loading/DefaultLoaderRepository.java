@@ -17,7 +17,6 @@ import javax.management.MBeanServerFactory;
  * Keeps the list of Class Loaders registered in the MBean Server. It provides
  * the necessary methods to load classes using the registered Class Loaders.
  * </p>
- *
  * <p>
  * This deprecated class is maintained for compatibility. In previous versions
  * of JMX, there was one <code>DefaultLoaderRepository</code> shared by all
@@ -31,7 +30,6 @@ import javax.management.MBeanServerFactory;
  * @deprecated Use
  *             {@link javax.management.MBeanServer#getClassLoaderRepository()}}
  *             instead.
- *
  * @since 1.5
  */
 @Deprecated
@@ -44,17 +42,14 @@ public class DefaultLoaderRepository {
      * exception.
      *
      * @param className
-     *                  The name of the class to be loaded.
-     *
+     *        The name of the class to be loaded.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
+     *            The specified class could not be found.
      */
-    public static Class<?> loadClass(String className)
-            throws ClassNotFoundException {
-        MBEANSERVER_LOGGER.logp(Level.FINEST, DefaultLoaderRepository.class
-                .getName(), "loadClass", className);
+    public static Class<?> loadClass(String className) throws ClassNotFoundException {
+        MBEANSERVER_LOGGER.logp(Level.FINEST, DefaultLoaderRepository.class.getName(), "loadClass",
+                className);
         return load(null, className);
     }
 
@@ -65,26 +60,22 @@ public class DefaultLoaderRepository {
      * <CODE>ClassNotFoundException</CODE> exception.
      *
      * @param className
-     *                  The name of the class to be loaded.
+     *        The name of the class to be loaded.
      * @param loader
-     *                  The class loader to be excluded.
-     *
+     *        The class loader to be excluded.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
+     *            The specified class could not be found.
      */
-    public static Class<?> loadClassWithout(ClassLoader loader,
-            String className) throws ClassNotFoundException {
-        MBEANSERVER_LOGGER.logp(Level.FINEST, DefaultLoaderRepository.class
-                .getName(), "loadClassWithout", className);
+    public static Class<?> loadClassWithout(ClassLoader loader, String className)
+            throws ClassNotFoundException {
+        MBEANSERVER_LOGGER.logp(Level.FINEST, DefaultLoaderRepository.class.getName(), "loadClassWithout",
+                className);
         return load(loader, className);
     }
 
-    private static Class<?> load(ClassLoader without, String className)
-            throws ClassNotFoundException {
-        final List<MBeanServer> mbsList = MBeanServerFactory.findMBeanServer(
-                null);
+    private static Class<?> load(ClassLoader without, String className) throws ClassNotFoundException {
+        final List<MBeanServer> mbsList = MBeanServerFactory.findMBeanServer(null);
 
         for (MBeanServer mbs : mbsList) {
             ClassLoaderRepository clr = mbs.getClassLoaderRepository();

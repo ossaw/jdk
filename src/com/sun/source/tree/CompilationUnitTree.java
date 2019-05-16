@@ -13,7 +13,6 @@ import javax.tools.JavaFileObject;
  * package declarations (package-info.java).
  *
  * @jls sections 7.3, and 7.4
- *
  * @author Peter von der Ah&eacute;
  * @since 1.6
  */

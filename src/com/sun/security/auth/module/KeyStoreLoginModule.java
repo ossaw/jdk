@@ -42,10 +42,8 @@ import sun.security.util.Password;
  * in the alias's certificate path and whose private key is the alias's private
  * key in the subject's private credentials.
  * <p>
- *
  * Recognizes the following options in the configuration file:
  * <dl>
- *
  * <dt><code>keyStoreURL</code></dt>
  * <dd>A URL that specifies the location of the key store. Defaults to a URL
  * pointing to the .keystore file in the directory specified by the
@@ -54,37 +52,30 @@ import sun.security.util.Password;
  * <code>null</code> stream must be passed to the <code>KeyStore.load</code>
  * method. "NONE" should be specified if the KeyStore resides on a hardware
  * token device, for example.</dd>
- *
  * <dt><code>keyStoreType</code></dt>
  * <dd>The key store type. If not specified, defaults to the result of calling
  * <code>KeyStore.getDefaultType()</code>. If the type is "PKCS11", then
  * keyStoreURL must be "NONE" and privateKeyPasswordURL must not be specified.
  * </dd>
- *
  * <dt><code>keyStoreProvider</code></dt>
  * <dd>The key store provider. If not specified, uses the standard search order
  * to find the provider.</dd>
- *
  * <dt><code>keyStoreAlias</code></dt>
  * <dd>The alias in the key store to login as. Required when no callback handler
  * is provided. No default value.</dd>
- *
  * <dt><code>keyStorePasswordURL</code></dt>
  * <dd>A URL that specifies the location of the key store password. Required
  * when no callback handler is provided and <code>protected</code> is false. No
  * default value.</dd>
- *
  * <dt><code>privateKeyPasswordURL</code></dt>
  * <dd>A URL that specifies the location of the specific private key password
  * needed to access the private key for this alias. The keystore password is
  * used if this value is needed and not specified.</dd>
- *
  * <dt><code>protected</code></dt>
  * <dd>This value should be set to "true" if the KeyStore has a separate,
  * protected authentication path (for example, a dedicated PIN-pad attached to a
  * smart card). Defaults to "false". If "true" keyStorePasswordURL and
  * privateKeyPasswordURL must not be specified.</dd>
- *
  * </dl>
  */
 @jdk.Exported
@@ -93,8 +84,7 @@ public class KeyStoreLoginModule implements LoginModule {
     private static final ResourceBundle rb = AccessController.doPrivileged(
             new PrivilegedAction<ResourceBundle>() {
                 public ResourceBundle run() {
-                    return ResourceBundle.getBundle(
-                            "sun.security.util.AuthResources");
+                    return ResourceBundle.getBundle("sun.security.util.AuthResources");
                 }
             });
 
@@ -113,11 +103,9 @@ public class KeyStoreLoginModule implements LoginModule {
     private static final String P11KEYSTORE = "PKCS11";
 
     private static final TextOutputCallback bannerCallback = new TextOutputCallback(
-            TextOutputCallback.INFORMATION, rb.getString(
-                    "Please.enter.keystore.information"));
+            TextOutputCallback.INFORMATION, rb.getString("Please.enter.keystore.information"));
     private final ConfirmationCallback confirmationCallback = new ConfirmationCallback(
-            ConfirmationCallback.INFORMATION,
-            ConfirmationCallback.OK_CANCEL_OPTION, ConfirmationCallback.OK);
+            ConfirmationCallback.INFORMATION, ConfirmationCallback.OK_CANCEL_OPTION, ConfirmationCallback.OK);
 
     private Subject subject;
     private CallbackHandler callbackHandler;
@@ -148,35 +136,31 @@ public class KeyStoreLoginModule implements LoginModule {
 
     /**
      * Initialize this <code>LoginModule</code>.
-     *
      * <p>
      *
      * @param subject
-     *                        the <code>Subject</code> to be authenticated.
-     *                        <p>
-     *
+     *        the <code>Subject</code> to be authenticated.
+     *        <p>
      * @param callbackHandler
-     *                        a <code>CallbackHandler</code> for communicating
-     *                        with the end
-     *                        user (prompting for usernames and passwords, for
-     *                        example),
-     *                        which may be <code>null</code>.
-     *                        <p>
-     *
+     *        a <code>CallbackHandler</code> for communicating
+     *        with the end
+     *        user (prompting for usernames and passwords, for
+     *        example),
+     *        which may be <code>null</code>.
+     *        <p>
      * @param sharedState
-     *                        shared <code>LoginModule</code> state.
-     *                        <p>
-     *
+     *        shared <code>LoginModule</code> state.
+     *        <p>
      * @param options
-     *                        options specified in the login
-     *                        <code>Configuration</code> for
-     *                        this particular <code>LoginModule</code>.
+     *        options specified in the login
+     *        <code>Configuration</code> for
+     *        this particular <code>LoginModule</code>.
      */
     // Unchecked warning from (Map<String, Object>)sharedState is safe
     // since javax.security.auth.login.LoginContext passes a raw HashMap.
     @SuppressWarnings("unchecked")
-    public void initialize(Subject subject, CallbackHandler callbackHandler,
-            Map<String, ?> sharedState, Map<String, ?> options) {
+    public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState,
+            Map<String, ?> options) {
         this.subject = subject;
         this.callbackHandler = callbackHandler;
         this.sharedState = (Map<String, Object>) sharedState;
@@ -189,8 +173,8 @@ public class KeyStoreLoginModule implements LoginModule {
     private void processOptions() {
         keyStoreURL = (String) options.get("keyStoreURL");
         if (keyStoreURL == null) {
-            keyStoreURL = "file:" + System.getProperty("user.home").replace(
-                    File.separatorChar, '/') + '/' + ".keystore";
+            keyStoreURL = "file:" + System.getProperty("user.home").replace(File.separatorChar, '/') + '/'
+                    + ".keystore";
         } else if (NONE.equals(keyStoreURL)) {
             nullStream = true;
         }
@@ -210,8 +194,7 @@ public class KeyStoreLoginModule implements LoginModule {
 
         privateKeyPasswordURL = (String) options.get("privateKeyPasswordURL");
 
-        protectedPath = "true".equalsIgnoreCase((String) options.get(
-                "protected"));
+        protectedPath = "true".equalsIgnoreCase((String) options.get("protected"));
 
         debug = "true".equalsIgnoreCase((String) options.get("debug"));
         if (debug) {
@@ -229,17 +212,14 @@ public class KeyStoreLoginModule implements LoginModule {
 
     /**
      * Authenticate the user.
-     *
      * <p>
      * Get the Keystore alias and relevant passwords. Retrieve the alias's
      * principal and credentials from the Keystore.
-     *
      * <p>
      *
      * @exception FailedLoginException
-     *                                 if the authentication fails.
-     *                                 <p>
-     *
+     *            if the authentication fails.
+     *            <p>
      * @return true in all cases (this <code>LoginModule</code> should not be
      *         ignored).
      */
@@ -262,11 +242,9 @@ public class KeyStoreLoginModule implements LoginModule {
                             + " then privateKeyPasswordURL must not be specified");
                 }
 
-                if (protectedPath && (keyStorePasswordURL != null
-                        || privateKeyPasswordURL != null)) {
-                    throw new LoginException(
-                            "if protected is true then keyStorePasswordURL and "
-                                    + "privateKeyPasswordURL must not be specified");
+                if (protectedPath && (keyStorePasswordURL != null || privateKeyPasswordURL != null)) {
+                    throw new LoginException("if protected is true then keyStorePasswordURL and "
+                            + "privateKeyPasswordURL must not be specified");
                 }
 
                 // get relevant alias and password info
@@ -285,8 +263,7 @@ public class KeyStoreLoginModule implements LoginModule {
                 try {
                     getKeyStoreInfo();
                 } finally {
-                    if (privateKeyPassword != null
-                            && privateKeyPassword != keyStorePassword) {
+                    if (privateKeyPassword != null && privateKeyPassword != keyStorePassword) {
                         Arrays.fill(privateKeyPassword, '\0');
                         privateKeyPassword = null;
                     }
@@ -330,11 +307,9 @@ public class KeyStoreLoginModule implements LoginModule {
 
             NameCallback aliasCallback;
             if (keyStoreAlias == null || keyStoreAlias.length() == 0) {
-                aliasCallback = new NameCallback(rb.getString(
-                        "Keystore.alias."));
+                aliasCallback = new NameCallback(rb.getString("Keystore.alias."));
             } else {
-                aliasCallback = new NameCallback(rb.getString(
-                        "Keystore.alias."), keyStoreAlias);
+                aliasCallback = new NameCallback(rb.getString("Keystore.alias."), keyStoreAlias);
             }
 
             PasswordCallback storePassCallback = null;
@@ -344,12 +319,11 @@ public class KeyStoreLoginModule implements LoginModule {
                 case PROTECTED_PATH:
                     break;
                 case NORMAL:
-                    keyPassCallback = new PasswordCallback(rb.getString(
-                            "Private.key.password.optional."), false);
+                    keyPassCallback = new PasswordCallback(rb.getString("Private.key.password.optional."),
+                            false);
                     // fall thru
                 case TOKEN:
-                    storePassCallback = new PasswordCallback(rb.getString(
-                            "Keystore.password."), false);
+                    storePassCallback = new PasswordCallback(rb.getString("Keystore.password."), false);
                     break;
             }
             prompt(aliasCallback, storePassCallback, keyPassCallback);
@@ -369,18 +343,16 @@ public class KeyStoreLoginModule implements LoginModule {
 
     private void checkStorePass() throws LoginException {
         if (keyStorePasswordURL == null) {
-            throw new LoginException(
-                    "Need to specify keyStorePasswordURL option to use "
-                            + "KeyStoreLoginModule non-interactively.");
+            throw new LoginException("Need to specify keyStorePasswordURL option to use "
+                    + "KeyStoreLoginModule non-interactively.");
         }
         InputStream in = null;
         try {
             in = new URL(keyStorePasswordURL).openStream();
             keyStorePassword = Password.readPassword(in);
         } catch (IOException e) {
-            LoginException le = new LoginException(
-                    "Problem accessing keystore password \""
-                            + keyStorePasswordURL + "\"");
+            LoginException le = new LoginException("Problem accessing keystore password \""
+                    + keyStorePasswordURL + "\"");
             le.initCause(e);
             throw le;
         } finally {
@@ -388,8 +360,7 @@ public class KeyStoreLoginModule implements LoginModule {
                 try {
                     in.close();
                 } catch (IOException ioe) {
-                    LoginException le = new LoginException(
-                            "Problem closing the keystore password stream");
+                    LoginException le = new LoginException("Problem closing the keystore password stream");
                     le.initCause(ioe);
                     throw le;
                 }
@@ -406,9 +377,8 @@ public class KeyStoreLoginModule implements LoginModule {
                 in = new URL(privateKeyPasswordURL).openStream();
                 privateKeyPassword = Password.readPassword(in);
             } catch (IOException e) {
-                LoginException le = new LoginException(
-                        "Problem accessing private key password \""
-                                + privateKeyPasswordURL + "\"");
+                LoginException le = new LoginException("Problem accessing private key password \""
+                        + privateKeyPasswordURL + "\"");
                 le.initCause(e);
                 throw le;
             } finally {
@@ -426,8 +396,7 @@ public class KeyStoreLoginModule implements LoginModule {
         }
     }
 
-    private void prompt(NameCallback aliasCallback,
-            PasswordCallback storePassCallback,
+    private void prompt(NameCallback aliasCallback, PasswordCallback storePassCallback,
             PasswordCallback keyPassCallback) throws LoginException {
 
         if (storePassCallback == null) {
@@ -435,17 +404,15 @@ public class KeyStoreLoginModule implements LoginModule {
             // only prompt for alias
 
             try {
-                callbackHandler.handle(new Callback[] { bannerCallback,
-                        aliasCallback, confirmationCallback });
+                callbackHandler.handle(new Callback[] { bannerCallback, aliasCallback,
+                        confirmationCallback });
             } catch (IOException e) {
-                LoginException le = new LoginException(
-                        "Problem retrieving keystore alias");
+                LoginException le = new LoginException("Problem retrieving keystore alias");
                 le.initCause(e);
                 throw le;
             } catch (UnsupportedCallbackException e) {
                 throw new LoginException("Error: " + e.getCallback().toString()
-                        + " is not available to retrieve authentication "
-                        + " information from the user");
+                        + " is not available to retrieve authentication " + " information from the user");
             }
 
             int confirmationResult = confirmationCallback.getSelectedIndex();
@@ -461,18 +428,15 @@ public class KeyStoreLoginModule implements LoginModule {
             // prompt for alias and key store password
 
             try {
-                callbackHandler.handle(new Callback[] { bannerCallback,
-                        aliasCallback, storePassCallback,
+                callbackHandler.handle(new Callback[] { bannerCallback, aliasCallback, storePassCallback,
                         confirmationCallback });
             } catch (IOException e) {
-                LoginException le = new LoginException(
-                        "Problem retrieving keystore alias and password");
+                LoginException le = new LoginException("Problem retrieving keystore alias and password");
                 le.initCause(e);
                 throw le;
             } catch (UnsupportedCallbackException e) {
                 throw new LoginException("Error: " + e.getCallback().toString()
-                        + " is not available to retrieve authentication "
-                        + " information from the user");
+                        + " is not available to retrieve authentication " + " information from the user");
             }
 
             int confirmationResult = confirmationCallback.getSelectedIndex();
@@ -489,18 +453,15 @@ public class KeyStoreLoginModule implements LoginModule {
             // prompt for alias, key store password, and key password
 
             try {
-                callbackHandler.handle(new Callback[] { bannerCallback,
-                        aliasCallback, storePassCallback, keyPassCallback,
-                        confirmationCallback });
+                callbackHandler.handle(new Callback[] { bannerCallback, aliasCallback, storePassCallback,
+                        keyPassCallback, confirmationCallback });
             } catch (IOException e) {
-                LoginException le = new LoginException(
-                        "Problem retrieving keystore alias and passwords");
+                LoginException le = new LoginException("Problem retrieving keystore alias and passwords");
                 le.initCause(e);
                 throw le;
             } catch (UnsupportedCallbackException e) {
                 throw new LoginException("Error: " + e.getCallback().toString()
-                        + " is not available to retrieve authentication "
-                        + " information from the user");
+                        + " is not available to retrieve authentication " + " information from the user");
             }
 
             int confirmationResult = confirmationCallback.getSelectedIndex();
@@ -550,13 +511,11 @@ public class KeyStoreLoginModule implements LoginModule {
                 keyStore = KeyStore.getInstance(keyStoreType, keyStoreProvider);
             }
         } catch (KeyStoreException e) {
-            LoginException le = new LoginException(
-                    "The specified keystore type was not available");
+            LoginException le = new LoginException("The specified keystore type was not available");
             le.initCause(e);
             throw le;
         } catch (NoSuchProviderException e) {
-            LoginException le = new LoginException(
-                    "The specified keystore provider was not available");
+            LoginException le = new LoginException("The specified keystore provider was not available");
             le.initCause(e);
             throw le;
         }
@@ -572,18 +531,15 @@ public class KeyStoreLoginModule implements LoginModule {
                 keyStore.load(in, keyStorePassword);
             }
         } catch (MalformedURLException e) {
-            LoginException le = new LoginException(
-                    "Incorrect keyStoreURL option");
+            LoginException le = new LoginException("Incorrect keyStoreURL option");
             le.initCause(e);
             throw le;
         } catch (GeneralSecurityException e) {
-            LoginException le = new LoginException(
-                    "Error initializing keystore");
+            LoginException le = new LoginException("Error initializing keystore");
             le.initCause(e);
             throw le;
         } catch (IOException e) {
-            LoginException le = new LoginException(
-                    "Error initializing keystore");
+            LoginException le = new LoginException("Error initializing keystore");
             le.initCause(e);
             throw le;
         } finally {
@@ -591,8 +547,7 @@ public class KeyStoreLoginModule implements LoginModule {
                 try {
                     in.close();
                 } catch (IOException ioe) {
-                    LoginException le = new LoginException(
-                            "Error initializing keystore");
+                    LoginException le = new LoginException("Error initializing keystore");
                     le.initCause(ioe);
                     throw le;
                 }
@@ -604,15 +559,13 @@ public class KeyStoreLoginModule implements LoginModule {
             fromKeyStore = keyStore.getCertificateChain(keyStoreAlias);
             if (fromKeyStore == null || fromKeyStore.length == 0
                     || !(fromKeyStore[0] instanceof X509Certificate)) {
-                throw new FailedLoginException(
-                        "Unable to find X.509 certificate chain in keystore");
+                throw new FailedLoginException("Unable to find X.509 certificate chain in keystore");
             } else {
                 LinkedList<Certificate> certList = new LinkedList<>();
                 for (int i = 0; i < fromKeyStore.length; i++) {
                     certList.add(fromKeyStore[i]);
                 }
-                CertificateFactory certF = CertificateFactory.getInstance(
-                        "X.509");
+                CertificateFactory certF = CertificateFactory.getInstance("X.509");
                 certP = certF.generateCertPath(certList);
             }
         } catch (KeyStoreException e) {
@@ -620,8 +573,7 @@ public class KeyStoreLoginModule implements LoginModule {
             le.initCause(e);
             throw le;
         } catch (CertificateException ce) {
-            LoginException le = new LoginException(
-                    "Error: X.509 Certificate type unavailable");
+            LoginException le = new LoginException("Error: X.509 Certificate type unavailable");
             le.initCause(ce);
             throw le;
         }
@@ -629,18 +581,16 @@ public class KeyStoreLoginModule implements LoginModule {
         /* Get principal and keys */
         try {
             X509Certificate certificate = (X509Certificate) fromKeyStore[0];
-            principal = new javax.security.auth.x500.X500Principal(certificate
-                    .getSubjectDN().getName());
+            principal = new javax.security.auth.x500.X500Principal(certificate.getSubjectDN().getName());
 
             // if token, privateKeyPassword will be null
             Key privateKey = keyStore.getKey(keyStoreAlias, privateKeyPassword);
             if (privateKey == null || !(privateKey instanceof PrivateKey)) {
-                throw new FailedLoginException(
-                        "Unable to recover key from keystore");
+                throw new FailedLoginException("Unable to recover key from keystore");
             }
 
-            privateCredential = new X500PrivateCredential(certificate,
-                    (PrivateKey) privateKey, keyStoreAlias);
+            privateCredential = new X500PrivateCredential(certificate, (PrivateKey) privateKey,
+                    keyStoreAlias);
         } catch (KeyStoreException e) {
             LoginException le = new LoginException("Error using keystore");
             le.initCause(e);
@@ -650,26 +600,22 @@ public class KeyStoreLoginModule implements LoginModule {
             le.initCause(e);
             throw le;
         } catch (UnrecoverableKeyException e) {
-            FailedLoginException fle = new FailedLoginException(
-                    "Unable to recover key from keystore");
+            FailedLoginException fle = new FailedLoginException("Unable to recover key from keystore");
             fle.initCause(e);
             throw fle;
         }
         if (debug) {
-            debugPrint("principal=" + principal + "\n certificate="
-                    + privateCredential.getCertificate() + "\n alias ="
-                    + privateCredential.getAlias());
+            debugPrint("principal=" + principal + "\n certificate=" + privateCredential.getCertificate()
+                    + "\n alias =" + privateCredential.getAlias());
         }
     }
 
     /**
      * Abstract method to commit the authentication process (phase 2).
-     *
      * <p>
      * This method is called if the LoginContext's overall authentication
      * succeeded (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
      * LoginModules succeeded).
-     *
      * <p>
      * If this LoginModule's own authentication attempt succeeded (checked by
      * retrieving the private state saved by the <code>login</code> method),
@@ -681,12 +627,10 @@ public class KeyStoreLoginModule implements LoginModule {
      * whose private key is the alias's private key in the subject's private
      * credentials. If this LoginModule's own authentication attempted failed,
      * then this method removes any state that was originally saved.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the commit fails
-     *
+     *            if the commit fails
      * @return true if this LoginModule's own login and commit attempts
      *         succeeded, or false otherwise.
      */
@@ -732,23 +676,19 @@ public class KeyStoreLoginModule implements LoginModule {
      * This method is called if the LoginContext's overall authentication
      * failed. (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
      * LoginModules did not succeed).
-     *
      * <p>
      * If this LoginModule's own authentication attempt succeeded (checked by
      * retrieving the private state saved by the <code>login</code> and
      * <code>commit</code> methods), then this method cleans up any state that
      * was originally saved.
-     *
      * <p>
      * If the loaded KeyStore's provider extends
      * <code>java.security.AuthProvider</code>, then the provider's
      * <code>logout</code> method is invoked.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the abort fails.
-     *
+     *            if the abort fails.
      * @return false if this LoginModule's own login and/or commit attempts
      *         failed, and true otherwise.
      */
@@ -771,21 +711,17 @@ public class KeyStoreLoginModule implements LoginModule {
 
     /**
      * Logout a user.
-     *
      * <p>
      * This method removes the Principals, public credentials and the private
      * credentials that were added by the <code>commit</code> method.
-     *
      * <p>
      * If the loaded KeyStore's provider extends
      * <code>java.security.AuthProvider</code>, then the provider's
      * <code>logout</code> method is invoked.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the logout fails.
-     *
+     *            if the logout fails.
      * @return true in all cases since this <code>LoginModule</code> should not
      *         be ignored.
      */
@@ -846,13 +782,11 @@ public class KeyStoreLoginModule implements LoginModule {
                     try {
                         ((Destroyable) obj).destroy();
                         if (debug)
-                            debugPrint("Destroyed private credential, " + obj
-                                    .getClass().getName());
+                            debugPrint("Destroyed private credential, " + obj.getClass().getName());
                         break;
                     } catch (DestroyFailedException dfe) {
-                        LoginException le = new LoginException(
-                                "Unable to destroy private credential, " + obj
-                                        .getClass().getName());
+                        LoginException le = new LoginException("Unable to destroy private credential, " + obj
+                                .getClass().getName());
                         le.initCause(dfe);
                         throw le;
                     }
@@ -862,10 +796,8 @@ public class KeyStoreLoginModule implements LoginModule {
             // throw an exception because we can not remove
             // the principal and public credential from this
             // read-only Subject
-            throw new LoginException("Unable to remove Principal ("
-                    + "X500Principal "
-                    + ") and public credential (certificatepath) "
-                    + "from read-only Subject");
+            throw new LoginException("Unable to remove Principal (" + "X500Principal "
+                    + ") and public credential (certificatepath) " + "from read-only Subject");
         }
         if (principal != null) {
             subject.getPrincipals().remove(principal);

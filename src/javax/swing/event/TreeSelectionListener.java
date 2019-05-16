@@ -16,7 +16,6 @@ import java.util.EventListener;
  *
  * @see javax.swing.tree.TreeSelectionModel
  * @see javax.swing.JTree
- *
  * @author Scott Violet
  */
 public interface TreeSelectionListener extends EventListener {
@@ -24,7 +23,7 @@ public interface TreeSelectionListener extends EventListener {
      * Called whenever the value of the selection changes.
      * 
      * @param e
-     *          the event that characterizes the change.
+     *        the event that characterizes the change.
      */
     void valueChanged(TreeSelectionEvent e);
 }

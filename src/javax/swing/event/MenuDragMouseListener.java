@@ -17,7 +17,7 @@ public interface MenuDragMouseListener extends EventListener {
      * area.
      *
      * @param e
-     *          a MenuDragMouseEvent object
+     *        a MenuDragMouseEvent object
      */
     void menuDragMouseEntered(MenuDragMouseEvent e);
 
@@ -25,7 +25,7 @@ public interface MenuDragMouseListener extends EventListener {
      * Invoked when the dragged mouse has left a menu component's display area.
      *
      * @param e
-     *          a MenuDragMouseEvent object
+     *        a MenuDragMouseEvent object
      */
     void menuDragMouseExited(MenuDragMouseEvent e);
 
@@ -34,7 +34,7 @@ public interface MenuDragMouseListener extends EventListener {
      * area.
      *
      * @param e
-     *          a MenuDragMouseEvent object
+     *        a MenuDragMouseEvent object
      */
     void menuDragMouseDragged(MenuDragMouseEvent e);
 
@@ -43,7 +43,7 @@ public interface MenuDragMouseListener extends EventListener {
      * area.
      *
      * @param e
-     *          a MenuDragMouseEvent object
+     *        a MenuDragMouseEvent object
      */
     void menuDragMouseReleased(MenuDragMouseEvent e);
 }

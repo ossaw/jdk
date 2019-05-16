@@ -19,8 +19,7 @@ public final class PosixFilePermissions {
     private PosixFilePermissions() {}
 
     // Write string representation of permission bits to {@code sb}.
-    private static void writeBits(StringBuilder sb, boolean r, boolean w,
-            boolean x) {
+    private static void writeBits(StringBuilder sb, boolean r, boolean w, boolean x) {
         if (r) {
             sb.append('r');
         } else {
@@ -42,24 +41,20 @@ public final class PosixFilePermissions {
      * Returns the {@code String} representation of a set of permissions. It is
      * guaranteed that the returned {@code String} can be parsed by the
      * {@link #fromString} method.
-     *
      * <p>
      * If the set contains {@code null} or elements that are not of type
      * {@code PosixFilePermission} then these elements are ignored.
      *
      * @param perms
-     *              the set of permissions
-     *
+     *        the set of permissions
      * @return the string representation of the permission set
      */
     public static String toString(Set<PosixFilePermission> perms) {
         StringBuilder sb = new StringBuilder(9);
-        writeBits(sb, perms.contains(OWNER_READ), perms.contains(OWNER_WRITE),
-                perms.contains(OWNER_EXECUTE));
-        writeBits(sb, perms.contains(GROUP_READ), perms.contains(GROUP_WRITE),
-                perms.contains(GROUP_EXECUTE));
-        writeBits(sb, perms.contains(OTHERS_READ), perms.contains(OTHERS_WRITE),
-                perms.contains(OTHERS_EXECUTE));
+        writeBits(sb, perms.contains(OWNER_READ), perms.contains(OWNER_WRITE), perms.contains(OWNER_EXECUTE));
+        writeBits(sb, perms.contains(GROUP_READ), perms.contains(GROUP_WRITE), perms.contains(GROUP_EXECUTE));
+        writeBits(sb, perms.contains(OTHERS_READ), perms.contains(OTHERS_WRITE), perms.contains(
+                OTHERS_EXECUTE));
         return sb.toString();
     }
 
@@ -86,7 +81,6 @@ public final class PosixFilePermissions {
     /**
      * Returns the set of permissions corresponding to a given {@code String}
      * representation.
-     *
      * <p>
      * The {@code perms} parameter is a {@code String} representing the
      * permissions. It has 9 characters that are interpreted as three sets of
@@ -96,33 +90,27 @@ public final class PosixFilePermissions {
      * character is {@code 'w'} to indicate permission to write, and the third
      * character is {@code 'x'} for execute permission. Where a permission is
      * not set then the corresponding character is set to {@code '-'}.
-     *
      * <p>
      * <b>Usage Example:</b> Suppose we require the set of permissions that
      * indicate the owner has read, write, and execute permissions, the group
      * has read and execute permissions and others have none.
      * 
      * <pre>
-     * Set&lt;PosixFilePermission&gt; perms = PosixFilePermissions.fromString(
-     *         "rwxr-x---");
+     * Set&lt;PosixFilePermission&gt; perms = PosixFilePermissions.fromString("rwxr-x---");
      * </pre>
      *
      * @param perms
-     *              string representing a set of permissions
-     *
+     *        string representing a set of permissions
      * @return the resulting set of permissions
-     *
      * @throws IllegalArgumentException
-     *                                  if the string cannot be converted to a
-     *                                  set of permissions
-     *
+     *         if the string cannot be converted to a
+     *         set of permissions
      * @see #toString(Set)
      */
     public static Set<PosixFilePermission> fromString(String perms) {
         if (perms.length() != 9)
             throw new IllegalArgumentException("Invalid mode");
-        Set<PosixFilePermission> result = EnumSet.noneOf(
-                PosixFilePermission.class);
+        Set<PosixFilePermission> result = EnumSet.noneOf(PosixFilePermission.class);
         if (isR(perms.charAt(0)))
             result.add(OWNER_READ);
         if (isW(perms.charAt(1)))
@@ -151,18 +139,15 @@ public final class PosixFilePermissions {
      * {@link java.nio.file.Files#createDirectory createDirectory} methods.
      *
      * @param perms
-     *              the set of permissions
-     *
+     *        the set of permissions
      * @return an attribute encapsulating the given file permissions with
      *         {@link FileAttribute#name name} {@code "posix:permissions"}
-     *
      * @throws ClassCastException
-     *                            if the set contains elements that are not of
-     *                            type {@code
+     *         if the set contains elements that are not of
+     *         type {@code
      *          PosixFilePermission}
      */
-    public static FileAttribute<Set<PosixFilePermission>> asFileAttribute(
-            Set<PosixFilePermission> perms) {
+    public static FileAttribute<Set<PosixFilePermission>> asFileAttribute(Set<PosixFilePermission> perms) {
         // copy set and check for nulls (CCE will be thrown if an element is not
         // a PosixFilePermission)
         perms = new HashSet<PosixFilePermission>(perms);

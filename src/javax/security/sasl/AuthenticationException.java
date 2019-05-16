@@ -18,7 +18,6 @@ package javax.security.sasl;
  * example, due to security reasons.
  *
  * @since 1.5
- *
  * @author Rosanna Lee
  * @author Rob Weltman
  */
@@ -36,8 +35,7 @@ public class AuthenticationException extends SaslException {
      * detailed message. The root exception is null.
      * 
      * @param detail
-     *               A possibly null string containing details of the exception.
-     *
+     *        A possibly null string containing details of the exception.
      * @see java.lang.Throwable#getMessage
      */
     public AuthenticationException(String detail) {
@@ -49,10 +47,9 @@ public class AuthenticationException extends SaslException {
      * detailed message and a root exception.
      *
      * @param detail
-     *               A possibly null string containing details of the exception.
+     *        A possibly null string containing details of the exception.
      * @param ex
-     *               A possibly null root exception that caused this exception.
-     *
+     *        A possibly null root exception that caused this exception.
      * @see java.lang.Throwable#getMessage
      * @see #getCause
      */

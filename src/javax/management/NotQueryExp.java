@@ -10,7 +10,6 @@ package javax.management;
  * relational expressions.
  * 
  * @serial include
- *
  * @since 1.5
  */
 class NotQueryExp extends QueryEval implements QueryExp {
@@ -46,20 +45,17 @@ class NotQueryExp extends QueryEval implements QueryExp {
      * Applies the NotQueryExp on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the NotQueryExp will be
-     *             applied.
-     *
+     *        The name of the MBean on which the NotQueryExp will be
+     *        applied.
      * @return True if the query was successfully applied to the MBean, false
      *         otherwise.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public boolean apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public boolean apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         return exp.apply(name) == false;
     }
 

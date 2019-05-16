@@ -17,8 +17,7 @@ import java.util.Objects;
  *
  * @since 1.5
  */
-public class MBeanConstructorInfo extends MBeanFeatureInfo implements
-        Cloneable {
+public class MBeanConstructorInfo extends MBeanFeatureInfo implements Cloneable {
 
     /* Serial version */
     static final long serialVersionUID = 4433990064191844427L;
@@ -42,32 +41,30 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
      * meta-annotation.
      *
      * @param description
-     *                    A human readable description of the operation.
+     *        A human readable description of the operation.
      * @param constructor
-     *                    The <CODE>java.lang.reflect.Constructor</CODE> object
-     *                    describing the MBean constructor.
+     *        The <CODE>java.lang.reflect.Constructor</CODE> object
+     *        describing the MBean constructor.
      */
-    public MBeanConstructorInfo(String description,
-            Constructor<?> constructor) {
-        this(constructor.getName(), description, constructorSignature(
-                constructor), Introspector.descriptorForElement(constructor));
+    public MBeanConstructorInfo(String description, Constructor<?> constructor) {
+        this(constructor.getName(), description, constructorSignature(constructor), Introspector
+                .descriptorForElement(constructor));
     }
 
     /**
      * Constructs an <CODE>MBeanConstructorInfo</CODE> object.
      *
      * @param name
-     *                    The name of the constructor.
+     *        The name of the constructor.
      * @param signature
-     *                    <CODE>MBeanParameterInfo</CODE> objects describing the
-     *                    parameters(arguments) of the constructor. This may be
-     *                    null
-     *                    with the same effect as a zero-length array.
+     *        <CODE>MBeanParameterInfo</CODE> objects describing the
+     *        parameters(arguments) of the constructor. This may be
+     *        null
+     *        with the same effect as a zero-length array.
      * @param description
-     *                    A human readable description of the constructor.
+     *        A human readable description of the constructor.
      */
-    public MBeanConstructorInfo(String name, String description,
-            MBeanParameterInfo[] signature) {
+    public MBeanConstructorInfo(String name, String description, MBeanParameterInfo[] signature) {
         this(name, description, signature, null);
     }
 
@@ -75,23 +72,22 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
      * Constructs an <CODE>MBeanConstructorInfo</CODE> object.
      *
      * @param name
-     *                    The name of the constructor.
+     *        The name of the constructor.
      * @param signature
-     *                    <CODE>MBeanParameterInfo</CODE> objects describing the
-     *                    parameters(arguments) of the constructor. This may be
-     *                    null
-     *                    with the same effect as a zero-length array.
+     *        <CODE>MBeanParameterInfo</CODE> objects describing the
+     *        parameters(arguments) of the constructor. This may be
+     *        null
+     *        with the same effect as a zero-length array.
      * @param description
-     *                    A human readable description of the constructor.
+     *        A human readable description of the constructor.
      * @param descriptor
-     *                    The descriptor for the constructor. This may be null
-     *                    which is
-     *                    equivalent to an empty descriptor.
-     *
+     *        The descriptor for the constructor. This may be null
+     *        which is
+     *        equivalent to an empty descriptor.
      * @since 1.6
      */
-    public MBeanConstructorInfo(String name, String description,
-            MBeanParameterInfo[] signature, Descriptor descriptor) {
+    public MBeanConstructorInfo(String name, String description, MBeanParameterInfo[] signature,
+            Descriptor descriptor) {
         super(name, description, descriptor);
 
         if (signature == null || signature.length == 0)
@@ -99,8 +95,7 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
         else
             signature = signature.clone();
         this.signature = signature;
-        this.arrayGettersSafe = MBeanInfo.arrayGettersSafe(this.getClass(),
-                MBeanConstructorInfo.class);
+        this.arrayGettersSafe = MBeanInfo.arrayGettersSafe(this.getClass(), MBeanConstructorInfo.class);
     }
 
     /**
@@ -110,7 +105,6 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
      * cloning mechanism implemented by <tt>Object.clone()</tt>. No deeper
      * cloning of any internal field is made.
      * </p>
-     *
      * <p>
      * Since this class is immutable, cloning is chiefly of interest to
      * subclasses.
@@ -130,7 +124,6 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
      * Returns the list of parameters for this constructor. Each parameter is
      * described by an <CODE>MBeanParameterInfo</CODE> object.
      * </p>
-     *
      * <p>
      * The returned array is a shallow copy of the internal array, which means
      * that it is a copy of the internal array of references to the
@@ -155,9 +148,8 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
     }
 
     public String toString() {
-        return getClass().getName() + "[" + "description=" + getDescription()
-                + ", " + "name=" + getName() + ", " + "signature=" + Arrays
-                        .asList(fastGetSignature()) + ", " + "descriptor="
+        return getClass().getName() + "[" + "description=" + getDescription() + ", " + "name=" + getName()
+                + ", " + "signature=" + Arrays.asList(fastGetSignature()) + ", " + "descriptor="
                 + getDescriptor() + "]";
     }
 
@@ -165,8 +157,7 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
      * Compare this MBeanConstructorInfo to another.
      *
      * @param o
-     *          the object to compare to.
-     *
+     *        the object to compare to.
      * @return true if and only if <code>o</code> is an MBeanConstructorInfo
      *         such that its {@link #getName()}, {@link #getDescription()},
      *         {@link #getSignature()}, and {@link #getDescriptor()} values are
@@ -180,10 +171,9 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
         if (!(o instanceof MBeanConstructorInfo))
             return false;
         MBeanConstructorInfo p = (MBeanConstructorInfo) o;
-        return (Objects.equals(p.getName(), getName()) && Objects.equals(p
-                .getDescription(), getDescription()) && Arrays.equals(p
-                        .fastGetSignature(), fastGetSignature()) && Objects
-                                .equals(p.getDescriptor(), getDescriptor()));
+        return (Objects.equals(p.getName(), getName()) && Objects.equals(p.getDescription(), getDescription())
+                && Arrays.equals(p.fastGetSignature(), fastGetSignature()) && Objects.equals(p
+                        .getDescriptor(), getDescriptor()));
     }
 
     /*
@@ -197,8 +187,7 @@ public class MBeanConstructorInfo extends MBeanFeatureInfo implements
         return Objects.hash(getName()) ^ Arrays.hashCode(fastGetSignature());
     }
 
-    private static MBeanParameterInfo[] constructorSignature(
-            Constructor<?> cn) {
+    private static MBeanParameterInfo[] constructorSignature(Constructor<?> cn) {
         final Class<?>[] classes = cn.getParameterTypes();
         final Annotation[][] annots = cn.getParameterAnnotations();
         return MBeanOperationInfo.parameters(classes, annots);

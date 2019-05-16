@@ -98,8 +98,8 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
     private String _openElementName;
 
     // Create a AdaptiveResultTreeImpl
-    public AdaptiveResultTreeImpl(XSLTCDTMManager dtmManager, int documentID,
-            DTMWSFilter wsfilter, int initSize, boolean buildIdIndex) {
+    public AdaptiveResultTreeImpl(XSLTCDTMManager dtmManager, int documentID, DTMWSFilter wsfilter,
+            int initSize, boolean buildIdIndex) {
         super(dtmManager, documentID);
 
         _wsfilter = wsfilter;
@@ -162,8 +162,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public DTMAxisIterator getTypedAxisIterator(final int axis,
-            final int type) {
+    public DTMAxisIterator getTypedAxisIterator(final int axis, final int type) {
         if (_dom != null) {
             return _dom.getTypedAxisIterator(axis, type);
         } else {
@@ -171,8 +170,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public DTMAxisIterator getNthDescendant(int node, int n,
-            boolean includeself) {
+    public DTMAxisIterator getNthDescendant(int node, int n, boolean includeself) {
         if (_dom != null) {
             return _dom.getNthDescendant(node, n, includeself);
         } else {
@@ -180,8 +178,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public DTMAxisIterator getNamespaceAxisIterator(final int axis,
-            final int ns) {
+    public DTMAxisIterator getNamespaceAxisIterator(final int axis, final int ns) {
         if (_dom != null) {
             return _dom.getNamespaceAxisIterator(axis, ns);
         } else {
@@ -189,8 +186,8 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter,
-            int returnType, String value, boolean op) {
+    public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter, int returnType, String value,
+            boolean op) {
         if (_dom != null) {
             return _dom.getNodeValueIterator(iter, returnType, value, op);
         } else {
@@ -271,8 +268,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public void copy(final int node, SerializationHandler handler)
-            throws TransletException {
+    public void copy(final int node, SerializationHandler handler) throws TransletException {
         if (_dom != null) {
             _dom.copy(node, handler);
         } else {
@@ -280,8 +276,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public void copy(DTMAxisIterator nodes, SerializationHandler handler)
-            throws TransletException {
+    public void copy(DTMAxisIterator nodes, SerializationHandler handler) throws TransletException {
         if (_dom != null) {
             _dom.copy(nodes, handler);
         } else {
@@ -289,8 +284,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public String shallowCopy(final int node, SerializationHandler handler)
-            throws TransletException {
+    public String shallowCopy(final int node, SerializationHandler handler) throws TransletException {
         if (_dom != null) {
             return _dom.shallowCopy(node, handler);
         } else {
@@ -308,11 +302,9 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
 
     /**
      * Dispatch the character content of a node to an output handler.
-     *
      * The escape setting should be taken care of when outputting to a handler.
      */
-    public void characters(final int node, SerializationHandler handler)
-            throws TransletException {
+    public void characters(final int node, SerializationHandler handler) throws TransletException {
         if (_dom != null) {
             _dom.characters(node, handler);
         } else {
@@ -384,8 +376,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public void setupMapping(String[] names, String[] uris, int[] types,
-            String[] namespaces) {
+    public void setupMapping(String[] names, String[] uris, int[] types, String[] namespaces) {
         if (_dom != null) {
             _dom.setupMapping(names, uris, types, namespaces);
         } else {
@@ -409,8 +400,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public String lookupNamespace(int node, String prefix)
-            throws TransletException {
+    public String lookupNamespace(int node, String prefix) throws TransletException {
         if (_dom != null) {
             return _dom.lookupNamespace(node, prefix);
         } else {
@@ -487,13 +477,10 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
 
             int index;
             if ((index = _openElementName.indexOf(":")) < 0)
-                _dom.startElement(null, _openElementName, _openElementName,
-                        _attributes);
+                _dom.startElement(null, _openElementName, _openElementName, _attributes);
             else {
-                String uri = _dom.getNamespaceURI(_openElementName.substring(0,
-                        index));
-                _dom.startElement(uri, _openElementName.substring(index + 1),
-                        _openElementName, _attributes);
+                String uri = _dom.getNamespaceURI(_openElementName.substring(0, index));
+                _dom.startElement(uri, _openElementName.substring(index + 1), _openElementName, _attributes);
             }
 
             _openElementName = null;
@@ -503,8 +490,8 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
 
     // Create and initialize the wrapped SAXImpl object
     private void prepareNewDOM() throws SAXException {
-        _dom = (SAXImpl) _dtmManager.getDTM(null, true, _wsfilter, true, false,
-                false, _initSize, _buildIdIndex);
+        _dom = (SAXImpl) _dtmManager.getDTM(null, true, _wsfilter, true, false, false, _initSize,
+                _buildIdIndex);
         _dom.startDocument();
         // Flush pending Text nodes to SAXImpl
         for (int i = 0; i < _size; i++) {
@@ -532,8 +519,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public void characters(char[] ch, int offset, int length)
-            throws SAXException {
+    public void characters(char[] ch, int offset, int length) throws SAXException {
         if (_dom != null) {
             maybeEmitStartElement();
             _dom.characters(ch, offset, length);
@@ -560,13 +546,12 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         _attributes.clear();
     }
 
-    public void startElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void startElement(String uri, String localName, String qName) throws SAXException {
         startElement(qName);
     }
 
-    public void startElement(String uri, String localName, String qName,
-            Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes)
+            throws SAXException {
         startElement(qName);
     }
 
@@ -575,8 +560,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         _dom.endElement(null, null, elementName);
     }
 
-    public void endElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qName) throws SAXException {
         endElement(qName);
     }
 
@@ -594,13 +578,11 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         addAttribute(uri, localName, qName, "CDATA", value);
     }
 
-    public void addUniqueAttribute(String qName, String value, int flags)
-            throws SAXException {
+    public void addUniqueAttribute(String qName, String value, int flags) throws SAXException {
         addAttribute(qName, value);
     }
 
-    public void addAttribute(String uri, String localName, String qname,
-            String type, String value) {
+    public void addAttribute(String uri, String localName, String qname, String type, String value) {
         if (_openElementName != null) {
             _attributes.addAttribute(uri, localName, qname, type, value);
         } else {
@@ -608,8 +590,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public void namespaceAfterStartElement(String prefix, String uri)
-            throws SAXException {
+    public void namespaceAfterStartElement(String prefix, String uri) throws SAXException {
         if (_dom == null) {
             prepareNewDOM();
         }
@@ -627,8 +608,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         _dom.comment(chars, 0, chars.length);
     }
 
-    public void comment(char[] chars, int offset, int length)
-            throws SAXException {
+    public void comment(char[] chars, int offset, int length) throws SAXException {
         if (_dom == null) {
             prepareNewDOM();
         }
@@ -637,8 +617,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         _dom.comment(chars, offset, length);
     }
 
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         if (_dom == null) {
             prepareNewDOM();
         }
@@ -693,8 +672,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public int getAttributeNode(int elementHandle, String namespaceURI,
-            String name) {
+    public int getAttributeNode(int elementHandle, String namespaceURI, String name) {
         if (_dom != null) {
             return _dom.getAttributeNode(elementHandle, namespaceURI, name);
         } else {
@@ -742,14 +720,11 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public int getNextNamespaceNode(int baseHandle, int namespaceHandle,
-            boolean inScope) {
+    public int getNextNamespaceNode(int baseHandle, int namespaceHandle, boolean inScope) {
         if (_dom != null) {
-            return _dom.getNextNamespaceNode(baseHandle, namespaceHandle,
-                    inScope);
+            return _dom.getNextNamespaceNode(baseHandle, namespaceHandle, inScope);
         } else {
-            return super.getNextNamespaceNode(baseHandle, namespaceHandle,
-                    inScope);
+            return super.getNextNamespaceNode(baseHandle, namespaceHandle, inScope);
         }
     }
 
@@ -785,14 +760,11 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public char[] getStringValueChunk(int nodeHandle, int chunkIndex,
-            int[] startAndLen) {
+    public char[] getStringValueChunk(int nodeHandle, int chunkIndex, int[] startAndLen) {
         if (_dom != null) {
-            return _dom.getStringValueChunk(nodeHandle, chunkIndex,
-                    startAndLen);
+            return _dom.getStringValueChunk(nodeHandle, chunkIndex, startAndLen);
         } else {
-            return super.getStringValueChunk(nodeHandle, chunkIndex,
-                    startAndLen);
+            return super.getStringValueChunk(nodeHandle, chunkIndex, startAndLen);
         }
     }
 
@@ -996,8 +968,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl {
         }
     }
 
-    public void dispatchCharactersEvents(int nodeHandle,
-            org.xml.sax.ContentHandler ch, boolean normalize)
+    public void dispatchCharactersEvents(int nodeHandle, org.xml.sax.ContentHandler ch, boolean normalize)
             throws org.xml.sax.SAXException {
         if (_dom != null) {
             _dom.dispatchCharactersEvents(nodeHandle, ch, normalize);

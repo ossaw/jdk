@@ -32,11 +32,11 @@ public interface SourceLoader {
      * with the <xsl:include> and <xsl:import> elements.
      *
      * @param href
-     *                The URI of the document to load
+     *        The URI of the document to load
      * @param context
-     *                The URI of the currently loaded document
+     *        The URI of the currently loaded document
      * @param xsltc
-     *                The compiler that resuests the document
+     *        The compiler that resuests the document
      * @return An InputSource with the loaded document
      */
     public InputSource loadSource(String href, String context, XSLTC xsltc);

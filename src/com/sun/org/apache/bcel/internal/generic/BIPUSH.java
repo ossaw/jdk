@@ -97,8 +97,7 @@ public class BIPUSH extends Instruction implements ConstantPushInstruction {
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         length = 2;
         b = bytes.readByte();
     }
@@ -121,7 +120,7 @@ public class BIPUSH extends Instruction implements ConstantPushInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitPushInstruction(this);

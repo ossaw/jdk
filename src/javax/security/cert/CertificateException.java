@@ -7,7 +7,6 @@ package javax.security.cert;
 
 /**
  * This exception indicates one of a variety of certificate problems.
- *
  * <p>
  * <em>Note: The classes in the package {@code javax.security.cert}
  * exist for compatibility with earlier versions of the
@@ -37,7 +36,7 @@ public class CertificateException extends Exception {
      * detail message is a String that describes this particular exception.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public CertificateException(String msg) {
         super(msg);

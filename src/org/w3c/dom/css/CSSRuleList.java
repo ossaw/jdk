@@ -43,7 +43,7 @@ public interface CSSRuleList {
      * returns <code>null</code>.
      * 
      * @param index
-     *              Index into the collection
+     *        Index into the collection
      * @return The style rule at the <code>index</code> position in the
      *         <code>CSSRuleList</code>, or <code>null</code> if that is not a
      *         valid index.

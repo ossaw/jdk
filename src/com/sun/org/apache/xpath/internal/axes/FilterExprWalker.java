@@ -44,7 +44,7 @@ public class FilterExprWalker extends AxesWalker {
      * Construct a FilterExprWalker using a LocPathIterator.
      *
      * @param locPathIterator
-     *                        non-null reference to the parent iterator.
+     *        non-null reference to the parent iterator.
      */
     public FilterExprWalker(WalkingIterator locPathIterator) {
         super(locPathIterator, Axis.FILTEREDLIST);
@@ -54,12 +54,11 @@ public class FilterExprWalker extends AxesWalker {
      * Init a FilterExprWalker.
      *
      * @param compiler
-     *                 non-null reference to the Compiler that is constructing.
+     *        non-null reference to the Compiler that is constructing.
      * @param opPos
-     *                 positive opcode position for this step.
+     *        positive opcode position for this step.
      * @param stepType
-     *                 The type of step.
-     *
+     *        The type of step.
      * @throws javax.xml.transform.TransformerException
      */
     public void init(Compiler compiler, int opPos, int stepType)
@@ -119,16 +118,15 @@ public class FilterExprWalker extends AxesWalker {
      * Set the root node of the TreeWalker.
      *
      * @param root
-     *             non-null reference to the root, or starting point of the
-     *             query.
+     *        non-null reference to the root, or starting point of the
+     *        query.
      */
     public void setRoot(int root) {
 
         super.setRoot(root);
 
-        m_exprObj = FilterExprIteratorSimple.executeFilterExpr(root, m_lpi
-                .getXPathContext(), m_lpi.getPrefixResolver(), m_lpi
-                        .getIsTopLevel(), m_lpi.m_stackFrame, m_expr);
+        m_exprObj = FilterExprIteratorSimple.executeFilterExpr(root, m_lpi.getXPathContext(), m_lpi
+                .getPrefixResolver(), m_lpi.getIsTopLevel(), m_lpi.m_stackFrame, m_expr);
 
     }
 
@@ -137,7 +135,6 @@ public class FilterExprWalker extends AxesWalker {
      *
      * @return A new FilterExprWalker that can be used without mutating this
      *         one.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
@@ -156,7 +153,7 @@ public class FilterExprWalker extends AxesWalker {
      * FilterExprWalkers don't need to, and shouldn't, do a node test.
      * 
      * @param n
-     *          The node to check to see if it passes the filter or not.
+     *        The node to check to see if it passes the filter or not.
      * @return a constant to determine whether the node is accepted, rejected,
      *         or skipped, as defined above .
      */
@@ -198,10 +195,8 @@ public class FilterExprWalker extends AxesWalker {
     /**
      * Get the index of the last node that can be itterated to.
      *
-     *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return the index of the last node that can be itterated to.
      */
     public int getLastPos(XPathContext xctxt) {
@@ -226,13 +221,13 @@ public class FilterExprWalker extends AxesWalker {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);
@@ -310,7 +305,7 @@ public class FilterExprWalker extends AxesWalker {
      * called.
      *
      * @param visitor
-     *                The visitor whose appropriate method will be called.
+     *        The visitor whose appropriate method will be called.
      */
     public void callPredicateVisitors(XPathVisitor visitor) {
         m_expr.callVisitors(new filterExprOwner(), visitor);

@@ -21,7 +21,6 @@ package com.sun.org.apache.xpath.internal.compiler;
 
 /**
  * Operations codes for XPath.
- *
  * Code for the descriptions of the operations codes: [UPPER CASE] indicates a
  * literal value, [lower case] is a description of a value, ([length] always
  * indicates the length of the operation, including the operations code and the
@@ -30,7 +29,6 @@ package com.sun.org.apache.xpath.internal.compiler;
  * means some expression that should be resolved to a boolean.) * means that it
  * occurs zero or more times, + means that it occurs one or more times, ? means
  * that it is optional.
- *
  * returns: indicates what the production should return.
  */
 public class OpCodes {
@@ -57,7 +55,6 @@ public class OpCodes {
 
     /**
      * [OP_XPATH] [length] {expression}
-     *
      * returns: XNodeSet XNumber XString XBoolean XRTree XObject
      * 
      * @xsl.usage advanced
@@ -66,7 +63,6 @@ public class OpCodes {
 
     /**
      * [OP_OR] [length] {boolean expression} {boolean expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -75,7 +71,6 @@ public class OpCodes {
 
     /**
      * [OP_AND] [length] {boolean expression} {boolean expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -84,7 +79,6 @@ public class OpCodes {
 
     /**
      * [OP_NOTEQUALS] [length] {expression} {expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -93,7 +87,6 @@ public class OpCodes {
 
     /**
      * [OP_EQUALS] [length] {expression} {expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -103,7 +96,6 @@ public class OpCodes {
     /**
      * [OP_LTE] (less-than-or-equals) [length] {number expression} {number
      * expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -112,7 +104,6 @@ public class OpCodes {
 
     /**
      * [OP_LT] (less-than) [length] {number expression} {number expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -122,7 +113,6 @@ public class OpCodes {
     /**
      * [OP_GTE] (greater-than-or-equals) [length] {number expression} {number
      * expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -131,7 +121,6 @@ public class OpCodes {
 
     /**
      * [OP_GT] (greater-than) [length] {number expression} {number expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -140,7 +129,6 @@ public class OpCodes {
 
     /**
      * [OP_PLUS] [length] {number expression} {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -149,7 +137,6 @@ public class OpCodes {
 
     /**
      * [OP_MINUS] [length] {number expression} {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -158,7 +145,6 @@ public class OpCodes {
 
     /**
      * [OP_MULT] [length] {number expression} {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -167,7 +153,6 @@ public class OpCodes {
 
     /**
      * [OP_DIV] [length] {number expression} {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -176,7 +161,6 @@ public class OpCodes {
 
     /**
      * [OP_MOD] [length] {number expression} {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -185,7 +169,6 @@ public class OpCodes {
 
     /**
      * [OP_QUO] [length] {number expression} {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -194,7 +177,6 @@ public class OpCodes {
 
     /**
      * [OP_NEG] [length] {number expression}
-     *
      * returns: XNumber
      * 
      * @xsl.usage advanced
@@ -203,7 +185,6 @@ public class OpCodes {
 
     /**
      * [OP_STRING] (cast operation) [length] {expression}
-     *
      * returns: XString
      * 
      * @xsl.usage advanced
@@ -212,7 +193,6 @@ public class OpCodes {
 
     /**
      * [OP_BOOL] (cast operation) [length] {expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -221,7 +201,6 @@ public class OpCodes {
 
     /**
      * [OP_NUMBER] (cast operation) [length] {expression}
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -230,7 +209,6 @@ public class OpCodes {
 
     /**
      * [OP_UNION] [length] {PathExpr}+
-     *
      * returns: XNodeSet
      * 
      * @xsl.usage advanced
@@ -239,7 +217,6 @@ public class OpCodes {
 
     /**
      * [OP_LITERAL] [3] [index to token]
-     *
      * returns: XString
      * 
      * @xsl.usage advanced
@@ -255,7 +232,6 @@ public class OpCodes {
     /**
      * [OP_VARIABLE] [4] [index to namespace token, or EMPTY] [index to function
      * name token]
-     *
      * returns: XString
      * 
      * @xsl.usage advanced
@@ -264,7 +240,6 @@ public class OpCodes {
 
     /**
      * [OP_GROUP] [length] {expression}
-     *
      * returns: XNodeSet XNumber XString XBoolean XRTree XObject
      * 
      * @xsl.usage advanced
@@ -274,7 +249,6 @@ public class OpCodes {
     /**
      * [OP_EXTFUNCTION] (Extension function.) [length] [index to namespace
      * token] [index to function name token] {OP_ARGUMENT}
-     *
      * returns: XNodeSet XNumber XString XBoolean XRTree XObject
      * 
      * @xsl.usage advanced
@@ -283,7 +257,6 @@ public class OpCodes {
 
     /**
      * [OP_FUNCTION] [length] [FUNC_name] {OP_ARGUMENT} [ENDOP]
-     *
      * returns: XNodeSet XNumber XString XBoolean XRTree XObject
      * 
      * @xsl.usage advanced
@@ -295,7 +268,6 @@ public class OpCodes {
 
     /**
      * [OP_ARGUMENT] (Function argument.) [length] {expression}
-     *
      * returns: XNodeSet XNumber XString XBoolean XRTree XObject
      * 
      * @xsl.usage advanced
@@ -304,7 +276,6 @@ public class OpCodes {
 
     /**
      * [OP_NUMBERLIT] (Number literal.) [3] [index to token]
-     *
      * returns: XString
      * 
      * @xsl.usage advanced
@@ -314,10 +285,8 @@ public class OpCodes {
     /**
      * [OP_LOCATIONPATH] [length] {FROM_stepType} | {function} {predicate}
      * [ENDOP]
-     *
      * (Note that element and attribute namespaces and names can be wildcarded
      * '*'.)
-     *
      * returns: XNodeSet
      * 
      * @xsl.usage advanced
@@ -330,7 +299,6 @@ public class OpCodes {
 
     /**
      * [OP_PREDICATE] [length] {expression} [ENDOP] (For safety)
-     *
      * returns: XBoolean or XNumber
      * 
      * @xsl.usage advanced
@@ -339,7 +307,6 @@ public class OpCodes {
 
     /**
      * [OP_MATCHPATTERN] [length] {PathExpr}+
-     *
      * returns: XNodeSet
      * 
      * @xsl.usage advanced
@@ -357,7 +324,6 @@ public class OpCodes {
     /**
      * [NODETYPE_COMMENT] No size or arguments. Note: must not overlap function
      * OP number!
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -367,7 +333,6 @@ public class OpCodes {
     /**
      * [NODETYPE_TEXT] No size or arguments. Note: must not overlap function OP
      * number!
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -376,7 +341,6 @@ public class OpCodes {
 
     /**
      * [NODETYPE_PI] [index to token] Note: must not overlap function OP number!
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -386,7 +350,6 @@ public class OpCodes {
     /**
      * [NODETYPE_NODE] No size or arguments. Note: must not overlap function OP
      * number!
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -395,7 +358,6 @@ public class OpCodes {
 
     /**
      * [NODENAME] [index to ns token or EMPTY] [index to name token]
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -404,7 +366,6 @@ public class OpCodes {
 
     /**
      * [NODETYPE_ROOT] No size or arguments.
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -413,7 +374,6 @@ public class OpCodes {
 
     /**
      * [NODETYPE_ANY] No size or arguments.
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -422,7 +382,6 @@ public class OpCodes {
 
     /**
      * [NODETYPE_ANY] No size or arguments.
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced
@@ -432,7 +391,6 @@ public class OpCodes {
     /**
      * [FROM_stepType] [length, including predicates] [length of just the step,
      * without the predicates] {node test} {predicates}?
-     *
      * returns: XBoolean
      * 
      * @xsl.usage advanced

@@ -68,12 +68,11 @@ enum ClientPropertyKey {
     private final boolean reportValueNotSerializable;
 
     static {
-        AWTAccessor.setClientPropertyKeyAccessor(
-                new AWTAccessor.ClientPropertyKeyAccessor() {
-                    public Object getJComponent_TRANSFER_HANDLER() {
-                        return JComponent_TRANSFER_HANDLER;
-                    }
-                });
+        AWTAccessor.setClientPropertyKeyAccessor(new AWTAccessor.ClientPropertyKeyAccessor() {
+            public Object getJComponent_TRANSFER_HANDLER() {
+                return JComponent_TRANSFER_HANDLER;
+            }
+        });
     }
 
     /**

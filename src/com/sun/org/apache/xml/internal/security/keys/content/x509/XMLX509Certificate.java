@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,8 +33,7 @@ import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLX509Certificate extends SignatureElementProxy implements
-        XMLX509DataContent {
+public class XMLX509Certificate extends SignatureElementProxy implements XMLX509DataContent {
 
     /** Field JCA_CERT_ID */
     public static final String JCA_CERT_ID = "X.509";
@@ -48,8 +45,7 @@ public class XMLX509Certificate extends SignatureElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public XMLX509Certificate(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public XMLX509Certificate(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -72,8 +68,7 @@ public class XMLX509Certificate extends SignatureElementProxy implements
      * @param x509certificate
      * @throws XMLSecurityException
      */
-    public XMLX509Certificate(Document doc, X509Certificate x509certificate)
-            throws XMLSecurityException {
+    public XMLX509Certificate(Document doc, X509Certificate x509certificate) throws XMLSecurityException {
         super(doc);
 
         try {
@@ -102,10 +97,9 @@ public class XMLX509Certificate extends SignatureElementProxy implements
     public X509Certificate getX509Certificate() throws XMLSecurityException {
         try {
             byte certbytes[] = this.getCertificateBytes();
-            CertificateFactory certFact = CertificateFactory.getInstance(
-                    XMLX509Certificate.JCA_CERT_ID);
-            X509Certificate cert = (X509Certificate) certFact
-                    .generateCertificate(new ByteArrayInputStream(certbytes));
+            CertificateFactory certFact = CertificateFactory.getInstance(XMLX509Certificate.JCA_CERT_ID);
+            X509Certificate cert = (X509Certificate) certFact.generateCertificate(new ByteArrayInputStream(
+                    certbytes));
 
             if (cert != null) {
                 return cert;
@@ -140,8 +134,7 @@ public class XMLX509Certificate extends SignatureElementProxy implements
         }
         XMLX509Certificate other = (XMLX509Certificate) obj;
         try {
-            return Arrays.equals(other.getCertificateBytes(), this
-                    .getCertificateBytes());
+            return Arrays.equals(other.getCertificateBytes(), this.getCertificateBytes());
         } catch (XMLSecurityException ex) {
             return false;
         }

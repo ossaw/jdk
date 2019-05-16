@@ -39,7 +39,6 @@ import java.time.DateTimeException;
  * onwards, is known as the 'Republic of China' era. All previous years, zero or
  * earlier in the proleptic count or one and greater in the year-of-era count,
  * are part of the 'Before Republic of China' era.
- *
  * <table summary=
  * "Minguo years and eras" cellpadding="2" cellspacing="3" border="0" >
  * <thead>
@@ -81,7 +80,6 @@ import java.time.DateTimeException;
  * {@code MinguoEra}. Use {@code getValue()} instead.</b>
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum MinguoEra implements Era {
@@ -106,12 +104,12 @@ public enum MinguoEra implements Era {
      * {@code int} value.
      *
      * @param minguoEra
-     *                  the BEFORE_ROC/ROC value to represent, from 0
-     *                  (BEFORE_ROC) to
-     *                  1 (ROC)
+     *        the BEFORE_ROC/ROC value to represent, from 0
+     *        (BEFORE_ROC) to
+     *        1 (ROC)
      * @return the era singleton, not null
      * @throws DateTimeException
-     *                           if the value is invalid
+     *         if the value is invalid
      */
     public static MinguoEra of(int minguoEra) {
         switch (minguoEra) {

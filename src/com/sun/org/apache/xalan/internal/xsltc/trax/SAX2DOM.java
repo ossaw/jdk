@@ -66,12 +66,10 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
      * JAXP document builder factory. Create a single instance and use
      * synchronization because the Javadoc is not explicit about thread safety.
      */
-    private DocumentBuilderFactory _factory = DocumentBuilderFactory
-            .newInstance();
+    private DocumentBuilderFactory _factory = DocumentBuilderFactory.newInstance();
     private boolean _internal = true;
 
-    public SAX2DOM(boolean useServicesMechanism)
-            throws ParserConfigurationException {
+    public SAX2DOM(boolean useServicesMechanism) throws ParserConfigurationException {
         _document = createDocument(useServicesMechanism);
         _root = _document;
     }
@@ -91,8 +89,7 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
         _nextSibling = nextSibling;
     }
 
-    public SAX2DOM(Node root, boolean useServicesMechanism)
-            throws ParserConfigurationException {
+    public SAX2DOM(Node root, boolean useServicesMechanism) throws ParserConfigurationException {
         this(root, null, useServicesMechanism);
     }
 
@@ -119,11 +116,10 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
         if (_textBuffer.length() > 0) {
             final Node last = (Node) _nodeStk.peek();
             if (last == _root && _nextSiblingCache != null) {
-                _lastSibling = last.insertBefore(_document.createTextNode(
-                        _textBuffer.toString()), _nextSiblingCache);
+                _lastSibling = last.insertBefore(_document.createTextNode(_textBuffer.toString()),
+                        _nextSiblingCache);
             } else {
-                _lastSibling = last.appendChild(_document.createTextNode(
-                        _textBuffer.toString()));
+                _lastSibling = last.appendChild(_document.createTextNode(_textBuffer.toString()));
             }
             _textBuffer.setLength(0);
         }
@@ -143,21 +139,18 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
             return;
         try {
             _document.setXmlVersion(((Locator2) locator).getXMLVersion());
-        } catch (ClassCastException e) {
-        }
+        } catch (ClassCastException e) {}
 
     }
 
-    public void startElement(String namespace, String localName, String qName,
-            Attributes attrs) {
+    public void startElement(String namespace, String localName, String qName, Attributes attrs) {
         appendTextNode();
         if (needToSetDocumentInfo) {
             setDocumentInfo();
             needToSetDocumentInfo = false;
         }
 
-        final Element tmp = (Element) _document.createElementNS(namespace,
-                qName);
+        final Element tmp = (Element) _document.createElementNS(namespace, qName);
 
         // Add namespace declarations first
         if (_namespaceDecls != null) {
@@ -166,11 +159,10 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
                 final String prefix = (String) _namespaceDecls.elementAt(i++);
 
                 if (prefix == null || prefix.equals(EMPTYSTRING)) {
-                    tmp.setAttributeNS(XMLNS_URI, XMLNS_PREFIX,
-                            (String) _namespaceDecls.elementAt(i));
+                    tmp.setAttributeNS(XMLNS_URI, XMLNS_PREFIX, (String) _namespaceDecls.elementAt(i));
                 } else {
-                    tmp.setAttributeNS(XMLNS_URI, XMLNS_STRING + prefix,
-                            (String) _namespaceDecls.elementAt(i));
+                    tmp.setAttributeNS(XMLNS_URI, XMLNS_STRING + prefix, (String) _namespaceDecls.elementAt(
+                            i));
                 }
             }
             _namespaceDecls.clear();
@@ -248,8 +240,7 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
     public void processingInstruction(String target, String data) {
         appendTextNode();
         final Node last = (Node) _nodeStk.peek();
-        ProcessingInstruction pi = _document.createProcessingInstruction(target,
-                data);
+        ProcessingInstruction pi = _document.createProcessingInstruction(target, data);
         if (pi != null) {
             if (last == _root && _nextSibling != null)
                 last.insertBefore(pi, _nextSibling);
@@ -278,8 +269,7 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
     public void comment(char[] ch, int start, int length) {
         appendTextNode();
         final Node last = (Node) _nodeStk.peek();
-        Comment comment = _document.createComment(new String(ch, start,
-                length));
+        Comment comment = _document.createComment(new String(ch, start, length));
         if (comment != null) {
             if (last == _root && _nextSibling != null)
                 last.insertBefore(comment, _nextSibling);
@@ -301,11 +291,9 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
 
     public void endEntity(String name) {}
 
-    public void startDTD(String name, String publicId, String systemId)
-            throws SAXException {}
+    public void startDTD(String name, String publicId, String systemId) throws SAXException {}
 
-    private Document createDocument(boolean useServicesMechanism)
-            throws ParserConfigurationException {
+    private Document createDocument(boolean useServicesMechanism) throws ParserConfigurationException {
         if (_factory == null) {
             if (useServicesMechanism) {
                 _factory = DocumentBuilderFactory.newInstance();
@@ -314,8 +302,8 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
                 }
             } else {
                 _factory = DocumentBuilderFactory.newInstance(
-                        "com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl",
-                        SAX2DOM.class.getClassLoader());
+                        "com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl", SAX2DOM.class
+                                .getClassLoader());
             }
         }
         Document doc;

@@ -40,14 +40,12 @@ import java.lang.annotation.Annotation;
  * and made available by the {@link ClassLoader} instance that loaded the
  * class(es). Typically, it is stored in the manifest that is distributed with
  * the classes.
- *
  * <p>
  * The set of classes that make up the package may implement a particular
  * specification and if so the specification title, version number, and vendor
  * strings identify that specification. An application can ask if the package is
  * compatible with a particular version, see the {@link #isCompatibleWith
  * isCompatibleWith} method for details.
- *
  * <p>
  * Specification version numbers use a syntax that consists of nonnegative
  * decimal integers separated by periods ".", for example "2.0" or
@@ -57,21 +55,17 @@ import java.lang.annotation.Annotation;
  * <dl>
  * <dt><i>SpecificationVersion:</i>
  * <dd><i>Digits RefinedVersion<sub>opt</sub></i>
- * 
  * <dt><i>RefinedVersion:</i>
  * <dd>{@code .} <i>Digits</i>
  * <dd>{@code .} <i>Digits RefinedVersion</i>
- *
  * <dt><i>Digits:</i>
  * <dd><i>Digit</i>
  * <dd><i>Digits</i>
- *
  * <dt><i>Digit:</i>
  * <dd>any character for which {@link Character#isDigit} returns {@code true},
  * e.g. 0, 1, 2, ...
  * </dl>
  * </blockquote>
- *
  * <p>
  * The implementation title, version, and vendor strings identify an
  * implementation and are made available conveniently to enable accurate
@@ -79,7 +73,6 @@ import java.lang.annotation.Annotation;
  * three implementation strings are vendor specific. The implementation version
  * strings have no specified syntax and should only be compared for equality
  * with desired version identifiers.
- *
  * <p>
  * Within each {@code ClassLoader} instance all classes from the same java
  * package have the same Package object. The static methods allow a package to
@@ -179,7 +172,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * source url.
      *
      * @param url
-     *            the code source url
+     *        the code source url
      * @return true if this package is sealed with respect to url
      */
     public boolean isSealed(URL url) {
@@ -191,7 +184,6 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * returns true if this packages specification version number is greater
      * than or equal to the desired version number.
      * <p>
-     *
      * Version numbers are compared by sequentially comparing corresponding
      * components of the desired and specification strings. Each component is
      * converted as a decimal integer and the values compared. If the
@@ -200,17 +192,15 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * period is skipped and the next pair of components is compared.
      *
      * @param desired
-     *                the version string of the desired version.
+     *        the version string of the desired version.
      * @return true if this package's version number is greater than or equal to
      *         the desired version number
-     *
      * @exception NumberFormatException
-     *                                  if the desired or current version is not
-     *                                  of the correct
-     *                                  dotted form.
+     *            if the desired or current version is not
+     *            of the correct
+     *            dotted form.
      */
-    public boolean isCompatibleWith(String desired)
-            throws NumberFormatException {
+    public boolean isCompatibleWith(String desired) throws NumberFormatException {
         if (specVersion == null || specVersion.length() < 1) {
             throw new NumberFormatException("Empty version string");
         }
@@ -250,14 +240,13 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * instance is null then the set of packages loaded by the system
      * {@code ClassLoader} instance is searched to find the named package.
      * <p>
-     *
      * Packages have attributes for versions and specifications only if the
      * class loader created the package instance with the appropriate
      * attributes. Typically, those attributes are defined in the manifests that
      * accompany the classes.
      *
      * @param name
-     *             a package name, for example, java.lang.
+     *        a package name, for example, java.lang.
      * @return the package of the requested name. It may be null if no package
      *         information is available from the archive or codebase.
      */
@@ -306,7 +295,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * accompany the classes.
      *
      * @param c
-     *          the class to get the package of.
+     *        the class to get the package of.
      * @return the package of the class. It may be null if no package
      *         information is available from the archive or codebase.
      */
@@ -359,8 +348,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
     private Class<?> getPackageInfo() {
         if (packageInfo == null) {
             try {
-                packageInfo = Class.forName(pkgName + ".package-info", false,
-                        loader);
+                packageInfo = Class.forName(pkgName + ".package-info", false, loader);
             } catch (ClassNotFoundException ex) {
                 // store a proxy for the package info that has no annotations
                 class PackageInfoProxy {}
@@ -372,7 +360,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
@@ -383,23 +371,21 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * {@inheritDoc}
      * 
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
-    public boolean isAnnotationPresent(
-            Class<? extends Annotation> annotationClass) {
+    public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
         return AnnotatedElement.super.isAnnotationPresent(annotationClass);
     }
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <A extends Annotation> A[] getAnnotationsByType(
-            Class<A> annotationClass) {
+    public <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationClass) {
         return getPackageInfo().getAnnotationsByType(annotationClass);
     }
 
@@ -412,23 +398,21 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <A extends Annotation> A getDeclaredAnnotation(
-            Class<A> annotationClass) {
+    public <A extends Annotation> A getDeclaredAnnotation(Class<A> annotationClass) {
         return getPackageInfo().getDeclaredAnnotation(annotationClass);
     }
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <A extends Annotation> A[] getDeclaredAnnotationsByType(
-            Class<A> annotationClass) {
+    public <A extends Annotation> A[] getDeclaredAnnotationsByType(Class<A> annotationClass) {
         return getPackageInfo().getDeclaredAnnotationsByType(annotationClass);
     }
 
@@ -443,23 +427,22 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      * Construct a package instance with the specified version information.
      * 
      * @param name
-     *                    the name of the package
+     *        the name of the package
      * @param spectitle
-     *                    the title of the specification
+     *        the title of the specification
      * @param specversion
-     *                    the version of the specification
+     *        the version of the specification
      * @param specvendor
-     *                    the organization that maintains the specification
+     *        the organization that maintains the specification
      * @param impltitle
-     *                    the title of the implementation
+     *        the title of the implementation
      * @param implversion
-     *                    the version of the implementation
+     *        the version of the implementation
      * @param implvendor
-     *                    the organization that maintains the implementation
+     *        the organization that maintains the implementation
      */
-    Package(String name, String spectitle, String specversion,
-            String specvendor, String impltitle, String implversion,
-            String implvendor, URL sealbase, ClassLoader loader) {
+    Package(String name, String spectitle, String specversion, String specvendor, String impltitle,
+            String implversion, String implvendor, URL sealbase, ClassLoader loader) {
         pkgName = name;
         implTitle = impltitle;
         implVersion = implversion;
@@ -566,8 +549,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
         }
     }
 
-    private static Package defineSystemPackage(final String iname,
-            final String fn) {
+    private static Package defineSystemPackage(final String iname, final String fn) {
         return AccessController.doPrivileged(new PrivilegedAction<Package>() {
             public Package run() {
                 String name = iname;
@@ -578,8 +560,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
                     File file = new File(fn);
                     try {
                         url = ParseUtil.fileToEncodedURL(file);
-                    } catch (MalformedURLException e) {
-                    }
+                    } catch (MalformedURLException e) {}
                     if (url != null) {
                         urls.put(fn, url);
                         // If loading a JAR file, then also cache the manifest
@@ -595,8 +576,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
                 if (man != null) {
                     pkg = new Package(name, man, url, null);
                 } else {
-                    pkg = new Package(name, null, null, null, null, null, null,
-                            null, null);
+                    pkg = new Package(name, null, null, null, null, null, null, null, null);
                 }
                 pkgs.put(name, pkg);
                 return pkg;

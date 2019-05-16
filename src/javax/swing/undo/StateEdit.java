@@ -14,13 +14,11 @@ import java.util.Vector;
  * StateEdit is a general edit for objects that change state. Objects being
  * edited must conform to the StateEditable interface.
  * </P>
- *
  * <P>
  * This edit class works by asking an object to store it's state in Hashtables
  * before and after editing occurs. Upon undo or redo the object is told to
  * restore it's state from these Hashtables.
  * </P>
- *
  * A state edit is used as follows:
  * 
  * <PRE>
@@ -31,7 +29,6 @@ import java.util.Vector;
  * // "end" the edit when you are done modifying the object
  * newEdit.end();
  * </PRE>
- *
  * <P>
  * <EM>Note that when a StateEdit ends, it removes redundant state from
  * the Hashtables - A state Hashtable is not guaranteed to contain all
@@ -39,7 +36,6 @@ import java.util.Vector;
  * </P>
  *
  * @see StateEditable
- *
  * @author Ray Ryan
  */
 
@@ -79,8 +75,7 @@ public class StateEdit extends AbstractUndoableEdit {
      * Create and return a new StateEdit.
      *
      * @param anObject
-     *                 The object to watch for changing state
-     *
+     *        The object to watch for changing state
      * @see StateEdit
      */
     public StateEdit(StateEditable anObject) {
@@ -92,10 +87,9 @@ public class StateEdit extends AbstractUndoableEdit {
      * Create and return a new StateEdit with a presentation name.
      *
      * @param anObject
-     *                 The object to watch for changing state
+     *        The object to watch for changing state
      * @param name
-     *                 The presentation name to be used for this edit
-     *
+     *        The presentation name to be used for this edit
      * @see StateEdit
      */
     public StateEdit(StateEditable anObject, String name) {
@@ -161,8 +155,7 @@ public class StateEdit extends AbstractUndoableEdit {
         // Locate redundant state
         while (myKeys.hasMoreElements()) {
             Object myKey = myKeys.nextElement();
-            if (postState.containsKey(myKey) && postState.get(myKey).equals(
-                    preState.get(myKey))) {
+            if (postState.containsKey(myKey) && postState.get(myKey).equals(preState.get(myKey))) {
                 uselessKeys.addElement(myKey);
             }
         }

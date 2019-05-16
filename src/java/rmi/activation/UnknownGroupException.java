@@ -32,7 +32,7 @@ public class UnknownGroupException extends ActivationException {
      * detail message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since 1.2
      */
     public UnknownGroupException(String s) {

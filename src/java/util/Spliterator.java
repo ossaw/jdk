@@ -13,12 +13,10 @@ import java.util.function.LongConsumer;
  * An object for traversing and partitioning elements of a source. The source of
  * elements covered by a Spliterator could be, for example, an array, a
  * {@link Collection}, an IO channel, or a generator function.
- *
  * <p>
  * A Spliterator may traverse elements individually ({@link #tryAdvance
  * tryAdvance()}) or sequentially in bulk ({@link #forEachRemaining
  * forEachRemaining()}).
- *
  * <p>
  * A Spliterator may also partition off some of its elements (using
  * {@link #trySplit}) as another Spliterator, to be used in possibly-parallel
@@ -26,7 +24,6 @@ import java.util.function.LongConsumer;
  * highly imbalanced or inefficient manner, are unlikely to benefit from
  * parallelism. Traversal and splitting exhaust elements; each Spliterator is
  * useful for only a single bulk computation.
- *
  * <p>
  * A Spliterator also reports a set of {@link #characteristics()} of its
  * structure, source, and elements from among {@link #ORDERED},
@@ -37,12 +34,10 @@ import java.util.function.LongConsumer;
  * {@code SIZED}, a Spliterator for a {@link Set} would report {@code DISTINCT},
  * and a Spliterator for a {@link SortedSet} would also report {@code SORTED}.
  * Characteristics are reported as a simple unioned bit set.
- *
  * Some characteristics additionally constrain method behavior; for example if
  * {@code ORDERED}, traversal methods must conform to their documented ordering.
  * New characteristics may be defined in the future, so implementors should not
  * assign meanings to unlisted values.
- *
  * <p>
  * <a name="binding">A Spliterator that does not report {@code IMMUTABLE} or
  * {@code CONCURRENT} is expected to have a documented policy concerning: when
@@ -61,7 +56,6 @@ import java.util.function.LongConsumer;
  * Spliterator may optimize traversal and check for structural interference
  * after all elements have been traversed, rather than checking per-element and
  * failing immediately.
- *
  * <p>
  * Spliterators can provide an estimate of the number of remaining elements via
  * the {@link #estimateSize} method. Ideally, as reflected in characteristic
@@ -70,7 +64,6 @@ import java.util.function.LongConsumer;
  * exactly known, an estimated value value may still be useful to operations
  * being performed on the source, such as helping to determine whether it is
  * preferable to split further or traverse the remaining elements sequentially.
- *
  * <p>
  * Despite their obvious utility in parallel algorithms, spliterators are not
  * expected to be thread-safe; instead, implementations of parallel algorithms
@@ -87,7 +80,6 @@ import java.util.function.LongConsumer;
  * tryAdvance()}, as certain guarantees (such as the accuracy of
  * {@link #estimateSize()} for {@code SIZED} spliterators) are only valid before
  * traversal has begun.
- *
  * <p>
  * Primitive subtype specializations of {@code Spliterator} are provided for
  * {@link OfInt int}, {@link OfLong long}, and {@link OfDouble double} values.
@@ -118,7 +110,6 @@ import java.util.function.LongConsumer;
  *          Spliterator is designed to impose smaller per-element overhead than
  *          {@code Iterator}, and to avoid the inherent race involved in having
  *          separate methods for {@code hasNext()} and {@code next()}.
- *
  *          <p>
  *          For mutable sources, arbitrary and non-deterministic behavior may
  *          occur if the source is structurally interfered with (elements added,
@@ -126,7 +117,6 @@ import java.util.function.LongConsumer;
  *          its data source and the end of traversal. For example, such
  *          interference will produce arbitrary, non-deterministic results when
  *          using the {@code java.util.stream} framework.
- *
  *          <p>
  *          Structural interference of a source can be managed in the following
  *          ways (in approximate order of decreasing desirability):
@@ -165,7 +155,6 @@ import java.util.function.LongConsumer;
  *          behavior since non-detected interference may occur after
  *          construction.</li>
  *          </ul>
- *
  *          <p>
  *          <b>Example.</b> Here is a class (not a very useful one, except for
  *          illustration) that maintains an array in which the actual data are
@@ -174,23 +163,22 @@ import java.util.function.LongConsumer;
  *
  *          <pre>
  * {@code
- *          	class TaggedArray<T> {
- *          		private final Object[] elements; // immutable after construction
+ *              class TaggedArray<T> {
+ *                  private final Object[] elements; // immutable after construction
  * 
- *          		TaggedArray(T[] data, Object[] tags) {
- *          			int size = data.length;
- *          			if (tags.length != size)
- *          				throw new IllegalArgumentException();
- *          			this.elements = new Object[2 * size];
- *          			for (int i = 0, j = 0; i < size; ++i) {
- *          				elements[j++] = data[i];
- *          				elements[j++] = tags[i];
+ *                  TaggedArray(T[] data, Object[] tags) {
+ *                      int size = data.length;
+ *                      if (tags.length != size)
+ *                          throw new IllegalArgumentException();
+ *                      this.elements = new Object[2 * size];
+ *                      for (int i = 0, j = 0; i < size; ++i) {
+ *                          elements[j++] = data[i];
+ *                          elements[j++] = tags[i];
  *                      }
  *                  }
  *
  *                  public Spliterator<T> spliterator() {
- *                      return new TaggedArraySpliterator<>(elements, 0,
- *                              elements   .length);
+ *                      return new TaggedArraySpliterator<>(elements, 0, elements.length);
  *                  }
  *
  *                  static class TaggedArraySpliterator<T> implements Spliterator<T> {
@@ -200,34 +188,34 @@ import java.util.function.LongConsumer;
  *                      private final int fence; // one past the greatest index
  *
  *                      TaggedArraySpliterator(Object[] array, int origin, int fence) {
- *                          this   .array = array;
- *                          this   .origin = origin;
- *                          this   .fence = fence;
+ *                          this.array = array;
+ *                          this.origin = origin;
+ *                          this.fence = fence;
  *                      }
  *
  *                      public void forEachRemaining(Consumer<? super T> action) {
- *                          for    (; origin < fence; origin += 2)
- *                              action     .accept((T) array[origin]);
+ *                          for (; origin < fence; origin += 2)
+ *                              action.accept((T) array[origin]);
  *                      }
  *
  *                      public boolean tryAdvance(Consumer<? super T> action) {
- *                          if     (origin < fence) {
- *                              action     .accept((T) array[origin]);
- *                              origin     += 2;
- *                              return     true;
- *                          }      else // cannot advance
- *                              return     false;
+ *                          if (origin < fence) {
+ *                              action.accept((T) array[origin]);
+ *                              origin += 2;
+ *                              return true;
+ *                          } else // cannot advance
+ *                              return false;
  *                      }
  *
  *                      public Spliterator<T> trySplit() {
- *                          int    lo = origin; // divide range in half
- *                          int    mid = ((lo + fence) >>> 1) & ~1; // force midpoint to be
+ *                          int lo = origin; // divide range in half
+ *                          int mid = ((lo + fence) >>> 1) & ~1; // force midpoint to be
  *                          // even
- *                          if     (lo < mid) { // split out left half
- *                              origin     = mid; // reset this Spliterator's origin
- *                              return     new TaggedArraySpliterator<>(array, lo, mid);
- *                          }      else // too small to split
- *                              return     null;
+ *                          if (lo < mid) { // split out left half
+ *                              origin = mid; // reset this Spliterator's origin
+ *                              return new TaggedArraySpliterator<>(array, lo, mid);
+ *                          } else // too small to split
+ *                              return null;
  *                      }
  *
  *                      public long estimateSize() {
@@ -241,7 +229,6 @@ import java.util.function.LongConsumer;
  *              }
  *          }
  *          </pre>
- *
  *          <p>
  *          As an example how a parallel computation framework, such as the
  *          {@code java.util.stream} package, would use Spliterator in a
@@ -293,10 +280,8 @@ import java.util.function.LongConsumer;
  *           {@code true} then diagnostic warnings are reported if boxing of
  *           primitive values occur when operating on primitive subtype
  *           specializations.
- *
  * @param <T>
  *        the type of elements returned by this Spliterator
- *
  * @see Collection
  * @since 1.8
  */
@@ -308,11 +293,11 @@ public interface Spliterator<T> {
      * order. Exceptions thrown by the action are relayed to the caller.
      *
      * @param action
-     *               The action
+     *        The action
      * @return {@code false} if no remaining elements existed upon entry to this
      *         method, else {@code true}.
      * @throws NullPointerException
-     *                              if the specified action is null
+     *         if the specified action is null
      */
     boolean tryAdvance(Consumer<? super T> action);
 
@@ -326,26 +311,22 @@ public interface Spliterator<T> {
      * @implSpec The default implementation repeatedly invokes
      *           {@link #tryAdvance} until it returns {@code false}. It should
      *           be overridden whenever possible.
-     *
      * @param action
-     *               The action
+     *        The action
      * @throws NullPointerException
-     *                              if the specified action is null
+     *         if the specified action is null
      */
     default void forEachRemaining(Consumer<? super T> action) {
-        do {
-        } while (tryAdvance(action));
+        do {} while (tryAdvance(action));
     }
 
     /**
      * If this spliterator can be partitioned, returns a Spliterator covering
      * elements, that will, upon return from this method, not be covered by this
      * Spliterator.
-     *
      * <p>
      * If this Spliterator is {@link #ORDERED}, the returned Spliterator must
      * cover a strict prefix of the elements.
-     *
      * <p>
      * Unless this Spliterator covers an infinite number of elements, repeated
      * calls to {@code trySplit()} must eventually return {@code null}. Upon
@@ -359,7 +340,6 @@ public interface Spliterator<T> {
      * {@code estimateSize()} for this and the returned Spliterator after
      * splitting.</li>
      * </ul>
-     *
      * <p>
      * This method may return {@code null} for any reason, including emptiness,
      * inability to split after traversal has commenced, data structure
@@ -374,7 +354,6 @@ public interface Spliterator<T> {
      *          these nodes. However, large deviations in balance and/or overly
      *          inefficient {@code
      * trySplit} mechanics typically result in poor parallel performance.
-     *
      * @return a {@code Spliterator} covering some portion of the elements, or
      *         {@code null} if this spliterator cannot be split
      */
@@ -384,7 +363,6 @@ public interface Spliterator<T> {
      * Returns an estimate of the number of elements that would be encountered
      * by a {@link #forEachRemaining} traversal, or returns
      * {@link Long#MAX_VALUE} if infinite, unknown, or too expensive to compute.
-     *
      * <p>
      * If this Spliterator is {@link #SIZED} and has not yet been partially
      * traversed or split, or this Spliterator is {@link #SUBSIZED} and has not
@@ -400,7 +378,6 @@ public interface Spliterator<T> {
      *          Spliterator does not maintain an accurate count, it could
      *          estimate size to be the power of two corresponding to its
      *          maximum depth.
-     *
      * @return the estimated size, or {@code Long.MAX_VALUE} if infinite,
      *         unknown, or too expensive to compute.
      */
@@ -413,7 +390,6 @@ public interface Spliterator<T> {
      * @implSpec The default implementation returns the result of
      *           {@code estimateSize()} if the Spliterator reports a
      *           characteristic of {@code SIZED}, and {@code -1} otherwise.
-     *
      * @return the exact size, if known, else {@code -1}.
      */
     default long getExactSizeIfKnown() {
@@ -428,7 +404,6 @@ public interface Spliterator<T> {
      * calls to {@code characteristics()} on a given spliterator, prior to or
      * in-between calls to {@code trySplit}, should always return the same
      * result.
-     *
      * <p>
      * If a Spliterator reports an inconsistent set of characteristics (either
      * those returned from a single invocation or across multiple invocations),
@@ -438,7 +413,6 @@ public interface Spliterator<T> {
      *          differ from the characteristics after splitting. For specific
      *          examples see the characteristic values {@link #SIZED},
      *          {@link #SUBSIZED} and {@link #CONCURRENT}.
-     *
      * @return a representation of characteristics
      */
     int characteristics();
@@ -449,9 +423,8 @@ public interface Spliterator<T> {
      *
      * @implSpec The default implementation returns true if the corresponding
      *           bits of the given characteristics are set.
-     *
      * @param characteristics
-     *                        the characteristics to check for
+     *        the characteristics to check for
      * @return {@code true} if all the specified characteristics are present,
      *         else {@code false}
      */
@@ -468,13 +441,12 @@ public interface Spliterator<T> {
      *
      * @implSpec The default implementation always throws
      *           {@link IllegalStateException}.
-     *
      * @return a Comparator, or {@code null} if the elements are sorted in the
      *         natural order.
      * @throws IllegalStateException
-     *                               if the spliterator does not report a
-     *                               characteristic of
-     *                               {@code SORTED}.
+     *         if the spliterator does not report a
+     *         characteristic of
+     *         {@code SORTED}.
      */
     default Comparator<? super T> getComparator() {
         throw new IllegalStateException();
@@ -486,7 +458,6 @@ public interface Spliterator<T> {
      * {@link #trySplit} splits a strict prefix of elements, that method
      * {@link #tryAdvance} steps by one element in prefix order, and that
      * {@link #forEachRemaining} performs actions in encounter order.
-     *
      * <p>
      * A {@link Collection} has an encounter order if the corresponding
      * {@link Collection#iterator} documents an order. If so, the encounter
@@ -513,7 +484,6 @@ public interface Spliterator<T> {
      * sort order. If so, method {@link #getComparator()} returns the associated
      * Comparator, or {@code null} if all elements are {@link Comparable} and
      * are sorted by their natural ordering.
-     *
      * <p>
      * A Spliterator that reports {@code SORTED} must also report
      * {@code ORDERED}.
@@ -562,7 +532,6 @@ public interface Spliterator<T> {
      * by multiple threads without external synchronization. If so, the
      * Spliterator is expected to have a documented policy concerning the impact
      * of modifications during traversal.
-     *
      * <p>
      * A top-level Spliterator should not report both {@code CONCURRENT} and
      * {@code SIZED}, since the finite size, if known, may change if the source
@@ -584,7 +553,6 @@ public interface Spliterator<T> {
      * {@code trySplit()} will be both {@link #SIZED} and {@link #SUBSIZED}.
      * (This means that all child Spliterators, whether direct or indirect, will
      * be {@code SIZED}.)
-     *
      * <p>
      * A Spliterator that does not report {@code SIZED} as required by
      * {@code SUBSIZED} is inconsistent and no guarantees can be made about any
@@ -613,7 +581,6 @@ public interface Spliterator<T> {
      *        the type of primitive Spliterator. The type must be a
      *        primitive specialization of Spliterator for {@code T}, such as
      *        {@link Spliterator.OfInt} for {@code Integer}.
-     *
      * @see Spliterator.OfInt
      * @see Spliterator.OfLong
      * @see Spliterator.OfDouble
@@ -632,11 +599,11 @@ public interface Spliterator<T> {
          * relayed to the caller.
          *
          * @param action
-         *               The action
+         *        The action
          * @return {@code false} if no remaining elements existed upon entry to
          *         this method, else {@code true}.
          * @throws NullPointerException
-         *                              if the specified action is null
+         *         if the specified action is null
          */
         @SuppressWarnings("overloads")
         boolean tryAdvance(T_CONS action);
@@ -651,16 +618,14 @@ public interface Spliterator<T> {
          * @implSpec The default implementation repeatedly invokes
          *           {@link #tryAdvance} until it returns {@code false}. It
          *           should be overridden whenever possible.
-         *
          * @param action
-         *               The action
+         *        The action
          * @throws NullPointerException
-         *                              if the specified action is null
+         *         if the specified action is null
          */
         @SuppressWarnings("overloads")
         default void forEachRemaining(T_CONS action) {
-            do {
-            } while (tryAdvance(action));
+            do {} while (tryAdvance(action));
         }
     }
 
@@ -679,8 +644,7 @@ public interface Spliterator<T> {
 
         @Override
         default void forEachRemaining(IntConsumer action) {
-            do {
-            } while (tryAdvance(action));
+            do {} while (tryAdvance(action));
         }
 
         /**
@@ -745,8 +709,7 @@ public interface Spliterator<T> {
 
         @Override
         default void forEachRemaining(LongConsumer action) {
-            do {
-            } while (tryAdvance(action));
+            do {} while (tryAdvance(action));
         }
 
         /**
@@ -801,8 +764,7 @@ public interface Spliterator<T> {
      * 
      * @since 1.8
      */
-    public interface OfDouble extends
-            OfPrimitive<Double, DoubleConsumer, OfDouble> {
+    public interface OfDouble extends OfPrimitive<Double, DoubleConsumer, OfDouble> {
 
         @Override
         OfDouble trySplit();
@@ -812,8 +774,7 @@ public interface Spliterator<T> {
 
         @Override
         default void forEachRemaining(DoubleConsumer action) {
-            do {
-            } while (tryAdvance(action));
+            do {} while (tryAdvance(action));
         }
 
         /**

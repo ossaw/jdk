@@ -14,7 +14,6 @@ import java.io.IOException;
  * associated with files on file systems used by operating systems that
  * implement the Portable Operating System Interface (POSIX) family of
  * standards.
- *
  * <p>
  * Operating systems that implement the
  * <a href="http://www.opengroup.org"> POSIX</a> family of standards commonly
@@ -22,7 +21,6 @@ import java.io.IOException;
  * related <em>access
  * permissions</em>. This file attribute view provides read and write access to
  * these attributes.
- *
  * <p>
  * The {@link #readAttributes() readAttributes} method is used to read the
  * file's attributes. The file {@link PosixFileAttributes#owner() owner} is
@@ -31,7 +29,6 @@ import java.io.IOException;
  * group-owner}, represented by a {@link GroupPrincipal}, is the identity of the
  * group owner, where a group is an identity created for administrative purposes
  * so as to determine the access rights for the members of the group.
- *
  * <p>
  * The {@link PosixFileAttributes#permissions() permissions} attribute is a set
  * of access permissions. This file attribute view provides access to the nine
@@ -41,7 +38,6 @@ import java.io.IOException;
  * identities other than the owner and members of the group). Some operating
  * systems and file systems may provide additional permission bits but access to
  * these other bits is not defined by this class in this release.
- *
  * <p>
  * <b>Usage Example:</b> Suppose we need to print out the owner and access
  * permissions of a file:
@@ -76,13 +72,11 @@ import java.io.IOException;
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * The {@link Files#getAttribute getAttribute} method may be used to read any of
  * these attributes, or any of the attributes defined by
  * {@link BasicFileAttributeView} as if by invoking the {@link #readAttributes
  * readAttributes()} method.
- *
  * <p>
  * The {@link Files#setAttribute setAttribute} method may be used to update the
  * file's last modified time, last access time or create time attributes as
@@ -90,7 +84,6 @@ import java.io.IOException;
  * permissions, owner, or group-owner as if by invoking the
  * {@link #setPermissions setPermissions}, {@link #setOwner setOwner}, and
  * {@link #setGroup setGroup} methods respectively.
- *
  * <h2>Setting Initial Permissions</h2>
  * <p>
  * Implementations supporting this attribute view may also support setting the
@@ -109,7 +102,6 @@ import java.io.IOException;
  *         EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE, GROUP_READ);
  *     Files.createFile(path, PosixFilePermissions.asFileAttribute(perms));
  * </pre>
- *
  * <p>
  * When the access permissions are set at file creation time then the actual
  * value of the permissions may differ that the value of the attribute object.
@@ -126,8 +118,7 @@ import java.io.IOException;
  * @since 1.7
  */
 
-public interface PosixFileAttributeView extends BasicFileAttributeView,
-        FileOwnerAttributeView {
+public interface PosixFileAttributeView extends BasicFileAttributeView, FileOwnerAttributeView {
     /**
      * Returns the name of the attribute view. Attribute views of this type have
      * the name {@code "posix"}.
@@ -137,16 +128,16 @@ public interface PosixFileAttributeView extends BasicFileAttributeView,
 
     /**
      * @throws IOException
-     *                           {@inheritDoc}
+     *         {@inheritDoc}
      * @throws SecurityException
-     *                           In the case of the default provider, a security
-     *                           manager is
-     *                           installed, and it denies
-     *                           {@link RuntimePermission}
-     *                           <tt>("accessUserInformation")</tt> or its
-     *                           {@link SecurityManager#checkRead(String)
-     *                           checkRead} method
-     *                           denies read access to the file.
+     *         In the case of the default provider, a security
+     *         manager is
+     *         installed, and it denies
+     *         {@link RuntimePermission}
+     *         <tt>("accessUserInformation")</tt> or its
+     *         {@link SecurityManager#checkRead(String)
+     *         checkRead} method
+     *         denies read access to the file.
      */
     @Override
     PosixFileAttributes readAttributes() throws IOException;
@@ -155,23 +146,22 @@ public interface PosixFileAttributeView extends BasicFileAttributeView,
      * Updates the file permissions.
      *
      * @param perms
-     *              the new set of permissions
-     *
+     *        the new set of permissions
      * @throws ClassCastException
-     *                            if the sets contains elements that are not of
-     *                            type {@code
+     *         if the sets contains elements that are not of
+     *         type {@code
      *          PosixFilePermission}
      * @throws IOException
-     *                            if an I/O error occurs
+     *         if an I/O error occurs
      * @throws SecurityException
-     *                            In the case of the default provider, a
-     *                            security manager is
-     *                            installed, and it denies
-     *                            {@link RuntimePermission}
-     *                            <tt>("accessUserInformation")</tt> or its
-     *                            {@link SecurityManager#checkWrite(String)
-     *                            checkWrite} method
-     *                            denies write access to the file.
+     *         In the case of the default provider, a
+     *         security manager is
+     *         installed, and it denies
+     *         {@link RuntimePermission}
+     *         <tt>("accessUserInformation")</tt> or its
+     *         {@link SecurityManager#checkWrite(String)
+     *         checkWrite} method
+     *         denies write access to the file.
      */
     void setPermissions(Set<PosixFilePermission> perms) throws IOException;
 
@@ -179,19 +169,18 @@ public interface PosixFileAttributeView extends BasicFileAttributeView,
      * Updates the file group-owner.
      *
      * @param group
-     *              the new file group-owner
-     *
+     *        the new file group-owner
      * @throws IOException
-     *                           if an I/O error occurs
+     *         if an I/O error occurs
      * @throws SecurityException
-     *                           In the case of the default provider, and a
-     *                           security manager
-     *                           is installed, it denies
-     *                           {@link RuntimePermission}
-     *                           <tt>("accessUserInformation")</tt> or its
-     *                           {@link SecurityManager#checkWrite(String)
-     *                           checkWrite} method
-     *                           denies write access to the file.
+     *         In the case of the default provider, and a
+     *         security manager
+     *         is installed, it denies
+     *         {@link RuntimePermission}
+     *         <tt>("accessUserInformation")</tt> or its
+     *         {@link SecurityManager#checkWrite(String)
+     *         checkWrite} method
+     *         denies write access to the file.
      */
     void setGroup(GroupPrincipal group) throws IOException;
 }

@@ -88,9 +88,9 @@ public abstract class AbstractWriter {
      * default root of the document.
      *
      * @param w
-     *            a Writer.
+     *        a Writer.
      * @param doc
-     *            a Document
+     *        a Document
      */
     protected AbstractWriter(Writer w, Document doc) {
         this(w, doc, 0, doc.getLength());
@@ -101,13 +101,13 @@ public abstract class AbstractWriter {
      * element passed in.
      *
      * @param w
-     *            a Writer
+     *        a Writer
      * @param doc
-     *            an Element
+     *        an Element
      * @param pos
-     *            The location in the document to fetch the content.
+     *        The location in the document to fetch the content.
      * @param len
-     *            The amount to write out.
+     *        The amount to write out.
      */
     protected AbstractWriter(Writer w, Document doc, int pos, int len) {
         this.doc = doc;
@@ -115,16 +115,14 @@ public abstract class AbstractWriter {
         out = w;
         startOffset = pos;
         endOffset = pos + len;
-        Object docNewline = doc.getProperty(
-                DefaultEditorKit.EndOfLineStringProperty);
+        Object docNewline = doc.getProperty(DefaultEditorKit.EndOfLineStringProperty);
         if (docNewline instanceof String) {
             setLineSeparator((String) docNewline);
         } else {
             String newline = null;
             try {
                 newline = System.getProperty("line.separator");
-            } catch (SecurityException se) {
-            }
+            } catch (SecurityException se) {}
             if (newline == null) {
                 // Should not get here, but if we do it means we could not
                 // find a newline string, use \n in this case.
@@ -140,9 +138,9 @@ public abstract class AbstractWriter {
      * element passed in.
      *
      * @param w
-     *             a Writer
+     *        a Writer
      * @param root
-     *             an Element
+     *        an Element
      */
     protected AbstractWriter(Writer w, Element root) {
         this(w, root, 0, root.getEndOffset());
@@ -153,13 +151,13 @@ public abstract class AbstractWriter {
      * element passed in.
      *
      * @param w
-     *             a Writer
+     *        a Writer
      * @param root
-     *             an Element
+     *        an Element
      * @param pos
-     *             The location in the document to fetch the content.
+     *        The location in the document to fetch the content.
      * @param len
-     *             The amount to write out.
+     *        The amount to write out.
      */
     protected AbstractWriter(Writer w, Element root, int pos, int len) {
         this.doc = root.getDocument();
@@ -222,16 +220,14 @@ public abstract class AbstractWriter {
      * with the element's range.
      *
      * @param next
-     *             an Element.
+     *        an Element.
      * @return boolean that indicates whether the element is in the range.
      */
     protected boolean inRange(Element next) {
         int startOffset = getStartOffset();
         int endOffset = getEndOffset();
-        if ((next.getStartOffset() >= startOffset && next
-                .getStartOffset() < endOffset) || (startOffset >= next
-                        .getStartOffset() && startOffset < next
-                                .getEndOffset())) {
+        if ((next.getStartOffset() >= startOffset && next.getStartOffset() < endOffset)
+                || (startOffset >= next.getStartOffset() && startOffset < next.getEndOffset())) {
             return true;
         }
         return false;
@@ -250,15 +246,14 @@ public abstract class AbstractWriter {
      * encountered.
      *
      * @param elem
-     *             an <code>Element</code>
+     *        an <code>Element</code>
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document
+     *            if pos represents an invalid location
+     *            within the document
      * @return the text as a <code>String</code>
      */
     protected String getText(Element elem) throws BadLocationException {
-        return doc.getText(elem.getStartOffset(), elem.getEndOffset() - elem
-                .getStartOffset());
+        return doc.getText(elem.getStartOffset(), elem.getEndOffset() - elem.getStartOffset());
     }
 
     /**
@@ -266,12 +261,12 @@ public abstract class AbstractWriter {
      * then only the appropriate range of text is written out.
      *
      * @param elem
-     *             an Element.
+     *        an Element.
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
     protected void text(Element elem) throws BadLocationException, IOException {
         int start = Math.max(getStartOffset(), elem.getStartOffset());
@@ -292,7 +287,7 @@ public abstract class AbstractWriter {
      * line. The default is 100.
      *
      * @param l
-     *          the maximum line length.
+     *        the maximum line length.
      */
     protected void setLineLength(int l) {
         maxLineLength = l;
@@ -364,7 +359,7 @@ public abstract class AbstractWriter {
      * The default is 2.
      *
      * @param space
-     *              an int representing the space to indent mapping.
+     *        an int representing the space to indent mapping.
      */
     protected void setIndentSpace(int space) {
         indentSpace = space;
@@ -444,7 +439,7 @@ public abstract class AbstractWriter {
      * make it so that the current line is still considered empty.
      *
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void indent() throws IOException {
         int max = getIndentLevel() * getIndentSpace();
@@ -467,9 +462,9 @@ public abstract class AbstractWriter {
      * <code>write</code> method that takes a char[].
      *
      * @param ch
-     *           a char.
+     *        a char.
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void write(char ch) throws IOException {
         if (tempChars == null) {
@@ -484,9 +479,9 @@ public abstract class AbstractWriter {
      * method that takes a char[].
      *
      * @param content
-     *                a String.
+     *        a String.
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void write(String content) throws IOException {
         if (content == null) {
@@ -529,8 +524,7 @@ public abstract class AbstractWriter {
      *
      * @since 1.3
      */
-    protected void write(char[] chars, int startIndex, int length)
-            throws IOException {
+    protected void write(char[] chars, int startIndex, int length) throws IOException {
         if (!getCanWrapLines()) {
             // We can not break string, just track if a newline
             // is in it.
@@ -561,15 +555,13 @@ public abstract class AbstractWriter {
                 boolean forceNewLine = false;
 
                 lineLength = getCurrentLineLength();
-                if (newlineIndex != -1 && (lineLength + (newlineIndex
-                        - lastIndex)) < maxLength) {
+                if (newlineIndex != -1 && (lineLength + (newlineIndex - lastIndex)) < maxLength) {
                     if (newlineIndex > lastIndex) {
                         output(chars, lastIndex, newlineIndex - lastIndex);
                     }
                     lastIndex = newlineIndex + 1;
                     forceNewLine = true;
-                } else if (newlineIndex == -1 && (lineLength + (endIndex
-                        - lastIndex)) < maxLength) {
+                } else if (newlineIndex == -1 && (lineLength + (endIndex - lastIndex)) < maxLength) {
                     if (endIndex > lastIndex) {
                         output(chars, lastIndex, endIndex - lastIndex);
                     }
@@ -579,12 +571,10 @@ public abstract class AbstractWriter {
                     // from lastIndex to endIndex,
                     // or maxLength - lineLength whichever is smaller
                     int breakPoint = -1;
-                    int maxBreak = Math.min(endIndex - lastIndex, maxLength
-                            - lineLength - 1);
+                    int maxBreak = Math.min(endIndex - lastIndex, maxLength - lineLength - 1);
                     int counter = 0;
                     while (counter < maxBreak) {
-                        if (Character.isWhitespace(chars[counter
-                                + lastIndex])) {
+                        if (Character.isWhitespace(chars[counter + lastIndex])) {
                             breakPoint = counter;
                         }
                         counter++;
@@ -605,8 +595,7 @@ public abstract class AbstractWriter {
                         counter = Math.max(0, maxBreak);
                         maxBreak = endIndex - lastIndex;
                         while (counter < maxBreak) {
-                            if (Character.isWhitespace(chars[counter
-                                    + lastIndex])) {
+                            if (Character.isWhitespace(chars[counter + lastIndex])) {
                                 breakPoint = counter;
                                 break;
                             }
@@ -618,12 +607,10 @@ public abstract class AbstractWriter {
                         } else {
                             breakPoint += lastIndex;
                             if (chars[breakPoint] == NEWLINE) {
-                                output(chars, lastIndex, breakPoint++
-                                        - lastIndex);
+                                output(chars, lastIndex, breakPoint++ - lastIndex);
                                 forceNewLine = true;
                             } else {
-                                output(chars, lastIndex, ++breakPoint
-                                        - lastIndex);
+                                output(chars, lastIndex, ++breakPoint - lastIndex);
                                 needsNewline = true;
                             }
                         }
@@ -645,9 +632,9 @@ public abstract class AbstractWriter {
      * It throws an IOException when encountered.
      *
      * @param attr
-     *             an AttributeSet.
+     *        an AttributeSet.
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void writeAttributes(AttributeSet attr) throws IOException {
 
@@ -670,8 +657,7 @@ public abstract class AbstractWriter {
      *
      * @since 1.3
      */
-    protected void output(char[] content, int start, int length)
-            throws IOException {
+    protected void output(char[] content, int start, int length) throws IOException {
         getWriter().write(content, start, length);
         setCurrentLineLength(getCurrentLineLength() + length);
     }
@@ -679,8 +665,7 @@ public abstract class AbstractWriter {
     /**
      * Support method to locate an occurrence of a particular character.
      */
-    private int indexOf(char[] chars, char sChar, int startIndex,
-            int endIndex) {
+    private int indexOf(char[] chars, char sChar, int startIndex, int endIndex) {
         while (startIndex < endIndex) {
             if (chars[startIndex] == sChar) {
                 return startIndex;

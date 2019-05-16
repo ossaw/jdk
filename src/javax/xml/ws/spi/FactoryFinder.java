@@ -17,21 +17,18 @@ class FactoryFinder {
      * <code>ClassLoader</code> object.
      *
      * @exception WebServiceException
-     *                                if the given class could not be found or
-     *                                could not be
-     *                                instantiated
+     *            if the given class could not be found or
+     *            could not be
+     *            instantiated
      */
-    private static Object newInstance(String className,
-            ClassLoader classLoader) {
+    private static Object newInstance(String className, ClassLoader classLoader) {
         try {
             Class spiClass = safeLoadClass(className, classLoader);
             return spiClass.newInstance();
         } catch (ClassNotFoundException x) {
-            throw new WebServiceException("Provider " + className
-                    + " not found", x);
+            throw new WebServiceException("Provider " + className + " not found", x);
         } catch (Exception x) {
-            throw new WebServiceException("Provider " + className
-                    + " could not be instantiated: " + x, x);
+            throw new WebServiceException("Provider " + className + " could not be instantiated: " + x, x);
         }
     }
 
@@ -45,18 +42,17 @@ class FactoryFinder {
      *
      * @return the <code>Class</code> object of the specified message factory;
      *         may not be <code>null</code>
-     *
      * @param factoryId
-     *                          the name of the factory to find, which is a
-     *                          system property
+     *        the name of the factory to find, which is a
+     *        system property
      * @param fallbackClassName
-     *                          the implementation class name, which is to be
-     *                          used only if
-     *                          nothing else is found; <code>null</code> to
-     *                          indicate that
-     *                          there is no fallback class name
+     *        the implementation class name, which is to be
+     *        used only if
+     *        nothing else is found; <code>null</code> to
+     *        indicate that
+     *        there is no fallback class name
      * @exception WebServiceException
-     *                                if there is an error
+     *            if there is an error
      */
     static Object find(String factoryId, String fallbackClassName) {
         if (isOsgi()) {
@@ -89,8 +85,7 @@ class FactoryFinder {
                     return newInstance(factoryClassName, classLoader);
                 }
             }
-        } catch (Exception ignored) {
-        } finally {
+        } catch (Exception ignored) {} finally {
             close(rd);
         }
 
@@ -98,8 +93,7 @@ class FactoryFinder {
         FileInputStream inStream = null;
         try {
             String javah = System.getProperty("java.home");
-            String configFile = javah + File.separator + "lib" + File.separator
-                    + "jaxws.properties";
+            String configFile = javah + File.separator + "lib" + File.separator + "jaxws.properties";
             File f = new File(configFile);
             if (f.exists()) {
                 Properties props = new Properties();
@@ -108,8 +102,7 @@ class FactoryFinder {
                 String factoryClassName = props.getProperty(factoryId);
                 return newInstance(factoryClassName, classLoader);
             }
-        } catch (Exception ignored) {
-        } finally {
+        } catch (Exception ignored) {} finally {
             close(inStream);
         }
 
@@ -119,12 +112,10 @@ class FactoryFinder {
             if (systemProp != null) {
                 return newInstance(systemProp, classLoader);
             }
-        } catch (SecurityException ignored) {
-        }
+        } catch (SecurityException ignored) {}
 
         if (fallbackClassName == null) {
-            throw new WebServiceException("Provider for " + factoryId
-                    + " cannot be found", null);
+            throw new WebServiceException("Provider for " + factoryId + " cannot be found", null);
         }
 
         return newInstance(fallbackClassName, classLoader);
@@ -134,8 +125,7 @@ class FactoryFinder {
         if (closeable != null) {
             try {
                 closeable.close();
-            } catch (IOException ignored) {
-            }
+            } catch (IOException ignored) {}
         }
     }
 
@@ -143,8 +133,8 @@ class FactoryFinder {
      * Loads the class, provided that the calling thread has an access to the
      * class being loaded.
      */
-    private static Class safeLoadClass(String className,
-            ClassLoader classLoader) throws ClassNotFoundException {
+    private static Class safeLoadClass(String className, ClassLoader classLoader)
+            throws ClassNotFoundException {
         try {
             // make sure that the current thread has an access to the package of
             // the given name.
@@ -175,8 +165,7 @@ class FactoryFinder {
         try {
             Class.forName(OSGI_SERVICE_LOADER_CLASS_NAME);
             return true;
-        } catch (ClassNotFoundException ignored) {
-        }
+        } catch (ClassNotFoundException ignored) {}
         return false;
     }
 
@@ -187,10 +176,8 @@ class FactoryFinder {
             Class serviceClass = Class.forName(factoryId);
             Class[] args = new Class[] { serviceClass };
             Class target = Class.forName(OSGI_SERVICE_LOADER_CLASS_NAME);
-            java.lang.reflect.Method m = target.getMethod(
-                    "lookupProviderInstances", Class.class);
-            java.util.Iterator iter = ((Iterable) m.invoke(null,
-                    (Object[]) args)).iterator();
+            java.lang.reflect.Method m = target.getMethod("lookupProviderInstances", Class.class);
+            java.util.Iterator iter = ((Iterable) m.invoke(null, (Object[]) args)).iterator();
             return iter.hasNext() ? iter.next() : null;
         } catch (Exception ignored) {
             // log and continue

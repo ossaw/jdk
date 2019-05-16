@@ -92,10 +92,10 @@ public interface LSParserFilter {
      * reading in and filtering a document.
      * 
      * @param elementArg
-     *                   The newly encountered element. At the time this method
-     *                   is
-     *                   called, the element is incomplete - it will have its
-     *                   attributes, but no children.
+     *        The newly encountered element. At the time this method
+     *        is
+     *        called, the element is incomplete - it will have its
+     *        attributes, but no children.
      * @return
      *         <ul>
      *         <li><code>FILTER_ACCEPT</code> if the <code>Element</code> should
@@ -132,11 +132,11 @@ public interface LSParserFilter {
      * of its descendants.
      * 
      * @param nodeArg
-     *                The newly constructed element. At the time this method is
-     *                called, the element is complete - it has all of its
-     *                children
-     *                (and their children, recursively) and attributes, and is
-     *                attached as a child to its parent.
+     *        The newly constructed element. At the time this method is
+     *        called, the element is complete - it has all of its
+     *        children
+     *        (and their children, recursively) and attributes, and is
+     *        attached as a child to its parent.
      * @return
      *         <ul>
      *         <li><code>FILTER_ACCEPT</code> if this <code>Node</code> should

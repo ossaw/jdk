@@ -40,12 +40,10 @@ class Terminator {
         // System.exit()
         try {
             Signal.handle(new Signal("INT"), sh);
-        } catch (IllegalArgumentException e) {
-        }
+        } catch (IllegalArgumentException e) {}
         try {
             Signal.handle(new Signal("TERM"), sh);
-        } catch (IllegalArgumentException e) {
-        }
+        } catch (IllegalArgumentException e) {}
     }
 
     static void teardown() {

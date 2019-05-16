@@ -87,12 +87,12 @@ public interface CSS2Properties {
      * See the azimuth property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setAzimuth(String azimuth) throws DOMException;
 
@@ -105,12 +105,12 @@ public interface CSS2Properties {
      * See the background property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBackground(String background) throws DOMException;
 
@@ -123,15 +123,14 @@ public interface CSS2Properties {
      * See the background-attachment property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBackgroundAttachment(String backgroundAttachment)
-            throws DOMException;
+    public void setBackgroundAttachment(String backgroundAttachment) throws DOMException;
 
     /**
      * See the background-color property definition in CSS2.
@@ -142,12 +141,12 @@ public interface CSS2Properties {
      * See the background-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBackgroundColor(String backgroundColor) throws DOMException;
 
@@ -160,12 +159,12 @@ public interface CSS2Properties {
      * See the background-image property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBackgroundImage(String backgroundImage) throws DOMException;
 
@@ -178,15 +177,14 @@ public interface CSS2Properties {
      * See the background-position property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBackgroundPosition(String backgroundPosition)
-            throws DOMException;
+    public void setBackgroundPosition(String backgroundPosition) throws DOMException;
 
     /**
      * See the background-repeat property definition in CSS2.
@@ -197,15 +195,14 @@ public interface CSS2Properties {
      * See the background-repeat property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBackgroundRepeat(String backgroundRepeat)
-            throws DOMException;
+    public void setBackgroundRepeat(String backgroundRepeat) throws DOMException;
 
     /**
      * See the border property definition in CSS2.
@@ -216,12 +213,12 @@ public interface CSS2Properties {
      * See the border property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorder(String border) throws DOMException;
 
@@ -234,12 +231,12 @@ public interface CSS2Properties {
      * See the border-collapse property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderCollapse(String borderCollapse) throws DOMException;
 
@@ -252,12 +249,12 @@ public interface CSS2Properties {
      * See the border-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderColor(String borderColor) throws DOMException;
 
@@ -270,12 +267,12 @@ public interface CSS2Properties {
      * See the border-spacing property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderSpacing(String borderSpacing) throws DOMException;
 
@@ -288,12 +285,12 @@ public interface CSS2Properties {
      * See the border-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderStyle(String borderStyle) throws DOMException;
 
@@ -306,12 +303,12 @@ public interface CSS2Properties {
      * See the border-top property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderTop(String borderTop) throws DOMException;
 
@@ -324,12 +321,12 @@ public interface CSS2Properties {
      * See the border-right property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderRight(String borderRight) throws DOMException;
 
@@ -342,12 +339,12 @@ public interface CSS2Properties {
      * See the border-bottom property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderBottom(String borderBottom) throws DOMException;
 
@@ -360,12 +357,12 @@ public interface CSS2Properties {
      * See the border-left property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderLeft(String borderLeft) throws DOMException;
 
@@ -378,12 +375,12 @@ public interface CSS2Properties {
      * See the border-top-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderTopColor(String borderTopColor) throws DOMException;
 
@@ -396,15 +393,14 @@ public interface CSS2Properties {
      * See the border-right-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBorderRightColor(String borderRightColor)
-            throws DOMException;
+    public void setBorderRightColor(String borderRightColor) throws DOMException;
 
     /**
      * See the border-bottom-color property definition in CSS2.
@@ -415,15 +411,14 @@ public interface CSS2Properties {
      * See the border-bottom-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBorderBottomColor(String borderBottomColor)
-            throws DOMException;
+    public void setBorderBottomColor(String borderBottomColor) throws DOMException;
 
     /**
      * See the border-left-color property definition in CSS2.
@@ -434,12 +429,12 @@ public interface CSS2Properties {
      * See the border-left-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderLeftColor(String borderLeftColor) throws DOMException;
 
@@ -452,12 +447,12 @@ public interface CSS2Properties {
      * See the border-top-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderTopStyle(String borderTopStyle) throws DOMException;
 
@@ -470,15 +465,14 @@ public interface CSS2Properties {
      * See the border-right-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBorderRightStyle(String borderRightStyle)
-            throws DOMException;
+    public void setBorderRightStyle(String borderRightStyle) throws DOMException;
 
     /**
      * See the border-bottom-style property definition in CSS2.
@@ -489,15 +483,14 @@ public interface CSS2Properties {
      * See the border-bottom-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBorderBottomStyle(String borderBottomStyle)
-            throws DOMException;
+    public void setBorderBottomStyle(String borderBottomStyle) throws DOMException;
 
     /**
      * See the border-left-style property definition in CSS2.
@@ -508,12 +501,12 @@ public interface CSS2Properties {
      * See the border-left-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderLeftStyle(String borderLeftStyle) throws DOMException;
 
@@ -526,12 +519,12 @@ public interface CSS2Properties {
      * See the border-top-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderTopWidth(String borderTopWidth) throws DOMException;
 
@@ -544,15 +537,14 @@ public interface CSS2Properties {
      * See the border-right-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBorderRightWidth(String borderRightWidth)
-            throws DOMException;
+    public void setBorderRightWidth(String borderRightWidth) throws DOMException;
 
     /**
      * See the border-bottom-width property definition in CSS2.
@@ -563,15 +555,14 @@ public interface CSS2Properties {
      * See the border-bottom-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setBorderBottomWidth(String borderBottomWidth)
-            throws DOMException;
+    public void setBorderBottomWidth(String borderBottomWidth) throws DOMException;
 
     /**
      * See the border-left-width property definition in CSS2.
@@ -582,12 +573,12 @@ public interface CSS2Properties {
      * See the border-left-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderLeftWidth(String borderLeftWidth) throws DOMException;
 
@@ -600,12 +591,12 @@ public interface CSS2Properties {
      * See the border-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBorderWidth(String borderWidth) throws DOMException;
 
@@ -618,12 +609,12 @@ public interface CSS2Properties {
      * See the bottom property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setBottom(String bottom) throws DOMException;
 
@@ -636,12 +627,12 @@ public interface CSS2Properties {
      * See the caption-side property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCaptionSide(String captionSide) throws DOMException;
 
@@ -654,12 +645,12 @@ public interface CSS2Properties {
      * See the clear property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setClear(String clear) throws DOMException;
 
@@ -672,12 +663,12 @@ public interface CSS2Properties {
      * See the clip property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setClip(String clip) throws DOMException;
 
@@ -690,12 +681,12 @@ public interface CSS2Properties {
      * See the color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setColor(String color) throws DOMException;
 
@@ -708,12 +699,12 @@ public interface CSS2Properties {
      * See the content property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setContent(String content) throws DOMException;
 
@@ -726,15 +717,14 @@ public interface CSS2Properties {
      * See the counter-increment property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setCounterIncrement(String counterIncrement)
-            throws DOMException;
+    public void setCounterIncrement(String counterIncrement) throws DOMException;
 
     /**
      * See the counter-reset property definition in CSS2.
@@ -745,12 +735,12 @@ public interface CSS2Properties {
      * See the counter-reset property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCounterReset(String counterReset) throws DOMException;
 
@@ -763,12 +753,12 @@ public interface CSS2Properties {
      * See the cue property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCue(String cue) throws DOMException;
 
@@ -781,12 +771,12 @@ public interface CSS2Properties {
      * See the cue-after property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCueAfter(String cueAfter) throws DOMException;
 
@@ -799,12 +789,12 @@ public interface CSS2Properties {
      * See the cue-before property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCueBefore(String cueBefore) throws DOMException;
 
@@ -817,12 +807,12 @@ public interface CSS2Properties {
      * See the cursor property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCursor(String cursor) throws DOMException;
 
@@ -835,12 +825,12 @@ public interface CSS2Properties {
      * See the direction property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setDirection(String direction) throws DOMException;
 
@@ -853,12 +843,12 @@ public interface CSS2Properties {
      * See the display property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setDisplay(String display) throws DOMException;
 
@@ -871,12 +861,12 @@ public interface CSS2Properties {
      * See the elevation property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setElevation(String elevation) throws DOMException;
 
@@ -889,12 +879,12 @@ public interface CSS2Properties {
      * See the empty-cells property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setEmptyCells(String emptyCells) throws DOMException;
 
@@ -907,12 +897,12 @@ public interface CSS2Properties {
      * See the float property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setCssFloat(String cssFloat) throws DOMException;
 
@@ -925,12 +915,12 @@ public interface CSS2Properties {
      * See the font property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFont(String font) throws DOMException;
 
@@ -943,12 +933,12 @@ public interface CSS2Properties {
      * See the font-family property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontFamily(String fontFamily) throws DOMException;
 
@@ -961,12 +951,12 @@ public interface CSS2Properties {
      * See the font-size property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontSize(String fontSize) throws DOMException;
 
@@ -979,12 +969,12 @@ public interface CSS2Properties {
      * See the font-size-adjust property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontSizeAdjust(String fontSizeAdjust) throws DOMException;
 
@@ -997,12 +987,12 @@ public interface CSS2Properties {
      * See the font-stretch property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontStretch(String fontStretch) throws DOMException;
 
@@ -1015,12 +1005,12 @@ public interface CSS2Properties {
      * See the font-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontStyle(String fontStyle) throws DOMException;
 
@@ -1033,12 +1023,12 @@ public interface CSS2Properties {
      * See the font-variant property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontVariant(String fontVariant) throws DOMException;
 
@@ -1051,12 +1041,12 @@ public interface CSS2Properties {
      * See the font-weight property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setFontWeight(String fontWeight) throws DOMException;
 
@@ -1069,12 +1059,12 @@ public interface CSS2Properties {
      * See the height property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setHeight(String height) throws DOMException;
 
@@ -1087,12 +1077,12 @@ public interface CSS2Properties {
      * See the left property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setLeft(String left) throws DOMException;
 
@@ -1105,12 +1095,12 @@ public interface CSS2Properties {
      * See the letter-spacing property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setLetterSpacing(String letterSpacing) throws DOMException;
 
@@ -1123,12 +1113,12 @@ public interface CSS2Properties {
      * See the line-height property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setLineHeight(String lineHeight) throws DOMException;
 
@@ -1141,12 +1131,12 @@ public interface CSS2Properties {
      * See the list-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setListStyle(String listStyle) throws DOMException;
 
@@ -1159,12 +1149,12 @@ public interface CSS2Properties {
      * See the list-style-image property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setListStyleImage(String listStyleImage) throws DOMException;
 
@@ -1177,15 +1167,14 @@ public interface CSS2Properties {
      * See the list-style-position property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setListStylePosition(String listStylePosition)
-            throws DOMException;
+    public void setListStylePosition(String listStylePosition) throws DOMException;
 
     /**
      * See the list-style-type property definition in CSS2.
@@ -1196,12 +1185,12 @@ public interface CSS2Properties {
      * See the list-style-type property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setListStyleType(String listStyleType) throws DOMException;
 
@@ -1214,12 +1203,12 @@ public interface CSS2Properties {
      * See the margin property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMargin(String margin) throws DOMException;
 
@@ -1232,12 +1221,12 @@ public interface CSS2Properties {
      * See the margin-top property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMarginTop(String marginTop) throws DOMException;
 
@@ -1250,12 +1239,12 @@ public interface CSS2Properties {
      * See the margin-right property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMarginRight(String marginRight) throws DOMException;
 
@@ -1268,12 +1257,12 @@ public interface CSS2Properties {
      * See the margin-bottom property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMarginBottom(String marginBottom) throws DOMException;
 
@@ -1286,12 +1275,12 @@ public interface CSS2Properties {
      * See the margin-left property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMarginLeft(String marginLeft) throws DOMException;
 
@@ -1304,12 +1293,12 @@ public interface CSS2Properties {
      * See the marker-offset property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMarkerOffset(String markerOffset) throws DOMException;
 
@@ -1322,12 +1311,12 @@ public interface CSS2Properties {
      * See the marks property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMarks(String marks) throws DOMException;
 
@@ -1340,12 +1329,12 @@ public interface CSS2Properties {
      * See the max-height property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMaxHeight(String maxHeight) throws DOMException;
 
@@ -1358,12 +1347,12 @@ public interface CSS2Properties {
      * See the max-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMaxWidth(String maxWidth) throws DOMException;
 
@@ -1376,12 +1365,12 @@ public interface CSS2Properties {
      * See the min-height property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMinHeight(String minHeight) throws DOMException;
 
@@ -1394,12 +1383,12 @@ public interface CSS2Properties {
      * See the min-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setMinWidth(String minWidth) throws DOMException;
 
@@ -1412,12 +1401,12 @@ public interface CSS2Properties {
      * See the orphans property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setOrphans(String orphans) throws DOMException;
 
@@ -1430,12 +1419,12 @@ public interface CSS2Properties {
      * See the outline property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setOutline(String outline) throws DOMException;
 
@@ -1448,12 +1437,12 @@ public interface CSS2Properties {
      * See the outline-color property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setOutlineColor(String outlineColor) throws DOMException;
 
@@ -1466,12 +1455,12 @@ public interface CSS2Properties {
      * See the outline-style property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setOutlineStyle(String outlineStyle) throws DOMException;
 
@@ -1484,12 +1473,12 @@ public interface CSS2Properties {
      * See the outline-width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setOutlineWidth(String outlineWidth) throws DOMException;
 
@@ -1502,12 +1491,12 @@ public interface CSS2Properties {
      * See the overflow property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setOverflow(String overflow) throws DOMException;
 
@@ -1520,12 +1509,12 @@ public interface CSS2Properties {
      * See the padding property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPadding(String padding) throws DOMException;
 
@@ -1538,12 +1527,12 @@ public interface CSS2Properties {
      * See the padding-top property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPaddingTop(String paddingTop) throws DOMException;
 
@@ -1556,12 +1545,12 @@ public interface CSS2Properties {
      * See the padding-right property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPaddingRight(String paddingRight) throws DOMException;
 
@@ -1574,12 +1563,12 @@ public interface CSS2Properties {
      * See the padding-bottom property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPaddingBottom(String paddingBottom) throws DOMException;
 
@@ -1592,12 +1581,12 @@ public interface CSS2Properties {
      * See the padding-left property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPaddingLeft(String paddingLeft) throws DOMException;
 
@@ -1610,12 +1599,12 @@ public interface CSS2Properties {
      * See the page property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPage(String page) throws DOMException;
 
@@ -1628,12 +1617,12 @@ public interface CSS2Properties {
      * See the page-break-after property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPageBreakAfter(String pageBreakAfter) throws DOMException;
 
@@ -1646,12 +1635,12 @@ public interface CSS2Properties {
      * See the page-break-before property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPageBreakBefore(String pageBreakBefore) throws DOMException;
 
@@ -1664,12 +1653,12 @@ public interface CSS2Properties {
      * See the page-break-inside property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPageBreakInside(String pageBreakInside) throws DOMException;
 
@@ -1682,12 +1671,12 @@ public interface CSS2Properties {
      * See the pause property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPause(String pause) throws DOMException;
 
@@ -1700,12 +1689,12 @@ public interface CSS2Properties {
      * See the pause-after property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPauseAfter(String pauseAfter) throws DOMException;
 
@@ -1718,12 +1707,12 @@ public interface CSS2Properties {
      * See the pause-before property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPauseBefore(String pauseBefore) throws DOMException;
 
@@ -1736,12 +1725,12 @@ public interface CSS2Properties {
      * See the pitch property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPitch(String pitch) throws DOMException;
 
@@ -1754,12 +1743,12 @@ public interface CSS2Properties {
      * See the pitch-range property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPitchRange(String pitchRange) throws DOMException;
 
@@ -1772,12 +1761,12 @@ public interface CSS2Properties {
      * See the play-during property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPlayDuring(String playDuring) throws DOMException;
 
@@ -1790,12 +1779,12 @@ public interface CSS2Properties {
      * See the position property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setPosition(String position) throws DOMException;
 
@@ -1808,12 +1797,12 @@ public interface CSS2Properties {
      * See the quotes property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setQuotes(String quotes) throws DOMException;
 
@@ -1826,12 +1815,12 @@ public interface CSS2Properties {
      * See the richness property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setRichness(String richness) throws DOMException;
 
@@ -1844,12 +1833,12 @@ public interface CSS2Properties {
      * See the right property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setRight(String right) throws DOMException;
 
@@ -1862,12 +1851,12 @@ public interface CSS2Properties {
      * See the size property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setSize(String size) throws DOMException;
 
@@ -1880,12 +1869,12 @@ public interface CSS2Properties {
      * See the speak property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setSpeak(String speak) throws DOMException;
 
@@ -1898,12 +1887,12 @@ public interface CSS2Properties {
      * See the speak-header property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setSpeakHeader(String speakHeader) throws DOMException;
 
@@ -1916,12 +1905,12 @@ public interface CSS2Properties {
      * See the speak-numeral property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setSpeakNumeral(String speakNumeral) throws DOMException;
 
@@ -1934,15 +1923,14 @@ public interface CSS2Properties {
      * See the speak-punctuation property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setSpeakPunctuation(String speakPunctuation)
-            throws DOMException;
+    public void setSpeakPunctuation(String speakPunctuation) throws DOMException;
 
     /**
      * See the speech-rate property definition in CSS2.
@@ -1953,12 +1941,12 @@ public interface CSS2Properties {
      * See the speech-rate property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setSpeechRate(String speechRate) throws DOMException;
 
@@ -1971,12 +1959,12 @@ public interface CSS2Properties {
      * See the stress property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setStress(String stress) throws DOMException;
 
@@ -1989,12 +1977,12 @@ public interface CSS2Properties {
      * See the table-layout property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTableLayout(String tableLayout) throws DOMException;
 
@@ -2007,12 +1995,12 @@ public interface CSS2Properties {
      * See the text-align property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTextAlign(String textAlign) throws DOMException;
 
@@ -2025,12 +2013,12 @@ public interface CSS2Properties {
      * See the text-decoration property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTextDecoration(String textDecoration) throws DOMException;
 
@@ -2043,12 +2031,12 @@ public interface CSS2Properties {
      * See the text-indent property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTextIndent(String textIndent) throws DOMException;
 
@@ -2061,12 +2049,12 @@ public interface CSS2Properties {
      * See the text-shadow property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTextShadow(String textShadow) throws DOMException;
 
@@ -2079,12 +2067,12 @@ public interface CSS2Properties {
      * See the text-transform property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTextTransform(String textTransform) throws DOMException;
 
@@ -2097,12 +2085,12 @@ public interface CSS2Properties {
      * See the top property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setTop(String top) throws DOMException;
 
@@ -2115,12 +2103,12 @@ public interface CSS2Properties {
      * See the unicode-bidi property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setUnicodeBidi(String unicodeBidi) throws DOMException;
 
@@ -2133,12 +2121,12 @@ public interface CSS2Properties {
      * See the vertical-align property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setVerticalAlign(String verticalAlign) throws DOMException;
 
@@ -2151,12 +2139,12 @@ public interface CSS2Properties {
      * See the visibility property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setVisibility(String visibility) throws DOMException;
 
@@ -2169,12 +2157,12 @@ public interface CSS2Properties {
      * See the voice-family property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setVoiceFamily(String voiceFamily) throws DOMException;
 
@@ -2187,12 +2175,12 @@ public interface CSS2Properties {
      * See the volume property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setVolume(String volume) throws DOMException;
 
@@ -2205,12 +2193,12 @@ public interface CSS2Properties {
      * See the white-space property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setWhiteSpace(String whiteSpace) throws DOMException;
 
@@ -2223,12 +2211,12 @@ public interface CSS2Properties {
      * See the widows property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setWidows(String widows) throws DOMException;
 
@@ -2241,12 +2229,12 @@ public interface CSS2Properties {
      * See the width property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setWidth(String width) throws DOMException;
 
@@ -2259,12 +2247,12 @@ public interface CSS2Properties {
      * See the word-spacing property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setWordSpacing(String wordSpacing) throws DOMException;
 
@@ -2277,12 +2265,12 @@ public interface CSS2Properties {
      * See the z-index property definition in CSS2.
      * 
      * @exception DOMException
-     *                         SYNTAX_ERR: Raised if the new value has a syntax
-     *                         error and
-     *                         is unparsable. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            SYNTAX_ERR: Raised if the new value has a syntax
+     *            error and
+     *            is unparsable. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
     public void setZIndex(String zIndex) throws DOMException;
 

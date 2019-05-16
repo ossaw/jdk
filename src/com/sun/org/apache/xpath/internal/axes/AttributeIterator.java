@@ -35,12 +35,11 @@ public class AttributeIterator extends ChildTestIterator {
      * Create a AttributeIterator object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
-     *
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @throws javax.xml.transform.TransformerException
      */
     AttributeIterator(Compiler compiler, int opPos, int analysis)
@@ -52,8 +51,8 @@ public class AttributeIterator extends ChildTestIterator {
      * Get the next node via getFirstAttribute && getNextAttribute.
      */
     protected int getNextNode() {
-        m_lastFetched = (DTM.NULL == m_lastFetched) ? m_cdtm.getFirstAttribute(
-                m_context) : m_cdtm.getNextAttribute(m_lastFetched);
+        m_lastFetched = (DTM.NULL == m_lastFetched) ? m_cdtm.getFirstAttribute(m_context)
+                : m_cdtm.getNextAttribute(m_lastFetched);
         return m_lastFetched;
     }
 

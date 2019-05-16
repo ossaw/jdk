@@ -12,7 +12,6 @@ import javax.naming.NamingException;
 /**
  * Contains methods for registering/deregistering listeners to be notified of
  * events fired when objects named in a context changes.
- *
  * <h1>Target</h1> The name parameter in the <tt>addNamingListener()</tt>
  * methods is referred to as the <em>target</em>. The target, along with the
  * scope, identify the object(s) that the listener is interested in. It is
@@ -34,7 +33,6 @@ import javax.naming.NamingException;
  * <p>
  * An application can use the method <tt>targetMustExist()</tt> to check whether
  * a <tt>EventContext</tt> supports registration of nonexistent targets.
- *
  * <h1>Event Source</h1> The <tt>EventContext</tt> instance on which you invoke
  * the registration methods is the <em>event source</em> of the events that are
  * (potentially) generated. The source is <em>not necessarily</em> the object
@@ -81,7 +79,6 @@ import javax.naming.NamingException;
  * </ul>
  * Until that point, a <tt>EventContext</tt> instance that has outstanding
  * listeners will continue to exist and be maintained by the service provider.
- *
  * <h1>Listener Implementations</h1> The registration/deregistration methods
  * accept an instance of <tt>NamingListener</tt>. There are subinterfaces of
  * <tt>NamingListener</tt> for different of event types of <tt>NamingEvent</tt>.
@@ -92,9 +89,7 @@ import javax.naming.NamingException;
  * <tt>addNamingListener()</tt>. In addition to reducing the number of method
  * calls and possibly the code size of the listeners, this allows some service
  * providers to optimize the registration.
- *
  * <h1>Threading Issues</h1>
- *
  * Like <tt>Context</tt> instances in general, instances of
  * <tt>EventContext</tt> are not guaranteed to be thread-safe. Care must be
  * taken when multiple threads are accessing the same <tt>EventContext</tt>
@@ -135,7 +130,6 @@ public interface EventContext extends Context {
     /**
      * Adds a listener for receiving naming events fired when the object(s)
      * identified by a target and scope changes.
-     *
      * The event source of those events is this context. See the class
      * description for a discussion on event source and target. See the
      * descriptions of the constants <tt>OBJECT_SCOPE</tt>,
@@ -158,41 +152,38 @@ public interface EventContext extends Context {
      * information on threading issues.
      *
      * @param target
-     *               A nonnull name to be resolved relative to this context.
+     *        A nonnull name to be resolved relative to this context.
      * @param scope
-     *               One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
-     *               <tt>SUBTREE_SCOPE</tt>.
+     *        One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
+     *        <tt>SUBTREE_SCOPE</tt>.
      * @param l
-     *               The nonnull listener.
+     *        The nonnull listener.
      * @exception NamingException
-     *                            If a problem was encountered while adding the
-     *                            listener.
+     *            If a problem was encountered while adding the
+     *            listener.
      * @see #removeNamingListener
      */
-    void addNamingListener(Name target, int scope, NamingListener l)
-            throws NamingException;
+    void addNamingListener(Name target, int scope, NamingListener l) throws NamingException;
 
     /**
      * Adds a listener for receiving naming events fired when the object named
      * by the string target name and scope changes.
-     *
      * See the overload that accepts a <tt>Name</tt> for details.
      *
      * @param target
-     *               The nonnull string name of the object resolved relative to
-     *               this context.
+     *        The nonnull string name of the object resolved relative to
+     *        this context.
      * @param scope
-     *               One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
-     *               <tt>SUBTREE_SCOPE</tt>.
+     *        One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
+     *        <tt>SUBTREE_SCOPE</tt>.
      * @param l
-     *               The nonnull listener.
+     *        The nonnull listener.
      * @exception NamingException
-     *                            If a problem was encountered while adding the
-     *                            listener.
+     *            If a problem was encountered while adding the
+     *            listener.
      * @see #removeNamingListener
      */
-    void addNamingListener(String target, int scope, NamingListener l)
-            throws NamingException;
+    void addNamingListener(String target, int scope, NamingListener l) throws NamingException;
 
     /**
      * Removes a listener from receiving naming events fired by this
@@ -205,10 +196,10 @@ public interface EventContext extends Context {
      * this <tt>EventContext</tt> instance, this method does not do anything.
      *
      * @param l
-     *          The nonnull listener.
+     *        The nonnull listener.
      * @exception NamingException
-     *                            If a problem was encountered while removing
-     *                            the listener.
+     *            If a problem was encountered while removing
+     *            the listener.
      * @see #addNamingListener
      */
     void removeNamingListener(NamingListener l) throws NamingException;
@@ -220,9 +211,9 @@ public interface EventContext extends Context {
      * @return true if the target must exist; false if the target need not
      *         exist.
      * @exception NamingException
-     *                            If the context's behavior in this regard
-     *                            cannot be
-     *                            determined.
+     *            If the context's behavior in this regard
+     *            cannot be
+     *            determined.
      */
     boolean targetMustExist() throws NamingException;
 }

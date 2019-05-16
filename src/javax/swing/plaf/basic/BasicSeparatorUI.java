@@ -41,8 +41,7 @@ public class BasicSeparatorUI extends SeparatorUI {
     }
 
     protected void installDefaults(JSeparator s) {
-        LookAndFeel.installColors(s, "Separator.background",
-                "Separator.foreground");
+        LookAndFeel.installColors(s, "Separator.background", "Separator.foreground");
         LookAndFeel.installProperty(s, "opaque", Boolean.FALSE);
     }
 

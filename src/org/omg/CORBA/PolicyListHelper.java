@@ -18,8 +18,7 @@ package org.omg.CORBA;
 abstract public class PolicyListHelper {
     private static String _id = "IDL:omg.org/CORBA/PolicyList:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CORBA.Policy[] that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CORBA.Policy[] that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -35,11 +34,9 @@ abstract public class PolicyListHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.PolicyHelper.type();
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CORBA.PolicyListHelper.id(), "PolicyList",
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CORBA.PolicyListHelper.id(),
+                    "PolicyList", __typeCode);
         }
         return __typeCode;
     }
@@ -48,8 +45,7 @@ abstract public class PolicyListHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.Policy[] read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.Policy[] read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.CORBA.Policy value[] = null;
         int _len0 = istream.read_long();
         value = new org.omg.CORBA.Policy[_len0];
@@ -58,8 +54,7 @@ abstract public class PolicyListHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CORBA.Policy[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CORBA.Policy[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
             org.omg.CORBA.PolicyHelper.write(ostream, value[_i0]);

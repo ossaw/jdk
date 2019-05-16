@@ -44,13 +44,11 @@ public final class DnDConstants {
 
     /**
      * An <code>int</code> representing a &quot;link&quot; action.
-     *
      * The link verb is found in many, if not all native DnD platforms, and the
      * actual interpretation of LINK semantics is both platform and application
      * dependent. Broadly speaking, the semantic is "do not copy, or move the
      * operand, but create a reference to it". Defining the meaning of "
      * reference" is where ambiguity is introduced.
-     *
      * The verb is provided for completeness, but its use is not recommended for
      * DnD operations between logically distinct applications where
      * misinterpretation of the operations semantics could lead to confusing

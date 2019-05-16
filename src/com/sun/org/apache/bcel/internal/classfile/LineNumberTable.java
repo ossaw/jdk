@@ -71,8 +71,7 @@ public final class LineNumberTable extends Attribute {
      * references (shallow copy). Use copy() for a physical copy.
      */
     public LineNumberTable(LineNumberTable c) {
-        this(c.getNameIndex(), c.getLength(), c.getLineNumberTable(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getLineNumberTable(), c.getConstantPool());
     }
 
     /*
@@ -81,10 +80,9 @@ public final class LineNumberTable extends Attribute {
      * @param line_number_table Table of line/numbers pairs
      * @param constant_pool Array of constants
      */
-    public LineNumberTable(int name_index, int length,
-            LineNumber[] line_number_table, ConstantPool constant_pool) {
-        super(Constants.ATTR_LINE_NUMBER_TABLE, name_index, length,
-                constant_pool);
+    public LineNumberTable(int name_index, int length, LineNumber[] line_number_table,
+            ConstantPool constant_pool) {
+        super(Constants.ATTR_LINE_NUMBER_TABLE, name_index, length, constant_pool);
         setLineNumberTable(line_number_table);
     }
 
@@ -92,17 +90,17 @@ public final class LineNumberTable extends Attribute {
      * Construct object from file stream.
      * 
      * @param name_index
-     *                   Index of name
+     *        Index of name
      * @param length
-     *                   Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                   Input stream
+     *        Input stream
      * @throws IOException
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      */
-    LineNumberTable(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    LineNumberTable(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, (LineNumber[]) null, constant_pool);
         line_number_table_length = (file.readUnsignedShort());
         line_number_table = new LineNumber[line_number_table_length];
@@ -117,7 +115,7 @@ public final class LineNumberTable extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLineNumberTable(this);
@@ -127,7 +125,7 @@ public final class LineNumberTable extends Attribute {
      * Dump line number table attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -150,8 +148,7 @@ public final class LineNumberTable extends Attribute {
     public final void setLineNumberTable(LineNumber[] line_number_table) {
         this.line_number_table = line_number_table;
 
-        line_number_table_length = (line_number_table == null) ? 0
-                : line_number_table.length;
+        line_number_table_length = (line_number_table == null) ? 0 : line_number_table.length;
     }
 
     /**
@@ -183,7 +180,7 @@ public final class LineNumberTable extends Attribute {
      * Map byte code positions to source code lines.
      *
      * @param pos
-     *            byte code offset
+     *        byte code offset
      * @return corresponding line in source code
      */
     public int getSourceLine(int pos) {

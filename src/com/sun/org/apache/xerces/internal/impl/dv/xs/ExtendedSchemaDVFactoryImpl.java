@@ -28,9 +28,7 @@ import com.sun.org.apache.xerces.internal.util.SymbolHash;
  * dayTimeDuration
  *
  * @xerces.internal
- *
  * @author Khaled Noaman, IBM
- *
  * @version $Id: ExtendedSchemaDVFactoryImpl.java,v 1.2 2010-10-26 23:01:03
  *          joehw Exp $
  */
@@ -54,15 +52,12 @@ public class ExtendedSchemaDVFactoryImpl extends BaseSchemaDVFactory {
         fBuiltInTypes.put(ANYATOMICTYPE, XSSimpleTypeDecl.fAnyAtomicType);
 
         // add 2 duration types
-        XSSimpleTypeDecl durationDV = (XSSimpleTypeDecl) fBuiltInTypes.get(
-                DURATION);
-        fBuiltInTypes.put(YEARMONTHDURATION, new XSSimpleTypeDecl(durationDV,
-                YEARMONTHDURATION, XSSimpleTypeDecl.DV_YEARMONTHDURATION,
-                XSSimpleType.ORDERED_PARTIAL, false, false, false, true,
-                XSSimpleTypeDecl.YEARMONTHDURATION_DT));
-        fBuiltInTypes.put(DAYTIMEDURATION, new XSSimpleTypeDecl(durationDV,
-                DAYTIMEDURATION, XSSimpleTypeDecl.DV_DAYTIMEDURATION,
-                XSSimpleType.ORDERED_PARTIAL, false, false, false, true,
+        XSSimpleTypeDecl durationDV = (XSSimpleTypeDecl) fBuiltInTypes.get(DURATION);
+        fBuiltInTypes.put(YEARMONTHDURATION, new XSSimpleTypeDecl(durationDV, YEARMONTHDURATION,
+                XSSimpleTypeDecl.DV_YEARMONTHDURATION, XSSimpleType.ORDERED_PARTIAL, false, false, false,
+                true, XSSimpleTypeDecl.YEARMONTHDURATION_DT));
+        fBuiltInTypes.put(DAYTIMEDURATION, new XSSimpleTypeDecl(durationDV, DAYTIMEDURATION,
+                XSSimpleTypeDecl.DV_DAYTIMEDURATION, XSSimpleType.ORDERED_PARTIAL, false, false, false, true,
                 XSSimpleTypeDecl.DAYTIMEDURATION_DT));
     } // createBuiltInTypes()
 
@@ -74,7 +69,7 @@ public class ExtendedSchemaDVFactoryImpl extends BaseSchemaDVFactory {
      * base of anySimpleType. It needs to be changed as per the decision taken.
      *
      * @param name
-     *             the name of the datatype
+     *        the name of the datatype
      * @return the datatype validator of the given name
      */
     public XSSimpleType getBuiltInType(String name) {

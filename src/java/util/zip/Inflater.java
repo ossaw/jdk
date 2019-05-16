@@ -12,11 +12,9 @@ package java.util.zip;
  * patents. It is fully described in the specifications at the
  * <a href="package-summary.html#package_description">java.util.zip package
  * description</a>.
- *
  * <p>
  * The following code fragment demonstrates a trivial compression and
  * decompression of a string using <tt>Deflater</tt> and <tt>Inflater</tt>.
- *
  * <blockquote>
  * 
  * <pre>
@@ -52,7 +50,6 @@ package java.util.zip;
  *
  * @see Deflater
  * @author David Connelly
- *
  */
 public class Inflater {
 
@@ -81,7 +78,7 @@ public class Inflater {
      * in order to support certain optimizations.
      *
      * @param nowrap
-     *               if true then support GZIP compatible compression
+     *        if true then support GZIP compatible compression
      */
     public Inflater(boolean nowrap) {
         zsRef = new ZStreamRef(init(nowrap));
@@ -99,11 +96,11 @@ public class Inflater {
      * returns true indicating that more input data is required.
      * 
      * @param b
-     *            the input data bytes
+     *        the input data bytes
      * @param off
-     *            the start offset of the input data
+     *        the start offset of the input data
      * @param len
-     *            the length of the input data
+     *        the length of the input data
      * @see Inflater#needsInput
      */
     public void setInput(byte[] b, int off, int len) {
@@ -125,7 +122,7 @@ public class Inflater {
      * returns true indicating that more input data is required.
      * 
      * @param b
-     *          the input data bytes
+     *        the input data bytes
      * @see Inflater#needsInput
      */
     public void setInput(byte[] b) {
@@ -139,11 +136,11 @@ public class Inflater {
      * to get the Adler-32 value of the dictionary needed.
      * 
      * @param b
-     *            the dictionary data bytes
+     *        the dictionary data bytes
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the length of the data
+     *        the length of the data
      * @see Inflater#needsDictionary
      * @see Inflater#getAdler
      */
@@ -168,7 +165,7 @@ public class Inflater {
      * to get the Adler-32 value of the dictionary needed.
      * 
      * @param b
-     *          the dictionary data bytes
+     *        the dictionary data bytes
      * @see Inflater#needsDictionary
      * @see Inflater#getAdler
      */
@@ -232,14 +229,14 @@ public class Inflater {
      * can be used to get the Adler-32 value of the dictionary required.
      * 
      * @param b
-     *            the buffer for the uncompressed data
+     *        the buffer for the uncompressed data
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the maximum number of uncompressed bytes
+     *        the maximum number of uncompressed bytes
      * @return the actual number of uncompressed bytes
      * @exception DataFormatException
-     *                                if the compressed data format is invalid
+     *            if the compressed data format is invalid
      * @see Inflater#needsInput
      * @see Inflater#needsDictionary
      */
@@ -268,10 +265,10 @@ public class Inflater {
      * can be used to get the Adler-32 value of the dictionary required.
      * 
      * @param b
-     *          the buffer for the uncompressed data
+     *        the buffer for the uncompressed data
      * @return the actual number of uncompressed bytes
      * @exception DataFormatException
-     *                                if the compressed data format is invalid
+     *            if the compressed data format is invalid
      * @see Inflater#needsInput
      * @see Inflater#needsDictionary
      */
@@ -293,7 +290,6 @@ public class Inflater {
 
     /**
      * Returns the total number of compressed bytes input so far.
-     *
      * <p>
      * Since the number of bytes may be greater than Integer.MAX_VALUE, the
      * {@link #getBytesRead()} method is now the preferred means of obtaining
@@ -321,7 +317,6 @@ public class Inflater {
 
     /**
      * Returns the total number of uncompressed bytes output so far.
-     *
      * <p>
      * Since the number of bytes may be greater than Integer.MAX_VALUE, the
      * {@link #getBytesWritten()} method is now the preferred means of obtaining
@@ -403,11 +398,9 @@ public class Inflater {
 
     private native static long init(boolean nowrap);
 
-    private native static void setDictionary(long addr, byte[] b, int off,
-            int len);
+    private native static void setDictionary(long addr, byte[] b, int off, int len);
 
-    private native int inflateBytes(long addr, byte[] b, int off, int len)
-            throws DataFormatException;
+    private native int inflateBytes(long addr, byte[] b, int off, int len) throws DataFormatException;
 
     private native static int getAdler(long addr);
 

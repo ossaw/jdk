@@ -31,8 +31,7 @@ import javax.xml.namespace.QName;
  * 
  * <PRE>
  * Detail d = sf.getDetail();
- * Name name = se.createName("GetLastTradePrice", "WOMBAT",
- *         "http://www.wombat.org/trader");
+ * Name name = se.createName("GetLastTradePrice", "WOMBAT", "http://www.wombat.org/trader");
  * d.addDetailEntry(name);
  * Iterator it = d.getDetailEntries();
  * </PRE>
@@ -44,14 +43,12 @@ public interface Detail extends SOAPFaultElement {
      * adds it to this <code>Detail</code> object.
      *
      * @param name
-     *             a <code>Name</code> object identifying the new
-     *             <code>DetailEntry</code> object
-     *
+     *        a <code>Name</code> object identifying the new
+     *        <code>DetailEntry</code> object
      * @exception SOAPException
-     *                          thrown when there is a problem in adding a
-     *                          DetailEntry
-     *                          object to this Detail object.
-     *
+     *            thrown when there is a problem in adding a
+     *            DetailEntry
+     *            object to this Detail object.
      * @see Detail#addDetailEntry(QName qname)
      */
     public DetailEntry addDetailEntry(Name name) throws SOAPException;
@@ -62,14 +59,12 @@ public interface Detail extends SOAPFaultElement {
      * over the one using Name.
      *
      * @param qname
-     *              a <code>QName</code> object identifying the new
-     *              <code>DetailEntry</code> object
-     *
+     *        a <code>QName</code> object identifying the new
+     *        <code>DetailEntry</code> object
      * @exception SOAPException
-     *                          thrown when there is a problem in adding a
-     *                          DetailEntry
-     *                          object to this Detail object.
-     *
+     *            thrown when there is a problem in adding a
+     *            DetailEntry
+     *            object to this Detail object.
      * @see Detail#addDetailEntry(Name name)
      * @since SAAJ 1.3
      */

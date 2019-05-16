@@ -11,7 +11,6 @@ import java.util.Set;
  * File attributes associated with files on file systems used by operating
  * systems that implement the Portable Operating System Interface (POSIX) family
  * of standards.
- *
  * <p>
  * The POSIX attributes of a file are retrieved using a
  * {@link PosixFileAttributeView} by invoking its
@@ -25,7 +24,6 @@ public interface PosixFileAttributes extends BasicFileAttributes {
      * Returns the owner of the file.
      *
      * @return the file owner
-     *
      * @see PosixFileAttributeView#setOwner
      */
     UserPrincipal owner();
@@ -34,7 +32,6 @@ public interface PosixFileAttributes extends BasicFileAttributes {
      * Returns the group owner of the file.
      *
      * @return the file group owner
-     *
      * @see PosixFileAttributeView#setGroup
      */
     GroupPrincipal group();
@@ -47,7 +44,6 @@ public interface PosixFileAttributes extends BasicFileAttributes {
      * setPermissions} method to update the file's permissions.
      *
      * @return the file permissions
-     *
      * @see PosixFileAttributeView#setPermissions
      */
     Set<PosixFilePermission> permissions();

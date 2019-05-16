@@ -59,7 +59,6 @@ import sun.util.calendar.CalendarDate;
  * eras are supported; dates before Meiji 6, January 1 are not supported.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
 public final class JapaneseEra implements Era, Serializable {
@@ -74,26 +73,22 @@ public final class JapaneseEra implements Era, Serializable {
      * The singleton instance for the 'Meiji' era (1868-01-01 - 1912-07-29)
      * which has the value -1.
      */
-    public static final JapaneseEra MEIJI = new JapaneseEra(-1, LocalDate.of(
-            1868, 1, 1));
+    public static final JapaneseEra MEIJI = new JapaneseEra(-1, LocalDate.of(1868, 1, 1));
     /**
      * The singleton instance for the 'Taisho' era (1912-07-30 - 1926-12-24)
      * which has the value 0.
      */
-    public static final JapaneseEra TAISHO = new JapaneseEra(0, LocalDate.of(
-            1912, 7, 30));
+    public static final JapaneseEra TAISHO = new JapaneseEra(0, LocalDate.of(1912, 7, 30));
     /**
      * The singleton instance for the 'Showa' era (1926-12-25 - 1989-01-07)
      * which has the value 1.
      */
-    public static final JapaneseEra SHOWA = new JapaneseEra(1, LocalDate.of(
-            1926, 12, 25));
+    public static final JapaneseEra SHOWA = new JapaneseEra(1, LocalDate.of(1926, 12, 25));
     /**
      * The singleton instance for the 'Heisei' era (1989-01-08 - current) which
      * has the value 2.
      */
-    public static final JapaneseEra HEISEI = new JapaneseEra(2, LocalDate.of(
-            1989, 1, 8));
+    public static final JapaneseEra HEISEI = new JapaneseEra(2, LocalDate.of(1989, 1, 8));
 
     // the number of defined JapaneseEra constants.
     // There could be an extra era defined in its configuration.
@@ -117,8 +112,7 @@ public final class JapaneseEra implements Era, Serializable {
         KNOWN_ERAS[3] = HEISEI;
         for (int i = N_ERA_CONSTANTS; i < ERA_CONFIG.length; i++) {
             CalendarDate date = ERA_CONFIG[i].getSinceDate();
-            LocalDate isoDate = LocalDate.of(date.getYear(), date.getMonth(),
-                    date.getDayOfMonth());
+            LocalDate isoDate = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());
             KNOWN_ERAS[i] = new JapaneseEra(i - ERA_OFFSET + 1, isoDate);
         }
     };
@@ -137,11 +131,11 @@ public final class JapaneseEra implements Era, Serializable {
      * Creates an instance.
      *
      * @param eraValue
-     *                 the era value, validated
+     *        the era value, validated
      * @param since
-     *                 the date representing the first date of the era,
-     *                 validated not
-     *                 null
+     *        the date representing the first date of the era,
+     *        validated not
+     *        null
      */
     private JapaneseEra(int eraValue, LocalDate since) {
         this.eraValue = eraValue;
@@ -169,14 +163,13 @@ public final class JapaneseEra implements Era, Serializable {
      * eras are supported.
      *
      * @param japaneseEra
-     *                    the era to represent
+     *        the era to represent
      * @return the {@code JapaneseEra} singleton, not null
      * @throws DateTimeException
-     *                           if the value is invalid
+     *         if the value is invalid
      */
     public static JapaneseEra of(int japaneseEra) {
-        if (japaneseEra < MEIJI.eraValue || japaneseEra
-                + ERA_OFFSET > KNOWN_ERAS.length) {
+        if (japaneseEra < MEIJI.eraValue || japaneseEra + ERA_OFFSET > KNOWN_ERAS.length) {
             throw new DateTimeException("Invalid era: " + japaneseEra);
         }
         return KNOWN_ERAS[ordinal(japaneseEra)];
@@ -189,11 +182,11 @@ public final class JapaneseEra implements Era, Serializable {
      * characters are not permitted.)
      *
      * @param japaneseEra
-     *                    the japaneseEra name; non-null
+     *        the japaneseEra name; non-null
      * @return the {@code JapaneseEra} singleton, never null
      * @throws IllegalArgumentException
-     *                                  if there is not JapaneseEra with the
-     *                                  specified name
+     *         if there is not JapaneseEra with the
+     *         specified name
      */
     public static JapaneseEra valueOf(String japaneseEra) {
         Objects.requireNonNull(japaneseEra, "japaneseEra");
@@ -226,13 +219,12 @@ public final class JapaneseEra implements Era, Serializable {
      * Obtains an instance of {@code JapaneseEra} from a date.
      *
      * @param date
-     *             the date, not null
+     *        the date, not null
      * @return the Era singleton, never null
      */
     static JapaneseEra from(LocalDate date) {
         if (date.isBefore(MEIJI_6_ISODATE)) {
-            throw new DateTimeException(
-                    "JapaneseDate before Meiji 6 are not supported");
+            throw new DateTimeException("JapaneseDate before Meiji 6 are not supported");
         }
         for (int i = KNOWN_ERAS.length - 1; i > 0; i--) {
             JapaneseEra era = KNOWN_ERAS[i];
@@ -267,7 +259,7 @@ public final class JapaneseEra implements Era, Serializable {
      * valid Era number, -1..2.
      *
      * @param eraValue
-     *                 the era value to convert to the index
+     *        the era value to convert to the index
      * @return the index of the current Era
      */
     private static int ordinal(int eraValue) {
@@ -312,13 +304,13 @@ public final class JapaneseEra implements Era, Serializable {
      * of the Japanese calendar system.
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      */
     @Override // override as super would return range from 0 to 1
     public ValueRange range(TemporalField field) {
@@ -351,13 +343,12 @@ public final class JapaneseEra implements Era, Serializable {
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     // -----------------------------------------------------------------------

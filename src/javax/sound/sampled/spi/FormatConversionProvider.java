@@ -56,13 +56,12 @@ public abstract class FormatConversionProvider {
      * specified source format encoding.
      * 
      * @param sourceEncoding
-     *                       the source format encoding for which support is
-     *                       queried
+     *        the source format encoding for which support is
+     *        queried
      * @return <code>true</code> if the encoding is supported, otherwise
      *         <code>false</code>
      */
-    public boolean isSourceEncodingSupported(
-            AudioFormat.Encoding sourceEncoding) {
+    public boolean isSourceEncodingSupported(AudioFormat.Encoding sourceEncoding) {
 
         AudioFormat.Encoding sourceEncodings[] = getSourceEncodings();
 
@@ -79,13 +78,12 @@ public abstract class FormatConversionProvider {
      * specified target format encoding.
      * 
      * @param targetEncoding
-     *                       the target format encoding for which support is
-     *                       queried
+     *        the target format encoding for which support is
+     *        queried
      * @return <code>true</code> if the encoding is supported, otherwise
      *         <code>false</code>
      */
-    public boolean isTargetEncodingSupported(
-            AudioFormat.Encoding targetEncoding) {
+    public boolean isTargetEncodingSupported(AudioFormat.Encoding targetEncoding) {
 
         AudioFormat.Encoding targetEncodings[] = getTargetEncodings();
 
@@ -103,28 +101,25 @@ public abstract class FormatConversionProvider {
      * are supported for this source format, an array of length 0 is returned.
      * 
      * @param sourceFormat
-     *                     format of the incoming data
+     *        format of the incoming data
      * @return array of supported target format encodings.
      */
-    public abstract AudioFormat.Encoding[] getTargetEncodings(
-            AudioFormat sourceFormat);
+    public abstract AudioFormat.Encoding[] getTargetEncodings(AudioFormat sourceFormat);
 
     /**
      * Indicates whether the format converter supports conversion to a
      * particular encoding from a particular format.
      * 
      * @param targetEncoding
-     *                       desired encoding of the outgoing data
+     *        desired encoding of the outgoing data
      * @param sourceFormat
-     *                       format of the incoming data
+     *        format of the incoming data
      * @return <code>true</code> if the conversion is supported, otherwise
      *         <code>false</code>
      */
-    public boolean isConversionSupported(AudioFormat.Encoding targetEncoding,
-            AudioFormat sourceFormat) {
+    public boolean isConversionSupported(AudioFormat.Encoding targetEncoding, AudioFormat sourceFormat) {
 
-        AudioFormat.Encoding targetEncodings[] = getTargetEncodings(
-                sourceFormat);
+        AudioFormat.Encoding targetEncodings[] = getTargetEncodings(sourceFormat);
 
         for (int i = 0; i < targetEncodings.length; i++) {
             if (targetEncoding.equals(targetEncodings[i])) {
@@ -140,30 +135,28 @@ public abstract class FormatConversionProvider {
      * are supported for this source format, an array of length 0 is returned.
      * 
      * @param targetEncoding
-     *                       desired encoding of the stream after processing
+     *        desired encoding of the stream after processing
      * @param sourceFormat
-     *                       format of the incoming data
+     *        format of the incoming data
      * @return array of supported target formats.
      */
-    public abstract AudioFormat[] getTargetFormats(
-            AudioFormat.Encoding targetEncoding, AudioFormat sourceFormat);
+    public abstract AudioFormat[] getTargetFormats(AudioFormat.Encoding targetEncoding,
+            AudioFormat sourceFormat);
 
     /**
      * Indicates whether the format converter supports conversion to one
      * particular format from another.
      * 
      * @param targetFormat
-     *                     desired format of outgoing data
+     *        desired format of outgoing data
      * @param sourceFormat
-     *                     format of the incoming data
+     *        format of the incoming data
      * @return <code>true</code> if the conversion is supported, otherwise
      *         <code>false</code>
      */
-    public boolean isConversionSupported(AudioFormat targetFormat,
-            AudioFormat sourceFormat) {
+    public boolean isConversionSupported(AudioFormat targetFormat, AudioFormat sourceFormat) {
 
-        AudioFormat targetFormats[] = getTargetFormats(targetFormat
-                .getEncoding(), sourceFormat);
+        AudioFormat targetFormats[] = getTargetFormats(targetFormat.getEncoding(), sourceFormat);
 
         for (int i = 0; i < targetFormats.length; i++) {
             if (targetFormat.matches(targetFormats[i])) {
@@ -178,34 +171,34 @@ public abstract class FormatConversionProvider {
      * audio input stream.
      * 
      * @param targetEncoding
-     *                       desired encoding of the stream after processing
+     *        desired encoding of the stream after processing
      * @param sourceStream
-     *                       stream from which data to be processed should be
-     *                       read
+     *        stream from which data to be processed should be
+     *        read
      * @return stream from which processed data with the specified target
      *         encoding may be read
      * @throws IllegalArgumentException
-     *                                  if the format combination supplied is
-     *                                  not supported.
+     *         if the format combination supplied is
+     *         not supported.
      */
-    public abstract AudioInputStream getAudioInputStream(
-            AudioFormat.Encoding targetEncoding, AudioInputStream sourceStream);
+    public abstract AudioInputStream getAudioInputStream(AudioFormat.Encoding targetEncoding,
+            AudioInputStream sourceStream);
 
     /**
      * Obtains an audio input stream with the specified format from the given
      * audio input stream.
      * 
      * @param targetFormat
-     *                     desired data format of the stream after processing
+     *        desired data format of the stream after processing
      * @param sourceStream
-     *                     stream from which data to be processed should be read
+     *        stream from which data to be processed should be read
      * @return stream from which processed data with the specified format may be
      *         read
      * @throws IllegalArgumentException
-     *                                  if the format combination supplied is
-     *                                  not supported.
+     *         if the format combination supplied is
+     *         not supported.
      */
-    public abstract AudioInputStream getAudioInputStream(
-            AudioFormat targetFormat, AudioInputStream sourceStream);
+    public abstract AudioInputStream getAudioInputStream(AudioFormat targetFormat,
+            AudioInputStream sourceStream);
 
 }

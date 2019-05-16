@@ -27,7 +27,7 @@ public class RuntimeOperationsException extends JMRuntimeException {
      * <CODE>java.lang.RuntimeException</CODE>.
      *
      * @param e
-     *          the wrapped exception.
+     *        the wrapped exception.
      */
     public RuntimeOperationsException(java.lang.RuntimeException e) {
         super();
@@ -39,12 +39,11 @@ public class RuntimeOperationsException extends JMRuntimeException {
      * <CODE>java.lang.RuntimeException</CODE> with a detailed message.
      *
      * @param e
-     *                the wrapped exception.
+     *        the wrapped exception.
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
-    public RuntimeOperationsException(java.lang.RuntimeException e,
-            String message) {
+    public RuntimeOperationsException(java.lang.RuntimeException e, String message) {
         super(message);
         runtimeException = e;
     }

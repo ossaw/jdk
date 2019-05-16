@@ -57,7 +57,7 @@ public interface Element extends Node {
      * Retrieves an attribute value by name.
      * 
      * @param name
-     *             The name of the attribute to retrieve.
+     *        The name of the attribute to retrieve.
      * @return The <code>Attr</code> value as a string, or the empty string if
      *         that attribute does not have a specified or default value.
      */
@@ -79,19 +79,19 @@ public interface Element extends Node {
      * <code>setAttributeNS</code> method.
      * 
      * @param name
-     *              The name of the attribute to create or alter.
+     *        The name of the attribute to create or alter.
      * @param value
-     *              Value to set in string form.
+     *        Value to set in string form.
      * @exception DOMException
-     *                         INVALID_CHARACTER_ERR: Raised if the specified
-     *                         name is not
-     *                         an XML name according to the XML version in use
-     *                         specified
-     *                         in the <code>Document.xmlVersion</code>
-     *                         attribute. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly.
+     *            INVALID_CHARACTER_ERR: Raised if the specified
+     *            name is not
+     *            an XML name according to the XML version in use
+     *            specified
+     *            in the <code>Document.xmlVersion</code>
+     *            attribute. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly.
      */
     public void setAttribute(String name, String value) throws DOMException;
 
@@ -108,11 +108,11 @@ public interface Element extends Node {
      * <code>removeAttributeNS</code> method.
      * 
      * @param name
-     *             The name of the attribute to remove.
+     *        The name of the attribute to remove.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly.
      */
     public void removeAttribute(String name) throws DOMException;
 
@@ -122,8 +122,8 @@ public interface Element extends Node {
      * the <code>getAttributeNodeNS</code> method.
      * 
      * @param name
-     *             The name (<code>nodeName</code>) of the attribute to
-     *             retrieve.
+     *        The name (<code>nodeName</code>) of the attribute to
+     *        retrieve.
      * @return The <code>Attr</code> node with the specified name (
      *         <code>nodeName</code>) or <code>null</code> if there is no such
      *         attribute.
@@ -138,26 +138,26 @@ public interface Element extends Node {
      * the <code>setAttributeNodeNS</code> method.
      * 
      * @param newAttr
-     *                The <code>Attr</code> node to add to the attribute list.
+     *        The <code>Attr</code> node to add to the attribute list.
      * @return If the <code>newAttr</code> attribute replaces an existing
      *         attribute, the replaced <code>Attr</code> node is returned,
      *         otherwise <code>null</code> is returned.
      * @exception DOMException
-     *                         WRONG_DOCUMENT_ERR: Raised if
-     *                         <code>newAttr</code> was
-     *                         created from a different document than the one
-     *                         that
-     *                         created the element. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         INUSE_ATTRIBUTE_ERR: Raised if
-     *                         <code>newAttr</code> is
-     *                         already an attribute of another
-     *                         <code>Element</code>
-     *                         object. The DOM user must explicitly clone
-     *                         <code>Attr</code> nodes to re-use them in other
-     *                         elements.
+     *            WRONG_DOCUMENT_ERR: Raised if
+     *            <code>newAttr</code> was
+     *            created from a different document than the one
+     *            that
+     *            created the element. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            INUSE_ATTRIBUTE_ERR: Raised if
+     *            <code>newAttr</code> is
+     *            already an attribute of another
+     *            <code>Element</code>
+     *            object. The DOM user must explicitly clone
+     *            <code>Attr</code> nodes to re-use them in other
+     *            elements.
      */
     public Attr setAttributeNode(Attr newAttr) throws DOMException;
 
@@ -171,16 +171,16 @@ public interface Element extends Node {
      * information is up-to-date.
      * 
      * @param oldAttr
-     *                The <code>Attr</code> node to remove from the attribute
-     *                list.
+     *        The <code>Attr</code> node to remove from the attribute
+     *        list.
      * @return The <code>Attr</code> node that was removed.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if <code>oldAttr</code> is
-     *                         not an
-     *                         attribute of the element.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NOT_FOUND_ERR: Raised if <code>oldAttr</code> is
+     *            not an
+     *            attribute of the element.
      */
     public Attr removeAttributeNode(Attr oldAttr) throws DOMException;
 
@@ -189,9 +189,9 @@ public interface Element extends Node {
      * with a given tag name, in document order.
      * 
      * @param name
-     *             The name of the tag to match on. The special value "*"
-     *             matches
-     *             all tags.
+     *        The name of the tag to match on. The special value "*"
+     *        matches
+     *        all tags.
      * @return A list of matching <code>Element</code> nodes.
      */
     public NodeList getElementsByTagName(String name);
@@ -204,26 +204,25 @@ public interface Element extends Node {
      * no namespace.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the attribute to retrieve.
+     *        The namespace URI of the attribute to retrieve.
      * @param localName
-     *                     The local name of the attribute to retrieve.
+     *        The local name of the attribute to retrieve.
      * @return The <code>Attr</code> value as a string, or the empty string if
      *         that attribute does not have a specified or default value.
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
-    public String getAttributeNS(String namespaceURI, String localName)
-            throws DOMException;
+    public String getAttributeNS(String namespaceURI, String localName) throws DOMException;
 
     /**
      * Adds a new attribute. If an attribute with the same local name and
@@ -245,63 +244,62 @@ public interface Element extends Node {
      * no namespace.
      * 
      * @param namespaceURI
-     *                      The namespace URI of the attribute to create or
-     *                      alter.
+     *        The namespace URI of the attribute to create or
+     *        alter.
      * @param qualifiedName
-     *                      The qualified name of the attribute to create or
-     *                      alter.
+     *        The qualified name of the attribute to create or
+     *        alter.
      * @param value
-     *                      The value to set in string form.
+     *        The value to set in string form.
      * @exception DOMException
-     *                         INVALID_CHARACTER_ERR: Raised if the specified
-     *                         qualified
-     *                         name is not an XML name according to the XML
-     *                         version in
-     *                         use specified in the
-     *                         <code>Document.xmlVersion</code>
-     *                         attribute. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NAMESPACE_ERR: Raised if the
-     *                         <code>qualifiedName</code> is
-     *                         malformed per the Namespaces in XML
-     *                         specification, if the
-     *                         <code>qualifiedName</code> has a prefix and the
-     *                         <code>namespaceURI</code> is <code>null</code>,
-     *                         if the
-     *                         <code>qualifiedName</code> has a prefix that is
-     *                         "xml" and
-     *                         the <code>namespaceURI</code> is different from "
-     *                         <a href='http://www.w3.org/XML/1998/namespace'>
-     *                         http://www
-     *                         .w3.org/XML/1998/namespace</a>
-     *                         ", if the <code>qualifiedName</code> or its
-     *                         prefix is "
-     *                         xmlns" and the <code>namespaceURI</code> is
-     *                         different from
-     *                         "<a href=
-     *                         'http://www.w3.org/2000/xmlns/'>http://www.w3.org/2000/xmlns/</a>"
-     *                         , or if the <code>namespaceURI</code> is
-     *                         "<a href=
-     *                         'http://www.w3.org/2000/xmlns/'>http://www.w3.org/2000/xmlns/</a>"
-     *                         and neither the <code>qualifiedName</code> nor
-     *                         its prefix
-     *                         is "xmlns". <br>
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            INVALID_CHARACTER_ERR: Raised if the specified
+     *            qualified
+     *            name is not an XML name according to the XML
+     *            version in
+     *            use specified in the
+     *            <code>Document.xmlVersion</code>
+     *            attribute. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NAMESPACE_ERR: Raised if the
+     *            <code>qualifiedName</code> is
+     *            malformed per the Namespaces in XML
+     *            specification, if the
+     *            <code>qualifiedName</code> has a prefix and the
+     *            <code>namespaceURI</code> is <code>null</code>,
+     *            if the
+     *            <code>qualifiedName</code> has a prefix that is
+     *            "xml" and
+     *            the <code>namespaceURI</code> is different from "
+     *            <a href='http://www.w3.org/XML/1998/namespace'>
+     *            http://www
+     *            .w3.org/XML/1998/namespace</a>
+     *            ", if the <code>qualifiedName</code> or its
+     *            prefix is "
+     *            xmlns" and the <code>namespaceURI</code> is
+     *            different from
+     *            "<a href=
+     *            'http://www.w3.org/2000/xmlns/'>http://www.w3.org/2000/xmlns/</a>"
+     *            , or if the <code>namespaceURI</code> is
+     *            "<a href=
+     *            'http://www.w3.org/2000/xmlns/'>http://www.w3.org/2000/xmlns/</a>"
+     *            and neither the <code>qualifiedName</code> nor
+     *            its prefix
+     *            is "xmlns". <br>
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
-    public void setAttributeNS(String namespaceURI, String qualifiedName,
-            String value) throws DOMException;
+    public void setAttributeNS(String namespaceURI, String qualifiedName, String value) throws DOMException;
 
     /**
      * Removes an attribute by local name and namespace URI. If a default value
@@ -319,27 +317,26 @@ public interface Element extends Node {
      * no namespace.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the attribute to remove.
+     *        The namespace URI of the attribute to remove.
      * @param localName
-     *                     The local name of the attribute to remove.
+     *        The local name of the attribute to remove.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
-    public void removeAttributeNS(String namespaceURI, String localName)
-            throws DOMException;
+    public void removeAttributeNS(String namespaceURI, String localName) throws DOMException;
 
     /**
      * Retrieves an <code>Attr</code> node by local name and namespace URI. <br>
@@ -349,27 +346,26 @@ public interface Element extends Node {
      * no namespace.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the attribute to retrieve.
+     *        The namespace URI of the attribute to retrieve.
      * @param localName
-     *                     The local name of the attribute to retrieve.
+     *        The local name of the attribute to retrieve.
      * @return The <code>Attr</code> node with the specified attribute local
      *         name and namespace URI or <code>null</code> if there is no such
      *         attribute.
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
-    public Attr getAttributeNodeNS(String namespaceURI, String localName)
-            throws DOMException;
+    public Attr getAttributeNodeNS(String namespaceURI, String localName) throws DOMException;
 
     /**
      * Adds a new attribute. If an attribute with that local name and that
@@ -381,38 +377,38 @@ public interface Element extends Node {
      * no namespace.
      * 
      * @param newAttr
-     *                The <code>Attr</code> node to add to the attribute list.
+     *        The <code>Attr</code> node to add to the attribute list.
      * @return If the <code>newAttr</code> attribute replaces an existing
      *         attribute with the same local name and namespace URI, the
      *         replaced <code>Attr</code> node is returned, otherwise
      *         <code>null</code> is returned.
      * @exception DOMException
-     *                         WRONG_DOCUMENT_ERR: Raised if
-     *                         <code>newAttr</code> was
-     *                         created from a different document than the one
-     *                         that
-     *                         created the element. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         INUSE_ATTRIBUTE_ERR: Raised if
-     *                         <code>newAttr</code> is
-     *                         already an attribute of another
-     *                         <code>Element</code>
-     *                         object. The DOM user must explicitly clone
-     *                         <code>Attr</code> nodes to re-use them in other
-     *                         elements.
-     *                         <br>
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            WRONG_DOCUMENT_ERR: Raised if
+     *            <code>newAttr</code> was
+     *            created from a different document than the one
+     *            that
+     *            created the element. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            INUSE_ATTRIBUTE_ERR: Raised if
+     *            <code>newAttr</code> is
+     *            already an attribute of another
+     *            <code>Element</code>
+     *            object. The DOM user must explicitly clone
+     *            <code>Attr</code> nodes to re-use them in other
+     *            elements.
+     *            <br>
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
     public Attr setAttributeNodeNS(Attr newAttr) throws DOMException;
@@ -423,30 +419,29 @@ public interface Element extends Node {
      * document order.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the elements to match on. The
-     *                     special
-     *                     value "*" matches all namespaces.
+     *        The namespace URI of the elements to match on. The
+     *        special
+     *        value "*" matches all namespaces.
      * @param localName
-     *                     The local name of the elements to match on. The
-     *                     special value
-     *                     "*" matches all local names.
+     *        The local name of the elements to match on. The
+     *        special value
+     *        "*" matches all local names.
      * @return A new <code>NodeList</code> object containing all the matched
      *         <code>Elements</code>.
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
-    public NodeList getElementsByTagNameNS(String namespaceURI,
-            String localName) throws DOMException;
+    public NodeList getElementsByTagNameNS(String namespaceURI, String localName) throws DOMException;
 
     /**
      * Returns <code>true</code> when an attribute with a given name is
@@ -454,7 +449,7 @@ public interface Element extends Node {
      * otherwise.
      * 
      * @param name
-     *             The name of the attribute to look for.
+     *        The name of the attribute to look for.
      * @return <code>true</code> if an attribute with the given name is
      *         specified on this element or has a default value,
      *         <code>false</code> otherwise.
@@ -472,27 +467,26 @@ public interface Element extends Node {
      * no namespace.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the attribute to look for.
+     *        The namespace URI of the attribute to look for.
      * @param localName
-     *                     The local name of the attribute to look for.
+     *        The local name of the attribute to look for.
      * @return <code>true</code> if an attribute with the given local name and
      *         namespace URI is specified or has a default value on this
      *         element, <code>false</code> otherwise.
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: May be raised if the
-     *                         implementation
-     *                         does not support the feature <code>"XML"</code>
-     *                         and the
-     *                         language exposed through the Document does not
-     *                         support XML
-     *                         Namespaces (such as [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
-     *                         HTML 4.01</a>]).
+     *            NOT_SUPPORTED_ERR: May be raised if the
+     *            implementation
+     *            does not support the feature <code>"XML"</code>
+     *            and the
+     *            language exposed through the Document does not
+     *            support XML
+     *            Namespaces (such as [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+     *            HTML 4.01</a>]).
      * @since DOM Level 2
      */
-    public boolean hasAttributeNS(String namespaceURI, String localName)
-            throws DOMException;
+    public boolean hasAttributeNS(String namespaceURI, String localName) throws DOMException;
 
     /**
      * The type information associated with this element.
@@ -514,16 +508,16 @@ public interface Element extends Node {
      * <code>setIdAttributeNS</code> method.
      * 
      * @param name
-     *             The name of the attribute.
+     *        The name of the attribute.
      * @param isId
-     *             Whether the attribute is a of type ID.
+     *        Whether the attribute is a of type ID.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if the specified node is
-     *                         not an
-     *                         attribute of this element.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NOT_FOUND_ERR: Raised if the specified node is
+     *            not an
+     *            attribute of this element.
      * @since DOM Level 3
      */
     public void setIdAttribute(String name, boolean isId) throws DOMException;
@@ -539,22 +533,21 @@ public interface Element extends Node {
      * undeclare an attribute for being a user-determined ID attribute.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the attribute.
+     *        The namespace URI of the attribute.
      * @param localName
-     *                     The local name of the attribute.
+     *        The local name of the attribute.
      * @param isId
-     *                     Whether the attribute is a of type ID.
+     *        Whether the attribute is a of type ID.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if the specified node is
-     *                         not an
-     *                         attribute of this element.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NOT_FOUND_ERR: Raised if the specified node is
+     *            not an
+     *            attribute of this element.
      * @since DOM Level 3
      */
-    public void setIdAttributeNS(String namespaceURI, String localName,
-            boolean isId) throws DOMException;
+    public void setIdAttributeNS(String namespaceURI, String localName, boolean isId) throws DOMException;
 
     /**
      * If the parameter <code>isId</code> is <code>true</code>, this method
@@ -567,19 +560,18 @@ public interface Element extends Node {
      * undeclare an attribute for being a user-determined ID attribute.
      * 
      * @param idAttr
-     *               The attribute node.
+     *        The attribute node.
      * @param isId
-     *               Whether the attribute is a of type ID.
+     *        Whether the attribute is a of type ID.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if the specified node is
-     *                         not an
-     *                         attribute of this element.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NOT_FOUND_ERR: Raised if the specified node is
+     *            not an
+     *            attribute of this element.
      * @since DOM Level 3
      */
-    public void setIdAttributeNode(Attr idAttr, boolean isId)
-            throws DOMException;
+    public void setIdAttributeNode(Attr idAttr, boolean isId) throws DOMException;
 
 }

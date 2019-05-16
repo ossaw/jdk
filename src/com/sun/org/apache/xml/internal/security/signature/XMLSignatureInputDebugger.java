@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -56,20 +54,15 @@ public class XMLSignatureInputDebugger {
 
     /** The HTML Prefix* */
     static final String HTMLPrefix = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-            + "<html>\n" + "<head>\n"
-            + "<title>Caninical XML node set</title>\n"
-            + "<style type=\"text/css\">\n" + "<!-- \n" + ".INCLUDED { \n"
-            + "   color: #000000; \n" + "   background-color: \n"
-            + "   #FFFFFF; \n" + "   font-weight: bold; } \n" + ".EXCLUDED { \n"
-            + "   color: #666666; \n" + "   background-color: \n"
-            + "   #999999; } \n" + ".INCLUDEDINCLUSIVENAMESPACE { \n"
-            + "   color: #0000FF; \n" + "   background-color: #FFFFFF; \n"
-            + "   font-weight: bold; \n" + "   font-style: italic; } \n"
+            + "<html>\n" + "<head>\n" + "<title>Caninical XML node set</title>\n"
+            + "<style type=\"text/css\">\n" + "<!-- \n" + ".INCLUDED { \n" + "   color: #000000; \n"
+            + "   background-color: \n" + "   #FFFFFF; \n" + "   font-weight: bold; } \n" + ".EXCLUDED { \n"
+            + "   color: #666666; \n" + "   background-color: \n" + "   #999999; } \n"
+            + ".INCLUDEDINCLUSIVENAMESPACE { \n" + "   color: #0000FF; \n"
+            + "   background-color: #FFFFFF; \n" + "   font-weight: bold; \n" + "   font-style: italic; } \n"
             + ".EXCLUDEDINCLUSIVENAMESPACE { \n" + "   color: #0000FF; \n"
-            + "   background-color: #999999; \n" + "   font-style: italic; } \n"
-            + "--> \n" + "</style> \n" + "</head>\n"
-            + "<body bgcolor=\"#999999\">\n"
-            + "<h1>Explanation of the output</h1>\n"
+            + "   background-color: #999999; \n" + "   font-style: italic; } \n" + "--> \n" + "</style> \n"
+            + "</head>\n" + "<body bgcolor=\"#999999\">\n" + "<h1>Explanation of the output</h1>\n"
             + "<p>The following text contains the nodeset of the given Reference before it is canonicalized. There exist four different styles to indicate how a given node is treated.</p>\n"
             + "<ul>\n"
             + "<li class=\"INCLUDED\">A node which is in the node set is labeled using the INCLUDED style.</li>\n"
@@ -103,7 +96,7 @@ public class XMLSignatureInputDebugger {
      * Constructor XMLSignatureInputDebugger
      *
      * @param xmlSignatureInput
-     *                          the signature to pretty print
+     *        the signature to pretty print
      */
     public XMLSignatureInputDebugger(XMLSignatureInput xmlSignatureInput) {
         if (!xmlSignatureInput.isNodeSet()) {
@@ -117,11 +110,10 @@ public class XMLSignatureInputDebugger {
      * Constructor XMLSignatureInputDebugger
      *
      * @param xmlSignatureInput
-     *                           the signatur to pretty print
+     *        the signatur to pretty print
      * @param inclusiveNamespace
      */
-    public XMLSignatureInputDebugger(XMLSignatureInput xmlSignatureInput,
-            Set<String> inclusiveNamespace) {
+    public XMLSignatureInputDebugger(XMLSignatureInput xmlSignatureInput, Set<String> inclusiveNamespace) {
         this(xmlSignatureInput);
         this.inclusiveNamespaces = inclusiveNamespace;
     }
@@ -134,8 +126,7 @@ public class XMLSignatureInputDebugger {
      */
     public String getHTMLRepresentation() throws XMLSignatureException {
         if ((this.xpathNodeSet == null) || (this.xpathNodeSet.size() == 0)) {
-            return HTMLPrefix + "<blink>no node set, sorry</blink>"
-                    + HTMLSuffix;
+            return HTMLPrefix + "<blink>no node set, sorry</blink>" + HTMLSuffix;
         }
 
         // get only a single node as anchor to fetch the owner document
@@ -166,8 +157,7 @@ public class XMLSignatureInputDebugger {
      * @throws XMLSignatureException
      * @throws IOException
      */
-    private void canonicalizeXPathNodeSet(Node currentNode)
-            throws XMLSignatureException, IOException {
+    private void canonicalizeXPathNodeSet(Node currentNode) throws XMLSignatureException, IOException {
 
         int currentNodeType = currentNode.getNodeType();
         switch (currentNodeType) {
@@ -196,8 +186,7 @@ public class XMLSignatureInputDebugger {
                     this.writer.write(HTMLExcludePrefix);
                 }
 
-                int position = getPositionRelativeToDocumentElement(
-                        currentNode);
+                int position = getPositionRelativeToDocumentElement(currentNode);
 
                 if (position == NODE_AFTER_DOCUMENT_ELEMENT) {
                     this.writer.write("\n");
@@ -244,13 +233,10 @@ public class XMLSignatureInputDebugger {
 
                 outputTextToWriter(currentNode.getNodeValue());
 
-                for (Node nextSibling = currentNode
-                        .getNextSibling(); (nextSibling != null)
-                                && ((nextSibling
-                                        .getNodeType() == Node.TEXT_NODE)
-                                        || (nextSibling
-                                                .getNodeType() == Node.CDATA_SECTION_NODE)); nextSibling = nextSibling
-                                                        .getNextSibling()) {
+                for (Node nextSibling = currentNode.getNextSibling(); (nextSibling != null) && ((nextSibling
+                        .getNodeType() == Node.TEXT_NODE) || (nextSibling
+                                .getNodeType() == Node.CDATA_SECTION_NODE)); nextSibling = nextSibling
+                                        .getNextSibling()) {
                     /*
                      * The XPath data model allows to select only the first of a
                      * sequence of mixed text and CDATA nodes. But we must
@@ -294,14 +280,12 @@ public class XMLSignatureInputDebugger {
                 for (int i = 0; i < attrsLength; i++) {
                     Attr a = (Attr) attrs3[i];
                     boolean included = this.xpathNodeSet.contains(a);
-                    boolean inclusive = this.inclusiveNamespaces.contains(a
-                            .getName());
+                    boolean inclusive = this.inclusiveNamespaces.contains(a.getName());
 
                     if (included) {
                         if (inclusive) {
                             // included and inclusive
-                            this.writer.write(
-                                    HTMLIncludedInclusiveNamespacePrefix);
+                            this.writer.write(HTMLIncludedInclusiveNamespacePrefix);
                         } else {
                             // included and not inclusive
                             this.writer.write(HTMLIncludePrefix);
@@ -309,8 +293,7 @@ public class XMLSignatureInputDebugger {
                     } else {
                         if (inclusive) {
                             // excluded and inclusive
-                            this.writer.write(
-                                    HTMLExcludedInclusiveNamespacePrefix);
+                            this.writer.write(HTMLExcludedInclusiveNamespacePrefix);
                         } else {
                             // excluded and not inclusive
                             this.writer.write(HTMLExcludePrefix);
@@ -362,7 +345,7 @@ public class XMLSignatureInputDebugger {
      * document element. This is needed for prepending or appending "\n"s.
      *
      * @param currentNode
-     *                    comment or pi to check
+     *        comment or pi to check
      * @return NODE_BEFORE_DOCUMENT_ELEMENT,
      *         NODE_NOT_BEFORE_OR_AFTER_DOCUMENT_ELEMENT or
      *         NODE_AFTER_DOCUMENT_ELEMENT
@@ -402,7 +385,6 @@ public class XMLSignatureInputDebugger {
 
     /**
      * Normalizes an {@link Attr}ibute value
-     *
      * The string value of the node is modified by replacing
      * <UL>
      * <LI>all ampersands (&) with <CODE>&amp;amp;</CODE></LI>
@@ -418,8 +400,7 @@ public class XMLSignatureInputDebugger {
      * @param value
      * @throws IOException
      */
-    private void outputAttrToWriter(String name, String value)
-            throws IOException {
+    private void outputAttrToWriter(String name, String value) throws IOException {
         this.writer.write(" ");
         this.writer.write(name);
         this.writer.write("=\"");
@@ -470,8 +451,7 @@ public class XMLSignatureInputDebugger {
      * @param currentPI
      * @throws IOException
      */
-    private void outputPItoWriter(ProcessingInstruction currentPI)
-            throws IOException {
+    private void outputPItoWriter(ProcessingInstruction currentPI) throws IOException {
 
         if (currentPI == null) {
             return;
@@ -537,8 +517,7 @@ public class XMLSignatureInputDebugger {
      * @param currentComment
      * @throws IOException
      */
-    private void outputCommentToWriter(Comment currentComment)
-            throws IOException {
+    private void outputCommentToWriter(Comment currentComment) throws IOException {
 
         if (currentComment == null) {
             return;

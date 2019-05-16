@@ -57,7 +57,6 @@ import com.sun.org.apache.xerces.internal.impl.dtd.XMLContentSpec;
  * Content model Uni-Op node.
  *
  * @xerces.internal
- *
  */
 public class CMUniOp extends CMNode {
     // -------------------------------------------------------------------

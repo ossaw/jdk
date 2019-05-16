@@ -56,8 +56,7 @@ public class ServiceContextRegistry {
 
         Enumeration enumeration = scCollection.elements();
         while (enumeration.hasMoreElements()) {
-            ServiceContextData scd = (ServiceContextData) (enumeration
-                    .nextElement());
+            ServiceContextData scd = (ServiceContextData) (enumeration.nextElement());
             if (scd.getId() == scId) {
                 if (ORB.ORBInitDebug)
                     dprint("Service context data found: " + scd);

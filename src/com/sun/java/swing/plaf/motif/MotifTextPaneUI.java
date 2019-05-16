@@ -26,7 +26,7 @@ public class MotifTextPaneUI extends BasicTextPaneUI {
      * Creates a UI for the JTextPane.
      *
      * @param c
-     *          the JTextPane object
+     *        the JTextPane object
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {

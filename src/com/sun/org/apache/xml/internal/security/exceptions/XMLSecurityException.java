@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -32,7 +30,6 @@ import com.sun.org.apache.xml.internal.security.utils.I18n;
 /**
  * The mother of all Exceptions in this bundle. It allows exceptions to have
  * their messages translated to the different locales.
- *
  * The <code>xmlsecurity_en.properties</code> file contains this line:
  * 
  * <pre>
@@ -61,7 +58,6 @@ import com.sun.org.apache.xml.internal.security.utils.I18n;
  * }
  * </pre>
  *
- *
  * @author Christian Geuer-Pollmann
  */
 public class XMLSecurityException extends Exception {
@@ -76,7 +72,6 @@ public class XMLSecurityException extends Exception {
 
     /**
      * Constructor XMLSecurityException
-     *
      */
     public XMLSecurityException() {
         super("Missing message string");
@@ -116,10 +111,9 @@ public class XMLSecurityException extends Exception {
     public XMLSecurityException(Exception originalException) {
 
         super("Missing message ID to locate message string in resource bundle \""
-                + Constants.exceptionMessagesResourceBundleBase
-                + "\". Original Exception was a " + originalException.getClass()
-                        .getName() + " and message " + originalException
-                                .getMessage(), originalException);
+                + Constants.exceptionMessagesResourceBundleBase + "\". Original Exception was a "
+                + originalException.getClass().getName() + " and message " + originalException.getMessage(),
+                originalException);
     }
 
     /**
@@ -129,8 +123,7 @@ public class XMLSecurityException extends Exception {
      * @param originalException
      */
     public XMLSecurityException(String msgID, Exception originalException) {
-        super(I18n.getExceptionMessage(msgID, originalException),
-                originalException);
+        super(I18n.getExceptionMessage(msgID, originalException), originalException);
 
         this.msgID = msgID;
     }
@@ -142,10 +135,8 @@ public class XMLSecurityException extends Exception {
      * @param exArgs
      * @param originalException
      */
-    public XMLSecurityException(String msgID, Object exArgs[],
-            Exception originalException) {
-        super(MessageFormat.format(I18n.getExceptionMessage(msgID), exArgs),
-                originalException);
+    public XMLSecurityException(String msgID, Object exArgs[], Exception originalException) {
+        super(MessageFormat.format(I18n.getExceptionMessage(msgID), exArgs), originalException);
 
         this.msgID = msgID;
     }
@@ -174,8 +165,7 @@ public class XMLSecurityException extends Exception {
         }
 
         if (super.getCause() != null) {
-            message = message + "\nOriginal Exception was " + super.getCause()
-                    .toString();
+            message = message + "\nOriginal Exception was " + super.getCause().toString();
         }
 
         return message;
@@ -183,7 +173,6 @@ public class XMLSecurityException extends Exception {
 
     /**
      * Method printStackTrace
-     *
      */
     public void printStackTrace() {
         synchronized (System.err) {

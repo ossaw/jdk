@@ -25,9 +25,7 @@ import com.sun.org.apache.xerces.internal.util.NamespaceSupport;
  * handling. It will not be generally useful.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
- *
  */
 public class SchemaNamespaceSupport extends NamespaceSupport {
 
@@ -44,8 +42,7 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
         fCurrentContext = nSupport.fCurrentContext;
         if (fContext.length <= fCurrentContext)
             fContext = new int[fCurrentContext + 1];
-        System.arraycopy(nSupport.fContext, 0, fContext, 0, fCurrentContext
-                + 1);
+        System.arraycopy(nSupport.fContext, 0, fContext, 0, fCurrentContext + 1);
     } // end constructor
 
     /**
@@ -69,8 +66,7 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
             System.arraycopy(fNamespace, 0, tempNSArray, 0, fNamespace.length);
             fNamespace = tempNSArray;
         }
-        System.arraycopy(namespaceDecls, 0, fNamespace, fNamespaceSize,
-                namespaceDecls.length);
+        System.arraycopy(namespaceDecls, 0, fNamespace, fNamespaceSize, namespaceDecls.length);
         fNamespaceSize = newSize;
     } // setEffectiveContext(String):void
 
@@ -91,8 +87,7 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
             int copyCount = fNamespaceSize - bottomLocalContext;
             if (copyCount > 0) {
                 returnVal = new String[copyCount];
-                System.arraycopy(fNamespace, bottomLocalContext, returnVal, 0,
-                        copyCount);
+                System.arraycopy(fNamespace, bottomLocalContext, returnVal, 0, copyCount);
             }
         }
         return returnVal;

@@ -29,7 +29,7 @@ public class RelationException extends JMException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public RelationException(String message) {
         super(message);

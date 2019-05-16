@@ -30,13 +30,11 @@ import org.xml.sax.ContentHandler;
 
 /**
  * This class is a public API, it is a factory for creating serializers.
- *
  * The properties object passed to the getSerializer() method should be created
  * by the OutputPropertiesFactory. Although the properties object used to create
  * a serializer does not need to be obtained from OutputPropertiesFactory, using
  * this factory ensures that the default key/value properties are set for the
  * given output "method".
- *
  * <p>
  * The standard property keys supported are: "method", "version", "encoding",
  * "omit-xml-declaration", "standalone", doctype-public", "doctype-system",
@@ -44,12 +42,10 @@ import org.xml.sax.ContentHandler;
  * their values are described in the XSLT recommendation, see
  * {@link <a href="http://www.w3.org/TR/1999/REC-xslt-19991116"> XSLT 1.0
  * recommendation</a>}
- *
  * <p>
  * The value of the "cdata-section-elements" property key is a whitespace
  * separated list of elements. If the element is in a namespace then value is
  * passed in this format: {uri}localName
- *
  * <p>
  * The non-standard property keys supported are defined in
  * {@link OutputPropertiesFactory}.
@@ -76,19 +72,19 @@ public final class SerializerFactory {
      * "method" key values see {@link Method}.
      *
      * @param format
-     *               The output format, minimally the "method" property must be
-     *               set.
+     *        The output format, minimally the "method" property must be
+     *        set.
      * @return A suitable serializer.
      * @throws IllegalArgumentException
-     *                                  if method is null or an appropriate
-     *                                  serializer can't be found
+     *         if method is null or an appropriate
+     *         serializer can't be found
      * @throws Exception
-     *                                  if the class for the serializer is found
-     *                                  but does not
-     *                                  implement ContentHandler.
+     *         if the class for the serializer is found
+     *         but does not
+     *         implement ContentHandler.
      * @throws WrappedRuntimeException
-     *                                  if an exception is thrown while trying
-     *                                  to find serializer
+     *         if an exception is thrown while trying
+     *         to find serializer
      */
     public static Serializer getSerializer(Properties format) {
         Serializer ser;
@@ -97,26 +93,21 @@ public final class SerializerFactory {
             String method = format.getProperty(OutputKeys.METHOD);
 
             if (method == null) {
-                String msg = Utils.messages.createMessage(
-                        MsgKey.ER_FACTORY_PROPERTY_MISSING, new Object[] {
-                                OutputKeys.METHOD });
+                String msg = Utils.messages.createMessage(MsgKey.ER_FACTORY_PROPERTY_MISSING, new Object[] {
+                        OutputKeys.METHOD });
                 throw new IllegalArgumentException(msg);
             }
 
-            String className = format.getProperty(
-                    OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
+            String className = format.getProperty(OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
 
             if (null == className) {
                 // Missing Content Handler property, load default using
                 // OutputPropertiesFactory
-                Properties methodDefaults = OutputPropertiesFactory
-                        .getDefaultMethodProperties(method);
-                className = methodDefaults.getProperty(
-                        OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
+                Properties methodDefaults = OutputPropertiesFactory.getDefaultMethodProperties(method);
+                className = methodDefaults.getProperty(OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
                 if (null == className) {
-                    String msg = Utils.messages.createMessage(
-                            MsgKey.ER_FACTORY_PROPERTY_MISSING, new Object[] {
-                                    OutputPropertiesFactory.S_KEY_CONTENT_HANDLER });
+                    String msg = Utils.messages.createMessage(MsgKey.ER_FACTORY_PROPERTY_MISSING,
+                            new Object[] { OutputPropertiesFactory.S_KEY_CONTENT_HANDLER });
                     throw new IllegalArgumentException(msg);
                 }
 
@@ -147,8 +138,7 @@ public final class SerializerFactory {
                      */
                     className = SerializerConstants.DEFAULT_SAX_SERIALIZER;
                     cls = ObjectFactory.findProviderClass(className, true);
-                    SerializationHandler sh = (SerializationHandler) cls
-                            .newInstance();
+                    SerializationHandler sh = (SerializationHandler) cls.newInstance();
                     sh.setContentHandler((ContentHandler) obj);
                     sh.setOutputFormat(format);
 
@@ -156,15 +146,13 @@ public final class SerializerFactory {
                 } else {
                     // user defined serializer does not implement
                     // ContentHandler, ... very bad
-                    throw new Exception(Utils.messages.createMessage(
-                            MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
+                    throw new Exception(Utils.messages.createMessage(MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
                             new Object[] { className }));
                 }
 
             }
         } catch (Exception e) {
-            throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(
-                    e);
+            throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(e);
         }
 
         // If we make it to here ser is not null.

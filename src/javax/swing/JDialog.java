@@ -15,9 +15,7 @@ import javax.accessibility.*;
  * see <em>The Java Tutorial</em> section <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html">How
  * to Make Dialogs</a>.
- *
  * <p>
- *
  * The {@code JDialog} component contains a {@code JRootPane} as its only child.
  * The {@code contentPane} should be the parent of any children of the
  * {@code JDialog}. As a convenience, the {@code add}, {@code remove}, and
@@ -56,17 +54,15 @@ import javax.accessibility.*;
  * @see JOptionPane
  * @see JRootPane
  * @see javax.swing.RootPaneContainer
- *
  * @beaninfo attribute: isContainer true attribute: containerDelegate
  *           getContentPane description: A toplevel window for creating dialog
  *           boxes.
- *
  * @author David Kloba
  * @author James Gosling
  * @author Scott Violet
  */
-public class JDialog extends Dialog implements WindowConstants, Accessible,
-        RootPaneContainer, TransferHandler.HasGetTransferHandler {
+public class JDialog extends Dialog implements WindowConstants, Accessible, RootPaneContainer,
+        TransferHandler.HasGetTransferHandler {
     /**
      * Key into the AppContext, used to check if should provide decorations by
      * default.
@@ -112,9 +108,9 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * an argument of {@code null}.
      *
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -136,11 +132,11 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * an argument of {@code null}.
      *
      * @param owner
-     *              the {@code Frame} from which the dialog is displayed
+     *        the {@code Frame} from which the dialog is displayed
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -162,17 +158,17 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * an argument of {@code null}.
      *
      * @param owner
-     *              the {@code Frame} from which the dialog is displayed
+     *        the {@code Frame} from which the dialog is displayed
      * @param modal
-     *              specifies whether dialog blocks user input to other
-     *              top-level
-     *              windows when shown. If {@code true}, the modality type
-     *              property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
-     *              the dialog is modeless.
+     *        specifies whether dialog blocks user input to other
+     *        top-level
+     *        windows when shown. If {@code true}, the modality type
+     *        property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
+     *        the dialog is modeless.
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -194,13 +190,13 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * an argument of {@code null}.
      *
      * @param owner
-     *              the {@code Frame} from which the dialog is displayed
+     *        the {@code Frame} from which the dialog is displayed
      * @param title
-     *              the {@code String} to display in the dialog's title bar
+     *        the {@code String} to display in the dialog's title bar
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -226,21 +222,20 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * an argument of {@code null}.
      *
      * @param owner
-     *              the {@code Frame} from which the dialog is displayed
+     *        the {@code Frame} from which the dialog is displayed
      * @param title
-     *              the {@code String} to display in the dialog's title bar
+     *        the {@code String} to display in the dialog's title bar
      * @param modal
-     *              specifies whether dialog blocks user input to other
-     *              top-level
-     *              windows when shown. If {@code true}, the modality type
-     *              property is set to {@code DEFAULT_MODALITY_TYPE} otherwise
-     *              the
-     *              dialog is modeless
+     *        specifies whether dialog blocks user input to other
+     *        top-level
+     *        windows when shown. If {@code true}, the modality type
+     *        property is set to {@code DEFAULT_MODALITY_TYPE} otherwise
+     *        the
+     *        dialog is modeless
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
-     *
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog.ModalityType#MODELESS
      * @see java.awt.Dialog#DEFAULT_MODALITY_TYPE
@@ -250,11 +245,9 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * @see JComponent#getDefaultLocale
      */
     public JDialog(Frame owner, String title, boolean modal) {
-        super(owner == null ? SwingUtilities.getSharedOwnerFrame() : owner,
-                title, modal);
+        super(owner == null ? SwingUtilities.getSharedOwnerFrame() : owner, title, modal);
         if (owner == null) {
-            WindowListener ownerShutdownListener = SwingUtilities
-                    .getSharedOwnerFrameShutdownListener();
+            WindowListener ownerShutdownListener = SwingUtilities.getSharedOwnerFrameShutdownListener();
             addWindowListener(ownerShutdownListener);
         }
         dialogInit();
@@ -278,24 +271,24 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * an argument of {@code null}.
      *
      * @param owner
-     *              the {@code Frame} from which the dialog is displayed
+     *        the {@code Frame} from which the dialog is displayed
      * @param title
-     *              the {@code String} to display in the dialog's title bar
+     *        the {@code String} to display in the dialog's title bar
      * @param modal
-     *              specifies whether dialog blocks user input to other
-     *              top-level
-     *              windows when shown. If {@code true}, the modality type
-     *              property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
-     *              the dialog is modeless.
+     *        specifies whether dialog blocks user input to other
+     *        top-level
+     *        windows when shown. If {@code true}, the modality type
+     *        property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
+     *        the dialog is modeless.
      * @param gc
-     *              the {@code GraphicsConfiguration} of the target screen
-     *              device;
-     *              if {@code null}, the default system
-     *              {@code GraphicsConfiguration} is assumed
+     *        the {@code GraphicsConfiguration} of the target screen
+     *        device;
+     *        if {@code null}, the default system
+     *        {@code GraphicsConfiguration} is assumed
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog.ModalityType#MODELESS
      * @see java.awt.Dialog#DEFAULT_MODALITY_TYPE
@@ -305,13 +298,10 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * @see JComponent#getDefaultLocale
      * @since 1.4
      */
-    public JDialog(Frame owner, String title, boolean modal,
-            GraphicsConfiguration gc) {
-        super(owner == null ? SwingUtilities.getSharedOwnerFrame() : owner,
-                title, modal, gc);
+    public JDialog(Frame owner, String title, boolean modal, GraphicsConfiguration gc) {
+        super(owner == null ? SwingUtilities.getSharedOwnerFrame() : owner, title, modal, gc);
         if (owner == null) {
-            WindowListener ownerShutdownListener = SwingUtilities
-                    .getSharedOwnerFrameShutdownListener();
+            WindowListener ownerShutdownListener = SwingUtilities.getSharedOwnerFrameShutdownListener();
             addWindowListener(ownerShutdownListener);
         }
         dialogInit();
@@ -325,13 +315,13 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the owner {@code Dialog} from which the dialog is displayed
-     *              or
-     *              {@code null} if this dialog has no owner
+     *        the owner {@code Dialog} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @throws HeadlessException
-     *                           {@code if GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         {@code if GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -347,19 +337,19 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the owner {@code Dialog} from which the dialog is displayed
-     *              or
-     *              {@code null} if this dialog has no owner
+     *        the owner {@code Dialog} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param modal
-     *              specifies whether dialog blocks user input to other
-     *              top-level
-     *              windows when shown. If {@code true}, the modality type
-     *              property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
-     *              the dialog is modeless.
+     *        specifies whether dialog blocks user input to other
+     *        top-level
+     *        windows when shown. If {@code true}, the modality type
+     *        property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
+     *        the dialog is modeless.
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog.ModalityType#MODELESS
      * @see java.awt.Dialog#DEFAULT_MODALITY_TYPE
@@ -380,15 +370,15 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the owner {@code Dialog} from which the dialog is displayed
-     *              or
-     *              {@code null} if this dialog has no owner
+     *        the owner {@code Dialog} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param title
-     *              the {@code String} to display in the dialog's title bar
+     *        the {@code String} to display in the dialog's title bar
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
      */
@@ -404,21 +394,21 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the owner {@code Dialog} from which the dialog is displayed
-     *              or
-     *              {@code null} if this dialog has no owner
+     *        the owner {@code Dialog} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param title
-     *              the {@code String} to display in the dialog's title bar
+     *        the {@code String} to display in the dialog's title bar
      * @param modal
-     *              specifies whether dialog blocks user input to other
-     *              top-level
-     *              windows when shown. If {@code true}, the modality type
-     *              property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
-     *              the dialog is modeless
+     *        specifies whether dialog blocks user input to other
+     *        top-level
+     *        windows when shown. If {@code true}, the modality type
+     *        property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
+     *        the dialog is modeless
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog.ModalityType#MODELESS
      * @see java.awt.Dialog#DEFAULT_MODALITY_TYPE
@@ -435,7 +425,6 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
     /**
      * Creates a dialog with the specified title, owner {@code Dialog}, modality
      * and {@code GraphicsConfiguration}.
-     *
      * <p>
      * NOTE: Any popup components ({@code JComboBox}, {@code JPopupMenu},
      * {@code JMenuBar}) created within a modal dialog will be forced to be
@@ -445,26 +434,26 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the owner {@code Dialog} from which the dialog is displayed
-     *              or
-     *              {@code null} if this dialog has no owner
+     *        the owner {@code Dialog} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param title
-     *              the {@code String} to display in the dialog's title bar
+     *        the {@code String} to display in the dialog's title bar
      * @param modal
-     *              specifies whether dialog blocks user input to other
-     *              top-level
-     *              windows when shown. If {@code true}, the modality type
-     *              property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
-     *              the dialog is modeless
+     *        specifies whether dialog blocks user input to other
+     *        top-level
+     *        windows when shown. If {@code true}, the modality type
+     *        property is set to {@code DEFAULT_MODALITY_TYPE}, otherwise
+     *        the dialog is modeless
      * @param gc
-     *              the {@code GraphicsConfiguration} of the target screen
-     *              device;
-     *              if {@code null}, the default system
-     *              {@code GraphicsConfiguration} is assumed
+     *        the {@code GraphicsConfiguration} of the target screen
+     *        device;
+     *        if {@code null}, the default system
+     *        {@code GraphicsConfiguration} is assumed
      * @throws HeadlessException
-     *                           if {@code GraphicsEnvironment.isHeadless()}
-     *                           returns
-     *                           {@code true}.
+     *         if {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}.
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog.ModalityType#MODELESS
      * @see java.awt.Dialog#DEFAULT_MODALITY_TYPE
@@ -474,8 +463,7 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * @see JComponent#getDefaultLocale
      * @since 1.4
      */
-    public JDialog(Dialog owner, String title, boolean modal,
-            GraphicsConfiguration gc) {
+    public JDialog(Dialog owner, String title, boolean modal, GraphicsConfiguration gc) {
         super(owner, title, modal, gc);
         dialogInit();
     }
@@ -488,28 +476,25 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the {@code Window} from which the dialog is displayed or
-     *              {@code null} if this dialog has no owner
-     *
+     *        the {@code Window} from which the dialog is displayed or
+     *        {@code null} if this dialog has no owner
      * @throws IllegalArgumentException
-     *                                  if the {@code owner} is not an instance
-     *                                  of
-     *                                  {@link java.awt.Dialog Dialog} or
-     *                                  {@link java.awt.Frame
-     *                                  Frame}
+     *         if the {@code owner} is not an instance
+     *         of
+     *         {@link java.awt.Dialog Dialog} or
+     *         {@link java.awt.Frame
+     *         Frame}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner}'s
-     *                                  {@code GraphicsConfiguration} is not
-     *                                  from a screen device
+     *         if the {@code owner}'s
+     *         {@code GraphicsConfiguration} is not
+     *         from a screen device
      * @throws HeadlessException
-     *                                  when
-     *                                  {@code GraphicsEnvironment.isHeadless()}
-     *                                  returns
-     *                                  {@code true}
-     *
+     *         when
+     *         {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.6
      */
     public JDialog(Window owner) {
@@ -524,43 +509,40 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *                     the {@code Window} from which the dialog is displayed
-     *                     or
-     *                     {@code null} if this dialog has no owner
+     *        the {@code Window} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param modalityType
-     *                     specifies whether dialog blocks input to other
-     *                     windows when
-     *                     shown. {@code null} value and unsupported modality
-     *                     types are
-     *                     equivalent to {@code MODELESS}
-     *
+     *        specifies whether dialog blocks input to other
+     *        windows when
+     *        shown. {@code null} value and unsupported modality
+     *        types are
+     *        equivalent to {@code MODELESS}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner} is not an instance
-     *                                  of
-     *                                  {@link java.awt.Dialog Dialog} or
-     *                                  {@link java.awt.Frame
-     *                                  Frame}
+     *         if the {@code owner} is not an instance
+     *         of
+     *         {@link java.awt.Dialog Dialog} or
+     *         {@link java.awt.Frame
+     *         Frame}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner}'s
-     *                                  {@code GraphicsConfiguration} is not
-     *                                  from a screen device
+     *         if the {@code owner}'s
+     *         {@code GraphicsConfiguration} is not
+     *         from a screen device
      * @throws HeadlessException
-     *                                  when
-     *                                  {@code GraphicsEnvironment.isHeadless()}
-     *                                  returns
-     *                                  {@code true}
+     *         when
+     *         {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}
      * @throws SecurityException
-     *                                  if the calling thread does not have
-     *                                  permission to create
-     *                                  modal dialogs with the given
-     *                                  {@code modalityType}
-     *
+     *         if the calling thread does not have
+     *         permission to create
+     *         modal dialogs with the given
+     *         {@code modalityType}
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog#setModal
      * @see java.awt.Dialog#setModalityType
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.6
      */
     public JDialog(Window owner, ModalityType modalityType) {
@@ -575,31 +557,28 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *              the {@code Window} from which the dialog is displayed or
-     *              {@code null} if this dialog has no owner
+     *        the {@code Window} from which the dialog is displayed or
+     *        {@code null} if this dialog has no owner
      * @param title
-     *              the {@code String} to display in the dialog's title bar or
-     *              {@code null} if the dialog has no title
-     *
+     *        the {@code String} to display in the dialog's title bar or
+     *        {@code null} if the dialog has no title
      * @throws IllegalArgumentException
-     *                                  if the {@code owner} is not an instance
-     *                                  of
-     *                                  {@link java.awt.Dialog Dialog} or
-     *                                  {@link java.awt.Frame
-     *                                  Frame}
+     *         if the {@code owner} is not an instance
+     *         of
+     *         {@link java.awt.Dialog Dialog} or
+     *         {@link java.awt.Frame
+     *         Frame}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner}'s
-     *                                  {@code GraphicsConfiguration} is not
-     *                                  from a screen device
+     *         if the {@code owner}'s
+     *         {@code GraphicsConfiguration} is not
+     *         from a screen device
      * @throws HeadlessException
-     *                                  when
-     *                                  {@code GraphicsEnvironment.isHeadless()}
-     *                                  returns
-     *                                  {@code true}
-     *
+     *         when
+     *         {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.6
      */
     public JDialog(Window owner, String title) {
@@ -614,51 +593,47 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *                     the {@code Window} from which the dialog is displayed
-     *                     or
-     *                     {@code null} if this dialog has no owner
+     *        the {@code Window} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param title
-     *                     the {@code String} to display in the dialog's title
-     *                     bar or
-     *                     {@code null} if the dialog has no title
+     *        the {@code String} to display in the dialog's title
+     *        bar or
+     *        {@code null} if the dialog has no title
      * @param modalityType
-     *                     specifies whether dialog blocks input to other
-     *                     windows when
-     *                     shown. {@code null} value and unsupported modality
-     *                     types are
-     *                     equivalent to {@code MODELESS}
-     *
+     *        specifies whether dialog blocks input to other
+     *        windows when
+     *        shown. {@code null} value and unsupported modality
+     *        types are
+     *        equivalent to {@code MODELESS}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner} is not an instance
-     *                                  of
-     *                                  {@link java.awt.Dialog Dialog} or
-     *                                  {@link java.awt.Frame
-     *                                  Frame}
+     *         if the {@code owner} is not an instance
+     *         of
+     *         {@link java.awt.Dialog Dialog} or
+     *         {@link java.awt.Frame
+     *         Frame}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner}'s
-     *                                  {@code GraphicsConfiguration} is not
-     *                                  from a screen device
+     *         if the {@code owner}'s
+     *         {@code GraphicsConfiguration} is not
+     *         from a screen device
      * @throws HeadlessException
-     *                                  when
-     *                                  {@code GraphicsEnvironment.isHeadless()}
-     *                                  returns
-     *                                  {@code true}
+     *         when
+     *         {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}
      * @throws SecurityException
-     *                                  if the calling thread does not have
-     *                                  permission to create
-     *                                  modal dialogs with the given
-     *                                  {@code modalityType}
-     *
+     *         if the calling thread does not have
+     *         permission to create
+     *         modal dialogs with the given
+     *         {@code modalityType}
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog#setModal
      * @see java.awt.Dialog#setModalityType
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.6
      */
-    public JDialog(Window owner, String title,
-            Dialog.ModalityType modalityType) {
+    public JDialog(Window owner, String title, Dialog.ModalityType modalityType) {
         super(owner, title, modalityType);
         dialogInit();
     }
@@ -675,55 +650,52 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * returned by {@code JComponent.getDefaultLocale}.
      *
      * @param owner
-     *                     the {@code Window} from which the dialog is displayed
-     *                     or
-     *                     {@code null} if this dialog has no owner
+     *        the {@code Window} from which the dialog is displayed
+     *        or
+     *        {@code null} if this dialog has no owner
      * @param title
-     *                     the {@code String} to display in the dialog's title
-     *                     bar or
-     *                     {@code null} if the dialog has no title
+     *        the {@code String} to display in the dialog's title
+     *        bar or
+     *        {@code null} if the dialog has no title
      * @param modalityType
-     *                     specifies whether dialog blocks input to other
-     *                     windows when
-     *                     shown. {@code null} value and unsupported modality
-     *                     types are
-     *                     equivalent to {@code MODELESS}
+     *        specifies whether dialog blocks input to other
+     *        windows when
+     *        shown. {@code null} value and unsupported modality
+     *        types are
+     *        equivalent to {@code MODELESS}
      * @param gc
-     *                     the {@code GraphicsConfiguration} of the target
-     *                     screen device;
-     *                     if {@code null}, the default system
-     *                     {@code GraphicsConfiguration} is assumed
+     *        the {@code GraphicsConfiguration} of the target
+     *        screen device;
+     *        if {@code null}, the default system
+     *        {@code GraphicsConfiguration} is assumed
      * @throws IllegalArgumentException
-     *                                  if the {@code owner} is not an instance
-     *                                  of
-     *                                  {@link java.awt.Dialog Dialog} or
-     *                                  {@link java.awt.Frame
-     *                                  Frame}
+     *         if the {@code owner} is not an instance
+     *         of
+     *         {@link java.awt.Dialog Dialog} or
+     *         {@link java.awt.Frame
+     *         Frame}
      * @throws IllegalArgumentException
-     *                                  if the {@code owner}'s
-     *                                  {@code GraphicsConfiguration} is not
-     *                                  from a screen device
+     *         if the {@code owner}'s
+     *         {@code GraphicsConfiguration} is not
+     *         from a screen device
      * @throws HeadlessException
-     *                                  when
-     *                                  {@code GraphicsEnvironment.isHeadless()}
-     *                                  returns
-     *                                  {@code true}
+     *         when
+     *         {@code GraphicsEnvironment.isHeadless()}
+     *         returns
+     *         {@code true}
      * @throws SecurityException
-     *                                  if the calling thread does not have
-     *                                  permission to create
-     *                                  modal dialogs with the given
-     *                                  {@code modalityType}
-     *
+     *         if the calling thread does not have
+     *         permission to create
+     *         modal dialogs with the given
+     *         {@code modalityType}
      * @see java.awt.Dialog.ModalityType
      * @see java.awt.Dialog#setModal
      * @see java.awt.Dialog#setModalityType
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see JComponent#getDefaultLocale
-     *
      * @since 1.6
      */
-    public JDialog(Window owner, String title, Dialog.ModalityType modalityType,
-            GraphicsConfiguration gc) {
+    public JDialog(Window owner, String title, Dialog.ModalityType modalityType, GraphicsConfiguration gc) {
         super(owner, title, modalityType, gc);
         dialogInit();
     }
@@ -738,8 +710,7 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
         setBackground(UIManager.getColor("control"));
         setRootPaneCheckingEnabled(true);
         if (JDialog.isDefaultLookAndFeelDecorated()) {
-            boolean supportsWindowDecorations = UIManager.getLookAndFeel()
-                    .getSupportsWindowDecorations();
+            boolean supportsWindowDecorations = UIManager.getLookAndFeel().getSupportsWindowDecorations();
             if (supportsWindowDecorations) {
                 setUndecorated(true);
                 getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
@@ -795,11 +766,9 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Don't do anything; require the program to handle the operation in the
      * {@code windowClosing} method of a registered {@code WindowListener}
      * object.
-     *
      * <li>{@code HIDE_ON_CLOSE} (defined in {@code WindowConstants}):
      * Automatically hide the dialog after invoking any registered
      * {@code WindowListener} objects.
-     *
      * <li>{@code DISPOSE_ON_CLOSE} (defined in {@code WindowConstants}):
      * Automatically hide and dispose the dialog after invoking any registered
      * {@code WindowListener} objects.
@@ -815,17 +784,16 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Issues</a> for more information.
      *
      * @param operation
-     *                  the operation which should be performed when the user
-     *                  closes
-     *                  the dialog
+     *        the operation which should be performed when the user
+     *        closes
+     *        the dialog
      * @throws IllegalArgumentException
-     *                                  if defaultCloseOperation value isn't one
-     *                                  of the above valid
-     *                                  values
+     *         if defaultCloseOperation value isn't one
+     *         of the above valid
+     *         values
      * @see #addWindowListener
      * @see #getDefaultCloseOperation
      * @see WindowConstants
-     *
      * @beaninfo preferred: true bound: true enum: DO_NOTHING_ON_CLOSE
      *           WindowConstants.DO_NOTHING_ON_CLOSE HIDE_ON_CLOSE
      *           WindowConstants.HIDE_ON_CLOSE DISPOSE_ON_CLOSE
@@ -833,8 +801,7 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      *           default close operation.
      */
     public void setDefaultCloseOperation(int operation) {
-        if (operation != DO_NOTHING_ON_CLOSE && operation != HIDE_ON_CLOSE
-                && operation != DISPOSE_ON_CLOSE) {
+        if (operation != DO_NOTHING_ON_CLOSE && operation != HIDE_ON_CLOSE && operation != DISPOSE_ON_CLOSE) {
             throw new IllegalArgumentException(
                     "defaultCloseOperation must be one of: DO_NOTHING_ON_CLOSE, HIDE_ON_CLOSE, or DISPOSE_ON_CLOSE");
         }
@@ -877,13 +844,11 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * <em>The Java Tutorial</em>, for more information.
      *
      * @param newHandler
-     *                   the new {@code TransferHandler}
-     *
+     *        the new {@code TransferHandler}
      * @see TransferHandler
      * @see #getTransferHandler
      * @see java.awt.Component#setDropTarget
      * @since 1.6
-     *
      * @beaninfo bound: true hidden: true description: Mechanism for transfer of
      *           data into the component
      */
@@ -898,7 +863,6 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Gets the {@code transferHandler} property.
      *
      * @return the value of the {@code transferHandler} property
-     *
      * @see TransferHandler
      * @see #setTransferHandler
      * @since 1.6
@@ -912,7 +876,7 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * unnecessary call to clear the background.
      *
      * @param g
-     *          the {@code Graphics} context in which to paint
+     *        the {@code Graphics} context in which to paint
      */
     public void update(Graphics g) {
         paint(g);
@@ -922,10 +886,8 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Sets the menubar for this dialog.
      *
      * @param menu
-     *             the menubar being placed in the dialog
-     *
+     *        the menubar being placed in the dialog
      * @see #getJMenuBar
-     *
      * @beaninfo hidden: true description: The menubar for accessing pulldown
      *           menus from this dialog.
      */
@@ -948,7 +910,6 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      *
      * @return true if {@code add} and {@code setLayout} are forwarded; false
      *         otherwise
-     *
      * @see #addImpl
      * @see #setLayout
      * @see #setRootPaneCheckingEnabled
@@ -963,10 +924,9 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * the {@code contentPane}.
      *
      * @param enabled
-     *                true if {@code add} and {@code setLayout} are forwarded,
-     *                false
-     *                if they should operate directly on the {@code JDialog}.
-     *
+     *        true if {@code add} and {@code setLayout} are forwarded,
+     *        false
+     *        if they should operate directly on the {@code JDialog}.
      * @see #addImpl
      * @see #setLayout
      * @see #isRootPaneCheckingEnabled
@@ -985,19 +945,18 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * to {@link javax.swing.RootPaneContainer} for details.
      *
      * @param comp
-     *                    the component to be enhanced
+     *        the component to be enhanced
      * @param constraints
-     *                    the constraints to be respected
+     *        the constraints to be respected
      * @param index
-     *                    the index
+     *        the index
      * @throws IllegalArgumentException
-     *                                  if {@code index} is invalid
+     *         if {@code index} is invalid
      * @throws IllegalArgumentException
-     *                                  if adding the container's parent to
-     *                                  itself
+     *         if adding the container's parent to
+     *         itself
      * @throws IllegalArgumentException
-     *                                  if adding a window to a container
-     *
+     *         if adding a window to a container
      * @see #setRootPaneCheckingEnabled
      * @see javax.swing.RootPaneContainer
      */
@@ -1016,9 +975,9 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * of the {@code JDialog} or {@code contentPane}.
      *
      * @param comp
-     *             the component to be removed
+     *        the component to be removed
      * @throws NullPointerException
-     *                              if {@code comp} is null
+     *         if {@code comp} is null
      * @see #add
      * @see javax.swing.RootPaneContainer
      */
@@ -1036,7 +995,7 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * {@link javax.swing.RootPaneContainer} for more information.
      *
      * @param manager
-     *                the {@code LayoutManager}
+     *        the {@code LayoutManager}
      * @see #setRootPaneCheckingEnabled
      * @see javax.swing.RootPaneContainer
      */
@@ -1063,10 +1022,8 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * constructor.
      *
      * @param root
-     *             the {@code rootPane} object for this dialog
-     *
+     *        the {@code rootPane} object for this dialog
      * @see #getRootPane
-     *
      * @beaninfo hidden: true description: the RootPane object for this dialog.
      */
     protected void setRootPane(JRootPane root) {
@@ -1089,7 +1046,6 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Returns the {@code contentPane} object for this dialog.
      *
      * @return the {@code contentPane} property
-     *
      * @see #setContentPane
      * @see RootPaneContainer#getContentPane
      */
@@ -1107,16 +1063,13 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * with an opaque {@code JComponent}.
      * 
      * @see JRootPane
-     *
      * @param contentPane
-     *                    the {@code contentPane} object for this dialog
-     *
+     *        the {@code contentPane} object for this dialog
      * @throws java.awt.IllegalComponentStateException
      *         (a runtime exception) if the content pane parameter is
      *         {@code null}
      * @see #getContentPane
      * @see RootPaneContainer#setContentPane
-     *
      * @beaninfo hidden: true description: The client area of the dialog where
      *           child components are normally inserted.
      */
@@ -1128,7 +1081,6 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Returns the {@code layeredPane} object for this dialog.
      *
      * @return the {@code layeredPane} property
-     *
      * @see #setLayeredPane
      * @see RootPaneContainer#getLayeredPane
      */
@@ -1141,13 +1093,11 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * constructor.
      *
      * @param layeredPane
-     *                    the new {@code layeredPane} property
-     *
+     *        the new {@code layeredPane} property
      * @throws java.awt.IllegalComponentStateException
      *         (a runtime exception) if the layered pane parameter is null
      * @see #getLayeredPane
      * @see RootPaneContainer#setLayeredPane
-     *
      * @beaninfo hidden: true description: The pane which holds the various
      *           dialog layers.
      */
@@ -1159,7 +1109,6 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * Returns the {@code glassPane} object for this dialog.
      *
      * @return the {@code glassPane} property
-     *
      * @see #setGlassPane
      * @see RootPaneContainer#getGlassPane
      */
@@ -1172,10 +1121,9 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * constructor.
      *
      * @param glassPane
-     *                  the {@code glassPane} object for this dialog
+     *        the {@code glassPane} object for this dialog
      * @see #getGlassPane
      * @see RootPaneContainer#setGlassPane
-     *
      * @beaninfo hidden: true description: A transparent pane used for menu
      *           rendering.
      */
@@ -1199,22 +1147,21 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * repaint is handled.
      *
      * @param time
-     *               maximum time in milliseconds before update
+     *        maximum time in milliseconds before update
      * @param x
-     *               the <i>x</i> coordinate
+     *        the <i>x</i> coordinate
      * @param y
-     *               the <i>y</i> coordinate
+     *        the <i>y</i> coordinate
      * @param width
-     *               the width
+     *        the width
      * @param height
-     *               the height
+     *        the height
      * @see RepaintManager
      * @since 1.6
      */
     public void repaint(long time, int x, int y, int width, int height) {
         if (RepaintManager.HANDLE_TOP_LEVEL_PAINT) {
-            RepaintManager.currentManager(this).addDirtyRegion(this, x, y,
-                    width, height);
+            RepaintManager.currentManager(this).addDirtyRegion(this, x, y, width, height);
         } else {
             super.repaint(time, x, y, width, height);
         }
@@ -1241,20 +1188,17 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * </pre>
      *
      * @param defaultLookAndFeelDecorated
-     *                                    A hint as to whether or not current
-     *                                    look and feel should
-     *                                    provide window decorations
+     *        A hint as to whether or not current
+     *        look and feel should
+     *        provide window decorations
      * @see javax.swing.LookAndFeel#getSupportsWindowDecorations
      * @since 1.4
      */
-    public static void setDefaultLookAndFeelDecorated(
-            boolean defaultLookAndFeelDecorated) {
+    public static void setDefaultLookAndFeelDecorated(boolean defaultLookAndFeelDecorated) {
         if (defaultLookAndFeelDecorated) {
-            SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey,
-                    Boolean.TRUE);
+            SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey, Boolean.TRUE);
         } else {
-            SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey,
-                    Boolean.FALSE);
+            SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey, Boolean.FALSE);
         }
     }
 
@@ -1267,8 +1211,8 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
      * @since 1.4
      */
     public static boolean isDefaultLookAndFeelDecorated() {
-        Boolean defaultLookAndFeelDecorated = (Boolean) SwingUtilities
-                .appContextGet(defaultLookAndFeelDecoratedKey);
+        Boolean defaultLookAndFeelDecorated = (Boolean) SwingUtilities.appContextGet(
+                defaultLookAndFeelDecoratedKey);
         if (defaultLookAndFeelDecorated == null) {
             defaultLookAndFeelDecorated = Boolean.FALSE;
         }
@@ -1294,12 +1238,10 @@ public class JDialog extends Dialog implements WindowConstants, Accessible,
         } else
             defaultCloseOperationString = "";
         String rootPaneString = (rootPane != null ? rootPane.toString() : "");
-        String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true"
-                : "false");
+        String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true" : "false");
 
-        return super.paramString() + ",defaultCloseOperation="
-                + defaultCloseOperationString + ",rootPane=" + rootPaneString
-                + ",rootPaneCheckingEnabled=" + rootPaneCheckingEnabledString;
+        return super.paramString() + ",defaultCloseOperation=" + defaultCloseOperationString + ",rootPane="
+                + rootPaneString + ",rootPaneCheckingEnabled=" + rootPaneCheckingEnabledString;
     }
 
     /////////////////

@@ -17,30 +17,30 @@ class ImageScalingHelper {
 
     /** Enumeration for the types of painting this class can handle. */
     enum PaintType {
-    /**
-     * Painting type indicating the image should be centered in the space
-     * provided. When used the <code>mask</code> is ignored.
-     */
-    CENTER,
+        /**
+         * Painting type indicating the image should be centered in the space
+         * provided. When used the <code>mask</code> is ignored.
+         */
+        CENTER,
 
-    /**
-     * Painting type indicating the image should be tiled across the
-     * specified width and height. When used the <code>mask</code> is
-     * ignored.
-     */
-    TILE,
+        /**
+         * Painting type indicating the image should be tiled across the
+         * specified width and height. When used the <code>mask</code> is
+         * ignored.
+         */
+        TILE,
 
-    /**
-     * Painting type indicating the image should be split into nine regions
-     * with the top, left, bottom and right areas stretched.
-     */
-    PAINT9_STRETCH,
+        /**
+         * Painting type indicating the image should be split into nine regions
+         * with the top, left, bottom and right areas stretched.
+         */
+        PAINT9_STRETCH,
 
-    /**
-     * Painting type indicating the image should be split into nine regions
-     * with the top, left, bottom and right areas tiled.
-     */
-    PAINT9_TILE
+        /**
+         * Painting type indicating the image should be split into nine regions
+         * with the top, left, bottom and right areas tiled.
+         */
+        PAINT9_TILE
     }
 
     ;
@@ -67,41 +67,39 @@ class ImageScalingHelper {
      * Paints using the algorightm specified by <code>paintType</code>.
      *
      * @param g
-     *                  Graphics to render to
+     *        Graphics to render to
      * @param x
-     *                  X-coordinate
+     *        X-coordinate
      * @param y
-     *                  Y-coordinate
+     *        Y-coordinate
      * @param w
-     *                  Width to render to
+     *        Width to render to
      * @param h
-     *                  Height to render to
+     *        Height to render to
      * @param image
-     *                  Image to render from, if <code>null</code> this method
-     *                  will do
-     *                  nothing
+     *        Image to render from, if <code>null</code> this method
+     *        will do
+     *        nothing
      * @param sInsets
-     *                  Insets specifying the portion of the image that will be
-     *                  stretched or tiled, if <code>null</code> empty
-     *                  <code>Insets</code> will be used.
+     *        Insets specifying the portion of the image that will be
+     *        stretched or tiled, if <code>null</code> empty
+     *        <code>Insets</code> will be used.
      * @param dInsets
-     *                  Destination insets specifying the portion of the image
-     *                  will be
-     *                  stretched or tiled, if <code>null</code> empty
-     *                  <code>Insets</code> will be used.
+     *        Destination insets specifying the portion of the image
+     *        will be
+     *        stretched or tiled, if <code>null</code> empty
+     *        <code>Insets</code> will be used.
      * @param paintType
-     *                  Specifies what type of algorithm to use in painting
+     *        Specifies what type of algorithm to use in painting
      * @param mask
-     *                  Specifies portion of image to render, if
-     *                  <code>PAINT_ALL</code> is specified, any other regions
-     *                  specified will not be painted, for example PAINT_ALL |
-     *                  PAINT_CENTER paints everything but the center.
+     *        Specifies portion of image to render, if
+     *        <code>PAINT_ALL</code> is specified, any other regions
+     *        specified will not be painted, for example PAINT_ALL |
+     *        PAINT_CENTER paints everything but the center.
      */
-    public static void paint(Graphics g, int x, int y, int w, int h,
-            Image image, Insets sInsets, Insets dInsets, PaintType paintType,
-            int mask) {
-        if (image == null || image.getWidth(null) <= 0 || image.getHeight(
-                null) <= 0) {
+    public static void paint(Graphics g, int x, int y, int w, int h, Image image, Insets sInsets,
+            Insets dInsets, PaintType paintType, int mask) {
+        if (image == null || image.getWidth(null) <= 0 || image.getHeight(null) <= 0) {
             return;
         }
         if (sInsets == null) {
@@ -119,18 +117,13 @@ class ImageScalingHelper {
         } else if (paintType == PaintType.TILE) {
             // Tile the image
             int lastIY = 0;
-            for (int yCounter = y, maxY = y
-                    + h; yCounter < maxY; yCounter += (ih
-                            - lastIY), lastIY = 0) {
+            for (int yCounter = y, maxY = y + h; yCounter < maxY; yCounter += (ih - lastIY), lastIY = 0) {
                 int lastIX = 0;
-                for (int xCounter = x, maxX = x
-                        + w; xCounter < maxX; xCounter += (iw
-                                - lastIX), lastIX = 0) {
+                for (int xCounter = x, maxX = x + w; xCounter < maxX; xCounter += (iw - lastIX), lastIX = 0) {
                     int dx2 = Math.min(maxX, xCounter + iw - lastIX);
                     int dy2 = Math.min(maxY, yCounter + ih - lastIY);
-                    g.drawImage(image, xCounter, yCounter, dx2, dy2, lastIX,
-                            lastIY, lastIX + dx2 - xCounter, lastIY + dy2
-                                    - yCounter, null);
+                    g.drawImage(image, xCounter, yCounter, dx2, dy2, lastIX, lastIY, lastIX + dx2 - xCounter,
+                            lastIY + dy2 - yCounter, null);
                 }
             }
         } else {
@@ -167,39 +160,33 @@ class ImageScalingHelper {
             }
 
             if ((mask & PAINT_LEFT) != 0) {
-                drawChunk(image, g, stretch, x, y + dt, x + dl, y + h - db, 0,
-                        st, sl, ih - sb, false);
+                drawChunk(image, g, stretch, x, y + dt, x + dl, y + h - db, 0, st, sl, ih - sb, false);
             }
             if ((mask & PAINT_TOP_LEFT) != 0) {
                 drawImage(image, g, x, y, x + dl, y + dt, 0, 0, sl, st);
             }
             if ((mask & PAINT_TOP) != 0) {
-                drawChunk(image, g, stretch, x + dl, y, x + w - dr, y + dt, sl,
-                        0, iw - sr, st, true);
+                drawChunk(image, g, stretch, x + dl, y, x + w - dr, y + dt, sl, 0, iw - sr, st, true);
             }
             if ((mask & PAINT_TOP_RIGHT) != 0) {
-                drawImage(image, g, x + w - dr, y, x + w, y + dt, iw - sr, 0,
-                        iw, st);
+                drawImage(image, g, x + w - dr, y, x + w, y + dt, iw - sr, 0, iw, st);
             }
             if ((mask & PAINT_RIGHT) != 0) {
-                drawChunk(image, g, stretch, x + w - dr, y + dt, x + w, y + h
-                        - db, iw - sr, st, iw, ih - sb, false);
+                drawChunk(image, g, stretch, x + w - dr, y + dt, x + w, y + h - db, iw - sr, st, iw, ih - sb,
+                        false);
             }
             if ((mask & PAINT_BOTTOM_RIGHT) != 0) {
-                drawImage(image, g, x + w - dr, y + h - db, x + w, y + h, iw
-                        - sr, ih - sb, iw, ih);
+                drawImage(image, g, x + w - dr, y + h - db, x + w, y + h, iw - sr, ih - sb, iw, ih);
             }
             if ((mask & PAINT_BOTTOM) != 0) {
-                drawChunk(image, g, stretch, x + dl, y + h - db, x + w - dr, y
-                        + h, sl, ih - sb, iw - sr, ih, true);
+                drawChunk(image, g, stretch, x + dl, y + h - db, x + w - dr, y + h, sl, ih - sb, iw - sr, ih,
+                        true);
             }
             if ((mask & PAINT_BOTTOM_LEFT) != 0) {
-                drawImage(image, g, x, y + h - db, x + dl, y + h, 0, ih - sb,
-                        sl, ih);
+                drawImage(image, g, x, y + h - db, x + dl, y + h, 0, ih - sb, sl, ih);
             }
             if ((mask & PAINT_CENTER) != 0) {
-                drawImage(image, g, x + dl, y + dt, x + w - dr, y + h - db, sl,
-                        st, iw - sr, ih - sb);
+                drawImage(image, g, x + dl, y + dt, x + w - dr, y + h - db, sl, st, iw - sr, ih - sb);
             }
         }
     }
@@ -208,39 +195,37 @@ class ImageScalingHelper {
      * Draws a portion of an image, stretched or tiled.
      *
      * @param image
-     *                   Image to render.
+     *        Image to render.
      * @param g
-     *                   Graphics to render to
+     *        Graphics to render to
      * @param stretch
-     *                   Whether the image should be stretched or timed in the
-     *                   provided
-     *                   space.
+     *        Whether the image should be stretched or timed in the
+     *        provided
+     *        space.
      * @param dx1
-     *                   X origin to draw to
+     *        X origin to draw to
      * @param dy1
-     *                   Y origin to draw to
+     *        Y origin to draw to
      * @param dx2
-     *                   End x location to draw to
+     *        End x location to draw to
      * @param dy2
-     *                   End y location to draw to
+     *        End y location to draw to
      * @param sx1
-     *                   X origin to draw from
+     *        X origin to draw from
      * @param sy1
-     *                   Y origin to draw from
+     *        Y origin to draw from
      * @param sx2
-     *                   Max x location to draw from
+     *        Max x location to draw from
      * @param sy2
-     *                   Max y location to draw from
+     *        Max y location to draw from
      * @param xDirection
-     *                   Used if the image is not stretched. If true it
-     *                   indicates the
-     *                   image should be tiled along the x axis.
+     *        Used if the image is not stretched. If true it
+     *        indicates the
+     *        image should be tiled along the x axis.
      */
-    private static void drawChunk(Image image, Graphics g, boolean stretch,
-            int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2,
-            int sy2, boolean xDirection) {
-        if (dx2 - dx1 <= 0 || dy2 - dy1 <= 0 || sx2 - sx1 <= 0 || sy2
-                - sy1 <= 0) {
+    private static void drawChunk(Image image, Graphics g, boolean stretch, int dx1, int dy1, int dx2,
+            int dy2, int sx1, int sy1, int sx2, int sy2, boolean xDirection) {
+        if (dx2 - dx1 <= 0 || dy2 - dy1 <= 0 || sx2 - sx1 <= 0 || sy2 - sy1 <= 0) {
             // Bogus location, nothing to paint
             return;
         }
@@ -263,19 +248,18 @@ class ImageScalingHelper {
                 int newDX2 = Math.min(dx2, dx1 + xSize);
                 int newDY2 = Math.min(dy2, dy1 + ySize);
 
-                g.drawImage(image, dx1, dy1, newDX2, newDY2, sx1, sy1, sx1
-                        + newDX2 - dx1, sy1 + newDY2 - dy1, null);
+                g.drawImage(image, dx1, dy1, newDX2, newDY2, sx1, sy1, sx1 + newDX2 - dx1, sy1 + newDY2 - dy1,
+                        null);
                 dx1 += deltaX;
                 dy1 += deltaY;
             }
         }
     }
 
-    private static void drawImage(Image image, Graphics g, int dx1, int dy1,
-            int dx2, int dy2, int sx1, int sy1, int sx2, int sy2) {
+    private static void drawImage(Image image, Graphics g, int dx1, int dy1, int dx2, int dy2, int sx1,
+            int sy1, int sx2, int sy2) {
         // PENDING: is this necessary, will G2D do it for me?
-        if (dx2 - dx1 <= 0 || dy2 - dy1 <= 0 || sx2 - sx1 <= 0 || sy2
-                - sy1 <= 0) {
+        if (dx2 - dx1 <= 0 || dy2 - dy1 <= 0 || sx2 - sx1 <= 0 || sy2 - sy1 <= 0) {
             // Bogus location, nothing to paint
             return;
         }

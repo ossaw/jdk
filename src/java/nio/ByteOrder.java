@@ -31,12 +31,10 @@ public final class ByteOrder {
      * Constant denoting little-endian byte order. In this order, the bytes of a
      * multibyte value are ordered from least significant to most significant.
      */
-    public static final ByteOrder LITTLE_ENDIAN = new ByteOrder(
-            "LITTLE_ENDIAN");
+    public static final ByteOrder LITTLE_ENDIAN = new ByteOrder("LITTLE_ENDIAN");
 
     /**
      * Retrieves the native byte order of the underlying platform.
-     *
      * <p>
      * This method is defined so that performance-sensitive Java code can
      * allocate direct buffers with the same byte order as the hardware. Native
@@ -52,7 +50,6 @@ public final class ByteOrder {
 
     /**
      * Constructs a string describing this object.
-     *
      * <p>
      * This method returns the string <tt>"BIG_ENDIAN"</tt> for
      * {@link #BIG_ENDIAN} and <tt>"LITTLE_ENDIAN"</tt> for

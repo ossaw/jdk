@@ -45,8 +45,7 @@ final class GenerateIdCall extends FunctionCall {
             argument().translate(classGen, methodGen);
         }
         final ConstantPoolGen cpg = classGen.getConstantPool();
-        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                "generate_idF",
+        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "generate_idF",
                 // reuse signature
                 GET_NODE_NAME_SIG)));
     }

@@ -12,8 +12,6 @@ import java.math.BigInteger;
  * using the Chinese Remainder Theorem (CRT) information values for efficiency.
  *
  * @author Jan Luehe
- *
- *
  * @see java.security.Key
  * @see java.security.KeyFactory
  * @see KeySpec
@@ -37,26 +35,25 @@ public class RSAPrivateCrtKeySpec extends RSAPrivateKeySpec {
      * primeExponentQ, and crtCoefficient as defined in PKCS#1.
      *
      * @param modulus
-     *                        the modulus n
+     *        the modulus n
      * @param publicExponent
-     *                        the public exponent e
+     *        the public exponent e
      * @param privateExponent
-     *                        the private exponent d
+     *        the private exponent d
      * @param primeP
-     *                        the prime factor p of n
+     *        the prime factor p of n
      * @param primeQ
-     *                        the prime factor q of n
+     *        the prime factor q of n
      * @param primeExponentP
-     *                        this is d mod (p-1)
+     *        this is d mod (p-1)
      * @param primeExponentQ
-     *                        this is d mod (q-1)
+     *        this is d mod (q-1)
      * @param crtCoefficient
-     *                        the Chinese Remainder Theorem coefficient q-1 mod
-     *                        p
+     *        the Chinese Remainder Theorem coefficient q-1 mod
+     *        p
      */
-    public RSAPrivateCrtKeySpec(BigInteger modulus, BigInteger publicExponent,
-            BigInteger privateExponent, BigInteger primeP, BigInteger primeQ,
-            BigInteger primeExponentP, BigInteger primeExponentQ,
+    public RSAPrivateCrtKeySpec(BigInteger modulus, BigInteger publicExponent, BigInteger privateExponent,
+            BigInteger primeP, BigInteger primeQ, BigInteger primeExponentP, BigInteger primeExponentQ,
             BigInteger crtCoefficient) {
         super(modulus, privateExponent);
         this.publicExponent = publicExponent;

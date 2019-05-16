@@ -29,20 +29,19 @@ public abstract class AbstractBorder implements Border, Serializable {
      * This default implementation does no painting.
      * 
      * @param c
-     *               the component for which this border is being painted
+     *        the component for which this border is being painted
      * @param g
-     *               the paint graphics
+     *        the paint graphics
      * @param x
-     *               the x position of the painted border
+     *        the x position of the painted border
      * @param y
-     *               the y position of the painted border
+     *        the y position of the painted border
      * @param width
-     *               the width of the painted border
+     *        the width of the painted border
      * @param height
-     *               the height of the painted border
+     *        the height of the painted border
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {}
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {}
 
     /**
      * This default implementation returns a new {@link Insets} object that is
@@ -51,7 +50,7 @@ public abstract class AbstractBorder implements Border, Serializable {
      * fields are set to {@code 0}.
      *
      * @param c
-     *          the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @return a new {@link Insets} object
      */
     public Insets getBorderInsets(Component c) {
@@ -62,9 +61,9 @@ public abstract class AbstractBorder implements Border, Serializable {
      * Reinitializes the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      * @return the <code>insets</code> object
      */
     public Insets getBorderInsets(Component c, Insets insets) {
@@ -85,19 +84,18 @@ public abstract class AbstractBorder implements Border, Serializable {
      * This convenience method calls the static method.
      * 
      * @param c
-     *               the component for which this border is being computed
+     *        the component for which this border is being computed
      * @param x
-     *               the x position of the border
+     *        the x position of the border
      * @param y
-     *               the y position of the border
+     *        the y position of the border
      * @param width
-     *               the width of the border
+     *        the width of the border
      * @param height
-     *               the height of the border
+     *        the height of the border
      * @return a <code>Rectangle</code> containing the interior coordinates
      */
-    public Rectangle getInteriorRectangle(Component c, int x, int y, int width,
-            int height) {
+    public Rectangle getInteriorRectangle(Component c, int x, int y, int width, int height) {
         return getInteriorRectangle(c, this, x, y, width, height);
     }
 
@@ -107,29 +105,27 @@ public abstract class AbstractBorder implements Border, Serializable {
      * that will not intersect the border.
      * 
      * @param c
-     *               the component for which this border is being computed
+     *        the component for which this border is being computed
      * @param b
-     *               the <code>Border</code> object
+     *        the <code>Border</code> object
      * @param x
-     *               the x position of the border
+     *        the x position of the border
      * @param y
-     *               the y position of the border
+     *        the y position of the border
      * @param width
-     *               the width of the border
+     *        the width of the border
      * @param height
-     *               the height of the border
+     *        the height of the border
      * @return a <code>Rectangle</code> containing the interior coordinates
      */
-    public static Rectangle getInteriorRectangle(Component c, Border b, int x,
-            int y, int width, int height) {
+    public static Rectangle getInteriorRectangle(Component c, Border b, int x, int y, int width, int height) {
         Insets insets;
         if (b != null)
             insets = b.getBorderInsets(c);
         else
             insets = new Insets(0, 0, 0, 0);
-        return new Rectangle(x + insets.left, y + insets.top, width
-                - insets.right - insets.left, height - insets.top
-                        - insets.bottom);
+        return new Rectangle(x + insets.left, y + insets.top, width - insets.right - insets.left, height
+                - insets.top - insets.bottom);
     }
 
     /**
@@ -143,14 +139,14 @@ public abstract class AbstractBorder implements Border, Serializable {
      * baseline changes with size.
      *
      * @param c
-     *               <code>Component</code> baseline is being requested for
+     *        <code>Component</code> baseline is being requested for
      * @param width
-     *               the width to get the baseline for
+     *        the width to get the baseline for
      * @param height
-     *               the height to get the baseline for
+     *        the height to get the baseline for
      * @return the baseline or &lt; 0 indicating there is no reasonable baseline
      * @throws IllegalArgumentException
-     *                                  if width or height is &lt; 0
+     *         if width or height is &lt; 0
      * @see java.awt.Component#getBaseline(int,int)
      * @see java.awt.Component#getBaselineResizeBehavior()
      * @since 1.6
@@ -178,15 +174,14 @@ public abstract class AbstractBorder implements Border, Serializable {
      * <code>getBaseline</code> returns a value less than 0.
      *
      * @param c
-     *          <code>Component</code> to return baseline resize behavior for
+     *        <code>Component</code> to return baseline resize behavior for
      * @return an enum indicating how the baseline changes as the border is
      *         resized
      * @see java.awt.Component#getBaseline(int,int)
      * @see java.awt.Component#getBaselineResizeBehavior()
      * @since 1.6
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-            Component c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(Component c) {
         if (c == null) {
             throw new NullPointerException("Component must be non-null");
         }

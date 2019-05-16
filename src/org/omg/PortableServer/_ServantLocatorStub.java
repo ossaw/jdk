@@ -21,8 +21,8 @@ package org.omg.PortableServer;
  * feature may be used to force every request for objects associated with a POA
  * to be mediated by the servant manager.
  */
-public class _ServantLocatorStub extends org.omg.CORBA.portable.ObjectImpl
-        implements org.omg.PortableServer.ServantLocator {
+public class _ServantLocatorStub extends org.omg.CORBA.portable.ObjectImpl implements
+        org.omg.PortableServer.ServantLocator {
     final public static java.lang.Class _opsClass = ServantLocatorOperations.class;
 
     /**
@@ -30,34 +30,32 @@ public class _ServantLocatorStub extends org.omg.CORBA.portable.ObjectImpl
      * request that caused preinvoke to be called.
      * 
      * @param oid
-     *                   the object id associated with object on which the
-     *                   request was
-     *                   made.
+     *        the object id associated with object on which the
+     *        request was
+     *        made.
      * @param adapter
-     *                   the reference for POA in which the object is being
-     *                   activated.
+     *        the reference for POA in which the object is being
+     *        activated.
      * @param operation
-     *                   the operation name.
+     *        the operation name.
      * @param the_cookie
-     *                   an opaque value that can be set by the servant manager
-     *                   to be
-     *                   used during postinvoke.
+     *        an opaque value that can be set by the servant manager
+     *        to be
+     *        used during postinvoke.
      * @return Servant used to process incoming request.
      * @exception ForwardRequest
-     *                           to indicate to the ORB that it is responsible
-     *                           for
-     *                           delivering the current request and subsequent
-     *                           requests to
-     *                           the object denoted in the forward_reference
-     *                           member of the
-     *                           exception.
+     *            to indicate to the ORB that it is responsible
+     *            for
+     *            delivering the current request and subsequent
+     *            requests to
+     *            the object denoted in the forward_reference
+     *            member of the
+     *            exception.
      */
-    public org.omg.PortableServer.Servant preinvoke(byte[] oid,
-            org.omg.PortableServer.POA adapter, String operation,
-            org.omg.PortableServer.ServantLocatorPackage.CookieHolder the_cookie)
+    public org.omg.PortableServer.Servant preinvoke(byte[] oid, org.omg.PortableServer.POA adapter,
+            String operation, org.omg.PortableServer.ServantLocatorPackage.CookieHolder the_cookie)
             throws org.omg.PortableServer.ForwardRequest {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "preinvoke", _opsClass);
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("preinvoke", _opsClass);
         ServantLocatorOperations $self = (ServantLocatorOperations) $so.servant;
 
         try {
@@ -71,23 +69,21 @@ public class _ServantLocatorStub extends org.omg.CORBA.portable.ObjectImpl
      * This operation is invoked whenener a servant completes a request.
      * 
      * @param oid
-     *                    the object id ssociated with object on which the
-     *                    request was
-     *                    made.
+     *        the object id ssociated with object on which the
+     *        request was
+     *        made.
      * @param adapter
-     *                    the reference for POA in which the object was active.
+     *        the reference for POA in which the object was active.
      * @param the_cookie
-     *                    an opaque value that contains the data set by
-     *                    preinvoke.
+     *        an opaque value that contains the data set by
+     *        preinvoke.
      * @param the_servant
-     *                    reference to the servant that is associated with the
-     *                    object.
+     *        reference to the servant that is associated with the
+     *        object.
      */
-    public void postinvoke(byte[] oid, org.omg.PortableServer.POA adapter,
-            String operation, java.lang.Object the_cookie,
-            org.omg.PortableServer.Servant the_servant) {
-        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke(
-                "postinvoke", _opsClass);
+    public void postinvoke(byte[] oid, org.omg.PortableServer.POA adapter, String operation,
+            java.lang.Object the_cookie, org.omg.PortableServer.Servant the_servant) {
+        org.omg.CORBA.portable.ServantObject $so = _servant_preinvoke("postinvoke", _opsClass);
         ServantLocatorOperations $self = (ServantLocatorOperations) $so.servant;
 
         try {
@@ -98,16 +94,14 @@ public class _ServantLocatorStub extends org.omg.CORBA.portable.ObjectImpl
     } // postinvoke
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/PortableServer/ServantLocator:1.0",
+    private static String[] __ids = { "IDL:omg.org/PortableServer/ServantLocator:1.0",
             "IDL:omg.org/PortableServer/ServantManager:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -122,8 +116,7 @@ public class _ServantLocatorStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

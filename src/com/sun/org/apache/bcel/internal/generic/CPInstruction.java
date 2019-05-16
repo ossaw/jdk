@@ -62,11 +62,9 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * @see ConstantPoolGen
  * @see LDC
  * @see INVOKEVIRTUAL
- *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class CPInstruction extends Instruction implements
-        TypedInstruction, IndexedInstruction {
+public abstract class CPInstruction extends Instruction implements TypedInstruction, IndexedInstruction {
     protected int index; // index to constant pool
 
     /**
@@ -77,7 +75,7 @@ public abstract class CPInstruction extends Instruction implements
 
     /**
      * @param index
-     *              to constant pool
+     *        to constant pool
      */
     protected CPInstruction(short opcode, int index) {
         super(opcode, (short) 3);
@@ -88,7 +86,7 @@ public abstract class CPInstruction extends Instruction implements
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         out.writeByte(opcode);
@@ -97,12 +95,11 @@ public abstract class CPInstruction extends Instruction implements
 
     /**
      * Long output format:
-     *
      * &lt;name of opcode&gt; "["&lt;opcode number&gt;"]" "("&lt;length of
      * instruction&gt;")" "&lt;"&lt; constant pool index&gt;"&gt;"
      *
      * @param verbose
-     *                long/short format switch
+     *        long/short format switch
      * @return mnemonic for instruction
      */
     public String toString(boolean verbose) {
@@ -119,20 +116,18 @@ public abstract class CPInstruction extends Instruction implements
         if (c instanceof ConstantClass)
             str = str.replace('.', '/');
 
-        return com.sun.org.apache.bcel.internal.Constants.OPCODE_NAMES[opcode]
-                + " " + str;
+        return com.sun.org.apache.bcel.internal.Constants.OPCODE_NAMES[opcode] + " " + str;
     }
 
     /**
      * Read needed data (i.e., index) from file.
      * 
      * @param bytes
-     *              input stream
+     *        input stream
      * @param wide
-     *              wide prefix?
+     *        wide prefix?
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         setIndex(bytes.readUnsignedShort());
         length = 3;
     }
@@ -148,7 +143,7 @@ public abstract class CPInstruction extends Instruction implements
      * Set the index to constant pool.
      * 
      * @param index
-     *              in constant pool.
+     *        in constant pool.
      */
     public void setIndex(int index) {
         if (index < 0)
@@ -162,8 +157,7 @@ public abstract class CPInstruction extends Instruction implements
      */
     public Type getType(ConstantPoolGen cpg) {
         ConstantPool cp = cpg.getConstantPool();
-        String name = cp.getConstantString(index,
-                com.sun.org.apache.bcel.internal.Constants.CONSTANT_Class);
+        String name = cp.getConstantString(index, com.sun.org.apache.bcel.internal.Constants.CONSTANT_Class);
 
         if (!name.startsWith("["))
             name = "L" + name + ";";

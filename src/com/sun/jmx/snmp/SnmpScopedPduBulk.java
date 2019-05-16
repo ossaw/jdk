@@ -11,7 +11,6 @@ package com.sun.jmx.snmp;
  * The <CODE>SnmpSocpedPduBulk</CODE> extends
  * {@link com.sun.jmx.snmp.SnmpScopedPduPacket SnmpScopedPduPacket} and defines
  * attributes specific to the <CODE>get-bulk</CODE> PDU (see RFC 1448).
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -20,8 +19,7 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 
-public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements
-        SnmpPduBulkType {
+public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements SnmpPduBulkType {
     private static final long serialVersionUID = -1648623646227038885L;
 
     /**
@@ -47,7 +45,7 @@ public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements
      * The <CODE>max-repetitions</CODE> setter.
      * 
      * @param max
-     *            Maximum repetition.
+     *        Maximum repetition.
      */
     public void setMaxRepetitions(int max) {
         maxRepetitions = max;
@@ -57,7 +55,7 @@ public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements
      * The <CODE>non-repeaters</CODE> setter.
      * 
      * @param nr
-     *           Non repeaters.
+     *        Non repeaters.
      */
     public void setNonRepeaters(int nr) {
         nonRepeaters = nr;

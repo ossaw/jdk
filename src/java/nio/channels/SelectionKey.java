@@ -11,7 +11,6 @@ import java.io.IOException;
 /**
  * A token representing the registration of a {@link SelectableChannel} with a
  * {@link Selector}.
- *
  * <p>
  * A selection key is created each time a channel is registered with a selector.
  * A key remains valid until it is <i>cancelled</i> by invoking its
@@ -21,16 +20,12 @@ import java.io.IOException;
  * <a href="Selector.html#ks"><i>cancelled-key set</i></a> for removal during
  * the next selection operation. The validity of a key may be tested by invoking
  * its {@link #isValid isValid} method.
- *
  * <a name="opsets"></a>
- *
  * <p>
  * A selection key contains two <i>operation sets</i> represented as integer
  * values. Each bit of an operation set denotes a category of selectable
  * operations that are supported by the key's channel.
- *
  * <ul>
- *
  * <li>
  * <p>
  * The <i>interest set</i> determines which operation categories will be tested
@@ -39,7 +34,6 @@ import java.io.IOException;
  * created; it may later be changed via the {@link #interestOps(int)} method.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The <i>ready set</i> identifies the operation categories for which the key's
@@ -48,9 +42,7 @@ import java.io.IOException;
  * selector during a selection operation, but it cannot be updated directly.
  * </p>
  * </li>
- *
  * </ul>
- *
  * <p>
  * That a selection key's ready set indicates that its channel is ready for some
  * operation category is a hint, but not a guarantee, that an operation in such
@@ -58,7 +50,6 @@ import java.io.IOException;
  * A ready set is most likely to be accurate immediately after the completion of
  * a selection operation. It is likely to be made inaccurate by external events
  * and by I/O operations that are invoked upon the corresponding channel.
- *
  * <p>
  * This class defines all known operation-set bits, but precisely which bits are
  * supported by a given channel depends upon the type of the channel. Each
@@ -67,7 +58,6 @@ import java.io.IOException;
  * identifying just those operations that are supported by the channel. An
  * attempt to set or test an operation-set bit that is not supported by a key's
  * channel will result in an appropriate run-time exception.
- *
  * <p>
  * It is often necessary to associate some application-specific data with a
  * selection key, for example an object that represents the state of a
@@ -76,7 +66,6 @@ import java.io.IOException;
  * <i>attachment</i> of a single arbitrary object to a key. An object can be
  * attached via the {@link #attach attach} method and then later retrieved via
  * the {@link #attachment() attachment} method.
- *
  * <p>
  * Selection keys are safe for use by multiple concurrent threads. The
  * operations of reading and writing the interest set will, in general, be
@@ -89,11 +78,9 @@ import java.io.IOException;
  * value that was current at the moment that the operation began.
  * </p>
  *
- *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
  * @since 1.4
- *
  * @see SelectableChannel
  * @see Selector
  */
@@ -125,7 +112,6 @@ public abstract class SelectionKey {
 
     /**
      * Tells whether or not this key is valid.
-     *
      * <p>
      * A key is valid upon creation and remains so until it is cancelled, its
      * channel is closed, or its selector is closed.
@@ -140,12 +126,10 @@ public abstract class SelectionKey {
      * cancelled. Upon return the key will be invalid and will have been added
      * to its selector's cancelled-key set. The key will be removed from all of
      * the selector's key sets during the next selection operation.
-     *
      * <p>
      * If this key has already been cancelled then invoking this method has no
      * effect. Once cancelled, a key remains forever invalid.
      * </p>
-     *
      * <p>
      * This method may be invoked at any time. It synchronizes on the selector's
      * cancelled-key set, and therefore may block briefly if invoked
@@ -159,60 +143,51 @@ public abstract class SelectionKey {
 
     /**
      * Retrieves this key's interest set.
-     *
      * <p>
      * It is guaranteed that the returned set will only contain operation bits
      * that are valid for this key's channel.
-     *
      * <p>
      * This method may be invoked at any time. Whether or not it blocks, and for
      * how long, is implementation-dependent.
      * </p>
      *
      * @return This key's interest set
-     *
      * @throws CancelledKeyException
-     *                               If this key has been cancelled
+     *         If this key has been cancelled
      */
     public abstract int interestOps();
 
     /**
      * Sets this key's interest set to the given value.
-     *
      * <p>
      * This method may be invoked at any time. Whether or not it blocks, and for
      * how long, is implementation-dependent.
      * </p>
      *
      * @param ops
-     *            The new interest set
-     *
+     *        The new interest set
      * @return This selection key
-     *
      * @throws IllegalArgumentException
-     *                                  If a bit in the set does not correspond
-     *                                  to an operation that
-     *                                  is supported by this key's channel, that
-     *                                  is, if
-     *                                  {@code (ops & ~channel().validOps()) != 0}
-     *
+     *         If a bit in the set does not correspond
+     *         to an operation that
+     *         is supported by this key's channel, that
+     *         is, if
+     *         {@code (ops & ~channel().validOps()) != 0}
      * @throws CancelledKeyException
-     *                                  If this key has been cancelled
+     *         If this key has been cancelled
      */
     public abstract SelectionKey interestOps(int ops);
 
     /**
      * Retrieves this key's ready-operation set.
-     *
      * <p>
      * It is guaranteed that the returned set will only contain operation bits
      * that are valid for this key's channel.
      * </p>
      *
      * @return This key's ready-operation set
-     *
      * @throws CancelledKeyException
-     *                               If this key has been cancelled
+     *         If this key has been cancelled
      */
     public abstract int readyOps();
 
@@ -220,7 +195,6 @@ public abstract class SelectionKey {
 
     /**
      * Operation-set bit for read operations.
-     *
      * <p>
      * Suppose that a selection key's interest set contains <tt>OP_READ</tt> at
      * the start of a <a href="Selector.html#selop">selection operation</a>. If
@@ -235,7 +209,6 @@ public abstract class SelectionKey {
 
     /**
      * Operation-set bit for write operations.
-     *
      * <p>
      * Suppose that a selection key's interest set contains <tt>OP_WRITE</tt> at
      * the start of a <a href="Selector.html#selop">selection operation</a>. If
@@ -249,7 +222,6 @@ public abstract class SelectionKey {
 
     /**
      * Operation-set bit for socket-connect operations.
-     *
      * <p>
      * Suppose that a selection key's interest set contains <tt>OP_CONNECT</tt>
      * at the start of a <a href="Selector.html#selop">selection operation</a>.
@@ -263,7 +235,6 @@ public abstract class SelectionKey {
 
     /**
      * Operation-set bit for socket-accept operations.
-     *
      * <p>
      * Suppose that a selection key's interest set contains <tt>OP_ACCEPT</tt>
      * at the start of a <a href="Selector.html#selop">selection operation</a>.
@@ -277,11 +248,9 @@ public abstract class SelectionKey {
 
     /**
      * Tests whether this key's channel is ready for reading.
-     *
      * <p>
      * An invocation of this method of the form <tt>k.isReadable()</tt> behaves
      * in exactly the same way as the expression
-     *
      * <blockquote>
      * 
      * <pre>
@@ -291,7 +260,6 @@ public abstract class SelectionKey {
      * </pre>
      * 
      * </blockquote>
-     *
      * <p>
      * If this key's channel does not support read operations then this method
      * always returns <tt>false</tt>.
@@ -299,9 +267,8 @@ public abstract class SelectionKey {
      *
      * @return <tt>true</tt> if, and only if, {@code readyOps() & OP_READ} is
      *         nonzero
-     *
      * @throws CancelledKeyException
-     *                               If this key has been cancelled
+     *         If this key has been cancelled
      */
     public final boolean isReadable() {
         return (readyOps() & OP_READ) != 0;
@@ -309,11 +276,9 @@ public abstract class SelectionKey {
 
     /**
      * Tests whether this key's channel is ready for writing.
-     *
      * <p>
      * An invocation of this method of the form <tt>k.isWritable()</tt> behaves
      * in exactly the same way as the expression
-     *
      * <blockquote>
      * 
      * <pre>
@@ -323,7 +288,6 @@ public abstract class SelectionKey {
      * </pre>
      * 
      * </blockquote>
-     *
      * <p>
      * If this key's channel does not support write operations then this method
      * always returns <tt>false</tt>.
@@ -331,9 +295,8 @@ public abstract class SelectionKey {
      *
      * @return <tt>true</tt> if, and only if, {@code readyOps() & OP_WRITE} is
      *         nonzero
-     *
      * @throws CancelledKeyException
-     *                               If this key has been cancelled
+     *         If this key has been cancelled
      */
     public final boolean isWritable() {
         return (readyOps() & OP_WRITE) != 0;
@@ -342,11 +305,9 @@ public abstract class SelectionKey {
     /**
      * Tests whether this key's channel has either finished, or failed to
      * finish, its socket-connection operation.
-     *
      * <p>
      * An invocation of this method of the form <tt>k.isConnectable()</tt>
      * behaves in exactly the same way as the expression
-     *
      * <blockquote>
      * 
      * <pre>
@@ -356,7 +317,6 @@ public abstract class SelectionKey {
      * </pre>
      * 
      * </blockquote>
-     *
      * <p>
      * If this key's channel does not support socket-connect operations then
      * this method always returns <tt>false</tt>.
@@ -364,9 +324,8 @@ public abstract class SelectionKey {
      *
      * @return <tt>true</tt> if, and only if, {@code readyOps() & OP_CONNECT} is
      *         nonzero
-     *
      * @throws CancelledKeyException
-     *                               If this key has been cancelled
+     *         If this key has been cancelled
      */
     public final boolean isConnectable() {
         return (readyOps() & OP_CONNECT) != 0;
@@ -375,11 +334,9 @@ public abstract class SelectionKey {
     /**
      * Tests whether this key's channel is ready to accept a new socket
      * connection.
-     *
      * <p>
      * An invocation of this method of the form <tt>k.isAcceptable()</tt>
      * behaves in exactly the same way as the expression
-     *
      * <blockquote>
      * 
      * <pre>
@@ -389,7 +346,6 @@ public abstract class SelectionKey {
      * </pre>
      * 
      * </blockquote>
-     *
      * <p>
      * If this key's channel does not support socket-accept operations then this
      * method always returns <tt>false</tt>.
@@ -397,9 +353,8 @@ public abstract class SelectionKey {
      *
      * @return <tt>true</tt> if, and only if, {@code readyOps() & OP_ACCEPT} is
      *         nonzero
-     *
      * @throws CancelledKeyException
-     *                               If this key has been cancelled
+     *         If this key has been cancelled
      */
     public final boolean isAcceptable() {
         return (readyOps() & OP_ACCEPT) != 0;
@@ -414,7 +369,6 @@ public abstract class SelectionKey {
 
     /**
      * Attaches the given object to this key.
-     *
      * <p>
      * An attached object may later be retrieved via the {@link #attachment()
      * attachment} method. Only one object may be attached at a time; invoking
@@ -423,8 +377,7 @@ public abstract class SelectionKey {
      * </p>
      *
      * @param ob
-     *           The object to be attached; may be <tt>null</tt>
-     *
+     *        The object to be attached; may be <tt>null</tt>
      * @return The previously-attached object, if any, otherwise <tt>null</tt>
      */
     public final Object attach(Object ob) {

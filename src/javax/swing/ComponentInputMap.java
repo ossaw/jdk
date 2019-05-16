@@ -24,9 +24,9 @@ public class ComponentInputMap extends InputMap {
      * component.
      *
      * @param component
-     *                  a non-null <code>JComponent</code>
+     *        a non-null <code>JComponent</code>
      * @throws IllegalArgumentException
-     *                                  if <code>component</code> is null
+     *         if <code>component</code> is null
      */
     public ComponentInputMap(JComponent component) {
         this.component = component;
@@ -42,21 +42,19 @@ public class ComponentInputMap extends InputMap {
      * .
      *
      * @param map
-     *            a <code>ComponentInputMap</code>
-     *
+     *        a <code>ComponentInputMap</code>
      * @throws IllegalArgumentException
-     *                                  if <code>map</code> is not a
-     *                                  <code>ComponentInputMap</code>
-     *                                  or is not associated with the same
-     *                                  component
+     *         if <code>map</code> is not a
+     *         <code>ComponentInputMap</code>
+     *         or is not associated with the same
+     *         component
      */
     public void setParent(InputMap map) {
         if (getParent() == map) {
             return;
         }
-        if (map != null && (!(map instanceof ComponentInputMap)
-                || ((ComponentInputMap) map)
-                        .getComponent() != getComponent())) {
+        if (map != null && (!(map instanceof ComponentInputMap) || ((ComponentInputMap) map)
+                .getComponent() != getComponent())) {
             throw new IllegalArgumentException(
                     "ComponentInputMaps must have a parent ComponentInputMap associated with the same component");
         }

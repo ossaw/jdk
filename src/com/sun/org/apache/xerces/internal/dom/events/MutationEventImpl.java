@@ -22,11 +22,9 @@ import org.w3c.dom.events.MutationEvent;
 
 /**
  * @xerces.internal
- *
  */
 
-public class MutationEventImpl extends
-        com.sun.org.apache.xerces.internal.dom.events.EventImpl implements
+public class MutationEventImpl extends com.sun.org.apache.xerces.internal.dom.events.EventImpl implements
         MutationEvent {
     Node relatedNode = null;
     String prevValue = null, newValue = null, attrName = null;
@@ -91,9 +89,9 @@ public class MutationEventImpl extends
      * Initialize a mutation event, or overwrite the event's current settings
      * with new values of the parameters.
      */
-    public void initMutationEvent(String typeArg, boolean canBubbleArg,
-            boolean cancelableArg, Node relatedNodeArg, String prevValueArg,
-            String newValueArg, String attrNameArg, short attrChangeArg) {
+    public void initMutationEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg,
+            Node relatedNodeArg, String prevValueArg, String newValueArg, String attrNameArg,
+            short attrChangeArg) {
         relatedNode = relatedNodeArg;
         prevValue = prevValueArg;
         newValue = newValueArg;

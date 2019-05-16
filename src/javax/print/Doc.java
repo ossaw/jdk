@@ -103,11 +103,10 @@ public interface Doc {
      * from class Object to that representation class.
      *
      * @return Print data representation object.
-     *
      * @exception IOException
-     *                        Thrown if the representation class is a stream and
-     *                        there
-     *                        was an I/O error while constructing the stream.
+     *            Thrown if the representation class is a stream and
+     *            there
+     *            was an I/O error while constructing the stream.
      */
     public Object getPrintData() throws IOException;
 
@@ -147,11 +146,10 @@ public interface Doc {
      * @return Reader for reading the print data characters from this doc. If a
      *         reader cannot be provided because this doc does not meet the
      *         criteria stated above, null is returned.
-     *
      * @exception IOException
-     *                        Thrown if there was an I/O error while creating
-     *                        the
-     *                        reader.
+     *            Thrown if there was an I/O error while creating
+     *            the
+     *            reader.
      */
     public Reader getReaderForText() throws IOException;
 
@@ -174,11 +172,10 @@ public interface Doc {
      * @return Input stream for reading the print data bytes from this doc. If
      *         an input stream cannot be provided because this doc does not meet
      *         the criteria stated above, null is returned.
-     *
      * @exception IOException
-     *                        Thrown if there was an I/O error while creating
-     *                        the input
-     *                        stream.
+     *            Thrown if there was an I/O error while creating
+     *            the input
+     *            stream.
      */
     public InputStream getStreamForBytes() throws IOException;
 

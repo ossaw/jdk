@@ -31,8 +31,7 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterMoreInfoManufacturer extends URISyntax implements
-        PrintServiceAttribute {
+public final class PrinterMoreInfoManufacturer extends URISyntax implements PrintServiceAttribute {
 
     private static final long serialVersionUID = 3323271346485076608L;
 
@@ -41,11 +40,10 @@ public final class PrinterMoreInfoManufacturer extends URISyntax implements
      * specified URI.
      *
      * @param uri
-     *            URI.
-     *
+     *        URI.
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>uri</CODE> is null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>uri</CODE> is null.
      */
     public PrinterMoreInfoManufacturer(URI uri) {
         super(uri);
@@ -64,14 +62,12 @@ public final class PrinterMoreInfoManufacturer extends URISyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this printer more
      *         info manufacturer attribute, false otherwise.
      */
     public boolean equals(Object object) {
-        return (super.equals(object)
-                && object instanceof PrinterMoreInfoManufacturer);
+        return (super.equals(object) && object instanceof PrinterMoreInfoManufacturer);
     }
 
     /**

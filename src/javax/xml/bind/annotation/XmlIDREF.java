@@ -13,14 +13,12 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * <p>
  * Maps a JavaBean property to XML IDREF.
- *
  * <p>
  * To preserve referential integrity of an object graph across XML serialization
  * followed by a XML deserialization, requires an object reference to be
  * marshalled by reference or containment appropriately. Annotations
  * <tt>&#64;XmlID</tt> and <tt>&#64;XmlIDREF</tt> together allow a customized
  * mapping of a JavaBean property's type by containment or reference.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -30,16 +28,13 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>a JavaBean property</li>
  * <li>non static, non transient field</li>
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * <p>
  * The usage is subject to the following constraints:
  * <ul>
- *
  * <li>If the type of the field or property is a collection type, then the
  * collection item type must contain a property or field annotated with
  * <tt>&#64;XmlID</tt>.</li>
@@ -52,7 +47,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>This annotation can be used with the following annotations:
  * {@link XmlElement}, {@link XmlAttribute}, {@link XmlList}, and
  * {@link XmlElements}.</li>
- *
  * </ul>
  * <p>
  * <b>Example:</b> Map a JavaBean property to <tt>xs:IDREF</tt> (i.e. by
@@ -77,10 +71,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  *       &lt;/xs:sequence>
  *     &lt;/xs:complexContent>
  *   &lt;/xs:complexType>
- *
  * </pre>
- *
- *
  * <p>
  * <b>Example 2: </b> The following is a complete example of containment versus
  * reference.
@@ -184,9 +175,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  *           ....
  *       &lt;/invoice>
  *   &lt;/customerData>
- *
  * </pre>
- *
  * <p>
  * <b>Example 3: </b> Mapping List to repeating element of type IDREF
  * 
@@ -207,7 +196,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  *       &lt;/xs:sequence>
  *     &lt;/xs:complexType>
  * </pre>
- *
  * <p>
  * <b>Example 4: </b> Mapping a List to a list of elements of type IDREF.
  * 
@@ -239,5 +227,4 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
-public @interface XmlIDREF {
-}
+public @interface XmlIDREF {}

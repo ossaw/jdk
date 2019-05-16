@@ -11,7 +11,6 @@ import java.util.Objects;
  * result. This is the two-arity specialization of {@link Consumer}. Unlike most
  * other functional interfaces, {@code BiConsumer} is expected to operate via
  * side-effects.
- *
  * <p>
  * This is a <a href="package-summary.html">functional interface</a> whose
  * functional method is {@link #accept(Object, Object)}.
@@ -20,7 +19,6 @@ import java.util.Objects;
  *        the type of the first argument to the operation
  * @param <U>
  *        the type of the second argument to the operation
- *
  * @see Consumer
  * @since 1.8
  */
@@ -31,9 +29,9 @@ public interface BiConsumer<T, U> {
      * Performs this operation on the given arguments.
      *
      * @param t
-     *          the first input argument
+     *        the first input argument
      * @param u
-     *          the second input argument
+     *        the second input argument
      */
     void accept(T t, U u);
 
@@ -45,11 +43,11 @@ public interface BiConsumer<T, U> {
      * {@code after} operation will not be performed.
      *
      * @param after
-     *              the operation to perform after this operation
+     *        the operation to perform after this operation
      * @return a composed {@code BiConsumer} that performs in sequence this
      *         operation followed by the {@code after} operation
      * @throws NullPointerException
-     *                              if {@code after} is null
+     *         if {@code after} is null
      */
     default BiConsumer<T, U> andThen(BiConsumer<? super T, ? super U> after) {
         Objects.requireNonNull(after);

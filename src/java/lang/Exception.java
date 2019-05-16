@@ -9,7 +9,6 @@ package java.lang;
  * The class {@code Exception} and its subclasses are a form of
  * {@code Throwable} that indicates conditions that a reasonable application
  * might want to catch.
- *
  * <p>
  * The class {@code Exception} and any subclasses that are not also subclasses
  * of {@link RuntimeException} are <em>checked
@@ -41,8 +40,8 @@ public class Exception extends Throwable {
      * {@link #initCause}.
      *
      * @param message
-     *                the detail message. The detail message is saved for later
-     *                retrieval by the {@link #getMessage()} method.
+     *        the detail message. The detail message is saved for later
+     *        retrieval by the {@link #getMessage()} method.
      */
     public Exception(String message) {
         super(message);
@@ -55,14 +54,14 @@ public class Exception extends Throwable {
      * automatically incorporated in this exception's detail message.
      *
      * @param message
-     *                the detail message (which is saved for later retrieval by
-     *                the
-     *                {@link #getMessage()} method).
+     *        the detail message (which is saved for later retrieval by
+     *        the
+     *        {@link #getMessage()} method).
      * @param cause
-     *                the cause (which is saved for later retrieval by the
-     *                {@link #getCause()} method). (A <tt>null</tt> value is
-     *                permitted, and indicates that the cause is nonexistent or
-     *                unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method). (A <tt>null</tt> value is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      * @since 1.4
      */
     public Exception(String message, Throwable cause) {
@@ -78,10 +77,10 @@ public class Exception extends Throwable {
      * {@link java.security.PrivilegedActionException}).
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause()} method). (A <tt>null</tt> value is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method). (A <tt>null</tt> value is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      * @since 1.4
      */
     public Exception(Throwable cause) {
@@ -94,21 +93,21 @@ public class Exception extends Throwable {
      * disabled.
      *
      * @param message
-     *                           the detail message.
+     *        the detail message.
      * @param cause
-     *                           the cause. (A {@code null} value is permitted,
-     *                           and indicates
-     *                           that the cause is nonexistent or unknown.)
+     *        the cause. (A {@code null} value is permitted,
+     *        and indicates
+     *        that the cause is nonexistent or unknown.)
      * @param enableSuppression
-     *                           whether or not suppression is enabled or
-     *                           disabled
+     *        whether or not suppression is enabled or
+     *        disabled
      * @param writableStackTrace
-     *                           whether or not the stack trace should be
-     *                           writable
+     *        whether or not the stack trace should be
+     *        writable
      * @since 1.7
      */
-    protected Exception(String message, Throwable cause,
-            boolean enableSuppression, boolean writableStackTrace) {
+    protected Exception(String message, Throwable cause, boolean enableSuppression,
+            boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

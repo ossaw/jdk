@@ -31,7 +31,7 @@ public class IllegalComponentStateException extends IllegalStateException {
      * exception.
      * 
      * @param s
-     *          the String that contains a detailed message
+     *        the String that contains a detailed message
      */
     public IllegalComponentStateException(String s) {
         super(s);

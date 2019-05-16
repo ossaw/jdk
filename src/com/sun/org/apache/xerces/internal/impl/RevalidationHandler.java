@@ -66,9 +66,9 @@ public interface RevalidationHandler extends XMLDocumentFilter {
      * Character content.
      *
      * @param data
-     *             The character data.
+     *        The character data.
      * @param augs
-     *             Augmentations
+     *        Augmentations
      * @return True if data is whitespace only
      */
     public boolean characterData(String data, Augmentations augs);

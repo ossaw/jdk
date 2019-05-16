@@ -72,29 +72,27 @@ public final class Field extends FieldOrMethod {
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      */
-    Field(DataInputStream file, ConstantPool constant_pool) throws IOException,
-            ClassFormatException {
+    Field(DataInputStream file, ConstantPool constant_pool) throws IOException, ClassFormatException {
         super(file, constant_pool);
     }
 
     /**
      * @param access_flags
-     *                        Access rights of field
+     *        Access rights of field
      * @param name_index
-     *                        Points to field name in constant pool
+     *        Points to field name in constant pool
      * @param signature_index
-     *                        Points to encoded signature
+     *        Points to encoded signature
      * @param attributes
-     *                        Collection of attributes
+     *        Collection of attributes
      * @param constant_pool
-     *                        Array of constants
+     *        Array of constants
      */
-    public Field(int access_flags, int name_index, int signature_index,
-            Attribute[] attributes, ConstantPool constant_pool) {
-        super(access_flags, name_index, signature_index, attributes,
-                constant_pool);
+    public Field(int access_flags, int name_index, int signature_index, Attribute[] attributes,
+            ConstantPool constant_pool) {
+        super(access_flags, name_index, signature_index, attributes, constant_pool);
     }
 
     /**
@@ -103,7 +101,7 @@ public final class Field extends FieldOrMethod {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitField(this);

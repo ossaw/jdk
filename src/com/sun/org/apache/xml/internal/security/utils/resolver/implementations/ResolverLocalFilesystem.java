@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,8 +37,8 @@ public class ResolverLocalFilesystem extends ResourceResolverSpi {
     private static final int FILE_URI_LENGTH = "file:/".length();
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(ResolverLocalFilesystem.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(
+            ResolverLocalFilesystem.class.getName());
 
     @Override
     public boolean engineIsThreadSafe() {
@@ -57,8 +55,7 @@ public class ResolverLocalFilesystem extends ResourceResolverSpi {
             // calculate new URI
             URI uriNew = getNewURI(context.uriToResolve, context.baseUri);
 
-            String fileName = ResolverLocalFilesystem.translateUriToFilename(
-                    uriNew.toString());
+            String fileName = ResolverLocalFilesystem.translateUriToFilename(uriNew.toString());
             FileInputStream inputStream = new FileInputStream(fileName);
             XMLSignatureInput result = new XMLSignatureInput(inputStream);
 
@@ -66,8 +63,7 @@ public class ResolverLocalFilesystem extends ResourceResolverSpi {
 
             return result;
         } catch (Exception e) {
-            throw new ResourceResolverException("generic.EmptyMessage", e,
-                    context.attr, context.baseUri);
+            throw new ResourceResolverException("generic.EmptyMessage", e, context.attr, context.baseUri);
         }
     }
 
@@ -114,24 +110,21 @@ public class ResolverLocalFilesystem extends ResourceResolverSpi {
             return false;
         }
 
-        if (context.uriToResolve.equals("") || (context.uriToResolve.charAt(
-                0) == '#') || context.uriToResolve.startsWith("http:")) {
+        if (context.uriToResolve.equals("") || (context.uriToResolve.charAt(0) == '#') || context.uriToResolve
+                .startsWith("http:")) {
             return false;
         }
 
         try {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE,
-                        "I was asked whether I can resolve "
-                                + context.uriToResolve);
+                log.log(java.util.logging.Level.FINE, "I was asked whether I can resolve "
+                        + context.uriToResolve);
             }
 
-            if (context.uriToResolve.startsWith("file:") || context.baseUri
-                    .startsWith("file:")) {
+            if (context.uriToResolve.startsWith("file:") || context.baseUri.startsWith("file:")) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "I state that I can resolve "
-                                    + context.uriToResolve);
+                    log.log(java.util.logging.Level.FINE, "I state that I can resolve "
+                            + context.uriToResolve);
                 }
                 return true;
             }
@@ -148,8 +141,7 @@ public class ResolverLocalFilesystem extends ResourceResolverSpi {
         return false;
     }
 
-    private static URI getNewURI(String uri, String baseURI)
-            throws URISyntaxException {
+    private static URI getNewURI(String uri, String baseURI) throws URISyntaxException {
         URI newUri = null;
         if (baseURI == null || "".equals(baseURI)) {
             newUri = new URI(uri);
@@ -159,8 +151,7 @@ public class ResolverLocalFilesystem extends ResourceResolverSpi {
 
         // if the URI contains a fragment, ignore it
         if (newUri.getFragment() != null) {
-            URI uriNewNoFrag = new URI(newUri.getScheme(), newUri
-                    .getSchemeSpecificPart(), null);
+            URI uriNewNoFrag = new URI(newUri.getScheme(), newUri.getSchemeSpecificPart(), null);
             return uriNewNoFrag;
         }
         return newUri;

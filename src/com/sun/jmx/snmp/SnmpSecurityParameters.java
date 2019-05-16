@@ -24,7 +24,7 @@ public interface SnmpSecurityParameters {
      * BER encoding of security parameters.
      * 
      * @param outputBytes
-     *                    Array to fill.
+     *        Array to fill.
      * @return Encoded parameters length.
      */
     int encode(byte[] outputBytes) throws SnmpTooBigException;
@@ -33,7 +33,7 @@ public interface SnmpSecurityParameters {
      * BER decoding of security parameters.
      * 
      * @param params
-     *               Encoded parameters.
+     *        Encoded parameters.
      */
     void decode(byte[] params) throws SnmpStatusException;
 

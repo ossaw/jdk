@@ -16,7 +16,6 @@ import javax.swing.plaf.*;
  * <code>createValue</code>. If the underlying desktop property changes this
  * will force the UIs to update all known Frames. You can invoke
  * <code>invalidate</code> to force the value to be fetched again.
- *
  */
 // NOTE: Don't rely on this class staying in this location. It is likely
 // to move to a different package in the future.
@@ -106,9 +105,9 @@ public class DesktopProperty implements UIDefaults.ActiveValue {
      * Creates a DesktopProperty.
      *
      * @param key
-     *                 Key used in looking up desktop value.
+     *        Key used in looking up desktop value.
      * @param fallback
-     *                 Value used if desktop property is null.
+     *        Value used if desktop property is null.
      */
     public DesktopProperty(String key, Object fallback) {
         this.key = key;
@@ -164,7 +163,7 @@ public class DesktopProperty implements UIDefaults.ActiveValue {
      * Invalidates the current value.
      *
      * @param laf
-     *            the LookAndFeel this DesktopProperty was created with
+     *        the LookAndFeel this DesktopProperty was created with
      */
     public void invalidate(LookAndFeel laf) {
         invalidate();
@@ -228,8 +227,7 @@ public class DesktopProperty implements UIDefaults.ActiveValue {
      * As there is typically only one Toolkit, the PropertyChangeListener is
      * handled via a WeakReference so as not to pin down the DesktopProperty.
      */
-    private static class WeakPCL extends WeakReference<DesktopProperty>
-            implements PropertyChangeListener {
+    private static class WeakPCL extends WeakReference<DesktopProperty> implements PropertyChangeListener {
         private String key;
         private LookAndFeel laf;
 

@@ -11,7 +11,6 @@ package org.omg.CosNaming;
 /**
  * The BindingIterator interface allows a client to iterate through the bindings
  * using the next_one or next_n operations.
- * 
  * The bindings iterator is obtained by using the <tt>list</tt> method on the
  * <tt>NamingContext</tt>.
  * 
@@ -24,7 +23,7 @@ public interface BindingIteratorOperations {
      * false is returned.
      * 
      * @param b
-     *          the returned binding
+     *        the returned binding
      */
     boolean next_one(org.omg.CosNaming.BindingHolder b);
 
@@ -32,11 +31,10 @@ public interface BindingIteratorOperations {
      * This operation returns at most the requested number of bindings.
      * 
      * @param how_many
-     *                 the maximum number of bindings tro return
-     *                 <p>
-     * 
+     *        the maximum number of bindings tro return
+     *        <p>
      * @param bl
-     *                 the returned bindings
+     *        the returned bindings
      */
     boolean next_n(int how_many, org.omg.CosNaming.BindingListHolder bl);
 

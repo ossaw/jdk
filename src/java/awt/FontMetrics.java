@@ -83,8 +83,7 @@ public abstract class FontMetrics implements java.io.Serializable {
         }
     }
 
-    private static final FontRenderContext DEFAULT_FRC = new FontRenderContext(
-            null, false, false);
+    private static final FontRenderContext DEFAULT_FRC = new FontRenderContext(null, false, false);
 
     /**
      * The actual {@link Font} from which the font metrics are created. This
@@ -106,7 +105,7 @@ public abstract class FontMetrics implements java.io.Serializable {
      * character glyphs in that <code>Font</code>.
      * 
      * @param font
-     *             the <code>Font</code>
+     *        the <code>Font</code>
      * @see java.awt.Font
      */
     protected FontMetrics(Font font) {
@@ -259,7 +258,6 @@ public abstract class FontMetrics implements java.io.Serializable {
      * the rightmost point on the character's baseline. Note that the advance of
      * a <code>String</code> is not necessarily the sum of the advances of its
      * characters.
-     *
      * <p>
      * This method doesn't validate the specified character to be a valid
      * Unicode code point. The caller must validate the character value using
@@ -267,7 +265,7 @@ public abstract class FontMetrics implements java.io.Serializable {
      * Character.isValidCodePoint} if necessary.
      *
      * @param codePoint
-     *                  the character (Unicode code point) to be measured
+     *        the character (Unicode code point) to be measured
      * @return the advance width of the specified character in the
      *         <code>Font</code> described by this <code>FontMetrics</code>
      *         object.
@@ -294,7 +292,6 @@ public abstract class FontMetrics implements java.io.Serializable {
      * the rightmost point on the character's baseline. Note that the advance of
      * a <code>String</code> is not necessarily the sum of the advances of its
      * characters.
-     *
      * <p>
      * <b>Note:</b> This method cannot handle
      * <a href="../lang/Character.html#supplementary"> supplementary
@@ -302,7 +299,7 @@ public abstract class FontMetrics implements java.io.Serializable {
      * supplementary characters, use the {@link #charWidth(int)} method.
      *
      * @param ch
-     *           the character to be measured
+     *        the character to be measured
      * @return the advance width of the specified character in the
      *         <code>Font</code> described by this <code>FontMetrics</code>
      *         object.
@@ -327,11 +324,11 @@ public abstract class FontMetrics implements java.io.Serializable {
      * of the advances of its characters.
      * 
      * @param str
-     *            the <code>String</code> to be measured
+     *        the <code>String</code> to be measured
      * @return the advance width of the specified <code>String</code> in the
      *         <code>Font</code> described by this <code>FontMetrics</code>.
      * @throws NullPointerException
-     *                              if str is null.
+     *         if str is null.
      * @see #bytesWidth(byte[], int, int)
      * @see #charsWidth(char[], int, int)
      * @see #getStringBounds(String, Graphics)
@@ -352,21 +349,21 @@ public abstract class FontMetrics implements java.io.Serializable {
      * <code>String</code> of the characters in the specified range.
      * 
      * @param data
-     *             the array of characters to be measured
+     *        the array of characters to be measured
      * @param off
-     *             the start offset of the characters in the array
+     *        the start offset of the characters in the array
      * @param len
-     *             the number of characters to be measured from the array
+     *        the number of characters to be measured from the array
      * @return the advance width of the subarray of the specified
      *         <code>char</code> array in the font described by this
      *         <code>FontMetrics</code> object.
      * @throws NullPointerException
-     *                                   if <code>data</code> is null.
+     *         if <code>data</code> is null.
      * @throws IndexOutOfBoundsException
-     *                                   if the <code>off</code> and
-     *                                   <code>len</code> arguments index
-     *                                   characters outside the bounds of the
-     *                                   <code>data</code> array.
+     *         if the <code>off</code> and
+     *         <code>len</code> arguments index
+     *         characters outside the bounds of the
+     *         <code>data</code> array.
      * @see #charWidth(int)
      * @see #charWidth(char)
      * @see #bytesWidth(byte[], int, int)
@@ -385,21 +382,21 @@ public abstract class FontMetrics implements java.io.Serializable {
      * characters in the specified range.
      * 
      * @param data
-     *             the array of bytes to be measured
+     *        the array of bytes to be measured
      * @param off
-     *             the start offset of the bytes in the array
+     *        the start offset of the bytes in the array
      * @param len
-     *             the number of bytes to be measured from the array
+     *        the number of bytes to be measured from the array
      * @return the advance width of the subarray of the specified
      *         <code>byte</code> array in the <code>Font</code> described by
      *         this <code>FontMetrics</code> object.
      * @throws NullPointerException
-     *                                   if <code>data</code> is null.
+     *         if <code>data</code> is null.
      * @throws IndexOutOfBoundsException
-     *                                   if the <code>off</code> and
-     *                                   <code>len</code> arguments index
-     *                                   bytes outside the bounds of the
-     *                                   <code>data</code> array.
+     *         if the <code>off</code> and
+     *         <code>len</code> arguments index
+     *         bytes outside the bounds of the
+     *         <code>data</code> array.
      * @see #charsWidth(char[], int, int)
      * @see #stringWidth(String)
      */
@@ -447,9 +444,9 @@ public abstract class FontMetrics implements java.io.Serializable {
      * <code>String</code> in the specified {@link Graphics} context.
      * 
      * @param str
-     *                the specified <code>String</code>
+     *        the specified <code>String</code>
      * @param context
-     *                the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>LineMetrics</code> object created with the specified
      *         <code>String</code> and <code>Graphics</code> context.
      * @see java.awt.Font#getLineMetrics(String, FontRenderContext)
@@ -463,19 +460,18 @@ public abstract class FontMetrics implements java.io.Serializable {
      * <code>String</code> in the specified {@link Graphics} context.
      * 
      * @param str
-     *                   the specified <code>String</code>
+     *        the specified <code>String</code>
      * @param beginIndex
-     *                   the initial offset of <code>str</code>
+     *        the initial offset of <code>str</code>
      * @param limit
-     *                   the end offset of <code>str</code>
+     *        the end offset of <code>str</code>
      * @param context
-     *                   the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>LineMetrics</code> object created with the specified
      *         <code>String</code> and <code>Graphics</code> context.
      * @see java.awt.Font#getLineMetrics(String, int, int, FontRenderContext)
      */
-    public LineMetrics getLineMetrics(String str, int beginIndex, int limit,
-            Graphics context) {
+    public LineMetrics getLineMetrics(String str, int beginIndex, int limit, Graphics context) {
         return font.getLineMetrics(str, beginIndex, limit, myFRC(context));
     }
 
@@ -484,19 +480,18 @@ public abstract class FontMetrics implements java.io.Serializable {
      * in the specified {@link Graphics} context.
      * 
      * @param chars
-     *                   the specified character array
+     *        the specified character array
      * @param beginIndex
-     *                   the initial offset of <code>chars</code>
+     *        the initial offset of <code>chars</code>
      * @param limit
-     *                   the end offset of <code>chars</code>
+     *        the end offset of <code>chars</code>
      * @param context
-     *                   the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>LineMetrics</code> object created with the specified
      *         character array and <code>Graphics</code> context.
      * @see java.awt.Font#getLineMetrics(char[], int, int, FontRenderContext)
      */
-    public LineMetrics getLineMetrics(char[] chars, int beginIndex, int limit,
-            Graphics context) {
+    public LineMetrics getLineMetrics(char[] chars, int beginIndex, int limit, Graphics context) {
         return font.getLineMetrics(chars, beginIndex, limit, myFRC(context));
     }
 
@@ -505,20 +500,19 @@ public abstract class FontMetrics implements java.io.Serializable {
      * {@link CharacterIterator} in the specified {@link Graphics} context.
      * 
      * @param ci
-     *                   the specified <code>CharacterIterator</code>
+     *        the specified <code>CharacterIterator</code>
      * @param beginIndex
-     *                   the initial offset in <code>ci</code>
+     *        the initial offset in <code>ci</code>
      * @param limit
-     *                   the end index of <code>ci</code>
+     *        the end index of <code>ci</code>
      * @param context
-     *                   the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>LineMetrics</code> object created with the specified
      *         arguments.
      * @see java.awt.Font#getLineMetrics(CharacterIterator, int, int,
      *      FontRenderContext)
      */
-    public LineMetrics getLineMetrics(CharacterIterator ci, int beginIndex,
-            int limit, Graphics context) {
+    public LineMetrics getLineMetrics(CharacterIterator ci, int beginIndex, int limit, Graphics context) {
         return font.getLineMetrics(ci, beginIndex, limit, myFRC(context));
     }
 
@@ -531,9 +525,9 @@ public abstract class FontMetrics implements java.io.Serializable {
      * {@link java.awt.FontMetrics class notes}).
      * 
      * @param str
-     *                the specified <code>String</code>
+     *        the specified <code>String</code>
      * @param context
-     *                the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a {@link Rectangle2D} that is the bounding box of the specified
      *         <code>String</code> in the specified <code>Graphics</code>
      *         context.
@@ -552,20 +546,19 @@ public abstract class FontMetrics implements java.io.Serializable {
      * {@link java.awt.FontMetrics class notes}).
      * 
      * @param str
-     *                   the specified <code>String</code>
+     *        the specified <code>String</code>
      * @param beginIndex
-     *                   the offset of the beginning of <code>str</code>
+     *        the offset of the beginning of <code>str</code>
      * @param limit
-     *                   the end offset of <code>str</code>
+     *        the end offset of <code>str</code>
      * @param context
-     *                   the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>Rectangle2D</code> that is the bounding box of the
      *         specified <code>String</code> in the specified
      *         <code>Graphics</code> context.
      * @see java.awt.Font#getStringBounds(String, int, int, FontRenderContext)
      */
-    public Rectangle2D getStringBounds(String str, int beginIndex, int limit,
-            Graphics context) {
+    public Rectangle2D getStringBounds(String str, int beginIndex, int limit, Graphics context) {
         return font.getStringBounds(str, beginIndex, limit, myFRC(context));
     }
 
@@ -579,20 +572,19 @@ public abstract class FontMetrics implements java.io.Serializable {
      * {@link java.awt.FontMetrics class notes}).
      * 
      * @param chars
-     *                   an array of characters
+     *        an array of characters
      * @param beginIndex
-     *                   the initial offset of the array of characters
+     *        the initial offset of the array of characters
      * @param limit
-     *                   the end offset of the array of characters
+     *        the end offset of the array of characters
      * @param context
-     *                   the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>Rectangle2D</code> that is the bounding box of the
      *         specified character array in the specified <code>Graphics</code>
      *         context.
      * @see java.awt.Font#getStringBounds(char[], int, int, FontRenderContext)
      */
-    public Rectangle2D getStringBounds(char[] chars, int beginIndex, int limit,
-            Graphics context) {
+    public Rectangle2D getStringBounds(char[] chars, int beginIndex, int limit, Graphics context) {
         return font.getStringBounds(chars, beginIndex, limit, myFRC(context));
     }
 
@@ -605,13 +597,13 @@ public abstract class FontMetrics implements java.io.Serializable {
      * {@link java.awt.FontMetrics class notes}).
      * 
      * @param ci
-     *                   the specified <code>CharacterIterator</code>
+     *        the specified <code>CharacterIterator</code>
      * @param beginIndex
-     *                   the initial offset in <code>ci</code>
+     *        the initial offset in <code>ci</code>
      * @param limit
-     *                   the end index of <code>ci</code>
+     *        the end index of <code>ci</code>
      * @param context
-     *                   the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>Rectangle2D</code> that is the bounding box of the
      *         characters indexed in the specified
      *         <code>CharacterIterator</code> in the specified
@@ -619,8 +611,7 @@ public abstract class FontMetrics implements java.io.Serializable {
      * @see java.awt.Font#getStringBounds(CharacterIterator, int, int,
      *      FontRenderContext)
      */
-    public Rectangle2D getStringBounds(CharacterIterator ci, int beginIndex,
-            int limit, Graphics context) {
+    public Rectangle2D getStringBounds(CharacterIterator ci, int beginIndex, int limit, Graphics context) {
         return font.getStringBounds(ci, beginIndex, limit, myFRC(context));
     }
 
@@ -629,7 +620,7 @@ public abstract class FontMetrics implements java.io.Serializable {
      * specified <code>Graphics</code> context.
      * 
      * @param context
-     *                the specified <code>Graphics</code> context
+     *        the specified <code>Graphics</code> context
      * @return a <code>Rectangle2D</code> that is the bounding box for the
      *         character with the maximum bounds.
      * @see java.awt.Font#getMaxCharBounds(FontRenderContext)
@@ -654,9 +645,8 @@ public abstract class FontMetrics implements java.io.Serializable {
      * @since JDK1.0.
      */
     public String toString() {
-        return getClass().getName() + "[font=" + getFont() + "ascent="
-                + getAscent() + ", descent=" + getDescent() + ", height="
-                + getHeight() + "]";
+        return getClass().getName() + "[font=" + getFont() + "ascent=" + getAscent() + ", descent="
+                + getDescent() + ", height=" + getHeight() + "]";
     }
 
     /**

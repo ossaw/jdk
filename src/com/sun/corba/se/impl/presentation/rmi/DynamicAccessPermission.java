@@ -11,7 +11,6 @@ import java.security.*;
  * This class controls the use of dynamic proxies. A DynamicAccessPermission
  * contains a name (also referred to as a "target name") but no actions list;
  * you either have the named permission or you don't.
- *
  */
 
 public final class DynamicAccessPermission extends BasicPermission {
@@ -21,7 +20,7 @@ public final class DynamicAccessPermission extends BasicPermission {
      * Creates a new DynamicAccessPermission with the specified name.
      * 
      * @param name
-     *             the name of the DynamicAccessPermission.
+     *        the name of the DynamicAccessPermission.
      */
     public DynamicAccessPermission(String name) {
         super(name);
@@ -33,9 +32,9 @@ public final class DynamicAccessPermission extends BasicPermission {
      * String is currently unused and should be null.
      *
      * @param name
-     *                the name of the DynamicAccessPermission.
+     *        the name of the DynamicAccessPermission.
      * @param actions
-     *                should be null.
+     *        should be null.
      */
     public DynamicAccessPermission(String name, String actions) {
         super(name, actions);

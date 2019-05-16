@@ -33,7 +33,6 @@ import sun.util.logging.PlatformLogger;
 /**
  * An ObjectInputStream deserializes primitive data and objects previously
  * written using an ObjectOutputStream.
- *
  * <p>
  * ObjectOutputStream and ObjectInputStream can provide an application with
  * persistent storage for graphs of objects when used with a FileOutputStream
@@ -41,26 +40,21 @@ import sun.util.logging.PlatformLogger;
  * objects previously serialized. Other uses include passing objects between
  * hosts using a socket stream or for marshaling and unmarshaling arguments and
  * parameters in a remote communication system.
- *
  * <p>
  * ObjectInputStream ensures that the types of all objects in the graph created
  * from the stream match the classes present in the Java Virtual Machine.
  * Classes are loaded as required using the standard mechanisms.
- *
  * <p>
  * Only objects that support the java.io.Serializable or java.io.Externalizable
  * interface can be read from streams.
- *
  * <p>
  * The method <code>readObject</code> is used to read an object from the stream.
  * Java's safe casting should be used to get the desired type. In Java, strings
  * and arrays are objects and are treated as objects during serialization. When
  * read they need to be cast to the expected type.
- *
  * <p>
  * Primitive data types can be read from the stream using the appropriate method
  * on DataInput.
- *
  * <p>
  * The default deserialization mechanism for objects restores the contents of
  * each field to the value and type it had when it was written. Fields declared
@@ -69,7 +63,6 @@ import sun.util.logging.PlatformLogger;
  * Graphs of objects are restored correctly using a reference sharing mechanism.
  * New objects are always allocated when deserializing, which prevents existing
  * objects from being overwritten.
- *
  * <p>
  * Reading an object is analogous to running the constructors of a new object.
  * Memory is allocated for the object and initialized to zero (NULL). No-arg
@@ -77,7 +70,6 @@ import sun.util.logging.PlatformLogger;
  * of the serializable classes are restored from the stream starting with the
  * serializable class closest to java.lang.object and finishing with the
  * object's most specific class.
- *
  * <p>
  * For example to read from a stream as written by the example in
  * ObjectOutputStream: <br>
@@ -92,32 +84,26 @@ import sun.util.logging.PlatformLogger;
  *
  * ois.close();
  * </pre>
- *
  * <p>
  * Classes control how they are serialized by implementing either the
  * java.io.Serializable or java.io.Externalizable interfaces.
- *
  * <p>
  * Implementing the Serializable interface allows object serialization to save
  * and restore the entire state of the object and it allows classes to evolve
  * between the time the stream is written and the time it is read. It
  * automatically traverses references between objects, saving and restoring
  * entire graphs.
- *
  * <p>
  * Serializable classes that require special handling during the serialization
  * and deserialization process should implement the following methods:
  *
  * <pre>
- * private void writeObject(java.io.ObjectOutputStream stream)
- *         throws IOException;
+ * private void writeObject(java.io.ObjectOutputStream stream) throws IOException;
  * 
- * private void readObject(java.io.ObjectInputStream stream) throws IOException,
- *         ClassNotFoundException;
+ * private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException;
  * 
  * private void readObjectNoData() throws ObjectStreamException;
  * </pre>
- *
  * <p>
  * The readObject method is responsible for reading and restoring the state of
  * the object for its particular class using data written to the stream by the
@@ -126,7 +112,6 @@ import sun.util.logging.PlatformLogger;
  * by reading data from the ObjectInputStream for the individual fields and
  * making assignments to the appropriate fields of the object. Reading primitive
  * data types is supported by DataInput.
- *
  * <p>
  * Any attempt to read object data which exceeds the boundaries of the custom
  * data written by the corresponding writeObject method will cause an
@@ -137,7 +122,6 @@ import sun.util.logging.PlatformLogger;
  * primitive reads will throw EOFExceptions. If there is no corresponding
  * writeObject method, then the end of default serialized data marks the end of
  * the allotted data.
- *
  * <p>
  * Primitive and object read calls issued from within a readExternal method
  * behave in the same manner--if the stream is already positioned at the end of
@@ -148,7 +132,6 @@ import sun.util.logging.PlatformLogger;
  * <code>ObjectStreamConstants.PROTOCOL_VERSION_1</code> protocol, in which the
  * end of data written by writeExternal methods is not demarcated, and hence
  * cannot be detected.
- *
  * <p>
  * The readObjectNoData method is responsible for initializing the state of the
  * object for its particular class in the event that the serialization stream
@@ -160,7 +143,6 @@ import sun.util.logging.PlatformLogger;
  * been tampered; hence, readObjectNoData is useful for initializing
  * deserialized objects properly despite a "hostile" or incomplete source
  * stream.
- *
  * <p>
  * Serialization does not read or assign values to the fields of any object that
  * does not implement the java.io.Serializable interface. Subclasses of Objects
@@ -171,11 +153,9 @@ import sun.util.logging.PlatformLogger;
  * case that the fields of that class are accessible (public, package, or
  * protected) or that there are get and set methods that can be used to restore
  * the state.
- *
  * <p>
  * Any exception that occurs while deserializing an object will be caught by the
  * ObjectInputStream and abort the reading process.
- *
  * <p>
  * Implementing the Externalizable interface allows the object to assume
  * complete control over the contents and format of the object's serialized
@@ -184,7 +164,6 @@ import sun.util.logging.PlatformLogger;
  * implemented by a class they can write and read their own state using all of
  * the methods of ObjectOutput and ObjectInput. It is the responsibility of the
  * objects to handle any versioning that occurs.
- *
  * <p>
  * Enum constants are deserialized differently than ordinary serializable or
  * externalizable objects. The serialized form of an enum constant consists
@@ -210,8 +189,7 @@ import sun.util.logging.PlatformLogger;
  *      Serialization Specification, Section 3, Object Input Classes</a>
  * @since JDK1.1
  */
-public class ObjectInputStream extends InputStream implements ObjectInput,
-        ObjectStreamConstants {
+public class ObjectInputStream extends InputStream implements ObjectInput, ObjectStreamConstants {
     /** handle value representing null */
     private static final int NULL_HANDLE = -1;
 
@@ -219,8 +197,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
     private static final Object unsharedMarker = new Object();
 
     /** table mapping primitive type names to corresponding class objects */
-    private static final HashMap<String, Class<?>> primClasses = new HashMap<>(
-            8, 1.0F);
+    private static final HashMap<String, Class<?>> primClasses = new HashMap<>(8, 1.0F);
     static {
         primClasses.put("boolean", boolean.class);
         primClasses.put("byte", byte.class);
@@ -244,13 +221,11 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
     static {
         /* Setup access so sun.misc can invoke package private functions. */
         sun.misc.SharedSecrets.setJavaOISAccess(new JavaOISAccess() {
-            public void setObjectInputFilter(ObjectInputStream stream,
-                    ObjectInputFilter filter) {
+            public void setObjectInputFilter(ObjectInputStream stream, ObjectInputFilter filter) {
                 stream.setInternalObjectInputFilter(filter);
             }
 
-            public ObjectInputFilter getObjectInputFilter(
-                    ObjectInputStream stream) {
+            public ObjectInputFilter getObjectInputFilter(ObjectInputStream stream) {
                 return stream.getInternalObjectInputFilter();
             }
         });
@@ -268,12 +243,11 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         private static final PlatformLogger traceLogger;
         private static final PlatformLogger infoLogger;
         static {
-            PlatformLogger filterLog = PlatformLogger.getLogger(
-                    "java.io.serialization");
-            infoLogger = (filterLog != null && filterLog.isLoggable(
-                    PlatformLogger.Level.INFO)) ? filterLog : null;
-            traceLogger = (filterLog != null && filterLog.isLoggable(
-                    PlatformLogger.Level.FINER)) ? filterLog : null;
+            PlatformLogger filterLog = PlatformLogger.getLogger("java.io.serialization");
+            infoLogger = (filterLog != null && filterLog.isLoggable(PlatformLogger.Level.INFO)) ? filterLog
+                    : null;
+            traceLogger = (filterLog != null && filterLog.isLoggable(PlatformLogger.Level.FINER)) ? filterLog
+                    : null;
         }
     }
 
@@ -324,7 +298,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * serialization stream header is read from the stream and verified. This
      * constructor will block until the corresponding ObjectOutputStream has
      * written and flushed the header.
-     *
      * <p>
      * If a security manager is installed, this constructor will check for the
      * "enableSubclassImplementation" SerializablePermission when invoked
@@ -333,18 +306,18 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * methods.
      *
      * @param in
-     *           input stream to read from
+     *        input stream to read from
      * @throws StreamCorruptedException
-     *                                  if the stream header is incorrect
+     *         if the stream header is incorrect
      * @throws IOException
-     *                                  if an I/O error occurs while reading
-     *                                  stream header
+     *         if an I/O error occurs while reading
+     *         stream header
      * @throws SecurityException
-     *                                  if untrusted subclass illegally
-     *                                  overrides security-sensitive
-     *                                  methods
+     *         if untrusted subclass illegally
+     *         overrides security-sensitive
+     *         methods
      * @throws NullPointerException
-     *                                  if <code>in</code> is <code>null</code>
+     *         if <code>in</code> is <code>null</code>
      * @see ObjectInputStream#ObjectInputStream()
      * @see ObjectInputStream#readFields()
      * @see ObjectOutputStream#ObjectOutputStream(OutputStream)
@@ -364,7 +337,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Provide a way for subclasses that are completely reimplementing
      * ObjectInputStream to not have to allocate private data just used by this
      * implementation of ObjectInputStream.
-     *
      * <p>
      * If there is a security manager installed, this method first calls the
      * security manager's <code>checkPermission</code> method with the
@@ -372,13 +344,13 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * permission to ensure it's ok to enable subclassing.
      *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkPermission</code> method denies
-     *                           enabling
-     *                           subclassing.
+     *         if a security manager exists and its
+     *         <code>checkPermission</code> method denies
+     *         enabling
+     *         subclassing.
      * @throws IOException
-     *                           if an I/O error occurs while creating this
-     *                           stream
+     *         if an I/O error occurs while creating this
+     *         stream
      * @see SecurityManager#checkPermission
      * @see java.io.SerializablePermission
      */
@@ -402,14 +374,12 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * and readObject methods. Objects referenced by this object are read
      * transitively so that a complete equivalent graph of objects is
      * reconstructed by readObject.
-     *
      * <p>
      * The root object is completely restored when all of its fields and the
      * objects it references are completely restored. At this point the object
      * validation callbacks are executed in order based on their registered
      * priorities. The callbacks are registered by objects (in the readObject
      * special methods) as they are individually restored.
-     *
      * <p>
      * Exceptions are thrown for problems with the InputStream and for classes
      * that should not be deserialized. All exceptions are fatal to the
@@ -417,23 +387,22 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * caller to ignore or recover the stream state.
      *
      * @throws ClassNotFoundException
-     *                                  Class of a serialized object cannot be
-     *                                  found.
+     *         Class of a serialized object cannot be
+     *         found.
      * @throws InvalidClassException
-     *                                  Something is wrong with a class used by
-     *                                  serialization.
+     *         Something is wrong with a class used by
+     *         serialization.
      * @throws StreamCorruptedException
-     *                                  Control information in the stream is
-     *                                  inconsistent.
+     *         Control information in the stream is
+     *         inconsistent.
      * @throws OptionalDataException
-     *                                  Primitive data was found in the stream
-     *                                  instead of objects.
+     *         Primitive data was found in the stream
+     *         instead of objects.
      * @throws IOException
-     *                                  Any of the usual Input/Output related
-     *                                  exceptions.
+     *         Any of the usual Input/Output related
+     *         exceptions.
      */
-    public final Object readObject() throws IOException,
-            ClassNotFoundException {
+    public final Object readObject() throws IOException, ClassNotFoundException {
         if (enableOverride) {
             return readObjectOverride();
         }
@@ -467,21 +436,20 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the Object read from the stream.
      * @throws ClassNotFoundException
-     *                                Class definition of a serialized object
-     *                                cannot be found.
+     *         Class definition of a serialized object
+     *         cannot be found.
      * @throws OptionalDataException
-     *                                Primitive data was found in the stream
-     *                                instead of objects.
+     *         Primitive data was found in the stream
+     *         instead of objects.
      * @throws IOException
-     *                                if I/O errors occurred while reading from
-     *                                the underlying
-     *                                stream
+     *         if I/O errors occurred while reading from
+     *         the underlying
+     *         stream
      * @see #ObjectInputStream()
      * @see #readObject()
      * @since 1.2
      */
-    protected Object readObjectOverride() throws IOException,
-            ClassNotFoundException {
+    protected Object readObjectOverride() throws IOException, ClassNotFoundException {
         return null;
     }
 
@@ -494,7 +462,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * <li>If readUnshared is called to deserialize a back-reference (the stream
      * representation of an object which has been written previously to the
      * stream), an ObjectStreamException will be thrown.
-     *
      * <li>If readUnshared returns successfully, then any subsequent attempts to
      * deserialize back-references to the stream handle deserialized by
      * readUnshared will cause an ObjectStreamException to be thrown.
@@ -511,7 +478,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * array object is unique and cannot be obtained a second time from an
      * invocation of readObject or readUnshared on the ObjectInputStream, even
      * if the underlying data stream has been manipulated.
-     *
      * <p>
      * ObjectInputStream subclasses which override this method can only be
      * constructed in security contexts possessing the
@@ -521,19 +487,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return reference to deserialized object
      * @throws ClassNotFoundException
-     *                                  if class of an object to deserialize
-     *                                  cannot be found
+     *         if class of an object to deserialize
+     *         cannot be found
      * @throws StreamCorruptedException
-     *                                  if control information in the stream is
-     *                                  inconsistent
+     *         if control information in the stream is
+     *         inconsistent
      * @throws ObjectStreamException
-     *                                  if object to deserialize has already
-     *                                  appeared in stream
+     *         if object to deserialize has already
+     *         appeared in stream
      * @throws OptionalDataException
-     *                                  if primitive data is next in stream
+     *         if primitive data is next in stream
      * @throws IOException
-     *                                  if an I/O error occurs during
-     *                                  deserialization
+     *         if an I/O error occurs during
+     *         deserialization
      * @since 1.4
      */
     public Object readUnshared() throws IOException, ClassNotFoundException {
@@ -565,13 +531,13 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * called otherwise.
      *
      * @throws ClassNotFoundException
-     *                                if the class of a serialized object could
-     *                                not be found.
+     *         if the class of a serialized object could
+     *         not be found.
      * @throws IOException
-     *                                if an I/O error occurs.
+     *         if an I/O error occurs.
      * @throws NotActiveException
-     *                                if the stream is not currently reading
-     *                                objects.
+     *         if the stream is not currently reading
+     *         objects.
      */
     public void defaultReadObject() throws IOException, ClassNotFoundException {
         SerialCallbackContext ctx = curContext;
@@ -604,17 +570,16 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * @return the <code>GetField</code> object representing the persistent
      *         fields of the object being deserialized
      * @throws ClassNotFoundException
-     *                                if the class of a serialized object could
-     *                                not be found.
+     *         if the class of a serialized object could
+     *         not be found.
      * @throws IOException
-     *                                if an I/O error occurs.
+     *         if an I/O error occurs.
      * @throws NotActiveException
-     *                                if the stream is not currently reading
-     *                                objects.
+     *         if the stream is not currently reading
+     *         objects.
      * @since 1.2
      */
-    public ObjectInputStream.GetField readFields() throws IOException,
-            ClassNotFoundException {
+    public ObjectInputStream.GetField readFields() throws IOException, ClassNotFoundException {
         SerialCallbackContext ctx = curContext;
         if (ctx == null) {
             throw new NotActiveException("not in call to readObject");
@@ -645,22 +610,22 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * restored a final set of validations can be performed.
      *
      * @param obj
-     *             the object to receive the validation callback.
+     *        the object to receive the validation callback.
      * @param prio
-     *             controls the order of callbacks;zero is a good default. Use
-     *             higher numbers to be called back earlier, lower numbers for
-     *             later callbacks. Within a priority, callbacks are processed
-     *             in
-     *             no particular order.
+     *        controls the order of callbacks;zero is a good default. Use
+     *        higher numbers to be called back earlier, lower numbers for
+     *        later callbacks. Within a priority, callbacks are processed
+     *        in
+     *        no particular order.
      * @throws NotActiveException
-     *                                The stream is not currently reading
-     *                                objects so it is invalid
-     *                                to register a callback.
+     *         The stream is not currently reading
+     *         objects so it is invalid
+     *         to register a callback.
      * @throws InvalidObjectException
-     *                                The validation object is null.
+     *         The validation object is null.
      */
-    public void registerValidation(ObjectInputValidation obj, int prio)
-            throws NotActiveException, InvalidObjectException {
+    public void registerValidation(ObjectInputValidation obj, int prio) throws NotActiveException,
+            InvalidObjectException {
         if (depth == 0) {
             throw new NotActiveException("stream inactive");
         }
@@ -671,7 +636,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Load the local class equivalent of the specified stream class
      * description. Subclasses may implement this method to allow classes to be
      * fetched from an alternate source.
-     *
      * <p>
      * The corresponding method in <code>ObjectOutputStream</code> is
      * <code>annotateClass</code>. This method will be invoked only once for
@@ -681,7 +645,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * class, its serialVersionUID is compared to the serialVersionUID of the
      * serialized class, and if there is a mismatch, the deserialization fails
      * and an {@link InvalidClassException} is thrown.
-     *
      * <p>
      * The default implementation of this method in
      * <code>ObjectInputStream</code> returns the result of calling
@@ -706,16 +669,15 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * method.
      *
      * @param desc
-     *             an instance of class <code>ObjectStreamClass</code>
+     *        an instance of class <code>ObjectStreamClass</code>
      * @return a <code>Class</code> object corresponding to <code>desc</code>
      * @throws IOException
-     *                                any of the usual Input/Output exceptions.
+     *         any of the usual Input/Output exceptions.
      * @throws ClassNotFoundException
-     *                                if class of a serialized object cannot be
-     *                                found.
+     *         if class of a serialized object cannot be
+     *         found.
      */
-    protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException,
-            ClassNotFoundException {
+    protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
         String name = desc.getName();
         try {
             return Class.forName(name, false, latestUserDefinedLoader());
@@ -735,11 +697,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * data from the stream along with the descriptors for dynamic proxy
      * classes, allowing them to use an alternate loading mechanism for the
      * interfaces and the proxy class.
-     *
      * <p>
      * This method is called exactly once for each unique proxy class descriptor
      * in the stream.
-     *
      * <p>
      * The corresponding method in <code>ObjectOutputStream</code> is
      * <code>annotateProxyClass</code>. For a given subclass of
@@ -747,7 +707,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * <code>annotateProxyClass</code> method in the corresponding subclass of
      * <code>ObjectOutputStream</code> must write any data or objects read by
      * this method.
-     *
      * <p>
      * The default implementation of this method in
      * <code>ObjectInputStream</code> returns the result of calling
@@ -775,22 +734,21 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * <code>IllegalArgumentException</code>.
      *
      * @param interfaces
-     *                   the list of interface names that were deserialized in
-     *                   the
-     *                   proxy class descriptor
+     *        the list of interface names that were deserialized in
+     *        the
+     *        proxy class descriptor
      * @return a proxy class for the specified interfaces
      * @throws IOException
-     *                                any exception thrown by the underlying
-     *                                <code>InputStream</code>
+     *         any exception thrown by the underlying
+     *         <code>InputStream</code>
      * @throws ClassNotFoundException
-     *                                if the proxy class or any of the named
-     *                                interfaces could not
-     *                                be found
+     *         if the proxy class or any of the named
+     *         interfaces could not
+     *         be found
      * @see ObjectOutputStream#annotateProxyClass(Class)
      * @since 1.3
      */
-    protected Class<?> resolveProxyClass(String[] interfaces)
-            throws IOException, ClassNotFoundException {
+    protected Class<?> resolveProxyClass(String[] interfaces) throws IOException, ClassNotFoundException {
         ClassLoader latestLoader = latestUserDefinedLoader();
         ClassLoader nonPublicLoader = null;
         boolean hasNonPublicInterface = false;
@@ -802,8 +760,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             if ((cl.getModifiers() & Modifier.PUBLIC) == 0) {
                 if (hasNonPublicInterface) {
                     if (nonPublicLoader != cl.getClassLoader()) {
-                        throw new IllegalAccessError(
-                                "conflicting non-public interface class loaders");
+                        throw new IllegalAccessError("conflicting non-public interface class loaders");
                     }
                 } else {
                     nonPublicLoader = cl.getClassLoader();
@@ -813,8 +770,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             classObjs[i] = cl;
         }
         try {
-            return Proxy.getProxyClass(hasNonPublicInterface ? nonPublicLoader
-                    : latestLoader, classObjs);
+            return Proxy.getProxyClass(hasNonPublicInterface ? nonPublicLoader : latestLoader, classObjs);
         } catch (IllegalArgumentException e) {
             throw new ClassNotFoundException(null, e);
         }
@@ -828,29 +784,26 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * object can be trusted. Every reference to serializable objects is passed
      * to resolveObject. To insure that the private state of objects is not
      * unintentionally exposed only trusted streams may use resolveObject.
-     *
      * <p>
      * This method is called after an object has been read but before it is
      * returned from readObject. The default resolveObject method just returns
      * the same object.
-     *
      * <p>
      * When a subclass is replacing objects it must insure that the substituted
      * object is compatible with every field where the reference will be stored.
      * Objects whose type is not a subclass of the type of the field or array
      * element abort the serialization by raising an exception and the object is
      * not be stored.
-     *
      * <p>
      * This method is called only once when each object is first encountered.
      * All subsequent references to the object will be redirected to the new
      * object.
      *
      * @param obj
-     *            object to be substituted
+     *        object to be substituted
      * @return the substituted object
      * @throws IOException
-     *                     Any of the usual Input/Output exceptions.
+     *         Any of the usual Input/Output exceptions.
      */
     protected Object resolveObject(Object obj) throws IOException {
         return obj;
@@ -860,7 +813,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Enable the stream to allow objects read from the stream to be replaced.
      * When enabled, the resolveObject method is called for every object being
      * deserialized.
-     *
      * <p>
      * If <i>enable</i> is true, and there is a security manager installed, this
      * method first calls the security manager's <code>checkPermission</code>
@@ -869,21 +821,20 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * from the stream to be replaced.
      *
      * @param enable
-     *               true for enabling use of <code>resolveObject</code> for
-     *               every
-     *               object being deserialized
+     *        true for enabling use of <code>resolveObject</code> for
+     *        every
+     *        object being deserialized
      * @return the previous setting before this method was invoked
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkPermission</code> method denies
-     *                           enabling the
-     *                           stream to allow objects read from the stream to
-     *                           be replaced.
+     *         if a security manager exists and its
+     *         <code>checkPermission</code> method denies
+     *         enabling the
+     *         stream to allow objects read from the stream to
+     *         be replaced.
      * @see SecurityManager#checkPermission
      * @see java.io.SerializablePermission
      */
-    protected boolean enableResolveObject(boolean enable)
-            throws SecurityException {
+    protected boolean enableResolveObject(boolean enable) throws SecurityException {
         if (enable == enableResolve) {
             return enable;
         }
@@ -903,20 +854,18 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * and version number.
      *
      * @throws IOException
-     *                                  if there are I/O errors while reading
-     *                                  from the underlying
-     *                                  <code>InputStream</code>
+     *         if there are I/O errors while reading
+     *         from the underlying
+     *         <code>InputStream</code>
      * @throws StreamCorruptedException
-     *                                  if control information in the stream is
-     *                                  inconsistent
+     *         if control information in the stream is
+     *         inconsistent
      */
-    protected void readStreamHeader() throws IOException,
-            StreamCorruptedException {
+    protected void readStreamHeader() throws IOException, StreamCorruptedException {
         short s0 = bin.readShort();
         short s1 = bin.readShort();
         if (s0 != STREAM_MAGIC || s1 != STREAM_VERSION) {
-            throw new StreamCorruptedException(String.format(
-                    "invalid stream header: %04X%04X", s0, s1));
+            throw new StreamCorruptedException(String.format("invalid stream header: %04X%04X", s0, s1));
         }
     }
 
@@ -932,16 +881,15 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the class descriptor read
      * @throws IOException
-     *                                If an I/O error has occurred.
+     *         If an I/O error has occurred.
      * @throws ClassNotFoundException
-     *                                If the Class of a serialized object used
-     *                                in the class
-     *                                descriptor representation cannot be found
+     *         If the Class of a serialized object used
+     *         in the class
+     *         descriptor representation cannot be found
      * @see java.io.ObjectOutputStream#writeClassDescriptor(java.io.ObjectStreamClass)
      * @since 1.3
      */
-    protected ObjectStreamClass readClassDescriptor() throws IOException,
-            ClassNotFoundException {
+    protected ObjectStreamClass readClassDescriptor() throws IOException, ClassNotFoundException {
         ObjectStreamClass desc = new ObjectStreamClass();
         desc.readNonProxy(this);
         return desc;
@@ -952,7 +900,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the byte read, or -1 if the end of the stream is reached.
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public int read() throws IOException {
         return bin.read();
@@ -964,15 +912,15 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * exactly 'length' bytes.
      *
      * @param buf
-     *            the buffer into which the data is read
+     *        the buffer into which the data is read
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the maximum number of bytes read
+     *        the maximum number of bytes read
      * @return the actual number of bytes read, -1 is returned when the end of
      *         the stream is reached.
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      * @see java.io.DataInputStream#readFully(byte[],int,int)
      */
     public int read(byte[] buf, int off, int len) throws IOException {
@@ -991,9 +939,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the number of available bytes.
      * @throws IOException
-     *                     if there are I/O errors while reading from the
-     *                     underlying
-     *                     <code>InputStream</code>
+     *         if there are I/O errors while reading from the
+     *         underlying
+     *         <code>InputStream</code>
      */
     public int available() throws IOException {
         return bin.available();
@@ -1004,7 +952,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * associated with the stream.
      *
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public void close() throws IOException {
         /*
@@ -1023,9 +971,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the boolean read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public boolean readBoolean() throws IOException {
         return bin.readBoolean();
@@ -1036,9 +984,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 8 bit byte read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public byte readByte() throws IOException {
         return bin.readByte();
@@ -1049,9 +997,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 8 bit byte read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public int readUnsignedByte() throws IOException {
         return bin.readUnsignedByte();
@@ -1062,9 +1010,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 16 bit char read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public char readChar() throws IOException {
         return bin.readChar();
@@ -1075,9 +1023,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 16 bit short read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public short readShort() throws IOException {
         return bin.readShort();
@@ -1088,9 +1036,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 16 bit short read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public int readUnsignedShort() throws IOException {
         return bin.readUnsignedShort();
@@ -1101,9 +1049,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 32 bit integer read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public int readInt() throws IOException {
         return bin.readInt();
@@ -1114,9 +1062,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the read 64 bit long.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public long readLong() throws IOException {
         return bin.readLong();
@@ -1127,9 +1075,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 32 bit float read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public float readFloat() throws IOException {
         return bin.readFloat();
@@ -1140,9 +1088,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the 64 bit double read.
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public double readDouble() throws IOException {
         return bin.readDouble();
@@ -1152,11 +1100,11 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Reads bytes, blocking until all bytes are read.
      *
      * @param buf
-     *            the buffer into which the data is read
+     *        the buffer into which the data is read
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public void readFully(byte[] buf) throws IOException {
         bin.readFully(buf, 0, buf.length, false);
@@ -1166,15 +1114,15 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Reads bytes, blocking until all bytes are read.
      *
      * @param buf
-     *            the buffer into which the data is read
+     *        the buffer into which the data is read
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the maximum number of bytes to read
+     *        the maximum number of bytes to read
      * @throws EOFException
-     *                      If end of file is reached.
+     *         If end of file is reached.
      * @throws IOException
-     *                      If other I/O error has occurred.
+     *         If other I/O error has occurred.
      */
     public void readFully(byte[] buf, int off, int len) throws IOException {
         int endoff = off + len;
@@ -1188,10 +1136,10 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Skips bytes.
      *
      * @param len
-     *            the number of bytes to be skipped
+     *        the number of bytes to be skipped
      * @return the actual number of bytes skipped.
      * @throws IOException
-     *                     If an I/O error has occurred.
+     *         If an I/O error has occurred.
      */
     public int skipBytes(int len) throws IOException {
         return bin.skipBytes(len);
@@ -1202,9 +1150,9 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return a String copy of the line.
      * @throws IOException
-     *                     if there are I/O errors while reading from the
-     *                     underlying
-     *                     <code>InputStream</code>
+     *         if there are I/O errors while reading from the
+     *         underlying
+     *         <code>InputStream</code>
      * @deprecated This method does not properly convert bytes to characters.
      *             see DataInputStream for the details and alternatives.
      */
@@ -1219,13 +1167,13 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *
      * @return the String.
      * @throws IOException
-     *                                if there are I/O errors while reading from
-     *                                the underlying
-     *                                <code>InputStream</code>
+     *         if there are I/O errors while reading from
+     *         the underlying
+     *         <code>InputStream</code>
      * @throws UTFDataFormatException
-     *                                if read bytes do not represent a valid
-     *                                modified UTF-8
-     *                                encoding of a string
+     *         if read bytes do not represent a valid
+     *         modified UTF-8
+     *         encoding of a string
      */
     public String readUTF() throws IOException {
         return bin.readUTF();
@@ -1287,7 +1235,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *           class, if not {@code null}, and if it is an array, the
      *           arrayLength, otherwise -1.
      *           </ul>
-     *
      *           When the {@link ObjectInputFilter#checkInput checkInput} method
      *           is invoked it is given access to the current class, the array
      *           length, the current number of references already read from the
@@ -1303,20 +1250,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      *           increases for each nested object and decrements when each
      *           nested call returns. The count of references in the stream
      *           starts at {@code 1} and is increased before reading an object.
-     *
      * @param filter
-     *               the filter, may be null
+     *        the filter, may be null
      * @throws SecurityException
-     *                               if there is security manager and the
-     *                               {@code SerializablePermission("serialFilter")}
-     *                               is not granted
+     *         if there is security manager and the
+     *         {@code SerializablePermission("serialFilter")}
+     *         is not granted
      * @throws IllegalStateException
-     *                               if the
-     *                               {@linkplain #getInternalObjectInputFilter()
-     *                               current
-     *                               filter} is not {@code null} and is not the
-     *                               process-wide
-     *                               filter
+     *         if the
+     *         {@linkplain #getInternalObjectInputFilter()
+     *         current
+     *         filter} is not {@code null} and is not the
+     *         process-wide
+     *         filter
      */
     private final void setInternalObjectInputFilter(ObjectInputFilter filter) {
         SecurityManager sm = System.getSecurityManager();
@@ -1324,10 +1270,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             sm.checkPermission(new SerializablePermission("serialFilter"));
         }
         // Allow replacement of the process-wide filter if not already set
-        if (serialFilter != null && serialFilter != ObjectInputFilter.Config
-                .getSerialFilter()) {
-            throw new IllegalStateException(
-                    "filter can not be set more than once");
+        if (serialFilter != null && serialFilter != ObjectInputFilter.Config.getSerialFilter()) {
+            throw new IllegalStateException("filter can not be set more than once");
         }
         this.serialFilter = filter;
     }
@@ -1337,25 +1281,23 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * exception is thrown, throws InvalidClassException.
      *
      * @param clazz
-     *                    the class; may be null
+     *        the class; may be null
      * @param arrayLength
-     *                    the array length requested; use {@code -1} if not
-     *                    creating an
-     *                    array
+     *        the array length requested; use {@code -1} if not
+     *        creating an
+     *        array
      * @throws InvalidClassException
-     *                               if it rejected by the filter or a
-     *                               {@link RuntimeException} is
-     *                               thrown
+     *         if it rejected by the filter or a
+     *         {@link RuntimeException} is
+     *         thrown
      */
-    private void filterCheck(Class<?> clazz, int arrayLength)
-            throws InvalidClassException {
+    private void filterCheck(Class<?> clazz, int arrayLength) throws InvalidClassException {
         if (serialFilter != null) {
             RuntimeException ex = null;
             ObjectInputFilter.Status status;
             try {
-                status = serialFilter.checkInput(new FilterValues(clazz,
-                        arrayLength, totalObjectRefs, depth, bin
-                                .getBytesRead()));
+                status = serialFilter.checkInput(new FilterValues(clazz, arrayLength, totalObjectRefs, depth,
+                        bin.getBytesRead()));
             } catch (RuntimeException e) {
                 // Preventive interception of an exception to log
                 status = ObjectInputFilter.Status.REJECTED;
@@ -1366,11 +1308,10 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 if (Logging.infoLogger != null) {
                     Logging.infoLogger.info(
                             "ObjectInputFilter {0}: {1}, array length: {2}, nRefs: {3}, depth: {4}, bytes: {5}, ex: {6}",
-                            status, clazz, arrayLength, totalObjectRefs, depth,
-                            bin.getBytesRead(), Objects.toString(ex, "n/a"));
+                            status, clazz, arrayLength, totalObjectRefs, depth, bin.getBytesRead(), Objects
+                                    .toString(ex, "n/a"));
                 }
-                InvalidClassException ice = new InvalidClassException(
-                        "filter status: " + status);
+                InvalidClassException ice = new InvalidClassException("filter status: " + status);
                 ice.initCause(ex);
                 throw ice;
             } else {
@@ -1378,8 +1319,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 if (Logging.traceLogger != null) {
                     Logging.traceLogger.finer(
                             "ObjectInputFilter {0}: {1}, array length: {2}, nRefs: {3}, depth: {4}, bytes: {5}, ex: {6}",
-                            status, clazz, arrayLength, totalObjectRefs, depth,
-                            bin.getBytesRead(), Objects.toString(ex, "n/a"));
+                            status, clazz, arrayLength, totalObjectRefs, depth, bin.getBytesRead(), Objects
+                                    .toString(ex, "n/a"));
                 }
             }
         }
@@ -1402,16 +1343,16 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * stream.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @return true, if and only if the named field is defaulted
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if <code>name</code> does not
-         *                                  correspond to a
-         *                                  serializable field
+         *         if <code>name</code> does not
+         *         correspond to a
+         *         serializable field
          */
         public abstract boolean defaulted(String name) throws IOException;
 
@@ -1419,40 +1360,39 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named boolean field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>boolean</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
-        public abstract boolean get(String name, boolean val)
-                throws IOException;
+        public abstract boolean get(String name, boolean val) throws IOException;
 
         /**
          * Get the value of the named byte field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>byte</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract byte get(String name, byte val) throws IOException;
 
@@ -1460,19 +1400,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named char field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>char</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract char get(String name, char val) throws IOException;
 
@@ -1480,19 +1420,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named short field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>short</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract short get(String name, short val) throws IOException;
 
@@ -1500,19 +1440,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named int field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>int</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract int get(String name, int val) throws IOException;
 
@@ -1520,19 +1460,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named long field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>long</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract long get(String name, long val) throws IOException;
 
@@ -1540,19 +1480,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named float field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>float</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract float get(String name, float val) throws IOException;
 
@@ -1560,19 +1500,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named double field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>double</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract double get(String name, double val) throws IOException;
 
@@ -1580,19 +1520,19 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Get the value of the named Object field from the persistent field.
          *
          * @param name
-         *             the name of the field
+         *        the name of the field
          * @param val
-         *             the default value to use if <code>name</code> does not
-         *             have a value
+         *        the default value to use if <code>name</code> does not
+         *        have a value
          * @return the value of the named <code>Object</code> field
          * @throws IOException
-         *                                  if there are I/O errors while
-         *                                  reading from the underlying
-         *                                  <code>InputStream</code>
+         *         if there are I/O errors while
+         *         reading from the underlying
+         *         <code>InputStream</code>
          * @throws IllegalArgumentException
-         *                                  if type of <code>name</code> is not
-         *                                  serializable or if
-         *                                  the field type is incorrect
+         *         if type of <code>name</code> is not
+         *         serializable or if
+         *         the field type is incorrect
          */
         public abstract Object get(String name, Object val) throws IOException;
     }
@@ -1631,27 +1571,21 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * is "safe", false otherwise.
      */
     private static boolean auditSubclass(final Class<?> subcl) {
-        Boolean result = AccessController.doPrivileged(
-                new PrivilegedAction<Boolean>() {
-                    public Boolean run() {
-                        for (Class<?> cl = subcl; cl != ObjectInputStream.class; cl = cl
-                                .getSuperclass()) {
-                            try {
-                                cl.getDeclaredMethod("readUnshared",
-                                        (Class[]) null);
-                                return Boolean.FALSE;
-                            } catch (NoSuchMethodException ex) {
-                            }
-                            try {
-                                cl.getDeclaredMethod("readFields",
-                                        (Class[]) null);
-                                return Boolean.FALSE;
-                            } catch (NoSuchMethodException ex) {
-                            }
-                        }
-                        return Boolean.TRUE;
-                    }
-                });
+        Boolean result = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+            public Boolean run() {
+                for (Class<?> cl = subcl; cl != ObjectInputStream.class; cl = cl.getSuperclass()) {
+                    try {
+                        cl.getDeclaredMethod("readUnshared", (Class[]) null);
+                        return Boolean.FALSE;
+                    } catch (NoSuchMethodException ex) {}
+                    try {
+                        cl.getDeclaredMethod("readFields", (Class[]) null);
+                        return Boolean.FALSE;
+                    } catch (NoSuchMethodException ex) {}
+                }
+                return Boolean.TRUE;
+            }
+        });
         return result.booleanValue();
     }
 
@@ -1729,24 +1663,20 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                     if (oldMode) {
                         bin.setBlockDataMode(true);
                         bin.peek(); // force header read
-                        throw new OptionalDataException(bin
-                                .currentBlockRemaining());
+                        throw new OptionalDataException(bin.currentBlockRemaining());
                     } else {
-                        throw new StreamCorruptedException(
-                                "unexpected block data");
+                        throw new StreamCorruptedException("unexpected block data");
                     }
 
                 case TC_ENDBLOCKDATA:
                     if (oldMode) {
                         throw new OptionalDataException(true);
                     } else {
-                        throw new StreamCorruptedException(
-                                "unexpected end of block data");
+                        throw new StreamCorruptedException("unexpected end of block data");
                     }
 
                 default:
-                    throw new StreamCorruptedException(String.format(
-                            "invalid type code: %02X", tc));
+                    throw new StreamCorruptedException(String.format("invalid type code: %02X", tc));
             }
         } finally {
             depth--;
@@ -1803,8 +1733,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                     return readString(false);
 
                 default:
-                    throw new StreamCorruptedException(String.format(
-                            "invalid type code: %02X", tc));
+                    throw new StreamCorruptedException(String.format("invalid type code: %02X", tc));
             }
         } finally {
             passHandle = oldHandle;
@@ -1832,20 +1761,18 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         }
         passHandle = bin.readInt() - baseWireHandle;
         if (passHandle < 0 || passHandle >= handles.size()) {
-            throw new StreamCorruptedException(String.format(
-                    "invalid handle value: %08X", passHandle + baseWireHandle));
+            throw new StreamCorruptedException(String.format("invalid handle value: %08X", passHandle
+                    + baseWireHandle));
         }
         if (unshared) {
             // REMIND: what type of exception to throw here?
-            throw new InvalidObjectException(
-                    "cannot read back reference as unshared");
+            throw new InvalidObjectException("cannot read back reference as unshared");
         }
 
         Object obj = handles.lookupObject(passHandle);
         if (obj == unsharedMarker) {
             // REMIND: what type of exception to throw here?
-            throw new InvalidObjectException(
-                    "cannot read back reference to unshared object");
+            throw new InvalidObjectException("cannot read back reference to unshared object");
         }
         filterCheck(null, -1); // just a check for number of references, depth,
                                // no class
@@ -1881,8 +1808,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * resolved to a class in the local VM, a ClassNotFoundException is
      * associated with the class descriptor's handle.
      */
-    private ObjectStreamClass readClassDesc(boolean unshared)
-            throws IOException {
+    private ObjectStreamClass readClassDesc(boolean unshared) throws IOException {
         byte tc = bin.peekByte();
         ObjectStreamClass descriptor;
         switch (tc) {
@@ -1899,8 +1825,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 descriptor = readNonProxyDesc(unshared);
                 break;
             default:
-                throw new StreamCorruptedException(String.format(
-                        "invalid type code: %02X", tc));
+                throw new StreamCorruptedException(String.format("invalid type code: %02X", tc));
         }
         if (descriptor != null) {
             validateDescriptor(descriptor);
@@ -1910,8 +1835,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
 
     private boolean isCustomSubclass() {
         // Return true if this class is a custom subclass of ObjectInputStream
-        return getClass().getClassLoader() != ObjectInputStream.class
-                .getClassLoader();
+        return getClass().getClassLoader() != ObjectInputStream.class.getClassLoader();
     }
 
     /**
@@ -1920,8 +1844,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * descriptor cannot be resolved to a class in the local VM, a
      * ClassNotFoundException is associated with the descriptor's handle.
      */
-    private ObjectStreamClass readProxyDesc(boolean unshared)
-            throws IOException {
+    private ObjectStreamClass readProxyDesc(boolean unshared) throws IOException {
         if (bin.readByte() != TC_PROXYCLASSDESC) {
             throw new InternalError();
         }
@@ -1948,8 +1871,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 // ReflectUtil.checkProxyPackageAccess makes a test
                 // equivalent to isCustomSubclass so there's no need
                 // to condition this call to isCustomSubclass == true here.
-                ReflectUtil.checkProxyPackageAccess(getClass().getClassLoader(),
-                        cl.getInterfaces());
+                ReflectUtil.checkProxyPackageAccess(getClass().getClassLoader(), cl.getInterfaces());
                 // Filter the interfaces
                 for (Class<?> clazz : cl.getInterfaces()) {
                     filterCheck(clazz, -1);
@@ -1983,8 +1905,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * class descriptor cannot be resolved to a class in the local VM, a
      * ClassNotFoundException is associated with the descriptor's handle.
      */
-    private ObjectStreamClass readNonProxyDesc(boolean unshared)
-            throws IOException {
+    private ObjectStreamClass readNonProxyDesc(boolean unshared) throws IOException {
         if (bin.readByte() != TC_CLASSDESC) {
             throw new InternalError();
         }
@@ -1997,8 +1918,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         try {
             readDesc = readClassDescriptor();
         } catch (ClassNotFoundException ex) {
-            throw (IOException) new InvalidClassException(
-                    "failed to read class descriptor").initCause(ex);
+            throw (IOException) new InvalidClassException("failed to read class descriptor").initCause(ex);
         }
 
         Class<?> cl = null;
@@ -2051,8 +1971,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 break;
 
             default:
-                throw new StreamCorruptedException(String.format(
-                        "invalid type code: %02X", tc));
+                throw new StreamCorruptedException(String.format("invalid type code: %02X", tc));
         }
         passHandle = handles.assign(unshared ? unsharedMarker : str);
         handles.finish(passHandle);
@@ -2152,8 +2071,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 Enum<?> en = Enum.valueOf((Class) cl, name);
                 result = en;
             } catch (IllegalArgumentException ex) {
-                throw (IOException) new InvalidObjectException("enum constant "
-                        + name + " does not exist in " + cl).initCause(ex);
+                throw (IOException) new InvalidObjectException("enum constant " + name + " does not exist in "
+                        + cl).initCause(ex);
             }
             if (!unshared) {
                 handles.setObject(enumHandle, result);
@@ -2181,8 +2100,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         desc.checkDeserialize();
 
         Class<?> cl = desc.forClass();
-        if (cl == String.class || cl == Class.class
-                || cl == ObjectStreamClass.class) {
+        if (cl == String.class || cl == Class.class || cl == ObjectStreamClass.class) {
             throw new InvalidClassException("invalid class descriptor");
         }
 
@@ -2190,8 +2108,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         try {
             obj = desc.isInstantiable() ? desc.newInstance() : null;
         } catch (Exception ex) {
-            throw (IOException) new InvalidClassException(desc.forClass()
-                    .getName(), "unable to create instance").initCause(ex);
+            throw (IOException) new InvalidClassException(desc.forClass().getName(),
+                    "unable to create instance").initCause(ex);
         }
 
         passHandle = handles.assign(unshared ? unsharedMarker : obj);
@@ -2208,8 +2126,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
 
         handles.finish(passHandle);
 
-        if (obj != null && handles.lookupException(passHandle) == null && desc
-                .hasReadResolveMethod()) {
+        if (obj != null && handles.lookupException(passHandle) == null && desc.hasReadResolveMethod()) {
             Object rep = desc.invokeReadResolve(obj);
             if (unshared && rep.getClass().isArray()) {
                 rep = cloneArray(rep);
@@ -2236,8 +2153,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Expects that passHandle is set to obj's handle before this method is
      * called.
      */
-    private void readExternalData(Externalizable obj, ObjectStreamClass desc)
-            throws IOException {
+    private void readExternalData(Externalizable obj, ObjectStreamClass desc) throws IOException {
         SerialCallbackContext oldContext = curContext;
         if (oldContext != null)
             oldContext.check();
@@ -2289,15 +2205,13 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * object in stream, from superclass to subclass. Expects that passHandle is
      * set to obj's handle before this method is called.
      */
-    private void readSerialData(Object obj, ObjectStreamClass desc)
-            throws IOException {
+    private void readSerialData(Object obj, ObjectStreamClass desc) throws IOException {
         ObjectStreamClass.ClassDataSlot[] slots = desc.getClassDataLayout();
         for (int i = 0; i < slots.length; i++) {
             ObjectStreamClass slotDesc = slots[i].desc;
 
             if (slots[i].hasData) {
-                if (obj == null || handles.lookupException(
-                        passHandle) != null) {
+                if (obj == null || handles.lookupException(passHandle) != null) {
                     defaultReadFields(null, slotDesc); // skip field values
                 } else if (slotDesc.hasReadObjectMethod()) {
                     ThreadDeath t = null;
@@ -2351,8 +2265,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                     bin.setBlockDataMode(false);
                 }
             } else {
-                if (obj != null && slotDesc.hasReadObjectNoDataMethod()
-                        && handles.lookupException(passHandle) == null) {
+                if (obj != null && slotDesc.hasReadObjectNoDataMethod() && handles.lookupException(
+                        passHandle) == null) {
                     slotDesc.invokeReadObjectNoData(obj);
                 }
             }
@@ -2393,8 +2307,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * descriptor. If obj is non-null, sets field values in obj. Expects that
      * passHandle is set to obj's handle before this method is called.
      */
-    private void defaultReadFields(Object obj, ObjectStreamClass desc)
-            throws IOException {
+    private void defaultReadFields(Object obj, ObjectStreamClass desc) throws IOException {
         Class<?> cl = desc.forClass();
         if (cl != null && obj != null && !cl.isInstance(obj)) {
             throw new ClassCastException();
@@ -2446,8 +2359,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      */
     private void handleReset() throws StreamCorruptedException {
         if (depth > 0) {
-            throw new StreamCorruptedException(
-                    "unexpected reset; recursion depth: " + depth);
+            throw new StreamCorruptedException("unexpected reset; recursion depth: " + depth);
         }
         clear();
     }
@@ -2456,24 +2368,20 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * Converts specified span of bytes into float values.
      */
     // REMIND: remove once hotspot inlines Float.intBitsToFloat
-    private static native void bytesToFloats(byte[] src, int srcpos,
-            float[] dst, int dstpos, int nfloats);
+    private static native void bytesToFloats(byte[] src, int srcpos, float[] dst, int dstpos, int nfloats);
 
     /**
      * Converts specified span of bytes into double values.
      */
     // REMIND: remove once hotspot inlines Double.longBitsToDouble
-    private static native void bytesToDoubles(byte[] src, int srcpos,
-            double[] dst, int dstpos, int ndoubles);
+    private static native void bytesToDoubles(byte[] src, int srcpos, double[] dst, int dstpos, int ndoubles);
 
     /**
      * Returns the first non-null class loader (not counting class loaders of
      * generated reflection implementation classes) up the execution stack, or
      * null if only code from the null class loader is on the stack. This method
      * is also called via reflection by the following RMI-IIOP class:
-     *
      * com.sun.corba.se.internal.util.JDKClassLoader
-     *
      * This method should not be removed or its signature changed without
      * corresponding modifications to the above class.
      */
@@ -2559,9 +2467,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             if (off >= 0) {
                 int objHandle = objHandles[off];
                 handles.markDependency(passHandle, objHandle);
-                return (handles.lookupException(objHandle) == null)
-                        ? objVals[off]
-                        : null;
+                return (handles.lookupException(objHandle) == null) ? objVals[off] : null;
             } else {
                 return val;
             }
@@ -2577,8 +2483,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             ObjectStreamField[] fields = desc.getFields(false);
             int numPrimFields = fields.length - objVals.length;
             for (int i = 0; i < objVals.length; i++) {
-                objVals[i] = readObject0(fields[numPrimFields + i]
-                        .isUnshared());
+                objVals[i] = readObject0(fields[numPrimFields + i].isUnshared());
                 objHandles[i] = passHandle;
             }
             passHandle = oldHandle;
@@ -2600,8 +2505,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             } else if (desc.getLocalDesc().getField(name, type) != null) {
                 return -1;
             } else {
-                throw new IllegalArgumentException("no such field " + name
-                        + " with type " + type);
+                throw new IllegalArgumentException("no such field " + name + " with type " + type);
             }
         }
     }
@@ -2618,8 +2522,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             Callback next;
             final AccessControlContext acc;
 
-            Callback(ObjectInputValidation obj, int priority, Callback next,
-                    AccessControlContext acc) {
+            Callback(ObjectInputValidation obj, int priority, Callback next, AccessControlContext acc) {
                 this.obj = obj;
                 this.priority = priority;
                 this.next = next;
@@ -2639,8 +2542,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * Registers callback. Throws InvalidObjectException if callback object
          * is null.
          */
-        void register(ObjectInputValidation obj, int priority)
-                throws InvalidObjectException {
+        void register(ObjectInputValidation obj, int priority) throws InvalidObjectException {
             if (obj == null) {
                 throw new InvalidObjectException("null callback");
             }
@@ -2668,14 +2570,12 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         void doCallbacks() throws InvalidObjectException {
             try {
                 while (list != null) {
-                    AccessController.doPrivileged(
-                            new PrivilegedExceptionAction<Void>() {
-                                public Void run()
-                                        throws InvalidObjectException {
-                                    list.obj.validateObject();
-                                    return null;
-                                }
-                            }, list.acc);
+                    AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
+                        public Void run() throws InvalidObjectException {
+                            list.obj.validateObject();
+                            return null;
+                        }
+                    }, list.acc);
                     list = list.next;
                 }
             } catch (PrivilegedActionException ex) {
@@ -2702,8 +2602,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
         final long depth;
         final long streamBytes;
 
-        public FilterValues(Class<?> clazz, long arrayLength,
-                long totalObjectRefs, long depth, long streamBytes) {
+        public FilterValues(Class<?> clazz, long arrayLength, long totalObjectRefs, long depth,
+                long streamBytes) {
             this.clazz = clazz;
             this.arrayLength = arrayLength;
             this.totalObjectRefs = totalObjectRefs;
@@ -2846,8 +2746,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * no data is buffered in advance; when in block data mode, all data for the
      * current data block is read in at once (and buffered).
      */
-    private class BlockDataInputStream extends InputStream implements
-            DataInput {
+    private class BlockDataInputStream extends InputStream implements DataInput {
         /** maximum data block length */
         private static final int MAX_BLOCK_SIZE = 1024;
         /** maximum data block header length */
@@ -2973,9 +2872,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                             in.readFully(hbuf, 0, 5);
                             int len = Bits.getInt(hbuf, 1);
                             if (len < 0) {
-                                throw new StreamCorruptedException(
-                                        "illegal block data header length: "
-                                                + len);
+                                throw new StreamCorruptedException("illegal block data header length: "
+                                        + len);
                             }
                             return len;
 
@@ -2994,15 +2892,14 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
 
                         default:
                             if (tc >= 0 && (tc < TC_BASE || tc > TC_MAX)) {
-                                throw new StreamCorruptedException(String
-                                        .format("invalid type code: %02X", tc));
+                                throw new StreamCorruptedException(String.format("invalid type code: %02X",
+                                        tc));
                             }
                             return -1;
                     }
                 }
             } catch (EOFException ex) {
-                throw new StreamCorruptedException(
-                        "unexpected EOF while reading block data header");
+                throw new StreamCorruptedException("unexpected EOF while reading block data header");
             }
         }
 
@@ -3018,14 +2915,12 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                 do {
                     pos = 0;
                     if (unread > 0) {
-                        int n = in.read(buf, 0, Math.min(unread,
-                                MAX_BLOCK_SIZE));
+                        int n = in.read(buf, 0, Math.min(unread, MAX_BLOCK_SIZE));
                         if (n >= 0) {
                             end = n;
                             unread -= n;
                         } else {
-                            throw new StreamCorruptedException(
-                                    "unexpected EOF in middle of data block");
+                            throw new StreamCorruptedException("unexpected EOF in middle of data block");
                         }
                     } else {
                         int n = readBlockHeader(true);
@@ -3158,8 +3053,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                     }
                 }
                 // avoid unnecessary call to in.available() if possible
-                int unreadAvail = (unread > 0) ? Math.min(in.available(),
-                        unread) : 0;
+                int unreadAvail = (unread > 0) ? Math.min(in.available(), unread) : 0;
                 return (end >= 0) ? (end - pos) + unreadAvail : 0;
             } else {
                 return in.available();
@@ -3222,8 +3116,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
             readFully(b, off, len, false);
         }
 
-        public void readFully(byte[] b, int off, int len, boolean copy)
-                throws IOException {
+        public void readFully(byte[] b, int off, int len, boolean copy) throws IOException {
             while (len > 0) {
                 int n = read(b, off, len, copy);
                 if (n < 0) {
@@ -3561,8 +3454,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * than utflen bytes. Appends read characters to sbuf. Returns the
          * number of bytes consumed.
          */
-        private long readUTFSpan(StringBuilder sbuf, long utflen)
-                throws IOException {
+        private long readUTFSpan(StringBuilder sbuf, long utflen) throws IOException {
             int cpos = 0;
             int start = pos;
             int avail = Math.min(end - pos, CHAR_BUF_SIZE);
@@ -3592,8 +3484,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                             if ((b2 & 0xC0) != 0x80) {
                                 throw new UTFDataFormatException();
                             }
-                            cbuf[cpos++] = (char) (((b1 & 0x1F) << 6) | ((b2
-                                    & 0x3F) << 0));
+                            cbuf[cpos++] = (char) (((b1 & 0x1F) << 6) | ((b2 & 0x3F) << 0));
                             break;
 
                         case 14: // 3 byte format: 1110xxxx 10xxxxxx 10xxxxxx
@@ -3603,8 +3494,8 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                             if ((b2 & 0xC0) != 0x80 || (b3 & 0xC0) != 0x80) {
                                 throw new UTFDataFormatException();
                             }
-                            cbuf[cpos++] = (char) (((b1 & 0x0F) << 12) | ((b2
-                                    & 0x3F) << 6) | ((b3 & 0x3F) << 0));
+                            cbuf[cpos++] = (char) (((b1 & 0x0F) << 12) | ((b2 & 0x3F) << 6) | ((b3
+                                    & 0x3F) << 0));
                             break;
 
                         default: // 10xx xxxx, 1111 xxxx
@@ -3636,8 +3527,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * to handle UTF-encoded characters which (potentially) straddle
          * block-data boundaries.
          */
-        private int readUTFChar(StringBuilder sbuf, long utflen)
-                throws IOException {
+        private int readUTFChar(StringBuilder sbuf, long utflen) throws IOException {
             int b1, b2, b3;
             b1 = readByte() & 0xFF;
             switch (b1 >> 4) {
@@ -3661,8 +3551,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                     if ((b2 & 0xC0) != 0x80) {
                         throw new UTFDataFormatException();
                     }
-                    sbuf.append((char) (((b1 & 0x1F) << 6) | ((b2
-                            & 0x3F) << 0)));
+                    sbuf.append((char) (((b1 & 0x1F) << 6) | ((b2 & 0x3F) << 0)));
                     return 2;
 
                 case 14: // 3 byte format: 1110xxxx 10xxxxxx 10xxxxxx
@@ -3677,8 +3566,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
                     if ((b2 & 0xC0) != 0x80 || (b3 & 0xC0) != 0x80) {
                         throw new UTFDataFormatException();
                     }
-                    sbuf.append((char) (((b1 & 0x0F) << 12) | ((b2 & 0x3F) << 6)
-                            | ((b3 & 0x3F) << 0)));
+                    sbuf.append((char) (((b1 & 0x0F) << 12) | ((b2 & 0x3F) << 6) | ((b3 & 0x3F) << 0)));
                     return 3;
 
                 default: // 10xx xxxx, 1111 xxxx
@@ -3703,7 +3591,6 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * objects should have ClassNotFoundExceptions associated with them, taking
      * into account cycles and discontinuities (e.g., skipped fields) in the
      * object graph.
-     *
      * <p>
      * General use of the table is as follows: during deserialization, a given
      * object is first assigned a handle by calling the assign method. This
@@ -3714,14 +3601,12 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
      * tagged with an exception, the HandleTable assumes responsibility for
      * propagating the exception to any other objects which depend
      * (transitively) on the exception-tagged object.
-     *
      * <p>
      * Once all exception information/dependencies for the handle have been
      * registered, the handle should be "closed" by calling the finish method on
      * it. The act of finishing a handle allows the exception propagation
      * algorithm to aggressively prune dependency links, lessening the
      * performance/memory impact of exception tracking.
-     *
      * <p>
      * Note that the exception propagation algorithm used depends on handles
      * being assigned/finished in LIFO order; however, for simplicity as well as
@@ -3790,8 +3675,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
 
                         case STATUS_EXCEPTION:
                             // eagerly propagate exception
-                            markException(dependent,
-                                    (ClassNotFoundException) entries[target]);
+                            markException(dependent, (ClassNotFoundException) entries[target]);
                             break;
 
                         case STATUS_UNKNOWN:
@@ -3915,9 +3799,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          * ClassNotFoundException.
          */
         Object lookupObject(int handle) {
-            return (handle != NULL_HANDLE && status[handle] != STATUS_EXCEPTION)
-                    ? entries[handle]
-                    : null;
+            return (handle != NULL_HANDLE && status[handle] != STATUS_EXCEPTION) ? entries[handle] : null;
         }
 
         /**
@@ -3927,8 +3809,7 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
          */
         ClassNotFoundException lookupException(int handle) {
             return (handle != NULL_HANDLE && status[handle] == STATUS_EXCEPTION)
-                    ? (ClassNotFoundException) entries[handle]
-                    : null;
+                    ? (ClassNotFoundException) entries[handle] : null;
         }
 
         /**
@@ -4036,13 +3917,11 @@ public class ObjectInputStream extends InputStream implements ObjectInput,
     // controlled access to ObjectStreamClassValidator
     private volatile ObjectStreamClassValidator validator;
 
-    private static void setValidator(ObjectInputStream ois,
-            ObjectStreamClassValidator validator) {
+    private static void setValidator(ObjectInputStream ois, ObjectStreamClassValidator validator) {
         ois.validator = validator;
     }
 
     static {
-        SharedSecrets.setJavaObjectInputStreamAccess(
-                ObjectInputStream::setValidator);
+        SharedSecrets.setJavaObjectInputStreamAccess(ObjectInputStream::setValidator);
     }
 }

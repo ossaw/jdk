@@ -33,7 +33,6 @@ import javax.naming.directory.Attributes;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingManager#getObjectInstance
  * @see DirectoryManager#getObjectInstance
  * @see ObjectFactory
@@ -82,45 +81,44 @@ public interface DirObjectFactory extends ObjectFactory {
      * copies.
      *
      * @param obj
-     *                    The possibly null object containing location or
-     *                    reference
-     *                    information that can be used in creating an object.
+     *        The possibly null object containing location or
+     *        reference
+     *        information that can be used in creating an object.
      * @param name
-     *                    The name of this object relative to
-     *                    <code>nameCtx</code>, or
-     *                    null if no name is specified.
+     *        The name of this object relative to
+     *        <code>nameCtx</code>, or
+     *        null if no name is specified.
      * @param nameCtx
-     *                    The context relative to which the <code>name</code>
-     *                    parameter
-     *                    is specified, or null if <code>name</code> is relative
-     *                    to the
-     *                    default initial context.
+     *        The context relative to which the <code>name</code>
+     *        parameter
+     *        is specified, or null if <code>name</code> is relative
+     *        to the
+     *        default initial context.
      * @param environment
-     *                    The possibly null environment that is used in creating
-     *                    the
-     *                    object.
+     *        The possibly null environment that is used in creating
+     *        the
+     *        object.
      * @param attrs
-     *                    The possibly null attributes containing some of
-     *                    <tt>obj</tt>'s
-     *                    attributes. <tt>attrs</tt> might not necessarily have
-     *                    all of
-     *                    <tt>obj</tt>'s attributes. If the object factory
-     *                    requires more
-     *                    attributes, it needs to get it, either using
-     *                    <tt>obj</tt>, or
-     *                    <tt>name</tt> and <tt>nameCtx</tt>. The factory must
-     *                    not
-     *                    modify attrs.
+     *        The possibly null attributes containing some of
+     *        <tt>obj</tt>'s
+     *        attributes. <tt>attrs</tt> might not necessarily have
+     *        all of
+     *        <tt>obj</tt>'s attributes. If the object factory
+     *        requires more
+     *        attributes, it needs to get it, either using
+     *        <tt>obj</tt>, or
+     *        <tt>name</tt> and <tt>nameCtx</tt>. The factory must
+     *        not
+     *        modify attrs.
      * @return The object created; null if an object cannot be created.
      * @exception Exception
-     *                      If this object factory encountered an exception
-     *                      while
-     *                      attempting to create an object, and no other object
-     *                      factories are to be tried.
-     *
+     *            If this object factory encountered an exception
+     *            while
+     *            attempting to create an object, and no other object
+     *            factories are to be tried.
      * @see DirectoryManager#getObjectInstance
      * @see NamingManager#getURLContext
      */
-    public Object getObjectInstance(Object obj, Name name, Context nameCtx,
-            Hashtable<?, ?> environment, Attributes attrs) throws Exception;
+    public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment,
+            Attributes attrs) throws Exception;
 }

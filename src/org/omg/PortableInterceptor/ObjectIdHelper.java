@@ -30,15 +30,12 @@ abstract public class ObjectIdHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    org.omg.CORBA.TCKind.tk_octet);
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CORBA.OctetSeqHelper.id(), "OctetSeq", __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.PortableInterceptor.ObjectIdHelper.id(), "ObjectId",
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_octet);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CORBA.OctetSeqHelper.id(),
+                    "OctetSeq", __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.PortableInterceptor.ObjectIdHelper
+                    .id(), "ObjectId", __typeCode);
         }
         return __typeCode;
     }
@@ -53,8 +50,7 @@ abstract public class ObjectIdHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            byte[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, byte[] value) {
         org.omg.CORBA.OctetSeqHelper.write(ostream, value);
     }
 

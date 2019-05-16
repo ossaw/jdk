@@ -37,7 +37,6 @@ import com.sun.media.sound.MidiUtils;
  *
  * @see Sequencer#setTrackMute
  * @see Sequencer#setTrackSolo
- *
  * @author Kara Kytle
  * @author Florian Bomers
  */
@@ -72,7 +71,7 @@ public class Track {
      * list, not necessarily at the end.
      *
      * @param event
-     *              the event to add
+     *        the event to add
      * @return <code>true</code> if the event did not already exist in the track
      *         and was added, otherwise <code>false</code>
      */
@@ -130,8 +129,7 @@ public class Track {
                 // tick order
                 int i = eventsCount;
                 for (; i > 0; i--) {
-                    if (event.getTick() >= ((MidiEvent) eventsList.get(i - 1))
-                            .getTick()) {
+                    if (event.getTick() >= ((MidiEvent) eventsList.get(i - 1)).getTick()) {
                         break;
                     }
                 }
@@ -163,7 +161,7 @@ public class Track {
      * Removes the specified event from the track.
      * 
      * @param event
-     *              the event to remove
+     *        the event to remove
      * @return <code>true</code> if the event existed in the track and was
      *         removed, otherwise <code>false</code>
      */
@@ -195,11 +193,11 @@ public class Track {
      * Obtains the event at the specified index.
      * 
      * @param index
-     *              the location of the desired event in the event vector
+     *        the location of the desired event in the event vector
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if the specified index is negative
-     *                                        or not less than the
-     *                                        current size of this track.
+     *         if the specified index is negative
+     *         or not less than the
+     *         current size of this track.
      * @see #size
      * @return the event at the specified index
      */
@@ -239,8 +237,7 @@ public class Track {
         long ret = 0;
         synchronized (eventsList) {
             if (eventsList.size() > 0) {
-                ret = ((MidiEvent) eventsList.get(eventsList.size() - 1))
-                        .getTick();
+                ret = ((MidiEvent) eventsList.get(eventsList.size() - 1)).getTick();
             }
         }
         return ret;
@@ -254,10 +251,8 @@ public class Track {
             data[2] = 0;
         }
 
-        public void setMessage(int type, byte[] data, int length)
-                throws InvalidMidiDataException {
-            throw new InvalidMidiDataException(
-                    "cannot modify end of track message");
+        public void setMessage(int type, byte[] data, int length) throws InvalidMidiDataException {
+            throw new InvalidMidiDataException("cannot modify end of track message");
         }
     }
 

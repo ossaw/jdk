@@ -25,11 +25,10 @@ public class CredentialException extends LoginException {
     /**
      * Constructs a CredentialException with the specified detail message. A
      * detail message is a String that describes this particular exception.
-     *
      * <p>
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public CredentialException(String msg) {
         super(msg);

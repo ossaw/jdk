@@ -25,8 +25,7 @@ final class PopupMenuPainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -34,12 +33,9 @@ final class PopupMenuPainter extends AbstractRegionPainter {
     // by a particular instance of PopupMenuPainter would be created. For the
     // moment at least,
     // however, all are created for each instance.
-    private Color color1 = decodeColor("nimbusBlueGrey", -0.6111111f,
-            -0.110526316f, -0.39607844f, 0);
-    private Color color2 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
-            0.45098037f, 0);
-    private Color color3 = decodeColor("nimbusBase", 0.021348298f, -0.6150531f,
-            0.39999998f, 0);
+    private Color color1 = decodeColor("nimbusBlueGrey", -0.6111111f, -0.110526316f, -0.39607844f, 0);
+    private Color color2 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, 0);
+    private Color color3 = decodeColor("nimbusBase", 0.021348298f, -0.6150531f, 0.39999998f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -51,8 +47,7 @@ final class PopupMenuPainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -132,12 +127,10 @@ final class PopupMenuPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.003f, 0.02f, 0.5f, 0.98f,
-                        0.996f, 1.0f }, new Color[] { color2, decodeColor(
-                                color2, color3, 0.5f), color3, decodeColor(
-                                        color3, color3, 0.5f), color3,
-                                decodeColor(color3, color2, 0.5f), color2 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.003f, 0.02f, 0.5f, 0.98f, 0.996f, 1.0f }, new Color[] { color2, decodeColor(color2,
+                        color3, 0.5f), color3, decodeColor(color3, color3, 0.5f), color3, decodeColor(color3,
+                                color2, 0.5f), color2 });
     }
 
 }

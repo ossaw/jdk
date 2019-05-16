@@ -24,7 +24,6 @@ public interface VariableElement extends Element {
      * null} otherwise. The value will be of a primitive type or a
      * {@code String}. If the value is of a primitive type, it is wrapped in the
      * appropriate wrapper class (such as {@link Integer}).
-     *
      * <p>
      * Note that not all {@code final} fields will have constant values. In
      * particular, {@code enum} constants are <em>not</em> considered to be
@@ -33,7 +32,6 @@ public interface VariableElement extends Element {
      *
      * @return the value of this variable if this is a {@code final} field
      *         initialized to a compile-time constant, or {@code null} otherwise
-     *
      * @see Elements#getConstantExpression(Object)
      * @jls 15.28 Constant Expression
      * @jls 4.12.4 final Variables
@@ -42,7 +40,6 @@ public interface VariableElement extends Element {
 
     /**
      * Returns the simple name of this variable element.
-     *
      * <p>
      * For method and constructor parameters, the name of each parameter must be
      * distinct from the names of all other parameters of the same executable.
@@ -56,7 +53,6 @@ public interface VariableElement extends Element {
 
     /**
      * Returns the enclosing element of this variable.
-     *
      * The enclosing element of a method or constructor parameter is the
      * executable declaring the parameter.
      *

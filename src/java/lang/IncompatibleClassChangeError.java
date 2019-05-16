@@ -29,7 +29,7 @@ public class IncompatibleClassChangeError extends LinkageError {
      * specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IncompatibleClassChangeError(String s) {
         super(s);

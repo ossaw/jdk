@@ -50,9 +50,9 @@ public interface Autoscroll {
      * <P>
      * 
      * @param cursorLocn
-     *                   A <code>Point</code> indicating the location of the
-     *                   cursor
-     *                   that triggered this operation.
+     *        A <code>Point</code> indicating the location of the
+     *        cursor
+     *        that triggered this operation.
      */
 
     public void autoscroll(Point cursorLocn);

@@ -43,12 +43,10 @@ public final class StAXInputSource extends XMLInputSource {
         this(source, false);
     }
 
-    public StAXInputSource(XMLStreamReader source,
-            boolean consumeRemainingContent) {
+    public StAXInputSource(XMLStreamReader source, boolean consumeRemainingContent) {
         super(null, source.getLocation().getSystemId(), null);
         if (source == null) {
-            throw new IllegalArgumentException(
-                    "XMLStreamReader parameter cannot be null.");
+            throw new IllegalArgumentException("XMLStreamReader parameter cannot be null.");
         }
         fStreamReader = source;
         fEventReader = null;
@@ -59,12 +57,10 @@ public final class StAXInputSource extends XMLInputSource {
         this(source, false);
     }
 
-    public StAXInputSource(XMLEventReader source,
-            boolean consumeRemainingContent) {
+    public StAXInputSource(XMLEventReader source, boolean consumeRemainingContent) {
         super(null, getEventReaderSystemId(source), null);
         if (source == null) {
-            throw new IllegalArgumentException(
-                    "XMLEventReader parameter cannot be null.");
+            throw new IllegalArgumentException("XMLEventReader parameter cannot be null.");
         }
         fStreamReader = null;
         fEventReader = source;
@@ -84,8 +80,7 @@ public final class StAXInputSource extends XMLInputSource {
     }
 
     public void setSystemId(String systemId) {
-        throw new UnsupportedOperationException(
-                "Cannot set the system ID on a StAXInputSource");
+        throw new UnsupportedOperationException("Cannot set the system ID on a StAXInputSource");
     }
 
     private static String getEventReaderSystemId(XMLEventReader reader) {
@@ -93,8 +88,7 @@ public final class StAXInputSource extends XMLInputSource {
             if (reader != null) {
                 return reader.peek().getLocation().getSystemId();
             }
-        } catch (XMLStreamException e) {
-        }
+        } catch (XMLStreamException e) {}
         return null;
     }
 

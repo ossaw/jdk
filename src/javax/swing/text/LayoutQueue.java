@@ -47,7 +47,7 @@ public class LayoutQueue {
      * Set the default layout queue.
      *
      * @param q
-     *          the new queue.
+     *        the new queue.
      */
     public static void setDefaultQueue(LayoutQueue q) {
         synchronized (DEFAULT_QUEUE) {

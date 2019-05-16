@@ -7,7 +7,6 @@ package java.util;
 
 /**
  * Unchecked exception thrown when an unknown conversion is given.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method or
  * constructor in this class will cause a {@link NullPointerException} to be
@@ -25,7 +24,7 @@ public class UnknownFormatConversionException extends IllegalFormatException {
      * Constructs an instance of this class with the unknown conversion.
      *
      * @param s
-     *          Unknown conversion
+     *        Unknown conversion
      */
     public UnknownFormatConversionException(String s) {
         if (s == null)

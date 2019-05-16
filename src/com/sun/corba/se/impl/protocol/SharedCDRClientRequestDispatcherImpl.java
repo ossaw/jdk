@@ -99,8 +99,7 @@ import com.sun.corba.se.impl.util.JDKBridge;
  * implements RMI delegate as well as our internal ClientRequestDispatcher
  * interface.
  */
-public class SharedCDRClientRequestDispatcherImpl extends
-        CorbaClientRequestDispatcherImpl {
+public class SharedCDRClientRequestDispatcherImpl extends CorbaClientRequestDispatcherImpl {
     // REVISIT:
     // Rather than have separate CDR subcontract,
     // use same CorbaClientRequestDispatcherImpl but have
@@ -109,14 +108,12 @@ public class SharedCDRClientRequestDispatcherImpl extends
     // Benefit: then in ContactInfo no need to do a direct new
     // of subcontract - does not complicate subcontract registry.
 
-    public InputObject marshalingComplete(java.lang.Object self,
-            OutputObject outputObject) throws ApplicationException,
-            org.omg.CORBA.portable.RemarshalException {
+    public InputObject marshalingComplete(java.lang.Object self, OutputObject outputObject)
+            throws ApplicationException, org.omg.CORBA.portable.RemarshalException {
         ORB orb = null;
         CorbaMessageMediator messageMediator = null;
         try {
-            messageMediator = (CorbaMessageMediator) outputObject
-                    .getMessageMediator();
+            messageMediator = (CorbaMessageMediator) outputObject.getMessageMediator();
 
             orb = (ORB) messageMediator.getBroker();
 
@@ -131,8 +128,7 @@ public class SharedCDRClientRequestDispatcherImpl extends
             //
 
             ByteBufferWithInfo bbwi = cdrOutputObject.getByteBufferWithInfo();
-            cdrOutputObject.getMessageHeader().setSize(bbwi.byteBuffer, bbwi
-                    .getSize());
+            cdrOutputObject.getMessageHeader().setSize(bbwi.byteBuffer, bbwi.getSize());
             final ORB inOrb = orb;
             final ByteBuffer inBuffer = bbwi.byteBuffer;
             final Message inMsg = cdrOutputObject.getMessageHeader();
@@ -140,8 +136,7 @@ public class SharedCDRClientRequestDispatcherImpl extends
                     new PrivilegedAction<CDRInputObject>() {
                         @Override
                         public CDRInputObject run() {
-                            return new CDRInputObject(inOrb, null, inBuffer,
-                                    inMsg);
+                            return new CDRInputObject(inOrb, null, inBuffer, inMsg);
                         }
                     });
             messageMediator.setInputObject(cdrInputObject);
@@ -152,8 +147,7 @@ public class SharedCDRClientRequestDispatcherImpl extends
             //
 
             // REVISIT: Impl cast.
-            ((CorbaMessageMediatorImpl) messageMediator).handleRequestRequest(
-                    messageMediator);
+            ((CorbaMessageMediatorImpl) messageMediator).handleRequestRequest(messageMediator);
 
             // InputStream must be closed on the InputObject so that its
             // ByteBuffer can be released to the ByteBufferPool. We must do
@@ -167,8 +161,7 @@ public class SharedCDRClientRequestDispatcherImpl extends
                 // object, (i.e. won't result in a corba error).
 
                 if (orb.transportDebugFlag) {
-                    dprint(".marshalingComplete: ignoring IOException - " + ex
-                            .toString());
+                    dprint(".marshalingComplete: ignoring IOException - " + ex.toString());
                 }
             }
 
@@ -176,22 +169,18 @@ public class SharedCDRClientRequestDispatcherImpl extends
             // Create client-side input object
             //
 
-            cdrOutputObject = (CDROutputObject) messageMediator
-                    .getOutputObject();
+            cdrOutputObject = (CDROutputObject) messageMediator.getOutputObject();
             bbwi = cdrOutputObject.getByteBufferWithInfo();
-            cdrOutputObject.getMessageHeader().setSize(bbwi.byteBuffer, bbwi
-                    .getSize());
+            cdrOutputObject.getMessageHeader().setSize(bbwi.byteBuffer, bbwi.getSize());
             final ORB inOrb2 = orb;
             final ByteBuffer inBuffer2 = bbwi.byteBuffer;
             final Message inMsg2 = cdrOutputObject.getMessageHeader();
-            cdrInputObject = AccessController.doPrivileged(
-                    new PrivilegedAction<CDRInputObject>() {
-                        @Override
-                        public CDRInputObject run() {
-                            return new CDRInputObject(inOrb2, null, inBuffer2,
-                                    inMsg2);
-                        }
-                    });
+            cdrInputObject = AccessController.doPrivileged(new PrivilegedAction<CDRInputObject>() {
+                @Override
+                public CDRInputObject run() {
+                    return new CDRInputObject(inOrb2, null, inBuffer2, inMsg2);
+                }
+            });
             messageMediator.setInputObject(cdrInputObject);
             cdrInputObject.setMessageMediator(messageMediator);
 

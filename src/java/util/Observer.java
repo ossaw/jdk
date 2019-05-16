@@ -20,9 +20,9 @@ public interface Observer {
      * notified of the change.
      *
      * @param o
-     *            the observable object.
+     *        the observable object.
      * @param arg
-     *            an argument passed to the <code>notifyObservers</code> method.
+     *        an argument passed to the <code>notifyObservers</code> method.
      */
     void update(Observable o, Object arg);
 }

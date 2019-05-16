@@ -56,7 +56,7 @@ public interface SnmpIncomingResponse {
      * cache.
      * 
      * @param cache
-     *              The security cache.
+     *        The security cache.
      */
     public void setSecurityCache(SnmpSecurityCache cache);
 
@@ -87,15 +87,13 @@ public interface SnmpIncomingResponse {
      * response.
      *
      * @param inputBytes
-     *                   The bytes to be decoded.
-     *
+     *        The bytes to be decoded.
      * @exception SnmpStatusException
-     *                                If the specified bytes are not a valid
-     *                                encoding.
+     *            If the specified bytes are not a valid
+     *            encoding.
      */
-    public SnmpMsg decodeMessage(byte[] inputBytes, int byteCount,
-            InetAddress address, int port) throws SnmpStatusException,
-            SnmpSecurityException;
+    public SnmpMsg decodeMessage(byte[] inputBytes, int byteCount, InetAddress address, int port)
+            throws SnmpStatusException, SnmpSecurityException;
 
     /**
      * Gets the request PDU encoded in the received response.
@@ -104,7 +102,7 @@ public interface SnmpIncomingResponse {
      *
      * @return The resulting PDU.
      * @exception SnmpStatusException
-     *                                If the encoding is not valid.
+     *            If the encoding is not valid.
      */
     public SnmpPdu decodeSnmpPdu() throws SnmpStatusException;
 
@@ -112,7 +110,7 @@ public interface SnmpIncomingResponse {
      * Returns the response request Id.
      * 
      * @param data
-     *             The flat message.
+     *        The flat message.
      * @return The request Id.
      */
     public int getRequestId(byte[] data) throws SnmpStatusException;

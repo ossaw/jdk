@@ -52,25 +52,24 @@ public final class SimpleDoc implements Doc {
      * flavor and doc attribute set.
      * 
      * @param printData
-     *                   the print data object
+     *        the print data object
      * @param flavor
-     *                   the <code>DocFlavor</code> object
+     *        the <code>DocFlavor</code> object
      * @param attributes
-     *                   a <code>DocAttributeSet</code>, which can be
-     *                   <code>null</code>
+     *        a <code>DocAttributeSet</code>, which can be
+     *        <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if <code>flavor</code> or
-     *                                  <code>printData</code> is
-     *                                  <code>null</code>, or the
-     *                                  <code>printData</code> does not
-     *                                  correspond to the specified doc
-     *                                  flavor--for example, the data
-     *                                  is not of the type specified as the
-     *                                  representation in the
-     *                                  <code>DocFlavor</code>.
+     *         if <code>flavor</code> or
+     *         <code>printData</code> is
+     *         <code>null</code>, or the
+     *         <code>printData</code> does not
+     *         correspond to the specified doc
+     *         flavor--for example, the data
+     *         is not of the type specified as the
+     *         representation in the
+     *         <code>DocFlavor</code>.
      */
-    public SimpleDoc(Object printData, DocFlavor flavor,
-            DocAttributeSet attributes) {
+    public SimpleDoc(Object printData, DocFlavor flavor, DocAttributeSet attributes) {
 
         if (flavor == null || printData == null) {
             throw new IllegalArgumentException("null argument(s)");
@@ -80,8 +79,7 @@ public final class SimpleDoc implements Doc {
         try {
             String className = flavor.getRepresentationClassName();
             sun.reflect.misc.ReflectUtil.checkPackageAccess(className);
-            repClass = Class.forName(className, false, Thread.currentThread()
-                    .getContextClassLoader());
+            repClass = Class.forName(className, false, Thread.currentThread().getContextClassLoader());
         } catch (Throwable e) {
             throw new IllegalArgumentException("unknown representation class");
         }
@@ -92,8 +90,7 @@ public final class SimpleDoc implements Doc {
 
         this.flavor = flavor;
         if (attributes != null) {
-            this.attributes = AttributeSetUtilities.unmodifiableView(
-                    attributes);
+            this.attributes = AttributeSetUtilities.unmodifiableView(attributes);
         }
         this.printData = printData;
     }
@@ -163,10 +160,9 @@ public final class SimpleDoc implements Doc {
      *         this doc. If a reader cannot be provided because this doc does
      *         not meet the criteria stated above, <code>null</code> is
      *         returned.
-     *
      * @exception IOException
-     *                        if there was an I/O error while creating the
-     *                        reader.
+     *            if there was an I/O error while creating the
+     *            reader.
      */
     public Reader getReaderForText() throws IOException {
 
@@ -208,10 +204,9 @@ public final class SimpleDoc implements Doc {
      *         this doc. If an input stream cannot be provided because this doc
      *         does not meet the criteria stated above, <code>null</code> is
      *         returned.
-     *
      * @exception IOException
-     *                        if there was an I/O error while creating the input
-     *                        stream.
+     *            if there was an I/O error while creating the input
+     *            stream.
      */
     public InputStream getStreamForBytes() throws IOException {
 

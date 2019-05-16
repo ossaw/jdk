@@ -29,10 +29,8 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 /**
  * This is delegates to the real implementation.
  */
-public abstract class CDROutputStream extends
-        org.omg.CORBA_2_3.portable.OutputStream implements
-        com.sun.corba.se.impl.encoding.MarshalOutputStream,
-        org.omg.CORBA.DataOutputStream,
+public abstract class CDROutputStream extends org.omg.CORBA_2_3.portable.OutputStream implements
+        com.sun.corba.se.impl.encoding.MarshalOutputStream, org.omg.CORBA.DataOutputStream,
         org.omg.CORBA.portable.ValueOutputStream {
     private CDROutputStreamBase impl;
     protected ORB orb;
@@ -43,8 +41,8 @@ public abstract class CDROutputStream extends
     // to create a concrete CDR delegate based on the GIOP version.
     private static class OutputStreamFactory {
 
-        public static CDROutputStreamBase newOutputStream(ORB orb,
-                GIOPVersion version, byte encodingVersion) {
+        public static CDROutputStreamBase newOutputStream(ORB orb, GIOPVersion version,
+                byte encodingVersion) {
             switch (version.intValue()) {
                 case GIOPVersion.VERSION_1_0:
                     return new CDROutputStream_1_0();
@@ -52,13 +50,12 @@ public abstract class CDROutputStream extends
                     return new CDROutputStream_1_1();
                 case GIOPVersion.VERSION_1_2:
                     if (encodingVersion != Message.CDR_ENC_VERSION) {
-                        return new IDLJavaSerializationOutputStream(
-                                encodingVersion);
+                        return new IDLJavaSerializationOutputStream(encodingVersion);
                     }
                     return new CDROutputStream_1_2();
                 default:
-                    ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                            orb, CORBALogDomains.RPC_ENCODING);
+                    ORBUtilSystemException wrapper = ORBUtilSystemException.get(orb,
+                            CORBALogDomains.RPC_ENCODING);
                     // REVISIT - what is appropriate? INTERNAL exceptions
                     // are really hard to track later.
                     throw wrapper.unsupportedGiopVersion(version);
@@ -76,25 +73,19 @@ public abstract class CDROutputStream extends
     // it notifies the constructor not to use pooled (i.e, direct)
     // ByteBuffers.
 
-    public CDROutputStream(ORB orb, GIOPVersion version, byte encodingVersion,
-            boolean littleEndian, BufferManagerWrite bufferManager,
-            byte streamFormatVersion, boolean usePooledByteBuffers) {
-        impl = OutputStreamFactory.newOutputStream(orb, version,
-                encodingVersion);
-        impl.init(orb, littleEndian, bufferManager, streamFormatVersion,
-                usePooledByteBuffers);
+    public CDROutputStream(ORB orb, GIOPVersion version, byte encodingVersion, boolean littleEndian,
+            BufferManagerWrite bufferManager, byte streamFormatVersion, boolean usePooledByteBuffers) {
+        impl = OutputStreamFactory.newOutputStream(orb, version, encodingVersion);
+        impl.init(orb, littleEndian, bufferManager, streamFormatVersion, usePooledByteBuffers);
 
         impl.setParent(this);
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_ENCODING);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
     }
 
-    public CDROutputStream(ORB orb, GIOPVersion version, byte encodingVersion,
-            boolean littleEndian, BufferManagerWrite bufferManager,
-            byte streamFormatVersion) {
-        this(orb, version, encodingVersion, littleEndian, bufferManager,
-                streamFormatVersion, true);
+    public CDROutputStream(ORB orb, GIOPVersion version, byte encodingVersion, boolean littleEndian,
+            BufferManagerWrite bufferManager, byte streamFormatVersion) {
+        this(orb, version, encodingVersion, littleEndian, bufferManager, streamFormatVersion, true);
     }
 
     // org.omg.CORBA.portable.OutputStream
@@ -158,8 +149,7 @@ public abstract class CDROutputStream extends
         impl.write_wstring(value);
     }
 
-    public final void write_boolean_array(boolean[] value, int offset,
-            int length) {
+    public final void write_boolean_array(boolean[] value, int offset, int length) {
         impl.write_boolean_array(value, offset, length);
     }
 
@@ -179,8 +169,7 @@ public abstract class CDROutputStream extends
         impl.write_short_array(value, offset, length);
     }
 
-    public final void write_ushort_array(short[] value, int offset,
-            int length) {
+    public final void write_ushort_array(short[] value, int offset, int length) {
         impl.write_ushort_array(value, offset, length);
     }
 
@@ -192,13 +181,11 @@ public abstract class CDROutputStream extends
         impl.write_ulong_array(value, offset, length);
     }
 
-    public final void write_longlong_array(long[] value, int offset,
-            int length) {
+    public final void write_longlong_array(long[] value, int offset, int length) {
         impl.write_longlong_array(value, offset, length);
     }
 
-    public final void write_ulonglong_array(long[] value, int offset,
-            int length) {
+    public final void write_ulonglong_array(long[] value, int offset, int length) {
         impl.write_ulonglong_array(value, offset, length);
     }
 
@@ -206,8 +193,7 @@ public abstract class CDROutputStream extends
         impl.write_float_array(value, offset, length);
     }
 
-    public final void write_double_array(double[] value, int offset,
-            int length) {
+    public final void write_double_array(double[] value, int offset, int length) {
         impl.write_double_array(value, offset, length);
     }
 
@@ -235,8 +221,7 @@ public abstract class CDROutputStream extends
         impl.write_fixed(value);
     }
 
-    public final void write_Context(org.omg.CORBA.Context ctx,
-            org.omg.CORBA.ContextList contexts) {
+    public final void write_Context(org.omg.CORBA.Context ctx, org.omg.CORBA.ContextList contexts) {
         impl.write_Context(ctx, contexts);
     }
 
@@ -249,13 +234,11 @@ public abstract class CDROutputStream extends
         impl.write_value(value);
     }
 
-    public final void write_value(java.io.Serializable value,
-            java.lang.Class clz) {
+    public final void write_value(java.io.Serializable value, java.lang.Class clz) {
         impl.write_value(value, clz);
     }
 
-    public final void write_value(java.io.Serializable value,
-            String repository_id) {
+    public final void write_value(java.io.Serializable value, String repository_id) {
         impl.write_value(value, repository_id);
     }
 
@@ -315,8 +298,7 @@ public abstract class CDROutputStream extends
         impl.write_Value(value);
     }
 
-    public final void write_any_array(org.omg.CORBA.Any[] seq, int offset,
-            int length) {
+    public final void write_any_array(org.omg.CORBA.Any[] seq, int offset, int length) {
         impl.write_any_array(seq, offset, length);
     }
 
@@ -385,13 +367,11 @@ public abstract class CDROutputStream extends
         return impl.getBufferManager();
     }
 
-    public final void write_fixed(java.math.BigDecimal bigDecimal, short digits,
-            short scale) {
+    public final void write_fixed(java.math.BigDecimal bigDecimal, short digits, short scale) {
         impl.write_fixed(bigDecimal, digits, scale);
     }
 
-    public final void writeOctetSequenceTo(
-            org.omg.CORBA.portable.OutputStream s) {
+    public final void writeOctetSequenceTo(org.omg.CORBA.portable.OutputStream s) {
         impl.writeOctetSequenceTo(s);
     }
 
@@ -406,8 +386,7 @@ public abstract class CDROutputStream extends
     // Use Latin-1 for GIOP 1.0 or when code set negotiation was not
     // performed.
     protected CodeSetConversion.CTBConverter createCharCTBConverter() {
-        return CodeSetConversion.impl().getCTBConverter(
-                OSFCodeSetRegistry.ISO_8859_1);
+        return CodeSetConversion.impl().getCTBConverter(OSFCodeSetRegistry.ISO_8859_1);
     }
 
     // Subclasses must decide what to do here. It's inconvenient to

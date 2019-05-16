@@ -46,9 +46,9 @@ public class GridBagLayoutInfo implements java.io.Serializable {
      * {@code GridBagLayout} grid cells with it's own parameters.
      * 
      * @param width
-     *               the columns
+     *        the columns
      * @param height
-     *               the rows
+     *        the rows
      * @since 6.0
      */
     GridBagLayoutInfo(int width, int height) {
@@ -61,9 +61,8 @@ public class GridBagLayoutInfo implements java.io.Serializable {
      * baseline with a baseline resize behavior of CONSTANT_DESCENT.
      */
     boolean hasConstantDescent(int row) {
-        return ((baselineType[row]
-                & (1 << Component.BaselineResizeBehavior.CONSTANT_DESCENT
-                        .ordinal())) != 0);
+        return ((baselineType[row] & (1 << Component.BaselineResizeBehavior.CONSTANT_DESCENT
+                .ordinal())) != 0);
     }
 
     /**

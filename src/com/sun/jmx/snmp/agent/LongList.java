@@ -104,20 +104,19 @@ final class LongList {
      * Adds <var>count</var> elements to the list.
      * 
      * @param at
-     *              index at which the elements must be inserted. The first
-     *              element will be inserted at this index.
+     *        index at which the elements must be inserted. The first
+     *        element will be inserted at this index.
      * @param src
-     *              An array containing the elements we want to insert.
+     *        An array containing the elements we want to insert.
      * @param from
-     *              Index of the first element from <var>src</var> that must be
-     *              inserted.
+     *        Index of the first element from <var>src</var> that must be
+     *        inserted.
      * @param count
-     *              number of elements to insert. Any access to this method
-     *              should
-     *              be protected in a synchronized block on the LongList object.
+     *        number of elements to insert. Any access to this method
+     *        should
+     *        be protected in a synchronized block on the LongList object.
      **/
-    public final void add(final int at, final long[] src, final int from,
-            final int count) {
+    public final void add(final int at, final long[] src, final int from, final int count) {
         if (count <= 0)
             return;
         if (at > size)
@@ -202,9 +201,9 @@ final class LongList {
      * <var>length</var>.
      * 
      * @param length
-     *               new minimal length requested. Any call to this method must
-     *               be
-     *               protected by a synchronized block on this LongList.
+     *        new minimal length requested. Any call to this method must
+     *        be
+     *        protected by a synchronized block on this LongList.
      **/
     private final void ensure(int length) {
         if (list.length < length) {

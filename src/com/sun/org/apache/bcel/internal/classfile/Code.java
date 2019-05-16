@@ -58,7 +58,6 @@ import java.io.*;
  * instantiated by the <em>Attribute.readAttribute()</em> method. A
  * <em>Code</em> attribute contains informations about operand stack, local
  * variables, byte code and the exceptions handled within this method.
- *
  * This attribute has attributes itself, namely <em>LineNumberTable</em> which
  * is used for debugging purposes and <em>LocalVariableTable</em> which contains
  * information about the local variables.
@@ -85,27 +84,24 @@ public final class Code extends Attribute {
      * references (shallow copy). Use copy() for a physical copy.
      */
     public Code(Code c) {
-        this(c.getNameIndex(), c.getLength(), c.getMaxStack(), c.getMaxLocals(),
-                c.getCode(), c.getExceptionTable(), c.getAttributes(), c
-                        .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getMaxStack(), c.getMaxLocals(), c.getCode(), c
+                .getExceptionTable(), c.getAttributes(), c.getConstantPool());
     }
 
     /**
      * @param name_index
-     *                      Index pointing to the name <em>Code</em>
+     *        Index pointing to the name <em>Code</em>
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      */
-    Code(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    Code(int name_index, int length, DataInputStream file, ConstantPool constant_pool) throws IOException {
         // Initialize with some default values which will be overwritten later
-        this(name_index, length, file.readUnsignedShort(), file
-                .readUnsignedShort(), (byte[]) null, (CodeException[]) null,
-                (Attribute[]) null, constant_pool);
+        this(name_index, length, file.readUnsignedShort(), file.readUnsignedShort(), (byte[]) null,
+                (CodeException[]) null, (Attribute[]) null, constant_pool);
 
         code_length = file.readInt();
         code = new byte[code_length]; // Read byte code
@@ -140,25 +136,24 @@ public final class Code extends Attribute {
 
     /**
      * @param name_index
-     *                        Index pointing to the name <em>Code</em>
+     *        Index pointing to the name <em>Code</em>
      * @param length
-     *                        Content length in bytes
+     *        Content length in bytes
      * @param max_stack
-     *                        Maximum size of stack
+     *        Maximum size of stack
      * @param max_locals
-     *                        Number of local variables
+     *        Number of local variables
      * @param code
-     *                        Actual byte code
+     *        Actual byte code
      * @param exception_table
-     *                        Table of handled exceptions
+     *        Table of handled exceptions
      * @param attributes
-     *                        Attributes of code: LineNumber or LocalVariable
+     *        Attributes of code: LineNumber or LocalVariable
      * @param constant_pool
-     *                        Array of constants
+     *        Array of constants
      */
-    public Code(int name_index, int length, int max_stack, int max_locals,
-            byte[] code, CodeException[] exception_table,
-            Attribute[] attributes, ConstantPool constant_pool) {
+    public Code(int name_index, int length, int max_stack, int max_locals, byte[] code,
+            CodeException[] exception_table, Attribute[] attributes, ConstantPool constant_pool) {
         super(Constants.ATTR_CODE, name_index, length, constant_pool);
 
         this.max_stack = max_stack;
@@ -175,7 +170,7 @@ public final class Code extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitCode(this);
@@ -185,7 +180,7 @@ public final class Code extends Attribute {
      * Dump code attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -301,7 +296,7 @@ public final class Code extends Attribute {
 
     /**
      * @param code
-     *             byte code
+     *        byte code
      */
     public final void setCode(byte[] code) {
         this.code = code;
@@ -310,17 +305,16 @@ public final class Code extends Attribute {
 
     /**
      * @param exception_table
-     *                        exception table
+     *        exception table
      */
     public final void setExceptionTable(CodeException[] exception_table) {
         this.exception_table = exception_table;
-        exception_table_length = (exception_table == null) ? 0
-                : exception_table.length;
+        exception_table_length = (exception_table == null) ? 0 : exception_table.length;
     }
 
     /**
      * @param max_locals
-     *                   maximum number of local variables
+     *        maximum number of local variables
      */
     public final void setMaxLocals(int max_locals) {
         this.max_locals = max_locals;
@@ -328,7 +322,7 @@ public final class Code extends Attribute {
 
     /**
      * @param max_stack
-     *                  maximum stack size
+     *        maximum stack size
      */
     public final void setMaxStack(int max_stack) {
         this.max_stack = max_stack;
@@ -340,18 +334,15 @@ public final class Code extends Attribute {
     public final String toString(boolean verbose) {
         StringBuffer buf;
 
-        buf = new StringBuffer("Code(max_stack = " + max_stack
-                + ", max_locals = " + max_locals + ", code_length = "
-                + code_length + ")\n" + Utility.codeToString(code,
-                        constant_pool, 0, -1, verbose));
+        buf = new StringBuffer("Code(max_stack = " + max_stack + ", max_locals = " + max_locals
+                + ", code_length = " + code_length + ")\n" + Utility.codeToString(code, constant_pool, 0, -1,
+                        verbose));
 
         if (exception_table_length > 0) {
-            buf.append("\nException handler(s) = \n"
-                    + "From\tTo\tHandler\tType\n");
+            buf.append("\nException handler(s) = \n" + "From\tTo\tHandler\tType\n");
 
             for (int i = 0; i < exception_table_length; i++)
-                buf.append(exception_table[i].toString(constant_pool, verbose)
-                        + "\n");
+                buf.append(exception_table[i].toString(constant_pool, verbose) + "\n");
         }
 
         if (attributes_count > 0) {

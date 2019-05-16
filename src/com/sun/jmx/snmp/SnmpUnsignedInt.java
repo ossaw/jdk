@@ -7,7 +7,6 @@ package com.sun.jmx.snmp;
 
 /**
  * Is the base for all SNMP syntaxes based on unsigned integers.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -28,12 +27,12 @@ public abstract class SnmpUnsignedInt extends SnmpInt {
      * value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      * @exception IllegalArgumentException
-     *                                     The specified value is negative or
-     *                                     larger than
-     *                                     {@link #MAX_VALUE
-     *                                     SnmpUnsignedInt.MAX_VALUE}.
+     *            The specified value is negative or
+     *            larger than
+     *            {@link #MAX_VALUE
+     *            SnmpUnsignedInt.MAX_VALUE}.
      */
     public SnmpUnsignedInt(int v) throws IllegalArgumentException {
         super(v);
@@ -44,12 +43,12 @@ public abstract class SnmpUnsignedInt extends SnmpInt {
      * <CODE>Integer</CODE> value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      * @exception IllegalArgumentException
-     *                                     The specified value is negative or
-     *                                     larger than
-     *                                     {@link #MAX_VALUE
-     *                                     SnmpUnsignedInt.MAX_VALUE}.
+     *            The specified value is negative or
+     *            larger than
+     *            {@link #MAX_VALUE
+     *            SnmpUnsignedInt.MAX_VALUE}.
      */
     public SnmpUnsignedInt(Integer v) throws IllegalArgumentException {
         super(v);
@@ -60,12 +59,12 @@ public abstract class SnmpUnsignedInt extends SnmpInt {
      * value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      * @exception IllegalArgumentException
-     *                                     The specified value is negative or
-     *                                     larger than
-     *                                     {@link #MAX_VALUE
-     *                                     SnmpUnsignedInt.MAX_VALUE}.
+     *            The specified value is negative or
+     *            larger than
+     *            {@link #MAX_VALUE
+     *            SnmpUnsignedInt.MAX_VALUE}.
      */
     public SnmpUnsignedInt(long v) throws IllegalArgumentException {
         super(v);
@@ -76,12 +75,12 @@ public abstract class SnmpUnsignedInt extends SnmpInt {
      * <CODE>Long</CODE> value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      * @exception IllegalArgumentException
-     *                                     The specified value is negative or
-     *                                     larger than
-     *                                     {@link #MAX_VALUE
-     *                                     SnmpUnsignedInt.MAX_VALUE}.
+     *            The specified value is negative or
+     *            larger than
+     *            {@link #MAX_VALUE
+     *            SnmpUnsignedInt.MAX_VALUE}.
      */
     public SnmpUnsignedInt(Long v) throws IllegalArgumentException {
         super(v);

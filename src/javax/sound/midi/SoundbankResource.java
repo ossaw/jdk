@@ -70,20 +70,18 @@ public abstract class SoundbankResource {
      * sampled audio data, and instruments is a subclass responsibility.)
      * 
      * @param soundBank
-     *                  the sound bank containing this
-     *                  <code>SoundbankResource</code>
+     *        the sound bank containing this
+     *        <code>SoundbankResource</code>
      * @param name
-     *                  the name of the sample
+     *        the name of the sample
      * @param dataClass
-     *                  the class used to represent the sample's data
-     *
+     *        the class used to represent the sample's data
      * @see #getSoundbank
      * @see #getName
      * @see #getDataClass
      * @see #getData
      */
-    protected SoundbankResource(Soundbank soundBank, String name,
-            Class<?> dataClass) {
+    protected SoundbankResource(Soundbank soundBank, String name, Class<?> dataClass) {
 
         this.soundBank = soundBank;
         this.name = name;
@@ -150,7 +148,6 @@ public abstract class SoundbankResource {
      * 
      * @return an array of <code>Instruments</code> that reference this
      *         <code>SoundbankResource</code>
-     *
      * @see Instrument#getSamples
      */
     // public abstract Instrument[] getInstruments();

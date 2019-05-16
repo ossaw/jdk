@@ -34,7 +34,6 @@ import java.awt.Component;
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">
  *      Tutorial: Writing a Container Listener</a>
- *
  * @author Tim Prinzing
  * @author Amy Fowler
  * @since 1.1
@@ -81,17 +80,17 @@ public class ContainerEvent extends ComponentEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *               The <code>Component</code> object (container) that
-     *               originated
-     *               the event
+     *        The <code>Component</code> object (container) that
+     *        originated
+     *        the event
      * @param id
-     *               An integer indicating the type of event. For information on
-     *               allowable values, see the class description for
-     *               {@link ContainerEvent}
+     *        An integer indicating the type of event. For information on
+     *        allowable values, see the class description for
+     *        {@link ContainerEvent}
      * @param child
-     *               the component that was added or removed
+     *        the component that was added or removed
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getContainer()
      * @see #getID()
      * @see #getChild()

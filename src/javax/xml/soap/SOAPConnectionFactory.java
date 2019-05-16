@@ -33,23 +33,18 @@ public abstract class SOAPConnectionFactory {
      *
      * @return a new instance of a default <code>SOAPConnectionFactory</code>
      *         object
-     *
      * @exception SOAPException
-     *                                          if there was an error creating
-     *                                          the
-     *                                          <code>SOAPConnectionFactory</code>
-     *
+     *            if there was an error creating
+     *            the
+     *            <code>SOAPConnectionFactory</code>
      * @exception UnsupportedOperationException
-     *                                          if newInstance is not supported.
+     *            if newInstance is not supported.
      */
-    public static SOAPConnectionFactory newInstance() throws SOAPException,
-            UnsupportedOperationException {
+    public static SOAPConnectionFactory newInstance() throws SOAPException, UnsupportedOperationException {
         try {
-            return (SOAPConnectionFactory) FactoryFinder.find(SF_PROPERTY,
-                    DEFAULT_SOAP_CONNECTION_FACTORY);
+            return (SOAPConnectionFactory) FactoryFinder.find(SF_PROPERTY, DEFAULT_SOAP_CONNECTION_FACTORY);
         } catch (Exception ex) {
-            throw new SOAPException("Unable to create SOAP connection factory: "
-                    + ex.getMessage());
+            throw new SOAPException("Unable to create SOAP connection factory: " + ex.getMessage());
         }
     }
 
@@ -57,10 +52,9 @@ public abstract class SOAPConnectionFactory {
      * Create a new <code>SOAPConnection</code>.
      *
      * @return the new <code>SOAPConnection</code> object.
-     *
      * @exception SOAPException
-     *                          if there was an exception creating the
-     *                          <code>SOAPConnection</code> object.
+     *            if there was an exception creating the
+     *            <code>SOAPConnection</code> object.
      */
     public abstract SOAPConnection createConnection() throws SOAPException;
 }

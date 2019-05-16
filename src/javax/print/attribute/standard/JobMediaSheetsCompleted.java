@@ -33,11 +33,9 @@ import javax.print.attribute.PrintJobAttribute;
  * @see JobMediaSheetsSupported
  * @see JobKOctetsProcessed
  * @see JobImpressionsCompleted
- *
  * @author Alan Kaminsky
  */
-public final class JobMediaSheetsCompleted extends IntegerSyntax implements
-        PrintJobAttribute {
+public final class JobMediaSheetsCompleted extends IntegerSyntax implements PrintJobAttribute {
 
     private static final long serialVersionUID = 1739595973810840475L;
 
@@ -46,12 +44,11 @@ public final class JobMediaSheetsCompleted extends IntegerSyntax implements
      * integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public JobMediaSheetsCompleted(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -69,14 +66,12 @@ public final class JobMediaSheetsCompleted extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this job media
      *         sheets completed attribute, false otherwise.
      */
     public boolean equals(Object object) {
-        return (super.equals(object)
-                && object instanceof JobMediaSheetsCompleted);
+        return (super.equals(object) && object instanceof JobMediaSheetsCompleted);
     }
 
     /**

@@ -27,7 +27,6 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Validator for &lt;gDay&gt; datatype (W3C Schema datatypes)
  *
  * @xerces.internal
- *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
  * @version $Id: DayDV.java,v 1.7 2010-11-01 04:39:46 joehw Exp $
@@ -42,8 +41,8 @@ public class DayDV extends AbstractDateTimeDV {
         try {
             return parse(content);
         } catch (Exception ex) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "gDay" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "gDay" });
         }
     }
 
@@ -51,19 +50,18 @@ public class DayDV extends AbstractDateTimeDV {
      * Parses, validates and computes normalized version of gDay object
      *
      * @param str
-     *            The lexical representation of gDay object ---DD with possible
-     *            time zone Z or (-),(+)hh:mm Pattern:
-     *            ---(\\d\\d)(Z|(([-+])(\\d\\d)(:(\\d\\d))?
+     *        The lexical representation of gDay object ---DD with possible
+     *        time zone Z or (-),(+)hh:mm Pattern:
+     *        ---(\\d\\d)(Z|(([-+])(\\d\\d)(:(\\d\\d))?
      * @return normalized date representation
      * @exception SchemaDateTimeException
-     *                                    Invalid lexical representation
+     *            Invalid lexical representation
      */
     protected DateTimeData parse(String str) throws SchemaDateTimeException {
         DateTimeData date = new DateTimeData(str, this);
         int len = str.length();
 
-        if (str.charAt(0) != '-' || str.charAt(1) != '-' || str.charAt(
-                2) != '-') {
+        if (str.charAt(0) != '-' || str.charAt(1) != '-' || str.charAt(2) != '-') {
             throw new SchemaDateTimeException("Error in day parsing");
         }
 
@@ -98,7 +96,7 @@ public class DayDV extends AbstractDateTimeDV {
      * Converts gDay object representation to String
      *
      * @param date
-     *             gDay object
+     *        gDay object
      * @return lexical representation of gDay: ---DD with an optional time zone
      *         sign
      */
@@ -113,15 +111,11 @@ public class DayDV extends AbstractDateTimeDV {
     }
 
     protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-        return datatypeFactory.newXMLGregorianCalendar(
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED, date.unNormDay,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
-                        ? date.timezoneHr * 60 + date.timezoneMin
-                        : DatatypeConstants.FIELD_UNDEFINED);
+        return datatypeFactory.newXMLGregorianCalendar(DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, date.unNormDay, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone() ? date.timezoneHr * 60
+                        + date.timezoneMin : DatatypeConstants.FIELD_UNDEFINED);
     }
 
 }

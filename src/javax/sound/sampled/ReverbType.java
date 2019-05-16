@@ -50,14 +50,12 @@ package javax.sound.sampled;
  * The following table shows what parameter values an implementation might use
  * for a representative set of reverberation settings.
  * <p>
- *
  * <b>Reverberation Types and Parameters</b>
  * <p>
  * <table border=1 cellpadding=5 summary=
  * "reverb types and params: decay time, late intensity, late delay, early
  * intensity, and early delay"
  * >
- *
  * <tr>
  * <th>Type</th>
  * <th>Decay Time (ms)</th>
@@ -66,7 +64,6 @@ package javax.sound.sampled;
  * <th>Early Intensity (dB)</th>
  * <th>Early Delay(ms)</th>
  * </tr>
- *
  * <tr>
  * <td>Cavern</td>
  * <td>2250</td>
@@ -75,7 +72,6 @@ package javax.sound.sampled;
  * <td>-1.4</td>
  * <td>10.3</td>
  * </tr>
- *
  * <tr>
  * <td>Dungeon</td>
  * <td>1600</td>
@@ -84,7 +80,6 @@ package javax.sound.sampled;
  * <td>-0.7</td>
  * <td>2.6</td>
  * </tr>
- *
  * <tr>
  * <td>Garage</td>
  * <td>900</td>
@@ -93,7 +88,6 @@ package javax.sound.sampled;
  * <td>-4.0</td>
  * <td>3.9</td>
  * </tr>
- *
  * <tr>
  * <td>Acoustic Lab</td>
  * <td>280</td>
@@ -102,7 +96,6 @@ package javax.sound.sampled;
  * <td>-2.0</td>
  * <td>2.0</td>
  * </tr>
- *
  * <tr>
  * <td>Closet</td>
  * <td>150</td>
@@ -111,7 +104,6 @@ package javax.sound.sampled;
  * <td>-7.0</td>
  * <td>0.6</td>
  * </tr>
- *
  * </table>
  *
  * @author Kara Kytle
@@ -154,27 +146,26 @@ public class ReverbType {
      * parameter values.
      * 
      * @param name
-     *                                 the name of the new reverb type, or a
-     *                                 zero-length
-     *                                 <code>String</code>
+     *        the name of the new reverb type, or a
+     *        zero-length
+     *        <code>String</code>
      * @param earlyReflectionDelay
-     *                                 the new type's early reflection delay
-     *                                 time in microseconds
+     *        the new type's early reflection delay
+     *        time in microseconds
      * @param earlyReflectionIntensity
-     *                                 the new type's early reflection intensity
-     *                                 in dB
+     *        the new type's early reflection intensity
+     *        in dB
      * @param lateReflectionDelay
-     *                                 the new type's late reflection delay time
-     *                                 in microseconds
+     *        the new type's late reflection delay time
+     *        in microseconds
      * @param lateReflectionIntensity
-     *                                 the new type's late reflection intensity
-     *                                 in dB
+     *        the new type's late reflection intensity
+     *        in dB
      * @param decayTime
-     *                                 the new type's decay time in microseconds
+     *        the new type's decay time in microseconds
      */
-    protected ReverbType(String name, int earlyReflectionDelay,
-            float earlyReflectionIntensity, int lateReflectionDelay,
-            float lateReflectionIntensity, int decayTime) {
+    protected ReverbType(String name, int earlyReflectionDelay, float earlyReflectionIntensity,
+            int lateReflectionDelay, float lateReflectionIntensity, int decayTime) {
 
         this.name = name;
         this.earlyReflectionDelay = earlyReflectionDelay;
@@ -252,7 +243,7 @@ public class ReverbType {
      * returning <code>true</code> if the objects are identical.
      * 
      * @param obj
-     *            the reference object with which to compare
+     *        the reference object with which to compare
      * @return <code>true</code> if this reverb type is the same as
      *         <code>obj</code>; <code>false</code> otherwise
      */
@@ -280,11 +271,10 @@ public class ReverbType {
         // "ReverbType" is not accessible.
         // return (super.toString() + ", early reflection delay " +
         // earlyReflectionDelay +
-        return (name + ", early reflection delay " + earlyReflectionDelay
-                + " ns, early reflection intensity " + earlyReflectionIntensity
-                + " dB, late deflection delay " + lateReflectionDelay
-                + " ns, late reflection intensity " + lateReflectionIntensity
-                + " dB, decay time " + decayTime);
+        return (name + ", early reflection delay " + earlyReflectionDelay + " ns, early reflection intensity "
+                + earlyReflectionIntensity + " dB, late deflection delay " + lateReflectionDelay
+                + " ns, late reflection intensity " + lateReflectionIntensity + " dB, decay time "
+                + decayTime);
     }
 
 } // class ReverbType

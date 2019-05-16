@@ -20,19 +20,15 @@ import java.util.Arrays;
  * for getting the base type and the SQL name for the base type, and methods for
  * copying all or part of a <code>SerialArray</code> object.
  * <P>
- *
  * Note: In order for this class to function correctly, a connection to the data
  * source must be available in order for the SQL <code>Array</code> object to be
  * materialized (have all of its elements brought to the client server) if
  * necessary. At this time, logical pointers to the data in the data source,
  * such as locators, are not currently supported.
- *
  * <h3>Thread safety</h3>
- *
  * A SerialArray is not safe for use by multiple concurrent threads. If a
  * SerialArray is to be used by more than one thread then access to the
  * SerialArray should be controlled by appropriate synchronization.
- *
  */
 public class SerialArray implements Array, Serializable, Cloneable {
 
@@ -109,38 +105,34 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * cannot return <code>null</code> for any <code>Array.getArray()</code>
      * methods. <code>SerialArray</code> cannot serialize null array values.
      *
-     *
      * @param array
-     *              the <code>Array</code> object to be serialized
+     *        the <code>Array</code> object to be serialized
      * @param map
-     *              a <code>java.util.Map</code> object in which each entry
-     *              consists of 1) a <code>String</code> object giving the fully
-     *              qualified name of a UDT (an SQL structured type or distinct
-     *              type) and 2) the <code>Class</code> object for the
-     *              <code>SQLData</code> implementation that defines how the UDT
-     *              is to be mapped. The <i>map</i> parameter does not have any
-     *              effect for <code>Blob</code>, <code>Clob</code>,
-     *              <code>DATALINK</code>, or <code>JAVA_OBJECT</code> types.
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT (an SQL structured type or distinct
+     *        type) and 2) the <code>Class</code> object for the
+     *        <code>SQLData</code> implementation that defines how the UDT
+     *        is to be mapped. The <i>map</i> parameter does not have any
+     *        effect for <code>Blob</code>, <code>Clob</code>,
+     *        <code>DATALINK</code>, or <code>JAVA_OBJECT</code> types.
      * @throws SerialException
-     *                         if an error occurs serializing the
-     *                         <code>Array</code> object
+     *         if an error occurs serializing the
+     *         <code>Array</code> object
      * @throws SQLException
-     *                         if a database access error occurs or if the
-     *                         <i>array</i> or
-     *                         the <i>map</i> values are <code>null</code>
+     *         if a database access error occurs or if the
+     *         <i>array</i> or
+     *         the <i>map</i> values are <code>null</code>
      */
-    public SerialArray(Array array, Map<String, Class<?>> map)
-            throws SerialException, SQLException {
+    public SerialArray(Array array, Map<String, Class<?>> map) throws SerialException, SQLException {
 
         if ((array == null) || (map == null)) {
-            throw new SQLException("Cannot instantiate a SerialArray "
-                    + "object with null parameters");
+            throw new SQLException("Cannot instantiate a SerialArray " + "object with null parameters");
         }
 
         if ((elements = (Object[]) array.getArray()) == null) {
-            throw new SQLException(
-                    "Invalid Array object. Calls to Array.getArray() "
-                            + "return null value which cannot be serialized");
+            throw new SQLException("Invalid Array object. Calls to Array.getArray() "
+                    + "return null value which cannot be serialized");
         }
 
         elements = (Object[]) array.getArray(map);
@@ -196,8 +188,8 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * </P>
      *
      * @throws SQLException
-     *                      if an error occurs releasing the SerialArray's
-     *                      resources
+     *         if an error occurs releasing the SerialArray's
+     *         resources
      * @since 1.6
      */
     public void free() throws SQLException {
@@ -237,25 +229,23 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * array values.
      *
      * @param array
-     *              the <code>Array</code> object to be serialized
+     *        the <code>Array</code> object to be serialized
      * @throws SerialException
-     *                         if an error occurs serializing the
-     *                         <code>Array</code> object
+     *         if an error occurs serializing the
+     *         <code>Array</code> object
      * @throws SQLException
-     *                         if a database access error occurs or the
-     *                         <i>array</i>
-     *                         parameter is <code>null</code>.
+     *         if a database access error occurs or the
+     *         <i>array</i>
+     *         parameter is <code>null</code>.
      */
     public SerialArray(Array array) throws SerialException, SQLException {
         if (array == null) {
-            throw new SQLException("Cannot instantiate a SerialArray "
-                    + "object with a null Array object");
+            throw new SQLException("Cannot instantiate a SerialArray " + "object with a null Array object");
         }
 
         if ((elements = (Object[]) array.getArray()) == null) {
-            throw new SQLException(
-                    "Invalid Array object. Calls to Array.getArray() "
-                            + "return null value which cannot be serialized");
+            throw new SQLException("Invalid Array object. Calls to Array.getArray() "
+                    + "return null value which cannot be serialized");
         }
 
         // elements = (Object[])array.getArray();
@@ -300,9 +290,9 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * @return a copy of this <code>SerialArray</code> object as an
      *         <code>Object</code> in the Java programming language
      * @throws SerialException
-     *                         if an error occurs; if {@code free} had
-     *                         previously been
-     *                         called on this object
+     *         if an error occurs; if {@code free} had
+     *         previously been
+     *         called on this object
      */
     public Object getArray() throws SerialException {
         isValid();
@@ -325,17 +315,17 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * according to the given type map.
      *
      * @param map
-     *            a <code>java.util.Map</code> object in which each entry
-     *            consists of 1) a <code>String</code> object giving the fully
-     *            qualified name of a UDT and 2) the <code>Class</code> object
-     *            for the <code>SQLData</code> implementation that defines how
-     *            the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @return a copy of this <code>SerialArray</code> object as an
      *         <code>Object</code> in the Java programming language
      * @throws SerialException
-     *                         if an error occurs; if {@code free} had
-     *                         previously been
-     *                         called on this object
+     *         if an error occurs; if {@code free} had
+     *         previously been
+     *         called on this object
      */
     public Object getArray(Map<String, Class<?>> map) throws SerialException {
         isValid();
@@ -350,20 +340,20 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * index and containing the given number of consecutive elements.
      *
      * @param index
-     *              the index into this <code>SerialArray</code> object of the
-     *              first element to be copied; the index of the first element
-     *              is
-     *              <code>0</code>
+     *        the index into this <code>SerialArray</code> object of the
+     *        first element to be copied; the index of the first element
+     *        is
+     *        <code>0</code>
      * @param count
-     *              the number of consecutive elements to be copied, starting at
-     *              the given index
+     *        the number of consecutive elements to be copied, starting at
+     *        the given index
      * @return a copy of the designated elements in this
      *         <code>SerialArray</code> object as an <code>Object</code> in the
      *         Java programming language
      * @throws SerialException
-     *                         if an error occurs; if {@code free} had
-     *                         previously been
-     *                         called on this object
+     *         if an error occurs; if {@code free} had
+     *         previously been
+     *         called on this object
      */
     public Object getArray(long index, int count) throws SerialException {
         isValid();
@@ -385,29 +375,28 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * according to the given type map.
      *
      * @param index
-     *              the index into this <code>SerialArray</code> object of the
-     *              first element to be copied; the index of the first element
-     *              in
-     *              the array is <code>0</code>
+     *        the index into this <code>SerialArray</code> object of the
+     *        first element to be copied; the index of the first element
+     *        in
+     *        the array is <code>0</code>
      * @param count
-     *              the number of consecutive elements to be copied, starting at
-     *              the given index
+     *        the number of consecutive elements to be copied, starting at
+     *        the given index
      * @param map
-     *              a <code>java.util.Map</code> object in which each entry
-     *              consists of 1) a <code>String</code> object giving the fully
-     *              qualified name of a UDT and 2) the <code>Class</code> object
-     *              for the <code>SQLData</code> implementation that defines how
-     *              the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @return a copy of the designated elements in this
      *         <code>SerialArray</code> object as an <code>Object</code> in the
      *         Java programming language
      * @throws SerialException
-     *                         if an error occurs; if {@code free} had
-     *                         previously been
-     *                         called on this object
+     *         if an error occurs; if {@code free} had
+     *         previously been
+     *         called on this object
      */
-    public Object getArray(long index, int count, Map<String, Class<?>> map)
-            throws SerialException {
+    public Object getArray(long index, int count, Map<String, Class<?>> map) throws SerialException {
         isValid();
         Object dst = new Object[count];
         System.arraycopy((Object) elements, (int) index, dst, 0, count);
@@ -423,9 +412,9 @@ public class SerialArray implements Array, Serializable, Cloneable {
      *         the SQL type of the elements in this <code>SerialArray</code>
      *         object
      * @throws SerialException
-     *                         if an error occurs; if {@code free} had
-     *                         previously been
-     *                         called on this object
+     *         if an error occurs; if {@code free} had
+     *         previously been
+     *         called on this object
      */
     public int getBaseType() throws SerialException {
         isValid();
@@ -439,9 +428,9 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * @return the SQL type name used by the DBMS for the base type of this
      *         <code>SerialArray</code> object
      * @throws SerialException
-     *                         if an error occurs; if {@code free} had
-     *                         previously been
-     *                         called on this object
+     *         if an error occurs; if {@code free} had
+     *         previously been
+     *         called on this object
      */
     public String getBaseTypeName() throws SerialException {
         isValid();
@@ -456,29 +445,27 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * base type. Otherwise, the standard mapping is used.
      *
      * @param index
-     *              the index into this <code>SerialArray</code> object of the
-     *              first element to be copied; the index of the first element
-     *              in
-     *              the array is <code>0</code>
+     *        the index into this <code>SerialArray</code> object of the
+     *        first element to be copied; the index of the first element
+     *        in
+     *        the array is <code>0</code>
      * @param count
-     *              the number of consecutive elements to be copied, starting at
-     *              the given index
+     *        the number of consecutive elements to be copied, starting at
+     *        the given index
      * @return a <code>ResultSet</code> object containing the designated
      *         elements in this <code>SerialArray</code> object, with a separate
      *         row for each element
      * @throws SerialException
-     *                         if called with the cause set to
-     *                         {@code UnsupportedOperationException}
+     *         if called with the cause set to
+     *         {@code UnsupportedOperationException}
      */
-    public ResultSet getResultSet(long index, int count)
-            throws SerialException {
+    public ResultSet getResultSet(long index, int count) throws SerialException {
         SerialException se = new SerialException();
         se.initCause(new UnsupportedOperationException());
         throw se;
     }
 
     /**
-     *
      * Retrieves a <code>ResultSet</code> object that contains all of the
      * elements of the SQL <code>ARRAY</code> value represented by this
      * <code>SerialArray</code> object. This method uses the specified map for
@@ -489,20 +476,19 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * type map associated with the connection.
      *
      * @param map
-     *            a <code>java.util.Map</code> object in which each entry
-     *            consists of 1) a <code>String</code> object giving the fully
-     *            qualified name of a UDT and 2) the <code>Class</code> object
-     *            for the <code>SQLData</code> implementation that defines how
-     *            the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @return a <code>ResultSet</code> object containing all of the elements in
      *         this <code>SerialArray</code> object, with a separate row for
      *         each element
      * @throws SerialException
-     *                         if called with the cause set to
-     *                         {@code UnsupportedOperationException}
+     *         if called with the cause set to
+     *         {@code UnsupportedOperationException}
      */
-    public ResultSet getResultSet(Map<String, Class<?>> map)
-            throws SerialException {
+    public ResultSet getResultSet(Map<String, Class<?>> map) throws SerialException {
         SerialException se = new SerialException();
         se.initCause(new UnsupportedOperationException());
         throw se;
@@ -519,8 +505,8 @@ public class SerialArray implements Array, Serializable, Cloneable {
      *         this <code>SerialArray</code> object, with a separate row for
      *         each element
      * @throws SerialException
-     *                         if called with the cause set to
-     *                         {@code UnsupportedOperationException}
+     *         if called with the cause set to
+     *         {@code UnsupportedOperationException}
      */
     public ResultSet getResultSet() throws SerialException {
         SerialException se = new SerialException();
@@ -540,28 +526,27 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * mapping; it never uses the type map associated with the connection.
      *
      * @param index
-     *              the index into this <code>SerialArray</code> object of the
-     *              first element to be copied; the index of the first element
-     *              in
-     *              the array is <code>0</code>
+     *        the index into this <code>SerialArray</code> object of the
+     *        first element to be copied; the index of the first element
+     *        in
+     *        the array is <code>0</code>
      * @param count
-     *              the number of consecutive elements to be copied, starting at
-     *              the given index
+     *        the number of consecutive elements to be copied, starting at
+     *        the given index
      * @param map
-     *              a <code>java.util.Map</code> object in which each entry
-     *              consists of 1) a <code>String</code> object giving the fully
-     *              qualified name of a UDT and 2) the <code>Class</code> object
-     *              for the <code>SQLData</code> implementation that defines how
-     *              the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @return a <code>ResultSet</code> object containing the designated
      *         elements in this <code>SerialArray</code> object, with a separate
      *         row for each element
      * @throws SerialException
-     *                         if called with the cause set to
-     *                         {@code UnsupportedOperationException}
+     *         if called with the cause set to
+     *         {@code UnsupportedOperationException}
      */
-    public ResultSet getResultSet(long index, int count,
-            Map<String, Class<?>> map) throws SerialException {
+    public ResultSet getResultSet(long index, int count, Map<String, Class<?>> map) throws SerialException {
         SerialException se = new SerialException();
         se.initCause(new UnsupportedOperationException());
         throw se;
@@ -574,11 +559,9 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * elements
      *
      * @param obj
-     *            The object to compare this {@code SerialArray} against
-     *
+     *        The object to compare this {@code SerialArray} against
      * @return {@code true} if the given object represents a {@code SerialArray}
      *         equivalent to this SerialArray, {@code false} otherwise
-     *
      */
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -587,8 +570,8 @@ public class SerialArray implements Array, Serializable, Cloneable {
 
         if (obj instanceof SerialArray) {
             SerialArray sa = (SerialArray) obj;
-            return baseType == sa.baseType && baseTypeName.equals(
-                    sa.baseTypeName) && Arrays.equals(elements, sa.elements);
+            return baseType == sa.baseType && baseTypeName.equals(sa.baseTypeName) && Arrays.equals(elements,
+                    sa.elements);
         }
         return false;
     }
@@ -601,8 +584,7 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * @return a hash code value for this object.
      */
     public int hashCode() {
-        return (((31 + Arrays.hashCode(elements)) * 31 + len) * 31 + baseType)
-                * 31 + baseTypeName.hashCode();
+        return (((31 + Arrays.hashCode(elements)) * 31 + len) * 31 + baseType) * 31 + baseTypeName.hashCode();
     }
 
     /**
@@ -615,8 +597,7 @@ public class SerialArray implements Array, Serializable, Cloneable {
     public Object clone() {
         try {
             SerialArray sa = (SerialArray) super.clone();
-            sa.elements = (elements != null) ? Arrays.copyOf(elements, len)
-                    : null;
+            sa.elements = (elements != null) ? Arrays.copyOf(elements, len) : null;
             return sa;
         } catch (CloneNotSupportedException ex) {
             // this shouldn't happen, since we are Cloneable
@@ -629,19 +610,16 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * readObject is called to restore the state of the {@code SerialArray} from
      * a stream.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
 
         ObjectInputStream.GetField fields = s.readFields();
         Object[] tmp = (Object[]) fields.get("elements", null);
         if (tmp == null)
-            throw new InvalidObjectException(
-                    "elements is null and should not be!");
+            throw new InvalidObjectException("elements is null and should not be!");
         elements = tmp.clone();
         len = fields.get("len", 0);
         if (elements.length != len)
-            throw new InvalidObjectException(
-                    "elements is not the expected size");
+            throw new InvalidObjectException("elements is not the expected size");
 
         baseType = fields.get("baseType", 0);
         baseTypeName = (String) fields.get("baseTypeName", null);
@@ -651,8 +629,7 @@ public class SerialArray implements Array, Serializable, Cloneable {
      * writeObject is called to save the state of the {@code SerialArray} to a
      * stream.
      */
-    private void writeObject(ObjectOutputStream s) throws IOException,
-            ClassNotFoundException {
+    private void writeObject(ObjectOutputStream s) throws IOException, ClassNotFoundException {
 
         ObjectOutputStream.PutField fields = s.putFields();
         fields.put("elements", elements);

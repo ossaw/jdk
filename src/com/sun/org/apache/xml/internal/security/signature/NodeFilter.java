@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,7 +33,6 @@ public interface NodeFilter {
      * @param n
      * @return 1 if the node should be output. 0 if node must not be output, -1
      *         if the node and all it's child must not be output.
-     *
      */
     int isNodeInclude(Node n);
 
@@ -46,7 +43,7 @@ public interface NodeFilter {
      * 
      * @param n
      * @param level
-     *              the relative level in the tree
+     *        the relative level in the tree
      * @return 1 if the node should be output. 0 if node must not be output, -1
      *         if the node and all it's child must not be output.
      */

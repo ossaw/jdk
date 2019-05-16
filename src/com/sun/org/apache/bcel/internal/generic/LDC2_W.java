@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class LDC2_W extends CPInstruction implements PushInstruction,
-        TypedInstruction {
+public class LDC2_W extends CPInstruction implements PushInstruction, TypedInstruction {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -83,23 +82,17 @@ public class LDC2_W extends CPInstruction implements PushInstruction,
     }
 
     public Number getValue(ConstantPoolGen cpg) {
-        com.sun.org.apache.bcel.internal.classfile.Constant c = cpg
-                .getConstantPool().getConstant(index);
+        com.sun.org.apache.bcel.internal.classfile.Constant c = cpg.getConstantPool().getConstant(index);
 
         switch (c.getTag()) {
             case com.sun.org.apache.bcel.internal.Constants.CONSTANT_Long:
-                return new Long(
-                        ((com.sun.org.apache.bcel.internal.classfile.ConstantLong) c)
-                                .getBytes());
+                return new Long(((com.sun.org.apache.bcel.internal.classfile.ConstantLong) c).getBytes());
 
             case com.sun.org.apache.bcel.internal.Constants.CONSTANT_Double:
-                return new Double(
-                        ((com.sun.org.apache.bcel.internal.classfile.ConstantDouble) c)
-                                .getBytes());
+                return new Double(((com.sun.org.apache.bcel.internal.classfile.ConstantDouble) c).getBytes());
 
             default: // Never reached
-                throw new RuntimeException(
-                        "Unknown or invalid constant type at " + index);
+                throw new RuntimeException("Unknown or invalid constant type at " + index);
         }
     }
 
@@ -110,7 +103,7 @@ public class LDC2_W extends CPInstruction implements PushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

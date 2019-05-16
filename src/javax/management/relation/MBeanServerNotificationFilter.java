@@ -33,7 +33,6 @@ import java.util.Vector;
  * MBeanServerNotification notifications by selecting the ObjectNames of
  * interest and the operations (registration, unregistration, both) of interest
  * (corresponding to notification types).
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>2605900539589789736L</code>.
@@ -56,14 +55,13 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
     private static final long newSerialVersionUID = 2605900539589789736L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("mySelectObjNameList", Vector.class),
-            new ObjectStreamField("myDeselectObjNameList", Vector.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField(
+            "mySelectObjNameList", Vector.class), new ObjectStreamField("myDeselectObjNameList",
+                    Vector.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("selectedNames", List.class),
-            new ObjectStreamField("deselectedNames", List.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField(
+            "selectedNames", List.class), new ObjectStreamField("deselectedNames", List.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -165,14 +163,12 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
      */
     public synchronized void disableAllObjectNames() {
 
-        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
-                "disableAllObjectNames");
+        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "disableAllObjectNames");
 
         selectedNames = new Vector<ObjectName>();
         deselectedNames = null;
 
-        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(),
-                "disableAllObjectNames");
+        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(), "disableAllObjectNames");
         return;
     }
 
@@ -180,21 +176,19 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
      * Disables MBeanServerNotifications concerning given ObjectName.
      *
      * @param objectName
-     *                   ObjectName no longer of interest
-     *
+     *        ObjectName no longer of interest
      * @exception IllegalArgumentException
-     *                                     if the given ObjectName is null
+     *            if the given ObjectName is null
      */
-    public synchronized void disableObjectName(ObjectName objectName)
-            throws IllegalArgumentException {
+    public synchronized void disableObjectName(ObjectName objectName) throws IllegalArgumentException {
 
         if (objectName == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
-                "disableObjectName", objectName);
+        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "disableObjectName",
+                objectName);
 
         // Removes from selected ObjectNames, if present
         if (selectedNames != null) {
@@ -212,8 +206,7 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
             }
         }
 
-        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(),
-                "disableObjectName");
+        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(), "disableObjectName");
         return;
     }
 
@@ -222,14 +215,12 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
      */
     public synchronized void enableAllObjectNames() {
 
-        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
-                "enableAllObjectNames");
+        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "enableAllObjectNames");
 
         selectedNames = null;
         deselectedNames = new Vector<ObjectName>();
 
-        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(),
-                "enableAllObjectNames");
+        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(), "enableAllObjectNames");
         return;
     }
 
@@ -237,21 +228,19 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
      * Enables MBeanServerNotifications concerning given ObjectName.
      *
      * @param objectName
-     *                   ObjectName of interest
-     *
+     *        ObjectName of interest
      * @exception IllegalArgumentException
-     *                                     if the given ObjectName is null
+     *            if the given ObjectName is null
      */
-    public synchronized void enableObjectName(ObjectName objectName)
-            throws IllegalArgumentException {
+    public synchronized void enableObjectName(ObjectName objectName) throws IllegalArgumentException {
 
         if (objectName == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
-                "enableObjectName", objectName);
+        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "enableObjectName",
+                objectName);
 
         // Removes from deselected ObjectNames, if present
         if (deselectedNames != null) {
@@ -269,8 +258,7 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
             }
         }
 
-        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(),
-                "enableObjectName");
+        RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(), "enableObjectName");
         return;
     }
 
@@ -331,31 +319,27 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
      * then the notification is sent to the listener.
      *
      * @param notif
-     *              The notification to be sent.
-     *
+     *        The notification to be sent.
      * @return true if the notification has to be sent to the listener, false
      *         otherwise.
-     *
      * @exception IllegalArgumentException
-     *                                     if null parameter
+     *            if null parameter
      */
-    public synchronized boolean isNotificationEnabled(Notification notif)
-            throws IllegalArgumentException {
+    public synchronized boolean isNotificationEnabled(Notification notif) throws IllegalArgumentException {
 
         if (notif == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
-                "isNotificationEnabled", notif);
+        RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "isNotificationEnabled",
+                notif);
 
         // Checks the type first
         String ntfType = notif.getType();
         Vector<String> enabledTypes = getEnabledTypes();
         if (!(enabledTypes.contains(ntfType))) {
-            RELATION_LOGGER.logp(Level.FINER,
-                    MBeanServerNotificationFilter.class.getName(),
+            RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
                     "isNotificationEnabled", "Type not selected, exiting");
             return false;
         }
@@ -372,20 +356,16 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
             // checks for explicit selection
             if (selectedNames.size() == 0) {
                 // All are explicitly not selected
-                RELATION_LOGGER.logp(Level.FINER,
-                        MBeanServerNotificationFilter.class.getName(),
-                        "isNotificationEnabled",
-                        "No ObjectNames selected, exiting");
+                RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+                        "isNotificationEnabled", "No ObjectNames selected, exiting");
                 return false;
             }
 
             isSelectedFlg = selectedNames.contains(objName);
             if (!isSelectedFlg) {
                 // Not in the explicit selected list
-                RELATION_LOGGER.logp(Level.FINER,
-                        MBeanServerNotificationFilter.class.getName(),
-                        "isNotificationEnabled",
-                        "ObjectName not in selected list, exiting");
+                RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+                        "isNotificationEnabled", "ObjectName not in selected list, exiting");
                 return false;
             }
         }
@@ -396,26 +376,21 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
             if (deselectedNames == null) {
                 // All are implicitly deselected and it is not explicitly
                 // selected
-                RELATION_LOGGER.logp(Level.FINER,
-                        MBeanServerNotificationFilter.class.getName(),
-                        "isNotificationEnabled",
-                        "ObjectName not selected, and all "
+                RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+                        "isNotificationEnabled", "ObjectName not selected, and all "
                                 + "names deselected, exiting");
                 return false;
 
             } else if (deselectedNames.contains(objName)) {
                 // Explicitly deselected
-                RELATION_LOGGER.logp(Level.FINER,
-                        MBeanServerNotificationFilter.class.getName(),
-                        "isNotificationEnabled",
-                        "ObjectName explicitly not selected, exiting");
+                RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+                        "isNotificationEnabled", "ObjectName explicitly not selected, exiting");
                 return false;
             }
         }
 
-        RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class
-                .getName(), "isNotificationEnabled",
-                "ObjectName selected, exiting");
+        RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+                "isNotificationEnabled", "ObjectName selected, exiting");
         return true;
     }
 
@@ -423,8 +398,7 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
      * Deserializes an {@link MBeanServerNotificationFilter} from an
      * {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         if (compat) {
             // Read an object serialized in the old serial form
             //

@@ -21,14 +21,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <pre>
  * {
  *     &#64;code
- *     MutableCallSite name = new MutableCallSite(MethodType.methodType(
- *             String.class));
+ *     MutableCallSite name = new MutableCallSite(MethodType.methodType(String.class));
  *     MethodHandle MH_name = name.dynamicInvoker();
  *     MethodType MT_str1 = MethodType.methodType(String.class);
- *     MethodHandle MH_upcase = MethodHandles.lookup().findVirtual(String.class,
- *             "toUpperCase", MT_str1);
- *     MethodHandle worker1 = MethodHandles.filterReturnValue(MH_name,
- *             MH_upcase);
+ *     MethodHandle MH_upcase = MethodHandles.lookup().findVirtual(String.class, "toUpperCase", MT_str1);
+ *     MethodHandle worker1 = MethodHandles.filterReturnValue(MH_name, MH_upcase);
  *     name.setTarget(MethodHandles.constant(String.class, "Rocky"));
  *     assertEquals("ROCKY", (String) worker1.invokeExact());
  *     name.setTarget(MethodHandles.constant(String.class, "Fred"));
@@ -45,10 +42,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * {
  *     &#64;code
  *     MethodType MT_str2 = MethodType.methodType(String.class, String.class);
- *     MethodHandle MH_cat = lookup().findVirtual(String.class, "concat",
- *             methodType(String.class, String.class));
- *     MethodHandle MH_dear = MethodHandles.insertArguments(MH_cat, 1,
- *             ", dear?");
+ *     MethodHandle MH_cat = lookup().findVirtual(String.class, "concat", methodType(String.class,
+ *             String.class));
+ *     MethodHandle MH_dear = MethodHandles.insertArguments(MH_cat, 1, ", dear?");
  *     MethodHandle worker2 = MethodHandles.filterReturnValue(MH_name, MH_dear);
  *     assertEquals("Fred, dear?", (String) worker2.invokeExact());
  *     name.setTarget(MethodHandles.constant(String.class, "Wilma"));
@@ -88,9 +84,9 @@ public class MutableCallSite extends CallSite {
      * {@link CallSite#setTarget(MethodHandle) setTarget}.
      * 
      * @param type
-     *             the method type that this call site will have
+     *        the method type that this call site will have
      * @throws NullPointerException
-     *                              if the proposed type is null
+     *         if the proposed type is null
      */
     public MutableCallSite(MethodType type) {
         super(type);
@@ -101,11 +97,11 @@ public class MutableCallSite extends CallSite {
      * of the call site is permanently set to the initial target's type.
      * 
      * @param target
-     *               the method handle that will be the initial target of the
-     *               call
-     *               site
+     *        the method handle that will be the initial target of the
+     *        call
+     *        site
      * @throws NullPointerException
-     *                              if the proposed target is null
+     *         if the proposed target is null
      */
     public MutableCallSite(MethodHandle target) {
         super(target);
@@ -145,13 +141,13 @@ public class MutableCallSite extends CallSite {
      * target methods used at any given call site.
      *
      * @param newTarget
-     *                  the new target
+     *        the new target
      * @throws NullPointerException
-     *                                  if the proposed new target is null
+     *         if the proposed new target is null
      * @throws WrongMethodTypeException
-     *                                  if the proposed new target has a method
-     *                                  type that differs
-     *                                  from the previous target
+     *         if the proposed new target has a method
+     *         type that differs
+     *         from the previous target
      * @see #getTarget
      */
     @Override
@@ -200,7 +196,6 @@ public class MutableCallSite extends CallSite {
      * will be raised. In this case, some non-null elements in the array may be
      * processed before the method returns abnormally. Which elements these are
      * (if any) is implementation-dependent.
-     *
      * <h1>Java Memory Model details</h1> In terms of the Java Memory Model,
      * this operation performs a synchronization action which is comparable in
      * effect to the writing of a volatile variable by the current thread, and
@@ -248,7 +243,6 @@ public class MutableCallSite extends CallSite {
      * {@code S}'s target. However, implementations are (as always) encouraged
      * to avoid livelock, and to eventually require all threads to take account
      * of the updated target.
-     *
      * <p style="font-size:smaller;">
      * <em>Discussion:</em> For performance reasons, {@code syncAll} is not a
      * virtual method on a single call site, but rather applies to a set of call
@@ -260,7 +254,6 @@ public class MutableCallSite extends CallSite {
      * value. However, it may be observed that a single call to synchronize
      * several sites has the same formal effect as many calls, each on just one
      * of the sites.
-     *
      * <p style="font-size:smaller;">
      * <em>Implementation Note:</em> Simple implementations of
      * {@code MutableCallSite} may use a volatile variable for the target of a
@@ -269,11 +262,11 @@ public class MutableCallSite extends CallSite {
      * above.
      *
      * @param sites
-     *              an array of call sites to be synchronized
+     *        an array of call sites to be synchronized
      * @throws NullPointerException
-     *                              if the {@code sites} array reference is null
-     *                              or the array
-     *                              contains a null
+     *         if the {@code sites} array reference is null
+     *         or the array
+     *         contains a null
      */
     public static void syncAll(MutableCallSite[] sites) {
         if (sites.length == 0)

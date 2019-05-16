@@ -22,24 +22,20 @@ import java.util.Map;
 /**
  * Encapsulate Namespace logic for use by applications using SAX, or internally
  * by SAX drivers.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * This class encapsulates the logic of Namespace processing: it tracks the
  * declarations currently in force for each context and automatically processes
  * qualified XML names into their Namespace parts; it can also be used in
  * reverse for generating XML qnames from Namespaces.
  * </p>
- *
  * <p>
  * Namespace support objects are reusable, but the reset method must be invoked
  * between each session.
  * </p>
- *
  * <p>
  * Here is a simple session:
  * </p>
@@ -64,13 +60,11 @@ import java.util.Map;
  *
  * support.popContext();
  * </pre>
- *
  * <p>
  * Note that this class is optimized for the use case where most elements do not
  * contain Namespace declarations: if the same prefix/URI mapping is repeated
  * for each context (for example), this class will be somewhat less efficient.
  * </p>
- *
  * <p>
  * Although SAX drivers (parsers) may choose to use this class to implement
  * namespace handling, they are not required to do so. Applications must track
@@ -89,7 +83,6 @@ public class NamespaceSupport {
      * The XML Namespace URI as a constant. The value is
      * <code>http://www.w3.org/XML/1998/namespace</code> as defined in the
      * "Namespaces in XML" * recommendation.
-     *
      * <p>
      * This is the Namespace URI that is automatically mapped to the "xml"
      * prefix.
@@ -103,8 +96,6 @@ public class NamespaceSupport {
      * backwards-incompatible erratum to the "Namespaces in XML" recommendation.
      * Because that erratum postdated SAX2, SAX2 defaults to the original
      * recommendation, and does not normally use this URI.
-     *
-     *
      * <p>
      * This is the Namespace URI that is optionally applied to <em>xmlns</em>
      * and <em>xmlns:*</em> attributes, which are used to declare namespaces.
@@ -119,8 +110,7 @@ public class NamespaceSupport {
     /**
      * An empty enumeration.
      */
-    private final static Enumeration EMPTY_ENUMERATION = Collections
-            .enumeration(new ArrayList<String>());
+    private final static Enumeration EMPTY_ENUMERATION = Collections.enumeration(new ArrayList<String>());
 
     ////////////////////////////////////////////////////////////////////
     // Constructor.
@@ -139,7 +129,6 @@ public class NamespaceSupport {
 
     /**
      * Reset this Namespace support object for reuse.
-     *
      * <p>
      * It is necessary to invoke this method before reusing the Namespace
      * support object for a new session. If namespace declaration URIs are to be
@@ -160,7 +149,6 @@ public class NamespaceSupport {
      * Start a new Namespace context. The new context will automatically inherit
      * the declarations of its parent context, but it will also keep track of
      * which declarations were made within this context.
-     *
      * <p>
      * Event callback code should start a new context once per element. This
      * means being ready to call this in either of two places. For elements that
@@ -173,7 +161,6 @@ public class NamespaceSupport {
      * to be started. If so, it starts the context and sets the flag. After
      * <em>ContentHandler.startElement()</em> does that, it always clears the
      * flag.
-     *
      * <p>
      * Normally, SAX drivers would push a new context at the beginning of each
      * XML element. Then they perform a first pass over the attributes to
@@ -183,7 +170,6 @@ public class NamespaceSupport {
      * attributes and for the element name. Finally all the information for the
      * <em>ContentHandler.startElement()</em> callback is available, so it can
      * then be made.
-     *
      * <p>
      * The Namespace support object always starts with a base context already in
      * force: in this context, only the "xml" prefix is declared.
@@ -219,13 +205,11 @@ public class NamespaceSupport {
 
     /**
      * Revert to the previous Namespace context.
-     *
      * <p>
      * Normally, you should pop the context at the end of each XML element.
      * After popping the context, all Namespace prefix mappings that were
      * previously in force are restored.
      * </p>
-     *
      * <p>
      * You must not attempt to declare additional Namespace prefixes after
      * popping a context, unless you push another context first.
@@ -252,18 +236,15 @@ public class NamespaceSupport {
      * attributes in two passes: first for namespace declarations, then a second
      * pass using {@link #processName processName()} to interpret prefixes
      * against (potentially redefined) prefixes.
-     *
      * <p>
      * This method declares a prefix in the current Namespace context; the
      * prefix will remain in force until this context is popped, unless it is
      * shadowed in a descendant context.
      * </p>
-     *
      * <p>
      * To declare the default element Namespace, use the empty string as the
      * prefix.
      * </p>
-     *
      * <p>
      * Note that there is an asymmetry in this library: {@link #getPrefix
      * getPrefix} will not return the "" prefix, even if you have declared a
@@ -274,14 +255,13 @@ public class NamespaceSupport {
      * </p>
      *
      * @param prefix
-     *               The prefix to declare, or the empty string to indicate the
-     *               default element namespace. This may never have the value
-     *               "xml"
-     *               or "xmlns".
+     *        The prefix to declare, or the empty string to indicate the
+     *        default element namespace. This may never have the value
+     *        "xml"
+     *        or "xmlns".
      * @param uri
-     *               The Namespace URI to associate with the prefix.
+     *        The Namespace URI to associate with the prefix.
      * @return true if the prefix was legal, false otherwise
-     *
      * @see #processName
      * @see #getURI
      * @see #getPrefix
@@ -298,14 +278,12 @@ public class NamespaceSupport {
     /**
      * Process a raw XML qualified name, after all declarations in the current
      * context have been handled by {@link #declarePrefix declarePrefix()}.
-     *
      * <p>
      * This method processes a raw XML qualified name in the current context by
      * removing the prefix and looking it up among the prefixes currently
      * declared. The return value will be the array supplied by the caller,
      * filled in as follows:
      * </p>
-     *
      * <dl>
      * <dt>parts[0]</dt>
      * <dd>The Namespace URI, or an empty string if none is in use.</dd>
@@ -314,12 +292,10 @@ public class NamespaceSupport {
      * <dt>parts[2]</dt>
      * <dd>The original raw name.</dd>
      * </dl>
-     *
      * <p>
      * All of the strings in the array will be internalized. If the raw name has
      * a prefix that has not been declared, then the return value will be null.
      * </p>
-     *
      * <p>
      * Note that attribute names are processed differently than element names:
      * an unprefixed element name will receive the default Namespace (if any),
@@ -327,15 +303,15 @@ public class NamespaceSupport {
      * </p>
      *
      * @param qName
-     *                    The XML qualified name to be processed.
+     *        The XML qualified name to be processed.
      * @param parts
-     *                    An array supplied by the caller, capable of holding at
-     *                    least
-     *                    three members.
+     *        An array supplied by the caller, capable of holding at
+     *        least
+     *        three members.
      * @param isAttribute
-     *                    A flag indicating whether this is an attribute name
-     *                    (true) or
-     *                    an element name (false).
+     *        A flag indicating whether this is an attribute name
+     *        (true) or
+     *        an element name (false).
      * @return The supplied array holding three internalized strings
      *         representing the Namespace URI (or empty string), the local name,
      *         and the XML qualified name; or null if there is an undeclared
@@ -343,8 +319,7 @@ public class NamespaceSupport {
      * @see #declarePrefix
      * @see java.lang.String#intern
      */
-    public String[] processName(String qName, String parts[],
-            boolean isAttribute) {
+    public String[] processName(String qName, String parts[], boolean isAttribute) {
         String myParts[] = currentContext.processName(qName, isAttribute);
         if (myParts == null) {
             return null;
@@ -358,14 +333,13 @@ public class NamespaceSupport {
 
     /**
      * Look up a prefix and get the currently-mapped Namespace URI.
-     *
      * <p>
      * This method looks up the prefix in the current context. Use the empty
      * string ("") for the default Namespace.
      * </p>
      *
      * @param prefix
-     *               The prefix to look up.
+     *        The prefix to look up.
      * @return The associated Namespace URI, or null if the prefix is undeclared
      *         in this context.
      * @see #getPrefix
@@ -379,7 +353,6 @@ public class NamespaceSupport {
      * Return an enumeration of all prefixes whose declarations are active in
      * the current context. This includes declarations from parent contexts that
      * have not been overridden.
-     *
      * <p>
      * <strong>Note:</strong> if there is a default prefix, it will not be
      * returned in this enumeration; check for the default prefix using the
@@ -396,13 +369,11 @@ public class NamespaceSupport {
 
     /**
      * Return one of the prefixes mapped to a Namespace URI.
-     *
      * <p>
      * If more than one prefix is currently mapped to the same URI, this method
      * will make an arbitrary selection; if you want all of the prefixes, use
      * the {@link #getPrefixes} method instead.
      * </p>
-     *
      * <p>
      * <strong>Note:</strong> this will never return the empty (default) prefix;
      * to check for a default prefix, use the {@link #getURI getURI} method with
@@ -410,7 +381,7 @@ public class NamespaceSupport {
      * </p>
      *
      * @param uri
-     *            the namespace URI
+     *        the namespace URI
      * @return one of the prefixes currently mapped to the URI supplied, or null
      *         if none is mapped or if the URI is assigned to the default
      *         namespace
@@ -425,14 +396,12 @@ public class NamespaceSupport {
      * Return an enumeration of all prefixes for a given URI whose declarations
      * are active in the current context. This includes declarations from parent
      * contexts that have not been overridden.
-     *
      * <p>
      * This method returns prefixes mapped to a specific Namespace URI. The xml:
      * prefix will be included. If you want only one prefix that's mapped to the
      * Namespace URI, and you don't care which one you get, use the
      * {@link #getPrefix getPrefix} method instead.
      * </p>
-     *
      * <p>
      * <strong>Note:</strong> the empty (default) prefix is <em>never</em>
      * included in this enumeration; to check for the presence of a default
@@ -440,7 +409,7 @@ public class NamespaceSupport {
      * </p>
      *
      * @param uri
-     *            The Namespace URI.
+     *        The Namespace URI.
      * @return An enumeration of prefixes (never empty).
      * @see #getPrefix
      * @see #getDeclaredPrefixes
@@ -460,7 +429,6 @@ public class NamespaceSupport {
 
     /**
      * Return an enumeration of all prefixes declared in this context.
-     *
      * <p>
      * The empty (default) prefix will be included in this enumeration; note
      * that this behaviour differs from that of {@link #getPrefix} and
@@ -481,11 +449,10 @@ public class NamespaceSupport {
      * This may only be changed before any contexts have been pushed.
      *
      * @since SAX 2.1alpha
-     *
      * @exception IllegalStateException
-     *                                  when attempting to set this after any
-     *                                  context has been
-     *                                  pushed.
+     *            when attempting to set this after any
+     *            context has been
+     *            pushed.
      */
     public void setNamespaceDeclUris(boolean value) {
         if (contextPos != 0)
@@ -526,7 +493,6 @@ public class NamespaceSupport {
 
     /**
      * Internal class for a single Namespace context.
-     *
      * <p>
      * This module caches and reuses Namespace contexts, so the number allocated
      * will be equal to the element depth of the document, not to the total
@@ -550,7 +516,7 @@ public class NamespaceSupport {
          * have been freshly constructed, or must have been cleared.
          *
          * @param context
-         *                The parent Namespace context object.
+         *        The parent Namespace context object.
          */
         void setParent(Context parent) {
             this.parent = parent;
@@ -581,9 +547,9 @@ public class NamespaceSupport {
          * Declare a Namespace prefix for this context.
          *
          * @param prefix
-         *               The prefix to declare.
+         *        The prefix to declare.
          * @param uri
-         *               The associated Namespace URI.
+         *        The associated Namespace URI.
          * @see org.xml.sax.helpers.NamespaceSupport#declarePrefix
          */
         void declarePrefix(String prefix, String uri) {
@@ -617,9 +583,9 @@ public class NamespaceSupport {
          * Process an XML qualified name in this context.
          *
          * @param qName
-         *                    The XML qualified name.
+         *        The XML qualified name.
          * @param isAttribute
-         *                    true if this is an attribute name.
+         *        true if this is an attribute name.
          * @return An array of three strings containing the URI part (or empty
          *         string), the local part, and the raw name, all internalized,
          *         or null if there is an undeclared prefix.
@@ -694,7 +660,7 @@ public class NamespaceSupport {
          * Look up the URI associated with a prefix in this context.
          *
          * @param prefix
-         *               The prefix to look up.
+         *        The prefix to look up.
          * @return The associated Namespace URI, or null if none is declared.
          * @see org.xml.sax.helpers.NamespaceSupport#getURI
          */
@@ -710,14 +676,13 @@ public class NamespaceSupport {
 
         /**
          * Look up one of the prefixes associated with a URI in this context.
-         *
          * <p>
          * Since many prefixes may be mapped to the same URI, the return value
          * may be unreliable.
          * </p>
          *
          * @param uri
-         *            The URI to look up.
+         *        The URI to look up.
          * @return The associated prefix, or null if none is declared.
          * @see org.xml.sax.helpers.NamespaceSupport#getPrefix
          */
@@ -745,7 +710,6 @@ public class NamespaceSupport {
 
         /**
          * Return an enumeration of all prefixes currently in force.
-         *
          * <p>
          * The default prefix, if in force, is <em>not</em> returned, and will
          * have to be checked for separately.
@@ -768,7 +732,6 @@ public class NamespaceSupport {
 
         /**
          * Copy on write for the internal tables in this context.
-         *
          * <p>
          * This class is optimized for the normal case where most elements do
          * not contain Namespace declarations.

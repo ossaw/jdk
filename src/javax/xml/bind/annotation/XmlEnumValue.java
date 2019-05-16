@@ -12,37 +12,30 @@ import static java.lang.annotation.ElementType.FIELD;
 
 /**
  * Maps an enum constant in {@link Enum} type to XML representation.
- *
  * <p>
  * <b>Usage</b>
  * </p>
- *
  * <p>
  * The <tt>@XmlEnumValue</tt> annotation can be used with the following program
  * elements:
  * <ul>
  * <li>enum constant</li>
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * <p>
  * This annotation, together with {@link XmlEnum} provides a mapping of enum
  * type to XML representation.
- *
  * <p>
  * An enum type is mapped to a schema simple type with enumeration facets. The
  * schema type is derived from the Java type specified in
  * <tt>@XmlEnum.value()</tt>. Each enum constant <tt>@XmlEnumValue</tt> must
  * have a valid lexical representation for the type <tt>@XmlEnum.value()</tt>
- *
  * <p>
  * In the absence of this annotation, {@link Enum#name()} is used as the XML
  * representation.
- *
  * <p>
  * <b>Example 1: </b>Map enum constant name -> enumeration facet
  * </p>
@@ -61,7 +54,6 @@ import static java.lang.annotation.ElementType.FIELD;
  *         &lt;xs:enumeration value="SPADES"/>
  *     &lt;/xs:simpleType>
  * </pre>
- *
  * <p>
  * <b>Example 2: </b>Map enum constant name(value) -> enumeration facet
  * </p>
@@ -86,7 +78,6 @@ import static java.lang.annotation.ElementType.FIELD;
  *       &lt;/xs:restriction>
  *     &lt;/xs:simpleType>
  * </pre>
- *
  * <p>
  * <b>Example 3: </b>Map enum constant name -> enumeration facet
  * </p>

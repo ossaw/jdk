@@ -33,7 +33,6 @@ import javax.swing.JComponent;
  *
  * @see SynthStyleFactory
  * @see SynthStyle
- *
  * @since 1.5
  * @author Scott Violet
  */
@@ -47,9 +46,9 @@ public abstract class SynthStyleFactory {
      * Returns the style for the specified Component.
      *
      * @param c
-     *           Component asking for
+     *        Component asking for
      * @param id
-     *           Region identifier
+     *        Region identifier
      * @return SynthStyle for region.
      */
     public abstract SynthStyle getStyle(JComponent c, Region id);

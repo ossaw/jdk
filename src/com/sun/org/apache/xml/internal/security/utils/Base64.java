@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -115,14 +113,12 @@ public class Base64 {
         bitlen = ((bitlen + 7) >> 3) << 3;
 
         if (bitlen < big.bitLength()) {
-            throw new IllegalArgumentException(I18n.translate(
-                    "utils.Base64.IllegalBitlength"));
+            throw new IllegalArgumentException(I18n.translate("utils.Base64.IllegalBitlength"));
         }
 
         byte[] bigBytes = big.toByteArray();
 
-        if (((big.bitLength() % 8) != 0) && (((big.bitLength() / 8)
-                + 1) == (bitlen / 8))) {
+        if (((big.bitLength() % 8) != 0) && (((big.bitLength() / 8) + 1) == (bitlen / 8))) {
             return bigBytes;
         }
 
@@ -171,14 +167,12 @@ public class Base64 {
         bitlen = ((bitlen + 7) >> 3) << 3;
 
         if (bitlen < big.bitLength()) {
-            throw new IllegalArgumentException(I18n.translate(
-                    "utils.Base64.IllegalBitlength"));
+            throw new IllegalArgumentException(I18n.translate("utils.Base64.IllegalBitlength"));
         }
 
         byte[] bigBytes = big.toByteArray();
 
-        if (((big.bitLength() % 8) != 0) && (((big.bitLength() / 8)
-                + 1) == (bitlen / 8))) {
+        if (((big.bitLength() % 8) != 0) && (((big.bitLength() / 8) + 1) == (bitlen / 8))) {
             return bigBytes;
         }
 
@@ -219,8 +213,7 @@ public class Base64 {
      * @return the biginter obtained from the text node
      * @throws Base64DecodingException
      */
-    public static final BigInteger decodeBigIntegerFromText(Text text)
-            throws Base64DecodingException {
+    public static final BigInteger decodeBigIntegerFromText(Text text) throws Base64DecodingException {
         return new BigInteger(1, Base64.decode(text.getData()));
     }
 
@@ -231,13 +224,11 @@ public class Base64 {
      * @param element
      * @param biginteger
      */
-    public static final void fillElementWithBigInteger(Element element,
-            BigInteger biginteger) {
+    public static final void fillElementWithBigInteger(Element element, BigInteger biginteger) {
 
         String encodedInt = encode(biginteger);
 
-        if (!XMLUtils.ignoreLineBreaks() && encodedInt
-                .length() > BASE64DEFAULTLENGTH) {
+        if (!XMLUtils.ignoreLineBreaks() && encodedInt.length() > BASE64DEFAULTLENGTH) {
             encodedInt = "\n" + encodedInt + "\n";
         }
 
@@ -249,7 +240,6 @@ public class Base64 {
 
     /**
      * Method decode
-     *
      * Takes the <CODE>Text</CODE> children of the Element and interprets them
      * as input for the <CODE>Base64.decode()</CODE> function.
      *
@@ -258,8 +248,7 @@ public class Base64 {
      *         yet
      * @throws Base64DecodingException
      */
-    public static final byte[] decode(Element element)
-            throws Base64DecodingException {
+    public static final byte[] decode(Element element) throws Base64DecodingException {
 
         Node sibling = element.getFirstChild();
         StringBuffer sb = new StringBuffer();
@@ -283,10 +272,8 @@ public class Base64 {
      * @param localName
      * @param bytes
      * @return an Element with the base64 encoded in the text.
-     *
      */
-    public static final Element encodeToElement(Document doc, String localName,
-            byte[] bytes) {
+    public static final Element encodeToElement(Document doc, String localName, byte[] bytes) {
         Element el = XMLUtils.createElementInSignatureSpace(doc, localName);
         Text text = doc.createTextNode(encode(bytes));
 
@@ -301,10 +288,8 @@ public class Base64 {
      * @param base64
      * @return the UTF bytes of the base64
      * @throws Base64DecodingException
-     *
      */
-    public static final byte[] decode(byte[] base64)
-            throws Base64DecodingException {
+    public static final byte[] decode(byte[] base64) throws Base64DecodingException {
         return decodeInternal(base64, -1);
     }
 
@@ -313,12 +298,12 @@ public class Base64 {
      * ignore line breaks property is set.
      *
      * @param binaryData
-     *                   <code>byte[]<code> to be base64 encoded
+     *        <code>byte[]<code> to be base64 encoded
      * @return the <code>String<code> with encoded data
      */
     public static final String encode(byte[] binaryData) {
-        return XMLUtils.ignoreLineBreaks() ? encode(binaryData,
-                Integer.MAX_VALUE) : encode(binaryData, BASE64DEFAULTLENGTH);
+        return XMLUtils.ignoreLineBreaks() ? encode(binaryData, Integer.MAX_VALUE)
+                : encode(binaryData, BASE64DEFAULTLENGTH);
     }
 
     /**
@@ -328,12 +313,11 @@ public class Base64 {
      * @param reader
      * @return InputStream with the decoded bytes
      * @exception IOException
-     *                        passes what the reader throws
+     *            passes what the reader throws
      * @throws IOException
      * @throws Base64DecodingException
      */
-    public static final byte[] decode(BufferedReader reader) throws IOException,
-            Base64DecodingException {
+    public static final byte[] decode(BufferedReader reader) throws IOException, Base64DecodingException {
 
         byte[] retBytes = null;
         UnsyncByteArrayOutputStream baos = null;
@@ -354,8 +338,7 @@ public class Base64 {
     }
 
     protected static final boolean isWhiteSpace(byte octect) {
-        return (octect == 0x20 || octect == 0xd || octect == 0xa
-                || octect == 0x9);
+        return (octect == 0x20 || octect == 0xd || octect == 0xa || octect == 0x9);
     }
 
     protected static final boolean isPad(byte octect) {
@@ -366,7 +349,7 @@ public class Base64 {
      * Encodes hex octets into Base64
      *
      * @param binaryData
-     *                   Array containing binaryData
+     *        Array containing binaryData
      * @return Encoded Base64 array
      */
     /**
@@ -374,9 +357,9 @@ public class Base64 {
      * line.
      *
      * @param binaryData
-     *                   <code>byte[]</code> data to be encoded
+     *        <code>byte[]</code> data to be encoded
      * @param length
-     *                   <code>int<code> length of wrapped lines; No wrapping if less than 4.
+     *        <code>int<code> length of wrapped lines; No wrapping if less than 4.
      * @return a <code>String</code> with encoded data
      */
     public static final String encode(byte[] binaryData, int length) {
@@ -395,8 +378,7 @@ public class Base64 {
 
         int fewerThan24bits = lengthDataBits % TWENTYFOURBITGROUP;
         int numberTriplets = lengthDataBits / TWENTYFOURBITGROUP;
-        int numberQuartet = fewerThan24bits != 0 ? numberTriplets + 1
-                : numberTriplets;
+        int numberQuartet = fewerThan24bits != 0 ? numberTriplets + 1 : numberTriplets;
         int quartesPerLine = length / 4;
         int numberLines = (numberQuartet - 1) / quartesPerLine;
         char encodedData[] = null;
@@ -417,19 +399,14 @@ public class Base64 {
                 l = (byte) (b2 & 0x0f);
                 k = (byte) (b1 & 0x03);
 
-                byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
-                        : (byte) ((b1) >> 2 ^ 0xc0);
+                byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
 
-                byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4)
-                        : (byte) ((b2) >> 4 ^ 0xf0);
-                byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6)
-                        : (byte) ((b3) >> 6 ^ 0xfc);
+                byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4) : (byte) ((b2) >> 4 ^ 0xf0);
+                byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6) : (byte) ((b3) >> 6 ^ 0xfc);
 
                 encodedData[encodedIndex++] = lookUpBase64Alphabet[val1];
-                encodedData[encodedIndex++] = lookUpBase64Alphabet[val2
-                        | (k << 4)];
-                encodedData[encodedIndex++] = lookUpBase64Alphabet[(l << 2)
-                        | val3];
+                encodedData[encodedIndex++] = lookUpBase64Alphabet[val2 | (k << 4)];
+                encodedData[encodedIndex++] = lookUpBase64Alphabet[(l << 2) | val3];
                 encodedData[encodedIndex++] = lookUpBase64Alphabet[b3 & 0x3f];
 
                 i++;
@@ -445,13 +422,10 @@ public class Base64 {
             l = (byte) (b2 & 0x0f);
             k = (byte) (b1 & 0x03);
 
-            byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
-                    : (byte) ((b1) >> 2 ^ 0xc0);
+            byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
 
-            byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4)
-                    : (byte) ((b2) >> 4 ^ 0xf0);
-            byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6)
-                    : (byte) ((b3) >> 6 ^ 0xfc);
+            byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4) : (byte) ((b2) >> 4 ^ 0xf0);
+            byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6) : (byte) ((b3) >> 6 ^ 0xfc);
 
             encodedData[encodedIndex++] = lookUpBase64Alphabet[val1];
             encodedData[encodedIndex++] = lookUpBase64Alphabet[val2 | (k << 4)];
@@ -463,8 +437,7 @@ public class Base64 {
         if (fewerThan24bits == EIGHTBIT) {
             b1 = binaryData[dataIndex];
             k = (byte) (b1 & 0x03);
-            byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
-                    : (byte) ((b1) >> 2 ^ 0xc0);
+            byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
             encodedData[encodedIndex++] = lookUpBase64Alphabet[val1];
             encodedData[encodedIndex++] = lookUpBase64Alphabet[k << 4];
             encodedData[encodedIndex++] = PAD;
@@ -475,10 +448,8 @@ public class Base64 {
             l = (byte) (b2 & 0x0f);
             k = (byte) (b1 & 0x03);
 
-            byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
-                    : (byte) ((b1) >> 2 ^ 0xc0);
-            byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4)
-                    : (byte) ((b2) >> 4 ^ 0xf0);
+            byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
+            byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4) : (byte) ((b2) >> 4 ^ 0xf0);
 
             encodedData[encodedIndex++] = lookUpBase64Alphabet[val1];
             encodedData[encodedIndex++] = lookUpBase64Alphabet[val2 | (k << 4)];
@@ -495,13 +466,12 @@ public class Base64 {
      * Decodes Base64 data into octets
      *
      * @param encoded
-     *                String containing base64 encoded data
+     *        String containing base64 encoded data
      * @return byte array containing the decoded data
      * @throws Base64DecodingException
-     *                                 if there is a problem decoding the data
+     *         if there is a problem decoding the data
      */
-    public static final byte[] decode(String encoded)
-            throws Base64DecodingException {
+    public static final byte[] decode(String encoded) throws Base64DecodingException {
         if (encoded == null) {
             return null;
         }
@@ -523,8 +493,7 @@ public class Base64 {
         return newSize;
     }
 
-    protected static final byte[] decodeInternal(byte[] base64Data, int len)
-            throws Base64DecodingException {
+    protected static final byte[] decodeInternal(byte[] base64Data, int len) throws Base64DecodingException {
         // remove white spaces
         if (len == -1) {
             len = removeWhiteSpace(base64Data);
@@ -576,8 +545,7 @@ public class Base64 {
                 }
                 decodedData = new byte[encodedIndex + 2];
                 decodedData[encodedIndex++] = (byte) (b1 << 2 | b2 >> 4);
-                decodedData[encodedIndex] = (byte) (((b2 & 0xf) << 4)
-                        | ((b3 >> 2) & 0xf));
+                decodedData[encodedIndex] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
             } else {
                 // an error like "3c[Pad]r", "3cdX", "3cXd", "3cXX" where X is
                 // non data
@@ -587,8 +555,7 @@ public class Base64 {
             // No PAD e.g 3cQl
             decodedData = new byte[encodedIndex + 3];
             decodedData[encodedIndex++] = (byte) (b1 << 2 | b2 >> 4);
-            decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2)
-                    & 0xf));
+            decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
             decodedData[encodedIndex++] = (byte) (b3 << 6 | b4);
         }
         encodedIndex = 0;
@@ -606,8 +573,7 @@ public class Base64 {
             }
 
             decodedData[encodedIndex++] = (byte) (b1 << 2 | b2 >> 4);
-            decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2)
-                    & 0xf));
+            decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
             decodedData[encodedIndex++] = (byte) (b3 << 6 | b4);
         }
         return decodedData;
@@ -617,14 +583,14 @@ public class Base64 {
      * Decodes Base64 data into outputstream
      *
      * @param base64Data
-     *                   String containing Base64 data
+     *        String containing Base64 data
      * @param os
-     *                   the outputstream
+     *        the outputstream
      * @throws IOException
      * @throws Base64DecodingException
      */
-    public static final void decode(String base64Data, OutputStream os)
-            throws Base64DecodingException, IOException {
+    public static final void decode(String base64Data, OutputStream os) throws Base64DecodingException,
+            IOException {
         byte[] bytes = new byte[base64Data.length()];
         int len = getBytesInternal(base64Data, bytes);
         decode(bytes, os, len);
@@ -634,19 +600,19 @@ public class Base64 {
      * Decodes Base64 data into outputstream
      *
      * @param base64Data
-     *                   Byte array containing Base64 data
+     *        Byte array containing Base64 data
      * @param os
-     *                   the outputstream
+     *        the outputstream
      * @throws IOException
      * @throws Base64DecodingException
      */
-    public static final void decode(byte[] base64Data, OutputStream os)
-            throws Base64DecodingException, IOException {
+    public static final void decode(byte[] base64Data, OutputStream os) throws Base64DecodingException,
+            IOException {
         decode(base64Data, os, -1);
     }
 
-    protected static final void decode(byte[] base64Data, OutputStream os,
-            int len) throws Base64DecodingException, IOException {
+    protected static final void decode(byte[] base64Data, OutputStream os, int len)
+            throws Base64DecodingException, IOException {
         // remove white spaces
         if (len == -1) {
             len = removeWhiteSpace(base64Data);
@@ -725,14 +691,14 @@ public class Base64 {
      * Decodes Base64 data into outputstream
      *
      * @param is
-     *           containing Base64 data
+     *        containing Base64 data
      * @param os
-     *           the outputstream
+     *        the outputstream
      * @throws IOException
      * @throws Base64DecodingException
      */
-    public static final void decode(InputStream is, OutputStream os)
-            throws Base64DecodingException, IOException {
+    public static final void decode(InputStream is, OutputStream os) throws Base64DecodingException,
+            IOException {
         // byte decodedData[] = null;
         byte b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 
@@ -807,7 +773,7 @@ public class Base64 {
      * remove WhiteSpace from MIME containing encoded Base64 data.
      *
      * @param data
-     *             the byte array of base64 data (with WS)
+     *        the byte array of base64 data (with WS)
      * @return the new length
      */
     protected static final int removeWhiteSpace(byte[] data) {

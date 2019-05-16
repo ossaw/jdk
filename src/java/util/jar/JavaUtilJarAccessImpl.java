@@ -13,8 +13,7 @@ import java.util.List;
 import sun.misc.JavaUtilJarAccess;
 
 class JavaUtilJarAccessImpl implements JavaUtilJarAccess {
-    public boolean jarFileHasClassPathAttribute(JarFile jar)
-            throws IOException {
+    public boolean jarFileHasClassPathAttribute(JarFile jar) throws IOException {
         return jar.hasClassPathAttribute();
     }
 

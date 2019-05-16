@@ -270,8 +270,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
      */
     protected void installDefaults() {
         LookAndFeel.installBorder(splitPane, "SplitPane.border");
-        LookAndFeel.installColors(splitPane, "SplitPane.background",
-                "SplitPane.foreground");
+        LookAndFeel.installColors(splitPane, "SplitPane.background", "SplitPane.foreground");
         LookAndFeel.installProperty(splitPane, "opaque", Boolean.TRUE);
 
         if (divider == null)
@@ -284,16 +283,14 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             divider.setBorder(UIManager.getBorder("SplitPaneDivider.border"));
         }
 
-        dividerDraggingColor = UIManager.getColor(
-                "SplitPaneDivider.draggingColor");
+        dividerDraggingColor = UIManager.getColor("SplitPaneDivider.draggingColor");
 
         setOrientation(splitPane.getOrientation());
 
         // note: don't rename this temp variable to dividerSize
         // since it will conflict with "this.dividerSize" field
         Integer temp = (Integer) UIManager.get("SplitPane.dividerSize");
-        LookAndFeel.installProperty(splitPane, "dividerSize", temp == null ? 10
-                : temp);
+        LookAndFeel.installProperty(splitPane, "dividerSize", temp == null ? 10 : temp);
 
         divider.setDividerSize(splitPane.getDividerSize());
         dividerSize = divider.getDividerSize();
@@ -308,8 +305,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
          * add/remove everything later.
          */
         if (nonContinuousLayoutDivider == null) {
-            setNonContinuousLayoutDivider(
-                    createDefaultNonContinuousLayoutDivider(), true);
+            setNonContinuousLayoutDivider(createDefaultNonContinuousLayoutDivider(), true);
         } else {
             setNonContinuousLayoutDivider(nonContinuousLayoutDivider, true);
         }
@@ -317,20 +313,17 @@ public class BasicSplitPaneUI extends SplitPaneUI {
         // focus forward traversal key
         if (managingFocusForwardTraversalKeys == null) {
             managingFocusForwardTraversalKeys = new HashSet<KeyStroke>();
-            managingFocusForwardTraversalKeys.add(KeyStroke.getKeyStroke(
-                    KeyEvent.VK_TAB, 0));
+            managingFocusForwardTraversalKeys.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0));
         }
-        splitPane.setFocusTraversalKeys(
-                KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+        splitPane.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
                 managingFocusForwardTraversalKeys);
         // focus backward traversal key
         if (managingFocusBackwardTraversalKeys == null) {
             managingFocusBackwardTraversalKeys = new HashSet<KeyStroke>();
-            managingFocusBackwardTraversalKeys.add(KeyStroke.getKeyStroke(
-                    KeyEvent.VK_TAB, InputEvent.SHIFT_MASK));
+            managingFocusBackwardTraversalKeys.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,
+                    InputEvent.SHIFT_MASK));
         }
-        splitPane.setFocusTraversalKeys(
-                KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+        splitPane.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
                 managingFocusBackwardTraversalKeys);
     }
 
@@ -351,19 +344,15 @@ public class BasicSplitPaneUI extends SplitPaneUI {
      * Installs the keyboard actions for the UI.
      */
     protected void installKeyboardActions() {
-        InputMap km = getInputMap(
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap km = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        SwingUtilities.replaceUIInputMap(splitPane,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, km);
-        LazyActionMap.installLazyActionMap(splitPane, BasicSplitPaneUI.class,
-                "SplitPane.actionMap");
+        SwingUtilities.replaceUIInputMap(splitPane, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, km);
+        LazyActionMap.installLazyActionMap(splitPane, BasicSplitPaneUI.class, "SplitPane.actionMap");
     }
 
     InputMap getInputMap(int condition) {
         if (condition == JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT) {
-            return (InputMap) DefaultLookup.get(splitPane, this,
-                    "SplitPane.ancestorInputMap");
+            return (InputMap) DefaultLookup.get(splitPane, this, "SplitPane.ancestorInputMap");
         }
         return null;
     }
@@ -410,10 +399,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
 
         // sets the focus forward and backward traversal keys to null
         // to restore the defaults
-        splitPane.setFocusTraversalKeys(
-                KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, null);
-        splitPane.setFocusTraversalKeys(
-                KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
+        splitPane.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, null);
+        splitPane.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
     }
 
     /**
@@ -442,8 +429,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
      */
     protected void uninstallKeyboardActions() {
         SwingUtilities.replaceUIActionMap(splitPane, null);
-        SwingUtilities.replaceUIInputMap(splitPane,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
+        SwingUtilities.replaceUIInputMap(splitPane, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
     }
 
     /**
@@ -658,8 +644,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
     public class KeyboardUpLeftHandler implements ActionListener {
         public void actionPerformed(ActionEvent ev) {
             if (dividerKeyboardResize) {
-                splitPane.setDividerLocation(Math.max(0, getDividerLocation(
-                        splitPane) - getKeyboardMoveIncrement()));
+                splitPane.setDividerLocation(Math.max(0, getDividerLocation(splitPane)
+                        - getKeyboardMoveIncrement()));
             }
         }
     }
@@ -674,8 +660,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
     public class KeyboardDownRightHandler implements ActionListener {
         public void actionPerformed(ActionEvent ev) {
             if (dividerKeyboardResize) {
-                splitPane.setDividerLocation(getDividerLocation(splitPane)
-                        + getKeyboardMoveIncrement());
+                splitPane.setDividerLocation(getDividerLocation(splitPane) + getKeyboardMoveIncrement());
             }
         }
     }
@@ -710,8 +695,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                 int rightI = (insets != null) ? insets.right : 0;
 
                 if (orientation == JSplitPane.VERTICAL_SPLIT) {
-                    splitPane.setDividerLocation(splitPane.getHeight()
-                            - bottomI);
+                    splitPane.setDividerLocation(splitPane.getHeight() - bottomI);
                 } else {
                     splitPane.setDividerLocation(splitPane.getWidth() - rightI);
                 }
@@ -775,8 +759,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
     /**
      * Sets the divider to use.
      */
-    protected void setNonContinuousLayoutDivider(Component newDivider,
-            boolean rememberSizes) {
+    protected void setNonContinuousLayoutDivider(Component newDivider, boolean rememberSizes) {
         rememberPaneSizes = rememberSizes;
         if (nonContinuousLayoutDivider != null && splitPane != null) {
             splitPane.remove(nonContinuousLayoutDivider);
@@ -800,9 +783,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             if (rightC != null)
                 splitPane.setRightComponent(null);
             splitPane.remove(divider);
-            splitPane.add(nonContinuousLayoutDivider,
-                    BasicSplitPaneUI.NON_CONTINUOUS_DIVIDER, splitPane
-                            .getComponentCount());
+            splitPane.add(nonContinuousLayoutDivider, BasicSplitPaneUI.NON_CONTINUOUS_DIVIDER, splitPane
+                    .getComponentCount());
             splitPane.setLeftComponent(leftC);
             splitPane.setRightComponent(rightC);
             splitPane.add(divider, JSplitPane.DIVIDER);
@@ -859,13 +841,10 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             if (keepHidden) {
                 Insets insets = splitPane.getInsets();
                 int orientation = splitPane.getOrientation();
-                if ((orientation == JSplitPane.VERTICAL_SPLIT
-                        && location != insets.top && location != splitPane
-                                .getHeight() - divider.getHeight() - insets.top)
-                        || (orientation == JSplitPane.HORIZONTAL_SPLIT
-                                && location != insets.left
-                                && location != splitPane.getWidth() - divider
-                                        .getWidth() - insets.left)) {
+                if ((orientation == JSplitPane.VERTICAL_SPLIT && location != insets.top
+                        && location != splitPane.getHeight() - divider.getHeight() - insets.top)
+                        || (orientation == JSplitPane.HORIZONTAL_SPLIT && location != insets.left
+                                && location != splitPane.getWidth() - divider.getWidth() - insets.left)) {
                     setKeepHidden(false);
                 }
             }
@@ -945,17 +924,14 @@ public class BasicSplitPaneUI extends SplitPaneUI {
      * Called when the specified split pane has finished painting its children.
      */
     public void finishedPaintingChildren(JSplitPane sp, Graphics g) {
-        if (sp == splitPane && getLastDragLocation() != -1
-                && !isContinuousLayout() && !draggingHW) {
+        if (sp == splitPane && getLastDragLocation() != -1 && !isContinuousLayout() && !draggingHW) {
             Dimension size = splitPane.getSize();
 
             g.setColor(dividerDraggingColor);
             if (orientation == JSplitPane.HORIZONTAL_SPLIT) {
-                g.fillRect(getLastDragLocation(), 0, dividerSize - 1,
-                        size.height - 1);
+                g.fillRect(getLastDragLocation(), 0, dividerSize - 1, size.height - 1);
             } else {
-                g.fillRect(0, lastDragLocation, size.width - 1, dividerSize
-                        - 1);
+                g.fillRect(0, lastDragLocation, size.width - 1, dividerSize - 1);
             }
         }
     }
@@ -1052,8 +1028,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
 
         beginDragDividerLocation = getDividerLocation(splitPane);
         draggingHW = false;
-        if (leftC != null && (cPeer = leftC.getPeer()) != null
-                && !(cPeer instanceof LightweightPeer)) {
+        if (leftC != null && (cPeer = leftC.getPeer()) != null && !(cPeer instanceof LightweightPeer)) {
             draggingHW = true;
         } else if (rightC != null && (cPeer = rightC.getPeer()) != null
                 && !(cPeer instanceof LightweightPeer)) {
@@ -1063,16 +1038,16 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             setLastDragLocation(divider.getBounds().x);
             dividerSize = divider.getSize().width;
             if (!isContinuousLayout() && draggingHW) {
-                nonContinuousLayoutDivider.setBounds(getLastDragLocation(), 0,
-                        dividerSize, splitPane.getHeight());
+                nonContinuousLayoutDivider.setBounds(getLastDragLocation(), 0, dividerSize, splitPane
+                        .getHeight());
                 addHeavyweightDivider();
             }
         } else {
             setLastDragLocation(divider.getBounds().y);
             dividerSize = divider.getSize().height;
             if (!isContinuousLayout() && draggingHW) {
-                nonContinuousLayoutDivider.setBounds(0, getLastDragLocation(),
-                        splitPane.getWidth(), dividerSize);
+                nonContinuousLayoutDivider.setBounds(0, getLastDragLocation(), splitPane.getWidth(),
+                        dividerSize);
                 addHeavyweightDivider();
             }
         }
@@ -1094,18 +1069,15 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                 setLastDragLocation(location);
                 if (orientation == JSplitPane.HORIZONTAL_SPLIT) {
                     if (draggingHW) {
-                        nonContinuousLayoutDivider.setLocation(
-                                getLastDragLocation(), 0);
+                        nonContinuousLayoutDivider.setLocation(getLastDragLocation(), 0);
                     } else {
                         int splitHeight = splitPane.getHeight();
                         splitPane.repaint(lastLoc, 0, dividerSize, splitHeight);
-                        splitPane.repaint(location, 0, dividerSize,
-                                splitHeight);
+                        splitPane.repaint(location, 0, dividerSize, splitHeight);
                     }
                 } else {
                     if (draggingHW) {
-                        nonContinuousLayoutDivider.setLocation(0,
-                                getLastDragLocation());
+                        nonContinuousLayoutDivider.setLocation(0, getLastDragLocation());
                     } else {
                         int splitWidth = splitPane.getWidth();
 
@@ -1204,15 +1176,12 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             int newSize = getSizeForPrimaryAxis(containerSize);
             int beginLocation = getDividerLocation(splitPane);
             int dOffset = getSizeForPrimaryAxis(insets, true);
-            Dimension dSize = (components[2] == null) ? null
-                    : components[2].getPreferredSize();
+            Dimension dSize = (components[2] == null) ? null : components[2].getPreferredSize();
 
             if ((doReset && !dividerLocationIsSet) || spDividerLocation < 0) {
                 resetToPreferredSizes(availableSize);
-            } else if (lastSplitPaneSize <= 0
-                    || availableSize == lastSplitPaneSize || !painted
-                    || (dSize != null && getSizeForPrimaryAxis(
-                            dSize) != sizes[2])) {
+            } else if (lastSplitPaneSize <= 0 || availableSize == lastSplitPaneSize || !painted
+                    || (dSize != null && getSizeForPrimaryAxis(dSize) != sizes[2])) {
                 if (dSize != null) {
                     sizes[2] = getSizeForPrimaryAxis(dSize);
                 } else {
@@ -1221,8 +1190,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                 setDividerLocation(spDividerLocation - dOffset, availableSize);
                 dividerLocationIsSet = false;
             } else if (availableSize != lastSplitPaneSize) {
-                distributeSpace(availableSize - lastSplitPaneSize,
-                        getKeepHidden());
+                distributeSpace(availableSize - lastSplitPaneSize, getKeepHidden());
             }
             doReset = false;
             dividerLocationIsSet = false;
@@ -1233,10 +1201,9 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             int counter = 0;
 
             while (counter < 3) {
-                if (components[counter] != null && components[counter]
-                        .isVisible()) {
-                    setComponentToSize(components[counter], sizes[counter],
-                            nextLocation, insets, containerSize);
+                if (components[counter] != null && components[counter].isVisible()) {
+                    setComponentToSize(components[counter], sizes[counter], nextLocation, insets,
+                            containerSize);
                     nextLocation += sizes[counter];
                 }
                 switch (counter) {
@@ -1291,25 +1258,20 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                 if (place.equals(JSplitPane.DIVIDER)) {
                     /* Divider. */
                     components[2] = component;
-                    sizes[2] = getSizeForPrimaryAxis(component
-                            .getPreferredSize());
-                } else if (place.equals(JSplitPane.LEFT) || place.equals(
-                        JSplitPane.TOP)) {
+                    sizes[2] = getSizeForPrimaryAxis(component.getPreferredSize());
+                } else if (place.equals(JSplitPane.LEFT) || place.equals(JSplitPane.TOP)) {
                     components[0] = component;
                     sizes[0] = 0;
-                } else if (place.equals(JSplitPane.RIGHT) || place.equals(
-                        JSplitPane.BOTTOM)) {
+                } else if (place.equals(JSplitPane.RIGHT) || place.equals(JSplitPane.BOTTOM)) {
                     components[1] = component;
                     sizes[1] = 0;
-                } else if (!place.equals(
-                        BasicSplitPaneUI.NON_CONTINUOUS_DIVIDER))
+                } else if (!place.equals(BasicSplitPaneUI.NON_CONTINUOUS_DIVIDER))
                     isValid = false;
             } else {
                 isValid = false;
             }
             if (!isValid)
-                throw new IllegalArgumentException("cannot add to layout: "
-                        + "unknown constraint: " + place);
+                throw new IllegalArgumentException("cannot add to layout: " + "unknown constraint: " + place);
             doReset = true;
         }
 
@@ -1334,10 +1296,9 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                 }
             }
             if (insets != null) {
-                minPrimary += getSizeForPrimaryAxis(insets, true)
-                        + getSizeForPrimaryAxis(insets, false);
-                minSecondary += getSizeForSecondaryAxis(insets, true)
-                        + getSizeForSecondaryAxis(insets, false);
+                minPrimary += getSizeForPrimaryAxis(insets, true) + getSizeForPrimaryAxis(insets, false);
+                minSecondary += getSizeForSecondaryAxis(insets, true) + getSizeForSecondaryAxis(insets,
+                        false);
             }
             if (axis == 0) {
                 return new Dimension(minPrimary, minSecondary);
@@ -1366,10 +1327,9 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                 }
             }
             if (insets != null) {
-                prePrimary += getSizeForPrimaryAxis(insets, true)
-                        + getSizeForPrimaryAxis(insets, false);
-                preSecondary += getSizeForSecondaryAxis(insets, true)
-                        + getSizeForSecondaryAxis(insets, false);
+                prePrimary += getSizeForPrimaryAxis(insets, true) + getSizeForPrimaryAxis(insets, false);
+                preSecondary += getSizeForSecondaryAxis(insets, true) + getSizeForSecondaryAxis(insets,
+                        false);
             }
             if (axis == 0) {
                 return new Dimension(prePrimary, preSecondary);
@@ -1399,16 +1359,16 @@ public class BasicSplitPaneUI extends SplitPaneUI {
          * constraint object.
          * 
          * @param comp
-         *                    the component to be added
+         *        the component to be added
          * @param constraints
-         *                    where/how the component is added to the layout.
+         *        where/how the component is added to the layout.
          */
         public void addLayoutComponent(Component comp, Object constraints) {
             if ((constraints == null) || (constraints instanceof String)) {
                 addLayoutComponent((String) constraints, comp);
             } else {
-                throw new IllegalArgumentException("cannot add to layout: "
-                        + "constraint must be a " + "string (or null)");
+                throw new IllegalArgumentException("cannot add to layout: " + "constraint must be a "
+                        + "string (or null)");
             }
         }
 
@@ -1512,9 +1472,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
         protected int getAvailableSize(Dimension containerSize, Insets insets) {
             if (insets == null)
                 return getSizeForPrimaryAxis(containerSize);
-            return (getSizeForPrimaryAxis(containerSize)
-                    - (getSizeForPrimaryAxis(insets, true)
-                            + getSizeForPrimaryAxis(insets, false)));
+            return (getSizeForPrimaryAxis(containerSize) - (getSizeForPrimaryAxis(insets, true)
+                    + getSizeForPrimaryAxis(insets, false)));
         }
 
         /**
@@ -1532,15 +1491,15 @@ public class BasicSplitPaneUI extends SplitPaneUI {
          * at location, y to the insets.top and height to the
          * containersize.height less the top and bottom insets.
          */
-        protected void setComponentToSize(Component c, int size, int location,
-                Insets insets, Dimension containerSize) {
+        protected void setComponentToSize(Component c, int size, int location, Insets insets,
+                Dimension containerSize) {
             if (insets != null) {
                 if (axis == 0) {
-                    c.setBounds(location, insets.top, size, containerSize.height
-                            - (insets.top + insets.bottom));
+                    c.setBounds(location, insets.top, size, containerSize.height - (insets.top
+                            + insets.bottom));
                 } else {
-                    c.setBounds(insets.left, location, containerSize.width
-                            - (insets.left + insets.right), size);
+                    c.setBounds(insets.left, location, containerSize.width - (insets.left + insets.right),
+                            size);
                 }
             } else {
                 if (axis == 0) {
@@ -1644,8 +1603,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
 
             components[2] = null;
             for (int counter = children.length - 1; counter >= 0; counter--) {
-                if (children[counter] != components[0]
-                        && children[counter] != components[1]
+                if (children[counter] != components[0] && children[counter] != components[1]
                         && children[counter] != nonContinuousLayoutDivider) {
                     if (oldDivider != children[counter]) {
                         components[2] = children[counter];
@@ -1658,8 +1616,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             if (components[2] == null) {
                 sizes[2] = 0;
             } else {
-                sizes[2] = getSizeForPrimaryAxis(components[2]
-                        .getPreferredSize());
+                sizes[2] = getSizeForPrimaryAxis(components[2].getPreferredSize());
             }
         }
 
@@ -1668,12 +1625,9 @@ public class BasicSplitPaneUI extends SplitPaneUI {
          * the right component to the remainder of the space.
          */
         void setDividerLocation(int leftSize, int availableSize) {
-            boolean lValid = (components[0] != null && components[0]
-                    .isVisible());
-            boolean rValid = (components[1] != null && components[1]
-                    .isVisible());
-            boolean dValid = (components[2] != null && components[2]
-                    .isVisible());
+            boolean lValid = (components[0] != null && components[0].isVisible());
+            boolean rValid = (components[1] != null && components[1].isVisible());
+            boolean dValid = (components[2] != null && components[2].isVisible());
             int max = availableSize;
 
             if (dValid) {
@@ -1701,10 +1655,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             int[] retValue = new int[3];
 
             for (int counter = 0; counter < 3; counter++) {
-                if (components[counter] != null && components[counter]
-                        .isVisible()) {
-                    retValue[counter] = getPreferredSizeOfComponent(
-                            components[counter]);
+                if (components[counter] != null && components[counter].isVisible()) {
+                    retValue[counter] = getPreferredSizeOfComponent(components[counter]);
                 } else {
                     retValue[counter] = -1;
                 }
@@ -1719,16 +1671,13 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             int[] retValue = new int[3];
 
             for (int counter = 0; counter < 2; counter++) {
-                if (components[counter] != null && components[counter]
-                        .isVisible()) {
-                    retValue[counter] = getMinimumSizeOfComponent(
-                            components[counter]);
+                if (components[counter] != null && components[counter].isVisible()) {
+                    retValue[counter] = getMinimumSizeOfComponent(components[counter]);
                 } else {
                     retValue[counter] = -1;
                 }
             }
-            retValue[2] = (components[2] != null) ? getMinimumSizeOfComponent(
-                    components[2]) : -1;
+            retValue[2] = (components[2] != null) ? getMinimumSizeOfComponent(components[2]) : -1;
             return retValue;
         }
 
@@ -1766,27 +1715,22 @@ public class BasicSplitPaneUI extends SplitPaneUI {
          * honor the min size of the components.
          *
          * @param keepHidden
-         *                   if true and one of the components is 0x0 it gets
-         *                   none of
-         *                   the extra space
+         *        if true and one of the components is 0x0 it gets
+         *        none of
+         *        the extra space
          */
         void distributeSpace(int space, boolean keepHidden) {
-            boolean lValid = (components[0] != null && components[0]
-                    .isVisible());
-            boolean rValid = (components[1] != null && components[1]
-                    .isVisible());
+            boolean lValid = (components[0] != null && components[0].isVisible());
+            boolean rValid = (components[1] != null && components[1].isVisible());
 
             if (keepHidden) {
-                if (lValid && getSizeForPrimaryAxis(components[0]
-                        .getSize()) == 0) {
+                if (lValid && getSizeForPrimaryAxis(components[0].getSize()) == 0) {
                     lValid = false;
-                    if (rValid && getSizeForPrimaryAxis(components[1]
-                            .getSize()) == 0) {
+                    if (rValid && getSizeForPrimaryAxis(components[1].getSize()) == 0) {
                         // Both aren't valid, force them both to be valid
                         lValid = true;
                     }
-                } else if (rValid && getSizeForPrimaryAxis(components[1]
-                        .getSize()) == 0) {
+                } else if (rValid && getSizeForPrimaryAxis(components[1].getSize()) == 0) {
                     rValid = false;
                 }
             }
@@ -1850,10 +1794,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
 
     /**
      * LayoutManager used for JSplitPanes with an orientation of VERTICAL_SPLIT.
-     *
      */
-    public class BasicVerticalLayoutManager extends
-            BasicHorizontalLayoutManager {
+    public class BasicVerticalLayoutManager extends BasicHorizontalLayoutManager {
         public BasicVerticalLayoutManager() {
             super(1);
         }
@@ -1879,13 +1821,9 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                     setContinuousLayout(splitPane.isContinuousLayout());
                     if (!isContinuousLayout()) {
                         if (nonContinuousLayoutDivider == null) {
-                            setNonContinuousLayoutDivider(
-                                    createDefaultNonContinuousLayoutDivider(),
-                                    true);
-                        } else if (nonContinuousLayoutDivider
-                                .getParent() == null) {
-                            setNonContinuousLayoutDivider(
-                                    nonContinuousLayoutDivider, true);
+                            setNonContinuousLayoutDivider(createDefaultNonContinuousLayoutDivider(), true);
+                        } else if (nonContinuousLayoutDivider.getParent() == null) {
+                            setNonContinuousLayoutDivider(nonContinuousLayoutDivider, true);
                         }
                     }
                 } else if (changeName == JSplitPane.DIVIDER_SIZE_PROPERTY) {
@@ -1927,8 +1865,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
 
         public void actionPerformed(ActionEvent ev) {
             JSplitPane splitPane = (JSplitPane) ev.getSource();
-            BasicSplitPaneUI ui = (BasicSplitPaneUI) BasicLookAndFeel
-                    .getUIOfType(splitPane.getUI(), BasicSplitPaneUI.class);
+            BasicSplitPaneUI ui = (BasicSplitPaneUI) BasicLookAndFeel.getUIOfType(splitPane.getUI(),
+                    BasicSplitPaneUI.class);
 
             if (ui == null) {
                 return;
@@ -1936,14 +1874,13 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             String key = getName();
             if (key == NEGATIVE_INCREMENT) {
                 if (ui.dividerKeyboardResize) {
-                    splitPane.setDividerLocation(Math.max(0, ui
-                            .getDividerLocation(splitPane) - ui
-                                    .getKeyboardMoveIncrement()));
+                    splitPane.setDividerLocation(Math.max(0, ui.getDividerLocation(splitPane) - ui
+                            .getKeyboardMoveIncrement()));
                 }
             } else if (key == POSITIVE_INCREMENT) {
                 if (ui.dividerKeyboardResize) {
-                    splitPane.setDividerLocation(ui.getDividerLocation(
-                            splitPane) + ui.getKeyboardMoveIncrement());
+                    splitPane.setDividerLocation(ui.getDividerLocation(splitPane) + ui
+                            .getKeyboardMoveIncrement());
                 }
             } else if (key == SELECT_MIN) {
                 if (ui.dividerKeyboardResize) {
@@ -1956,19 +1893,17 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                     int rightI = (insets != null) ? insets.right : 0;
 
                     if (ui.orientation == JSplitPane.VERTICAL_SPLIT) {
-                        splitPane.setDividerLocation(splitPane.getHeight()
-                                - bottomI);
+                        splitPane.setDividerLocation(splitPane.getHeight() - bottomI);
                     } else {
-                        splitPane.setDividerLocation(splitPane.getWidth()
-                                - rightI);
+                        splitPane.setDividerLocation(splitPane.getWidth() - rightI);
                     }
                 }
             } else if (key == START_RESIZE) {
                 if (!ui.dividerKeyboardResize) {
                     splitPane.requestFocus();
                 } else {
-                    JSplitPane parentSplitPane = (JSplitPane) SwingUtilities
-                            .getAncestorOfClass(JSplitPane.class, splitPane);
+                    JSplitPane parentSplitPane = (JSplitPane) SwingUtilities.getAncestorOfClass(
+                            JSplitPane.class, splitPane);
                     if (parentSplitPane != null) {
                         parentSplitPane.requestFocus();
                     }
@@ -1984,10 +1919,8 @@ public class BasicSplitPaneUI extends SplitPaneUI {
 
         private void moveFocus(JSplitPane splitPane, int direction) {
             Container rootAncestor = splitPane.getFocusCycleRootAncestor();
-            FocusTraversalPolicy policy = rootAncestor
-                    .getFocusTraversalPolicy();
-            Component focusOn = (direction > 0) ? policy.getComponentAfter(
-                    rootAncestor, splitPane)
+            FocusTraversalPolicy policy = rootAncestor.getFocusTraversalPolicy();
+            Component focusOn = (direction > 0) ? policy.getComponentAfter(rootAncestor, splitPane)
                     : policy.getComponentBefore(rootAncestor, splitPane);
             HashSet<Component> focusFrom = new HashSet<Component>();
             if (splitPane.isAncestorOf(focusOn)) {
@@ -1995,11 +1928,9 @@ public class BasicSplitPaneUI extends SplitPaneUI {
                     focusFrom.add(focusOn);
                     rootAncestor = focusOn.getFocusCycleRootAncestor();
                     policy = rootAncestor.getFocusTraversalPolicy();
-                    focusOn = (direction > 0) ? policy.getComponentAfter(
-                            rootAncestor, focusOn)
+                    focusOn = (direction > 0) ? policy.getComponentAfter(rootAncestor, focusOn)
                             : policy.getComponentBefore(rootAncestor, focusOn);
-                } while (splitPane.isAncestorOf(focusOn) && !focusFrom.contains(
-                        focusOn));
+                } while (splitPane.isAncestorOf(focusOn) && !focusFrom.contains(focusOn));
             }
             if (focusOn != null && !splitPane.isAncestorOf(focusOn)) {
                 focusOn.requestFocus();
@@ -2010,18 +1941,15 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             Component left = splitPane.getLeftComponent();
             Component right = splitPane.getRightComponent();
 
-            KeyboardFocusManager manager = KeyboardFocusManager
-                    .getCurrentKeyboardFocusManager();
+            KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             Component focus = manager.getFocusOwner();
             Component focusOn = getNextSide(splitPane, focus);
             if (focusOn != null) {
                 // don't change the focus if the new focused component belongs
                 // to the same splitpane and the same side
-                if (focus != null && ((SwingUtilities.isDescendingFrom(focus,
-                        left) && SwingUtilities.isDescendingFrom(focusOn, left))
-                        || (SwingUtilities.isDescendingFrom(focus, right)
-                                && SwingUtilities.isDescendingFrom(focusOn,
-                                        right)))) {
+                if (focus != null && ((SwingUtilities.isDescendingFrom(focus, left) && SwingUtilities
+                        .isDescendingFrom(focusOn, left)) || (SwingUtilities.isDescendingFrom(focus, right)
+                                && SwingUtilities.isDescendingFrom(focusOn, right)))) {
                     return;
                 }
                 SwingUtilities2.compositeRequestFocus(focusOn);
@@ -2032,15 +1960,14 @@ public class BasicSplitPaneUI extends SplitPaneUI {
             Component left = splitPane.getLeftComponent();
             Component right = splitPane.getRightComponent();
             Component next;
-            if (focus != null && SwingUtilities.isDescendingFrom(focus, left)
-                    && right != null) {
+            if (focus != null && SwingUtilities.isDescendingFrom(focus, left) && right != null) {
                 next = getFirstAvailableComponent(right);
                 if (next != null) {
                     return next;
                 }
             }
-            JSplitPane parentSplitPane = (JSplitPane) SwingUtilities
-                    .getAncestorOfClass(JSplitPane.class, splitPane);
+            JSplitPane parentSplitPane = (JSplitPane) SwingUtilities.getAncestorOfClass(JSplitPane.class,
+                    splitPane);
             if (parentSplitPane != null) {
                 // focus next side of the parent split pane
                 next = getNextSide(parentSplitPane, focus);
@@ -2056,8 +1983,7 @@ public class BasicSplitPaneUI extends SplitPaneUI {
         private Component getFirstAvailableComponent(Component c) {
             if (c != null && c instanceof JSplitPane) {
                 JSplitPane sp = (JSplitPane) c;
-                Component left = getFirstAvailableComponent(sp
-                        .getLeftComponent());
+                Component left = getFirstAvailableComponent(sp.getLeftComponent());
                 if (left != null) {
                     c = left;
                 } else {

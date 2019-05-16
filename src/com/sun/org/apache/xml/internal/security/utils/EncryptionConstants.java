@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -159,8 +157,7 @@ public class EncryptionConstants {
     public static final String ALGO_ID_BLOCKCIPHER_AES256_GCM = "http://www.w3.org/2009/xmlenc11#aes256-gcm";
 
     /** Key Transport - REQUIRED RSA-v1.5 */
-    public static final String ALGO_ID_KEYTRANSPORT_RSA15 = EncryptionConstants.EncryptionSpecNS
-            + "rsa-1_5";
+    public static final String ALGO_ID_KEYTRANSPORT_RSA15 = EncryptionConstants.EncryptionSpecNS + "rsa-1_5";
 
     /** Key Transport - REQUIRED RSA-OAEP */
     public static final String ALGO_ID_KEYTRANSPORT_RSAOAEP = EncryptionConstants.EncryptionSpecNS
@@ -171,24 +168,20 @@ public class EncryptionConstants {
             + "rsa-oaep";
 
     /** Key Agreement - OPTIONAL Diffie-Hellman */
-    public static final String ALGO_ID_KEYAGREEMENT_DH = EncryptionConstants.EncryptionSpecNS
-            + "dh";
+    public static final String ALGO_ID_KEYAGREEMENT_DH = EncryptionConstants.EncryptionSpecNS + "dh";
 
     /** Symmetric Key Wrap - REQUIRED TRIPLEDES KeyWrap */
     public static final String ALGO_ID_KEYWRAP_TRIPLEDES = EncryptionConstants.EncryptionSpecNS
             + "kw-tripledes";
 
     /** Symmetric Key Wrap - REQUIRED AES-128 KeyWrap */
-    public static final String ALGO_ID_KEYWRAP_AES128 = EncryptionConstants.EncryptionSpecNS
-            + "kw-aes128";
+    public static final String ALGO_ID_KEYWRAP_AES128 = EncryptionConstants.EncryptionSpecNS + "kw-aes128";
 
     /** Symmetric Key Wrap - REQUIRED AES-256 KeyWrap */
-    public static final String ALGO_ID_KEYWRAP_AES256 = EncryptionConstants.EncryptionSpecNS
-            + "kw-aes256";
+    public static final String ALGO_ID_KEYWRAP_AES256 = EncryptionConstants.EncryptionSpecNS + "kw-aes256";
 
     /** Symmetric Key Wrap - OPTIONAL AES-192 KeyWrap */
-    public static final String ALGO_ID_KEYWRAP_AES192 = EncryptionConstants.EncryptionSpecNS
-            + "kw-aes192";
+    public static final String ALGO_ID_KEYWRAP_AES192 = EncryptionConstants.EncryptionSpecNS + "kw-aes192";
 
     /** Message Authentication - RECOMMENDED XML Digital Signature */
     public static final String ALGO_ID_AUTHENTICATION_XMLSIGNATURE = "http://www.w3.org/TR/2001/CR-xmldsig-core-20010419/";
@@ -203,24 +196,19 @@ public class EncryptionConstants {
     public static final String ALGO_ID_ENCODING_BASE64 = "http://www.w3.org/2000/09/xmldsig#base64";
 
     /** MGF1 with SHA-1 */
-    public static final String MGF1_SHA1 = EncryptionConstants.EncryptionSpec11NS
-            + "mgf1sha1";
+    public static final String MGF1_SHA1 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha1";
 
     /** MGF1 with SHA-224 */
-    public static final String MGF1_SHA224 = EncryptionConstants.EncryptionSpec11NS
-            + "mgf1sha224";
+    public static final String MGF1_SHA224 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha224";
 
     /** MGF1 with SHA-256 */
-    public static final String MGF1_SHA256 = EncryptionConstants.EncryptionSpec11NS
-            + "mgf1sha256";
+    public static final String MGF1_SHA256 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha256";
 
     /** MGF1 with SHA-384 */
-    public static final String MGF1_SHA384 = EncryptionConstants.EncryptionSpec11NS
-            + "mgf1sha384";
+    public static final String MGF1_SHA384 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha384";
 
     /** MGF1 with SHA-512 */
-    public static final String MGF1_SHA512 = EncryptionConstants.EncryptionSpec11NS
-            + "mgf1sha512";
+    public static final String MGF1_SHA512 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha512";
 
     private EncryptionConstants() {
         // we don't allow instantiation

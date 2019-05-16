@@ -33,7 +33,7 @@ public class InvalidDnDOperationException extends IllegalStateException {
      * <P>
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      */
 
     public InvalidDnDOperationException(String msg) {

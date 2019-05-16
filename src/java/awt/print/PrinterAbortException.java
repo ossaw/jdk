@@ -26,8 +26,8 @@ public class PrinterAbortException extends PrinterException {
      * detail message.
      * 
      * @param msg
-     *            the message to be generated when a
-     *            <code>PrinterAbortException</code> is thrown
+     *        the message to be generated when a
+     *        <code>PrinterAbortException</code> is thrown
      */
     public PrinterAbortException(String msg) {
         super(msg);

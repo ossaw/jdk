@@ -10,7 +10,6 @@ package java.lang.reflect;
  * <P>
  * The following table provides a summary description of what the permission
  * allows, and discusses the risks of granting code the permission.
- *
  * <table border=1 cellpadding=5 summary=
  * "Table shows permission target name, what the permission allows, and
  * associated risks"
@@ -20,7 +19,6 @@ package java.lang.reflect;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>suppressAccessChecks</td>
  * <td>ability to suppress the standard Java language access checks on fields
@@ -38,7 +36,6 @@ package java.lang.reflect;
  * domain. Malicious code may use these classes to help in its attempt to
  * compromise security in the system.</td>
  * </tr>
- *
  * </table>
  *
  * @see java.security.Permission
@@ -49,7 +46,6 @@ package java.lang.reflect;
  * @see Method#invoke
  * @see Constructor#newInstance
  * @see Proxy#newProxyInstance
- *
  * @since 1.2
  */
 public final class ReflectPermission extends java.security.BasicPermission {
@@ -60,12 +56,11 @@ public final class ReflectPermission extends java.security.BasicPermission {
      * Constructs a ReflectPermission with the specified name.
      *
      * @param name
-     *             the name of the ReflectPermission
-     *
+     *        the name of the ReflectPermission
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
     public ReflectPermission(String name) {
         super(name);
@@ -76,15 +71,13 @@ public final class ReflectPermission extends java.security.BasicPermission {
      * actions should be null; they are ignored.
      *
      * @param name
-     *                the name of the ReflectPermission
-     *
+     *        the name of the ReflectPermission
      * @param actions
-     *                should be null
-     *
+     *        should be null
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
     public ReflectPermission(String name, String actions) {
         super(name, actions);

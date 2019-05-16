@@ -16,14 +16,12 @@ import java.io.InputStream;
  * A SQL statement is precompiled and stored in a <code>PreparedStatement</code>
  * object. This object can then be used to efficiently execute this statement
  * multiple times.
- *
  * <P>
  * <B>Note:</B> The setter methods (<code>setShort</code>,
  * <code>setString</code>, and so on) for setting IN parameter values must
  * specify types that are compatible with the defined SQL type of the input
  * parameter. For instance, if the IN parameter has SQL type
  * <code>INTEGER</code>, then the method <code>setInt</code> should be used.
- *
  * <p>
  * If arbitrary parameter type conversions are required, the method
  * <code>setObject</code> should be used with a target SQL type.
@@ -51,20 +49,20 @@ public interface PreparedStatement extends Statement {
      * @return a <code>ResultSet</code> object that contains the data produced
      *         by the query; never <code>null</code>
      * @exception SQLException
-     *                         if a database access error occurs; this method is
-     *                         called
-     *                         on a closed <code>PreparedStatement</code> or the
-     *                         SQL
-     *                         statement does not return a
-     *                         <code>ResultSet</code> object
+     *            if a database access error occurs; this method is
+     *            called
+     *            on a closed <code>PreparedStatement</code> or the
+     *            SQL
+     *            statement does not return a
+     *            <code>ResultSet</code> object
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value that
-     *                             was specified by the {@code setQueryTimeout}
-     *                             method has been
-     *                             exceeded and has at least attempted to cancel
-     *                             the currently
-     *                             running {@code Statement}
+     *         when the driver has determined that the
+     *         timeout value that
+     *         was specified by the {@code setQueryTimeout}
+     *         method has been
+     *         exceeded and has at least attempted to cancel
+     *         the currently
+     *         running {@code Statement}
      */
     ResultSet executeQuery() throws SQLException;
 
@@ -77,58 +75,57 @@ public interface PreparedStatement extends Statement {
      * @return either (1) the row count for SQL Data Manipulation Language (DML)
      *         statements or (2) 0 for SQL statements that return nothing
      * @exception SQLException
-     *                         if a database access error occurs; this method is
-     *                         called
-     *                         on a closed <code>PreparedStatement</code> or the
-     *                         SQL
-     *                         statement returns a <code>ResultSet</code> object
+     *            if a database access error occurs; this method is
+     *            called
+     *            on a closed <code>PreparedStatement</code> or the
+     *            SQL
+     *            statement returns a <code>ResultSet</code> object
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value that
-     *                             was specified by the {@code setQueryTimeout}
-     *                             method has been
-     *                             exceeded and has at least attempted to cancel
-     *                             the currently
-     *                             running {@code Statement}
+     *         when the driver has determined that the
+     *         timeout value that
+     *         was specified by the {@code setQueryTimeout}
+     *         method has been
+     *         exceeded and has at least attempted to cancel
+     *         the currently
+     *         running {@code Statement}
      */
     int executeUpdate() throws SQLException;
 
     /**
      * Sets the designated parameter to SQL <code>NULL</code>.
-     *
      * <P>
      * <B>Note:</B> You must specify the parameter's SQL type.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param sqlType
-     *                       the SQL type code defined in
-     *                       <code>java.sql.Types</code>
+     *        the SQL type code defined in
+     *        <code>java.sql.Types</code>
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called on a closed
-     *                                            <code>PreparedStatement</code>
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs or this method is
+     *            called on a closed
+     *            <code>PreparedStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if <code>sqlType</code> is a
-     *                                            <code>ARRAY</code>,
-     *                                            <code>BLOB</code>,
-     *                                            <code>CLOB</code>,
-     *                                            <code>DATALINK</code>,
-     *                                            <code>JAVA_OBJECT</code>,
-     *                                            <code>NCHAR</code>,
-     *                                            <code>NCLOB</code>,
-     *                                            <code>NVARCHAR</code>,
-     *                                            <code>LONGNVARCHAR</code>,
-     *                                            <code>REF</code>,
-     *                                            <code>ROWID</code>,
-     *                                            <code>SQLXML</code>
-     *                                            or <code>STRUCT</code> data
-     *                                            type and the JDBC driver does
-     *                                            not support this data type
+     *            if <code>sqlType</code> is a
+     *            <code>ARRAY</code>,
+     *            <code>BLOB</code>,
+     *            <code>CLOB</code>,
+     *            <code>DATALINK</code>,
+     *            <code>JAVA_OBJECT</code>,
+     *            <code>NCHAR</code>,
+     *            <code>NCLOB</code>,
+     *            <code>NVARCHAR</code>,
+     *            <code>LONGNVARCHAR</code>,
+     *            <code>REF</code>,
+     *            <code>ROWID</code>,
+     *            <code>SQLXML</code>
+     *            or <code>STRUCT</code> data
+     *            type and the JDBC driver does
+     *            not support this data type
      */
     void setNull(int parameterIndex, int sqlType) throws SQLException;
 
@@ -138,16 +135,16 @@ public interface PreparedStatement extends Statement {
      * <code>BOOLEAN</code> value when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setBoolean(int parameterIndex, boolean x) throws SQLException;
 
@@ -157,16 +154,16 @@ public interface PreparedStatement extends Statement {
      * sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setByte(int parameterIndex, byte x) throws SQLException;
 
@@ -176,16 +173,16 @@ public interface PreparedStatement extends Statement {
      * sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setShort(int parameterIndex, short x) throws SQLException;
 
@@ -195,16 +192,16 @@ public interface PreparedStatement extends Statement {
      * sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setInt(int parameterIndex, int x) throws SQLException;
 
@@ -214,16 +211,16 @@ public interface PreparedStatement extends Statement {
      * sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setLong(int parameterIndex, long x) throws SQLException;
 
@@ -233,16 +230,16 @@ public interface PreparedStatement extends Statement {
      * it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setFloat(int parameterIndex, float x) throws SQLException;
 
@@ -252,16 +249,16 @@ public interface PreparedStatement extends Statement {
      * it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setDouble(int parameterIndex, double x) throws SQLException;
 
@@ -271,16 +268,16 @@ public interface PreparedStatement extends Statement {
      * SQL <code>NUMERIC</code> value when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setBigDecimal(int parameterIndex, BigDecimal x) throws SQLException;
 
@@ -292,16 +289,16 @@ public interface PreparedStatement extends Statement {
      * to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setString(int parameterIndex, String x) throws SQLException;
 
@@ -313,16 +310,16 @@ public interface PreparedStatement extends Statement {
      * the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setBytes(int parameterIndex, byte x[]) throws SQLException;
 
@@ -333,16 +330,16 @@ public interface PreparedStatement extends Statement {
      * value when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setDate(int parameterIndex, java.sql.Date x) throws SQLException;
 
@@ -352,16 +349,16 @@ public interface PreparedStatement extends Statement {
      * sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
     void setTime(int parameterIndex, java.sql.Time x) throws SQLException;
 
@@ -371,19 +368,18 @@ public interface PreparedStatement extends Statement {
      * <code>TIMESTAMP</code> value when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
-    void setTimestamp(int parameterIndex, java.sql.Timestamp x)
-            throws SQLException;
+    void setTimestamp(int parameterIndex, java.sql.Timestamp x) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
@@ -392,70 +388,64 @@ public interface PreparedStatement extends Statement {
      * via a <code>java.io.InputStream</code>. Data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from ASCII to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
-    void setAsciiStream(int parameterIndex, java.io.InputStream x, int length)
-            throws SQLException;
+    void setAsciiStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
      * the specified number of bytes.
-     *
      * When a very large Unicode value is input to a <code>LONGVARCHAR</code>
      * parameter, it may be more practical to send it via a
      * <code>java.io.InputStream</code> object. The data will be read from the
      * stream as needed until end-of-file is reached. The JDBC driver will do
      * any necessary conversion from Unicode to the database char format.
-     *
      * The byte format of the Unicode stream must be a Java UTF-8, as defined in
      * the Java Virtual Machine Specification.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       a <code>java.io.InputStream</code> object that
-     *                       contains the
-     *                       Unicode parameter value
+     *        a <code>java.io.InputStream</code> object that
+     *        contains the
+     *        Unicode parameter value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called on a closed
-     *                                            <code>PreparedStatement</code>
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs or this method is
+     *            called on a closed
+     *            <code>PreparedStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @deprecated Use {@code setCharacterStream}
      */
     @Deprecated
-    void setUnicodeStream(int parameterIndex, java.io.InputStream x, int length)
-            throws SQLException;
+    void setUnicodeStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
@@ -463,29 +453,27 @@ public interface PreparedStatement extends Statement {
      * a <code>LONGVARBINARY</code> parameter, it may be more practical to send
      * it via a <code>java.io.InputStream</code> object. The data will be read
      * from the stream as needed until end-of-file is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the java input stream which contains the binary
-     *                       parameter
-     *                       value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      */
-    void setBinaryStream(int parameterIndex, java.io.InputStream x, int length)
-            throws SQLException;
+    void setBinaryStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Clears the current parameter values immediately.
@@ -497,9 +485,9 @@ public interface PreparedStatement extends Statement {
      * calling the method <code>clearParameters</code>.
      *
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      */
     void clearParameters() throws SQLException;
 
@@ -508,50 +496,45 @@ public interface PreparedStatement extends Statement {
 
     /**
      * Sets the value of the designated parameter with the given object.
-     *
      * This method is similar to
      * {@link #setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength)}
      * , except that it assumes a scale of zero.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                       the SQL type (as defined in java.sql.Types) to be
-     *                       sent to the
-     *                       database
+     *        the SQL type (as defined in java.sql.Types) to be
+     *        sent to the
+     *        database
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called on a closed
-     *                                            PreparedStatement
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs or this method is
+     *            called on a closed
+     *            PreparedStatement
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support the specified
-     *                                            targetSqlType
+     *            if the JDBC driver does not
+     *            support the specified
+     *            targetSqlType
      * @see Types
      */
-    void setObject(int parameterIndex, Object x, int targetSqlType)
-            throws SQLException;
+    void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException;
 
     /**
      * <p>
      * Sets the value of the designated parameter using the given object.
-     *
      * <p>
      * The JDBC specification specifies a standard mapping from Java
      * <code>Object</code> types to SQL types. The given argument will be
      * converted to the corresponding SQL type before being sent to the
      * database.
-     *
      * <p>
      * Note that this method may be used to pass datatabase- specific abstract
      * data types, by using a driver-specific Java type.
-     *
      * If the object is of a class implementing the interface
      * <code>SQLData</code>, the JDBC driver should call the method
      * <code>SQLData.writeSQL</code> to write it to the SQL data stream. If, on
@@ -572,18 +555,18 @@ public interface PreparedStatement extends Statement {
      * the interfaces named above.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs; this method is called on a closed
-     *                         <code>PreparedStatement</code> or the type of the
-     *                         given
-     *                         object is ambiguous
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs; this method is called on a closed
+     *            <code>PreparedStatement</code> or the type of the
+     *            given
+     *            object is ambiguous
      */
     void setObject(int parameterIndex, Object x) throws SQLException;
 
@@ -604,24 +587,23 @@ public interface PreparedStatement extends Statement {
      *         object; <code>false</code> if the first result is an update count
      *         or there is no result
      * @exception SQLException
-     *                         if a database access error occurs; this method is
-     *                         called
-     *                         on a closed <code>PreparedStatement</code> or an
-     *                         argument
-     *                         is supplied to this method
+     *            if a database access error occurs; this method is
+     *            called
+     *            on a closed <code>PreparedStatement</code> or an
+     *            argument
+     *            is supplied to this method
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value that
-     *                             was specified by the {@code setQueryTimeout}
-     *                             method has been
-     *                             exceeded and has at least attempted to cancel
-     *                             the currently
-     *                             running {@code Statement}
+     *         when the driver has determined that the
+     *         timeout value that
+     *         was specified by the {@code setQueryTimeout}
+     *         method has been
+     *         exceeded and has at least attempted to cancel
+     *         the currently
+     *         running {@code Statement}
      * @see Statement#execute
      * @see Statement#getResultSet
      * @see Statement#getUpdateCount
      * @see Statement#getMoreResults
-     * 
      */
     boolean execute() throws SQLException;
 
@@ -632,9 +614,9 @@ public interface PreparedStatement extends Statement {
      * batch of commands.
      *
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @see Statement#addBatch
      * @since 1.2
      */
@@ -648,30 +630,28 @@ public interface PreparedStatement extends Statement {
      * will be read from the stream as needed until end-of-file is reached. The
      * JDBC driver will do any necessary conversion from UNICODE to the database
      * char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param reader
-     *                       the <code>java.io.Reader</code> object that
-     *                       contains the
-     *                       Unicode data
+     *        the <code>java.io.Reader</code> object that
+     *        contains the
+     *        Unicode data
      * @param length
-     *                       the number of characters in the stream
+     *        the number of characters in the stream
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.2
      */
-    void setCharacterStream(int parameterIndex, java.io.Reader reader,
-            int length) throws SQLException;
+    void setCharacterStream(int parameterIndex, java.io.Reader reader, int length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given
@@ -679,19 +659,19 @@ public interface PreparedStatement extends Statement {
      * to an SQL <code>REF</code> value when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       an SQL <code>REF</code> value
+     *        an SQL <code>REF</code> value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.2
      */
     void setRef(int parameterIndex, Ref x) throws SQLException;
@@ -702,21 +682,21 @@ public interface PreparedStatement extends Statement {
      * it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       a <code>Blob</code> object that maps an SQL
-     *                       <code>BLOB</code>
-     *                       value
+     *        a <code>Blob</code> object that maps an SQL
+     *        <code>BLOB</code>
+     *        value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.2
      */
     void setBlob(int parameterIndex, Blob x) throws SQLException;
@@ -727,21 +707,21 @@ public interface PreparedStatement extends Statement {
      * it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       a <code>Clob</code> object that maps an SQL
-     *                       <code>CLOB</code>
-     *                       value
+     *        a <code>Clob</code> object that maps an SQL
+     *        <code>CLOB</code>
+     *        value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.2
      */
     void setClob(int parameterIndex, Clob x) throws SQLException;
@@ -752,20 +732,20 @@ public interface PreparedStatement extends Statement {
      * it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       an <code>Array</code> object that maps an SQL
-     *                       <code>ARRAY</code> value
+     *        an <code>Array</code> object that maps an SQL
+     *        <code>ARRAY</code> value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.2
      */
     void setArray(int parameterIndex, Array x) throws SQLException;
@@ -791,14 +771,14 @@ public interface PreparedStatement extends Statement {
      *         <code>null</code> if the driver cannot return a
      *         <code>ResultSetMetaData</code> object
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>PreparedStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>PreparedStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     ResultSetMetaData getMetaData() throws SQLException;
@@ -814,24 +794,23 @@ public interface PreparedStatement extends Statement {
      * the application.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @param cal
-     *                       the <code>Calendar</code> object the driver will
-     *                       use to
-     *                       construct the date
+     *        the <code>Calendar</code> object the driver will
+     *        use to
+     *        construct the date
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.2
      */
-    void setDate(int parameterIndex, java.sql.Date x, Calendar cal)
-            throws SQLException;
+    void setDate(int parameterIndex, java.sql.Date x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>java.sql.Time</code>
@@ -844,24 +823,23 @@ public interface PreparedStatement extends Statement {
      * the application.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @param cal
-     *                       the <code>Calendar</code> object the driver will
-     *                       use to
-     *                       construct the time
+     *        the <code>Calendar</code> object the driver will
+     *        use to
+     *        construct the time
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.2
      */
-    void setTime(int parameterIndex, java.sql.Time x, Calendar cal)
-            throws SQLException;
+    void setTime(int parameterIndex, java.sql.Time x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter to the given
@@ -875,31 +853,29 @@ public interface PreparedStatement extends Statement {
      * application.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @param cal
-     *                       the <code>Calendar</code> object the driver will
-     *                       use to
-     *                       construct the timestamp
+     *        the <code>Calendar</code> object the driver will
+     *        use to
+     *        construct the timestamp
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.2
      */
-    void setTimestamp(int parameterIndex, java.sql.Timestamp x, Calendar cal)
-            throws SQLException;
+    void setTimestamp(int parameterIndex, java.sql.Timestamp x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter to SQL <code>NULL</code>. This version of
      * the method <code>setNull</code> should be used for user-defined types and
      * REF type parameters. Examples of user-defined types include: STRUCT,
      * DISTINCT, JAVA_OBJECT, and named array types.
-     *
      * <P>
      * <B>Note:</B> To be portable, applications must give the SQL type code and
      * the fully-qualified SQL type name when specifying a NULL user-defined or
@@ -907,51 +883,48 @@ public interface PreparedStatement extends Statement {
      * name of the parameter itself. For a REF parameter, the name is the type
      * name of the referenced type. If a JDBC driver does not need the type code
      * or type name information, it may ignore it.
-     *
      * Although it is intended for user-defined and Ref parameters, this method
      * may be used to set a null parameter of any JDBC type. If the parameter
      * does not have a user-defined or REF type, the given typeName is ignored.
      *
-     *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param sqlType
-     *                       a value from <code>java.sql.Types</code>
+     *        a value from <code>java.sql.Types</code>
      * @param typeName
-     *                       the fully-qualified name of an SQL user-defined
-     *                       type; ignored
-     *                       if the parameter is not a user-defined type or REF
+     *        the fully-qualified name of an SQL user-defined
+     *        type; ignored
+     *        if the parameter is not a user-defined type or REF
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called on a closed
-     *                                            <code>PreparedStatement</code>
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs or this method is
+     *            called on a closed
+     *            <code>PreparedStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if <code>sqlType</code> is a
-     *                                            <code>ARRAY</code>,
-     *                                            <code>BLOB</code>,
-     *                                            <code>CLOB</code>,
-     *                                            <code>DATALINK</code>,
-     *                                            <code>JAVA_OBJECT</code>,
-     *                                            <code>NCHAR</code>,
-     *                                            <code>NCLOB</code>,
-     *                                            <code>NVARCHAR</code>,
-     *                                            <code>LONGNVARCHAR</code>,
-     *                                            <code>REF</code>,
-     *                                            <code>ROWID</code>,
-     *                                            <code>SQLXML</code>
-     *                                            or <code>STRUCT</code> data
-     *                                            type and the JDBC driver does
-     *                                            not support this data type or
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if <code>sqlType</code> is a
+     *            <code>ARRAY</code>,
+     *            <code>BLOB</code>,
+     *            <code>CLOB</code>,
+     *            <code>DATALINK</code>,
+     *            <code>JAVA_OBJECT</code>,
+     *            <code>NCHAR</code>,
+     *            <code>NCLOB</code>,
+     *            <code>NVARCHAR</code>,
+     *            <code>LONGNVARCHAR</code>,
+     *            <code>REF</code>,
+     *            <code>ROWID</code>,
+     *            <code>SQLXML</code>
+     *            or <code>STRUCT</code> data
+     *            type and the JDBC driver does
+     *            not support this data type or
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
-    void setNull(int parameterIndex, int sqlType, String typeName)
-            throws SQLException;
+    void setNull(int parameterIndex, int sqlType, String typeName) throws SQLException;
 
     // ------------------------- JDBC 3.0 -----------------------------------
 
@@ -961,19 +934,19 @@ public interface PreparedStatement extends Statement {
      * when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the <code>java.net.URL</code> object to be set
+     *        the <code>java.net.URL</code> object to be set
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.4
      */
     void setURL(int parameterIndex, java.net.URL x) throws SQLException;
@@ -986,9 +959,9 @@ public interface PreparedStatement extends Statement {
      *         about the number, types and properties for each parameter marker
      *         of this <code>PreparedStatement</code> object
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @see ParameterMetaData
      * @since 1.4
      */
@@ -1002,20 +975,19 @@ public interface PreparedStatement extends Statement {
      * it sends it to the database
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if a
-     *                                         database access error occurs or
-     *                                         this method is called on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if a
+     *         database access error occurs or
+     *         this method is called on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setRowId(int parameterIndex, RowId x) throws SQLException;
@@ -1028,24 +1000,24 @@ public interface PreparedStatement extends Statement {
      * <code>NVARCHAR</code> values) when it sends it to the database.
      *
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs; or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs; or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setNString(int parameterIndex, String value) throws SQLException;
@@ -1057,30 +1029,29 @@ public interface PreparedStatement extends Statement {
      * national character set in the database.
      * 
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs; or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs; or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setNCharacterStream(int parameterIndex, Reader value, long length)
-            throws SQLException;
+    void setNCharacterStream(int parameterIndex, Reader value, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>java.sql.NClob</code> object.
@@ -1088,24 +1059,24 @@ public interface PreparedStatement extends Statement {
      * it to the database.
      * 
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs; or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs; or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setNClob(int parameterIndex, NClob value) throws SQLException;
@@ -1123,32 +1094,30 @@ public interface PreparedStatement extends Statement {
      * or a <code>CLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if a
-     *                                         database access error occurs;
-     *                                         this
-     *                                         method is called on a closed
-     *                                         <code>PreparedStatement</code>
-     *                                         or if the length specified is
-     *                                         less than zero.
-     *
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if a
+     *         database access error occurs;
+     *         this
+     *         method is called on a closed
+     *         <code>PreparedStatement</code>
+     *         or if the length specified is
+     *         less than zero.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setClob(int parameterIndex, Reader reader, long length)
-            throws SQLException;
+    void setClob(int parameterIndex, Reader reader, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>InputStream</code> object. The
@@ -1163,34 +1132,32 @@ public interface PreparedStatement extends Statement {
      * <code>LONGVARBINARY</code> or a <code>BLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param inputStream
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of bytes in the parameter data.
+     *        the number of bytes in the parameter data.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if a
-     *                                         database access error occurs;
-     *                                         this
-     *                                         method is called on a closed
-     *                                         <code>PreparedStatement</code>;
-     *                                         if the length specified is less
-     *                                         than zero or if the number of
-     *                                         bytes in the inputstream does not
-     *                                         match the specified length.
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if a
+     *         database access error occurs;
+     *         this
+     *         method is called on a closed
+     *         <code>PreparedStatement</code>;
+     *         if the length specified is less
+     *         than zero or if the number of
+     *         bytes in the inputstream does not
+     *         match the specified length.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBlob(int parameterIndex, InputStream inputStream, long length)
-            throws SQLException;
+    void setBlob(int parameterIndex, InputStream inputStream, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. The reader
@@ -1205,35 +1172,33 @@ public interface PreparedStatement extends Statement {
      * <code>LONGNVARCHAR</code> or a <code>NCLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         length specified is less than
-     *                                         zero; if the driver does not
-     *                                         support national character sets;
-     *                                         if the driver can detect that a
-     *                                         data conversion error could
-     *                                         occur; if a database access error
-     *                                         occurs or this method is
-     *                                         called on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         length specified is less than
+     *         zero; if the driver does not
+     *         support national character sets;
+     *         if the driver can detect that a
+     *         data conversion error could
+     *         occur; if a database access error
+     *         occurs or this method is
+     *         called on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setNClob(int parameterIndex, Reader reader, long length)
-            throws SQLException;
+    void setNClob(int parameterIndex, Reader reader, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>java.sql.SQLXML</code>
@@ -1242,31 +1207,30 @@ public interface PreparedStatement extends Statement {
      * <p>
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param xmlObject
-     *                       a <code>SQLXML</code> object that maps an SQL
-     *                       <code>XML</code>
-     *                       value
+     *        a <code>SQLXML</code> object that maps an SQL
+     *        <code>XML</code>
+     *        value
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if a
-     *                                         database access error occurs;
-     *                                         this
-     *                                         method is called on a closed
-     *                                         <code>PreparedStatement</code>
-     *                                         or the
-     *                                         <code>java.xml.transform.Result</code>,
-     *                                         <code>Writer</code> or
-     *                                         <code>OutputStream</code> has not
-     *                                         been
-     *                                         closed for the
-     *                                         <code>SQLXML</code> object
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if a
+     *         database access error occurs;
+     *         this
+     *         method is called on a closed
+     *         <code>PreparedStatement</code>
+     *         or the
+     *         <code>java.xml.transform.Result</code>,
+     *         <code>Writer</code> or
+     *         <code>OutputStream</code> has not
+     *         been
+     *         closed for the
+     *         <code>SQLXML</code> object
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setSQLXML(int parameterIndex, SQLXML xmlObject) throws SQLException;
@@ -1274,18 +1238,15 @@ public interface PreparedStatement extends Statement {
     /**
      * <p>
      * Sets the value of the designated parameter with the given object.
-     *
      * If the second argument is an <code>InputStream</code> then the stream
      * must contain the number of bytes specified by scaleOrLength. If the
      * second argument is a <code>Reader</code> then the reader must contain the
      * number of characters specified by scaleOrLength. If these conditions are
      * not true the driver will generate a <code>SQLException</code> when the
      * prepared statement is executed.
-     *
      * <p>
      * The given Java object will be converted to the given targetSqlType before
      * being sent to the database.
-     *
      * If the object has a custom mapping (is of a class implementing the
      * interface <code>SQLData</code>), the JDBC driver should call the method
      * <code>SQLData.writeSQL</code> to write it to the SQL data stream. If, on
@@ -1294,54 +1255,51 @@ public interface PreparedStatement extends Statement {
      * <code>Struct</code>, <code>java.net.URL</code>, or <code>Array</code>,
      * the driver should pass it to the database as a value of the corresponding
      * SQL type.
-     *
      * <p>
      * Note that this method may be used to pass database-specific abstract data
      * types.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                       the SQL type (as defined in java.sql.Types) to be
-     *                       sent to the
-     *                       database. The scale argument may further qualify
-     *                       this type.
+     *        the SQL type (as defined in java.sql.Types) to be
+     *        sent to the
+     *        database. The scale argument may further qualify
+     *        this type.
      * @param scaleOrLength
-     *                       for <code>java.sql.Types.DECIMAL</code> or
-     *                       <code>java.sql.Types.NUMERIC types</code>, this is
-     *                       the number
-     *                       of digits after the decimal point. For Java Object
-     *                       types
-     *                       <code>InputStream</code> and <code>Reader</code>,
-     *                       this is the
-     *                       length of the data in the stream or reader. For all
-     *                       other
-     *                       types, this value will be ignored.
+     *        for <code>java.sql.Types.DECIMAL</code> or
+     *        <code>java.sql.Types.NUMERIC types</code>, this is
+     *        the number
+     *        of digits after the decimal point. For Java Object
+     *        types
+     *        <code>InputStream</code> and <code>Reader</code>,
+     *        this is the
+     *        length of the data in the stream or reader. For all
+     *        other
+     *        types, this value will be ignored.
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs; this method is called
-     *                                            on a closed
-     *                                            <code>PreparedStatement</code>
-     *                                            or if the Java Object
-     *                                            specified by x is an
-     *                                            InputStream or Reader object
-     *                                            and the
-     *                                            value of the scale parameter
-     *                                            is less than zero
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs; this method is called
+     *            on a closed
+     *            <code>PreparedStatement</code>
+     *            or if the Java Object
+     *            specified by x is an
+     *            InputStream or Reader object
+     *            and the
+     *            value of the scale parameter
+     *            is less than zero
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support the specified
-     *                                            targetSqlType
+     *            if the JDBC driver does not
+     *            support the specified
+     *            targetSqlType
      * @see Types
-     *
      */
-    void setObject(int parameterIndex, Object x, int targetSqlType,
-            int scaleOrLength) throws SQLException;
+    void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
@@ -1350,29 +1308,27 @@ public interface PreparedStatement extends Statement {
      * via a <code>java.io.InputStream</code>. Data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from ASCII to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.6
      */
-    void setAsciiStream(int parameterIndex, java.io.InputStream x, long length)
-            throws SQLException;
+    void setAsciiStream(int parameterIndex, java.io.InputStream x, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
@@ -1380,30 +1336,28 @@ public interface PreparedStatement extends Statement {
      * a <code>LONGVARBINARY</code> parameter, it may be more practical to send
      * it via a <code>java.io.InputStream</code> object. The data will be read
      * from the stream as needed until end-of-file is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the java input stream which contains the binary
-     *                       parameter
-     *                       value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.6
      */
-    void setBinaryStream(int parameterIndex, java.io.InputStream x, long length)
-            throws SQLException;
+    void setBinaryStream(int parameterIndex, java.io.InputStream x, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>Reader</code> object,
@@ -1413,30 +1367,28 @@ public interface PreparedStatement extends Statement {
      * will be read from the stream as needed until end-of-file is reached. The
      * JDBC driver will do any necessary conversion from UNICODE to the database
      * char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param reader
-     *                       the <code>java.io.Reader</code> object that
-     *                       contains the
-     *                       Unicode data
+     *        the <code>java.io.Reader</code> object that
+     *        contains the
+     *        Unicode data
      * @param length
-     *                       the number of characters in the stream
+     *        the number of characters in the stream
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @since 1.6
      */
-    void setCharacterStream(int parameterIndex, java.io.Reader reader,
-            long length) throws SQLException;
+    void setCharacterStream(int parameterIndex, java.io.Reader reader, long length) throws SQLException;
 
     // -----
     /**
@@ -1446,7 +1398,6 @@ public interface PreparedStatement extends Statement {
      * Data will be read from the stream as needed until end-of-file is reached.
      * The JDBC driver will do any necessary conversion from ASCII to the
      * database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1456,24 +1407,23 @@ public interface PreparedStatement extends Statement {
      * which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setAsciiStream(int parameterIndex, java.io.InputStream x)
-            throws SQLException;
+    void setAsciiStream(int parameterIndex, java.io.InputStream x) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream. When a very
@@ -1481,7 +1431,6 @@ public interface PreparedStatement extends Statement {
      * may be more practical to send it via a <code>java.io.InputStream</code>
      * object. The data will be read from the stream as needed until end-of-file
      * is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1491,25 +1440,24 @@ public interface PreparedStatement extends Statement {
      * which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the java input stream which contains the binary
-     *                       parameter
-     *                       value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBinaryStream(int parameterIndex, java.io.InputStream x)
-            throws SQLException;
+    void setBinaryStream(int parameterIndex, java.io.InputStream x) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>Reader</code> object.
@@ -1518,7 +1466,6 @@ public interface PreparedStatement extends Statement {
      * <code>java.io.Reader</code> object. The data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from UNICODE to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1528,32 +1475,30 @@ public interface PreparedStatement extends Statement {
      * <code>setCharacterStream</code> which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param reader
-     *                       the <code>java.io.Reader</code> object that
-     *                       contains the
-     *                       Unicode data
+     *        the <code>java.io.Reader</code> object that
+     *        contains the
+     *        Unicode data
      * @exception SQLException
-     *                         if parameterIndex does not correspond to a
-     *                         parameter
-     *                         marker in the SQL statement; if a database access
-     *                         error
-     *                         occurs or this method is called on a closed
-     *                         <code>PreparedStatement</code>
+     *            if parameterIndex does not correspond to a
+     *            parameter
+     *            marker in the SQL statement; if a database access
+     *            error
+     *            occurs or this method is called on a closed
+     *            <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setCharacterStream(int parameterIndex, java.io.Reader reader)
-            throws SQLException;
+    void setCharacterStream(int parameterIndex, java.io.Reader reader) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. The
      * <code>Reader</code> reads the data till end-of-file is reached. The
      * driver does the necessary conversion from Java character format to the
      * national character set in the database.
-     * 
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1563,28 +1508,27 @@ public interface PreparedStatement extends Statement {
      * <code>setNCharacterStream</code> which takes a length parameter.
      *
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs; or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs; or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setNCharacterStream(int parameterIndex, Reader value)
-            throws SQLException;
+    void setNCharacterStream(int parameterIndex, Reader value) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. This
@@ -1594,34 +1538,32 @@ public interface PreparedStatement extends Statement {
      * <code>setCharacterStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be sent to the
      * server as a <code>LONGVARCHAR</code> or a <code>CLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setClob</code> which
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if a
-     *                                         database access error occurs;
-     *                                         this
-     *                                         method is called on a closed
-     *                                         <code>PreparedStatement</code>or
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement
-     *
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if a
+     *         database access error occurs;
+     *         this
+     *         method is called on a closed
+     *         <code>PreparedStatement</code>or
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setClob(int parameterIndex, Reader reader) throws SQLException;
@@ -1634,38 +1576,35 @@ public interface PreparedStatement extends Statement {
      * <code>setBinaryStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be sent to the
      * server as a <code>LONGVARBINARY</code> or a <code>BLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setBlob</code> which
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param inputStream
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if a
-     *                                         database access error occurs;
-     *                                         this
-     *                                         method is called on a closed
-     *                                         <code>PreparedStatement</code>
-     *                                         or if parameterIndex does not
-     *                                         correspond to a parameter
-     *                                         marker in the SQL statement,
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if a
+     *         database access error occurs;
+     *         this
+     *         method is called on a closed
+     *         <code>PreparedStatement</code>
+     *         or if parameterIndex does not
+     *         correspond to a parameter
+     *         marker in the SQL statement,
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBlob(int parameterIndex, InputStream inputStream)
-            throws SQLException;
+    void setBlob(int parameterIndex, InputStream inputStream) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. This
@@ -1681,28 +1620,27 @@ public interface PreparedStatement extends Statement {
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setNClob(int parameterIndex, Reader reader) throws SQLException;
@@ -1712,18 +1650,15 @@ public interface PreparedStatement extends Statement {
     /**
      * <p>
      * Sets the value of the designated parameter with the given object.
-     *
      * If the second argument is an {@code InputStream} then the stream must
      * contain the number of bytes specified by scaleOrLength. If the second
      * argument is a {@code Reader} then the reader must contain the number of
      * characters specified by scaleOrLength. If these conditions are not true
      * the driver will generate a {@code SQLException} when the prepared
      * statement is executed.
-     *
      * <p>
      * The given Java object will be converted to the given targetSqlType before
      * being sent to the database.
-     *
      * If the object has a custom mapping (is of a class implementing the
      * interface {@code SQLData}), the JDBC driver should call the method
      * {@code SQLData.writeSQL} to write it to the SQL data stream. If, on the
@@ -1731,7 +1666,6 @@ public interface PreparedStatement extends Statement {
      * {@code Blob}, {@code Clob}, {@code NClob}, {@code Struct},
      * {@code java.net.URL}, or {@code Array}, the driver should pass it to the
      * database as a value of the corresponding SQL type.
-     *
      * <p>
      * Note that this method may be used to pass database-specific abstract data
      * types.
@@ -1740,53 +1674,52 @@ public interface PreparedStatement extends Statement {
      * {@code SQLFeatureNotSupportedException}
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                       the SQL type to be sent to the database. The scale
-     *                       argument
-     *                       may further qualify this type.
+     *        the SQL type to be sent to the database. The scale
+     *        argument
+     *        may further qualify this type.
      * @param scaleOrLength
-     *                       for {@code java.sql.JDBCType.DECIMAL} or
-     *                       {@code java.sql.JDBCType.NUMERIC types}, this is
-     *                       the number of
-     *                       digits after the decimal point. For Java Object
-     *                       types
-     *                       {@code InputStream} and {@code Reader}, this is the
-     *                       length of
-     *                       the data in the stream or reader. For all other
-     *                       types, this
-     *                       value will be ignored.
+     *        for {@code java.sql.JDBCType.DECIMAL} or
+     *        {@code java.sql.JDBCType.NUMERIC types}, this is
+     *        the number of
+     *        digits after the decimal point. For Java Object
+     *        types
+     *        {@code InputStream} and {@code Reader}, this is the
+     *        length of
+     *        the data in the stream or reader. For all other
+     *        types, this
+     *        value will be ignored.
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called on a closed
-     *                                            {@code PreparedStatement} or
-     *                                            if the Java Object specified
-     *                                            by x is an InputStream or
-     *                                            Reader object and the value of
-     *                                            the scale parameter is less
-     *                                            than zero
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs or this method is
+     *            called on a closed
+     *            {@code PreparedStatement} or
+     *            if the Java Object specified
+     *            by x is an InputStream or
+     *            Reader object and the value of
+     *            the scale parameter is less
+     *            than zero
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support the specified
-     *                                            targetSqlType
+     *            if the JDBC driver does not
+     *            support the specified
+     *            targetSqlType
      * @see JDBCType
      * @see SQLType
      * @since 1.8
      */
-    default void setObject(int parameterIndex, Object x, SQLType targetSqlType,
-            int scaleOrLength) throws SQLException {
+    default void setObject(int parameterIndex, Object x, SQLType targetSqlType, int scaleOrLength)
+            throws SQLException {
         throw new SQLFeatureNotSupportedException("setObject not implemented");
     }
 
     /**
      * Sets the value of the designated parameter with the given object.
-     *
      * This method is similar to
      * {@link #setObject(int parameterIndex, Object x, SQLType targetSqlType, int scaleOrLength)}
      * , except that it assumes a scale of zero.
@@ -1795,29 +1728,28 @@ public interface PreparedStatement extends Statement {
      * {@code SQLFeatureNotSupportedException}
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                       the SQL type to be sent to the database
+     *        the SQL type to be sent to the database
      * @exception SQLException
-     *                                            if parameterIndex does not
-     *                                            correspond to a parameter
-     *                                            marker in the SQL statement;
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called on a closed
-     *                                            {@code PreparedStatement}
+     *            if parameterIndex does not
+     *            correspond to a parameter
+     *            marker in the SQL statement;
+     *            if a database access error
+     *            occurs or this method is
+     *            called on a closed
+     *            {@code PreparedStatement}
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support the specified
-     *                                            targetSqlType
+     *            if the JDBC driver does not
+     *            support the specified
+     *            targetSqlType
      * @see JDBCType
      * @see SQLType
      * @since 1.8
      */
-    default void setObject(int parameterIndex, Object x, SQLType targetSqlType)
-            throws SQLException {
+    default void setObject(int parameterIndex, Object x, SQLType targetSqlType) throws SQLException {
         throw new SQLFeatureNotSupportedException("setObject not implemented");
     }
 
@@ -1836,23 +1768,22 @@ public interface PreparedStatement extends Statement {
      * @return either (1) the row count for SQL Data Manipulation Language (DML)
      *         statements or (2) 0 for SQL statements that return nothing
      * @exception SQLException
-     *                         if a database access error occurs; this method is
-     *                         called
-     *                         on a closed <code>PreparedStatement</code> or the
-     *                         SQL
-     *                         statement returns a <code>ResultSet</code> object
+     *            if a database access error occurs; this method is
+     *            called
+     *            on a closed <code>PreparedStatement</code> or the
+     *            SQL
+     *            statement returns a <code>ResultSet</code> object
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value that
-     *                             was specified by the {@code setQueryTimeout}
-     *                             method has been
-     *                             exceeded and has at least attempted to cancel
-     *                             the currently
-     *                             running {@code Statement}
+     *         when the driver has determined that the
+     *         timeout value that
+     *         was specified by the {@code setQueryTimeout}
+     *         method has been
+     *         exceeded and has at least attempted to cancel
+     *         the currently
+     *         running {@code Statement}
      * @since 1.8
      */
     default long executeLargeUpdate() throws SQLException {
-        throw new UnsupportedOperationException(
-                "executeLargeUpdate not implemented");
+        throw new UnsupportedOperationException("executeLargeUpdate not implemented");
     }
 }

@@ -107,7 +107,7 @@ public class TitledBorder extends AbstractBorder {
      * Creates a TitledBorder instance.
      *
      * @param title
-     *              the title the border should display
+     *        the title the border should display
      */
     public TitledBorder(String title) {
         this(null, title, LEADING, DEFAULT_POSITION, null, null);
@@ -118,7 +118,7 @@ public class TitledBorder extends AbstractBorder {
      * title.
      *
      * @param border
-     *               the border
+     *        the border
      */
     public TitledBorder(Border border) {
         this(border, "", LEADING, DEFAULT_POSITION, null, null);
@@ -128,9 +128,9 @@ public class TitledBorder extends AbstractBorder {
      * Creates a TitledBorder instance with the specified border and title.
      *
      * @param border
-     *               the border
+     *        the border
      * @param title
-     *               the title the border should display
+     *        the title the border should display
      */
     public TitledBorder(Border border, String title) {
         this(border, title, LEADING, DEFAULT_POSITION, null, null);
@@ -141,16 +141,15 @@ public class TitledBorder extends AbstractBorder {
      * title-justification, and title-position.
      *
      * @param border
-     *                           the border
+     *        the border
      * @param title
-     *                           the title the border should display
+     *        the title the border should display
      * @param titleJustification
-     *                           the justification for the title
+     *        the justification for the title
      * @param titlePosition
-     *                           the position for the title
+     *        the position for the title
      */
-    public TitledBorder(Border border, String title, int titleJustification,
-            int titlePosition) {
+    public TitledBorder(Border border, String title, int titleJustification, int titlePosition) {
         this(border, title, titleJustification, titlePosition, null, null);
     }
 
@@ -159,18 +158,18 @@ public class TitledBorder extends AbstractBorder {
      * title-justification, title-position, and title-font.
      *
      * @param border
-     *                           the border
+     *        the border
      * @param title
-     *                           the title the border should display
+     *        the title the border should display
      * @param titleJustification
-     *                           the justification for the title
+     *        the justification for the title
      * @param titlePosition
-     *                           the position for the title
+     *        the position for the title
      * @param titleFont
-     *                           the font for rendering the title
+     *        the font for rendering the title
      */
-    public TitledBorder(Border border, String title, int titleJustification,
-            int titlePosition, Font titleFont) {
+    public TitledBorder(Border border, String title, int titleJustification, int titlePosition,
+            Font titleFont) {
         this(border, title, titleJustification, titlePosition, titleFont, null);
     }
 
@@ -179,22 +178,22 @@ public class TitledBorder extends AbstractBorder {
      * title-justification, title-position, title-font, and title-color.
      *
      * @param border
-     *                           the border
+     *        the border
      * @param title
-     *                           the title the border should display
+     *        the title the border should display
      * @param titleJustification
-     *                           the justification for the title
+     *        the justification for the title
      * @param titlePosition
-     *                           the position for the title
+     *        the position for the title
      * @param titleFont
-     *                           the font of the title
+     *        the font of the title
      * @param titleColor
-     *                           the color of the title
+     *        the color of the title
      */
-    @ConstructorProperties({ "border", "title", "titleJustification",
-            "titlePosition", "titleFont", "titleColor" })
-    public TitledBorder(Border border, String title, int titleJustification,
-            int titlePosition, Font titleFont, Color titleColor) {
+    @ConstructorProperties({ "border", "title", "titleJustification", "titlePosition", "titleFont",
+            "titleColor" })
+    public TitledBorder(Border border, String title, int titleJustification, int titlePosition,
+            Font titleFont, Color titleColor) {
         this.title = title;
         this.border = border;
         this.titleFont = titleFont;
@@ -213,20 +212,19 @@ public class TitledBorder extends AbstractBorder {
      * and size.
      * 
      * @param c
-     *               the component for which this border is being painted
+     *        the component for which this border is being painted
      * @param g
-     *               the paint graphics
+     *        the paint graphics
      * @param x
-     *               the x position of the painted border
+     *        the x position of the painted border
      * @param y
-     *               the y position of the painted border
+     *        the y position of the painted border
      * @param width
-     *               the width of the painted border
+     *        the width of the painted border
      * @param height
-     *               the height of the painted border
+     *        the height of the painted border
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         Border border = getBorder();
         String title = getTitle();
         if ((title != null) && !title.isEmpty()) {
@@ -303,28 +301,22 @@ public class TitledBorder extends AbstractBorder {
 
             if (border != null) {
                 if ((position != TOP) && (position != BOTTOM)) {
-                    border.paintBorder(c, g, borderX, borderY, borderW,
-                            borderH);
+                    border.paintBorder(c, g, borderX, borderY, borderW, borderH);
                 } else {
                     Graphics g2 = g.create();
                     if (g2 instanceof Graphics2D) {
                         Graphics2D g2d = (Graphics2D) g2;
                         Path2D path = new Path2D.Float();
-                        path.append(new Rectangle(borderX, borderY, borderW,
-                                labelY - borderY), false);
-                        path.append(new Rectangle(borderX, labelY, labelX
-                                - borderX - TEXT_SPACING, labelH), false);
-                        path.append(new Rectangle(labelX + labelW
-                                + TEXT_SPACING, labelY, borderX - labelX
-                                        + borderW - labelW - TEXT_SPACING,
-                                labelH), false);
-                        path.append(new Rectangle(borderX, labelY + labelH,
-                                borderW, borderY - labelY + borderH - labelH),
+                        path.append(new Rectangle(borderX, borderY, borderW, labelY - borderY), false);
+                        path.append(new Rectangle(borderX, labelY, labelX - borderX - TEXT_SPACING, labelH),
                                 false);
+                        path.append(new Rectangle(labelX + labelW + TEXT_SPACING, labelY, borderX - labelX
+                                + borderW - labelW - TEXT_SPACING, labelH), false);
+                        path.append(new Rectangle(borderX, labelY + labelH, borderW, borderY - labelY
+                                + borderH - labelH), false);
                         g2d.clip(path);
                     }
-                    border.paintBorder(c, g2, borderX, borderY, borderW,
-                            borderH);
+                    border.paintBorder(c, g2, borderX, borderY, borderW, borderH);
                     g2.dispose();
                 }
             }
@@ -341,9 +333,9 @@ public class TitledBorder extends AbstractBorder {
      * Reinitialize the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         Border border = getBorder();
@@ -411,8 +403,7 @@ public class TitledBorder extends AbstractBorder {
      * @return the border of the titled border
      */
     public Border getBorder() {
-        return border != null ? border
-                : UIManager.getBorder("TitledBorder.border");
+        return border != null ? border : UIManager.getBorder("TitledBorder.border");
     }
 
     /**
@@ -439,8 +430,7 @@ public class TitledBorder extends AbstractBorder {
      * @return the title-font of the titled border
      */
     public Font getTitleFont() {
-        return titleFont == null ? UIManager.getFont("TitledBorder.font")
-                : titleFont;
+        return titleFont == null ? UIManager.getFont("TitledBorder.font") : titleFont;
     }
 
     /**
@@ -449,8 +439,7 @@ public class TitledBorder extends AbstractBorder {
      * @return the title-color of the titled border
      */
     public Color getTitleColor() {
-        return titleColor == null ? UIManager.getColor(
-                "TitledBorder.titleColor") : titleColor;
+        return titleColor == null ? UIManager.getColor("TitledBorder.titleColor") : titleColor;
     }
 
     // REMIND(aim): remove all or some of these set methods?
@@ -459,7 +448,7 @@ public class TitledBorder extends AbstractBorder {
      * Sets the title of the titled border.
      * 
      * @param title
-     *              the title for the border
+     *        the title for the border
      */
     public void setTitle(String title) {
         this.title = title;
@@ -469,7 +458,7 @@ public class TitledBorder extends AbstractBorder {
      * Sets the border of the titled border.
      * 
      * @param border
-     *               the border
+     *        the border
      */
     public void setBorder(Border border) {
         this.border = border;
@@ -479,7 +468,7 @@ public class TitledBorder extends AbstractBorder {
      * Sets the title-position of the titled border.
      * 
      * @param titlePosition
-     *                      the position for the border
+     *        the position for the border
      */
     public void setTitlePosition(int titlePosition) {
         switch (titlePosition) {
@@ -493,8 +482,7 @@ public class TitledBorder extends AbstractBorder {
                 this.titlePosition = titlePosition;
                 break;
             default:
-                throw new IllegalArgumentException(titlePosition
-                        + " is not a valid title position.");
+                throw new IllegalArgumentException(titlePosition + " is not a valid title position.");
         }
     }
 
@@ -502,7 +490,7 @@ public class TitledBorder extends AbstractBorder {
      * Sets the title-justification of the titled border.
      * 
      * @param titleJustification
-     *                           the justification for the border
+     *        the justification for the border
      */
     public void setTitleJustification(int titleJustification) {
         switch (titleJustification) {
@@ -524,7 +512,7 @@ public class TitledBorder extends AbstractBorder {
      * Sets the title-font of the titled border.
      * 
      * @param titleFont
-     *                  the font for the border title
+     *        the font for the border title
      */
     public void setTitleFont(Font titleFont) {
         this.titleFont = titleFont;
@@ -534,7 +522,7 @@ public class TitledBorder extends AbstractBorder {
      * Sets the title-color of the titled border.
      * 
      * @param titleColor
-     *                   the color for the border title
+     *        the color for the border title
      */
     public void setTitleColor(Color titleColor) {
         this.titleColor = titleColor;
@@ -545,13 +533,12 @@ public class TitledBorder extends AbstractBorder {
      * display the border and title.
      * 
      * @param c
-     *          the component where this border will be drawn
+     *        the component where this border will be drawn
      * @return the {@code Dimension} object
      */
     public Dimension getMinimumSize(Component c) {
         Insets insets = getBorderInsets(c);
-        Dimension minSize = new Dimension(insets.right + insets.left, insets.top
-                + insets.bottom);
+        Dimension minSize = new Dimension(insets.right + insets.left, insets.top + insets.bottom);
         String title = getTitle();
         if ((title != null) && !title.isEmpty()) {
             JLabel label = getLabel(c);
@@ -571,9 +558,9 @@ public class TitledBorder extends AbstractBorder {
      * Returns the baseline.
      *
      * @throws NullPointerException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
@@ -601,17 +588,14 @@ public class TitledBorder extends AbstractBorder {
                     return baseline;
                 case TOP:
                     insets.top = edge + (insets.top - size.height) / 2;
-                    return (insets.top < edge) ? baseline
-                            : baseline + insets.top;
+                    return (insets.top < edge) ? baseline : baseline + insets.top;
                 case BELOW_TOP:
                     return baseline + insets.top + edge;
                 case ABOVE_BOTTOM:
-                    return baseline + height - size.height - insets.bottom
-                            - edge;
+                    return baseline + height - size.height - insets.bottom - edge;
                 case BOTTOM:
                     insets.bottom = edge + (insets.bottom - size.height) / 2;
-                    return (insets.bottom < edge) ? baseline + height
-                            - size.height
+                    return (insets.bottom < edge) ? baseline + height - size.height
                             : baseline + height - size.height + insets.bottom;
                 case BELOW_BOTTOM:
                     return baseline + height - size.height;
@@ -625,12 +609,11 @@ public class TitledBorder extends AbstractBorder {
      * size changes.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-            Component c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(Component c) {
         super.getBaselineResizeBehavior(c);
         switch (getPosition()) {
             case TitledBorder.ABOVE_TOP:
@@ -682,8 +665,7 @@ public class TitledBorder extends AbstractBorder {
 
     private int getJustification(Component c) {
         int justification = getTitleJustification();
-        if ((justification == LEADING)
-                || (justification == DEFAULT_JUSTIFICATION)) {
+        if ((justification == LEADING) || (justification == DEFAULT_JUSTIFICATION)) {
             return c.getComponentOrientation().isLeftToRight() ? LEFT : RIGHT;
         }
         if (justification == TRAILING) {
@@ -723,8 +705,7 @@ public class TitledBorder extends AbstractBorder {
         return this.label;
     }
 
-    private static Insets getBorderInsets(Border border, Component c,
-            Insets insets) {
+    private static Insets getBorderInsets(Border border, Component c, Insets insets) {
         if (border == null) {
             insets.set(0, 0, 0, 0);
         } else if (border instanceof AbstractBorder) {

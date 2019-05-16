@@ -6,7 +6,6 @@
 /**
  * This package provides a pluggable authentication framework.
  * <h2>Package Specification</h2>
- *
  * <ul>
  * <li><a href="{@docRoot}/../technotes/guides/security/StandardNames.html"
  * > <b>Java&trade; Cryptography Architecture Standard Algorithm Name

@@ -61,8 +61,7 @@ class MLetParser {
      * Scan spaces.
      */
     public void skipSpace(Reader in) throws IOException {
-        while ((c >= 0) && ((c == ' ') || (c == '\t') || (c == '\n')
-                || (c == '\r'))) {
+        while ((c >= 0) && ((c == ' ') || (c == '\t') || (c == '\n') || (c == '\r'))) {
             c = in.read();
         }
     }
@@ -73,8 +72,8 @@ class MLetParser {
     public String scanIdentifier(Reader in) throws IOException {
         StringBuilder buf = new StringBuilder();
         while (true) {
-            if (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z'))
-                    || ((c >= '0') && (c <= '9')) || (c == '_')) {
+            if (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) || ((c >= '0') && (c <= '9'))
+                    || (c == '_')) {
                 buf.append((char) c);
                 c = in.read();
             } else {
@@ -104,9 +103,8 @@ class MLetParser {
                     c = in.read();
                 }
                 StringBuilder buf = new StringBuilder();
-                while ((c > 0) && (((quote < 0) && (c != ' ') && (c != '\t')
-                        && (c != '\n') && (c != '\r') && (c != '>'))
-                        || ((quote >= 0) && (c != quote)))) {
+                while ((c > 0) && (((quote < 0) && (c != ' ') && (c != '\t') && (c != '\n') && (c != '\r')
+                        && (c != '>')) || ((quote >= 0) && (c != quote)))) {
                     buf.append((char) c);
                     c = in.read();
                 }
@@ -137,8 +135,7 @@ class MLetParser {
         URLConnection conn;
 
         conn = url.openConnection();
-        Reader in = new BufferedReader(new InputStreamReader(conn
-                .getInputStream(), "UTF-8"));
+        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
         // The original URL may have been redirected - this
         // sets it to whatever URL/codebase we ended up getting
@@ -165,8 +162,7 @@ class MLetParser {
                         throw new IOException("Missing '>' in tag");
                     if (nm.equalsIgnoreCase(tag)) {
                         if (atts != null) {
-                            mlets.add(new MLetContent(url, atts, types,
-                                    values));
+                            mlets.add(new MLetContent(url, atts, types, values));
                         }
                         atts = null;
                         types = new ArrayList<String>();
@@ -178,44 +174,43 @@ class MLetParser {
                         Map<String, String> t = scanTag(in);
                         String att = t.get("type");
                         if (att == null) {
-                            MLET_LOGGER.logp(Level.FINER, MLetParser.class
-                                    .getName(), mth, requiresTypeWarning);
+                            MLET_LOGGER.logp(Level.FINER, MLetParser.class.getName(), mth,
+                                    requiresTypeWarning);
                             throw new IOException(requiresTypeWarning);
                         } else {
                             if (atts != null) {
                                 types.add(att);
                             } else {
-                                MLET_LOGGER.logp(Level.FINER, MLetParser.class
-                                        .getName(), mth, paramOutsideWarning);
+                                MLET_LOGGER.logp(Level.FINER, MLetParser.class.getName(), mth,
+                                        paramOutsideWarning);
                                 throw new IOException(paramOutsideWarning);
                             }
                         }
                         String val = t.get("value");
                         if (val == null) {
-                            MLET_LOGGER.logp(Level.FINER, MLetParser.class
-                                    .getName(), mth, requiresValueWarning);
+                            MLET_LOGGER.logp(Level.FINER, MLetParser.class.getName(), mth,
+                                    requiresValueWarning);
                             throw new IOException(requiresValueWarning);
                         } else {
                             if (atts != null) {
                                 values.add(val);
                             } else {
-                                MLET_LOGGER.logp(Level.FINER, MLetParser.class
-                                        .getName(), mth, paramOutsideWarning);
+                                MLET_LOGGER.logp(Level.FINER, MLetParser.class.getName(), mth,
+                                        paramOutsideWarning);
                                 throw new IOException(paramOutsideWarning);
                             }
                         }
                     } else {
                         if (nm.equalsIgnoreCase(tag)) {
                             atts = scanTag(in);
-                            if (atts.get("code") == null && atts.get(
-                                    "object") == null) {
-                                MLET_LOGGER.logp(Level.FINER, MLetParser.class
-                                        .getName(), mth, requiresCodeWarning);
+                            if (atts.get("code") == null && atts.get("object") == null) {
+                                MLET_LOGGER.logp(Level.FINER, MLetParser.class.getName(), mth,
+                                        requiresCodeWarning);
                                 throw new IOException(requiresCodeWarning);
                             }
                             if (atts.get("archive") == null) {
-                                MLET_LOGGER.logp(Level.FINER, MLetParser.class
-                                        .getName(), mth, requiresJarsWarning);
+                                MLET_LOGGER.logp(Level.FINER, MLetParser.class.getName(), mth,
+                                        requiresJarsWarning);
                                 throw new IOException(requiresJarsWarning);
                             }
                         }
@@ -237,14 +232,12 @@ class MLetParser {
         if (urlname.indexOf(':') <= 1) {
             String userDir = System.getProperty("user.dir");
             String prot;
-            if (userDir.charAt(0) == '/' || userDir.charAt(
-                    0) == File.separatorChar) {
+            if (userDir.charAt(0) == '/' || userDir.charAt(0) == File.separatorChar) {
                 prot = "file:";
             } else {
                 prot = "file:/";
             }
-            url = new URL(prot + userDir.replace(File.separatorChar, '/')
-                    + "/");
+            url = new URL(prot + userDir.replace(File.separatorChar, '/') + "/");
             url = new URL(url, urlname);
         } else {
             url = new URL(urlname);

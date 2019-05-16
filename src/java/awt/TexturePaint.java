@@ -39,12 +39,12 @@ public class TexturePaint implements Paint {
      * Constructs a <code>TexturePaint</code> object.
      * 
      * @param txtr
-     *               the <code>BufferedImage</code> object with the texture used
-     *               for painting
+     *        the <code>BufferedImage</code> object with the texture used
+     *        for painting
      * @param anchor
-     *               the <code>Rectangle2D</code> in user space used to anchor
-     *               and
-     *               replicate the texture
+     *        the <code>Rectangle2D</code> in user space used to anchor
+     *        and
+     *        replicate the texture
      */
     public TexturePaint(BufferedImage txtr, Rectangle2D anchor) {
         this.bufImg = txtr;
@@ -71,8 +71,7 @@ public class TexturePaint implements Paint {
      *         <code>TexturePaint</code>.
      */
     public Rectangle2D getAnchorRect() {
-        return new Rectangle2D.Double(tx, ty, sx * bufImg.getWidth(), sy
-                * bufImg.getHeight());
+        return new Rectangle2D.Double(tx, ty, sx * bufImg.getWidth(), sy * bufImg.getHeight());
     }
 
     /**
@@ -82,26 +81,26 @@ public class TexturePaint implements Paint {
      * handling.
      *
      * @param cm
-     *                     the preferred {@link ColorModel} which represents the
-     *                     most
-     *                     convenient format for the caller to receive the pixel
-     *                     data, or
-     *                     {@code null} if there is no preference.
+     *        the preferred {@link ColorModel} which represents the
+     *        most
+     *        convenient format for the caller to receive the pixel
+     *        data, or
+     *        {@code null} if there is no preference.
      * @param deviceBounds
-     *                     the device space bounding box of the graphics
-     *                     primitive being
-     *                     rendered.
+     *        the device space bounding box of the graphics
+     *        primitive being
+     *        rendered.
      * @param userBounds
-     *                     the user space bounding box of the graphics primitive
-     *                     being
-     *                     rendered.
+     *        the user space bounding box of the graphics primitive
+     *        being
+     *        rendered.
      * @param xform
-     *                     the {@link AffineTransform} from user space into
-     *                     device space.
+     *        the {@link AffineTransform} from user space into
+     *        device space.
      * @param hints
-     *                     the set of hints that the context object can use to
-     *                     choose
-     *                     between rendering alternatives.
+     *        the set of hints that the context object can use to
+     *        choose
+     *        between rendering alternatives.
      * @return the {@code PaintContext} for generating color patterns.
      * @see Paint
      * @see PaintContext
@@ -111,9 +110,8 @@ public class TexturePaint implements Paint {
      * @see AffineTransform
      * @see RenderingHints
      */
-    public PaintContext createContext(ColorModel cm, Rectangle deviceBounds,
-            Rectangle2D userBounds, AffineTransform xform,
-            RenderingHints hints) {
+    public PaintContext createContext(ColorModel cm, Rectangle deviceBounds, Rectangle2D userBounds,
+            AffineTransform xform, RenderingHints hints) {
         if (xform == null) {
             xform = new AffineTransform();
         } else {
@@ -122,8 +120,7 @@ public class TexturePaint implements Paint {
         xform.translate(tx, ty);
         xform.scale(sx, sy);
 
-        return TexturePaintContext.getContext(bufImg, xform, hints,
-                deviceBounds);
+        return TexturePaintContext.getContext(bufImg, xform, hints, deviceBounds);
     }
 
     /**

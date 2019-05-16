@@ -47,10 +47,10 @@ public final class FloatHolder implements Streamable {
      * <code>float</code>.
      * 
      * @param initial
-     *                the <code>float</code> with which to initialize the
-     *                <code>value</code> field of the new
-     *                <code>FloatHolder</code>
-     *                object
+     *        the <code>float</code> with which to initialize the
+     *        <code>value</code> field of the new
+     *        <code>FloatHolder</code>
+     *        object
      */
     public FloatHolder(float initial) {
         value = initial;
@@ -61,7 +61,7 @@ public final class FloatHolder implements Streamable {
      * the float value.
      *
      * @param input
-     *              the <code>InputStream</code> to read from.
+     *        the <code>InputStream</code> to read from.
      */
     public void _read(InputStream input) {
         value = input.read_float();
@@ -71,7 +71,7 @@ public final class FloatHolder implements Streamable {
      * Write the float value into an output stream.
      *
      * @param output
-     *               the <code>OutputStream</code> to write into.
+     *        the <code>OutputStream</code> to write into.
      */
     public void _write(OutputStream output) {
         output.write_float(value);

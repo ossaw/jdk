@@ -57,13 +57,12 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * Load net library into runtime.
      */
     static {
-        java.security.AccessController.doPrivileged(
-                new java.security.PrivilegedAction<Void>() {
-                    public Void run() {
-                        System.loadLibrary("net");
-                        return null;
-                    }
-                });
+        java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
+            public Void run() {
+                System.loadLibrary("net");
+                return null;
+            }
+        });
     }
 
     /**
@@ -99,12 +98,11 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * host.
      * 
      * @param host
-     *             the specified host
+     *        the specified host
      * @param port
-     *             the specified port
+     *        the specified port
      */
-    protected void connect(String host, int port) throws UnknownHostException,
-            IOException {
+    protected void connect(String host, int port) throws UnknownHostException, IOException {
         boolean connected = false;
         try {
             InetAddress address = InetAddress.getByName(host);
@@ -132,9 +130,9 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * specified port.
      * 
      * @param address
-     *                the address
+     *        the address
      * @param port
-     *                the specified port
+     *        the specified port
      */
     protected void connect(InetAddress address, int port) throws IOException {
         this.port = port;
@@ -155,19 +153,18 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * specified port.
      * 
      * @param address
-     *                the address
+     *        the address
      * @param timeout
-     *                the timeout value in milliseconds, or zero for no timeout.
+     *        the timeout value in milliseconds, or zero for no timeout.
      * @throws IOException
-     *                                  if connection fails
+     *         if connection fails
      * @throws IllegalArgumentException
-     *                                  if address is null or is a SocketAddress
-     *                                  subclass not
-     *                                  supported by this socket
+     *         if address is null or is a SocketAddress
+     *         subclass not
+     *         supported by this socket
      * @since 1.4
      */
-    protected void connect(SocketAddress address, int timeout)
-            throws IOException {
+    protected void connect(SocketAddress address, int timeout) throws IOException {
         boolean connected = false;
         try {
             if (address == null || !(address instanceof InetSocketAddress))
@@ -194,8 +191,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
         }
     }
 
-    private void connectToAddress(InetAddress address, int port, int timeout)
-            throws IOException {
+    private void connectToAddress(InetAddress address, int port, int timeout) throws IOException {
         if (address.isAnyLocalAddress()) {
             doConnect(InetAddress.getLocalHost(), port, timeout);
         } else {
@@ -214,8 +210,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
              * only java.Socket* has access to PlainSocketImpl.setOption().
              */
             case SO_LINGER:
-                if (val == null || (!(val instanceof Integer)
-                        && !(val instanceof Boolean)))
+                if (val == null || (!(val instanceof Integer) && !(val instanceof Boolean)))
                     throw new SocketException("Bad parameter for option");
                 if (val instanceof Boolean) {
                     /* true only if disabling - enabling should be Integer */
@@ -245,10 +240,8 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
                 break;
             case SO_SNDBUF:
             case SO_RCVBUF:
-                if (val == null || !(val instanceof Integer)
-                        || !(((Integer) val).intValue() > 0)) {
-                    throw new SocketException("bad parameter for SO_SNDBUF "
-                            + "or SO_RCVBUF");
+                if (val == null || !(val instanceof Integer) || !(((Integer) val).intValue() > 0)) {
+                    throw new SocketException("bad parameter for SO_SNDBUF " + "or SO_RCVBUF");
                 }
                 break;
             case SO_KEEPALIVE:
@@ -296,8 +289,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
                 return Boolean.valueOf(ret != -1);
             case SO_LINGER:
                 ret = socketGetOption(opt, null);
-                return (ret == -1) ? Boolean.FALSE
-                        : (Object) (new Integer(ret));
+                return (ret == -1) ? Boolean.FALSE : (Object) (new Integer(ret));
             case SO_REUSEADDR:
                 ret = socketGetOption(opt, null);
                 return Boolean.valueOf(ret != -1);
@@ -336,8 +328,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * an IOException indicating what went wrong.
      */
 
-    synchronized void doConnect(InetAddress address, int port, int timeout)
-            throws IOException {
+    synchronized void doConnect(InetAddress address, int port, int timeout) throws IOException {
         synchronized (fdLock) {
             if (!closePending && (socket == null || !socket.isBound())) {
                 NetHooks.beforeTcpConnect(fd, address, port);
@@ -374,12 +365,11 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * Binds the socket to the specified address of the specified local port.
      * 
      * @param address
-     *                the address
+     *        the address
      * @param lport
-     *                the port
+     *        the port
      */
-    protected synchronized void bind(InetAddress address, int lport)
-            throws IOException {
+    protected synchronized void bind(InetAddress address, int lport) throws IOException {
         synchronized (fdLock) {
             if (!closePending && (socket == null || !socket.isBound())) {
                 NetHooks.beforeTcpBind(fd, address, lport);
@@ -396,7 +386,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * Listens, for a specified amount of time, for connections.
      * 
      * @param count
-     *              the amount of time to listen for connections
+     *        the amount of time to listen for connections
      */
     protected synchronized void listen(int count) throws IOException {
         socketListen(count);
@@ -406,7 +396,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
      * Accepts connections.
      * 
      * @param s
-     *          the connection
+     *        the connection
      */
     protected void accept(SocketImpl s) throws IOException {
         acquireFD();
@@ -502,8 +492,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
                 if (n == 0) {
                     setConnectionReset();
                 }
-            } catch (ConnectionResetException exc2) {
-            }
+            } catch (ConnectionResetException exc2) {}
         }
         return n;
     }
@@ -624,8 +613,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
                 if (fd != null) {
                     try {
                         socketClose();
-                    } catch (IOException e) {
-                    } finally {
+                    } catch (IOException e) {} finally {
                         fd = null;
                     }
                 }
@@ -700,8 +688,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 
     abstract void socketCreate(boolean isServer) throws IOException;
 
-    abstract void socketConnect(InetAddress address, int port, int timeout)
-            throws IOException;
+    abstract void socketConnect(InetAddress address, int port, int timeout) throws IOException;
 
     abstract void socketBind(InetAddress address, int port) throws IOException;
 
@@ -715,11 +702,9 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 
     abstract void socketShutdown(int howto) throws IOException;
 
-    abstract void socketSetOption(int cmd, boolean on, Object value)
-            throws SocketException;
+    abstract void socketSetOption(int cmd, boolean on, Object value) throws SocketException;
 
-    abstract int socketGetOption(int opt, Object iaContainerObj)
-            throws SocketException;
+    abstract int socketGetOption(int opt, Object iaContainerObj) throws SocketException;
 
     abstract void socketSendUrgentData(int data) throws IOException;
 

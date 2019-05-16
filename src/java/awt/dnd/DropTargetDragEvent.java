@@ -63,43 +63,38 @@ public class DropTargetDragEvent extends DropTargetEvent {
      * <P>
      * 
      * @param dtc
-     *                   The DropTargetContext for this operation
+     *        The DropTargetContext for this operation
      * @param cursorLocn
-     *                   The location of the "Drag" Cursor's hotspot in
-     *                   Component
-     *                   coordinates
+     *        The location of the "Drag" Cursor's hotspot in
+     *        Component
+     *        coordinates
      * @param dropAction
-     *                   The user drop action
+     *        The user drop action
      * @param srcActions
-     *                   The source drop actions
-     *
+     *        The source drop actions
      * @throws NullPointerException
-     *                                  if cursorLocn is null
+     *         if cursorLocn is null
      * @throws IllegalArgumentException
-     *                                  if dropAction is not one of
-     *                                  <code>DnDConstants</code>.
+     *         if dropAction is not one of
+     *         <code>DnDConstants</code>.
      * @throws IllegalArgumentException
-     *                                  if srcActions is not a bitwise mask of
-     *                                  <code>DnDConstants</code>.
+     *         if srcActions is not a bitwise mask of
+     *         <code>DnDConstants</code>.
      * @throws IllegalArgumentException
-     *                                  if dtc is <code>null</code>.
+     *         if dtc is <code>null</code>.
      */
 
-    public DropTargetDragEvent(DropTargetContext dtc, Point cursorLocn,
-            int dropAction, int srcActions) {
+    public DropTargetDragEvent(DropTargetContext dtc, Point cursorLocn, int dropAction, int srcActions) {
         super(dtc);
 
         if (cursorLocn == null)
             throw new NullPointerException("cursorLocn");
 
-        if (dropAction != DnDConstants.ACTION_NONE
-                && dropAction != DnDConstants.ACTION_COPY
-                && dropAction != DnDConstants.ACTION_MOVE
-                && dropAction != DnDConstants.ACTION_LINK)
+        if (dropAction != DnDConstants.ACTION_NONE && dropAction != DnDConstants.ACTION_COPY
+                && dropAction != DnDConstants.ACTION_MOVE && dropAction != DnDConstants.ACTION_LINK)
             throw new IllegalArgumentException("dropAction" + dropAction);
 
-        if ((srcActions & ~(DnDConstants.ACTION_COPY_OR_MOVE
-                | DnDConstants.ACTION_LINK)) != 0)
+        if ((srcActions & ~(DnDConstants.ACTION_COPY_OR_MOVE | DnDConstants.ACTION_LINK)) != 0)
             throw new IllegalArgumentException("srcActions");
 
         location = cursorLocn;
@@ -151,8 +146,8 @@ public class DropTargetDragEvent extends DropTargetEvent {
      * <P>
      * 
      * @param df
-     *           the <code>DataFlavor</code> to test
-     *           <P>
+     *        the <code>DataFlavor</code> to test
+     *        <P>
      * @return if a particular DataFlavor is supported
      */
 
@@ -184,10 +179,9 @@ public class DropTargetDragEvent extends DropTargetEvent {
      *
      * @return the Transferable associated with the drag operation
      * @throws InvalidDnDOperationException
-     *                                      if the data associated with the drag
-     *                                      operation is not
-     *                                      available
-     *
+     *         if the data associated with the drag
+     *         operation is not
+     *         available
      * @since 1.5
      */
     public Transferable getTransferable() {
@@ -196,7 +190,6 @@ public class DropTargetDragEvent extends DropTargetEvent {
 
     /**
      * Accepts the drag.
-     *
      * This method should be called from a <code>DropTargetListeners</code>
      * <code>dragEnter</code>, <code>dragOver</code>, and
      * <code>dropActionChanged</code> methods if the implementation wishes to
@@ -204,7 +197,7 @@ public class DropTargetDragEvent extends DropTargetEvent {
      * the user as represented by the <code>dropAction</code>.
      *
      * @param dragOperation
-     *                      the operation accepted by the target
+     *        the operation accepted by the target
      */
     public void acceptDrag(int dragOperation) {
         getDropTargetContext().acceptDrag(dragOperation);

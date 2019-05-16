@@ -63,18 +63,15 @@ public class MotifRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
         public void mouseClicked(MouseEvent e) {}
 
         public void mousePressed(MouseEvent e) {
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             manager.setSelectedPath(getPath());
         }
 
         public void mouseReleased(MouseEvent e) {
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             JMenuItem menuItem = (JMenuItem) e.getComponent();
             Point p = e.getPoint();
-            if (p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0
-                    && p.y < menuItem.getHeight()) {
+            if (p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0 && p.y < menuItem.getHeight()) {
                 manager.clearSelectedPath();
                 menuItem.doClick(0);
             } else {

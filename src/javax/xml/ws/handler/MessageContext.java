@@ -10,7 +10,6 @@ import java.util.Map;
 /**
  * The interface <code>MessageContext</code> abstracts the message context that
  * is processed by a handler in the <code>handle</code> method.
- *
  * <p>
  * The <code>MessageContext</code> interface provides methods to manage a
  * property set. <code>MessageContext</code> properties enable handlers in a
@@ -168,10 +167,10 @@ public interface MessageContext extends Map<String, Object> {
      * Sets the scope of a property.
      *
      * @param name
-     *              Name of the property associated with the
-     *              <code>MessageContext</code>
+     *        Name of the property associated with the
+     *        <code>MessageContext</code>
      * @param scope
-     *              Desired scope of the property
+     *        Desired scope of the property
      * @throws java.lang.IllegalArgumentException
      *         if an illegal property name is specified
      */
@@ -181,7 +180,7 @@ public interface MessageContext extends Map<String, Object> {
      * Gets the scope of a property.
      *
      * @param name
-     *             Name of the property
+     *        Name of the property
      * @return Scope of the property
      * @throws java.lang.IllegalArgumentException
      *         if a non-existant property name is specified

@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class LCONST extends Instruction implements ConstantPushInstruction,
-        TypedInstruction {
+public class LCONST extends Instruction implements ConstantPushInstruction, TypedInstruction {
     private long value;
 
     /**
@@ -77,8 +76,7 @@ public class LCONST extends Instruction implements ConstantPushInstruction,
         else if (l == 1)
             opcode = com.sun.org.apache.bcel.internal.Constants.LCONST_1;
         else
-            throw new ClassGenException("LCONST can be used only for 0 and 1: "
-                    + l);
+            throw new ClassGenException("LCONST can be used only for 0 and 1: " + l);
 
         value = l;
     }
@@ -101,7 +99,7 @@ public class LCONST extends Instruction implements ConstantPushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitPushInstruction(this);

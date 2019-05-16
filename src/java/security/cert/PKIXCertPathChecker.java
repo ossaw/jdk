@@ -11,13 +11,11 @@ import java.util.Set;
 /**
  * An abstract class that performs one or more checks on an
  * {@code X509Certificate}.
- *
  * <p>
  * A concrete implementation of the {@code PKIXCertPathChecker} class can be
  * created to extend the PKIX certification path validation algorithm. For
  * example, an implementation may check for and process a critical private
  * extension of each certificate in a certification path.
- *
  * <p>
  * Instances of {@code PKIXCertPathChecker} are passed as parameters using the
  * {@link PKIXParameters#setCertPathCheckers setCertPathCheckers} or
@@ -26,7 +24,6 @@ import java.util.Set;
  * {@code PKIXCertPathChecker}s {@link #check check} methods will be called, in
  * turn, for each certificate processed by a PKIX {@code CertPathValidator} or
  * {@code CertPathBuilder} implementation.
- *
  * <p>
  * A {@code PKIXCertPathChecker} may be called multiple times on successive
  * certificates in a certification path. Concrete subclasses are expected to
@@ -38,7 +35,6 @@ import java.util.Set;
  * {@code CertPathBuilder} to efficiently backtrack and try other paths. In
  * these situations, the {@code CertPathBuilder} is able to restore prior path
  * validation states by restoring the cloned {@code PKIXCertPathChecker}s.
- *
  * <p>
  * The order in which the certificates are presented to the
  * {@code PKIXCertPathChecker} may be either in the forward direction (from
@@ -64,13 +60,11 @@ import java.util.Set;
  *
  * @see PKIXParameters
  * @see PKIXBuilderParameters
- *
  * @since 1.4
  * @author Yassir Elley
  * @author Sean Mullan
  */
-public abstract class PKIXCertPathChecker implements CertPathChecker,
-        Cloneable {
+public abstract class PKIXCertPathChecker implements CertPathChecker, Cloneable {
 
     /**
      * Default constructor.
@@ -86,24 +80,23 @@ public abstract class PKIXCertPathChecker implements CertPathChecker,
      * <b>may</b> support forward checking.
      *
      * @param forward
-     *                the order that certificates are presented to the
-     *                {@code check}
-     *                method. If {@code true}, certificates are presented from
-     *                target to most-trusted CA (forward); if {@code false},
-     *                from
-     *                most-trusted CA to target (reverse).
+     *        the order that certificates are presented to the
+     *        {@code check}
+     *        method. If {@code true}, certificates are presented from
+     *        target to most-trusted CA (forward); if {@code false},
+     *        from
+     *        most-trusted CA to target (reverse).
      * @throws CertPathValidatorException
-     *                                    if this {@code PKIXCertPathChecker} is
-     *                                    unable to check
-     *                                    certificates in the specified order;
-     *                                    it should never be
-     *                                    thrown if the forward flag is false
-     *                                    since reverse checking
-     *                                    must be supported
+     *         if this {@code PKIXCertPathChecker} is
+     *         unable to check
+     *         certificates in the specified order;
+     *         it should never be
+     *         thrown if the forward flag is false
+     *         since reverse checking
+     *         must be supported
      */
     @Override
-    public abstract void init(boolean forward)
-            throws CertPathValidatorException;
+    public abstract void init(boolean forward) throws CertPathValidatorException;
 
     /**
      * Indicates if forward checking is supported. Forward checking refers to
@@ -144,22 +137,20 @@ public abstract class PKIXCertPathChecker implements CertPathChecker,
      * specified by the {@code init} method.
      *
      * @param cert
-     *                           the {@code Certificate} to be checked
+     *        the {@code Certificate} to be checked
      * @param unresolvedCritExts
-     *                           a {@code Collection} of OID strings
-     *                           representing the current
-     *                           set of unresolved critical extensions
+     *        a {@code Collection} of OID strings
+     *        representing the current
+     *        set of unresolved critical extensions
      * @exception CertPathValidatorException
-     *                                       if the specified certificate does
-     *                                       not pass the check
+     *            if the specified certificate does
+     *            not pass the check
      */
-    public abstract void check(Certificate cert,
-            Collection<String> unresolvedCritExts)
+    public abstract void check(Certificate cert, Collection<String> unresolvedCritExts)
             throws CertPathValidatorException;
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * This implementation calls {@code check(cert, java.util.Collections.
      * <String>emptySet())}.

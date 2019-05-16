@@ -50,10 +50,8 @@ public final class Compile {
     private static boolean _allowExit = true;
 
     public static void printUsage() {
-        System.err.println("XSLTC version " + VERSION_MAJOR + "."
-                + VERSION_MINOR + ((VERSION_DELTA > 0) ? ("." + VERSION_DELTA)
-                        : ("")) + "\n" + new ErrorMsg(
-                                ErrorMsg.COMPILE_USAGE_STR));
+        System.err.println("XSLTC version " + VERSION_MAJOR + "." + VERSION_MINOR + ((VERSION_DELTA > 0)
+                ? ("." + VERSION_DELTA) : ("")) + "\n" + new ErrorMsg(ErrorMsg.COMPILE_USAGE_STR));
         if (_allowExit)
             System.exit(-1);
     }
@@ -121,8 +119,7 @@ public final class Compile {
 
             if (useStdIn) {
                 if (!classNameSet) {
-                    System.err.println(new ErrorMsg(
-                            ErrorMsg.COMPILE_STDIN_ERR));
+                    System.err.println(new ErrorMsg(ErrorMsg.COMPILE_STDIN_ERR));
                     if (_allowExit)
                         System.exit(-1);
                 }

@@ -38,8 +38,7 @@ abstract public class ValueBaseHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    TCKind.tk_value);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(TCKind.tk_value);
         }
         return __typeCode;
     }
@@ -48,13 +47,11 @@ abstract public class ValueBaseHelper {
         return _id;
     }
 
-    public static java.io.Serializable read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static java.io.Serializable read(org.omg.CORBA.portable.InputStream istream) {
         return ((org.omg.CORBA_2_3.portable.InputStream) istream).read_value();
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            java.io.Serializable value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, java.io.Serializable value) {
         ((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value);
     }
 

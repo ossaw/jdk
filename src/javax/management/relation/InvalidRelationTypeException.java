@@ -29,7 +29,7 @@ public class InvalidRelationTypeException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public InvalidRelationTypeException(String message) {
         super(message);

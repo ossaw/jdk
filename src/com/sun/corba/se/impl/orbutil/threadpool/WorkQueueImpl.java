@@ -52,9 +52,8 @@ public class WorkQueueImpl implements WorkQueue {
 
     // Setup monitoring for this workqueue
     private void initializeMonitoring() {
-        workqueueMonitoredObject = MonitoringFactories
-                .getMonitoredObjectFactory().createMonitoredObject(name,
-                        MonitoringConstants.WORKQUEUE_MONITORING_DESCRIPTION);
+        workqueueMonitoredObject = MonitoringFactories.getMonitoredObjectFactory().createMonitoredObject(name,
+                MonitoringConstants.WORKQUEUE_MONITORING_DESCRIPTION);
 
         LongMonitoredAttributeBase b1 = new LongMonitoredAttributeBase(
                 MonitoringConstants.WORKQUEUE_TOTAL_WORK_ITEMS_ADDED,
@@ -95,18 +94,15 @@ public class WorkQueueImpl implements WorkQueue {
         ((ThreadPoolImpl) workerThreadPool).notifyForAvailableWork(this);
     }
 
-    synchronized Work requestWork(long waitTime) throws TimeoutException,
-            InterruptedException {
+    synchronized Work requestWork(long waitTime) throws TimeoutException, InterruptedException {
         Work workItem;
         ((ThreadPoolImpl) workerThreadPool).incrementNumberOfAvailableThreads();
 
         if (theWorkQueue.size() != 0) {
             workItem = (Work) theWorkQueue.removeFirst();
-            totalTimeInQueue += System.currentTimeMillis() - workItem
-                    .getEnqueueTime();
+            totalTimeInQueue += System.currentTimeMillis() - workItem.getEnqueueTime();
             workItemsDequeued++;
-            ((ThreadPoolImpl) workerThreadPool)
-                    .decrementNumberOfAvailableThreads();
+            ((ThreadPoolImpl) workerThreadPool).decrementNumberOfAvailableThreads();
             return workItem;
         }
 
@@ -121,11 +117,9 @@ public class WorkQueueImpl implements WorkQueue {
 
                 if (theWorkQueue.size() != 0) {
                     workItem = (Work) theWorkQueue.removeFirst();
-                    totalTimeInQueue += System.currentTimeMillis() - workItem
-                            .getEnqueueTime();
+                    totalTimeInQueue += System.currentTimeMillis() - workItem.getEnqueueTime();
                     workItemsDequeued++;
-                    ((ThreadPoolImpl) workerThreadPool)
-                            .decrementNumberOfAvailableThreads();
+                    ((ThreadPoolImpl) workerThreadPool).decrementNumberOfAvailableThreads();
                     return workItem;
                 }
 
@@ -133,13 +127,11 @@ public class WorkQueueImpl implements WorkQueue {
 
             } while (remainingWaitTime > 0);
 
-            ((ThreadPoolImpl) workerThreadPool)
-                    .decrementNumberOfAvailableThreads();
+            ((ThreadPoolImpl) workerThreadPool).decrementNumberOfAvailableThreads();
             throw new TimeoutException();
 
         } catch (InterruptedException ie) {
-            ((ThreadPoolImpl) workerThreadPool)
-                    .decrementNumberOfAvailableThreads();
+            ((ThreadPoolImpl) workerThreadPool).decrementNumberOfAvailableThreads();
             throw ie;
         }
     }

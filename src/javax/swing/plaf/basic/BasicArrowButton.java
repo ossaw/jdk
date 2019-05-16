@@ -40,23 +40,23 @@ public class BasicArrowButton extends JButton implements SwingConstants {
      * direction and with the specified colors.
      *
      * @param direction
-     *                   the direction of the arrow; one of
-     *                   {@code SwingConstants.NORTH},
-     *                   {@code SwingConstants.SOUTH},
-     *                   {@code SwingConstants.EAST} or
-     *                   {@code SwingConstants.WEST}
+     *        the direction of the arrow; one of
+     *        {@code SwingConstants.NORTH},
+     *        {@code SwingConstants.SOUTH},
+     *        {@code SwingConstants.EAST} or
+     *        {@code SwingConstants.WEST}
      * @param background
-     *                   the background color of the button
+     *        the background color of the button
      * @param shadow
-     *                   the color of the shadow
+     *        the color of the shadow
      * @param darkShadow
-     *                   the color of the dark shadow
+     *        the color of the dark shadow
      * @param highlight
-     *                   the color of the highlight
+     *        the color of the highlight
      * @since 1.4
      */
-    public BasicArrowButton(int direction, Color background, Color shadow,
-            Color darkShadow, Color highlight) {
+    public BasicArrowButton(int direction, Color background, Color shadow, Color darkShadow,
+            Color highlight) {
         super();
         setRequestFocusEnabled(false);
         setDirection(direction);
@@ -71,16 +71,15 @@ public class BasicArrowButton extends JButton implements SwingConstants {
      * direction.
      *
      * @param direction
-     *                  the direction of the arrow; one of
-     *                  {@code SwingConstants.NORTH},
-     *                  {@code SwingConstants.SOUTH},
-     *                  {@code SwingConstants.EAST} or
-     *                  {@code SwingConstants.WEST}
+     *        the direction of the arrow; one of
+     *        {@code SwingConstants.NORTH},
+     *        {@code SwingConstants.SOUTH},
+     *        {@code SwingConstants.EAST} or
+     *        {@code SwingConstants.WEST}
      */
     public BasicArrowButton(int direction) {
-        this(direction, UIManager.getColor("control"), UIManager.getColor(
-                "controlShadow"), UIManager.getColor("controlDkShadow"),
-                UIManager.getColor("controlLtHighlight"));
+        this(direction, UIManager.getColor("control"), UIManager.getColor("controlShadow"), UIManager
+                .getColor("controlDkShadow"), UIManager.getColor("controlLtHighlight"));
     }
 
     /**
@@ -94,11 +93,11 @@ public class BasicArrowButton extends JButton implements SwingConstants {
      * Sets the direction of the arrow.
      *
      * @param direction
-     *                  the direction of the arrow; one of of
-     *                  {@code SwingConstants.NORTH},
-     *                  {@code SwingConstants.SOUTH},
-     *                  {@code SwingConstants.EAST} or
-     *                  {@code SwingConstants.WEST}
+     *        the direction of the arrow; one of of
+     *        {@code SwingConstants.NORTH},
+     *        {@code SwingConstants.SOUTH},
+     *        {@code SwingConstants.EAST} or
+     *        {@code SwingConstants.WEST}
      */
     public void setDirection(int direction) {
         this.direction = direction;
@@ -155,8 +154,7 @@ public class BasicArrowButton extends JButton implements SwingConstants {
         // Draw the arrow
         size = Math.min((h - 4) / 3, (w - 4) / 3);
         size = Math.max(size, 2);
-        paintTriangle(g, (w - size) / 2, (h - size) / 2, size, direction,
-                isEnabled);
+        paintTriangle(g, (w - size) / 2, (h - size) / 2, size, direction, isEnabled);
 
         // Reset the Graphics back to it's original settings
         if (isPressed) {
@@ -210,24 +208,23 @@ public class BasicArrowButton extends JButton implements SwingConstants {
      * Paints a triangle.
      *
      * @param g
-     *                  the {@code Graphics} to draw to
+     *        the {@code Graphics} to draw to
      * @param x
-     *                  the x coordinate
+     *        the x coordinate
      * @param y
-     *                  the y coordinate
+     *        the y coordinate
      * @param size
-     *                  the size of the triangle to draw
+     *        the size of the triangle to draw
      * @param direction
-     *                  the direction in which to draw the arrow; one of
-     *                  {@code SwingConstants.NORTH},
-     *                  {@code SwingConstants.SOUTH},
-     *                  {@code SwingConstants.EAST} or
-     *                  {@code SwingConstants.WEST}
+     *        the direction in which to draw the arrow; one of
+     *        {@code SwingConstants.NORTH},
+     *        {@code SwingConstants.SOUTH},
+     *        {@code SwingConstants.EAST} or
+     *        {@code SwingConstants.WEST}
      * @param isEnabled
-     *                  whether or not the arrow is drawn enabled
+     *        whether or not the arrow is drawn enabled
      */
-    public void paintTriangle(Graphics g, int x, int y, int size, int direction,
-            boolean isEnabled) {
+    public void paintTriangle(Graphics g, int x, int y, int size, int direction, boolean isEnabled) {
         Color oldColor = g.getColor();
         int mid, i, j;
 

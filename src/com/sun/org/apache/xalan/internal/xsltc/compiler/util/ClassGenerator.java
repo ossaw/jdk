@@ -32,13 +32,10 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Stylesheet;
  * The class that implements any class that inherits from
  * <tt>AbstractTranslet</tt>, i.e. any translet. Methods in this class may be of
  * the following kinds:
- *
  * 1. Main method: applyTemplates, implemented by intances of
  * <tt>MethodGenerator</tt>.
- *
  * 2. Named methods: for named templates, implemented by instances of
  * <tt>NamedMethodGenerator</tt>.
- *
  * 3. Rt methods: for result tree fragments, implemented by instances of
  * <tt>RtMethodGenerator</tt>.
  * 
@@ -58,11 +55,9 @@ public class ClassGenerator extends ClassGen {
     private final String _applyTemplatesSig;
     private final String _applyTemplatesSigForImport;
 
-    public ClassGenerator(String class_name, String super_class_name,
-            String file_name, int access_flags, String[] interfaces,
-            Stylesheet stylesheet) {
-        super(class_name, super_class_name, file_name, access_flags,
-                interfaces);
+    public ClassGenerator(String class_name, String super_class_name, String file_name, int access_flags,
+            String[] interfaces, Stylesheet stylesheet) {
+        super(class_name, super_class_name, file_name, access_flags, interfaces);
         _stylesheet = stylesheet;
         _parser = stylesheet.getParser();
         _aloadTranslet = new ALOAD(TRANSLET_INDEX);
@@ -74,13 +69,11 @@ public class ClassGenerator extends ClassGen {
             _domClass = "com.sun.org.apache.xalan.internal.xsltc.dom.DOMAdapter";
             _domClassSig = "Lcom/sun/org/apache/xalan/internal/xsltc/dom/DOMAdapter;";
         }
-        _applyTemplatesSig = "(" + Constants.DOM_INTF_SIG
-                + Constants.NODE_ITERATOR_SIG + Constants.TRANSLET_OUTPUT_SIG
-                + ")V";
+        _applyTemplatesSig = "(" + Constants.DOM_INTF_SIG + Constants.NODE_ITERATOR_SIG
+                + Constants.TRANSLET_OUTPUT_SIG + ")V";
 
-        _applyTemplatesSigForImport = "(" + Constants.DOM_INTF_SIG
-                + Constants.NODE_ITERATOR_SIG + Constants.TRANSLET_OUTPUT_SIG
-                + Constants.NODE_FIELD_SIG + ")V";
+        _applyTemplatesSigForImport = "(" + Constants.DOM_INTF_SIG + Constants.NODE_ITERATOR_SIG
+                + Constants.TRANSLET_OUTPUT_SIG + Constants.NODE_FIELD_SIG + ")V";
     }
 
     public final Parser getParser() {

@@ -21,7 +21,7 @@ public class IllegalFormatWidthException extends IllegalFormatException {
      * Constructs an instance of this class with the specified width.
      *
      * @param w
-     *          The width
+     *        The width
      */
     public IllegalFormatWidthException(int w) {
         this.w = w;

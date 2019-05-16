@@ -17,7 +17,6 @@ import com.sun.corba.se.pept.transport.ConnectionCache;
  * The <b><em>primary</em></b> PEPt client-side plug-in point and enabler for
  * <b><em>altenate encodings, protocols and transports</em></b>.
  * </p>
- *
  * <p>
  * <code>ContactInfo</code> is a <em>factory</em> for client-side artifacts used
  * to construct and send a message (and possibly receive and process a
@@ -58,7 +57,6 @@ public interface ContactInfo {
     /**
      * Used to determine if a {@link com.sun.corba.se.pept.transport.Connection
      * Connection} will be present in an invocation.
-     *
      * For example, it may be <code>false</code> in the case of shared-memory
      * <code>Input/OutputObjects</code>.
      *
@@ -72,11 +70,9 @@ public interface ContactInfo {
      * Used to determine if the
      * {@link com.sun.corba.se.pept.transport.Connection Connection} used for a
      * request should be cached.
-     *
      * If <code>true</code> then PEPt will attempt to reuse an existing
      * {@link com.sun.corba.se.pept.transport.Connection Connection}. If one is
      * not found it will create a new one and cache it for future use.
-     *
      *
      * @return <code>true</code> if
      *         {@link com.sun.corba.se.pept.transport.Connection Connection}s
@@ -95,7 +91,6 @@ public interface ContactInfo {
     /**
      * Set the {@link com.sun.corba.se.pept.transport.Outbound.ConnectionCache
      * OutboundConnectionCache} to be used by this <code>ContactInfo</code>.
-     *
      * PEPt uses separate caches for each type of <code>ContactInfo</code> as
      * given by {@link #getConnectionCacheType}. {@link #setConnectionCache} and
      * {@link #getConnectionCache} support an optimzation to avoid hashing to
@@ -108,7 +103,6 @@ public interface ContactInfo {
     /**
      * Get the {@link com.sun.corba.se.pept.transport.Outbound.ConnectionCache
      * OutboundConnectionCache} used by this <code>ContactInfo</code>
-     *
      * PEPt uses separate caches for each type of <code>ContactInfo</code> as
      * given by {@link #getConnectionCacheType}. {@link #setConnectionCache} and
      * {@link #getConnectionCache} support an optimzation to avoid hashing to
@@ -137,9 +131,8 @@ public interface ContactInfo {
      * @return {@link com.sun.corba.se.pept.protocol.MessageMediator
      *         MessageMediator}
      */
-    public MessageMediator createMessageMediator(Broker broker,
-            ContactInfo contactInfo, Connection connection, String methodName,
-            boolean isOneWay);
+    public MessageMediator createMessageMediator(Broker broker, ContactInfo contactInfo,
+            Connection connection, String methodName, boolean isOneWay);
 
     /**
      * Used to get a {@link com.sun.corba.se.pept.protocol.MessageMeidator
@@ -150,8 +143,7 @@ public interface ContactInfo {
      * @return {@link com.sun.corba.se.pept.protocol.MessageMeidator
      *         MessageMediator}
      */
-    public MessageMediator createMessageMediator(Broker broker,
-            Connection connection);
+    public MessageMediator createMessageMediator(Broker broker, Connection connection);
 
     /**
      * Used to finish creating a
@@ -163,8 +155,8 @@ public interface ContactInfo {
      * @return {@link com.sun.corba.se.pept.protocol.MessageMediator
      *         MessageMediator}
      */
-    public MessageMediator finishCreatingMessageMediator(Broker broker,
-            Connection connection, MessageMediator messageMediator);
+    public MessageMediator finishCreatingMessageMediator(Broker broker, Connection connection,
+            MessageMediator messageMediator);
 
     /**
      * Used to get a {@link com.sun.corba.se.pept.encoding.InputObject
@@ -173,8 +165,7 @@ public interface ContactInfo {
      *
      * @return {@link com.sun.corba.se.pept.encoding.InputObject InputObject}
      */
-    public InputObject createInputObject(Broker broker,
-            MessageMediator messageMediator);
+    public InputObject createInputObject(Broker broker, MessageMediator messageMediator);
 
     /**
      * Used to get a {@link com.sun.corba.se.pept.encoding.OutputObject

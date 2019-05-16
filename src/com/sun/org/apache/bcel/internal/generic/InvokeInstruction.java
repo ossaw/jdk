@@ -58,8 +58,8 @@ import java.util.StringTokenizer;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class InvokeInstruction extends FieldOrMethod implements
-        ExceptionThrower, TypedInstruction, StackConsumer, StackProducer {
+public abstract class InvokeInstruction extends FieldOrMethod implements ExceptionThrower, TypedInstruction,
+        StackConsumer, StackProducer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -68,7 +68,7 @@ public abstract class InvokeInstruction extends FieldOrMethod implements
 
     /**
      * @param index
-     *              to constant pool
+     *        to constant pool
      */
     protected InvokeInstruction(short opcode, int index) {
         super(opcode, index);
@@ -81,8 +81,7 @@ public abstract class InvokeInstruction extends FieldOrMethod implements
         Constant c = cp.getConstant(index);
         StringTokenizer tok = new StringTokenizer(cp.constantToString(c));
 
-        return Constants.OPCODE_NAMES[opcode] + " " + tok.nextToken().replace(
-                '.', '/') + tok.nextToken();
+        return Constants.OPCODE_NAMES[opcode] + " " + tok.nextToken().replace('.', '/') + tok.nextToken();
     }
 
     /**

@@ -23,13 +23,11 @@ import java.awt.image.*;
  * specified in rendering-independent terms, the resolution at which the
  * rendering is to be performed, and hints used to control the rendering
  * process.
- *
  * <p>
  * Users create RenderContexts and pass them to the RenderableImage via the
  * createRendering method. Most of the methods of RenderContexts are not meant
  * to be used directly by applications, but by the RenderableImage and operator
  * classes to which it is passed.
- *
  * <p>
  * The AffineTransform parameter passed into and out of this class are cloned.
  * The RenderingHints and Shape parameters are not necessarily cloneable and are
@@ -58,14 +56,13 @@ public class RenderContext implements Cloneable {
      * RenderingHints object.
      *
      * @param usr2dev
-     *                an AffineTransform.
+     *        an AffineTransform.
      * @param aoi
-     *                a Shape representing the area of interest.
+     *        a Shape representing the area of interest.
      * @param hints
-     *                a RenderingHints object containing rendering hints.
+     *        a RenderingHints object containing rendering hints.
      */
-    public RenderContext(AffineTransform usr2dev, Shape aoi,
-            RenderingHints hints) {
+    public RenderContext(AffineTransform usr2dev, Shape aoi, RenderingHints hints) {
         this.hints = hints;
         this.aoi = aoi;
         this.usr2dev = (AffineTransform) usr2dev.clone();
@@ -76,7 +73,7 @@ public class RenderContext implements Cloneable {
      * is taken to be the entire renderable area. No rendering hints are used.
      *
      * @param usr2dev
-     *                an AffineTransform.
+     *        an AffineTransform.
      */
     public RenderContext(AffineTransform usr2dev) {
         this(usr2dev, null, null);
@@ -87,9 +84,9 @@ public class RenderContext implements Cloneable {
      * The area of interest is taken to be the entire renderable area.
      *
      * @param usr2dev
-     *                an AffineTransform.
+     *        an AffineTransform.
      * @param hints
-     *                a RenderingHints object containing rendering hints.
+     *        a RenderingHints object containing rendering hints.
      */
     public RenderContext(AffineTransform usr2dev, RenderingHints hints) {
         this(usr2dev, null, hints);
@@ -100,9 +97,9 @@ public class RenderContext implements Cloneable {
      * The area of interest is supplied as a Shape. No rendering hints are used.
      *
      * @param usr2dev
-     *                an AffineTransform.
+     *        an AffineTransform.
      * @param aoi
-     *                a Shape representing the area of interest.
+     *        a Shape representing the area of interest.
      */
     public RenderContext(AffineTransform usr2dev, Shape aoi) {
         this(usr2dev, aoi, null);
@@ -123,9 +120,9 @@ public class RenderContext implements Cloneable {
      * Sets the rendering hints of this <code>RenderContext</code>.
      * 
      * @param hints
-     *              a <code>RenderingHints</code> object that represents the
-     *              rendering hints to assign to this
-     *              <code>RenderContext</code>.
+     *        a <code>RenderingHints</code> object that represents the
+     *        rendering hints to assign to this
+     *        <code>RenderContext</code>.
      * @see #getRenderingHints
      */
     public void setRenderingHints(RenderingHints hints) {
@@ -137,7 +134,7 @@ public class RenderContext implements Cloneable {
      * RenderContext to a given transform.
      *
      * @param newTransform
-     *                     the new AffineTransform.
+     *        the new AffineTransform.
      * @see #getTransform
      */
     public void setTransform(AffineTransform newTransform) {
@@ -153,8 +150,8 @@ public class RenderContext implements Cloneable {
      * </pre>
      *
      * @param modTransform
-     *                     the AffineTransform to prepend to the current usr2dev
-     *                     transform.
+     *        the AffineTransform to prepend to the current usr2dev
+     *        transform.
      * @since 1.3
      */
     public void preConcatenateTransform(AffineTransform modTransform) {
@@ -174,8 +171,8 @@ public class RenderContext implements Cloneable {
      * misspelled the method name.
      *
      * @param modTransform
-     *                     the AffineTransform to prepend to the current usr2dev
-     *                     transform.
+     *        the AffineTransform to prepend to the current usr2dev
+     *        transform.
      * @deprecated replaced by
      *             <code>preConcatenateTransform(AffineTransform)</code>.
      */
@@ -193,8 +190,8 @@ public class RenderContext implements Cloneable {
      * </pre>
      *
      * @param modTransform
-     *                     the AffineTransform to append to the current usr2dev
-     *                     transform.
+     *        the AffineTransform to append to the current usr2dev
+     *        transform.
      * @since 1.3
      */
     public void concatenateTransform(AffineTransform modTransform) {
@@ -214,8 +211,8 @@ public class RenderContext implements Cloneable {
      * the method name.
      *
      * @param modTransform
-     *                     the AffineTransform to append to the current usr2dev
-     *                     transform.
+     *        the AffineTransform to append to the current usr2dev
+     *        transform.
      * @deprecated replaced by
      *             <code>concatenateTransform(AffineTransform)</code>.
      */
@@ -238,7 +235,7 @@ public class RenderContext implements Cloneable {
      * Sets the current area of interest. The old area is discarded.
      *
      * @param newAoi
-     *               The new area of interest.
+     *        The new area of interest.
      * @see #getAreaOfInterest
      */
     public void setAreaOfInterest(Shape newAoi) {

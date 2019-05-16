@@ -62,36 +62,34 @@ public class AttributeChangeNotification extends javax.management.Notification {
      * and type of the attribute, as well as its old and new values.
      *
      * @param source
-     *                       The notification producer, that is, the MBean the
-     *                       attribute
-     *                       belongs to.
+     *        The notification producer, that is, the MBean the
+     *        attribute
+     *        belongs to.
      * @param sequenceNumber
-     *                       The notification sequence number within the source
-     *                       object.
+     *        The notification sequence number within the source
+     *        object.
      * @param timeStamp
-     *                       The date at which the notification is being sent.
+     *        The date at which the notification is being sent.
      * @param msg
-     *                       A String containing the message of the
-     *                       notification.
+     *        A String containing the message of the
+     *        notification.
      * @param attributeName
-     *                       A String giving the name of the attribute.
+     *        A String giving the name of the attribute.
      * @param attributeType
-     *                       A String containing the type of the attribute.
+     *        A String containing the type of the attribute.
      * @param oldValue
-     *                       An object representing value of the attribute
-     *                       before the
-     *                       change.
+     *        An object representing value of the attribute
+     *        before the
+     *        change.
      * @param newValue
-     *                       An object representing value of the attribute after
-     *                       the
-     *                       change.
+     *        An object representing value of the attribute after
+     *        the
+     *        change.
      */
-    public AttributeChangeNotification(Object source, long sequenceNumber,
-            long timeStamp, String msg, String attributeName,
-            String attributeType, Object oldValue, Object newValue) {
+    public AttributeChangeNotification(Object source, long sequenceNumber, long timeStamp, String msg,
+            String attributeName, String attributeType, Object oldValue, Object newValue) {
 
-        super(AttributeChangeNotification.ATTRIBUTE_CHANGE, source,
-                sequenceNumber, timeStamp, msg);
+        super(AttributeChangeNotification.ATTRIBUTE_CHANGE, source, sequenceNumber, timeStamp, msg);
         this.attributeName = attributeName;
         this.attributeType = attributeType;
         this.oldValue = oldValue;

@@ -47,7 +47,6 @@ import java.util.Enumeration;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Context#list
  * @see Context#listBindings
  * @see javax.naming.directory.DirContext#search
@@ -74,15 +73,15 @@ public interface NamingEnumeration<T> extends Enumeration<T> {
      *         returns an enumeration of attribute values, and an attribute
      *         value can be null).
      * @exception NamingException
-     *                            If a naming exception is encountered while
-     *                            attempting to
-     *                            retrieve the next element. See NamingException
-     *                            and its
-     *                            subclasses for the possible naming exceptions.
-     * @exception                 java.util.NoSuchElementException
-     *                            If attempting to get the next element when
-     *                            none is
-     *                            available.
+     *            If a naming exception is encountered while
+     *            attempting to
+     *            retrieve the next element. See NamingException
+     *            and its
+     *            subclasses for the possible naming exceptions.
+     * @exception java.util.NoSuchElementException
+     *            If attempting to get the next element when
+     *            none is
+     *            available.
      * @see java.util.Enumeration#nextElement
      */
     public T next() throws NamingException;
@@ -94,20 +93,19 @@ public interface NamingEnumeration<T> extends Enumeration<T> {
      *
      * @return true if there is more in the enumeration ; false otherwise.
      * @exception NamingException
-     *                            If a naming exception is encountered while
-     *                            attempting to
-     *                            determine whether there is another element in
-     *                            the
-     *                            enumeration. See NamingException and its
-     *                            subclasses for
-     *                            the possible naming exceptions.
+     *            If a naming exception is encountered while
+     *            attempting to
+     *            determine whether there is another element in
+     *            the
+     *            enumeration. See NamingException and its
+     *            subclasses for
+     *            the possible naming exceptions.
      * @see java.util.Enumeration#hasMoreElements
      */
     public boolean hasMore() throws NamingException;
 
     /**
      * Closes this enumeration.
-     *
      * After this method has been invoked on this enumeration, the enumeration
      * becomes invalid and subsequent invocation of any of its methods will
      * yield undefined results. This method is intended for aborting an
@@ -124,9 +122,9 @@ public interface NamingEnumeration<T> extends Enumeration<T> {
      * client omits the <tt>close()</tt> calls.
      *
      * @exception NamingException
-     *                            If a naming exception is encountered while
-     *                            closing the
-     *                            enumeration.
+     *            If a naming exception is encountered while
+     *            closing the
+     *            enumeration.
      * @since 1.3
      */
     public void close() throws NamingException;

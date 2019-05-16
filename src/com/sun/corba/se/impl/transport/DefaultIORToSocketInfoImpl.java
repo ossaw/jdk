@@ -25,8 +25,8 @@ public class DefaultIORToSocketInfoImpl implements IORToSocketInfo {
         SocketInfo socketInfo;
         List result = new ArrayList();
 
-        IIOPProfileTemplate iiopProfileTemplate = (IIOPProfileTemplate) ior
-                .getProfile().getTaggedProfileTemplate();
+        IIOPProfileTemplate iiopProfileTemplate = (IIOPProfileTemplate) ior.getProfile()
+                .getTaggedProfileTemplate();
         IIOPAddress primary = iiopProfileTemplate.getPrimaryAddress();
         String hostname = primary.getHost().toLowerCase();
         int port = primary.getPort();
@@ -38,12 +38,10 @@ public class DefaultIORToSocketInfoImpl implements IORToSocketInfo {
         socketInfo = createSocketInfo(hostname, port);
         result.add(socketInfo);
 
-        Iterator iterator = iiopProfileTemplate.iteratorById(
-                TAG_ALTERNATE_IIOP_ADDRESS.value);
+        Iterator iterator = iiopProfileTemplate.iteratorById(TAG_ALTERNATE_IIOP_ADDRESS.value);
 
         while (iterator.hasNext()) {
-            AlternateIIOPAddressComponent alternate = (AlternateIIOPAddressComponent) iterator
-                    .next();
+            AlternateIIOPAddressComponent alternate = (AlternateIIOPAddressComponent) iterator.next();
             hostname = alternate.getAddress().getHost().toLowerCase();
             port = alternate.getAddress().getPort();
             socketInfo = createSocketInfo(hostname, port);

@@ -30,11 +30,11 @@ public class HyperlinkEvent extends EventObject {
      * not be formed. This constructor is primarily for backward compatibility.
      *
      * @param source
-     *               the object responsible for the event
+     *        the object responsible for the event
      * @param type
-     *               the event type
+     *        the event type
      * @param u
-     *               the affected URL
+     *        the affected URL
      */
     public HyperlinkEvent(Object source, EventType type, URL u) {
         this(source, type, u, null);
@@ -44,20 +44,20 @@ public class HyperlinkEvent extends EventObject {
      * Creates a new object representing a hypertext link event.
      *
      * @param source
-     *               the object responsible for the event
+     *        the object responsible for the event
      * @param type
-     *               the event type
+     *        the event type
      * @param u
-     *               the affected URL. This may be null if a valid URL could not
-     *               be
-     *               created.
+     *        the affected URL. This may be null if a valid URL could not
+     *        be
+     *        created.
      * @param desc
-     *               the description of the link. This may be useful when
-     *               attempting to form a URL resulted in a
-     *               MalformedURLException.
-     *               The description provides the text used when attempting to
-     *               form
-     *               the URL.
+     *        the description of the link. This may be useful when
+     *        attempting to form a URL resulted in a
+     *        MalformedURLException.
+     *        The description provides the text used when attempting to
+     *        form
+     *        the URL.
      */
     public HyperlinkEvent(Object source, EventType type, URL u, String desc) {
         this(source, type, u, desc, null);
@@ -67,26 +67,25 @@ public class HyperlinkEvent extends EventObject {
      * Creates a new object representing a hypertext link event.
      *
      * @param source
-     *                      the object responsible for the event
+     *        the object responsible for the event
      * @param type
-     *                      the event type
+     *        the event type
      * @param u
-     *                      the affected URL. This may be null if a valid URL
-     *                      could not be
-     *                      created.
+     *        the affected URL. This may be null if a valid URL
+     *        could not be
+     *        created.
      * @param desc
-     *                      the description of the link. This may be useful when
-     *                      attempting to form a URL resulted in a
-     *                      MalformedURLException.
-     *                      The description provides the text used when
-     *                      attempting to form
-     *                      the URL.
+     *        the description of the link. This may be useful when
+     *        attempting to form a URL resulted in a
+     *        MalformedURLException.
+     *        The description provides the text used when
+     *        attempting to form
+     *        the URL.
      * @param sourceElement
-     *                      Element in the Document representing the anchor
+     *        Element in the Document representing the anchor
      * @since 1.4
      */
-    public HyperlinkEvent(Object source, EventType type, URL u, String desc,
-            Element sourceElement) {
+    public HyperlinkEvent(Object source, EventType type, URL u, String desc, Element sourceElement) {
         super(source);
         this.type = type;
         this.u = u;
@@ -98,28 +97,28 @@ public class HyperlinkEvent extends EventObject {
      * Creates a new object representing a hypertext link event.
      *
      * @param source
-     *                      the object responsible for the event
+     *        the object responsible for the event
      * @param type
-     *                      the event type
+     *        the event type
      * @param u
-     *                      the affected URL. This may be null if a valid URL
-     *                      could not be
-     *                      created.
+     *        the affected URL. This may be null if a valid URL
+     *        could not be
+     *        created.
      * @param desc
-     *                      the description of the link. This may be useful when
-     *                      attempting to form a URL resulted in a
-     *                      MalformedURLException.
-     *                      The description provides the text used when
-     *                      attempting to form
-     *                      the URL.
+     *        the description of the link. This may be useful when
+     *        attempting to form a URL resulted in a
+     *        MalformedURLException.
+     *        The description provides the text used when
+     *        attempting to form
+     *        the URL.
      * @param sourceElement
-     *                      Element in the Document representing the anchor
+     *        Element in the Document representing the anchor
      * @param inputEvent
-     *                      InputEvent that triggered the hyperlink event
+     *        InputEvent that triggered the hyperlink event
      * @since 1.7
      */
-    public HyperlinkEvent(Object source, EventType type, URL u, String desc,
-            Element sourceElement, InputEvent inputEvent) {
+    public HyperlinkEvent(Object source, EventType type, URL u, String desc, Element sourceElement,
+            InputEvent inputEvent) {
         super(source);
         this.type = type;
         this.u = u;

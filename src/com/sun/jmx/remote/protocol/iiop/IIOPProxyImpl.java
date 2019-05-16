@@ -38,8 +38,7 @@ public class IIOPProxyImpl implements IIOPProxy {
     static {
         Permissions p = new Permissions();
         p.add(new SerializablePermission("enableSubclassImplementation"));
-        STUB_ACC = new AccessControlContext(new ProtectionDomain[] {
-                new ProtectionDomain(null, p) });
+        STUB_ACC = new AccessControlContext(new ProtectionDomain[] { new ProtectionDomain(null, p) });
     }
 
     public IIOPProxyImpl() {}
@@ -115,20 +114,18 @@ public class IIOPProxyImpl implements IIOPProxy {
             return PortableRemoteObject.toStub(obj);
         } else {
             try {
-                return AccessController.doPrivileged(
-                        new PrivilegedExceptionAction<Remote>() {
+                return AccessController.doPrivileged(new PrivilegedExceptionAction<Remote>() {
 
-                            @Override
-                            public Remote run() throws Exception {
-                                return PortableRemoteObject.toStub(obj);
-                            }
-                        }, STUB_ACC);
+                    @Override
+                    public Remote run() throws Exception {
+                        return PortableRemoteObject.toStub(obj);
+                    }
+                }, STUB_ACC);
             } catch (PrivilegedActionException e) {
                 if (e.getException() instanceof NoSuchObjectException) {
                     throw (NoSuchObjectException) e.getException();
                 }
-                throw new RuntimeException("Unexpected exception type", e
-                        .getException());
+                throw new RuntimeException("Unexpected exception type", e.getException());
             }
         }
     }

@@ -28,8 +28,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Timothy Prinzing
  */
-public final class StringContent implements AbstractDocument.Content,
-        Serializable {
+public final class StringContent implements AbstractDocument.Content, Serializable {
 
     /**
      * Creates a new StringContent object. Initial size defaults to 10.
@@ -43,7 +42,7 @@ public final class StringContent implements AbstractDocument.Content,
      * the length is &lt; 1, a size of 1 is used.
      *
      * @param initialLength
-     *                      the initial size
+     *        the initial size
      */
     public StringContent(int initialLength) {
         if (initialLength < 1) {
@@ -68,16 +67,15 @@ public final class StringContent implements AbstractDocument.Content,
      * Inserts a string into the content.
      *
      * @param where
-     *              the starting position &gt;= 0 &amp;&amp; &lt; length()
+     *        the starting position &gt;= 0 &amp;&amp; &lt; length()
      * @param str
-     *              the non-null string to insert
+     *        the non-null string to insert
      * @return an UndoableEdit object for undoing
      * @exception BadLocationException
-     *                                 if the specified position is invalid
+     *            if the specified position is invalid
      * @see AbstractDocument.Content#insertString
      */
-    public UndoableEdit insertString(int where, String str)
-            throws BadLocationException {
+    public UndoableEdit insertString(int where, String str) throws BadLocationException {
         if (where >= count || where < 0) {
             throw new BadLocationException("Invalid location", count);
         }
@@ -93,16 +91,15 @@ public final class StringContent implements AbstractDocument.Content,
      * Removes part of the content. where + nitems must be &lt; length().
      *
      * @param where
-     *               the starting position &gt;= 0
+     *        the starting position &gt;= 0
      * @param nitems
-     *               the number of characters to remove &gt;= 0
+     *        the number of characters to remove &gt;= 0
      * @return an UndoableEdit object for undoing
      * @exception BadLocationException
-     *                                 if the specified position is invalid
+     *            if the specified position is invalid
      * @see AbstractDocument.Content#remove
      */
-    public UndoableEdit remove(int where, int nitems)
-            throws BadLocationException {
+    public UndoableEdit remove(int where, int nitems) throws BadLocationException {
         if (where + nitems >= count) {
             throw new BadLocationException("Invalid range", count);
         }
@@ -120,12 +117,12 @@ public final class StringContent implements AbstractDocument.Content,
      * Retrieves a portion of the content. where + len must be &lt;= length().
      *
      * @param where
-     *              the starting position &gt;= 0
+     *        the starting position &gt;= 0
      * @param len
-     *              the length to retrieve &gt;= 0
+     *        the length to retrieve &gt;= 0
      * @return a string representing the content; may be empty
      * @exception BadLocationException
-     *                                 if the specified position is invalid
+     *            if the specified position is invalid
      * @see AbstractDocument.Content#getString
      */
     public String getString(int where, int len) throws BadLocationException {
@@ -139,17 +136,16 @@ public final class StringContent implements AbstractDocument.Content,
      * Retrieves a portion of the content. where + len must be &lt;= length()
      *
      * @param where
-     *              the starting position &gt;= 0
+     *        the starting position &gt;= 0
      * @param len
-     *              the number of characters to retrieve &gt;= 0
+     *        the number of characters to retrieve &gt;= 0
      * @param chars
-     *              the Segment object to return the characters in
+     *        the Segment object to return the characters in
      * @exception BadLocationException
-     *                                 if the specified position is invalid
+     *            if the specified position is invalid
      * @see AbstractDocument.Content#getChars
      */
-    public void getChars(int where, int len, Segment chars)
-            throws BadLocationException {
+    public void getChars(int where, int len, Segment chars) throws BadLocationException {
         if (where + len > count) {
             throw new BadLocationException("Invalid location", count);
         }
@@ -163,10 +159,10 @@ public final class StringContent implements AbstractDocument.Content,
      * content is mutated.
      *
      * @param offset
-     *               the offset to create a position for &gt;= 0
+     *        the offset to create a position for &gt;= 0
      * @return the position
      * @exception BadLocationException
-     *                                 if the specified position is invalid
+     *            if the specified position is invalid
      */
     public Position createPosition(int offset) throws BadLocationException {
         // some small documents won't have any sticky positions
@@ -183,18 +179,17 @@ public final class StringContent implements AbstractDocument.Content,
      * Replaces some of the characters in the array
      * 
      * @param offset
-     *                   offset into the array to start the replace
+     *        offset into the array to start the replace
      * @param length
-     *                   number of characters to remove
+     *        number of characters to remove
      * @param replArray
-     *                   replacement array
+     *        replacement array
      * @param replOffset
-     *                   offset into the replacement array
+     *        offset into the replacement array
      * @param replLength
-     *                   number of character to use from the replacement array.
+     *        number of character to use from the replacement array.
      */
-    void replace(int offset, int length, char[] replArray, int replOffset,
-            int replLength) {
+    void replace(int offset, int length, char[] replArray, int replOffset, int replLength) {
         int delta = replLength - length;
         int src = offset + length;
         int nmove = count - src;
@@ -204,8 +199,7 @@ public final class StringContent implements AbstractDocument.Content,
             int newLength = Math.max(2 * data.length, count + delta);
             char[] newData = new char[newLength];
             System.arraycopy(data, 0, newData, 0, offset);
-            System.arraycopy(replArray, replOffset, newData, offset,
-                    replLength);
+            System.arraycopy(replArray, replOffset, newData, offset, replLength);
             System.arraycopy(data, src, newData, dest, nmove);
             data = newData;
         } else {
@@ -270,11 +264,11 @@ public final class StringContent implements AbstractDocument.Content,
      * subclasses.
      *
      * @param v
-     *               the Vector to use, with a new one created on null
+     *        the Vector to use, with a new one created on null
      * @param offset
-     *               the starting offset &gt;= 0
+     *        the starting offset &gt;= 0
      * @param length
-     *               the length &gt;= 0
+     *        the length &gt;= 0
      * @return the set of instances
      */
     protected Vector getPositionsInRange(Vector v, int offset, int length) {
@@ -302,7 +296,7 @@ public final class StringContent implements AbstractDocument.Content,
      * subclasses.
      *
      * @param positions
-     *                  the positions of the instances
+     *        the positions of the instances
      */
     protected void updateUndoPositions(Vector positions) {
         for (int counter = positions.size() - 1; counter >= 0; counter--) {

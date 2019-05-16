@@ -92,14 +92,12 @@ final class ContainsCall extends FunctionCall {
     /**
      * Compile expression and update true/false-lists
      */
-    public void translateDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
         _base.translate(classGen, methodGen);
         _token.translate(classGen, methodGen);
-        il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_CLASS, "indexOf",
-                "(" + STRING_SIG + ")I")));
+        il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_CLASS, "indexOf", "(" + STRING_SIG + ")I")));
         _falseList.add(il.append(new IFLT(null)));
     }
 }

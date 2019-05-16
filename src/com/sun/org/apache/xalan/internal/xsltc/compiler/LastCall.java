@@ -56,8 +56,7 @@ final class LastCall extends FunctionCall {
             il.append(new ILOAD(LAST_INDEX));
         } else {
             final ConstantPoolGen cpg = classGen.getConstantPool();
-            final int getLast = cpg.addInterfaceMethodref(NODE_ITERATOR,
-                    "getLast", "()I");
+            final int getLast = cpg.addInterfaceMethodref(NODE_ITERATOR, "getLast", "()I");
             il.append(methodGen.loadIterator());
             il.append(new INVOKEINTERFACE(getLast, 1));
         }

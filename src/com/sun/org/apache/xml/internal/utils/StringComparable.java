@@ -44,8 +44,8 @@ public class StringComparable implements Comparable {
     private String m_caseOrder;
     private int m_mask = 0xFFFFFFFF;
 
-    public StringComparable(final String text, final Locale locale,
-            final Collator collator, final String caseOrder) {
+    public StringComparable(final String text, final Locale locale, final Collator collator,
+            final String caseOrder) {
         m_text = text;
         m_locale = locale;
         m_collator = (RuleBasedCollator) collator;
@@ -53,9 +53,8 @@ public class StringComparable implements Comparable {
         m_mask = getMask(m_collator.getStrength());
     }
 
-    public final static Comparable getComparator(final String text,
-            final Locale locale, final Collator collator,
-            final String caseOrder) {
+    public final static Comparable getComparator(final String text, final Locale locale,
+            final Collator collator, final String caseOrder) {
         if ((caseOrder == null) || (caseOrder.length() == 0)) {// no case-order
                                                                // specified
             return ((RuleBasedCollator) collator).getCollationKey(text);
@@ -76,8 +75,7 @@ public class StringComparable implements Comparable {
         final int savedStrength = m_collator.getStrength();
         int comp = 0;
         // Is there difference more significant than case-order?
-        if (((savedStrength == Collator.PRIMARY)
-                || (savedStrength == Collator.SECONDARY))) {
+        if (((savedStrength == Collator.PRIMARY) || (savedStrength == Collator.SECONDARY))) {
             comp = m_collator.compare(m_text, pattern);
         } else {// more than SECONDARY
             m_collator.setStrength(Collator.SECONDARY);
@@ -128,13 +126,10 @@ public class StringComparable implements Comparable {
 
     }
 
-    private final int[] getFirstCaseDiff(final String text,
-            final String pattern, final Locale locale) {
+    private final int[] getFirstCaseDiff(final String text, final String pattern, final Locale locale) {
 
-        final CollationElementIterator targIter = m_collator
-                .getCollationElementIterator(text);
-        final CollationElementIterator patIter = m_collator
-                .getCollationElementIterator(pattern);
+        final CollationElementIterator targIter = m_collator.getCollationElementIterator(text);
+        final CollationElementIterator patIter = m_collator.getCollationElementIterator(pattern);
         int startTarg = -1;
         int endTarg = -1;
         int startPatt = -1;
@@ -164,8 +159,7 @@ public class StringComparable implements Comparable {
             } else if (targetElement != patternElement) {// mismatch
                 if ((startPatt < endPatt) && (startTarg < endTarg)) {
                     final String subText = text.substring(startTarg, endTarg);
-                    final String subPatt = pattern.substring(startPatt,
-                            endPatt);
+                    final String subPatt = pattern.substring(startPatt, endPatt);
                     final String subTextUp = subText.toUpperCase(locale);
                     final String subPattUp = subPatt.toUpperCase(locale);
                     if (m_collator.compare(subTextUp, subPattUp) != 0) { // not
@@ -177,20 +171,17 @@ public class StringComparable implements Comparable {
                     int diff[] = { UNKNOWN_CASE, UNKNOWN_CASE };
                     if (m_collator.compare(subText, subTextUp) == 0) {
                         diff[0] = UPPER_CASE;
-                    } else if (m_collator.compare(subText, subText.toLowerCase(
-                            locale)) == 0) {
+                    } else if (m_collator.compare(subText, subText.toLowerCase(locale)) == 0) {
                         diff[0] = LOWER_CASE;
                     }
                     if (m_collator.compare(subPatt, subPattUp) == 0) {
                         diff[1] = UPPER_CASE;
-                    } else if (m_collator.compare(subPatt, subPatt.toLowerCase(
-                            locale)) == 0) {
+                    } else if (m_collator.compare(subPatt, subPatt.toLowerCase(locale)) == 0) {
                         diff[1] = LOWER_CASE;
                     }
 
-                    if (((diff[0] == UPPER_CASE) && (diff[1] == LOWER_CASE))
-                            || ((diff[0] == LOWER_CASE)
-                                    && (diff[1] == UPPER_CASE))) {
+                    if (((diff[0] == UPPER_CASE) && (diff[1] == LOWER_CASE)) || ((diff[0] == LOWER_CASE)
+                            && (diff[1] == UPPER_CASE))) {
                         return diff;
                     } else {// not case diff
                         continue;

@@ -40,11 +40,11 @@ public class XStringForChars extends XString {
      * Construct a XNodeSet object.
      *
      * @param val
-     *               FastStringBuffer object this will wrap, must be non-null.
+     *        FastStringBuffer object this will wrap, must be non-null.
      * @param start
-     *               The start position in the array.
+     *        The start position in the array.
      * @param length
-     *               The number of characters to read from the array.
+     *        The number of characters to read from the array.
      */
     public XStringForChars(char[] val, int start, int length) {
         super(val);
@@ -52,8 +52,7 @@ public class XStringForChars extends XString {
         m_length = length;
         if (null == val)
             throw new IllegalArgumentException(XSLMessages.createXPATHMessage(
-                    XPATHErrorResources.ER_FASTSTRINGBUFFER_CANNOT_BE_NULL,
-                    null)); // "The
+                    XPATHErrorResources.ER_FASTSTRINGBUFFER_CANNOT_BE_NULL, null)); // "The
                                                                                                                                                       // FastStringBuffer
                                                                                                                                                       // argument
                                                                                                                                                       // can
@@ -66,13 +65,12 @@ public class XStringForChars extends XString {
      * Construct a XNodeSet object.
      *
      * @param val
-     *            String object this will wrap.
+     *        String object this will wrap.
      */
     private XStringForChars(String val) {
         super(val);
         throw new IllegalArgumentException(XSLMessages.createXPATHMessage(
-                XPATHErrorResources.ER_XSTRINGFORCHARS_CANNOT_TAKE_STRING,
-                null)); // "XStringForChars
+                XPATHErrorResources.ER_XSTRINGFORCHARS_CANNOT_TAKE_STRING, null)); // "XStringForChars
                                                                                                                                                      // can
                                                                                                                                                      // not
                                                                                                                                                      // take
@@ -90,8 +88,7 @@ public class XStringForChars extends XString {
      */
     public FastStringBuffer fsb() {
         throw new RuntimeException(XSLMessages.createXPATHMessage(
-                XPATHErrorResources.ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS,
-                null)); // "fsb()
+                XPATHErrorResources.ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS, null)); // "fsb()
                                                                                                                                             // not
                                                                                                                                             // supported
                                                                                                                                             // for
@@ -103,8 +100,7 @@ public class XStringForChars extends XString {
      *
      * @return The string this wraps or the empty string if null
      */
-    public void appendToFsb(
-            com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
+    public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
         fsb.append((char[]) m_obj, m_start, m_length);
     }
 
@@ -145,12 +141,10 @@ public class XStringForChars extends XString {
      * may well occur for a single call to this method.
      *
      * @param ch
-     *           A non-null reference to a ContentHandler.
-     *
+     *        A non-null reference to a ContentHandler.
      * @throws org.xml.sax.SAXException
      */
-    public void dispatchCharactersEvents(org.xml.sax.ContentHandler ch)
-            throws org.xml.sax.SAXException {
+    public void dispatchCharactersEvents(org.xml.sax.ContentHandler ch) throws org.xml.sax.SAXException {
         ch.characters((char[]) m_obj, m_start, m_length);
     }
 
@@ -159,12 +153,10 @@ public class XStringForChars extends XString {
      * string-value.
      *
      * @param lh
-     *           A non-null reference to a LexicalHandler.
-     *
+     *        A non-null reference to a LexicalHandler.
      * @throws org.xml.sax.SAXException
      */
-    public void dispatchAsComment(org.xml.sax.ext.LexicalHandler lh)
-            throws org.xml.sax.SAXException {
+    public void dispatchAsComment(org.xml.sax.ext.LexicalHandler lh) throws org.xml.sax.SAXException {
         lh.comment((char[]) m_obj, m_start, m_length);
     }
 
@@ -185,13 +177,13 @@ public class XStringForChars extends XString {
      * and so on, as for array indexing.
      *
      * @param index
-     *              the index of the character.
+     *        the index of the character.
      * @return the character at the specified index of this string. The first
      *         character is at index <code>0</code>.
      * @exception IndexOutOfBoundsException
-     *                                      if the <code>index</code> argument
-     *                                      is negative or not less
-     *                                      than the length of this string.
+     *            if the <code>index</code> argument
+     *            is negative or not less
+     *            than the length of this string.
      */
     public char charAt(int index) {
         return ((char[]) m_obj)[index + m_start];
@@ -201,37 +193,36 @@ public class XStringForChars extends XString {
      * Copies characters from this string into the destination character array.
      *
      * @param srcBegin
-     *                 index of the first character in the string to copy.
+     *        index of the first character in the string to copy.
      * @param srcEnd
-     *                 index after the last character in the string to copy.
+     *        index after the last character in the string to copy.
      * @param dst
-     *                 the destination array.
+     *        the destination array.
      * @param dstBegin
-     *                 the start offset in the destination array.
+     *        the start offset in the destination array.
      * @exception IndexOutOfBoundsException
-     *                                      If any of the following is true:
-     *                                      <ul>
-     *                                      <li><code>srcBegin</code> is
-     *                                      negative.
-     *                                      <li><code>srcBegin</code> is greater
-     *                                      than
-     *                                      <code>srcEnd</code>
-     *                                      <li><code>srcEnd</code> is greater
-     *                                      than the length of this
-     *                                      string
-     *                                      <li><code>dstBegin</code> is
-     *                                      negative
-     *                                      <li><code>dstBegin+(srcEnd-srcBegin)</code>
-     *                                      is larger than
-     *                                      <code>dst.length</code>
-     *                                      </ul>
+     *            If any of the following is true:
+     *            <ul>
+     *            <li><code>srcBegin</code> is
+     *            negative.
+     *            <li><code>srcBegin</code> is greater
+     *            than
+     *            <code>srcEnd</code>
+     *            <li><code>srcEnd</code> is greater
+     *            than the length of this
+     *            string
+     *            <li><code>dstBegin</code> is
+     *            negative
+     *            <li><code>dstBegin+(srcEnd-srcBegin)</code>
+     *            is larger than
+     *            <code>dst.length</code>
+     *            </ul>
      * @exception NullPointerException
-     *                                      if <code>dst</code> is
-     *                                      <code>null</code>
+     *            if <code>dst</code> is
+     *            <code>null</code>
      */
     public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
-        System.arraycopy((char[]) m_obj, m_start + srcBegin, dst, dstBegin,
-                srcEnd);
+        System.arraycopy((char[]) m_obj, m_start + srcBegin, dst, dstBegin, srcEnd);
     }
 
 }

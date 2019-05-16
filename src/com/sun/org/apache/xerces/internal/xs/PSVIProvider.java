@@ -70,7 +70,7 @@ public interface PSVIProvider {
      * undefined.
      * 
      * @param index
-     *              The attribute index.
+     *        The attribute index.
      * @return The post schema validation properties of the attribute.
      */
     public AttributePSVI getAttributePSVI(int index);
@@ -86,9 +86,9 @@ public interface PSVIProvider {
      * specified scope, the return value is undefined.
      * 
      * @param uri
-     *                  The namespace name of an attribute.
+     *        The namespace name of an attribute.
      * @param localname
-     *                  The local name of an attribute.
+     *        The local name of an attribute.
      * @return The post schema validation properties of the attribute.
      */
     public AttributePSVI getAttributePSVIByName(String uri, String localname);

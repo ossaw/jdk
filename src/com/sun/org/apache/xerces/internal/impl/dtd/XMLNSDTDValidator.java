@@ -85,10 +85,7 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  * </ul>
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
- *
- * 
  */
 public class XMLNSDTDValidator extends XMLDTDValidator {
 
@@ -96,16 +93,15 @@ public class XMLNSDTDValidator extends XMLDTDValidator {
     private QName fAttributeQName = new QName();
 
     /** Bind namespaces */
-    protected final void startNamespaceScope(QName element,
-            XMLAttributes attributes, Augmentations augs) throws XNIException {
+    protected final void startNamespaceScope(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
 
         // add new namespace context
         fNamespaceContext.pushContext();
 
         if (element.prefix == XMLSymbols.PREFIX_XMLNS) {
-            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                    "ElementXMLNSPrefix", new Object[] { element.rawname },
-                    XMLErrorReporter.SEVERITY_FATAL_ERROR);
+            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementXMLNSPrefix", new Object[] {
+                    element.rawname }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
         }
 
         // search for new namespace bindings
@@ -115,35 +111,28 @@ public class XMLNSDTDValidator extends XMLDTDValidator {
             String prefix = attributes.getPrefix(i);
             // when it's of form xmlns="..." or xmlns:prefix="...",
             // it's a namespace declaration. but prefix:xmlns="..." isn't.
-            if (prefix == XMLSymbols.PREFIX_XMLNS
-                    || prefix == XMLSymbols.EMPTY_STRING
-                            && localpart == XMLSymbols.PREFIX_XMLNS) {
+            if (prefix == XMLSymbols.PREFIX_XMLNS || prefix == XMLSymbols.EMPTY_STRING
+                    && localpart == XMLSymbols.PREFIX_XMLNS) {
 
                 // get the internalized value of this attribute
                 String uri = fSymbolTable.addSymbol(attributes.getValue(i));
 
                 // 1. "xmlns" can't be bound to any namespace
-                if (prefix == XMLSymbols.PREFIX_XMLNS
-                        && localpart == XMLSymbols.PREFIX_XMLNS) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "CantBindXMLNS", new Object[] { attributes.getQName(
-                                    i) },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                if (prefix == XMLSymbols.PREFIX_XMLNS && localpart == XMLSymbols.PREFIX_XMLNS) {
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
+                            new Object[] { attributes.getQName(i) }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // 2. the namespace for "xmlns" can't be bound to any prefix
                 if (uri == NamespaceContext.XMLNS_URI) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "CantBindXMLNS", new Object[] { attributes.getQName(
-                                    i) },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
+                            new Object[] { attributes.getQName(i) }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // 3. "xml" can't be bound to any other namespace than it's own
                 if (localpart == XMLSymbols.PREFIX_XML) {
                     if (uri != NamespaceContext.XML_URI) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
                                 new Object[] { attributes.getQName(i) },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
@@ -151,65 +140,53 @@ public class XMLNSDTDValidator extends XMLDTDValidator {
                 // 4. the namespace for "xml" can't be bound to any other prefix
                 else {
                     if (uri == NamespaceContext.XML_URI) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
                                 new Object[] { attributes.getQName(i) },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                 }
 
-                prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart
-                        : XMLSymbols.EMPTY_STRING;
+                prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart : XMLSymbols.EMPTY_STRING;
 
                 // http://www.w3.org/TR/1999/REC-xml-names-19990114/#dt-prefix
                 // We should only report an error if there is a prefix,
                 // that is, the local part is not "xmlns". -SG
-                if (uri == XMLSymbols.EMPTY_STRING
-                        && localpart != XMLSymbols.PREFIX_XMLNS) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "EmptyPrefixedAttName", new Object[] { attributes
-                                    .getQName(i) },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                if (uri == XMLSymbols.EMPTY_STRING && localpart != XMLSymbols.PREFIX_XMLNS) {
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "EmptyPrefixedAttName",
+                            new Object[] { attributes.getQName(i) }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     continue;
                 }
 
                 // declare prefix in context
-                fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri
-                        : null);
+                fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri : null);
             }
         }
 
         // bind the element
-        String prefix = element.prefix != null ? element.prefix
-                : XMLSymbols.EMPTY_STRING;
+        String prefix = element.prefix != null ? element.prefix : XMLSymbols.EMPTY_STRING;
         element.uri = fNamespaceContext.getURI(prefix);
         if (element.prefix == null && element.uri != null) {
             element.prefix = XMLSymbols.EMPTY_STRING;
         }
         if (element.prefix != null && element.uri == null) {
-            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                    "ElementPrefixUnbound", new Object[] { element.prefix,
-                            element.rawname },
-                    XMLErrorReporter.SEVERITY_FATAL_ERROR);
+            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementPrefixUnbound",
+                    new Object[] { element.prefix, element.rawname }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
         }
 
         // bind the attributes
         for (int i = 0; i < length; i++) {
             attributes.getName(i, fAttributeQName);
-            String aprefix = fAttributeQName.prefix != null
-                    ? fAttributeQName.prefix
+            String aprefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
                     : XMLSymbols.EMPTY_STRING;
             String arawname = fAttributeQName.rawname;
             if (arawname == XMLSymbols.PREFIX_XMLNS) {
-                fAttributeQName.uri = fNamespaceContext.getURI(
-                        XMLSymbols.PREFIX_XMLNS);
+                fAttributeQName.uri = fNamespaceContext.getURI(XMLSymbols.PREFIX_XMLNS);
                 attributes.setName(i, fAttributeQName);
             } else if (aprefix != XMLSymbols.EMPTY_STRING) {
                 fAttributeQName.uri = fNamespaceContext.getURI(aprefix);
                 if (fAttributeQName.uri == null) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "AttributePrefixUnbound", new Object[] {
-                                    element.rawname, arawname, aprefix },
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributePrefixUnbound",
+                            new Object[] { element.rawname, arawname, aprefix },
                             XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
                 attributes.setName(i, fAttributeQName);
@@ -229,9 +206,8 @@ public class XMLNSDTDValidator extends XMLDTDValidator {
                 String blocalpart = attributes.getLocalName(j);
                 String buri = attributes.getURI(j);
                 if (alocalpart == blocalpart && auri == buri) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "AttributeNSNotUnique", new Object[] {
-                                    element.rawname, alocalpart, auri },
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributeNSNotUnique",
+                            new Object[] { element.rawname, alocalpart, auri },
                             XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
             }
@@ -240,12 +216,10 @@ public class XMLNSDTDValidator extends XMLDTDValidator {
     } // startNamespaceScope(QName,XMLAttributes)
 
     /** Handles end element. */
-    protected void endNamespaceScope(QName element, Augmentations augs,
-            boolean isEmpty) throws XNIException {
+    protected void endNamespaceScope(QName element, Augmentations augs, boolean isEmpty) throws XNIException {
 
         // bind element
-        String eprefix = element.prefix != null ? element.prefix
-                : XMLSymbols.EMPTY_STRING;
+        String eprefix = element.prefix != null ? element.prefix : XMLSymbols.EMPTY_STRING;
         element.uri = fNamespaceContext.getURI(eprefix);
         if (element.uri != null) {
             element.prefix = eprefix;

@@ -27,7 +27,7 @@ public class RelationServiceNotRegisteredException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public RelationServiceNotRegisteredException(String message) {
         super(message);

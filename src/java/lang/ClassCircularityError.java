@@ -27,7 +27,7 @@ public class ClassCircularityError extends LinkageError {
      * message.
      *
      * @param s
-     *          The detail message
+     *        The detail message
      */
     public ClassCircularityError(String s) {
         super(s);

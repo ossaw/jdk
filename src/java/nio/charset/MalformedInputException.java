@@ -23,7 +23,7 @@ public class MalformedInputException extends CharacterCodingException {
      * Constructs an {@code MalformedInputException} with the given length.
      * 
      * @param inputLength
-     *                    the length of the input
+     *        the length of the input
      */
     public MalformedInputException(int inputLength) {
         this.inputLength = inputLength;

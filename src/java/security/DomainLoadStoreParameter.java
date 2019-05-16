@@ -80,7 +80,6 @@ import static java.security.KeyStore.*;
  *         keystoreType="PKCS12"
  *         keystoreURI="file:///app1/etc/keystore.p12";
  * };
- *
  * </pre>
  * 
  * @since 1.8
@@ -95,41 +94,37 @@ public final class DomainLoadStoreParameter implements LoadStoreParameter {
      * parameters used to protect keystore data.
      *
      * @param configuration
-     *                         identifier for the domain configuration data. The
-     *                         name of the
-     *                         target domain should be specified in the
-     *                         {@code java.net.URI}
-     *                         fragment component when it is necessary to
-     *                         distinguish between
-     *                         several domain configurations at the same
-     *                         location.
-     *
+     *        identifier for the domain configuration data. The
+     *        name of the
+     *        target domain should be specified in the
+     *        {@code java.net.URI}
+     *        fragment component when it is necessary to
+     *        distinguish between
+     *        several domain configurations at the same
+     *        location.
      * @param protectionParams
-     *                         the map from keystore name to the parameter used
-     *                         to protect
-     *                         keystore data. A
-     *                         {@code java.util.Collections.EMPTY_MAP}
-     *                         should be used when protection parameters are not
-     *                         required or
-     *                         when they have been specified by properties in
-     *                         the domain
-     *                         configuration data. It is cloned to prevent
-     *                         subsequent
-     *                         modification.
-     *
+     *        the map from keystore name to the parameter used
+     *        to protect
+     *        keystore data. A
+     *        {@code java.util.Collections.EMPTY_MAP}
+     *        should be used when protection parameters are not
+     *        required or
+     *        when they have been specified by properties in
+     *        the domain
+     *        configuration data. It is cloned to prevent
+     *        subsequent
+     *        modification.
      * @exception NullPointerException
-     *                                 if {@code configuration} or
-     *                                 {@code protectionParams} is
-     *                                 {@code null}
+     *            if {@code configuration} or
+     *            {@code protectionParams} is
+     *            {@code null}
      */
-    public DomainLoadStoreParameter(URI configuration,
-            Map<String, ProtectionParameter> protectionParams) {
+    public DomainLoadStoreParameter(URI configuration, Map<String, ProtectionParameter> protectionParams) {
         if (configuration == null || protectionParams == null) {
             throw new NullPointerException("invalid null input");
         }
         this.configuration = configuration;
-        this.protectionParams = Collections.unmodifiableMap(new HashMap<>(
-                protectionParams));
+        this.protectionParams = Collections.unmodifiableMap(new HashMap<>(protectionParams));
     }
 
     /**

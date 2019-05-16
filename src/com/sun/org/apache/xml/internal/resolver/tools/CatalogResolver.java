@@ -44,11 +44,9 @@ import com.sun.org.apache.xml.internal.resolver.helpers.FileURL;
 
 /**
  * A SAX EntityResolver/JAXP URIResolver that uses catalogs.
- *
  * <p>
  * This class implements both a SAX EntityResolver and a JAXP URIResolver.
  * </p>
- *
  * <p>
  * This resolver understands OASIS TR9401 catalogs, XCatalogs, and the current
  * working draft of the OASIS Entity Resolution Technical Committee
@@ -58,10 +56,8 @@ import com.sun.org.apache.xml.internal.resolver.helpers.FileURL;
  * @see Catalog
  * @see org.xml.sax.EntityResolver
  * @see javax.xml.transform.URIResolver
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  * @version 1.0
  */
 public class CatalogResolver implements EntityResolver, URIResolver {
@@ -106,37 +102,32 @@ public class CatalogResolver implements EntityResolver, URIResolver {
     /**
      * Implements the guts of the <code>resolveEntity</code> method for the SAX
      * interface.
-     *
      * <p>
      * Presented with an optional public identifier and a system identifier,
      * this function attempts to locate a mapping in the catalogs.
      * </p>
-     *
      * <p>
      * If such a mapping is found, it is returned. If no mapping is found, null
      * is returned.
      * </p>
      *
      * @param publicId
-     *                 The public identifier for the entity in question. This
-     *                 may be
-     *                 null.
-     *
+     *        The public identifier for the entity in question. This
+     *        may be
+     *        null.
      * @param systemId
-     *                 The system identifier for the entity in question. XML
-     *                 requires
-     *                 a system identifier on all external entities, so this
-     *                 value is
-     *                 always specified.
-     *
+     *        The system identifier for the entity in question. XML
+     *        requires
+     *        a system identifier on all external entities, so this
+     *        value is
+     *        always specified.
      * @return The resolved identifier (a URI reference).
      */
     public String getResolvedEntity(String publicId, String systemId) {
         String resolved = null;
 
         if (catalog == null) {
-            catalogManager.debug.message(1,
-                    "Catalog resolution attempted with null catalog; ignored");
+            catalogManager.debug.message(1, "Catalog resolution attempted with null catalog; ignored");
             return null;
         }
 
@@ -144,12 +135,10 @@ public class CatalogResolver implements EntityResolver, URIResolver {
             try {
                 resolved = catalog.resolveSystem(systemId);
             } catch (MalformedURLException me) {
-                catalogManager.debug.message(1,
-                        "Malformed URL exception trying to resolve", publicId);
+                catalogManager.debug.message(1, "Malformed URL exception trying to resolve", publicId);
                 resolved = null;
             } catch (IOException ie) {
-                catalogManager.debug.message(1,
-                        "I/O exception trying to resolve", publicId);
+                catalogManager.debug.message(1, "I/O exception trying to resolve", publicId);
                 resolved = null;
             }
         }
@@ -159,22 +148,17 @@ public class CatalogResolver implements EntityResolver, URIResolver {
                 try {
                     resolved = catalog.resolvePublic(publicId, systemId);
                 } catch (MalformedURLException me) {
-                    catalogManager.debug.message(1,
-                            "Malformed URL exception trying to resolve",
-                            publicId);
+                    catalogManager.debug.message(1, "Malformed URL exception trying to resolve", publicId);
                 } catch (IOException ie) {
-                    catalogManager.debug.message(1,
-                            "I/O exception trying to resolve", publicId);
+                    catalogManager.debug.message(1, "I/O exception trying to resolve", publicId);
                 }
             }
 
             if (resolved != null) {
-                catalogManager.debug.message(2, "Resolved public", publicId,
-                        resolved);
+                catalogManager.debug.message(2, "Resolved public", publicId, resolved);
             }
         } else {
-            catalogManager.debug.message(2, "Resolved system", systemId,
-                    resolved);
+            catalogManager.debug.message(2, "Resolved system", systemId, resolved);
         }
 
         return resolved;
@@ -182,18 +166,15 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 
     /**
      * Implements the <code>resolveEntity</code> method for the SAX interface.
-     *
      * <p>
      * Presented with an optional public identifier and a system identifier,
      * this function attempts to locate a mapping in the catalogs.
      * </p>
-     *
      * <p>
      * If such a mapping is found, the resolver attempts to open the mapped
      * value as an InputSource and return it. Exceptions are ignored and null is
      * returned if the mapped value cannot be opened as an input source.
      * </p>
-     *
      * <p>
      * If no mapping is found (or an error occurs attempting to open the mapped
      * value as an input source), null is returned and the system will use the
@@ -201,17 +182,15 @@ public class CatalogResolver implements EntityResolver, URIResolver {
      * </p>
      *
      * @param publicId
-     *                 The public identifier for the entity in question. This
-     *                 may be
-     *                 null.
-     *
+     *        The public identifier for the entity in question. This
+     *        may be
+     *        null.
      * @param systemId
-     *                 The system identifier for the entity in question. XML
-     *                 requires
-     *                 a system identifier on all external entities, so this
-     *                 value is
-     *                 always specified.
-     *
+     *        The system identifier for the entity in question. XML
+     *        requires
+     *        a system identifier on all external entities, so this
+     *        value is
+     *        always specified.
      * @return An InputSource for the mapped identifier, or null.
      */
     public InputSource resolveEntity(String publicId, String systemId) {
@@ -239,8 +218,7 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 
                 return iSource;
             } catch (Exception e) {
-                catalogManager.debug.message(1, "Failed to create InputSource",
-                        resolved);
+                catalogManager.debug.message(1, "Failed to create InputSource", resolved);
                 return null;
             }
         }
@@ -249,8 +227,7 @@ public class CatalogResolver implements EntityResolver, URIResolver {
     }
 
     /** JAXP URIResolver API */
-    public Source resolve(String href, String base)
-            throws TransformerException {
+    public Source resolve(String href, String base) throws TransformerException {
 
         String uri = href;
         String fragment = null;
@@ -277,8 +254,7 @@ public class CatalogResolver implements EntityResolver, URIResolver {
                     result = url.toString();
                 } else {
                     URL baseURL = new URL(base);
-                    url = (href.length() == 0 ? baseURL
-                            : new URL(baseURL, uri));
+                    url = (href.length() == 0 ? baseURL : new URL(baseURL, uri));
                     result = url.toString();
                 }
             } catch (java.net.MalformedURLException mue) {
@@ -288,8 +264,7 @@ public class CatalogResolver implements EntityResolver, URIResolver {
                     // don't bother if the absBase isn't different!
                     return resolve(href, absBase);
                 } else {
-                    throw new TransformerException("Malformed URL " + href
-                            + "(base " + base + ")", mue);
+                    throw new TransformerException("Malformed URL " + href + "(base " + base + ")", mue);
                 }
             }
         }
@@ -306,7 +281,6 @@ public class CatalogResolver implements EntityResolver, URIResolver {
      * <p>
      * Establish an entityResolver for newly resolved URIs.
      * </p>
-     *
      * <p>
      * This is called from the URIResolver to set an EntityResolver on the SAX
      * parser to be used for new XML documents that are encountered as a result
@@ -316,25 +290,20 @@ public class CatalogResolver implements EntityResolver, URIResolver {
      * automatically inherit the EntityResolver of the original (although
      * arguably it should). See below:
      * </p>
-     *
      * <tt>"If an application wants to set the ErrorHandler or
      * EntityResolver for an XMLReader used during a transformation,
      * it should use a URIResolver to return the SAXSource which
      * provides (with getXMLReader) a reference to the XMLReader"</tt>
-     *
      * <p>
      * ...quoted from page 118 of the Java API for XML Processing 1.1
      * specification
      * </p>
-     *
      */
-    private void setEntityResolver(SAXSource source)
-            throws TransformerException {
+    private void setEntityResolver(SAXSource source) throws TransformerException {
         XMLReader reader = source.getXMLReader();
         if (reader == null) {
-            SAXParserFactory spFactory = catalogManager.useServicesMechanism()
-                    ? SAXParserFactory.newInstance()
-                    : new SAXParserFactoryImpl();
+            SAXParserFactory spFactory = catalogManager.useServicesMechanism() ? SAXParserFactory
+                    .newInstance() : new SAXParserFactoryImpl();
             spFactory.setNamespaceAware(true);
             try {
                 reader = spFactory.newSAXParser().getXMLReader();

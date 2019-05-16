@@ -12,7 +12,6 @@ import sun.net.ResourceManager;
  * This class defines the plain DatagramSocketImpl that is used for all Windows
  * versions lower than Vista. It adds support for IPv6 on these platforms where
  * available.
- *
  * For backward compatibility windows platforms that do not have IPv6 support
  * also use this implementation, and fd1 gets set to null during socket
  * creation.
@@ -71,8 +70,7 @@ class TwoStacksPlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl {
         }
     }
 
-    protected synchronized void bind(int lport, InetAddress laddr)
-            throws SocketException {
+    protected synchronized void bind(int lport, InetAddress laddr) throws SocketException {
         super.bind(lport, laddr);
         if (laddr.isAnyLocalAddress()) {
             anyLocalBoundAddr = laddr;
@@ -80,8 +78,7 @@ class TwoStacksPlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl {
     }
 
     @Override
-    protected synchronized void bind0(int lport, InetAddress laddr)
-            throws SocketException {
+    protected synchronized void bind0(int lport, InetAddress laddr) throws SocketException {
         bind0(lport, laddr, exclusiveBind);
 
     }
@@ -103,8 +100,7 @@ class TwoStacksPlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl {
             if ((fd != null && fd1 != null) && !connected) {
                 return anyLocalBoundAddr;
             }
-            int family = connectedAddress == null ? -1
-                    : connectedAddress.holder().getFamily();
+            int family = connectedAddress == null ? -1 : connectedAddress.holder().getFamily();
             return socketLocalAddress(family);
         } else if (optID == SO_REUSEADDR && reuseAddressEmulated) {
             return isReuseAddress;
@@ -139,18 +135,16 @@ class TwoStacksPlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl {
 
     /* Native methods */
 
-    protected synchronized native void bind0(int lport, InetAddress laddr,
-            boolean exclBind) throws SocketException;
+    protected synchronized native void bind0(int lport, InetAddress laddr, boolean exclBind)
+            throws SocketException;
 
     protected native void send(DatagramPacket p) throws IOException;
 
     protected synchronized native int peek(InetAddress i) throws IOException;
 
-    protected synchronized native int peekData(DatagramPacket p)
-            throws IOException;
+    protected synchronized native int peekData(DatagramPacket p) throws IOException;
 
-    protected synchronized native void receive0(DatagramPacket p)
-            throws IOException;
+    protected synchronized native void receive0(DatagramPacket p) throws IOException;
 
     protected native void setTimeToLive(int ttl) throws IOException;
 
@@ -162,26 +156,21 @@ class TwoStacksPlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl {
     @Deprecated
     protected native byte getTTL() throws IOException;
 
-    protected native void join(InetAddress inetaddr, NetworkInterface netIf)
-            throws IOException;
+    protected native void join(InetAddress inetaddr, NetworkInterface netIf) throws IOException;
 
-    protected native void leave(InetAddress inetaddr, NetworkInterface netIf)
-            throws IOException;
+    protected native void leave(InetAddress inetaddr, NetworkInterface netIf) throws IOException;
 
     protected native void datagramSocketCreate() throws SocketException;
 
     protected native void datagramSocketClose();
 
-    protected native void socketNativeSetOption(int opt, Object val)
-            throws SocketException;
+    protected native void socketNativeSetOption(int opt, Object val) throws SocketException;
 
     protected native Object socketGetOption(int opt) throws SocketException;
 
-    protected native void connect0(InetAddress address, int port)
-            throws SocketException;
+    protected native void connect0(InetAddress address, int port) throws SocketException;
 
-    protected native Object socketLocalAddress(int family)
-            throws SocketException;
+    protected native Object socketLocalAddress(int family) throws SocketException;
 
     protected native void disconnect0(int family);
 

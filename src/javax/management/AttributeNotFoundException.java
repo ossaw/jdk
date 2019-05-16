@@ -26,7 +26,7 @@ public class AttributeNotFoundException extends OperationsException {
      * Constructor that allows a specific error message to be specified.
      *
      * @param message
-     *                detail message.
+     *        detail message.
      */
     public AttributeNotFoundException(String message) {
         super(message);

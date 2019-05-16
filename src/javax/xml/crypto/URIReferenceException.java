@@ -14,7 +14,6 @@ import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 /**
  * Indicates an exceptional condition thrown while dereferencing a
  * {@link URIReference}.
- *
  * <p>
  * A <code>URIReferenceException</code> can contain a cause: another throwable
  * that caused this <code>URIReferenceException</code> to get thrown.
@@ -53,7 +52,7 @@ public class URIReferenceException extends Exception {
      * detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public URIReferenceException(String message) {
         super(message);
@@ -67,11 +66,11 @@ public class URIReferenceException extends Exception {
      * <i>not</i> automatically incorporated in this exception's detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      * @param cause
-     *                the cause (A <tt>null</tt> value is permitted, and
-     *                indicates
-     *                that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and
+     *        indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public URIReferenceException(String message, Throwable cause) {
         super(message);
@@ -86,21 +85,20 @@ public class URIReferenceException extends Exception {
      * <i>not</i> automatically incorporated in this exception's detail message.
      *
      * @param message
-     *                     the detail message
+     *        the detail message
      * @param cause
-     *                     the cause (A <tt>null</tt> value is permitted, and
-     *                     indicates
-     *                     that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and
+     *        indicates
+     *        that the cause is nonexistent or unknown.)
      * @param uriReference
-     *                     the <code>URIReference</code> that was being
-     *                     dereferenced when
-     *                     the error was encountered
+     *        the <code>URIReference</code> that was being
+     *        dereferenced when
+     *        the error was encountered
      * @throws NullPointerException
-     *                              if <code>uriReference</code> is
-     *                              <code>null</code>
+     *         if <code>uriReference</code> is
+     *         <code>null</code>
      */
-    public URIReferenceException(String message, Throwable cause,
-            URIReference uriReference) {
+    public URIReferenceException(String message, Throwable cause, URIReference uriReference) {
         this(message, cause);
         if (uriReference == null) {
             throw new NullPointerException("uriReference cannot be null");
@@ -115,8 +113,8 @@ public class URIReferenceException extends Exception {
      * message of <code>cause</code>).
      *
      * @param cause
-     *              the cause (A <tt>null</tt> value is permitted, and indicates
-     *              that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public URIReferenceException(Throwable cause) {
         super(cause == null ? null : cause.toString());
@@ -161,7 +159,7 @@ public class URIReferenceException extends Exception {
      * cause's backtrace to the specified print stream.
      *
      * @param s
-     *          <code>PrintStream</code> to use for output
+     *        <code>PrintStream</code> to use for output
      */
     public void printStackTrace(PrintStream s) {
         super.printStackTrace(s);
@@ -173,7 +171,7 @@ public class URIReferenceException extends Exception {
      * cause's backtrace to the specified print writer.
      *
      * @param s
-     *          <code>PrintWriter</code> to use for output
+     *        <code>PrintWriter</code> to use for output
      */
     public void printStackTrace(PrintWriter s) {
         super.printStackTrace(s);

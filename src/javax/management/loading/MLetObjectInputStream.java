@@ -23,13 +23,11 @@ class MLetObjectInputStream extends ObjectInputStream {
     /**
      * Loader must be non-null;
      */
-    public MLetObjectInputStream(InputStream in, MLet loader)
-            throws IOException, StreamCorruptedException {
+    public MLetObjectInputStream(InputStream in, MLet loader) throws IOException, StreamCorruptedException {
 
         super(in);
         if (loader == null) {
-            throw new IllegalArgumentException(
-                    "Illegal null argument to MLetObjectInputStream");
+            throw new IllegalArgumentException("Illegal null argument to MLetObjectInputStream");
         }
         this.loader = loader;
     }
@@ -67,8 +65,8 @@ class MLetObjectInputStream extends ObjectInputStream {
      * Use the given ClassLoader rather than using the system class
      */
     @Override
-    protected Class<?> resolveClass(ObjectStreamClass objectstreamclass)
-            throws IOException, ClassNotFoundException {
+    protected Class<?> resolveClass(ObjectStreamClass objectstreamclass) throws IOException,
+            ClassNotFoundException {
 
         String s = objectstreamclass.getName();
         if (s.startsWith("[")) {

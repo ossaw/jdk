@@ -21,8 +21,7 @@ import java.util.EventListener;
  *
  * @author Dave Moore
  */
-public class DefaultSingleSelectionModel implements SingleSelectionModel,
-        Serializable {
+public class DefaultSingleSelectionModel implements SingleSelectionModel, Serializable {
     /*
      * Only one ModelChangeEvent is needed per model instance since the event's
      * only (read-only) state is the source property. The source of events
@@ -81,10 +80,8 @@ public class DefaultSingleSelectionModel implements SingleSelectionModel,
      *
      * @return all of this model's <code>ChangeListener</code>s or an empty
      *         array if no change listeners are currently registered
-     *
      * @see #addChangeListener
      * @see #removeChangeListener
-     *
      * @since 1.4
      */
     public ChangeListener[] getChangeListeners() {
@@ -124,28 +121,25 @@ public class DefaultSingleSelectionModel implements SingleSelectionModel,
      * <code>m</code> for its change listeners with the following code:
      *
      * <pre>
-     * ChangeListener[] cls = (ChangeListener[]) (m.getListeners(
-     *         ChangeListener.class));
+     * ChangeListener[] cls = (ChangeListener[]) (m.getListeners(ChangeListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this model, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getChangeListeners
-     *
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {

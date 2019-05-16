@@ -17,8 +17,7 @@ import com.sun.corba.se.spi.ior.TaggedComponent;
 /**
  * @author
  */
-public class GenericTaggedComponent extends GenericIdentifiable implements
-        TaggedComponent {
+public class GenericTaggedComponent extends GenericIdentifiable implements TaggedComponent {
     public GenericTaggedComponent(int id, InputStream is) {
         super(id, is);
     }

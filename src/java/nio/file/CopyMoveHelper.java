@@ -44,8 +44,7 @@ class CopyMoveHelper {
                 }
                 if (option == null)
                     throw new NullPointerException();
-                throw new UnsupportedOperationException("'" + option
-                        + "' is not a recognized copy option");
+                throw new UnsupportedOperationException("'" + option + "' is not a recognized copy option");
             }
             return result;
         }
@@ -76,15 +75,13 @@ class CopyMoveHelper {
      * Simple copy for use when source and target are associated with different
      * providers
      */
-    static void copyToForeignTarget(Path source, Path target,
-            CopyOption... options) throws IOException {
+    static void copyToForeignTarget(Path source, Path target, CopyOption... options) throws IOException {
         CopyOptions opts = CopyOptions.parse(options);
         LinkOption[] linkOptions = (opts.followLinks) ? new LinkOption[0]
                 : new LinkOption[] { LinkOption.NOFOLLOW_LINKS };
 
         // attributes of source file
-        BasicFileAttributes attrs = Files.readAttributes(source,
-                BasicFileAttributes.class, linkOptions);
+        BasicFileAttributes attrs = Files.readAttributes(source, BasicFileAttributes.class, linkOptions);
         if (attrs.isSymbolicLink())
             throw new IOException("Copying of symbolic links not supported");
 
@@ -105,11 +102,9 @@ class CopyMoveHelper {
 
         // copy basic attributes to target
         if (opts.copyAttributes) {
-            BasicFileAttributeView view = Files.getFileAttributeView(target,
-                    BasicFileAttributeView.class);
+            BasicFileAttributeView view = Files.getFileAttributeView(target, BasicFileAttributeView.class);
             try {
-                view.setTimes(attrs.lastModifiedTime(), attrs.lastAccessTime(),
-                        attrs.creationTime());
+                view.setTimes(attrs.lastModifiedTime(), attrs.lastAccessTime(), attrs.creationTime());
             } catch (Throwable x) {
                 // rollback
                 try {
@@ -126,8 +121,7 @@ class CopyMoveHelper {
      * Simple move implements as copy+delete for use when source and target are
      * associated with different providers
      */
-    static void moveToForeignTarget(Path source, Path target,
-            CopyOption... options) throws IOException {
+    static void moveToForeignTarget(Path source, Path target, CopyOption... options) throws IOException {
         copyToForeignTarget(source, target, convertMoveToCopyOptions(options));
         Files.delete(source);
     }

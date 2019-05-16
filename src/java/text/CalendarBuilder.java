@@ -13,7 +13,6 @@ import static java.util.GregorianCalendar.*;
  * fields of the given {@code Calendar}. It has the {@link Calendar#FIELD_COUNT
  * FIELD_COUNT}-th field for the week year support. Also {@code ISO_DAY_OF_WEEK}
  * is used to specify {@code DAY_OF_WEEK} in the ISO day of week numbering.
- *
  * <p>
  * {@code CalendarBuilder} retains the semantic of the pseudo timestamp for
  * fields. {@code CalendarBuilder} uses a single int array combining fields[]
@@ -103,10 +102,8 @@ class CalendarBuilder {
         }
 
         if (weekDate) {
-            int weekOfYear = isSet(WEEK_OF_YEAR) ? field[MAX_FIELD
-                    + WEEK_OF_YEAR] : 1;
-            int dayOfWeek = isSet(DAY_OF_WEEK) ? field[MAX_FIELD + DAY_OF_WEEK]
-                    : cal.getFirstDayOfWeek();
+            int weekOfYear = isSet(WEEK_OF_YEAR) ? field[MAX_FIELD + WEEK_OF_YEAR] : 1;
+            int dayOfWeek = isSet(DAY_OF_WEEK) ? field[MAX_FIELD + DAY_OF_WEEK] : cal.getFirstDayOfWeek();
             if (!isValidDayOfWeek(dayOfWeek) && cal.isLenient()) {
                 if (dayOfWeek >= 8) {
                     dayOfWeek--;
@@ -120,8 +117,7 @@ class CalendarBuilder {
                 }
                 dayOfWeek = toCalendarDayOfWeek(dayOfWeek);
             }
-            cal.setWeekDate(field[MAX_FIELD + WEEK_YEAR], weekOfYear,
-                    dayOfWeek);
+            cal.setWeekDate(field[MAX_FIELD + WEEK_YEAR], weekOfYear, dayOfWeek);
         }
         return cal;
     }
@@ -131,8 +127,7 @@ class CalendarBuilder {
         sb.append("CalendarBuilder:[");
         for (int i = 0; i < field.length; i++) {
             if (isSet(i)) {
-                sb.append(i).append('=').append(field[MAX_FIELD + i]).append(
-                        ',');
+                sb.append(i).append('=').append(field[MAX_FIELD + i]).append(',');
             }
         }
         int lastIndex = sb.length() - 1;

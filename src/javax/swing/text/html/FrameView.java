@@ -36,7 +36,7 @@ class FrameView extends ComponentView implements HyperlinkListener {
      * Creates a new Frame.
      *
      * @param elem
-     *             the element to represent.
+     *        the element to represent.
      */
     public FrameView(Element elem) {
         super(elem);
@@ -104,7 +104,7 @@ class FrameView extends ComponentView implements HyperlinkListener {
      * contains it is editable.
      *
      * @param parent
-     *               View
+     *        View
      */
     public void setParent(View parent) {
         if (parent != null) {
@@ -120,14 +120,14 @@ class FrameView extends ComponentView implements HyperlinkListener {
      * proceeds to call the superclass to do the paint().
      *
      * @param parent
-     *               View
+     *        View
      * @see text.ComponentView#paint
      */
     public void paint(Graphics g, Shape allocation) {
 
         Container host = getContainer();
-        if (host != null && htmlPane != null && htmlPane
-                .isEditable() != ((JTextComponent) host).isEditable()) {
+        if (host != null && htmlPane != null && htmlPane.isEditable() != ((JTextComponent) host)
+                .isEditable()) {
             editable = ((JTextComponent) host).isEditable();
             htmlPane.setEditable(editable);
         }
@@ -144,8 +144,7 @@ class FrameView extends ComponentView implements HyperlinkListener {
         Insets newInsets;
         boolean modified = false;
         AttributeSet attributes = getElement().getAttributes();
-        String marginStr = (String) attributes.getAttribute(
-                HTML.Attribute.MARGINWIDTH);
+        String marginStr = (String) attributes.getAttribute(HTML.Attribute.MARGINWIDTH);
         if (in != null) {
             newInsets = new Insets(in.top, in.left, in.right, in.bottom);
         } else {
@@ -159,8 +158,7 @@ class FrameView extends ComponentView implements HyperlinkListener {
                 modified = true;
             }
         }
-        marginStr = (String) attributes.getAttribute(
-                HTML.Attribute.MARGINHEIGHT);
+        marginStr = (String) attributes.getAttribute(HTML.Attribute.MARGINHEIGHT);
         if (marginStr != null) {
             margin = Integer.parseInt(marginStr);
             if (margin > 0) {
@@ -182,10 +180,8 @@ class FrameView extends ComponentView implements HyperlinkListener {
     private void setBorder() {
 
         AttributeSet attributes = getElement().getAttributes();
-        String frameBorder = (String) attributes.getAttribute(
-                HTML.Attribute.FRAMEBORDER);
-        if ((frameBorder != null) && (frameBorder.equals("no") || frameBorder
-                .equals("0"))) {
+        String frameBorder = (String) attributes.getAttribute(HTML.Attribute.FRAMEBORDER);
+        if ((frameBorder != null) && (frameBorder.equals("no") || frameBorder.equals("0"))) {
             // make invisible borders.
             scroller.setBorder(null);
         }
@@ -198,16 +194,14 @@ class FrameView extends ComponentView implements HyperlinkListener {
      */
     private void createScrollPane() {
         AttributeSet attributes = getElement().getAttributes();
-        String scrolling = (String) attributes.getAttribute(
-                HTML.Attribute.SCROLLING);
+        String scrolling = (String) attributes.getAttribute(HTML.Attribute.SCROLLING);
         if (scrolling == null) {
             scrolling = "auto";
         }
 
         if (!scrolling.equals("no")) {
             if (scrolling.equals("yes")) {
-                scroller = new JScrollPane(
-                        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                scroller = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             } else {
                 // scrollbars will be displayed if needed
@@ -223,8 +217,7 @@ class FrameView extends ComponentView implements HyperlinkListener {
         vp.add(htmlPane);
         vp.setBackingStoreEnabled(true);
         scroller.setMinimumSize(new Dimension(5, 5));
-        scroller.setMaximumSize(new Dimension(Integer.MAX_VALUE,
-                Integer.MAX_VALUE));
+        scroller.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
     }
 
     /**
@@ -317,9 +310,8 @@ class FrameView extends ComponentView implements HyperlinkListener {
                 }
             }
             if (!c.isEditable()) {
-                c.fireHyperlinkUpdate(new HTMLFrameHyperlinkEvent(c, e
-                        .getEventType(), e.getURL(), e.getDescription(),
-                        getElement(), e.getInputEvent(), target));
+                c.fireHyperlinkUpdate(new HTMLFrameHyperlinkEvent(c, e.getEventType(), e.getURL(), e
+                        .getDescription(), getElement(), e.getInputEvent(), target));
             }
         }
     }
@@ -330,12 +322,11 @@ class FrameView extends ComponentView implements HyperlinkListener {
      * changes to its SRC attribute.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
-     *
+     *        the factory to use to rebuild if the view has children
      */
     public void changedUpdate(DocumentEvent e, Shape a, ViewFactory f) {
 
@@ -353,8 +344,7 @@ class FrameView extends ComponentView implements HyperlinkListener {
 
             Object postData = movePostData(htmlPane, null);
             src = new URL(base, srcAtt);
-            if (oldPage.equals(src) && (src.getRef() == null)
-                    && (postData == null)) {
+            if (oldPage.equals(src) && (src.getRef() == null) && (postData == null)) {
                 return;
             }
 
@@ -382,16 +372,14 @@ class FrameView extends ComponentView implements HyperlinkListener {
         JEditorPane p = getOutermostJEditorPane();
         if (p != null) {
             if (frameName == null) {
-                frameName = (String) getElement().getAttributes().getAttribute(
-                        HTML.Attribute.NAME);
+                frameName = (String) getElement().getAttributes().getAttribute(HTML.Attribute.NAME);
             }
             if (frameName != null) {
                 String propName = FormView.PostDataProperty + "." + frameName;
                 Document d = p.getDocument();
                 postData = d.getProperty(propName);
                 if (postData != null) {
-                    targetPane.getDocument().putProperty(
-                            FormView.PostDataProperty, postData);
+                    targetPane.getDocument().putProperty(FormView.PostDataProperty, postData);
                     d.putProperty(propName, null);
                 }
             }
@@ -404,12 +392,11 @@ class FrameView extends ComponentView implements HyperlinkListener {
      * Determines the minimum span for this view along an axis.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the preferred span; given that we do not support resizing of
      *         frames, the minimum span returned is the same as the preferred
      *         span
-     *
      */
     public float getMinimumSpan(int axis) {
         return 5;
@@ -419,12 +406,11 @@ class FrameView extends ComponentView implements HyperlinkListener {
      * Determines the maximum span for this view along an axis.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the preferred span; given that we do not support resizing of
      *         frames, the maximum span returned is the same as the preferred
      *         span
-     *
      */
     public float getMaximumSpan(int axis) {
         return Integer.MAX_VALUE;
@@ -439,10 +425,8 @@ class FrameView extends ComponentView implements HyperlinkListener {
             EditorKit editorKit = super.getEditorKitForContentType(type);
             JEditorPane outerMostJEditorPane = null;
             if ((outerMostJEditorPane = getOutermostJEditorPane()) != null) {
-                EditorKit inheritedEditorKit = outerMostJEditorPane
-                        .getEditorKitForContentType(type);
-                if (!editorKit.getClass().equals(inheritedEditorKit
-                        .getClass())) {
+                EditorKit inheritedEditorKit = outerMostJEditorPane.getEditorKitForContentType(type);
+                if (!editorKit.getClass().equals(inheritedEditorKit.getClass())) {
                     editorKit = (EditorKit) inheritedEditorKit.clone();
                     setEditorKitForContentType(type, editorKit);
                 }

@@ -72,22 +72,21 @@ public final class ExceptionTable extends Attribute {
      * references (shallow copy). Use copy() for a physical copy.
      */
     public ExceptionTable(ExceptionTable c) {
-        this(c.getNameIndex(), c.getLength(), c.getExceptionIndexTable(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getExceptionIndexTable(), c.getConstantPool());
     }
 
     /**
      * @param name_index
-     *                              Index in constant pool
+     *        Index in constant pool
      * @param length
-     *                              Content length in bytes
+     *        Content length in bytes
      * @param exception_index_table
-     *                              Table of indices in constant pool
+     *        Table of indices in constant pool
      * @param constant_pool
-     *                              Array of constants
+     *        Array of constants
      */
-    public ExceptionTable(int name_index, int length,
-            int[] exception_index_table, ConstantPool constant_pool) {
+    public ExceptionTable(int name_index, int length, int[] exception_index_table,
+            ConstantPool constant_pool) {
         super(Constants.ATTR_EXCEPTIONS, name_index, length, constant_pool);
         setExceptionIndexTable(exception_index_table);
     }
@@ -96,17 +95,17 @@ public final class ExceptionTable extends Attribute {
      * Construct object from file stream.
      * 
      * @param name_index
-     *                      Index in constant pool
+     *        Index in constant pool
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      * @throws IOException
      */
-    ExceptionTable(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    ExceptionTable(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, (int[]) null, constant_pool);
 
         number_of_exceptions = file.readUnsignedShort();
@@ -122,7 +121,7 @@ public final class ExceptionTable extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitExceptionTable(this);
@@ -132,7 +131,7 @@ public final class ExceptionTable extends Attribute {
      * Dump exceptions attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -162,8 +161,8 @@ public final class ExceptionTable extends Attribute {
     public final String[] getExceptionNames() {
         String[] names = new String[number_of_exceptions];
         for (int i = 0; i < number_of_exceptions; i++)
-            names[i] = constant_pool.getConstantString(exception_index_table[i],
-                    Constants.CONSTANT_Class).replace('/', '.');
+            names[i] = constant_pool.getConstantString(exception_index_table[i], Constants.CONSTANT_Class)
+                    .replace('/', '.');
         return names;
     }
 
@@ -173,8 +172,7 @@ public final class ExceptionTable extends Attribute {
      */
     public final void setExceptionIndexTable(int[] exception_index_table) {
         this.exception_index_table = exception_index_table;
-        number_of_exceptions = (exception_index_table == null) ? 0
-                : exception_index_table.length;
+        number_of_exceptions = (exception_index_table == null) ? 0 : exception_index_table.length;
     }
 
     /**
@@ -185,8 +183,7 @@ public final class ExceptionTable extends Attribute {
         String str;
 
         for (int i = 0; i < number_of_exceptions; i++) {
-            str = constant_pool.getConstantString(exception_index_table[i],
-                    Constants.CONSTANT_Class);
+            str = constant_pool.getConstantString(exception_index_table[i], Constants.CONSTANT_Class);
             buf.append(Utility.compactClassName(str, false));
 
             if (i < number_of_exceptions - 1)

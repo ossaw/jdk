@@ -19,7 +19,6 @@ package javax.naming;
  * <li>Link Remaining Name. Portion of link name that has not been resolved.
  * <li>Link Explanation. Detail explaining why link resolution failed.
  * </ul>
- *
  * <p>
  * A LinkException instance is not synchronized against concurrent multithreaded
  * access. Multiple threads trying to access and modify a single LinkException
@@ -27,7 +26,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Context#lookupLink
  * @see LinkRef
  * @since 1.3
@@ -93,9 +91,9 @@ public class LinkException extends NamingException {
      * other fields are initialized to null.
      * 
      * @param explanation
-     *                    A possibly null string containing additional detail
-     *                    about this
-     *                    exception.
+     *        A possibly null string containing additional detail
+     *        about this
+     *        exception.
      * @see java.lang.Throwable#getMessage
      */
     public LinkException(String explanation) {
@@ -175,9 +173,9 @@ public class LinkException extends NamingException {
      * a link.
      *
      * @param msg
-     *            The possibly null detail string explaining more about the
-     *            problem with resolving a link. If null, it means no detail
-     *            will be recorded.
+     *        The possibly null detail string explaining more about the
+     *        problem with resolving a link. If null, it means no detail
+     *        will be recorded.
      * @see #getLinkExplanation
      */
     public void setLinkExplanation(String msg) {
@@ -196,10 +194,9 @@ public class LinkException extends NamingException {
      * <code>name</code> does not affect the copy in this NamingException and
      * vice versa.
      *
-     *
      * @param name
-     *             The name to set resolved link name to. This can be null. If
-     *             null, it sets the link resolved name field to null.
+     *        The name to set resolved link name to. This can be null. If
+     *        null, it sets the link resolved name field to null.
      * @see #getLinkResolvedName
      */
     public void setLinkResolvedName(Name name) {
@@ -223,8 +220,8 @@ public class LinkException extends NamingException {
      * vice versa.
      *
      * @param name
-     *             The name to set remaining link name to. This can be null. If
-     *             null, it sets the remaining name field to null.
+     *        The name to set remaining link name to. This can be null. If
+     *        null, it sets the remaining name field to null.
      * @see #getLinkRemainingName
      */
     public void setLinkRemainingName(Name name) {
@@ -239,8 +236,8 @@ public class LinkException extends NamingException {
      * last successfully resolved object of link name.
      * 
      * @param obj
-     *            The object to set link resolved object to. This can be null.
-     *            If null, the link resolved object field is set to null.
+     *        The object to set link resolved object to. This can be null.
+     *        If null, the link resolved object field is set to null.
      * @see #getLinkResolvedObj
      */
     public void setLinkResolvedObj(Object obj) {
@@ -256,8 +253,7 @@ public class LinkException extends NamingException {
      * @return The non-null string representation of this link exception.
      */
     public String toString() {
-        return super.toString() + "; Link Remaining Name: '"
-                + this.linkRemainingName + "'";
+        return super.toString() + "; Link Remaining Name: '" + this.linkRemainingName + "'";
     }
 
     /**
@@ -270,15 +266,14 @@ public class LinkException extends NamingException {
      * programmatically.
      *
      * @param detail
-     *               If true, add information about the link resolved object.
+     *        If true, add information about the link resolved object.
      * @return The non-null string representation of this link exception.
      */
     public String toString(boolean detail) {
         if (!detail || this.linkResolvedObj == null)
             return this.toString();
 
-        return this.toString() + "; Link Resolved Object: "
-                + this.linkResolvedObj;
+        return this.toString() + "; Link Resolved Object: " + this.linkResolvedObj;
     }
 
     /**

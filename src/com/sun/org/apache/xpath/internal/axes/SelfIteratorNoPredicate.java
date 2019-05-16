@@ -38,14 +38,13 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
      * Create a SelfIteratorNoPredicate object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @param analysis
-     *                 Analysis bits.
-     *
+     *        Analysis bits.
      * @throws javax.xml.transform.TransformerException
      */
     SelfIteratorNoPredicate(Compiler compiler, int opPos, int analysis)
@@ -58,8 +57,7 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
      *
      * @throws javax.xml.transform.TransformerException
      */
-    public SelfIteratorNoPredicate()
-            throws javax.xml.transform.TransformerException {
+    public SelfIteratorNoPredicate() throws javax.xml.transform.TransformerException {
         super(null);
     }
 
@@ -78,8 +76,7 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
         int next;
         DTM dtm = m_cdtm;
 
-        m_lastFetched = next = (DTM.NULL == m_lastFetched) ? m_context
-                : DTM.NULL;
+        m_lastFetched = next = (DTM.NULL == m_lastFetched) ? m_context : DTM.NULL;
 
         // m_lastFetched = next;
         if (DTM.NULL != next) {
@@ -100,11 +97,10 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
      * do a clone operation.
      * 
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return the first node out of the nodeset, or DTM.NULL.
      */
-    public int asNode(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return xctxt.getCurrentNode();
     }
 
@@ -113,8 +109,7 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
      * will need to be overridded by derived classes.
      *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return the index of the last node that can be itterated to.
      */
     public int getLastPos(XPathContext xctxt) {

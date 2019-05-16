@@ -71,21 +71,17 @@ import sun.security.x509.X509CertImpl;
  * <pre>
  * try (InputStream inStream = new FileInputStream("fileName-of-cert")) {
  *     CertificateFactory cf = CertificateFactory.getInstance("X.509");
- *     X509Certificate cert = (X509Certificate) cf.generateCertificate(
- *             inStream);
+ *     X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream);
  * }
  * </pre>
  *
  * @author Hemma Prafullchandra
- *
- *
  * @see Certificate
  * @see CertificateFactory
  * @see X509Extension
  */
 
-public abstract class X509Certificate extends Certificate implements
-        X509Extension {
+public abstract class X509Certificate extends Certificate implements X509Extension {
 
     private static final long serialVersionUID = -2491127588187038216L;
 
@@ -119,14 +115,13 @@ public abstract class X509Certificate extends Certificate implements
      * </pre>
      *
      * @exception CertificateExpiredException
-     *                                            if the certificate has
-     *                                            expired.
+     *            if the certificate has
+     *            expired.
      * @exception CertificateNotYetValidException
-     *                                            if the certificate is not yet
-     *                                            valid.
+     *            if the certificate is not yet
+     *            valid.
      */
-    public abstract void checkValidity() throws CertificateExpiredException,
-            CertificateNotYetValidException;
+    public abstract void checkValidity() throws CertificateExpiredException, CertificateNotYetValidException;
 
     /**
      * Checks that the given date is within the certificate's validity period.
@@ -134,22 +129,20 @@ public abstract class X509Certificate extends Certificate implements
      * the given date/time.
      *
      * @param date
-     *             the Date to check against to see if this certificate is valid
-     *             at that date/time.
-     *
+     *        the Date to check against to see if this certificate is valid
+     *        at that date/time.
      * @exception CertificateExpiredException
-     *                                            if the certificate has expired
-     *                                            with respect to the
-     *                                            {@code date} supplied.
+     *            if the certificate has expired
+     *            with respect to the
+     *            {@code date} supplied.
      * @exception CertificateNotYetValidException
-     *                                            if the certificate is not yet
-     *                                            valid with respect to the
-     *                                            {@code date} supplied.
-     *
+     *            if the certificate is not yet
+     *            valid with respect to the
+     *            {@code date} supplied.
      * @see #checkValidity()
      */
-    public abstract void checkValidity(Date date)
-            throws CertificateExpiredException, CertificateNotYetValidException;
+    public abstract void checkValidity(Date date) throws CertificateExpiredException,
+            CertificateNotYetValidException;
 
     /**
      * Gets the {@code version} (version number) value from the certificate. The
@@ -187,12 +180,10 @@ public abstract class X509Certificate extends Certificate implements
      * {@linkplain #getIssuerX500Principal()}. This method returns the
      * {@code issuer} as an implementation specific Principal object, which
      * should not be relied upon by portable code.
-     *
      * <p>
      * Gets the {@code issuer} (issuer distinguished name) value from the
      * certificate. The issuer name identifies the entity that signed (and
      * issued) the certificate.
-     *
      * <p>
      * The issuer name field contains an X.500 distinguished name (DN). The
      * ASN.1 definition for this is:
@@ -245,20 +236,17 @@ public abstract class X509Certificate extends Certificate implements
      * {@linkplain #getSubjectX500Principal()}. This method returns the
      * {@code subject} as an implementation specific Principal object, which
      * should not be relied upon by portable code.
-     *
      * <p>
      * Gets the {@code subject} (subject distinguished name) value from the
      * certificate. If the {@code subject} value is empty, then the
      * {@code getName()} method of the returned {@code Principal} object returns
      * an empty string ("").
-     *
      * <p>
      * The ASN.1 definition for this is:
      * 
      * <pre>
      * subject    Name
      * </pre>
-     *
      * <p>
      * See {@link #getIssuerDN() getIssuerDN} for {@code Name} and other
      * relevant definitions.
@@ -324,10 +312,9 @@ public abstract class X509Certificate extends Certificate implements
      *
      * @return the DER-encoded certificate information.
      * @exception CertificateEncodingException
-     *                                         if an encoding error occurs.
+     *            if an encoding error occurs.
      */
-    public abstract byte[] getTBSCertificate()
-            throws CertificateEncodingException;
+    public abstract byte[] getTBSCertificate() throws CertificateEncodingException;
 
     /**
      * Gets the {@code signature} value (the raw signature bits) from the
@@ -356,7 +343,6 @@ public abstract class X509Certificate extends Certificate implements
      *                             -- registered for use with the
      *                             -- algorithm object identifier value
      * </pre>
-     *
      * <p>
      * The algorithm name is determined from the {@code algorithm} OID string.
      *
@@ -372,7 +358,6 @@ public abstract class X509Certificate extends Certificate implements
      * <a href="http://www.ietf.org/rfc/rfc3279.txt">RFC 3279: Algorithms and
      * Identifiers for the Internet X.509 Public Key Infrastructure Certificate
      * and CRL Profile</a>.
-     *
      * <p>
      * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
      * definitions.
@@ -389,7 +374,6 @@ public abstract class X509Certificate extends Certificate implements
      * needed then use {@link java.security.AlgorithmParameters
      * AlgorithmParameters} and instantiate with the name returned by
      * {@link #getSigAlgName() getSigAlgName}.
-     *
      * <p>
      * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
      * definitions.
@@ -406,7 +390,6 @@ public abstract class X509Certificate extends Certificate implements
      * reused and that conforming certificates not make use of unique
      * identifiers. Applications conforming to that profile should be capable of
      * parsing unique identifiers and making comparisons.
-     *
      * <p>
      * The ASN.1 definition for this is:
      * 
@@ -423,7 +406,6 @@ public abstract class X509Certificate extends Certificate implements
 
     /**
      * Gets the {@code subjectUniqueID} value from the certificate.
-     *
      * <p>
      * The ASN.1 definition for this is:
      * 
@@ -499,11 +481,10 @@ public abstract class X509Certificate extends Certificate implements
      *         Returns null if this certificate does not contain an
      *         ExtendedKeyUsage extension.
      * @throws CertificateParsingException
-     *                                     if the extension cannot be decoded
+     *         if the extension cannot be decoded
      * @since 1.4
      */
-    public List<String> getExtendedKeyUsage()
-            throws CertificateParsingException {
+    public List<String> getExtendedKeyUsage() throws CertificateParsingException {
         return X509CertImpl.getExtendedKeyUsage(this);
     }
 
@@ -596,11 +577,10 @@ public abstract class X509Certificate extends Certificate implements
      * @return an immutable {@code Collection} of subject alternative names (or
      *         {@code null})
      * @throws CertificateParsingException
-     *                                     if the extension cannot be decoded
+     *         if the extension cannot be decoded
      * @since 1.4
      */
-    public Collection<List<?>> getSubjectAlternativeNames()
-            throws CertificateParsingException {
+    public Collection<List<?>> getSubjectAlternativeNames() throws CertificateParsingException {
         return X509CertImpl.getSubjectAlternativeNames(this);
     }
 
@@ -640,11 +620,10 @@ public abstract class X509Certificate extends Certificate implements
      * @return an immutable {@code Collection} of issuer alternative names (or
      *         {@code null})
      * @throws CertificateParsingException
-     *                                     if the extension cannot be decoded
+     *         if the extension cannot be decoded
      * @since 1.4
      */
-    public Collection<List<?>> getIssuerAlternativeNames()
-            throws CertificateParsingException {
+    public Collection<List<?>> getIssuerAlternativeNames() throws CertificateParsingException {
         return X509CertImpl.getIssuerAlternativeNames(this);
     }
 
@@ -654,33 +633,30 @@ public abstract class X509Certificate extends Certificate implements
      * verification engine supplied by the specified provider. Note that the
      * specified Provider object does not have to be registered in the provider
      * list.
-     *
      * This method was added to version 1.8 of the Java Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
      * service providers, this method is not {@code abstract} and it provides a
      * default implementation.
      *
      * @param key
-     *                    the PublicKey used to carry out the verification.
+     *        the PublicKey used to carry out the verification.
      * @param sigProvider
-     *                    the signature provider.
-     *
+     *        the signature provider.
      * @exception NoSuchAlgorithmException
-     *                                          on unsupported signature
-     *                                          algorithms.
+     *            on unsupported signature
+     *            algorithms.
      * @exception InvalidKeyException
-     *                                          on incorrect key.
+     *            on incorrect key.
      * @exception SignatureException
-     *                                          on signature errors.
+     *            on signature errors.
      * @exception CertificateException
-     *                                          on encoding errors.
+     *            on encoding errors.
      * @exception UnsupportedOperationException
-     *                                          if the method is not supported
+     *            if the method is not supported
      * @since 1.8
      */
-    public void verify(PublicKey key, Provider sigProvider)
-            throws CertificateException, NoSuchAlgorithmException,
-            InvalidKeyException, SignatureException {
+    public void verify(PublicKey key, Provider sigProvider) throws CertificateException,
+            NoSuchAlgorithmException, InvalidKeyException, SignatureException {
         X509CertImpl.verify(this, key, sigProvider);
     }
 }

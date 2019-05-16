@@ -17,7 +17,6 @@ package java.util;
  * reinserted into a set <tt>s</tt> if <tt>s.add(e)</tt> is invoked when
  * <tt>s.contains(e)</tt> would return <tt>true</tt> immediately prior to the
  * invocation.)
- *
  * <p>
  * This implementation spares its clients from the unspecified, generally
  * chaotic ordering provided by {@link HashSet}, without incurring the increased
@@ -36,7 +35,6 @@ package java.util;
  * copies it, and later returns results whose order is determined by that of the
  * copy. (Clients generally appreciate having things returned in the same order
  * they were presented.)
- *
  * <p>
  * This class provides all of the optional <tt>Set</tt> operations, and permits
  * null elements. Like <tt>HashSet</tt>, it provides constant-time performance
@@ -48,7 +46,6 @@ package java.util;
  * <i>size</i> of the set, regardless of its capacity. Iteration over a
  * <tt>HashSet</tt> is likely to be more expensive, requiring time proportional
  * to its <i>capacity</i>.
- *
  * <p>
  * A linked hash set has two parameters that affect its performance: <i>initial
  * capacity</i> and <i>load factor</i>. They are defined precisely as for
@@ -56,14 +53,12 @@ package java.util;
  * high value for initial capacity is less severe for this class than for
  * <tt>HashSet</tt>, as iteration times for this class are unaffected by
  * capacity.
- *
  * <p>
  * <strong>Note that this implementation is not synchronized.</strong> If
  * multiple threads access a linked hash set concurrently, and at least one of
  * the threads modifies the set, it <em>must</em> be synchronized externally.
  * This is typically accomplished by synchronizing on some object that naturally
  * encapsulates the set.
- *
  * If no such object exists, the set should be "wrapped" using the
  * {@link Collections#synchronizedSet Collections.synchronizedSet} method. This
  * is best done at creation time, to prevent accidental unsynchronized access to
@@ -72,7 +67,6 @@ package java.util;
  * <pre>
  *   Set s = Collections.synchronizedSet(new LinkedHashSet(...));
  * </pre>
- *
  * <p>
  * The iterators returned by this class's <tt>iterator</tt> method are
  * <em>fail-fast</em>: if the set is modified at any time after the iterator is
@@ -81,7 +75,6 @@ package java.util;
  * the face of concurrent modification, the iterator fails quickly and cleanly,
  * rather than risking arbitrary, non-deterministic behavior at an undetermined
  * time in the future.
- *
  * <p>
  * Note that the fail-fast behavior of an iterator cannot be guaranteed as it
  * is, generally speaking, impossible to make any hard guarantees in the
@@ -90,7 +83,6 @@ package java.util;
  * it would be wrong to write a program that depended on this exception for its
  * correctness: <i>the fail-fast behavior of iterators should be used only to
  * detect bugs.</i>
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -98,7 +90,6 @@ package java.util;
  *
  * @param <E>
  *        the type of elements maintained by this set
- *
  * @author Josh Bloch
  * @see Object#hashCode()
  * @see Collection
@@ -109,8 +100,7 @@ package java.util;
  * @since 1.4
  */
 
-public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
-        java.io.Serializable {
+public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, java.io.Serializable {
 
     private static final long serialVersionUID = -2851667679971038690L;
 
@@ -119,13 +109,13 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
      * capacity and load factor.
      *
      * @param initialCapacity
-     *                        the initial capacity of the linked hash set
+     *        the initial capacity of the linked hash set
      * @param loadFactor
-     *                        the load factor of the linked hash set
+     *        the load factor of the linked hash set
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero, or if the load
-     *                                  factor is nonpositive
+     *         if the initial capacity is less than
+     *         zero, or if the load
+     *         factor is nonpositive
      */
     public LinkedHashSet(int initialCapacity, float loadFactor) {
         super(initialCapacity, loadFactor, true);
@@ -136,10 +126,10 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
      * capacity and the default load factor (0.75).
      *
      * @param initialCapacity
-     *                        the initial capacity of the LinkedHashSet
+     *        the initial capacity of the LinkedHashSet
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero
+     *         if the initial capacity is less than
+     *         zero
      */
     public LinkedHashSet(int initialCapacity) {
         super(initialCapacity, .75f, true);
@@ -160,9 +150,9 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
      * default load factor (0.75).
      *
      * @param c
-     *          the collection whose elements are to be placed into this set
+     *        the collection whose elements are to be placed into this set
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public LinkedHashSet(Collection<? extends E> c) {
         super(Math.max(2 * c.size(), 11), .75f, true);
@@ -172,7 +162,6 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
     /**
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@code Spliterator} over the elements in this set.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#SIZED},
      * {@link Spliterator#DISTINCT}, and {@code ORDERED}. Implementations should
@@ -184,13 +173,11 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
      *           inherits the <em>fail-fast</em> properties of the set's
      *           iterator. The created {@code Spliterator} additionally reports
      *           {@link Spliterator#SUBSIZED}.
-     *
      * @return a {@code Spliterator} over the elements in this set
      * @since 1.8
      */
     @Override
     public Spliterator<E> spliterator() {
-        return Spliterators.spliterator(this, Spliterator.DISTINCT
-                | Spliterator.ORDERED);
+        return Spliterators.spliterator(this, Spliterator.DISTINCT | Spliterator.ORDERED);
     }
 }

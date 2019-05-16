@@ -23,36 +23,29 @@ import java.io.Serializable;
  * <UL>
  * <LI><B>destPort</B>: port number of the destination host. <BR>
  * The default port is <B>161</B>.
- *
  * <LI><B>maxVarBindLimit</B>: maximum number of OIDs which can be encoded in a
  * single request packet. This is set by the user. <BR>
  * A request which contains more than this limit will be automatically split
  * into multiple requests. Typically used when multiplexing requests. <BR>
  * The default value is 25.
- *
  * <LI><B>maxSnmpPacketSize</B>: maximum packet size of the request PDU. This
  * can be set by the user. <BR>
  * If the request crosses this limit while encoding, the request is
  * automatically split into multiple small requests. Each of these requests will
  * again be within this limit. <BR>
  * The default value is (2 * 1024).
- *
  * <LI><B>maxTries</B>: number of times to try before giving up. <BR>
  * The default number is <B>3</B>.
- *
  * <LI><B>timeout</B>: amount of time to wait for a response from the peer. If
  * this amount of time passes without a response, and if the <B>maxTries</B>
  * value has not been exceeded, the request will be resent. <BR>
  * The default amount of time is <B>3000 milliseconds</B>.
- *
  * <LI><B>snmpParameters</B>: SNMP parameters to be used when communicating with
  * the agent. The parameters contain the protocol version and security
  * information (the parameters can be shared amongst several peers).
- *
  * </UL>
  * JavaBean compliant getters and setters allow the properties listed above to
  * be modified.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -165,9 +158,9 @@ public class SnmpPeer implements Serializable {
      * Creates an SNMP peer object for a device. The default port is 161.
      * 
      * @param host
-     *             The peer name.
+     *        The peer name.
      * @exception UnknownHostException
-     *                                 If the host name cannot be resolved.
+     *            If the host name cannot be resolved.
      */
     public SnmpPeer(String host) throws UnknownHostException {
         this(host, 161);
@@ -177,9 +170,9 @@ public class SnmpPeer implements Serializable {
      * Creates an SNMP peer object for a device. The default port is 161.
      * 
      * @param netaddr
-     *                The peer <CODE>InetAddress</CODE>.
+     *        The peer <CODE>InetAddress</CODE>.
      * @param port
-     *                The port number.
+     *        The port number.
      */
     public SnmpPeer(InetAddress netaddr, int port) {
         _devAddr = netaddr;
@@ -190,7 +183,7 @@ public class SnmpPeer implements Serializable {
      * Creates an SNMP peer object for a device. The default port is 161.
      * 
      * @param netaddr
-     *                The peer <CODE>InetAddress</CODE>.
+     *        The peer <CODE>InetAddress</CODE>.
      */
     public SnmpPeer(InetAddress netaddr) {
         _devAddr = netaddr;
@@ -200,11 +193,11 @@ public class SnmpPeer implements Serializable {
      * Creates an SNMP peer object for a device with the specified port.
      * 
      * @param host
-     *             The peer name.
+     *        The peer name.
      * @param port
-     *             The port number.
+     *        The port number.
      * @exception UnknownHostException
-     *                                 If the host name cannot be resolved.
+     *            If the host name cannot be resolved.
      */
     public SnmpPeer(String host, int port) throws UnknownHostException {
         useIPAddress(host);
@@ -222,12 +215,11 @@ public class SnmpPeer implements Serializable {
      * representing its IP address, such as "206.26.48.100".
      * 
      * @param ipaddr
-     *               Dot formatted IP address or logical host name.
+     *        Dot formatted IP address or logical host name.
      * @exception UnknownHostException
-     *                                 If the host name cannot be resolved.
+     *            If the host name cannot be resolved.
      */
-    final public synchronized void useIPAddress(String ipaddr)
-            throws UnknownHostException {
+    final public synchronized void useIPAddress(String ipaddr) throws UnknownHostException {
         _devAddr = InetAddress.getByName(ipaddr);
     }
 
@@ -240,8 +232,7 @@ public class SnmpPeer implements Serializable {
      */
     final public synchronized String ipAddressInUse() {
         byte[] adr = _devAddr.getAddress();
-        return (adr[0] & 0xFF) + "." + (adr[1] & 0xFF) + "." + (adr[2] & 0xFF)
-                + "." + (adr[3] & 0xFF);
+        return (adr[0] & 0xFF) + "." + (adr[1] & 0xFF) + "." + (adr[2] & 0xFF) + "." + (adr[3] & 0xFF);
     }
 
     /**
@@ -250,7 +241,7 @@ public class SnmpPeer implements Serializable {
      * <CODE>useNextAddress</CODE>.
      * 
      * @param adrList
-     *                The list of <CODE>InetAddresses</CODE>.
+     *        The list of <CODE>InetAddresses</CODE>.
      */
     final public synchronized void useAddressList(InetAddress adrList[]) {
         _devAddrList = (adrList != null) ? adrList.clone() : null;
@@ -319,7 +310,7 @@ public class SnmpPeer implements Serializable {
      * Changes the port address of the destination for the request.
      * 
      * @param newPort
-     *                The destination port.
+     *        The destination port.
      */
     final public synchronized void setDestPort(int newPort) {
         portNum = newPort;
@@ -338,7 +329,7 @@ public class SnmpPeer implements Serializable {
      * Changes the timeout to wait for a response from the peer.
      * 
      * @param newTimeout
-     *                   The timeout (in milliseconds).
+     *        The timeout (in milliseconds).
      */
     final public synchronized void setTimeout(int newTimeout) {
         if (newTimeout < 0)
@@ -359,7 +350,7 @@ public class SnmpPeer implements Serializable {
      * Changes the maximun number of times to try before giving up.
      * 
      * @param newMaxTries
-     *                    The maximun number of tries.
+     *        The maximun number of tries.
      */
     final public synchronized void setMaxTries(int newMaxTries) {
         if (newMaxTries < 0)
@@ -386,8 +377,7 @@ public class SnmpPeer implements Serializable {
     public String toString() {
         // For security and performance reasons we don't call getHostName here
         // Use getDevName() explicitly when necessary.
-        return "Peer/Port : " + getDestAddr().getHostAddress() + "/"
-                + getDestPort();
+        return "Peer/Port : " + getDestAddr().getHostAddress() + "/" + getDestPort();
     }
 
     /**
@@ -405,7 +395,7 @@ public class SnmpPeer implements Serializable {
      * peer.
      * 
      * @param limit
-     *              The desired limit.
+     *        The desired limit.
      */
     final public synchronized void setVarBindLimit(int limit) {
         maxVarBindLimit = limit;
@@ -415,7 +405,7 @@ public class SnmpPeer implements Serializable {
      * Sets the <CODE>SnmpParams</CODE> object associated with the peer.
      * 
      * @param params
-     *               The desired parameters.
+     *        The desired parameters.
      */
     public void setParams(SnmpParams params) {
         _snmpParameter = params;
@@ -444,7 +434,7 @@ public class SnmpPeer implements Serializable {
      * SNMP request.
      * 
      * @param newsize
-     *                The desired packet size.
+     *        The desired packet size.
      */
     final public synchronized void setMaxSnmpPktSize(int newsize) {
         maxSnmpPacketSize = newsize;

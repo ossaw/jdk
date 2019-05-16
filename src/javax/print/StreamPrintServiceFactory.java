@@ -41,8 +41,7 @@ public abstract class StreamPrintServiceFactory {
     }
 
     private static Services getServices() {
-        Services services = (Services) AppContext.getAppContext().get(
-                Services.class);
+        Services services = (Services) AppContext.getAppContext().get(Services.class);
         if (services == null) {
             services = new Services();
             AppContext.getAppContext().put(Services.class, services);
@@ -76,23 +75,22 @@ public abstract class StreamPrintServiceFactory {
      * <p>
      * 
      * @param flavor
-     *                       of the input document type - null means match all
-     *                       types.
+     *        of the input document type - null means match all
+     *        types.
      * @param outputMimeType
-     *                       representing the required output format, used to
-     *                       identify
-     *                       suitable stream printer factories. A value of null
-     *                       means match
-     *                       all formats.
+     *        representing the required output format, used to
+     *        identify
+     *        suitable stream printer factories. A value of null
+     *        means match
+     *        all formats.
      * @return - matching factories for stream print service instance, empty if
      *         no suitable factories could be located.
      */
-    public static StreamPrintServiceFactory[] lookupStreamPrintServiceFactories(
-            DocFlavor flavor, String outputMimeType) {
+    public static StreamPrintServiceFactory[] lookupStreamPrintServiceFactories(DocFlavor flavor,
+            String outputMimeType) {
 
         ArrayList list = getFactories(flavor, outputMimeType);
-        return (StreamPrintServiceFactory[]) (list.toArray(
-                new StreamPrintServiceFactory[list.size()]));
+        return (StreamPrintServiceFactory[]) (list.toArray(new StreamPrintServiceFactory[list.size()]));
     }
 
     /**
@@ -136,7 +134,7 @@ public abstract class StreamPrintServiceFactory {
      * <p>
      * 
      * @param out
-     *            destination stream for generated output.
+     *        destination stream for generated output.
      * @return a PrintService which will generate the format specified by the
      *         DocFlavor supported by this Factory.
      */
@@ -153,31 +151,27 @@ public abstract class StreamPrintServiceFactory {
             }
 
             try {
-                java.security.AccessController.doPrivileged(
-                        new java.security.PrivilegedExceptionAction() {
-                            public Object run() {
-                                Iterator<StreamPrintServiceFactory> iterator = ServiceLoader
-                                        .load(StreamPrintServiceFactory.class)
-                                        .iterator();
-                                ArrayList lof = getListOfFactories();
-                                while (iterator.hasNext()) {
-                                    try {
-                                        lof.add(iterator.next());
-                                    } catch (ServiceConfigurationError err) {
-                                        /* In the applet case, we continue */
-                                        if (System
-                                                .getSecurityManager() != null) {
-                                            err.printStackTrace();
-                                        } else {
-                                            throw err;
-                                        }
-                                    }
+                java.security.AccessController.doPrivileged(new java.security.PrivilegedExceptionAction() {
+                    public Object run() {
+                        Iterator<StreamPrintServiceFactory> iterator = ServiceLoader.load(
+                                StreamPrintServiceFactory.class).iterator();
+                        ArrayList lof = getListOfFactories();
+                        while (iterator.hasNext()) {
+                            try {
+                                lof.add(iterator.next());
+                            } catch (ServiceConfigurationError err) {
+                                /* In the applet case, we continue */
+                                if (System.getSecurityManager() != null) {
+                                    err.printStackTrace();
+                                } else {
+                                    throw err;
                                 }
-                                return null;
                             }
-                        });
-            } catch (java.security.PrivilegedActionException e) {
-            }
+                        }
+                        return null;
+                    }
+                });
+            } catch (java.security.PrivilegedActionException e) {}
             return listOfFactories;
         }
     }
@@ -200,11 +194,9 @@ public abstract class StreamPrintServiceFactory {
         ArrayList list = new ArrayList();
         Iterator iterator = getAllFactories().iterator();
         while (iterator.hasNext()) {
-            StreamPrintServiceFactory factory = (StreamPrintServiceFactory) iterator
-                    .next();
-            if ((outType == null || outType.equalsIgnoreCase(factory
-                    .getOutputFormat())) && (flavor == null || isMember(flavor,
-                            factory.getSupportedDocFlavors()))) {
+            StreamPrintServiceFactory factory = (StreamPrintServiceFactory) iterator.next();
+            if ((outType == null || outType.equalsIgnoreCase(factory.getOutputFormat())) && (flavor == null
+                    || isMember(flavor, factory.getSupportedDocFlavors()))) {
                 list.add(factory);
             }
         }

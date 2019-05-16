@@ -75,15 +75,13 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * message is a class name. Used for internal errors in the
                  * processor.
                  */
-                { BasisLibrary.RUN_TIME_INTERNAL_ERR,
-                        "Interner Laufzeitfehler in \"{0}\"" },
+                { BasisLibrary.RUN_TIME_INTERNAL_ERR, "Interner Laufzeitfehler in \"{0}\"" },
 
                 /*
                  * Note to translators: <xsl:copy> is a keyword that should not
                  * be translated.
                  */
-                { BasisLibrary.RUN_TIME_COPY_ERR,
-                        "Laufzeitfehler beim Ausf\u00FChren von <xsl:copy>." },
+                { BasisLibrary.RUN_TIME_COPY_ERR, "Laufzeitfehler beim Ausf\u00FChren von <xsl:copy>." },
 
                 /*
                  * Note to translators: The substitution text refers to data
@@ -91,8 +89,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Ung\u00FCltige Konvertierung von \"{0}\" in \"{1}\"." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Ung\u00FCltige Konvertierung von \"{0}\" in \"{1}\"." },
 
                 /*
                  * Note to translators: This message is displayed if the
@@ -107,8 +104,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * are compared for equality, but the data type of one of the
                  * values is unknown.
                  */
-                { BasisLibrary.EQUALITY_EXPR_ERR,
-                        "Unbekannter Argumenttyp in Gleichheitsausdruck." },
+                { BasisLibrary.EQUALITY_EXPR_ERR, "Unbekannter Argumenttyp in Gleichheitsausdruck." },
 
                 /*
                  * Note to translators: The substitution text for {0} will be a
@@ -133,8 +129,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * error situation in XSLTC. The processor was unable to create
                  * a copy of an iterator. (See definition of iterator above.)
                  */
-                { BasisLibrary.ITERATOR_CLONE_ERR,
-                        "Iterator \"{0}\" kann nicht geclont werden." },
+                { BasisLibrary.ITERATOR_CLONE_ERR, "Iterator \"{0}\" kann nicht geclont werden." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -142,8 +137,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "Iterator f\u00FCr Achse \"{0}\" nicht unterst\u00FCtzt." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "Iterator f\u00FCr Achse \"{0}\" nicht unterst\u00FCtzt." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -161,8 +155,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "Attribut \"{0}\" au\u00DFerhalb des Elements." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "Attribut \"{0}\" au\u00DFerhalb des Elements." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -186,8 +179,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: The following represents an internal
                  * error. DOMAdapter is a Java class in XSLTC.
                  */
-                { BasisLibrary.DOM_ADAPTER_INIT_ERR,
-                        "DOMAdapter mit falschem Typ von Quell-DOM erstellt." },
+                { BasisLibrary.DOM_ADAPTER_INIT_ERR, "DOMAdapter mit falschem Typ von Quell-DOM erstellt." },
 
                 /*
                  * Note to translators: The following message indicates that the
@@ -219,8 +211,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "Nicht unterst\u00FCtztes XSL-Element \"{0}\"" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "Nicht unterst\u00FCtztes XSL-Element \"{0}\"" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -228,8 +219,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * but XSLTC does not recognize the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { BasisLibrary.UNSUPPORTED_EXT_ERR,
-                        "Unbekannte XSLTC-Erweiterung \"{0}\"" },
+                { BasisLibrary.UNSUPPORTED_EXT_ERR, "Unbekannte XSLTC-Erweiterung \"{0}\"" },
 
                 /*
                  * Note to translators: This error message is produced if the

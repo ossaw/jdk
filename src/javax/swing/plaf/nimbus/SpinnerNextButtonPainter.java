@@ -38,8 +38,7 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -47,62 +46,35 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
     // by a particular instance of SpinnerNextButtonPainter would be created.
     // For the moment at least,
     // however, all are created for each instance.
-    private Color color1 = decodeColor("nimbusBase", 0.021348298f, -0.56289876f,
-            0.2588235f, 0);
-    private Color color2 = decodeColor("nimbusBase", 0.010237217f, -0.5607143f,
-            0.2352941f, 0);
-    private Color color3 = decodeColor("nimbusBase", 0.021348298f, -0.59223604f,
-            0.35294116f, 0);
-    private Color color4 = decodeColor("nimbusBase", 0.016586483f, -0.5723659f,
-            0.31764704f, 0);
-    private Color color5 = decodeColor("nimbusBase", 0.021348298f, -0.56182265f,
-            0.24705881f, 0);
-    private Color color6 = decodeColor("nimbusBase", 5.1498413E-4f,
-            -0.34585923f, -0.007843137f, 0);
-    private Color color7 = decodeColor("nimbusBase", 5.1498413E-4f,
-            -0.27207792f, -0.11764708f, 0);
-    private Color color8 = decodeColor("nimbusBase", 0.004681647f, -0.6197143f,
-            0.43137252f, 0);
-    private Color color9 = decodeColor("nimbusBase", -0.0012707114f,
-            -0.5078604f, 0.3098039f, 0);
-    private Color color10 = decodeColor("nimbusBase", -0.0028941035f,
-            -0.4800539f, 0.28235292f, 0);
-    private Color color11 = decodeColor("nimbusBase", 0.0023007393f,
-            -0.3622768f, -0.04705882f, 0);
+    private Color color1 = decodeColor("nimbusBase", 0.021348298f, -0.56289876f, 0.2588235f, 0);
+    private Color color2 = decodeColor("nimbusBase", 0.010237217f, -0.5607143f, 0.2352941f, 0);
+    private Color color3 = decodeColor("nimbusBase", 0.021348298f, -0.59223604f, 0.35294116f, 0);
+    private Color color4 = decodeColor("nimbusBase", 0.016586483f, -0.5723659f, 0.31764704f, 0);
+    private Color color5 = decodeColor("nimbusBase", 0.021348298f, -0.56182265f, 0.24705881f, 0);
+    private Color color6 = decodeColor("nimbusBase", 5.1498413E-4f, -0.34585923f, -0.007843137f, 0);
+    private Color color7 = decodeColor("nimbusBase", 5.1498413E-4f, -0.27207792f, -0.11764708f, 0);
+    private Color color8 = decodeColor("nimbusBase", 0.004681647f, -0.6197143f, 0.43137252f, 0);
+    private Color color9 = decodeColor("nimbusBase", -0.0012707114f, -0.5078604f, 0.3098039f, 0);
+    private Color color10 = decodeColor("nimbusBase", -0.0028941035f, -0.4800539f, 0.28235292f, 0);
+    private Color color11 = decodeColor("nimbusBase", 0.0023007393f, -0.3622768f, -0.04705882f, 0);
     private Color color12 = decodeColor("nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-    private Color color13 = decodeColor("nimbusBase", 0.0013483167f,
-            -0.1769987f, -0.12156865f, 0);
-    private Color color14 = decodeColor("nimbusBase", 0.0013483167f,
-            0.039961398f, -0.25882354f, 0);
-    private Color color15 = decodeColor("nimbusBase", 0.004681647f, -0.6198413f,
-            0.43921566f, 0);
-    private Color color16 = decodeColor("nimbusBase", -0.0012707114f,
-            -0.51502466f, 0.3607843f, 0);
-    private Color color17 = decodeColor("nimbusBase", 0.0021564364f,
-            -0.49097747f, 0.34509802f, 0);
-    private Color color18 = decodeColor("nimbusBase", 5.2034855E-5f,
-            -0.38743842f, 0.019607842f, 0);
-    private Color color19 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f,
-            -0.54901963f, 0);
-    private Color color20 = decodeColor("nimbusBase", 0.08801502f, 0.3642857f,
-            -0.454902f, 0);
-    private Color color21 = decodeColor("nimbusBase", -4.2033195E-4f,
-            -0.38050595f, 0.20392156f, 0);
-    private Color color22 = decodeColor("nimbusBase", 2.9569864E-4f,
-            -0.15470162f, 0.07058823f, 0);
-    private Color color23 = decodeColor("nimbusBase", -4.6235323E-4f,
-            -0.09571427f, 0.039215684f, 0);
-    private Color color24 = decodeColor("nimbusBase", 0.018363237f, 0.18135887f,
-            -0.227451f, 0);
+    private Color color13 = decodeColor("nimbusBase", 0.0013483167f, -0.1769987f, -0.12156865f, 0);
+    private Color color14 = decodeColor("nimbusBase", 0.0013483167f, 0.039961398f, -0.25882354f, 0);
+    private Color color15 = decodeColor("nimbusBase", 0.004681647f, -0.6198413f, 0.43921566f, 0);
+    private Color color16 = decodeColor("nimbusBase", -0.0012707114f, -0.51502466f, 0.3607843f, 0);
+    private Color color17 = decodeColor("nimbusBase", 0.0021564364f, -0.49097747f, 0.34509802f, 0);
+    private Color color18 = decodeColor("nimbusBase", 5.2034855E-5f, -0.38743842f, 0.019607842f, 0);
+    private Color color19 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f, -0.54901963f, 0);
+    private Color color20 = decodeColor("nimbusBase", 0.08801502f, 0.3642857f, -0.454902f, 0);
+    private Color color21 = decodeColor("nimbusBase", -4.2033195E-4f, -0.38050595f, 0.20392156f, 0);
+    private Color color22 = decodeColor("nimbusBase", 2.9569864E-4f, -0.15470162f, 0.07058823f, 0);
+    private Color color23 = decodeColor("nimbusBase", -4.6235323E-4f, -0.09571427f, 0.039215684f, 0);
+    private Color color24 = decodeColor("nimbusBase", 0.018363237f, 0.18135887f, -0.227451f, 0);
     private Color color25 = new Color(255, 200, 0, 255);
-    private Color color26 = decodeColor("nimbusBase", 0.021348298f,
-            -0.58106947f, 0.16862744f, 0);
-    private Color color27 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f,
-            -0.043137252f, 0);
-    private Color color28 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f,
-            -0.24313727f, 0);
-    private Color color29 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
-            0.45098037f, 0);
+    private Color color26 = decodeColor("nimbusBase", 0.021348298f, -0.58106947f, 0.16862744f, 0);
+    private Color color27 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f, -0.043137252f, 0);
+    private Color color28 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f, -0.24313727f, 0);
+    private Color color29 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -114,8 +86,7 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -329,19 +300,14 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         path.reset();
         path.moveTo(decodeX(0.0f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(0.2857143f));
-        path.curveTo(decodeAnchorX(0.0f, 0.0f), decodeAnchorY(
-                0.2857142984867096f, 0.0f), decodeAnchorX(2.0f,
-                        -3.6363636363636402f), decodeAnchorY(
-                                0.2857142984867096f, 0.0f), decodeX(2.0f),
-                decodeY(0.2857143f));
-        path.curveTo(decodeAnchorX(2.0f, 3.6363636363636402f), decodeAnchorY(
-                0.2857142984867096f, 0.0f), decodeAnchorX(2.7142858505249023f,
-                        -0.022727272727273373f), decodeAnchorY(1.0f,
-                                -3.749999999999999f), decodeX(2.7142859f),
-                decodeY(1.0f));
-        path.curveTo(decodeAnchorX(2.7142858505249023f, 0.022727272727273373f),
-                decodeAnchorY(1.0f, 3.75f), decodeAnchorX(2.7142858505249023f,
-                        0.0f), decodeAnchorY(3.0f, 0.0f), decodeX(2.7142859f),
+        path.curveTo(decodeAnchorX(0.0f, 0.0f), decodeAnchorY(0.2857142984867096f, 0.0f), decodeAnchorX(2.0f,
+                -3.6363636363636402f), decodeAnchorY(0.2857142984867096f, 0.0f), decodeX(2.0f), decodeY(
+                        0.2857143f));
+        path.curveTo(decodeAnchorX(2.0f, 3.6363636363636402f), decodeAnchorY(0.2857142984867096f, 0.0f),
+                decodeAnchorX(2.7142858505249023f, -0.022727272727273373f), decodeAnchorY(1.0f,
+                        -3.749999999999999f), decodeX(2.7142859f), decodeY(1.0f));
+        path.curveTo(decodeAnchorX(2.7142858505249023f, 0.022727272727273373f), decodeAnchorY(1.0f, 3.75f),
+                decodeAnchorX(2.7142858505249023f, 0.0f), decodeAnchorY(3.0f, 0.0f), decodeX(2.7142859f),
                 decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(3.0f));
         path.closePath();
@@ -352,17 +318,12 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         path.reset();
         path.moveTo(decodeX(1.0f), decodeY(2.0f));
         path.lineTo(decodeX(1.0f), decodeY(0.42857143f));
-        path.curveTo(decodeAnchorX(1.0f, 0.0f), decodeAnchorY(
-                0.4285714328289032f, 0.0f), decodeAnchorX(2.0f, -3.0f),
-                decodeAnchorY(0.4285714328289032f, 0.0f), decodeX(2.0f),
-                decodeY(0.42857143f));
-        path.curveTo(decodeAnchorX(2.0f, 3.0f), decodeAnchorY(
-                0.4285714328289032f, 0.0f), decodeAnchorX(2.5714285373687744f,
-                        0.0f), decodeAnchorY(1.0f, -2.0f), decodeX(2.5714285f),
-                decodeY(1.0f));
-        path.curveTo(decodeAnchorX(2.5714285373687744f, 0.0f), decodeAnchorY(
-                1.0f, 2.0f), decodeAnchorX(2.5714285373687744f, 0.0f),
-                decodeAnchorY(2.0f, 0.0f), decodeX(2.5714285f), decodeY(2.0f));
+        path.curveTo(decodeAnchorX(1.0f, 0.0f), decodeAnchorY(0.4285714328289032f, 0.0f), decodeAnchorX(2.0f,
+                -3.0f), decodeAnchorY(0.4285714328289032f, 0.0f), decodeX(2.0f), decodeY(0.42857143f));
+        path.curveTo(decodeAnchorX(2.0f, 3.0f), decodeAnchorY(0.4285714328289032f, 0.0f), decodeAnchorX(
+                2.5714285373687744f, 0.0f), decodeAnchorY(1.0f, -2.0f), decodeX(2.5714285f), decodeY(1.0f));
+        path.curveTo(decodeAnchorX(2.5714285373687744f, 0.0f), decodeAnchorY(1.0f, 2.0f), decodeAnchorX(
+                2.5714285373687744f, 0.0f), decodeAnchorY(2.0f, 0.0f), decodeX(2.5714285f), decodeY(2.0f));
         path.lineTo(decodeX(1.0f), decodeY(2.0f));
         path.closePath();
         return path;
@@ -381,11 +342,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         path.moveTo(decodeX(0.0f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(0.2857143f));
         path.lineTo(decodeX(2.0f), decodeY(0.2857143f));
-        path.curveTo(decodeAnchorX(2.0f, 3.6363636363636402f), decodeAnchorY(
-                0.2857142984867096f, 0.0f), decodeAnchorX(2.7142858505249023f,
-                        -0.022727272727273373f), decodeAnchorY(1.0f,
-                                -3.749999999999999f), decodeX(2.7142859f),
-                decodeY(1.0f));
+        path.curveTo(decodeAnchorX(2.0f, 3.6363636363636402f), decodeAnchorY(0.2857142984867096f, 0.0f),
+                decodeAnchorX(2.7142858505249023f, -0.022727272727273373f), decodeAnchorY(1.0f,
+                        -3.749999999999999f), decodeX(2.7142859f), decodeY(1.0f));
         path.lineTo(decodeX(2.7142859f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(3.0f));
         path.closePath();
@@ -397,10 +356,8 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         path.moveTo(decodeX(1.0f), decodeY(2.0f));
         path.lineTo(decodeX(1.0f), decodeY(0.42857143f));
         path.lineTo(decodeX(2.0f), decodeY(0.42857143f));
-        path.curveTo(decodeAnchorX(2.0f, 3.0f), decodeAnchorY(
-                0.4285714328289032f, 0.0f), decodeAnchorX(2.5714285373687744f,
-                        0.0f), decodeAnchorY(1.0f, -2.0f), decodeX(2.5714285f),
-                decodeY(1.0f));
+        path.curveTo(decodeAnchorX(2.0f, 3.0f), decodeAnchorY(0.4285714328289032f, 0.0f), decodeAnchorX(
+                2.5714285373687744f, 0.0f), decodeAnchorY(1.0f, -2.0f), decodeX(2.5714285f), decodeY(1.0f));
         path.lineTo(decodeX(2.5714285f), decodeY(2.0f));
         path.lineTo(decodeX(1.0f), decodeY(2.0f));
         path.closePath();
@@ -412,10 +369,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         path.moveTo(decodeX(0.0f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(0.08571429f));
         path.lineTo(decodeX(2.142857f), decodeY(0.08571429f));
-        path.curveTo(decodeAnchorX(2.142857074737549f, 3.3999999999999986f),
-                decodeAnchorY(0.08571428805589676f, 0.0f), decodeAnchorX(
-                        2.914285659790039f, 0.0f), decodeAnchorY(1.0f, -3.4f),
-                decodeX(2.9142857f), decodeY(1.0f));
+        path.curveTo(decodeAnchorX(2.142857074737549f, 3.3999999999999986f), decodeAnchorY(
+                0.08571428805589676f, 0.0f), decodeAnchorX(2.914285659790039f, 0.0f), decodeAnchorY(1.0f,
+                        -3.4f), decodeX(2.9142857f), decodeY(1.0f));
         path.lineTo(decodeX(2.9142857f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(3.0f));
         path.closePath();
@@ -427,11 +383,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         path.moveTo(decodeX(0.0f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(0.2857143f));
         path.lineTo(decodeX(2.0f), decodeY(0.2857143f));
-        path.curveTo(decodeAnchorX(2.0f, 3.4545454545454533f), decodeAnchorY(
-                0.2857142984867096f, 0.0f), decodeAnchorX(2.7142858505249023f,
-                        -0.022727272727273373f), decodeAnchorY(1.0f,
-                                -3.4772727272727266f), decodeX(2.7142859f),
-                decodeY(1.0f));
+        path.curveTo(decodeAnchorX(2.0f, 3.4545454545454533f), decodeAnchorY(0.2857142984867096f, 0.0f),
+                decodeAnchorX(2.7142858505249023f, -0.022727272727273373f), decodeAnchorY(1.0f,
+                        -3.4772727272727266f), decodeX(2.7142859f), decodeY(1.0f));
         path.lineTo(decodeX(2.7142859f), decodeY(3.0f));
         path.lineTo(decodeX(0.0f), decodeY(3.0f));
         path.closePath();
@@ -482,9 +436,8 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color1, decodeColor(color1, color2, 0.5f), color2 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color1, decodeColor(color1, color2, 0.5f), color2 });
     }
 
     private Paint decodeGradient2(Shape s) {
@@ -493,9 +446,8 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color3, decodeColor(color3, color4, 0.5f), color4 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color3, decodeColor(color3, color4, 0.5f), color4 });
     }
 
     private Paint decodeGradient3(Shape s) {
@@ -504,9 +456,8 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color6, decodeColor(color6, color7, 0.5f), color7 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color6, decodeColor(color6, color7, 0.5f), color7 });
     }
 
     private Paint decodeGradient4(Shape s) {
@@ -515,11 +466,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.36497328f, 0.72994655f,
-                        0.8649733f, 1.0f }, new Color[] { color8, decodeColor(
-                                color8, color9, 0.5f), color9, decodeColor(
-                                        color9, color10, 0.5f), color10 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.36497328f, 0.72994655f, 0.8649733f, 1.0f }, new Color[] { color8, decodeColor(color8,
+                        color9, 0.5f), color9, decodeColor(color9, color10, 0.5f), color10 });
     }
 
     private Paint decodeGradient5(Shape s) {
@@ -528,11 +477,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.37566844f, 0.7513369f,
-                        0.8756684f, 1.0f }, new Color[] { color8, decodeColor(
-                                color8, color9, 0.5f), color9, decodeColor(
-                                        color9, color10, 0.5f), color10 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.37566844f, 0.7513369f, 0.8756684f, 1.0f }, new Color[] { color8, decodeColor(color8,
+                        color9, 0.5f), color9, decodeColor(color9, color10, 0.5f), color10 });
     }
 
     private Paint decodeGradient6(Shape s) {
@@ -541,10 +488,8 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color13, decodeColor(color13, color14, 0.5f),
-                        color14 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color13, decodeColor(color13, color14, 0.5f), color14 });
     }
 
     private Paint decodeGradient7(Shape s) {
@@ -553,11 +498,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.37967914f, 0.7593583f,
-                        0.87967914f, 1.0f }, new Color[] { color15, decodeColor(
-                                color15, color16, 0.5f), color16, decodeColor(
-                                        color16, color17, 0.5f), color17 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.37967914f, 0.7593583f, 0.87967914f, 1.0f }, new Color[] { color15, decodeColor(
+                        color15, color16, 0.5f), color16, decodeColor(color16, color17, 0.5f), color17 });
     }
 
     private Paint decodeGradient8(Shape s) {
@@ -566,10 +509,8 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color19, decodeColor(color19, color20, 0.5f),
-                        color20 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color19, decodeColor(color19, color20, 0.5f), color20 });
     }
 
     private Paint decodeGradient9(Shape s) {
@@ -578,11 +519,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.37165776f, 0.7433155f,
-                        0.8716577f, 1.0f }, new Color[] { color21, decodeColor(
-                                color21, color22, 0.5f), color22, decodeColor(
-                                        color22, color23, 0.5f), color23 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.37165776f, 0.7433155f, 0.8716577f, 1.0f }, new Color[] { color21, decodeColor(color21,
+                        color22, 0.5f), color22, decodeColor(color22, color23, 0.5f), color23 });
     }
 
     private Paint decodeGradient10(Shape s) {
@@ -591,11 +530,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.3970588f, 0.7941176f,
-                        0.89705884f, 1.0f }, new Color[] { color15, decodeColor(
-                                color15, color16, 0.5f), color16, decodeColor(
-                                        color16, color17, 0.5f), color17 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.3970588f, 0.7941176f, 0.89705884f, 1.0f }, new Color[] { color15, decodeColor(color15,
+                        color16, 0.5f), color16, decodeColor(color16, color17, 0.5f), color17 });
     }
 
     private Paint decodeGradient11(Shape s) {
@@ -604,11 +541,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.4318182f, 0.8636364f,
-                        0.9318182f, 1.0f }, new Color[] { color21, decodeColor(
-                                color21, color22, 0.5f), color22, decodeColor(
-                                        color22, color23, 0.5f), color23 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.4318182f, 0.8636364f, 0.9318182f, 1.0f }, new Color[] { color21, decodeColor(color21,
+                        color22, 0.5f), color22, decodeColor(color22, color23, 0.5f), color23 });
     }
 
     private Paint decodeGradient12(Shape s) {
@@ -617,10 +552,9 @@ final class SpinnerNextButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.48636365f * w) + x, (0.0116959065f * h) + y,
-                (0.4909091f * w) + x, (0.8888889f * h) + y, new float[] { 0.0f,
-                        0.5f, 1.0f }, new Color[] { color27, decodeColor(
-                                color27, color28, 0.5f), color28 });
+        return decodeGradient((0.48636365f * w) + x, (0.0116959065f * h) + y, (0.4909091f * w) + x,
+                (0.8888889f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] { color27, decodeColor(
+                        color27, color28, 0.5f), color28 });
     }
 
 }

@@ -15,7 +15,6 @@ import java.io.IOException;
  * obtained by invoking the {@link Files#getFileStore getFileStore} method, or
  * all file stores can be enumerated by invoking the
  * {@link FileSystem#getFileStores getFileStores} method.
- *
  * <p>
  * In addition to the methods defined by this class, a file store may support
  * one or more {@link FileStoreAttributeView FileStoreAttributeView} classes
@@ -35,7 +34,6 @@ public abstract class FileStore {
      * Returns the name of this file store. The format of the name is highly
      * implementation specific. It will typically be the name of the storage
      * pool or volume.
-     *
      * <p>
      * The string returned by this method may differ from the string returned by
      * the {@link Object#toString() toString} method.
@@ -68,16 +66,14 @@ public abstract class FileStore {
      * Returns the size, in bytes, of the file store.
      *
      * @return the size of the file store, in bytes
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
     public abstract long getTotalSpace() throws IOException;
 
     /**
      * Returns the number of bytes available to this Java virtual machine on the
      * file store.
-     *
      * <p>
      * The returned number of available bytes is a hint, but not a guarantee,
      * that it is possible to use most or any of these bytes. The number of
@@ -87,15 +83,13 @@ public abstract class FileStore {
      * this Java virtual machine.
      *
      * @return the number of bytes available
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
     public abstract long getUsableSpace() throws IOException;
 
     /**
      * Returns the number of unallocated bytes in the file store.
-     *
      * <p>
      * The returned number of unallocated bytes is a hint, but not a guarantee,
      * that it is possible to use most or any of these bytes. The number of
@@ -105,16 +99,14 @@ public abstract class FileStore {
      * this virtual machine.
      *
      * @return the number of unallocated bytes
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
     public abstract long getUnallocatedSpace() throws IOException;
 
     /**
      * Tells whether or not this file store supports the file attributes
      * identified by the given file attribute view.
-     *
      * <p>
      * Invoking this method to test if the file store supports
      * {@link BasicFileAttributeView} will always return {@code true}. In the
@@ -123,18 +115,15 @@ public abstract class FileStore {
      * reasons for this are implementation specific and therefore unspecified.
      *
      * @param type
-     *             the file attribute view type
-     *
+     *        the file attribute view type
      * @return {@code true} if, and only if, the file attribute view is
      *         supported
      */
-    public abstract boolean supportsFileAttributeView(
-            Class<? extends FileAttributeView> type);
+    public abstract boolean supportsFileAttributeView(Class<? extends FileAttributeView> type);
 
     /**
      * Tells whether or not this file store supports the file attributes
      * identified by the given file attribute view.
-     *
      * <p>
      * Invoking this method to test if the file store supports
      * {@link BasicFileAttributeView}, identified by the name "{@code basic}"
@@ -144,9 +133,8 @@ public abstract class FileStore {
      * implementation specific and therefore unspecified.
      *
      * @param name
-     *             the {@link FileAttributeView#name name} of file attribute
-     *             view
-     *
+     *        the {@link FileAttributeView#name name} of file attribute
+     *        view
      * @return {@code true} if, and only if, the file attribute view is
      *         supported
      */
@@ -154,38 +142,32 @@ public abstract class FileStore {
 
     /**
      * Returns a {@code FileStoreAttributeView} of the given type.
-     *
      * <p>
      * This method is intended to be used where the file store attribute view
      * defines type-safe methods to read or update the file store attributes.
      * The {@code type} parameter is the type of the attribute view required and
      * the method returns an instance of that type if supported.
      *
-     * @param      <V>
-     *             The {@code FileStoreAttributeView} type
+     * @param <V>
+     *        The {@code FileStoreAttributeView} type
      * @param type
-     *             the {@code Class} object corresponding to the attribute view
-     *
+     *        the {@code Class} object corresponding to the attribute view
      * @return a file store attribute view of the specified type or {@code null}
      *         if the attribute view is not available
      */
-    public abstract <V extends FileStoreAttributeView> V getFileStoreAttributeView(
-            Class<V> type);
+    public abstract <V extends FileStoreAttributeView> V getFileStoreAttributeView(Class<V> type);
 
     /**
      * Reads the value of a file store attribute.
-     *
      * <p>
      * The {@code attribute} parameter identifies the attribute to be read and
      * takes the form: <blockquote> <i>view-name</i><b>:</b>
      * <i>attribute-name</i> </blockquote> where the character {@code ':'}
      * stands for itself.
-     *
      * <p>
      * <i>view-name</i> is the {@link FileStoreAttributeView#name name} of a
      * {@link FileStore AttributeView} that identifies a set of file attributes.
      * <i>attribute-name</i> is the name of the attribute.
-     *
      * <p>
      * <b>Usage Example:</b> Suppose we want to know if ZFS compression is
      * enabled (assuming the "zfs" view is supported):
@@ -195,17 +177,15 @@ public abstract class FileStore {
      * </pre>
      *
      * @param attribute
-     *                  the attribute to read
-     * 
+     *        the attribute to read
      * @return the attribute value; {@code null} may be a valid valid for some
      *         attributes
-     *
      * @throws UnsupportedOperationException
-     *                                       if the attribute view is not
-     *                                       available or it does not support
-     *                                       reading the attribute
+     *         if the attribute view is not
+     *         available or it does not support
+     *         reading the attribute
      * @throws IOException
-     *                                       if an I/O error occurs
+     *         if an I/O error occurs
      */
     public abstract Object getAttribute(String attribute) throws IOException;
 }

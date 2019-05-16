@@ -13,17 +13,14 @@ package javax.sound.sampled;
  * update} method. By querying the event, the listener can learn the type of
  * event, the line responsible for the event, and how much data the line had
  * processed when the event occurred.
- *
  * <p>
  * Although this class implements Serializable, attempts to serialize a
  * <code>LineEvent</code> object will fail.
  *
  * @author Kara Kytle
- *
  * @see Line
  * @see LineListener#update
  * @since 1.3
- *
  * @serial exclude
  */
 public class LineEvent extends java.util.EventObject {
@@ -57,18 +54,17 @@ public class LineEvent extends java.util.EventObject {
      * specified line.
      * 
      * @param line
-     *                 the source of this event
+     *        the source of this event
      * @param type
-     *                 the event type (<code>OPEN</code>, <code>CLOSE</code>,
-     *                 <code>START</code>, or <code>STOP</code>)
+     *        the event type (<code>OPEN</code>, <code>CLOSE</code>,
+     *        <code>START</code>, or <code>STOP</code>)
      * @param position
-     *                 the number of sample frames that the line had already
-     *                 processed when the event occurred, or
-     *                 {@link AudioSystem#NOT_SPECIFIED}
-     *
+     *        the number of sample frames that the line had already
+     *        processed when the event occurred, or
+     *        {@link AudioSystem#NOT_SPECIFIED}
      * @throws IllegalArgumentException
-     *                                  if <code>line</code> is
-     *                                  <code>null</code>.
+     *         if <code>line</code> is
+     *         <code>null</code>.
      */
     public LineEvent(Line line, Type type, long position) {
 
@@ -161,7 +157,7 @@ public class LineEvent extends java.util.EventObject {
          * Constructs a new event type.
          * 
          * @param name
-         *             name of the type
+         *        name of the type
          */
         protected Type(String name) {
             this.name = name;
@@ -174,7 +170,7 @@ public class LineEvent extends java.util.EventObject {
          * returning <code>true</code> if the objects are identical.
          * 
          * @param obj
-         *            the reference object with which to compare
+         *        the reference object with which to compare
          * @return <code>true</code> if this event type is the same as
          *         <code>obj</code>; <code>false</code> otherwise
          */

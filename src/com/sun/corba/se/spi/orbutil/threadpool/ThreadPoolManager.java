@@ -13,11 +13,10 @@ public interface ThreadPoolManager extends Closeable {
      * threadpoolId, that can be used by any component in the app. server.
      *
      * @throws NoSuchThreadPoolException
-     *                                   thrown when invalid threadpoolId is
-     *                                   passed as a parameter
+     *         thrown when invalid threadpoolId is
+     *         passed as a parameter
      */
-    public ThreadPool getThreadPool(String threadpoolId)
-            throws NoSuchThreadPoolException;
+    public ThreadPool getThreadPool(String threadpoolId) throws NoSuchThreadPoolException;
 
     /**
      * This method will return an instance of the threadpool given a numeric
@@ -25,13 +24,12 @@ public interface ThreadPoolManager extends Closeable {
      * functionality of dedicated threadpool for EJB beans
      *
      * @throws NoSuchThreadPoolException
-     *                                   thrown when
-     *                                   invalidnumericIdForThreadpool is passed
-     *                                   as a
-     *                                   parameter
+     *         thrown when
+     *         invalidnumericIdForThreadpool is passed
+     *         as a
+     *         parameter
      */
-    public ThreadPool getThreadPool(int numericIdForThreadpool)
-            throws NoSuchThreadPoolException;
+    public ThreadPool getThreadPool(int numericIdForThreadpool) throws NoSuchThreadPoolException;
 
     /**
      * This method is used to return the numeric id of the threadpool, given a
@@ -71,8 +69,7 @@ public interface ThreadPoolManager extends Closeable {
      * ThreadPoolManager. This would enable any component to add a
      * ThreadPoolChooser for their specific use
      */
-    public void setThreadPoolChooser(String componentId,
-            ThreadPoolChooser aThreadPoolChooser);
+    public void setThreadPoolChooser(String componentId, ThreadPoolChooser aThreadPoolChooser);
 
     /**
      * Gets the numeric index associated with the componentId specified for a

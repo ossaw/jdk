@@ -69,22 +69,20 @@ public final class Deprecated extends Attribute {
      * references (shallow copy). Use clone() for a physical copy.
      */
     public Deprecated(Deprecated c) {
-        this(c.getNameIndex(), c.getLength(), c.getBytes(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getBytes(), c.getConstantPool());
     }
 
     /**
      * @param name_index
-     *                      Index in constant pool to CONSTANT_Utf8
+     *        Index in constant pool to CONSTANT_Utf8
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param bytes
-     *                      Attribute contents
+     *        Attribute contents
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      */
-    public Deprecated(int name_index, int length, byte[] bytes,
-            ConstantPool constant_pool) {
+    public Deprecated(int name_index, int length, byte[] bytes, ConstantPool constant_pool) {
         super(Constants.ATTR_DEPRECATED, name_index, length, constant_pool);
         this.bytes = bytes;
     }
@@ -93,17 +91,17 @@ public final class Deprecated extends Attribute {
      * Construct object from file stream.
      * 
      * @param name_index
-     *                      Index in constant pool to CONSTANT_Utf8
+     *        Index in constant pool to CONSTANT_Utf8
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      * @throws IOException
      */
-    Deprecated(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    Deprecated(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, (byte[]) null, constant_pool);
 
         if (length > 0) {
@@ -119,7 +117,7 @@ public final class Deprecated extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitDeprecated(this);
@@ -129,7 +127,7 @@ public final class Deprecated extends Attribute {
      * Dump source file attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {

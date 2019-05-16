@@ -41,7 +41,7 @@ public class ImageFormatException extends RuntimeException {
      * detailed message.
      *
      * @param s
-     *          the message.
+     *        the message.
      */
     public ImageFormatException(String s) {
         super(s);

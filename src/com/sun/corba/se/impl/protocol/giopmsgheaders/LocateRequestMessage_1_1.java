@@ -17,8 +17,7 @@ import com.sun.corba.se.spi.ior.ObjectKey;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateRequestMessage_1_1 extends Message_1_1 implements
-        LocateRequestMessage {
+public final class LocateRequestMessage_1_1 extends Message_1_1 implements LocateRequestMessage {
 
     // Instance variables
 
@@ -34,8 +33,7 @@ public final class LocateRequestMessage_1_1 extends Message_1_1 implements
     }
 
     LocateRequestMessage_1_1(ORB orb, int _request_id, byte[] _object_key) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPLocateRequest, 0);
+        super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPLocateRequest, 0);
         this.orb = orb;
         request_id = _request_id;
         object_key = _object_key;

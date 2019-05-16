@@ -57,8 +57,7 @@ import java.io.*;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
-        Node {
+public abstract class FieldOrMethod extends AccessFlags implements Cloneable, Node {
     protected int name_index; // Points to field name in constant pool
     protected int signature_index; // Points to encoded signature
     protected int attributes_count;// No. of attributes
@@ -72,22 +71,22 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
      * references (shallow copy). Use clone() for a physical copy.
      */
     protected FieldOrMethod(FieldOrMethod c) {
-        this(c.getAccessFlags(), c.getNameIndex(), c.getSignatureIndex(), c
-                .getAttributes(), c.getConstantPool());
+        this(c.getAccessFlags(), c.getNameIndex(), c.getSignatureIndex(), c.getAttributes(), c
+                .getConstantPool());
     }
 
     /**
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      * @throws ClassFormatException
      */
-    protected FieldOrMethod(DataInputStream file, ConstantPool constant_pool)
-            throws IOException, ClassFormatException {
-        this(file.readUnsignedShort(), file.readUnsignedShort(), file
-                .readUnsignedShort(), null, constant_pool);
+    protected FieldOrMethod(DataInputStream file, ConstantPool constant_pool) throws IOException,
+            ClassFormatException {
+        this(file.readUnsignedShort(), file.readUnsignedShort(), file.readUnsignedShort(), null,
+                constant_pool);
 
         attributes_count = file.readUnsignedShort();
         attributes = new Attribute[attributes_count];
@@ -97,18 +96,17 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
 
     /**
      * @param access_flags
-     *                        Access rights of method
+     *        Access rights of method
      * @param name_index
-     *                        Points to field name in constant pool
+     *        Points to field name in constant pool
      * @param signature_index
-     *                        Points to encoded signature
+     *        Points to encoded signature
      * @param attributes
-     *                        Collection of attributes
+     *        Collection of attributes
      * @param constant_pool
-     *                        Array of constants
+     *        Array of constants
      */
-    protected FieldOrMethod(int access_flags, int name_index,
-            int signature_index, Attribute[] attributes,
+    protected FieldOrMethod(int access_flags, int name_index, int signature_index, Attribute[] attributes,
             ConstantPool constant_pool) {
         this.access_flags = access_flags;
         this.name_index = name_index;
@@ -122,7 +120,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
      * Dump object to file stream on binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -144,7 +142,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
 
     /**
      * @param attributes
-     *                   Collection of object attributes.
+     *        Collection of object attributes.
      */
     public final void setAttributes(Attribute[] attributes) {
         this.attributes = attributes;
@@ -160,7 +158,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
 
     /**
      * @param constant_pool
-     *                      Constant pool to be used for this object.
+     *        Constant pool to be used for this object.
      */
     public final void setConstantPool(ConstantPool constant_pool) {
         this.constant_pool = constant_pool;
@@ -175,7 +173,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
 
     /**
      * @param name_index
-     *                   Index in constant pool of object's name.
+     *        Index in constant pool of object's name.
      */
     public final void setNameIndex(int name_index) {
         this.name_index = name_index;
@@ -190,7 +188,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
 
     /**
      * @param signature_index
-     *                        Index in constant pool of field signature.
+     *        Index in constant pool of field signature.
      */
     public final void setSignatureIndex(int signature_index) {
         this.signature_index = signature_index;
@@ -201,8 +199,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
      */
     public final String getName() {
         ConstantUtf8 c;
-        c = (ConstantUtf8) constant_pool.getConstant(name_index,
-                Constants.CONSTANT_Utf8);
+        c = (ConstantUtf8) constant_pool.getConstant(name_index, Constants.CONSTANT_Utf8);
         return c.getBytes();
     }
 
@@ -211,8 +208,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
      */
     public final String getSignature() {
         ConstantUtf8 c;
-        c = (ConstantUtf8) constant_pool.getConstant(signature_index,
-                Constants.CONSTANT_Utf8);
+        c = (ConstantUtf8) constant_pool.getConstant(signature_index, Constants.CONSTANT_Utf8);
         return c.getBytes();
     }
 
@@ -224,8 +220,7 @@ public abstract class FieldOrMethod extends AccessFlags implements Cloneable,
 
         try {
             c = (FieldOrMethod) clone();
-        } catch (CloneNotSupportedException e) {
-        }
+        } catch (CloneNotSupportedException e) {}
 
         c.constant_pool = constant_pool;
         c.attributes = new Attribute[attributes_count];

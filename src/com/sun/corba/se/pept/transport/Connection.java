@@ -26,7 +26,6 @@ public interface Connection {
      * {@link com.sun.corba.se.pept.transport.TransportManager TransportManager}
      * {@link com.sun.corba.se.pept.transport.Selector Selector} to handle read
      * events.
-     *
      * For example, an HTTP transport would not register since the requesting
      * thread would just block on read when waiting for the reply.
      *
@@ -39,7 +38,6 @@ public interface Connection {
      * {@link com.sun.corba.se.pept.transport.TransportManager TransportManager}
      * {@link com.sun.corba.se.pept.transport.Selector Selector} to handle read
      * events.
-     *
      * For example, an HTTP transport would not register since the requesting
      * thread would just block on read when waiting for the reply.
      *
@@ -56,7 +54,6 @@ public interface Connection {
 
     /**
      * Close the <code>Connection</code>.
-     *
      */
     public void close();
 
@@ -119,20 +116,18 @@ public interface Connection {
      * reclaiming idle <code>Connection</code>s.
      *
      * @param time
-     *             - the "time" the <code>Connection</code> was last used.
+     *        - the "time" the <code>Connection</code> was last used.
      */
     public void setTimeStamp(long time);
 
     /**
      * The "state" of the <code>Connection</code>.
-     *
      * param state
      */
     public void setState(String state);
 
     /**
      * Grab a write lock on the <code>Connection</code>.
-     *
      * If another thread already has a write lock then the calling thread will
      * block until the lock is released. The calling thread must call
      * {@link #writeUnlock} when it is done.
@@ -156,7 +151,6 @@ public interface Connection {
      * Register an invocation's
      * {@link com.sun.corba.se.pept.protocol.MessageMediator MessageMediator}
      * with the <code>Connection</code>.
-     *
      * This is useful in protocols which support fragmentation.
      *
      * @param messageMediator
@@ -165,7 +159,6 @@ public interface Connection {
 
     /**
      * If a message expect's a response then this method is called.
-     *
      * This method might block on a read (e.g., HTTP), put the calling thread to
      * sleep while another thread read's the response (e.g., GIOP), or it may
      * use the calling thread to perform the server-side work (e.g., Solaris

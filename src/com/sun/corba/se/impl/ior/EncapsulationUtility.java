@@ -42,8 +42,8 @@ public class EncapsulationUtility {
      * Read the count from is, then read count Identifiables from is using the
      * factory. Add each constructed Identifiable to container.
      */
-    public static void readIdentifiableSequence(List container,
-            IdentifiableFactoryFinder finder, InputStream istr) {
+    public static void readIdentifiableSequence(List container, IdentifiableFactoryFinder finder,
+            InputStream istr) {
         int count = istr.read_long();
         for (int ctr = 0; ctr < count; ctr++) {
             int id = istr.read_long();
@@ -56,8 +56,7 @@ public class EncapsulationUtility {
      * Write all Identifiables that we contain to os. The total length must be
      * written before this method is called.
      */
-    public static void writeIdentifiableSequence(List container,
-            OutputStream os) {
+    public static void writeIdentifiableSequence(List container, OutputStream os) {
         os.write_long(container.size());
         Iterator iter = container.iterator();
         while (iter.hasNext()) {
@@ -72,8 +71,7 @@ public class EncapsulationUtility {
      * write the data to another output stream. Defined as static so that it can
      * be used in another class.
      */
-    static public void writeOutputStream(OutputStream dataStream,
-            OutputStream os) {
+    static public void writeOutputStream(OutputStream dataStream, OutputStream os) {
         byte[] data = ((CDROutputStream) dataStream).toByteArray();
         os.write_long(data.length);
         os.write_octet_array(data, 0, data.length);
@@ -86,8 +84,7 @@ public class EncapsulationUtility {
      */
     static public InputStream getEncapsulationStream(InputStream is) {
         byte[] data = readOctets(is);
-        EncapsInputStream result = EncapsInputStreamFactory
-                .newEncapsInputStream(is.orb(), data, data.length);
+        EncapsInputStream result = EncapsInputStreamFactory.newEncapsInputStream(is.orb(), data, data.length);
         result.consumeEndian();
         return result;
     }
@@ -104,8 +101,7 @@ public class EncapsulationUtility {
     }
 
     static public void writeEncapsulation(WriteContents obj, OutputStream os) {
-        EncapsOutputStream out = sun.corba.OutputStreamFactory
-                .newEncapsOutputStream((ORB) os.orb());
+        EncapsOutputStream out = sun.corba.OutputStreamFactory.newEncapsOutputStream((ORB) os.orb());
 
         out.putEndian();
 

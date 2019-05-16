@@ -14,7 +14,6 @@ import javax.management.ObjectName;
  * <a href="ManagementFactory.html#MXBean">object name</a> for the
  * {@linkplain ManagementFactory#getPlatformMBeanServer platform MBeanServer}
  * access. All platform MXBeans will implement this interface.
- *
  * <p>
  * Note: The platform MXBean interfaces (i.e. all subinterfaces of
  * {@code PlatformManagedObject}) are implemented by the Java platform only. New

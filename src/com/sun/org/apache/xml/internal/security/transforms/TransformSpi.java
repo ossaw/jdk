@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -45,12 +43,12 @@ public abstract class TransformSpi {
      * Algorithm.
      *
      * @param input
-     *                        {@link XMLSignatureInput} as the input of
-     *                        transformation
+     *        {@link XMLSignatureInput} as the input of
+     *        transformation
      * @param os
-     *                        where to output this transformation.
+     *        where to output this transformation.
      * @param transformObject
-     *                        the Transform object
+     *        the Transform object
      * @return {@link XMLSignatureInput} as the result of transformation
      * @throws CanonicalizationException
      * @throws IOException
@@ -59,10 +57,9 @@ public abstract class TransformSpi {
      * @throws SAXException
      * @throws TransformationException
      */
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            OutputStream os, Transform transformObject) throws IOException,
-            CanonicalizationException, InvalidCanonicalizerException,
-            TransformationException, ParserConfigurationException,
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
+            Transform transformObject) throws IOException, CanonicalizationException,
+            InvalidCanonicalizerException, TransformationException, ParserConfigurationException,
             SAXException {
         throw new UnsupportedOperationException();
     }
@@ -75,10 +72,10 @@ public abstract class TransformSpi {
      * implementation.
      *
      * @param input
-     *                        {@link XMLSignatureInput} as the input of
-     *                        transformation
+     *        {@link XMLSignatureInput} as the input of
+     *        transformation
      * @param transformObject
-     *                        the Transform object
+     *        the Transform object
      * @return {@link XMLSignatureInput} as the result of transformation
      * @throws CanonicalizationException
      * @throws IOException
@@ -87,11 +84,9 @@ public abstract class TransformSpi {
      * @throws SAXException
      * @throws TransformationException
      */
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            Transform transformObject) throws IOException,
-            CanonicalizationException, InvalidCanonicalizerException,
-            TransformationException, ParserConfigurationException,
-            SAXException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, Transform transformObject)
+            throws IOException, CanonicalizationException, InvalidCanonicalizerException,
+            TransformationException, ParserConfigurationException, SAXException {
         return enginePerformTransform(input, null, transformObject);
     }
 
@@ -100,7 +95,7 @@ public abstract class TransformSpi {
      * Algorithm.
      * 
      * @param input
-     *              {@link XMLSignatureInput} as the input of transformation
+     *        {@link XMLSignatureInput} as the input of transformation
      * @return {@link XMLSignatureInput} as the result of transformation
      * @throws CanonicalizationException
      * @throws IOException
@@ -109,9 +104,8 @@ public abstract class TransformSpi {
      * @throws SAXException
      * @throws TransformationException
      */
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input)
-            throws IOException, CanonicalizationException,
-            InvalidCanonicalizerException, TransformationException,
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input) throws IOException,
+            CanonicalizationException, InvalidCanonicalizerException, TransformationException,
             ParserConfigurationException, SAXException {
         return enginePerformTransform(input, null);
     }

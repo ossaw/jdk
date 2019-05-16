@@ -53,11 +53,9 @@ public interface RelationSupportMBean extends Relation {
      * information about it!
      *
      * @param flag
-     *             whether the relation is handled by the Relation Service.
-     *
+     *        whether the relation is handled by the Relation Service.
      * @exception IllegalArgumentException
-     *                                     if null parameter
+     *            if null parameter
      */
-    public void setRelationServiceManagementFlag(Boolean flag)
-            throws IllegalArgumentException;
+    public void setRelationServiceManagementFlag(Boolean flag) throws IllegalArgumentException;
 }

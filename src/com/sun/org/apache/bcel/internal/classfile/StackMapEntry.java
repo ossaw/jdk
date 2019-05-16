@@ -74,11 +74,10 @@ public final class StackMapEntry implements Cloneable {
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
-    StackMapEntry(DataInputStream file, ConstantPool constant_pool)
-            throws IOException {
+    StackMapEntry(DataInputStream file, ConstantPool constant_pool) throws IOException {
         this(file.readShort(), file.readShort(), null, -1, null, constant_pool);
 
         types_of_locals = new StackMapType[number_of_locals];
@@ -91,9 +90,8 @@ public final class StackMapEntry implements Cloneable {
             types_of_stack_items[i] = new StackMapType(file, constant_pool);
     }
 
-    public StackMapEntry(int byte_code_offset, int number_of_locals,
-            StackMapType[] types_of_locals, int number_of_stack_items,
-            StackMapType[] types_of_stack_items, ConstantPool constant_pool) {
+    public StackMapEntry(int byte_code_offset, int number_of_locals, StackMapType[] types_of_locals,
+            int number_of_stack_items, StackMapType[] types_of_stack_items, ConstantPool constant_pool) {
         this.byte_code_offset = byte_code_offset;
         this.number_of_locals = number_of_locals;
         this.types_of_locals = types_of_locals;
@@ -106,7 +104,7 @@ public final class StackMapEntry implements Cloneable {
      * Dump stack map entry
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -202,8 +200,7 @@ public final class StackMapEntry implements Cloneable {
     public StackMapEntry copy() {
         try {
             return (StackMapEntry) clone();
-        } catch (CloneNotSupportedException e) {
-        }
+        } catch (CloneNotSupportedException e) {}
 
         return null;
     }
@@ -214,7 +211,7 @@ public final class StackMapEntry implements Cloneable {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackMapEntry(this);
@@ -229,7 +226,7 @@ public final class StackMapEntry implements Cloneable {
 
     /**
      * @param constant_pool
-     *                      Constant pool to be used for this object.
+     *        Constant pool to be used for this object.
      */
     public final void setConstantPool(ConstantPool constant_pool) {
         this.constant_pool = constant_pool;

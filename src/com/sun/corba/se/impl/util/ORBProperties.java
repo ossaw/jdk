@@ -24,8 +24,7 @@ public class ORBProperties {
         try {
             // Check if orb.properties exists
             String javaHome = System.getProperty("java.home");
-            File propFile = new File(javaHome + File.separator + "lib"
-                    + File.separator + "orb.properties");
+            File propFile = new File(javaHome + File.separator + "lib" + File.separator + "orb.properties");
 
             if (propFile.exists())
                 return;
@@ -42,8 +41,7 @@ public class ORBProperties {
                 out.close();
             }
 
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
 
     }
 }

@@ -29,7 +29,6 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  * </p>
  *
  * @xerces.internal
- *
  */
 public interface XPointerPart {
 
@@ -47,13 +46,12 @@ public interface XPointerPart {
      * PointerPart or ShortHandPointer.
      *
      * @param xpointer
-     *                 A String representing the PointerPart or
-     *                 ShortHandPointer.
+     *        A String representing the PointerPart or
+     *        ShortHandPointer.
      * @throws XNIException
-     *                      Thrown if the PointerPart string does not conform to
-     *                      the
-     *                      syntax defined by its scheme.
-     *
+     *         Thrown if the PointerPart string does not conform to
+     *         the
+     *         syntax defined by its scheme.
      */
     public void parseXPointer(String part) throws XNIException;
 
@@ -63,22 +61,21 @@ public interface XPointerPart {
      * specified in the xpointer expression.
      *
      * @param element
-     *                   - The name of the element.
+     *        - The name of the element.
      * @param attributes
-     *                   - The element attributes.
+     *        - The element attributes.
      * @param augs
-     *                   - Additional information that may include infoset
-     *                   augmentations
+     *        - Additional information that may include infoset
+     *        augmentations
      * @param event
-     *                   - An integer indicating 0 - The start of an element 1 -
-     *                   The
-     *                   end of an element 2 - An empty element call
+     *        - An integer indicating 0 - The start of an element 1 -
+     *        The
+     *        end of an element 2 - An empty element call
      * @throws XNIException
-     *                      Thrown to signal an error
-     *
+     *         Thrown to signal an error
      */
-    public boolean resolveXPointer(QName element, XMLAttributes attributes,
-            Augmentations augs, int event) throws XNIException;
+    public boolean resolveXPointer(QName element, XMLAttributes attributes, Augmentations augs, int event)
+            throws XNIException;
 
     /**
      * Returns true if the XPointer expression resolves to a resource fragment
@@ -87,8 +84,7 @@ public interface XPointerPart {
      * @return True if the xpointer expression matches a fragment in the
      *         resource else returns false.
      * @throws XNIException
-     *                      Thrown to signal an error
-     *
+     *         Thrown to signal an error
      */
     public boolean isFragmentResolved() throws XNIException;
 
@@ -99,8 +95,7 @@ public interface XPointerPart {
      * @return True if the XPointer expression resolves to a non-element child
      *         of the current resource fragment.
      * @throws XNIException
-     *                      Thrown to signal an error
-     *
+     *         Thrown to signal an error
      */
     public boolean isChildFragmentResolved() throws XNIException;
 
@@ -109,7 +104,6 @@ public interface XPointerPart {
      * name of the ShortHand Pointer.
      *
      * @return A String containing the scheme name of the PointerPart.
-     *
      */
     public String getSchemeName();
 
@@ -117,7 +111,6 @@ public interface XPointerPart {
      * Returns a String containing the scheme data of the PointerPart.
      *
      * @return A String containing the scheme data of the PointerPart.
-     *
      */
     public String getSchemeData();
 
@@ -125,8 +118,7 @@ public interface XPointerPart {
      * Sets the scheme name of the PointerPart or the ShortHand Pointer name.
      *
      * @param schemeName
-     *                   A String containing the scheme name of the PointerPart.
-     *
+     *        A String containing the scheme name of the PointerPart.
      */
     public void setSchemeName(String schemeName);
 
@@ -134,8 +126,7 @@ public interface XPointerPart {
      * Sets the scheme data of the PointerPart.
      *
      * @param schemeData
-     *                   A String containing the scheme data of the PointerPart.
-     *
+     *        A String containing the scheme data of the PointerPart.
      */
     public void setSchemeData(String schemeData);
 

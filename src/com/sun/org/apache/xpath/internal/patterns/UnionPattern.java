@@ -70,9 +70,8 @@ public class UnionPattern extends Expression {
     /**
      * Set the contained step patterns to be tested.
      *
-     *
      * @param patterns
-     *                 the contained step patterns to be tested.
+     *        the contained step patterns to be tested.
      */
     public void setPatterns(StepPattern[] patterns) {
         m_patterns = patterns;
@@ -87,7 +86,6 @@ public class UnionPattern extends Expression {
     /**
      * Get the contained step patterns to be tested.
      *
-     *
      * @return an array of the contained step patterns to be tested.
      */
     public StepPattern[] getPatterns() {
@@ -98,8 +96,7 @@ public class UnionPattern extends Expression {
      * Test a node to see if it matches any of the patterns in the union.
      *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -110,11 +107,9 @@ public class UnionPattern extends Expression {
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         XObject bestScore = null;
         int n = m_patterns.length;

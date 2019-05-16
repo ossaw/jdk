@@ -71,23 +71,20 @@ public final class Encodings extends Object {
      * Returns a writer for the specified encoding based on an output stream.
      *
      * @param output
-     *                 The output stream
+     *        The output stream
      * @param encoding
-     *                 The encoding
+     *        The encoding
      * @return A suitable writer
      * @throws UnsupportedEncodingException
-     *                                      There is no convertor to support
-     *                                      this encoding
+     *         There is no convertor to support
+     *         this encoding
      */
-    static Writer getWriter(OutputStream output, String encoding)
-            throws UnsupportedEncodingException {
+    static Writer getWriter(OutputStream output, String encoding) throws UnsupportedEncodingException {
 
-        final EncodingInfo ei = _encodingInfos.findEncoding(toUpperCaseFast(
-                encoding));
+        final EncodingInfo ei = _encodingInfos.findEncoding(toUpperCaseFast(encoding));
         if (ei != null) {
             try {
-                return new BufferedWriter(new OutputStreamWriter(output,
-                        ei.javaName));
+                return new BufferedWriter(new OutputStreamWriter(output, ei.javaName));
             } catch (UnsupportedEncodingException usee) {
                 // keep trying
             }
@@ -111,7 +108,7 @@ public final class Encodings extends Object {
      * This is not a public API.
      *
      * @param encoding
-     *                 The encoding
+     *        The encoding
      * @return The object that is used to determine if characters are in the
      *         given encoding.
      * @xsl.usage internal
@@ -135,8 +132,7 @@ public final class Encodings extends Object {
                 final String name = c.name();
                 ei = new EncodingInfo(name, name);
                 _encodingInfos.putEncoding(normalizedEncoding, ei);
-            } catch (IllegalCharsetNameException
-                    | UnsupportedCharsetException x) {
+            } catch (IllegalCharsetNameException | UnsupportedCharsetException x) {
                 ei = new EncodingInfo(null, null);
             }
         }
@@ -151,7 +147,7 @@ public final class Encodings extends Object {
      * This is not a public API.
      * 
      * @param s
-     *          a String of ASCII characters
+     *        a String of ASCII characters
      * @return an uppercased version of the input String, possibly the same
      *         String.
      * @xsl.usage internal
@@ -198,10 +194,9 @@ public final class Encodings extends Object {
      * XSLT processor should use either UTF-8 or UTF-16."
      *
      * @param encoding
-     *                 Reference to java-style encoding string, which may be
-     *                 null, in
-     *                 which case a default will be found.
-     *
+     *        Reference to java-style encoding string, which may be
+     *        null, in
+     *        which case a default will be found.
      * @return The ISO-style encoding string, or null if failure.
      */
     static String getMimeEncoding(String encoding) {
@@ -212,8 +207,7 @@ public final class Encodings extends Object {
                 // Get the default system character encoding. This may be
                 // incorrect if they passed in a writer, but right now there
                 // seems to be no way to get the encoding from a writer.
-                encoding = SecuritySupport.getSystemProperty("file.encoding",
-                        "UTF8");
+                encoding = SecuritySupport.getSystemProperty("file.encoding", "UTF8");
 
                 if (null != encoding) {
 
@@ -224,16 +218,11 @@ public final class Encodings extends Object {
                      * I don't think I want to alter the tables to convert
                      * everything to UTF-8.
                      */
-                    String jencoding = (encoding.equalsIgnoreCase("Cp1252")
-                            || encoding.equalsIgnoreCase("ISO8859_1")
-                            || encoding.equalsIgnoreCase("8859_1") || encoding
-                                    .equalsIgnoreCase("UTF8"))
-                                            ? DEFAULT_MIME_ENCODING
-                                            : convertJava2MimeEncoding(
-                                                    encoding);
+                    String jencoding = (encoding.equalsIgnoreCase("Cp1252") || encoding.equalsIgnoreCase(
+                            "ISO8859_1") || encoding.equalsIgnoreCase("8859_1") || encoding.equalsIgnoreCase(
+                                    "UTF8")) ? DEFAULT_MIME_ENCODING : convertJava2MimeEncoding(encoding);
 
-                    encoding = (null != jencoding) ? jencoding
-                            : DEFAULT_MIME_ENCODING;
+                    encoding = (null != jencoding) ? jencoding : DEFAULT_MIME_ENCODING;
                 } else {
                     encoding = DEFAULT_MIME_ENCODING;
                 }
@@ -251,13 +240,11 @@ public final class Encodings extends Object {
      * Try the best we can to convert a Java encoding to a XML-style encoding.
      *
      * @param encoding
-     *                 non-null reference to encoding string, java style.
-     *
+     *        non-null reference to encoding string, java style.
      * @return ISO-style encoding string.
      */
     private static String convertJava2MimeEncoding(String encoding) {
-        final EncodingInfo enc = _encodingInfos.getEncodingFromJavaKey(
-                toUpperCaseFast(encoding));
+        final EncodingInfo enc = _encodingInfos.getEncodingFromJavaKey(toUpperCaseFast(encoding));
         if (null != enc)
             return enc.name;
         return encoding;
@@ -267,13 +254,11 @@ public final class Encodings extends Object {
      * Try the best we can to convert a Java encoding to a XML-style encoding.
      *
      * @param encoding
-     *                 non-null reference to encoding string, java style.
-     *
+     *        non-null reference to encoding string, java style.
      * @return ISO-style encoding string.
      */
     public static String convertMime2JavaEncoding(String encoding) {
-        final EncodingInfo info = _encodingInfos.findEncoding(toUpperCaseFast(
-                encoding));
+        final EncodingInfo info = _encodingInfos.findEncoding(toUpperCaseFast(encoding));
         return info != null ? info.javaName : encoding;
     }
 
@@ -289,8 +274,8 @@ public final class Encodings extends Object {
         // where the mapping requested was not declared in the
         // Encodings.properties
         // file.
-        private final Map<String, EncodingInfo> _encodingDynamicTable = Collections
-                .synchronizedMap(new HashMap<String, EncodingInfo>());
+        private final Map<String, EncodingInfo> _encodingDynamicTable = Collections.synchronizedMap(
+                new HashMap<String, EncodingInfo>());
 
         private EncodingInfos() {
             loadEncodingInfo();
@@ -299,16 +284,13 @@ public final class Encodings extends Object {
         // Opens the file/resource containing java charset name -> preferred
         // mime
         // name mapping and returns it as an InputStream.
-        private InputStream openEncodingsFileStream()
-                throws MalformedURLException, IOException {
+        private InputStream openEncodingsFileStream() throws MalformedURLException, IOException {
             String urlString = null;
             InputStream is = null;
 
             try {
-                urlString = SecuritySupport.getSystemProperty(ENCODINGS_PROP,
-                        "");
-            } catch (SecurityException e) {
-            }
+                urlString = SecuritySupport.getSystemProperty(ENCODINGS_PROP, "");
+            } catch (SecurityException e) {}
 
             if (urlString != null && urlString.length() > 0) {
                 URL url = new URL(urlString);
@@ -324,8 +306,7 @@ public final class Encodings extends Object {
         // Loads the Properties resource containing the mapping:
         // java charset name -> preferred mime name
         // and returns it.
-        private Properties loadProperties() throws MalformedURLException,
-                IOException {
+        private Properties loadProperties() throws MalformedURLException, IOException {
             Properties props = new Properties();
             try (InputStream is = openEncodingsFileStream()) {
                 if (is != null) {
@@ -360,8 +341,7 @@ public final class Encodings extends Object {
             }
             // lastPrintable =
             // Integer.decode(val.substring(pos).trim()).intValue();
-            StringTokenizer st = new StringTokenizer(val.substring(0, pos),
-                    ",");
+            StringTokenizer st = new StringTokenizer(val.substring(0, pos), ",");
             String[] values = new String[st.countTokens()];
             for (int i = 0; st.hasMoreTokens(); i++) {
                 values[i] = st.nextToken();
@@ -432,7 +412,6 @@ public final class Encodings extends Object {
 
         /**
          * Loads a list of all the supported encodings.
-         *
          * System property "encodings" formatted using URL syntax may define an
          * external encodings list. Thanks to Sergey Ushakov for the code
          * contribution!
@@ -447,19 +426,16 @@ public final class Encodings extends Object {
                 Map<String, EncodingInfo> canonicals = new HashMap<>();
                 while (keys.hasMoreElements()) {
                     final String javaName = (String) keys.nextElement();
-                    final String[] mimes = parseMimeTypes(props.getProperty(
-                            javaName));
+                    final String[] mimes = parseMimeTypes(props.getProperty(javaName));
 
-                    final String charsetName = findCharsetNameFor(javaName,
-                            mimes);
+                    final String charsetName = findCharsetNameFor(javaName, mimes);
                     if (charsetName != null) {
                         final String kj = toUpperCaseFast(javaName);
                         final String kc = toUpperCaseFast(charsetName);
                         for (int i = 0; i < mimes.length; ++i) {
                             final String mimeName = mimes[i];
                             final String km = toUpperCaseFast(mimeName);
-                            EncodingInfo info = new EncodingInfo(mimeName,
-                                    charsetName);
+                            EncodingInfo info = new EncodingInfo(mimeName, charsetName);
                             _encodingTableKeyMime.put(km, info);
                             if (!canonicals.containsKey(kc)) {
                                 // canonicals will map the charset name to
@@ -482,18 +458,14 @@ public final class Encodings extends Object {
                 // (a given java name can correspond to several mime name,
                 // but we want the _encodingTableKeyJava to point to the
                 // preferred mime name).
-                for (Entry<String, EncodingInfo> e : _encodingTableKeyJava
-                        .entrySet()) {
-                    e.setValue(canonicals.get(toUpperCaseFast(e
-                            .getValue().javaName)));
+                for (Entry<String, EncodingInfo> e : _encodingTableKeyJava.entrySet()) {
+                    e.setValue(canonicals.get(toUpperCaseFast(e.getValue().javaName)));
                 }
 
             } catch (java.net.MalformedURLException mue) {
-                throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(
-                        mue);
+                throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(mue);
             } catch (java.io.IOException ioe) {
-                throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(
-                        ioe);
+                throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(ioe);
             }
         }
 
@@ -527,7 +499,7 @@ public final class Encodings extends Object {
      * This is not a public API.
      * 
      * @param ch
-     *           the character to test
+     *        the character to test
      * @xsl.usage internal
      */
     static boolean isHighUTF16Surrogate(char ch) {
@@ -540,7 +512,7 @@ public final class Encodings extends Object {
      * This is not a public API.
      * 
      * @param ch
-     *           the character to test
+     *        the character to test
      * @xsl.usage internal
      */
     static boolean isLowUTF16Surrogate(char ch) {
@@ -553,14 +525,13 @@ public final class Encodings extends Object {
      * This is not a public API.
      * 
      * @param highSurrogate
-     *                      the high char of the high/low pair
+     *        the high char of the high/low pair
      * @param lowSurrogate
-     *                      the low char of the high/low pair
+     *        the low char of the high/low pair
      * @xsl.usage internal
      */
     static int toCodePoint(char highSurrogate, char lowSurrogate) {
-        int codePoint = ((highSurrogate - 0xd800) << 10) + (lowSurrogate
-                - 0xdc00) + 0x10000;
+        int codePoint = ((highSurrogate - 0xd800) << 10) + (lowSurrogate - 0xdc00) + 0x10000;
         return codePoint;
     }
 
@@ -571,7 +542,7 @@ public final class Encodings extends Object {
      * This is not a public API.
      * 
      * @param ch
-     *           the char.
+     *        the char.
      * @xsl.usage internal
      */
     static int toCodePoint(char ch) {

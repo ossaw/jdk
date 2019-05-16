@@ -29,12 +29,10 @@ import org.xml.sax.SAXNotRecognizedException;
 
 /**
  * Base class for deriving an XML filter.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * This class is designed to sit between an {@link org.xml.sax.XMLReader
  * XMLReader} and the client application's event handlers. By default, it does
@@ -52,8 +50,7 @@ import org.xml.sax.SAXNotRecognizedException;
  * @see org.xml.sax.ContentHandler
  * @see org.xml.sax.ErrorHandler
  */
-public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
-        ContentHandler, ErrorHandler {
+public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler, ContentHandler, ErrorHandler {
 
     ////////////////////////////////////////////////////////////////////
     // Constructors.
@@ -61,7 +58,6 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
 
     /**
      * Construct an empty XML filter, with no parent.
-     *
      * <p>
      * This filter will have no parent: you must assign a parent before you
      * start a parse or do any configuration with setFeature or setProperty,
@@ -94,20 +90,18 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
 
     /**
      * Set the parent reader.
-     *
      * <p>
      * This is the {@link org.xml.sax.XMLReader XMLReader} from which this
      * filter will obtain its events and to which it will pass its configuration
      * requests. The parent may itself be another filter.
      * </p>
-     *
      * <p>
      * If there is no parent reader set, any attempt to parse or to set or get a
      * feature or property will fail.
      * </p>
      *
      * @param parent
-     *               The parent XML reader.
+     *        The parent XML reader.
      * @see #getParent
      */
     public void setParent(XMLReader parent) {
@@ -130,15 +124,14 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
 
     /**
      * Set the value of a feature.
-     *
      * <p>
      * This will always fail if the parent is null.
      * </p>
      *
      * @param name
-     *              The feature name.
+     *        The feature name.
      * @param value
-     *              The requested feature value.
+     *        The requested feature value.
      * @exception org.xml.sax.SAXNotRecognizedException
      *            If the feature value can't be assigned or retrieved from
      *            the parent.
@@ -146,8 +139,8 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      *            When the parent recognizes the feature name but cannot set
      *            the requested value.
      */
-    public void setFeature(String name, boolean value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {
+    public void setFeature(String name, boolean value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {
         if (parent != null) {
             parent.setFeature(name, value);
         } else {
@@ -157,13 +150,12 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
 
     /**
      * Look up the value of a feature.
-     *
      * <p>
      * This will always fail if the parent is null.
      * </p>
      *
      * @param name
-     *             The feature name.
+     *        The feature name.
      * @return The current value of the feature.
      * @exception org.xml.sax.SAXNotRecognizedException
      *            If the feature value can't be assigned or retrieved from
@@ -172,8 +164,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      *            When the parent recognizes the feature name but cannot
      *            determine its value at this time.
      */
-    public boolean getFeature(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public boolean getFeature(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         if (parent != null) {
             return parent.getFeature(name);
         } else {
@@ -183,15 +174,14 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
 
     /**
      * Set the value of a property.
-     *
      * <p>
      * This will always fail if the parent is null.
      * </p>
      *
      * @param name
-     *              The property name.
+     *        The property name.
      * @param value
-     *              The requested property value.
+     *        The requested property value.
      * @exception org.xml.sax.SAXNotRecognizedException
      *            If the property value can't be assigned or retrieved from
      *            the parent.
@@ -199,8 +189,8 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      *            When the parent recognizes the property name but cannot
      *            set the requested value.
      */
-    public void setProperty(String name, Object value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {
+    public void setProperty(String name, Object value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {
         if (parent != null) {
             parent.setProperty(name, value);
         } else {
@@ -212,7 +202,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Look up the value of a property.
      *
      * @param name
-     *             The property name.
+     *        The property name.
      * @return The current value of the property.
      * @exception org.xml.sax.SAXNotRecognizedException
      *            If the property value can't be assigned or retrieved from
@@ -221,8 +211,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      *            When the parent recognizes the property name but cannot
      *            determine its value at this time.
      */
-    public Object getProperty(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public Object getProperty(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         if (parent != null) {
             return parent.getProperty(name);
         } else {
@@ -234,7 +223,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Set the entity resolver.
      *
      * @param resolver
-     *                 The new entity resolver.
+     *        The new entity resolver.
      */
     public void setEntityResolver(EntityResolver resolver) {
         entityResolver = resolver;
@@ -253,7 +242,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Set the DTD event handler.
      *
      * @param handler
-     *                the new DTD handler
+     *        the new DTD handler
      */
     public void setDTDHandler(DTDHandler handler) {
         dtdHandler = handler;
@@ -272,7 +261,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Set the content event handler.
      *
      * @param handler
-     *                the new content handler
+     *        the new content handler
      */
     public void setContentHandler(ContentHandler handler) {
         contentHandler = handler;
@@ -291,7 +280,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Set the error event handler.
      *
      * @param handler
-     *                the new error handler
+     *        the new error handler
      */
     public void setErrorHandler(ErrorHandler handler) {
         errorHandler = handler;
@@ -310,7 +299,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Parse a document.
      *
      * @param input
-     *              The input source for the document entity.
+     *        The input source for the document entity.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @exception java.io.IOException
@@ -326,7 +315,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Parse a document.
      *
      * @param systemId
-     *                 The system identifier as a fully-qualified URI.
+     *        The system identifier as a fully-qualified URI.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @exception java.io.IOException
@@ -345,9 +334,9 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter an external entity resolution.
      *
      * @param publicId
-     *                 The entity's public identifier, or null.
+     *        The entity's public identifier, or null.
      * @param systemId
-     *                 The entity's system identifier.
+     *        The entity's system identifier.
      * @return A new InputSource or null for the default.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
@@ -355,8 +344,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      *            The client may throw an I/O-related exception while
      *            obtaining the new InputSource.
      */
-    public InputSource resolveEntity(String publicId, String systemId)
-            throws SAXException, IOException {
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
         if (entityResolver != null) {
             return entityResolver.resolveEntity(publicId, systemId);
         } else {
@@ -372,16 +360,15 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a notation declaration event.
      *
      * @param name
-     *                 The notation name.
+     *        The notation name.
      * @param publicId
-     *                 The notation's public identifier, or null.
+     *        The notation's public identifier, or null.
      * @param systemId
-     *                 The notation's system identifier, or null.
+     *        The notation's system identifier, or null.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void notationDecl(String name, String publicId, String systemId)
-            throws SAXException {
+    public void notationDecl(String name, String publicId, String systemId) throws SAXException {
         if (dtdHandler != null) {
             dtdHandler.notationDecl(name, publicId, systemId);
         }
@@ -391,21 +378,20 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter an unparsed entity declaration event.
      *
      * @param name
-     *                     The entity name.
+     *        The entity name.
      * @param publicId
-     *                     The entity's public identifier, or null.
+     *        The entity's public identifier, or null.
      * @param systemId
-     *                     The entity's system identifier, or null.
+     *        The entity's system identifier, or null.
      * @param notationName
-     *                     The name of the associated notation.
+     *        The name of the associated notation.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void unparsedEntityDecl(String name, String publicId,
-            String systemId, String notationName) throws SAXException {
+    public void unparsedEntityDecl(String name, String publicId, String systemId, String notationName)
+            throws SAXException {
         if (dtdHandler != null) {
-            dtdHandler.unparsedEntityDecl(name, publicId, systemId,
-                    notationName);
+            dtdHandler.unparsedEntityDecl(name, publicId, systemId, notationName);
         }
     }
 
@@ -417,7 +403,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a new document locator event.
      *
      * @param locator
-     *                The document locator.
+     *        The document locator.
      */
     public void setDocumentLocator(Locator locator) {
         this.locator = locator;
@@ -454,14 +440,13 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a start Namespace prefix mapping event.
      *
      * @param prefix
-     *               The Namespace prefix.
+     *        The Namespace prefix.
      * @param uri
-     *               The Namespace URI.
+     *        The Namespace URI.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void startPrefixMapping(String prefix, String uri)
-            throws SAXException {
+    public void startPrefixMapping(String prefix, String uri) throws SAXException {
         if (contentHandler != null) {
             contentHandler.startPrefixMapping(prefix, uri);
         }
@@ -471,7 +456,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter an end Namespace prefix mapping event.
      *
      * @param prefix
-     *               The Namespace prefix.
+     *        The Namespace prefix.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
@@ -485,19 +470,19 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a start element event.
      *
      * @param uri
-     *                  The element's Namespace URI, or the empty string.
+     *        The element's Namespace URI, or the empty string.
      * @param localName
-     *                  The element's local name, or the empty string.
+     *        The element's local name, or the empty string.
      * @param qName
-     *                  The element's qualified (prefixed) name, or the empty
-     *                  string.
+     *        The element's qualified (prefixed) name, or the empty
+     *        string.
      * @param atts
-     *                  The element's attributes.
+     *        The element's attributes.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void startElement(String uri, String localName, String qName,
-            Attributes atts) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes atts)
+            throws SAXException {
         if (contentHandler != null) {
             contentHandler.startElement(uri, localName, qName, atts);
         }
@@ -507,17 +492,16 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter an end element event.
      *
      * @param uri
-     *                  The element's Namespace URI, or the empty string.
+     *        The element's Namespace URI, or the empty string.
      * @param localName
-     *                  The element's local name, or the empty string.
+     *        The element's local name, or the empty string.
      * @param qName
-     *                  The element's qualified (prefixed) name, or the empty
-     *                  string.
+     *        The element's qualified (prefixed) name, or the empty
+     *        string.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void endElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qName) throws SAXException {
         if (contentHandler != null) {
             contentHandler.endElement(uri, localName, qName);
         }
@@ -527,16 +511,15 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a character data event.
      *
      * @param ch
-     *               An array of characters.
+     *        An array of characters.
      * @param start
-     *               The starting position in the array.
+     *        The starting position in the array.
      * @param length
-     *               The number of characters to use from the array.
+     *        The number of characters to use from the array.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void characters(char ch[], int start, int length)
-            throws SAXException {
+    public void characters(char ch[], int start, int length) throws SAXException {
         if (contentHandler != null) {
             contentHandler.characters(ch, start, length);
         }
@@ -546,16 +529,15 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter an ignorable whitespace event.
      *
      * @param ch
-     *               An array of characters.
+     *        An array of characters.
      * @param start
-     *               The starting position in the array.
+     *        The starting position in the array.
      * @param length
-     *               The number of characters to use from the array.
+     *        The number of characters to use from the array.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void ignorableWhitespace(char ch[], int start, int length)
-            throws SAXException {
+    public void ignorableWhitespace(char ch[], int start, int length) throws SAXException {
         if (contentHandler != null) {
             contentHandler.ignorableWhitespace(ch, start, length);
         }
@@ -565,14 +547,13 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a processing instruction event.
      *
      * @param target
-     *               The processing instruction target.
+     *        The processing instruction target.
      * @param data
-     *               The text following the target.
+     *        The text following the target.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         if (contentHandler != null) {
             contentHandler.processingInstruction(target, data);
         }
@@ -582,7 +563,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a skipped entity event.
      *
      * @param name
-     *             The name of the skipped entity.
+     *        The name of the skipped entity.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
@@ -600,7 +581,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a warning event.
      *
      * @param e
-     *          The warning as an exception.
+     *        The warning as an exception.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
@@ -614,7 +595,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter an error event.
      *
      * @param e
-     *          The error as an exception.
+     *        The error as an exception.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
@@ -628,7 +609,7 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
      * Filter a fatal error event.
      *
      * @param e
-     *          The error as an exception.
+     *        The error as an exception.
      * @exception org.xml.sax.SAXException
      *            The client may throw an exception during processing.
      */
@@ -644,7 +625,6 @@ public class XMLFilterImpl implements XMLFilter, EntityResolver, DTDHandler,
 
     /**
      * Set up before a parse.
-     *
      * <p>
      * Before every parse, check whether the parent is non-null, and re-register
      * the filter for all of the events.

@@ -13,7 +13,6 @@ import javax.swing.plaf.synth.SynthConstants;
  * <p>
  * Represents a built in, or custom, state in Nimbus.
  * </p>
- *
  * <p>
  * Synth provides several built in states, which are:
  * <ul>
@@ -25,14 +24,12 @@ import javax.swing.plaf.synth.SynthConstants;
  * <li>Selected</li>
  * <li>Default</li>
  * </ul>
- *
  * <p>
  * However, there are many more states that could be described in a LookAndFeel,
  * and it would be nice to style components differently based on these different
  * states. For example, a progress bar could be "indeterminate". It would be
  * very convenient to allow this to be defined as a "state".
  * </p>
- *
  * <p>
  * This class, State, is intended to be used for such situations. Simply
  * implement the abstract #isInState method. It returns true if the given
@@ -40,7 +37,6 @@ import javax.swing.plaf.synth.SynthConstants;
  * <em>many</em> times in <em>performance sensitive loops</em>. It must execute
  * very quickly.
  * </p>
- *
  * <p>
  * For example, the following might be an implementation of a custom
  * "Indeterminate" state for JProgressBars:
@@ -62,8 +58,7 @@ import javax.swing.plaf.synth.SynthConstants;
  * </pre>
  */
 public abstract class State<T extends JComponent> {
-    static final Map<String, StandardState> standardStates = new HashMap<String, StandardState>(
-            7);
+    static final Map<String, StandardState> standardStates = new HashMap<String, StandardState>(7);
     static final State Enabled = new StandardState(SynthConstants.ENABLED);
     static final State MouseOver = new StandardState(SynthConstants.MOUSE_OVER);
     static final State Pressed = new StandardState(SynthConstants.PRESSED);
@@ -80,7 +75,6 @@ public abstract class State<T extends JComponent> {
      * should be unique within the states set for any one particular component.
      * The name of the state should coincide with the name used in UIDefaults.
      * </p>
-     *
      * <p>
      * For example, the following would be correct:
      * </p>
@@ -93,10 +87,10 @@ public abstract class State<T extends JComponent> {
      * </pre>
      *
      * @param name
-     *             a simple user friendly name for the state, such as
-     *             "Indeterminate" or "EmbeddedPanel" or "Blurred". It is
-     *             customary to use camel case, with the first letter
-     *             capitalized.
+     *        a simple user friendly name for the state, such as
+     *        "Indeterminate" or "EmbeddedPanel" or "Blurred". It is
+     *        customary to use camel case, with the first letter
+     *        capitalized.
      */
     protected State(String name) {
         this.name = name;
@@ -111,7 +105,6 @@ public abstract class State<T extends JComponent> {
      * <p>
      * This is the main entry point, called by NimbusStyle.
      * </p>
-     *
      * <p>
      * There are both custom states and standard states. Standard states
      * correlate to the states defined in SynthConstants. When a UI delegate
@@ -120,7 +113,6 @@ public abstract class State<T extends JComponent> {
      * will then take this state, and query each State instance in the style
      * asking whether isInState(c, s).
      * </p>
-     *
      * <p>
      * Now, only the standard states care about the "s" param. So we have this
      * odd arrangement:
@@ -143,7 +135,6 @@ public abstract class State<T extends JComponent> {
      * by this class. <em>This is an extremely performance sensitive loop.</em>
      * Please take proper precautions to ensure that it executes quickly.
      * </p>
-     *
      * <p>
      * Nimbus uses this method to help determine what state a JComponent is in.
      * For example, a custom State could exist for JProgressBar such that it
@@ -156,7 +147,7 @@ public abstract class State<T extends JComponent> {
      * </pre>
      *
      * @param c
-     *          the JComponent to test. This will never be null.
+     *        the JComponent to test. This will never be null.
      * @return true if <code>c</code> is in the custom state represented by this
      *         <code>State</code> instance
      */
@@ -217,8 +208,7 @@ public abstract class State<T extends JComponent> {
                     buffer.append("+");
                 buffer.append("Focused");
             }
-            if ((state
-                    & SynthConstants.MOUSE_OVER) == SynthConstants.MOUSE_OVER) {
+            if ((state & SynthConstants.MOUSE_OVER) == SynthConstants.MOUSE_OVER) {
                 if (buffer.length() > 0)
                     buffer.append("+");
                 buffer.append("MouseOver");

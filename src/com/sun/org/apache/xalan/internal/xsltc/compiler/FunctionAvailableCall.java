@@ -77,8 +77,7 @@ final class FunctionAvailableCall extends FunctionCall {
         if (_arg instanceof LiteralExpr) {
             return _type = Type.Boolean;
         }
-        ErrorMsg err = new ErrorMsg(ErrorMsg.NEED_LITERAL_ERR,
-                "function-available", this);
+        ErrorMsg err = new ErrorMsg(ErrorMsg.NEED_LITERAL_ERR, "function-available", this);
         throw new TypeCheckError(err);
     }
 
@@ -110,8 +109,7 @@ final class FunctionAvailableCall extends FunctionCall {
             if (lastDotIndex > 0) {
                 methodName = functionName.substring(lastDotIndex + 1);
                 if (className != null && !className.equals(""))
-                    className = className + "." + functionName.substring(0,
-                            lastDotIndex);
+                    className = className + "." + functionName.substring(0, lastDotIndex);
                 else
                     className = functionName.substring(0, lastDotIndex);
             } else
@@ -128,8 +126,7 @@ final class FunctionAvailableCall extends FunctionCall {
             methodName = replaceDash(methodName);
 
         try {
-            final Class clazz = ObjectFactory.findProviderClass(className,
-                    true);
+            final Class clazz = ObjectFactory.findProviderClass(className, true);
 
             if (clazz == null) {
                 return false;
@@ -140,8 +137,8 @@ final class FunctionAvailableCall extends FunctionCall {
             for (int i = 0; i < methods.length; i++) {
                 final int mods = methods[i].getModifiers();
 
-                if (Modifier.isPublic(mods) && Modifier.isStatic(mods)
-                        && methods[i].getName().equals(methodName)) {
+                if (Modifier.isPublic(mods) && Modifier.isStatic(mods) && methods[i].getName().equals(
+                        methodName)) {
                     return true;
                 }
             }
@@ -162,8 +159,7 @@ final class FunctionAvailableCall extends FunctionCall {
 
         if (isInternalNamespace()) {
             final Parser parser = getParser();
-            _isFunctionAvailable = parser.functionSupported(Util.getLocalName(
-                    _nameOfFunct));
+            _isFunctionAvailable = parser.functionSupported(Util.getLocalName(_nameOfFunct));
         }
         return _isFunctionAvailable;
     }
@@ -172,8 +168,8 @@ final class FunctionAvailableCall extends FunctionCall {
      * Return true if the namespace uri is null or it is the XSLTC translet uri.
      */
     private boolean isInternalNamespace() {
-        return (_namespaceOfFunct == null || _namespaceOfFunct.equals(
-                EMPTYSTRING) || _namespaceOfFunct.equals(TRANSLET_URI));
+        return (_namespaceOfFunct == null || _namespaceOfFunct.equals(EMPTYSTRING) || _namespaceOfFunct
+                .equals(TRANSLET_URI));
     }
 
     /**

@@ -15,27 +15,21 @@ import sun.net.www.ParseUtil;
 
 /**
  * A URL Connection to a Java ARchive (JAR) file or an entry in a JAR file.
- *
  * <p>
  * The syntax of a JAR URL is:
  *
  * <pre>
  * jar:&lt;url&gt;!/{entry}
  * </pre>
- *
  * <p>
  * for example:
- *
  * <p>
  * {@code jar:http://www.foo.com/bar/baz.jar!/COM/foo/Quux.class}
- *
  * <p>
  * Jar URLs should be used to refer to a JAR file or entries in a JAR file. The
  * example above is a JAR URL which refers to a JAR entry. If the entry name is
  * omitted, the URL refers to the whole JAR file:
- *
  * {@code jar:http://www.foo.com/bar/baz.jar!/}
- *
  * <p>
  * Users should cast the generic URLConnection to a JarURLConnection when they
  * know that the URL they created is a JAR URL, and they need JAR-specific
@@ -46,78 +40,54 @@ import sun.net.www.ParseUtil;
  * JarURLConnection jarConnection = (JarURLConnection) url.openConnection();
  * Manifest manifest = jarConnection.getManifest();
  * </pre>
- *
  * <p>
  * JarURLConnection instances can only be used to read from JAR files. It is not
  * possible to get a {@link java.io.OutputStream} to modify or write to the
  * underlying JAR file using this class.
  * <p>
  * Examples:
- *
  * <dl>
- *
  * <dt>A Jar entry
  * <dd>{@code jar:http://www.foo.com/bar/baz.jar!/COM/foo/Quux.class}
- *
  * <dt>A Jar file
  * <dd>{@code jar:http://www.foo.com/bar/baz.jar!/}
- *
  * <dt>A Jar directory
  * <dd>{@code jar:http://www.foo.com/bar/baz.jar!/COM/foo/}
- *
  * </dl>
- *
  * <p>
  * {@code !/} is referred to as the <em>separator</em>.
- *
  * <p>
  * When constructing a JAR url via {@code new URL(context, spec)}, the following
  * rules apply:
- *
  * <ul>
- *
  * <li>if there is no context URL and the specification passed to the URL
  * constructor doesn't contain a separator, the URL is considered to refer to a
  * JarFile.
- *
  * <li>if there is a context URL, the context URL is assumed to refer to a JAR
  * file or a Jar directory.
- *
  * <li>if the specification begins with a '/', the Jar directory is ignored, and
  * the spec is considered to be at the root of the Jar file.
- *
  * <p>
  * Examples:
- *
  * <dl>
- *
  * <dt>context: <b>jar:http://www.foo.com/bar/jar.jar!/</b>, spec:
  * <b>baz/entry.txt</b>
- *
  * <dd>url:<b>jar:http://www.foo.com/bar/jar.jar!/baz/entry.txt</b>
- *
  * <dt>context: <b>jar:http://www.foo.com/bar/jar.jar!/baz</b>, spec:
  * <b>entry.txt</b>
- *
  * <dd>url:<b>jar:http://www.foo.com/bar/jar.jar!/baz/entry.txt</b>
- *
  * <dt>context: <b>jar:http://www.foo.com/bar/jar.jar!/baz</b>, spec:
  * <b>/entry.txt</b>
- *
  * <dd>url:<b>jar:http://www.foo.com/bar/jar.jar!/entry.txt</b>
- *
  * </dl>
- *
  * </ul>
  *
  * @see java.net.URL
  * @see java.net.URLConnection
- *
  * @see java.util.jar.JarFile
  * @see java.util.jar.JarInputStream
  * @see java.util.jar.Manifest
  * @see java.util.zip.ZipEntry
- *
  * @author Benjamin Renaud
  * @since 1.2
  */
@@ -136,11 +106,11 @@ public abstract class JarURLConnection extends URLConnection {
      * Creates the new JarURLConnection to the specified URL.
      * 
      * @param url
-     *            the URL
+     *        the URL
      * @throws MalformedURLException
-     *                               if no legal protocol could be found in a
-     *                               specification string
-     *                               or the string could not be parsed.
+     *         if no legal protocol could be found in a
+     *         specification string
+     *         or the string could not be parsed.
      */
 
     protected JarURLConnection(URL url) throws MalformedURLException {
@@ -199,12 +169,10 @@ public abstract class JarURLConnection extends URLConnection {
      * @return the JAR file for this connection. If the connection is a
      *         connection to an entry of a JAR file, the JAR file object is
      *         returned
-     *
      * @exception IOException
-     *                        if an IOException occurs while trying to connect
-     *                        to the
-     *                        JAR file for this connection.
-     *
+     *            if an IOException occurs while trying to connect
+     *            to the
+     *            JAR file for this connection.
      * @see #connect
      */
     public abstract JarFile getJarFile() throws IOException;
@@ -214,12 +182,10 @@ public abstract class JarURLConnection extends URLConnection {
      *
      * @return the manifest object corresponding to the JAR file object for this
      *         connection.
-     *
      * @exception IOException
-     *                        if getting the JAR file for this connection causes
-     *                        an
-     *                        IOException to be thrown.
-     *
+     *            if getting the JAR file for this connection causes
+     *            an
+     *            IOException to be thrown.
      * @see #getJarFile
      */
     public Manifest getManifest() throws IOException {
@@ -233,12 +199,10 @@ public abstract class JarURLConnection extends URLConnection {
      *
      * @return the JAR entry object for this connection, or null if the JAR URL
      *         for this connection points to a JAR file.
-     *
      * @exception IOException
-     *                        if getting the JAR file for this connection causes
-     *                        an
-     *                        IOException to be thrown.
-     *
+     *            if getting the JAR file for this connection causes
+     *            an
+     *            IOException to be thrown.
      * @see #getJarFile
      * @see #getJarEntry
      */
@@ -252,12 +216,10 @@ public abstract class JarURLConnection extends URLConnection {
      *
      * @return the Attributes object for this connection if the URL for it
      *         points to a JAR file entry, null otherwise.
-     *
      * @exception IOException
-     *                        if getting the JAR entry causes an IOException to
-     *                        be
-     *                        thrown.
-     *
+     *            if getting the JAR entry causes an IOException to
+     *            be
+     *            thrown.
      * @see #getJarEntry
      */
     public Attributes getAttributes() throws IOException {
@@ -269,12 +231,10 @@ public abstract class JarURLConnection extends URLConnection {
      * Returns the main Attributes for the JAR file for this connection.
      *
      * @return the main Attributes for the JAR file for this connection.
-     *
      * @exception IOException
-     *                        if getting the manifest causes an IOException to
-     *                        be
-     *                        thrown.
-     *
+     *            if getting the manifest causes an IOException to
+     *            be
+     *            thrown.
      * @see #getJarFile
      * @see #getManifest
      */
@@ -292,16 +252,13 @@ public abstract class JarURLConnection extends URLConnection {
      *
      * @return the Certificate object for this connection if the URL for it
      *         points to a JAR file entry, null otherwise.
-     *
      * @exception IOException
-     *                        if getting the JAR entry causes an IOException to
-     *                        be
-     *                        thrown.
-     *
+     *            if getting the JAR entry causes an IOException to
+     *            be
+     *            thrown.
      * @see #getJarEntry
      */
-    public java.security.cert.Certificate[] getCertificates()
-            throws IOException {
+    public java.security.cert.Certificate[] getCertificates() throws IOException {
         JarEntry e = getJarEntry();
         return e != null ? e.getCertificates() : null;
     }

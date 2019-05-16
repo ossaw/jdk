@@ -69,9 +69,9 @@ public class IINC extends LocalVariableInstruction {
 
     /**
      * @param n
-     *          index of local variable
+     *        index of local variable
      * @param c
-     *          increment factor
+     *        increment factor
      */
     public IINC(int n, int c) {
         super(); // Default behaviour of LocalVariableInstruction causes error
@@ -87,7 +87,7 @@ public class IINC extends LocalVariableInstruction {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         if (wide) // Need WIDE prefix ?
@@ -105,8 +105,8 @@ public class IINC extends LocalVariableInstruction {
     }
 
     private final void setWide() {
-        if (wide = ((n > com.sun.org.apache.bcel.internal.Constants.MAX_SHORT)
-                || (Math.abs(c) > Byte.MAX_VALUE)))
+        if (wide = ((n > com.sun.org.apache.bcel.internal.Constants.MAX_SHORT) || (Math.abs(
+                c) > Byte.MAX_VALUE)))
             length = 6; // wide byte included
         else
             length = 3;
@@ -115,8 +115,7 @@ public class IINC extends LocalVariableInstruction {
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         this.wide = wide;
 
         if (wide) {
@@ -177,7 +176,7 @@ public class IINC extends LocalVariableInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLocalVariableInstruction(this);

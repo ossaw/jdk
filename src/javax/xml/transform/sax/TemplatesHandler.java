@@ -12,7 +12,6 @@ import org.xml.sax.ContentHandler;
 /**
  * A SAX ContentHandler that may be used to process SAX parse events (parsing
  * transformation instructions) into a Templates object.
- *
  * <p>
  * Note that TemplatesHandler does not need to implement LexicalHandler.
  * </p>
@@ -26,7 +25,6 @@ public interface TemplatesHandler extends ContentHandler {
      *
      * @return The Templates object that was created during the SAX event
      *         process, or null if no Templates object has been created.
-     *
      */
     public Templates getTemplates();
 
@@ -36,7 +34,7 @@ public interface TemplatesHandler extends ContentHandler {
      * stylesheet. This must be called before the startDocument event.
      *
      * @param systemID
-     *                 Base URI for this stylesheet.
+     *        Base URI for this stylesheet.
      */
     public void setSystemId(String systemID);
 

@@ -38,23 +38,20 @@ public class ObjectInstance implements Serializable {
      * an object name and the full class name, including the package name.
      *
      * @param objectName
-     *                   A string representation of the object name.
+     *        A string representation of the object name.
      * @param className
-     *                   The full class name, including the package name, of the
-     *                   object
-     *                   instance. If the MBean is a Dynamic MBean the class
-     *                   name
-     *                   corresponds to its {@link DynamicMBean#getMBeanInfo()
-     *                   getMBeanInfo()}<code>.getClassName()</code>.
-     *
+     *        The full class name, including the package name, of the
+     *        object
+     *        instance. If the MBean is a Dynamic MBean the class
+     *        name
+     *        corresponds to its {@link DynamicMBean#getMBeanInfo()
+     *        getMBeanInfo()}<code>.getClassName()</code>.
      * @exception MalformedObjectNameException
-     *                                         The string passed as a parameter
-     *                                         does not have the right
-     *                                         format.
-     *
+     *            The string passed as a parameter
+     *            does not have the right
+     *            format.
      */
-    public ObjectInstance(String objectName, String className)
-            throws MalformedObjectNameException {
+    public ObjectInstance(String objectName, String className) throws MalformedObjectNameException {
         this(new ObjectName(objectName), className);
     }
 
@@ -63,24 +60,23 @@ public class ObjectInstance implements Serializable {
      * class name, including the package name.
      *
      * @param objectName
-     *                   The object name.
+     *        The object name.
      * @param className
-     *                   The full class name, including the package name, of the
-     *                   object
-     *                   instance. If the MBean is a Dynamic MBean the class
-     *                   name
-     *                   corresponds to its {@link DynamicMBean#getMBeanInfo()
-     *                   getMBeanInfo()}<code>.getClassName()</code>. If the
-     *                   MBean is a
-     *                   Dynamic MBean the class name should be retrieved from
-     *                   the
-     *                   <CODE>MBeanInfo</CODE> it provides.
-     *
+     *        The full class name, including the package name, of the
+     *        object
+     *        instance. If the MBean is a Dynamic MBean the class
+     *        name
+     *        corresponds to its {@link DynamicMBean#getMBeanInfo()
+     *        getMBeanInfo()}<code>.getClassName()</code>. If the
+     *        MBean is a
+     *        Dynamic MBean the class name should be retrieved from
+     *        the
+     *        <CODE>MBeanInfo</CODE> it provides.
      */
     public ObjectInstance(ObjectName objectName, String className) {
         if (objectName.isPattern()) {
-            final IllegalArgumentException iae = new IllegalArgumentException(
-                    "Invalid name->" + objectName.toString());
+            final IllegalArgumentException iae = new IllegalArgumentException("Invalid name->" + objectName
+                    .toString());
             throw new RuntimeOperationsException(iae);
         }
         this.name = objectName;
@@ -91,10 +87,9 @@ public class ObjectInstance implements Serializable {
      * Compares the current object instance with another object instance.
      *
      * @param object
-     *               The object instance that the current object instance is to
-     *               be
-     *               compared with.
-     *
+     *        The object instance that the current object instance is to
+     *        be
+     *        compared with.
      * @return True if the two object instances are equal, otherwise false.
      */
     public boolean equals(Object object) {

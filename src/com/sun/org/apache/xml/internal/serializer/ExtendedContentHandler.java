@@ -55,34 +55,32 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * Add at attribute to the current element
      * 
      * @param uri
-     *                     the namespace URI of the attribute name
+     *        the namespace URI of the attribute name
      * @param localName
-     *                     the local name of the attribute (without prefix)
+     *        the local name of the attribute (without prefix)
      * @param rawName
-     *                     the qualified name of the attribute
+     *        the qualified name of the attribute
      * @param type
-     *                     the attribute type typically character data (CDATA)
+     *        the attribute type typically character data (CDATA)
      * @param value
-     *                     the value of the attribute
+     *        the value of the attribute
      * @param XSLAttribute
-     *                     true if the added attribute is coming from an
-     *                     xsl:attribute
-     *                     element
+     *        true if the added attribute is coming from an
+     *        xsl:attribute
+     *        element
      * @throws SAXException
      */
-    public void addAttribute(String uri, String localName, String rawName,
-            String type, String value, boolean XSLAttribute)
-            throws SAXException;
+    public void addAttribute(String uri, String localName, String rawName, String type, String value,
+            boolean XSLAttribute) throws SAXException;
 
     /**
      * Add attributes to the current element
      * 
      * @param atts
-     *             the attributes to add.
+     *        the attributes to add.
      * @throws SAXException
      */
-    public void addAttributes(org.xml.sax.Attributes atts)
-            throws org.xml.sax.SAXException;
+    public void addAttributes(org.xml.sax.Attributes atts) throws org.xml.sax.SAXException;
 
     /**
      * Add an attribute to the current element. The namespace URI of the
@@ -99,7 +97,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * as a character String rather than the standard character array.
      * 
      * @param chars
-     *              the character data
+     *        the character data
      * @throws SAXException
      */
     public void characters(String chars) throws SAXException;
@@ -109,11 +107,10 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * as a DOM Node rather than the standard character array.
      * 
      * @param node
-     *             a DOM Node containing text.
+     *        a DOM Node containing text.
      * @throws SAXException
      */
-    public void characters(org.w3c.dom.Node node)
-            throws org.xml.sax.SAXException;
+    public void characters(org.w3c.dom.Node node) throws org.xml.sax.SAXException;
 
     /**
      * This method is used to notify that an element has ended. Unlike the
@@ -128,7 +125,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * its implementation.
      * 
      * @param elemName
-     *                 the fully qualified element name.
+     *        the fully qualified element name.
      * @throws SAXException
      */
     public void endElement(String elemName) throws SAXException;
@@ -144,22 +141,20 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * but without the attributes.
      * 
      * @param uri
-     *                  the namespace URI of the element
+     *        the namespace URI of the element
      * @param localName
-     *                  the local name (without prefix) of the element
+     *        the local name (without prefix) of the element
      * @param qName
-     *                  the qualified name of the element
-     *
+     *        the qualified name of the element
      * @throws SAXException
      */
-    public void startElement(String uri, String localName, String qName)
-            throws org.xml.sax.SAXException;
+    public void startElement(String uri, String localName, String qName) throws org.xml.sax.SAXException;
 
     /**
      * This method is used to notify of the start of an element
      * 
      * @param qName
-     *              the fully qualified name of the element
+     *        the fully qualified name of the element
      * @throws SAXException
      */
     public void startElement(String qName) throws SAXException;
@@ -182,42 +177,40 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * </pre>
      *
      * @param uri
-     *               the namespace URI being declared
+     *        the namespace URI being declared
      * @param prefix
-     *               the prefix that maps to the given namespace
+     *        the prefix that maps to the given namespace
      * @throws SAXException
      */
-    public void namespaceAfterStartElement(String uri, String prefix)
-            throws SAXException;
+    public void namespaceAfterStartElement(String uri, String prefix) throws SAXException;
 
     /**
      * This method is used to notify that a prefix maping is to start, which can
      * be for the current element, or for the one to come.
      * 
      * @param prefix
-     *                    the prefix that maps to the given URI
+     *        the prefix that maps to the given URI
      * @param uri
-     *                    the namespace URI of the given prefix
+     *        the namespace URI of the given prefix
      * @param shouldFlush
-     *                    if true this call is like the SAX
-     *                    startPrefixMapping(prefix,uri) call and the mapping
-     *                    applies to
-     *                    the element to come. If false the mapping applies to
-     *                    the
-     *                    current element.
+     *        if true this call is like the SAX
+     *        startPrefixMapping(prefix,uri) call and the mapping
+     *        applies to
+     *        the element to come. If false the mapping applies to
+     *        the
+     *        current element.
      * @return boolean false if the prefix mapping was already in effect (in
      *         other words we are just re-declaring), true if this is a new,
      *         never before seen mapping for the element.
      * @throws SAXException
      */
-    public boolean startPrefixMapping(String prefix, String uri,
-            boolean shouldFlush) throws SAXException;
+    public boolean startPrefixMapping(String prefix, String uri, boolean shouldFlush) throws SAXException;
 
     /**
      * Notify of an entity reference.
      * 
      * @param entityName
-     *                   the name of the entity
+     *        the name of the entity
      * @throws SAXException
      */
     public void entityReference(String entityName) throws SAXException;
@@ -236,7 +229,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * URI.
      * 
      * @param uri
-     *            the namespace URI
+     *        the namespace URI
      * @return String the prefix that currently maps to the given URI.
      */
     public String getPrefix(String uri);
@@ -246,11 +239,11 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * attribute name.
      * 
      * @param name
-     *                  the qualified name of an element, or attribute
+     *        the qualified name of an element, or attribute
      * @param isElement
-     *                  true if it is an element name, false if it is an
-     *                  atttribute
-     *                  name
+     *        true if it is an element name, false if it is an
+     *        atttribute
+     *        name
      * @return String the namespace URI associated with the element or
      *         attribute.
      */
@@ -261,7 +254,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * prefix.
      * 
      * @param prefix
-     *               a prefix of an element or attribute.
+     *        a prefix of an element or attribute.
      * @return String the namespace URI currently associated with the prefix.
      */
     public String getNamespaceURIFromPrefix(String prefix);
@@ -271,7 +264,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * generated an error message.
      * 
      * @param locator
-     *                the source locator
+     *        the source locator
      */
     public void setSourceLocator(SourceLocator locator);
 
@@ -296,44 +289,42 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler {
      * particular processing is needed.
      *
      * @param qName
-     *              the fully qualified attribute name.
+     *        the fully qualified attribute name.
      * @param value
-     *              the attribute value
+     *        the attribute value
      * @param flags
-     *              a bitwise flag
+     *        a bitwise flag
      */
-    public void addUniqueAttribute(String qName, String value, int flags)
-            throws SAXException;
+    public void addUniqueAttribute(String qName, String value, int flags) throws SAXException;
 
     /**
      * Add an attribute from an xsl:attribute element.
      * 
      * @param qName
-     *              the qualified attribute name (prefix:localName)
+     *        the qualified attribute name (prefix:localName)
      * @param value
-     *              the attributes value
+     *        the attributes value
      * @param uri
-     *              the uri that the prefix of the qName is mapped to.
+     *        the uri that the prefix of the qName is mapped to.
      */
-    public void addXSLAttribute(String qName, final String value,
-            final String uri);
+    public void addXSLAttribute(String qName, final String value, final String uri);
 
     /**
      * Add at attribute to the current element, not from an xsl:attribute
      * element.
      * 
      * @param uri
-     *                  the namespace URI of the attribute name
+     *        the namespace URI of the attribute name
      * @param localName
-     *                  the local name of the attribute (without prefix)
+     *        the local name of the attribute (without prefix)
      * @param rawName
-     *                  the qualified name of the attribute
+     *        the qualified name of the attribute
      * @param type
-     *                  the attribute type typically character data (CDATA)
+     *        the attribute type typically character data (CDATA)
      * @param value
-     *                  the value of the attribute
+     *        the value of the attribute
      * @throws SAXException
      */
-    public void addAttribute(String uri, String localName, String rawName,
-            String type, String value) throws SAXException;
+    public void addAttribute(String uri, String localName, String rawName, String type, String value)
+            throws SAXException;
 }

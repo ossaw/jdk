@@ -24,9 +24,7 @@ import com.sun.org.apache.xerces.internal.xs.ShortList;
  * be filled by validate().
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
- *
  */
 public class ValidatedInfo {
 

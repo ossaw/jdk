@@ -9,7 +9,6 @@ package com.sun.javadoc;
  * Represents a field in a java class.
  *
  * @see MemberDoc
- *
  * @since 1.2
  * @author Robert Field
  */

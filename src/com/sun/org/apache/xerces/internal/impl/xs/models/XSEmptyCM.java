@@ -27,11 +27,9 @@ import java.util.ArrayList;
 /**
  * XSEmptyCM is a derivative of the abstract content model base class that
  * handles a content model with no chilren (elements).
- *
  * This model validated on the way in.
  *
  * @xerces.internal
- *
  * @author Elena Litani, Lisa Martin
  * @author IBM
  * @version $Id: XSEmptyCM.java,v 1.7 2009/07/28 15:18:11 spericas Exp $
@@ -69,11 +67,11 @@ public class XSEmptyCM implements XSCMValidator {
      * The method corresponds to one transaction in the content model.
      *
      * @param elementName
-     *                        the qualified name of the element
+     *        the qualified name of the element
      * @param currentState
-     *                        Current state
+     *        Current state
      * @param subGroupHandler
-     *                        the substitution group handler
+     *        the substitution group handler
      * @return element index corresponding to the element from the Schema
      *         grammar
      */
@@ -94,7 +92,7 @@ public class XSEmptyCM implements XSCMValidator {
      * The method indicates the end of list of children
      *
      * @param currentState
-     *                     Current state of the content model
+     *        Current state of the content model
      * @return true if the last state was a valid final state
      */
     public boolean endContentModel(int[] currentState) {
@@ -115,11 +113,10 @@ public class XSEmptyCM implements XSCMValidator {
      * check whether this content violates UPA constraint.
      *
      * @param subGroupHandler
-     *                        the substitution group handler
+     *        the substitution group handler
      * @return true if this content model contains other or list wildcard
      */
-    public boolean checkUniqueParticleAttribution(
-            SubstitutionGroupHandler subGroupHandler)
+    public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler)
             throws XMLSchemaException {
         return false;
     }
@@ -130,7 +127,7 @@ public class XSEmptyCM implements XSCMValidator {
      * been seen.
      *
      * @param state
-     *              the current state
+     *        the current state
      * @return a Vector whose entries are instances of either XSWildcardDecl or
      *         XSElementDecl.
      */

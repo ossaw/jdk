@@ -81,8 +81,7 @@ public final class RealType extends NumberType {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            Type type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
         if (type == Type.String) {
             translateTo(classGen, methodGen, (StringType) type);
         } else if (type == Type.Boolean) {
@@ -92,8 +91,7 @@ public final class RealType extends NumberType {
         } else if (type == Type.Int) {
             translateTo(classGen, methodGen, (IntType) type);
         } else {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), type.toString());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }
@@ -104,12 +102,11 @@ public final class RealType extends NumberType {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            StringType type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, StringType type) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
-        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                "realToString", "(D)" + STRING_SIG)));
+        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "realToString", "(D)"
+                + STRING_SIG)));
     }
 
     /**
@@ -118,8 +115,7 @@ public final class RealType extends NumberType {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            BooleanType type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, BooleanType type) {
         final InstructionList il = methodGen.getInstructionList();
         FlowList falsel = translateToDesynthesized(classGen, methodGen, type);
         il.append(ICONST_1);
@@ -133,12 +129,10 @@ public final class RealType extends NumberType {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            IntType type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, IntType type) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
-        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                "realToInt", "(D)I")));
+        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "realToInt", "(D)I")));
     }
 
     /**
@@ -148,8 +142,8 @@ public final class RealType extends NumberType {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateToDesynthesized
      */
-    public FlowList translateToDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen, BooleanType type) {
+    public FlowList translateToDesynthesized(ClassGenerator classGen, MethodGenerator methodGen,
+            BooleanType type) {
         LocalVariableGen local;
         final FlowList flowlist = new FlowList();
         final ConstantPoolGen cpg = classGen.getConstantPool();
@@ -158,8 +152,7 @@ public final class RealType extends NumberType {
         // Store real into a local variable
         il.append(DUP2);
         local = methodGen.addLocalVariable("real_to_boolean_tmp",
-                com.sun.org.apache.bcel.internal.generic.Type.DOUBLE, null,
-                null);
+                com.sun.org.apache.bcel.internal.generic.Type.DOUBLE, null, null);
         local.setStart(il.append(new DSTORE(local.getIndex())));
 
         // Compare it to 0.0
@@ -182,16 +175,14 @@ public final class RealType extends NumberType {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            ReferenceType type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, ReferenceType type) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
         il.append(new NEW(cpg.addClass(DOUBLE_CLASS)));
         il.append(DUP_X2);
         il.append(DUP_X2);
         il.append(POP);
-        il.append(new INVOKESPECIAL(cpg.addMethodref(DOUBLE_CLASS, "<init>",
-                "(D)V")));
+        il.append(new INVOKESPECIAL(cpg.addMethodref(DOUBLE_CLASS, "<init>", "(D)V")));
     }
 
     /**
@@ -199,8 +190,7 @@ public final class RealType extends NumberType {
      * Expects a real on the stack and pushes a number of the appropriate type
      * after coercion.
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            final Class clazz) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, final Class clazz) {
         final InstructionList il = methodGen.getInstructionList();
         if (clazz == Character.TYPE) {
             il.append(D2I);
@@ -224,8 +214,7 @@ public final class RealType extends NumberType {
         else if (clazz.isAssignableFrom(java.lang.Double.class)) {
             translateTo(classGen, methodGen, Type.Reference);
         } else {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), clazz.getName());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getName());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }
@@ -234,12 +223,10 @@ public final class RealType extends NumberType {
      * Translates an external (primitive) Java type into a real. Expects a java
      * object on the stack and pushes a real (i.e., a double).
      */
-    public void translateFrom(ClassGenerator classGen,
-            MethodGenerator methodGen, Class clazz) {
+    public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
         InstructionList il = methodGen.getInstructionList();
 
-        if (clazz == Character.TYPE || clazz == Byte.TYPE || clazz == Short.TYPE
-                || clazz == Integer.TYPE) {
+        if (clazz == Character.TYPE || clazz == Byte.TYPE || clazz == Short.TYPE || clazz == Integer.TYPE) {
             il.append(I2D);
         } else if (clazz == Long.TYPE) {
             il.append(L2D);
@@ -248,8 +235,7 @@ public final class RealType extends NumberType {
         } else if (clazz == Double.TYPE) {
             il.append(NOP);
         } else {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), clazz.getName());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getName());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }
@@ -257,21 +243,18 @@ public final class RealType extends NumberType {
     /**
      * Translates an object of this type to its boxed representation.
      */
-    public void translateBox(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateBox(ClassGenerator classGen, MethodGenerator methodGen) {
         translateTo(classGen, methodGen, Type.Reference);
     }
 
     /**
      * Translates an object of this type to its unboxed representation.
      */
-    public void translateUnBox(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateUnBox(ClassGenerator classGen, MethodGenerator methodGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
         il.append(new CHECKCAST(cpg.addClass(DOUBLE_CLASS)));
-        il.append(new INVOKEVIRTUAL(cpg.addMethodref(DOUBLE_CLASS, DOUBLE_VALUE,
-                DOUBLE_VALUE_SIG)));
+        il.append(new INVOKEVIRTUAL(cpg.addMethodref(DOUBLE_CLASS, DOUBLE_VALUE, DOUBLE_VALUE_SIG)));
     }
 
     public Instruction ADD() {

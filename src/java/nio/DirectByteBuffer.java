@@ -23,8 +23,7 @@ class DirectByteBuffer
     protected static final Unsafe unsafe = Bits.unsafe();
 
     // Cached array base offset
-    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
-            byte[].class);
+    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(byte[].class);
 
     // Cached unaligned-access capability
     protected static final boolean unaligned = Bits.unaligned();
@@ -125,8 +124,7 @@ class DirectByteBuffer
 
     // For memory-mapped buffers -- invoked by FileChannelImpl via reflection
     //
-    protected DirectByteBuffer(int cap, long addr, FileDescriptor fd,
-            Runnable unmapper) {
+    protected DirectByteBuffer(int cap, long addr, FileDescriptor fd, Runnable unmapper) {
 
         super(-1, 0, cap, cap, fd);
         address = addr;
@@ -160,14 +158,14 @@ class DirectByteBuffer
     }
 
     public ByteBuffer duplicate() {
-        return new DirectByteBuffer(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectByteBuffer(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
     }
 
     public ByteBuffer asReadOnlyBuffer() {
 
-        return new DirectByteBufferR(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectByteBufferR(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
 
     }
 
@@ -198,8 +196,7 @@ class DirectByteBuffer
             if (length > rem)
                 throw new BufferUnderflowException();
 
-            Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 0,
-                    (long) length << 0);
+            Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 0, (long) length << 0);
             position(pos + length);
         } else {
             super.get(dst, offset, length);
@@ -272,8 +269,7 @@ class DirectByteBuffer
             if (length > rem)
                 throw new BufferOverflowException();
 
-            Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 0, ix(
-                    pos), (long) length << 0);
+            Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 0, ix(pos), (long) length << 0);
             position(pos + length);
         } else {
             super.put(src, offset, length);
@@ -365,15 +361,11 @@ class DirectByteBuffer
 
         int size = rem >> 1;
         if (!unaligned && ((address + off) % (1 << 1) != 0)) {
-            return (bigEndian ? (CharBuffer) (new ByteBufferAsCharBufferB(this,
-                    -1, 0, size, size, off))
-                    : (CharBuffer) (new ByteBufferAsCharBufferL(this, -1, 0,
-                            size, size, off)));
+            return (bigEndian ? (CharBuffer) (new ByteBufferAsCharBufferB(this, -1, 0, size, size, off))
+                    : (CharBuffer) (new ByteBufferAsCharBufferL(this, -1, 0, size, size, off)));
         } else {
-            return (nativeByteOrder ? (CharBuffer) (new DirectCharBufferU(this,
-                    -1, 0, size, size, off))
-                    : (CharBuffer) (new DirectCharBufferS(this, -1, 0, size,
-                            size, off)));
+            return (nativeByteOrder ? (CharBuffer) (new DirectCharBufferU(this, -1, 0, size, size, off))
+                    : (CharBuffer) (new DirectCharBufferS(this, -1, 0, size, size, off)));
         }
     }
 
@@ -427,15 +419,11 @@ class DirectByteBuffer
 
         int size = rem >> 1;
         if (!unaligned && ((address + off) % (1 << 1) != 0)) {
-            return (bigEndian ? (ShortBuffer) (new ByteBufferAsShortBufferB(
-                    this, -1, 0, size, size, off))
-                    : (ShortBuffer) (new ByteBufferAsShortBufferL(this, -1, 0,
-                            size, size, off)));
+            return (bigEndian ? (ShortBuffer) (new ByteBufferAsShortBufferB(this, -1, 0, size, size, off))
+                    : (ShortBuffer) (new ByteBufferAsShortBufferL(this, -1, 0, size, size, off)));
         } else {
-            return (nativeByteOrder ? (ShortBuffer) (new DirectShortBufferU(
-                    this, -1, 0, size, size, off))
-                    : (ShortBuffer) (new DirectShortBufferS(this, -1, 0, size,
-                            size, off)));
+            return (nativeByteOrder ? (ShortBuffer) (new DirectShortBufferU(this, -1, 0, size, size, off))
+                    : (ShortBuffer) (new DirectShortBufferS(this, -1, 0, size, size, off)));
         }
     }
 
@@ -489,15 +477,11 @@ class DirectByteBuffer
 
         int size = rem >> 2;
         if (!unaligned && ((address + off) % (1 << 2) != 0)) {
-            return (bigEndian ? (IntBuffer) (new ByteBufferAsIntBufferB(this,
-                    -1, 0, size, size, off))
-                    : (IntBuffer) (new ByteBufferAsIntBufferL(this, -1, 0, size,
-                            size, off)));
+            return (bigEndian ? (IntBuffer) (new ByteBufferAsIntBufferB(this, -1, 0, size, size, off))
+                    : (IntBuffer) (new ByteBufferAsIntBufferL(this, -1, 0, size, size, off)));
         } else {
-            return (nativeByteOrder ? (IntBuffer) (new DirectIntBufferU(this,
-                    -1, 0, size, size, off))
-                    : (IntBuffer) (new DirectIntBufferS(this, -1, 0, size, size,
-                            off)));
+            return (nativeByteOrder ? (IntBuffer) (new DirectIntBufferU(this, -1, 0, size, size, off))
+                    : (IntBuffer) (new DirectIntBufferS(this, -1, 0, size, size, off)));
         }
     }
 
@@ -551,15 +535,11 @@ class DirectByteBuffer
 
         int size = rem >> 3;
         if (!unaligned && ((address + off) % (1 << 3) != 0)) {
-            return (bigEndian ? (LongBuffer) (new ByteBufferAsLongBufferB(this,
-                    -1, 0, size, size, off))
-                    : (LongBuffer) (new ByteBufferAsLongBufferL(this, -1, 0,
-                            size, size, off)));
+            return (bigEndian ? (LongBuffer) (new ByteBufferAsLongBufferB(this, -1, 0, size, size, off))
+                    : (LongBuffer) (new ByteBufferAsLongBufferL(this, -1, 0, size, size, off)));
         } else {
-            return (nativeByteOrder ? (LongBuffer) (new DirectLongBufferU(this,
-                    -1, 0, size, size, off))
-                    : (LongBuffer) (new DirectLongBufferS(this, -1, 0, size,
-                            size, off)));
+            return (nativeByteOrder ? (LongBuffer) (new DirectLongBufferU(this, -1, 0, size, size, off))
+                    : (LongBuffer) (new DirectLongBufferS(this, -1, 0, size, size, off)));
         }
     }
 
@@ -613,15 +593,11 @@ class DirectByteBuffer
 
         int size = rem >> 2;
         if (!unaligned && ((address + off) % (1 << 2) != 0)) {
-            return (bigEndian ? (FloatBuffer) (new ByteBufferAsFloatBufferB(
-                    this, -1, 0, size, size, off))
-                    : (FloatBuffer) (new ByteBufferAsFloatBufferL(this, -1, 0,
-                            size, size, off)));
+            return (bigEndian ? (FloatBuffer) (new ByteBufferAsFloatBufferB(this, -1, 0, size, size, off))
+                    : (FloatBuffer) (new ByteBufferAsFloatBufferL(this, -1, 0, size, size, off)));
         } else {
-            return (nativeByteOrder ? (FloatBuffer) (new DirectFloatBufferU(
-                    this, -1, 0, size, size, off))
-                    : (FloatBuffer) (new DirectFloatBufferS(this, -1, 0, size,
-                            size, off)));
+            return (nativeByteOrder ? (FloatBuffer) (new DirectFloatBufferU(this, -1, 0, size, size, off))
+                    : (FloatBuffer) (new DirectFloatBufferS(this, -1, 0, size, size, off)));
         }
     }
 
@@ -675,15 +651,11 @@ class DirectByteBuffer
 
         int size = rem >> 3;
         if (!unaligned && ((address + off) % (1 << 3) != 0)) {
-            return (bigEndian ? (DoubleBuffer) (new ByteBufferAsDoubleBufferB(
-                    this, -1, 0, size, size, off))
-                    : (DoubleBuffer) (new ByteBufferAsDoubleBufferL(this, -1, 0,
-                            size, size, off)));
+            return (bigEndian ? (DoubleBuffer) (new ByteBufferAsDoubleBufferB(this, -1, 0, size, size, off))
+                    : (DoubleBuffer) (new ByteBufferAsDoubleBufferL(this, -1, 0, size, size, off)));
         } else {
-            return (nativeByteOrder ? (DoubleBuffer) (new DirectDoubleBufferU(
-                    this, -1, 0, size, size, off))
-                    : (DoubleBuffer) (new DirectDoubleBufferS(this, -1, 0, size,
-                            size, off)));
+            return (nativeByteOrder ? (DoubleBuffer) (new DirectDoubleBufferU(this, -1, 0, size, size, off))
+                    : (DoubleBuffer) (new DirectDoubleBufferS(this, -1, 0, size, size, off)));
         }
     }
 

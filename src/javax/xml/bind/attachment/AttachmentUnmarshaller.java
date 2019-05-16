@@ -12,7 +12,6 @@ import javax.activation.DataHandler;
  * Enables JAXB unmarshalling of a root document containing optimized binary
  * data formats.
  * </p>
- *
  * <p>
  * This API enables an efficient cooperative processing of optimized binary data
  * formats between a JAXB 2.0 implementation and MIME-based package processor
@@ -20,13 +19,11 @@ import javax.activation.DataHandler;
  * the understanding of the packaging format being used to a MIME-based package
  * processor that implements this abstract class.
  * </p>
- *
  * <p>
  * This abstract class identifies if a package requires XOP processing,
  * {@link #isXOPPackage()} and provides retrieval of binary content stored as
  * attachments by content-id.
  * </p>
- *
  * <h2>Identifying the content-id, cid, to pass to
  * <code>getAttachment*(String cid)</code></h2>
  * <ul>
@@ -43,11 +40,8 @@ import javax.activation.DataHandler;
  * @author Marc Hadley
  * @author Kohsuke Kawaguchi
  * @author Joseph Fialli
- *
  * @since JAXB 2.0
- *
  * @see javax.xml.bind.Unmarshaller#setAttachmentUnmarshaller(AttachmentUnmarshaller)
- *
  * @see <a href="http://www.w3.org/TR/2005/REC-xop10-20050125/">XML-binary
  *      Optimized Packaging</a>
  * @see <a href=
@@ -62,7 +56,6 @@ public abstract class AttachmentUnmarshaller {
      * Lookup MIME content by content-id, <code>cid</code>, and return as a
      * {@link DataHandler}.
      * </p>
-     *
      * <p>
      * The returned <code>DataHandler</code> instance must be configured to meet
      * the following required mapping constaint.
@@ -99,18 +92,16 @@ public abstract class AttachmentUnmarshaller {
      * </p>
      *
      * @param cid
-     *            It is expected to be a valid lexical form of the XML Schema
-     *            <code>xs:anyURI</code> datatype. If <code>
+     *        It is expected to be a valid lexical form of the XML Schema
+     *        <code>xs:anyURI</code> datatype. If <code>
      *            {@link #isXOPPackage()}
      * ==true</code>, it must be a valid URI per the <code>cid:</code> URI
-     *            scheme (see <a href="http://www.ietf.org/rfc/rfc2387.txt">RFC
-     *            2387</a>)
-     *
+     *        scheme (see <a href="http://www.ietf.org/rfc/rfc2387.txt">RFC
+     *        2387</a>)
      * @return a {@link DataHandler} that represents the MIME attachment.
-     *
      * @throws IllegalArgumentException
-     *                                  if the attachment for the given cid is
-     *                                  not found.
+     *         if the attachment for the given cid is
+     *         not found.
      */
     public abstract DataHandler getAttachmentAsDataHandler(String cid);
 
@@ -122,18 +113,16 @@ public abstract class AttachmentUnmarshaller {
      * .
      *
      * @param cid
-     *            It is expected to be a valid lexical form of the XML Schema
-     *            <code>xs:anyURI</code> datatype. If <code>
+     *        It is expected to be a valid lexical form of the XML Schema
+     *        <code>xs:anyURI</code> datatype. If <code>
      *            {@link #isXOPPackage()}
      * ==true</code>, it must be a valid URI per the <code>cid:</code> URI
-     *            scheme (see <a href="http://www.ietf.org/rfc/rfc2387.txt">RFC
-     *            2387</a>)
-     *
+     *        scheme (see <a href="http://www.ietf.org/rfc/rfc2387.txt">RFC
+     *        2387</a>)
      * @return byte[] representation of attachment identified by cid.
-     *
      * @throws IllegalArgumentException
-     *                                  if the attachment for the given cid is
-     *                                  not found.
+     *         if the attachment for the given cid is
+     *         not found.
      */
     public abstract byte[] getAttachmentAsByteArray(String cid);
 
@@ -142,7 +131,6 @@ public abstract class AttachmentUnmarshaller {
      * Read-only property that returns true if JAXB unmarshaller needs to
      * perform XOP processing.
      * </p>
-     *
      * <p>
      * This method returns <code>true</code> when the constraints specified in
      * <a href=

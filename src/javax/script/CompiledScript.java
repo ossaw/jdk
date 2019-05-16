@@ -29,20 +29,18 @@ public abstract class CompiledScript {
      * Executes the program stored in this <code>CompiledScript</code> object.
      *
      * @param context
-     *                A <code>ScriptContext</code> that is used in the same way
-     *                as
-     *                the <code>ScriptContext</code> passed to the
-     *                <code>eval</code>
-     *                methods of <code>ScriptEngine</code>.
-     *
+     *        A <code>ScriptContext</code> that is used in the same way
+     *        as
+     *        the <code>ScriptContext</code> passed to the
+     *        <code>eval</code>
+     *        methods of <code>ScriptEngine</code>.
      * @return The value returned by the script execution, if any. Should return
      *         <code>null</code> if no value is returned by the script
      *         execution.
-     *
      * @throws ScriptException
-     *                              if an error occurs.
+     *         if an error occurs.
      * @throws NullPointerException
-     *                              if context is null.
+     *         if context is null.
      */
 
     public abstract Object eval(ScriptContext context) throws ScriptException;
@@ -60,13 +58,11 @@ public abstract class CompiledScript {
      * are used.
      *
      * @param bindings
-     *                 The bindings of attributes used for the
-     *                 <code>ENGINE_SCOPE</code>.
-     *
+     *        The bindings of attributes used for the
+     *        <code>ENGINE_SCOPE</code>.
      * @return The return value from the script execution
-     *
      * @throws ScriptException
-     *                         if an error occurs.
+     *         if an error occurs.
      */
     public Object eval(Bindings bindings) throws ScriptException {
 
@@ -75,8 +71,7 @@ public abstract class CompiledScript {
         if (bindings != null) {
             SimpleScriptContext tempctxt = new SimpleScriptContext();
             tempctxt.setBindings(bindings, ScriptContext.ENGINE_SCOPE);
-            tempctxt.setBindings(ctxt.getBindings(ScriptContext.GLOBAL_SCOPE),
-                    ScriptContext.GLOBAL_SCOPE);
+            tempctxt.setBindings(ctxt.getBindings(ScriptContext.GLOBAL_SCOPE), ScriptContext.GLOBAL_SCOPE);
             tempctxt.setWriter(ctxt.getWriter());
             tempctxt.setReader(ctxt.getReader());
             tempctxt.setErrorWriter(ctxt.getErrorWriter());
@@ -93,9 +88,8 @@ public abstract class CompiledScript {
      * same as that of eval(getEngine().getContext()).
      *
      * @return The return value from the script execution
-     *
      * @throws ScriptException
-     *                         if an error occurs.
+     *         if an error occurs.
      */
     public Object eval() throws ScriptException {
         return eval(getEngine().getContext());

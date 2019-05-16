@@ -35,8 +35,7 @@ class JDMIpMask extends Host {
         return address.toString();
     }
 
-    protected PrincipalImpl createAssociatedPrincipal()
-            throws UnknownHostException {
+    protected PrincipalImpl createAssociatedPrincipal() throws UnknownHostException {
         return new GroupImpl(address.toString());
     }
 }

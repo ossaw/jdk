@@ -40,7 +40,6 @@ import javax.naming.Binding;
  * </pre>
  * 
  * </blockquote>
- *
  * Care must be taken when multiple threads are accessing the same
  * <tt>EventContext</tt> concurrently. See the
  * <a href=package-summary.html#THREADING>package description</a> for more
@@ -48,7 +47,6 @@ import javax.naming.Binding;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingListener
  * @see EventContext
  * @since 1.3
@@ -137,7 +135,6 @@ public class NamingEvent extends java.util.EventObject {
      * <p>
      * The names in <tt>newBd</tt> and <tt>oldBd</tt> are to be resolved
      * relative to the event source <tt>source</tt>.
-     *
      * For an <tt>OBJECT_ADDED</tt> event type, <tt>newBd</tt> must not be null.
      * For an <tt>OBJECT_REMOVED</tt> event type, <tt>oldBd</tt> must not be
      * null. For an <tt>OBJECT_CHANGED</tt> event type, <tt>newBd</tt> and
@@ -147,25 +144,24 @@ public class NamingEvent extends java.util.EventObject {
      * registered.
      *
      * @param source
-     *                   The non-null context that fired this event.
+     *        The non-null context that fired this event.
      * @param type
-     *                   The type of the event.
+     *        The type of the event.
      * @param newBd
-     *                   A possibly null binding before the change. See method
-     *                   description.
+     *        A possibly null binding before the change. See method
+     *        description.
      * @param oldBd
-     *                   A possibly null binding after the change. See method
-     *                   description.
+     *        A possibly null binding after the change. See method
+     *        description.
      * @param changeInfo
-     *                   A possibly null object containing information about the
-     *                   change.
+     *        A possibly null object containing information about the
+     *        change.
      * @see #OBJECT_ADDED
      * @see #OBJECT_REMOVED
      * @see #OBJECT_RENAMED
      * @see #OBJECT_CHANGED
      */
-    public NamingEvent(EventContext source, int type, Binding newBd,
-            Binding oldBd, Object changeInfo) {
+    public NamingEvent(EventContext source, int type, Binding newBd, Binding oldBd, Object changeInfo) {
         super(source);
         this.type = type;
         oldBinding = oldBd;
@@ -267,7 +263,7 @@ public class NamingEvent extends java.util.EventObject {
      * more information on threading issues.
      * 
      * @param listener
-     *                 The nonnull listener.
+     *        The nonnull listener.
      */
     public void dispatch(NamingListener listener) {
         switch (type) {

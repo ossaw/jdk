@@ -15,8 +15,7 @@ package javax.swing.plaf;
  * 
  * <pre>
  * if (list.getCellRenderer() == null) {
- *     list.setCellRenderer((ListCellRenderer) (UIManager.get(
- *             "List.cellRenderer")));
+ *     list.setCellRenderer((ListCellRenderer) (UIManager.get("List.cellRenderer")));
  * }
  * </pre>
  * 
@@ -44,7 +43,6 @@ package javax.swing.plaf;
  *
  * @see ComponentUI
  * @author Hans Muller
- *
  */
 
 public interface UIResource {}

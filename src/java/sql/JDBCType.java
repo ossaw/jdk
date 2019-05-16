@@ -193,7 +193,7 @@ public enum JDBCType implements SQLType {
      * this data type.
      * 
      * @param type
-     * The value from {@code Types) for this data type
+     *        The value from {@code Types) for this data type
      */
     JDBCType(final Integer type) {
         this.type = type;
@@ -234,12 +234,12 @@ public enum JDBCType implements SQLType {
      * {@code Types} value
      * 
      * @param type
-     *             {@code Types} value
+     *        {@code Types} value
      * @return The {@code JDBCType} constant
      * @throws IllegalArgumentException
-     *                                  if this enum type has no constant with
-     *                                  the specified
-     *                                  {@code Types} value
+     *         if this enum type has no constant with
+     *         the specified
+     *         {@code Types} value
      * @see Types
      */
     public static JDBCType valueOf(int type) {
@@ -247,7 +247,6 @@ public enum JDBCType implements SQLType {
             if (type == sqlType.type)
                 return sqlType;
         }
-        throw new IllegalArgumentException("Type:" + type + " is not a valid "
-                + "Types.java value.");
+        throw new IllegalArgumentException("Type:" + type + " is not a valid " + "Types.java value.");
     }
 }

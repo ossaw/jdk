@@ -23,9 +23,9 @@ public class BlockView extends BoxView {
      * number of elements.
      *
      * @param elem
-     *             the element to create a view for
+     *        the element to create a view for
      * @param axis
-     *             either View.X_AXIS or View.Y_AXIS
+     *        either View.X_AXIS or View.Y_AXIS
      */
     public BlockView(Element elem, int axis) {
         super(elem, axis);
@@ -42,8 +42,8 @@ public class BlockView extends BoxView {
      * ensure the ability to resolve upward through the parents view attributes.
      *
      * @param parent
-     *               the new parent, or null if the view is being removed from a
-     *               parent it was previously added to
+     *        the new parent, or null if the view is being removed from a
+     *        parent it was previously added to
      */
     public void setParent(View parent) {
         super.setParent(parent);
@@ -58,8 +58,7 @@ public class BlockView extends BoxView {
      * behavior and then adjust it if the CSS width or height attribute is
      * specified and applicable to the axis.
      */
-    protected SizeRequirements calculateMajorAxisRequirements(int axis,
-            SizeRequirements r) {
+    protected SizeRequirements calculateMajorAxisRequirements(int axis, SizeRequirements r) {
         if (r == null) {
             r = new SizeRequirements();
         }
@@ -68,8 +67,7 @@ public class BlockView extends BoxView {
         } else {
             // Offset by the margins so that pref/min/max return the
             // right value.
-            SizeRequirements parentR = super.calculateMajorAxisRequirements(
-                    axis, null);
+            SizeRequirements parentR = super.calculateMajorAxisRequirements(axis, null);
             int margin = (axis == X_AXIS) ? getLeftInset() + getRightInset()
                     : getTopInset() + getBottomInset();
             r.minimum -= margin;
@@ -86,8 +84,7 @@ public class BlockView extends BoxView {
      * provide the superclass behavior and then adjust it if the CSS width or
      * height attribute is specified and applicable to the axis.
      */
-    protected SizeRequirements calculateMinorAxisRequirements(int axis,
-            SizeRequirements r) {
+    protected SizeRequirements calculateMinorAxisRequirements(int axis, SizeRequirements r) {
         if (r == null) {
             r = new SizeRequirements();
         }
@@ -113,8 +110,7 @@ public class BlockView extends BoxView {
         } else {
             // Offset by the margins so that pref/min/max return the
             // right value.
-            SizeRequirements parentR = super.calculateMinorAxisRequirements(
-                    axis, null);
+            SizeRequirements parentR = super.calculateMinorAxisRequirements(axis, null);
             int margin = (axis == X_AXIS) ? getLeftInset() + getRightInset()
                     : getTopInset() + getBottomInset();
             r.minimum -= margin;
@@ -164,8 +160,8 @@ public class BlockView extends BoxView {
      * specified, false if the span is not specified in an attribute or the size
      * specified is a percentage.
      */
-    static boolean spanSetFromAttributes(int axis, SizeRequirements r,
-            CSS.LengthValue cssWidth, CSS.LengthValue cssHeight) {
+    static boolean spanSetFromAttributes(int axis, SizeRequirements r, CSS.LengthValue cssWidth,
+            CSS.LengthValue cssHeight) {
         if (axis == X_AXIS) {
             if ((cssWidth != null) && (!cssWidth.isPercentage())) {
                 r.minimum = r.preferred = r.maximum = (int) cssWidth.getValue();
@@ -173,8 +169,7 @@ public class BlockView extends BoxView {
             }
         } else {
             if ((cssHeight != null) && (!cssHeight.isPercentage())) {
-                r.minimum = r.preferred = r.maximum = (int) cssHeight
-                        .getValue();
+                r.minimum = r.preferred = r.maximum = (int) cssHeight.getValue();
                 return true;
             }
         }
@@ -188,26 +183,24 @@ public class BlockView extends BoxView {
      * represent the allocations to the children along the minor axis.
      *
      * @param targetSpan
-     *                   the total span given to the view, which would be used
-     *                   to
-     *                   layout the children.
+     *        the total span given to the view, which would be used
+     *        to
+     *        layout the children.
      * @param axis
-     *                   the axis being layed out
+     *        the axis being layed out
      * @param offsets
-     *                   the offsets from the origin of the view for each of the
-     *                   child
-     *                   views; this is a return value and is filled in by the
-     *                   implementation of this method
+     *        the offsets from the origin of the view for each of the
+     *        child
+     *        views; this is a return value and is filled in by the
+     *        implementation of this method
      * @param spans
-     *                   the span of each child view; this is a return value and
-     *                   is
-     *                   filled in by the implementation of this method
+     *        the span of each child view; this is a return value and
+     *        is
+     *        filled in by the implementation of this method
      */
-    protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets,
-            int[] spans) {
+    protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
         int n = getViewCount();
-        Object key = (axis == X_AXIS) ? CSS.Attribute.WIDTH
-                : CSS.Attribute.HEIGHT;
+        Object key = (axis == X_AXIS) ? CSS.Attribute.WIDTH : CSS.Attribute.HEIGHT;
         for (int i = 0; i < n; i++) {
             View v = getView(i);
             int min = (int) v.getMinimumSpan(axis);
@@ -244,9 +237,9 @@ public class BlockView extends BoxView {
      * background prior to the interior.
      *
      * @param g
-     *                   the rendering surface to use
+     *        the rendering surface to use
      * @param allocation
-     *                   the allocated region to render into
+     *        the allocated region to render into
      * @see View#paint
      */
     public void paint(Graphics g, Shape allocation) {
@@ -271,10 +264,10 @@ public class BlockView extends BoxView {
      * Gets the resize weight.
      *
      * @param axis
-     *             may be either X_AXIS or Y_AXIS
+     *        may be either X_AXIS or Y_AXIS
      * @return the weight
      * @exception IllegalArgumentException
-     *                                     for an invalid axis
+     *            for an invalid axis
      */
     public int getResizeWeight(int axis) {
         switch (axis) {
@@ -291,7 +284,7 @@ public class BlockView extends BoxView {
      * Gets the alignment.
      *
      * @param axis
-     *             may be either X_AXIS or Y_AXIS
+     *        may be either X_AXIS or Y_AXIS
      * @return the alignment
      */
     public float getAlignment(int axis) {
@@ -305,8 +298,7 @@ public class BlockView extends BoxView {
                 float span = getPreferredSpan(View.Y_AXIS);
                 View v = getView(0);
                 float above = v.getPreferredSpan(View.Y_AXIS);
-                float a = (((int) span) != 0) ? (above * v.getAlignment(
-                        View.Y_AXIS)) / span : 0;
+                float a = (((int) span) != 0) ? (above * v.getAlignment(View.Y_AXIS)) / span : 0;
                 return a;
             default:
                 throw new IllegalArgumentException("Invalid axis: " + axis);
@@ -316,8 +308,7 @@ public class BlockView extends BoxView {
     public void changedUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
         super.changedUpdate(changes, a, f);
         int pos = changes.getOffset();
-        if (pos <= getStartOffset() && (pos + changes
-                .getLength()) >= getEndOffset()) {
+        if (pos <= getStartOffset() && (pos + changes.getLength()) >= getEndOffset()) {
             setPropertiesFromAttributes();
         }
     }
@@ -326,14 +317,14 @@ public class BlockView extends BoxView {
      * Determines the preferred span for this view along an axis.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the span the view would like to be rendered into &gt;= 0;
      *         typically the view is told to render into the span that is
      *         returned, although there is no guarantee; the parent may choose
      *         to resize or break the view
      * @exception IllegalArgumentException
-     *                                     for an invalid axis type
+     *            for an invalid axis type
      */
     public float getPreferredSpan(int axis) {
         return super.getPreferredSpan(axis);
@@ -343,14 +334,14 @@ public class BlockView extends BoxView {
      * Determines the minimum span for this view along an axis.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the span the view would like to be rendered into &gt;= 0;
      *         typically the view is told to render into the span that is
      *         returned, although there is no guarantee; the parent may choose
      *         to resize or break the view
      * @exception IllegalArgumentException
-     *                                     for an invalid axis type
+     *            for an invalid axis type
      */
     public float getMinimumSpan(int axis) {
         return super.getMinimumSpan(axis);
@@ -360,14 +351,14 @@ public class BlockView extends BoxView {
      * Determines the maximum span for this view along an axis.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the span the view would like to be rendered into &gt;= 0;
      *         typically the view is told to render into the span that is
      *         returned, although there is no guarantee; the parent may choose
      *         to resize or break the view
      * @exception IllegalArgumentException
-     *                                     for an invalid axis type
+     *            for an invalid axis type
      */
     public float getMaximumSpan(int axis) {
         return super.getMaximumSpan(axis);
@@ -385,9 +376,8 @@ public class BlockView extends BoxView {
         // Reset the painter
         painter = sheet.getBoxPainter(attr);
         if (attr != null) {
-            setInsets((short) painter.getInset(TOP, this), (short) painter
-                    .getInset(LEFT, this), (short) painter.getInset(BOTTOM,
-                            this), (short) painter.getInset(RIGHT, this));
+            setInsets((short) painter.getInset(TOP, this), (short) painter.getInset(LEFT, this),
+                    (short) painter.getInset(BOTTOM, this), (short) painter.getInset(RIGHT, this));
         }
 
         // Get the width/height
@@ -404,8 +394,7 @@ public class BlockView extends BoxView {
      * Constrains <code>want</code> to fit in the minimum size specified by
      * <code>min</code>.
      */
-    private void constrainSize(int axis, SizeRequirements want,
-            SizeRequirements min) {
+    private void constrainSize(int axis, SizeRequirements want, SizeRequirements min) {
         if (min.minimum > want.minimum) {
             want.minimum = want.preferred = min.minimum;
             want.maximum = Math.max(want.maximum, min.maximum);

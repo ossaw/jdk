@@ -32,13 +32,13 @@ public class EmptyBorder extends AbstractBorder implements Serializable {
      * Creates an empty border with the specified insets.
      * 
      * @param top
-     *               the top inset of the border
+     *        the top inset of the border
      * @param left
-     *               the left inset of the border
+     *        the left inset of the border
      * @param bottom
-     *               the bottom inset of the border
+     *        the bottom inset of the border
      * @param right
-     *               the right inset of the border
+     *        the right inset of the border
      */
     public EmptyBorder(int top, int left, int bottom, int right) {
         this.top = top;
@@ -51,7 +51,7 @@ public class EmptyBorder extends AbstractBorder implements Serializable {
      * Creates an empty border with the specified insets.
      * 
      * @param borderInsets
-     *                     the insets of the border
+     *        the insets of the border
      */
     @ConstructorProperties({ "borderInsets" })
     public EmptyBorder(Insets borderInsets) {
@@ -64,16 +64,15 @@ public class EmptyBorder extends AbstractBorder implements Serializable {
     /**
      * Does no drawing by default.
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {}
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {}
 
     /**
      * Reinitialize the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         insets.left = left;

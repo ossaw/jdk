@@ -22,7 +22,7 @@ public class IllegalFormatPrecisionException extends IllegalFormatException {
      * Constructs an instance of this class with the specified precision.
      *
      * @param p
-     *          The precision
+     *        The precision
      */
     public IllegalFormatPrecisionException(int p) {
         this.p = p;

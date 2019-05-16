@@ -26,10 +26,7 @@ import sun.security.util.SecurityConstants;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
- *
  * @author Roland Schemers
- *
  * @serial exclude
  */
 
@@ -49,9 +46,9 @@ public final class AllPermission extends Permission {
      * the {@code Policy} object to instantiate new Permission objects.
      *
      * @param name
-     *                ignored
+     *        ignored
      * @param actions
-     *                ignored.
+     *        ignored.
      */
     public AllPermission(String name, String actions) {
         this();
@@ -62,8 +59,7 @@ public final class AllPermission extends Permission {
      * method always returns true.
      *
      * @param p
-     *          the permission to check against.
-     *
+     *        the permission to check against.
      * @return return
      */
     public boolean implies(Permission p) {
@@ -75,7 +71,7 @@ public final class AllPermission extends Permission {
      * are always equal.
      *
      * @param obj
-     *            the object we are testing for equality with this object.
+     *        the object we are testing for equality with this object.
      * @return true if <i>obj</i> is an AllPermission, false otherwise.
      */
     public boolean equals(Object obj) {
@@ -123,15 +119,11 @@ public final class AllPermission extends Permission {
  *
  * @see java.security.Permission
  * @see java.security.Permissions
- *
- *
  * @author Roland Schemers
- *
  * @serial include
  */
 
-final class AllPermissionCollection extends PermissionCollection implements
-        java.io.Serializable {
+final class AllPermissionCollection extends PermissionCollection implements java.io.Serializable {
 
     // use serialVersionUID from JDK 1.2.2 for interoperability
     private static final long serialVersionUID = -4023755556366636806L;
@@ -140,7 +132,6 @@ final class AllPermissionCollection extends PermissionCollection implements
 
     /**
      * Create an empty AllPermissions object.
-     *
      */
 
     public AllPermissionCollection() {
@@ -152,25 +143,21 @@ final class AllPermissionCollection extends PermissionCollection implements
      * permission.path.
      *
      * @param permission
-     *                   the Permission object to add.
-     *
+     *        the Permission object to add.
      * @exception IllegalArgumentException
-     *                                     - if the permission is not a
-     *                                     AllPermission
-     *
+     *            - if the permission is not a
+     *            AllPermission
      * @exception SecurityException
-     *                                     - if this AllPermissionCollection
-     *                                     object has been marked
-     *                                     readonly
+     *            - if this AllPermissionCollection
+     *            object has been marked
+     *            readonly
      */
 
     public void add(Permission permission) {
         if (!(permission instanceof AllPermission))
-            throw new IllegalArgumentException("invalid permission: "
-                    + permission);
+            throw new IllegalArgumentException("invalid permission: " + permission);
         if (isReadOnly())
-            throw new SecurityException(
-                    "attempt to add a Permission to a readonly PermissionCollection");
+            throw new SecurityException("attempt to add a Permission to a readonly PermissionCollection");
 
         all_allowed = true; // No sync; staleness OK
     }
@@ -180,8 +167,7 @@ final class AllPermissionCollection extends PermissionCollection implements
      * expressed in "permission".
      *
      * @param permission
-     *                   the Permission object to compare
-     *
+     *        the Permission object to compare
      * @return always returns true.
      */
 

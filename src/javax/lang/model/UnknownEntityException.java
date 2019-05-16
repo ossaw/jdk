@@ -11,7 +11,6 @@ package javax.lang.model;
  * of constructs are introduced. Subclasses of this exception may be thrown by
  * visitors to indicate that the visitor was created for a prior version of the
  * language.
- *
  * <p>
  * A common superclass for those exceptions allows a single catch block to have
  * code handling them uniformly.
@@ -31,7 +30,7 @@ public class UnknownEntityException extends RuntimeException {
      * message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     protected UnknownEntityException(String message) {
         super(message);

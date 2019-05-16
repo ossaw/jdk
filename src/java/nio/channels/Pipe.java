@@ -10,13 +10,11 @@ import java.nio.channels.spi.*;
 
 /**
  * A pair of channels that implements a unidirectional pipe.
- *
  * <p>
  * A pipe consists of a pair of channels: A writable {@link Pipe.SinkChannel
  * sink} channel and a readable {@link Pipe.SourceChannel source} channel. Once
  * some bytes are written to the sink channel they can be read from source
  * channel in exactlyAthe order in which they were written.
- *
  * <p>
  * Whether or not a thread writing bytes to a pipe will block until another
  * thread reads those bytes, or some previously-written bytes, from the pipe is
@@ -24,7 +22,6 @@ import java.nio.channels.spi.*;
  * buffer up to a certain number of bytes between the sink and source channels,
  * but such buffering should not be assumed.
  * </p>
- *
  *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
@@ -38,13 +35,13 @@ public abstract class Pipe {
      *
      * @since 1.4
      */
-    public static abstract class SourceChannel extends AbstractSelectableChannel
-            implements ReadableByteChannel, ScatteringByteChannel {
+    public static abstract class SourceChannel extends AbstractSelectableChannel implements
+            ReadableByteChannel, ScatteringByteChannel {
         /**
          * Constructs a new instance of this class.
          *
          * @param provider
-         *                 The selector provider
+         *        The selector provider
          */
         protected SourceChannel(SelectorProvider provider) {
             super(provider);
@@ -53,7 +50,6 @@ public abstract class Pipe {
         /**
          * Returns an operation set identifying this channel's supported
          * operations.
-         *
          * <p>
          * Pipe-source channels only support reading, so this method returns
          * {@link SelectionKey#OP_READ}.
@@ -72,13 +68,13 @@ public abstract class Pipe {
      *
      * @since 1.4
      */
-    public static abstract class SinkChannel extends AbstractSelectableChannel
-            implements WritableByteChannel, GatheringByteChannel {
+    public static abstract class SinkChannel extends AbstractSelectableChannel implements WritableByteChannel,
+            GatheringByteChannel {
         /**
          * Initializes a new instance of this class.
          *
          * @param provider
-         *                 The selector provider
+         *        The selector provider
          */
         protected SinkChannel(SelectorProvider provider) {
             super(provider);
@@ -87,7 +83,6 @@ public abstract class Pipe {
         /**
          * Returns an operation set identifying this channel's supported
          * operations.
-         *
          * <p>
          * Pipe-sink channels only support writing, so this method returns
          * {@link SelectionKey#OP_WRITE}.
@@ -122,7 +117,6 @@ public abstract class Pipe {
 
     /**
      * Opens a pipe.
-     *
      * <p>
      * The new pipe is created by invoking the
      * {@link java.nio.channels.spi.SelectorProvider#openPipe openPipe} method
@@ -131,9 +125,8 @@ public abstract class Pipe {
      * </p>
      *
      * @return A new pipe
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public static Pipe open() throws IOException {
         return SelectorProvider.provider().openPipe();

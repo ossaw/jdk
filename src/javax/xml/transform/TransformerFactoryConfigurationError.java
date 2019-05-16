@@ -36,7 +36,7 @@ public class TransformerFactoryConfigurationError extends Error {
      * <code>String</code> specified as an error message.
      *
      * @param msg
-     *            The error message for the exception.
+     *        The error message for the exception.
      */
     public TransformerFactoryConfigurationError(String msg) {
 
@@ -50,8 +50,8 @@ public class TransformerFactoryConfigurationError extends Error {
      * given <code>Exception</code> base cause of the error.
      *
      * @param e
-     *          The exception to be encapsulated in a
-     *          TransformerFactoryConfigurationError.
+     *        The exception to be encapsulated in a
+     *        TransformerFactoryConfigurationError.
      */
     public TransformerFactoryConfigurationError(Exception e) {
 
@@ -65,10 +65,10 @@ public class TransformerFactoryConfigurationError extends Error {
      * given <code>Exception</code> base cause and detail message.
      *
      * @param e
-     *            The exception to be encapsulated in a
-     *            TransformerFactoryConfigurationError
+     *        The exception to be encapsulated in a
+     *        TransformerFactoryConfigurationError
      * @param msg
-     *            The detail message.
+     *        The detail message.
      */
     public TransformerFactoryConfigurationError(Exception e, String msg) {
 

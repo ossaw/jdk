@@ -24,6 +24,5 @@ package com.sun.org.apache.xerces.internal.parsers;
  * </p>
  *
  * @author Michael Glavassevich, IBM
- *
  */
 public interface XML11Configurable {}

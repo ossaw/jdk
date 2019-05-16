@@ -10,7 +10,6 @@ package javax.management.openmbean;
  * A Java class can implement this interface to indicate how it is to be
  * converted into a {@code CompositeData} by the MXBean framework.
  * </p>
- *
  * <p>
  * A typical way to use this class is to add extra items to the
  * {@code CompositeData} in addition to the ones that are declared in the
@@ -18,7 +17,6 @@ package javax.management.openmbean;
  * create another {@code CompositeType} that has all the same items, plus your
  * extra items.
  * </p>
- *
  * <p>
  * For example, suppose you have a class {@code Measure} that consists of a
  * String called {@code units} and a {@code value} that is either a {@code long}
@@ -36,8 +34,7 @@ package javax.management.openmbean;
  *     }
  *
  *     public static Measure from(CompositeData cd) {
- *         return new Measure((String) cd.get("units"), (Number) cd.get(
- *                 "value"));
+ *         return new Measure((String) cd.get("units"), (Number) cd.get("value"));
  *     }
  *
  *     public String getUnits() {
@@ -70,14 +67,12 @@ package javax.management.openmbean;
  *             }
  *             itemNames.add("value");
  *             itemDescriptions.add("long or double value of the measure");
- *             itemTypes.add((value instanceof Long) ? SimpleType.LONG
- *                     : SimpleType.DOUBLE);
- *             CompositeType xct = new CompositeType(ct.getTypeName(), ct
- *                     .getDescription(), itemNames.toArray(new String[0]),
- *                     itemDescriptions.toArray(new String[0]), itemTypes
- *                             .toArray(new OpenType&lt;?&gt;[0]));
- *             CompositeData cd = new CompositeDataSupport(xct, new String[] {
- *                     "units", "value" }, new Object[] { units, value });
+ *             itemTypes.add((value instanceof Long) ? SimpleType.LONG : SimpleType.DOUBLE);
+ *             CompositeType xct = new CompositeType(ct.getTypeName(), ct.getDescription(), itemNames.toArray(
+ *                     new String[0]), itemDescriptions.toArray(new String[0]), itemTypes.toArray(
+ *                             new OpenType&lt;?&gt;[0]));
+ *             CompositeData cd = new CompositeDataSupport(xct, new String[] { "units", "value" },
+ *                     new Object[] { units, value });
  *             assert ct.isValue(cd); // check we've done it right
  *             return cd;
  *         } catch (Exception e) {
@@ -86,7 +81,6 @@ package javax.management.openmbean;
  *     }
  * }
  * </pre>
- *
  * <p>
  * The {@code CompositeType} that will appear in the {@code openType} field of
  * the {@link javax.management.Descriptor Descriptor} for an attribute or
@@ -96,7 +90,6 @@ package javax.management.openmbean;
  * </p>
  *
  * @see javax.management.MXBean
- *
  * @since 1.6
  */
 public interface CompositeDataView {
@@ -110,13 +103,12 @@ public interface CompositeDataView {
      * reconstruct it.
      *
      * @param ct
-     *           The expected {@code CompositeType} of the returned value. If
-     *           the returned value is {@code cd}, then
-     *           {@code cd.getCompositeType().equals(ct)} should be true.
-     *           Typically this will be because {@code cd} is a
-     *           {@link CompositeDataSupport} constructed with {@code ct} as
-     *           its {@code CompositeType}.
-     *
+     *        The expected {@code CompositeType} of the returned value. If
+     *        the returned value is {@code cd}, then
+     *        {@code cd.getCompositeType().equals(ct)} should be true.
+     *        Typically this will be because {@code cd} is a
+     *        {@link CompositeDataSupport} constructed with {@code ct} as
+     *        its {@code CompositeType}.
      * @return the {@code CompositeData}.
      */
     public CompositeData toCompositeData(CompositeType ct);

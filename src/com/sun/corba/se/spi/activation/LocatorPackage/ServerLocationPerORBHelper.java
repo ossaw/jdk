@@ -32,28 +32,22 @@ abstract public class ServerLocationPerORBHelper {
             synchronized (org.omg.CORBA.TypeCode.class) {
                 if (__typeCode == null) {
                     if (__active) {
-                        return org.omg.CORBA.ORB.init().create_recursive_tc(
-                                _id);
+                        return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
                     }
                     __active = true;
                     org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[2];
                     org.omg.CORBA.TypeCode _tcOf_members0 = null;
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
-                    _members0[0] = new org.omg.CORBA.StructMember("hostname",
-                            _tcOf_members0, null);
-                    _tcOf_members0 = com.sun.corba.se.spi.activation.EndPointInfoHelper
-                            .type();
-                    _tcOf_members0 = org.omg.CORBA.ORB.init()
-                            .create_sequence_tc(0, _tcOf_members0);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
+                    _members0[0] = new org.omg.CORBA.StructMember("hostname", _tcOf_members0, null);
+                    _tcOf_members0 = com.sun.corba.se.spi.activation.EndPointInfoHelper.type();
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_sequence_tc(0, _tcOf_members0);
                     _tcOf_members0 = org.omg.CORBA.ORB.init().create_alias_tc(
-                            com.sun.corba.se.spi.activation.EndpointInfoListHelper
-                                    .id(), "EndpointInfoList", _tcOf_members0);
-                    _members0[1] = new org.omg.CORBA.StructMember("ports",
-                            _tcOf_members0, null);
+                            com.sun.corba.se.spi.activation.EndpointInfoListHelper.id(), "EndpointInfoList",
+                            _tcOf_members0);
+                    _members0[1] = new org.omg.CORBA.StructMember("ports", _tcOf_members0, null);
                     __typeCode = org.omg.CORBA.ORB.init().create_struct_tc(
-                            com.sun.corba.se.spi.activation.LocatorPackage.ServerLocationPerORBHelper
-                                    .id(), "ServerLocationPerORB", _members0);
+                            com.sun.corba.se.spi.activation.LocatorPackage.ServerLocationPerORBHelper.id(),
+                            "ServerLocationPerORB", _members0);
                     __active = false;
                 }
             }
@@ -69,16 +63,14 @@ abstract public class ServerLocationPerORBHelper {
             org.omg.CORBA.portable.InputStream istream) {
         com.sun.corba.se.spi.activation.LocatorPackage.ServerLocationPerORB value = new com.sun.corba.se.spi.activation.LocatorPackage.ServerLocationPerORB();
         value.hostname = istream.read_string();
-        value.ports = com.sun.corba.se.spi.activation.EndpointInfoListHelper
-                .read(istream);
+        value.ports = com.sun.corba.se.spi.activation.EndpointInfoListHelper.read(istream);
         return value;
     }
 
     public static void write(org.omg.CORBA.portable.OutputStream ostream,
             com.sun.corba.se.spi.activation.LocatorPackage.ServerLocationPerORB value) {
         ostream.write_string(value.hostname);
-        com.sun.corba.se.spi.activation.EndpointInfoListHelper.write(ostream,
-                value.ports);
+        com.sun.corba.se.spi.activation.EndpointInfoListHelper.write(ostream, value.ports);
     }
 
 }

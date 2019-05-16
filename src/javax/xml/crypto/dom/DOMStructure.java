@@ -15,12 +15,10 @@ import javax.xml.crypto.dsig.XMLSignature;
  * A DOM-specific {@link XMLStructure}. The purpose of this class is to allow a
  * DOM node to be used to represent extensible content (any elements or mixed
  * content) in XML Signature structures.
- *
  * <p>
  * If a sequence of nodes is needed, the node contained in the
  * <code>DOMStructure</code> is the first node of the sequence and successive
  * nodes can be accessed by invoking {@link Node#getNextSibling}.
- *
  * <p>
  * If the owner document of the <code>DOMStructure</code> is different than the
  * target document of an <code>XMLSignature</code>, the
@@ -39,9 +37,9 @@ public class DOMStructure implements XMLStructure {
      * Creates a <code>DOMStructure</code> containing the specified node.
      *
      * @param node
-     *             the node
+     *        the node
      * @throws NullPointerException
-     *                              if <code>node</code> is <code>null</code>
+     *         if <code>node</code> is <code>null</code>
      */
     public DOMStructure(Node node) {
         if (node == null) {
@@ -61,7 +59,7 @@ public class DOMStructure implements XMLStructure {
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public boolean isFeatureSupported(String feature) {
         if (feature == null) {

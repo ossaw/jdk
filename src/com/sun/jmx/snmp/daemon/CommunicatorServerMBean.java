@@ -62,7 +62,6 @@ package com.sun.jmx.snmp.daemon;
  * <p>
  * When a <CODE>CommunicatorServer</CODE> is unregistered from the MBeanServer,
  * it is stopped automatically.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -101,7 +100,6 @@ public interface CommunicatorServerMBean {
      * value indicating whether the specified <VAR>state</VAR> parameter equals
      * the value of this MBean's State attribute at the time the method
      * terminates.
-     *
      * Two special cases for the <VAR>timeOut</VAR> parameter value are:
      * <UL>
      * <LI>if <VAR>timeOut</VAR> is negative then <CODE>waitState</CODE> returns
@@ -113,19 +111,18 @@ public interface CommunicatorServerMBean {
      * </UL>
      *
      * @param state
-     *                The value of this MBean's State attribute to wait for.
-     *                <VAR>state</VAR> can be one of:
-     *                <ul>
-     *                <li><CODE>CommunicatorServer.OFFLINE</CODE>,</li>
-     *                <li><CODE>CommunicatorServer.ONLINE</CODE>,</li>
-     *                <li><CODE>CommunicatorServer.STARTING</CODE>,</li>
-     *                <li><CODE>CommunicatorServer.STOPPING</CODE>.</li>
-     *                </ul>
+     *        The value of this MBean's State attribute to wait for.
+     *        <VAR>state</VAR> can be one of:
+     *        <ul>
+     *        <li><CODE>CommunicatorServer.OFFLINE</CODE>,</li>
+     *        <li><CODE>CommunicatorServer.ONLINE</CODE>,</li>
+     *        <li><CODE>CommunicatorServer.STARTING</CODE>,</li>
+     *        <li><CODE>CommunicatorServer.STOPPING</CODE>.</li>
+     *        </ul>
      * @param timeOut
-     *                The maximum time to wait for, in milliseconds, if
-     *                positive.
-     *                Infinite time out if 0, or no waiting at all if negative.
-     *
+     *        The maximum time to wait for, in milliseconds, if
+     *        positive.
+     *        Infinite time out if 0, or no waiting at all if negative.
      * @return true if the value of this MBean's State attribute is the same as
      *         the <VAR>state</VAR> parameter; false otherwise.
      */
@@ -164,8 +161,7 @@ public interface CommunicatorServerMBean {
      * Sets the port number used by this <CODE>CommunicatorServer</CODE>.
      *
      * @param port
-     *             The port number used by this <CODE>CommunicatorServer</CODE>.
-     *
+     *        The port number used by this <CODE>CommunicatorServer</CODE>.
      * @exception java.lang.IllegalStateException
      *            This method has been invoked while the communicator was
      *            ONLINE or STARTING.

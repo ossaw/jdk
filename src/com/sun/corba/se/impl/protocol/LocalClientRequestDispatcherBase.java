@@ -19,8 +19,7 @@ import com.sun.corba.se.spi.ior.TaggedProfile;
 import com.sun.corba.se.spi.ior.ObjectKeyTemplate;
 import com.sun.corba.se.spi.ior.ObjectId;
 
-public abstract class LocalClientRequestDispatcherBase implements
-        LocalClientRequestDispatcher {
+public abstract class LocalClientRequestDispatcherBase implements LocalClientRequestDispatcher {
     protected ORB orb;
     int scid;
 
@@ -42,8 +41,7 @@ public abstract class LocalClientRequestDispatcherBase implements
         this.orb = orb;
 
         TaggedProfile prof = ior.getProfile();
-        servantIsLocal = orb.getORBData().isLocalOptimizationAllowed() && prof
-                .isLocal();
+        servantIsLocal = orb.getORBData().isLocalOptimizationAllowed() && prof.isLocal();
 
         ObjectKeyTemplate oktemp = prof.getObjectKeyTemplate();
         this.scid = oktemp.getSubcontractId();
@@ -83,8 +81,7 @@ public abstract class LocalClientRequestDispatcherBase implements
      * Check that the servant in info (which must not be null) is an instance of
      * the expectedType. If not, set the thread local flag and return false.
      */
-    protected boolean checkForCompatibleServant(ServantObject so,
-            Class expectedType) {
+    protected boolean checkForCompatibleServant(ServantObject so, Class expectedType) {
         if (so == null)
             return false;
 

@@ -8,8 +8,7 @@ package org.omg.IOP;
  * PDT
  */
 
-public final class TaggedProfileHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class TaggedProfileHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.IOP.TaggedProfile value = null;
 
     public TaggedProfileHolder() {}

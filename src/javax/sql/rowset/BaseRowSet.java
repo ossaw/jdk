@@ -18,7 +18,6 @@ import javax.sql.rowset.serial.*;
  * An abstract class providing a <code>RowSet</code> object with its basic
  * functionality. The basic functions include having properties and sending
  * event notifications, which all JavaBeans&trade; components must implement.
- *
  * <h3>1.0 Overview</h3> The <code>BaseRowSet</code> class provides the core
  * functionality for all <code>RowSet</code> implementations, and all standard
  * implementations <b>may</b> use this class in combination with one or more
@@ -31,19 +30,15 @@ import javax.sql.rowset.serial.*;
  * implement one of the <code>RowSet</code> interfaces.
  * <p>
  * The <code>BaseRowSet</code> class provides the following:
- *
  * <UL>
  * <LI><b>Properties</b>
  * <ul>
  * <li>Fields for storing current properties
  * <li>Methods for getting and setting properties
  * </ul>
- *
  * <LI><b>Event notification</b>
- *
  * <LI><b>A complete set of setter methods</b> for setting the parameters in a
  * <code>RowSet</code> object's command
- *
  * <LI><b>Streams</b>
  * <ul>
  * <li>Fields for storing stream instances
@@ -51,7 +46,6 @@ import javax.sql.rowset.serial.*;
  * </ul>
  * <p>
  * </UL>
- *
  * <h3>2.0 Setting Properties</h3> All rowsets maintain a set of properties,
  * which will usually be set using a tool. The number and kinds of properties a
  * rowset has will vary, depending on what the <code>RowSet</code>
@@ -72,7 +66,6 @@ import javax.sql.rowset.serial.*;
  * a naming service that uses the Java Naming and Directory Interface&trade;
  * (JNDI) API. This registration is usually done by a person acting in the
  * capacity of a system administrator.
- *
  * <h3>3.0 Setting the Command and Its Parameters</h3> When a rowset gets its
  * data from a relational database, it executes a command (a query) that
  * produces a <code>ResultSet</code> object. This query is the command that is
@@ -132,9 +125,7 @@ import javax.sql.rowset.serial.*;
  * <code>Ref</code> objects as a command parameter, stores these values as
  * <code>SerialArray</code>, <code>SerialClob</code>, <code>SerialBlob</code>
  * and <code>SerialRef</code> objects respectively.
- *
  * <h3>4.0 Handling of Parameters Behind the Scenes</h3>
- *
  * NOTE: The <code>BaseRowSet</code> class provides two kinds of setter methods,
  * those that set properties and those that set placeholder parameters. The
  * setter methods discussed in this section are those that set placeholder
@@ -221,7 +212,6 @@ import javax.sql.rowset.serial.*;
  * NOTE: The method <code>getParams</code> is called internally by
  * <code>RowSet</code> implementations extending this class; it is not normally
  * called by an application programmer directly.
- *
  * <h3>5.0 Event Notification</h3> The <code>BaseRowSet</code> class provides
  * the event notification mechanism for rowsets. It contains the field
  * <code>listeners</code>, methods for adding and removing listeners, and
@@ -249,10 +239,8 @@ import javax.sql.rowset.serial.*;
  * to identify the <code>RowSet</code> object on which the event occurred. What
  * the listener does with this information, which may be nothing, depends on how
  * it was implemented.
- *
  * <h3>6.0 Default Behavior</h3> A default <code>BaseRowSet</code> object is
  * initialized with many starting values.
- *
  * The following is true of a default <code>RowSet</code> instance that extends
  * the <code>BaseRowSet</code> class:
  * <UL>
@@ -578,11 +566,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>RowSet</code>.
      *
      * @param listener
-     *                 an object that has implemented the
-     *                 <code>javax.sql.RowSetListener</code> interface and wants
-     *                 to
-     *                 be notified of any events that occur on this
-     *                 <code>RowSet</code> object; May be null.
+     *        an object that has implemented the
+     *        <code>javax.sql.RowSetListener</code> interface and wants
+     *        to
+     *        be notified of any events that occur on this
+     *        <code>RowSet</code> object; May be null.
      * @see #removeRowSetListener
      */
     public void addRowSetListener(RowSetListener listener) {
@@ -593,15 +581,14 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * Removes the designated object from this <code>RowSet</code> object's list
      * of listeners. If the given argument is not a registered listener, this
      * method does nothing.
-     *
      * <b>Note</b>: if the <code>RowSetListener</code> object is
      * <code>null</code>, this method silently discards the <code>null</code>
      * value.
      *
      * @param listener
-     *                 a <code>RowSetListener</code> object that is on the list
-     *                 of
-     *                 listeners for this <code>RowSet</code> object
+     *        a <code>RowSetListener</code> object that is on the list
+     *        of
+     *        listeners for this <code>RowSet</code> object
      * @see #addRowSetListener
      */
     public void removeRowSetListener(RowSetListener listener) {
@@ -613,9 +600,8 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      */
     private void checkforRowSetInterface() throws SQLException {
         if ((this instanceof javax.sql.RowSet) == false) {
-            throw new SQLException(
-                    "The class extending abstract class BaseRowSet "
-                            + "must implement javax.sql.RowSet or one of it's sub-interfaces.");
+            throw new SQLException("The class extending abstract class BaseRowSet "
+                    + "must implement javax.sql.RowSet or one of it's sub-interfaces.");
         }
     }
 
@@ -628,11 +614,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <b>should</b> never invoke this method directly.
      *
      * @throws SQLException
-     *                      if the class extending the <code>BaseRowSet</code>
-     *                      abstract
-     *                      class does not implement the <code>RowSet</code>
-     *                      interface or
-     *                      one of it's sub-interfaces.
+     *         if the class extending the <code>BaseRowSet</code>
+     *         abstract
+     *         class does not implement the <code>RowSet</code>
+     *         interface or
+     *         one of it's sub-interfaces.
      */
     protected void notifyCursorMoved() throws SQLException {
         checkforRowSetInterface();
@@ -655,11 +641,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * never invoke this method directly.
      *
      * @throws SQLException
-     *                      if the class extending the <code>BaseRowSet</code>
-     *                      abstract
-     *                      class does not implement the <code>RowSet</code>
-     *                      interface or
-     *                      one of it's sub-interfaces.
+     *         if the class extending the <code>BaseRowSet</code>
+     *         abstract
+     *         class does not implement the <code>RowSet</code>
+     *         interface or
+     *         one of it's sub-interfaces.
      */
     protected void notifyRowChanged() throws SQLException {
         checkforRowSetInterface();
@@ -684,11 +670,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * directly.
      *
      * @throws SQLException
-     *                      if the class extending the <code>BaseRowSet</code>
-     *                      abstract
-     *                      class does not implement the <code>RowSet</code>
-     *                      interface or
-     *                      one of it's sub-interfaces.
+     *         if the class extending the <code>BaseRowSet</code>
+     *         abstract
+     *         class does not implement the <code>RowSet</code>
+     *         interface or
+     *         one of it's sub-interfaces.
      */
     protected void notifyRowSetChanged() throws SQLException {
         checkforRowSetInterface();
@@ -739,11 +725,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * property is optional and may be <code>null</code>.
      *
      * @param cmd
-     *            a <code>String</code> object containing an SQL query that will
-     *            be set as this <code>RowSet</code> object's command property;
-     *            may be <code>null</code> but may not be an empty string
+     *        a <code>String</code> object containing an SQL query that will
+     *        be set as this <code>RowSet</code> object's command property;
+     *        may be <code>null</code> but may not be an empty string
      * @throws SQLException
-     *                      if an empty string is provided as the command value
+     *         if an empty string is provided as the command value
      * @see #getCommand
      */
     public void setCommand(String cmd) throws SQLException {
@@ -754,8 +740,7 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
         if (cmd == null) {
             command = null;
         } else if (cmd.length() == 0) {
-            throw new SQLException("Invalid command string detected. "
-                    + "Cannot be of length less than 0");
+            throw new SQLException("Invalid command string detected. " + "Cannot be of length less than 0");
         } else {
             // "unbind" any parameters from any previous command.
             if (params == null) {
@@ -780,7 +765,7 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      *         establish the connection for this <code>RowSet</code> object; may
      *         be <code>null</code> (default value) if not set
      * @throws SQLException
-     *                      if an error occurs retrieving the URL value
+     *         if an error occurs retrieving the URL value
      * @see #setUrl
      */
     public String getUrl() throws SQLException {
@@ -809,24 +794,23 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * database connection in order to read or write data.
      *
      * @param url
-     *            a <code>String</code> object that contains the JDBC URL that
-     *            will be used to establish the connection to a database for
-     *            this <code>RowSet</code> object; may be <code>null</code> but
-     *            must not be an empty string
+     *        a <code>String</code> object that contains the JDBC URL that
+     *        will be used to establish the connection to a database for
+     *        this <code>RowSet</code> object; may be <code>null</code> but
+     *        must not be an empty string
      * @throws SQLException
-     *                      if an error occurs setting the Url property or the
-     *                      parameter
-     *                      supplied is a string with a length of <code>0</code>
-     *                      (an
-     *                      empty string)
+     *         if an error occurs setting the Url property or the
+     *         parameter
+     *         supplied is a string with a length of <code>0</code>
+     *         (an
+     *         empty string)
      * @see #getUrl
      */
     public void setUrl(String url) throws SQLException {
         if (url == null) {
             url = null;
         } else if (url.length() < 1) {
-            throw new SQLException("Invalid url string detected. "
-                    + "Cannot be of length less than 1");
+            throw new SQLException("Invalid url string detected. " + "Cannot be of length less than 1");
         } else {
             URL = url;
         }
@@ -870,15 +854,15 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * recently.
      *
      * @param name
-     *             a <code>String</code> object with the name that can be
-     *             supplied to a naming service based on JNDI technology to
-     *             retrieve the <code>DataSource</code> object that can be used
-     *             to get a connection; may be <code>null</code> but must not be
-     *             an empty string
+     *        a <code>String</code> object with the name that can be
+     *        supplied to a naming service based on JNDI technology to
+     *        retrieve the <code>DataSource</code> object that can be used
+     *        to get a connection; may be <code>null</code> but must not be
+     *        an empty string
      * @throws SQLException
-     *                      if an empty string is provided as the
-     *                      <code>DataSource</code>
-     *                      name
+     *         if an empty string is provided as the
+     *         <code>DataSource</code>
+     *         name
      * @see #getDataSourceName
      */
     public void setDataSourceName(String name) throws SQLException {
@@ -914,9 +898,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * set at run time before calling the method <code>execute</code>.
      *
      * @param name
-     *             the <code>String</code> object containing the user name that
-     *             is supplied to the data source to create a connection. It may
-     *             be null.
+     *        the <code>String</code> object containing the user name that
+     *        is supplied to the data source to create a connection. It may
+     *        be null.
      * @see #getUsername
      */
     public void setUsername(String name) {
@@ -948,9 +932,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * before calling the method <code>execute</code>.
      *
      * @param pass
-     *             the <code>String</code> object that represents the password
-     *             that is supplied to the database to create a connection. It
-     *             may be null.
+     *        the <code>String</code> object that represents the password
+     *        that is supplied to the database to create a connection. It
+     *        may be null.
      * @see #getPassword
      */
     public void setPassword(String pass) {
@@ -966,24 +950,23 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * The default type is <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>.
      *
      * @param type
-     *             one of the following constants:
-     *             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     *        one of the following constants:
+     *        <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *        <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *        <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @throws SQLException
-     *                      if the parameter supplied is not one of the
-     *                      following
-     *                      constants: <code>ResultSet.TYPE_FORWARD_ONLY</code>
-     *                      or
-     *                      <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>
-     *                      <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     *         if the parameter supplied is not one of the
+     *         following
+     *         constants: <code>ResultSet.TYPE_FORWARD_ONLY</code>
+     *         or
+     *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>
+     *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @see #getConcurrency
      * @see #getType
      */
     public void setType(int type) throws SQLException {
 
-        if ((type != ResultSet.TYPE_FORWARD_ONLY)
-                && (type != ResultSet.TYPE_SCROLL_INSENSITIVE)
+        if ((type != ResultSet.TYPE_FORWARD_ONLY) && (type != ResultSet.TYPE_SCROLL_INSENSITIVE)
                 && (type != ResultSet.TYPE_SCROLL_SENSITIVE)) {
             throw new SQLException("Invalid type of RowSet set. Must be either "
                     + "ResultSet.TYPE_FORWARD_ONLY or ResultSet.TYPE_SCROLL_INSENSITIVE "
@@ -1004,8 +987,8 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
      *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @throws SQLException
-     *                      if an error occurs getting the type of of this
-     *                      <code>RowSet</code> object
+     *         if an error occurs getting the type of of this
+     *         <code>RowSet</code> object
      * @see #setType
      */
     public int getType() throws SQLException {
@@ -1020,22 +1003,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <P>
      * 
      * @param concurrency
-     *                    one of the following constants:
-     *                    <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *                    <code>ResultSet.CONCUR_UPDATABLE</code>
+     *        one of the following constants:
+     *        <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *        <code>ResultSet.CONCUR_UPDATABLE</code>
      * @throws SQLException
-     *                      if the parameter supplied is not one of the
-     *                      following
-     *                      constants: <code>ResultSet.CONCUR_UPDATABLE</code>
-     *                      or
-     *                      <code>ResultSet.CONCUR_READ_ONLY</code>
+     *         if the parameter supplied is not one of the
+     *         following
+     *         constants: <code>ResultSet.CONCUR_UPDATABLE</code>
+     *         or
+     *         <code>ResultSet.CONCUR_READ_ONLY</code>
      * @see #getConcurrency
      * @see #isReadOnly
      */
     public void setConcurrency(int concurrency) throws SQLException {
 
-        if ((concurrency != ResultSet.CONCUR_READ_ONLY)
-                && (concurrency != ResultSet.CONCUR_UPDATABLE)) {
+        if ((concurrency != ResultSet.CONCUR_READ_ONLY) && (concurrency != ResultSet.CONCUR_UPDATABLE)) {
             throw new SQLException("Invalid concurrency set. Must be either "
                     + "ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE.");
         }
@@ -1063,10 +1045,10 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>boolean</code>.
      *
      * @param value
-     *              <code>true</code> to indicate that this <code>RowSet</code>
-     *              object is read-only; <code>false</code> to indicate that it
-     *              is
-     *              updatable
+     *        <code>true</code> to indicate that this <code>RowSet</code>
+     *        object is read-only; <code>false</code> to indicate that it
+     *        is
+     *        updatable
      */
     public void setReadOnly(boolean value) {
         readOnly = value;
@@ -1092,7 +1074,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @see javax.sql.rowset.spi.SyncFactory
      * @see javax.sql.rowset.spi.SyncProvider
      * @see #setTransactionIsolation
-     * 
      */
     public int getTransactionIsolation() {
         return isolation;
@@ -1111,31 +1092,28 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * objects).
      *
      * @param level
-     *              one of the following constants, listed in ascending order:
-     *              <code>Connection.TRANSACTION_NONE</code>,
-     *              <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
-     *              <code>Connection.TRANSACTION_READ_COMMITTED</code>,
-     *              <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
-     *              <code>Connection.TRANSACTION_SERIALIZABLE</code>
+     *        one of the following constants, listed in ascending order:
+     *        <code>Connection.TRANSACTION_NONE</code>,
+     *        <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
+     *        <code>Connection.TRANSACTION_READ_COMMITTED</code>,
+     *        <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
+     *        <code>Connection.TRANSACTION_SERIALIZABLE</code>
      * @throws SQLException
-     *                      if the given parameter is not one of the Connection
-     *                      constants
+     *         if the given parameter is not one of the Connection
+     *         constants
      * @see javax.sql.rowset.spi.SyncFactory
      * @see javax.sql.rowset.spi.SyncProvider
      * @see #getTransactionIsolation
      */
     public void setTransactionIsolation(int level) throws SQLException {
-        if ((level != Connection.TRANSACTION_NONE)
-                && (level != Connection.TRANSACTION_READ_COMMITTED)
+        if ((level != Connection.TRANSACTION_NONE) && (level != Connection.TRANSACTION_READ_COMMITTED)
                 && (level != Connection.TRANSACTION_READ_UNCOMMITTED)
                 && (level != Connection.TRANSACTION_REPEATABLE_READ)
                 && (level != Connection.TRANSACTION_SERIALIZABLE)) {
-            throw new SQLException("Invalid transaction isolation set. Must "
-                    + "be either " + "Connection.TRANSACTION_NONE or "
-                    + "Connection.TRANSACTION_READ_UNCOMMITTED or "
+            throw new SQLException("Invalid transaction isolation set. Must " + "be either "
+                    + "Connection.TRANSACTION_NONE or " + "Connection.TRANSACTION_READ_UNCOMMITTED or "
                     + "Connection.TRANSACTION_READ_COMMITTED or "
-                    + "Connection.RRANSACTION_REPEATABLE_READ or "
-                    + "Connection.TRANSACTION_SERIALIZABLE");
+                    + "Connection.RRANSACTION_REPEATABLE_READ or " + "Connection.TRANSACTION_SERIALIZABLE");
         }
         this.isolation = level;
     }
@@ -1169,13 +1147,13 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method, in which case the type map supplied will be used.
      *
      * @param map
-     *            a <code>java.util.Map</code> object that contains the mapping
-     *            from SQL type names for user defined types (UDT) to classes in
-     *            the Java programming language. Each entry in the
-     *            <code>Map</code> object consists of the fully qualified SQL
-     *            name of a UDT and the <code>Class</code> object for the
-     *            <code>SQLData</code> implementation of that UDT. May be
-     *            <code>null</code>.
+     *        a <code>java.util.Map</code> object that contains the mapping
+     *        from SQL type names for user defined types (UDT) to classes in
+     *        the Java programming language. Each entry in the
+     *        <code>Map</code> object consists of the fully qualified SQL
+     *        name of a UDT and the <code>Class</code> object for the
+     *        <code>SQLData</code> implementation of that UDT. May be
+     *        <code>null</code>.
      */
     public void setTypeMap(java.util.Map<String, Class<?>> map) {
         this.map = map;
@@ -1192,9 +1170,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @return an <code>int</code> indicating the current maximum column size
      *         limit; zero means that there is no limit
      * @throws SQLException
-     *                      if an error occurs internally determining the
-     *                      maximum limit
-     *                      of the column size
+     *         if an error occurs internally determining the
+     *         maximum limit
+     *         of the column size
      */
     public int getMaxFieldSize() throws SQLException {
         return maxFieldSize;
@@ -1210,18 +1188,17 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * portability, it is advisable to use values greater than 256.
      *
      * @param max
-     *            an <code>int</code> indicating the new maximum column size
-     *            limit; zero means that there is no limit
+     *        an <code>int</code> indicating the new maximum column size
+     *        limit; zero means that there is no limit
      * @throws SQLException
-     *                      if (1) an error occurs internally setting the
-     *                      maximum limit
-     *                      of the column size or (2) a size of less than 0 is
-     *                      set
+     *         if (1) an error occurs internally setting the
+     *         maximum limit
+     *         of the column size or (2) a size of less than 0 is
+     *         set
      */
     public void setMaxFieldSize(int max) throws SQLException {
         if (max < 0) {
-            throw new SQLException("Invalid max field size set. Cannot be of "
-                    + "value: " + max);
+            throw new SQLException("Invalid max field size set. Cannot be of " + "value: " + max);
         }
         maxFieldSize = max;
     }
@@ -1234,10 +1211,10 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @return an <code>int</code> indicating the current maximum number of
      *         rows; zero means that there is no limit
      * @throws SQLException
-     *                      if an error occurs internally determining the
-     *                      maximum limit
-     *                      of rows that a <code>Rowset</code> object can
-     *                      contain
+     *         if an error occurs internally determining the
+     *         maximum limit
+     *         of rows that a <code>Rowset</code> object can
+     *         contain
      */
     public int getMaxRows() throws SQLException {
         return maxRows;
@@ -1249,26 +1226,24 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * are silently dropped.
      *
      * @param max
-     *            an <code>int</code> indicating the current maximum number of
-     *            rows; zero means that there is no limit
+     *        an <code>int</code> indicating the current maximum number of
+     *        rows; zero means that there is no limit
      * @throws SQLException
-     *                      if an error occurs internally setting the maximum
-     *                      limit on
-     *                      the number of rows that a JDBC <code>RowSet</code>
-     *                      object can
-     *                      contain; or if <i>max</i> is less than
-     *                      <code>0</code>; or if
-     *                      <i>max</i> is less than the <code>fetchSize</code>
-     *                      of the
-     *                      <code>RowSet</code>
+     *         if an error occurs internally setting the maximum
+     *         limit on
+     *         the number of rows that a JDBC <code>RowSet</code>
+     *         object can
+     *         contain; or if <i>max</i> is less than
+     *         <code>0</code>; or if
+     *         <i>max</i> is less than the <code>fetchSize</code>
+     *         of the
+     *         <code>RowSet</code>
      */
     public void setMaxRows(int max) throws SQLException {
         if (max < 0) {
-            throw new SQLException("Invalid max row size set. Cannot be of "
-                    + "value: " + max);
+            throw new SQLException("Invalid max row size set. Cannot be of " + "value: " + max);
         } else if (max < this.getFetchSize()) {
-            throw new SQLException("Invalid max row size set. Cannot be less "
-                    + "than the fetchSize.");
+            throw new SQLException("Invalid max row size set. Cannot be less " + "than the fetchSize.");
         }
         this.maxRows = max;
     }
@@ -1284,12 +1259,12 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * prepared statements will likely have no effect.
      *
      * @param enable
-     *               <code>true</code> to enable escape processing;
-     *               <code>false</code> to disable it
+     *        <code>true</code> to enable escape processing;
+     *        <code>false</code> to disable it
      * @throws SQLException
-     *                      if an error occurs setting the underlying JDBC
-     *                      technology-enabled driver to process the escape
-     *                      syntax
+     *         if an error occurs setting the underlying JDBC
+     *         technology-enabled driver to process the escape
+     *         syntax
      */
     public void setEscapeProcessing(boolean enable) throws SQLException {
         escapeProcessing = enable;
@@ -1303,8 +1278,8 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @return the current query timeout limit in seconds; zero means that there
      *         is no limit
      * @throws SQLException
-     *                      if an error occurs in determining the query time-out
-     *                      value
+     *         if an error occurs in determining the query time-out
+     *         value
      */
     public int getQueryTimeout() throws SQLException {
         return queryTimeout;
@@ -1316,18 +1291,17 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>SQLException</code> is thrown.
      *
      * @param seconds
-     *                the new query time-out limit in seconds; zero means that
-     *                there
-     *                is no limit; must not be less than zero
+     *        the new query time-out limit in seconds; zero means that
+     *        there
+     *        is no limit; must not be less than zero
      * @throws SQLException
-     *                      if an error occurs setting the query time-out or if
-     *                      the query
-     *                      time-out value is less than 0
+     *         if an error occurs setting the query time-out or if
+     *         the query
+     *         time-out value is less than 0
      */
     public void setQueryTimeout(int seconds) throws SQLException {
         if (seconds < 0) {
-            throw new SQLException("Invalid query timeout value set. Cannot be "
-                    + "of value: " + seconds);
+            throw new SQLException("Invalid query timeout value set. Cannot be " + "of value: " + seconds);
         }
         this.queryTimeout = seconds;
     }
@@ -1345,9 +1319,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @return <code>true</code> if deleted rows are visible; <code>false</code>
      *         otherwise
      * @throws SQLException
-     *                      if an error occurs determining if deleted rows are
-     *                      visible or
-     *                      not
+     *         if an error occurs determining if deleted rows are
+     *         visible or
+     *         not
      * @see #setShowDeleted
      */
     public boolean getShowDeleted() throws SQLException {
@@ -1360,12 +1334,12 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * deletion appear in the set of current rows.
      *
      * @param value
-     *              <code>true</code> if deleted rows should be shown;
-     *              <code>false</code> otherwise
+     *        <code>true</code> if deleted rows should be shown;
+     *        <code>false</code> otherwise
      * @throws SQLException
-     *                      if an error occurs setting whether deleted rows are
-     *                      visible
-     *                      or not
+     *         if an error occurs setting whether deleted rows are
+     *         visible
+     *         or not
      * @see #getShowDeleted
      */
     public void setShowDeleted(boolean value) throws SQLException {
@@ -1379,11 +1353,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @return <code>true</code> if escape processing is turned on;
      *         <code>false</code> otherwise
      * @throws SQLException
-     *                      if an error occurs determining if escape processing
-     *                      is
-     *                      enabled or not or if the internal escape processing
-     *                      trigger
-     *                      has not been enabled
+     *         if an error occurs determining if escape processing
+     *         is
+     *         enabled or not or if the internal escape processing
+     *         trigger
+     *         has not been enabled
      */
     public boolean getEscapeProcessing() throws SQLException {
         return escapeProcessing;
@@ -1406,18 +1380,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * its setting for the fetch direction.
      *
      * @param direction
-     *                  one of <code>ResultSet.FETCH_FORWARD</code>,
-     *                  <code>ResultSet.FETCH_REVERSE</code>, or
-     *                  <code>ResultSet.FETCH_UNKNOWN</code>
+     *        one of <code>ResultSet.FETCH_FORWARD</code>,
+     *        <code>ResultSet.FETCH_REVERSE</code>, or
+     *        <code>ResultSet.FETCH_UNKNOWN</code>
      * @throws SQLException
-     *                      if (1) the <code>RowSet</code> type is
-     *                      <code>TYPE_FORWARD_ONLY</code> and the given fetch
-     *                      direction
-     *                      is not <code>FETCH_FORWARD</code> or (2) the given
-     *                      fetch
-     *                      direction is not one of the following:
-     *                      ResultSet.FETCH_FORWARD, ResultSet.FETCH_REVERSE, or
-     *                      ResultSet.FETCH_UNKNOWN
+     *         if (1) the <code>RowSet</code> type is
+     *         <code>TYPE_FORWARD_ONLY</code> and the given fetch
+     *         direction
+     *         is not <code>FETCH_FORWARD</code> or (2) the given
+     *         fetch
+     *         direction is not one of the following:
+     *         ResultSet.FETCH_FORWARD, ResultSet.FETCH_REVERSE, or
+     *         ResultSet.FETCH_UNKNOWN
      * @see #getFetchDirection
      */
     public void setFetchDirection(int direction) throws SQLException {
@@ -1426,10 +1400,8 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
         // 1. RowSet is TYPE_FORWARD_ONLY and direction is not FETCH_FORWARD
         // 2. Direction is not one of the valid values
 
-        if (((getType() == ResultSet.TYPE_FORWARD_ONLY)
-                && (direction != ResultSet.FETCH_FORWARD))
-                || ((direction != ResultSet.FETCH_FORWARD)
-                        && (direction != ResultSet.FETCH_REVERSE)
+        if (((getType() == ResultSet.TYPE_FORWARD_ONLY) && (direction != ResultSet.FETCH_FORWARD))
+                || ((direction != ResultSet.FETCH_FORWARD) && (direction != ResultSet.FETCH_REVERSE)
                         && (direction != ResultSet.FETCH_UNKNOWN))) {
             throw new SQLException("Invalid Fetch Direction");
         }
@@ -1444,9 +1416,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      *         <code>ResultSet.FETCH_REVERSE</code>, or
      *         <code>ResultSet.FETCH_UNKNOWN</code>
      * @throws SQLException
-     *                      if an error occurs in determining the current fetch
-     *                      direction
-     *                      for fetching rows
+     *         if an error occurs in determining the current fetch
+     *         direction
+     *         for fetching rows
      * @see #setFetchDirection
      */
     public int getFetchDirection() throws SQLException {
@@ -1498,16 +1470,16 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <P>
      *
      * @param rows
-     *             the number of rows to fetch; <code>0</code> to let the driver
-     *             decide what the best fetch size is; must not be less than
-     *             <code>0</code> or more than the maximum number of rows
-     *             allowed
-     *             for this <code>RowSet</code> object (the number returned by a
-     *             call to the method {@link #getMaxRows})
+     *        the number of rows to fetch; <code>0</code> to let the driver
+     *        decide what the best fetch size is; must not be less than
+     *        <code>0</code> or more than the maximum number of rows
+     *        allowed
+     *        for this <code>RowSet</code> object (the number returned by a
+     *        call to the method {@link #getMaxRows})
      * @throws SQLException
-     *                      if the specified fetch size is less than
-     *                      <code>0</code> or
-     *                      more than the limit for the maximum number of rows
+     *         if the specified fetch size is less than
+     *         <code>0</code> or
+     *         more than the limit for the maximum number of rows
      * @see #getFetchSize
      */
     public void setFetchSize(int rows) throws SQLException {
@@ -1520,8 +1492,7 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
             return;
         }
         if ((rows < 0) || (rows > getMaxRows())) {
-            throw new SQLException("Invalid fetch size set. Cannot be of "
-                    + "value: " + rows);
+            throw new SQLException("Invalid fetch size set. Cannot be of " + "value: " + rows);
         }
         fetchSize = rows;
     }
@@ -1533,9 +1504,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * @return the number of rows suggested as the fetch size when this
      *         <code>RowSet</code> object needs more rows from the database
      * @throws SQLException
-     *                      if an error occurs determining the number of rows in
-     *                      the
-     *                      current fetch size
+     *         if an error occurs determining the number of rows in
+     *         the
+     *         current fetch size
      * @see #setFetchSize
      */
     public int getFetchSize() throws SQLException {
@@ -1556,8 +1527,8 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      *         <code>ResultSet.CONCUR_READ_ONLY</code> or
      *         <code>ResultSet.CONCUR_UPDATABLE</code>
      * @throws SQLException
-     *                      if an error occurs getting the concurrency of this
-     *                      <code>RowSet</code> object
+     *         if an error occurs getting the concurrency of this
+     *         <code>RowSet</code> object
      * @see #setConcurrency
      * @see #isReadOnly
      */
@@ -1577,10 +1548,10 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * an application directly.
      *
      * @param idx
-     *            an <code>int</code> indicating which parameter is to be
-     *            checked; the first parameter is <code>1</code>
+     *        an <code>int</code> indicating which parameter is to be
+     *        checked; the first parameter is <code>1</code>
      * @throws SQLException
-     *                      if the parameter is less than <code>1</code>
+     *         if the parameter is less than <code>1</code>
      */
     private void checkParamIndex(int idx) throws SQLException {
         if ((idx < 1)) {
@@ -1632,27 +1603,27 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param sqlType
-     *                       an <code>int</code> that is one of the SQL type
-     *                       codes defined
-     *                       in the class {@link java.sql.Types}. If a
-     *                       non-standard
-     *                       <i>sqlType</i> is supplied, this method will not
-     *                       throw a
-     *                       <code>SQLException</code>. This allows implicit
-     *                       support for
-     *                       non-standard SQL types.
+     *        an <code>int</code> that is one of the SQL type
+     *        codes defined
+     *        in the class {@link java.sql.Types}. If a
+     *        non-standard
+     *        <i>sqlType</i> is supplied, this method will not
+     *        throw a
+     *        <code>SQLException</code>. This allows implicit
+     *        support for
+     *        non-standard SQL types.
      * @throws SQLException
-     *                      if a database access error occurs or the given
-     *                      parameter
-     *                      index is out of bounds
+     *         if a database access error occurs or the given
+     *         parameter
+     *         index is out of bounds
      * @see #getParams
      */
     public void setNull(int parameterIndex, int sqlType) throws SQLException {
@@ -1672,13 +1643,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
 
     /**
      * Sets the designated parameter to SQL <code>NULL</code>.
-     *
      * Although this version of the method <code>setNull</code> is intended for
      * user-defined and <code>REF</code> parameters, this method may be used to
      * set a null parameter for any JDBC type. The following are user-defined
      * types: <code>STRUCT</code>, <code>DISTINCT</code>, and
      * <code>JAVA_OBJECT</code>, and named array types.
-     *
      * <P>
      * <B>Note:</B> To be portable, applications must give the SQL type code and
      * the fully qualified SQL type name when specifying a <code>NULL</code>
@@ -1721,29 +1690,28 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param sqlType
-     *                       a value from <code>java.sql.Types</code>
+     *        a value from <code>java.sql.Types</code>
      * @param typeName
-     *                       the fully qualified name of an SQL user-defined
-     *                       type, which is
-     *                       ignored if the parameter is not a user-defined type
-     *                       or
-     *                       <code>REF</code> value
+     *        the fully qualified name of an SQL user-defined
+     *        type, which is
+     *        ignored if the parameter is not a user-defined type
+     *        or
+     *        <code>REF</code> value
      * @throws SQLException
-     *                      if an error occurs or the given parameter index is
-     *                      out of
-     *                      bounds
+     *         if an error occurs or the given parameter index is
+     *         out of
+     *         bounds
      * @see #getParams
      */
-    public void setNull(int parameterIndex, int sqlType, String typeName)
-            throws SQLException {
+    public void setNull(int parameterIndex, int sqlType, String typeName) throws SQLException {
 
         Object nullVal[];
         checkParamIndex(parameterIndex);
@@ -1776,18 +1744,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setBoolean(int parameterIndex, boolean x) throws SQLException {
@@ -1816,18 +1784,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setByte(int parameterIndex, byte x) throws SQLException {
@@ -1857,18 +1825,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <p>
      * 
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setShort(int parameterIndex, short x) throws SQLException {
@@ -1897,18 +1865,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setInt(int parameterIndex, int x) throws SQLException {
@@ -1935,18 +1903,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setLong(int parameterIndex, long x) throws SQLException {
@@ -1973,18 +1941,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setFloat(int parameterIndex, float x) throws SQLException {
@@ -2011,18 +1979,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class. S
      * 
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setDouble(int parameterIndex, double x) throws SQLException {
@@ -2049,22 +2017,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setBigDecimal(int parameterIndex, java.math.BigDecimal x)
-            throws SQLException {
+    public void setBigDecimal(int parameterIndex, java.math.BigDecimal x) throws SQLException {
         checkParamIndex(parameterIndex);
         if (params == null) {
             throw new SQLException("Set initParams() before setBigDecimal");
@@ -2091,18 +2058,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <p>
      * 
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setString(int parameterIndex, String x) throws SQLException {
@@ -2131,18 +2098,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * method as it is undefined in this class.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
     public void setBytes(int parameterIndex, byte x[]) throws SQLException {
@@ -2177,22 +2144,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setDate(int parameterIndex, java.sql.Date x)
-            throws SQLException {
+    public void setDate(int parameterIndex, java.sql.Date x) throws SQLException {
         checkParamIndex(parameterIndex);
 
         if (params == null) {
@@ -2227,25 +2193,24 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>java.sql.Time</code> object, which is to be
-     *                       set as the
-     *                       value for placeholder parameter
-     *                       <i>parameterIndex</i>
+     *        a <code>java.sql.Time</code> object, which is to be
+     *        set as the
+     *        value for placeholder parameter
+     *        <i>parameterIndex</i>
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setTime(int parameterIndex, java.sql.Time x)
-            throws SQLException {
+    public void setTime(int parameterIndex, java.sql.Time x) throws SQLException {
         checkParamIndex(parameterIndex);
         if (params == null) {
             throw new SQLException("Set initParams() before setTime");
@@ -2278,22 +2243,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * parameter number <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>java.sql.Timestamp</code> object
+     *        a <code>java.sql.Timestamp</code> object
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setTimestamp(int parameterIndex, java.sql.Timestamp x)
-            throws SQLException {
+    public void setTimestamp(int parameterIndex, java.sql.Timestamp x) throws SQLException {
         checkParamIndex(parameterIndex);
         if (params == null) {
             throw new SQLException("Set initParams() before setTimestamp");
@@ -2316,7 +2280,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * will read the data from the stream as needed until it reaches
      * end-of-file. The driver will do any necessary conversion from ASCII to
      * the database <code>CHAR</code> format.
-     *
      * <P>
      * <B>Note:</B> This stream object can be either a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2353,36 +2316,35 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @param length
-     *                       the number of bytes in the stream. This is the
-     *                       number of bytes
-     *                       the driver will send to the DBMS; lengths of 0 or
-     *                       less are are
-     *                       undefined but will cause an invalid length
-     *                       exception to be
-     *                       thrown in the underlying JDBC driver.
+     *        the number of bytes in the stream. This is the
+     *        number of bytes
+     *        the driver will send to the DBMS; lengths of 0 or
+     *        less are are
+     *        undefined but will cause an invalid length
+     *        exception to be
+     *        thrown in the underlying JDBC driver.
      * @throws SQLException
-     *                      if an error occurs, the parameter index is out of
-     *                      bounds, or
-     *                      when connected to a data source, the number of bytes
-     *                      the
-     *                      driver reads and sends to the database is not equal
-     *                      to the
-     *                      number of bytes specified in <i>length</i>
+     *         if an error occurs, the parameter index is out of
+     *         bounds, or
+     *         when connected to a data source, the number of bytes
+     *         the
+     *         driver reads and sends to the database is not equal
+     *         to the
+     *         number of bytes specified in <i>length</i>
      * @see #getParams
      */
-    public void setAsciiStream(int parameterIndex, java.io.InputStream x,
-            int length) throws SQLException {
+    public void setAsciiStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException {
         Object asciiStream[];
         checkParamIndex(parameterIndex);
 
@@ -2405,7 +2367,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * it via a <code>java.io.InputStream</code>. Data will be read from the
      * stream as needed until end-of-file is reached. The JDBC driver will do
      * any necessary conversion from ASCII to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2415,21 +2376,20 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setAsciiStream(int parameterIndex, java.io.InputStream x)
-            throws SQLException {
+    public void setAsciiStream(int parameterIndex, java.io.InputStream x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -2446,7 +2406,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>java.io.InputStream</code> object. A JDBC technology-enabled driver
      * will read the data from the stream as needed until it reaches
      * end-of-file.
-     *
      * <P>
      * <B>Note:</B> This stream object can be either a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2483,34 +2442,33 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the input stream that contains the binary value to
-     *                       be set
+     *        the input stream that contains the binary value to
+     *        be set
      * @param length
-     *                       the number of bytes in the stream; lengths of 0 or
-     *                       less are
-     *                       are undefined but will cause an invalid length
-     *                       exception to be
-     *                       thrown in the underlying JDBC driver.
+     *        the number of bytes in the stream; lengths of 0 or
+     *        less are
+     *        are undefined but will cause an invalid length
+     *        exception to be
+     *        thrown in the underlying JDBC driver.
      * @throws SQLException
-     *                      if an error occurs, the parameter index is out of
-     *                      bounds, or
-     *                      when connected to a data source, the number of bytes
-     *                      the
-     *                      driver reads and sends to the database is not equal
-     *                      to the
-     *                      number of bytes specified in <i>length</i>
+     *         if an error occurs, the parameter index is out of
+     *         bounds, or
+     *         when connected to a data source, the number of bytes
+     *         the
+     *         driver reads and sends to the database is not equal
+     *         to the
+     *         number of bytes specified in <i>length</i>
      * @see #getParams
      */
-    public void setBinaryStream(int parameterIndex, java.io.InputStream x,
-            int length) throws SQLException {
+    public void setBinaryStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException {
         Object binaryStream[];
         checkParamIndex(parameterIndex);
 
@@ -2531,7 +2489,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * input to a <code>LONGVARBINARY</code> parameter, it may be more practical
      * to send it via a <code>java.io.InputStream</code> object. The data will
      * be read from the stream as needed until end-of-file is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2541,22 +2498,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the java input stream which contains the binary
-     *                       parameter
-     *                       value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setBinaryStream(int parameterIndex, java.io.InputStream x)
-            throws SQLException {
+    public void setBinaryStream(int parameterIndex, java.io.InputStream x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -2575,7 +2531,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * the database <code>CHAR</code> format. The byte format of the Unicode
      * stream must be Java UTF-8, as defined in the Java Virtual Machine
      * Specification.
-     *
      * <P>
      * <B>Note:</B> This stream object can be either a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2608,33 +2563,32 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the <code>java.io.InputStream</code> object that
-     *                       contains the
-     *                       UNICODE parameter value
+     *        the <code>java.io.InputStream</code> object that
+     *        contains the
+     *        UNICODE parameter value
      * @param length
-     *                       the number of bytes in the input stream
+     *        the number of bytes in the input stream
      * @throws SQLException
-     *                      if an error occurs, the parameter index is out of
-     *                      bounds, or
-     *                      the number of bytes the driver reads and sends to
-     *                      the
-     *                      database is not equal to the number of bytes
-     *                      specified in
-     *                      <i>length</i>
+     *         if an error occurs, the parameter index is out of
+     *         bounds, or
+     *         the number of bytes the driver reads and sends to
+     *         the
+     *         database is not equal to the number of bytes
+     *         specified in
+     *         <i>length</i>
      * @deprecated getCharacterStream should be used in its place
      * @see #getParams
      */
     @Deprecated
-    public void setUnicodeStream(int parameterIndex, java.io.InputStream x,
-            int length) throws SQLException {
+    public void setUnicodeStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException {
         Object unicodeStream[];
         checkParamIndex(parameterIndex);
 
@@ -2662,7 +2616,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * necessary conversion from Unicode to the database <code>CHAR</code>
      * format. The byte format of the Unicode stream must be Java UTF-8, as
      * defined in the Java Virtual Machine Specification.
-     *
      * <P>
      * <B>Note:</B> This stream object can be either a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2696,34 +2649,33 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param reader
-     *                       the <code>Reader</code> object that contains the
-     *                       Unicode data
+     *        the <code>Reader</code> object that contains the
+     *        Unicode data
      * @param length
-     *                       the number of characters in the stream; lengths of
-     *                       0 or less
-     *                       are undefined but will cause an invalid length
-     *                       exception to be
-     *                       thrown in the underlying JDBC driver.
+     *        the number of characters in the stream; lengths of
+     *        0 or less
+     *        are undefined but will cause an invalid length
+     *        exception to be
+     *        thrown in the underlying JDBC driver.
      * @throws SQLException
-     *                      if an error occurs, the parameter index is out of
-     *                      bounds, or
-     *                      when connected to a data source, the number of bytes
-     *                      the
-     *                      driver reads and sends to the database is not equal
-     *                      to the
-     *                      number of bytes specified in <i>length</i>
+     *         if an error occurs, the parameter index is out of
+     *         bounds, or
+     *         when connected to a data source, the number of bytes
+     *         the
+     *         driver reads and sends to the database is not equal
+     *         to the
+     *         number of bytes specified in <i>length</i>
      * @see #getParams
      */
-    public void setCharacterStream(int parameterIndex, Reader reader,
-            int length) throws SQLException {
+    public void setCharacterStream(int parameterIndex, Reader reader, int length) throws SQLException {
         Object charStream[];
         checkParamIndex(parameterIndex);
 
@@ -2731,8 +2683,7 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
         charStream[0] = reader;
         charStream[1] = Integer.valueOf(length);
         if (params == null) {
-            throw new SQLException(
-                    "Set initParams() before setCharacterStream");
+            throw new SQLException("Set initParams() before setCharacterStream");
         }
         params.put(Integer.valueOf(parameterIndex - 1), charStream);
     }
@@ -2745,7 +2696,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * data will be read from the stream as needed until end-of-file is reached.
      * The JDBC driver will do any necessary conversion from UNICODE to the
      * database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2755,22 +2705,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setCharacterStream</code> which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param reader
-     *                       the <code>java.io.Reader</code> object that
-     *                       contains the
-     *                       Unicode data
+     *        the <code>java.io.Reader</code> object that
+     *        contains the
+     *        Unicode data
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setCharacterStream(int parameterIndex, java.io.Reader reader)
-            throws SQLException {
+    public void setCharacterStream(int parameterIndex, java.io.Reader reader) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -2789,7 +2738,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>Ref</code>, <code>Blob</code>, <code>Clob</code>,
      * <code>Struct</code>, or <code>Array</code>, the driver should pass it to
      * the database as a value of the corresponding SQL type.
-     *
      * <p>
      * Note that this method may be used to pass database- specific abstract
      * data types.
@@ -2826,45 +2774,43 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * the array element that corresponds to placeholder parameter number
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
-     *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the <code>Object</code> containing the input
-     *                       parameter value;
-     *                       must be an <code>Object</code> type
+     *        the <code>Object</code> containing the input
+     *        parameter value;
+     *        must be an <code>Object</code> type
      * @param targetSqlType
-     *                       the SQL type (as defined in
-     *                       <code>java.sql.Types</code>) to be
-     *                       sent to the database. The <code>scale</code>
-     *                       argument may
-     *                       further qualify this type. If a non-standard
-     *                       <i>targetSqlType</i> is supplied, this method will
-     *                       not throw a
-     *                       <code>SQLException</code>. This allows implicit
-     *                       support for
-     *                       non-standard SQL types.
+     *        the SQL type (as defined in
+     *        <code>java.sql.Types</code>) to be
+     *        sent to the database. The <code>scale</code>
+     *        argument may
+     *        further qualify this type. If a non-standard
+     *        <i>targetSqlType</i> is supplied, this method will
+     *        not throw a
+     *        <code>SQLException</code>. This allows implicit
+     *        support for
+     *        non-standard SQL types.
      * @param scale
-     *                       for the types <code>java.sql.Types.DECIMAL</code>
-     *                       and
-     *                       <code>java.sql.Types.NUMERIC</code>, this is the
-     *                       number of
-     *                       digits after the decimal point. For all other
-     *                       types, this
-     *                       value will be ignored.
+     *        for the types <code>java.sql.Types.DECIMAL</code>
+     *        and
+     *        <code>java.sql.Types.NUMERIC</code>, this is the
+     *        number of
+     *        digits after the decimal point. For all other
+     *        types, this
+     *        value will be ignored.
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setObject(int parameterIndex, Object x, int targetSqlType,
-            int scale) throws SQLException {
+    public void setObject(int parameterIndex, Object x, int targetSqlType, int scale) throws SQLException {
         Object obj[];
         checkParamIndex(parameterIndex);
 
@@ -2913,33 +2859,32 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the <code>Object</code> containing the input
-     *                       parameter value;
-     *                       must be an <code>Object</code> type
+     *        the <code>Object</code> containing the input
+     *        parameter value;
+     *        must be an <code>Object</code> type
      * @param targetSqlType
-     *                       the SQL type (as defined in
-     *                       <code>java.sql.Types</code>) to be
-     *                       sent to the database. If a non-standard
-     *                       <i>targetSqlType</i>
-     *                       is supplied, this method will not throw a
-     *                       <code>SQLException</code>. This allows implicit
-     *                       support for
-     *                       non-standard SQL types.
+     *        the SQL type (as defined in
+     *        <code>java.sql.Types</code>) to be
+     *        sent to the database. If a non-standard
+     *        <i>targetSqlType</i>
+     *        is supplied, this method will not throw a
+     *        <code>SQLException</code>. This allows implicit
+     *        support for
+     *        non-standard SQL types.
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setObject(int parameterIndex, Object x, int targetSqlType)
-            throws SQLException {
+    public void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException {
         Object obj[];
         checkParamIndex(parameterIndex);
 
@@ -2997,21 +2942,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @throws SQLException
-     *                      if an error occurs the parameter index is out of
-     *                      bounds, or
-     *                      there is ambiguity in the implementation of the
-     *                      object being
-     *                      set
+     *         if an error occurs the parameter index is out of
+     *         bounds, or
+     *         there is ambiguity in the implementation of the
+     *         object being
+     *         set
      * @see #getParams
      */
     public void setObject(int parameterIndex, Object x) throws SQLException {
@@ -3048,25 +2993,25 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param ref
-     *                       a <code>Ref</code> object representing an SQL
-     *                       <code>REF</code>
-     *                       value; cannot be null
+     *        a <code>Ref</code> object representing an SQL
+     *        <code>REF</code>
+     *        value; cannot be null
      * @throws SQLException
-     *                      if an error occurs; the parameter index is out of
-     *                      bounds or
-     *                      the <code>Ref</code> object is <code>null</code>; or
-     *                      the
-     *                      <code>Ref</code> object returns a <code>null</code>
-     *                      base type
-     *                      name.
+     *         if an error occurs; the parameter index is out of
+     *         bounds or
+     *         the <code>Ref</code> object is <code>null</code>; or
+     *         the
+     *         <code>Ref</code> object returns a <code>null</code>
+     *         base type
+     *         name.
      * @see #getParams
      * @see javax.sql.rowset.serial.SerialRef
      */
@@ -3103,19 +3048,19 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>Blob</code> object representing an SQL
-     *                       <code>BLOB</code> value
+     *        a <code>Blob</code> object representing an SQL
+     *        <code>BLOB</code> value
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      * @see javax.sql.rowset.serial.SerialBlob
      */
@@ -3153,20 +3098,20 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>Clob</code> object representing an SQL
-     *                       <code>CLOB</code> value; cannot be null
+     *        a <code>Clob</code> object representing an SQL
+     *        <code>CLOB</code> value; cannot be null
      * @throws SQLException
-     *                      if an error occurs; the parameter index is out of
-     *                      bounds or
-     *                      the <code>Clob</code> is null
+     *         if an error occurs; the parameter index is out of
+     *         bounds or
+     *         the <code>Clob</code> is null
      * @see #getParams
      * @see javax.sql.rowset.serial.SerialBlob
      */
@@ -3204,27 +3149,27 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is element number <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param array
-     *                       an <code>Array</code> object representing an SQL
-     *                       <code>ARRAY</code> value; cannot be null. The
-     *                       <code>Array</code> object passed to this method
-     *                       must return a
-     *                       non-null Object for all <code>getArray()</code>
-     *                       method calls.
-     *                       A null value will cause a <code>SQLException</code>
-     *                       to be
-     *                       thrown.
+     *        an <code>Array</code> object representing an SQL
+     *        <code>ARRAY</code> value; cannot be null. The
+     *        <code>Array</code> object passed to this method
+     *        must return a
+     *        non-null Object for all <code>getArray()</code>
+     *        method calls.
+     *        A null value will cause a <code>SQLException</code>
+     *        to be
+     *        thrown.
      * @throws SQLException
-     *                      if an error occurs; the parameter index is out of
-     *                      bounds or
-     *                      the <code>ARRAY</code> is null
+     *         if an error occurs; the parameter index is out of
+     *         bounds or
+     *         the <code>ARRAY</code> is null
      * @see #getParams
      * @see javax.sql.rowset.serial.SerialArray
      */
@@ -3275,28 +3220,27 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>java.sql.Date</code> object representing an
-     *                       SQL
-     *                       <code>DATE</code> value
+     *        a <code>java.sql.Date</code> object representing an
+     *        SQL
+     *        <code>DATE</code> value
      * @param cal
-     *                       a <code>java.util.Calendar</code> object to use
-     *                       when when
-     *                       constructing the date
+     *        a <code>java.util.Calendar</code> object to use
+     *        when when
+     *        constructing the date
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setDate(int parameterIndex, java.sql.Date x, Calendar cal)
-            throws SQLException {
+    public void setDate(int parameterIndex, java.sql.Date x, Calendar cal) throws SQLException {
         Object date[];
         checkParamIndex(parameterIndex);
 
@@ -3351,26 +3295,25 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>java.sql.Time</code> object
+     *        a <code>java.sql.Time</code> object
      * @param cal
-     *                       the <code>java.util.Calendar</code> object the
-     *                       driver can use
-     *                       to construct the time
+     *        the <code>java.util.Calendar</code> object the
+     *        driver can use
+     *        to construct the time
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setTime(int parameterIndex, java.sql.Time x, Calendar cal)
-            throws SQLException {
+    public void setTime(int parameterIndex, java.sql.Time x, Calendar cal) throws SQLException {
         Object time[];
         checkParamIndex(parameterIndex);
 
@@ -3425,26 +3368,25 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <i>parameterIndex</i> is <i>parameterIndex</i> -1.
      *
      * @param parameterIndex
-     *                       the ordinal number of the placeholder parameter in
-     *                       this
-     *                       <code>RowSet</code> object's command that is to be
-     *                       set. The
-     *                       first parameter is 1, the second is 2, and so on;
-     *                       must be
-     *                       <code>1</code> or greater
+     *        the ordinal number of the placeholder parameter in
+     *        this
+     *        <code>RowSet</code> object's command that is to be
+     *        set. The
+     *        first parameter is 1, the second is 2, and so on;
+     *        must be
+     *        <code>1</code> or greater
      * @param x
-     *                       a <code>java.sql.Timestamp</code> object
+     *        a <code>java.sql.Timestamp</code> object
      * @param cal
-     *                       the <code>java.util.Calendar</code> object the
-     *                       driver can use
-     *                       to construct the timestamp
+     *        the <code>java.util.Calendar</code> object the
+     *        driver can use
+     *        to construct the timestamp
      * @throws SQLException
-     *                      if an error occurs or the parameter index is out of
-     *                      bounds
+     *         if an error occurs or the parameter index is out of
+     *         bounds
      * @see #getParams
      */
-    public void setTimestamp(int parameterIndex, java.sql.Timestamp x,
-            Calendar cal) throws SQLException {
+    public void setTimestamp(int parameterIndex, java.sql.Timestamp x, Calendar cal) throws SQLException {
         Object timestamp[];
         checkParamIndex(parameterIndex);
 
@@ -3474,7 +3416,7 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * in that it maintains the schema of the <code>RowSet</code> object.
      *
      * @throws SQLException
-     *                      if an error occurs clearing the parameters
+     *         if an error occurs clearing the parameters
      */
     public void clearParameters() throws SQLException {
         params.clear();
@@ -3512,11 +3454,11 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      *         parameter values that may be set in this <code>RowSet</code>
      *         object's command; an empty array if no parameters have been set
      * @throws SQLException
-     *                      if an error occurs retrieving the object array of
-     *                      parameters
-     *                      of this <code>RowSet</code> object or if not all
-     *                      parameters
-     *                      have been set
+     *         if an error occurs retrieving the object array of
+     *         parameters
+     *         of this <code>RowSet</code> object or if not all
+     *         parameters
+     *         have been set
      */
     public Object[] getParams() throws SQLException {
         if (params == null) {
@@ -3546,24 +3488,23 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
 
     /**
      * Sets the designated parameter to SQL <code>NULL</code>.
-     *
      * <P>
      * <B>Note:</B> You must specify the parameter's SQL type.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param sqlType
-     *                      the SQL type code defined in
-     *                      <code>java.sql.Types</code>
+     *        the SQL type code defined in
+     *        <code>java.sql.Types</code>
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
     public void setNull(String parameterName, int sqlType) throws SQLException {
@@ -3575,7 +3516,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * the method <code>setNull</code> should be used for user-defined types and
      * REF type parameters. Examples of user-defined types include: STRUCT,
      * DISTINCT, JAVA_OBJECT, and named array types.
-     *
      * <P>
      * <B>Note:</B> To be portable, applications must give the SQL type code and
      * the fully-qualified SQL type name when specifying a NULL user-defined or
@@ -3583,34 +3523,31 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * name of the parameter itself. For a REF parameter, the name is the type
      * name of the referenced type. If a JDBC driver does not need the type code
      * or type name information, it may ignore it.
-     *
      * Although it is intended for user-defined and Ref parameters, this method
      * may be used to set a null parameter of any JDBC type. If the parameter
      * does not have a user-defined or REF type, the given typeName is ignored.
      *
-     *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param sqlType
-     *                      a value from <code>java.sql.Types</code>
+     *        a value from <code>java.sql.Types</code>
      * @param typeName
-     *                      the fully-qualified name of an SQL user-defined
-     *                      type; ignored
-     *                      if the parameter is not a user-defined type or SQL
-     *                      <code>REF</code> value
+     *        the fully-qualified name of an SQL user-defined
+     *        type; ignored
+     *        if the parameter is not a user-defined type or SQL
+     *        <code>REF</code> value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    public void setNull(String parameterName, int sqlType, String typeName)
-            throws SQLException {
+    public void setNull(String parameterName, int sqlType, String typeName) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -3620,23 +3557,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>BOOLEAN</code> value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setBoolean(String parameterName, boolean x)
-            throws SQLException {
+    public void setBoolean(String parameterName, boolean x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -3646,18 +3582,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3671,18 +3607,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3696,18 +3632,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3721,18 +3657,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3746,18 +3682,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3771,18 +3707,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3796,23 +3732,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * SQL <code>NUMERIC</code> value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setBigDecimal(String parameterName, BigDecimal x)
-            throws SQLException {
+    public void setBigDecimal(String parameterName, BigDecimal x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -3824,18 +3759,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3851,18 +3786,18 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -3876,23 +3811,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>TIMESTAMP</code> value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setTimestamp(String parameterName, java.sql.Timestamp x)
-            throws SQLException {
+    public void setTimestamp(String parameterName, java.sql.Timestamp x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -3903,31 +3837,29 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * via a <code>java.io.InputStream</code>. Data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from ASCII to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the Java input stream that contains the ASCII
-     *                      parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @param length
-     *                      the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    public void setAsciiStream(String parameterName, java.io.InputStream x,
-            int length) throws SQLException {
+    public void setAsciiStream(String parameterName, java.io.InputStream x, int length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -3937,32 +3869,30 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * a <code>LONGVARBINARY</code> parameter, it may be more practical to send
      * it via a <code>java.io.InputStream</code> object. The data will be read
      * from the stream as needed until end-of-file is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the java input stream which contains the binary
-     *                      parameter
-     *                      value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @param length
-     *                      the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    public void setBinaryStream(String parameterName, java.io.InputStream x,
-            int length) throws SQLException {
+    public void setBinaryStream(String parameterName, java.io.InputStream x, int length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -3974,32 +3904,31 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * will be read from the stream as needed until end-of-file is reached. The
      * JDBC driver will do any necessary conversion from UNICODE to the database
      * char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      the <code>java.io.Reader</code> object that contains
-     *                      the
-     *                      UNICODE data used as the designated parameter
+     *        the <code>java.io.Reader</code> object that contains
+     *        the
+     *        UNICODE data used as the designated parameter
      * @param length
-     *                      the number of characters in the stream
+     *        the number of characters in the stream
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    public void setCharacterStream(String parameterName, java.io.Reader reader,
-            int length) throws SQLException {
+    public void setCharacterStream(String parameterName, java.io.Reader reader, int length)
+            throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4010,7 +3939,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * Data will be read from the stream as needed until end-of-file is reached.
      * The JDBC driver will do any necessary conversion from ASCII to the
      * database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -4020,21 +3948,20 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the Java input stream that contains the ASCII
-     *                      parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setAsciiStream(String parameterName, java.io.InputStream x)
-            throws SQLException {
+    public void setAsciiStream(String parameterName, java.io.InputStream x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4044,7 +3971,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * may be more practical to send it via a <code>java.io.InputStream</code>
      * object. The data will be read from the stream as needed until end-of-file
      * is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -4054,22 +3980,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the java input stream which contains the binary
-     *                      parameter
-     *                      value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setBinaryStream(String parameterName, java.io.InputStream x)
-            throws SQLException {
+    public void setBinaryStream(String parameterName, java.io.InputStream x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4080,7 +4005,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>java.io.Reader</code> object. The data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from UNICODE to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -4090,22 +4014,21 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setCharacterStream</code> which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      the <code>java.io.Reader</code> object that contains
-     *                      the
-     *                      Unicode data
+     *        the <code>java.io.Reader</code> object that contains
+     *        the
+     *        Unicode data
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setCharacterStream(String parameterName, java.io.Reader reader)
-            throws SQLException {
+    public void setCharacterStream(String parameterName, java.io.Reader reader) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4115,7 +4038,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * the data till end-of-file is reached. The driver does the necessary
      * conversion from Java character format to the national character set in
      * the database.
-     * 
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -4125,25 +4047,24 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setNCharacterStream</code> which takes a length parameter.
      *
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; if a database access
-     *                                         error occurs; or this method is
-     *                                         called on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; if a database access
+     *         error occurs; or this method is
+     *         called on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNCharacterStream(int parameterIndex, Reader value)
-            throws SQLException {
+    public void setNCharacterStream(int parameterIndex, Reader value) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4151,11 +4072,9 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * Sets the value of the designated parameter with the given object. The
      * second argument must be an object type; for integral values, the
      * <code>java.lang</code> equivalent objects should be used.
-     *
      * <p>
      * The given Java object will be converted to the given targetSqlType before
      * being sent to the database.
-     *
      * If the object has a custom mapping (is of a class implementing the
      * interface <code>SQLData</code>), the JDBC driver should call the method
      * <code>SQLData.writeSQL</code> to write it to the SQL data stream. If, on
@@ -4169,49 +4088,48 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * data types.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                      the SQL type (as defined in java.sql.Types) to be
-     *                      sent to the
-     *                      database. The scale argument may further qualify
-     *                      this type.
+     *        the SQL type (as defined in java.sql.Types) to be
+     *        sent to the
+     *        database. The scale argument may further qualify
+     *        this type.
      * @param scale
-     *                      for java.sql.Types.DECIMAL or java.sql.Types.NUMERIC
-     *                      types,
-     *                      this is the number of digits after the decimal
-     *                      point. For all
-     *                      other types, this value will be ignored.
+     *        for java.sql.Types.DECIMAL or java.sql.Types.NUMERIC
+     *        types,
+     *        this is the number of digits after the decimal
+     *        point. For all
+     *        other types, this value will be ignored.
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if <code>targetSqlType</code>
-     *                                            is a <code>ARRAY</code>,
-     *                                            <code>BLOB</code>,
-     *                                            <code>CLOB</code>,
-     *                                            <code>DATALINK</code>,
-     *                                            <code>JAVA_OBJECT</code>,
-     *                                            <code>NCHAR</code>,
-     *                                            <code>NCLOB</code>,
-     *                                            <code>NVARCHAR</code>,
-     *                                            <code>LONGNVARCHAR</code>,
-     *                                            <code>REF</code>,
-     *                                            <code>ROWID</code>,
-     *                                            <code>SQLXML</code>
-     *                                            or <code>STRUCT</code> data
-     *                                            type and the JDBC driver does
-     *                                            not support this data type
+     *            if <code>targetSqlType</code>
+     *            is a <code>ARRAY</code>,
+     *            <code>BLOB</code>,
+     *            <code>CLOB</code>,
+     *            <code>DATALINK</code>,
+     *            <code>JAVA_OBJECT</code>,
+     *            <code>NCHAR</code>,
+     *            <code>NCLOB</code>,
+     *            <code>NVARCHAR</code>,
+     *            <code>LONGNVARCHAR</code>,
+     *            <code>REF</code>,
+     *            <code>ROWID</code>,
+     *            <code>SQLXML</code>
+     *            or <code>STRUCT</code> data
+     *            type and the JDBC driver does
+     *            not support this data type
      * @see Types
      * @see #getParams
      * @since 1.4
      */
-    public void setObject(String parameterName, Object x, int targetSqlType,
-            int scale) throws SQLException {
+    public void setObject(String parameterName, Object x, int targetSqlType, int scale) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4221,41 +4139,40 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * assumes a scale of zero.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                      the SQL type (as defined in java.sql.Types) to be
-     *                      sent to the
-     *                      database
+     *        the SQL type (as defined in java.sql.Types) to be
+     *        sent to the
+     *        database
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if <code>targetSqlType</code>
-     *                                            is a <code>ARRAY</code>,
-     *                                            <code>BLOB</code>,
-     *                                            <code>CLOB</code>,
-     *                                            <code>DATALINK</code>,
-     *                                            <code>JAVA_OBJECT</code>,
-     *                                            <code>NCHAR</code>,
-     *                                            <code>NCLOB</code>,
-     *                                            <code>NVARCHAR</code>,
-     *                                            <code>LONGNVARCHAR</code>,
-     *                                            <code>REF</code>,
-     *                                            <code>ROWID</code>,
-     *                                            <code>SQLXML</code>
-     *                                            or <code>STRUCT</code> data
-     *                                            type and the JDBC driver does
-     *                                            not support this data type
+     *            if <code>targetSqlType</code>
+     *            is a <code>ARRAY</code>,
+     *            <code>BLOB</code>,
+     *            <code>CLOB</code>,
+     *            <code>DATALINK</code>,
+     *            <code>JAVA_OBJECT</code>,
+     *            <code>NCHAR</code>,
+     *            <code>NCLOB</code>,
+     *            <code>NVARCHAR</code>,
+     *            <code>LONGNVARCHAR</code>,
+     *            <code>REF</code>,
+     *            <code>ROWID</code>,
+     *            <code>SQLXML</code>
+     *            or <code>STRUCT</code> data
+     *            type and the JDBC driver does
+     *            not support this data type
      * @see #getParams
      * @since 1.4
      */
-    public void setObject(String parameterName, Object x, int targetSqlType)
-            throws SQLException {
+    public void setObject(String parameterName, Object x, int targetSqlType) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4264,17 +4181,14 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * second parameter must be of type <code>Object</code>; therefore, the
      * <code>java.lang</code> equivalent objects should be used for built-in
      * types.
-     *
      * <p>
      * The JDBC specification specifies a standard mapping from Java
      * <code>Object</code> types to SQL types. The given argument will be
      * converted to the corresponding SQL type before being sent to the
      * database.
-     *
      * <p>
      * Note that this method may be used to pass datatabase- specific abstract
      * data types, by using a driver-specific Java type.
-     *
      * If the object is of a class implementing the interface
      * <code>SQLData</code>, the JDBC driver should call the method
      * <code>SQLData.writeSQL</code> to write it to the SQL data stream. If, on
@@ -4289,20 +4203,20 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * named above.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the object containing the input parameter value
+     *        the object containing the input parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs, this method is called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
-     *                                            or if the given
-     *                                            <code>Object</code> parameter
-     *                                            is ambiguous
+     *            if a database access error
+     *            occurs, this method is called
+     *            on a closed
+     *            <code>CallableStatement</code>
+     *            or if the given
+     *            <code>Object</code> parameter
+     *            is ambiguous
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
@@ -4323,35 +4237,33 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>LONGVARBINARY</code> or a <code>BLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param inputStream
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of bytes in the parameter data.
+     *        the number of bytes in the parameter data.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code>,
-     *                                         if parameterIndex does
-     *                                         not correspond to a parameter
-     *                                         marker in the SQL statement, if
-     *                                         the length specified is less than
-     *                                         zero or if the number of
-     *                                         bytes in the inputstream does not
-     *                                         match the specified length.
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code>,
+     *         if parameterIndex does
+     *         not correspond to a parameter
+     *         marker in the SQL statement, if
+     *         the length specified is less than
+     *         zero or if the number of
+     *         bytes in the inputstream does not
+     *         match the specified length.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setBlob(int parameterIndex, InputStream inputStream,
-            long length) throws SQLException {
+    public void setBlob(int parameterIndex, InputStream inputStream, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4363,37 +4275,34 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setBinaryStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be sent to the
      * server as a <code>LONGVARBINARY</code> or a <code>BLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setBlob</code> which
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param inputStream
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code> or
-     *                                         if parameterIndex
-     *                                         does not correspond to a
-     *                                         parameter marker in the SQL
-     *                                         statement,
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code> or
+     *         if parameterIndex
+     *         does not correspond to a
+     *         parameter marker in the SQL
+     *         statement,
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setBlob(int parameterIndex, InputStream inputStream)
-            throws SQLException {
+    public void setBlob(int parameterIndex, InputStream inputStream) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4410,34 +4319,31 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>LONGVARBINARY</code> or a <code>BLOB</code>
      *
      * @param parameterName
-     *                      the name of the parameter to be set the second is 2,
-     *                      ...
-     *
+     *        the name of the parameter to be set the second is 2,
+     *        ...
      * @param inputStream
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                      the number of bytes in the parameter data.
+     *        the number of bytes in the parameter data.
      * @throws SQLException
-     *                      if parameterIndex does not correspond to a parameter
-     *                      marker
-     *                      in the SQL statement, or if the length specified is
-     *                      less than
-     *                      zero; if the number of bytes in the inputstream does
-     *                      not
-     *                      match the specified length; if a database access
-     *                      error occurs
-     *                      or this method is called on a closed
-     *                      <code>CallableStatement</code>
+     *         if parameterIndex does not correspond to a parameter
+     *         marker
+     *         in the SQL statement, or if the length specified is
+     *         less than
+     *         zero; if the number of bytes in the inputstream does
+     *         not
+     *         match the specified length; if a database access
+     *         error occurs
+     *         or this method is called on a closed
+     *         <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
-     *
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
-    public void setBlob(String parameterName, InputStream inputStream,
-            long length) throws SQLException {
+    public void setBlob(String parameterName, InputStream inputStream, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4447,20 +4353,20 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      a <code>Blob</code> object that maps an SQL
-     *                      <code>BLOB</code>
-     *                      value
+     *        a <code>Blob</code> object that maps an SQL
+     *        <code>BLOB</code>
+     *        value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
     public void setBlob(String parameterName, Blob x) throws SQLException {
@@ -4475,31 +4381,28 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setBinaryStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be send to the
      * server as a <code>LONGVARBINARY</code> or a <code>BLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setBlob</code> which
      * takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param inputStream
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error occurs
-     *                                         or this method is called on
-     *                                         a closed
-     *                                         <code>CallableStatement</code>
+     *         if a database access error occurs
+     *         or this method is called on
+     *         a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setBlob(String parameterName, InputStream inputStream)
-            throws SQLException {
+    public void setBlob(String parameterName, InputStream inputStream) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4516,33 +4419,31 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * or a <code>CLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code>,
-     *                                         if parameterIndex does
-     *                                         not correspond to a parameter
-     *                                         marker in the SQL statement, or
-     *                                         if the length specified is less
-     *                                         than zero.
-     *
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code>,
+     *         if parameterIndex does
+     *         not correspond to a parameter
+     *         marker in the SQL statement, or
+     *         if the length specified is less
+     *         than zero.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setClob(int parameterIndex, Reader reader, long length)
-            throws SQLException {
+    public void setClob(int parameterIndex, Reader reader, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4554,33 +4455,31 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setCharacterStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be sent to the
      * server as a <code>LONGVARCHAR</code> or a <code>CLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setClob</code> which
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code>or
-     *                                         if parameterIndex
-     *                                         does not correspond to a
-     *                                         parameter marker in the SQL
-     *                                         statement
-     *
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code>or
+     *         if parameterIndex
+     *         does not correspond to a
+     *         parameter marker in the SQL
+     *         statement
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     public void setClob(int parameterIndex, Reader reader) throws SQLException {
@@ -4600,29 +4499,27 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * or a <code>CLOB</code>
      * 
      * @param parameterName
-     *                      the name of the parameter to be set
+     *        the name of the parameter to be set
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                      the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                      if parameterIndex does not correspond to a parameter
-     *                      marker
-     *                      in the SQL statement; if the length specified is
-     *                      less than
-     *                      zero; a database access error occurs or this method
-     *                      is called
-     *                      on a closed <code>CallableStatement</code>
+     *         if parameterIndex does not correspond to a parameter
+     *         marker
+     *         in the SQL statement; if the length specified is
+     *         less than
+     *         zero; a database access error occurs or this method
+     *         is called
+     *         on a closed <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
-     *
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
-    public void setClob(String parameterName, Reader reader, long length)
-            throws SQLException {
+    public void setClob(String parameterName, Reader reader, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4632,20 +4529,20 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      a <code>Clob</code> object that maps an SQL
-     *                      <code>CLOB</code>
-     *                      value
+     *        a <code>Clob</code> object that maps an SQL
+     *        <code>CLOB</code>
+     *        value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
     public void setClob(String parameterName, Clob x) throws SQLException {
@@ -4660,31 +4557,28 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setCharacterStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be send to the
      * server as a <code>LONGVARCHAR</code> or a <code>CLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setClob</code> which
      * takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error occurs
-     *                                         or this method is called on
-     *                                         a closed
-     *                                         <code>CallableStatement</code>
-     *
+     *         if a database access error occurs
+     *         or this method is called on
+     *         a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setClob(String parameterName, Reader reader)
-            throws SQLException {
+    public void setClob(String parameterName, Reader reader) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4695,23 +4589,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setDate(String parameterName, java.sql.Date x)
-            throws SQLException {
+    public void setDate(String parameterName, java.sql.Date x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4726,27 +4619,26 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * virtual machine running the application.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @param cal
-     *                      the <code>Calendar</code> object the driver will use
-     *                      to
-     *                      construct the date
+     *        the <code>Calendar</code> object the driver will use
+     *        to
+     *        construct the date
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setDate(String parameterName, java.sql.Date x, Calendar cal)
-            throws SQLException {
+    public void setDate(String parameterName, java.sql.Date x, Calendar cal) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4756,23 +4648,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setTime(String parameterName, java.sql.Time x)
-            throws SQLException {
+    public void setTime(String parameterName, java.sql.Time x) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4787,27 +4678,26 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * virtual machine running the application.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @param cal
-     *                      the <code>Calendar</code> object the driver will use
-     *                      to
-     *                      construct the time
+     *        the <code>Calendar</code> object the driver will use
+     *        to
+     *        construct the time
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setTime(String parameterName, java.sql.Time x, Calendar cal)
-            throws SQLException {
+    public void setTime(String parameterName, java.sql.Time x, Calendar cal) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4823,27 +4713,26 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * application.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @param cal
-     *                      the <code>Calendar</code> object the driver will use
-     *                      to
-     *                      construct the timestamp
+     *        the <code>Calendar</code> object the driver will use
+     *        to
+     *        construct the timestamp
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getParams
      * @since 1.4
      */
-    public void setTimestamp(String parameterName, java.sql.Timestamp x,
-            Calendar cal) throws SQLException {
+    public void setTimestamp(String parameterName, java.sql.Timestamp x, Calendar cal) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4853,37 +4742,36 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param xmlObject
-     *                       a <code>SQLXML</code> object that maps an SQL
-     *                       <code>XML</code>
-     *                       value
+     *        a <code>SQLXML</code> object that maps an SQL
+     *        <code>XML</code>
+     *        value
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed result set, the
-     *                                         <code>java.xml.transform.Result</code>
-     *                                         , <code>Writer</code> or
-     *                                         <code>OutputStream</code> has not
-     *                                         been closed for the
-     *                                         <code>SQLXML</code> object or if
-     *                                         there is
-     *                                         an error processing the XML
-     *                                         value. The <code>getCause</code>
-     *                                         method of the exception may
-     *                                         provide a more detailed
-     *                                         exception, for example, if the
-     *                                         stream does not contain valid
-     *                                         XML.
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed result set, the
+     *         <code>java.xml.transform.Result</code>
+     *         , <code>Writer</code> or
+     *         <code>OutputStream</code> has not
+     *         been closed for the
+     *         <code>SQLXML</code> object or if
+     *         there is
+     *         an error processing the XML
+     *         value. The <code>getCause</code>
+     *         method of the exception may
+     *         provide a more detailed
+     *         exception, for example, if the
+     *         stream does not contain valid
+     *         XML.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setSQLXML(int parameterIndex, SQLXML xmlObject)
-            throws SQLException {
+    public void setSQLXML(int parameterIndex, SQLXML xmlObject) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4893,36 +4781,35 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      * 
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param xmlObject
-     *                      a <code>SQLXML</code> object that maps an
-     *                      <code>SQL XML</code>
-     *                      value
+     *        a <code>SQLXML</code> object that maps an
+     *        <code>SQL XML</code>
+     *        value
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed result set, the
-     *                                         <code>java.xml.transform.Result</code>
-     *                                         , <code>Writer</code> or
-     *                                         <code>OutputStream</code> has not
-     *                                         been closed for the
-     *                                         <code>SQLXML</code> object or if
-     *                                         there is
-     *                                         an error processing the XML
-     *                                         value. The <code>getCause</code>
-     *                                         method of the exception may
-     *                                         provide a more detailed
-     *                                         exception, for example, if the
-     *                                         stream does not contain valid
-     *                                         XML.
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed result set, the
+     *         <code>java.xml.transform.Result</code>
+     *         , <code>Writer</code> or
+     *         <code>OutputStream</code> has not
+     *         been closed for the
+     *         <code>SQLXML</code> object or if
+     *         there is
+     *         an error processing the XML
+     *         value. The <code>getCause</code>
+     *         method of the exception may
+     *         provide a more detailed
+     *         exception, for example, if the
+     *         stream does not contain valid
+     *         XML.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setSQLXML(String parameterName, SQLXML xmlObject)
-            throws SQLException {
+    public void setSQLXML(String parameterName, SQLXML xmlObject) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -4932,15 +4819,14 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * it sends it to the database
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if a database access error occurs
+     *         if a database access error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     public void setRowId(int parameterIndex, RowId x) throws SQLException {
@@ -4953,14 +4839,14 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if a database access error occurs
+     *         if a database access error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     public void setRowId(String parameterName, RowId x) throws SQLException {
@@ -4975,23 +4861,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>NVARCHAR</code> values) when it sends it to the database.
      *
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; or if a database access
-     *                                         error occurs
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; or if a database access
+     *         error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNString(int parameterIndex, String value)
-            throws SQLException {
+    public void setNString(int parameterIndex, String value) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5001,23 +4886,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>NVARCHAR</code> or <code>LONGNVARCHAR</code>
      * 
      * @param parameterName
-     *                      the name of the column to be set
+     *        the name of the column to be set
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur; or if a database access
-     *                                         error occurs
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur; or if a database access
+     *         error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNString(String parameterName, String value)
-            throws SQLException {
+    public void setNString(String parameterName, String value) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5028,25 +4912,24 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * national character set in the database.
      * 
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; or if a database access
-     *                                         error occurs
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; or if a database access
+     *         error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNCharacterStream(int parameterIndex, Reader value,
-            long length) throws SQLException {
+    public void setNCharacterStream(int parameterIndex, Reader value, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5057,25 +4940,24 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * national character set in the database.
      * 
      * @param parameterName
-     *                      the name of the column to be set
+     *        the name of the column to be set
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @param length
-     *                      the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur; or if a database access
-     *                                         error occurs
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur; or if a database access
+     *         error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNCharacterStream(String parameterName, Reader value,
-            long length) throws SQLException {
+    public void setNCharacterStream(String parameterName, Reader value, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5084,7 +4966,6 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>Reader</code> reads the data till end-of-file is reached. The
      * driver does the necessary conversion from Java character format to the
      * national character set in the database.
-     * 
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -5094,25 +4975,24 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>setNCharacterStream</code> which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; if a database access
-     *                                         error occurs; or this method is
-     *                                         called on a closed
-     *                                         <code>CallableStatement</code>
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; if a database access
+     *         error occurs; or this method is
+     *         called on a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNCharacterStream(String parameterName, Reader value)
-            throws SQLException {
+    public void setNCharacterStream(String parameterName, Reader value) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5122,23 +5002,22 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>NClob</code> object maps to a SQL <code>NCLOB</code>.
      * 
      * @param parameterName
-     *                      the name of the column to be set
+     *        the name of the column to be set
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur; or if a database access
-     *                                         error occurs
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur; or if a database access
+     *         error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNClob(String parameterName, NClob value)
-            throws SQLException {
+    public void setNClob(String parameterName, NClob value) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5155,32 +5034,31 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>LONGNVARCHAR</code> or a <code>NCLOB</code>
      *
      * @param parameterName
-     *                      the name of the parameter to be set
+     *        the name of the parameter to be set
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                      the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                      if parameterIndex does not correspond to a parameter
-     *                      marker
-     *                      in the SQL statement; if the length specified is
-     *                      less than
-     *                      zero; if the driver does not support national
-     *                      character sets;
-     *                      if the driver can detect that a data conversion
-     *                      error could
-     *                      occur; if a database access error occurs or this
-     *                      method is
-     *                      called on a closed <code>CallableStatement</code>
+     *         if parameterIndex does not correspond to a parameter
+     *         marker
+     *         in the SQL statement; if the length specified is
+     *         less than
+     *         zero; if the driver does not support national
+     *         character sets;
+     *         if the driver can detect that a data conversion
+     *         error could
+     *         occur; if a database access error occurs or this
+     *         method is
+     *         called on a closed <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
-    public void setNClob(String parameterName, Reader reader, long length)
-            throws SQLException {
+    public void setNClob(String parameterName, Reader reader, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5198,28 +5076,26 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur; if a database access error
-     *                                         occurs or this method is
-     *                                         called on a closed
-     *                                         <code>CallableStatement</code>
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur; if a database access error
+     *         occurs or this method is
+     *         called on a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNClob(String parameterName, Reader reader)
-            throws SQLException {
+    public void setNClob(String parameterName, Reader reader) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5236,35 +5112,33 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * <code>LONGNVARCHAR</code> or a <code>NCLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         length specified is less than
-     *                                         zero; if the driver does not
-     *                                         support national character sets;
-     *                                         if the driver can detect that a
-     *                                         data conversion error could
-     *                                         occur; if a database access error
-     *                                         occurs or this method is
-     *                                         called on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         length specified is less than
+     *         zero; if the driver does not
+     *         support national character sets;
+     *         if the driver can detect that a
+     *         data conversion error could
+     *         occur; if a database access error
+     *         occurs or this method is
+     *         called on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNClob(int parameterIndex, Reader reader, long length)
-            throws SQLException {
+    public void setNClob(int parameterIndex, Reader reader, long length) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5274,19 +5148,19 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * to the database.
      * 
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; or if a database access
-     *                                         error occurs
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; or if a database access
+     *         error occurs
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     public void setNClob(int parameterIndex, NClob value) throws SQLException {
@@ -5307,32 +5181,30 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    public void setNClob(int parameterIndex, Reader reader)
-            throws SQLException {
+    public void setNClob(int parameterIndex, Reader reader) throws SQLException {
         throw new SQLFeatureNotSupportedException("Feature not supported");
     }
 
@@ -5342,16 +5214,16 @@ public abstract class BaseRowSet implements Serializable, Cloneable {
      * when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the <code>java.net.URL</code> object to be set
+     *        the <code>java.net.URL</code> object to be set
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.4
      */
     public void setURL(int parameterIndex, java.net.URL x) throws SQLException {

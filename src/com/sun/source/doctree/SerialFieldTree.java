@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for an @serialData block tag.
- *
  * <p>
  * &#064;serialField field-name field-type field-description
  *

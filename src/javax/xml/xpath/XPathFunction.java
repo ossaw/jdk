@@ -11,7 +11,6 @@ import java.util.List;
  * <p>
  * <code>XPathFunction</code> provides access to XPath functions.
  * </p>
- *
  * <p>
  * Functions are identified by QName and arity in XPath.
  * </p>
@@ -25,7 +24,6 @@ public interface XPathFunction {
      * <p>
      * Evaluate the function with the specified arguments.
      * </p>
-     *
      * <p>
      * To the greatest extent possible, side-effects should be avoided in the
      * definition of extension functions. The implementation evaluating an XPath
@@ -34,15 +32,13 @@ public interface XPathFunction {
      * </p>
      *
      * @param args
-     *             The arguments, <code>null</code> is a valid value.
-     *
+     *        The arguments, <code>null</code> is a valid value.
      * @return The result of evaluating the <code>XPath</code> function as an
      *         <code>Object</code>.
-     *
      * @throws XPathFunctionException
-     *                                If <code>args</code> cannot be evaluated
-     *                                with this
-     *                                <code>XPath</code> function.
+     *         If <code>args</code> cannot be evaluated
+     *         with this
+     *         <code>XPath</code> function.
      */
     public Object evaluate(List args) throws XPathFunctionException;
 }

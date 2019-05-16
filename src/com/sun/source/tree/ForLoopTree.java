@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for a basic 'for' loop statement.
- *
  * For example:
  * 
  * <pre>
@@ -18,7 +17,6 @@ import java.util.List;
  * </pre>
  *
  * @jls section 14.14.1
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

@@ -19,12 +19,10 @@ package com.sun.org.apache.xerces.internal.util;
 
 /**
  * A simple integer based stack.
- *
  * moved to com.sun.org.apache.xerces.internal.util by neilg to support the
  * XPathMatcher.
  * 
  * @author Andy Clark, IBM
- *
  */
 public final class IntStack {
 

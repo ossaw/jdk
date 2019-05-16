@@ -25,7 +25,7 @@ public class WindowsEditorPaneUI extends BasicEditorPaneUI {
      * Creates a UI for a JEditorPane.
      *
      * @param c
-     *          the configurable text component
+     *        the configurable text component
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {

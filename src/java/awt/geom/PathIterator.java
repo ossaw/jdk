@@ -33,7 +33,6 @@ import java.lang.annotation.Native;
  *
  * @see java.awt.Shape
  * @see java.awt.BasicStroke
- *
  * @author Jim Graham
  */
 public interface PathIterator {
@@ -158,7 +157,7 @@ public interface PathIterator {
      * points.
      * 
      * @param coords
-     *               an array that holds the data returned from this method
+     *        an array that holds the data returned from this method
      * @return the path-segment type of the current path segment.
      * @see #SEG_MOVETO
      * @see #SEG_LINETO
@@ -179,7 +178,7 @@ public interface PathIterator {
      * points.
      * 
      * @param coords
-     *               an array that holds the data returned from this method
+     *        an array that holds the data returned from this method
      * @return the path-segment type of the current path segment.
      * @see #SEG_MOVETO
      * @see #SEG_LINETO

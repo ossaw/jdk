@@ -25,7 +25,6 @@ import java.util.List;
  * </p>
  *
  * @author Ankit Pasricha, IBM
- *
  * @version $Id: ObjectList.java,v 1.7 2010-11-01 04:40:31 joehw Exp $
  */
 public interface ObjectList extends List {
@@ -41,8 +40,8 @@ public interface ObjectList extends List {
      * list.
      * 
      * @param item
-     *             <code>Object</code> whose presence in this list is to be
-     *             tested.
+     *        <code>Object</code> whose presence in this list is to be
+     *        tested.
      * @return True if this list contains the <code>Object</code>
      *         <code>item</code>.
      */
@@ -54,7 +53,7 @@ public interface ObjectList extends List {
      * number of objects in the list. The index starts at 0.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The <code>Object</code> at the <code>index</code>th position in
      *         the <code>ObjectList</code>, or <code>null</code> if the index
      *         specified is not valid - greater than or equal to the number of

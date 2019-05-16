@@ -26,7 +26,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLParseException;
  * The Default XPointer error handler used by the XInclude implementation.
  * XPointer error's are thrown so that they may be caught by the XInclude
  * implementation and reported as resource errors.
- *
  */
 class XPointerErrorHandler implements XMLErrorHandler {
 
@@ -62,21 +61,18 @@ class XPointerErrorHandler implements XMLErrorHandler {
     //
 
     /** Warning. */
-    public void warning(String domain, String key, XMLParseException ex)
-            throws XNIException {
+    public void warning(String domain, String key, XMLParseException ex) throws XNIException {
         printError("Warning", ex);
     } // warning(XMLParseException)
 
     /** Error. */
-    public void error(String domain, String key, XMLParseException ex)
-            throws XNIException {
+    public void error(String domain, String key, XMLParseException ex) throws XNIException {
         printError("Error", ex);
         // throw ex;
     } // error(XMLParseException)
 
     /** Fatal error. */
-    public void fatalError(String domain, String key, XMLParseException ex)
-            throws XNIException {
+    public void fatalError(String domain, String key, XMLParseException ex) throws XNIException {
         printError("Fatal Error", ex);
         throw ex;
     } // fatalError(XMLParseException)

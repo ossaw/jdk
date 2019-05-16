@@ -37,8 +37,7 @@ import sun.corba.EncapsInputStreamFactory;
  * returned.
  */
 interface Handler {
-    ObjectKeyTemplate handle(int magic, int scid, InputStream is,
-            OctetSeqHolder osh);
+    ObjectKeyTemplate handle(int magic, int scid, InputStream is, OctetSeqHolder osh);
 }
 
 /**
@@ -106,25 +105,19 @@ public class ObjectKeyFactoryImpl implements ObjectKeyFactory {
      * This handler reads the full object key, both the oktemp and the ID.
      */
     private Handler fullKey = new Handler() {
-        public ObjectKeyTemplate handle(int magic, int scid, InputStream is,
-                OctetSeqHolder osh) {
+        public ObjectKeyTemplate handle(int magic, int scid, InputStream is, OctetSeqHolder osh) {
             ObjectKeyTemplate oktemp = null;
 
-            if ((scid >= ORBConstants.FIRST_POA_SCID)
-                    && (scid <= ORBConstants.MAX_POA_SCID)) {
+            if ((scid >= ORBConstants.FIRST_POA_SCID) && (scid <= ORBConstants.MAX_POA_SCID)) {
                 if (magic >= JAVAMAGIC_NEWER)
-                    oktemp = new POAObjectKeyTemplate(orb, magic, scid, is,
-                            osh);
+                    oktemp = new POAObjectKeyTemplate(orb, magic, scid, is, osh);
                 else
-                    oktemp = new OldPOAObjectKeyTemplate(orb, magic, scid, is,
-                            osh);
+                    oktemp = new OldPOAObjectKeyTemplate(orb, magic, scid, is, osh);
             } else if ((scid >= 0) && (scid < ORBConstants.FIRST_POA_SCID)) {
                 if (magic >= JAVAMAGIC_NEWER)
-                    oktemp = new JIDLObjectKeyTemplate(orb, magic, scid, is,
-                            osh);
+                    oktemp = new JIDLObjectKeyTemplate(orb, magic, scid, is, osh);
                 else
-                    oktemp = new OldJIDLObjectKeyTemplate(orb, magic, scid, is,
-                            osh);
+                    oktemp = new OldJIDLObjectKeyTemplate(orb, magic, scid, is, osh);
             }
 
             return oktemp;
@@ -135,12 +128,10 @@ public class ObjectKeyFactoryImpl implements ObjectKeyFactory {
      * This handler reads only the oktemp.
      */
     private Handler oktempOnly = new Handler() {
-        public ObjectKeyTemplate handle(int magic, int scid, InputStream is,
-                OctetSeqHolder osh) {
+        public ObjectKeyTemplate handle(int magic, int scid, InputStream is, OctetSeqHolder osh) {
             ObjectKeyTemplate oktemp = null;
 
-            if ((scid >= ORBConstants.FIRST_POA_SCID)
-                    && (scid <= ORBConstants.MAX_POA_SCID)) {
+            if ((scid >= ORBConstants.FIRST_POA_SCID) && (scid <= ORBConstants.MAX_POA_SCID)) {
                 if (magic >= JAVAMAGIC_NEWER)
                     oktemp = new POAObjectKeyTemplate(orb, magic, scid, is);
                 else
@@ -168,8 +159,7 @@ public class ObjectKeyFactoryImpl implements ObjectKeyFactory {
      * Creates an ObjectKeyTemplate from the InputStream. Most of the decoding
      * is done inside the handler.
      */
-    private ObjectKeyTemplate create(InputStream is, Handler handler,
-            OctetSeqHolder osh) {
+    private ObjectKeyTemplate create(InputStream is, Handler handler, OctetSeqHolder osh) {
         ObjectKeyTemplate oktemp = null;
 
         try {
@@ -201,8 +191,7 @@ public class ObjectKeyFactoryImpl implements ObjectKeyFactory {
 
     public ObjectKey create(byte[] key) {
         OctetSeqHolder osh = new OctetSeqHolder();
-        EncapsInputStream is = EncapsInputStreamFactory.newEncapsInputStream(
-                orb, key, key.length);
+        EncapsInputStream is = EncapsInputStreamFactory.newEncapsInputStream(orb, key, key.length);
 
         ObjectKeyTemplate oktemp = create(is, fullKey, osh);
         if (oktemp == null)

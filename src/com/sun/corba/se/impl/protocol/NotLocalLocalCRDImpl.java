@@ -23,8 +23,7 @@ public class NotLocalLocalCRDImpl implements LocalClientRequestDispatcher {
         return false;
     }
 
-    public ServantObject servant_preinvoke(org.omg.CORBA.Object self,
-            String operation, Class expectedType) {
+    public ServantObject servant_preinvoke(org.omg.CORBA.Object self, String operation, Class expectedType) {
         // REVISIT: Rewrite rmic.HelloTest and rmic.LocalStubTest
         // (which directly call servant_preinvoke)
         // then revert to exception again.
@@ -32,8 +31,7 @@ public class NotLocalLocalCRDImpl implements LocalClientRequestDispatcher {
         // throw new INTERNAL();
     }
 
-    public void servant_postinvoke(org.omg.CORBA.Object self,
-            ServantObject servant) {
+    public void servant_postinvoke(org.omg.CORBA.Object self, ServantObject servant) {
         // throw new INTERNAL();
     }
 }

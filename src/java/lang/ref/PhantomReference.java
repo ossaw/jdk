@@ -10,18 +10,15 @@ package java.lang.ref;
  * that their referents may otherwise be reclaimed. Phantom references are most
  * often used for scheduling pre-mortem cleanup actions in a more flexible way
  * than is possible with the Java finalization mechanism.
- *
  * <p>
  * If the garbage collector determines at a certain point in time that the
  * referent of a phantom reference is
  * <a href="package-summary.html#reachability">phantom reachable</a>, then at
  * that time or at some later time it will enqueue the reference.
- *
  * <p>
  * In order to ensure that a reclaimable object remains so, the referent of a
  * phantom reference may not be retrieved: The <code>get</code> method of a
  * phantom reference always returns <code>null</code>.
- *
  * <p>
  * Unlike soft and weak references, phantom references are not automatically
  * cleared by the garbage collector as they are enqueued. An object that is
@@ -48,7 +45,6 @@ public class PhantomReference<T> extends Reference<T> {
     /**
      * Creates a new phantom reference that refers to the given object and is
      * registered with the given queue.
-     *
      * <p>
      * It is possible to create a phantom reference with a <tt>null</tt> queue,
      * but such a reference is completely useless: Its <tt>get</tt> method will
@@ -56,11 +52,11 @@ public class PhantomReference<T> extends Reference<T> {
      * enqueued.
      *
      * @param referent
-     *                 the object the new phantom reference will refer to
+     *        the object the new phantom reference will refer to
      * @param q
-     *                 the queue with which the reference is to be registered,
-     *                 or
-     *                 <tt>null</tt> if registration is not required
+     *        the queue with which the reference is to be registered,
+     *        or
+     *        <tt>null</tt> if registration is not required
      */
     public PhantomReference(T referent, ReferenceQueue<? super T> q) {
         super(referent, q);

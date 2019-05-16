@@ -51,11 +51,9 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 
     public CorbaResponseWaitingRoomImpl(ORB orb, CorbaConnection connection) {
         this.orb = orb;
-        wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_TRANSPORT);
+        wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
         this.connection = connection;
-        out_calls = Collections.synchronizedMap(
-                new HashMap<Integer, OutCallDesc>());
+        out_calls = Collections.synchronizedMap(new HashMap<Integer, OutCallDesc>());
     }
 
     ////////////////////////////////////////////////////
@@ -108,8 +106,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
                 // way as a normal request.
 
                 if (orb.transportDebugFlag) {
-                    dprint(".waitForResponse: one way - not waiting: "
-                            + opAndId(messageMediator));
+                    dprint(".waitForResponse: one way - not waiting: " + opAndId(messageMediator));
                 }
 
                 return null;
@@ -128,19 +125,16 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
                     // and signals us.
                     try {
                         if (orb.transportDebugFlag) {
-                            dprint(".waitForResponse: waiting: " + opAndId(
-                                    messageMediator));
+                            dprint(".waitForResponse: waiting: " + opAndId(messageMediator));
                         }
                         call.done.wait();
-                    } catch (InterruptedException ie) {
-                    }
+                    } catch (InterruptedException ie) {}
                     ;
                 }
 
                 if (call.exception != null) {
                     if (orb.transportDebugFlag) {
-                        dprint(".waitForResponse: exception: " + opAndId(
-                                messageMediator));
+                        dprint(".waitForResponse: exception: " + opAndId(messageMediator));
                     }
                     throw call.exception;
                 }
@@ -171,8 +165,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 
     public void responseReceived(InputObject is) {
         CDRInputObject inputObject = (CDRInputObject) is;
-        LocateReplyOrReplyMessage header = (LocateReplyOrReplyMessage) inputObject
-                .getMessageHeader();
+        LocateReplyOrReplyMessage header = (LocateReplyOrReplyMessage) inputObject.getMessageHeader();
         Integer requestId = new Integer(header.getRequestId());
         OutCallDesc call = out_calls.get(requestId);
 
@@ -190,8 +183,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
         // out_calls.get line, then it will also be null, so just return;
         if (call == null) {
             if (orb.transportDebugFlag) {
-                dprint(".responseReceived: id/" + requestId + ": no waiter: "
-                        + header);
+                dprint(".responseReceived: id/" + requestId + ": no waiter: " + header);
             }
             return;
         }
@@ -205,8 +197,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
             CorbaMessageMediator messageMediator = (CorbaMessageMediator) call.messageMediator;
 
             if (orb.transportDebugFlag) {
-                dprint(".responseReceived: " + opAndId(messageMediator)
-                        + ": notifying waiters");
+                dprint(".responseReceived: " + opAndId(messageMediator) + ": notifying waiters");
             }
 
             messageMediator.setReplyHeader(header);
@@ -234,8 +225,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 
         synchronized (out_calls) {
             if (orb.transportDebugFlag) {
-                dprint(".signalExceptionToAllWaiters: out_calls size :"
-                        + out_calls.size());
+                dprint(".signalExceptionToAllWaiters: out_calls size :" + out_calls.size());
             }
 
             for (OutCallDesc call : out_calls.values()) {
@@ -248,8 +238,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
                         // queue
                         // needs to be cancelled
                         CorbaMessageMediator corbaMsgMediator = (CorbaMessageMediator) call.messageMediator;
-                        CDRInputObject inputObject = (CDRInputObject) corbaMsgMediator
-                                .getInputObject();
+                        CDRInputObject inputObject = (CDRInputObject) corbaMsgMediator.getInputObject();
                         // IMPORTANT: If inputObject is null, then no need to
                         // tell
                         // BufferManagerRead to cancel request processing.
@@ -259,8 +248,7 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
                             int requestId = corbaMsgMediator.getRequestId();
                             bufferManager.cancelProcessing(requestId);
                         }
-                    } catch (Exception e) {
-                    } finally {
+                    } catch (Exception e) {} finally {
                         // attempt to wake up waiting threads in all cases
                         call.inputObject = null;
                         call.exception = systemException;

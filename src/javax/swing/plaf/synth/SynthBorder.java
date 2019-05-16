@@ -29,14 +29,12 @@ class SynthBorder extends AbstractBorder implements UIResource {
         this(ui, null);
     }
 
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         JComponent jc = (JComponent) c;
         SynthContext context = ui.getContext(jc);
         SynthStyle style = context.getStyle();
         if (style == null) {
-            assert false : "SynthBorder is being used outside after the UI "
-                    + "has been uninstalled";
+            assert false : "SynthBorder is being used outside after the UI " + "has been uninstalled";
             return;
         }
         ui.paintBorder(context, g, x, y, width, height);
@@ -47,16 +45,15 @@ class SynthBorder extends AbstractBorder implements UIResource {
      * Reinitializes the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      * @return the <code>insets</code> object
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         if (this.insets != null) {
             if (insets == null) {
-                insets = new Insets(this.insets.top, this.insets.left,
-                        this.insets.bottom, this.insets.right);
+                insets = new Insets(this.insets.top, this.insets.left, this.insets.bottom, this.insets.right);
             } else {
                 insets.top = this.insets.top;
                 insets.bottom = this.insets.bottom;
@@ -71,20 +68,15 @@ class SynthBorder extends AbstractBorder implements UIResource {
         if (c instanceof JComponent) {
             Region region = Region.getRegion((JComponent) c);
             Insets margin = null;
-            if ((region == Region.ARROW_BUTTON || region == Region.BUTTON
-                    || region == Region.CHECK_BOX
-                    || region == Region.CHECK_BOX_MENU_ITEM
-                    || region == Region.MENU || region == Region.MENU_ITEM
-                    || region == Region.RADIO_BUTTON
-                    || region == Region.RADIO_BUTTON_MENU_ITEM
-                    || region == Region.TOGGLE_BUTTON)
+            if ((region == Region.ARROW_BUTTON || region == Region.BUTTON || region == Region.CHECK_BOX
+                    || region == Region.CHECK_BOX_MENU_ITEM || region == Region.MENU
+                    || region == Region.MENU_ITEM || region == Region.RADIO_BUTTON
+                    || region == Region.RADIO_BUTTON_MENU_ITEM || region == Region.TOGGLE_BUTTON)
                     && (c instanceof AbstractButton)) {
                 margin = ((AbstractButton) c).getMargin();
-            } else if ((region == Region.EDITOR_PANE
-                    || region == Region.FORMATTED_TEXT_FIELD
-                    || region == Region.PASSWORD_FIELD
-                    || region == Region.TEXT_AREA || region == Region.TEXT_FIELD
-                    || region == Region.TEXT_PANE)
+            } else if ((region == Region.EDITOR_PANE || region == Region.FORMATTED_TEXT_FIELD
+                    || region == Region.PASSWORD_FIELD || region == Region.TEXT_AREA
+                    || region == Region.TEXT_FIELD || region == Region.TEXT_PANE)
                     && (c instanceof JTextComponent)) {
                 margin = ((JTextComponent) c).getMargin();
             } else if (region == Region.TOOL_BAR && (c instanceof JToolBar)) {

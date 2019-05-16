@@ -71,11 +71,10 @@ public final class StackMapType implements Cloneable {
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
-    StackMapType(DataInputStream file, ConstantPool constant_pool)
-            throws IOException {
+    StackMapType(DataInputStream file, ConstantPool constant_pool) throws IOException {
         this(file.readByte(), -1, constant_pool);
 
         if (hasIndex())
@@ -86,9 +85,9 @@ public final class StackMapType implements Cloneable {
 
     /**
      * @param type
-     *              type tag as defined in the Constants interface
+     *        type tag as defined in the Constants interface
      * @param index
-     *              index to constant pool, or byte code offset
+     *        index to constant pool, or byte code offset
      */
     public StackMapType(byte type, int index, ConstantPool constant_pool) {
         setType(type);
@@ -122,7 +121,7 @@ public final class StackMapType implements Cloneable {
      * Dump type entries to file.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -135,14 +134,12 @@ public final class StackMapType implements Cloneable {
      * @return true, if type is either ITEM_Object or ITEM_NewObject
      */
     public final boolean hasIndex() {
-        return ((type == Constants.ITEM_Object)
-                || (type == Constants.ITEM_NewObject));
+        return ((type == Constants.ITEM_Object) || (type == Constants.ITEM_NewObject));
     }
 
     private String printIndex() {
         if (type == Constants.ITEM_Object)
-            return ", class=" + constant_pool.constantToString(index,
-                    Constants.CONSTANT_Class);
+            return ", class=" + constant_pool.constantToString(index, Constants.CONSTANT_Class);
         else if (type == Constants.ITEM_NewObject)
             return ", offset=" + index;
         else
@@ -162,8 +159,7 @@ public final class StackMapType implements Cloneable {
     public StackMapType copy() {
         try {
             return (StackMapType) clone();
-        } catch (CloneNotSupportedException e) {
-        }
+        } catch (CloneNotSupportedException e) {}
 
         return null;
     }
@@ -177,7 +173,7 @@ public final class StackMapType implements Cloneable {
 
     /**
      * @param constant_pool
-     *                      Constant pool to be used for this object.
+     *        Constant pool to be used for this object.
      */
     public final void setConstantPool(ConstantPool constant_pool) {
         this.constant_pool = constant_pool;

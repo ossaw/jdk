@@ -17,7 +17,6 @@ public enum XmlAccessType {
     /**
      * Every getter/setter pair in a JAXB-bound class will be automatically
      * bound to XML, unless annotated by {@link XmlTransient}.
-     *
      * Fields are bound to XML only when they are explicitly annotated by some
      * of the JAXB annotations.
      */
@@ -25,7 +24,6 @@ public enum XmlAccessType {
     /**
      * Every non static, non transient field in a JAXB-bound class will be
      * automatically bound to XML, unless annotated by {@link XmlTransient}.
-     *
      * Getter/setter pairs are bound to XML only when they are explicitly
      * annotated by some of the JAXB annotations.
      */
@@ -33,7 +31,6 @@ public enum XmlAccessType {
     /**
      * Every public getter/setter pair and every public field will be
      * automatically bound to XML, unless annotated by {@link XmlTransient}.
-     *
      * Fields or getter/setter pairs that are private, protected, or defaulted
      * to package-only access are bound to XML only when they are explicitly
      * annotated by the appropriate JAXB annotations.

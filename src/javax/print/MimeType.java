@@ -115,9 +115,8 @@ class MimeType implements Serializable, Cloneable {
         }
 
         public boolean equals(Object o) {
-            return (o != null && o instanceof Map.Entry && getKey().equals(
-                    ((Map.Entry) o).getKey()) && getValue().equals(
-                            ((Map.Entry) o).getValue()));
+            return (o != null && o instanceof Map.Entry && getKey().equals(((Map.Entry) o).getKey())
+                    && getValue().equals(((Map.Entry) o).getValue()));
         }
 
         public int hashCode() {
@@ -180,16 +179,15 @@ class MimeType implements Serializable, Cloneable {
      * is converted into canonical form and stored internally.
      *
      * @param s
-     *          MIME media type string.
-     *
+     *        MIME media type string.
      * @exception NullPointerException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>s</CODE> is null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>s</CODE> is null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>s</CODE> does not
-     *                                     obey the syntax for a MIME media type
-     *                                     string.
+     *            (unchecked exception) Thrown if
+     *            <CODE>s</CODE> does not
+     *            obey the syntax for a MIME media type
+     *            string.
      */
     public MimeType(String s) {
         parse(s);
@@ -261,14 +259,13 @@ class MimeType implements Serializable, Cloneable {
      * US-ASCII).
      *
      * @param obj
-     *            Object to test.
-     *
+     *        Object to test.
      * @return True if this MIME type object equals <CODE>obj</CODE>, false
      *         otherwise.
      */
     public boolean equals(Object obj) {
-        return (obj != null && obj instanceof MimeType && getStringValue()
-                .equals(((MimeType) obj).getStringValue()));
+        return (obj != null && obj instanceof MimeType && getStringValue().equals(((MimeType) obj)
+                .getStringValue()));
     }
 
     /**
@@ -329,8 +326,7 @@ class MimeType implements Serializable, Cloneable {
         }
 
         public char getLexemeFirstCharacter() {
-            return (myLexemeBeginIndex >= mySourceLength ? '\u0000'
-                    : mySource.charAt(myLexemeBeginIndex));
+            return (myLexemeBeginIndex >= mySourceLength ? '\u0000' : mySource.charAt(myLexemeBeginIndex));
         }
 
         public void nextLexeme() {
@@ -346,8 +342,7 @@ class MimeType implements Serializable, Cloneable {
                             myLexemeBeginIndex = mySourceLength;
                             myLexemeEndIndex = mySourceLength;
                             state = -1;
-                        } else if (Character.isWhitespace(c = mySource.charAt(
-                                myCurrentIndex++))) {
+                        } else if (Character.isWhitespace(c = mySource.charAt(myCurrentIndex++))) {
                             state = 0;
                         } else if (c == '\"') {
                             myLexemeType = QUOTED_STRING_LEXEME;
@@ -356,9 +351,8 @@ class MimeType implements Serializable, Cloneable {
                         } else if (c == '(') {
                             ++commentLevel;
                             state = 3;
-                        } else if (c == '/' || c == ';' || c == '=' || c == ')'
-                                || c == '<' || c == '>' || c == '@' || c == ','
-                                || c == ':' || c == '\\' || c == '[' || c == ']'
+                        } else if (c == '/' || c == ';' || c == '=' || c == ')' || c == '<' || c == '>'
+                                || c == '@' || c == ',' || c == ':' || c == '\\' || c == '[' || c == ']'
                                 || c == '?') {
                             myLexemeType = TSPECIAL_LEXEME;
                             myLexemeBeginIndex = myCurrentIndex - 1;
@@ -377,8 +371,7 @@ class MimeType implements Serializable, Cloneable {
                             myLexemeBeginIndex = mySourceLength;
                             myLexemeEndIndex = mySourceLength;
                             state = -1;
-                        } else if ((c = mySource.charAt(
-                                myCurrentIndex++)) == '\"') {
+                        } else if ((c = mySource.charAt(myCurrentIndex++)) == '\"') {
                             myLexemeEndIndex = myCurrentIndex - 1;
                             state = -1;
                         } else if (c == '\\') {
@@ -406,8 +399,7 @@ class MimeType implements Serializable, Cloneable {
                             myLexemeBeginIndex = mySourceLength;
                             myLexemeEndIndex = mySourceLength;
                             state = -1;
-                        } else if ((c = mySource.charAt(
-                                myCurrentIndex++)) == '(') {
+                        } else if ((c = mySource.charAt(myCurrentIndex++)) == '(') {
                             ++commentLevel;
                             state = 3;
                         } else if (c == ')') {
@@ -436,13 +428,11 @@ class MimeType implements Serializable, Cloneable {
                         if (myCurrentIndex >= mySourceLength) {
                             myLexemeEndIndex = myCurrentIndex;
                             state = -1;
-                        } else if (Character.isWhitespace(c = mySource.charAt(
-                                myCurrentIndex++))) {
+                        } else if (Character.isWhitespace(c = mySource.charAt(myCurrentIndex++))) {
                             myLexemeEndIndex = myCurrentIndex - 1;
                             state = -1;
-                        } else if (c == '\"' || c == '(' || c == '/' || c == ';'
-                                || c == '=' || c == ')' || c == '<' || c == '>'
-                                || c == '@' || c == ',' || c == ':' || c == '\\'
+                        } else if (c == '\"' || c == '(' || c == '/' || c == ';' || c == '=' || c == ')'
+                                || c == '<' || c == '>' || c == '@' || c == ',' || c == ':' || c == '\\'
                                 || c == '[' || c == ']' || c == '?') {
                             --myCurrentIndex;
                             myLexemeEndIndex = myCurrentIndex;
@@ -526,16 +516,15 @@ class MimeType implements Serializable, Cloneable {
      * </UL>
      *
      * @param s
-     *          MIME media type string.
-     *
+     *        MIME media type string.
      * @exception NullPointerException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>s</CODE> is null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>s</CODE> is null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>s</CODE> does not
-     *                                     obey the syntax for a MIME media type
-     *                                     string.
+     *            (unchecked exception) Thrown if
+     *            <CODE>s</CODE> does not
+     *            obey the syntax for a MIME media type
+     *            string.
      */
     private void parse(String s) {
         // Initialize.
@@ -558,8 +547,7 @@ class MimeType implements Serializable, Cloneable {
             throw new IllegalArgumentException();
         }
         // Parse slash.
-        if (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer
-                .getLexemeFirstCharacter() == '/') {
+        if (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer.getLexemeFirstCharacter() == '/') {
             theLexer.nextLexeme();
         } else {
             throw new IllegalArgumentException();
@@ -571,8 +559,7 @@ class MimeType implements Serializable, Cloneable {
             throw new IllegalArgumentException();
         }
         // Parse zero or more parameters.
-        while (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer
-                .getLexemeFirstCharacter() == ';') {
+        while (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer.getLexemeFirstCharacter() == ';') {
             // Parse semicolon.
             theLexer.nextLexeme();
 
@@ -587,8 +574,7 @@ class MimeType implements Serializable, Cloneable {
             }
 
             // Parse equals.
-            if (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer
-                    .getLexemeFirstCharacter() == '=') {
+            if (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer.getLexemeFirstCharacter() == '=') {
                 theLexer.nextLexeme();
             } else {
                 throw new IllegalArgumentException();
@@ -597,15 +583,11 @@ class MimeType implements Serializable, Cloneable {
             // Parse parameter value.
             if (theLexer.getLexemeType() == TOKEN_LEXEME) {
                 String pv = theLexer.getLexeme();
-                thePieces.add(mediaTypeIsText && parameterNameIsCharset
-                        ? toUnicodeLowerCase(pv)
-                        : pv);
+                thePieces.add(mediaTypeIsText && parameterNameIsCharset ? toUnicodeLowerCase(pv) : pv);
                 theLexer.nextLexeme();
             } else if (theLexer.getLexemeType() == QUOTED_STRING_LEXEME) {
                 String pv = removeBackslashes(theLexer.getLexeme());
-                thePieces.add(mediaTypeIsText && parameterNameIsCharset
-                        ? toUnicodeLowerCase(pv)
-                        : pv);
+                thePieces.add(mediaTypeIsText && parameterNameIsCharset ? toUnicodeLowerCase(pv) : pv);
                 theLexer.nextLexeme();
             } else {
                 throw new IllegalArgumentException();

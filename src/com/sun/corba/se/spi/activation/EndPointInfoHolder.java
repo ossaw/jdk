@@ -8,14 +8,12 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class EndPointInfoHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class EndPointInfoHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.spi.activation.EndPointInfo value = null;
 
     public EndPointInfoHolder() {}
 
-    public EndPointInfoHolder(
-            com.sun.corba.se.spi.activation.EndPointInfo initialValue) {
+    public EndPointInfoHolder(com.sun.corba.se.spi.activation.EndPointInfo initialValue) {
         value = initialValue;
     }
 

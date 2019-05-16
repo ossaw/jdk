@@ -28,7 +28,7 @@ public class RuntimeMBeanException extends JMRuntimeException {
      * <CODE>java.lang.RuntimeException</CODE>.
      *
      * @param e
-     *          the wrapped exception.
+     *        the wrapped exception.
      */
     public RuntimeMBeanException(java.lang.RuntimeException e) {
         super();
@@ -40,9 +40,9 @@ public class RuntimeMBeanException extends JMRuntimeException {
      * <CODE>java.lang.RuntimeException</CODE> with a detailed message.
      *
      * @param e
-     *                the wrapped exception.
+     *        the wrapped exception.
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public RuntimeMBeanException(java.lang.RuntimeException e, String message) {
         super(message);

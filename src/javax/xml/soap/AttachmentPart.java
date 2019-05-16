@@ -49,13 +49,11 @@ import javax.activation.DataHandler;
  * There are no restrictions on the content portion of an <code>
  * AttachmentPart</code> object. The content may be anything from a simple plain
  * text object to a complex XML document or image file.
- *
  * <p>
  * An <code>AttachmentPart</code> object is created with the method
  * <code>SOAPMessage.createAttachmentPart</code>. After setting its MIME
  * headers, the <code>AttachmentPart</code> object is added to the message that
  * created it with the method <code>SOAPMessage.addAttachmentPart</code>.
- *
  * <p>
  * The following code fragment, in which <code>m</code> is a
  * <code>SOAPMessage</code> object and <code>contentStringl</code> is a
@@ -69,8 +67,6 @@ import javax.activation.DataHandler;
  * ap1.setContent(contentString1, "text/plain");
  * m.addAttachmentPart(ap1);
  * </PRE>
- *
- *
  * <p>
  * The following code fragment creates and adds a second
  * <code>AttachmentPart</code> instance to the same message.
@@ -111,10 +107,10 @@ public abstract class AttachmentPart {
      * @return the size of this <code>AttachmentPart</code> object in bytes or
      *         -1 if the size cannot be determined
      * @exception SOAPException
-     *                          if the content of this attachment is corrupted
-     *                          of if there
-     *                          was an exception while trying to determine the
-     *                          size.
+     *            if the content of this attachment is corrupted
+     *            of if there
+     *            was an exception while trying to determine the
+     *            size.
      */
     public abstract int getSize() throws SOAPException;
 
@@ -151,12 +147,11 @@ public abstract class AttachmentPart {
      *
      * @return a Java object with the content of this
      *         <code>AttachmentPart</code> object
-     *
      * @exception SOAPException
-     *                          if there is no content set into this
-     *                          <code>AttachmentPart</code> object or if there
-     *                          was a data
-     *                          transformation error
+     *            if there is no content set into this
+     *            <code>AttachmentPart</code> object or if there
+     *            was a data
+     *            transformation error
      */
     public abstract Object getContent() throws SOAPException;
 
@@ -174,13 +169,11 @@ public abstract class AttachmentPart {
      *
      * @return an <code>InputStream</code> from which the raw data contained by
      *         the <code>AttachmentPart</code> can be accessed.
-     *
      * @throws SOAPException
-     *                       if there is no content set into this
-     *                       <code>AttachmentPart</code> object or if there was
-     *                       a data
-     *                       transformation error.
-     *
+     *         if there is no content set into this
+     *         <code>AttachmentPart</code> object or if there was
+     *         a data
+     *         transformation error.
      * @since SAAJ 1.3
      * @see #getRawContentBytes
      */
@@ -194,13 +187,11 @@ public abstract class AttachmentPart {
      *
      * @return a <code>byte[]</code> array containing the raw data of the
      *         <code>AttachmentPart</code>.
-     *
      * @throws SOAPException
-     *                       if there is no content set into this
-     *                       <code>AttachmentPart</code> object or if there was
-     *                       a data
-     *                       transformation error.
-     *
+     *         if there is no content set into this
+     *         <code>AttachmentPart</code> object or if there was
+     *         a data
+     *         transformation error.
      * @since SAAJ 1.3
      */
     public abstract byte[] getRawContentBytes() throws SOAPException;
@@ -213,13 +204,11 @@ public abstract class AttachmentPart {
      *
      * @return an <code>InputStream</code> from which the Base64 encoded
      *         <code>AttachmentPart</code> can be read.
-     *
      * @throws SOAPException
-     *                       if there is no content set into this
-     *                       <code>AttachmentPart</code> object or if there was
-     *                       a data
-     *                       transformation error.
-     *
+     *         if there is no content set into this
+     *         <code>AttachmentPart</code> object or if there was
+     *         a data
+     *         transformation error.
      * @since SAAJ 1.3
      */
     public abstract InputStream getBase64Content() throws SOAPException;
@@ -232,23 +221,20 @@ public abstract class AttachmentPart {
      * depends on the particular set of <code>DataContentHandler</code> objects
      * in use.
      *
-     *
      * @param object
-     *                    the Java object that makes up the content for this
-     *                    attachment
-     *                    part
+     *        the Java object that makes up the content for this
+     *        attachment
+     *        part
      * @param contentType
-     *                    the MIME string that specifies the type of the content
-     *
+     *        the MIME string that specifies the type of the content
      * @exception IllegalArgumentException
-     *                                     may be thrown if the contentType does
-     *                                     not match the type
-     *                                     of the content object, or if there
-     *                                     was no
-     *                                     <code>DataContentHandler</code>
-     *                                     object for this content
-     *                                     object
-     *
+     *            may be thrown if the contentType does
+     *            not match the type
+     *            of the content object, or if there
+     *            was no
+     *            <code>DataContentHandler</code>
+     *            object for this content
+     *            object
      * @see #getContent
      */
     public abstract void setContent(Object object, String contentType);
@@ -263,20 +249,18 @@ public abstract class AttachmentPart {
      * size.
      *
      * @param content
-     *                    the raw data to add to the attachment part
+     *        the raw data to add to the attachment part
      * @param contentType
-     *                    the value to set into the <code>Content-Type</code>
-     *                    header
-     *
+     *        the value to set into the <code>Content-Type</code>
+     *        header
      * @exception SOAPException
-     *                                 if an there is an error in setting the
-     *                                 content
+     *            if an there is an error in setting the
+     *            content
      * @exception NullPointerException
-     *                                 if <code>content</code> is null
+     *            if <code>content</code> is null
      * @since SAAJ 1.3
      */
-    public abstract void setRawContent(InputStream content, String contentType)
-            throws SOAPException;
+    public abstract void setRawContent(InputStream content, String contentType) throws SOAPException;
 
     /**
      * Sets the content of this attachment part to that contained by the
@@ -285,23 +269,22 @@ public abstract class AttachmentPart {
      * <code>contentType</code>.
      *
      * @param content
-     *                    the raw data to add to the attachment part
+     *        the raw data to add to the attachment part
      * @param contentType
-     *                    the value to set into the <code>Content-Type</code>
-     *                    header
+     *        the value to set into the <code>Content-Type</code>
+     *        header
      * @param offset
-     *                    the offset in the byte array of the content
+     *        the offset in the byte array of the content
      * @param len
-     *                    the number of bytes that form the content
-     *
+     *        the number of bytes that form the content
      * @exception SOAPException
-     *                          if an there is an error in setting the content
-     *                          or content
-     *                          is null
+     *            if an there is an error in setting the content
+     *            or content
+     *            is null
      * @since SAAJ 1.3
      */
-    public abstract void setRawContentBytes(byte[] content, int offset, int len,
-            String contentType) throws SOAPException;
+    public abstract void setRawContentBytes(byte[] content, int offset, int len, String contentType)
+            throws SOAPException;
 
     /**
      * Sets the content of this attachment part from the Base64 source
@@ -314,21 +297,18 @@ public abstract class AttachmentPart {
      * size.
      *
      * @param content
-     *                    the base64 encoded data to add to the attachment part
+     *        the base64 encoded data to add to the attachment part
      * @param contentType
-     *                    the value to set into the <code>Content-Type</code>
-     *                    header
-     *
+     *        the value to set into the <code>Content-Type</code>
+     *        header
      * @exception SOAPException
-     *                                 if an there is an error in setting the
-     *                                 content
+     *            if an there is an error in setting the
+     *            content
      * @exception NullPointerException
-     *                                 if <code>content</code> is null
-     *
+     *            if <code>content</code> is null
      * @since SAAJ 1.3
      */
-    public abstract void setBase64Content(InputStream content,
-            String contentType) throws SOAPException;
+    public abstract void setBase64Content(InputStream content, String contentType) throws SOAPException;
 
     /**
      * Gets the <code>DataHandler</code> object for this
@@ -336,11 +316,10 @@ public abstract class AttachmentPart {
      *
      * @return the <code>DataHandler</code> object associated with this
      *         <code>AttachmentPart</code> object
-     *
      * @exception SOAPException
-     *                          if there is no data in this
-     *                          <code>AttachmentPart</code>
-     *                          object
+     *            if there is no data in this
+     *            <code>AttachmentPart</code>
+     *            object
      */
     public abstract DataHandler getDataHandler() throws SOAPException;
 
@@ -353,12 +332,11 @@ public abstract class AttachmentPart {
      * message.
      *
      * @param dataHandler
-     *                    the <code>DataHandler</code> object to be set
-     *
+     *        the <code>DataHandler</code> object to be set
      * @exception IllegalArgumentException
-     *                                     if there was a problem with the
-     *                                     specified
-     *                                     <code>DataHandler</code> object
+     *            if there was a problem with the
+     *            specified
+     *            <code>DataHandler</code> object
      */
     public abstract void setDataHandler(DataHandler dataHandler);
 
@@ -406,14 +384,13 @@ public abstract class AttachmentPart {
      * Sets the MIME header whose name is "Content-ID" with the given value.
      *
      * @param contentId
-     *                  a <code>String</code> giving the value of the
-     *                  "Content-ID"
-     *                  header
-     *
+     *        a <code>String</code> giving the value of the
+     *        "Content-ID"
+     *        header
      * @exception IllegalArgumentException
-     *                                     if there was a problem with the
-     *                                     specified
-     *                                     <code>contentId</code> value
+     *            if there was a problem with the
+     *            specified
+     *            <code>contentId</code> value
      * @see #getContentId
      */
     public void setContentId(String contentId) {
@@ -424,13 +401,12 @@ public abstract class AttachmentPart {
      * Sets the MIME header whose name is "Content-Location" with the given
      * value.
      *
-     *
      * @param contentLocation
-     *                        a <code>String</code> giving the value of the
-     *                        "Content-Location" header
+     *        a <code>String</code> giving the value of the
+     *        "Content-Location" header
      * @exception IllegalArgumentException
-     *                                     if there was a problem with the
-     *                                     specified content location
+     *            if there was a problem with the
+     *            specified content location
      */
     public void setContentLocation(String contentLocation) {
         setMimeHeader("Content-Location", contentLocation);
@@ -440,13 +416,12 @@ public abstract class AttachmentPart {
      * Sets the MIME header whose name is "Content-Type" with the given value.
      *
      * @param contentType
-     *                    a <code>String</code> giving the value of the
-     *                    "Content-Type"
-     *                    header
-     *
+     *        a <code>String</code> giving the value of the
+     *        "Content-Type"
+     *        header
      * @exception IllegalArgumentException
-     *                                     if there was a problem with the
-     *                                     specified content type
+     *            if there was a problem with the
+     *            specified content type
      */
     public void setContentType(String contentType) {
         setMimeHeader("Content-Type", contentType);
@@ -456,7 +431,7 @@ public abstract class AttachmentPart {
      * Removes all MIME headers that match the given name.
      *
      * @param header
-     *               the string name of the MIME header/s to be removed
+     *        the string name of the MIME header/s to be removed
      */
     public abstract void removeMimeHeader(String header);
 
@@ -470,7 +445,7 @@ public abstract class AttachmentPart {
      * <code>String</code>.
      *
      * @param name
-     *             the name of the header; example: "Content-Type"
+     *        the name of the header; example: "Content-Type"
      * @return a <code>String</code> array giving the value for the specified
      *         header
      * @see #setMimeHeader
@@ -482,21 +457,19 @@ public abstract class AttachmentPart {
      * value, adding a new header if no existing header matches. This method
      * also removes all matching headers but the first.
      * <p>
-     *
      * Note that RFC822 headers can only contain US-ASCII characters.
      *
      * @param name
-     *              a <code>String</code> giving the name of the header for
-     *              which
-     *              to search
+     *        a <code>String</code> giving the name of the header for
+     *        which
+     *        to search
      * @param value
-     *              a <code>String</code> giving the value to be set for the
-     *              header whose name matches the given name
-     *
+     *        a <code>String</code> giving the value to be set for the
+     *        header whose name matches the given name
      * @exception IllegalArgumentException
-     *                                     if there was a problem with the
-     *                                     specified mime header name
-     *                                     or value
+     *            if there was a problem with the
+     *            specified mime header name
+     *            or value
      */
     public abstract void setMimeHeader(String name, String value);
 
@@ -507,16 +480,15 @@ public abstract class AttachmentPart {
      * Note that RFC822 headers can contain only US-ASCII characters.
      *
      * @param name
-     *              a <code>String</code> giving the name of the header to be
-     *              added
+     *        a <code>String</code> giving the name of the header to be
+     *        added
      * @param value
-     *              a <code>String</code> giving the value of the header to be
-     *              added
-     *
+     *        a <code>String</code> giving the value of the header to be
+     *        added
      * @exception IllegalArgumentException
-     *                                     if there was a problem with the
-     *                                     specified mime header name
-     *                                     or value
+     *            if there was a problem with the
+     *            specified mime header name
+     *            or value
      */
     public abstract void addMimeHeader(String name, String value);
 
@@ -534,8 +506,8 @@ public abstract class AttachmentPart {
      * given array.
      *
      * @param names
-     *              a <code>String</code> array with the name(s) of the MIME
-     *              headers to be returned
+     *        a <code>String</code> array with the name(s) of the MIME
+     *        headers to be returned
      * @return all of the MIME headers that match one of the names in the given
      *         array as an <code>Iterator</code> object
      */
@@ -546,8 +518,8 @@ public abstract class AttachmentPart {
      * name in the given array.
      *
      * @param names
-     *              a <code>String</code> array with the name(s) of the MIME
-     *              headers not to be returned
+     *        a <code>String</code> array with the name(s) of the MIME
+     *        headers not to be returned
      * @return all of the MIME headers in this <code>AttachmentPart</code>
      *         object except those that match one of the names in the given
      *         array. The nonmatching MIME headers are returned as an

@@ -20,8 +20,7 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class QueuedJobCount extends IntegerSyntax implements
-        PrintServiceAttribute {
+public final class QueuedJobCount extends IntegerSyntax implements PrintServiceAttribute {
 
     private static final long serialVersionUID = 7499723077864047742L;
 
@@ -29,12 +28,11 @@ public final class QueuedJobCount extends IntegerSyntax implements
      * Construct a new queued job count attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public QueuedJobCount(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -52,8 +50,7 @@ public final class QueuedJobCount extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this queued job
      *         count attribute, false otherwise.
      */

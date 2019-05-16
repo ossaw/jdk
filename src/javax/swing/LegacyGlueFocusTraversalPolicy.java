@@ -21,8 +21,7 @@ import java.io.*;
  *
  * @author David Mendenhall
  */
-final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
-        implements Serializable {
+final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy implements Serializable {
     private transient FocusTraversalPolicy delegatePolicy;
     private transient DefaultFocusManager delegateManager;
 
@@ -47,8 +46,7 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
         backwardMap.remove(right);
     }
 
-    public Component getComponentAfter(Container focusCycleRoot,
-            Component aComponent) {
+    public Component getComponentAfter(Container focusCycleRoot, Component aComponent) {
         Component hardCoded = aComponent, prevHardCoded;
         HashSet<Component> sanity = new HashSet<Component>();
 
@@ -56,13 +54,10 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
             prevHardCoded = hardCoded;
             hardCoded = forwardMap.get(hardCoded);
             if (hardCoded == null) {
-                if (delegatePolicy != null && prevHardCoded.isFocusCycleRoot(
-                        focusCycleRoot)) {
-                    return delegatePolicy.getComponentAfter(focusCycleRoot,
-                            prevHardCoded);
+                if (delegatePolicy != null && prevHardCoded.isFocusCycleRoot(focusCycleRoot)) {
+                    return delegatePolicy.getComponentAfter(focusCycleRoot, prevHardCoded);
                 } else if (delegateManager != null) {
-                    return delegateManager.getComponentAfter(focusCycleRoot,
-                            aComponent);
+                    return delegateManager.getComponentAfter(focusCycleRoot, aComponent);
                 } else {
                     return null;
                 }
@@ -77,8 +72,7 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
         return hardCoded;
     }
 
-    public Component getComponentBefore(Container focusCycleRoot,
-            Component aComponent) {
+    public Component getComponentBefore(Container focusCycleRoot, Component aComponent) {
         Component hardCoded = aComponent, prevHardCoded;
         HashSet<Component> sanity = new HashSet<Component>();
 
@@ -86,13 +80,10 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
             prevHardCoded = hardCoded;
             hardCoded = backwardMap.get(hardCoded);
             if (hardCoded == null) {
-                if (delegatePolicy != null && prevHardCoded.isFocusCycleRoot(
-                        focusCycleRoot)) {
-                    return delegatePolicy.getComponentBefore(focusCycleRoot,
-                            prevHardCoded);
+                if (delegatePolicy != null && prevHardCoded.isFocusCycleRoot(focusCycleRoot)) {
+                    return delegatePolicy.getComponentBefore(focusCycleRoot, prevHardCoded);
                 } else if (delegateManager != null) {
-                    return delegateManager.getComponentBefore(focusCycleRoot,
-                            aComponent);
+                    return delegateManager.getComponentBefore(focusCycleRoot, aComponent);
                 } else {
                     return null;
                 }
@@ -136,8 +127,8 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
     }
 
     private boolean accept(Component aComponent) {
-        if (!(aComponent.isVisible() && aComponent.isDisplayable() && aComponent
-                .isFocusable() && aComponent.isEnabled())) {
+        if (!(aComponent.isVisible() && aComponent.isDisplayable() && aComponent.isFocusable() && aComponent
+                .isEnabled())) {
             return false;
         }
 
@@ -145,9 +136,8 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
         // heavyweight Container disables its children, whereas disabling
         // a lightweight Container does not.
         if (!(aComponent instanceof Window)) {
-            for (Container enableTest = aComponent
-                    .getParent(); enableTest != null; enableTest = enableTest
-                            .getParent()) {
+            for (Container enableTest = aComponent.getParent(); enableTest != null; enableTest = enableTest
+                    .getParent()) {
                 if (!(enableTest.isEnabled() || enableTest.isLightweight())) {
                     return false;
                 }
@@ -176,8 +166,7 @@ final class LegacyGlueFocusTraversalPolicy extends FocusTraversalPolicy
         }
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         delegatePolicy = (FocusTraversalPolicy) in.readObject();
         delegateManager = (DefaultFocusManager) in.readObject();

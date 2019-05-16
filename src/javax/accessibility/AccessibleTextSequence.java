@@ -14,7 +14,6 @@ package javax.accessibility;
  * @see AccessibleContext
  * @see AccessibleContext#getAccessibleText
  * @see AccessibleAttributeSequence
- *
  * @author Lynn Monsanto
  */
 
@@ -43,12 +42,11 @@ public class AccessibleTextSequence {
      * parameters.
      *
      * @param start
-     *              the beginning index of the span of text
+     *        the beginning index of the span of text
      * @param end
-     *              the ending index of the span of text
+     *        the ending index of the span of text
      * @param txt
-     *              the <code>String</code> shared by this text span
-     *
+     *        the <code>String</code> shared by this text span
      * @since 1.6
      */
     public AccessibleTextSequence(int start, int end, String txt) {

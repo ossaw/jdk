@@ -16,8 +16,7 @@ class ByteBufferAsDoubleBufferRL // package-private
 
     }
 
-    ByteBufferAsDoubleBufferRL(ByteBuffer bb, int mark, int pos, int lim,
-            int cap, int off) {
+    ByteBufferAsDoubleBufferRL(ByteBuffer bb, int mark, int pos, int lim, int cap, int off) {
 
         super(bb, mark, pos, lim, cap, off);
 
@@ -34,8 +33,8 @@ class ByteBufferAsDoubleBufferRL // package-private
     }
 
     public DoubleBuffer duplicate() {
-        return new ByteBufferAsDoubleBufferRL(bb, this.markValue(), this
-                .position(), this.limit(), this.capacity(), offset);
+        return new ByteBufferAsDoubleBufferRL(bb, this.markValue(), this.position(), this.limit(), this
+                .capacity(), offset);
     }
 
     public DoubleBuffer asReadOnlyBuffer() {

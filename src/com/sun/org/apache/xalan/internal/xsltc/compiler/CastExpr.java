@@ -183,12 +183,11 @@ final class CastExpr extends Expression {
             return _type;
         }
         // throw new TypeCheckError(this);
-        throw new TypeCheckError(new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                tleft.toString(), _type.toString()));
+        throw new TypeCheckError(new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, tleft.toString(), _type
+                .toString()));
     }
 
-    public void translateDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
         FlowList fl;
         final Type ltype = _left.getType();
 
@@ -199,8 +198,7 @@ final class CastExpr extends Expression {
             final ConstantPoolGen cpg = classGen.getConstantPool();
             final InstructionList il = methodGen.getInstructionList();
 
-            final int idx = cpg.addInterfaceMethodref(DOM_INTF,
-                    "getExpandedTypeID", "(I)I");
+            final int idx = cpg.addInterfaceMethodref(DOM_INTF, "getExpandedTypeID", "(I)I");
             il.append(new SIPUSH((short) ((Step) _left).getNodeType()));
             il.append(methodGen.loadDOM());
             il.append(methodGen.loadContextNode());
@@ -212,8 +210,7 @@ final class CastExpr extends Expression {
             if (_type != ltype) {
                 _left.startIterator(classGen, methodGen);
                 if (_type instanceof BooleanType) {
-                    fl = ltype.translateToDesynthesized(classGen, methodGen,
-                            _type);
+                    fl = ltype.translateToDesynthesized(classGen, methodGen, _type);
                     if (fl != null) {
                         _falseList.append(fl);
                     }

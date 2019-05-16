@@ -49,8 +49,7 @@ public abstract class Pattern extends Expression {
      * ) then a GOTO must be appended to the instruction list after calling
      * <code>translate</code>.
      */
-    public abstract void translate(ClassGenerator classGen,
-            MethodGenerator methodGen);
+    public abstract void translate(ClassGenerator classGen, MethodGenerator methodGen);
 
     /**
      * Returns the priority of this pattern (section 5.5 in the XSLT spec).

@@ -43,7 +43,7 @@ public class XNumber extends XObject {
      * Construct a XNodeSet object.
      *
      * @param d
-     *          Value of the object
+     *        Value of the object
      */
     public XNumber(double d) {
         super();
@@ -55,7 +55,7 @@ public class XNumber extends XObject {
      * Construct a XNodeSet object.
      *
      * @param num
-     *            Value of the object
+     *        Value of the object
      */
     public XNumber(Number num) {
 
@@ -97,11 +97,9 @@ public class XNumber extends XObject {
      * Evaluate expression to a number.
      *
      * @return 0.0
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public double num(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public double num(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         return m_val;
     }
@@ -319,28 +317,23 @@ public class XNumber extends XObject {
         int nDigits = e - 2;
 
         if (exp >= nDigits)
-            return sign + s.substring(0, 1) + s.substring(2, e) + zeros(exp
-                    - nDigits);
+            return sign + s.substring(0, 1) + s.substring(2, e) + zeros(exp - nDigits);
 
         // Eliminate trailing 0's - bugzilla 14241
         while (s.charAt(e - 1) == '0')
             e--;
 
         if (exp > 0)
-            return sign + s.substring(0, 1) + s.substring(2, 2 + exp) + "." + s
-                    .substring(2 + exp, e);
+            return sign + s.substring(0, 1) + s.substring(2, 2 + exp) + "." + s.substring(2 + exp, e);
 
-        return sign + "0." + zeros(-1 - exp) + s.substring(0, 1) + s.substring(
-                2, e);
+        return sign + "0." + zeros(-1 - exp) + s.substring(0, 1) + s.substring(2, e);
     }
 
     /**
      * Return a string of '0' of the given length
      *
-     *
      * @param n
-     *          Length of the string to be returned
-     *
+     *        Length of the string to be returned
      * @return a string of '0' with the given length
      */
     static private String zeros(int n) {
@@ -372,10 +365,8 @@ public class XNumber extends XObject {
      * Tell if two objects are functionally equal.
      *
      * @param obj2
-     *             Object to compare this to
-     *
+     *        Object to compare this to
      * @return true if the two objects are equal
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public boolean equals(XObject obj2) {
@@ -392,8 +383,7 @@ public class XNumber extends XObject {
             else
                 return m_val == obj2.num();
         } catch (javax.xml.transform.TransformerException te) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    te);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
         }
     }
 
@@ -402,7 +392,6 @@ public class XNumber extends XObject {
      * during iterations within the expression. This is used to determine if a
      * proximity position predicate can indicate that no more searching has to
      * occur.
-     *
      *
      * @return true if the expression represents a stable number.
      */

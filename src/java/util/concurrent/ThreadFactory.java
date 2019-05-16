@@ -14,7 +14,6 @@ package java.util.concurrent;
  * An object that creates new threads on demand. Using thread factories removes
  * hardwiring of calls to {@link Thread#Thread(Runnable) new Thread}, enabling
  * applications to use special thread subclasses, priorities, etc.
- *
  * <p>
  * The simplest implementation of this interface is just:
  * 
@@ -43,7 +42,7 @@ public interface ThreadFactory {
      * priority, name, daemon status, {@code ThreadGroup}, etc.
      *
      * @param r
-     *          a runnable to be executed by new thread instance
+     *        a runnable to be executed by new thread instance
      * @return constructed thread, or {@code null} if the request to create a
      *         thread is rejected
      */

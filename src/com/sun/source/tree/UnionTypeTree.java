@@ -11,7 +11,6 @@ import java.util.List;
  * A tree node for a union type expression in a multicatch var declaration.
  *
  * @author Maurizio Cimadamore
- *
  * @since 1.7
  */
 @jdk.Exported

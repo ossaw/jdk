@@ -25,8 +25,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 // But that would mean that an object that implements DynSequence also
 // implements DynArray
 // which the spec doesn't mention (it also doesn't forbid it).
-public class DynSequenceImpl extends DynAnyCollectionImpl implements
-        DynSequence {
+public class DynSequenceImpl extends DynAnyCollectionImpl implements DynSequence {
     //
     // Constructors
     //
@@ -70,8 +69,7 @@ public class DynSequenceImpl extends DynAnyCollectionImpl implements
             anys[i] = DynAnyUtil.extractAnyFromStream(contentType, input, orb);
             try {
                 // Creates the appropriate subtype without copying the Any
-                components[i] = DynAnyUtil.createMostDerivedDynAny(anys[i], orb,
-                        false);
+                components[i] = DynAnyUtil.createMostDerivedDynAny(anys[i], orb, false);
             } catch (InconsistentTypeCode itc) { // impossible
             }
         }
@@ -145,8 +143,7 @@ public class DynSequenceImpl extends DynAnyCollectionImpl implements
     // ?f the current position indicates a valid element and that element is
     // removed, the
     // current position is set to -1.
-    public void set_length(int len)
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    public void set_length(int len) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
         }
@@ -236,8 +233,7 @@ public class DynSequenceImpl extends DynAnyCollectionImpl implements
     // Utility methods
     //
 
-    protected void checkValue(Object[] value)
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    protected void checkValue(Object[] value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (value == null || value.length == 0) {
             clearData();
             index = NO_INDEX;

@@ -25,26 +25,22 @@ public interface MBeanRegistration {
      * Server.
      *
      * @param server
-     *               The MBean Server in which the MBean will be registered.
-     *
+     *        The MBean Server in which the MBean will be registered.
      * @param name
-     *               The object name of the MBean. This name is null if the name
-     *               parameter to one of the <code>createMBean</code> or
-     *               <code>registerMBean</code> methods in the
-     *               {@link MBeanServer}
-     *               interface is null. In that case, this method must return a
-     *               non-null ObjectName for the new MBean.
-     *
+     *        The object name of the MBean. This name is null if the name
+     *        parameter to one of the <code>createMBean</code> or
+     *        <code>registerMBean</code> methods in the
+     *        {@link MBeanServer}
+     *        interface is null. In that case, this method must return a
+     *        non-null ObjectName for the new MBean.
      * @return The name under which the MBean is to be registered. This value
      *         must not be null. If the <code>name</code> parameter is not null,
      *         it will usually but not necessarily be the returned value.
-     *
      * @exception java.lang.Exception
      *            This exception will be caught by the MBean Server and
      *            re-thrown as an {@link MBeanRegistrationException}.
      */
-    public ObjectName preRegister(MBeanServer server, ObjectName name)
-            throws java.lang.Exception;
+    public ObjectName preRegister(MBeanServer server, ObjectName name) throws java.lang.Exception;
 
     /**
      * Allows the MBean to perform any operations needed after having been
@@ -67,11 +63,11 @@ public interface MBeanRegistration {
      * </p>
      * 
      * @param registrationDone
-     *                         Indicates whether or not the MBean has been
-     *                         successfully
-     *                         registered in the MBean server. The value false
-     *                         means that the
-     *                         registration phase has failed.
+     *        Indicates whether or not the MBean has been
+     *        successfully
+     *        registered in the MBean server. The value false
+     *        means that the
+     *        registration phase has failed.
      */
     public void postRegister(Boolean registrationDone);
 

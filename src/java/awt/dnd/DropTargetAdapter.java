@@ -44,7 +44,6 @@ package java.awt.dnd;
  *
  * @see DropTargetEvent
  * @see DropTargetListener
- *
  * @author David Mendenhall
  * @since 1.4
  */
@@ -56,7 +55,7 @@ public abstract class DropTargetAdapter implements DropTargetListener {
      * registered with this listener.
      *
      * @param dtde
-     *             the <code>DropTargetDragEvent</code>
+     *        the <code>DropTargetDragEvent</code>
      */
     public void dragEnter(DropTargetDragEvent dtde) {}
 
@@ -66,7 +65,7 @@ public abstract class DropTargetAdapter implements DropTargetListener {
      * registered with this listener.
      *
      * @param dtde
-     *             the <code>DropTargetDragEvent</code>
+     *        the <code>DropTargetDragEvent</code>
      */
     public void dragOver(DropTargetDragEvent dtde) {}
 
@@ -74,7 +73,7 @@ public abstract class DropTargetAdapter implements DropTargetListener {
      * Called if the user has modified the current drop gesture.
      *
      * @param dtde
-     *             the <code>DropTargetDragEvent</code>
+     *        the <code>DropTargetDragEvent</code>
      */
     public void dropActionChanged(DropTargetDragEvent dtde) {}
 
@@ -84,7 +83,7 @@ public abstract class DropTargetAdapter implements DropTargetListener {
      * registered with this listener.
      *
      * @param dte
-     *            the <code>DropTargetEvent</code>
+     *        the <code>DropTargetEvent</code>
      */
     public void dragExit(DropTargetEvent dte) {}
 }

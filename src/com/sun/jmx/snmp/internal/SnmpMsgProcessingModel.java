@@ -31,7 +31,7 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * This method is called when a call is to be sent to the network.
      * 
      * @param factory
-     *                The pdu factory to use to encode and decode pdu.
+     *        The pdu factory to use to encode and decode pdu.
      * @return The object that will handle every steps of the sending (mainly
      *         marshalling and security).
      */
@@ -41,7 +41,7 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * This method is called when a call is received from the network.
      * 
      * @param factory
-     *                The pdu factory to use to encode and decode pdu.
+     *        The pdu factory to use to encode and decode pdu.
      * @return The object that will handle every steps of the receiving (mainly
      *         unmarshalling and security).
      */
@@ -51,7 +51,7 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * This method is called when a response is received from the network.
      * 
      * @param factory
-     *                The pdu factory to use to encode and decode pdu.
+     *        The pdu factory to use to encode and decode pdu.
      * @return The object that will handle every steps of the receiving (mainly
      *         unmarshalling and security).
      */
@@ -62,13 +62,12 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * type and parameters.
      * 
      * @param p
-     *             The request parameters.
+     *        The request parameters.
      * @param type
-     *             The pdu type.
+     *        The pdu type.
      * @return The pdu.
      */
-    public SnmpPdu getRequestPdu(SnmpParams p, int type)
-            throws SnmpStatusException;
+    public SnmpPdu getRequestPdu(SnmpParams p, int type) throws SnmpStatusException;
 
     /**
      * This method is called to encode a full scoped pdu that has not been
@@ -78,32 +77,31 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * {@link com.sun.jmx.snmp.SnmpV3Message} class).
      * 
      * @param version
-     *                         The SNMP protocol version.
+     *        The SNMP protocol version.
      * @param msgID
-     *                         The SNMP message ID.
+     *        The SNMP message ID.
      * @param msgMaxSize
-     *                         The max message size.
+     *        The max message size.
      * @param msgFlags
-     *                         The message flags.
+     *        The message flags.
      * @param msgSecurityModel
-     *                         The message security model.
+     *        The message security model.
      * @param params
-     *                         The security parameters.
+     *        The security parameters.
      * @param contextEngineID
-     *                         The context engine ID.
+     *        The context engine ID.
      * @param contextName
-     *                         The context name.
+     *        The context name.
      * @param data
-     *                         The encoded data.
+     *        The encoded data.
      * @param dataLength
-     *                         The encoded data length.
+     *        The encoded data length.
      * @param outputBytes
-     *                         The buffer containing the encoded message.
+     *        The buffer containing the encoded message.
      * @return The encoded bytes number.
      */
-    public int encode(int version, int msgID, int msgMaxSize, byte msgFlags,
-            int msgSecurityModel, SnmpSecurityParameters params,
-            byte[] contextEngineID, byte[] contextName, byte[] data,
+    public int encode(int version, int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel,
+            SnmpSecurityParameters params, byte[] contextEngineID, byte[] contextName, byte[] data,
             int dataLength, byte[] outputBytes) throws SnmpTooBigException;
 
     /**
@@ -114,26 +112,26 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * {@link com.sun.jmx.snmp.SnmpV3Message} class).
      * 
      * @param version
-     *                         The SNMP protocol version.
+     *        The SNMP protocol version.
      * @param msgID
-     *                         The SNMP message ID.
+     *        The SNMP message ID.
      * @param msgMaxSize
-     *                         The max message size.
+     *        The max message size.
      * @param msgFlags
-     *                         The message flags.
+     *        The message flags.
      * @param msgSecurityModel
-     *                         The message security model.
+     *        The message security model.
      * @param params
-     *                         The security parameters.
+     *        The security parameters.
      * @param encryptedPdu
-     *                         The encrypted pdu.
+     *        The encrypted pdu.
      * @param outputBytes
-     *                         The buffer containing the encoded message.
+     *        The buffer containing the encoded message.
      * @return The encoded bytes number.
      */
-    public int encodePriv(int version, int msgID, int msgMaxSize, byte msgFlags,
-            int msgSecurityModel, SnmpSecurityParameters params,
-            byte[] encryptedPdu, byte[] outputBytes) throws SnmpTooBigException;
+    public int encodePriv(int version, int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel,
+            SnmpSecurityParameters params, byte[] encryptedPdu, byte[] outputBytes)
+            throws SnmpTooBigException;
 
     /**
      * This method returns a decoded scoped pdu. This method decodes only the
@@ -141,7 +139,7 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * needed by the <CODE>SnmpSecurityModel</CODE> after decryption.
      * 
      * @param pdu
-     *            The encoded pdu.
+     *        The encoded pdu.
      * @return The partialy scoped pdu.
      */
     public SnmpDecryptedPdu decode(byte[] pdu) throws SnmpStatusException;
@@ -152,19 +150,18 @@ public interface SnmpMsgProcessingModel extends SnmpModel {
      * needed by the <CODE>SnmpSecurityModel</CODE> for decryption.
      * 
      * @param pdu
-     *                    The pdu to encode.
+     *        The pdu to encode.
      * @param outputBytes
-     *                    The partialy scoped pdu.
+     *        The partialy scoped pdu.
      * @return The encoded bytes number.
      */
-    public int encode(SnmpDecryptedPdu pdu, byte[] outputBytes)
-            throws SnmpTooBigException;
+    public int encode(SnmpDecryptedPdu pdu, byte[] outputBytes) throws SnmpTooBigException;
 
     /**
      * In order to change the behavior of the translator, set it.
      * 
      * @param translator
-     *                   The translator that will be used.
+     *        The translator that will be used.
      */
     public void setMsgTranslator(SnmpMsgTranslator translator);
 

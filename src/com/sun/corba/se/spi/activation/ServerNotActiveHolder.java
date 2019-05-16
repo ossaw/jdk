@@ -8,14 +8,12 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ServerNotActiveHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ServerNotActiveHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.spi.activation.ServerNotActive value = null;
 
     public ServerNotActiveHolder() {}
 
-    public ServerNotActiveHolder(
-            com.sun.corba.se.spi.activation.ServerNotActive initialValue) {
+    public ServerNotActiveHolder(com.sun.corba.se.spi.activation.ServerNotActive initialValue) {
         value = initialValue;
     }
 

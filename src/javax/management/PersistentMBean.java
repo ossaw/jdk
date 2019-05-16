@@ -29,22 +29,20 @@ public interface PersistentMBean {
      * Instantiates thisMBean instance with the data found for the MBean in the
      * persistent store. The data loaded could include attribute and operation
      * values.
-     *
      * This method should be called during construction or initialization of
      * this instance, and before the MBean is registered with the MBeanServer.
      *
      * @exception MBeanException
-     *                                       Wraps another exception or
-     *                                       persistence is not supported
+     *            Wraps another exception or
+     *            persistence is not supported
      * @exception RuntimeOperationsException
-     *                                       Wraps exceptions from the
-     *                                       persistence mechanism
+     *            Wraps exceptions from the
+     *            persistence mechanism
      * @exception InstanceNotFoundException
-     *                                       Could not find or load this MBean
-     *                                       from persistent storage
+     *            Could not find or load this MBean
+     *            from persistent storage
      */
-    public void load() throws MBeanException, RuntimeOperationsException,
-            InstanceNotFoundException;
+    public void load() throws MBeanException, RuntimeOperationsException, InstanceNotFoundException;
 
     /**
      * Captures the current state of this MBean instance and writes it out to
@@ -76,16 +74,15 @@ public interface PersistentMBean {
      * </PRE>
      *
      * @exception MBeanException
-     *                                       Wraps another exception or
-     *                                       persistence is not supported
+     *            Wraps another exception or
+     *            persistence is not supported
      * @exception RuntimeOperationsException
-     *                                       Wraps exceptions from the
-     *                                       persistence mechanism
+     *            Wraps exceptions from the
+     *            persistence mechanism
      * @exception InstanceNotFoundException
-     *                                       Could not find/access the
-     *                                       persistent store
+     *            Could not find/access the
+     *            persistent store
      */
-    public void store() throws MBeanException, RuntimeOperationsException,
-            InstanceNotFoundException;
+    public void store() throws MBeanException, RuntimeOperationsException, InstanceNotFoundException;
 
 }

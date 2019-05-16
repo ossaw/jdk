@@ -18,12 +18,10 @@ import javax.lang.model.util.*;
  * Represents a program element such as a package, class, or method. Each
  * element represents a static, language-level construct (and not, for example,
  * a runtime construct of the virtual machine).
- *
  * <p>
  * Elements should be compared using the {@link #equals(Object)} method. There
  * is no guarantee that any particular element will always be represented by the
  * same object.
- *
  * <p>
  * To implement operations based on the class of an {@code
  * Element} object, either use a {@linkplain ElementVisitor visitor} or use the
@@ -43,7 +41,6 @@ import javax.lang.model.util.*;
 public interface Element extends javax.lang.model.AnnotatedConstruct {
     /**
      * Returns the type defined by this element.
-     *
      * <p>
      * A generic element defines a family of types, not just one. If this is a
      * generic element, a <i>prototypical</i> type is returned. This is the
@@ -54,7 +51,6 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
      * for obtaining the full range of types defined by an element.
      *
      * @see Types
-     *
      * @return the type defined by this element
      */
     TypeMirror asType();
@@ -79,19 +75,15 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
      * Returns the simple (unqualified) name of this element. The name of a
      * generic type does not include any reference to its formal type
      * parameters.
-     *
      * For example, the simple name of the type element {@code
      * java.util.Set<E>} is {@code "Set"}.
-     *
      * If this element represents an unnamed
      * {@linkplain PackageElement#getSimpleName package}, an empty name is
      * returned.
-     *
      * If it represents a {@linkplain ExecutableElement#getSimpleName
      * constructor}, the name "{@code <init>}" is returned. If it represents a
      * {@linkplain ExecutableElement#getSimpleName static initializer}, the name
      * "{@code <clinit>}" is returned.
-     *
      * If it represents an {@linkplain TypeElement#getSimpleName anonymous
      * class} or {@linkplain ExecutableElement#getSimpleName instance
      * initializer}, an empty name is returned.
@@ -111,21 +103,16 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
      * <li>If this element is one whose declaration is lexically enclosed
      * immediately within the declaration of another element, that other element
      * is returned.
-     *
      * <li>If this is a {@linkplain TypeElement#getEnclosingElement top-level
      * type}, its package is returned.
-     *
      * <li>If this is a {@linkplain PackageElement#getEnclosingElement package},
      * {@code null} is returned.
-     *
      * <li>If this is a {@linkplain TypeParameterElement#getEnclosingElement
      * type parameter}, {@linkplain TypeParameterElement#getGenericElement the
      * generic element} of the type parameter is returned.
-     *
      * <li>If this is a {@linkplain VariableElement#getEnclosingElement method
      * or constructor parameter}, {@linkplain ExecutableElement the executable
      * element} which declares the parameter is returned.
-     *
      * </ul>
      *
      * @return the enclosing element, or {@code null} if there is none
@@ -136,19 +123,15 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
     /**
      * Returns the elements that are, loosely speaking, directly enclosed by
      * this element.
-     *
      * A {@linkplain TypeElement#getEnclosedElements class or interface} is
      * considered to enclose the fields, methods, constructors, and member types
      * that it directly declares.
-     *
      * A {@linkplain PackageElement#getEnclosedElements package} encloses the
      * top-level classes and interfaces within it, but is not considered to
      * enclose subpackages.
-     *
      * Other kinds of elements are not currently considered to enclose any
      * elements; however, that may change as this API or the programming
      * language evolves.
-     *
      * <p>
      * Note that elements of certain kinds can be isolated using methods in
      * {@link ElementFilter}.
@@ -165,7 +148,6 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
     /**
      * Returns {@code true} if the argument represents the same element as
      * {@code this}, or {@code false} otherwise.
-     *
      * <p>
      * Note that the identity of an element involves implicit state not directly
      * accessible from the element's methods, including state about the presence
@@ -176,7 +158,7 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
      * through different class loaders.
      *
      * @param obj
-     *            the object to be compared with this element
+     *        the object to be compared with this element
      * @return {@code true} if the specified object represents the same element
      *         as this
      */
@@ -193,7 +175,6 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * To get inherited annotations as well, use
      * {@link Elements#getAllAnnotationMirrors(Element) getAllAnnotationMirrors}
@@ -215,14 +196,14 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
     /**
      * Applies a visitor to this element.
      *
-     * @param   <R>
-     *          the return type of the visitor's methods
-     * @param   <P>
-     *          the type of the additional parameter to the visitor's methods
+     * @param <R>
+     *        the return type of the visitor's methods
+     * @param <P>
+     *        the type of the additional parameter to the visitor's methods
      * @param v
-     *          the visitor operating on this element
+     *        the visitor operating on this element
      * @param p
-     *          additional parameter to the visitor
+     *        additional parameter to the visitor
      * @return a visitor-specified result
      */
     <R, P> R accept(ElementVisitor<R, P> v, P p);

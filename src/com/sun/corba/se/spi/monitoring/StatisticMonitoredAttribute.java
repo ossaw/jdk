@@ -40,38 +40,35 @@ public class StatisticMonitoredAttribute extends MonitoredAttributeBase {
      * <p>
      *
      * @param name
-     *             Of this attribute
-     *             </p>
-     *             <p>
+     *        Of this attribute
+     *        </p>
+     *        <p>
      * @return a StatisticMonitoredAttribute
      *         </p>
      *         <p>
      * @param desc
-     *              should provide a good description on the kind of statistics
-     *              collected, a good example is "Connection Response Time Stats
-     *              will Provide the detailed stats based on the samples
-     *              provided
-     *              from every request completion time"
-     *              </p>
-     *              <p>
+     *        should provide a good description on the kind of statistics
+     *        collected, a good example is "Connection Response Time Stats
+     *        will Provide the detailed stats based on the samples
+     *        provided
+     *        from every request completion time"
+     *        </p>
+     *        <p>
      * @param s
-     *              is the StatisticsAcumulator that user will use to accumulate
-     *              the samples and this Attribute Object will get the computed
-     *              statistics values from.
-     *              </p>
-     *              <p>
+     *        is the StatisticsAcumulator that user will use to accumulate
+     *        the samples and this Attribute Object will get the computed
+     *        statistics values from.
+     *        </p>
+     *        <p>
      * @param mutex
-     *              using which clearState() and getValue() calls need to be
-     *              locked.
-     *              </p>
+     *        using which clearState() and getValue() calls need to be
+     *        locked.
+     *        </p>
      */
-    public StatisticMonitoredAttribute(String name, String desc,
-            StatisticsAccumulator s, Object mutex) {
+    public StatisticMonitoredAttribute(String name, String desc, StatisticsAccumulator s, Object mutex) {
         super(name);
-        MonitoredAttributeInfoFactory f = MonitoringFactories
-                .getMonitoredAttributeInfoFactory();
-        MonitoredAttributeInfo maInfo = f.createMonitoredAttributeInfo(desc,
-                String.class, false, true);
+        MonitoredAttributeInfoFactory f = MonitoringFactories.getMonitoredAttributeInfoFactory();
+        MonitoredAttributeInfo maInfo = f.createMonitoredAttributeInfo(desc, String.class, false, true);
 
         this.setMonitoredAttributeInfo(maInfo);
         this.statisticsAccumulator = s;

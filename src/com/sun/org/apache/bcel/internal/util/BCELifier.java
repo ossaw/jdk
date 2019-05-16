@@ -63,17 +63,16 @@ import java.io.*;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class BCELifier extends
-        com.sun.org.apache.bcel.internal.classfile.EmptyVisitor {
+public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyVisitor {
     private JavaClass _clazz;
     private PrintWriter _out;
     private ConstantPoolGen _cp;
 
     /**
      * @param clazz
-     *              Java class to "decompile"
+     *        Java class to "decompile"
      * @param out
-     *              where to output Java program
+     *        where to output Java program
      */
     public BCELifier(JavaClass clazz, OutputStream out) {
         _clazz = clazz;
@@ -93,8 +92,7 @@ public class BCELifier extends
         String class_name = clazz.getClassName();
         String super_name = clazz.getSuperclassName();
         String package_name = clazz.getPackageName();
-        String inter = Utility.printArray(clazz.getInterfaceNames(), false,
-                true);
+        String inter = Utility.printArray(clazz.getInterfaceNames(), false, true);
         if (!"".equals(package_name)) {
             class_name = class_name.substring(package_name.length() + 1);
             _out.println("package " + package_name + ";\n");
@@ -105,18 +103,15 @@ public class BCELifier extends
         _out.println("import com.sun.org.apache.bcel.internal.*;");
         _out.println("import java.io.*;\n");
 
-        _out.println("public class " + class_name
-                + "Creator implements Constants {");
+        _out.println("public class " + class_name + "Creator implements Constants {");
         _out.println("  private InstructionFactory _factory;");
         _out.println("  private ConstantPoolGen    _cp;");
         _out.println("  private ClassGen           _cg;\n");
 
         _out.println("  public " + class_name + "Creator() {");
-        _out.println("    _cg = new ClassGen(\"" + (("".equals(package_name))
-                ? class_name
-                : package_name + "." + class_name) + "\", \"" + super_name
-                + "\", " + "\"" + clazz.getSourceFileName() + "\", "
-                + printFlags(clazz.getAccessFlags(), true) + ", "
+        _out.println("    _cg = new ClassGen(\"" + (("".equals(package_name)) ? class_name
+                : package_name + "." + class_name) + "\", \"" + super_name + "\", " + "\"" + clazz
+                        .getSourceFileName() + "\", " + printFlags(clazz.getAccessFlags(), true) + ", "
                 + "new String[] { " + inter + " });\n");
 
         _out.println("    _cp = _cg.getConstantPool();");
@@ -152,8 +147,7 @@ public class BCELifier extends
     }
 
     private void printCreate() {
-        _out.println(
-                "  public void create(OutputStream out) throws IOException {");
+        _out.println("  public void create(OutputStream out) throws IOException {");
 
         Field[] fields = _clazz.getFields();
         if (fields.length > 0) {
@@ -173,19 +167,15 @@ public class BCELifier extends
     private void printMain() {
         String class_name = _clazz.getClassName();
 
-        _out.println(
-                "  public static void _main(String[] args) throws Exception {");
-        _out.println("    " + class_name + "Creator creator = new " + class_name
-                + "Creator();");
-        _out.println("    creator.create(new FileOutputStream(\"" + class_name
-                + ".class\"));");
+        _out.println("  public static void _main(String[] args) throws Exception {");
+        _out.println("    " + class_name + "Creator creator = new " + class_name + "Creator();");
+        _out.println("    creator.create(new FileOutputStream(\"" + class_name + ".class\"));");
         _out.println("  }");
     }
 
     public void visitField(Field field) {
-        _out.println("\n    field = new FieldGen(" + printFlags(field
-                .getAccessFlags()) + ", " + printType(field.getSignature())
-                + ", \"" + field.getName() + "\", _cp);");
+        _out.println("\n    field = new FieldGen(" + printFlags(field.getAccessFlags()) + ", " + printType(
+                field.getSignature()) + ", \"" + field.getName() + "\", _cp);");
 
         ConstantValue cv = field.getConstantValue();
 
@@ -204,12 +194,10 @@ public class BCELifier extends
         Type[] arg_types = mg.getArgumentTypes();
 
         _out.println("    InstructionList il = new InstructionList();");
-        _out.println("    MethodGen method = new MethodGen(" + printFlags(method
-                .getAccessFlags()) + ", " + printType(result_type) + ", "
-                + printArgumentTypes(arg_types) + ", " + "new String[] { "
-                + Utility.printArray(mg.getArgumentNames(), false, true)
-                + " }, \"" + method.getName() + "\", \"" + _clazz.getClassName()
-                + "\", il, _cp);\n");
+        _out.println("    MethodGen method = new MethodGen(" + printFlags(method.getAccessFlags()) + ", "
+                + printType(result_type) + ", " + printArgumentTypes(arg_types) + ", " + "new String[] { "
+                + Utility.printArray(mg.getArgumentNames(), false, true) + " }, \"" + method.getName()
+                + "\", \"" + _clazz.getClassName() + "\", il, _cp);\n");
 
         BCELFactory factory = new BCELFactory(mg, _out);
         factory.start();
@@ -234,8 +222,7 @@ public class BCELifier extends
                 if ((pow == Constants.ACC_SYNCHRONIZED) && for_class)
                     buf.append("ACC_SUPER | ");
                 else
-                    buf.append("ACC_" + Constants.ACCESS_NAMES[i].toUpperCase()
-                            + " | ");
+                    buf.append("ACC_" + Constants.ACCESS_NAMES[i].toUpperCase() + " | ");
             }
 
             pow <<= 1;
@@ -280,11 +267,9 @@ public class BCELifier extends
         } else if (type instanceof ArrayType) {
             ArrayType at = (ArrayType) type;
 
-            return "new ArrayType(" + printType(at.getBasicType()) + ", " + at
-                    .getDimensions() + ")";
+            return "new ArrayType(" + printType(at.getBasicType()) + ", " + at.getDimensions() + ")";
         } else {
-            return "new ObjectType(\"" + Utility.signatureToString(signature,
-                    false) + "\")";
+            return "new ObjectType(\"" + Utility.signatureToString(signature, false) + "\")";
         }
     }
 

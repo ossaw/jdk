@@ -34,8 +34,7 @@ final class IdAssignmentPolicyImpl extends org.omg.CORBA.LocalObject implements
     private IdAssignmentPolicyValue value;
 
     public String toString() {
-        return "IdAssignmentPolicy[" + ((value
-                .value() == IdAssignmentPolicyValue._USER_ID) ? "USER_ID"
-                        : "SYSTEM_ID" + "]");
+        return "IdAssignmentPolicy[" + ((value.value() == IdAssignmentPolicyValue._USER_ID) ? "USER_ID"
+                : "SYSTEM_ID" + "]");
     }
 }

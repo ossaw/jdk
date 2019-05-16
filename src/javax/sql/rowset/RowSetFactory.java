@@ -22,10 +22,8 @@ public interface RowSetFactory {
      * </p>
      *
      * @return A new instance of a CachedRowSet.
-     *
      * @throws SQLException
-     *                      if a CachedRowSet cannot be created.
-     *
+     *         if a CachedRowSet cannot be created.
      * @since 1.7
      */
     public CachedRowSet createCachedRowSet() throws SQLException;
@@ -36,10 +34,8 @@ public interface RowSetFactory {
      * </p>
      *
      * @return A new instance of a FilteredRowSet.
-     *
      * @throws SQLException
-     *                      if a FilteredRowSet cannot be created.
-     *
+     *         if a FilteredRowSet cannot be created.
      * @since 1.7
      */
     public FilteredRowSet createFilteredRowSet() throws SQLException;
@@ -50,10 +46,8 @@ public interface RowSetFactory {
      * </p>
      *
      * @return A new instance of a JdbcRowSet.
-     *
      * @throws SQLException
-     *                      if a JdbcRowSet cannot be created.
-     *
+     *         if a JdbcRowSet cannot be created.
      * @since 1.7
      */
     public JdbcRowSet createJdbcRowSet() throws SQLException;
@@ -64,10 +58,8 @@ public interface RowSetFactory {
      * </p>
      *
      * @return A new instance of a JoinRowSet.
-     *
      * @throws SQLException
-     *                      if a JoinRowSet cannot be created.
-     *
+     *         if a JoinRowSet cannot be created.
      * @since 1.7
      */
     public JoinRowSet createJoinRowSet() throws SQLException;
@@ -78,10 +70,8 @@ public interface RowSetFactory {
      * </p>
      *
      * @return A new instance of a WebRowSet.
-     *
      * @throws SQLException
-     *                      if a WebRowSet cannot be created.
-     *
+     *         if a WebRowSet cannot be created.
      * @since 1.7
      */
     public WebRowSet createWebRowSet() throws SQLException;

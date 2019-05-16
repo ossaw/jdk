@@ -26,8 +26,7 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
 
 abstract class ClientHandler implements Runnable {
 
-    public ClientHandler(CommunicatorServer server, int id, MBeanServer f,
-            ObjectName n) {
+    public ClientHandler(CommunicatorServer server, int id, MBeanServer f, ObjectName n) {
         adaptorServer = server;
         requestId = id;
         mbs = f;
@@ -63,8 +62,7 @@ abstract class ClientHandler implements Runnable {
         if (thread != null) {
             try {
                 thread.join();
-            } catch (InterruptedException x) {
-            }
+            } catch (InterruptedException x) {}
         }
     }
 
@@ -104,7 +102,7 @@ abstract class ClientHandler implements Runnable {
     protected String dbgTag = null;
 
     protected String makeDebugTag() {
-        return "ClientHandler[" + adaptorServer.getProtocol() + ":"
-                + adaptorServer.getPort() + "][" + requestId + "]";
+        return "ClientHandler[" + adaptorServer.getProtocol() + ":" + adaptorServer.getPort() + "]["
+                + requestId + "]";
     }
 }

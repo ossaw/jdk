@@ -64,8 +64,8 @@ class CommentView extends HiddenTagView {
             isSettingAttributes = true;
             try {
                 sas.addAttribute(HTML.Attribute.COMMENT, text);
-                ((StyledDocument) doc).setCharacterAttributes(getStartOffset(),
-                        getEndOffset() - getStartOffset(), sas, false);
+                ((StyledDocument) doc).setCharacterAttributes(getStartOffset(), getEndOffset()
+                        - getStartOffset(), sas, false);
             } finally {
                 isSettingAttributes = false;
             }
@@ -96,10 +96,8 @@ class CommentView extends HiddenTagView {
             super(Color.black, 1);
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            super.paintBorder(c, g, x + commentPadding, y, width
-                    - commentPaddingD, height);
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            super.paintBorder(c, g, x + commentPadding, y, width - commentPaddingD, height);
         }
 
         public Insets getBorderInsets(Component c, Insets insets) {

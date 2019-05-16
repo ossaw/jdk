@@ -35,8 +35,8 @@ public interface ShortList extends List {
      * of this list.
      * 
      * @param item
-     *             <code>unsigned short</code> whose presence in this list is to
-     *             be tested.
+     *        <code>unsigned short</code> whose presence in this list is to
+     *        be tested.
      * @return True if this list contains the <code>unsigned short</code>
      *         <code>item</code>.
      */
@@ -47,13 +47,13 @@ public interface ShortList extends List {
      * at 0.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The <code>unsigned short</code> at the <code>index</code>th
      *         position in the <code>ShortList</code>.
      * @exception XSException
-     *                        INDEX_SIZE_ERR: if <code>index</code> is greater
-     *                        than or
-     *                        equal to the number of objects in the list.
+     *            INDEX_SIZE_ERR: if <code>index</code> is greater
+     *            than or
+     *            equal to the number of objects in the list.
      */
     public short item(int index) throws XSException;
 

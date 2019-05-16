@@ -81,7 +81,7 @@ public interface Element {
      * greater than or equal to the end offset.
      *
      * @param offset
-     *               the specified offset &gt;= 0
+     *        the specified offset &gt;= 0
      * @return the element index &gt;= 0
      */
     public int getElementIndex(int offset);
@@ -98,7 +98,7 @@ public interface Element {
      * Fetches the child element at the given index.
      *
      * @param index
-     *              the specified index &gt;= 0
+     *        the specified index &gt;= 0
      * @return the child element
      */
     public Element getElement(int index);

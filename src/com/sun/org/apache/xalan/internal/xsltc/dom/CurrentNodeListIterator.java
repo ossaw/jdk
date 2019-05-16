@@ -30,7 +30,6 @@ import com.sun.org.apache.xml.internal.dtm.ref.DTMAxisIteratorBase;
  * Iterators of this kind use a CurrentNodeListFilter to filter a subset of
  * nodes from a source iterator. For each node from the source, the boolean
  * method CurrentNodeListFilter.test() is called.
- *
  * All nodes from the source are read into an array upon calling setStartNode()
  * (this is needed to determine the value of last, a parameter to
  * CurrentNodeListFilter.test()). The method getLast() returns the last element
@@ -77,15 +76,13 @@ public final class CurrentNodeListIterator extends DTMAxisIteratorBase {
      */
     private AbstractTranslet _translet;
 
-    public CurrentNodeListIterator(DTMAxisIterator source,
-            CurrentNodeListFilter filter, int currentNode,
+    public CurrentNodeListIterator(DTMAxisIterator source, CurrentNodeListFilter filter, int currentNode,
             AbstractTranslet translet) {
         this(source, !source.isReverse(), filter, currentNode, translet);
     }
 
-    public CurrentNodeListIterator(DTMAxisIterator source, boolean docOrder,
-            CurrentNodeListFilter filter, int currentNode,
-            AbstractTranslet translet) {
+    public CurrentNodeListIterator(DTMAxisIterator source, boolean docOrder, CurrentNodeListFilter filter,
+            int currentNode, AbstractTranslet translet) {
         _source = source;
         _filter = filter;
         _translet = translet;
@@ -115,8 +112,7 @@ public final class CurrentNodeListIterator extends DTMAxisIteratorBase {
             clone._isRestartable = false;
             return clone.reset();
         } catch (CloneNotSupportedException e) {
-            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                    .toString());
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
             return null;
         }
     }
@@ -135,8 +131,7 @@ public final class CurrentNodeListIterator extends DTMAxisIteratorBase {
             final int position = _docOrder ? index + 1 : last - index;
             final int node = _nodes.at(index++); // note increment
 
-            if (_filter.test(node, position, last, currentNode, translet,
-                    this)) {
+            if (_filter.test(node, position, last, currentNode, translet, this)) {
                 _currentIndex = index;
                 return returnNode(node);
             }
@@ -183,8 +178,7 @@ public final class CurrentNodeListIterator extends DTMAxisIteratorBase {
             final int position = _docOrder ? index + 1 : last - index;
             int nodeIndex = _nodes.at(index++); // note increment
 
-            if (_filter.test(nodeIndex, position, last, currNode, translet,
-                    this)) {
+            if (_filter.test(nodeIndex, position, last, currNode, translet, this)) {
                 lastPosition++;
             }
         }

@@ -67,7 +67,7 @@ public final class ConstantInteger extends Constant implements ConstantObject {
 
     /**
      * @param bytes
-     *              Data
+     *        Data
      */
     public ConstantInteger(int bytes) {
         super(Constants.CONSTANT_Integer);
@@ -85,7 +85,7 @@ public final class ConstantInteger extends Constant implements ConstantObject {
      * Initialize instance from file data.
      *
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     ConstantInteger(DataInputStream file) throws IOException {
@@ -98,7 +98,7 @@ public final class ConstantInteger extends Constant implements ConstantObject {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantInteger(this);
@@ -108,7 +108,7 @@ public final class ConstantInteger extends Constant implements ConstantObject {
      * Dump constant integer to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {

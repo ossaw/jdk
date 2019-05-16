@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,8 +37,7 @@ import com.sun.org.apache.xml.internal.security.utils.XMLUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class DSAKeyValue extends SignatureElementProxy implements
-        KeyValueContent {
+public class DSAKeyValue extends SignatureElementProxy implements KeyValueContent {
 
     /**
      * Constructor DSAKeyValue
@@ -49,8 +46,7 @@ public class DSAKeyValue extends SignatureElementProxy implements
      * @param baseURI
      * @throws XMLSecurityException
      */
-    public DSAKeyValue(Element element, String baseURI)
-            throws XMLSecurityException {
+    public DSAKeyValue(Element element, String baseURI) throws XMLSecurityException {
         super(element, baseURI);
     }
 
@@ -63,8 +59,7 @@ public class DSAKeyValue extends SignatureElementProxy implements
      * @param G
      * @param Y
      */
-    public DSAKeyValue(Document doc, BigInteger P, BigInteger Q, BigInteger G,
-            BigInteger Y) {
+    public DSAKeyValue(Document doc, BigInteger P, BigInteger Q, BigInteger G, BigInteger Y) {
         super(doc);
 
         XMLUtils.addReturnToElement(this.constructionElement);
@@ -87,37 +82,26 @@ public class DSAKeyValue extends SignatureElementProxy implements
         XMLUtils.addReturnToElement(this.constructionElement);
 
         if (key instanceof java.security.interfaces.DSAPublicKey) {
-            this.addBigIntegerElement(((DSAPublicKey) key).getParams().getP(),
-                    Constants._TAG_P);
-            this.addBigIntegerElement(((DSAPublicKey) key).getParams().getQ(),
-                    Constants._TAG_Q);
-            this.addBigIntegerElement(((DSAPublicKey) key).getParams().getG(),
-                    Constants._TAG_G);
-            this.addBigIntegerElement(((DSAPublicKey) key).getY(),
-                    Constants._TAG_Y);
+            this.addBigIntegerElement(((DSAPublicKey) key).getParams().getP(), Constants._TAG_P);
+            this.addBigIntegerElement(((DSAPublicKey) key).getParams().getQ(), Constants._TAG_Q);
+            this.addBigIntegerElement(((DSAPublicKey) key).getParams().getG(), Constants._TAG_G);
+            this.addBigIntegerElement(((DSAPublicKey) key).getY(), Constants._TAG_Y);
         } else {
-            Object exArgs[] = { Constants._TAG_DSAKEYVALUE, key.getClass()
-                    .getName() };
+            Object exArgs[] = { Constants._TAG_DSAKEYVALUE, key.getClass().getName() };
 
-            throw new IllegalArgumentException(I18n.translate(
-                    "KeyValue.IllegalArgument", exArgs));
+            throw new IllegalArgumentException(I18n.translate("KeyValue.IllegalArgument", exArgs));
         }
     }
 
     /** @inheritDoc */
     public PublicKey getPublicKey() throws XMLSecurityException {
         try {
-            DSAPublicKeySpec pkspec = new DSAPublicKeySpec(this
-                    .getBigIntegerFromChildElement(Constants._TAG_Y,
-                            Constants.SignatureSpecNS), this
-                                    .getBigIntegerFromChildElement(
-                                            Constants._TAG_P,
-                                            Constants.SignatureSpecNS), this
-                                                    .getBigIntegerFromChildElement(
-                                                            Constants._TAG_Q,
-                                                            Constants.SignatureSpecNS),
-                    this.getBigIntegerFromChildElement(Constants._TAG_G,
-                            Constants.SignatureSpecNS));
+            DSAPublicKeySpec pkspec = new DSAPublicKeySpec(this.getBigIntegerFromChildElement(
+                    Constants._TAG_Y, Constants.SignatureSpecNS), this.getBigIntegerFromChildElement(
+                            Constants._TAG_P, Constants.SignatureSpecNS), this.getBigIntegerFromChildElement(
+                                    Constants._TAG_Q, Constants.SignatureSpecNS), this
+                                            .getBigIntegerFromChildElement(Constants._TAG_G,
+                                                    Constants.SignatureSpecNS));
             KeyFactory dsaFactory = KeyFactory.getInstance("DSA");
             PublicKey pk = dsaFactory.generatePublic(pkspec);
 

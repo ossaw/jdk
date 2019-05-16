@@ -62,22 +62,22 @@ public final class UnionMember implements org.omg.CORBA.portable.IDLEntity {
      * initialized to the given values.
      *
      * @param __name
-     *                   a <code>String</code> object with the name of this
-     *                   <code>UnionMember</code> object
+     *        a <code>String</code> object with the name of this
+     *        <code>UnionMember</code> object
      * @param __label
-     *                   an <code>Any</code> object with the label of this
-     *                   <code>UnionMember</code> object
+     *        an <code>Any</code> object with the label of this
+     *        <code>UnionMember</code> object
      * @param __type
-     *                   a <code>TypeCode</code> object describing the type of
-     *                   this
-     *                   <code>UnionMember</code> object
+     *        a <code>TypeCode</code> object describing the type of
+     *        this
+     *        <code>UnionMember</code> object
      * @param __type_def
-     *                   an <code>IDLType</code> object that represents the IDL
-     *                   type of
-     *                   this <code>UnionMember</code> object
+     *        an <code>IDLType</code> object that represents the IDL
+     *        type of
+     *        this <code>UnionMember</code> object
      */
-    public UnionMember(String __name, org.omg.CORBA.Any __label,
-            org.omg.CORBA.TypeCode __type, org.omg.CORBA.IDLType __type_def) {
+    public UnionMember(String __name, org.omg.CORBA.Any __label, org.omg.CORBA.TypeCode __type,
+            org.omg.CORBA.IDLType __type_def) {
         name = __name;
         label = __label;
         type = __type;

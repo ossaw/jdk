@@ -38,8 +38,7 @@ public final class ReflectiveTie extends Servant implements Tie {
     private PresentationManager.ClassData classData = null;
     private ORBUtilSystemException wrapper = null;
 
-    public ReflectiveTie(PresentationManager pm,
-            ORBUtilSystemException wrapper) {
+    public ReflectiveTie(PresentationManager pm, ORBUtilSystemException wrapper) {
         SecurityManager s = System.getSecurityManager();
         if (s != null) {
             s.checkPermission(new DynamicAccessPermission("access"));
@@ -48,8 +47,7 @@ public final class ReflectiveTie extends Servant implements Tie {
         this.wrapper = wrapper;
     }
 
-    public String[] _all_interfaces(org.omg.PortableServer.POA poa,
-            byte[] objectId) {
+    public String[] _all_interfaces(org.omg.PortableServer.POA poa, byte[] objectId) {
         return classData.getTypeIds();
     }
 
@@ -98,8 +96,8 @@ public final class ReflectiveTie extends Servant implements Tie {
         }
     }
 
-    public org.omg.CORBA.portable.OutputStream _invoke(String method,
-            org.omg.CORBA.portable.InputStream _in, ResponseHandler reply) {
+    public org.omg.CORBA.portable.OutputStream _invoke(String method, org.omg.CORBA.portable.InputStream _in,
+            ResponseHandler reply) {
         Method javaMethod = null;
         DynamicMethodMarshaller dmm = null;
 
@@ -108,8 +106,7 @@ public final class ReflectiveTie extends Servant implements Tie {
 
             javaMethod = classData.getIDLNameTranslator().getMethod(method);
             if (javaMethod == null)
-                throw wrapper.methodNotFoundInTie(method, target.getClass()
-                        .getName());
+                throw wrapper.methodNotFoundInTie(method, target.getClass().getName());
 
             dmm = pm.getDynamicMethodMarshaller(javaMethod);
 
@@ -123,11 +120,11 @@ public final class ReflectiveTie extends Servant implements Tie {
 
             return os;
         } catch (IllegalAccessException ex) {
-            throw wrapper.invocationErrorInReflectiveTie(ex, javaMethod
-                    .getName(), javaMethod.getDeclaringClass().getName());
+            throw wrapper.invocationErrorInReflectiveTie(ex, javaMethod.getName(), javaMethod
+                    .getDeclaringClass().getName());
         } catch (IllegalArgumentException ex) {
-            throw wrapper.invocationErrorInReflectiveTie(ex, javaMethod
-                    .getName(), javaMethod.getDeclaringClass().getName());
+            throw wrapper.invocationErrorInReflectiveTie(ex, javaMethod.getName(), javaMethod
+                    .getDeclaringClass().getName());
         } catch (InvocationTargetException ex) {
             // Unwrap the actual exception so that it can be wrapped by an
             // UnknownException or thrown if it is a system exception.
@@ -135,8 +132,7 @@ public final class ReflectiveTie extends Servant implements Tie {
             Throwable thr = ex.getCause();
             if (thr instanceof SystemException)
                 throw (SystemException) thr;
-            else if ((thr instanceof Exception) && dmm.isDeclaredException(
-                    thr)) {
+            else if ((thr instanceof Exception) && dmm.isDeclaredException(thr)) {
                 OutputStream os = (OutputStream) reply.createExceptionReply();
                 dmm.writeException(os, (Exception) thr);
                 return os;

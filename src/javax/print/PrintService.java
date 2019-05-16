@@ -26,17 +26,14 @@ import javax.print.event.PrintServiceAttributeListener;
  *     DocFlavor flavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
  *     PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
  *     aset.add(MediaSizeName.ISO_A4);
- *     PrintService[] pservices = PrintServiceLookup.lookupPrintServices(flavor,
- *             aset);
+ *     PrintService[] pservices = PrintServiceLookup.lookupPrintServices(flavor, aset);
  *     if (pservices.length > 0) {
  *         DocPrintJob pj = pservices[0].createPrintJob();
  *         try {
  *             FileInputStream fis = new FileInputStream("test.ps");
  *             Doc doc = new SimpleDoc(fis, flavor, null);
  *             pj.print(doc, aset);
- *         } catch (FileNotFoundException fe) {
- *         } catch (PrintException e) {
- *         }
+ *         } catch (FileNotFoundException fe) {} catch (PrintException e) {}
  *     }
  * }
  * </PRE>
@@ -67,24 +64,22 @@ public interface PrintService {
      * Registers a listener for events on this PrintService.
      * 
      * @param listener
-     *                 a PrintServiceAttributeListener, which monitors the
-     *                 status of
-     *                 a print service
+     *        a PrintServiceAttributeListener, which monitors the
+     *        status of
+     *        a print service
      * @see #removePrintServiceAttributeListener
      */
-    public void addPrintServiceAttributeListener(
-            PrintServiceAttributeListener listener);
+    public void addPrintServiceAttributeListener(PrintServiceAttributeListener listener);
 
     /**
      * Removes the print-service listener from this print service. This means
      * the listener is no longer interested in <code>PrintService</code> events.
      * 
      * @param listener
-     *                 a PrintServiceAttributeListener object
+     *        a PrintServiceAttributeListener object
      * @see #addPrintServiceAttributeListener
      */
-    public void removePrintServiceAttributeListener(
-            PrintServiceAttributeListener listener);
+    public void removePrintServiceAttributeListener(PrintServiceAttributeListener listener);
 
     /**
      * Obtains this print service's set of printer description attributes giving
@@ -109,19 +104,19 @@ public interface PrintService {
      * minimize overhead.
      * 
      * @param category
-     *                 the category of a PrintServiceAttribute supported by this
-     *                 service - may not be null.
+     *        the category of a PrintServiceAttribute supported by this
+     *        service - may not be null.
      * @return the value of the supported attribute or null if the attribute is
      *         not supported by this service.
      * @exception NullPointerException
-     *                                     if the category is null.
+     *            if the category is null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) if
-     *                                     <CODE>category</CODE> is not a
-     *                                     <code>Class</code> that implements
-     *                                     interface
-     *                                     {@link javax.print.attribute.PrintServiceAttribute
-     *                                     PrintServiceAttribute}.
+     *            (unchecked exception) if
+     *            <CODE>category</CODE> is not a
+     *            <code>Class</code> that implements
+     *            interface
+     *            {@link javax.print.attribute.PrintServiceAttribute
+     *            PrintServiceAttribute}.
      */
     public <T extends PrintServiceAttribute> T getAttribute(Class<T> category);
 
@@ -136,7 +131,6 @@ public interface PrintService {
      * specific combinations.
      *
      * @return Array of supported doc flavors, should have at least one element.
-     *
      */
     public DocFlavor[] getSupportedDocFlavors();
 
@@ -151,13 +145,13 @@ public interface PrintService {
      * specific combinations.
      *
      * @param flavor
-     *               the <code>DocFlavor</code>to query for support.
+     *        the <code>DocFlavor</code>to query for support.
      * @return <code>true</code> if this print service supports the specified
      *         <code>DocFlavor</code>; <code>false</code> otherwise.
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>flavor</CODE> is
-     *                                 null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>flavor</CODE> is
+     *            null.
      */
     public boolean isDocFlavorSupported(DocFlavor flavor);
 
@@ -201,28 +195,25 @@ public interface PrintService {
      * member of the result of <code>getSupportedAttributeCategories()</code>.
      *
      * @param category
-     *                 Printing attribute category to test. It must be a
-     *                 <code>Class</code> that implements interface
-     *                 {@link javax.print.attribute.Attribute Attribute}.
-     *
+     *        Printing attribute category to test. It must be a
+     *        <code>Class</code> that implements interface
+     *        {@link javax.print.attribute.Attribute Attribute}.
      * @return <code>true</code> if this print service supports specifying a
      *         doc-level or job-level attribute in <CODE>category</CODE> in a
      *         Print Request; <code>false</code> if it doesn't.
-     *
      * @exception NullPointerException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>category</CODE> is
-     *                                     null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>category</CODE> is
+     *            null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>category</CODE> is
-     *                                     not a <code>Class</code> that
-     *                                     implements interface
-     *                                     {@link javax.print.attribute.Attribute
-     *                                     Attribute}.
+     *            (unchecked exception) Thrown if
+     *            <CODE>category</CODE> is
+     *            not a <code>Class</code> that
+     *            implements interface
+     *            {@link javax.print.attribute.Attribute
+     *            Attribute}.
      */
-    public boolean isAttributeCategorySupported(
-            Class<? extends Attribute> category);
+    public boolean isAttributeCategorySupported(Class<? extends Attribute> category);
 
     /**
      * Determines this print service's default printing attribute value in the
@@ -244,30 +235,28 @@ public interface PrintService {
      * to distinguish these cases.
      *
      * @param category
-     *                 Printing attribute category for which the default
-     *                 attribute
-     *                 value is requested. It must be a {@link java.lang.Class
-     *                 Class}
-     *                 that implements interface
-     *                 {@link javax.print.attribute.Attribute Attribute}.
-     *
+     *        Printing attribute category for which the default
+     *        attribute
+     *        value is requested. It must be a {@link java.lang.Class
+     *        Class}
+     *        that implements interface
+     *        {@link javax.print.attribute.Attribute Attribute}.
      * @return Default attribute value for <CODE>category</CODE>, or null if
      *         this Print Service does not support specifying a doc-level or
      *         job-level attribute in <CODE>category</CODE> in a Print Request,
      *         or the service does not have a default value for this attribute.
-     *
      * @exception NullPointerException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>category</CODE> is
-     *                                     null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>category</CODE> is
+     *            null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>category</CODE> is
-     *                                     not a {@link java.lang.Class Class}
-     *                                     that implements
-     *                                     interface
-     *                                     {@link javax.print.attribute.Attribute
-     *                                     Attribute}.
+     *            (unchecked exception) Thrown if
+     *            <CODE>category</CODE> is
+     *            not a {@link java.lang.Class Class}
+     *            that implements
+     *            interface
+     *            {@link javax.print.attribute.Attribute
+     *            Attribute}.
      */
     public Object getDefaultAttributeValue(Class<? extends Attribute> category);
 
@@ -319,38 +308,35 @@ public interface PrintService {
      * <P>
      *
      * @param category
-     *                   Printing attribute category to test. It must be a
-     *                   {@link java.lang.Class Class} that implements interface
-     *                   {@link javax.print.attribute.Attribute Attribute}.
+     *        Printing attribute category to test. It must be a
+     *        {@link java.lang.Class Class} that implements interface
+     *        {@link javax.print.attribute.Attribute Attribute}.
      * @param flavor
-     *                   Doc flavor for a supposed job, or null.
+     *        Doc flavor for a supposed job, or null.
      * @param attributes
-     *                   Set of printing attributes for a supposed job (both
-     *                   job-level
-     *                   attributes and document-level attributes), or null.
-     *
+     *        Set of printing attributes for a supposed job (both
+     *        job-level
+     *        attributes and document-level attributes), or null.
      * @return Object indicating supported values for <CODE>category</CODE>, or
      *         null if this Print Service does not support specifying a
      *         doc-level or job-level attribute in <CODE>category</CODE> in a
      *         Print Request.
-     *
      * @exception NullPointerException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>category</CODE> is
-     *                                     null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>category</CODE> is
+     *            null.
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     <CODE>category</CODE> is
-     *                                     not a {@link java.lang.Class Class}
-     *                                     that implements
-     *                                     interface
-     *                                     {@link javax.print.attribute.Attribute
-     *                                     Attribute}, or <code>DocFlavor</code>
-     *                                     is not supported by
-     *                                     this service.
+     *            (unchecked exception) Thrown if
+     *            <CODE>category</CODE> is
+     *            not a {@link java.lang.Class Class}
+     *            that implements
+     *            interface
+     *            {@link javax.print.attribute.Attribute
+     *            Attribute}, or <code>DocFlavor</code>
+     *            is not supported by
+     *            this service.
      */
-    public Object getSupportedAttributeValues(
-            Class<? extends Attribute> category, DocFlavor flavor,
+    public Object getSupportedAttributeValues(Class<? extends Attribute> category, DocFlavor flavor,
             AttributeSet attributes);
 
     /**
@@ -378,27 +364,24 @@ public interface PrintService {
      * of the result of <code>getSupportedAttributeValues(...)</code>.
      *
      * @param attrval
-     *                   Printing attribute value to test.
+     *        Printing attribute value to test.
      * @param flavor
-     *                   Doc flavor for a supposed job, or null.
+     *        Doc flavor for a supposed job, or null.
      * @param attributes
-     *                   Set of printing attributes for a supposed job (both
-     *                   job-level
-     *                   attributes and document-level attributes), or null.
-     *
+     *        Set of printing attributes for a supposed job (both
+     *        job-level
+     *        attributes and document-level attributes), or null.
      * @return True if this Print Service supports specifying
      *         <CODE>attrval</CODE> as a doc-level or job-level attribute in a
      *         Print Request, false if it doesn't.
-     *
      * @exception NullPointerException
-     *                                     (unchecked exception) if
-     *                                     <CODE>attrval</CODE> is null.
+     *            (unchecked exception) if
+     *            <CODE>attrval</CODE> is null.
      * @exception IllegalArgumentException
-     *                                     if flavor is not supported by this
-     *                                     PrintService.
+     *            if flavor is not supported by this
+     *            PrintService.
      */
-    public boolean isAttributeValueSupported(Attribute attrval,
-            DocFlavor flavor, AttributeSet attributes);
+    public boolean isAttributeValueSupported(Attribute attrval, DocFlavor flavor, AttributeSet attributes);
 
     /**
      * Identifies the attributes that are unsupported for a print request in the
@@ -429,22 +412,19 @@ public interface PrintService {
      * supported before calling this method.
      *
      * @param flavor
-     *                   Doc flavor to test, or null
+     *        Doc flavor to test, or null
      * @param attributes
-     *                   Set of printing attributes for a supposed job (both
-     *                   job-level
-     *                   attributes and document-level attributes), or null.
-     *
+     *        Set of printing attributes for a supposed job (both
+     *        job-level
+     *        attributes and document-level attributes), or null.
      * @return null if this Print Service supports the print request
      *         specification, else the unsupported attributes.
-     *
      * @exception IllegalArgumentException
-     *                                     if<CODE>flavor</CODE> is not
-     *                                     supported by this
-     *                                     PrintService.
+     *            if<CODE>flavor</CODE> is not
+     *            supported by this
+     *            PrintService.
      */
-    public AttributeSet getUnsupportedAttributes(DocFlavor flavor,
-            AttributeSet attributes);
+    public AttributeSet getUnsupportedAttributes(DocFlavor flavor, AttributeSet attributes);
 
     /**
      * Returns a factory for UI components which allow users to interact with
@@ -472,7 +452,7 @@ public interface PrintService {
      * service if that, but clients must not depend on equality of reference.
      * 
      * @param obj
-     *            the reference object with which to compare.
+     *        the reference object with which to compare.
      * @return true if this service is the same as the obj argument, false
      *         otherwise.
      */

@@ -47,8 +47,7 @@ public abstract class TreeUI extends ComponentUI {
      * you should get the bounds for the returned path and test x, y against
      * that.
      */
-    public abstract TreePath getClosestPathForLocation(JTree tree, int x,
-            int y);
+    public abstract TreePath getClosestPathForLocation(JTree tree, int x, int y);
 
     /**
      * Returns true if the tree is being edited. The item that is being edited

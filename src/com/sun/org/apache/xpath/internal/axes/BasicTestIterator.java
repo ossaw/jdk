@@ -37,8 +37,8 @@ public abstract class BasicTestIterator extends LocPathIterator {
      * Create a LocPathIterator object.
      *
      * @param nscontext
-     *                  The namespace context for this iterator, should be OK if
-     *                  null.
+     *        The namespace context for this iterator, should be OK if
+     *        null.
      */
     protected BasicTestIterator() {}
 
@@ -46,8 +46,8 @@ public abstract class BasicTestIterator extends LocPathIterator {
      * Create a LocPathIterator object.
      *
      * @param nscontext
-     *                  The namespace context for this iterator, should be OK if
-     *                  null.
+     *        The namespace context for this iterator, should be OK if
+     *        null.
      */
     protected BasicTestIterator(PrefixResolver nscontext) {
 
@@ -60,11 +60,10 @@ public abstract class BasicTestIterator extends LocPathIterator {
      * expressions.
      *
      * @param compiler
-     *                 The Compiler which is creating this expression.
+     *        The Compiler which is creating this expression.
      * @param opPos
-     *                 The position of this iterator in the opcode list from the
-     *                 compiler.
-     *
+     *        The position of this iterator in the opcode list from the
+     *        compiler.
      * @throws javax.xml.transform.TransformerException
      */
     protected BasicTestIterator(Compiler compiler, int opPos, int analysis)
@@ -74,14 +73,12 @@ public abstract class BasicTestIterator extends LocPathIterator {
         int firstStepPos = OpMap.getFirstChildPos(opPos);
         int whatToShow = compiler.getWhatToShow(firstStepPos);
 
-        if ((0 == (whatToShow & (DTMFilter.SHOW_ATTRIBUTE
-                | DTMFilter.SHOW_NAMESPACE | DTMFilter.SHOW_ELEMENT
-                | DTMFilter.SHOW_PROCESSING_INSTRUCTION)))
-                || (whatToShow == DTMFilter.SHOW_ALL))
+        if ((0 == (whatToShow & (DTMFilter.SHOW_ATTRIBUTE | DTMFilter.SHOW_NAMESPACE | DTMFilter.SHOW_ELEMENT
+                | DTMFilter.SHOW_PROCESSING_INSTRUCTION))) || (whatToShow == DTMFilter.SHOW_ALL))
             initNodeTest(whatToShow);
         else {
-            initNodeTest(whatToShow, compiler.getStepNS(firstStepPos), compiler
-                    .getStepLocalName(firstStepPos));
+            initNodeTest(whatToShow, compiler.getStepNS(firstStepPos), compiler.getStepLocalName(
+                    firstStepPos));
         }
         initPredicateInfo(compiler, firstStepPos);
     }
@@ -92,21 +89,19 @@ public abstract class BasicTestIterator extends LocPathIterator {
      * expressions.
      *
      * @param compiler
-     *                          The Compiler which is creating this expression.
+     *        The Compiler which is creating this expression.
      * @param opPos
-     *                          The position of this iterator in the opcode list
-     *                          from the
-     *                          compiler.
+     *        The position of this iterator in the opcode list
+     *        from the
+     *        compiler.
      * @param shouldLoadWalkers
-     *                          True if walkers should be loaded, or false if
-     *                          this is a
-     *                          derived iterator and it doesn't wish to load
-     *                          child walkers.
-     *
+     *        True if walkers should be loaded, or false if
+     *        this is a
+     *        derived iterator and it doesn't wish to load
+     *        child walkers.
      * @throws javax.xml.transform.TransformerException
      */
-    protected BasicTestIterator(Compiler compiler, int opPos, int analysis,
-            boolean shouldLoadWalkers)
+    protected BasicTestIterator(Compiler compiler, int opPos, int analysis, boolean shouldLoadWalkers)
             throws javax.xml.transform.TransformerException {
         super(compiler, opPos, analysis, shouldLoadWalkers);
     }
@@ -187,7 +182,6 @@ public abstract class BasicTestIterator extends LocPathIterator {
      * Get a cloned Iterator that is reset to the beginning of the query.
      *
      * @return A cloned NodeIterator set of the start of the query.
-     *
      * @throws CloneNotSupportedException
      */
     public DTMIterator cloneWithReset() throws CloneNotSupportedException {

@@ -13,8 +13,7 @@ package org.omg.PortableServer;
  * activated with that POA support exactly one Object Id. MULTIPLE_ID - a
  * servant activated with that POA may support one or more Object Ids.
  */
-public class IdUniquenessPolicyValue implements
-        org.omg.CORBA.portable.IDLEntity {
+public class IdUniquenessPolicyValue implements org.omg.CORBA.portable.IDLEntity {
     private int __value;
     private static int __size = 2;
     private static org.omg.PortableServer.IdUniquenessPolicyValue[] __array = new org.omg.PortableServer.IdUniquenessPolicyValue[__size];
@@ -30,8 +29,7 @@ public class IdUniquenessPolicyValue implements
         return __value;
     }
 
-    public static org.omg.PortableServer.IdUniquenessPolicyValue from_int(
-            int value) {
+    public static org.omg.PortableServer.IdUniquenessPolicyValue from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

@@ -39,8 +39,8 @@ class DirectCharBufferRS
     }
 
     public CharBuffer duplicate() {
-        return new DirectCharBufferRS(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectCharBufferRS(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
     }
 
     public CharBuffer asReadOnlyBuffer() {
@@ -115,14 +115,12 @@ class DirectCharBufferRS
 
         if ((start < 0) || (end > len) || (start > end))
             throw new IndexOutOfBoundsException();
-        return new DirectCharBufferRS(this, -1, pos + start, pos + end,
-                capacity(), offset);
+        return new DirectCharBufferRS(this, -1, pos + start, pos + end, capacity(), offset);
     }
 
     public ByteOrder order() {
 
-        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
-                ? ByteOrder.LITTLE_ENDIAN
+        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
                 : ByteOrder.BIG_ENDIAN);
 
     }

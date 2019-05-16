@@ -22,7 +22,7 @@ public class CharConversionException extends java.io.IOException {
      * This provides a detailed message.
      *
      * @param s
-     *          the detailed message associated with the exception.
+     *        the detailed message associated with the exception.
      */
     public CharConversionException(String s) {
         super(s);

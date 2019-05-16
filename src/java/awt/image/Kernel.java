@@ -37,16 +37,16 @@ public class Kernel implements Cloneable {
      * (width-1)/2 and the Y origin is (height-1)/2.
      * 
      * @param width
-     *               width of the kernel
+     *        width of the kernel
      * @param height
-     *               height of the kernel
+     *        height of the kernel
      * @param data
-     *               kernel data in row major order
+     *        kernel data in row major order
      * @throws IllegalArgumentException
-     *                                  if the length of <code>data</code> is
-     *                                  less than the product
-     *                                  of <code>width</code> and
-     *                                  <code>height</code>
+     *         if the length of <code>data</code> is
+     *         less than the product
+     *         of <code>width</code> and
+     *         <code>height</code>
      */
     public Kernel(int width, int height, float data[]) {
         this.width = width;
@@ -55,8 +55,8 @@ public class Kernel implements Cloneable {
         this.yOrigin = (height - 1) >> 1;
         int len = width * height;
         if (data.length < len) {
-            throw new IllegalArgumentException("Data array too small " + "(is "
-                    + data.length + " and should be " + len);
+            throw new IllegalArgumentException("Data array too small " + "(is " + data.length
+                    + " and should be " + len);
         }
         this.data = new float[len];
         System.arraycopy(data, 0, this.data, 0, len);
@@ -105,23 +105,22 @@ public class Kernel implements Cloneable {
      * allocated.
      * 
      * @param data
-     *             if non-null, contains the returned kernel data
+     *        if non-null, contains the returned kernel data
      * @return the <code>data</code> array containing the kernel data in row
      *         major order or, if <code>data</code> is <code>null</code>, a
      *         newly allocated array containing the kernel data in row major
      *         order
      * @throws IllegalArgumentException
-     *                                  if <code>data</code> is less than the
-     *                                  size of this
-     *                                  <code>Kernel</code>
+     *         if <code>data</code> is less than the
+     *         size of this
+     *         <code>Kernel</code>
      */
     final public float[] getKernelData(float[] data) {
         if (data == null) {
             data = new float[this.data.length];
         } else if (data.length < this.data.length) {
-            throw new IllegalArgumentException("Data array too small "
-                    + "(should be " + this.data.length + " but is "
-                    + data.length + " )");
+            throw new IllegalArgumentException("Data array too small " + "(should be " + this.data.length
+                    + " but is " + data.length + " )");
         }
         System.arraycopy(this.data, 0, data, 0, this.data.length);
 

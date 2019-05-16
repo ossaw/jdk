@@ -28,11 +28,9 @@ abstract public class WStringSeqHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_wstring_tc(0);
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CORBA.WStringSeqHelper.id(), "WStringSeq",
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CORBA.WStringSeqHelper.id(),
+                    "WStringSeq", __typeCode);
         }
         return __typeCode;
     }
@@ -50,8 +48,7 @@ abstract public class WStringSeqHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            String[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, String[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
             ostream.write_wstring(value[_i0]);

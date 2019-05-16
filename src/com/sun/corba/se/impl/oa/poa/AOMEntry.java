@@ -98,16 +98,13 @@ public class AOMEntry extends FSMImpl {
         }
     };
 
-    private static Action throwIllegalStateExceptionAction = new ActionBase(
-            "throwIllegalStateException") {
+    private static Action throwIllegalStateExceptionAction = new ActionBase("throwIllegalStateException") {
         public void doIt(FSM fsm, Input in) {
-            throw new IllegalStateException(
-                    "No transitions allowed from the DESTROYED state");
+            throw new IllegalStateException("No transitions allowed from the DESTROYED state");
         }
     };
 
-    private static Action oaaAction = new ActionBase(
-            "throwObjectAlreadyActive") {
+    private static Action oaaAction = new ActionBase("throwObjectAlreadyActive") {
         public void doIt(FSM fsm, Input in) {
             throw new RuntimeException(new ObjectAlreadyActive());
         }
@@ -181,8 +178,7 @@ public class AOMEntry extends FSMImpl {
         engine.add(ETH, ACTIVATE, oaaAction, ETH);
         engine.add(ETH, ENTER, waitGuard, null, ETH);
 
-        engine.setDefault(DESTROYED, throwIllegalStateExceptionAction,
-                DESTROYED);
+        engine.setDefault(DESTROYED, throwIllegalStateExceptionAction, DESTROYED);
 
         engine.done();
     }
@@ -194,8 +190,7 @@ public class AOMEntry extends FSMImpl {
         etherealizer[0] = null;
         counter = new int[1];
         counter[0] = 0;
-        wait = new CondVar(poa.poaMutex, ((ORB) poa
-                .getORB()).poaConcurrencyDebugFlag);
+        wait = new CondVar(poa.poaMutex, ((ORB) poa.getORB()).poaConcurrencyDebugFlag);
     }
 
     // Methods that drive the FSM: the real interface to this class

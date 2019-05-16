@@ -132,8 +132,7 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public class Finishings extends EnumSyntax implements DocAttribute,
-        PrintRequestAttribute, PrintJobAttribute {
+public class Finishings extends EnumSyntax implements DocAttribute, PrintRequestAttribute, PrintJobAttribute {
 
     private static final long serialVersionUID = -627840419548391754L;
 
@@ -253,29 +252,26 @@ public class Finishings extends EnumSyntax implements DocAttribute,
      * integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected Finishings(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "none", "staple", null,
-            "cover", "bind", "saddle-stitch", "edge-stitch", null, // The next ten enum values
+    private static final String[] myStringTable = { "none", "staple", null, "cover", "bind", "saddle-stitch",
+            "edge-stitch", null, // The next ten enum values
             // are reserved.
-            null, null, null, null, null, null, null, null, null,
-            "staple-top-left", "staple-bottom-left", "staple-top-right",
-            "staple-bottom-right", "edge-stitch-left", "edge-stitch-top",
-            "edge-stitch-right", "edge-stitch-bottom", "staple-dual-left",
-            "staple-dual-top", "staple-dual-right", "staple-dual-bottom" };
+            null, null, null, null, null, null, null, null, null, "staple-top-left", "staple-bottom-left",
+            "staple-top-right", "staple-bottom-right", "edge-stitch-left", "edge-stitch-top",
+            "edge-stitch-right", "edge-stitch-bottom", "staple-dual-left", "staple-dual-top",
+            "staple-dual-right", "staple-dual-bottom" };
 
-    private static final Finishings[] myEnumValueTable = { NONE, STAPLE, null,
-            COVER, BIND, SADDLE_STITCH, EDGE_STITCH, null, // The next ten enum values are
+    private static final Finishings[] myEnumValueTable = { NONE, STAPLE, null, COVER, BIND, SADDLE_STITCH,
+            EDGE_STITCH, null, // The next ten enum values are
             // reserved.
-            null, null, null, null, null, null, null, null, null,
-            STAPLE_TOP_LEFT, STAPLE_BOTTOM_LEFT, STAPLE_TOP_RIGHT,
-            STAPLE_BOTTOM_RIGHT, EDGE_STITCH_LEFT, EDGE_STITCH_TOP,
-            EDGE_STITCH_RIGHT, EDGE_STITCH_BOTTOM, STAPLE_DUAL_LEFT,
-            STAPLE_DUAL_TOP, STAPLE_DUAL_RIGHT, STAPLE_DUAL_BOTTOM };
+            null, null, null, null, null, null, null, null, null, STAPLE_TOP_LEFT, STAPLE_BOTTOM_LEFT,
+            STAPLE_TOP_RIGHT, STAPLE_BOTTOM_RIGHT, EDGE_STITCH_LEFT, EDGE_STITCH_TOP, EDGE_STITCH_RIGHT,
+            EDGE_STITCH_BOTTOM, STAPLE_DUAL_LEFT, STAPLE_DUAL_TOP, STAPLE_DUAL_RIGHT, STAPLE_DUAL_BOTTOM };
 
     /**
      * Returns the string table for class Finishings.

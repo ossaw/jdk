@@ -23,17 +23,13 @@
  * > <b>How to Implement a Provider for the Java&trade; Cryptography
  * Architecture </b></a></li>
  * </ul>
- *
  * <h2>Package Specification</h2>
- *
  * <ul>
  * <li>PKCS #1: RSA Encryption Standard, Version 1.5, November 1993</li>
  * <li>Federal Information Processing Standards Publication (FIPS PUB) 186:
  * Digital Signature Standard (DSS)</li>
  * </ul>
- *
  * <h2>Related Documentation</h2>
- *
  * For further documentation, please see:
  * <ul>
  * <li><a href= "{@docRoot}/../technotes/guides/security/crypto/CryptoSpec.html"

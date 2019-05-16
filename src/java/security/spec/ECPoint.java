@@ -12,7 +12,6 @@ import java.math.BigInteger;
  * point in other coordinates.
  *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class ECPoint {
@@ -36,11 +35,11 @@ public class ECPoint {
      * affine y-coordinate {@code y}.
      * 
      * @param x
-     *          the affine x-coordinate.
+     *        the affine x-coordinate.
      * @param y
-     *          the affine y-coordinate.
+     *        the affine y-coordinate.
      * @exception NullPointerException
-     *                                 if {@code x} or {@code y} is null.
+     *            if {@code x} or {@code y} is null.
      */
     public ECPoint(BigInteger x, BigInteger y) {
         if ((x == null) || (y == null)) {
@@ -75,7 +74,7 @@ public class ECPoint {
      * object.
      * 
      * @param obj
-     *            the object to be compared.
+     *        the object to be compared.
      * @return true if {@code obj} is an instance of ECPoint and the affine
      *         coordinates match, false otherwise.
      */
@@ -85,8 +84,7 @@ public class ECPoint {
         if (this == POINT_INFINITY)
             return false;
         if (obj instanceof ECPoint) {
-            return ((x.equals(((ECPoint) obj).x)) && (y.equals(
-                    ((ECPoint) obj).y)));
+            return ((x.equals(((ECPoint) obj).x)) && (y.equals(((ECPoint) obj).y)));
         }
         return false;
     }

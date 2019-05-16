@@ -21,38 +21,36 @@ package org.omg.PortableServer;
  * feature may be used to force every request for objects associated with a POA
  * to be mediated by the servant manager.
  */
-public interface ServantLocatorOperations extends
-        org.omg.PortableServer.ServantManagerOperations {
+public interface ServantLocatorOperations extends org.omg.PortableServer.ServantManagerOperations {
 
     /**
      * This operations is used to get a servant that will be used to process the
      * request that caused preinvoke to be called.
      * 
      * @param oid
-     *                   the object id associated with object on which the
-     *                   request was
-     *                   made.
+     *        the object id associated with object on which the
+     *        request was
+     *        made.
      * @param adapter
-     *                   the reference for POA in which the object is being
-     *                   activated.
+     *        the reference for POA in which the object is being
+     *        activated.
      * @param operation
-     *                   the operation name.
+     *        the operation name.
      * @param the_cookie
-     *                   an opaque value that can be set by the servant manager
-     *                   to be
-     *                   used during postinvoke.
+     *        an opaque value that can be set by the servant manager
+     *        to be
+     *        used during postinvoke.
      * @return Servant used to process incoming request.
      * @exception ForwardRequest
-     *                           to indicate to the ORB that it is responsible
-     *                           for
-     *                           delivering the current request and subsequent
-     *                           requests to
-     *                           the object denoted in the forward_reference
-     *                           member of the
-     *                           exception.
+     *            to indicate to the ORB that it is responsible
+     *            for
+     *            delivering the current request and subsequent
+     *            requests to
+     *            the object denoted in the forward_reference
+     *            member of the
+     *            exception.
      */
-    org.omg.PortableServer.Servant preinvoke(byte[] oid,
-            org.omg.PortableServer.POA adapter, String operation,
+    org.omg.PortableServer.Servant preinvoke(byte[] oid, org.omg.PortableServer.POA adapter, String operation,
             org.omg.PortableServer.ServantLocatorPackage.CookieHolder the_cookie)
             throws org.omg.PortableServer.ForwardRequest;
 
@@ -60,19 +58,18 @@ public interface ServantLocatorOperations extends
      * This operation is invoked whenener a servant completes a request.
      * 
      * @param oid
-     *                    the object id ssociated with object on which the
-     *                    request was
-     *                    made.
+     *        the object id ssociated with object on which the
+     *        request was
+     *        made.
      * @param adapter
-     *                    the reference for POA in which the object was active.
+     *        the reference for POA in which the object was active.
      * @param the_cookie
-     *                    an opaque value that contains the data set by
-     *                    preinvoke.
+     *        an opaque value that contains the data set by
+     *        preinvoke.
      * @param the_servant
-     *                    reference to the servant that is associated with the
-     *                    object.
+     *        reference to the servant that is associated with the
+     *        object.
      */
-    void postinvoke(byte[] oid, org.omg.PortableServer.POA adapter,
-            String operation, java.lang.Object the_cookie,
-            org.omg.PortableServer.Servant the_servant);
+    void postinvoke(byte[] oid, org.omg.PortableServer.POA adapter, String operation,
+            java.lang.Object the_cookie, org.omg.PortableServer.Servant the_servant);
 } // interface ServantLocatorOperations

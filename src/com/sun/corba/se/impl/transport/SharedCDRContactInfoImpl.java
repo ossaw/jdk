@@ -34,8 +34,7 @@ public class SharedCDRContactInfoImpl extends CorbaContactInfoBase {
 
     protected ORBUtilSystemException wrapper;
 
-    public SharedCDRContactInfoImpl(ORB orb,
-            CorbaContactInfoList contactInfoList, IOR effectiveTargetIOR,
+    public SharedCDRContactInfoImpl(ORB orb, CorbaContactInfoList contactInfoList, IOR effectiveTargetIOR,
             short addressingDisposition) {
         this.orb = orb;
         this.contactInfoList = contactInfoList;
@@ -70,18 +69,16 @@ public class SharedCDRContactInfoImpl extends CorbaContactInfoBase {
     }
 
     // Called when client making an invocation.
-    public MessageMediator createMessageMediator(Broker broker,
-            ContactInfo contactInfo, Connection connection, String methodName,
-            boolean isOneWay) {
+    public MessageMediator createMessageMediator(Broker broker, ContactInfo contactInfo,
+            Connection connection, String methodName, boolean isOneWay) {
         if (connection != null) {
             /// XXX LOGGING
             throw new RuntimeException("connection is not null");
         }
 
-        CorbaMessageMediator messageMediator = new CorbaMessageMediatorImpl(
-                (ORB) broker, contactInfo, null, // Connection;
-                GIOPVersion.chooseRequestVersion((ORB) broker,
-                        effectiveTargetIOR), effectiveTargetIOR, requestId++, // Fake RequestId
+        CorbaMessageMediator messageMediator = new CorbaMessageMediatorImpl((ORB) broker, contactInfo, null, // Connection;
+                GIOPVersion.chooseRequestVersion((ORB) broker, effectiveTargetIOR), effectiveTargetIOR,
+                requestId++, // Fake RequestId
                 getAddressingDisposition(), methodName, isOneWay);
 
         return messageMediator;
@@ -90,11 +87,9 @@ public class SharedCDRContactInfoImpl extends CorbaContactInfoBase {
     public OutputObject createOutputObject(MessageMediator messageMediator) {
         CorbaMessageMediator corbaMessageMediator = (CorbaMessageMediator) messageMediator;
         // NOTE: GROW.
-        OutputObject outputObject = sun.corba.OutputStreamFactory
-                .newCDROutputObject(orb, messageMediator, corbaMessageMediator
-                        .getRequestHeader(), corbaMessageMediator
-                                .getStreamFormatVersion(),
-                        BufferManagerFactory.GROW);
+        OutputObject outputObject = sun.corba.OutputStreamFactory.newCDROutputObject(orb, messageMediator,
+                corbaMessageMediator.getRequestHeader(), corbaMessageMediator.getStreamFormatVersion(),
+                BufferManagerFactory.GROW);
         messageMediator.setOutputObject(outputObject);
         return outputObject;
     }
@@ -129,8 +124,7 @@ public class SharedCDRContactInfoImpl extends CorbaContactInfoBase {
 
     protected ORBUtilSystemException getWrapper() {
         if (wrapper == null) {
-            wrapper = ORBUtilSystemException.get(orb,
-                    CORBALogDomains.RPC_TRANSPORT);
+            wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
         }
         return wrapper;
     }

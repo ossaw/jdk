@@ -34,9 +34,7 @@ import org.xml.sax.SAXException;
  * This class wraps a SAX entity resolver in an XNI entity resolver.
  *
  * @see EntityResolver
- *
  * @author Andy Clark, IBM
- *
  */
 public class EntityResolverWrapper implements XMLEntityResolver {
 
@@ -82,19 +80,17 @@ public class EntityResolverWrapper implements XMLEntityResolver {
      * this method should return null.
      *
      * @param resourceIdentifier
-     *                           contains the physical co-ordinates of the
-     *                           resource to be
-     *                           resolved
-     *
+     *        contains the physical co-ordinates of the
+     *        resource to be
+     *        resolved
      * @throws XNIException
-     *                      Thrown on general error.
+     *         Thrown on general error.
      * @throws IOException
-     *                      Thrown if resolved entity stream cannot be opened or
-     *                      some
-     *                      other i/o error occurs.
+     *         Thrown if resolved entity stream cannot be opened or
+     *         some
+     *         other i/o error occurs.
      */
-    public XMLInputSource resolveEntity(
-            XMLResourceIdentifier resourceIdentifier) throws XNIException,
+    public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier) throws XNIException,
             IOException {
 
         // When both pubId and sysId are null, the user's entity resolver
@@ -110,8 +106,7 @@ public class EntityResolverWrapper implements XMLEntityResolver {
         // resolve entity using SAX entity resolver
         if (fEntityResolver != null && resourceIdentifier != null) {
             try {
-                InputSource inputSource = fEntityResolver.resolveEntity(pubId,
-                        sysId);
+                InputSource inputSource = fEntityResolver.resolveEntity(pubId, sysId);
                 if (inputSource != null) {
                     String publicId = inputSource.getPublicId();
                     String systemId = inputSource.getSystemId();
@@ -119,8 +114,7 @@ public class EntityResolverWrapper implements XMLEntityResolver {
                     InputStream byteStream = inputSource.getByteStream();
                     Reader charStream = inputSource.getCharacterStream();
                     String encoding = inputSource.getEncoding();
-                    XMLInputSource xmlInputSource = new XMLInputSource(publicId,
-                            systemId, baseSystemId);
+                    XMLInputSource xmlInputSource = new XMLInputSource(publicId, systemId, baseSystemId);
                     xmlInputSource.setByteStream(byteStream);
                     xmlInputSource.setCharacterStream(charStream);
                     xmlInputSource.setEncoding(encoding);

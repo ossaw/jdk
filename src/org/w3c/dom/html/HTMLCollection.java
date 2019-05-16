@@ -40,7 +40,7 @@ public interface HTMLCollection {
      * numbered in tree order (depth-first traversal order).
      * 
      * @param index
-     *              The index of the node to be fetched. The index origin is 0.
+     *        The index of the node to be fetched. The index origin is 0.
      * @return The <code>Node</code> at the corresponding position upon success.
      *         A value of <code>null</code> is returned if the index is out of
      *         range.
@@ -55,7 +55,7 @@ public interface HTMLCollection {
      * allowed a name attribute.
      * 
      * @param name
-     *             The name of the <code>Node</code> to be fetched.
+     *        The name of the <code>Node</code> to be fetched.
      * @return The <code>Node</code> with a <code>name</code> or <code>id</code>
      *         attribute whose value corresponds to the specified string. Upon
      *         failure (e.g., no node with this name exists), returns

@@ -28,7 +28,7 @@ public interface ParameterMetaData extends Wrapper {
      *
      * @return the number of parameters
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     int getParameterCount() throws SQLException;
@@ -37,13 +37,13 @@ public interface ParameterMetaData extends Wrapper {
      * Retrieves whether null values are allowed in the designated parameter.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return the nullability status of the given parameter; one of
      *         <code>ParameterMetaData.parameterNoNulls</code>,
      *         <code>ParameterMetaData.parameterNullable</code>, or
      *         <code>ParameterMetaData.parameterNullableUnknown</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     int isNullable(int param) throws SQLException;
@@ -70,17 +70,16 @@ public interface ParameterMetaData extends Wrapper {
      * numbers.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return <code>true</code> if so; <code>false</code> otherwise
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     boolean isSigned(int param) throws SQLException;
 
     /**
      * Retrieves the designated parameter's specified column size.
-     *
      * <P>
      * The returned value represents the maximum column size for the given
      * parameter. For numeric data, this is the maximum precision. For character
@@ -92,10 +91,10 @@ public interface ParameterMetaData extends Wrapper {
      * is not applicable.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return precision
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     int getPrecision(int param) throws SQLException;
@@ -106,10 +105,10 @@ public interface ParameterMetaData extends Wrapper {
      * applicable.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return scale
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     int getScale(int param) throws SQLException;
@@ -118,10 +117,10 @@ public interface ParameterMetaData extends Wrapper {
      * Retrieves the designated parameter's SQL type.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return SQL type from <code>java.sql.Types</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      * @see Types
      */
@@ -131,11 +130,11 @@ public interface ParameterMetaData extends Wrapper {
      * Retrieves the designated parameter's database-specific type name.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return type the name used by the database. If the parameter type is a
      *         user-defined type, then a fully-qualified type name is returned.
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     String getParameterTypeName(int param) throws SQLException;
@@ -145,14 +144,14 @@ public interface ParameterMetaData extends Wrapper {
      * should be passed to the method <code>PreparedStatement.setObject</code>.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return the fully-qualified name of the class in the Java programming
      *         language that would be used by the method
      *         <code>PreparedStatement.setObject</code> to set the value in the
      *         specified parameter. This is the class name used for custom
      *         mapping.
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     String getParameterClassName(int param) throws SQLException;
@@ -181,14 +180,14 @@ public interface ParameterMetaData extends Wrapper {
      * Retrieves the designated parameter's mode.
      *
      * @param param
-     *              the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @return mode of the parameter; one of
      *         <code>ParameterMetaData.parameterModeIn</code>,
      *         <code>ParameterMetaData.parameterModeOut</code>, or
      *         <code>ParameterMetaData.parameterModeInOut</code>
      *         <code>ParameterMetaData.parameterModeUnknown</code>.
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.4
      */
     int getParameterMode(int param) throws SQLException;

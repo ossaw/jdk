@@ -49,17 +49,14 @@ import javax.print.attribute.PrintRequestAttribute;
  * 1/1000 millimeter = 1/25400 inch. This permits dimensions to be represented
  * exactly to a precision of 1/1000 mm (= 1 &#181;m) or 1/100 inch (= 254
  * &#181;m). If fractional inches are expressed in
- * 
  * negative powers of two, this permits dimensions to be represented exactly to
  * a precision of 1/8 inch (= 3175 &#181;m) but not 1/16 inch (because 1/16 inch
- * 
  * does not equal an integral number of &#181;m).
  * <p>
  * <B>IPP Compatibility:</B> MediaPrintableArea is not an IPP attribute.
  */
 
-public final class MediaPrintableArea implements DocAttribute,
-        PrintRequestAttribute, PrintJobAttribute {
+public final class MediaPrintableArea implements DocAttribute, PrintRequestAttribute, PrintJobAttribute {
 
     private int x, y, w, h;
     private int units;
@@ -82,21 +79,20 @@ public final class MediaPrintableArea implements DocAttribute,
      * Constructs a MediaPrintableArea object from floating point values.
      * 
      * @param x
-     *              printable x
+     *        printable x
      * @param y
-     *              printable y
+     *        printable y
      * @param w
-     *              printable width
+     *        printable width
      * @param h
-     *              printable height
+     *        printable height
      * @param units
-     *              in which the values are expressed.
-     *
+     *        in which the values are expressed.
      * @exception IllegalArgumentException
-     *                                     Thrown if {@code x < 0} or
-     *                                     {@code y < 0} or {@code w <= 0}
-     *                                     or {@code h <= 0} or
-     *                                     {@code units < 1}.
+     *            Thrown if {@code x < 0} or
+     *            {@code y < 0} or {@code w <= 0}
+     *            or {@code h <= 0} or
+     *            {@code units < 1}.
      */
     public MediaPrintableArea(float x, float y, float w, float h, int units) {
         if ((x < 0.0) || (y < 0.0) || (w <= 0.0) || (h <= 0.0) || (units < 1)) {
@@ -114,21 +110,20 @@ public final class MediaPrintableArea implements DocAttribute,
      * Constructs a MediaPrintableArea object from integer values.
      * 
      * @param x
-     *              printable x
+     *        printable x
      * @param y
-     *              printable y
+     *        printable y
      * @param w
-     *              printable width
+     *        printable width
      * @param h
-     *              printable height
+     *        printable height
      * @param units
-     *              in which the values are expressed.
-     *
+     *        in which the values are expressed.
      * @exception IllegalArgumentException
-     *                                     Thrown if {@code x < 0} or
-     *                                     {@code y < 0} or {@code w <= 0}
-     *                                     or {@code h <= 0} or
-     *                                     {@code units < 1}.
+     *            Thrown if {@code x < 0} or
+     *            {@code y < 0} or {@code w <= 0}
+     *            or {@code h <= 0} or
+     *            {@code units < 1}.
      */
     public MediaPrintableArea(int x, int y, int w, int h, int units) {
         if ((x < 0) || (y < 0) || (w <= 0) || (h <= 0) || (units < 1)) {
@@ -146,19 +141,16 @@ public final class MediaPrintableArea implements DocAttribute,
      * The values returned are in the given units.
      * 
      * @param units
-     *              Unit conversion factor, e.g. {@link #INCH INCH} or
-     *              {@link #MM
-     *              MM}.
-     *
+     *        Unit conversion factor, e.g. {@link #INCH INCH} or
+     *        {@link #MM
+     *        MM}.
      * @return printable area as array of x, y, w, h in the specified units.
-     *
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code units < 1}.
      */
     public float[] getPrintableArea(int units) {
-        return new float[] { getX(units), getY(units), getWidth(units),
-                getHeight(units) };
+        return new float[] { getX(units), getY(units), getWidth(units), getHeight(units) };
     }
 
     /**
@@ -166,16 +158,14 @@ public final class MediaPrintableArea implements DocAttribute,
      * units.
      * 
      * @param units
-     *              Unit conversion factor, e.g. {@link #INCH INCH} or
-     *              {@link #MM
-     *              MM}.
-     *
+     *        Unit conversion factor, e.g. {@link #INCH INCH} or
+     *        {@link #MM
+     *        MM}.
      * @return x location of the origin of the printable area in the specified
      *         units.
-     *
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code units < 1}.
      */
     public float getX(int units) {
         return convertFromMicrometers(x, units);
@@ -186,16 +176,14 @@ public final class MediaPrintableArea implements DocAttribute,
      * units.
      * 
      * @param units
-     *              Unit conversion factor, e.g. {@link #INCH INCH} or
-     *              {@link #MM
-     *              MM}.
-     *
+     *        Unit conversion factor, e.g. {@link #INCH INCH} or
+     *        {@link #MM
+     *        MM}.
      * @return y location of the origin of the printable area in the specified
      *         units.
-     *
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code units < 1}.
      */
     public float getY(int units) {
         return convertFromMicrometers(y, units);
@@ -205,15 +193,13 @@ public final class MediaPrintableArea implements DocAttribute,
      * Get the width of the printable area in the specified units.
      * 
      * @param units
-     *              Unit conversion factor, e.g. {@link #INCH INCH} or
-     *              {@link #MM
-     *              MM}.
-     *
+     *        Unit conversion factor, e.g. {@link #INCH INCH} or
+     *        {@link #MM
+     *        MM}.
      * @return width of the printable area in the specified units.
-     *
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code units < 1}.
      */
     public float getWidth(int units) {
         return convertFromMicrometers(w, units);
@@ -223,15 +209,13 @@ public final class MediaPrintableArea implements DocAttribute,
      * Get the height of the printable area in the specified units.
      * 
      * @param units
-     *              Unit conversion factor, e.g. {@link #INCH INCH} or
-     *              {@link #MM
-     *              MM}.
-     *
+     *        Unit conversion factor, e.g. {@link #INCH INCH} or
+     *        {@link #MM
+     *        MM}.
      * @return height of the printable area in the specified units.
-     *
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code units < 1}.
      */
     public float getHeight(int units) {
         return convertFromMicrometers(h, units);
@@ -248,8 +232,7 @@ public final class MediaPrintableArea implements DocAttribute,
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this media margins
      *         attribute, false otherwise.
      */
@@ -298,27 +281,24 @@ public final class MediaPrintableArea implements DocAttribute,
      * units.
      *
      * @param units
-     *                  Unit conversion factor, e.g. {@link #INCH INCH} or
-     *                  {@link #MM
-     *                  MM}.
+     *        Unit conversion factor, e.g. {@link #INCH INCH} or
+     *        {@link #MM
+     *        MM}.
      * @param unitsName
-     *                  Units name string, e.g. <CODE>"in"</CODE> or
-     *                  <CODE>"mm"</CODE>
-     *                  . If null, no units name is appended to the result.
-     *
+     *        Units name string, e.g. <CODE>"in"</CODE> or
+     *        <CODE>"mm"</CODE>
+     *        . If null, no units name is appended to the result.
      * @return String version of this two-dimensional size attribute.
-     *
      * @exception IllegalArgumentException
-     *                                     (unchecked exception) Thrown if
-     *                                     {@code units < 1}.
+     *            (unchecked exception) Thrown if
+     *            {@code units < 1}.
      */
     public String toString(int units, String unitsName) {
         if (unitsName == null) {
             unitsName = "";
         }
         float[] vals = getPrintableArea(units);
-        String str = "(" + vals[0] + "," + vals[1] + ")->(" + vals[2] + ","
-                + vals[3] + ")";
+        String str = "(" + vals[0] + "," + vals[1] + ")->(" + vals[2] + "," + vals[3] + ")";
         return str + unitsName;
     }
 

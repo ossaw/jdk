@@ -28,9 +28,9 @@ public class SimpleBindings implements Bindings {
      * Constructor uses an existing <code>Map</code> to store the values.
      * 
      * @param m
-     *          The <code>Map</code> backing this <code>SimpleBindings</code>.
+     *        The <code>Map</code> backing this <code>SimpleBindings</code>.
      * @throws NullPointerException
-     *                              if m is null
+     *         if m is null
      */
     public SimpleBindings(Map<String, Object> m) {
         if (m == null) {
@@ -50,17 +50,15 @@ public class SimpleBindings implements Bindings {
      * Sets the specified key/value in the underlying <code>map</code> field.
      *
      * @param name
-     *              Name of value
+     *        Name of value
      * @param value
-     *              Value to set.
-     *
+     *        Value to set.
      * @return Previous value for the specified key. Returns null if key was
      *         previously unset.
-     *
      * @throws NullPointerException
-     *                                  if the name is null.
+     *         if the name is null.
      * @throws IllegalArgumentException
-     *                                  if the name is empty.
+     *         if the name is empty.
      */
     public Object put(String name, Object value) {
         checkKey(name);
@@ -71,21 +69,19 @@ public class SimpleBindings implements Bindings {
      * <code>putAll</code> is implemented using <code>Map.putAll</code>.
      *
      * @param toMerge
-     *                The <code>Map</code> of values to add.
-     *
+     *        The <code>Map</code> of values to add.
      * @throws NullPointerException
-     *                                  if toMerge map is null or if some key in
-     *                                  the map is null.
+     *         if toMerge map is null or if some key in
+     *         the map is null.
      * @throws IllegalArgumentException
-     *                                  if some key in the map is an empty
-     *                                  String.
+     *         if some key in the map is an empty
+     *         String.
      */
     public void putAll(Map<? extends String, ? extends Object> toMerge) {
         if (toMerge == null) {
             throw new NullPointerException("toMerge map is null");
         }
-        for (Map.Entry<? extends String, ? extends Object> entry : toMerge
-                .entrySet()) {
+        for (Map.Entry<? extends String, ? extends Object> entry : toMerge.entrySet()) {
             String key = entry.getKey();
             checkKey(key);
             put(key, entry.getValue());
@@ -105,16 +101,15 @@ public class SimpleBindings implements Bindings {
      * such mapping.)
      *
      * @param key
-     *            key whose presence in this map is to be tested.
+     *        key whose presence in this map is to be tested.
      * @return <tt>true</tt> if this map contains a mapping for the specified
      *         key.
-     *
      * @throws NullPointerException
-     *                                  if key is null
+     *         if key is null
      * @throws ClassCastException
-     *                                  if key is not String
+     *         if key is not String
      * @throws IllegalArgumentException
-     *                                  if key is empty String
+     *         if key is empty String
      */
     public boolean containsKey(Object key) {
         checkKey(key);
@@ -138,7 +133,6 @@ public class SimpleBindings implements Bindings {
      * contains no mapping for the key; it's also possible that the map
      * explicitly maps the key to <tt>null</tt>. The <tt>containsKey</tt>
      * operation may be used to distinguish these two cases.
-     *
      * <p>
      * More formally, if this map contains a mapping from a key <tt>k</tt> to a
      * value <tt>v</tt> such that <tt>(key==null ? k==null :
@@ -146,16 +140,15 @@ public class SimpleBindings implements Bindings {
      * returns <tt>null</tt>. (There can be at most one such mapping.)
      *
      * @param key
-     *            key whose associated value is to be returned.
+     *        key whose associated value is to be returned.
      * @return the value to which this map maps the specified key, or
      *         <tt>null</tt> if the map contains no mapping for this key.
-     *
      * @throws NullPointerException
-     *                                  if key is null
+     *         if key is null
      * @throws ClassCastException
-     *                                  if key is not String
+     *         if key is not String
      * @throws IllegalArgumentException
-     *                                  if key is empty String
+     *         if key is empty String
      */
     public Object get(Object key) {
         checkKey(key);
@@ -178,7 +171,6 @@ public class SimpleBindings implements Bindings {
      * <tt>k</tt> to value <tt>v</tt> such that
      * <code>(key==null ?  k==null : key.equals(k))</code>, that mapping is
      * removed. (The map can contain at most one such mapping.)
-     *
      * <p>
      * Returns the value to which the map previously associated the key, or
      * <tt>null</tt> if the map contained no mapping for this key. (A
@@ -188,16 +180,15 @@ public class SimpleBindings implements Bindings {
      * specified key once the call returns.
      *
      * @param key
-     *            key whose mapping is to be removed from the map.
+     *        key whose mapping is to be removed from the map.
      * @return previous value associated with specified key, or <tt>null</tt> if
      *         there was no mapping for key.
-     *
      * @throws NullPointerException
-     *                                  if key is null
+     *         if key is null
      * @throws ClassCastException
-     *                                  if key is not String
+     *         if key is not String
      * @throws IllegalArgumentException
-     *                                  if key is empty String
+     *         if key is empty String
      */
     public Object remove(Object key) {
         checkKey(key);

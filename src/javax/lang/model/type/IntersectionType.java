@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * Represents an intersection type.
- *
  * <p>
  * An intersection type can be either implicitly or explicitly declared in a
  * program. For example, the bound of the type parameter
@@ -22,7 +21,6 @@ import java.util.List;
  *           RELEASE_8}, in the reference implementation an
  *           {@code IntersectionType} is used to model the explicit target type
  *           of a cast expression.
- *
  * @since 1.8
  */
 public interface IntersectionType extends TypeMirror {

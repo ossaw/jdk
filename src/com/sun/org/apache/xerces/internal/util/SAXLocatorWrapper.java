@@ -29,7 +29,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLLocator;
  * </p>
  *
  * @author Michael Glavassevich, IBM
- *
  */
 public final class SAXLocatorWrapper implements XMLLocator {
 

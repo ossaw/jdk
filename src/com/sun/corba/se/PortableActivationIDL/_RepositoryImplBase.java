@@ -8,10 +8,8 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public abstract class _RepositoryImplBase extends
-        org.omg.CORBA.portable.ObjectImpl implements
-        com.sun.corba.se.PortableActivationIDL.Repository,
-        org.omg.CORBA.portable.InvokeHandler {
+public abstract class _RepositoryImplBase extends org.omg.CORBA.portable.ObjectImpl implements
+        com.sun.corba.se.PortableActivationIDL.Repository, org.omg.CORBA.portable.InvokeHandler {
 
     // Constructors
     public _RepositoryImplBase() {}
@@ -29,14 +27,12 @@ public abstract class _RepositoryImplBase extends
         _methods.put("getServerID", new java.lang.Integer(8));
     }
 
-    public org.omg.CORBA.portable.OutputStream _invoke(String $method,
-            org.omg.CORBA.portable.InputStream in,
+    public org.omg.CORBA.portable.OutputStream _invoke(String $method, org.omg.CORBA.portable.InputStream in,
             org.omg.CORBA.portable.ResponseHandler $rh) {
         org.omg.CORBA.portable.OutputStream out = null;
         java.lang.Integer __method = (java.lang.Integer) _methods.get($method);
         if (__method == null)
-            throw new org.omg.CORBA.BAD_OPERATION(0,
-                    org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+            throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
 
         switch (__method.intValue()) {
 
@@ -56,12 +52,10 @@ public abstract class _RepositoryImplBase extends
                     out.write_string($result);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegisteredHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.BadServerDefinition $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.BadServerDefinitionHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.BadServerDefinitionHelper.write(out, $ex);
                 }
                 break;
             }
@@ -72,14 +66,12 @@ public abstract class _RepositoryImplBase extends
             case 1: // PortableActivationIDL/Repository/unregisterServer
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
                     this.unregisterServer(serverId);
                     out = $rh.createReply();
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 }
                 break;
             }
@@ -90,17 +82,15 @@ public abstract class _RepositoryImplBase extends
             case 2: // PortableActivationIDL/Repository/getServer
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
                     com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef $result = null;
                     $result = this.getServer(serverId);
                     out = $rh.createReply();
-                    com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper
-                            .write(out, $result);
+                    com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDefHelper.write(out,
+                            $result);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 }
                 break;
             }
@@ -111,16 +101,14 @@ public abstract class _RepositoryImplBase extends
             case 3: // PortableActivationIDL/Repository/isInstalled
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
                     boolean $result = false;
                     $result = this.isInstalled(serverId);
                     out = $rh.createReply();
                     out.write_boolean($result);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 }
                 break;
             }
@@ -133,18 +121,15 @@ public abstract class _RepositoryImplBase extends
             case 4: // PortableActivationIDL/Repository/install
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
                     this.install(serverId);
                     out = $rh.createReply();
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalled $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalledHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalledHelper.write(out, $ex);
                 }
                 break;
             }
@@ -157,18 +142,15 @@ public abstract class _RepositoryImplBase extends
             case 5: // PortableActivationIDL/Repository/uninstall
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
                     this.uninstall(serverId);
                     out = $rh.createReply();
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalled $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalledHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalledHelper.write(out, $ex);
                 }
                 break;
             }
@@ -181,8 +163,7 @@ public abstract class _RepositoryImplBase extends
                 String $result[] = null;
                 $result = this.listRegisteredServers();
                 out = $rh.createReply();
-                com.sun.corba.se.PortableActivationIDL.ServerIdsHelper.write(
-                        out, $result);
+                com.sun.corba.se.PortableActivationIDL.ServerIdsHelper.write(out, $result);
                 break;
             }
 
@@ -195,8 +176,7 @@ public abstract class _RepositoryImplBase extends
                 String $result[] = null;
                 $result = this.getApplicationNames();
                 out = $rh.createReply();
-                com.sun.corba.se.PortableActivationIDL.RepositoryPackage.AppNamesHelper
-                        .write(out, $result);
+                com.sun.corba.se.PortableActivationIDL.RepositoryPackage.AppNamesHelper.write(out, $result);
                 break;
             }
 
@@ -213,23 +193,20 @@ public abstract class _RepositoryImplBase extends
                     out.write_string($result);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 }
                 break;
             }
 
             default:
-                throw new org.omg.CORBA.BAD_OPERATION(0,
-                        org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+                throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
 
         return out;
     } // _invoke
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:PortableActivationIDL/Repository:1.0" };
+    private static String[] __ids = { "IDL:PortableActivationIDL/Repository:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();

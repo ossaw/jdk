@@ -33,7 +33,7 @@ public class WrongParserException extends RuntimeException {
      * Create a WrongParserException object.
      * 
      * @param message
-     *                The error message that should be reported to the user.
+     *        The error message that should be reported to the user.
      */
     public WrongParserException(String message) {
         super(message);

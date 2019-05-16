@@ -21,7 +21,6 @@ import java.util.NoSuchElementException;
 
 /**
  * A simple service-provider loading facility.
- *
  * <p>
  * A <i>service</i> is a well-known set of interfaces and (usually abstract)
  * classes. A <i>service provider</i> is a specific implementation of a service.
@@ -31,7 +30,6 @@ import java.util.NoSuchElementException;
  * jar files placed into any of the usual extension directories. Providers can
  * also be made available by adding them to the application's class path or by
  * some other platform-specific means.
- *
  * <p>
  * For the purpose of loading, a service is represented by a single type, that
  * is, a single interface or abstract class. (A concrete class can be used, but
@@ -45,7 +43,6 @@ import java.util.NoSuchElementException;
  * interface could possibly unify them, so no such type is defined here. The
  * only requirement enforced by this facility is that provider classes must have
  * a zero-argument constructor so that they can be instantiated during loading.
- *
  * <p>
  * <a name="format"> A service provider is identified by placing a
  * <i>provider-configuration file</i> in the resource directory
@@ -57,7 +54,6 @@ import java.util.NoSuchElementException;
  * <tt>'#'</tt> (<tt>'&#92;u0023'</tt>, <font style="font-size:smaller;">NUMBER
  * SIGN</font>); on each line all characters following the first comment
  * character are ignored. The file must be encoded in UTF-8.
- *
  * <p>
  * If a particular concrete provider class is named in more than one
  * configuration file, or is named in the same configuration file more than
@@ -67,7 +63,6 @@ import java.util.NoSuchElementException;
  * class loader that was initially queried to locate the configuration file;
  * note that this is not necessarily the class loader from which the file was
  * actually loaded.
- *
  * <p>
  * Providers are located and instantiated lazily, that is, on demand. A service
  * loader maintains a cache of the providers that have been loaded so far. Each
@@ -76,27 +71,21 @@ import java.util.NoSuchElementException;
  * then lazily locates and instantiates any remaining providers, adding each one
  * to the cache in turn. The cache can be cleared via the {@link #reload reload}
  * method.
- *
  * <p>
  * Service loaders always execute in the security context of the caller. Trusted
  * system code should typically invoke the methods in this class, and the
  * methods of the iterators which they return, from within a privileged security
  * context.
- *
  * <p>
  * Instances of this class are not safe for use by multiple concurrent threads.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method in
  * this class will cause a {@link NullPointerException} to be thrown.
- *
- *
  * <p>
  * <span style="font-weight: bold; padding-right: 1em">Example</span> Suppose we
  * have a service type <tt>com.example.CodecSet</tt> which is intended to
  * represent sets of encoder/decoder pairs for some protocol. In this case it is
  * an abstract class with two abstract methods:
- *
  * <blockquote>
  * 
  * <pre>
@@ -106,15 +95,12 @@ import java.util.NoSuchElementException;
  * </pre>
  * 
  * </blockquote>
- *
  * Each method returns an appropriate object or <tt>null</tt> if the provider
  * does not support the given encoding. Typical providers support more than one
  * encoding.
- *
  * <p>
  * If <tt>com.example.impl.StandardCodecs</tt> is an implementation of the
  * <tt>CodecSet</tt> service then its jar file also contains a file named
- *
  * <blockquote>
  * 
  * <pre>
@@ -122,10 +108,8 @@ import java.util.NoSuchElementException;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * This file contains the single line:
- *
  * <blockquote>
  * 
  * <pre>
@@ -133,25 +117,20 @@ import java.util.NoSuchElementException;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * The <tt>CodecSet</tt> class creates and saves a single service instance at
  * initialization:
- *
  * <blockquote>
  * 
  * <pre>
- * private static ServiceLoader&lt;CodecSet&gt; codecSetLoader = ServiceLoader.load(
- *         CodecSet.class);
+ * private static ServiceLoader&lt;CodecSet&gt; codecSetLoader = ServiceLoader.load(CodecSet.class);
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * To locate an encoder for a given encoding name it defines a static factory
  * method which iterates through the known and available providers, returning
  * only when it has located a suitable encoder or has run out of providers.
- *
  * <blockquote>
  * 
  * <pre>
@@ -166,23 +145,18 @@ import java.util.NoSuchElementException;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * A <tt>getDecoder</tt> method is defined similarly.
- *
- *
  * <p>
  * <span style="font-weight: bold; padding-right: 1em">Usage Note</span> If the
  * class path of a class loader that is used for provider loading includes
  * remote network URLs then those URLs will be dereferenced in the process of
  * searching for provider-configuration files.
- *
  * <p>
  * This activity is normal, although it may cause puzzling entries to be created
  * in web-server logs. If a web server is not configured correctly, however,
  * then this activity may cause the provider-loading algorithm to fail
  * spuriously.
- *
  * <p>
  * A web server should return an HTTP 404 (Not Found) response when a requested
  * resource does not exist. Sometimes, however, web servers are erroneously
@@ -195,7 +169,6 @@ import java.util.NoSuchElementException;
  *
  * @param <S>
  *        The type of the service to be loaded by this loader
- *
  * @author Mark Reinhold
  * @since 1.6
  */
@@ -222,12 +195,10 @@ public final class ServiceLoader<S> implements Iterable<S> {
     /**
      * Clear this loader's provider cache so that all providers will be
      * reloaded.
-     *
      * <p>
      * After invoking this method, subsequent invocations of the
      * {@link #iterator() iterator} method will lazily look up and instantiate
      * providers from scratch, just as is done by a newly-created loader.
-     *
      * <p>
      * This method is intended for use in situations in which new providers can
      * be installed into a running Java virtual machine.
@@ -238,35 +209,29 @@ public final class ServiceLoader<S> implements Iterable<S> {
     }
 
     private ServiceLoader(Class<S> svc, ClassLoader cl) {
-        service = Objects.requireNonNull(svc,
-                "Service interface cannot be null");
+        service = Objects.requireNonNull(svc, "Service interface cannot be null");
         loader = (cl == null) ? ClassLoader.getSystemClassLoader() : cl;
-        acc = (System.getSecurityManager() != null) ? AccessController
-                .getContext() : null;
+        acc = (System.getSecurityManager() != null) ? AccessController.getContext() : null;
         reload();
     }
 
-    private static void fail(Class<?> service, String msg, Throwable cause)
-            throws ServiceConfigurationError {
-        throw new ServiceConfigurationError(service.getName() + ": " + msg,
-                cause);
+    private static void fail(Class<?> service, String msg, Throwable cause) throws ServiceConfigurationError {
+        throw new ServiceConfigurationError(service.getName() + ": " + msg, cause);
     }
 
-    private static void fail(Class<?> service, String msg)
-            throws ServiceConfigurationError {
+    private static void fail(Class<?> service, String msg) throws ServiceConfigurationError {
         throw new ServiceConfigurationError(service.getName() + ": " + msg);
     }
 
-    private static void fail(Class<?> service, URL u, int line, String msg)
-            throws ServiceConfigurationError {
+    private static void fail(Class<?> service, URL u, int line, String msg) throws ServiceConfigurationError {
         fail(service, u + ":" + line + ": " + msg);
     }
 
     // Parse a single line from the given configuration file, adding the name
     // on the line to the names list.
     //
-    private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
-            List<String> names) throws IOException, ServiceConfigurationError {
+    private int parseLine(Class<?> service, URL u, BufferedReader r, int lc, List<String> names)
+            throws IOException, ServiceConfigurationError {
         String ln = r.readLine();
         if (ln == null) {
             return -1;
@@ -282,8 +247,7 @@ public final class ServiceLoader<S> implements Iterable<S> {
             int cp = ln.codePointAt(0);
             if (!Character.isJavaIdentifierStart(cp))
                 fail(service, u, lc, "Illegal provider-class name: " + ln);
-            for (int i = Character.charCount(cp); i < n; i += Character
-                    .charCount(cp)) {
+            for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
                 cp = ln.codePointAt(i);
                 if (!Character.isJavaIdentifierPart(cp) && (cp != '.'))
                     fail(service, u, lc, "Illegal provider-class name: " + ln);
@@ -311,8 +275,7 @@ public final class ServiceLoader<S> implements Iterable<S> {
     // If an I/O error occurs while reading from the given URL, or
     // if a configuration-file format error is detected
     //
-    private Iterator<String> parse(Class<?> service, URL u)
-            throws ServiceConfigurationError {
+    private Iterator<String> parse(Class<?> service, URL u) throws ServiceConfigurationError {
         InputStream in = null;
         BufferedReader r = null;
         ArrayList<String> names = new ArrayList<>();
@@ -396,8 +359,7 @@ public final class ServiceLoader<S> implements Iterable<S> {
                 providers.put(cn, p);
                 return p;
             } catch (Throwable x) {
-                fail(service, "Provider " + cn + " could not be instantiated",
-                        x);
+                fail(service, "Provider " + cn + " could not be instantiated", x);
             }
             throw new Error(); // This cannot happen
         }
@@ -436,13 +398,11 @@ public final class ServiceLoader<S> implements Iterable<S> {
 
     /**
      * Lazily loads the available providers of this loader's service.
-     *
      * <p>
      * The iterator returned by this method first yields all of the elements of
      * the provider cache, in instantiation order. It then lazily loads and
      * instantiates any remaining providers, adding each one to the cache in
      * turn.
-     *
      * <p>
      * To achieve laziness the actual work of parsing the available
      * provider-configuration files and instantiating providers must be done by
@@ -455,12 +415,10 @@ public final class ServiceLoader<S> implements Iterable<S> {
      * exception or error is thrown as the next provider is located and
      * instantiated. To write robust code it is only necessary to catch
      * {@link ServiceConfigurationError} when using a service iterator.
-     *
      * <p>
      * If such an error is thrown then subsequent invocations of the iterator
      * will make a best effort to locate and instantiate the next available
      * provider, but in general such recovery cannot be guaranteed.
-     *
      * <blockquote style="font-size: smaller; line-height: 1.2"><span style=
      * "padding-right: 1em; font-weight: bold">Design Note</span> Throwing an
      * error in these cases may seem extreme. The rationale for this behavior is
@@ -469,7 +427,6 @@ public final class ServiceLoader<S> implements Iterable<S> {
      * is configured or is being used. As such it is preferable to throw an
      * error rather than try to recover or, even worse, fail
      * silently.</blockquote>
-     *
      * <p>
      * The iterator returned by this method does not support removal. Invoking
      * its {@link java.util.Iterator#remove() remove} method will cause an
@@ -480,14 +437,12 @@ public final class ServiceLoader<S> implements Iterable<S> {
      *           {@link java.lang.ClassLoader#getResources(java.lang.String)
      *           ClassLoader.getResources(String)} method finds the service
      *           configuration files.
-     *
      * @return An iterator that lazily loads providers for this loader's service
      */
     public Iterator<S> iterator() {
         return new Iterator<S>() {
 
-            Iterator<Map.Entry<String, S>> knownProviders = providers.entrySet()
-                    .iterator();
+            Iterator<Map.Entry<String, S>> knownProviders = providers.entrySet().iterator();
 
             public boolean hasNext() {
                 if (knownProviders.hasNext())
@@ -511,23 +466,19 @@ public final class ServiceLoader<S> implements Iterable<S> {
     /**
      * Creates a new service loader for the given service type and class loader.
      *
-     * @param         <S>
-     *                the class of the service type
-     *
+     * @param <S>
+     *        the class of the service type
      * @param service
-     *                The interface or abstract class representing the service
-     *
+     *        The interface or abstract class representing the service
      * @param loader
-     *                The class loader to be used to load provider-configuration
-     *                files and provider classes, or <tt>null</tt> if the system
-     *                class loader (or, failing that, the bootstrap class
-     *                loader) is
-     *                to be used
-     *
+     *        The class loader to be used to load provider-configuration
+     *        files and provider classes, or <tt>null</tt> if the system
+     *        class loader (or, failing that, the bootstrap class
+     *        loader) is
+     *        to be used
      * @return A new service loader
      */
-    public static <S> ServiceLoader<S> load(Class<S> service,
-            ClassLoader loader) {
+    public static <S> ServiceLoader<S> load(Class<S> service, ClassLoader loader) {
         return new ServiceLoader<>(service, loader);
     }
 
@@ -535,10 +486,8 @@ public final class ServiceLoader<S> implements Iterable<S> {
      * Creates a new service loader for the given service type, using the
      * current thread's {@linkplain java.lang.Thread#getContextClassLoader
      * context class loader}.
-     *
      * <p>
      * An invocation of this convenience method of the form
-     *
      * <blockquote>
      * 
      * <pre>
@@ -546,9 +495,7 @@ public final class ServiceLoader<S> implements Iterable<S> {
      * </pre>
      * 
      * </blockquote>
-     *
      * is equivalent to
-     *
      * <blockquote>
      * 
      * <pre>
@@ -558,12 +505,10 @@ public final class ServiceLoader<S> implements Iterable<S> {
      * 
      * </blockquote>
      *
-     * @param         <S>
-     *                the class of the service type
-     *
+     * @param <S>
+     *        the class of the service type
      * @param service
-     *                The interface or abstract class representing the service
-     *
+     *        The interface or abstract class representing the service
      * @return A new service loader
      */
     public static <S> ServiceLoader<S> load(Class<S> service) {
@@ -574,11 +519,9 @@ public final class ServiceLoader<S> implements Iterable<S> {
     /**
      * Creates a new service loader for the given service type, using the
      * extension class loader.
-     *
      * <p>
      * This convenience method simply locates the extension class loader, call
      * it <tt><i>extClassLoader</i></tt>, and then returns
-     *
      * <blockquote>
      * 
      * <pre>
@@ -586,24 +529,20 @@ public final class ServiceLoader<S> implements Iterable<S> {
      * </pre>
      * 
      * </blockquote>
-     *
      * <p>
      * If the extension class loader cannot be found then the system class
      * loader is used; if there is no system class loader then the bootstrap
      * class loader is used.
-     *
      * <p>
      * This method is intended for use when only installed providers are
      * desired. The resulting service will only find and load providers that
      * have been installed into the current Java virtual machine; providers on
      * the application's class path will be ignored.
      *
-     * @param         <S>
-     *                the class of the service type
-     *
+     * @param <S>
+     *        the class of the service type
      * @param service
-     *                The interface or abstract class representing the service
-     *
+     *        The interface or abstract class representing the service
      * @return A new service loader
      */
     public static <S> ServiceLoader<S> loadInstalled(Class<S> service) {

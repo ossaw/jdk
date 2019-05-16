@@ -80,8 +80,7 @@ final class LambdaFormBuffer {
         // check resultName also
         if (resultName != null) {
             int resultIndex = indexOf(resultName, names);
-            assert (resultIndex >= 0) : "not found: " + resultName.exprString()
-                    + Arrays.asList(names);
+            assert (resultIndex >= 0) : "not found: " + resultName.exprString() + Arrays.asList(names);
             assert (names[resultIndex] == resultName);
         }
         return true;
@@ -91,13 +90,12 @@ final class LambdaFormBuffer {
         assert (inTrans());
         for (int i = 0; i < length; i++) {
             if (names[i] != originalNames[i]) {
-                assert (firstChange == i) : Arrays.asList(firstChange, i,
-                        originalNames[i].exprString(), Arrays.asList(names));
+                assert (firstChange == i) : Arrays.asList(firstChange, i, originalNames[i].exprString(),
+                        Arrays.asList(names));
                 return true;
             }
         }
-        assert (firstChange == length) : Arrays.asList(firstChange, Arrays
-                .asList(names));
+        assert (firstChange == length) : Arrays.asList(firstChange, Arrays.asList(names));
         return true;
     }
 
@@ -152,8 +150,7 @@ final class LambdaFormBuffer {
         System.arraycopy(names, insertPos, names, insertEnd, tailLength);
         Arrays.fill(names, insertPos, insertEnd, null);
         if (originalNames != null) {
-            System.arraycopy(originalNames, insertPos, originalNames, insertEnd,
-                    tailLength);
+            System.arraycopy(originalNames, insertPos, originalNames, insertEnd, tailLength);
             Arrays.fill(originalNames, insertPos, insertEnd, null);
         }
         length = newLength;
@@ -234,8 +231,7 @@ final class LambdaFormBuffer {
         } else {
             // make a new buffer to hold the names
             final int SLOP = 2;
-            names = Arrays.copyOf(oldNames, Math.max(length + SLOP,
-                    oldNames.length));
+            names = Arrays.copyOf(oldNames, Math.max(length + SLOP, oldNames.length));
             if (oc < 2)
                 ++flags;
             assert (ownedCount() == oc + 1);
@@ -279,8 +275,7 @@ final class LambdaFormBuffer {
             Name name = names[i];
             if (name == null)
                 continue; // space for removed duplicate
-            Name newName = name.replaceNames(originalNames, names, firstChange,
-                    i);
+            Name newName = name.replaceNames(originalNames, names, firstChange, i);
             if (newName != name) {
                 names[i] = newName;
                 if (resultName == name) {
@@ -327,8 +322,8 @@ final class LambdaFormBuffer {
      * is in the corresponding position in newFns. Only do this if the arguments
      * are exactly equal to the given.
      */
-    LambdaFormBuffer replaceFunctions(NamedFunction[] oldFns,
-            NamedFunction[] newFns, Object... forArguments) {
+    LambdaFormBuffer replaceFunctions(NamedFunction[] oldFns, NamedFunction[] newFns,
+            Object... forArguments) {
         assert (inTrans());
         if (oldFns.length == 0)
             return this;

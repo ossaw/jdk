@@ -18,13 +18,11 @@ import javax.annotation.processing.SupportedSourceVersion;
  * the {@link SourceVersion#RELEASE_6 RELEASE_6} source version. Visit methods
  * call {@link #defaultAction} passing their arguments to {@code defaultAction}
  * 's corresponding parameters.
- *
  * <p>
  * Methods in this class may be overridden subject to their general contract.
  * Note that annotating methods in concrete subclasses with
  * {@link java.lang.Override @Override} will help ensure that methods are
  * overridden as intended.
- *
  * <p>
  * <b>WARNING:</b> The {@code AnnotationValueVisitor} interface implemented by
  * this class may have methods added to it in the future to accommodate new,
@@ -33,7 +31,6 @@ import javax.annotation.processing.SupportedSourceVersion;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -41,7 +38,6 @@ import javax.annotation.processing.SupportedSourceVersion;
  * to the new language level; this visitor will have different default behavior
  * for the visit method in question. When the new visitor is introduced, all or
  * portions of this visitor may be deprecated.
- *
  * <p>
  * Note that adding a default implementation of a new visit method in a visitor
  * class will occur instead of adding a <em>default
@@ -55,18 +51,15 @@ import javax.annotation.processing.SupportedSourceVersion;
  *        the return type of this visitor's methods
  * @param <P>
  *        the type of the additional parameter to this visitor's methods.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
- *
  * @see SimpleAnnotationValueVisitor7
  * @see SimpleAnnotationValueVisitor8
  * @since 1.6
  */
 @SupportedSourceVersion(RELEASE_6)
-public class SimpleAnnotationValueVisitor6<R, P> extends
-        AbstractAnnotationValueVisitor6<R, P> {
+public class SimpleAnnotationValueVisitor6<R, P> extends AbstractAnnotationValueVisitor6<R, P> {
 
     /**
      * Default value to be returned; {@link #defaultAction defaultAction}
@@ -88,7 +81,7 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * value.
      *
      * @param defaultValue
-     *                     the value to assign to {@link #DEFAULT_VALUE}
+     *        the value to assign to {@link #DEFAULT_VALUE}
      */
     protected SimpleAnnotationValueVisitor6(R defaultValue) {
         super();
@@ -101,9 +94,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * this method.
      *
      * @param o
-     *          the value of the annotation
+     *        the value of the annotation
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return {@code DEFAULT_VALUE} unless overridden
      */
     protected R defaultAction(Object o, P p) {
@@ -114,9 +107,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param b
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitBoolean(boolean b, P p) {
@@ -127,9 +120,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param b
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitByte(byte b, P p) {
@@ -140,9 +133,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param c
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitChar(char c, P p) {
@@ -153,9 +146,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param d
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitDouble(double d, P p) {
@@ -166,9 +159,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param f
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitFloat(float f, P p) {
@@ -179,9 +172,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param i
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitInt(int i, P p) {
@@ -192,9 +185,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param i
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitLong(long i, P p) {
@@ -205,9 +198,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param s
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitShort(short s, P p) {
@@ -218,9 +211,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param s
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitString(String s, P p) {
@@ -231,9 +224,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param t
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitType(TypeMirror t, P p) {
@@ -244,9 +237,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param c
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitEnumConstant(VariableElement c, P p) {
@@ -257,9 +250,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param a
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitAnnotation(AnnotationMirror a, P p) {
@@ -270,9 +263,9 @@ public class SimpleAnnotationValueVisitor6<R, P> extends
      * {@inheritDoc} This implementation calls {@code defaultAction}.
      *
      * @param vals
-     *             {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *             {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     public R visitArray(List<? extends AnnotationValue> vals, P p) {

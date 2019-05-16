@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -84,10 +82,10 @@ public interface CipherReference {
      * <code>URI</code> to yield the appropriate cipher value.
      *
      * @param transforms
-     *                   the set of <code>Transforms</code> that specifies how
-     *                   to
-     *                   transform the reference to yield the intended cipher
-     *                   value.
+     *        the set of <code>Transforms</code> that specifies how
+     *        to
+     *        transform the reference to yield the intended cipher
+     *        value.
      */
     void setTransforms(Transforms transforms);
 }

@@ -21,7 +21,6 @@
 package com.sun.org.apache.xpath.internal.compiler;
 
 /**
- *
  * Like IntVector, but used only for the OpMap array. Length of array is kept in
  * the m_lengthPos position of the array. Only the required methods are in
  * included here.
@@ -46,7 +45,7 @@ public class OpMapVector {
      * Construct a OpMapVector, using the given block size.
      *
      * @param blocksize
-     *                  Size of block to allocate
+     *        Size of block to allocate
      */
     public OpMapVector(int blocksize, int increaseSize, int lengthPos) {
 
@@ -60,8 +59,7 @@ public class OpMapVector {
      * Get the nth element.
      *
      * @param i
-     *          index of object to get
-     *
+     *        index of object to get
      * @return object at given index
      */
     public final int elementAt(int i) {
@@ -71,14 +69,13 @@ public class OpMapVector {
     /**
      * Sets the component at the specified index of this vector to be the
      * specified object. The previous component at that position is discarded.
-     *
      * The index must be a value greater than or equal to 0 and less than the
      * current size of the vector.
      *
      * @param value
-     *              object to set
+     *        object to set
      * @param index
-     *              Index of where to set the object
+     *        Index of where to set the object
      */
     public final void setElementAt(int value, int index) {
         if (index >= m_mapSize) {

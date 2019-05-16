@@ -28,12 +28,10 @@ import javax.naming.NamingEnumeration;
 public abstract class VersionHelper {
     private static VersionHelper helper = null;
 
-    final static String[] PROPS = new String[] {
-            javax.naming.Context.INITIAL_CONTEXT_FACTORY,
-            javax.naming.Context.OBJECT_FACTORIES,
-            javax.naming.Context.URL_PKG_PREFIXES,
-            javax.naming.Context.STATE_FACTORIES,
-            javax.naming.Context.PROVIDER_URL, javax.naming.Context.DNS_URL,
+    final static String[] PROPS = new String[] { javax.naming.Context.INITIAL_CONTEXT_FACTORY,
+            javax.naming.Context.OBJECT_FACTORIES, javax.naming.Context.URL_PKG_PREFIXES,
+            javax.naming.Context.STATE_FACTORIES, javax.naming.Context.PROVIDER_URL,
+            javax.naming.Context.DNS_URL,
             // The following shouldn't create a runtime dependence on ldap
             // package.
             javax.naming.ldap.LdapContext.CONTROL_FACTORIES };
@@ -56,14 +54,12 @@ public abstract class VersionHelper {
         return helper;
     }
 
-    public abstract Class<?> loadClass(String className)
-            throws ClassNotFoundException;
+    public abstract Class<?> loadClass(String className) throws ClassNotFoundException;
 
-    abstract Class<?> loadClass(String className, ClassLoader cl)
-            throws ClassNotFoundException;
+    abstract Class<?> loadClass(String className, ClassLoader cl) throws ClassNotFoundException;
 
-    public abstract Class<?> loadClass(String className, String codebase)
-            throws ClassNotFoundException, MalformedURLException;
+    public abstract Class<?> loadClass(String className, String codebase) throws ClassNotFoundException,
+            MalformedURLException;
 
     /*
      * Returns a JNDI property from the system properties. Returns null if the
@@ -97,8 +93,7 @@ public abstract class VersionHelper {
      * given name associated with a particular class loader. Null represents the
      * bootstrap class loader in some Java implementations.
      */
-    abstract NamingEnumeration<InputStream> getResources(ClassLoader cl,
-            String name) throws IOException;
+    abstract NamingEnumeration<InputStream> getResources(ClassLoader cl, String name) throws IOException;
 
     /*
      * Returns the context class loader associated with the current thread. Null
@@ -107,8 +102,7 @@ public abstract class VersionHelper {
      */
     abstract ClassLoader getContextClassLoader();
 
-    static protected URL[] getUrlArray(String codebase)
-            throws MalformedURLException {
+    static protected URL[] getUrlArray(String codebase) throws MalformedURLException {
         // Parse codebase into separate URLs
         StringTokenizer parser = new StringTokenizer(codebase);
         Vector<String> vec = new Vector<>(10);

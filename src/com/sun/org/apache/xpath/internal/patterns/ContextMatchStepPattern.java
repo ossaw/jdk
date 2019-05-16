@@ -36,7 +36,6 @@ public class ContextMatchStepPattern extends StepPattern {
 
     /**
      * Construct a ContextMatchStepPattern.
-     *
      */
     public ContextMatchStepPattern(int axis, int paxis) {
         super(DTMFilter.SHOW_ALL, axis, paxis);
@@ -45,10 +44,8 @@ public class ContextMatchStepPattern extends StepPattern {
     /**
      * Execute this pattern step, including predicates.
      *
-     *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -59,11 +56,9 @@ public class ContextMatchStepPattern extends StepPattern {
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         if (xctxt.getIteratorRoot() == xctxt.getCurrentNode())
             return getStaticScore();
@@ -74,10 +69,8 @@ public class ContextMatchStepPattern extends StepPattern {
     /**
      * Execute the match pattern step relative to another step.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context. NEEDSDOC @param prevStep
-     *
+     *        The XPath runtime context. NEEDSDOC @param prevStep
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -88,11 +81,9 @@ public class ContextMatchStepPattern extends StepPattern {
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject executeRelativePathPattern(XPathContext xctxt,
-            StepPattern prevStep)
+    public XObject executeRelativePathPattern(XPathContext xctxt, StepPattern prevStep)
             throws javax.xml.transform.TransformerException {
 
         XObject score = NodeTest.SCORE_NONE;
@@ -105,10 +96,8 @@ public class ContextMatchStepPattern extends StepPattern {
 
             int axis = m_axis;
 
-            boolean needToTraverseAttrs = WalkerFactory.isDownwardAxisOfMany(
-                    axis);
-            boolean iterRootIsAttr = (dtm.getNodeType(xctxt
-                    .getIteratorRoot()) == DTM.ATTRIBUTE_NODE);
+            boolean needToTraverseAttrs = WalkerFactory.isDownwardAxisOfMany(axis);
+            boolean iterRootIsAttr = (dtm.getNodeType(xctxt.getIteratorRoot()) == DTM.ATTRIBUTE_NODE);
 
             if ((Axis.PRECEDING == axis) && iterRootIsAttr) {
                 axis = Axis.PRECEDINGANDANCESTOR;
@@ -116,9 +105,8 @@ public class ContextMatchStepPattern extends StepPattern {
 
             traverser = dtm.getAxisTraverser(axis);
 
-            for (int relative = traverser.first(
-                    context); DTM.NULL != relative; relative = traverser.next(
-                            context, relative)) {
+            for (int relative = traverser.first(context); DTM.NULL != relative; relative = traverser.next(
+                    context, relative)) {
                 try {
                     xctxt.pushCurrentNode(relative);
 
@@ -134,17 +122,15 @@ public class ContextMatchStepPattern extends StepPattern {
                         score = NodeTest.SCORE_NONE;
                     }
 
-                    if (needToTraverseAttrs && iterRootIsAttr
-                            && (DTM.ELEMENT_NODE == dtm.getNodeType(
-                                    relative))) {
+                    if (needToTraverseAttrs && iterRootIsAttr && (DTM.ELEMENT_NODE == dtm.getNodeType(
+                            relative))) {
                         int xaxis = Axis.ATTRIBUTE;
                         for (int i = 0; i < 2; i++) {
-                            DTMAxisTraverser atraverser = dtm.getAxisTraverser(
-                                    xaxis);
+                            DTMAxisTraverser atraverser = dtm.getAxisTraverser(xaxis);
 
                             for (int arelative = atraverser.first(
-                                    relative); DTM.NULL != arelative; arelative = atraverser
-                                            .next(relative, arelative)) {
+                                    relative); DTM.NULL != arelative; arelative = atraverser.next(relative,
+                                            arelative)) {
                                 try {
                                     xctxt.pushCurrentNode(arelative);
 

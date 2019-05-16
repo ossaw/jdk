@@ -12,7 +12,6 @@ import javax.xml.namespace.QName;
  * <code>XPathVariableResolver</code> provides access to the set of user defined
  * XPath variables.
  * </p>
- *
  * <p>
  * The <code>XPathVariableResolver</code> and the XPath evaluator must adhere to
  * a contract that cannot be directly enforced by the API. Although variables
@@ -31,22 +30,19 @@ public interface XPathVariableResolver {
      * <p>
      * Find a variable in the set of available variables.
      * </p>
-     *
      * <p>
      * If <code>variableName</code> is <code>null</code>, then a
      * <code>NullPointerException</code> is thrown.
      * </p>
      *
      * @param variableName
-     *                     The <code>QName</code> of the variable name.
-     *
+     *        The <code>QName</code> of the variable name.
      * @return The variables value, or <code>null</code> if no variable named
      *         <code>variableName</code> exists. The value returned must be of a
      *         type appropriate for the underlying object model.
-     *
      * @throws NullPointerException
-     *                              If <code>variableName</code> is
-     *                              <code>null</code>.
+     *         If <code>variableName</code> is
+     *         <code>null</code>.
      */
     public Object resolveVariable(QName variableName);
 }

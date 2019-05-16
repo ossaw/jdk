@@ -13,9 +13,7 @@ import java.util.Arrays;
  *
  * @see ECFieldFp
  * @see ECFieldF2m
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public interface ECField {

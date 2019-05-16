@@ -15,8 +15,7 @@ package java.nio.charset;
 public final class StandardCharsets {
 
     private StandardCharsets() {
-        throw new AssertionError(
-                "No java.nio.charset.StandardCharsets instances for you!");
+        throw new AssertionError("No java.nio.charset.StandardCharsets instances for you!");
     }
 
     /**

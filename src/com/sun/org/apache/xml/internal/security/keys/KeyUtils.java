@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -50,8 +48,7 @@ public class KeyUtils {
      * @param os
      * @throws XMLSecurityException
      */
-    public static void prinoutKeyInfo(KeyInfo ki, PrintStream os)
-            throws XMLSecurityException {
+    public static void prinoutKeyInfo(KeyInfo ki, PrintStream os) throws XMLSecurityException {
 
         for (int i = 0; i < ki.lengthKeyName(); i++) {
             KeyName x = ki.itemKeyName(i);
@@ -76,10 +73,8 @@ public class KeyUtils {
         for (int i = 0; i < ki.lengthX509Data(); i++) {
             X509Data x = ki.itemX509Data(i);
 
-            os.println("X509Data(" + i + ")=\"" + (x.containsCertificate()
-                    ? "Certificate "
-                    : "") + (x.containsIssuerSerial() ? "IssuerSerial " : "")
-                    + "\"");
+            os.println("X509Data(" + i + ")=\"" + (x.containsCertificate() ? "Certificate " : "") + (x
+                    .containsIssuerSerial() ? "IssuerSerial " : "") + "\"");
         }
     }
 }

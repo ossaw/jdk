@@ -39,7 +39,6 @@ package com.sun.jmx.snmp.tasks;
  * </p>
  * 
  * @see com.sun.jmx.snmp.tasks.TaskServer
- *
  * @since 1.5
  **/
 public interface Task extends Runnable {

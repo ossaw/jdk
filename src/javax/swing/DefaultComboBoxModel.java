@@ -13,13 +13,12 @@ import java.io.Serializable;
  *
  * @param <E>
  *        the type of the elements of this model
- *
  * @author Arnaud Weber
  * @author Tom Santos
  */
 
-public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements
-        MutableComboBoxModel<E>, Serializable {
+public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements MutableComboBoxModel<E>,
+        Serializable {
     Vector<E> objects;
     Object selectedObject;
 
@@ -35,7 +34,7 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements
      * objects.
      *
      * @param items
-     *              an array of Object objects
+     *        an array of Object objects
      */
     public DefaultComboBoxModel(final E items[]) {
         objects = new Vector<E>(items.length);
@@ -53,7 +52,7 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements
      * Constructs a DefaultComboBoxModel object initialized with a vector.
      *
      * @param v
-     *          a Vector object ...
+     *        a Vector object ...
      */
     public DefaultComboBoxModel(Vector<E> v) {
         objects = v;
@@ -68,11 +67,11 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements
      * Set the value of the selected item. The selected item may be null.
      *
      * @param anObject
-     *                 The combo box value or null for no selection.
+     *        The combo box value or null for no selection.
      */
     public void setSelectedItem(Object anObject) {
-        if ((selectedObject != null && !selectedObject.equals(anObject))
-                || selectedObject == null && anObject != null) {
+        if ((selectedObject != null && !selectedObject.equals(anObject)) || selectedObject == null
+                && anObject != null) {
             selectedObject = anObject;
             fireContentsChanged(this, -1, -1);
         }
@@ -126,8 +125,7 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements
     public void removeElementAt(int index) {
         if (getElementAt(index) == selectedObject) {
             if (index == 0) {
-                setSelectedItem(getSize() == 1 ? null
-                        : getElementAt(index + 1));
+                setSelectedItem(getSize() == 1 ? null : getElementAt(index + 1));
             } else {
                 setSelectedItem(getElementAt(index - 1));
             }

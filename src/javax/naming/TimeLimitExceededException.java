@@ -12,14 +12,12 @@ import javax.naming.Name;
  * specified time limit. This can happen, for example, if the user specifies
  * that the method should take no longer than 10 seconds, and the method fails
  * to complete with 10 seconds.
- *
  * <p>
  * Synchronization and serialization issues that apply to NamingException apply
  * directly here.
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @since 1.3
  */
 public class TimeLimitExceededException extends LimitExceededException {
@@ -36,7 +34,7 @@ public class TimeLimitExceededException extends LimitExceededException {
      * argument supplied.
      * 
      * @param explanation
-     *                    possibly null detail about this exception.
+     *        possibly null detail about this exception.
      * @see java.lang.Throwable#getMessage
      */
     public TimeLimitExceededException(String explanation) {

@@ -85,9 +85,9 @@ public interface NodeIterator {
      * @return The next <code>Node</code> in the set being iterated over, or
      *         <code>null</code> if there are no more members in that set.
      * @exception DOMException
-     *                         INVALID_STATE_ERR: Raised if this method is
-     *                         called after
-     *                         the <code>detach</code> method was invoked.
+     *            INVALID_STATE_ERR: Raised if this method is
+     *            called after
+     *            the <code>detach</code> method was invoked.
      */
     public Node nextNode() throws DOMException;
 
@@ -98,9 +98,9 @@ public interface NodeIterator {
      * @return The previous <code>Node</code> in the set being iterated over, or
      *         <code>null</code> if there are no more members in that set.
      * @exception DOMException
-     *                         INVALID_STATE_ERR: Raised if this method is
-     *                         called after
-     *                         the <code>detach</code> method was invoked.
+     *            INVALID_STATE_ERR: Raised if this method is
+     *            called after
+     *            the <code>detach</code> method was invoked.
      */
     public Node previousNode() throws DOMException;
 

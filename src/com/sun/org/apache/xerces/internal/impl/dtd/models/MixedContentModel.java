@@ -71,7 +71,6 @@ import com.sun.org.apache.xerces.internal.impl.dtd.XMLContentSpec;
  * the list.
  *
  * @xerces.internal
- *
  */
 public class MixedContentModel implements ContentModelValidator {
 
@@ -105,18 +104,17 @@ public class MixedContentModel implements ContentModelValidator {
      * Constructs a mixed content model.
      *
      * @param children
-     *                 The list of allowed children.
+     *        The list of allowed children.
      * @param type
-     *                 The list of the types of the children.
+     *        The list of the types of the children.
      * @param offset
-     *                 The start offset position in the children.
+     *        The start offset position in the children.
      * @param length
-     *                 The child count.
+     *        The child count.
      * @param ordered
-     *                 True if content must be ordered.
+     *        True if content must be ordered.
      */
-    public MixedContentModel(QName[] children, int[] type, int offset,
-            int length, boolean ordered) {
+    public MixedContentModel(QName[] children, int[] type, int offset, int length, boolean ordered) {
         // Make our own copy now, which is exactly the right size
         fCount = length;
         fChildren = new QName[fCount];
@@ -144,21 +142,19 @@ public class MixedContentModel implements ContentModelValidator {
      * confirmed.
      *
      * @param children
-     *                 The children of this element. Each integer is an index
-     *                 within
-     *                 the <code>StringPool</code> of the child element name. An
-     *                 index of -1 is used to indicate an occurrence of
-     *                 non-whitespace character data.
+     *        The children of this element. Each integer is an index
+     *        within
+     *        the <code>StringPool</code> of the child element name. An
+     *        index of -1 is used to indicate an occurrence of
+     *        non-whitespace character data.
      * @param offset
-     *                 Offset into the array where the children starts.
+     *        Offset into the array where the children starts.
      * @param length
-     *                 The number of entries in the <code>children</code> array.
-     *
+     *        The number of entries in the <code>children</code> array.
      * @return The value -1 if fully valid, else the 0 based index of the child
      *         that first failed. If the value returned is equal to the number
      *         of children, then the specified children are valid but additional
      *         content is required to reach a valid ending state.
-     *
      */
     public int validate(QName[] children, int offset, int length) {
 
@@ -176,8 +172,7 @@ public class MixedContentModel implements ContentModelValidator {
                 // element must match
                 int type = fChildrenType[inIndex];
                 if (type == XMLContentSpec.CONTENTSPECNODE_LEAF) {
-                    if (fChildren[inIndex].rawname != children[offset
-                            + outIndex].rawname) {
+                    if (fChildren[inIndex].rawname != children[offset + outIndex].rawname) {
                         return outIndex;
                     }
                 } else if (type == XMLContentSpec.CONTENTSPECNODE_ANY) {

@@ -35,7 +35,7 @@ public abstract class MidiFileWriter {
      * specified.
      *
      * @param sequence
-     *                 the sequence for which MIDI file type support is queried
+     *        the sequence for which MIDI file type support is queried
      * @return array of file types. If no file types are supported, returns an
      *         array of length 0.
      */
@@ -46,7 +46,7 @@ public abstract class MidiFileWriter {
      * is provided by this file writer.
      *
      * @param fileType
-     *                 the file type for which write capabilities are queried
+     *        the file type for which write capabilities are queried
      * @return {@code true} if the file type is supported, otherwise
      *         {@code false}
      */
@@ -66,9 +66,9 @@ public abstract class MidiFileWriter {
      * from the sequence indicated.
      *
      * @param fileType
-     *                 the file type for which write capabilities are queried
+     *        the file type for which write capabilities are queried
      * @param sequence
-     *                 the sequence for which file writing support is queried
+     *        the sequence for which file writing support is queried
      * @return {@code true} if the file type is supported for this sequence,
      *         otherwise {@code false}
      */
@@ -88,44 +88,42 @@ public abstract class MidiFileWriter {
      * indicated to the output stream provided.
      *
      * @param in
-     *                 sequence containing MIDI data to be written to the file
+     *        sequence containing MIDI data to be written to the file
      * @param fileType
-     *                 type of the file to be written to the output stream
+     *        type of the file to be written to the output stream
      * @param out
-     *                 stream to which the file data should be written
+     *        stream to which the file data should be written
      * @return the number of bytes written to the output stream
      * @throws IOException
-     *                                  if an I/O exception occurs
+     *         if an I/O exception occurs
      * @throws IllegalArgumentException
-     *                                  if the file type is not supported by
-     *                                  this file writer
+     *         if the file type is not supported by
+     *         this file writer
      * @see #isFileTypeSupported(int, Sequence)
      * @see #getMidiFileTypes(Sequence)
      */
-    public abstract int write(Sequence in, int fileType, OutputStream out)
-            throws IOException;
+    public abstract int write(Sequence in, int fileType, OutputStream out) throws IOException;
 
     /**
      * Writes a stream of bytes representing a MIDI file of the file type
      * indicated to the external file provided.
      *
      * @param in
-     *                 sequence containing MIDI data to be written to the
-     *                 external
-     *                 file
+     *        sequence containing MIDI data to be written to the
+     *        external
+     *        file
      * @param fileType
-     *                 type of the file to be written to the external file
+     *        type of the file to be written to the external file
      * @param out
-     *                 external file to which the file data should be written
+     *        external file to which the file data should be written
      * @return the number of bytes written to the file
      * @throws IOException
-     *                                  if an I/O exception occurs
+     *         if an I/O exception occurs
      * @throws IllegalArgumentException
-     *                                  if the file type is not supported by
-     *                                  this file writer
+     *         if the file type is not supported by
+     *         this file writer
      * @see #isFileTypeSupported(int, Sequence)
      * @see #getMidiFileTypes(Sequence)
      */
-    public abstract int write(Sequence in, int fileType, File out)
-            throws IOException;
+    public abstract int write(Sequence in, int fileType, File out) throws IOException;
 }

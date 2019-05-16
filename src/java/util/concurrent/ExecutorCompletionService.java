@@ -15,11 +15,8 @@ package java.util.concurrent;
  * tasks. This class arranges that submitted tasks are, upon completion, placed
  * on a queue accessible using {@code take}. The class is lightweight enough to
  * be suitable for transient use when processing groups of tasks.
- *
  * <p>
- *
  * <b>Usage Examples.</b>
- *
  * Suppose you have a set of solvers for a certain problem, each returning a
  * value of some type {@code Result}, and would like to run them concurrently,
  * processing the results of each of them that return a non-null value, in some
@@ -121,17 +118,15 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
      * task execution and a {@link LinkedBlockingQueue} as a completion queue.
      *
      * @param executor
-     *                 the executor to use
+     *        the executor to use
      * @throws NullPointerException
-     *                              if executor is {@code null}
+     *         if executor is {@code null}
      */
     public ExecutorCompletionService(Executor executor) {
         if (executor == null)
             throw new NullPointerException();
         this.executor = executor;
-        this.aes = (executor instanceof AbstractExecutorService)
-                ? (AbstractExecutorService) executor
-                : null;
+        this.aes = (executor instanceof AbstractExecutorService) ? (AbstractExecutorService) executor : null;
         this.completionQueue = new LinkedBlockingQueue<Future<V>>();
     }
 
@@ -140,27 +135,24 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
      * task execution and the supplied queue as its completion queue.
      *
      * @param executor
-     *                        the executor to use
+     *        the executor to use
      * @param completionQueue
-     *                        the queue to use as the completion queue normally
-     *                        one
-     *                        dedicated for use by this service. This queue is
-     *                        treated as
-     *                        unbounded -- failed attempted {@code Queue.add}
-     *                        operations for
-     *                        completed tasks cause them not to be retrievable.
+     *        the queue to use as the completion queue normally
+     *        one
+     *        dedicated for use by this service. This queue is
+     *        treated as
+     *        unbounded -- failed attempted {@code Queue.add}
+     *        operations for
+     *        completed tasks cause them not to be retrievable.
      * @throws NullPointerException
-     *                              if executor or completionQueue are
-     *                              {@code null}
+     *         if executor or completionQueue are
+     *         {@code null}
      */
-    public ExecutorCompletionService(Executor executor,
-            BlockingQueue<Future<V>> completionQueue) {
+    public ExecutorCompletionService(Executor executor, BlockingQueue<Future<V>> completionQueue) {
         if (executor == null || completionQueue == null)
             throw new NullPointerException();
         this.executor = executor;
-        this.aes = (executor instanceof AbstractExecutorService)
-                ? (AbstractExecutorService) executor
-                : null;
+        this.aes = (executor instanceof AbstractExecutorService) ? (AbstractExecutorService) executor : null;
         this.completionQueue = completionQueue;
     }
 
@@ -188,8 +180,7 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
         return completionQueue.poll();
     }
 
-    public Future<V> poll(long timeout, TimeUnit unit)
-            throws InterruptedException {
+    public Future<V> poll(long timeout, TimeUnit unit) throws InterruptedException {
         return completionQueue.poll(timeout, unit);
     }
 

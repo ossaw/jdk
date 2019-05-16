@@ -54,8 +54,7 @@ public class InternalBindingKey implements Serializable {
             } else {
                 // If One is Null and the other is not then it's a mismatch
                 // So, return false
-                if ((this.id == null && that.id != null) || (this.id != null
-                        && that.id == null)) {
+                if ((this.id == null && that.id != null) || (this.id != null && that.id == null)) {
                     return false;
                 }
             }
@@ -64,15 +63,13 @@ public class InternalBindingKey implements Serializable {
                     return false;
                 }
                 // If kind is set it must be equal
-                if (this.kind.length() > 0 && this.kind.equals(
-                        that.kind) == false) {
+                if (this.kind.length() > 0 && this.kind.equals(that.kind) == false) {
                     return false;
                 }
             } else {
                 // If One is Null and the other is not then it's a mismatch
                 // So, return false
-                if ((this.kind == null && that.kind != null)
-                        || (this.kind != null && that.kind == null)) {
+                if ((this.kind == null && that.kind != null) || (this.kind != null && that.kind == null)) {
                     return false;
                 }
             }

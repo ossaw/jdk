@@ -131,19 +131,17 @@ public class Introspector {
      * then the BeanInfo class is retrieved from the BeanInfo cache.
      *
      * @param beanClass
-     *                  The bean class to be analyzed.
+     *        The bean class to be analyzed.
      * @return A BeanInfo object describing the target bean.
      * @exception IntrospectionException
-     *                                   if an exception occurs during
-     *                                   introspection.
+     *            if an exception occurs during
+     *            introspection.
      * @see #flushCaches
      * @see #flushFromCaches
      */
-    public static BeanInfo getBeanInfo(Class<?> beanClass)
-            throws IntrospectionException {
+    public static BeanInfo getBeanInfo(Class<?> beanClass) throws IntrospectionException {
         if (!ReflectUtil.isPackageAccessible(beanClass)) {
-            return (new Introspector(beanClass, null, USE_ALL_BEANINFO))
-                    .getBeanInfo();
+            return (new Introspector(beanClass, null, USE_ALL_BEANINFO)).getBeanInfo();
         }
         ThreadGroupContext context = ThreadGroupContext.getContext();
         BeanInfo beanInfo;
@@ -151,8 +149,7 @@ public class Introspector {
             beanInfo = context.getBeanInfo(beanClass);
         }
         if (beanInfo == null) {
-            beanInfo = new Introspector(beanClass, null, USE_ALL_BEANINFO)
-                    .getBeanInfo();
+            beanInfo = new Introspector(beanClass, null, USE_ALL_BEANINFO).getBeanInfo();
             synchronized (declaredMethodCache) {
                 context.putBeanInfo(beanClass, beanInfo);
             }
@@ -169,27 +166,26 @@ public class Introspector {
      * BeanInfo cache.
      *
      * @param beanClass
-     *                  The bean class to be analyzed.
+     *        The bean class to be analyzed.
      * @param flags
-     *                  Flags to control the introspection. If flags ==
-     *                  USE_ALL_BEANINFO then we use all of the BeanInfo classes
-     *                  we
-     *                  can discover. If flags == IGNORE_IMMEDIATE_BEANINFO then
-     *                  we
-     *                  ignore any BeanInfo associated with the specified
-     *                  beanClass.
-     *                  If flags == IGNORE_ALL_BEANINFO then we ignore all
-     *                  BeanInfo
-     *                  associated with the specified beanClass or any of its
-     *                  parent
-     *                  classes.
+     *        Flags to control the introspection. If flags ==
+     *        USE_ALL_BEANINFO then we use all of the BeanInfo classes
+     *        we
+     *        can discover. If flags == IGNORE_IMMEDIATE_BEANINFO then
+     *        we
+     *        ignore any BeanInfo associated with the specified
+     *        beanClass.
+     *        If flags == IGNORE_ALL_BEANINFO then we ignore all
+     *        BeanInfo
+     *        associated with the specified beanClass or any of its
+     *        parent
+     *        classes.
      * @return A BeanInfo object describing the target bean.
      * @exception IntrospectionException
-     *                                   if an exception occurs during
-     *                                   introspection.
+     *            if an exception occurs during
+     *            introspection.
      */
-    public static BeanInfo getBeanInfo(Class<?> beanClass, int flags)
-            throws IntrospectionException {
+    public static BeanInfo getBeanInfo(Class<?> beanClass, int flags) throws IntrospectionException {
         return getBeanInfo(beanClass, null, flags);
     }
 
@@ -203,17 +199,16 @@ public class Introspector {
      * 
      * @return the BeanInfo for the bean
      * @param beanClass
-     *                  The bean class to be analyzed.
+     *        The bean class to be analyzed.
      * @param stopClass
-     *                  The baseclass at which to stop the analysis. Any
-     *                  methods/properties/events in the stopClass or in its
-     *                  baseclasses will be ignored in the analysis.
+     *        The baseclass at which to stop the analysis. Any
+     *        methods/properties/events in the stopClass or in its
+     *        baseclasses will be ignored in the analysis.
      * @exception IntrospectionException
-     *                                   if an exception occurs during
-     *                                   introspection.
+     *            if an exception occurs during
+     *            introspection.
      */
-    public static BeanInfo getBeanInfo(Class<?> beanClass, Class<?> stopClass)
-            throws IntrospectionException {
+    public static BeanInfo getBeanInfo(Class<?> beanClass, Class<?> stopClass) throws IntrospectionException {
         return getBeanInfo(beanClass, stopClass, USE_ALL_BEANINFO);
     }
 
@@ -239,20 +234,19 @@ public class Introspector {
      * BeanInfo cache.
      *
      * @param beanClass
-     *                  the bean class to be analyzed
+     *        the bean class to be analyzed
      * @param stopClass
-     *                  the parent class at which to stop the analysis
+     *        the parent class at which to stop the analysis
      * @param flags
-     *                  flags to control the introspection
+     *        flags to control the introspection
      * @return a BeanInfo object describing the target bean
      * @exception IntrospectionException
-     *                                   if an exception occurs during
-     *                                   introspection
-     *
+     *            if an exception occurs during
+     *            introspection
      * @since 1.7
      */
-    public static BeanInfo getBeanInfo(Class<?> beanClass, Class<?> stopClass,
-            int flags) throws IntrospectionException {
+    public static BeanInfo getBeanInfo(Class<?> beanClass, Class<?> stopClass, int flags)
+            throws IntrospectionException {
         BeanInfo bi;
         if (stopClass == null && flags == USE_ALL_BEANINFO) {
             // Same parameters to take advantage of caching.
@@ -277,15 +271,15 @@ public class Introspector {
      * "URL".
      *
      * @param name
-     *             The string to be decapitalized.
+     *        The string to be decapitalized.
      * @return The decapitalized version of the string.
      */
     public static String decapitalize(String name) {
         if (name == null || name.length() == 0) {
             return name;
         }
-        if (name.length() > 1 && Character.isUpperCase(name.charAt(1))
-                && Character.isUpperCase(name.charAt(0))) {
+        if (name.length() > 1 && Character.isUpperCase(name.charAt(1)) && Character.isUpperCase(name.charAt(
+                0))) {
             return name;
         }
         char chars[] = name.toCharArray();
@@ -304,27 +298,25 @@ public class Introspector {
      */
 
     public static String[] getBeanInfoSearchPath() {
-        return ThreadGroupContext.getContext().getBeanInfoFinder()
-                .getPackages();
+        return ThreadGroupContext.getContext().getBeanInfoFinder().getPackages();
     }
 
     /**
      * Change the list of package names that will be used for finding BeanInfo
      * classes. The behaviour of this method is undefined if parameter path is
      * null.
-     *
      * <p>
      * First, if there is a security manager, its
      * <code>checkPropertiesAccess</code> method is called. This could result in
      * a SecurityException.
      *
      * @param path
-     *             Array of package names.
+     *        Array of package names.
      * @exception SecurityException
-     *                              if a security manager exists and its
-     *                              <code>checkPropertiesAccess</code> method
-     *                              doesn't allow
-     *                              setting of system properties.
+     *            if a security manager exists and its
+     *            <code>checkPropertiesAccess</code> method
+     *            doesn't allow
+     *            setting of system properties.
      * @see SecurityManager#checkPropertiesAccess
      */
 
@@ -355,7 +347,6 @@ public class Introspector {
      * This method is not normally required. It is normally only needed by
      * advanced tools that update existing "Class" objects in-place and need to
      * make the Introspector re-analyze an existing Class object.
-     *
      * Note that only the direct state associated with the target Class object
      * is flushed. We do not flush state for other Class objects with the same
      * name, nor do we flush state for any related Class objects (such as
@@ -363,9 +354,9 @@ public class Introspector {
      * obtained from the target Class object.
      *
      * @param clz
-     *            Class object to be flushed.
+     *        Class object to be flushed.
      * @throws NullPointerException
-     *                              If the Class object is null.
+     *         If the Class object is null.
      */
     public static void flushFromCaches(Class<?> clz) {
         if (clz == null) {
@@ -381,22 +372,20 @@ public class Introspector {
     // Private implementation methods
     // ======================================================================
 
-    private Introspector(Class<?> beanClass, Class<?> stopClass, int flags)
-            throws IntrospectionException {
+    private Introspector(Class<?> beanClass, Class<?> stopClass, int flags) throws IntrospectionException {
         this.beanClass = beanClass;
 
         // Check stopClass is a superClass of startClass.
         if (stopClass != null) {
             boolean isSuper = false;
-            for (Class<?> c = beanClass.getSuperclass(); c != null; c = c
-                    .getSuperclass()) {
+            for (Class<?> c = beanClass.getSuperclass(); c != null; c = c.getSuperclass()) {
                 if (c == stopClass) {
                     isSuper = true;
                 }
             }
             if (!isSuper) {
-                throw new IntrospectionException(stopClass.getName()
-                        + " not superclass of " + beanClass.getName());
+                throw new IntrospectionException(stopClass.getName() + " not superclass of " + beanClass
+                        .getName());
             }
         }
 
@@ -436,8 +425,7 @@ public class Introspector {
         int defaultEvent = getTargetDefaultEventIndex();
         int defaultProperty = getTargetDefaultPropertyIndex();
 
-        return new GenericBeanInfo(bd, esds, defaultEvent, pds, defaultProperty,
-                mds, explicitBeanInfo);
+        return new GenericBeanInfo(bd, esds, defaultEvent, pds, defaultProperty, mds, explicitBeanInfo);
 
     }
 
@@ -448,13 +436,12 @@ public class Introspector {
      * search path is prepended to the class and searched.
      *
      * @param beanClass
-     *                  the class type of the bean
+     *        the class type of the bean
      * @return Instance of an explicit BeanInfo class or null if one isn't
      *         found.
      */
     private static BeanInfo findExplicitBeanInfo(Class<?> beanClass) {
-        return ThreadGroupContext.getContext().getBeanInfoFinder().find(
-                beanClass);
+        return ThreadGroupContext.getContext().getBeanInfoFinder().find(beanClass);
     }
 
     /**
@@ -477,8 +464,7 @@ public class Introspector {
         }
 
         for (int i = 0; i < additionalBeanInfo.length; i++) {
-            addPropertyDescriptors(additionalBeanInfo[i]
-                    .getPropertyDescriptors());
+            addPropertyDescriptors(additionalBeanInfo[i].getPropertyDescriptors());
         }
 
         if (explicitProperties != null) {
@@ -519,38 +505,28 @@ public class Introspector {
                     if (argCount == 0) {
                         if (name.startsWith(GET_PREFIX)) {
                             // Simple getter
-                            pd = new PropertyDescriptor(this.beanClass, name
-                                    .substring(3), method, null);
-                        } else if (resultType == boolean.class && name
-                                .startsWith(IS_PREFIX)) {
+                            pd = new PropertyDescriptor(this.beanClass, name.substring(3), method, null);
+                        } else if (resultType == boolean.class && name.startsWith(IS_PREFIX)) {
                             // Boolean getter
-                            pd = new PropertyDescriptor(this.beanClass, name
-                                    .substring(2), method, null);
+                            pd = new PropertyDescriptor(this.beanClass, name.substring(2), method, null);
                         }
                     } else if (argCount == 1) {
-                        if (int.class.equals(argTypes[0]) && name.startsWith(
-                                GET_PREFIX)) {
-                            pd = new IndexedPropertyDescriptor(this.beanClass,
-                                    name.substring(3), null, null, method,
-                                    null);
-                        } else if (void.class.equals(resultType) && name
-                                .startsWith(SET_PREFIX)) {
+                        if (int.class.equals(argTypes[0]) && name.startsWith(GET_PREFIX)) {
+                            pd = new IndexedPropertyDescriptor(this.beanClass, name.substring(3), null, null,
+                                    method, null);
+                        } else if (void.class.equals(resultType) && name.startsWith(SET_PREFIX)) {
                             // Simple setter
-                            pd = new PropertyDescriptor(this.beanClass, name
-                                    .substring(3), null, method);
-                            if (throwsException(method,
-                                    PropertyVetoException.class)) {
+                            pd = new PropertyDescriptor(this.beanClass, name.substring(3), null, method);
+                            if (throwsException(method, PropertyVetoException.class)) {
                                 pd.setConstrained(true);
                             }
                         }
                     } else if (argCount == 2) {
-                        if (void.class.equals(resultType) && int.class.equals(
-                                argTypes[0]) && name.startsWith(SET_PREFIX)) {
-                            pd = new IndexedPropertyDescriptor(this.beanClass,
-                                    name.substring(3), null, null, null,
-                                    method);
-                            if (throwsException(method,
-                                    PropertyVetoException.class)) {
+                        if (void.class.equals(resultType) && int.class.equals(argTypes[0]) && name.startsWith(
+                                SET_PREFIX)) {
+                            pd = new IndexedPropertyDescriptor(this.beanClass, name.substring(3), null, null,
+                                    null, method);
+                            if (throwsException(method, PropertyVetoException.class)) {
                                 pd.setConstrained(true);
                             }
                         }
@@ -581,8 +557,7 @@ public class Introspector {
         processPropertyDescriptors();
 
         // Allocate and populate the result array.
-        PropertyDescriptor result[] = properties.values().toArray(
-                new PropertyDescriptor[properties.size()]);
+        PropertyDescriptor result[] = properties.values().toArray(new PropertyDescriptor[properties.size()]);
 
         // Set the default index.
         if (defaultPropertyName != null) {
@@ -618,8 +593,7 @@ public class Introspector {
             if (read != null)
                 cls = cls && read.getGenericReturnType() instanceof Class;
             if (write != null)
-                cls = cls && write
-                        .getGenericParameterTypes()[0] instanceof Class;
+                cls = cls && write.getGenericParameterTypes()[0] instanceof Class;
             if (pd instanceof IndexedPropertyDescriptor) {
                 IndexedPropertyDescriptor ipd = (IndexedPropertyDescriptor) pd;
                 Method readI = ipd.getIndexedReadMethod();
@@ -627,8 +601,7 @@ public class Introspector {
                 if (readI != null)
                     cls = cls && readI.getGenericReturnType() instanceof Class;
                 if (writeI != null)
-                    cls = cls && writeI
-                            .getGenericParameterTypes()[1] instanceof Class;
+                    cls = cls && writeI.getGenericParameterTypes()[1] instanceof Class;
                 if (!cls) {
                     pd = new IndexedPropertyDescriptor(ipd);
                     pd.updateGenericsFor(this.beanClass);
@@ -703,8 +676,7 @@ public class Introspector {
                             // Don't replace the existing read
                             // method if it starts with "is"
                             String gpdName = gpd.getReadMethod().getName();
-                            if (gpdName.equals(pdName) || !gpdName.startsWith(
-                                    IS_PREFIX)) {
+                            if (gpdName.equals(pdName) || !gpdName.startsWith(IS_PREFIX)) {
                                 gpd = new PropertyDescriptor(gpd, pd);
                             }
                         } else {
@@ -722,11 +694,9 @@ public class Introspector {
                     ipd = (IndexedPropertyDescriptor) pd;
                     if (ipd.getIndexedWriteMethod() != null) {
                         if (igpd != null) {
-                            if (isAssignable(igpd.getIndexedPropertyType(), ipd
-                                    .getIndexedPropertyType())) {
+                            if (isAssignable(igpd.getIndexedPropertyType(), ipd.getIndexedPropertyType())) {
                                 if (ispd != null) {
-                                    ispd = new IndexedPropertyDescriptor(ispd,
-                                            ipd);
+                                    ispd = new IndexedPropertyDescriptor(ispd, ipd);
                                 } else {
                                     ispd = ipd;
                                 }
@@ -742,8 +712,7 @@ public class Introspector {
                 } else {
                     if (pd.getWriteMethod() != null) {
                         if (gpd != null) {
-                            if (isAssignable(gpd.getPropertyType(), pd
-                                    .getPropertyType())) {
+                            if (isAssignable(gpd.getPropertyType(), pd.getPropertyType())) {
                                 if (spd != null) {
                                     spd = new PropertyDescriptor(spd, pd);
                                 } else {
@@ -776,11 +745,9 @@ public class Introspector {
                 } else if (spd == null) {
                     pd = gpd;
                 } else if (spd instanceof IndexedPropertyDescriptor) {
-                    pd = mergePropertyWithIndexedProperty(gpd,
-                            (IndexedPropertyDescriptor) spd);
+                    pd = mergePropertyWithIndexedProperty(gpd, (IndexedPropertyDescriptor) spd);
                 } else if (gpd instanceof IndexedPropertyDescriptor) {
-                    pd = mergePropertyWithIndexedProperty(spd,
-                            (IndexedPropertyDescriptor) gpd);
+                    pd = mergePropertyWithIndexedProperty(spd, (IndexedPropertyDescriptor) gpd);
                 } else {
                     pd = mergePropertyDescriptor(gpd, spd);
                 }
@@ -794,16 +761,12 @@ public class Introspector {
                 } else {
                     Class<?> propType = pd.getPropertyType();
                     Class<?> ipropType = ipd.getIndexedPropertyType();
-                    if (propType.isArray() && propType
-                            .getComponentType() == ipropType) {
-                        pd = pd.getClass0().isAssignableFrom(ipd.getClass0())
-                                ? new IndexedPropertyDescriptor(pd, ipd)
-                                : new IndexedPropertyDescriptor(ipd, pd);
-                    } else if (pd.getClass0().isAssignableFrom(ipd
-                            .getClass0())) {
-                        pd = pd.getClass0().isAssignableFrom(ipd.getClass0())
-                                ? new PropertyDescriptor(pd, ipd)
-                                : new PropertyDescriptor(ipd, pd);
+                    if (propType.isArray() && propType.getComponentType() == ipropType) {
+                        pd = pd.getClass0().isAssignableFrom(ipd.getClass0()) ? new IndexedPropertyDescriptor(
+                                pd, ipd) : new IndexedPropertyDescriptor(ipd, pd);
+                    } else if (pd.getClass0().isAssignableFrom(ipd.getClass0())) {
+                        pd = pd.getClass0().isAssignableFrom(ipd.getClass0()) ? new PropertyDescriptor(pd,
+                                ipd) : new PropertyDescriptor(ipd, pd);
                     } else {
                         pd = ipd;
                     }
@@ -819,11 +782,9 @@ public class Introspector {
                 if (gpd == spd) {
                     pd = gpd;
                 } else if (spd instanceof IndexedPropertyDescriptor) {
-                    pd = mergePropertyWithIndexedProperty(gpd,
-                            (IndexedPropertyDescriptor) spd);
+                    pd = mergePropertyWithIndexedProperty(gpd, (IndexedPropertyDescriptor) spd);
                 } else if (gpd instanceof IndexedPropertyDescriptor) {
-                    pd = mergePropertyWithIndexedProperty(spd,
-                            (IndexedPropertyDescriptor) gpd);
+                    pd = mergePropertyWithIndexedProperty(spd, (IndexedPropertyDescriptor) gpd);
                 } else {
                     pd = mergePropertyDescriptor(gpd, spd);
                 }
@@ -861,8 +822,7 @@ public class Introspector {
             // PropertyDescriptor. See 4168833
             if (pd instanceof IndexedPropertyDescriptor) {
                 ipd = (IndexedPropertyDescriptor) pd;
-                if (ipd.getIndexedReadMethod() == null && ipd
-                        .getIndexedWriteMethod() == null) {
+                if (ipd.getIndexedReadMethod() == null && ipd.getIndexedWriteMethod() == null) {
                     pd = new PropertyDescriptor(ipd);
                 }
             }
@@ -885,13 +845,11 @@ public class Introspector {
                 : current.isAssignableFrom(candidate);
     }
 
-    private PropertyDescriptor mergePropertyWithIndexedProperty(
-            PropertyDescriptor pd, IndexedPropertyDescriptor ipd) {
+    private PropertyDescriptor mergePropertyWithIndexedProperty(PropertyDescriptor pd,
+            IndexedPropertyDescriptor ipd) {
         Class<?> type = pd.getPropertyType();
-        if (type.isArray() && (type.getComponentType() == ipd
-                .getIndexedPropertyType())) {
-            return pd.getClass0().isAssignableFrom(ipd.getClass0())
-                    ? new IndexedPropertyDescriptor(pd, ipd)
+        if (type.isArray() && (type.getComponentType() == ipd.getIndexedPropertyType())) {
+            return pd.getClass0().isAssignableFrom(ipd.getClass0()) ? new IndexedPropertyDescriptor(pd, ipd)
                     : new IndexedPropertyDescriptor(ipd, pd);
         }
         return pd;
@@ -900,11 +858,9 @@ public class Introspector {
     /**
      * Adds the property descriptor to the indexedproperty descriptor only if
      * the types are the same.
-     *
      * The most specific property descriptor will take precedence.
      */
-    private PropertyDescriptor mergePropertyDescriptor(
-            IndexedPropertyDescriptor ipd, PropertyDescriptor pd) {
+    private PropertyDescriptor mergePropertyDescriptor(IndexedPropertyDescriptor ipd, PropertyDescriptor pd) {
         PropertyDescriptor result = null;
 
         Class<?> propType = pd.getPropertyType();
@@ -916,8 +872,7 @@ public class Introspector {
             } else {
                 result = new IndexedPropertyDescriptor(ipd, pd);
             }
-        } else if ((ipd.getReadMethod() == null) && (ipd
-                .getWriteMethod() == null)) {
+        } else if ((ipd.getReadMethod() == null) && (ipd.getWriteMethod() == null)) {
             if (pd.getClass0().isAssignableFrom(ipd.getClass0())) {
                 result = new PropertyDescriptor(pd, ipd);
             } else {
@@ -937,8 +892,8 @@ public class Introspector {
                 Method read = result.getReadMethod();
 
                 if (read == null && write != null) {
-                    read = findMethod(result.getClass0(), GET_PREFIX
-                            + NameGenerator.capitalize(result.getName()), 0);
+                    read = findMethod(result.getClass0(), GET_PREFIX + NameGenerator.capitalize(result
+                            .getName()), 0);
                     if (read != null) {
                         try {
                             result.setReadMethod(read);
@@ -948,10 +903,9 @@ public class Introspector {
                     }
                 }
                 if (write == null && read != null) {
-                    write = findMethod(result.getClass0(), SET_PREFIX
-                            + NameGenerator.capitalize(result.getName()), 1,
-                            new Class<?>[] { FeatureDescriptor.getReturnType(
-                                    result.getClass0(), read) });
+                    write = findMethod(result.getClass0(), SET_PREFIX + NameGenerator.capitalize(result
+                            .getName()), 1, new Class<?>[] { FeatureDescriptor.getReturnType(result
+                                    .getClass0(), read) });
                     if (write != null) {
                         try {
                             result.setWriteMethod(write);
@@ -966,8 +920,7 @@ public class Introspector {
     }
 
     // Handle regular pd merge
-    private PropertyDescriptor mergePropertyDescriptor(PropertyDescriptor pd1,
-            PropertyDescriptor pd2) {
+    private PropertyDescriptor mergePropertyDescriptor(PropertyDescriptor pd1, PropertyDescriptor pd2) {
         if (pd1.getClass0().isAssignableFrom(pd2.getClass0())) {
             return new PropertyDescriptor(pd1, pd2);
         } else {
@@ -976,8 +929,8 @@ public class Introspector {
     }
 
     // Handle regular ipd merge
-    private IndexedPropertyDescriptor mergePropertyDescriptor(
-            IndexedPropertyDescriptor ipd1, IndexedPropertyDescriptor ipd2) {
+    private IndexedPropertyDescriptor mergePropertyDescriptor(IndexedPropertyDescriptor ipd1,
+            IndexedPropertyDescriptor ipd2) {
         if (ipd1.getClass0().isAssignableFrom(ipd2.getClass0())) {
             return new IndexedPropertyDescriptor(ipd1, ipd2);
         } else {
@@ -989,8 +942,7 @@ public class Introspector {
      * @return An array of EventSetDescriptors describing the kinds of events
      *         fired by the target bean.
      */
-    private EventSetDescriptor[] getTargetEventInfo()
-            throws IntrospectionException {
+    private EventSetDescriptor[] getTargetEventInfo() throws IntrospectionException {
         if (events == null) {
             events = new HashMap<>();
         }
@@ -1008,8 +960,7 @@ public class Introspector {
 
         if (explicitEvents == null && superBeanInfo != null) {
             // We have no explicit BeanInfo events. Check with our parent.
-            EventSetDescriptor supers[] = superBeanInfo
-                    .getEventSetDescriptors();
+            EventSetDescriptor supers[] = superBeanInfo.getEventSetDescriptors();
             for (int i = 0; i < supers.length; i++) {
                 addEvent(supers[i]);
             }
@@ -1020,8 +971,7 @@ public class Introspector {
         }
 
         for (int i = 0; i < additionalBeanInfo.length; i++) {
-            EventSetDescriptor additional[] = additionalBeanInfo[i]
-                    .getEventSetDescriptors();
+            EventSetDescriptor additional[] = additionalBeanInfo[i].getEventSetDescriptors();
             if (additional != null) {
                 for (int j = 0; j < additional.length; j++) {
                     addEvent(additional[j]);
@@ -1061,25 +1011,21 @@ public class Introspector {
                 }
                 String name = method.getName();
                 // Optimization avoid getParameterTypes
-                if (!name.startsWith(ADD_PREFIX) && !name.startsWith(
-                        REMOVE_PREFIX) && !name.startsWith(GET_PREFIX)) {
+                if (!name.startsWith(ADD_PREFIX) && !name.startsWith(REMOVE_PREFIX) && !name.startsWith(
+                        GET_PREFIX)) {
                     continue;
                 }
 
                 if (name.startsWith(ADD_PREFIX)) {
                     Class<?> returnType = method.getReturnType();
                     if (returnType == void.class) {
-                        Type[] parameterTypes = method
-                                .getGenericParameterTypes();
+                        Type[] parameterTypes = method.getGenericParameterTypes();
                         if (parameterTypes.length == 1) {
-                            Class<?> type = TypeResolver.erase(TypeResolver
-                                    .resolveInClass(beanClass,
-                                            parameterTypes[0]));
-                            if (Introspector.isSubclass(type,
-                                    eventListenerType)) {
+                            Class<?> type = TypeResolver.erase(TypeResolver.resolveInClass(beanClass,
+                                    parameterTypes[0]));
+                            if (Introspector.isSubclass(type, eventListenerType)) {
                                 String listenerName = name.substring(3);
-                                if (listenerName.length() > 0 && type.getName()
-                                        .endsWith(listenerName)) {
+                                if (listenerName.length() > 0 && type.getName().endsWith(listenerName)) {
                                     if (adds == null) {
                                         adds = new HashMap<>();
                                     }
@@ -1091,17 +1037,13 @@ public class Introspector {
                 } else if (name.startsWith(REMOVE_PREFIX)) {
                     Class<?> returnType = method.getReturnType();
                     if (returnType == void.class) {
-                        Type[] parameterTypes = method
-                                .getGenericParameterTypes();
+                        Type[] parameterTypes = method.getGenericParameterTypes();
                         if (parameterTypes.length == 1) {
-                            Class<?> type = TypeResolver.erase(TypeResolver
-                                    .resolveInClass(beanClass,
-                                            parameterTypes[0]));
-                            if (Introspector.isSubclass(type,
-                                    eventListenerType)) {
+                            Class<?> type = TypeResolver.erase(TypeResolver.resolveInClass(beanClass,
+                                    parameterTypes[0]));
+                            if (Introspector.isSubclass(type, eventListenerType)) {
                                 String listenerName = name.substring(6);
-                                if (listenerName.length() > 0 && type.getName()
-                                        .endsWith(listenerName)) {
+                                if (listenerName.length() > 0 && type.getName().endsWith(listenerName)) {
                                     if (removes == null) {
                                         removes = new HashMap<>();
                                     }
@@ -1113,16 +1055,12 @@ public class Introspector {
                 } else if (name.startsWith(GET_PREFIX)) {
                     Class<?>[] parameterTypes = method.getParameterTypes();
                     if (parameterTypes.length == 0) {
-                        Class<?> returnType = FeatureDescriptor.getReturnType(
-                                beanClass, method);
+                        Class<?> returnType = FeatureDescriptor.getReturnType(beanClass, method);
                         if (returnType.isArray()) {
                             Class<?> type = returnType.getComponentType();
-                            if (Introspector.isSubclass(type,
-                                    eventListenerType)) {
-                                String listenerName = name.substring(3, name
-                                        .length() - 1);
-                                if (listenerName.length() > 0 && type.getName()
-                                        .endsWith(listenerName)) {
+                            if (Introspector.isSubclass(type, eventListenerType)) {
+                                String listenerName = name.substring(3, name.length() - 1);
+                                if (listenerName.length() > 0 && type.getName().endsWith(listenerName)) {
                                     if (gets == null) {
                                         gets = new HashMap<>();
                                     }
@@ -1142,26 +1080,22 @@ public class Introspector {
                     String listenerName = keys.next();
                     // Skip any "add" which doesn't have a matching "remove" or
                     // a listener name that doesn't end with Listener
-                    if (removes.get(listenerName) == null || !listenerName
-                            .endsWith("Listener")) {
+                    if (removes.get(listenerName) == null || !listenerName.endsWith("Listener")) {
                         continue;
                     }
-                    String eventName = decapitalize(listenerName.substring(0,
-                            listenerName.length() - 8));
+                    String eventName = decapitalize(listenerName.substring(0, listenerName.length() - 8));
                     Method addMethod = adds.get(listenerName);
                     Method removeMethod = removes.get(listenerName);
                     Method getMethod = null;
                     if (gets != null) {
                         getMethod = gets.get(listenerName);
                     }
-                    Class<?> argType = FeatureDescriptor.getParameterTypes(
-                            beanClass, addMethod)[0];
+                    Class<?> argType = FeatureDescriptor.getParameterTypes(beanClass, addMethod)[0];
 
                     // generate a list of Method objects for each of the target
                     // methods:
                     Method allMethods[] = getPublicDeclaredMethods(argType);
-                    List<Method> validMethods = new ArrayList<>(
-                            allMethods.length);
+                    List<Method> validMethods = new ArrayList<>(allMethods.length);
                     for (int i = 0; i < allMethods.length; i++) {
                         if (allMethods[i] == null) {
                             continue;
@@ -1171,18 +1105,15 @@ public class Introspector {
                             validMethods.add(allMethods[i]);
                         }
                     }
-                    Method[] methods = validMethods.toArray(
-                            new Method[validMethods.size()]);
+                    Method[] methods = validMethods.toArray(new Method[validMethods.size()]);
 
-                    EventSetDescriptor esd = new EventSetDescriptor(eventName,
-                            argType, methods, addMethod, removeMethod,
-                            getMethod);
+                    EventSetDescriptor esd = new EventSetDescriptor(eventName, argType, methods, addMethod,
+                            removeMethod, getMethod);
 
                     // If the adder method throws the TooManyListenersException
                     // then it
                     // is a Unicast event source.
-                    if (throwsException(addMethod,
-                            java.util.TooManyListenersException.class)) {
+                    if (throwsException(addMethod, java.util.TooManyListenersException.class)) {
                         esd.setUnicast(true);
                     }
                     addEvent(esd);
@@ -1248,8 +1179,7 @@ public class Introspector {
         }
 
         for (int i = 0; i < additionalBeanInfo.length; i++) {
-            MethodDescriptor additional[] = additionalBeanInfo[i]
-                    .getMethodDescriptors();
+            MethodDescriptor additional[] = additionalBeanInfo[i].getMethodDescriptors();
             if (additional != null) {
                 for (int j = 0; j < additional.length; j++) {
                     addMethod(additional[j]);
@@ -1339,8 +1269,7 @@ public class Introspector {
     /**
      * Creates a key for a method in a method cache.
      */
-    private static String makeQualifiedMethodName(String name,
-            String[] params) {
+    private static String makeQualifiedMethodName(String name, String[] params) {
         StringBuffer sb = new StringBuffer(name);
         sb.append('=');
         for (int i = 0; i < params.length; i++) {
@@ -1367,8 +1296,7 @@ public class Introspector {
             }
         }
         // OK, fabricate a default BeanDescriptor.
-        return new BeanDescriptor(this.beanClass, findCustomizerClass(
-                this.beanClass));
+        return new BeanDescriptor(this.beanClass, findCustomizerClass(this.beanClass));
     }
 
     private static Class<?> findCustomizerClass(Class<?> type) {
@@ -1378,8 +1306,7 @@ public class Introspector {
             // Each customizer should inherit java.awt.Component and implement
             // java.beans.Customizer
             // according to the section 9.3 of JavaBeans&trade; specification
-            if (Component.class.isAssignableFrom(type) && Customizer.class
-                    .isAssignableFrom(type)) {
+            if (Component.class.isAssignableFrom(type) && Customizer.class.isAssignableFrom(type)) {
                 return type;
             }
         } catch (Exception exception) {
@@ -1395,8 +1322,8 @@ public class Introspector {
         if (argTypes.length != 1) {
             return false;
         }
-        return isSubclass(TypeResolver.erase(TypeResolver.resolveInClass(
-                beanClass, argTypes[0])), EventObject.class);
+        return isSubclass(TypeResolver.erase(TypeResolver.resolveInClass(beanClass, argTypes[0])),
+                EventObject.class);
     }
 
     /*
@@ -1420,12 +1347,10 @@ public class Introspector {
                         try {
                             method = MethodFinder.findAccessibleMethod(method);
                             Class<?> type = method.getDeclaringClass();
-                            result[i] = type.equals(clz) || type.isInterface()
-                                    ? method
-                                    : null; // ignore
-                                                                                                        // methods
-                                                                                                        // from
-                                                                                                        // superclasses
+                            result[i] = type.equals(clz) || type.isInterface() ? method : null; // ignore
+                                                                                                // methods
+                                                                                                // from
+                                                                                                // superclasses
                         } catch (NoSuchMethodException exception) {
                             // commented out because of 6976577
                             // result[i] = null; // ignore inaccessible methods
@@ -1446,8 +1371,7 @@ public class Introspector {
      * Internal support for finding a target methodName with a given parameter
      * list on a given class.
      */
-    private static Method internalFindMethod(Class<?> start, String methodName,
-            int argCount, Class args[]) {
+    private static Method internalFindMethod(Class<?> start, String methodName, int argCount, Class args[]) {
         // For overriden methods we need to find the most derived version.
         // So we start with the given class and walk up the superclass chain.
 
@@ -1469,9 +1393,8 @@ public class Introspector {
                             boolean different = false;
                             if (argCount > 0) {
                                 for (int j = 0; j < argCount; j++) {
-                                    if (TypeResolver.erase(TypeResolver
-                                            .resolveInClass(start,
-                                                    params[j])) != args[j]) {
+                                    if (TypeResolver.erase(TypeResolver.resolveInClass(start,
+                                            params[j])) != args[j]) {
                                         different = true;
                                         continue;
                                     }
@@ -1519,17 +1442,16 @@ public class Introspector {
      * <p>
      * 
      * @param cls
-     *                   The Class object on which to retrieve the method.
+     *        The Class object on which to retrieve the method.
      * @param methodName
-     *                   Name of the method.
+     *        Name of the method.
      * @param argCount
-     *                   Number of arguments for the desired method.
+     *        Number of arguments for the desired method.
      * @param args
-     *                   Array of argument types for the method.
+     *        Array of argument types for the method.
      * @return the method or null if not found
      */
-    static Method findMethod(Class<?> cls, String methodName, int argCount,
-            Class args[]) {
+    static Method findMethod(Class<?> cls, String methodName, int argCount, Class args[]) {
         if (methodName == null) {
             return null;
         }
@@ -1585,9 +1507,8 @@ public class Introspector {
      * "sibling", then try the system classloader then the class loader of the
      * current Thread.
      */
-    static Object instantiate(Class<?> sibling, String className)
-            throws InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
+    static Object instantiate(Class<?> sibling, String className) throws InstantiationException,
+            IllegalAccessException, ClassNotFoundException {
         // First check with sibling's classloader (if any).
         ClassLoader cl = sibling.getClassLoader();
         Class<?> cls = ClassFinder.findClass(className, cl);
@@ -1614,18 +1535,16 @@ class GenericBeanInfo extends SimpleBeanInfo {
     private MethodDescriptor[] methods;
     private Reference<BeanInfo> targetBeanInfoRef;
 
-    public GenericBeanInfo(BeanDescriptor beanDescriptor,
-            EventSetDescriptor[] events, int defaultEvent,
-            PropertyDescriptor[] properties, int defaultProperty,
-            MethodDescriptor[] methods, BeanInfo targetBeanInfo) {
+    public GenericBeanInfo(BeanDescriptor beanDescriptor, EventSetDescriptor[] events, int defaultEvent,
+            PropertyDescriptor[] properties, int defaultProperty, MethodDescriptor[] methods,
+            BeanInfo targetBeanInfo) {
         this.beanDescriptor = beanDescriptor;
         this.events = events;
         this.defaultEvent = defaultEvent;
         this.properties = properties;
         this.defaultProperty = defaultProperty;
         this.methods = methods;
-        this.targetBeanInfoRef = (targetBeanInfo != null) ? new SoftReference<>(
-                targetBeanInfo) : null;
+        this.targetBeanInfoRef = (targetBeanInfo != null) ? new SoftReference<>(targetBeanInfo) : null;
     }
 
     /**
@@ -1649,8 +1568,7 @@ class GenericBeanInfo extends SimpleBeanInfo {
             for (int i = 0; i < len; i++) {
                 PropertyDescriptor oldp = old.properties[i];
                 if (oldp instanceof IndexedPropertyDescriptor) {
-                    properties[i] = new IndexedPropertyDescriptor(
-                            (IndexedPropertyDescriptor) oldp);
+                    properties[i] = new IndexedPropertyDescriptor((IndexedPropertyDescriptor) oldp);
                 } else {
                     properties[i] = new PropertyDescriptor(oldp);
                 }
@@ -1705,8 +1623,8 @@ class GenericBeanInfo extends SimpleBeanInfo {
         }
         BeanInfo targetBeanInfo = this.targetBeanInfoRef.get();
         if (targetBeanInfo == null) {
-            targetBeanInfo = ThreadGroupContext.getContext().getBeanInfoFinder()
-                    .find(this.beanDescriptor.getBeanClass());
+            targetBeanInfo = ThreadGroupContext.getContext().getBeanInfoFinder().find(this.beanDescriptor
+                    .getBeanClass());
             if (targetBeanInfo != null) {
                 this.targetBeanInfoRef = new SoftReference<>(targetBeanInfo);
             }

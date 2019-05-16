@@ -15,7 +15,6 @@ package org.omg.CosNaming;
  * object in the same or different contexts at the same time. Using
  * <tt>NamingContextExt</tt>, you can use URL-based names to bind and resolve.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
@@ -23,16 +22,14 @@ package org.omg.CosNaming;
 abstract public class NamingContextExtHelper {
     private static String _id = "IDL:omg.org/CosNaming/NamingContextExt:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CosNaming.NamingContextExt that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CosNaming.NamingContextExt that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.CosNaming.NamingContextExt extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.CosNaming.NamingContextExt extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -40,9 +37,8 @@ abstract public class NamingContextExtHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.CosNaming.NamingContextExtHelper.id(),
-                    "NamingContextExt");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.CosNaming.NamingContextExtHelper
+                    .id(), "NamingContextExt");
         }
         return __typeCode;
     }
@@ -51,8 +47,7 @@ abstract public class NamingContextExtHelper {
         return _id;
     }
 
-    public static org.omg.CosNaming.NamingContextExt read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CosNaming.NamingContextExt read(org.omg.CORBA.portable.InputStream istream) {
         return narrow(istream.read_Object(_NamingContextExtStub.class));
     }
 
@@ -61,8 +56,7 @@ abstract public class NamingContextExtHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static org.omg.CosNaming.NamingContextExt narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.CosNaming.NamingContextExt narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.CosNaming.NamingContextExt)
@@ -78,8 +72,7 @@ abstract public class NamingContextExtHelper {
         }
     }
 
-    public static org.omg.CosNaming.NamingContextExt unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.CosNaming.NamingContextExt unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.CosNaming.NamingContextExt)

@@ -25,36 +25,31 @@ public interface LocalClientRequestDispatcher {
      * the expected type, and then invoke the operation directly.
      *
      * @param self
-     *                     The object reference which delegated to this
-     *                     delegate.
-     *
+     *        The object reference which delegated to this
+     *        delegate.
      * @param operation
-     *                     a string containing the operation name. The operation
-     *                     name
-     *                     corresponds to the operation name as it would be
-     *                     encoded in a
-     *                     GIOP request.
-     *
+     *        a string containing the operation name. The operation
+     *        name
+     *        corresponds to the operation name as it would be
+     *        encoded in a
+     *        GIOP request.
      * @param expectedType
-     *                     a Class object representing the expected type of the
-     *                     servant.
-     *                     The expected type is the Class object associated with
-     *                     the
-     *                     operations class of the stub's interface (e.g. A stub
-     *                     for an
-     *                     interface Foo, would pass the Class object for the
-     *                     FooOperations interface).
-     *
+     *        a Class object representing the expected type of the
+     *        servant.
+     *        The expected type is the Class object associated with
+     *        the
+     *        operations class of the stub's interface (e.g. A stub
+     *        for an
+     *        interface Foo, would pass the Class object for the
+     *        FooOperations interface).
      * @return a ServantObject object. The method may return a null value if it
      *         does not wish to support this optimization (e.g. due to security,
      *         transactions, etc). The method must return null if the servant is
      *         not of the expected type.
      */
-    public ServantObject servant_preinvoke(org.omg.CORBA.Object self,
-            String operation, Class expectedType);
+    public ServantObject servant_preinvoke(org.omg.CORBA.Object self, String operation, Class expectedType);
 
-    public void servant_postinvoke(org.omg.CORBA.Object self,
-            ServantObject servant);
+    public void servant_postinvoke(org.omg.CORBA.Object self, ServantObject servant);
 }
 
 // End of file.

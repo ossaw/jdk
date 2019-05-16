@@ -13,7 +13,6 @@ import javax.imageio.ImageReader;
  * callers of their image and thumbnail reading methods of warnings (non-fatal
  * errors). Fatal errors cause the relevant read method to throw an
  * <code>IIOException</code>.
- *
  * <p>
  * Localization is handled by associating a <code>Locale</code> with each
  * <code>IIOReadWarningListener</code> as it is registered with an
@@ -22,7 +21,6 @@ import javax.imageio.ImageReader;
  *
  * @see javax.imageio.ImageReader#addIIOReadWarningListener
  * @see javax.imageio.ImageReader#removeIIOReadWarningListener
- *
  */
 public interface IIOReadWarningListener extends EventListener {
 
@@ -33,9 +31,9 @@ public interface IIOReadWarningListener extends EventListener {
      * or take any other action it chooses.
      *
      * @param source
-     *                the <code>ImageReader</code> object calling this method.
+     *        the <code>ImageReader</code> object calling this method.
      * @param warning
-     *                a <code>String</code> containing the warning.
+     *        a <code>String</code> containing the warning.
      */
     void warningOccurred(ImageReader source, String warning);
 }

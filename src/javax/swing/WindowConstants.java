@@ -18,8 +18,6 @@ package javax.swing;
  * @see JFrame#setDefaultCloseOperation(int)
  * @see JDialog#setDefaultCloseOperation(int)
  * @see JInternalFrame#setDefaultCloseOperation(int)
- *
- *
  * @author Amy Fowler
  */
 public interface WindowConstants {

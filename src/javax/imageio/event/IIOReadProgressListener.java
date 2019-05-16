@@ -11,7 +11,6 @@ import javax.imageio.ImageReader;
 /**
  * An interface used by <code>ImageReader</code> implementations to notify
  * callers of their image and thumbnail reading methods of progress.
- *
  * <p>
  * This interface receives general indications of decoding progress (via the
  * <code>imageProgress</code> and <code>thumbnailProgress</code> methods), and
@@ -25,7 +24,6 @@ import javax.imageio.ImageReader;
  * @see IIOReadUpdateListener
  * @see javax.imageio.ImageReader#addIIOReadProgressListener
  * @see javax.imageio.ImageReader#removeIIOReadProgressListener
- *
  */
 public interface IIOReadProgressListener extends EventListener {
 
@@ -35,9 +33,9 @@ public interface IIOReadProgressListener extends EventListener {
      * exactly once from their <code>readAll(Iterator)</code> method.
      *
      * @param source
-     *                 the <code>ImageReader</code> object calling this method.
+     *        the <code>ImageReader</code> object calling this method.
      * @param minIndex
-     *                 the index of the first image to be read.
+     *        the index of the first image to be read.
      */
     void sequenceStarted(ImageReader source, int minIndex);
 
@@ -47,7 +45,7 @@ public interface IIOReadProgressListener extends EventListener {
      * exactly once from their <code>readAll(Iterator)</code> method.
      *
      * @param source
-     *               the <code>ImageReader</code> object calling this method.
+     *        the <code>ImageReader</code> object calling this method.
      */
     void sequenceComplete(ImageReader source);
 
@@ -57,19 +55,18 @@ public interface IIOReadProgressListener extends EventListener {
      * exactly once when beginning an image read operation.
      *
      * @param source
-     *                   the <code>ImageReader</code> object calling this
-     *                   method.
+     *        the <code>ImageReader</code> object calling this
+     *        method.
      * @param imageIndex
-     *                   the index of the image being read within its containing
-     *                   input
-     *                   file or stream.
+     *        the index of the image being read within its containing
+     *        input
+     *        file or stream.
      */
     void imageStarted(ImageReader source, int imageIndex);
 
     /**
      * Reports the approximate degree of completion of the current
      * <code>read</code> call of the associated <code>ImageReader</code>.
-     *
      * <p>
      * The degree of completion is expressed as a percentage varying from
      * <code>0.0F</code> to <code>100.0F</code>. The percentage should ideally
@@ -80,19 +77,18 @@ public interface IIOReadProgressListener extends EventListener {
      * monotonically increasing sequence of percentage values. It is not
      * necessary to supply the exact values <code>0</code> and <code>100</code>,
      * as these may be inferred by the callee from other methods.
-     *
      * <p>
      * Each particular <code>ImageReader</code> implementation may call this
      * method at whatever frequency it desires. A rule of thumb is to call it
      * around each 5 percent mark.
      *
      * @param source
-     *                       the <code>ImageReader</code> object calling this
-     *                       method.
+     *        the <code>ImageReader</code> object calling this
+     *        method.
      * @param percentageDone
-     *                       the approximate percentage of decoding that has
-     *                       been
-     *                       completed.
+     *        the approximate percentage of decoding that has
+     *        been
+     *        completed.
      */
     void imageProgress(ImageReader source, float percentageDone);
 
@@ -102,7 +98,7 @@ public interface IIOReadProgressListener extends EventListener {
      * exactly once upon completion of each image read operation.
      *
      * @param source
-     *               the <code>ImageReader</code> object calling this method.
+     *        the <code>ImageReader</code> object calling this method.
      */
     void imageComplete(ImageReader source);
 
@@ -112,17 +108,16 @@ public interface IIOReadProgressListener extends EventListener {
      * exactly once when beginning a thumbnail read operation.
      *
      * @param source
-     *                       the <code>ImageReader</code> object calling this
-     *                       method.
+     *        the <code>ImageReader</code> object calling this
+     *        method.
      * @param imageIndex
-     *                       the index of the image being read within its
-     *                       containing input
-     *                       file or stream.
+     *        the index of the image being read within its
+     *        containing input
+     *        file or stream.
      * @param thumbnailIndex
-     *                       the index of the thumbnail being read.
+     *        the index of the thumbnail being read.
      */
-    void thumbnailStarted(ImageReader source, int imageIndex,
-            int thumbnailIndex);
+    void thumbnailStarted(ImageReader source, int imageIndex, int thumbnailIndex);
 
     /**
      * Reports the approximate degree of completion of the current
@@ -131,12 +126,12 @@ public interface IIOReadProgressListener extends EventListener {
      * <code>imageProgress</code>.
      *
      * @param source
-     *                       the <code>ImageReader</code> object calling this
-     *                       method.
+     *        the <code>ImageReader</code> object calling this
+     *        method.
      * @param percentageDone
-     *                       the approximate percentage of decoding that has
-     *                       been
-     *                       completed.
+     *        the approximate percentage of decoding that has
+     *        been
+     *        completed.
      */
     void thumbnailProgress(ImageReader source, float percentageDone);
 
@@ -146,7 +141,7 @@ public interface IIOReadProgressListener extends EventListener {
      * exactly once upon completion of each thumbnail read operation.
      *
      * @param source
-     *               the <code>ImageReader</code> object calling this method.
+     *        the <code>ImageReader</code> object calling this method.
      */
     void thumbnailComplete(ImageReader source);
 
@@ -155,7 +150,7 @@ public interface IIOReadProgressListener extends EventListener {
      * method. No further notifications will be given.
      *
      * @param source
-     *               the <code>ImageReader</code> object calling this method.
+     *        the <code>ImageReader</code> object calling this method.
      */
     void readAborted(ImageReader source);
 }

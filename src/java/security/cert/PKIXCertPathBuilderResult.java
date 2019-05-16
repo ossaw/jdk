@@ -12,12 +12,10 @@ import java.security.PublicKey;
  * builder algorithm. All certification paths that are built and returned using
  * this algorithm are also validated according to the PKIX certification path
  * validation algorithm.
- *
  * <p>
  * Instances of {@code PKIXCertPathBuilderResult} are returned by the
  * {@code build} method of {@code CertPathBuilder} objects implementing the PKIX
  * algorithm.
- *
  * <p>
  * All {@code PKIXCertPathBuilderResult} objects contain the certification path
  * constructed by the build algorithm, the valid policy tree and subject public
@@ -34,12 +32,10 @@ import java.security.PublicKey;
  * synchronize.
  *
  * @see CertPathBuilderResult
- *
  * @since 1.4
  * @author Anne Anderson
  */
-public class PKIXCertPathBuilderResult extends PKIXCertPathValidatorResult
-        implements CertPathBuilderResult {
+public class PKIXCertPathBuilderResult extends PKIXCertPathValidatorResult implements CertPathBuilderResult {
 
     private CertPath certPath;
 
@@ -48,25 +44,25 @@ public class PKIXCertPathBuilderResult extends PKIXCertPathValidatorResult
      * specified parameters.
      *
      * @param certPath
-     *                         the validated {@code CertPath}
+     *        the validated {@code CertPath}
      * @param trustAnchor
-     *                         a {@code TrustAnchor} describing the CA that
-     *                         served as a trust
-     *                         anchor for the certification path
+     *        a {@code TrustAnchor} describing the CA that
+     *        served as a trust
+     *        anchor for the certification path
      * @param policyTree
-     *                         the immutable valid policy tree, or {@code null}
-     *                         if there are
-     *                         no valid policies
+     *        the immutable valid policy tree, or {@code null}
+     *        if there are
+     *        no valid policies
      * @param subjectPublicKey
-     *                         the public key of the subject
+     *        the public key of the subject
      * @throws NullPointerException
-     *                              if the {@code certPath}, {@code trustAnchor}
-     *                              or
-     *                              {@code subjectPublicKey} parameters are
-     *                              {@code null}
+     *         if the {@code certPath}, {@code trustAnchor}
+     *         or
+     *         {@code subjectPublicKey} parameters are
+     *         {@code null}
      */
-    public PKIXCertPathBuilderResult(CertPath certPath, TrustAnchor trustAnchor,
-            PolicyNode policyTree, PublicKey subjectPublicKey) {
+    public PKIXCertPathBuilderResult(CertPath certPath, TrustAnchor trustAnchor, PolicyNode policyTree,
+            PublicKey subjectPublicKey) {
         super(trustAnchor, policyTree, subjectPublicKey);
         if (certPath == null)
             throw new NullPointerException("certPath must be non-null");

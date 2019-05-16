@@ -18,7 +18,7 @@ public interface OptionChecker {
      * arguments the option takes.
      *
      * @param option
-     *               an option
+     *        an option
      * @return the number of arguments the given option takes or -1 if the
      *         option is not supported
      */

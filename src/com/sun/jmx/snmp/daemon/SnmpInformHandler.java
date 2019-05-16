@@ -39,19 +39,19 @@ public interface SnmpInformHandler extends SnmpDefinitions {
      * to determine the kind of response.
      *
      * @param request
-     *                  The <CODE>SnmpInformRequest</CODE> associated with this
-     *                  callback.
+     *        The <CODE>SnmpInformRequest</CODE> associated with this
+     *        callback.
      * @param errStatus
-     *                  The status of the request.
+     *        The status of the request.
      * @param errIndex
-     *                  The index in the list that caused the error.
+     *        The index in the list that caused the error.
      * @param vblist
-     *                  The <CODE>Response varBind</CODE> list for the
-     *                  successful
-     *                  request.
+     *        The <CODE>Response varBind</CODE> list for the
+     *        successful
+     *        request.
      */
-    public abstract void processSnmpPollData(SnmpInformRequest request,
-            int errStatus, int errIndex, SnmpVarBindList vblist);
+    public abstract void processSnmpPollData(SnmpInformRequest request, int errStatus, int errIndex,
+            SnmpVarBindList vblist);
 
     /**
      * This callback is invoked when a manager does not respond within the
@@ -59,8 +59,8 @@ public interface SnmpInformHandler extends SnmpDefinitions {
      * have also been exhausted.
      * 
      * @param request
-     *                The <CODE>SnmpInformRequest</CODE> associated with this
-     *                callback.
+     *        The <CODE>SnmpInformRequest</CODE> associated with this
+     *        callback.
      */
     public abstract void processSnmpPollTimeout(SnmpInformRequest request);
 
@@ -68,11 +68,10 @@ public interface SnmpInformHandler extends SnmpDefinitions {
      * This callback is invoked when any form of internal error occurs.
      * 
      * @param request
-     *                The <CODE>SnmpInformRequest</CODE> associated with this
-     *                callback.
+     *        The <CODE>SnmpInformRequest</CODE> associated with this
+     *        callback.
      * @param errmsg
-     *                The <CODE>String</CODE> describing the internal error.
+     *        The <CODE>String</CODE> describing the internal error.
      */
-    public abstract void processSnmpInternalError(SnmpInformRequest request,
-            String errmsg);
+    public abstract void processSnmpInternalError(SnmpInformRequest request, String errmsg);
 }

@@ -24,8 +24,7 @@ final class MethodRef {
         } else {
             this.signature = method.toGenericString();
             this.methodRef = new SoftReference<>(method);
-            this.typeRef = new WeakReference<Class<?>>(method
-                    .getDeclaringClass());
+            this.typeRef = new WeakReference<Class<?>>(method.getDeclaringClass());
         }
     }
 

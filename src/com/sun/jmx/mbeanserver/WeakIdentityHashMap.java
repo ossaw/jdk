@@ -21,13 +21,11 @@ import java.util.Map;
  * not implement the Map interface because it is difficult to ensure correct
  * semantics for iterators over the entrySet().
  * </p>
- *
  * <p>
  * Because we do not implement Map, we do not copy the questionable interface
  * where you can call get(k) or remove(k) for any type of k, which of course can
  * only have an effect if k is of type K.
  * </p>
- *
  * <p>
  * This map does not support null keys.
  * </p>

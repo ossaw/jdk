@@ -64,10 +64,8 @@ import java.time.DateTimeException;
  *
  * @implSpec This interface places no restrictions on the mutability of
  *           implementations, however immutability is strongly recommended.
- *
  * @param <R>
  *        the type returned from the query
- *
  * @since 1.8
  */
 @FunctionalInterface
@@ -108,14 +106,13 @@ public interface TemporalQuery<R> {
      *           <p>
      *           This method may be called from multiple threads in parallel. It
      *           must be thread-safe when invoked.
-     *
      * @param temporal
-     *                 the temporal object to query, not null
+     *        the temporal object to query, not null
      * @return the queried value, may return null to indicate not found
      * @throws DateTimeException
-     *                             if unable to query
+     *         if unable to query
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     R queryFrom(TemporalAccessor temporal);
 

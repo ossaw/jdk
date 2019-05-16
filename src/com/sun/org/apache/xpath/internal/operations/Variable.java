@@ -65,7 +65,7 @@ public class Variable extends Expression implements PathComponent {
      * must know what you are doing to use this.
      *
      * @param index
-     *              a global or local index.
+     *        a global or local index.
      */
     public void setIndex(int index) {
         m_index = index;
@@ -84,7 +84,7 @@ public class Variable extends Expression implements PathComponent {
      * Set whether or not this is a global reference. For advanced use only.
      *
      * @param isGlobal
-     *                 true if this should be a global variable reference.
+     *        true if this should be a global variable reference.
      */
     public void setIsGlobal(boolean isGlobal) {
         m_isGlobal = isGlobal;
@@ -106,13 +106,13 @@ public class Variable extends Expression implements PathComponent {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         m_fixUpWasCalled = true;
@@ -134,14 +134,12 @@ public class Variable extends Expression implements PathComponent {
             }
         }
 
-        java.lang.String msg = XSLMessages.createXPATHMessage(
-                XPATHErrorResources.ER_COULD_NOT_FIND_VAR, new Object[] {
-                        m_qname.toString() });
+        java.lang.String msg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_COULD_NOT_FIND_VAR,
+                new Object[] { m_qname.toString() });
 
         TransformerException te = new TransformerException(msg, this);
 
-        throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                te);
+        throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
 
     }
 
@@ -149,7 +147,7 @@ public class Variable extends Expression implements PathComponent {
      * Set the qualified name of the variable.
      *
      * @param qname
-     *              Must be a non-null reference to a qualified name.
+     *        Must be a non-null reference to a qualified name.
      */
     public void setQName(QName qname) {
         m_qname = qname;
@@ -168,18 +166,14 @@ public class Variable extends Expression implements PathComponent {
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
-     *
+     *        The XPath runtime context.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return execute(xctxt, false);
     }
 
@@ -189,37 +183,31 @@ public class Variable extends Expression implements PathComponent {
      * will be sent to the error listener, and an empty nodeset will be
      * returned.
      *
-     *
      * @param xctxt
-     *              The runtime execution context.
-     *
+     *        The runtime execution context.
      * @return The evaluated variable, or an empty nodeset if not found.
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public XObject execute(XPathContext xctxt, boolean destructiveOK)
             throws javax.xml.transform.TransformerException {
-        com.sun.org.apache.xml.internal.utils.PrefixResolver xprefixResolver = xctxt
-                .getNamespaceContext();
+        com.sun.org.apache.xml.internal.utils.PrefixResolver xprefixResolver = xctxt.getNamespaceContext();
 
         XObject result;
         // Is the variable fetched always the same?
         // XObject result = xctxt.getVariable(m_qname);
         if (m_fixUpWasCalled) {
             if (m_isGlobal)
-                result = xctxt.getVarStack().getGlobalVariable(xctxt, m_index,
-                        destructiveOK);
+                result = xctxt.getVarStack().getGlobalVariable(xctxt, m_index, destructiveOK);
             else
-                result = xctxt.getVarStack().getLocalVariable(xctxt, m_index,
-                        destructiveOK);
+                result = xctxt.getVarStack().getLocalVariable(xctxt, m_index, destructiveOK);
         } else {
             result = xctxt.getVarStack().getVariableOrParam(xctxt, m_qname);
         }
 
         if (null == result) {
             // This should now never happen...
-            warn(xctxt, XPATHErrorResources.WG_ILLEGAL_VARIABLE_REFERENCE,
-                    new Object[] { m_qname.getLocalPart() }); // "VariableReference
+            warn(xctxt, XPATHErrorResources.WG_ILLEGAL_VARIABLE_REFERENCE, new Object[] { m_qname
+                    .getLocalPart() }); // "VariableReference
                                                                                                                              // given for
                                                                                                                              // variable out
                                                                                                                              // "+
@@ -300,7 +288,6 @@ public class Variable extends Expression implements PathComponent {
      * during iterations within the expression. This is used to determine if a
      * proximity position predicate can indicate that no more searching has to
      * occur.
-     *
      *
      * @return true if the expression represents a stable number.
      */

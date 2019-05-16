@@ -14,7 +14,6 @@ package javax.print.attribute;
  * <P>
  *
  * @see PrintServiceAttributeSet
- *
  * @author Alan Kaminsky
  */
 public interface PrintServiceAttribute extends Attribute {}

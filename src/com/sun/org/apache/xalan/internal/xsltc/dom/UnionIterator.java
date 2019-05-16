@@ -40,8 +40,7 @@ public final class UnionIterator extends MultiValuedNodeHeapIterator {
      */
     final private DOM _dom;
 
-    private final class LookAheadIterator extends
-            MultiValuedNodeHeapIterator.HeapNode {
+    private final class LookAheadIterator extends MultiValuedNodeHeapIterator.HeapNode {
         public DTMAxisIterator iterator;
 
         public LookAheadIterator(DTMAxisIterator iterator) {

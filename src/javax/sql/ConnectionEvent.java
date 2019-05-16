@@ -31,9 +31,9 @@ public class ConnectionEvent extends java.util.EventObject {
      * defaults to <code>null</code>.
      *
      * @param con
-     *            the pooled connection that is the source of the event
+     *        the pooled connection that is the source of the event
      * @throws IllegalArgumentException
-     *                                  if <code>con</code> is null.
+     *         if <code>con</code> is null.
      */
     public ConnectionEvent(PooledConnection con) {
         super(con);
@@ -46,11 +46,11 @@ public class ConnectionEvent extends java.util.EventObject {
      * object.
      *
      * @param con
-     *            the pooled connection that is the source of the event
+     *        the pooled connection that is the source of the event
      * @param ex
-     *            the SQLException about to be thrown to the application
+     *        the SQLException about to be thrown to the application
      * @throws IllegalArgumentException
-     *                                  if <code>con</code> is null.
+     *         if <code>con</code> is null.
      */
     public ConnectionEvent(PooledConnection con, SQLException ex) {
         super(con);

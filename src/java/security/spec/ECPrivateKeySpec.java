@@ -12,9 +12,7 @@ import java.math.BigInteger;
  *
  * @see KeySpec
  * @see ECParameterSpec
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class ECPrivateKeySpec implements KeySpec {
@@ -26,11 +24,11 @@ public class ECPrivateKeySpec implements KeySpec {
      * Creates a new ECPrivateKeySpec with the specified parameter values.
      * 
      * @param s
-     *               the private value.
+     *        the private value.
      * @param params
-     *               the associated elliptic curve domain parameters.
+     *        the associated elliptic curve domain parameters.
      * @exception NullPointerException
-     *                                 if {@code s} or {@code params} is null.
+     *            if {@code s} or {@code params} is null.
      */
     public ECPrivateKeySpec(BigInteger s, ECParameterSpec params) {
         if (s == null) {

@@ -52,18 +52,17 @@ public class Book implements Pageable {
      * <code>pageIndex</code>.
      * 
      * @param pageIndex
-     *                  the zero based index of the page whose
-     *                  <code>PageFormat</code>
-     *                  is being requested
+     *        the zero based index of the page whose
+     *        <code>PageFormat</code>
+     *        is being requested
      * @return the <code>PageFormat</code> describing the size and orientation
      *         of the page.
      * @throws IndexOutOfBoundsException
-     *                                   if the <code>Pageable</code> does not
-     *                                   contain the requested
-     *                                   page
+     *         if the <code>Pageable</code> does not
+     *         contain the requested
+     *         page
      */
-    public PageFormat getPageFormat(int pageIndex)
-            throws IndexOutOfBoundsException {
+    public PageFormat getPageFormat(int pageIndex) throws IndexOutOfBoundsException {
         return getPage(pageIndex).getPageFormat();
     }
 
@@ -72,17 +71,16 @@ public class Book implements Pageable {
      * specified by <code>pageIndex</code>.
      * 
      * @param pageIndex
-     *                  the zero based index of the page whose
-     *                  <code>Printable</code>
-     *                  is being requested
+     *        the zero based index of the page whose
+     *        <code>Printable</code>
+     *        is being requested
      * @return the <code>Printable</code> that renders the page.
      * @throws IndexOutOfBoundsException
-     *                                   if the <code>Pageable</code> does not
-     *                                   contain the requested
-     *                                   page
+     *         if the <code>Pageable</code> does not
+     *         contain the requested
+     *         page
      */
-    public Printable getPrintable(int pageIndex)
-            throws IndexOutOfBoundsException {
+    public Printable getPrintable(int pageIndex) throws IndexOutOfBoundsException {
         return getPage(pageIndex).getPrintable();
     }
 
@@ -91,25 +89,24 @@ public class Book implements Pageable {
      * specified page number.
      * 
      * @param pageIndex
-     *                  the zero based index of the page whose painter and
-     *                  format is
-     *                  altered
+     *        the zero based index of the page whose painter and
+     *        format is
+     *        altered
      * @param painter
-     *                  the <code>Printable</code> instance that renders the
-     *                  page
+     *        the <code>Printable</code> instance that renders the
+     *        page
      * @param page
-     *                  the size and orientation of the page
+     *        the size and orientation of the page
      * @throws IndexOutOfBoundsException
-     *                                   if the specified page is not already in
-     *                                   this
-     *                                   <code>Book</code>
+     *         if the specified page is not already in
+     *         this
+     *         <code>Book</code>
      * @throws NullPointerException
-     *                                   if the <code>painter</code> or
-     *                                   <code>page</code> argument is
-     *                                   <code>null</code>
+     *         if the <code>painter</code> or
+     *         <code>page</code> argument is
+     *         <code>null</code>
      */
-    public void setPage(int pageIndex, Printable painter, PageFormat page)
-            throws IndexOutOfBoundsException {
+    public void setPage(int pageIndex, Printable painter, PageFormat page) throws IndexOutOfBoundsException {
         if (painter == null) {
             throw new NullPointerException("painter is null");
         }
@@ -125,13 +122,13 @@ public class Book implements Pageable {
      * Appends a single page to the end of this <code>Book</code>.
      * 
      * @param painter
-     *                the <code>Printable</code> instance that renders the page
+     *        the <code>Printable</code> instance that renders the page
      * @param page
-     *                the size and orientation of the page
+     *        the size and orientation of the page
      * @throws NullPointerException
-     *                              If the <code>painter</code> or
-     *                              <code>page</code> argument is
-     *                              <code>null</code>
+     *         If the <code>painter</code> or
+     *         <code>page</code> argument is
+     *         <code>null</code>
      */
     public void append(Printable painter, PageFormat page) {
         mPages.addElement(new BookPage(painter, page));
@@ -142,16 +139,16 @@ public class Book implements Pageable {
      * Each of the pages is associated with <code>page</code>.
      * 
      * @param painter
-     *                 the <code>Printable</code> instance that renders the page
+     *        the <code>Printable</code> instance that renders the page
      * @param page
-     *                 the size and orientation of the page
+     *        the size and orientation of the page
      * @param numPages
-     *                 the number of pages to be added to the this
-     *                 <code>Book</code>.
+     *        the number of pages to be added to the this
+     *        <code>Book</code>.
      * @throws NullPointerException
-     *                              If the <code>painter</code> or
-     *                              <code>page</code> argument is
-     *                              <code>null</code>
+     *         If the <code>painter</code> or
+     *         <code>page</code> argument is
+     *         <code>null</code>
      */
     public void append(Printable painter, PageFormat page, int numPages) {
         BookPage bookPage = new BookPage(painter, page);
@@ -167,8 +164,7 @@ public class Book implements Pageable {
     /**
      * Return the BookPage for the page specified by 'pageIndex'.
      */
-    private BookPage getPage(int pageIndex)
-            throws ArrayIndexOutOfBoundsException {
+    private BookPage getPage(int pageIndex) throws ArrayIndexOutOfBoundsException {
         return (BookPage) mPages.elementAt(pageIndex);
     }
 
@@ -193,9 +189,9 @@ public class Book implements Pageable {
          * graphics.
          * 
          * @throws NullPointerException
-         *                              If the <code>painter</code> or
-         *                              <code>format</code>
-         *                              argument is <code>null</code>
+         *         If the <code>painter</code> or
+         *         <code>format</code>
+         *         argument is <code>null</code>
          */
         BookPage(Printable painter, PageFormat format) {
 

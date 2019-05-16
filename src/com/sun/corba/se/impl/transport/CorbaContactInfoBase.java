@@ -71,8 +71,7 @@ public abstract class CorbaContactInfoBase implements CorbaContactInfo {
     }
 
     public ClientRequestDispatcher getClientRequestDispatcher() {
-        int scid = getEffectiveProfile().getObjectKeyTemplate()
-                .getSubcontractId();
+        int scid = getEffectiveProfile().getObjectKeyTemplate().getSubcontractId();
         RequestDispatcherRegistry scr = orb.getRequestDispatcherRegistry();
         return scr.getClientRequestDispatcher(scid);
     }
@@ -88,37 +87,31 @@ public abstract class CorbaContactInfoBase implements CorbaContactInfo {
     }
 
     // Called when client making an invocation.
-    public MessageMediator createMessageMediator(Broker broker,
-            ContactInfo contactInfo, Connection connection, String methodName,
-            boolean isOneWay) {
+    public MessageMediator createMessageMediator(Broker broker, ContactInfo contactInfo,
+            Connection connection, String methodName, boolean isOneWay) {
         // REVISIT: Would like version, ior, requestid, etc., decisions
         // to be in client subcontract. Cannot pass these to this
         // factory method because it breaks generic abstraction.
         // Maybe set methods on mediator called from subcontract
         // after creation?
-        CorbaMessageMediator messageMediator = new CorbaMessageMediatorImpl(
-                (ORB) broker, contactInfo, connection, GIOPVersion
-                        .chooseRequestVersion((ORB) broker, effectiveTargetIOR),
-                effectiveTargetIOR, ((CorbaConnection) connection)
-                        .getNextRequestId(), getAddressingDisposition(),
-                methodName, isOneWay);
+        CorbaMessageMediator messageMediator = new CorbaMessageMediatorImpl((ORB) broker, contactInfo,
+                connection, GIOPVersion.chooseRequestVersion((ORB) broker, effectiveTargetIOR),
+                effectiveTargetIOR, ((CorbaConnection) connection).getNextRequestId(),
+                getAddressingDisposition(), methodName, isOneWay);
 
         return messageMediator;
     }
 
     // Called when connection handling a read event.
-    public MessageMediator createMessageMediator(Broker broker,
-            Connection conn) {
+    public MessageMediator createMessageMediator(Broker broker, Connection conn) {
         ORB orb = (ORB) broker;
         CorbaConnection connection = (CorbaConnection) conn;
 
         if (orb.transportDebugFlag) {
             if (connection.shouldReadGiopHeaderOnly()) {
-                dprint(".createMessageMediator: waiting for message header on connection: "
-                        + connection);
+                dprint(".createMessageMediator: waiting for message header on connection: " + connection);
             } else {
-                dprint(".createMessageMediator: waiting for message on connection: "
-                        + connection);
+                dprint(".createMessageMediator: waiting for message on connection: " + connection);
             }
         }
 
@@ -134,22 +127,20 @@ public abstract class CorbaContactInfoBase implements CorbaContactInfo {
 
         ByteBuffer byteBuffer = msg.getByteBuffer();
         msg.setByteBuffer(null);
-        CorbaMessageMediator messageMediator = new CorbaMessageMediatorImpl(orb,
-                connection, msg, byteBuffer);
+        CorbaMessageMediator messageMediator = new CorbaMessageMediatorImpl(orb, connection, msg, byteBuffer);
 
         return messageMediator;
     }
 
     // Called when connection reading message body
-    public MessageMediator finishCreatingMessageMediator(Broker broker,
-            Connection conn, MessageMediator messageMediator) {
+    public MessageMediator finishCreatingMessageMediator(Broker broker, Connection conn,
+            MessageMediator messageMediator) {
         ORB orb = (ORB) broker;
         CorbaConnection connection = (CorbaConnection) conn;
         CorbaMessageMediator corbaMessageMediator = (CorbaMessageMediator) messageMediator;
 
         if (orb.transportDebugFlag) {
-            dprint(".finishCreatingMessageMediator: waiting for message body on connection: "
-                    + connection);
+            dprint(".finishCreatingMessageMediator: waiting for message body on connection: " + connection);
         }
 
         Message msg = corbaMessageMediator.getDispatchHeader();
@@ -169,23 +160,18 @@ public abstract class CorbaContactInfoBase implements CorbaContactInfo {
     public OutputObject createOutputObject(MessageMediator messageMediator) {
         CorbaMessageMediator corbaMessageMediator = (CorbaMessageMediator) messageMediator;
 
-        OutputObject outputObject = sun.corba.OutputStreamFactory
-                .newCDROutputObject(orb, messageMediator, corbaMessageMediator
-                        .getRequestHeader(), corbaMessageMediator
-                                .getStreamFormatVersion());
+        OutputObject outputObject = sun.corba.OutputStreamFactory.newCDROutputObject(orb, messageMediator,
+                corbaMessageMediator.getRequestHeader(), corbaMessageMediator.getStreamFormatVersion());
 
         messageMediator.setOutputObject(outputObject);
         return outputObject;
     }
 
-    public InputObject createInputObject(Broker broker,
-            MessageMediator messageMediator) {
+    public InputObject createInputObject(Broker broker, MessageMediator messageMediator) {
         // REVISIT: Duplicate of acceptor code.
         CorbaMessageMediator corbaMessageMediator = (CorbaMessageMediator) messageMediator;
-        return new CDRInputObject((ORB) broker,
-                (CorbaConnection) messageMediator.getConnection(),
-                corbaMessageMediator.getDispatchBuffer(), corbaMessageMediator
-                        .getDispatchHeader());
+        return new CDRInputObject((ORB) broker, (CorbaConnection) messageMediator.getConnection(),
+                corbaMessageMediator.getDispatchBuffer(), corbaMessageMediator.getDispatchHeader());
     }
 
     ////////////////////////////////////////////////////

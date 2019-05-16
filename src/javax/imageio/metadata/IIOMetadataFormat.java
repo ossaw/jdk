@@ -16,35 +16,28 @@ import javax.imageio.ImageTypeSpecifier;
  * child elements that may belong to a given parent element type, the names,
  * types, and values of attributes that may belong to an element, and the type
  * and values of <code>Object</code> reference that may be stored at a node.
- *
  * <p>
  * N.B: classes that implement this interface should contain a method declared
  * as <code>public static getInstance()</code> which returns an instance of the
  * class. Commonly, an implementation will construct only a single instance and
  * cache it for future invocations of <code>getInstance</code>.
- *
  * <p>
  * The structures that may be described by this class are a subset of those
  * expressible using XML document type definitions (DTDs), with the addition of
  * some basic information on the datatypes of attributes and the ability to
  * store an <code>Object</code> reference within a node. In the future, XML
  * Schemas could be used to represent these structures, and many others.
- *
  * <p>
  * The differences between <code>IIOMetadataFormat</code>-described structures
  * and DTDs are as follows:
- *
  * <ul>
  * <li>Elements may not contain text or mix text with embedded tags.
- *
  * <li>The children of an element must conform to one of a few simple patterns,
  * described in the documentation for the <code>CHILD_*</code> constants;
- *
  * <li>The in-memory representation of an elements may contain a reference to an
  * <code>Object</code>. There is no provision for representing such objects
  * textually.
  * </ul>
- *
  */
 public interface IIOMetadataFormat {
 
@@ -133,7 +126,6 @@ public interface IIOMetadataFormat {
      * <code>VALUE_RANGE_MIN_INCLUSIVE</code>, and with
      * <code>VALUE_RANGE_MAX_INCLUSIVE</code> to obtain
      * <code>VALUE_RANGE_MIN_MAX_INCLUSIVE</code>.
-     *
      * <p>
      * Similarly, the value may be and'ed with the value of
      * <code>getAttributeValueType</code>or <code>getObjectValueType</code> to
@@ -146,7 +138,6 @@ public interface IIOMetadataFormat {
      * <code>VALUE_RANGE_MAX_INCLUSIVE</code>, and with
      * <code>VALUE_RANGE_MIN_INCLUSIVE</code> to obtain
      * <code>VALUE_RANGE_MIN_MAX_INCLUSIVE</code>.
-     *
      * <p>
      * Similarly, the value may be and'ed with the value of
      * <code>getAttributeValueType</code>or <code>getObjectValueType</code> to
@@ -160,8 +151,7 @@ public interface IIOMetadataFormat {
      * object may be set to a range of values. The minimum (but not the maximum)
      * value of the range is inclusive.
      */
-    int VALUE_RANGE_MIN_INCLUSIVE = VALUE_RANGE
-            | VALUE_RANGE_MIN_INCLUSIVE_MASK;
+    int VALUE_RANGE_MIN_INCLUSIVE = VALUE_RANGE | VALUE_RANGE_MIN_INCLUSIVE_MASK;
 
     /**
      * A constant returned by <code>getAttributeValueType</code> and
@@ -169,8 +159,7 @@ public interface IIOMetadataFormat {
      * object may be set to a range of values. The maximum (but not the minimum)
      * value of the range is inclusive.
      */
-    int VALUE_RANGE_MAX_INCLUSIVE = VALUE_RANGE
-            | VALUE_RANGE_MAX_INCLUSIVE_MASK;
+    int VALUE_RANGE_MAX_INCLUSIVE = VALUE_RANGE | VALUE_RANGE_MAX_INCLUSIVE_MASK;
 
     /**
      * A constant returned by <code>getAttributeValueType</code> and
@@ -180,8 +169,8 @@ public interface IIOMetadataFormat {
      * inclusive on both ends, and that exclusive ranges be used only for
      * floating-point data.
      */
-    int VALUE_RANGE_MIN_MAX_INCLUSIVE = VALUE_RANGE
-            | VALUE_RANGE_MIN_INCLUSIVE_MASK | VALUE_RANGE_MAX_INCLUSIVE_MASK;
+    int VALUE_RANGE_MIN_MAX_INCLUSIVE = VALUE_RANGE | VALUE_RANGE_MIN_INCLUSIVE_MASK
+            | VALUE_RANGE_MAX_INCLUSIVE_MASK;
 
     /**
      * A constant returned by <code>getAttributeValueType</code> and
@@ -189,7 +178,6 @@ public interface IIOMetadataFormat {
      * object may be set one of a number of enumerated values. In the case of
      * attributes, these values are <code>String</code>s; for objects, they are
      * <code>Object</code>s implementing a given class or interface.
-     *
      * <p>
      * Attribute values of type <code>DATATYPE_BOOLEAN</code> should be marked
      * as enumerations.
@@ -261,12 +249,11 @@ public interface IIOMetadataFormat {
      * image.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param imageType
-     *                    an <code>ImageTypeSpecifier</code> indicating the type
-     *                    of the
-     *                    image that will be associated with the metadata.
-     *
+     *        an <code>ImageTypeSpecifier</code> indicating the type
+     *        of the
+     *        image that will be associated with the metadata.
      * @return <code>true</code> if the node is meaningful for images of the
      *         given type.
      */
@@ -279,18 +266,16 @@ public interface IIOMetadataFormat {
      * 3 children, one for each primary.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return an <code>int</code>.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element does not have a
-     *                                     child policy of
-     *                                     <code>CHILD_POLICY_REPEAT</code>.
+     *            if the named element does not have a
+     *            child policy of
+     *            <code>CHILD_POLICY_REPEAT</code>.
      */
     int getElementMinChildren(String elementName);
 
@@ -302,18 +287,16 @@ public interface IIOMetadataFormat {
      * used to specify that there is no upper bound.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return an <code>int</code>.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element does not have a
-     *                                     child policy of
-     *                                     <code>CHILD_POLICY_REPEAT</code>.
+     *            if the named element does not have a
+     *            child policy of
+     *            <code>CHILD_POLICY_REPEAT</code>.
      */
     int getElementMaxChildren(String elementName);
 
@@ -321,25 +304,22 @@ public interface IIOMetadataFormat {
      * Returns a <code>String</code> containing a description of the named
      * element, or <code>null</code>. The description will be localized for the
      * supplied <code>Locale</code> if possible.
-     *
      * <p>
      * If <code>locale</code> is <code>null</code>, the current default
      * <code>Locale</code> returned by <code>Locale.getLocale</code> will be
      * used.
      *
      * @param elementName
-     *                    the name of the element.
+     *        the name of the element.
      * @param locale
-     *                    the <code>Locale</code> for which localization will be
-     *                    attempted.
-     *
+     *        the <code>Locale</code> for which localization will be
+     *        attempted.
      * @return the element description.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code>, or is
-     *                                     not a legal element name for this
-     *                                     format.
+     *            if <code>elementName</code> is
+     *            <code>null</code>, or is
+     *            not a legal element name for this
+     *            format.
      */
     String getElementDescription(String elementName, Locale locale);
 
@@ -350,14 +330,12 @@ public interface IIOMetadataFormat {
      * indicating the legal pattern of children for the named element.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return one of the <code>CHILD_POLICY_*</code> constants.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      */
     int getChildPolicy(String elementName);
 
@@ -368,14 +346,12 @@ public interface IIOMetadataFormat {
      * <code>null</code> is returned.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return an array of <code>String</code>s, or null.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      */
     String[] getChildNames(String elementName);
 
@@ -386,14 +362,12 @@ public interface IIOMetadataFormat {
      * attributes that may be associated with the named element.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return an array of <code>String</code>s.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      */
     String[] getAttributeNames(String elementName);
 
@@ -405,21 +379,19 @@ public interface IIOMetadataFormat {
      * whitespace-separated list of arbitrary values.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return one of the <code>VALUE_*</code> constants.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      */
     int getAttributeValueType(String elementName, String attrName);
 
@@ -431,21 +403,19 @@ public interface IIOMetadataFormat {
      * whitespace-spearated list of values of the returned datatype.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return one of the <code>DATATYPE_*</code> constants.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      */
     int getAttributeDataType(String elementName, String attrName);
 
@@ -454,21 +424,19 @@ public interface IIOMetadataFormat {
      * the named element.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return <code>true</code> if the attribute must be present.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      */
     boolean isAttributeRequired(String elementName, String attrName);
 
@@ -478,22 +446,20 @@ public interface IIOMetadataFormat {
      * <code>null</code> if no default value is available.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return a <code>String</code> containing the default value, or
      *         <code>null</code>.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      */
     String getAttributeDefaultValue(String elementName, String attrName);
 
@@ -504,24 +470,22 @@ public interface IIOMetadataFormat {
      * <code>VALUE_ENUMERATION</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return an array of <code>String</code>s.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      * @exception IllegalArgumentException
-     *                                     if the given attribute is not defined
-     *                                     as an enumeration.
+     *            if the given attribute is not defined
+     *            as an enumeration.
      */
     String[] getAttributeEnumerations(String elementName, String attrName);
 
@@ -534,25 +498,23 @@ public interface IIOMetadataFormat {
      * <code>getAttributeValueType</code> returns <code>VALUE_RANGE_*</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return a <code>String</code> containing the smallest legal value for the
      *         attribute.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      * @exception IllegalArgumentException
-     *                                     if the given attribute is not defined
-     *                                     as a range.
+     *            if the given attribute is not defined
+     *            as a range.
      */
     String getAttributeMinValue(String elementName, String attrName);
 
@@ -565,26 +527,24 @@ public interface IIOMetadataFormat {
      * <code>getAttributeValueType</code> returns <code>VALUE_RANGE_*</code>.
      *
      * @param elementName
-     *                    the name of the element being queried, as a
-     *                    <code>String</code>.
+     *        the name of the element being queried, as a
+     *        <code>String</code>.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return a <code>String</code> containing the largest legal value for the
      *         attribute.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      * @exception IllegalArgumentException
-     *                                     if the given attribute is not defined
-     *                                     as a range.
+     *            if the given attribute is not defined
+     *            as a range.
      */
     String getAttributeMaxValue(String elementName, String attrName);
 
@@ -596,24 +556,22 @@ public interface IIOMetadataFormat {
      * <code>VALUE_LIST</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return the smallest legal number of list items for the attribute.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      * @exception IllegalArgumentException
-     *                                     if the given attribute is not defined
-     *                                     as a list.
+     *            if the given attribute is not defined
+     *            as a list.
      */
     int getAttributeListMinLength(String elementName, String attrName);
 
@@ -626,24 +584,22 @@ public interface IIOMetadataFormat {
      * returns <code>VALUE_LIST</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
+     *        the name of the element being queried.
      * @param attrName
-     *                    the name of the attribute being queried.
-     *
+     *        the name of the attribute being queried.
      * @return the largest legal number of list items for the attribute.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      * @exception IllegalArgumentException
-     *                                     if the given attribute is not defined
-     *                                     as a list.
+     *            if the given attribute is not defined
+     *            as a list.
      */
     int getAttributeListMaxLength(String elementName, String attrName);
 
@@ -651,35 +607,31 @@ public interface IIOMetadataFormat {
      * Returns a <code>String</code> containing a description of the named
      * attribute, or <code>null</code>. The description will be localized for
      * the supplied <code>Locale</code> if possible.
-     *
      * <p>
      * If <code>locale</code> is <code>null</code>, the current default
      * <code>Locale</code> returned by <code>Locale.getLocale</code> will be
      * used.
      *
      * @param elementName
-     *                    the name of the element.
+     *        the name of the element.
      * @param attrName
-     *                    the name of the attribute.
+     *        the name of the attribute.
      * @param locale
-     *                    the <code>Locale</code> for which localization will be
-     *                    attempted.
-     *
+     *        the <code>Locale</code> for which localization will be
+     *        attempted.
      * @return the attribute description.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code>, or is
-     *                                     not a legal element name for this
-     *                                     format.
+     *            if <code>elementName</code> is
+     *            <code>null</code>, or is
+     *            not a legal element name for this
+     *            format.
      * @exception IllegalArgumentException
-     *                                     if <code>attrName</code> is
-     *                                     <code>null</code> or is not a
-     *                                     legal attribute name for this
-     *                                     element.
+     *            if <code>attrName</code> is
+     *            <code>null</code> or is not a
+     *            legal attribute name for this
+     *            element.
      */
-    String getAttributeDescription(String elementName, String attrName,
-            Locale locale);
+    String getAttributeDescription(String elementName, String attrName, Locale locale);
 
     // Object value
 
@@ -689,21 +641,17 @@ public interface IIOMetadataFormat {
      * allowed for the <code>Object</code> reference. If no object value can be
      * stored within the given element, the result of this method will be
      * <code>VALUE_NONE</code>.
-     *
      * <p>
      * <code>Object</code> references whose legal values are defined as a range
      * must implement the <code>Comparable</code> interface.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return one of the <code>VALUE_*</code> constants.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
-     *
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @see Comparable
      */
     int getObjectValueType(String elementName);
@@ -715,26 +663,23 @@ public interface IIOMetadataFormat {
      * will be thrown. If the class type is an array, this field indicates the
      * underlying class type (<i>e.g</i>, for an array of <code>int</code>s,
      * this method would return <code>int.class</code>).
-     *
      * <p>
      * <code>Object</code> references whose legal values are defined as a range
      * must implement the <code>Comparable</code> interface.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return a <code>Class</code> object.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      */
     Class<?> getObjectClass(String elementName);
 
@@ -743,20 +688,18 @@ public interface IIOMetadataFormat {
      * <code>Object</code> reference within the named element.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return an <code>Object</code>.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      */
     Object getObjectDefaultValue(String elementName);
 
@@ -765,7 +708,6 @@ public interface IIOMetadataFormat {
      * values for the <code>Object</code> reference within the named element.
      * This method should only be called if <code>getObjectValueType</code>
      * returns <code>VALUE_ENUMERATION</code>.
-     *
      * <p>
      * The <code>Object</code> associated with a node that accepts enumerated
      * values must be equal to one of the values returned by this method, as
@@ -773,24 +715,22 @@ public interface IIOMetadataFormat {
      * <code>Object.equals</code> method).
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return an array of <code>Object</code>s.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      * @exception IllegalArgumentException
-     *                                     if the <code>Object</code> is not
-     *                                     defined as an
-     *                                     enumeration.
+     *            if the <code>Object</code> is not
+     *            defined as an
+     *            enumeration.
      */
     Object[] getObjectEnumerations(String elementName);
 
@@ -802,23 +742,21 @@ public interface IIOMetadataFormat {
      * one of the constants starting with <code>VALUE_RANGE</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return the smallest legal value for the attribute.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      * @exception IllegalArgumentException
-     *                                     if the <code>Object</code> is not
-     *                                     defined as a range.
+     *            if the <code>Object</code> is not
+     *            defined as a range.
      */
     Comparable<?> getObjectMinValue(String elementName);
 
@@ -830,23 +768,21 @@ public interface IIOMetadataFormat {
      * one of the constants starting with <code>VALUE_RANGE</code>.
      *
      * @return the smallest legal value for the attribute.
-     *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      * @exception IllegalArgumentException
-     *                                     if the <code>Object</code> is not
-     *                                     defined as a range.
+     *            if the <code>Object</code> is not
+     *            defined as a range.
      */
     Comparable<?> getObjectMaxValue(String elementName);
 
@@ -857,24 +793,22 @@ public interface IIOMetadataFormat {
      * <code>VALUE_LIST</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return the smallest valid array length for the <code>Object</code>
      *         reference.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      * @exception IllegalArgumentException
-     *                                     if the <code>Object</code> is not an
-     *                                     array.
+     *            if the <code>Object</code> is not an
+     *            array.
      */
     int getObjectArrayMinLength(String elementName);
 
@@ -886,24 +820,22 @@ public interface IIOMetadataFormat {
      * <code>getObjectValueType</code> returns <code>VALUE_LIST</code>.
      *
      * @param elementName
-     *                    the name of the element being queried.
-     *
+     *        the name of the element being queried.
      * @return the largest valid array length for the <code>Object</code>
      *         reference.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>elementName</code> is
-     *                                     <code>null</code> or is not
-     *                                     a legal element name for this format.
+     *            if <code>elementName</code> is
+     *            <code>null</code> or is not
+     *            a legal element name for this format.
      * @exception IllegalArgumentException
-     *                                     if the named element cannot contain
-     *                                     an object value (
-     *                                     <i>i.e.</i>, if
-     *                                     <code>getObjectValueType(elementName) == VALUE_NONE</code>
-     *                                     ).
+     *            if the named element cannot contain
+     *            an object value (
+     *            <i>i.e.</i>, if
+     *            <code>getObjectValueType(elementName) == VALUE_NONE</code>
+     *            ).
      * @exception IllegalArgumentException
-     *                                     if the <code>Object</code> is not an
-     *                                     array.
+     *            if the <code>Object</code> is not an
+     *            array.
      */
     int getObjectArrayMaxLength(String elementName);
 }

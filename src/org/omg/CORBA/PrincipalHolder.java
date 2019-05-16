@@ -50,9 +50,9 @@ public final class PrincipalHolder implements Streamable {
      * object.
      * 
      * @param initial
-     *                the <code>Principal</code> with which to initialize the
-     *                <code>value</code> field of the newly-created
-     *                <code>PrincipalHolder</code> object
+     *        the <code>Principal</code> with which to initialize the
+     *        <code>value</code> field of the newly-created
+     *        <code>PrincipalHolder</code> object
      */
     public PrincipalHolder(Principal initial) {
         value = initial;

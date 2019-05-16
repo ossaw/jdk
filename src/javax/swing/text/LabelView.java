@@ -20,7 +20,7 @@ public class LabelView extends GlyphView implements TabableView {
      * Constructs a new view wrapped on an element.
      *
      * @param elem
-     *             the element
+     *        the element
      */
     public LabelView(Element elem) {
         super(elem);
@@ -43,7 +43,7 @@ public class LabelView extends GlyphView implements TabableView {
      * state when set.
      *
      * @param u
-     *          true if the view is underlined, otherwise false
+     *        true if the view is underlined, otherwise false
      * @see #isUnderline
      */
     protected void setUnderline(boolean u) {
@@ -56,7 +56,7 @@ public class LabelView extends GlyphView implements TabableView {
      * additional state when set.
      *
      * @param s
-     *          true if the view has a strike/line through it, otherwise false
+     *        true if the view has a strike/line through it, otherwise false
      * @see #isStrikeThrough
      */
     protected void setStrikeThrough(boolean s) {
@@ -69,7 +69,7 @@ public class LabelView extends GlyphView implements TabableView {
      * additional state when set.
      *
      * @param s
-     *          true if the view represents a superscript, otherwise false
+     *        true if the view represents a superscript, otherwise false
      * @see #isSuperscript
      */
     protected void setSuperscript(boolean s) {
@@ -82,7 +82,7 @@ public class LabelView extends GlyphView implements TabableView {
      * additional state when set.
      *
      * @param s
-     *          true if the view represents a subscript, otherwise false
+     *        true if the view represents a subscript, otherwise false
      * @see #isSubscript
      */
     protected void setSubscript(boolean s) {
@@ -98,7 +98,7 @@ public class LabelView extends GlyphView implements TabableView {
      * background of the parent <code>View</code> will show through.
      *
      * @param bg
-     *           background color, or null
+     *        background color, or null
      * @see #setPropertiesFromAttributes
      * @since 1.5
      */
@@ -142,8 +142,7 @@ public class LabelView extends GlyphView implements TabableView {
     protected FontMetrics getFontMetrics() {
         sync();
         Container c = getContainer();
-        return (c != null) ? c.getFontMetrics(font)
-                : Toolkit.getDefaultToolkit().getFontMetrics(font);
+        return (c != null) ? c.getFontMetrics(font) : Toolkit.getDefaultToolkit().getFontMetrics(font);
     }
 
     /**
@@ -187,7 +186,6 @@ public class LabelView extends GlyphView implements TabableView {
      * Determines if the glyphs should be underlined. If true, an underline
      * should be drawn through the baseline. This is implemented to return the
      * cached underline property.
-     *
      * <p>
      * When you request this property, <code>LabelView</code> re-syncs its state
      * with the properties of the <code>Element</code>'s
@@ -207,7 +205,6 @@ public class LabelView extends GlyphView implements TabableView {
      * Determines if the glyphs should have a strikethrough line. If true, a
      * line should be drawn through the center of the glyphs. This is
      * implemented to return the cached <code>strikeThrough</code> property.
-     *
      * <p>
      * When you request this property, <code>LabelView</code> re-syncs its state
      * with the properties of the <code>Element</code>'s
@@ -227,14 +224,12 @@ public class LabelView extends GlyphView implements TabableView {
      * Determines if the glyphs should be rendered as superscript.
      * 
      * @return the value of the cached subscript property
-     *
      *         <p>
      *         When you request this property, <code>LabelView</code> re-syncs
      *         its state with the properties of the <code>Element</code>'s
      *         <code>AttributeSet</code>. If <code>Element</code>'s
      *         <code>AttributeSet</code> does not have this property set, it
      *         will revert to false.
-     *
      * @return the value of the cached <code>subscript</code> property
      * @since 1.3
      */
@@ -245,7 +240,6 @@ public class LabelView extends GlyphView implements TabableView {
 
     /**
      * Determines if the glyphs should be rendered as subscript.
-     *
      * <p>
      * When you request this property, <code>LabelView</code> re-syncs its state
      * with the properties of the <code>Element</code>'s
@@ -268,11 +262,11 @@ public class LabelView extends GlyphView implements TabableView {
      * location that this view is responsible for.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#changedUpdate
      */
     public void changedUpdate(DocumentEvent e, Shape a, ViewFactory f) {

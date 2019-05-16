@@ -14,7 +14,6 @@ import java.lang.ref.*;
  * the parent has values. Normally the child's values will be identical to the
  * parent's; however, the child's value can be made an arbitrary function of the
  * parent's by overriding the <tt>childValue</tt> method in this class.
- *
  * <p>
  * Inheritable thread-local variables are used in preference to ordinary
  * thread-local variables when the per-thread-attribute being maintained in the
@@ -37,7 +36,7 @@ public class InheritableThreadLocal<T> extends ThreadLocal<T> {
      * if a different behavior is desired.
      *
      * @param parentValue
-     *                    the parent thread's value
+     *        the parent thread's value
      * @return the child thread's initial value
      */
     protected T childValue(T parentValue) {
@@ -48,7 +47,7 @@ public class InheritableThreadLocal<T> extends ThreadLocal<T> {
      * Get the map associated with a ThreadLocal.
      *
      * @param t
-     *          the current thread
+     *        the current thread
      */
     ThreadLocalMap getMap(Thread t) {
         return t.inheritableThreadLocals;
@@ -58,9 +57,9 @@ public class InheritableThreadLocal<T> extends ThreadLocal<T> {
      * Create the map associated with a ThreadLocal.
      *
      * @param t
-     *                   the current thread
+     *        the current thread
      * @param firstValue
-     *                   value for the initial entry of the table.
+     *        value for the initial entry of the table.
      */
     void createMap(Thread t, T firstValue) {
         t.inheritableThreadLocals = new ThreadLocalMap(this, firstValue);

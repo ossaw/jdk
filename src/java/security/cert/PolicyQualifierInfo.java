@@ -13,7 +13,6 @@ import sun.security.util.DerValue;
 /**
  * An immutable policy qualifier represented by the ASN.1 PolicyQualifierInfo
  * structure.
- *
  * <p>
  * The ASN.1 definition is as follows:
  * 
@@ -40,7 +39,6 @@ import sun.security.util.DerValue;
  * false (by calling the {@link PKIXParameters#setPolicyQualifiersRejected
  * PKIXParameters.setPolicyQualifiersRejected} method) before validating a
  * certification path.
- *
  * <p>
  * Note that the PKIX certification path validation algorithm specifies that any
  * policy qualifier in a certificate policies extension that is marked critical
@@ -48,10 +46,8 @@ import sun.security.util.DerValue;
  * rejected. If the {@code policyQualifiersRejected} flag is set to false, it is
  * up to the application to validate all policy qualifiers in this manner in
  * order to be PKIX compliant.
- *
  * <p>
  * <b>Concurrent Access</b>
- *
  * <p>
  * All {@code PolicyQualifierInfo} objects must be immutable and thread-safe.
  * That is, multiple threads may concurrently invoke the methods defined in this
@@ -76,11 +72,11 @@ public class PolicyQualifierInfo {
      * bytes. The encoded byte array is copied on construction.
      *
      * @param encoded
-     *                a byte array containing the qualifier in DER encoding
+     *        a byte array containing the qualifier in DER encoding
      * @exception IOException
-     *                        thrown if the byte array does not represent a
-     *                        valid and
-     *                        parsable policy qualifier
+     *            thrown if the byte array does not represent a
+     *            valid and
+     *            parsable policy qualifier
      */
     public PolicyQualifierInfo(byte[] encoded) throws IOException {
         mEncoded = encoded.clone();
@@ -147,8 +143,7 @@ public class PolicyQualifierInfo {
         StringBuffer sb = new StringBuffer();
         sb.append("PolicyQualifierInfo: [\n");
         sb.append("  qualifierID: " + mId + "\n");
-        sb.append("  qualifier: " + (mData == null ? "null"
-                : enc.encodeBuffer(mData)) + "\n");
+        sb.append("  qualifier: " + (mData == null ? "null" : enc.encodeBuffer(mData)) + "\n");
         sb.append("]");
         pqiString = sb.toString();
         return pqiString;

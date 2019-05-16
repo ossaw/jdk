@@ -13,13 +13,11 @@ package org.omg.CosNaming;
  * each name is unique. Different names can be bound to an object in the same or
  * different contexts at the same time.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
  */
-public final class NamingContextHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class NamingContextHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CosNaming.NamingContext value = null;
 
     public NamingContextHolder() {}

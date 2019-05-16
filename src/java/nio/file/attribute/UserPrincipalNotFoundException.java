@@ -23,7 +23,7 @@ public class UserPrincipalNotFoundException extends IOException {
      * Constructs an instance of this class.
      *
      * @param name
-     *             the principal name; may be {@code null}
+     *        the principal name; may be {@code null}
      */
     public UserPrincipalNotFoundException(String name) {
         super();

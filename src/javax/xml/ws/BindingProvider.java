@@ -14,7 +14,6 @@ import javax.xml.ws.wsaddressing.W3CEndpointReference;
  * processing.
  *
  * @since JAX-WS 2.0
- *
  * @see javax.xml.ws.Binding
  **/
 public interface BindingProvider {
@@ -62,7 +61,6 @@ public interface BindingProvider {
      * <code>javax.xml.ws.soap.http.soapaction.uri</code> property is not used
      * for the value of the SOAPAction, however, if WS-Addressing is enabled,
      * the default value is <code>true</code>.
-     *
      * <p>
      * Type: <code>java.lang.Boolean</code>
      **/
@@ -74,7 +72,6 @@ public interface BindingProvider {
      * <code>true</code>. If WS-Addressing is enabled, this value will also be
      * used for the value of the WS-Addressing Action header. If this property
      * is not set, the default SOAPAction and WS-Addressing Action will be sent.
-     *
      * <p>
      * Type: <code>java.lang.String</code>
      **/
@@ -83,7 +80,6 @@ public interface BindingProvider {
     /**
      * Get the context that is used to initialize the message context for
      * request messages.
-     *
      * Modifications to the request context do not affect the message context of
      * either synchronous or asynchronous operations that have already been
      * started.
@@ -94,7 +90,6 @@ public interface BindingProvider {
 
     /**
      * Get the context that resulted from processing a response message.
-     *
      * The returned context is for the most recently completed synchronous
      * operation. Subsequent synchronous operation invocations overwrite the
      * response context. Asynchronous operations return their response context
@@ -122,13 +117,10 @@ public interface BindingProvider {
      *
      * @return EndpointReference of the target endpoint associated with this
      *         <code>BindingProvider</code> instance.
-     *
      * @throws java.lang.UnsupportedOperationException
      *         If this <code>BindingProvider</code> uses the XML/HTTP
      *         binding.
-     *
      * @see W3CEndpointReference
-     *
      * @since JAX-WS 2.1
      */
     public EndpointReference getEndpointReference();
@@ -139,23 +131,20 @@ public interface BindingProvider {
      * type <code>clazz</code>.
      *
      * @param clazz
-     *              Specifies the type of <code>EndpointReference</code> that
-     *              MUST
-     *              be returned.
-     * 
+     *        Specifies the type of <code>EndpointReference</code> that
+     *        MUST
+     *        be returned.
      * @return EndpointReference of the target endpoint associated with this
      *         <code>BindingProvider</code> instance. MUST be of type
      *         <code>clazz</code>.
-     * 
      * @throws WebServiceException
-     *                             If the Class <code>clazz</code> is not
-     *                             supported by this
-     *                             implementation.
-     * @throws                     java.lang.UnsupportedOperationException
-     *                             If this <code>BindingProvider</code> uses the
-     *                             XML/HTTP
-     *                             binding.
-     *
+     *         If the Class <code>clazz</code> is not
+     *         supported by this
+     *         implementation.
+     * @throws java.lang.UnsupportedOperationException
+     *         If this <code>BindingProvider</code> uses the
+     *         XML/HTTP
+     *         binding.
      * @since JAX-WS 2.1
      */
     public <T extends EndpointReference> T getEndpointReference(Class<T> clazz);

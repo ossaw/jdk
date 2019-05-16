@@ -42,8 +42,7 @@ public abstract class Type implements Constants {
     public static final Type Void = new VoidType();
 
     public static final Type Object = new ObjectType(java.lang.Object.class);
-    public static final Type ObjectString = new ObjectType(
-            java.lang.String.class);
+    public static final Type ObjectString = new ObjectType(java.lang.String.class);
 
     public static final Type Node = new NodeType(NodeTest.ANODE);
     public static final Type Root = new NodeType(NodeTest.ROOT);
@@ -64,8 +63,7 @@ public abstract class Type implements Constants {
             return Type.ObjectString;
         } else {
             //
-            java.security.AccessControlContext acc = java.security.AccessController
-                    .getContext();
+            java.security.AccessControlContext acc = java.security.AccessController.getContext();
             acc.checkPermission(new RuntimePermission("getContextClassLoader"));
             return new ObjectType(javaClassName);
         }
@@ -138,10 +136,8 @@ public abstract class Type implements Constants {
      * Translates an object of this type to an object of type <code>type</code>.
      * Expects an object of the former type and pushes an object of the latter.
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            Type type) {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(),
-                type.toString());
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
+        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
         classGen.getParser().reportError(Constants.FATAL, err);
     }
 
@@ -151,12 +147,10 @@ public abstract class Type implements Constants {
      * if not boolean. If type <code>type</code> is boolean then a branchhandle
      * list (to be appended to the false list) is returned.
      */
-    public FlowList translateToDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen, Type type) {
+    public FlowList translateToDesynthesized(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
         FlowList fl = null;
         if (type == Type.Boolean) {
-            fl = translateToDesynthesized(classGen, methodGen,
-                    (BooleanType) type);
+            fl = translateToDesynthesized(classGen, methodGen, (BooleanType) type);
         } else {
             translateTo(classGen, methodGen, type);
         }
@@ -168,10 +162,9 @@ public abstract class Type implements Constants {
      * not push a 0 or a 1 but instead returns branchhandle list to be appended
      * to the false list.
      */
-    public FlowList translateToDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen, BooleanType type) {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(),
-                type.toString());
+    public FlowList translateToDesynthesized(ClassGenerator classGen, MethodGenerator methodGen,
+            BooleanType type) {
+        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
         classGen.getParser().reportError(Constants.FATAL, err);
         return null;
     }
@@ -181,10 +174,8 @@ public abstract class Type implements Constants {
      * <code>clazz</code>. This method is used to translate parameters when
      * external functions are called.
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            Class clazz) {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(),
-                clazz.getClass().toString());
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getClass().toString());
         classGen.getParser().reportError(Constants.FATAL, err);
     }
 
@@ -193,30 +184,24 @@ public abstract class Type implements Constants {
      * object of this type. This method is used to translate return values when
      * external functions are called.
      */
-    public void translateFrom(ClassGenerator classGen,
-            MethodGenerator methodGen, Class clazz) {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, clazz
-                .getClass().toString(), toString());
+    public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, clazz.getClass().toString(), toString());
         classGen.getParser().reportError(Constants.FATAL, err);
     }
 
     /**
      * Translates an object of this type to its boxed representation.
      */
-    public void translateBox(ClassGenerator classGen,
-            MethodGenerator methodGen) {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(),
-                "[" + toString() + "]");
+    public void translateBox(ClassGenerator classGen, MethodGenerator methodGen) {
+        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), "[" + toString() + "]");
         classGen.getParser().reportError(Constants.FATAL, err);
     }
 
     /**
      * Translates an object of this type to its unboxed representation.
      */
-    public void translateUnBox(ClassGenerator classGen,
-            MethodGenerator methodGen) {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, "["
-                + toString() + "]", toString());
+    public void translateUnBox(ClassGenerator classGen, MethodGenerator methodGen) {
+        ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, "[" + toString() + "]", toString());
         classGen.getParser().reportError(Constants.FATAL, err);
     }
 

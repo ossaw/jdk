@@ -102,8 +102,7 @@ public abstract class Reference<T> {
             try {
                 Class.forName(clazz.getName(), true, clazz.getClassLoader());
             } catch (ClassNotFoundException e) {
-                throw (Error) new NoClassDefFoundError(e.getMessage())
-                        .initCause(e);
+                throw (Error) new NoClassDefFoundError(e.getMessage()).initCause(e);
             }
         }
 
@@ -136,12 +135,12 @@ public abstract class Reference<T> {
      * work instead of looping.
      *
      * @param waitForNotify
-     *                      if {@code true} and there was no pending
-     *                      {@link Reference},
-     *                      wait until notified from VM or interrupted; if
-     *                      {@code false},
-     *                      return immediately when there is no pending
-     *                      {@link Reference}.
+     *        if {@code true} and there was no pending
+     *        {@link Reference},
+     *        wait until notified from VM or interrupted; if
+     *        {@code false},
+     *        return immediately when there is no pending
+     *        {@link Reference}.
      * @return {@code true} if there was a {@link Reference} pending and it was
      *         processed, or we waited for notification and either got it or
      *         thread was interrupted before being notified; {@code false}
@@ -237,7 +236,6 @@ public abstract class Reference<T> {
     /**
      * Clears this reference object. Invoking this method will not cause this
      * object to be enqueued.
-     *
      * <p>
      * This method is invoked only by Java code; when the garbage collector
      * clears references it does so directly, without invoking this method.
@@ -264,7 +262,6 @@ public abstract class Reference<T> {
     /**
      * Adds this reference object to the queue with which it is registered, if
      * any.
-     *
      * <p>
      * This method is invoked only by Java code; when the garbage collector
      * enqueues references it does so directly, without invoking this method.

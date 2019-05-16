@@ -29,13 +29,10 @@ import javax.sql.rowset.*;
  * instance from a <code>Struct</code> object, a method for retrieving the SQL
  * type name of the SQL structured type in the database, and methods for
  * retrieving its attribute values.
- *
  * <h3>Thread safety</h3>
- *
  * A SerialStruct is not safe for use by multiple concurrent threads. If a
  * SerialStruct is to be used by more than one thread then access to the
  * SerialStruct should be controlled by appropriate synchronization.
- *
  */
 public class SerialStruct implements Struct, Serializable, Cloneable {
 
@@ -65,19 +62,18 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * attributes that are SQL structured types.
      *
      * @param in
-     *            an instance of {@code Struct}
+     *        an instance of {@code Struct}
      * @param map
-     *            a <code>java.util.Map</code> object in which each entry
-     *            consists of 1) a <code>String</code> object giving the fully
-     *            qualified name of a UDT and 2) the <code>Class</code> object
-     *            for the <code>SQLData</code> implementation that defines how
-     *            the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @throws SerialException
-     *                         if an error occurs
+     *         if an error occurs
      * @see java.sql.Struct
      */
-    public SerialStruct(Struct in, Map<String, Class<?>> map)
-            throws SerialException {
+    public SerialStruct(Struct in, Map<String, Class<?>> map) throws SerialException {
 
         try {
 
@@ -107,20 +103,19 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * defines the class to which the SQL type will be mapped.
      *
      * @param in
-     *            an instance of the <code>SQLData</code> class that defines the
-     *            mapping of the SQL structured type to one or more objects in
-     *            the Java programming language
+     *        an instance of the <code>SQLData</code> class that defines the
+     *        mapping of the SQL structured type to one or more objects in
+     *        the Java programming language
      * @param map
-     *            a <code>java.util.Map</code> object in which each entry
-     *            consists of 1) a <code>String</code> object giving the fully
-     *            qualified name of a UDT and 2) the <code>Class</code> object
-     *            for the <code>SQLData</code> implementation that defines how
-     *            the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @throws SerialException
-     *                         if an error occurs
+     *         if an error occurs
      */
-    public SerialStruct(SQLData in, Map<String, Class<?>> map)
-            throws SerialException {
+    public SerialStruct(SQLData in, Map<String, Class<?>> map) throws SerialException {
 
         try {
 
@@ -144,7 +139,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      *         the SQL structured type that this <code>SerialStruct</code>
      *         object represents
      * @throws SerialException
-     *                         if an error occurs
+     *         if an error occurs
      */
     public String getSQLTypeName() throws SerialException {
         return SQLTypeName;
@@ -159,7 +154,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      *         an attribute of the SQL structured type that this
      *         <code>SerialStruct</code> object represents
      * @throws SerialException
-     *                         if an error occurs
+     *         if an error occurs
      */
     public Object[] getAttributes() throws SerialException {
         Object[] val = this.attribs;
@@ -172,19 +167,18 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * values, using the given type map for custom mapping if appropriate.
      *
      * @param map
-     *            a <code>java.util.Map</code> object in which each entry
-     *            consists of 1) a <code>String</code> object giving the fully
-     *            qualified name of a UDT and 2) the <code>Class</code> object
-     *            for the <code>SQLData</code> implementation that defines how
-     *            the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @return an array of <code>Object</code> values, with each element being
      *         an attribute of the SQL structured type that this
      *         <code>SerialStruct</code> object represents
      * @throws SerialException
-     *                         if an error occurs
+     *         if an error occurs
      */
-    public Object[] getAttributes(Map<String, Class<?>> map)
-            throws SerialException {
+    public Object[] getAttributes(Map<String, Class<?>> map) throws SerialException {
         Object[] val = this.attribs;
         return (val == null) ? null : Arrays.copyOf(val, val.length);
     }
@@ -201,13 +195,13 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * programmer.
      *
      * @param map
-     *            a <code>java.util.Map</code> object in which each entry
-     *            consists of 1) a <code>String</code> object giving the fully
-     *            qualified name of a UDT and 2) the <code>Class</code> object
-     *            for the <code>SQLData</code> implementation that defines how
-     *            the UDT is to be mapped
+     *        a <code>java.util.Map</code> object in which each entry
+     *        consists of 1) a <code>String</code> object giving the fully
+     *        qualified name of a UDT and 2) the <code>Class</code> object
+     *        for the <code>SQLData</code> implementation that defines how
+     *        the UDT is to be mapped
      * @throws SerialException
-     *                         if an error occurs
+     *         if an error occurs
      */
     private void mapToSerial(Map<String, Class<?>> map) throws SerialException {
 
@@ -225,8 +219,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
                 } else if (attribs[i] instanceof Ref) {
                     attribs[i] = new SerialRef((Ref) attribs[i]);
                 } else if (attribs[i] instanceof java.sql.Array) {
-                    attribs[i] = new SerialArray((java.sql.Array) attribs[i],
-                            map);
+                    attribs[i] = new SerialArray((java.sql.Array) attribs[i], map);
                 }
             }
 
@@ -243,12 +236,10 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * object's attributes
      *
      * @param obj
-     *            The object to compare this {@code SerialStruct} against
-     *
+     *        The object to compare this {@code SerialStruct} against
      * @return {@code true} if the given object represents a
      *         {@code SerialStruct} equivalent to this SerialStruct,
      *         {@code false} otherwise
-     *
      */
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -256,8 +247,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
         }
         if (obj instanceof SerialStruct) {
             SerialStruct ss = (SerialStruct) obj;
-            return SQLTypeName.equals(ss.SQLTypeName) && Arrays.equals(attribs,
-                    ss.attribs);
+            return SQLTypeName.equals(ss.SQLTypeName) && Arrays.equals(attribs, ss.attribs);
         }
         return false;
     }
@@ -270,8 +260,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * @return a hash code value for this object.
      */
     public int hashCode() {
-        return ((31 + Arrays.hashCode(attribs)) * 31) * 31 + SQLTypeName
-                .hashCode();
+        return ((31 + Arrays.hashCode(attribs)) * 31) * 31 + SQLTypeName.hashCode();
     }
 
     /**
@@ -298,8 +287,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * readObject is called to restore the state of the {@code SerialStruct}
      * from a stream.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
 
         ObjectInputStream.GetField fields = s.readFields();
         Object[] tmp = (Object[]) fields.get("attribs", null);
@@ -311,8 +299,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
      * writeObject is called to save the state of the {@code SerialStruct} to a
      * stream.
      */
-    private void writeObject(ObjectOutputStream s) throws IOException,
-            ClassNotFoundException {
+    private void writeObject(ObjectOutputStream s) throws IOException, ClassNotFoundException {
 
         ObjectOutputStream.PutField fields = s.putFields();
         fields.put("attribs", attribs);

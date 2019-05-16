@@ -30,7 +30,7 @@ public class CertificateNotYetValidException extends CertificateException {
      * exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public CertificateNotYetValidException(String message) {
         super(message);

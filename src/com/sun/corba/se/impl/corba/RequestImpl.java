@@ -75,15 +75,13 @@ public class RequestImpl extends Request {
 
     // REVISIT - used to be protected. Now public so it can be
     // accessed from xgiop.
-    public RequestImpl(ORB orb, org.omg.CORBA.Object targetObject, Context ctx,
-            String operationName, NVList argumentList,
-            NamedValue resultContainer, ExceptionList exceptionList,
+    public RequestImpl(ORB orb, org.omg.CORBA.Object targetObject, Context ctx, String operationName,
+            NVList argumentList, NamedValue resultContainer, ExceptionList exceptionList,
             ContextList ctxList) {
 
         // initialize the orb
         _orb = orb;
-        _wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.OA_INVOCATION);
+        _wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.OA_INVOCATION);
 
         // initialize target, context and operation name
         _target = targetObject;
@@ -217,15 +215,13 @@ public class RequestImpl extends Request {
         return gotResponse;
     }
 
-    public synchronized void get_response()
-            throws org.omg.CORBA.WrongTransaction {
+    public synchronized void get_response() throws org.omg.CORBA.WrongTransaction {
         while (gotResponse == false) {
             // release the lock. wait to be notified by the thread that is
             // doing the asynchronous invocation.
             try {
                 wait();
-            } catch (InterruptedException e) {
-            }
+            } catch (InterruptedException e) {}
         }
     }
 
@@ -237,8 +233,7 @@ public class RequestImpl extends Request {
      * request invocation is done.
      */
     protected void doInvocation() {
-        org.omg.CORBA.portable.Delegate delegate = StubAdapter.getDelegate(
-                _target);
+        org.omg.CORBA.portable.Delegate delegate = StubAdapter.getDelegate(_target);
 
         // Initiate Client Portable Interceptors. Inform the PIHandler that
         // this is a DII request so that it knows to ignore the second

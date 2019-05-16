@@ -34,7 +34,6 @@ import sun.security.util.SecurityConstants;
  * containing a list of one or more comma-separated keywords. The possible
  * keywords are "read", "write", "execute", "delete", and "readlink". Their
  * meaning is defined as follows:
- *
  * <DL>
  * <DT>read
  * <DD>read permission
@@ -61,7 +60,6 @@ import sun.security.util.SecurityConstants;
  * dangerous. This grants permission to write to the entire file system. One
  * thing this effectively allows is replacement of the system binary, including
  * the JVM runtime environment.
- *
  * <p>
  * Please note: Code can always read a file from the same directory it's in (or
  * a subdirectory of that directory); it does not need explicit permission to do
@@ -70,12 +68,9 @@ import sun.security.util.SecurityConstants;
  * @see java.security.Permission
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
- *
- *
  * @author Marianne Mueller
  * @author Roland Schemers
  * @since 1.2
- *
  * @serial exclude
  */
 
@@ -153,8 +148,7 @@ public final class FilePermission extends Permission implements Serializable {
      * called during de-serialization.
      *
      * @param mask
-     *             the actions mask to use.
-     *
+     *        the actions mask to use.
      */
     private void init(int mask) {
         if ((mask & ALL) != mask)
@@ -200,13 +194,11 @@ public final class FilePermission extends Permission implements Serializable {
         int len = cpath.length();
         char last = ((len > 0) ? cpath.charAt(len - 1) : 0);
 
-        if (last == RECURSIVE_CHAR && cpath.charAt(len
-                - 2) == File.separatorChar) {
+        if (last == RECURSIVE_CHAR && cpath.charAt(len - 2) == File.separatorChar) {
             directory = true;
             recursive = true;
             cpath = cpath.substring(0, --len);
-        } else if (last == WILD_CHAR && cpath.charAt(len
-                - 2) == File.separatorChar) {
+        } else if (last == WILD_CHAR && cpath.charAt(len - 2) == File.separatorChar) {
             directory = true;
             // recursive = false;
             cpath = cpath.substring(0, --len);
@@ -226,33 +218,29 @@ public final class FilePermission extends Permission implements Serializable {
      * contains a comma-separated list of the desired actions granted on the
      * file or directory. Possible actions are "read", "write", "execute",
      * "delete", and "readlink".
-     *
      * <p>
      * A pathname that ends in "/*" (where "/" is the file separator character,
      * <code>File.separatorChar</code>) indicates all the files and directories
      * contained in that directory. A pathname that ends with "/-" indicates
      * (recursively) all files and subdirectories contained in that directory.
      * The special pathname "&lt;&lt;ALL FILES&gt;&gt;" matches any file.
-     *
      * <p>
      * A pathname consisting of a single "*" indicates all the files in the
      * current directory, while a pathname consisting of a single "-" indicates
      * all the files in the current directory and (recursively) all files and
      * subdirectories contained in the current directory.
-     *
      * <p>
      * A pathname containing an empty string represents an empty path.
      *
      * @param path
-     *                the pathname of the file/directory.
+     *        the pathname of the file/directory.
      * @param actions
-     *                the action string.
-     *
+     *        the action string.
      * @throws IllegalArgumentException
-     *                                  If actions is <code>null</code>, empty
-     *                                  or contains an action
-     *                                  other than the specified possible
-     *                                  actions.
+     *         If actions is <code>null</code>, empty
+     *         or contains an action
+     *         other than the specified possible
+     *         actions.
      */
     public FilePermission(String path, String actions) {
         super(path);
@@ -266,9 +254,9 @@ public final class FilePermission extends Permission implements Serializable {
      * <code>implies</code> method.
      *
      * @param path
-     *             the pathname of the file/directory.
+     *        the pathname of the file/directory.
      * @param mask
-     *             the action mask to use.
+     *        the action mask to use.
      */
 
     // package private for use by the FilePermissionCollection add method
@@ -290,8 +278,7 @@ public final class FilePermission extends Permission implements Serializable {
      * </ul>
      *
      * @param p
-     *          the permission to check against.
-     *
+     *        the permission to check against.
      * @return <code>true</code> if the specified permission is not
      *         <code>null</code> and is implied by this object,
      *         <code>false</code> otherwise.
@@ -305,8 +292,7 @@ public final class FilePermission extends Permission implements Serializable {
         // we get the effective mask. i.e., the "and" of this and that.
         // They must be equal to that.mask for implies to return true.
 
-        return ((this.mask & that.mask) == that.mask) && impliesIgnoreMask(
-                that);
+        return ((this.mask & that.mask) == that.mask) && impliesIgnoreMask(that);
     }
 
     /**
@@ -315,7 +301,7 @@ public final class FilePermission extends Permission implements Serializable {
      * FilePermission's path also implies that FilePermission's path.
      *
      * @param that
-     *             the FilePermission to check against.
+     *        the FilePermission to check against.
      * @return the effective mask
      */
     boolean impliesIgnoreMask(FilePermission that) {
@@ -324,11 +310,9 @@ public final class FilePermission extends Permission implements Serializable {
                 // make sure that.path is longer then path so
                 // something like /foo/- does not imply /foo
                 if (that.directory) {
-                    return (that.cpath.length() >= this.cpath.length())
-                            && that.cpath.startsWith(this.cpath);
+                    return (that.cpath.length() >= this.cpath.length()) && that.cpath.startsWith(this.cpath);
                 } else {
-                    return ((that.cpath.length() > this.cpath.length())
-                            && that.cpath.startsWith(this.cpath));
+                    return ((that.cpath.length() > this.cpath.length()) && that.cpath.startsWith(this.cpath));
                 }
             } else {
                 if (that.directory) {
@@ -347,8 +331,8 @@ public final class FilePermission extends Permission implements Serializable {
                     else {
                         // this.cpath.equals(that.cpath.substring(0, last+1));
                         // Use regionMatches to avoid creating new string
-                        return (this.cpath.length() == (last + 1)) && this.cpath
-                                .regionMatches(0, that.cpath, 0, last + 1);
+                        return (this.cpath.length() == (last + 1)) && this.cpath.regionMatches(0, that.cpath,
+                                0, last + 1);
                     }
                 }
             }
@@ -366,7 +350,7 @@ public final class FilePermission extends Permission implements Serializable {
      * a FilePermission, and has the same pathname and actions as this object.
      *
      * @param obj
-     *            the object we are testing for equality with this object.
+     *        the object we are testing for equality with this object.
      * @return <code>true</code> if obj is a FilePermission, and has the same
      *         pathname and actions as this FilePermission object,
      *         <code>false</code> otherwise.
@@ -380,8 +364,7 @@ public final class FilePermission extends Permission implements Serializable {
 
         FilePermission that = (FilePermission) obj;
 
-        return (this.mask == that.mask) && this.cpath.equals(that.cpath)
-                && (this.directory == that.directory)
+        return (this.mask == that.mask) && this.cpath.equals(that.cpath) && (this.directory == that.directory)
                 && (this.recursive == that.recursive);
     }
 
@@ -398,7 +381,7 @@ public final class FilePermission extends Permission implements Serializable {
      * Converts an actions String to an actions mask.
      *
      * @param actions
-     *                the action string.
+     *        the action string.
      * @return the actions mask.
      */
     private static int getMask(String actions) {
@@ -433,57 +416,46 @@ public final class FilePermission extends Permission implements Serializable {
             char c;
 
             // skip whitespace
-            while ((i != -1) && ((c = a[i]) == ' ' || c == '\r' || c == '\n'
-                    || c == '\f' || c == '\t'))
+            while ((i != -1) && ((c = a[i]) == ' ' || c == '\r' || c == '\n' || c == '\f' || c == '\t'))
                 i--;
 
             // check for the known strings
             int matchlen;
 
-            if (i >= 3 && (a[i - 3] == 'r' || a[i - 3] == 'R') && (a[i
-                    - 2] == 'e' || a[i - 2] == 'E') && (a[i - 1] == 'a' || a[i
-                            - 1] == 'A') && (a[i] == 'd' || a[i] == 'D')) {
+            if (i >= 3 && (a[i - 3] == 'r' || a[i - 3] == 'R') && (a[i - 2] == 'e' || a[i - 2] == 'E') && (a[i
+                    - 1] == 'a' || a[i - 1] == 'A') && (a[i] == 'd' || a[i] == 'D')) {
                 matchlen = 4;
                 mask |= READ;
 
-            } else if (i >= 4 && (a[i - 4] == 'w' || a[i - 4] == 'W') && (a[i
-                    - 3] == 'r' || a[i - 3] == 'R') && (a[i - 2] == 'i' || a[i
-                            - 2] == 'I') && (a[i - 1] == 't' || a[i - 1] == 'T')
+            } else if (i >= 4 && (a[i - 4] == 'w' || a[i - 4] == 'W') && (a[i - 3] == 'r' || a[i - 3] == 'R')
+                    && (a[i - 2] == 'i' || a[i - 2] == 'I') && (a[i - 1] == 't' || a[i - 1] == 'T')
                     && (a[i] == 'e' || a[i] == 'E')) {
                 matchlen = 5;
                 mask |= WRITE;
 
-            } else if (i >= 6 && (a[i - 6] == 'e' || a[i - 6] == 'E') && (a[i
-                    - 5] == 'x' || a[i - 5] == 'X') && (a[i - 4] == 'e' || a[i
-                            - 4] == 'E') && (a[i - 3] == 'c' || a[i - 3] == 'C')
-                    && (a[i - 2] == 'u' || a[i - 2] == 'U') && (a[i - 1] == 't'
-                            || a[i - 1] == 'T') && (a[i] == 'e'
-                                    || a[i] == 'E')) {
+            } else if (i >= 6 && (a[i - 6] == 'e' || a[i - 6] == 'E') && (a[i - 5] == 'x' || a[i - 5] == 'X')
+                    && (a[i - 4] == 'e' || a[i - 4] == 'E') && (a[i - 3] == 'c' || a[i - 3] == 'C') && (a[i
+                            - 2] == 'u' || a[i - 2] == 'U') && (a[i - 1] == 't' || a[i - 1] == 'T')
+                    && (a[i] == 'e' || a[i] == 'E')) {
                 matchlen = 7;
                 mask |= EXECUTE;
 
-            } else if (i >= 5 && (a[i - 5] == 'd' || a[i - 5] == 'D') && (a[i
-                    - 4] == 'e' || a[i - 4] == 'E') && (a[i - 3] == 'l' || a[i
-                            - 3] == 'L') && (a[i - 2] == 'e' || a[i - 2] == 'E')
-                    && (a[i - 1] == 't' || a[i - 1] == 'T') && (a[i] == 'e'
-                            || a[i] == 'E')) {
+            } else if (i >= 5 && (a[i - 5] == 'd' || a[i - 5] == 'D') && (a[i - 4] == 'e' || a[i - 4] == 'E')
+                    && (a[i - 3] == 'l' || a[i - 3] == 'L') && (a[i - 2] == 'e' || a[i - 2] == 'E') && (a[i
+                            - 1] == 't' || a[i - 1] == 'T') && (a[i] == 'e' || a[i] == 'E')) {
                 matchlen = 6;
                 mask |= DELETE;
 
-            } else if (i >= 7 && (a[i - 7] == 'r' || a[i - 7] == 'R') && (a[i
-                    - 6] == 'e' || a[i - 6] == 'E') && (a[i - 5] == 'a' || a[i
-                            - 5] == 'A') && (a[i - 4] == 'd' || a[i - 4] == 'D')
-                    && (a[i - 3] == 'l' || a[i - 3] == 'L') && (a[i - 2] == 'i'
-                            || a[i - 2] == 'I') && (a[i - 1] == 'n' || a[i
-                                    - 1] == 'N') && (a[i] == 'k'
-                                            || a[i] == 'K')) {
+            } else if (i >= 7 && (a[i - 7] == 'r' || a[i - 7] == 'R') && (a[i - 6] == 'e' || a[i - 6] == 'E')
+                    && (a[i - 5] == 'a' || a[i - 5] == 'A') && (a[i - 4] == 'd' || a[i - 4] == 'D') && (a[i
+                            - 3] == 'l' || a[i - 3] == 'L') && (a[i - 2] == 'i' || a[i - 2] == 'I') && (a[i
+                                    - 1] == 'n' || a[i - 1] == 'N') && (a[i] == 'k' || a[i] == 'K')) {
                 matchlen = 8;
                 mask |= READLINK;
 
             } else {
                 // parse error
-                throw new IllegalArgumentException("invalid permission: "
-                        + actions);
+                throw new IllegalArgumentException("invalid permission: " + actions);
             }
 
             // make sure we didn't just match the tail of a word
@@ -501,8 +473,7 @@ public final class FilePermission extends Permission implements Serializable {
                     case '\t':
                         break;
                     default:
-                        throw new IllegalArgumentException(
-                                "invalid permission: " + actions);
+                        throw new IllegalArgumentException("invalid permission: " + actions);
                 }
                 i--;
             }
@@ -598,14 +569,12 @@ public final class FilePermission extends Permission implements Serializable {
      * inserted into the collection in any order, but that also enables the
      * PermissionCollection <code>implies</code> method to be implemented in an
      * efficient (and consistent) manner.
-     *
      * <p>
      * For example, if you have two FilePermissions:
      * <OL>
      * <LI><code>"/tmp/-", "read"</code>
      * <LI><code>"/tmp/scratch/foo", "write"</code>
      * </OL>
-     *
      * <p>
      * and you are calling the <code>implies</code> method with the
      * FilePermission:
@@ -645,8 +614,7 @@ public final class FilePermission extends Permission implements Serializable {
      * readObject is called to restore the state of the FilePermission from a
      * stream.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         // Read in the actions, then restore everything else by calling init.
         s.defaultReadObject();
         init(getMask(actions));
@@ -670,17 +638,12 @@ public final class FilePermission extends Permission implements Serializable {
  * @see java.security.Permission
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
- *
- *
  * @author Marianne Mueller
  * @author Roland Schemers
- *
  * @serial include
- *
  */
 
-final class FilePermissionCollection extends PermissionCollection implements
-        Serializable {
+final class FilePermissionCollection extends PermissionCollection implements Serializable {
     // Not serialized; see serialization section at end of class
     private transient List<Permission> perms;
 
@@ -696,24 +659,20 @@ final class FilePermissionCollection extends PermissionCollection implements
      * is permission.path.
      *
      * @param permission
-     *                   the Permission object to add.
-     *
+     *        the Permission object to add.
      * @exception IllegalArgumentException
-     *                                     - if the permission is not a
-     *                                     FilePermission
-     *
+     *            - if the permission is not a
+     *            FilePermission
      * @exception SecurityException
-     *                                     - if this FilePermissionCollection
-     *                                     object has been marked
-     *                                     readonly
+     *            - if this FilePermissionCollection
+     *            object has been marked
+     *            readonly
      */
     public void add(Permission permission) {
         if (!(permission instanceof FilePermission))
-            throw new IllegalArgumentException("invalid permission: "
-                    + permission);
+            throw new IllegalArgumentException("invalid permission: " + permission);
         if (isReadOnly())
-            throw new SecurityException(
-                    "attempt to add a Permission to a readonly PermissionCollection");
+            throw new SecurityException("attempt to add a Permission to a readonly PermissionCollection");
 
         synchronized (this) {
             perms.add(permission);
@@ -725,8 +684,7 @@ final class FilePermissionCollection extends PermissionCollection implements
      * expressed in "permission".
      *
      * @param permission
-     *                   the Permission object to compare
-     *
+     *        the Permission object to compare
      * @return true if "permission" is a proper subset of a permission in the
      *         set, false if not.
      */
@@ -778,8 +736,8 @@ final class FilePermissionCollection extends PermissionCollection implements
      * @serialField permissions
      *              java.util.Vector A list of FilePermission objects.
      */
-    private static final ObjectStreamField[] serialPersistentFields = {
-            new ObjectStreamField("permissions", Vector.class), };
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("permissions",
+            Vector.class), };
 
     /**
      * @serialData "permissions" field (a Vector containing the
@@ -806,8 +764,7 @@ final class FilePermissionCollection extends PermissionCollection implements
     /*
      * Reads in a Vector of FilePermissions and saves them in the perms field.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // Don't call defaultReadObject()
 
         // Read in serialized fields
@@ -815,8 +772,7 @@ final class FilePermissionCollection extends PermissionCollection implements
 
         // Get the one we want
         @SuppressWarnings("unchecked")
-        Vector<Permission> permissions = (Vector<Permission>) gfields.get(
-                "permissions", null);
+        Vector<Permission> permissions = (Vector<Permission>) gfields.get("permissions", null);
         perms = new ArrayList<>(permissions.size());
         perms.addAll(permissions);
     }

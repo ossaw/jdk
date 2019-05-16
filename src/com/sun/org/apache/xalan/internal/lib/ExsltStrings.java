@@ -35,7 +35,6 @@ import org.w3c.dom.Text;
 
 /**
  * This class contains EXSLT strings extension functions.
- *
  * It is accessed by specifying a namespace URI as follows:
  * 
  * <pre>
@@ -46,7 +45,6 @@ import org.w3c.dom.Text;
  * Implementer page.
  *
  * @see <a href="http://www.exslt.org/">EXSLT</a>
- * 
  * @xsl.usage general
  */
 public class ExsltStrings extends ExsltBase {
@@ -78,26 +76,23 @@ public class ExsltStrings extends ExsltBase {
      * truncated to be the same length as the padding string and returned.
      *
      * @param targetStr
-     *                   The target string
+     *        The target string
      * @param paddingStr
-     *                   The padding string
+     *        The padding string
      * @param type
-     *                   The type of alignment
-     *
+     *        The type of alignment
      * @return The string after alignment
      */
-    public static String align(String targetStr, String paddingStr,
-            String type) {
+    public static String align(String targetStr, String paddingStr, String type) {
         if (targetStr.length() >= paddingStr.length())
             return targetStr.substring(0, paddingStr.length());
 
         if (type.equals("right")) {
-            return paddingStr.substring(0, paddingStr.length() - targetStr
-                    .length()) + targetStr;
+            return paddingStr.substring(0, paddingStr.length() - targetStr.length()) + targetStr;
         } else if (type.equals("center")) {
             int startIndex = (paddingStr.length() - targetStr.length()) / 2;
-            return paddingStr.substring(0, startIndex) + targetStr + paddingStr
-                    .substring(startIndex + targetStr.length());
+            return paddingStr.substring(0, startIndex) + targetStr + paddingStr.substring(startIndex
+                    + targetStr.length());
         }
         // Default is left
         else {
@@ -118,7 +113,7 @@ public class ExsltStrings extends ExsltBase {
      * empty, it returns an empty string.
      *
      * @param nl
-     *           A node set
+     *        A node set
      * @return The concatenation of the string values of the nodes in that node
      *         set
      */
@@ -147,10 +142,9 @@ public class ExsltStrings extends ExsltBase {
      * string.
      *
      * @param length
-     *                The length of the padding string to be created
+     *        The length of the padding string to be created
      * @param pattern
-     *                The string to be used as pattern
-     *
+     *        The string to be used as pattern
      * @return A padding string of the given length
      */
     public static String padding(double length, String pattern) {
@@ -200,10 +194,9 @@ public class ExsltStrings extends ExsltBase {
      * (i.e. a space).
      *
      * @param str
-     *                The string to be split
+     *        The string to be split
      * @param pattern
-     *                The pattern
-     *
+     *        The pattern
      * @return A node set of split tokens
      */
     public static NodeList split(String str, String pattern) {
@@ -277,10 +270,9 @@ public class ExsltStrings extends ExsltBase {
      * one wraps the Text nodes inside the token Element nodes.
      *
      * @param toTokenize
-     *                   The string to be tokenized
+     *        The string to be tokenized
      * @param delims
-     *                   The delimiter string
-     *
+     *        The delimiter string
      * @return A node set of split token elements
      */
     public static NodeList tokenize(String toTokenize, String delims) {
@@ -288,15 +280,13 @@ public class ExsltStrings extends ExsltBase {
         NodeSet resultSet = new NodeSet();
 
         if (delims != null && delims.length() > 0) {
-            StringTokenizer lTokenizer = new StringTokenizer(toTokenize,
-                    delims);
+            StringTokenizer lTokenizer = new StringTokenizer(toTokenize, delims);
 
             Document doc = getDocument();
             synchronized (doc) {
                 while (lTokenizer.hasMoreTokens()) {
                     Element element = doc.createElement("token");
-                    element.appendChild(doc.createTextNode(lTokenizer
-                            .nextToken()));
+                    element.appendChild(doc.createTextNode(lTokenizer.nextToken()));
                     resultSet.addNode(element);
                 }
             }
@@ -309,8 +299,7 @@ public class ExsltStrings extends ExsltBase {
             synchronized (doc) {
                 for (int i = 0; i < toTokenize.length(); i++) {
                     Element element = doc.createElement("token");
-                    element.appendChild(doc.createTextNode(toTokenize.substring(
-                            i, i + 1)));
+                    element.appendChild(doc.createTextNode(toTokenize.substring(i, i + 1)));
                     resultSet.addNode(element);
                 }
             }
@@ -332,15 +321,13 @@ public class ExsltStrings extends ExsltBase {
     private static Document getDocument() {
         try {
             if (System.getSecurityManager() == null) {
-                return DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                        .newDocument();
+                return DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
             } else {
-                return DocumentBuilderFactory.newInstance(JDK_DEFAULT_DOM, null)
-                        .newDocumentBuilder().newDocument();
+                return DocumentBuilderFactory.newInstance(JDK_DEFAULT_DOM, null).newDocumentBuilder()
+                        .newDocument();
             }
         } catch (ParserConfigurationException pce) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    pce);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(pce);
         }
     }
 }

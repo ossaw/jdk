@@ -30,23 +30,18 @@ import org.w3c.dom.Node;
  * "list of nodes" API and is generally considered by the DOM WG to have be a
  * mistake... but I'm told that some of the XPath/XSLT folks say they must have
  * this solution.
- *
  * Please note that this is not necessarily equivlaent to a DOM NodeList
  * operating over the same document. In particular:
  * <ul>
- *
  * <li>If there are several Text nodes in logical succession (ie, across
  * CDATASection and EntityReference boundaries), we will return only the first;
  * the caller is responsible for stepping through them. (%REVIEW% Provide a
  * convenience routine here to assist, pending proposed DOM Level 3
  * getAdjacentText() operation?)</li>
- *
  * <li>Since the whole XPath/XSLT architecture assumes that the source document
  * is not altered while we're working with it, we do not promise to implement
  * the DOM NodeList's "live view" response to document mutation.</li>
- *
  * </ul>
- *
  * <p>
  * State: In progress!!
  * </p>
@@ -62,16 +57,14 @@ public class DTMChildIterNodeList extends DTMNodeListBase {
     /**
      * Public constructor: Create a NodeList to support
      * DTMNodeProxy.getChildren().
-     *
      * Unfortunately AxisIterators and DTMIterators don't share an API, so I
      * can't use the existing Axis.CHILD iterator. Rather than create Yet
      * Another Class, let's set up a special case of this one.
      *
      * @param parentDTM
-     *                     The DTM containing this node
+     *        The DTM containing this node
      * @param parentHandle
-     *                     DTM node-handle integer
-     *
+     *        DTM node-handle integer
      */
     public DTMChildIterNodeList(DTM parentDTM, int parentHandle) {
         m_parentDTM = parentDTM;
@@ -87,7 +80,7 @@ public class DTMChildIterNodeList extends DTMNodeListBase {
      * list, this returns <code>null</code>.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The node at the <code>index</code>th position in the
      *         <code>NodeList</code>, or <code>null</code> if that is not a
      *         valid index.
@@ -109,8 +102,7 @@ public class DTMChildIterNodeList extends DTMNodeListBase {
      */
     public int getLength() {
         int count = 0;
-        for (int handle = m_firstChild; handle != DTM.NULL; handle = m_parentDTM
-                .getNextSibling(handle)) {
+        for (int handle = m_firstChild; handle != DTM.NULL; handle = m_parentDTM.getNextSibling(handle)) {
             ++count;
         }
         return count;

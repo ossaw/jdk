@@ -61,7 +61,6 @@ import java.util.LinkedHashSet;
  * @see JInternalFrame
  * @see JInternalFrame.JDesktopIcon
  * @see DesktopManager
- *
  * @author David Kloba
  */
 public class JDesktopPane extends JLayeredPane implements Accessible {
@@ -111,8 +110,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
                 JInternalFrame jifArray[] = getAllFrames();
                 Component comp = null;
                 for (JInternalFrame jif : jifArray) {
-                    comp = jif.getFocusTraversalPolicy().getDefaultComponent(
-                            jif);
+                    comp = jif.getFocusTraversalPolicy().getDefaultComponent(jif);
                     if (comp != null) {
                         break;
                     }
@@ -136,7 +134,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * Sets the L&amp;F object that renders this component.
      *
      * @param ui
-     *           the DesktopPaneUI L&amp;F object
+     *        the DesktopPaneUI L&amp;F object
      * @see UIDefaults#getUI
      * @beaninfo bound: true hidden: true attribute: visualUpdate true
      *           description: The UI object that implements the Component's
@@ -151,11 +149,9 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * change to one mode or another for performance or aesthetic reasons.
      *
      * @param dragMode
-     *                 the style of drag to use for items in the Desktop
-     *
+     *        the style of drag to use for items in the Desktop
      * @see #LIVE_DRAG_MODE
      * @see #OUTLINE_DRAG_MODE
-     *
      * @beaninfo bound: true description: Dragging style for internal frame
      *           children. enum: LIVE_DRAG_MODE JDesktopPane.LIVE_DRAG_MODE
      *           OUTLINE_DRAG_MODE JDesktopPane.OUTLINE_DRAG_MODE
@@ -193,8 +189,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * actions. This may be overridden by {@code LookAndFeel}.
      *
      * @param d
-     *          the <code>DesktopManager</code> to use
-     *
+     *        the <code>DesktopManager</code> to use
      * @beaninfo bound: true description: Desktop manager to handle the internal
      *           frames in the desktop pane.
      */
@@ -245,8 +240,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
             if (next instanceof JInternalFrame) {
                 results.add((JInternalFrame) next);
             } else if (next instanceof JInternalFrame.JDesktopIcon) {
-                JInternalFrame tmp = ((JInternalFrame.JDesktopIcon) next)
-                        .getInternalFrame();
+                JInternalFrame tmp = ((JInternalFrame.JDesktopIcon) next).getInternalFrame();
                 if (tmp != null) {
                     results.add(tmp);
                 }
@@ -279,9 +273,8 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * JInternalFrame.setSelected(true) to activate the frame.
      * 
      * @see JInternalFrame#setSelected(boolean)
-     *
      * @param f
-     *          the internal frame that's currently selected
+     *        the internal frame that's currently selected
      * @since 1.3
      */
 
@@ -295,7 +288,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * frames.
      *
      * @param layer
-     *              an int specifying the desktop layer
+     *        an int specifying the desktop layer
      * @return an array of <code>JInternalFrame</code> objects
      * @see JLayeredPane
      */
@@ -316,12 +309,10 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
         for (int i = 0; i < getComponentCount(); i++) {
             c = getComponent(i);
             if (c instanceof JInternalFrame) {
-                set.add(new ComponentPosition((JInternalFrame) c, getLayer(c),
-                        i));
+                set.add(new ComponentPosition((JInternalFrame) c, getLayer(c), i));
             } else if (c instanceof JInternalFrame.JDesktopIcon) {
                 c = ((JInternalFrame.JDesktopIcon) c).getInternalFrame();
-                set.add(new ComponentPosition((JInternalFrame) c, getLayer(c),
-                        i));
+                set.add(new ComponentPosition((JInternalFrame) c, getLayer(c), i));
             }
         }
         List<JInternalFrame> frames = new ArrayList<JInternalFrame>(set.size());
@@ -331,8 +322,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
         return frames;
     }
 
-    private static class ComponentPosition implements
-            Comparable<ComponentPosition> {
+    private static class ComponentPosition implements Comparable<ComponentPosition> {
         private final JInternalFrame component;
         private final int layer;
         private final int zOrder;
@@ -414,9 +404,9 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * Selects the next <code>JInternalFrame</code> in this desktop pane.
      *
      * @param forward
-     *                a boolean indicating which direction to select in;
-     *                <code>true</code> for forward, <code>false</code> for
-     *                backward
+     *        a boolean indicating which direction to select in;
+     *        <code>true</code> for forward, <code>false</code> for
+     *        backward
      * @return the JInternalFrame that was selected or <code>null</code> if
      *         nothing was selected
      * @since 1.6
@@ -435,8 +425,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
         }
         try {
             frameToSelect.setSelected(true);
-        } catch (PropertyVetoException pve) {
-        }
+        } catch (PropertyVetoException pve) {}
         setComponentOrderCheckingEnabled(true);
         return frameToSelect;
     }
@@ -459,8 +448,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
     protected void addImpl(Component comp, Object constraints, int index) {
         super.addImpl(comp, constraints, index);
         if (componentOrderCheckingEnabled) {
-            if (comp instanceof JInternalFrame
-                    || comp instanceof JInternalFrame.JDesktopIcon) {
+            if (comp instanceof JInternalFrame || comp instanceof JInternalFrame.JDesktopIcon) {
                 componentOrderChanged = true;
             }
         }
@@ -474,8 +462,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
     public void remove(int index) {
         if (componentOrderCheckingEnabled) {
             Component comp = getComponent(index);
-            if (comp instanceof JInternalFrame
-                    || comp instanceof JInternalFrame.JDesktopIcon) {
+            if (comp instanceof JInternalFrame || comp instanceof JInternalFrame.JDesktopIcon) {
                 componentOrderChanged = true;
             }
         }
@@ -492,8 +479,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
             int count = getComponentCount();
             for (int i = 0; i < count; i++) {
                 Component comp = getComponent(i);
-                if (comp instanceof JInternalFrame
-                        || comp instanceof JInternalFrame.JDesktopIcon) {
+                if (comp instanceof JInternalFrame || comp instanceof JInternalFrame.JDesktopIcon) {
                     componentOrderChanged = true;
                     break;
                 }
@@ -510,8 +496,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
     public void setComponentZOrder(Component comp, int index) {
         super.setComponentZOrder(comp, index);
         if (componentOrderCheckingEnabled) {
-            if (comp instanceof JInternalFrame
-                    || comp instanceof JInternalFrame.JDesktopIcon) {
+            if (comp instanceof JInternalFrame || comp instanceof JInternalFrame.JDesktopIcon) {
                 componentOrderChanged = true;
             }
         }
@@ -553,8 +538,7 @@ public class JDesktopPane extends JLayeredPane implements Accessible {
      * @return a string representation of this <code>JDesktopPane</code>
      */
     protected String paramString() {
-        String desktopManagerString = (desktopManager != null ? desktopManager
-                .toString() : "");
+        String desktopManagerString = (desktopManager != null ? desktopManager.toString() : "");
 
         return super.paramString() + ",desktopManager=" + desktopManagerString;
     }

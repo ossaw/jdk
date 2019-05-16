@@ -122,10 +122,8 @@ final class NimbusDefaults {
         register(Region.RADIO_BUTTON, "RadioButton");
         register(Region.CHECK_BOX, "CheckBox");
         register(Region.COLOR_CHOOSER, "ColorChooser");
-        register(Region.PANEL,
-                "ColorChooser:\"ColorChooser.previewPanelHolder\"");
-        register(Region.LABEL,
-                "ColorChooser:\"ColorChooser.previewPanelHolder\":\"OptionPane.label\"");
+        register(Region.PANEL, "ColorChooser:\"ColorChooser.previewPanelHolder\"");
+        register(Region.LABEL, "ColorChooser:\"ColorChooser.previewPanelHolder\":\"OptionPane.label\"");
         register(Region.COMBO_BOX, "ComboBox");
         register(Region.TEXT_FIELD, "ComboBox:\"ComboBox.textField\"");
         register(Region.ARROW_BUTTON, "ComboBox:\"ComboBox.arrowButton\"");
@@ -135,10 +133,8 @@ final class NimbusDefaults {
         register(Region.FILE_CHOOSER, "FileChooser");
         register(Region.INTERNAL_FRAME_TITLE_PANE, "InternalFrameTitlePane");
         register(Region.INTERNAL_FRAME, "InternalFrame");
-        register(Region.INTERNAL_FRAME_TITLE_PANE,
-                "InternalFrame:InternalFrameTitlePane");
-        register(Region.BUTTON,
-                "InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"");
+        register(Region.INTERNAL_FRAME_TITLE_PANE, "InternalFrame:InternalFrameTitlePane");
+        register(Region.BUTTON, "InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"");
         register(Region.BUTTON,
                 "InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"");
         register(Region.BUTTON,
@@ -152,16 +148,13 @@ final class NimbusDefaults {
         register(Region.LABEL, "List:\"List.cellRenderer\"");
         register(Region.MENU_BAR, "MenuBar");
         register(Region.MENU, "MenuBar:Menu");
-        register(Region.MENU_ITEM_ACCELERATOR,
-                "MenuBar:Menu:MenuItemAccelerator");
+        register(Region.MENU_ITEM_ACCELERATOR, "MenuBar:Menu:MenuItemAccelerator");
         register(Region.MENU_ITEM, "MenuItem");
         register(Region.MENU_ITEM_ACCELERATOR, "MenuItem:MenuItemAccelerator");
         register(Region.RADIO_BUTTON_MENU_ITEM, "RadioButtonMenuItem");
-        register(Region.MENU_ITEM_ACCELERATOR,
-                "RadioButtonMenuItem:MenuItemAccelerator");
+        register(Region.MENU_ITEM_ACCELERATOR, "RadioButtonMenuItem:MenuItemAccelerator");
         register(Region.CHECK_BOX_MENU_ITEM, "CheckBoxMenuItem");
-        register(Region.MENU_ITEM_ACCELERATOR,
-                "CheckBoxMenuItem:MenuItemAccelerator");
+        register(Region.MENU_ITEM_ACCELERATOR, "CheckBoxMenuItem:MenuItemAccelerator");
         register(Region.MENU, "Menu");
         register(Region.MENU_ITEM_ACCELERATOR, "Menu:MenuItemAccelerator");
         register(Region.POPUP_MENU, "PopupMenu");
@@ -169,8 +162,7 @@ final class NimbusDefaults {
         register(Region.OPTION_PANE, "OptionPane");
         register(Region.SEPARATOR, "OptionPane:\"OptionPane.separator\"");
         register(Region.PANEL, "OptionPane:\"OptionPane.messageArea\"");
-        register(Region.LABEL,
-                "OptionPane:\"OptionPane.messageArea\":\"OptionPane.label\"");
+        register(Region.LABEL, "OptionPane:\"OptionPane.messageArea\":\"OptionPane.label\"");
         register(Region.PANEL, "Panel");
         register(Region.PROGRESS_BAR, "ProgressBar");
         register(Region.SEPARATOR, "Separator");
@@ -185,8 +177,7 @@ final class NimbusDefaults {
         register(Region.SLIDER_TRACK, "Slider:SliderTrack");
         register(Region.SPINNER, "Spinner");
         register(Region.PANEL, "Spinner:\"Spinner.editor\"");
-        register(Region.FORMATTED_TEXT_FIELD,
-                "Spinner:Panel:\"Spinner.formattedTextField\"");
+        register(Region.FORMATTED_TEXT_FIELD, "Spinner:Panel:\"Spinner.formattedTextField\"");
         register(Region.ARROW_BUTTON, "Spinner:\"Spinner.previousButton\"");
         register(Region.ARROW_BUTTON, "Spinner:\"Spinner.nextButton\"");
         register(Region.SPLIT_PANE, "SplitPane");
@@ -225,25 +216,22 @@ final class NimbusDefaults {
      * Called from NimbusLookAndFeel to initialize the UIDefaults.
      *
      * @param d
-     *          UIDefaults table to initialize. This will never be null. If
-     *          listeners are attached to <code>d</code>, then you will only
-     *          receive notification of LookAndFeel level defaults, not all
-     *          defaults on the UIManager.
+     *        UIDefaults table to initialize. This will never be null. If
+     *        listeners are attached to <code>d</code>, then you will only
+     *        receive notification of LookAndFeel level defaults, not all
+     *        defaults on the UIManager.
      */
     void initializeDefaults(UIDefaults d) {
         // Color palette
         addColor(d, "text", 0, 0, 0, 255);
         addColor(d, "control", 214, 217, 223, 255);
         addColor(d, "nimbusBase", 51, 98, 140, 255);
-        addColor(d, "nimbusBlueGrey", "nimbusBase", 0.032459438f, -0.52518797f,
-                0.19607842f, 0);
+        addColor(d, "nimbusBlueGrey", "nimbusBase", 0.032459438f, -0.52518797f, 0.19607842f, 0);
         addColor(d, "nimbusOrange", 191, 98, 4, 255);
         addColor(d, "nimbusGreen", 176, 179, 50, 255);
         addColor(d, "nimbusRed", 169, 46, 34, 255);
-        addColor(d, "nimbusBorder", "nimbusBlueGrey", 0.0f, -0.017358616f,
-                -0.11372548f, 0);
-        addColor(d, "nimbusSelection", "nimbusBase", -0.010750473f,
-                -0.04875779f, -0.007843137f, 0);
+        addColor(d, "nimbusBorder", "nimbusBlueGrey", 0.0f, -0.017358616f, -0.11372548f, 0);
+        addColor(d, "nimbusSelection", "nimbusBase", -0.010750473f, -0.04875779f, -0.007843137f, 0);
         addColor(d, "nimbusInfoBlue", 47, 92, 180, 255);
         addColor(d, "nimbusAlertYellow", 255, 220, 35, 255);
         addColor(d, "nimbusFocus", 115, 164, 209, 255);
@@ -254,43 +242,29 @@ final class NimbusDefaults {
         addColor(d, "infoText", "text", 0.0f, 0.0f, 0.0f, 0);
         addColor(d, "info", 242, 242, 189, 255);
         addColor(d, "menuText", "text", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "menu", "nimbusBase", 0.021348298f, -0.6150531f,
-                0.39999998f, 0);
-        addColor(d, "scrollbar", "nimbusBlueGrey", -0.006944418f, -0.07296763f,
-                0.09019607f, 0);
+        addColor(d, "menu", "nimbusBase", 0.021348298f, -0.6150531f, 0.39999998f, 0);
+        addColor(d, "scrollbar", "nimbusBlueGrey", -0.006944418f, -0.07296763f, 0.09019607f, 0);
         addColor(d, "controlText", "text", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "controlHighlight", "nimbusBlueGrey", 0.0f, -0.07333623f,
-                0.20392156f, 0);
-        addColor(d, "controlLHighlight", "nimbusBlueGrey", 0.0f, -0.098526314f,
-                0.2352941f, 0);
-        addColor(d, "controlShadow", "nimbusBlueGrey", -0.0027777553f,
-                -0.0212406f, 0.13333333f, 0);
-        addColor(d, "controlDkShadow", "nimbusBlueGrey", -0.0027777553f,
-                -0.0018306673f, -0.02352941f, 0);
-        addColor(d, "textHighlight", "nimbusSelectionBackground", 0.0f, 0.0f,
-                0.0f, 0);
-        addColor(d, "textHighlightText", "nimbusSelectedText", 0.0f, 0.0f, 0.0f,
-                0);
-        addColor(d, "textInactiveText", "nimbusDisabledText", 0.0f, 0.0f, 0.0f,
-                0);
-        addColor(d, "desktop", "nimbusBase", -0.009207249f, -0.13984653f,
-                -0.07450983f, 0);
-        addColor(d, "activeCaption", "nimbusBlueGrey", 0.0f, -0.049920253f,
-                0.031372547f, 0);
-        addColor(d, "inactiveCaption", "nimbusBlueGrey", -0.00505054f,
-                -0.055526316f, 0.039215684f, 0);
+        addColor(d, "controlHighlight", "nimbusBlueGrey", 0.0f, -0.07333623f, 0.20392156f, 0);
+        addColor(d, "controlLHighlight", "nimbusBlueGrey", 0.0f, -0.098526314f, 0.2352941f, 0);
+        addColor(d, "controlShadow", "nimbusBlueGrey", -0.0027777553f, -0.0212406f, 0.13333333f, 0);
+        addColor(d, "controlDkShadow", "nimbusBlueGrey", -0.0027777553f, -0.0018306673f, -0.02352941f, 0);
+        addColor(d, "textHighlight", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "textHighlightText", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "textInactiveText", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "desktop", "nimbusBase", -0.009207249f, -0.13984653f, -0.07450983f, 0);
+        addColor(d, "activeCaption", "nimbusBlueGrey", 0.0f, -0.049920253f, 0.031372547f, 0);
+        addColor(d, "inactiveCaption", "nimbusBlueGrey", -0.00505054f, -0.055526316f, 0.039215684f, 0);
 
         // Font palette
         d.put("defaultFont", new FontUIResource(defaultFont));
-        d.put("InternalFrame.titleFont", new DerivedFont("defaultFont", 1.0f,
-                true, null));
+        d.put("InternalFrame.titleFont", new DerivedFont("defaultFont", 1.0f, true, null));
 
         // Border palette
 
         // The global style definition
         addColor(d, "textForeground", "text", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "textBackground", "nimbusSelectionBackground", 0.0f, 0.0f,
-                0.0f, 0);
+        addColor(d, "textBackground", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
         addColor(d, "background", "control", 0.0f, 0.0f, 0.0f, 0);
         d.put("TitledBorder.position", "ABOVE_TOP");
         d.put("FileView.fullRowSelection", Boolean.TRUE);
@@ -299,391 +273,282 @@ final class NimbusDefaults {
         d.put("ArrowButton.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("ArrowButton.size", new Integer(16));
         d.put("ArrowButton[Disabled].foregroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ArrowButtonPainter",
-                ArrowButtonPainter.FOREGROUND_DISABLED, new Insets(0, 0, 0, 0),
-                new Dimension(10, 10), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.ArrowButtonPainter", ArrowButtonPainter.FOREGROUND_DISABLED,
+                new Insets(0, 0, 0, 0), new Dimension(10, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("ArrowButton[Enabled].foregroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ArrowButtonPainter",
-                ArrowButtonPainter.FOREGROUND_ENABLED, new Insets(0, 0, 0, 0),
-                new Dimension(10, 10), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.ArrowButtonPainter", ArrowButtonPainter.FOREGROUND_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(10, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
 
         // Initialize Button
         d.put("Button.contentMargins", new InsetsUIResource(6, 14, 6, 14));
         d.put("Button.defaultButtonFollowsFocus", Boolean.FALSE);
-        d.put("Button[Default].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_DEFAULT, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+        d.put("Button[Default].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
+                ButtonPainter.BACKGROUND_DEFAULT, new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("Button[Default+Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_DEFAULT_FOCUSED, new Insets(7, 7, 7,
-                        7), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_DEFAULT_FOCUSED, new Insets(
+                        7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("Button[Default+MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_MOUSEOVER_DEFAULT, new Insets(7, 7, 7,
-                        7), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("Button[Default+Focused+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
-                        ButtonPainter.BACKGROUND_MOUSEOVER_DEFAULT_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        addColor(d, "Button[Default+Pressed].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_MOUSEOVER_DEFAULT,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("Button[Default+Focused+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_MOUSEOVER_DEFAULT_FOCUSED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        addColor(d, "Button[Default+Pressed].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("Button[Default+Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_PRESSED_DEFAULT, new Insets(7, 7, 7,
-                        7), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("Button[Default+Focused+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
-                        ButtonPainter.BACKGROUND_PRESSED_DEFAULT_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        addColor(d, "Button[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
-        d.put("Button[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_DISABLED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("Button[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_ENABLED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("Button[Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_FOCUSED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("Button[MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_MOUSEOVER, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_PRESSED_DEFAULT, new Insets(
+                        7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("Button[Default+Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_PRESSED_DEFAULT_FOCUSED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        addColor(d, "Button[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        d.put("Button[Disabled].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
+                ButtonPainter.BACKGROUND_DISABLED, new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("Button[Enabled].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
+                ButtonPainter.BACKGROUND_ENABLED, new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("Button[Focused].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
+                ButtonPainter.BACKGROUND_FOCUSED, new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("Button[MouseOver].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
+                ButtonPainter.BACKGROUND_MOUSEOVER, new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("Button[Focused+MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(7, 7, 7,
-                        7), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("Button[Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_PRESSED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("Button[Pressed].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ButtonPainter",
+                ButtonPainter.BACKGROUND_PRESSED, new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("Button[Focused+Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ButtonPainter",
-                ButtonPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(7, 7, 7,
-                        7), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ButtonPainter", ButtonPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(
+                        7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
 
         // Initialize ToggleButton
-        d.put("ToggleButton.contentMargins", new InsetsUIResource(6, 14, 6,
-                14));
-        addColor(d, "ToggleButton[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        d.put("ToggleButton.contentMargins", new InsetsUIResource(6, 14, 6, 14));
+        addColor(d, "ToggleButton[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("ToggleButton[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToggleButtonPainter",
-                ToggleButtonPainter.BACKGROUND_DISABLED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_DISABLED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ToggleButton[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToggleButtonPainter",
-                ToggleButtonPainter.BACKGROUND_ENABLED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_ENABLED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ToggleButton[Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToggleButtonPainter",
-                ToggleButtonPainter.BACKGROUND_FOCUSED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_FOCUSED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ToggleButton[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_MOUSEOVER,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ToggleButton[Focused+MouseOver].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.ToggleButtonPainter",
-                ToggleButtonPainter.BACKGROUND_MOUSEOVER, new Insets(7, 7, 7,
-                        7), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                ToggleButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(7, 7, 7, 7), new Dimension(104,
+                        33), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[Focused+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
         d.put("ToggleButton[Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToggleButtonPainter",
-                ToggleButtonPainter.BACKGROUND_PRESSED, new Insets(7, 7, 7, 7),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[Focused+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_PRESSED_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_PRESSED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ToggleButton[Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_PRESSED_FOCUSED,
+                new Insets(7, 7, 7, 7), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ToggleButton[Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter", ToggleButtonPainter.BACKGROUND_SELECTED,
+                new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ToggleButton[Focused+Selected].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.ToggleButtonPainter",
-                ToggleButtonPainter.BACKGROUND_SELECTED, new Insets(7, 7, 7, 7),
-                new Dimension(72, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                ToggleButtonPainter.BACKGROUND_SELECTED_FOCUSED, new Insets(7, 7, 7, 7), new Dimension(72,
+                        24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[Focused+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_SELECTED_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[Pressed+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_PRESSED_SELECTED,
-                        new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[Focused+Pressed+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_PRESSED_SELECTED_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[MouseOver+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED,
-                        new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ToggleButton[Focused+MouseOver+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED_FOCUSED,
-                        new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        addColor(d, "ToggleButton[Disabled+Selected].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("ToggleButton[Disabled+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToggleButtonPainter",
-                        ToggleButtonPainter.BACKGROUND_DISABLED_SELECTED,
-                        new Insets(7, 7, 7, 7), new Dimension(72, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
+        d.put("ToggleButton[Pressed+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter",
+                ToggleButtonPainter.BACKGROUND_PRESSED_SELECTED, new Insets(7, 7, 7, 7), new Dimension(72,
+                        24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ToggleButton[Focused+Pressed+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter",
+                ToggleButtonPainter.BACKGROUND_PRESSED_SELECTED_FOCUSED, new Insets(7, 7, 7, 7),
+                new Dimension(72, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ToggleButton[MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter",
+                ToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED, new Insets(7, 7, 7, 7), new Dimension(72,
+                        24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ToggleButton[Focused+MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter",
+                ToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED_FOCUSED, new Insets(7, 7, 7, 7),
+                new Dimension(72, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        addColor(d, "ToggleButton[Disabled+Selected].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f,
+                0);
+        d.put("ToggleButton[Disabled+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToggleButtonPainter",
+                ToggleButtonPainter.BACKGROUND_DISABLED_SELECTED, new Insets(7, 7, 7, 7), new Dimension(72,
+                        24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
 
         // Initialize RadioButton
         d.put("RadioButton.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        addColor(d, "RadioButton[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "RadioButton[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("RadioButton[Disabled].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_DISABLED, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Enabled].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_ENABLED, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Focused].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_FOCUSED, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[MouseOver].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_MOUSEOVER, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_MOUSEOVER, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Focused+MouseOver].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_MOUSEOVER_FOCUSED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_MOUSEOVER_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Pressed].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_PRESSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_PRESSED, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Focused+Pressed].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_PRESSED_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_PRESSED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_SELECTED, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Focused+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_SELECTED_FOCUSED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_SELECTED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Pressed+Selected].iconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_PRESSED_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("RadioButton[Focused+Pressed+Selected].iconPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_PRESSED_SELECTED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("RadioButton[Focused+Pressed+Selected].iconPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.RadioButtonPainter",
-                        RadioButtonPainter.ICON_PRESSED_SELECTED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
+                RadioButtonPainter.ICON_PRESSED_SELECTED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(18,
+                        18), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[MouseOver+Selected].iconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_MOUSEOVER_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("RadioButton[Focused+MouseOver+Selected].iconPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_MOUSEOVER_SELECTED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("RadioButton[Focused+MouseOver+Selected].iconPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.RadioButtonPainter",
-                        RadioButtonPainter.ICON_MOUSEOVER_SELECTED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
+                RadioButtonPainter.ICON_MOUSEOVER_SELECTED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(18,
+                        18), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("RadioButton[Disabled+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.RadioButtonPainter",
-                RadioButtonPainter.ICON_DISABLED_SELECTED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("RadioButton.icon", new NimbusIcon("RadioButton", "iconPainter",
-                18, 18));
+                "javax.swing.plaf.nimbus.RadioButtonPainter", RadioButtonPainter.ICON_DISABLED_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("RadioButton.icon", new NimbusIcon("RadioButton", "iconPainter", 18, 18));
 
         // Initialize CheckBox
         d.put("CheckBox.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        addColor(d, "CheckBox[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
-        d.put("CheckBox[Disabled].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox[Enabled].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox[Focused].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox[MouseOver].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_MOUSEOVER, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+        addColor(d, "CheckBox[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        d.put("CheckBox[Disabled].iconPainter", new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
+                CheckBoxPainter.ICON_DISABLED, new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox[Enabled].iconPainter", new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
+                CheckBoxPainter.ICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox[Focused].iconPainter", new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
+                CheckBoxPainter.ICON_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox[MouseOver].iconPainter", new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
+                CheckBoxPainter.ICON_MOUSEOVER, new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[Focused+MouseOver].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_MOUSEOVER_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox[Pressed].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_PRESSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_MOUSEOVER_FOCUSED, new Insets(
+                        5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox[Pressed].iconPainter", new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
+                CheckBoxPainter.ICON_PRESSED, new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[Focused+Pressed].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_PRESSED_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox[Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_PRESSED_FOCUSED, new Insets(5,
+                        5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox[Selected].iconPainter", new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
+                CheckBoxPainter.ICON_SELECTED, new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[Focused+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_SELECTED_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_SELECTED_FOCUSED, new Insets(
+                        5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[Pressed+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_PRESSED_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_PRESSED_SELECTED, new Insets(
+                        5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[Focused+Pressed+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_PRESSED_SELECTED_FOCUSED, new Insets(5, 5,
-                        5, 5), new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_PRESSED_SELECTED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[MouseOver+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_MOUSEOVER_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox[Focused+MouseOver+Selected].iconPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.CheckBoxPainter",
-                        CheckBoxPainter.ICON_MOUSEOVER_SELECTED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_MOUSEOVER_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox[Focused+MouseOver+Selected].iconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_MOUSEOVER_SELECTED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("CheckBox[Disabled+Selected].iconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.CheckBoxPainter",
-                CheckBoxPainter.ICON_DISABLED_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 18), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("CheckBox.icon", new NimbusIcon("CheckBox", "iconPainter", 18,
-                18));
+                "javax.swing.plaf.nimbus.CheckBoxPainter", CheckBoxPainter.ICON_DISABLED_SELECTED, new Insets(
+                        5, 5, 5, 5), new Dimension(18, 18), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBox.icon", new NimbusIcon("CheckBox", "iconPainter", 18, 18));
 
         // Initialize ColorChooser
         d.put("ColorChooser.contentMargins", new InsetsUIResource(5, 0, 0, 0));
-        addColor(d, "ColorChooser.swatchesDefaultRecentColor", 255, 255, 255,
-                255);
-        d.put("ColorChooser:\"ColorChooser.previewPanelHolder\".contentMargins",
-                new InsetsUIResource(0, 5, 10, 5));
+        addColor(d, "ColorChooser.swatchesDefaultRecentColor", 255, 255, 255, 255);
+        d.put("ColorChooser:\"ColorChooser.previewPanelHolder\".contentMargins", new InsetsUIResource(0, 5,
+                10, 5));
         d.put("ColorChooser:\"ColorChooser.previewPanelHolder\":\"OptionPane.label\".contentMargins",
                 new InsetsUIResource(0, 10, 10, 10));
 
         // Initialize ComboBox
         d.put("ComboBox.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        d.put("ComboBox.States",
-                "Enabled,MouseOver,Pressed,Selected,Disabled,Focused,Editable");
+        d.put("ComboBox.States", "Enabled,MouseOver,Pressed,Selected,Disabled,Focused,Editable");
         d.put("ComboBox.Editable", new ComboBoxEditableState());
         d.put("ComboBox.forceOpaque", Boolean.TRUE);
         d.put("ComboBox.buttonWhenNotEditable", Boolean.TRUE);
@@ -693,336 +558,249 @@ final class NimbusDefaults {
         d.put("ComboBox.popupInsets", new InsetsUIResource(-2, 2, 0, 2));
         d.put("ComboBox.padding", new InsetsUIResource(3, 3, 3, 3));
         d.put("ComboBox[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_DISABLED, new Insets(8, 9, 8, 19),
-                new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_DISABLED, new Insets(8,
+                        9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Disabled+Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_DISABLED_PRESSED, new Insets(8, 9, 8,
-                        19), new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_DISABLED_PRESSED,
+                new Insets(8, 9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_ENABLED, new Insets(8, 9, 8, 19),
-                new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_ENABLED, new Insets(8,
+                        9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_FOCUSED, new Insets(8, 9, 8, 19),
-                new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_FOCUSED, new Insets(8,
+                        9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Focused+MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(8, 9,
-                        8, 19), new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_MOUSEOVER_FOCUSED,
+                new Insets(8, 9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_MOUSEOVER, new Insets(8, 9, 8, 19),
-                new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_MOUSEOVER, new Insets(8,
+                        9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Focused+Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(8, 9, 8,
-                        19), new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_PRESSED_FOCUSED,
+                new Insets(8, 9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_PRESSED, new Insets(8, 9, 8, 19),
-                new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_PRESSED, new Insets(8,
+                        9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Enabled+Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_ENABLED_SELECTED, new Insets(8, 9, 8,
-                        19), new Dimension(83, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_ENABLED_SELECTED,
+                new Insets(8, 9, 8, 19), new Dimension(83, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Disabled+Editable].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_DISABLED_EDITABLE, new Insets(6, 5,
-                        6, 17), new Dimension(79, 21), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_DISABLED_EDITABLE,
+                new Insets(6, 5, 6, 17), new Dimension(79, 21), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Editable+Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_ENABLED_EDITABLE, new Insets(6, 5, 6,
-                        17), new Dimension(79, 21), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_ENABLED_EDITABLE,
+                new Insets(6, 5, 6, 17), new Dimension(79, 21), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Editable+Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_FOCUSED_EDITABLE, new Insets(5, 5, 5,
-                        5), new Dimension(142, 27), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_FOCUSED_EDITABLE,
+                new Insets(5, 5, 5, 5), new Dimension(142, 27), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Editable+MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_MOUSEOVER_EDITABLE, new Insets(4, 5,
-                        5, 17), new Dimension(79, 21), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_MOUSEOVER_EDITABLE,
+                new Insets(4, 5, 5, 17), new Dimension(79, 21), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("ComboBox[Editable+Pressed].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ComboBoxPainter",
-                ComboBoxPainter.BACKGROUND_PRESSED_EDITABLE, new Insets(4, 5, 5,
-                        17), new Dimension(79, 21), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                "javax.swing.plaf.nimbus.ComboBoxPainter", ComboBoxPainter.BACKGROUND_PRESSED_EDITABLE,
+                new Insets(4, 5, 5, 17), new Dimension(79, 21), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ComboBox:\"ComboBox.textField\".contentMargins", new InsetsUIResource(0, 6, 0, 3));
+        addColor(d, "ComboBox:\"ComboBox.textField\"[Disabled].textForeground", "nimbusDisabledText", 0.0f,
+                0.0f, 0.0f, 0);
+        d.put("ComboBox:\"ComboBox.textField\"[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxTextFieldPainter",
+                ComboBoxTextFieldPainter.BACKGROUND_DISABLED, new Insets(5, 3, 3, 1), new Dimension(64, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.textField\".contentMargins",
-                new InsetsUIResource(0, 6, 0, 3));
-        addColor(d, "ComboBox:\"ComboBox.textField\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("ComboBox:\"ComboBox.textField\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxTextFieldPainter",
-                        ComboBoxTextFieldPainter.BACKGROUND_DISABLED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.textField\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxTextFieldPainter",
-                        ComboBoxTextFieldPainter.BACKGROUND_ENABLED, new Insets(
-                                5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        addColor(d, "ComboBox:\"ComboBox.textField\"[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("ComboBox:\"ComboBox.textField\"[Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxTextFieldPainter",
-                        ComboBoxTextFieldPainter.BACKGROUND_SELECTED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\".contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
-        d.put("ComboBox:\"ComboBox.arrowButton\".States",
-                "Enabled,MouseOver,Pressed,Disabled,Editable");
-        d.put("ComboBox:\"ComboBox.arrowButton\".Editable",
-                new ComboBoxArrowButtonEditableState());
+        d.put("ComboBox:\"ComboBox.textField\"[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxTextFieldPainter",
+                ComboBoxTextFieldPainter.BACKGROUND_ENABLED, new Insets(5, 3, 3, 1), new Dimension(64, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        addColor(d, "ComboBox:\"ComboBox.textField\"[Selected].textForeground", "nimbusSelectedText", 0.0f,
+                0.0f, 0.0f, 0);
+        d.put("ComboBox:\"ComboBox.textField\"[Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxTextFieldPainter",
+                ComboBoxTextFieldPainter.BACKGROUND_SELECTED, new Insets(5, 3, 3, 1), new Dimension(64, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("ComboBox:\"ComboBox.arrowButton\".States", "Enabled,MouseOver,Pressed,Disabled,Editable");
+        d.put("ComboBox:\"ComboBox.arrowButton\".Editable", new ComboBoxArrowButtonEditableState());
         d.put("ComboBox:\"ComboBox.arrowButton\".size", new Integer(19));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Disabled+Editable].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.BACKGROUND_DISABLED_EDITABLE,
-                        new Insets(8, 1, 8, 8), new Dimension(20, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.BACKGROUND_ENABLED_EDITABLE,
-                        new Insets(8, 1, 8, 8), new Dimension(20, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.BACKGROUND_MOUSEOVER_EDITABLE,
-                        new Insets(8, 1, 8, 8), new Dimension(20, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.BACKGROUND_PRESSED_EDITABLE,
-                        new Insets(8, 1, 8, 8), new Dimension(20, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.BACKGROUND_SELECTED_EDITABLE,
-                        new Insets(8, 1, 8, 8), new Dimension(20, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Enabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.FOREGROUND_ENABLED,
-                        new Insets(6, 9, 6, 10), new Dimension(24, 19), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[MouseOver].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.FOREGROUND_MOUSEOVER,
-                        new Insets(6, 9, 6, 10), new Dimension(24, 19), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Disabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.FOREGROUND_DISABLED,
-                        new Insets(6, 9, 6, 10), new Dimension(24, 19), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Pressed].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.FOREGROUND_PRESSED,
-                        new Insets(6, 9, 6, 10), new Dimension(24, 19), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.arrowButton\"[Selected].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
-                        ComboBoxArrowButtonPainter.FOREGROUND_SELECTED,
-                        new Insets(6, 9, 6, 10), new Dimension(24, 19), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ComboBox:\"ComboBox.listRenderer\".contentMargins",
-                new InsetsUIResource(2, 4, 2, 4));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Disabled+Editable].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.BACKGROUND_DISABLED_EDITABLE, new Insets(8, 1, 8, 8),
+                new Dimension(20, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.BACKGROUND_ENABLED_EDITABLE, new Insets(8, 1, 8, 8), new Dimension(
+                        20, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.BACKGROUND_MOUSEOVER_EDITABLE, new Insets(8, 1, 8, 8),
+                new Dimension(20, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.BACKGROUND_PRESSED_EDITABLE, new Insets(8, 1, 8, 8), new Dimension(
+                        20, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Editable+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.BACKGROUND_SELECTED_EDITABLE, new Insets(8, 1, 8, 8),
+                new Dimension(20, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Enabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.FOREGROUND_ENABLED, new Insets(6, 9, 6, 10), new Dimension(24, 19),
+                true, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[MouseOver].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.FOREGROUND_MOUSEOVER, new Insets(6, 9, 6, 10), new Dimension(24,
+                        19), true, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Disabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.FOREGROUND_DISABLED, new Insets(6, 9, 6, 10), new Dimension(24,
+                        19), true, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Pressed].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.FOREGROUND_PRESSED, new Insets(6, 9, 6, 10), new Dimension(24, 19),
+                true, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.arrowButton\"[Selected].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ComboBoxArrowButtonPainter",
+                ComboBoxArrowButtonPainter.FOREGROUND_SELECTED, new Insets(6, 9, 6, 10), new Dimension(24,
+                        19), true, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, 2.0));
+        d.put("ComboBox:\"ComboBox.listRenderer\".contentMargins", new InsetsUIResource(2, 4, 2, 4));
         d.put("ComboBox:\"ComboBox.listRenderer\".opaque", Boolean.TRUE);
-        addColor(d, "ComboBox:\"ComboBox.listRenderer\".background",
-                "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d,
-                "ComboBox:\"ComboBox.listRenderer\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d,
-                "ComboBox:\"ComboBox.listRenderer\"[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "ComboBox:\"ComboBox.listRenderer\"[Selected].background",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
-        d.put("ComboBox:\"ComboBox.renderer\".contentMargins",
-                new InsetsUIResource(2, 4, 2, 4));
-        addColor(d, "ComboBox:\"ComboBox.renderer\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "ComboBox:\"ComboBox.renderer\"[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "ComboBox:\"ComboBox.renderer\"[Selected].background",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "ComboBox:\"ComboBox.listRenderer\".background", "nimbusLightBackground", 0.0f, 0.0f,
+                0.0f, 0);
+        addColor(d, "ComboBox:\"ComboBox.listRenderer\"[Disabled].textForeground", "nimbusDisabledText", 0.0f,
+                0.0f, 0.0f, 0);
+        addColor(d, "ComboBox:\"ComboBox.listRenderer\"[Selected].textForeground", "nimbusSelectedText", 0.0f,
+                0.0f, 0.0f, 0);
+        addColor(d, "ComboBox:\"ComboBox.listRenderer\"[Selected].background", "nimbusSelectionBackground",
+                0.0f, 0.0f, 0.0f, 0);
+        d.put("ComboBox:\"ComboBox.renderer\".contentMargins", new InsetsUIResource(2, 4, 2, 4));
+        addColor(d, "ComboBox:\"ComboBox.renderer\"[Disabled].textForeground", "nimbusDisabledText", 0.0f,
+                0.0f, 0.0f, 0);
+        addColor(d, "ComboBox:\"ComboBox.renderer\"[Selected].textForeground", "nimbusSelectedText", 0.0f,
+                0.0f, 0.0f, 0);
+        addColor(d, "ComboBox:\"ComboBox.renderer\"[Selected].background", "nimbusSelectionBackground", 0.0f,
+                0.0f, 0.0f, 0);
 
         // Initialize \"ComboBox.scrollPane\"
-        d.put("\"ComboBox.scrollPane\".contentMargins", new InsetsUIResource(0,
-                0, 0, 0));
+        d.put("\"ComboBox.scrollPane\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
 
         // Initialize FileChooser
-        d.put("FileChooser.contentMargins", new InsetsUIResource(10, 10, 10,
-                10));
+        d.put("FileChooser.contentMargins", new InsetsUIResource(10, 10, 10, 10));
         d.put("FileChooser.opaque", Boolean.TRUE);
         d.put("FileChooser.usesSingleFilePane", Boolean.TRUE);
         d.put("FileChooser[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.BACKGROUND_ENABLED, new Insets(0, 0, 0, 0),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.BACKGROUND_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
         d.put("FileChooser[Enabled].fileIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.FILEICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.fileIcon", new NimbusIcon("FileChooser",
-                "fileIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.FILEICON_ENABLED, new Insets(
+                        5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.fileIcon", new NimbusIcon("FileChooser", "fileIconPainter", 16, 16));
         d.put("FileChooser[Enabled].directoryIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.DIRECTORYICON_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.directoryIcon", new NimbusIcon("FileChooser",
-                "directoryIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.DIRECTORYICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.directoryIcon", new NimbusIcon("FileChooser", "directoryIconPainter", 16, 16));
         d.put("FileChooser[Enabled].upFolderIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.UPFOLDERICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.upFolderIcon", new NimbusIcon("FileChooser",
-                "upFolderIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.UPFOLDERICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.upFolderIcon", new NimbusIcon("FileChooser", "upFolderIconPainter", 16, 16));
         d.put("FileChooser[Enabled].newFolderIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.NEWFOLDERICON_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.newFolderIcon", new NimbusIcon("FileChooser",
-                "newFolderIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.NEWFOLDERICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.newFolderIcon", new NimbusIcon("FileChooser", "newFolderIconPainter", 16, 16));
         d.put("FileChooser[Enabled].hardDriveIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.HARDDRIVEICON_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.hardDriveIcon", new NimbusIcon("FileChooser",
-                "hardDriveIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.HARDDRIVEICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.hardDriveIcon", new NimbusIcon("FileChooser", "hardDriveIconPainter", 16, 16));
         d.put("FileChooser[Enabled].floppyDriveIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.FLOPPYDRIVEICON_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.floppyDriveIcon", new NimbusIcon("FileChooser",
-                "floppyDriveIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.FLOPPYDRIVEICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.floppyDriveIcon", new NimbusIcon("FileChooser", "floppyDriveIconPainter", 16, 16));
         d.put("FileChooser[Enabled].homeFolderIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.HOMEFOLDERICON_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.homeFolderIcon", new NimbusIcon("FileChooser",
-                "homeFolderIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.HOMEFOLDERICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.homeFolderIcon", new NimbusIcon("FileChooser", "homeFolderIconPainter", 16, 16));
         d.put("FileChooser[Enabled].detailsViewIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.DETAILSVIEWICON_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.detailsViewIcon", new NimbusIcon("FileChooser",
-                "detailsViewIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.DETAILSVIEWICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.detailsViewIcon", new NimbusIcon("FileChooser", "detailsViewIconPainter", 16, 16));
         d.put("FileChooser[Enabled].listViewIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FileChooserPainter",
-                FileChooserPainter.LISTVIEWICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("FileChooser.listViewIcon", new NimbusIcon("FileChooser",
-                "listViewIconPainter", 16, 16));
+                "javax.swing.plaf.nimbus.FileChooserPainter", FileChooserPainter.LISTVIEWICON_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("FileChooser.listViewIcon", new NimbusIcon("FileChooser", "listViewIconPainter", 16, 16));
 
         // Initialize InternalFrameTitlePane
-        d.put("InternalFrameTitlePane.contentMargins", new InsetsUIResource(0,
-                0, 0, 0));
-        d.put("InternalFrameTitlePane.maxFrameIconSize",
-                new DimensionUIResource(18, 18));
+        d.put("InternalFrameTitlePane.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("InternalFrameTitlePane.maxFrameIconSize", new DimensionUIResource(18, 18));
 
         // Initialize InternalFrame
         d.put("InternalFrame.contentMargins", new InsetsUIResource(1, 6, 6, 6));
         d.put("InternalFrame.States", "Enabled,WindowFocused");
-        d.put("InternalFrame.WindowFocused",
-                new InternalFrameWindowFocusedState());
+        d.put("InternalFrame.WindowFocused", new InternalFrameWindowFocusedState());
         d.put("InternalFrame[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.InternalFramePainter", InternalFramePainter.BACKGROUND_ENABLED,
+                new Insets(25, 6, 6, 6), new Dimension(25, 36), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("InternalFrame[Enabled+WindowFocused].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.InternalFramePainter",
-                InternalFramePainter.BACKGROUND_ENABLED, new Insets(25, 6, 6,
-                        6), new Dimension(25, 36), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                InternalFramePainter.BACKGROUND_ENABLED_WINDOWFOCUSED, new Insets(25, 6, 6, 6), new Dimension(
+                        25, 36), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("InternalFrame[Enabled+WindowFocused].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.InternalFramePainter",
-                        InternalFramePainter.BACKGROUND_ENABLED_WINDOWFOCUSED,
-                        new Insets(25, 6, 6, 6), new Dimension(25, 36), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("InternalFrame:InternalFrameTitlePane.contentMargins",
-                new InsetsUIResource(3, 0, 3, 0));
-        d.put("InternalFrame:InternalFrameTitlePane.States",
-                "Enabled,WindowFocused");
+        d.put("InternalFrame:InternalFrameTitlePane.contentMargins", new InsetsUIResource(3, 0, 3, 0));
+        d.put("InternalFrame:InternalFrameTitlePane.States", "Enabled,WindowFocused");
         d.put("InternalFrame:InternalFrameTitlePane.WindowFocused",
                 new InternalFrameTitlePaneWindowFocusedState());
         d.put("InternalFrame:InternalFrameTitlePane.titleAlignment", "CENTER");
-        addColor(d,
-                "InternalFrame:InternalFrameTitlePane[Enabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "InternalFrame:InternalFrameTitlePane[Enabled].textForeground", "nimbusDisabledText",
+                0.0f, 0.0f, 0.0f, 0);
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\".contentMargins",
                 new InsetsUIResource(0, 0, 0, 0));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\".States",
@@ -1032,57 +810,49 @@ final class NimbusDefaults {
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\".test",
                 "am InternalFrameTitlePane.menuButton");
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[Enabled].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_ENABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_ENABLED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[Disabled].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_DISABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_DISABLED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[MouseOver].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_MOUSEOVER, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[Pressed].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_PRESSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_PRESSED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[Enabled+WindowNotFocused].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_ENABLED_WINDOWNOTFOCUSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_ENABLED_WINDOWNOTFOCUSED, new Insets(0,
+                                0, 0, 0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[MouseOver+WindowNotFocused].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_MOUSEOVER_WINDOWNOTFOCUSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_MOUSEOVER_WINDOWNOTFOCUSED, new Insets(0,
+                                0, 0, 0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"[Pressed+WindowNotFocused].iconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
-                        InternalFrameTitlePaneMenuButtonPainter.ICON_PRESSED_WINDOWNOTFOCUSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMenuButtonPainter",
+                        InternalFrameTitlePaneMenuButtonPainter.ICON_PRESSED_WINDOWNOTFOCUSED, new Insets(0,
+                                0, 0, 0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\".icon",
-                new NimbusIcon(
-                        "InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"",
+                new NimbusIcon("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.menuButton\"",
                         "iconPainter", 19, 18));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\".contentMargins",
                 new InsetsUIResource(9, 9, 9, 9));
@@ -1091,54 +861,47 @@ final class NimbusDefaults {
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\".WindowNotFocused",
                 new InternalFrameTitlePaneIconifyButtonWindowNotFocusedState());
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
-                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_ENABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_ENABLED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
-                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_DISABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_DISABLED, new Insets(0, 0, 0,
+                                0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
-                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0, 0,
+                                0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
-                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_PRESSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                        InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_PRESSED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[Enabled+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
                         InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_ENABLED_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[MouseOver+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
                         InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_MOUSEOVER_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.iconifyButton\"[Pressed+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneIconifyButtonPainter",
                         InternalFrameTitlePaneIconifyButtonPainter.BACKGROUND_PRESSED_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\".contentMargins",
                 new InsetsUIResource(9, 9, 9, 9));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\".States",
@@ -1148,103 +911,89 @@ final class NimbusDefaults {
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\".WindowMaximized",
                 new InternalFrameTitlePaneMaximizeButtonWindowMaximizedState());
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Disabled+WindowMaximized].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_DISABLED_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Enabled+WindowMaximized].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_ENABLED_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[MouseOver+WindowMaximized].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_MOUSEOVER_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Pressed+WindowMaximized].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_PRESSED_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Enabled+WindowMaximized+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_ENABLED_WINDOWNOTFOCUSED_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[MouseOver+WindowMaximized+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_MOUSEOVER_WINDOWNOTFOCUSED_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Pressed+WindowMaximized+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_PRESSED_WINDOWNOTFOCUSED_WINDOWMAXIMIZED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
-                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_DISABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_DISABLED, new Insets(0, 0, 0,
+                                0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
-                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_ENABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_ENABLED, new Insets(0, 0, 0,
+                                0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
-                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0, 0,
+                                0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
-                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_PRESSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                        InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_PRESSED, new Insets(0, 0, 0,
+                                0), new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Enabled+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_ENABLED_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[MouseOver+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_MOUSEOVER_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.maximizeButton\"[Pressed+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneMaximizeButtonPainter",
                         InternalFrameTitlePaneMaximizeButtonPainter.BACKGROUND_PRESSED_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\".contentMargins",
                 new InsetsUIResource(9, 9, 9, 9));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\".States",
@@ -1252,390 +1001,276 @@ final class NimbusDefaults {
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\".WindowNotFocused",
                 new InternalFrameTitlePaneCloseButtonWindowNotFocusedState());
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
-                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_DISABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_DISABLED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
-                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_ENABLED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_ENABLED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
-                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
-                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_PRESSED,
-                        new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                        InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_PRESSED, new Insets(0, 0, 0, 0),
+                        new Dimension(19, 18), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[Enabled+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
                         InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_ENABLED_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[MouseOver+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
                         InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_MOUSEOVER_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
         d.put("InternalFrame:InternalFrameTitlePane:\"InternalFrameTitlePane.closeButton\"[Pressed+WindowNotFocused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
+                new LazyPainter("javax.swing.plaf.nimbus.InternalFrameTitlePaneCloseButtonPainter",
                         InternalFrameTitlePaneCloseButtonPainter.BACKGROUND_PRESSED_WINDOWNOTFOCUSED,
                         new Insets(0, 0, 0, 0), new Dimension(19, 18), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, Double.POSITIVE_INFINITY,
+                        Double.POSITIVE_INFINITY));
 
         // Initialize DesktopIcon
         d.put("DesktopIcon.contentMargins", new InsetsUIResource(4, 6, 5, 4));
         d.put("DesktopIcon[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.DesktopIconPainter",
-                DesktopIconPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(28, 26), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.DesktopIconPainter", DesktopIconPainter.BACKGROUND_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(28, 26), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize DesktopPane
         d.put("DesktopPane.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("DesktopPane.opaque", Boolean.TRUE);
         d.put("DesktopPane[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.DesktopPanePainter",
-                DesktopPanePainter.BACKGROUND_ENABLED, new Insets(0, 0, 0, 0),
-                new Dimension(300, 232), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.DesktopPanePainter", DesktopPanePainter.BACKGROUND_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(300, 232), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize Label
         d.put("Label.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        addColor(d, "Label[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "Label[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
 
         // Initialize List
         d.put("List.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("List.opaque", Boolean.TRUE);
-        addColor(d, "List.background", "nimbusLightBackground", 0.0f, 0.0f,
-                0.0f, 0);
+        addColor(d, "List.background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
         d.put("List.rendererUseListColors", Boolean.FALSE);
         d.put("List.rendererUseUIBorder", Boolean.TRUE);
-        d.put("List.cellNoFocusBorder", new BorderUIResource(BorderFactory
-                .createEmptyBorder(2, 5, 2, 5)));
-        d.put("List.focusCellHighlightBorder", new BorderUIResource(
-                new PainterBorder(
-                        "Tree:TreeCell[Enabled+Focused].backgroundPainter",
-                        new Insets(2, 5, 2, 5))));
+        d.put("List.cellNoFocusBorder", new BorderUIResource(BorderFactory.createEmptyBorder(2, 5, 2, 5)));
+        d.put("List.focusCellHighlightBorder", new BorderUIResource(new PainterBorder(
+                "Tree:TreeCell[Enabled+Focused].backgroundPainter", new Insets(2, 5, 2, 5))));
         addColor(d, "List.dropLineColor", "nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List[Selected].textForeground", "nimbusLightBackground",
-                0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List[Selected].textBackground",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List[Disabled+Selected].textBackground",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List[Disabled].textForeground", "nimbusDisabledText", 0.0f,
-                0.0f, 0.0f, 0);
-        d.put("List:\"List.cellRenderer\".contentMargins", new InsetsUIResource(
-                0, 0, 0, 0));
+        addColor(d, "List[Selected].textForeground", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "List[Selected].textBackground", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "List[Disabled+Selected].textBackground", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f,
+                0);
+        addColor(d, "List[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        d.put("List:\"List.cellRenderer\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("List:\"List.cellRenderer\".opaque", Boolean.TRUE);
-        addColor(d, "List:\"List.cellRenderer\"[Selected].textForeground",
-                "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List:\"List.cellRenderer\"[Selected].background",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List:\"List.cellRenderer\"[Disabled+Selected].background",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "List:\"List.cellRenderer\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "List:\"List.cellRenderer\"[Selected].textForeground", "nimbusLightBackground", 0.0f,
+                0.0f, 0.0f, 0);
+        addColor(d, "List:\"List.cellRenderer\"[Selected].background", "nimbusSelectionBackground", 0.0f,
+                0.0f, 0.0f, 0);
+        addColor(d, "List:\"List.cellRenderer\"[Disabled+Selected].background", "nimbusSelectionBackground",
+                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "List:\"List.cellRenderer\"[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f,
+                0.0f, 0);
 
         // Initialize MenuBar
         d.put("MenuBar.contentMargins", new InsetsUIResource(2, 6, 2, 6));
-        d.put("MenuBar[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuBarPainter",
-                MenuBarPainter.BACKGROUND_ENABLED, new Insets(1, 0, 0, 0),
-                new Dimension(18, 22), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
-        d.put("MenuBar[Enabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuBarPainter",
-                MenuBarPainter.BORDER_ENABLED, new Insets(0, 0, 1, 0),
-                new Dimension(30, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+        d.put("MenuBar[Enabled].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.MenuBarPainter",
+                MenuBarPainter.BACKGROUND_ENABLED, new Insets(1, 0, 0, 0), new Dimension(18, 22), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("MenuBar[Enabled].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.MenuBarPainter",
+                MenuBarPainter.BORDER_ENABLED, new Insets(0, 0, 1, 0), new Dimension(30, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("MenuBar:Menu.contentMargins", new InsetsUIResource(1, 4, 2, 4));
-        addColor(d, "MenuBar:Menu[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "MenuBar:Menu[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         addColor(d, "MenuBar:Menu[Enabled].textForeground", 35, 35, 36, 255);
-        addColor(d, "MenuBar:Menu[Selected].textForeground", 255, 255, 255,
-                255);
+        addColor(d, "MenuBar:Menu[Selected].textForeground", 255, 255, 255, 255);
         d.put("MenuBar:Menu[Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuBarMenuPainter",
-                MenuBarMenuPainter.BACKGROUND_SELECTED, new Insets(0, 0, 0, 0),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("MenuBar:Menu:MenuItemAccelerator.contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
+                "javax.swing.plaf.nimbus.MenuBarMenuPainter", MenuBarMenuPainter.BACKGROUND_SELECTED,
+                new Insets(0, 0, 0, 0), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("MenuBar:Menu:MenuItemAccelerator.contentMargins", new InsetsUIResource(0, 0, 0, 0));
 
         // Initialize MenuItem
         d.put("MenuItem.contentMargins", new InsetsUIResource(1, 12, 2, 13));
         d.put("MenuItem.textIconGap", new Integer(5));
-        addColor(d, "MenuItem[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "MenuItem[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         addColor(d, "MenuItem[Enabled].textForeground", 35, 35, 36, 255);
         addColor(d, "MenuItem[MouseOver].textForeground", 255, 255, 255, 255);
         d.put("MenuItem[MouseOver].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuItemPainter",
-                MenuItemPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0, 0, 0),
-                new Dimension(100, 3), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("MenuItem:MenuItemAccelerator.contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
-        addColor(d, "MenuItem:MenuItemAccelerator[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "MenuItem:MenuItemAccelerator[MouseOver].textForeground",
-                255, 255, 255, 255);
+                "javax.swing.plaf.nimbus.MenuItemPainter", MenuItemPainter.BACKGROUND_MOUSEOVER, new Insets(0,
+                        0, 0, 0), new Dimension(100, 3), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("MenuItem:MenuItemAccelerator.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        addColor(d, "MenuItem:MenuItemAccelerator[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f,
+                0.0f, 0);
+        addColor(d, "MenuItem:MenuItemAccelerator[MouseOver].textForeground", 255, 255, 255, 255);
 
         // Initialize RadioButtonMenuItem
-        d.put("RadioButtonMenuItem.contentMargins", new InsetsUIResource(1, 12,
-                2, 13));
+        d.put("RadioButtonMenuItem.contentMargins", new InsetsUIResource(1, 12, 2, 13));
         d.put("RadioButtonMenuItem.textIconGap", new Integer(5));
-        addColor(d, "RadioButtonMenuItem[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "RadioButtonMenuItem[Enabled].textForeground", 35, 35, 36,
-                255);
-        addColor(d, "RadioButtonMenuItem[MouseOver].textForeground", 255, 255,
-                255, 255);
-        d.put("RadioButtonMenuItem[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
-                        RadioButtonMenuItemPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(100, 3), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        addColor(d, "RadioButtonMenuItem[MouseOver+Selected].textForeground",
-                255, 255, 255, 255);
-        d.put("RadioButtonMenuItem[MouseOver+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
-                        RadioButtonMenuItemPainter.BACKGROUND_SELECTED_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(100, 3), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        d.put("RadioButtonMenuItem[Disabled+Selected].checkIconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
-                        RadioButtonMenuItemPainter.CHECKICON_DISABLED_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("RadioButtonMenuItem[Enabled+Selected].checkIconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
-                        RadioButtonMenuItemPainter.CHECKICON_ENABLED_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("RadioButtonMenuItem[MouseOver+Selected].checkIconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
-                        RadioButtonMenuItemPainter.CHECKICON_SELECTED_MOUSEOVER,
-                        new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("RadioButtonMenuItem.checkIcon", new NimbusIcon(
-                "RadioButtonMenuItem", "checkIconPainter", 9, 10));
-        d.put("RadioButtonMenuItem:MenuItemAccelerator.contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
-        addColor(d,
-                "RadioButtonMenuItem:MenuItemAccelerator[MouseOver].textForeground",
-                255, 255, 255, 255);
+        addColor(d, "RadioButtonMenuItem[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f,
+                0);
+        addColor(d, "RadioButtonMenuItem[Enabled].textForeground", 35, 35, 36, 255);
+        addColor(d, "RadioButtonMenuItem[MouseOver].textForeground", 255, 255, 255, 255);
+        d.put("RadioButtonMenuItem[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
+                RadioButtonMenuItemPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0, 0, 0), new Dimension(100,
+                        3), false, AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "RadioButtonMenuItem[MouseOver+Selected].textForeground", 255, 255, 255, 255);
+        d.put("RadioButtonMenuItem[MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
+                RadioButtonMenuItemPainter.BACKGROUND_SELECTED_MOUSEOVER, new Insets(0, 0, 0, 0),
+                new Dimension(100, 3), false, AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
+                1.0));
+        d.put("RadioButtonMenuItem[Disabled+Selected].checkIconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
+                RadioButtonMenuItemPainter.CHECKICON_DISABLED_SELECTED, new Insets(5, 5, 5, 5), new Dimension(
+                        9, 10), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("RadioButtonMenuItem[Enabled+Selected].checkIconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
+                RadioButtonMenuItemPainter.CHECKICON_ENABLED_SELECTED, new Insets(5, 5, 5, 5), new Dimension(
+                        9, 10), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("RadioButtonMenuItem[MouseOver+Selected].checkIconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.RadioButtonMenuItemPainter",
+                RadioButtonMenuItemPainter.CHECKICON_SELECTED_MOUSEOVER, new Insets(5, 5, 5, 5),
+                new Dimension(9, 10), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                1.0));
+        d.put("RadioButtonMenuItem.checkIcon", new NimbusIcon("RadioButtonMenuItem", "checkIconPainter", 9,
+                10));
+        d.put("RadioButtonMenuItem:MenuItemAccelerator.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        addColor(d, "RadioButtonMenuItem:MenuItemAccelerator[MouseOver].textForeground", 255, 255, 255, 255);
 
         // Initialize CheckBoxMenuItem
-        d.put("CheckBoxMenuItem.contentMargins", new InsetsUIResource(1, 12, 2,
-                13));
+        d.put("CheckBoxMenuItem.contentMargins", new InsetsUIResource(1, 12, 2, 13));
         d.put("CheckBoxMenuItem.textIconGap", new Integer(5));
-        addColor(d, "CheckBoxMenuItem[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "CheckBoxMenuItem[Enabled].textForeground", 35, 35, 36,
-                255);
-        addColor(d, "CheckBoxMenuItem[MouseOver].textForeground", 255, 255, 255,
-                255);
+        addColor(d, "CheckBoxMenuItem[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "CheckBoxMenuItem[Enabled].textForeground", 35, 35, 36, 255);
+        addColor(d, "CheckBoxMenuItem[MouseOver].textForeground", 255, 255, 255, 255);
         d.put("CheckBoxMenuItem[MouseOver].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
-                CheckBoxMenuItemPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0,
-                        0, 0), new Dimension(100, 3), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        addColor(d, "CheckBoxMenuItem[MouseOver+Selected].textForeground", 255,
-                255, 255, 255);
-        d.put("CheckBoxMenuItem[MouseOver+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
-                        CheckBoxMenuItemPainter.BACKGROUND_SELECTED_MOUSEOVER,
-                        new Insets(0, 0, 0, 0), new Dimension(100, 3), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        d.put("CheckBoxMenuItem[Disabled+Selected].checkIconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
-                        CheckBoxMenuItemPainter.CHECKICON_DISABLED_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("CheckBoxMenuItem[Enabled+Selected].checkIconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
-                        CheckBoxMenuItemPainter.CHECKICON_ENABLED_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("CheckBoxMenuItem[MouseOver+Selected].checkIconPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
-                        CheckBoxMenuItemPainter.CHECKICON_SELECTED_MOUSEOVER,
-                        new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("CheckBoxMenuItem.checkIcon", new NimbusIcon("CheckBoxMenuItem",
-                "checkIconPainter", 9, 10));
-        d.put("CheckBoxMenuItem:MenuItemAccelerator.contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
-        addColor(d,
-                "CheckBoxMenuItem:MenuItemAccelerator[MouseOver].textForeground",
-                255, 255, 255, 255);
+                CheckBoxMenuItemPainter.BACKGROUND_MOUSEOVER, new Insets(0, 0, 0, 0), new Dimension(100, 3),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "CheckBoxMenuItem[MouseOver+Selected].textForeground", 255, 255, 255, 255);
+        d.put("CheckBoxMenuItem[MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
+                CheckBoxMenuItemPainter.BACKGROUND_SELECTED_MOUSEOVER, new Insets(0, 0, 0, 0), new Dimension(
+                        100, 3), false, AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("CheckBoxMenuItem[Disabled+Selected].checkIconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
+                CheckBoxMenuItemPainter.CHECKICON_DISABLED_SELECTED, new Insets(5, 5, 5, 5), new Dimension(9,
+                        10), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBoxMenuItem[Enabled+Selected].checkIconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
+                CheckBoxMenuItemPainter.CHECKICON_ENABLED_SELECTED, new Insets(5, 5, 5, 5), new Dimension(9,
+                        10), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBoxMenuItem[MouseOver+Selected].checkIconPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.CheckBoxMenuItemPainter",
+                CheckBoxMenuItemPainter.CHECKICON_SELECTED_MOUSEOVER, new Insets(5, 5, 5, 5), new Dimension(9,
+                        10), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("CheckBoxMenuItem.checkIcon", new NimbusIcon("CheckBoxMenuItem", "checkIconPainter", 9, 10));
+        d.put("CheckBoxMenuItem:MenuItemAccelerator.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        addColor(d, "CheckBoxMenuItem:MenuItemAccelerator[MouseOver].textForeground", 255, 255, 255, 255);
 
         // Initialize Menu
         d.put("Menu.contentMargins", new InsetsUIResource(1, 12, 2, 5));
         d.put("Menu.textIconGap", new Integer(5));
-        addColor(d, "Menu[Disabled].textForeground", "nimbusDisabledText", 0.0f,
-                0.0f, 0.0f, 0);
+        addColor(d, "Menu[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         addColor(d, "Menu[Enabled].textForeground", 35, 35, 36, 255);
-        addColor(d, "Menu[Enabled+Selected].textForeground", 255, 255, 255,
-                255);
+        addColor(d, "Menu[Enabled+Selected].textForeground", 255, 255, 255, 255);
         d.put("Menu[Enabled+Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuPainter",
-                MenuPainter.BACKGROUND_ENABLED_SELECTED, new Insets(0, 0, 0, 0),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("Menu[Disabled].arrowIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuPainter",
-                MenuPainter.ARROWICON_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(9, 10), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Menu[Enabled].arrowIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuPainter",
-                MenuPainter.ARROWICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(9, 10), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.MenuPainter", MenuPainter.BACKGROUND_ENABLED_SELECTED, new Insets(0,
+                        0, 0, 0), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("Menu[Disabled].arrowIconPainter", new LazyPainter("javax.swing.plaf.nimbus.MenuPainter",
+                MenuPainter.ARROWICON_DISABLED, new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Menu[Enabled].arrowIconPainter", new LazyPainter("javax.swing.plaf.nimbus.MenuPainter",
+                MenuPainter.ARROWICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(9, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("Menu[Enabled+Selected].arrowIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.MenuPainter",
-                MenuPainter.ARROWICON_ENABLED_SELECTED, new Insets(1, 1, 1, 1),
-                new Dimension(9, 10), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Menu.arrowIcon", new NimbusIcon("Menu", "arrowIconPainter", 9,
-                10));
-        d.put("Menu:MenuItemAccelerator.contentMargins", new InsetsUIResource(0,
-                0, 0, 0));
-        addColor(d, "Menu:MenuItemAccelerator[MouseOver].textForeground", 255,
-                255, 255, 255);
+                "javax.swing.plaf.nimbus.MenuPainter", MenuPainter.ARROWICON_ENABLED_SELECTED, new Insets(1,
+                        1, 1, 1), new Dimension(9, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Menu.arrowIcon", new NimbusIcon("Menu", "arrowIconPainter", 9, 10));
+        d.put("Menu:MenuItemAccelerator.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        addColor(d, "Menu:MenuItemAccelerator[MouseOver].textForeground", 255, 255, 255, 255);
 
         // Initialize PopupMenu
         d.put("PopupMenu.contentMargins", new InsetsUIResource(6, 1, 6, 1));
         d.put("PopupMenu.opaque", Boolean.TRUE);
         d.put("PopupMenu.consumeEventOnClose", Boolean.TRUE);
         d.put("PopupMenu[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PopupMenuPainter",
-                PopupMenuPainter.BACKGROUND_DISABLED, new Insets(9, 0, 11, 0),
-                new Dimension(220, 313), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.PopupMenuPainter", PopupMenuPainter.BACKGROUND_DISABLED, new Insets(
+                        9, 0, 11, 0), new Dimension(220, 313), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
         d.put("PopupMenu[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PopupMenuPainter",
-                PopupMenuPainter.BACKGROUND_ENABLED, new Insets(11, 2, 11, 2),
-                new Dimension(220, 313), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.PopupMenuPainter", PopupMenuPainter.BACKGROUND_ENABLED, new Insets(
+                        11, 2, 11, 2), new Dimension(220, 313), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
 
         // Initialize PopupMenuSeparator
-        d.put("PopupMenuSeparator.contentMargins", new InsetsUIResource(1, 0, 2,
-                0));
+        d.put("PopupMenuSeparator.contentMargins", new InsetsUIResource(1, 0, 2, 0));
         d.put("PopupMenuSeparator[Enabled].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.PopupMenuSeparatorPainter",
-                PopupMenuSeparatorPainter.BACKGROUND_ENABLED, new Insets(1, 1,
-                        1, 1), new Dimension(3, 3), true,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                PopupMenuSeparatorPainter.BACKGROUND_ENABLED, new Insets(1, 1, 1, 1), new Dimension(3, 3),
+                true, AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
 
         // Initialize OptionPane
-        d.put("OptionPane.contentMargins", new InsetsUIResource(15, 15, 15,
-                15));
+        d.put("OptionPane.contentMargins", new InsetsUIResource(15, 15, 15, 15));
         d.put("OptionPane.opaque", Boolean.TRUE);
         d.put("OptionPane.buttonOrientation", new Integer(4));
         d.put("OptionPane.messageAnchor", new Integer(17));
         d.put("OptionPane.separatorPadding", new Integer(0));
         d.put("OptionPane.sameSizeButtons", Boolean.FALSE);
-        d.put("OptionPane:\"OptionPane.separator\".contentMargins",
-                new InsetsUIResource(1, 0, 0, 0));
-        d.put("OptionPane:\"OptionPane.messageArea\".contentMargins",
-                new InsetsUIResource(0, 0, 10, 0));
+        d.put("OptionPane:\"OptionPane.separator\".contentMargins", new InsetsUIResource(1, 0, 0, 0));
+        d.put("OptionPane:\"OptionPane.messageArea\".contentMargins", new InsetsUIResource(0, 0, 10, 0));
         d.put("OptionPane:\"OptionPane.messageArea\":\"OptionPane.label\".contentMargins",
                 new InsetsUIResource(0, 10, 10, 10));
         d.put("OptionPane:\"OptionPane.messageArea\":\"OptionPane.label\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.OptionPaneMessageAreaOptionPaneLabelPainter",
-                        OptionPaneMessageAreaOptionPaneLabelPainter.BACKGROUND_ENABLED,
-                        new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
+                new LazyPainter("javax.swing.plaf.nimbus.OptionPaneMessageAreaOptionPaneLabelPainter",
+                        OptionPaneMessageAreaOptionPaneLabelPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5,
+                                5), new Dimension(100, 30), false,
+                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
         d.put("OptionPane[Enabled].errorIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.OptionPanePainter",
-                OptionPanePainter.ERRORICON_ENABLED, new Insets(0, 0, 0, 0),
-                new Dimension(48, 48), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("OptionPane.errorIcon", new NimbusIcon("OptionPane",
-                "errorIconPainter", 48, 48));
+                "javax.swing.plaf.nimbus.OptionPanePainter", OptionPanePainter.ERRORICON_ENABLED, new Insets(
+                        0, 0, 0, 0), new Dimension(48, 48), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("OptionPane.errorIcon", new NimbusIcon("OptionPane", "errorIconPainter", 48, 48));
         d.put("OptionPane[Enabled].informationIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.OptionPanePainter",
-                OptionPanePainter.INFORMATIONICON_ENABLED, new Insets(0, 0, 0,
-                        0), new Dimension(48, 48), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("OptionPane.informationIcon", new NimbusIcon("OptionPane",
-                "informationIconPainter", 48, 48));
+                "javax.swing.plaf.nimbus.OptionPanePainter", OptionPanePainter.INFORMATIONICON_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(48, 48), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("OptionPane.informationIcon", new NimbusIcon("OptionPane", "informationIconPainter", 48, 48));
         d.put("OptionPane[Enabled].questionIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.OptionPanePainter",
-                OptionPanePainter.QUESTIONICON_ENABLED, new Insets(0, 0, 0, 0),
-                new Dimension(48, 48), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("OptionPane.questionIcon", new NimbusIcon("OptionPane",
-                "questionIconPainter", 48, 48));
+                "javax.swing.plaf.nimbus.OptionPanePainter", OptionPanePainter.QUESTIONICON_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(48, 48), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("OptionPane.questionIcon", new NimbusIcon("OptionPane", "questionIconPainter", 48, 48));
         d.put("OptionPane[Enabled].warningIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.OptionPanePainter",
-                OptionPanePainter.WARNINGICON_ENABLED, new Insets(0, 0, 0, 0),
-                new Dimension(48, 48), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("OptionPane.warningIcon", new NimbusIcon("OptionPane",
-                "warningIconPainter", 48, 48));
+                "javax.swing.plaf.nimbus.OptionPanePainter", OptionPanePainter.WARNINGICON_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(48, 48), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("OptionPane.warningIcon", new NimbusIcon("OptionPane", "warningIconPainter", 48, 48));
 
         // Initialize Panel
         d.put("Panel.contentMargins", new InsetsUIResource(0, 0, 0, 0));
@@ -1656,68 +1291,53 @@ final class NimbusDefaults {
         d.put("ProgressBar.minBarSize", new DimensionUIResource(6, 6));
         d.put("ProgressBar.glowWidth", new Integer(2));
         d.put("ProgressBar[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ProgressBarPainter",
-                ProgressBarPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(29, 19), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        addColor(d, "ProgressBar[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.ProgressBarPainter", ProgressBarPainter.BACKGROUND_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(29, 19), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        addColor(d, "ProgressBar[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("ProgressBar[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ProgressBarPainter",
-                ProgressBarPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(29, 19), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.ProgressBarPainter", ProgressBarPainter.BACKGROUND_DISABLED,
+                new Insets(5, 5, 5, 5), new Dimension(29, 19), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("ProgressBar[Enabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ProgressBarPainter", ProgressBarPainter.FOREGROUND_ENABLED,
+                new Insets(3, 3, 3, 3), new Dimension(27, 19), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ProgressBar[Enabled+Finished].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ProgressBarPainter", ProgressBarPainter.FOREGROUND_ENABLED_FINISHED,
+                new Insets(3, 3, 3, 3), new Dimension(27, 19), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ProgressBar[Enabled+Indeterminate].progressPadding", new Integer(3));
+        d.put("ProgressBar[Enabled+Indeterminate].foregroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.ProgressBarPainter",
-                ProgressBarPainter.FOREGROUND_ENABLED, new Insets(3, 3, 3, 3),
-                new Dimension(27, 19), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                ProgressBarPainter.FOREGROUND_ENABLED_INDETERMINATE, new Insets(3, 3, 3, 3), new Dimension(30,
+                        13), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, 2.0));
-        d.put("ProgressBar[Enabled+Finished].foregroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ProgressBarPainter",
-                        ProgressBarPainter.FOREGROUND_ENABLED_FINISHED,
-                        new Insets(3, 3, 3, 3), new Dimension(27, 19), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ProgressBar[Enabled+Indeterminate].progressPadding", new Integer(
-                3));
-        d.put("ProgressBar[Enabled+Indeterminate].foregroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ProgressBarPainter",
-                        ProgressBarPainter.FOREGROUND_ENABLED_INDETERMINATE,
-                        new Insets(3, 3, 3, 3), new Dimension(30, 13), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
         d.put("ProgressBar[Disabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ProgressBarPainter", ProgressBarPainter.FOREGROUND_DISABLED,
+                new Insets(3, 3, 3, 3), new Dimension(27, 19), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ProgressBar[Disabled+Finished].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ProgressBarPainter", ProgressBarPainter.FOREGROUND_DISABLED_FINISHED,
+                new Insets(3, 3, 3, 3), new Dimension(27, 19), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ProgressBar[Disabled+Indeterminate].progressPadding", new Integer(3));
+        d.put("ProgressBar[Disabled+Indeterminate].foregroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.ProgressBarPainter",
-                ProgressBarPainter.FOREGROUND_DISABLED, new Insets(3, 3, 3, 3),
-                new Dimension(27, 19), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                ProgressBarPainter.FOREGROUND_DISABLED_INDETERMINATE, new Insets(3, 3, 3, 3), new Dimension(
+                        30, 13), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, 2.0));
-        d.put("ProgressBar[Disabled+Finished].foregroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ProgressBarPainter",
-                        ProgressBarPainter.FOREGROUND_DISABLED_FINISHED,
-                        new Insets(3, 3, 3, 3), new Dimension(27, 19), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ProgressBar[Disabled+Indeterminate].progressPadding",
-                new Integer(3));
-        d.put("ProgressBar[Disabled+Indeterminate].foregroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ProgressBarPainter",
-                        ProgressBarPainter.FOREGROUND_DISABLED_INDETERMINATE,
-                        new Insets(3, 3, 3, 3), new Dimension(30, 13), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
 
         // Initialize Separator
         d.put("Separator.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("Separator[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.SeparatorPainter",
-                SeparatorPainter.BACKGROUND_ENABLED, new Insets(0, 40, 0, 40),
-                new Dimension(100, 3), true,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.SeparatorPainter", SeparatorPainter.BACKGROUND_ENABLED, new Insets(0,
+                        40, 0, 40), new Dimension(100, 3), true,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
 
         // Initialize ScrollBar
         d.put("ScrollBar.contentMargins", new InsetsUIResource(0, 0, 0, 0));
@@ -1726,89 +1346,65 @@ final class NimbusDefaults {
         d.put("ScrollBar.decrementButtonGap", new Integer(-8));
         d.put("ScrollBar.thumbHeight", new Integer(15));
         d.put("ScrollBar.minimumThumbSize", new DimensionUIResource(29, 29));
-        d.put("ScrollBar.maximumThumbSize", new DimensionUIResource(1000,
-                1000));
-        d.put("ScrollBar:\"ScrollBar.button\".contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
+        d.put("ScrollBar.maximumThumbSize", new DimensionUIResource(1000, 1000));
+        d.put("ScrollBar:\"ScrollBar.button\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("ScrollBar:\"ScrollBar.button\".size", new Integer(25));
-        d.put("ScrollBar:\"ScrollBar.button\"[Enabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ScrollBarButtonPainter",
-                        ScrollBarButtonPainter.FOREGROUND_ENABLED, new Insets(1,
-                                1, 1, 1), new Dimension(25, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("ScrollBar:\"ScrollBar.button\"[Disabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ScrollBarButtonPainter",
-                        ScrollBarButtonPainter.FOREGROUND_DISABLED, new Insets(
-                                1, 1, 1, 1), new Dimension(25, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("ScrollBar:\"ScrollBar.button\"[MouseOver].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ScrollBarButtonPainter",
-                        ScrollBarButtonPainter.FOREGROUND_MOUSEOVER, new Insets(
-                                1, 1, 1, 1), new Dimension(25, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("ScrollBar:\"ScrollBar.button\"[Pressed].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ScrollBarButtonPainter",
-                        ScrollBarButtonPainter.FOREGROUND_PRESSED, new Insets(1,
-                                1, 1, 1), new Dimension(25, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("ScrollBar:ScrollBarThumb.contentMargins", new InsetsUIResource(0,
-                0, 0, 0));
-        d.put("ScrollBar:ScrollBarThumb[Enabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ScrollBarThumbPainter",
-                        ScrollBarThumbPainter.BACKGROUND_ENABLED, new Insets(0,
-                                15, 0, 15), new Dimension(38, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ScrollBar:ScrollBarThumb[MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ScrollBarThumbPainter",
-                        ScrollBarThumbPainter.BACKGROUND_MOUSEOVER, new Insets(
-                                0, 15, 0, 15), new Dimension(38, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ScrollBar:ScrollBarThumb[Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ScrollBarThumbPainter",
-                        ScrollBarThumbPainter.BACKGROUND_PRESSED, new Insets(0,
-                                15, 0, 15), new Dimension(38, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ScrollBar:ScrollBarTrack.contentMargins", new InsetsUIResource(0,
-                0, 0, 0));
-        d.put("ScrollBar:ScrollBarTrack[Disabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ScrollBarTrackPainter",
-                        ScrollBarTrackPainter.BACKGROUND_DISABLED, new Insets(5,
-                                5, 5, 5), new Dimension(18, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, 2.0));
-        d.put("ScrollBar:ScrollBarTrack[Enabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ScrollBarTrackPainter",
-                        ScrollBarTrackPainter.BACKGROUND_ENABLED, new Insets(5,
-                                10, 5, 9), new Dimension(34, 15), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
+        d.put("ScrollBar:\"ScrollBar.button\"[Enabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarButtonPainter", ScrollBarButtonPainter.FOREGROUND_ENABLED,
+                new Insets(1, 1, 1, 1), new Dimension(25, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("ScrollBar:\"ScrollBar.button\"[Disabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarButtonPainter", ScrollBarButtonPainter.FOREGROUND_DISABLED,
+                new Insets(1, 1, 1, 1), new Dimension(25, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("ScrollBar:\"ScrollBar.button\"[MouseOver].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarButtonPainter", ScrollBarButtonPainter.FOREGROUND_MOUSEOVER,
+                new Insets(1, 1, 1, 1), new Dimension(25, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("ScrollBar:\"ScrollBar.button\"[Pressed].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarButtonPainter", ScrollBarButtonPainter.FOREGROUND_PRESSED,
+                new Insets(1, 1, 1, 1), new Dimension(25, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("ScrollBar:ScrollBarThumb.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("ScrollBar:ScrollBarThumb[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarThumbPainter", ScrollBarThumbPainter.BACKGROUND_ENABLED,
+                new Insets(0, 15, 0, 15), new Dimension(38, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ScrollBar:ScrollBarThumb[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarThumbPainter", ScrollBarThumbPainter.BACKGROUND_MOUSEOVER,
+                new Insets(0, 15, 0, 15), new Dimension(38, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ScrollBar:ScrollBarThumb[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarThumbPainter", ScrollBarThumbPainter.BACKGROUND_PRESSED,
+                new Insets(0, 15, 0, 15), new Dimension(38, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ScrollBar:ScrollBarTrack.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("ScrollBar:ScrollBarTrack[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarTrackPainter", ScrollBarTrackPainter.BACKGROUND_DISABLED,
+                new Insets(5, 5, 5, 5), new Dimension(18, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
+        d.put("ScrollBar:ScrollBarTrack[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ScrollBarTrackPainter", ScrollBarTrackPainter.BACKGROUND_ENABLED,
+                new Insets(5, 10, 5, 9), new Dimension(34, 15), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
 
         // Initialize ScrollPane
         d.put("ScrollPane.contentMargins", new InsetsUIResource(3, 3, 3, 3));
         d.put("ScrollPane.useChildTextComponentFocus", Boolean.TRUE);
         d.put("ScrollPane[Enabled+Focused].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ScrollPanePainter",
-                ScrollPanePainter.BORDER_ENABLED_FOCUSED, new Insets(5, 5, 5,
-                        5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.ScrollPanePainter", ScrollPanePainter.BORDER_ENABLED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
         d.put("ScrollPane[Enabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ScrollPanePainter",
-                ScrollPanePainter.BORDER_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.ScrollPanePainter", ScrollPanePainter.BORDER_ENABLED, new Insets(5,
+                        5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize Viewport
         d.put("Viewport.contentMargins", new InsetsUIResource(0, 0, 0, 0));
@@ -1816,380 +1412,248 @@ final class NimbusDefaults {
 
         // Initialize Slider
         d.put("Slider.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        d.put("Slider.States",
-                "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,ArrowShape");
+        d.put("Slider.States", "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,ArrowShape");
         d.put("Slider.ArrowShape", new SliderArrowShapeState());
         d.put("Slider.thumbWidth", new Integer(17));
         d.put("Slider.thumbHeight", new Integer(17));
         d.put("Slider.trackBorder", new Integer(0));
         d.put("Slider.paintValue", Boolean.FALSE);
         addColor(d, "Slider.tickColor", 35, 40, 48, 255);
-        d.put("Slider:SliderThumb.contentMargins", new InsetsUIResource(0, 0, 0,
-                0));
-        d.put("Slider:SliderThumb.States",
-                "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,ArrowShape");
-        d.put("Slider:SliderThumb.ArrowShape",
-                new SliderThumbArrowShapeState());
+        d.put("Slider:SliderThumb.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("Slider:SliderThumb.States", "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,ArrowShape");
+        d.put("Slider:SliderThumb.ArrowShape", new SliderThumbArrowShapeState());
         d.put("Slider:SliderThumb[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.SliderThumbPainter",
-                SliderThumbPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(17, 17), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_DISABLED,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("Slider:SliderThumb[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.SliderThumbPainter",
-                SliderThumbPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(17, 17), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("Slider:SliderThumb[Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.SliderThumbPainter",
-                SliderThumbPainter.BACKGROUND_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(17, 17), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Slider:SliderThumb[Focused+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_FOCUSED_MOUSEOVER,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[Focused+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_FOCUSED_PRESSED,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_MOUSEOVER, new Insets(5,
-                                5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[Focused+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_FOCUSED_MOUSEOVER,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_FOCUSED_PRESSED,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_MOUSEOVER,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("Slider:SliderThumb[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter", SliderThumbPainter.BACKGROUND_PRESSED,
+                new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[ArrowShape+Enabled].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.SliderThumbPainter",
-                SliderThumbPainter.BACKGROUND_PRESSED, new Insets(5, 5, 5, 5),
-                new Dimension(17, 17), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                SliderThumbPainter.BACKGROUND_ENABLED_ARROWSHAPE, new Insets(5, 5, 5, 5), new Dimension(17,
+                        17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[ArrowShape+Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter",
+                SliderThumbPainter.BACKGROUND_DISABLED_ARROWSHAPE, new Insets(5, 5, 5, 5), new Dimension(17,
+                        17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[ArrowShape+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter",
+                SliderThumbPainter.BACKGROUND_MOUSEOVER_ARROWSHAPE, new Insets(5, 5, 5, 5), new Dimension(17,
+                        17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[ArrowShape+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter",
+                SliderThumbPainter.BACKGROUND_PRESSED_ARROWSHAPE, new Insets(5, 5, 5, 5), new Dimension(17,
+                        17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[ArrowShape+Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter",
+                SliderThumbPainter.BACKGROUND_FOCUSED_ARROWSHAPE, new Insets(5, 5, 5, 5), new Dimension(17,
+                        17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Slider:SliderThumb[ArrowShape+Focused+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter",
+                SliderThumbPainter.BACKGROUND_FOCUSED_MOUSEOVER_ARROWSHAPE, new Insets(5, 5, 5, 5),
+                new Dimension(17, 17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
                 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+Enabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_ENABLED_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+Disabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_DISABLED_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_MOUSEOVER_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_PRESSED_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+Focused].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_FOCUSED_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+Focused+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_FOCUSED_MOUSEOVER_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderThumb[ArrowShape+Focused+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.SliderThumbPainter",
-                        SliderThumbPainter.BACKGROUND_FOCUSED_PRESSED_ARROWSHAPE,
-                        new Insets(5, 5, 5, 5), new Dimension(17, 17), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Slider:SliderTrack.contentMargins", new InsetsUIResource(0, 0, 0,
-                0));
-        d.put("Slider:SliderTrack.States",
-                "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,ArrowShape");
-        d.put("Slider:SliderTrack.ArrowShape",
-                new SliderTrackArrowShapeState());
+        d.put("Slider:SliderThumb[ArrowShape+Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SliderThumbPainter",
+                SliderThumbPainter.BACKGROUND_FOCUSED_PRESSED_ARROWSHAPE, new Insets(5, 5, 5, 5),
+                new Dimension(17, 17), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                1.0));
+        d.put("Slider:SliderTrack.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("Slider:SliderTrack.States", "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,ArrowShape");
+        d.put("Slider:SliderTrack.ArrowShape", new SliderTrackArrowShapeState());
         d.put("Slider:SliderTrack[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.SliderTrackPainter",
-                SliderTrackPainter.BACKGROUND_DISABLED, new Insets(6, 5, 6, 5),
-                new Dimension(23, 17), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, 2.0));
+                "javax.swing.plaf.nimbus.SliderTrackPainter", SliderTrackPainter.BACKGROUND_DISABLED,
+                new Insets(6, 5, 6, 5), new Dimension(23, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                2.0));
         d.put("Slider:SliderTrack[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.SliderTrackPainter",
-                SliderTrackPainter.BACKGROUND_ENABLED, new Insets(6, 5, 6, 5),
-                new Dimension(23, 17), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.SliderTrackPainter", SliderTrackPainter.BACKGROUND_ENABLED,
+                new Insets(6, 5, 6, 5), new Dimension(23, 17), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
 
         // Initialize Spinner
         d.put("Spinner.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        d.put("Spinner:\"Spinner.editor\".contentMargins", new InsetsUIResource(
-                0, 0, 0, 0));
-        d.put("Spinner:Panel:\"Spinner.formattedTextField\".contentMargins",
-                new InsetsUIResource(6, 6, 5, 6));
-        addColor(d,
-                "Spinner:Panel:\"Spinner.formattedTextField\"[Disabled].textForeground",
+        d.put("Spinner:\"Spinner.editor\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        d.put("Spinner:Panel:\"Spinner.formattedTextField\".contentMargins", new InsetsUIResource(6, 6, 5,
+                6));
+        addColor(d, "Spinner:Panel:\"Spinner.formattedTextField\"[Disabled].textForeground",
                 "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
-                        SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_DISABLED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
-                        SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_ENABLED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Focused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
-                        SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_FOCUSED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d,
-                "Spinner:Panel:\"Spinner.formattedTextField\"[Selected].textForeground",
+        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
+                SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_DISABLED, new Insets(5, 3, 3, 1),
+                new Dimension(64, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
+                SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_ENABLED, new Insets(5, 3, 3, 1),
+                new Dimension(64, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
+                SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_FOCUSED, new Insets(5, 3, 3, 1),
+                new Dimension(64, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        addColor(d, "Spinner:Panel:\"Spinner.formattedTextField\"[Selected].textForeground",
                 "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
-                        SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_SELECTED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d,
-                "Spinner:Panel:\"Spinner.formattedTextField\"[Focused+Selected].textForeground",
+        d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
+                SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_SELECTED, new Insets(5, 3, 3, 1),
+                new Dimension(64, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        addColor(d, "Spinner:Panel:\"Spinner.formattedTextField\"[Focused+Selected].textForeground",
                 "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("Spinner:Panel:\"Spinner.formattedTextField\"[Focused+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
-                        SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_SELECTED_FOCUSED,
-                        new Insets(5, 3, 3, 1), new Dimension(64, 24), false,
+                new LazyPainter("javax.swing.plaf.nimbus.SpinnerPanelSpinnerFormattedTextFieldPainter",
+                        SpinnerPanelSpinnerFormattedTextFieldPainter.BACKGROUND_SELECTED_FOCUSED, new Insets(
+                                5, 3, 3, 1), new Dimension(64, 24), false,
                         AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                         Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("Spinner:\"Spinner.previousButton\".contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
+        d.put("Spinner:\"Spinner.previousButton\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("Spinner:\"Spinner.previousButton\".size", new Integer(20));
-        d.put("Spinner:\"Spinner.previousButton\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_DISABLED,
-                        new Insets(0, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_ENABLED,
-                        new Insets(0, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Focused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_FOCUSED,
-                        new Insets(0, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Focused+MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(3, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Focused+Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_PRESSED_FOCUSED,
-                        new Insets(0, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(0, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.BACKGROUND_PRESSED,
-                        new Insets(0, 1, 6, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Disabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_DISABLED,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Enabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_ENABLED,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Focused].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_FOCUSED,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Focused+MouseOver].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Focused+Pressed].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_PRESSED_FOCUSED,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[MouseOver].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_MOUSEOVER,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.previousButton\"[Pressed].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
-                        SpinnerPreviousButtonPainter.FOREGROUND_PRESSED,
-                        new Insets(3, 6, 5, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\".contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
+        d.put("Spinner:\"Spinner.previousButton\"[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_DISABLED, new Insets(0, 1, 6, 7), new Dimension(20,
+                        12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_ENABLED, new Insets(0, 1, 6, 7), new Dimension(20,
+                        12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_FOCUSED, new Insets(0, 1, 6, 7), new Dimension(20,
+                        12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Focused+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(3, 1, 6, 7),
+                new Dimension(20, 12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(0, 1, 6, 7),
+                new Dimension(20, 12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_MOUSEOVER, new Insets(0, 1, 6, 7), new Dimension(20,
+                        12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.BACKGROUND_PRESSED, new Insets(0, 1, 6, 7), new Dimension(20,
+                        12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Disabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_DISABLED, new Insets(3, 6, 5, 9), new Dimension(20,
+                        12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Enabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_ENABLED, new Insets(3, 6, 5, 9), new Dimension(20,
+                        12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Focused].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_FOCUSED, new Insets(3, 6, 5, 9), new Dimension(20,
+                        12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Focused+MouseOver].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_MOUSEOVER_FOCUSED, new Insets(3, 6, 5, 9),
+                new Dimension(20, 12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Focused+Pressed].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_PRESSED_FOCUSED, new Insets(3, 6, 5, 9),
+                new Dimension(20, 12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
+                1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[MouseOver].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_MOUSEOVER, new Insets(3, 6, 5, 9), new Dimension(20,
+                        12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.previousButton\"[Pressed].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerPreviousButtonPainter",
+                SpinnerPreviousButtonPainter.FOREGROUND_PRESSED, new Insets(3, 6, 5, 9), new Dimension(20,
+                        12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("Spinner:\"Spinner.nextButton\".size", new Integer(20));
-        d.put("Spinner:\"Spinner.nextButton\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_DISABLED,
-                        new Insets(7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_ENABLED, new Insets(
-                                7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Focused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_FOCUSED, new Insets(
-                                7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Focused+MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Focused+Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_PRESSED_FOCUSED,
-                        new Insets(7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.BACKGROUND_PRESSED, new Insets(
-                                7, 1, 1, 7), new Dimension(20, 12), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Disabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_DISABLED,
-                        new Insets(5, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Enabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_ENABLED, new Insets(
-                                5, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Focused].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_FOCUSED, new Insets(
-                                3, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Focused+MouseOver].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(3, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Focused+Pressed].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_PRESSED_FOCUSED,
-                        new Insets(5, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[MouseOver].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_MOUSEOVER,
-                        new Insets(5, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
-        d.put("Spinner:\"Spinner.nextButton\"[Pressed].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
-                        SpinnerNextButtonPainter.FOREGROUND_PRESSED, new Insets(
-                                5, 6, 3, 9), new Dimension(20, 12), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES,
-                        1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_DISABLED, new Insets(7, 1, 1, 7), new Dimension(20, 12),
+                false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_ENABLED, new Insets(7, 1, 1, 7), new Dimension(20, 12),
+                false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_FOCUSED, new Insets(7, 1, 1, 7), new Dimension(20, 12),
+                false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Focused+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(7, 1, 1, 7), new Dimension(
+                        20, 12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(7, 1, 1, 7), new Dimension(20,
+                        12), false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_MOUSEOVER, new Insets(7, 1, 1, 7), new Dimension(20, 12),
+                false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.BACKGROUND_PRESSED, new Insets(7, 1, 1, 7), new Dimension(20, 12),
+                false, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Disabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_DISABLED, new Insets(5, 6, 3, 9), new Dimension(20, 12),
+                true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Enabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_ENABLED, new Insets(5, 6, 3, 9), new Dimension(20, 12),
+                true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Focused].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_FOCUSED, new Insets(3, 6, 3, 9), new Dimension(20, 12),
+                true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Focused+MouseOver].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_MOUSEOVER_FOCUSED, new Insets(3, 6, 3, 9), new Dimension(
+                        20, 12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Focused+Pressed].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_PRESSED_FOCUSED, new Insets(5, 6, 3, 9), new Dimension(20,
+                        12), true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[MouseOver].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_MOUSEOVER, new Insets(5, 6, 3, 9), new Dimension(20, 12),
+                true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Spinner:\"Spinner.nextButton\"[Pressed].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SpinnerNextButtonPainter",
+                SpinnerNextButtonPainter.FOREGROUND_PRESSED, new Insets(5, 6, 3, 9), new Dimension(20, 12),
+                true, AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
 
         // Initialize SplitPane
         d.put("SplitPane.contentMargins", new InsetsUIResource(1, 1, 1, 1));
-        d.put("SplitPane.States",
-                "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,Vertical");
+        d.put("SplitPane.States", "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,Vertical");
         d.put("SplitPane.Vertical", new SplitPaneVerticalState());
         d.put("SplitPane.size", new Integer(10));
         d.put("SplitPane.dividerSize", new Integer(10));
@@ -2197,40 +1661,30 @@ final class NimbusDefaults {
         d.put("SplitPane.oneTouchButtonOffset", new Integer(30));
         d.put("SplitPane.oneTouchExpandable", Boolean.FALSE);
         d.put("SplitPane.continuousLayout", Boolean.TRUE);
-        d.put("SplitPane:SplitPaneDivider.contentMargins", new InsetsUIResource(
-                0, 0, 0, 0));
+        d.put("SplitPane:SplitPaneDivider.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("SplitPane:SplitPaneDivider.States",
                 "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,Vertical");
-        d.put("SplitPane:SplitPaneDivider.Vertical",
-                new SplitPaneDividerVerticalState());
-        d.put("SplitPane:SplitPaneDivider[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SplitPaneDividerPainter",
-                        SplitPaneDividerPainter.BACKGROUND_ENABLED, new Insets(
-                                3, 0, 3, 0), new Dimension(68, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("SplitPane:SplitPaneDivider[Focused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SplitPaneDividerPainter",
-                        SplitPaneDividerPainter.BACKGROUND_FOCUSED, new Insets(
-                                3, 0, 3, 0), new Dimension(68, 10), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("SplitPane:SplitPaneDivider[Enabled].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SplitPaneDividerPainter",
-                        SplitPaneDividerPainter.FOREGROUND_ENABLED, new Insets(
-                                0, 24, 0, 24), new Dimension(68, 10), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("SplitPane:SplitPaneDivider[Enabled+Vertical].foregroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.SplitPaneDividerPainter",
-                        SplitPaneDividerPainter.FOREGROUND_ENABLED_VERTICAL,
-                        new Insets(5, 0, 5, 0), new Dimension(10, 38), true,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("SplitPane:SplitPaneDivider.Vertical", new SplitPaneDividerVerticalState());
+        d.put("SplitPane:SplitPaneDivider[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SplitPaneDividerPainter", SplitPaneDividerPainter.BACKGROUND_ENABLED,
+                new Insets(3, 0, 3, 0), new Dimension(68, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("SplitPane:SplitPaneDivider[Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SplitPaneDividerPainter", SplitPaneDividerPainter.BACKGROUND_FOCUSED,
+                new Insets(3, 0, 3, 0), new Dimension(68, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("SplitPane:SplitPaneDivider[Enabled].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SplitPaneDividerPainter", SplitPaneDividerPainter.FOREGROUND_ENABLED,
+                new Insets(0, 24, 0, 24), new Dimension(68, 10), true,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("SplitPane:SplitPaneDivider[Enabled+Vertical].foregroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.SplitPaneDividerPainter",
+                SplitPaneDividerPainter.FOREGROUND_ENABLED_VERTICAL, new Insets(5, 0, 5, 0), new Dimension(10,
+                        38), true, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
 
         // Initialize TabbedPane
         d.put("TabbedPane.contentMargins", new InsetsUIResource(0, 0, 0, 0));
@@ -2240,533 +1694,402 @@ final class NimbusDefaults {
         d.put("TabbedPane.tabOverlap", new Integer(-1));
         d.put("TabbedPane.extendTabsToBase", Boolean.TRUE);
         d.put("TabbedPane.useBasicArrows", Boolean.TRUE);
-        addColor(d, "TabbedPane.shadow", "nimbusDisabledText", 0.0f, 0.0f, 0.0f,
-                0);
+        addColor(d, "TabbedPane.shadow", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         addColor(d, "TabbedPane.darkShadow", "text", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "TabbedPane.highlight", "nimbusLightBackground", 0.0f, 0.0f,
+        addColor(d, "TabbedPane.highlight", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+        d.put("TabbedPane:TabbedPaneTab.contentMargins", new InsetsUIResource(2, 8, 3, 8));
+        d.put("TabbedPane:TabbedPaneTab[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter", TabbedPaneTabPainter.BACKGROUND_ENABLED,
+                new Insets(7, 7, 1, 7), new Dimension(44, 20), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[Enabled+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_ENABLED_MOUSEOVER, new Insets(7, 7, 1, 7), new Dimension(44,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[Enabled+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_ENABLED_PRESSED, new Insets(7, 6, 1, 7), new Dimension(44,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        addColor(d, "TabbedPane:TabbedPaneTab[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f,
                 0.0f, 0);
-        d.put("TabbedPane:TabbedPaneTab.contentMargins", new InsetsUIResource(2,
-                8, 3, 8));
-        d.put("TabbedPane:TabbedPaneTab[Enabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_ENABLED, new Insets(7,
-                                7, 1, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[Enabled+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_ENABLED_MOUSEOVER,
-                        new Insets(7, 7, 1, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[Enabled+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_ENABLED_PRESSED,
-                        new Insets(7, 6, 1, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "TabbedPane:TabbedPaneTab[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("TabbedPane:TabbedPaneTab[Disabled].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_DISABLED, new Insets(6,
-                                7, 1, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[Disabled+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED_DISABLED,
-                        new Insets(7, 7, 0, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED, new Insets(7,
-                                7, 0, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[MouseOver+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED_MOUSEOVER,
-                        new Insets(7, 9, 0, 9), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "TabbedPane:TabbedPaneTab[Pressed+Selected].textForeground",
-                255, 255, 255, 255);
-        d.put("TabbedPane:TabbedPaneTab[Pressed+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED_PRESSED,
-                        new Insets(7, 9, 0, 9), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[Focused+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED_FOCUSED,
-                        new Insets(7, 7, 3, 7), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTab[Focused+MouseOver+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED_MOUSEOVER_FOCUSED,
-                        new Insets(7, 9, 3, 9), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d,
-                "TabbedPane:TabbedPaneTab[Focused+Pressed+Selected].textForeground",
-                255, 255, 255, 255);
-        d.put("TabbedPane:TabbedPaneTab[Focused+Pressed+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TabbedPaneTabPainter",
-                        TabbedPaneTabPainter.BACKGROUND_SELECTED_PRESSED_FOCUSED,
-                        new Insets(7, 9, 3, 9), new Dimension(44, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTabArea.contentMargins",
-                new InsetsUIResource(3, 10, 4, 10));
-        d.put("TabbedPane:TabbedPaneTabArea[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
-                        TabbedPaneTabAreaPainter.BACKGROUND_ENABLED, new Insets(
-                                0, 5, 6, 5), new Dimension(5, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTabArea[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
-                        TabbedPaneTabAreaPainter.BACKGROUND_DISABLED,
-                        new Insets(0, 5, 6, 5), new Dimension(5, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTabArea[Enabled+MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
-                        TabbedPaneTabAreaPainter.BACKGROUND_ENABLED_MOUSEOVER,
-                        new Insets(0, 5, 6, 5), new Dimension(5, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneTabArea[Enabled+Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
-                        TabbedPaneTabAreaPainter.BACKGROUND_ENABLED_PRESSED,
-                        new Insets(0, 5, 6, 5), new Dimension(5, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TabbedPane:TabbedPaneContent.contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
+        d.put("TabbedPane:TabbedPaneTab[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter", TabbedPaneTabPainter.BACKGROUND_DISABLED,
+                new Insets(6, 7, 1, 7), new Dimension(44, 20), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[Disabled+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_SELECTED_DISABLED, new Insets(7, 7, 0, 7), new Dimension(44,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter", TabbedPaneTabPainter.BACKGROUND_SELECTED,
+                new Insets(7, 7, 0, 7), new Dimension(44, 20), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_SELECTED_MOUSEOVER, new Insets(7, 9, 0, 9), new Dimension(44,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        addColor(d, "TabbedPane:TabbedPaneTab[Pressed+Selected].textForeground", 255, 255, 255, 255);
+        d.put("TabbedPane:TabbedPaneTab[Pressed+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_SELECTED_PRESSED, new Insets(7, 9, 0, 9), new Dimension(44,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[Focused+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_SELECTED_FOCUSED, new Insets(7, 7, 3, 7), new Dimension(44,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTab[Focused+MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_SELECTED_MOUSEOVER_FOCUSED, new Insets(7, 9, 3, 9),
+                new Dimension(44, 20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        addColor(d, "TabbedPane:TabbedPaneTab[Focused+Pressed+Selected].textForeground", 255, 255, 255, 255);
+        d.put("TabbedPane:TabbedPaneTab[Focused+Pressed+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabPainter",
+                TabbedPaneTabPainter.BACKGROUND_SELECTED_PRESSED_FOCUSED, new Insets(7, 9, 3, 9),
+                new Dimension(44, 20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTabArea.contentMargins", new InsetsUIResource(3, 10, 4, 10));
+        d.put("TabbedPane:TabbedPaneTabArea[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
+                TabbedPaneTabAreaPainter.BACKGROUND_ENABLED, new Insets(0, 5, 6, 5), new Dimension(5, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTabArea[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
+                TabbedPaneTabAreaPainter.BACKGROUND_DISABLED, new Insets(0, 5, 6, 5), new Dimension(5, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTabArea[Enabled+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
+                TabbedPaneTabAreaPainter.BACKGROUND_ENABLED_MOUSEOVER, new Insets(0, 5, 6, 5), new Dimension(
+                        5, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneTabArea[Enabled+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TabbedPaneTabAreaPainter",
+                TabbedPaneTabAreaPainter.BACKGROUND_ENABLED_PRESSED, new Insets(0, 5, 6, 5), new Dimension(5,
+                        24), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TabbedPane:TabbedPaneContent.contentMargins", new InsetsUIResource(0, 0, 0, 0));
 
         // Initialize Table
         d.put("Table.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("Table.opaque", Boolean.TRUE);
         addColor(d, "Table.textForeground", 35, 35, 36, 255);
-        addColor(d, "Table.background", "nimbusLightBackground", 0.0f, 0.0f,
-                0.0f, 0);
+        addColor(d, "Table.background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
         d.put("Table.showGrid", Boolean.FALSE);
         d.put("Table.intercellSpacing", new DimensionUIResource(0, 0));
-        addColor(d, "Table.alternateRowColor", "nimbusLightBackground", 0.0f,
-                0.0f, -0.05098039f, 0, false);
+        addColor(d, "Table.alternateRowColor", "nimbusLightBackground", 0.0f, 0.0f, -0.05098039f, 0, false);
         d.put("Table.rendererUseTableColors", Boolean.TRUE);
         d.put("Table.rendererUseUIBorder", Boolean.TRUE);
-        d.put("Table.cellNoFocusBorder", new BorderUIResource(BorderFactory
-                .createEmptyBorder(2, 5, 2, 5)));
-        d.put("Table.focusCellHighlightBorder", new BorderUIResource(
-                new PainterBorder(
-                        "Tree:TreeCell[Enabled+Focused].backgroundPainter",
-                        new Insets(2, 5, 2, 5))));
+        d.put("Table.cellNoFocusBorder", new BorderUIResource(BorderFactory.createEmptyBorder(2, 5, 2, 5)));
+        d.put("Table.focusCellHighlightBorder", new BorderUIResource(new PainterBorder(
+                "Tree:TreeCell[Enabled+Focused].backgroundPainter", new Insets(2, 5, 2, 5))));
         addColor(d, "Table.dropLineColor", "nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "Table.dropLineShortColor", "nimbusOrange", 0.0f, 0.0f,
-                0.0f, 0);
-        addColor(d, "Table[Enabled+Selected].textForeground",
-                "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0, false);
-        addColor(d, "Table[Enabled+Selected].textBackground",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0, false);
-        addColor(d, "Table[Disabled+Selected].textBackground",
-                "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0, false);
-        d.put("Table:\"Table.cellRenderer\".contentMargins",
-                new InsetsUIResource(0, 0, 0, 0));
+        addColor(d, "Table.dropLineShortColor", "nimbusOrange", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "Table[Enabled+Selected].textForeground", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0,
+                false);
+        addColor(d, "Table[Enabled+Selected].textBackground", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f,
+                0, false);
+        addColor(d, "Table[Disabled+Selected].textBackground", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f,
+                0, false);
+        d.put("Table:\"Table.cellRenderer\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("Table:\"Table.cellRenderer\".opaque", Boolean.TRUE);
-        addColor(d, "Table:\"Table.cellRenderer\".background",
-                "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0, false);
+        addColor(d, "Table:\"Table.cellRenderer\".background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0,
+                false);
 
         // Initialize TableHeader
         d.put("TableHeader.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("TableHeader.opaque", Boolean.TRUE);
         d.put("TableHeader.rightAlignSortArrow", Boolean.TRUE);
         d.put("TableHeader[Enabled].ascendingSortIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TableHeaderPainter",
-                TableHeaderPainter.ASCENDINGSORTICON_ENABLED, new Insets(0, 0,
-                        0, 2), new Dimension(7, 7), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Table.ascendingSortIcon", new NimbusIcon("TableHeader",
-                "ascendingSortIconPainter", 7, 7));
+                "javax.swing.plaf.nimbus.TableHeaderPainter", TableHeaderPainter.ASCENDINGSORTICON_ENABLED,
+                new Insets(0, 0, 0, 2), new Dimension(7, 7), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Table.ascendingSortIcon", new NimbusIcon("TableHeader", "ascendingSortIconPainter", 7, 7));
         d.put("TableHeader[Enabled].descendingSortIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TableHeaderPainter",
-                TableHeaderPainter.DESCENDINGSORTICON_ENABLED, new Insets(0, 0,
-                        0, 0), new Dimension(7, 7), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Table.descendingSortIcon", new NimbusIcon("TableHeader",
-                "descendingSortIconPainter", 7, 7));
-        d.put("TableHeader:\"TableHeader.renderer\".contentMargins",
-                new InsetsUIResource(2, 5, 4, 5));
+                "javax.swing.plaf.nimbus.TableHeaderPainter", TableHeaderPainter.DESCENDINGSORTICON_ENABLED,
+                new Insets(0, 0, 0, 0), new Dimension(7, 7), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Table.descendingSortIcon", new NimbusIcon("TableHeader", "descendingSortIconPainter", 7, 7));
+        d.put("TableHeader:\"TableHeader.renderer\".contentMargins", new InsetsUIResource(2, 5, 4, 5));
         d.put("TableHeader:\"TableHeader.renderer\".opaque", Boolean.TRUE);
         d.put("TableHeader:\"TableHeader.renderer\".States",
                 "Enabled,MouseOver,Pressed,Disabled,Focused,Selected,Sorted");
-        d.put("TableHeader:\"TableHeader.renderer\".Sorted",
-                new TableHeaderRendererSortedState());
-        d.put("TableHeader:\"TableHeader.renderer\"[Disabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_DISABLED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TableHeader:\"TableHeader.renderer\"[Enabled].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_ENABLED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TableHeader:\"TableHeader.renderer\"[Enabled+Focused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_ENABLED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TableHeader:\"TableHeader.renderer\"[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TableHeader:\"TableHeader.renderer\"[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_PRESSED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TableHeader:\"TableHeader.renderer\"[Enabled+Sorted].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_ENABLED_SORTED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\".Sorted", new TableHeaderRendererSortedState());
+        d.put("TableHeader:\"TableHeader.renderer\"[Disabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5), new Dimension(22, 20),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\"[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5), new Dimension(22, 20),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\"[Enabled+Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_ENABLED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(
+                        22, 20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\"[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_MOUSEOVER, new Insets(5, 5, 5, 5), new Dimension(22,
+                        20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\"[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_PRESSED, new Insets(5, 5, 5, 5), new Dimension(22, 20),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\"[Enabled+Sorted].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_ENABLED_SORTED, new Insets(5, 5, 5, 5), new Dimension(
+                        22, 20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
         d.put("TableHeader:\"TableHeader.renderer\"[Enabled+Focused+Sorted].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_ENABLED_FOCUSED_SORTED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
+                new LazyPainter("javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                        TableHeaderRendererPainter.BACKGROUND_ENABLED_FOCUSED_SORTED, new Insets(5, 5, 5, 5),
+                        new Dimension(22, 20), false,
                         AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                         Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TableHeader:\"TableHeader.renderer\"[Disabled+Sorted].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
-                        TableHeaderRendererPainter.BACKGROUND_DISABLED_SORTED,
-                        new Insets(5, 5, 5, 5), new Dimension(22, 20), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+        d.put("TableHeader:\"TableHeader.renderer\"[Disabled+Sorted].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableHeaderRendererPainter",
+                TableHeaderRendererPainter.BACKGROUND_DISABLED_SORTED, new Insets(5, 5, 5, 5), new Dimension(
+                        22, 20), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
 
         // Initialize \"Table.editor\"
-        d.put("\"Table.editor\".contentMargins", new InsetsUIResource(3, 5, 3,
-                5));
+        d.put("\"Table.editor\".contentMargins", new InsetsUIResource(3, 5, 3, 5));
         d.put("\"Table.editor\".opaque", Boolean.TRUE);
-        addColor(d, "\"Table.editor\".background", "nimbusLightBackground",
-                0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "\"Table.editor\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "\"Table.editor\".background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "\"Table.editor\"[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("\"Table.editor\"[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TableEditorPainter",
-                TableEditorPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("\"Table.editor\"[Enabled+Focused].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TableEditorPainter",
-                        TableEditorPainter.BACKGROUND_ENABLED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "\"Table.editor\"[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.TableEditorPainter", TableEditorPainter.BACKGROUND_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("\"Table.editor\"[Enabled+Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TableEditorPainter", TableEditorPainter.BACKGROUND_ENABLED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        addColor(d, "\"Table.editor\"[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
 
         // Initialize \"Tree.cellEditor\"
-        d.put("\"Tree.cellEditor\".contentMargins", new InsetsUIResource(2, 5,
-                2, 5));
+        d.put("\"Tree.cellEditor\".contentMargins", new InsetsUIResource(2, 5, 2, 5));
         d.put("\"Tree.cellEditor\".opaque", Boolean.TRUE);
-        addColor(d, "\"Tree.cellEditor\".background", "nimbusLightBackground",
-                0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "\"Tree.cellEditor\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "\"Tree.cellEditor\".background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "\"Tree.cellEditor\"[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f,
+                0);
         d.put("\"Tree.cellEditor\"[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TreeCellEditorPainter", TreeCellEditorPainter.BACKGROUND_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("\"Tree.cellEditor\"[Enabled+Focused].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.TreeCellEditorPainter",
-                TreeCellEditorPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                TreeCellEditorPainter.BACKGROUND_ENABLED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(100,
+                        30), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("\"Tree.cellEditor\"[Enabled+Focused].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TreeCellEditorPainter",
-                        TreeCellEditorPainter.BACKGROUND_ENABLED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "\"Tree.cellEditor\"[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "\"Tree.cellEditor\"[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f,
+                0);
 
         // Initialize TextField
         d.put("TextField.contentMargins", new InsetsUIResource(6, 6, 6, 6));
-        addColor(d, "TextField.background", "nimbusLightBackground", 0.0f, 0.0f,
-                0.0f, 0);
-        addColor(d, "TextField[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "TextField.background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "TextField[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("TextField[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextFieldPainter",
-                TextFieldPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.TextFieldPainter", TextFieldPainter.BACKGROUND_DISABLED, new Insets(
+                        5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
         d.put("TextField[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextFieldPainter",
-                TextFieldPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "TextField[Selected].textForeground", "nimbusSelectedText",
-                0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.TextFieldPainter", TextFieldPainter.BACKGROUND_ENABLED, new Insets(5,
+                        5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        addColor(d, "TextField[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("TextField[Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextFieldPainter",
-                TextFieldPainter.BACKGROUND_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "TextField[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
-        d.put("TextField[Disabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextFieldPainter",
-                TextFieldPainter.BORDER_DISABLED, new Insets(5, 3, 3, 3),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TextField[Focused].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextFieldPainter",
-                TextFieldPainter.BORDER_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TextField[Enabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextFieldPainter",
-                TextFieldPainter.BORDER_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.TextFieldPainter", TextFieldPainter.BACKGROUND_SELECTED, new Insets(
+                        5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        addColor(d, "TextField[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        d.put("TextField[Disabled].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.TextFieldPainter",
+                TextFieldPainter.BORDER_DISABLED, new Insets(5, 3, 3, 3), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TextField[Focused].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.TextFieldPainter",
+                TextFieldPainter.BORDER_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TextField[Enabled].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.TextFieldPainter",
+                TextFieldPainter.BORDER_ENABLED, new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize FormattedTextField
-        d.put("FormattedTextField.contentMargins", new InsetsUIResource(6, 6, 6,
-                6));
-        addColor(d, "FormattedTextField[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        d.put("FormattedTextField.contentMargins", new InsetsUIResource(6, 6, 6, 6));
+        addColor(d, "FormattedTextField[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("FormattedTextField[Disabled].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.FormattedTextFieldPainter",
-                FormattedTextFieldPainter.BACKGROUND_DISABLED, new Insets(5, 5,
-                        5, 5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                FormattedTextFieldPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5), new Dimension(122, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
         d.put("FormattedTextField[Enabled].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.FormattedTextFieldPainter",
-                FormattedTextFieldPainter.BACKGROUND_ENABLED, new Insets(5, 5,
-                        5, 5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                FormattedTextFieldPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5), new Dimension(122, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "FormattedTextField[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "FormattedTextField[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("FormattedTextField[Selected].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.FormattedTextFieldPainter",
-                FormattedTextFieldPainter.BACKGROUND_SELECTED, new Insets(5, 5,
-                        5, 5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                FormattedTextFieldPainter.BACKGROUND_SELECTED, new Insets(5, 5, 5, 5), new Dimension(122, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "FormattedTextField[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "FormattedTextField[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("FormattedTextField[Disabled].borderPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.FormattedTextFieldPainter",
-                FormattedTextFieldPainter.BORDER_DISABLED, new Insets(5, 3, 3,
-                        3), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                FormattedTextFieldPainter.BORDER_DISABLED, new Insets(5, 3, 3, 3), new Dimension(122, 24),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
         d.put("FormattedTextField[Focused].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FormattedTextFieldPainter",
-                FormattedTextFieldPainter.BORDER_FOCUSED, new Insets(5, 5, 5,
-                        5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.FormattedTextFieldPainter", FormattedTextFieldPainter.BORDER_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
         d.put("FormattedTextField[Enabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.FormattedTextFieldPainter",
-                FormattedTextFieldPainter.BORDER_ENABLED, new Insets(5, 5, 5,
-                        5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.FormattedTextFieldPainter", FormattedTextFieldPainter.BORDER_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize PasswordField
         d.put("PasswordField.contentMargins", new InsetsUIResource(6, 6, 6, 6));
-        addColor(d, "PasswordField[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "PasswordField[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("PasswordField[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PasswordFieldPainter",
-                PasswordFieldPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5,
-                        5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.PasswordFieldPainter", PasswordFieldPainter.BACKGROUND_DISABLED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
         d.put("PasswordField[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PasswordFieldPainter",
-                PasswordFieldPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "PasswordField[Selected].textForeground",
-                "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.PasswordFieldPainter", PasswordFieldPainter.BACKGROUND_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        addColor(d, "PasswordField[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("PasswordField[Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PasswordFieldPainter",
-                PasswordFieldPainter.BACKGROUND_SELECTED, new Insets(5, 5, 5,
-                        5), new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        addColor(d, "PasswordField[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.PasswordFieldPainter", PasswordFieldPainter.BACKGROUND_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        addColor(d, "PasswordField[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("PasswordField[Disabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PasswordFieldPainter",
-                PasswordFieldPainter.BORDER_DISABLED, new Insets(5, 3, 3, 3),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.PasswordFieldPainter", PasswordFieldPainter.BORDER_DISABLED,
+                new Insets(5, 3, 3, 3), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
         d.put("PasswordField[Focused].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PasswordFieldPainter",
-                PasswordFieldPainter.BORDER_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.PasswordFieldPainter", PasswordFieldPainter.BORDER_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
         d.put("PasswordField[Enabled].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.PasswordFieldPainter",
-                PasswordFieldPainter.BORDER_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.PasswordFieldPainter", PasswordFieldPainter.BORDER_ENABLED,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize TextArea
         d.put("TextArea.contentMargins", new InsetsUIResource(6, 6, 6, 6));
-        d.put("TextArea.States",
-                "Enabled,MouseOver,Pressed,Selected,Disabled,Focused,NotInScrollPane");
+        d.put("TextArea.States", "Enabled,MouseOver,Pressed,Selected,Disabled,Focused,NotInScrollPane");
         d.put("TextArea.NotInScrollPane", new TextAreaNotInScrollPaneState());
-        addColor(d, "TextArea[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "TextArea[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("TextArea[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextAreaPainter",
-                TextAreaPainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BACKGROUND_DISABLED, new Insets(5,
+                        5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
         d.put("TextArea[Enabled].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BACKGROUND_ENABLED, new Insets(5,
+                        5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "TextArea[Disabled+NotInScrollPane].textForeground", "nimbusDisabledText", 0.0f, 0.0f,
+                0.0f, 0);
+        d.put("TextArea[Disabled+NotInScrollPane].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.TextAreaPainter",
-                TextAreaPainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        addColor(d, "TextArea[Disabled+NotInScrollPane].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("TextArea[Disabled+NotInScrollPane].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TextAreaPainter",
-                        TextAreaPainter.BACKGROUND_DISABLED_NOTINSCROLLPANE,
-                        new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        d.put("TextArea[Enabled+NotInScrollPane].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TextAreaPainter",
-                        TextAreaPainter.BACKGROUND_ENABLED_NOTINSCROLLPANE,
-                        new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        addColor(d, "TextArea[Selected].textForeground", "nimbusSelectedText",
-                0.0f, 0.0f, 0.0f, 0);
+                TextAreaPainter.BACKGROUND_DISABLED_NOTINSCROLLPANE, new Insets(5, 5, 5, 5), new Dimension(
+                        122, 24), false, AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("TextArea[Enabled+NotInScrollPane].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BACKGROUND_ENABLED_NOTINSCROLLPANE,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "TextArea[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("TextArea[Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextAreaPainter",
-                TextAreaPainter.BACKGROUND_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(122, 24), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        addColor(d, "TextArea[Disabled+NotInScrollPane].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("TextArea[Disabled+NotInScrollPane].borderPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TextAreaPainter",
-                        TextAreaPainter.BORDER_DISABLED_NOTINSCROLLPANE,
-                        new Insets(5, 3, 3, 3), new Dimension(122, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TextArea[Focused+NotInScrollPane].borderPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TextAreaPainter",
-                        TextAreaPainter.BORDER_FOCUSED_NOTINSCROLLPANE,
-                        new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
-        d.put("TextArea[Enabled+NotInScrollPane].borderPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TextAreaPainter",
-                        TextAreaPainter.BORDER_ENABLED_NOTINSCROLLPANE,
-                        new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BACKGROUND_SELECTED, new Insets(5,
+                        5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "TextArea[Disabled+NotInScrollPane].textForeground", "nimbusDisabledText", 0.0f, 0.0f,
+                0.0f, 0);
+        d.put("TextArea[Disabled+NotInScrollPane].borderPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BORDER_DISABLED_NOTINSCROLLPANE,
+                new Insets(5, 3, 3, 3), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TextArea[Focused+NotInScrollPane].borderPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BORDER_FOCUSED_NOTINSCROLLPANE,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
+        d.put("TextArea[Enabled+NotInScrollPane].borderPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TextAreaPainter", TextAreaPainter.BORDER_ENABLED_NOTINSCROLLPANE,
+                new Insets(5, 5, 5, 5), new Dimension(122, 24), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, Double.POSITIVE_INFINITY,
+                Double.POSITIVE_INFINITY));
 
         // Initialize TextPane
         d.put("TextPane.contentMargins", new InsetsUIResource(4, 6, 4, 6));
         d.put("TextPane.opaque", Boolean.TRUE);
-        addColor(d, "TextPane[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "TextPane[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("TextPane[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextPanePainter",
-                TextPanePainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.TextPanePainter", TextPanePainter.BACKGROUND_DISABLED, new Insets(5,
+                        5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
         d.put("TextPane[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextPanePainter",
-                TextPanePainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        addColor(d, "TextPane[Selected].textForeground", "nimbusSelectedText",
-                0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.TextPanePainter", TextPanePainter.BACKGROUND_ENABLED, new Insets(5,
+                        5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "TextPane[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("TextPane[Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TextPanePainter",
-                TextPanePainter.BACKGROUND_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.TextPanePainter", TextPanePainter.BACKGROUND_SELECTED, new Insets(5,
+                        5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
 
         // Initialize EditorPane
         d.put("EditorPane.contentMargins", new InsetsUIResource(4, 6, 4, 6));
         d.put("EditorPane.opaque", Boolean.TRUE);
-        addColor(d, "EditorPane[Disabled].textForeground", "nimbusDisabledText",
-                0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "EditorPane[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
         d.put("EditorPane[Disabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.EditorPanePainter",
-                EditorPanePainter.BACKGROUND_DISABLED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.EditorPanePainter", EditorPanePainter.BACKGROUND_DISABLED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
         d.put("EditorPane[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.EditorPanePainter",
-                EditorPanePainter.BACKGROUND_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        addColor(d, "EditorPane[Selected].textForeground", "nimbusSelectedText",
-                0.0f, 0.0f, 0.0f, 0);
+                "javax.swing.plaf.nimbus.EditorPanePainter", EditorPanePainter.BACKGROUND_ENABLED, new Insets(
+                        5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "EditorPane[Selected].textForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0);
         d.put("EditorPane[Selected].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.EditorPanePainter",
-                EditorPanePainter.BACKGROUND_SELECTED, new Insets(5, 5, 5, 5),
-                new Dimension(100, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.EditorPanePainter", EditorPanePainter.BACKGROUND_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
 
         // Initialize ToolBar
         d.put("ToolBar.contentMargins", new InsetsUIResource(2, 2, 2, 2));
@@ -2776,182 +2099,129 @@ final class NimbusDefaults {
         d.put("ToolBar.East", new ToolBarEastState());
         d.put("ToolBar.West", new ToolBarWestState());
         d.put("ToolBar.South", new ToolBarSouthState());
-        d.put("ToolBar[North].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolBarPainter",
-                ToolBarPainter.BORDER_NORTH, new Insets(0, 0, 1, 0),
-                new Dimension(30, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("ToolBar[South].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolBarPainter",
-                ToolBarPainter.BORDER_SOUTH, new Insets(1, 0, 0, 0),
-                new Dimension(30, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("ToolBar[East].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolBarPainter",
-                ToolBarPainter.BORDER_EAST, new Insets(1, 0, 0, 0),
-                new Dimension(30, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("ToolBar[West].borderPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolBarPainter",
-                ToolBarPainter.BORDER_WEST, new Insets(0, 0, 1, 0),
-                new Dimension(30, 30), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
-        d.put("ToolBar[Enabled].handleIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolBarPainter",
-                ToolBarPainter.HANDLEICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(11, 38), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar.handleIcon", new NimbusIcon("ToolBar",
-                "handleIconPainter", 11, 38));
-        d.put("ToolBar:Button.contentMargins", new InsetsUIResource(4, 4, 4,
-                4));
+        d.put("ToolBar[North].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.ToolBarPainter",
+                ToolBarPainter.BORDER_NORTH, new Insets(0, 0, 1, 0), new Dimension(30, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("ToolBar[South].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.ToolBarPainter",
+                ToolBarPainter.BORDER_SOUTH, new Insets(1, 0, 0, 0), new Dimension(30, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("ToolBar[East].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.ToolBarPainter",
+                ToolBarPainter.BORDER_EAST, new Insets(1, 0, 0, 0), new Dimension(30, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("ToolBar[West].borderPainter", new LazyPainter("javax.swing.plaf.nimbus.ToolBarPainter",
+                ToolBarPainter.BORDER_WEST, new Insets(0, 0, 1, 0), new Dimension(30, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("ToolBar[Enabled].handleIconPainter", new LazyPainter("javax.swing.plaf.nimbus.ToolBarPainter",
+                ToolBarPainter.HANDLEICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(11, 38), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar.handleIcon", new NimbusIcon("ToolBar", "handleIconPainter", 11, 38));
+        d.put("ToolBar:Button.contentMargins", new InsetsUIResource(4, 4, 4, 4));
         d.put("ToolBar:Button[Focused].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolBarButtonPainter",
-                ToolBarButtonPainter.BACKGROUND_FOCUSED, new Insets(5, 5, 5, 5),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                2.0, Double.POSITIVE_INFINITY));
+                "javax.swing.plaf.nimbus.ToolBarButtonPainter", ToolBarButtonPainter.BACKGROUND_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
         d.put("ToolBar:Button[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarButtonPainter", ToolBarButtonPainter.BACKGROUND_MOUSEOVER,
+                new Insets(5, 5, 5, 5), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:Button[Focused+MouseOver].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.ToolBarButtonPainter",
-                ToolBarButtonPainter.BACKGROUND_MOUSEOVER, new Insets(5, 5, 5,
-                        5), new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:Button[Focused+MouseOver].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToolBarButtonPainter",
-                        ToolBarButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(104, 33), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
+                ToolBarButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(104,
+                        33), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
         d.put("ToolBar:Button[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarButtonPainter", ToolBarButtonPainter.BACKGROUND_PRESSED,
+                new Insets(5, 5, 5, 5), new Dimension(104, 33), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:Button[Focused+Pressed].backgroundPainter", new LazyPainter(
                 "javax.swing.plaf.nimbus.ToolBarButtonPainter",
-                ToolBarButtonPainter.BACKGROUND_PRESSED, new Insets(5, 5, 5, 5),
-                new Dimension(104, 33), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                ToolBarButtonPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(104,
+                        33), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton.contentMargins", new InsetsUIResource(4, 4, 4, 4));
+        d.put("ToolBar:ToggleButton[Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(104, 34),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER, new Insets(5, 5, 5, 5), new Dimension(104,
+                        34), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Focused+MouseOver].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED, new Insets(5, 5, 5, 5),
+                new Dimension(104, 34), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
                 2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:Button[Focused+Pressed].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.ToolBarButtonPainter",
-                        ToolBarButtonPainter.BACKGROUND_PRESSED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(104, 33), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton.contentMargins", new InsetsUIResource(4, 4,
-                4, 4));
-        d.put("ToolBar:ToggleButton[Focused].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(104, 34), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER,
-                        new Insets(5, 5, 5, 5), new Dimension(104, 34), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Focused+MouseOver].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(104, 34), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_PRESSED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Focused+Pressed].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_PRESSED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Focused+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_SELECTED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Pressed+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_PRESSED_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Focused+Pressed+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_PRESSED_SELECTED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[MouseOver+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        d.put("ToolBar:ToggleButton[Focused+MouseOver+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED_FOCUSED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
-        addColor(d, "ToolBar:ToggleButton[Disabled+Selected].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("ToolBar:ToggleButton[Disabled+Selected].backgroundPainter",
-                new LazyPainter(
-                        "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
-                        ToolBarToggleButtonPainter.BACKGROUND_DISABLED_SELECTED,
-                        new Insets(5, 5, 5, 5), new Dimension(72, 25), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
-                        2.0, Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_PRESSED, new Insets(5, 5, 5, 5), new Dimension(72, 25),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Focused+Pressed].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_PRESSED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(
+                        72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_SELECTED, new Insets(5, 5, 5, 5), new Dimension(72, 25),
+                false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Focused+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_SELECTED_FOCUSED, new Insets(5, 5, 5, 5), new Dimension(
+                        72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Pressed+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_PRESSED_SELECTED, new Insets(5, 5, 5, 5), new Dimension(
+                        72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE, 2.0,
+                Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Focused+Pressed+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_PRESSED_SELECTED_FOCUSED, new Insets(5, 5, 5, 5),
+                new Dimension(72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                2.0, Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED, new Insets(5, 5, 5, 5),
+                new Dimension(72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                2.0, Double.POSITIVE_INFINITY));
+        d.put("ToolBar:ToggleButton[Focused+MouseOver+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_MOUSEOVER_SELECTED_FOCUSED, new Insets(5, 5, 5, 5),
+                new Dimension(72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                2.0, Double.POSITIVE_INFINITY));
+        addColor(d, "ToolBar:ToggleButton[Disabled+Selected].textForeground", "nimbusDisabledText", 0.0f,
+                0.0f, 0.0f, 0);
+        d.put("ToolBar:ToggleButton[Disabled+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.ToolBarToggleButtonPainter",
+                ToolBarToggleButtonPainter.BACKGROUND_DISABLED_SELECTED, new Insets(5, 5, 5, 5),
+                new Dimension(72, 25), false, AbstractRegionPainter.PaintContext.CacheMode.NINE_SQUARE_SCALE,
+                2.0, Double.POSITIVE_INFINITY));
 
         // Initialize ToolBarSeparator
-        d.put("ToolBarSeparator.contentMargins", new InsetsUIResource(2, 0, 3,
-                0));
-        addColor(d, "ToolBarSeparator.textForeground", "nimbusBorder", 0.0f,
-                0.0f, 0.0f, 0);
+        d.put("ToolBarSeparator.contentMargins", new InsetsUIResource(2, 0, 3, 0));
+        addColor(d, "ToolBarSeparator.textForeground", "nimbusBorder", 0.0f, 0.0f, 0.0f, 0);
 
         // Initialize ToolTip
         d.put("ToolTip.contentMargins", new InsetsUIResource(4, 4, 4, 4));
-        d.put("ToolTip[Enabled].backgroundPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.ToolTipPainter",
-                ToolTipPainter.BACKGROUND_ENABLED, new Insets(1, 1, 1, 1),
-                new Dimension(10, 10), false,
-                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0,
-                1.0));
+        d.put("ToolTip[Enabled].backgroundPainter", new LazyPainter("javax.swing.plaf.nimbus.ToolTipPainter",
+                ToolTipPainter.BACKGROUND_ENABLED, new Insets(1, 1, 1, 1), new Dimension(10, 10), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
 
         // Initialize Tree
         d.put("Tree.contentMargins", new InsetsUIResource(0, 0, 0, 0));
         d.put("Tree.opaque", Boolean.TRUE);
         addColor(d, "Tree.textForeground", "text", 0.0f, 0.0f, 0.0f, 0, false);
-        addColor(d, "Tree.textBackground", "nimbusLightBackground", 0.0f, 0.0f,
-                0.0f, 0, false);
-        addColor(d, "Tree.background", "nimbusLightBackground", 0.0f, 0.0f,
-                0.0f, 0);
+        addColor(d, "Tree.textBackground", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0, false);
+        addColor(d, "Tree.background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
         d.put("Tree.rendererFillBackground", Boolean.FALSE);
         d.put("Tree.leftChildIndent", new Integer(12));
         d.put("Tree.rightChildIndent", new Integer(4));
@@ -2962,94 +2232,58 @@ final class NimbusDefaults {
         d.put("Tree.repaintWholeRow", Boolean.TRUE);
         d.put("Tree.rowHeight", new Integer(0));
         d.put("Tree.rendererMargins", new InsetsUIResource(2, 0, 1, 5));
-        addColor(d, "Tree.selectionForeground", "nimbusSelectedText", 0.0f,
-                0.0f, 0.0f, 0, false);
-        addColor(d, "Tree.selectionBackground", "nimbusSelectionBackground",
-                0.0f, 0.0f, 0.0f, 0, false);
+        addColor(d, "Tree.selectionForeground", "nimbusSelectedText", 0.0f, 0.0f, 0.0f, 0, false);
+        addColor(d, "Tree.selectionBackground", "nimbusSelectionBackground", 0.0f, 0.0f, 0.0f, 0, false);
         addColor(d, "Tree.dropLineColor", "nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
         d.put("Tree:TreeCell.contentMargins", new InsetsUIResource(0, 0, 0, 0));
-        addColor(d, "Tree:TreeCell[Enabled].background",
-                "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
-        addColor(d, "Tree:TreeCell[Enabled+Focused].background",
-                "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
-        d.put("Tree:TreeCell[Enabled+Focused].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TreeCellPainter",
-                        TreeCellPainter.BACKGROUND_ENABLED_FOCUSED, new Insets(
-                                5, 5, 5, 5), new Dimension(100, 30), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        addColor(d, "Tree:TreeCell[Enabled+Selected].textForeground", 255, 255,
-                255, 255);
-        d.put("Tree:TreeCell[Enabled+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TreeCellPainter",
-                        TreeCellPainter.BACKGROUND_ENABLED_SELECTED, new Insets(
-                                5, 5, 5, 5), new Dimension(100, 30), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        addColor(d, "Tree:TreeCell[Focused+Selected].textForeground", 255, 255,
-                255, 255);
-        d.put("Tree:TreeCell[Focused+Selected].backgroundPainter",
-                new LazyPainter("javax.swing.plaf.nimbus.TreeCellPainter",
-                        TreeCellPainter.BACKGROUND_SELECTED_FOCUSED, new Insets(
-                                5, 5, 5, 5), new Dimension(100, 30), false,
-                        AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING,
-                        1.0, 1.0));
-        d.put("Tree:\"Tree.cellRenderer\".contentMargins", new InsetsUIResource(
-                0, 0, 0, 0));
-        addColor(d, "Tree:\"Tree.cellRenderer\"[Disabled].textForeground",
-                "nimbusDisabledText", 0.0f, 0.0f, 0.0f, 0);
-        d.put("Tree[Enabled].leafIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.LEAFICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Tree.leafIcon", new NimbusIcon("Tree", "leafIconPainter", 16,
-                16));
-        d.put("Tree[Enabled].closedIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.CLOSEDICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Tree.closedIcon", new NimbusIcon("Tree", "closedIconPainter", 16,
-                16));
-        d.put("Tree[Enabled].openIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.OPENICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(16, 16), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Tree.openIcon", new NimbusIcon("Tree", "openIconPainter", 16,
-                16));
-        d.put("Tree[Enabled].collapsedIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.COLLAPSEDICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 7), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+        addColor(d, "Tree:TreeCell[Enabled].background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+        addColor(d, "Tree:TreeCell[Enabled+Focused].background", "nimbusLightBackground", 0.0f, 0.0f, 0.0f,
+                0);
+        d.put("Tree:TreeCell[Enabled+Focused].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TreeCellPainter", TreeCellPainter.BACKGROUND_ENABLED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "Tree:TreeCell[Enabled+Selected].textForeground", 255, 255, 255, 255);
+        d.put("Tree:TreeCell[Enabled+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TreeCellPainter", TreeCellPainter.BACKGROUND_ENABLED_SELECTED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        addColor(d, "Tree:TreeCell[Focused+Selected].textForeground", 255, 255, 255, 255);
+        d.put("Tree:TreeCell[Focused+Selected].backgroundPainter", new LazyPainter(
+                "javax.swing.plaf.nimbus.TreeCellPainter", TreeCellPainter.BACKGROUND_SELECTED_FOCUSED,
+                new Insets(5, 5, 5, 5), new Dimension(100, 30), false,
+                AbstractRegionPainter.PaintContext.CacheMode.NO_CACHING, 1.0, 1.0));
+        d.put("Tree:\"Tree.cellRenderer\".contentMargins", new InsetsUIResource(0, 0, 0, 0));
+        addColor(d, "Tree:\"Tree.cellRenderer\"[Disabled].textForeground", "nimbusDisabledText", 0.0f, 0.0f,
+                0.0f, 0);
+        d.put("Tree[Enabled].leafIconPainter", new LazyPainter("javax.swing.plaf.nimbus.TreePainter",
+                TreePainter.LEAFICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Tree.leafIcon", new NimbusIcon("Tree", "leafIconPainter", 16, 16));
+        d.put("Tree[Enabled].closedIconPainter", new LazyPainter("javax.swing.plaf.nimbus.TreePainter",
+                TreePainter.CLOSEDICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Tree.closedIcon", new NimbusIcon("Tree", "closedIconPainter", 16, 16));
+        d.put("Tree[Enabled].openIconPainter", new LazyPainter("javax.swing.plaf.nimbus.TreePainter",
+                TreePainter.OPENICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(16, 16), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Tree.openIcon", new NimbusIcon("Tree", "openIconPainter", 16, 16));
+        d.put("Tree[Enabled].collapsedIconPainter", new LazyPainter("javax.swing.plaf.nimbus.TreePainter",
+                TreePainter.COLLAPSEDICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(18, 7), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("Tree[Enabled+Selected].collapsedIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.COLLAPSEDICON_ENABLED_SELECTED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 7), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Tree.collapsedIcon", new NimbusIcon("Tree",
-                "collapsedIconPainter", 18, 7));
-        d.put("Tree[Enabled].expandedIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.EXPANDEDICON_ENABLED, new Insets(5, 5, 5, 5),
-                new Dimension(18, 7), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
+                "javax.swing.plaf.nimbus.TreePainter", TreePainter.COLLAPSEDICON_ENABLED_SELECTED, new Insets(
+                        5, 5, 5, 5), new Dimension(18, 7), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Tree.collapsedIcon", new NimbusIcon("Tree", "collapsedIconPainter", 18, 7));
+        d.put("Tree[Enabled].expandedIconPainter", new LazyPainter("javax.swing.plaf.nimbus.TreePainter",
+                TreePainter.EXPANDEDICON_ENABLED, new Insets(5, 5, 5, 5), new Dimension(18, 7), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
         d.put("Tree[Enabled+Selected].expandedIconPainter", new LazyPainter(
-                "javax.swing.plaf.nimbus.TreePainter",
-                TreePainter.EXPANDEDICON_ENABLED_SELECTED, new Insets(5, 5, 5,
-                        5), new Dimension(18, 7), false,
-                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0,
-                1.0));
-        d.put("Tree.expandedIcon", new NimbusIcon("Tree", "expandedIconPainter",
-                18, 7));
+                "javax.swing.plaf.nimbus.TreePainter", TreePainter.EXPANDEDICON_ENABLED_SELECTED, new Insets(
+                        5, 5, 5, 5), new Dimension(18, 7), false,
+                AbstractRegionPainter.PaintContext.CacheMode.FIXED_SIZES, 1.0, 1.0));
+        d.put("Tree.expandedIcon", new NimbusIcon("Tree", "expandedIconPainter", 18, 7));
 
         // Initialize RootPane
         d.put("RootPane.contentMargins", new InsetsUIResource(0, 0, 0, 0));
@@ -3064,7 +2298,6 @@ final class NimbusDefaults {
      * sections, refers to certain named components. If there are not quoted
      * sections, then the prefix refers to a generic component type.
      * </p>
-     *
      * <p>
      * If the given region/prefix combo has already been registered, then it
      * will not be registered twice. The second registration attempt will fail
@@ -3072,20 +2305,19 @@ final class NimbusDefaults {
      * </p>
      *
      * @param region
-     *               The Synth Region that is being registered. Such as Button,
-     *               or
-     *               ScrollBarThumb.
+     *        The Synth Region that is being registered. Such as Button,
+     *        or
+     *        ScrollBarThumb.
      * @param prefix
-     *               The UIDefault prefix. For example, could be ComboBox, or if
-     *               a
-     *               named components, "MyComboBox", or even something like
-     *               ToolBar:"MyComboBox":"ComboBox.arrowButton"
+     *        The UIDefault prefix. For example, could be ComboBox, or if
+     *        a
+     *        named components, "MyComboBox", or even something like
+     *        ToolBar:"MyComboBox":"ComboBox.arrowButton"
      */
     void register(Region region, String prefix) {
         // validate the method arguments
         if (region == null || prefix == null) {
-            throw new IllegalArgumentException(
-                    "Neither Region nor Prefix may be null");
+            throw new IllegalArgumentException("Neither Region nor Prefix may be null");
         }
 
         // Add a LazyStyle for this region/prefix to m.
@@ -3114,7 +2346,6 @@ final class NimbusDefaults {
      * Locate the style associated with the given region, and component. This is
      * called from NimbusLookAndFeel in the SynthStyleFactory implementation.
      * </p>
-     *
      * <p>
      * Lookup occurs as follows:<br/>
      * Check the map of styles <code>m</code>. If the map contains no styles at
@@ -3125,22 +2356,21 @@ final class NimbusDefaults {
      * </p>
      *
      * @param comp
-     *             The component associated with this region. For example, if
-     *             the
-     *             Region is Region.Button then the component will be a JButton.
-     *             If the Region is a subregion, such as ScrollBarThumb, then
-     *             the
-     *             associated component will be the component that subregion
-     *             belongs to, such as JScrollBar. The JComponent may be named.
-     *             It may not be null.
+     *        The component associated with this region. For example, if
+     *        the
+     *        Region is Region.Button then the component will be a JButton.
+     *        If the Region is a subregion, such as ScrollBarThumb, then
+     *        the
+     *        associated component will be the component that subregion
+     *        belongs to, such as JScrollBar. The JComponent may be named.
+     *        It may not be null.
      * @param r
-     *             The region we are looking for a style for. May not be null.
+     *        The region we are looking for a style for. May not be null.
      */
     SynthStyle getStyle(JComponent comp, Region r) {
         // validate method arguments
         if (comp == null || r == null) {
-            throw new IllegalArgumentException(
-                    "Neither comp nor r may be null");
+            throw new IllegalArgumentException("Neither comp nor r may be null");
         }
 
         // if there are no lazy styles registered for the region r, then return
@@ -3161,10 +2391,8 @@ final class NimbusDefaults {
                 // the new style was for something like "MyButton", hence, being
                 // more specific.) In all cases, favor the most specific style
                 // found.
-                if (foundStyle == null
-                        || (foundStyle.parts.length < s.parts.length)
-                        || (foundStyle.parts.length == s.parts.length
-                                && foundStyle.simple && !s.simple)) {
+                if (foundStyle == null || (foundStyle.parts.length < s.parts.length)
+                        || (foundStyle.parts.length == s.parts.length && foundStyle.simple && !s.simple)) {
                     foundStyle = s;
                 }
             }
@@ -3191,7 +2419,6 @@ final class NimbusDefaults {
      * recommended to read this value once and cache it in the UI delegate class
      * until asked to reinitialize.
      * </p>
-     *
      * <p>
      * To use this class, create an instance with the key of the font in the UI
      * defaults table from which to derive this font, along with a size offset
@@ -3209,38 +2436,37 @@ final class NimbusDefaults {
          * Create a new DerivedFont.
          *
          * @param key
-         *                   The UIDefault key associated with this derived
-         *                   font's
-         *                   parent or source. If this key leads to a null
-         *                   value, or a
-         *                   value that is not a font, then null will be
-         *                   returned as
-         *                   the derived font. The key must not be null.
+         *        The UIDefault key associated with this derived
+         *        font's
+         *        parent or source. If this key leads to a null
+         *        value, or a
+         *        value that is not a font, then null will be
+         *        returned as
+         *        the derived font. The key must not be null.
          * @param sizeOffset
-         *                   The size offset, as a percentage, to use. For
-         *                   example, if
-         *                   the source font was a 12pt font and the sizeOffset
-         *                   were
-         *                   specified as .9, then the new font will be 90% of
-         *                   what the
-         *                   source font was, or, 10.8 pts which is rounded to
-         *                   11pts.
-         *                   This fractional based offset allows for proper font
-         *                   scaling in high DPI or large system font scenarios.
+         *        The size offset, as a percentage, to use. For
+         *        example, if
+         *        the source font was a 12pt font and the sizeOffset
+         *        were
+         *        specified as .9, then the new font will be 90% of
+         *        what the
+         *        source font was, or, 10.8 pts which is rounded to
+         *        11pts.
+         *        This fractional based offset allows for proper font
+         *        scaling in high DPI or large system font scenarios.
          * @param bold
-         *                   Whether the new font should be bold. If null, then
-         *                   this
-         *                   new font will inherit the bold setting of the
-         *                   source font.
+         *        Whether the new font should be bold. If null, then
+         *        this
+         *        new font will inherit the bold setting of the
+         *        source font.
          * @param italic
-         *                   Whether the new font should be italicized. If null,
-         *                   then
-         *                   this new font will inherit the italic setting of
-         *                   the
-         *                   source font.
+         *        Whether the new font should be italicized. If null,
+         *        then
+         *        this new font will inherit the italic setting of
+         *        the
+         *        source font.
          */
-        public DerivedFont(String key, float sizeOffset, Boolean bold,
-                Boolean italic) {
+        public DerivedFont(String key, float sizeOffset, Boolean bold, Boolean italic) {
             // validate the constructor arguments
             if (key == null) {
                 throw new IllegalArgumentException("You must specify a key");
@@ -3299,32 +2525,26 @@ final class NimbusDefaults {
         private AbstractRegionPainter.PaintContext ctx;
         private String className;
 
-        LazyPainter(String className, int which, Insets insets,
-                Dimension canvasSize, boolean inverted) {
+        LazyPainter(String className, int which, Insets insets, Dimension canvasSize, boolean inverted) {
             if (className == null) {
-                throw new IllegalArgumentException(
-                        "The className must be specified");
+                throw new IllegalArgumentException("The className must be specified");
             }
 
             this.className = className;
             this.which = which;
-            this.ctx = new AbstractRegionPainter.PaintContext(insets,
-                    canvasSize, inverted);
+            this.ctx = new AbstractRegionPainter.PaintContext(insets, canvasSize, inverted);
         }
 
-        LazyPainter(String className, int which, Insets insets,
-                Dimension canvasSize, boolean inverted,
-                AbstractRegionPainter.PaintContext.CacheMode cacheMode,
-                double maxH, double maxV) {
+        LazyPainter(String className, int which, Insets insets, Dimension canvasSize, boolean inverted,
+                AbstractRegionPainter.PaintContext.CacheMode cacheMode, double maxH, double maxV) {
             if (className == null) {
-                throw new IllegalArgumentException(
-                        "The className must be specified");
+                throw new IllegalArgumentException("The className must be specified");
             }
 
             this.className = className;
             this.which = which;
-            this.ctx = new AbstractRegionPainter.PaintContext(insets,
-                    canvasSize, inverted, cacheMode, maxH, maxV);
+            this.ctx = new AbstractRegionPainter.PaintContext(insets, canvasSize, inverted, cacheMode, maxH,
+                    maxV);
         }
 
         @Override
@@ -3333,8 +2553,7 @@ final class NimbusDefaults {
                 Class c;
                 Object cl;
                 // See if we should use a separate ClassLoader
-                if (table == null || !((cl = table.get(
-                        "ClassLoader")) instanceof ClassLoader)) {
+                if (table == null || !((cl = table.get("ClassLoader")) instanceof ClassLoader)) {
                     cl = Thread.currentThread().getContextClassLoader();
                     if (cl == null) {
                         // Fallback to the system class loader.
@@ -3343,12 +2562,11 @@ final class NimbusDefaults {
                 }
 
                 c = Class.forName(className, true, (ClassLoader) cl);
-                Constructor constructor = c.getConstructor(
-                        AbstractRegionPainter.PaintContext.class, int.class);
+                Constructor constructor = c.getConstructor(AbstractRegionPainter.PaintContext.class,
+                        int.class);
                 if (constructor == null) {
-                    throw new NullPointerException(
-                            "Failed to find the constructor for the class: "
-                                    + className);
+                    throw new NullPointerException("Failed to find the constructor for the class: "
+                            + className);
                 }
                 return constructor.newInstance(ctx, which);
             } catch (Exception e) {
@@ -3363,7 +2581,6 @@ final class NimbusDefaults {
      * manages a lot more information about the style. It is less of a LazyValue
      * type of class, and more of an Entry or Item type of class, as it
      * represents an entry in the list of LazyStyles in the map m.
-     *
      * The primary responsibilities of this class include:
      * <ul>
      * <li>Determining whether a given component/region pair matches this style
@@ -3386,7 +2603,6 @@ final class NimbusDefaults {
         /**
          * The various parts, or sections, of the prefix. For example, the
          * prefix: ComboBox:"ComboBox.arrowButton"
-         *
          * will be broken into two parts, ComboBox and "ComboBox.arrowButton"
          */
         private Part[] parts;
@@ -3399,12 +2615,11 @@ final class NimbusDefaults {
          * Create a new LazyStyle.
          *
          * @param prefix
-         *               The prefix associated with this style. Cannot be null.
+         *        The prefix associated with this style. Cannot be null.
          */
         private LazyStyle(String prefix) {
             if (prefix == null) {
-                throw new IllegalArgumentException(
-                        "The prefix must not be null");
+                throw new IllegalArgumentException("The prefix must not be null");
             }
 
             this.prefix = prefix;
@@ -3424,8 +2639,8 @@ final class NimbusDefaults {
             // renderer,
             // and listRenderer.
             String temp = prefix;
-            if (temp.endsWith("cellRenderer\"") || temp.endsWith("renderer\"")
-                    || temp.endsWith("listRenderer\"")) {
+            if (temp.endsWith("cellRenderer\"") || temp.endsWith("renderer\"") || temp.endsWith(
+                    "listRenderer\"")) {
                 temp = temp.substring(temp.lastIndexOf(":\"") + 1);
             }
 
@@ -3502,8 +2717,7 @@ final class NimbusDefaults {
                 if (clazz != null && clazz.isAssignableFrom(c.getClass())) {
                     // so far so good, recurse
                     return matches(c.getParent(), partIndex - 1);
-                } else if (clazz == null && registeredRegions.containsKey(
-                        parts[partIndex].s)) {
+                } else if (clazz == null && registeredRegions.containsKey(parts[partIndex].s)) {
                     Region r = registeredRegions.get(parts[partIndex].s);
                     Component parent = r.isSubregion() ? c : c.getParent();
                     // special case the JInternalFrameTitlePane, because it
@@ -3545,8 +2759,7 @@ final class NimbusDefaults {
                 } else if (c == ']') {
                     bracketCount--;
                     if (bracketCount < 0) {
-                        throw new RuntimeException("Malformed prefix: "
-                                + prefix);
+                        throw new RuntimeException("Malformed prefix: " + prefix);
                     }
                     continue;
                 }
@@ -3557,8 +2770,7 @@ final class NimbusDefaults {
                     lastIndex = i + 1;
                 }
             }
-            if (lastIndex < prefix.length() - 1 && !inquotes
-                    && bracketCount == 0) {
+            if (lastIndex < prefix.length() - 1 && !inquotes && bracketCount == 0) {
                 parts.add(prefix.substring(lastIndex));
             }
             return parts;
@@ -3581,34 +2793,29 @@ final class NimbusDefaults {
                     // then use [classname] instead of org_class_name style
                     try {
                         c = Class.forName("javax.swing.J" + s);
-                    } catch (Exception e) {
-                    }
+                    } catch (Exception e) {}
                     try {
                         c = Class.forName(s.replace("_", "."));
-                    } catch (Exception e) {
-                    }
+                    } catch (Exception e) {}
                 }
             }
         }
     }
 
-    private void addColor(UIDefaults d, String uin, int r, int g, int b,
-            int a) {
+    private void addColor(UIDefaults d, String uin, int r, int g, int b, int a) {
         Color color = new ColorUIResource(new Color(r, g, b, a));
         colorTree.addColor(uin, color);
         d.put(uin, color);
     }
 
-    private void addColor(UIDefaults d, String uin, String parentUin,
-            float hOffset, float sOffset, float bOffset, int aOffset) {
+    private void addColor(UIDefaults d, String uin, String parentUin, float hOffset, float sOffset,
+            float bOffset, int aOffset) {
         addColor(d, uin, parentUin, hOffset, sOffset, bOffset, aOffset, true);
     }
 
-    private void addColor(UIDefaults d, String uin, String parentUin,
-            float hOffset, float sOffset, float bOffset, int aOffset,
-            boolean uiResource) {
-        Color color = getDerivedColor(uin, parentUin, hOffset, sOffset, bOffset,
-                aOffset, uiResource);
+    private void addColor(UIDefaults d, String uin, String parentUin, float hOffset, float sOffset,
+            float bOffset, int aOffset, boolean uiResource) {
+        Color color = getDerivedColor(uin, parentUin, hOffset, sOffset, bOffset, aOffset, uiResource);
         d.put(uin, color);
     }
 
@@ -3617,37 +2824,33 @@ final class NimbusDefaults {
      * updated when its parent UIDefault color changes.
      *
      * @param uiDefaultParentName
-     *                            The parent UIDefault key
+     *        The parent UIDefault key
      * @param hOffset
-     *                            The hue offset
+     *        The hue offset
      * @param sOffset
-     *                            The saturation offset
+     *        The saturation offset
      * @param bOffset
-     *                            The brightness offset
+     *        The brightness offset
      * @param aOffset
-     *                            The alpha offset
+     *        The alpha offset
      * @param uiResource
-     *                            True if the derived color should be a
-     *                            UIResource, false if it
-     *                            should not be a UIResource
+     *        True if the derived color should be a
+     *        UIResource, false if it
+     *        should not be a UIResource
      * @return The stored derived color
      */
-    public DerivedColor getDerivedColor(String parentUin, float hOffset,
-            float sOffset, float bOffset, int aOffset, boolean uiResource) {
-        return getDerivedColor(null, parentUin, hOffset, sOffset, bOffset,
-                aOffset, uiResource);
+    public DerivedColor getDerivedColor(String parentUin, float hOffset, float sOffset, float bOffset,
+            int aOffset, boolean uiResource) {
+        return getDerivedColor(null, parentUin, hOffset, sOffset, bOffset, aOffset, uiResource);
     }
 
-    private DerivedColor getDerivedColor(String uin, String parentUin,
-            float hOffset, float sOffset, float bOffset, int aOffset,
-            boolean uiResource) {
+    private DerivedColor getDerivedColor(String uin, String parentUin, float hOffset, float sOffset,
+            float bOffset, int aOffset, boolean uiResource) {
         DerivedColor color;
         if (uiResource) {
-            color = new DerivedColor.UIResource(parentUin, hOffset, sOffset,
-                    bOffset, aOffset);
+            color = new DerivedColor.UIResource(parentUin, hOffset, sOffset, bOffset, aOffset);
         } else {
-            color = new DerivedColor(parentUin, hOffset, sOffset, bOffset,
-                    aOffset);
+            color = new DerivedColor(parentUin, hOffset, sOffset, bOffset, aOffset);
         }
 
         if (derivedColors.containsKey(color)) {
@@ -3682,8 +2885,7 @@ final class NimbusDefaults {
         private Node getParentNode(Color color) {
             Node parent = root;
             if (color instanceof DerivedColor) {
-                String parentUin = ((DerivedColor) color)
-                        .getUiDefaultParentName();
+                String parentUin = ((DerivedColor) color).getUiDefaultParentName();
                 Node p = nodes.get(parentUin);
                 if (p != null) {
                     parent = p;
@@ -3763,8 +2965,7 @@ final class NimbusDefaults {
         }
 
         @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             if (painter == null) {
                 painter = (Painter) UIManager.get(painterKey);
                 if (painter == null)

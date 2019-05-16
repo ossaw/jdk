@@ -50,13 +50,13 @@ public class Operation extends Expression implements ExpressionOwner {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         m_left.fixupVariables(vars, globalsSize);
@@ -83,11 +83,10 @@ public class Operation extends Expression implements ExpressionOwner {
     /**
      * Set the left and right operand expressions for this operation.
      *
-     *
      * @param l
-     *          The left expression operand.
+     *        The left expression operand.
      * @param r
-     *          The right expression operand.
+     *        The right expression operand.
      */
     public void setLeftRight(Expression l, Expression r) {
         m_left = l;
@@ -100,16 +99,12 @@ public class Operation extends Expression implements ExpressionOwner {
      * Execute a binary operation by calling execute on each of the operands,
      * and then calling the operate method on the derived class.
      *
-     *
      * @param xctxt
-     *              The runtime execution context.
-     *
+     *        The runtime execution context.
      * @return The XObject result of the operation.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         XObject left = m_left.execute(xctxt, true);
         XObject right = m_right.execute(xctxt, true);
@@ -123,19 +118,15 @@ public class Operation extends Expression implements ExpressionOwner {
     /**
      * Apply the operation to two operands, and return the result.
      *
-     *
      * @param left
-     *              non-null reference to the evaluated left operand.
+     *        non-null reference to the evaluated left operand.
      * @param right
-     *              non-null reference to the evaluated right operand.
-     *
+     *        non-null reference to the evaluated right operand.
      * @return non-null reference to the XObject that represents the result of
      *         the operation.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject operate(XObject left, XObject right)
-            throws javax.xml.transform.TransformerException {
+    public XObject operate(XObject left, XObject right) throws javax.xml.transform.TransformerException {
         return null; // no-op
     }
 

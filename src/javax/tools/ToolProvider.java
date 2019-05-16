@@ -44,22 +44,20 @@ public class ToolProvider {
                 String cls = ToolProvider.class.getName();
                 if (st.length > 2) {
                     StackTraceElement frame = st[2];
-                    method = String.format((Locale) null, "%s(%s:%s)", frame
-                            .getMethodName(), frame.getFileName(), frame
-                                    .getLineNumber());
+                    method = String.format((Locale) null, "%s(%s:%s)", frame.getMethodName(), frame
+                            .getFileName(), frame.getLineNumber());
                     cls = frame.getClassName();
                 }
                 Logger logger = Logger.getLogger(loggerName);
                 if (reason instanceof Throwable) {
-                    logger.logp(level, cls, method, reason.getClass().getName(),
-                            (Throwable) reason);
+                    logger.logp(level, cls, method, reason.getClass().getName(), (Throwable) reason);
                 } else {
                     logger.logp(level, cls, method, String.valueOf(reason));
                 }
             }
         } catch (SecurityException ex) {
-            System.err.format((Locale) null, "%s: %s; %s%n", ToolProvider.class
-                    .getName(), reason, ex.getLocalizedMessage());
+            System.err.format((Locale) null, "%s: %s; %s%n", ToolProvider.class.getName(), reason, ex
+                    .getLocalizedMessage());
         }
         return null;
     }
@@ -74,8 +72,7 @@ public class ToolProvider {
      *         compiler is provided
      */
     public static JavaCompiler getSystemJavaCompiler() {
-        return instance().getSystemTool(JavaCompiler.class,
-                defaultJavaCompilerName);
+        return instance().getSystemTool(JavaCompiler.class, defaultJavaCompilerName);
     }
 
     private static final String defaultDocumentationToolName = "com.sun.tools.javadoc.api.JavadocTool";
@@ -88,8 +85,7 @@ public class ToolProvider {
      *         {@code null} if no documentation tool is provided
      */
     public static DocumentationTool getSystemDocumentationTool() {
-        return instance().getSystemTool(DocumentationTool.class,
-                defaultDocumentationToolName);
+        return instance().getSystemTool(DocumentationTool.class, defaultDocumentationToolName);
     }
 
     /**
@@ -103,8 +99,8 @@ public class ToolProvider {
      */
     public static ClassLoader getSystemToolClassLoader() {
         try {
-            Class<? extends JavaCompiler> c = instance().getSystemToolClass(
-                    JavaCompiler.class, defaultJavaCompilerName);
+            Class<? extends JavaCompiler> c = instance().getSystemToolClass(JavaCompiler.class,
+                    defaultJavaCompilerName);
             return c.getClassLoader();
         } catch (Throwable e) {
             return trace(WARNING, e);
@@ -139,8 +135,7 @@ public class ToolProvider {
         }
     }
 
-    private <T> Class<? extends T> getSystemToolClass(Class<T> clazz,
-            String name) {
+    private <T> Class<? extends T> getSystemToolClass(Class<T> clazz, String name) {
         Reference<Class<?>> refClass = toolClasses.get(name);
         Class<?> c = (refClass == null ? null : refClass.get());
         if (c == null) {
@@ -156,8 +151,8 @@ public class ToolProvider {
 
     private static final String[] defaultToolsLocation = { "lib", "tools.jar" };
 
-    private Class<?> findSystemToolClass(String toolClassName)
-            throws MalformedURLException, ClassNotFoundException {
+    private Class<?> findSystemToolClass(String toolClassName) throws MalformedURLException,
+            ClassNotFoundException {
         // try loading class directly, in case tool is on the bootclasspath
         try {
             return Class.forName(toolClassName, false, null);
@@ -166,8 +161,7 @@ public class ToolProvider {
 
             // if tool not on bootclasspath, look in default tools location
             // (tools.jar)
-            ClassLoader cl = (refToolClassLoader == null ? null
-                    : refToolClassLoader.get());
+            ClassLoader cl = (refToolClassLoader == null ? null : refToolClassLoader.get());
             if (cl == null) {
                 File file = new File(System.getProperty("java.home"));
                 if (file.getName().equalsIgnoreCase("jre"))

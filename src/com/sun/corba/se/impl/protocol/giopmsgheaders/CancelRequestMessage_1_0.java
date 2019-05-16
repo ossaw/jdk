@@ -13,8 +13,7 @@ import com.sun.corba.se.spi.ior.iiop.GIOPVersion;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class CancelRequestMessage_1_0 extends Message_1_0 implements
-        CancelRequestMessage {
+public final class CancelRequestMessage_1_0 extends Message_1_0 implements CancelRequestMessage {
 
     // Instance variables
 
@@ -25,8 +24,7 @@ public final class CancelRequestMessage_1_0 extends Message_1_0 implements
     CancelRequestMessage_1_0() {}
 
     CancelRequestMessage_1_0(int _request_id) {
-        super(Message.GIOPBigMagic, false, Message.GIOPCancelRequest,
-                CANCEL_REQ_MSG_SIZE);
+        super(Message.GIOPBigMagic, false, Message.GIOPCancelRequest, CANCEL_REQ_MSG_SIZE);
         request_id = _request_id;
     }
 

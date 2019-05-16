@@ -57,16 +57,14 @@ public abstract class EventHandlerBase implements EventHandler {
         if (orb.transportDebugFlag) {
             dprint(".handleEvent->: " + this);
         }
-        getSelectionKey().interestOps(getSelectionKey().interestOps()
-                & (~getInterestOps()));
+        getSelectionKey().interestOps(getSelectionKey().interestOps() & (~getInterestOps()));
         if (shouldUseWorkerThreadForEvent()) {
             Throwable throwable = null;
             try {
                 if (orb.transportDebugFlag) {
                     dprint(".handleEvent: addWork to pool: " + 0);
                 }
-                orb.getThreadPoolManager().getThreadPool(0).getWorkQueue(0)
-                        .addWork(getWork());
+                orb.getThreadPoolManager().getThreadPool(0).getWorkQueue(0).addWork(getWork());
             } catch (NoSuchThreadPoolException e) {
                 throwable = e;
             } catch (NoSuchWorkQueueException e) {

@@ -29,7 +29,7 @@ public final class BadKind extends org.omg.CORBA.UserException {
      * message.
      * 
      * @param reason
-     *               the String containing a reason message
+     *        the String containing a reason message
      */
     public BadKind(String reason) {
         super(reason);

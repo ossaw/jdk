@@ -6,9 +6,7 @@
 /**
  * This package contains the classes that should be used to store X500 Principal
  * and X500 Private Credentials in a <i>Subject</i>.
- *
  * <h2>Package Specification</h2>
- *
  * <ul>
  * <li><a href="http://www.ietf.org/rfc/rfc1779.txt"> RFC 1779: A String
  * Representation of Distinguished Names</a></li>

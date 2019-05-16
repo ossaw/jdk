@@ -60,8 +60,7 @@ final class UnaryOpExpr extends Expression {
 
     public Type typeCheck(SymbolTable stable) throws TypeCheckError {
         final Type tleft = _left.typeCheck(stable);
-        final MethodType ptype = lookupPrimop(stable, "u-", new MethodType(
-                Type.Void, tleft));
+        final MethodType ptype = lookupPrimop(stable, "u-", new MethodType(Type.Void, tleft));
 
         if (ptype != null) {
             final Type arg1 = (Type) ptype.argsType().elementAt(0);

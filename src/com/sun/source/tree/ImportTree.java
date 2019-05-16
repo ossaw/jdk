@@ -7,7 +7,6 @@ package com.sun.source.tree;
 
 /**
  * A tree node for an import statement.
- *
  * For example:
  * 
  * <pre>
@@ -17,7 +16,6 @@ package com.sun.source.tree;
  * </pre>
  *
  * @jls section 7.5
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

@@ -49,8 +49,7 @@ abstract class DynAnyCollectionImpl extends DynAnyConstructedImpl {
 
     protected void createDefaultComponentAt(int i, TypeCode contentType) {
         try {
-            components[i] = DynAnyUtil.createMostDerivedDynAny(contentType,
-                    orb);
+            components[i] = DynAnyUtil.createMostDerivedDynAny(contentType, orb);
         } catch (InconsistentTypeCode itc) { // impossible
         }
         // get a hold of the default initialized Any without copying
@@ -94,8 +93,7 @@ abstract class DynAnyCollectionImpl extends DynAnyConstructedImpl {
         return (checkInitComponents() ? anys : null);
     }
 
-    protected abstract void checkValue(Object[] value)
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
+    protected abstract void checkValue(Object[] value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     // Initializes the elements of the ordered collection.
     // If value does not contain the same number of elements as the array
@@ -105,8 +103,7 @@ abstract class DynAnyCollectionImpl extends DynAnyConstructedImpl {
     // collections TypeCode,
     // the operation raises TypeMismatch.
     // This operation does not change the current position.
-    public void set_elements(org.omg.CORBA.Any[] value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    public void set_elements(org.omg.CORBA.Any[] value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
@@ -127,8 +124,7 @@ abstract class DynAnyCollectionImpl extends DynAnyConstructedImpl {
                 }
                 try {
                     // Creates the appropriate subtype without copying the Any
-                    components[i] = DynAnyUtil.createMostDerivedDynAny(value[i],
-                            orb, false);
+                    components[i] = DynAnyUtil.createMostDerivedDynAny(value[i], orb, false);
                     // System.out.println(this + " created component " +
                     // components[i]);
                 } catch (InconsistentTypeCode itc) {

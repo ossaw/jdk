@@ -59,8 +59,8 @@ import com.sun.org.apache.bcel.internal.Constants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class LocalVariableInstruction extends Instruction implements
-        TypedInstruction, IndexedInstruction {
+public abstract class LocalVariableInstruction extends Instruction implements TypedInstruction,
+        IndexedInstruction {
     protected int n = -1; // index of referenced variable
     private short c_tag = -1; // compact version, such as ILOAD_0
     private short canon_tag = -1; // canonical tag such as ILOAD
@@ -88,11 +88,11 @@ public abstract class LocalVariableInstruction extends Instruction implements
 
     /**
      * @param opcode
-     *               Instruction opcode
+     *        Instruction opcode
      * @param c_tag
-     *               Instruction number for compact version, ALOAD_0, e.g.
+     *        Instruction number for compact version, ALOAD_0, e.g.
      * @param n
-     *               local variable index (unsigned short)
+     *        local variable index (unsigned short)
      */
     protected LocalVariableInstruction(short opcode, short c_tag, int n) {
         super(opcode, (short) 2);
@@ -107,7 +107,7 @@ public abstract class LocalVariableInstruction extends Instruction implements
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         if (wide()) // Need WIDE prefix ?
@@ -125,18 +125,16 @@ public abstract class LocalVariableInstruction extends Instruction implements
 
     /**
      * Long output format:
-     *
      * &lt;name of opcode&gt; "["&lt;opcode number&gt;"]" "("&lt;length of
      * instruction&gt;")" "&lt;"&lt; local variable index&gt;"&gt;"
      *
      * @param verbose
-     *                long/short format switch
+     *        long/short format switch
      * @return mnemonic for instruction
      */
     public String toString(boolean verbose) {
         if (((opcode >= Constants.ILOAD_0) && (opcode <= Constants.ALOAD_3))
-                || ((opcode >= Constants.ISTORE_0)
-                        && (opcode <= Constants.ASTORE_3)))
+                || ((opcode >= Constants.ISTORE_0) && (opcode <= Constants.ASTORE_3)))
             return super.toString(verbose);
         else
             return super.toString(verbose) + " " + n;
@@ -146,14 +144,12 @@ public abstract class LocalVariableInstruction extends Instruction implements
      * Read needed data (e.g. index) from file. PRE: (ILOAD <= tag <= ALOAD_3)
      * || (ISTORE <= tag <= ASTORE_3)
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         if (wide) {
             n = bytes.readUnsignedShort();
             length = 4;
         } else if (((opcode >= Constants.ILOAD) && (opcode <= Constants.ALOAD))
-                || ((opcode >= Constants.ISTORE)
-                        && (opcode <= Constants.ASTORE))) {
+                || ((opcode >= Constants.ISTORE) && (opcode <= Constants.ASTORE))) {
             n = bytes.readUnsignedByte();
             length = 2;
         } else if (opcode <= Constants.ALOAD_3) { // compact load instruction
@@ -229,8 +225,7 @@ public abstract class LocalVariableInstruction extends Instruction implements
                 return Type.OBJECT;
 
             default:
-                throw new ClassGenException("Oops: unknown case in switch"
-                        + canon_tag);
+                throw new ClassGenException("Oops: unknown case in switch" + canon_tag);
         }
     }
 }

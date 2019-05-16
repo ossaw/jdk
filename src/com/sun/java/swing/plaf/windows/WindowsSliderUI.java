@@ -106,54 +106,44 @@ public class WindowsSliderUI extends BasicSliderUI {
 
             if (vertical) {
                 int x = (trackRect.width - skin.getWidth()) / 2;
-                skin.paintSkin(g, trackRect.x + x, trackRect.y, skin.getWidth(),
-                        trackRect.height, null);
+                skin.paintSkin(g, trackRect.x + x, trackRect.y, skin.getWidth(), trackRect.height, null);
             } else {
                 int y = (trackRect.height - skin.getHeight()) / 2;
-                skin.paintSkin(g, trackRect.x, trackRect.y + y, trackRect.width,
-                        skin.getHeight(), null);
+                skin.paintSkin(g, trackRect.x, trackRect.y + y, trackRect.width, skin.getHeight(), null);
             }
         } else {
             super.paintTrack(g);
         }
     }
 
-    protected void paintMinorTickForHorizSlider(Graphics g,
-            Rectangle tickBounds, int x) {
+    protected void paintMinorTickForHorizSlider(Graphics g, Rectangle tickBounds, int x) {
         XPStyle xp = XPStyle.getXP();
         if (xp != null) {
-            g.setColor(xp.getColor(slider, Part.TKP_TICS, null, Prop.COLOR,
-                    Color.black));
+            g.setColor(xp.getColor(slider, Part.TKP_TICS, null, Prop.COLOR, Color.black));
         }
         super.paintMinorTickForHorizSlider(g, tickBounds, x);
     }
 
-    protected void paintMajorTickForHorizSlider(Graphics g,
-            Rectangle tickBounds, int x) {
+    protected void paintMajorTickForHorizSlider(Graphics g, Rectangle tickBounds, int x) {
         XPStyle xp = XPStyle.getXP();
         if (xp != null) {
-            g.setColor(xp.getColor(slider, Part.TKP_TICS, null, Prop.COLOR,
-                    Color.black));
+            g.setColor(xp.getColor(slider, Part.TKP_TICS, null, Prop.COLOR, Color.black));
         }
         super.paintMajorTickForHorizSlider(g, tickBounds, x);
     }
 
-    protected void paintMinorTickForVertSlider(Graphics g, Rectangle tickBounds,
-            int y) {
+    protected void paintMinorTickForVertSlider(Graphics g, Rectangle tickBounds, int y) {
         XPStyle xp = XPStyle.getXP();
         if (xp != null) {
-            g.setColor(xp.getColor(slider, Part.TKP_TICSVERT, null, Prop.COLOR,
-                    Color.black));
+            g.setColor(xp.getColor(slider, Part.TKP_TICSVERT, null, Prop.COLOR, Color.black));
         }
         super.paintMinorTickForVertSlider(g, tickBounds, y);
     }
 
-    protected void paintMajorTickForVertSlider(Graphics g, Rectangle tickBounds,
-            int y) {
+    protected void paintMajorTickForVertSlider(Graphics g, Rectangle tickBounds, int y) {
         XPStyle xp = XPStyle.getXP();
         if (xp != null) {
-            g.setColor(xp.getColor(slider, Part.TKP_TICSVERT, null, Prop.COLOR,
-                    Color.black));
+            g.setColor(xp.getColor(slider, Part.TKP_TICSVERT, null, Prop.COLOR, Color.black));
         }
         super.paintMajorTickForVertSlider(g, tickBounds, y);
     }
@@ -177,8 +167,7 @@ public class WindowsSliderUI extends BasicSliderUI {
                 state = State.DISABLED;
             }
 
-            xp.getSkin(slider, part).paintSkin(g, thumbRect.x, thumbRect.y,
-                    state);
+            xp.getSkin(slider, part).paintSkin(g, thumbRect.x, thumbRect.y, state);
         } else {
             super.paintThumb(g);
         }
@@ -201,14 +190,12 @@ public class WindowsSliderUI extends BasicSliderUI {
         Part part;
         boolean vertical = (slider.getOrientation() == JSlider.VERTICAL);
         boolean leftToRight = slider.getComponentOrientation().isLeftToRight();
-        Boolean paintThumbArrowShape = (Boolean) slider.getClientProperty(
-                "Slider.paintThumbArrowShape");
+        Boolean paintThumbArrowShape = (Boolean) slider.getClientProperty("Slider.paintThumbArrowShape");
         if ((!slider.getPaintTicks() && paintThumbArrowShape == null)
                 || paintThumbArrowShape == Boolean.FALSE) {
             part = vertical ? Part.TKP_THUMBVERT : Part.TKP_THUMB;
         } else {
-            part = vertical ? (leftToRight ? Part.TKP_THUMBRIGHT
-                    : Part.TKP_THUMBLEFT) : Part.TKP_THUMBBOTTOM;
+            part = vertical ? (leftToRight ? Part.TKP_THUMBRIGHT : Part.TKP_THUMBLEFT) : Part.TKP_THUMBBOTTOM;
         }
         return part;
     }

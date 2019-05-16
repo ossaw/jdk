@@ -11,20 +11,16 @@ import java.util.logging.Logger;
  * The interface that every driver class must implement.
  * <P>
  * The Java SQL framework allows for multiple database drivers.
- *
  * <P>
  * Each driver should supply a class that implements the Driver interface.
- *
  * <P>
  * The DriverManager will try to load as many drivers as it can find and then
  * for any given connection request, it will ask each driver in turn to try to
  * connect to the target URL.
- *
  * <P>
  * It is strongly recommended that each Driver class should be small and
  * standalone so that the Driver class can be loaded and queried without
  * bringing in vast quantities of supporting code.
- *
  * <P>
  * When a Driver class is loaded, it should create an instance of itself and
  * register it with the DriverManager. This means that a user can load and
@@ -48,12 +44,10 @@ public interface Driver {
      * connect to the given URL. This will be common, as when the JDBC driver
      * manager is asked to connect to a given URL it passes the URL to each
      * loaded driver in turn.
-     *
      * <P>
      * The driver should throw an <code>SQLException</code> if it is the right
      * driver to connect to the given URL but has trouble connecting to the
      * database.
-     *
      * <P>
      * The {@code Properties} argument can be used to pass arbitrary string
      * tag/value pairs as connection arguments. Normally at least "user" and
@@ -66,19 +60,18 @@ public interface Driver {
      * maximum portability, an application should only specify a property once.
      *
      * @param url
-     *             the URL of the database to which to connect
+     *        the URL of the database to which to connect
      * @param info
-     *             a list of arbitrary string tag/value pairs as connection
-     *             arguments. Normally at least a "user" and "password" property
-     *             should be included.
+     *        a list of arbitrary string tag/value pairs as connection
+     *        arguments. Normally at least a "user" and "password" property
+     *        should be included.
      * @return a <code>Connection</code> object that represents a connection to
      *         the URL
      * @exception SQLException
-     *                         if a database access error occurs or the url is
-     *                         {@code null}
+     *            if a database access error occurs or the url is
+     *            {@code null}
      */
-    Connection connect(String url, java.util.Properties info)
-            throws SQLException;
+    Connection connect(String url, java.util.Properties info) throws SQLException;
 
     /**
      * Retrieves whether the driver thinks that it can open a connection to the
@@ -87,12 +80,12 @@ public interface Driver {
      * if they do not.
      *
      * @param url
-     *            the URL of the database
+     *        the URL of the database
      * @return <code>true</code> if this driver understands the given URL;
      *         <code>false</code> otherwise
      * @exception SQLException
-     *                         if a database access error occurs or the url is
-     *                         {@code null}
+     *            if a database access error occurs or the url is
+     *            {@code null}
      */
     boolean acceptsURL(String url) throws SQLException;
 
@@ -107,18 +100,17 @@ public interface Driver {
      * calls to the <code>getPropertyInfo</code> method.
      *
      * @param url
-     *             the URL of the database to which to connect
+     *        the URL of the database to which to connect
      * @param info
-     *             a proposed list of tag/value pairs that will be sent on
-     *             connect open
+     *        a proposed list of tag/value pairs that will be sent on
+     *        connect open
      * @return an array of <code>DriverPropertyInfo</code> objects describing
      *         possible properties. This array may be an empty array if no
      *         properties are required.
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    DriverPropertyInfo[] getPropertyInfo(String url, java.util.Properties info)
-            throws SQLException;
+    DriverPropertyInfo[] getPropertyInfo(String url, java.util.Properties info) throws SQLException;
 
     /**
      * Retrieves the driver's major version number. Initially this should be 1.
@@ -166,8 +158,8 @@ public interface Driver {
      *
      * @return the parent Logger for this driver
      * @throws SQLFeatureNotSupportedException
-     *                                         if the driver does not use
-     *                                         {@code java.util.logging}.
+     *         if the driver does not use
+     *         {@code java.util.logging}.
      * @since 1.7
      */
     public Logger getParentLogger() throws SQLFeatureNotSupportedException;

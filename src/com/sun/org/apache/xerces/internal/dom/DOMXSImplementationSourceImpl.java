@@ -31,7 +31,6 @@ import java.util.Vector;
  * Document Object Model (DOM) Level 3 Core Specification</a>.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  */
 public class DOMXSImplementationSourceImpl extends DOMImplementationSourceImpl {
@@ -40,13 +39,13 @@ public class DOMXSImplementationSourceImpl extends DOMImplementationSourceImpl {
      * A method to request a DOM implementation.
      * 
      * @param features
-     *                 A string that specifies which features are required. This
-     *                 is a
-     *                 space separated list in which each feature is specified
-     *                 by its
-     *                 name optionally followed by a space and a version number.
-     *                 This
-     *                 is something like: "XML 1.0 Traversal Events 2.0"
+     *        A string that specifies which features are required. This
+     *        is a
+     *        space separated list in which each feature is specified
+     *        by its
+     *        name optionally followed by a space and a version number.
+     *        This
+     *        is something like: "XML 1.0 Traversal Events 2.0"
      * @return An implementation that has the desired features, or
      *         <code>null</code> if this source has none.
      */
@@ -74,14 +73,14 @@ public class DOMXSImplementationSourceImpl extends DOMImplementationSourceImpl {
      * specified features and versions, as specified in .
      * 
      * @param features
-     *                 A string that specifies which features and versions are
-     *                 required. This is a space separated list in which each
-     *                 feature
-     *                 is specified by its name optionally followed by a space
-     *                 and a
-     *                 version number. This is something like: "XML 3.0
-     *                 Traversal
-     *                 +Events 2.0"
+     *        A string that specifies which features and versions are
+     *        required. This is a space separated list in which each
+     *        feature
+     *        is specified by its name optionally followed by a space
+     *        and a
+     *        version number. This is something like: "XML 3.0
+     *        Traversal
+     *        +Events 2.0"
      * @return A list of DOM implementations that support the desired features.
      */
     public DOMImplementationList getDOMImplementationList(String features) {
@@ -94,8 +93,7 @@ public class DOMXSImplementationSourceImpl extends DOMImplementationSourceImpl {
             implementations.addElement(list.item(i));
         }
 
-        DOMImplementation impl = PSVIDOMImplementationImpl
-                .getDOMImplementation();
+        DOMImplementation impl = PSVIDOMImplementationImpl.getDOMImplementation();
         if (testImpl(impl, features)) {
             implementations.addElement(impl);
         }

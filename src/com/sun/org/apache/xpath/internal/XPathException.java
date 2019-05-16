@@ -54,8 +54,8 @@ public class XPathException extends TransformerException {
      * Set the stylesheet node from where this error originated.
      * 
      * @param styleNode
-     *                  The stylesheet node from where this error originated, or
-     *                  null.
+     *        The stylesheet node from where this error originated, or
+     *        null.
      */
     public void setStylesheetNode(Object styleNode) {
         m_styleNode = styleNode;
@@ -72,7 +72,7 @@ public class XPathException extends TransformerException {
      * Create an XPathException object that holds an error message.
      * 
      * @param message
-     *                The error message.
+     *        The error message.
      */
     public XPathException(String message, ExpressionNode ex) {
         super(message);
@@ -84,7 +84,7 @@ public class XPathException extends TransformerException {
      * Create an XPathException object that holds an error message.
      * 
      * @param message
-     *                The error message.
+     *        The error message.
      */
     public XPathException(String message) {
         super(message);
@@ -125,9 +125,9 @@ public class XPathException extends TransformerException {
      * stylesheet node that the error originated from.
      * 
      * @param message
-     *                  The error message.
+     *        The error message.
      * @param styleNode
-     *                  The stylesheet node that the error originated from.
+     *        The stylesheet node that the error originated from.
      */
     public XPathException(String message, Object styleNode) {
 
@@ -142,11 +142,11 @@ public class XPathException extends TransformerException {
      * that caused this exception.
      * 
      * @param message
-     *                  The error message.
+     *        The error message.
      * @param styleNode
-     *                  The stylesheet node that the error originated from.
+     *        The stylesheet node that the error originated from.
      * @param e
-     *                  The exception that caused this exception.
+     *        The exception that caused this exception.
      */
     public XPathException(String message, Node styleNode, Exception e) {
 
@@ -161,9 +161,9 @@ public class XPathException extends TransformerException {
      * exception that caused this exception.
      * 
      * @param message
-     *                The error message.
+     *        The error message.
      * @param e
-     *                The exception that caused this exception.
+     *        The exception that caused this exception.
      */
     public XPathException(String message, Exception e) {
 
@@ -177,7 +177,7 @@ public class XPathException extends TransformerException {
      * trace all nested exception objects, as well as this object.
      * 
      * @param s
-     *          The stream where the dump will be sent to.
+     *        The stream where the dump will be sent to.
      */
     public void printStackTrace(java.io.PrintStream s) {
 
@@ -186,8 +186,7 @@ public class XPathException extends TransformerException {
 
         try {
             super.printStackTrace(s);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         Throwable exception = m_exception;
 
@@ -246,7 +245,7 @@ public class XPathException extends TransformerException {
      * trace all nested exception objects, as well as this object.
      * 
      * @param s
-     *          The writer where the dump will be sent to.
+     *        The writer where the dump will be sent to.
      */
     public void printStackTrace(java.io.PrintWriter s) {
 
@@ -255,8 +254,7 @@ public class XPathException extends TransformerException {
 
         try {
             super.printStackTrace(s);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         boolean isJdk14OrHigher = false;
         try {

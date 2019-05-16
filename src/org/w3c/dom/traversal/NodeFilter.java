@@ -143,7 +143,7 @@ public interface NodeFilter {
      * guide your own application logic.)
      * 
      * @param n
-     *          The node to check to see if it passes the filter or not.
+     *        The node to check to see if it passes the filter or not.
      * @return A constant to determine whether the node is accepted, rejected,
      *         or skipped, as defined above.
      */

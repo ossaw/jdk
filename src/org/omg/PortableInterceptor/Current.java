@@ -24,5 +24,4 @@ package org.omg.PortableInterceptor;
  * obtained via <code>resolve_initial_references</code>, but that is the
  * Interceptor's thread scope PICurrent.
  */
-public interface Current extends CurrentOperations, org.omg.CORBA.Current,
-        org.omg.CORBA.portable.IDLEntity {} // interface Current
+public interface Current extends CurrentOperations, org.omg.CORBA.Current, org.omg.CORBA.portable.IDLEntity {} // interface Current

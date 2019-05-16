@@ -265,26 +265,20 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             { "ERROR0000", "{0}" },
 
-            { ER_CURRENT_NOT_ALLOWED_IN_MATCH,
-                    "The current() function is not allowed in a match pattern!" },
+            { ER_CURRENT_NOT_ALLOWED_IN_MATCH, "The current() function is not allowed in a match pattern!" },
 
-            { ER_CURRENT_TAKES_NO_ARGS,
-                    "The current() function does not accept arguments!" },
+            { ER_CURRENT_TAKES_NO_ARGS, "The current() function does not accept arguments!" },
 
             { ER_DOCUMENT_REPLACED,
                     "document() function implementation has been replaced by com.sun.org.apache.xalan.internal.xslt.FuncDocument!" },
 
-            { ER_CONTEXT_HAS_NO_OWNERDOC,
-                    "context does not have an owner document!" },
+            { ER_CONTEXT_HAS_NO_OWNERDOC, "context does not have an owner document!" },
 
-            { ER_LOCALNAME_HAS_TOO_MANY_ARGS,
-                    "local-name() has too many arguments." },
+            { ER_LOCALNAME_HAS_TOO_MANY_ARGS, "local-name() has too many arguments." },
 
-            { ER_NAMESPACEURI_HAS_TOO_MANY_ARGS,
-                    "namespace-uri() has too many arguments." },
+            { ER_NAMESPACEURI_HAS_TOO_MANY_ARGS, "namespace-uri() has too many arguments." },
 
-            { ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS,
-                    "normalize-space() has too many arguments." },
+            { ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS, "normalize-space() has too many arguments." },
 
             { ER_NUMBER_HAS_TOO_MANY_ARGS, "number() has too many arguments." },
 
@@ -292,37 +286,30 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             { ER_STRING_HAS_TOO_MANY_ARGS, "string() has too many arguments." },
 
-            { ER_STRINGLENGTH_HAS_TOO_MANY_ARGS,
-                    "string-length() has too many arguments." },
+            { ER_STRINGLENGTH_HAS_TOO_MANY_ARGS, "string-length() has too many arguments." },
 
-            { ER_TRANSLATE_TAKES_3_ARGS,
-                    "The translate() function takes three arguments!" },
+            { ER_TRANSLATE_TAKES_3_ARGS, "The translate() function takes three arguments!" },
 
             { ER_UNPARSEDENTITYURI_TAKES_1_ARG,
                     "The unparsed-entity-uri function should take one argument!" },
 
-            { ER_NAMESPACEAXIS_NOT_IMPLEMENTED,
-                    "namespace axis not implemented yet!" },
+            { ER_NAMESPACEAXIS_NOT_IMPLEMENTED, "namespace axis not implemented yet!" },
 
             { ER_UNKNOWN_AXIS, "unknown axis: {0}" },
 
             { ER_UNKNOWN_MATCH_OPERATION, "unknown match operation!" },
 
-            { ER_INCORRECT_ARG_LENGTH,
-                    "Arg length of processing-instruction() node test is incorrect!" },
+            { ER_INCORRECT_ARG_LENGTH, "Arg length of processing-instruction() node test is incorrect!" },
 
             { ER_CANT_CONVERT_TO_NUMBER, "Can not convert {0} to a number" },
 
-            { ER_CANT_CONVERT_TO_NODELIST,
-                    "Can not convert {0} to a NodeList!" },
+            { ER_CANT_CONVERT_TO_NODELIST, "Can not convert {0} to a NodeList!" },
 
-            { ER_CANT_CONVERT_TO_MUTABLENODELIST,
-                    "Can not convert {0} to a NodeSetDTM!" },
+            { ER_CANT_CONVERT_TO_MUTABLENODELIST, "Can not convert {0} to a NodeSetDTM!" },
 
             { ER_CANT_CONVERT_TO_TYPE, "Can not convert {0} to a type#{1}" },
 
-            { ER_EXPECTED_MATCH_PATTERN,
-                    "Expected match pattern in getMatchScore!" },
+            { ER_EXPECTED_MATCH_PATTERN, "Expected match pattern in getMatchScore!" },
 
             { ER_COULDNOT_GET_VAR_NAMED, "Could not get variable named {0}" },
 
@@ -330,27 +317,22 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             { ER_EXTRA_ILLEGAL_TOKENS, "Extra illegal tokens: {0}" },
 
-            { ER_EXPECTED_DOUBLE_QUOTE,
-                    "misquoted literal... expected double quote!" },
+            { ER_EXPECTED_DOUBLE_QUOTE, "misquoted literal... expected double quote!" },
 
-            { ER_EXPECTED_SINGLE_QUOTE,
-                    "misquoted literal... expected single quote!" },
+            { ER_EXPECTED_SINGLE_QUOTE, "misquoted literal... expected single quote!" },
 
             { ER_EMPTY_EXPRESSION, "Empty expression!" },
 
             { ER_EXPECTED_BUT_FOUND, "Expected {0}, but found: {1}" },
 
-            { ER_INCORRECT_PROGRAMMER_ASSERTION,
-                    "Programmer assertion is incorrect! - {0}" },
+            { ER_INCORRECT_PROGRAMMER_ASSERTION, "Programmer assertion is incorrect! - {0}" },
 
             { ER_BOOLEAN_ARG_NO_LONGER_OPTIONAL,
                     "boolean(...) argument is no longer optional with 19990709 XPath draft." },
 
-            { ER_FOUND_COMMA_BUT_NO_PRECEDING_ARG,
-                    "Found ',' but no preceding argument!" },
+            { ER_FOUND_COMMA_BUT_NO_PRECEDING_ARG, "Found ',' but no preceding argument!" },
 
-            { ER_FOUND_COMMA_BUT_NO_FOLLOWING_ARG,
-                    "Found ',' but no following argument!" },
+            { ER_FOUND_COMMA_BUT_NO_FOLLOWING_ARG, "Found ',' but no following argument!" },
 
             { ER_PREDICATE_ILLEGAL_SYNTAX,
                     "'..[predicate]' or '.[predicate]' is illegal syntax.  Use 'self::node()[predicate]' instead." },
@@ -359,17 +341,14 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             { ER_UNKNOWN_NODETYPE, "Unknown nodetype: {0}" },
 
-            { ER_PATTERN_LITERAL_NEEDS_BE_QUOTED,
-                    "Pattern literal ({0}) needs to be quoted!" },
+            { ER_PATTERN_LITERAL_NEEDS_BE_QUOTED, "Pattern literal ({0}) needs to be quoted!" },
 
-            { ER_COULDNOT_BE_FORMATTED_TO_NUMBER,
-                    "{0} could not be formatted to a number!" },
+            { ER_COULDNOT_BE_FORMATTED_TO_NUMBER, "{0} could not be formatted to a number!" },
 
             { ER_COULDNOT_CREATE_XMLPROCESSORLIAISON,
                     "Could not create XML TransformerFactory Liaison: {0}" },
 
-            { ER_DIDNOT_FIND_XPATH_SELECT_EXP,
-                    "Error! Did not find xpath select expression (-select)." },
+            { ER_DIDNOT_FIND_XPATH_SELECT_EXP, "Error! Did not find xpath select expression (-select)." },
 
             { ER_COULDNOT_FIND_ENDOP_AFTER_OPLOCATIONPATH,
                     "ERROR! Could not find ENDOP after OP_LOCATIONPATH" },
@@ -382,11 +361,9 @@ public class XPATHErrorResources extends ListResourceBundle {
             { ER_AXES_NOT_ALLOWED,
                     "Only child:: and attribute:: axes are allowed in match patterns!  Offending axes = {0}" },
 
-            { ER_KEY_HAS_TOO_MANY_ARGS,
-                    "key() has an incorrect number of arguments." },
+            { ER_KEY_HAS_TOO_MANY_ARGS, "key() has an incorrect number of arguments." },
 
-            { ER_COUNT_TAKES_1_ARG,
-                    "The count function should take one argument!" },
+            { ER_COUNT_TAKES_1_ARG, "The count function should take one argument!" },
 
             { ER_COULDNOT_FIND_FUNCTION, "Could not find function: {0}" },
 
@@ -398,34 +375,27 @@ public class XPATHErrorResources extends ListResourceBundle {
             { ER_CANNOT_WRITE_TO_EMPTYNODELISTIMPL,
                     "Programmer error: EmptyNodeList can not be written to." },
 
-            { ER_SETDOMFACTORY_NOT_SUPPORTED,
-                    "setDOMFactory is not supported by XPathContext!" },
+            { ER_SETDOMFACTORY_NOT_SUPPORTED, "setDOMFactory is not supported by XPathContext!" },
 
-            { ER_PREFIX_MUST_RESOLVE,
-                    "Prefix must resolve to a namespace: {0}" },
+            { ER_PREFIX_MUST_RESOLVE, "Prefix must resolve to a namespace: {0}" },
 
             { ER_PARSE_NOT_SUPPORTED,
                     "parse (InputSource source) not supported in XPathContext! Can not open {0}" },
 
-            { ER_SAX_API_NOT_HANDLED,
-                    "SAX API characters(char ch[]... not handled by the DTM!" },
+            { ER_SAX_API_NOT_HANDLED, "SAX API characters(char ch[]... not handled by the DTM!" },
 
             { ER_IGNORABLE_WHITESPACE_NOT_HANDLED,
                     "ignorableWhitespace(char ch[]... not handled by the DTM!" },
 
-            { ER_DTM_CANNOT_HANDLE_NODES,
-                    "DTMLiaison can not handle nodes of type {0}" },
+            { ER_DTM_CANNOT_HANDLE_NODES, "DTMLiaison can not handle nodes of type {0}" },
 
-            { ER_XERCES_CANNOT_HANDLE_NODES,
-                    "DOM2Helper can not handle nodes of type {0}" },
+            { ER_XERCES_CANNOT_HANDLE_NODES, "DOM2Helper can not handle nodes of type {0}" },
 
-            { ER_XERCES_PARSE_ERROR_DETAILS,
-                    "DOM2Helper.parse error: SystemID - {0} line - {1}" },
+            { ER_XERCES_PARSE_ERROR_DETAILS, "DOM2Helper.parse error: SystemID - {0} line - {1}" },
 
             { ER_XERCES_PARSE_ERROR, "DOM2Helper.parse error" },
 
-            { ER_INVALID_UTF16_SURROGATE,
-                    "Invalid UTF-16 surrogate detected: {0} ?" },
+            { ER_INVALID_UTF16_SURROGATE, "Invalid UTF-16 surrogate detected: {0} ?" },
 
             { ER_OIERROR, "IO error" },
 
@@ -445,8 +415,7 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             { ER_NULL_ERROR_HANDLER, "Null error handler" },
 
-            { ER_PROG_ASSERT_UNKNOWN_OPCODE,
-                    "Programmer''s assertion: unknown opcode: {0}" },
+            { ER_PROG_ASSERT_UNKNOWN_OPCODE, "Programmer''s assertion: unknown opcode: {0}" },
 
             { ER_ZERO_OR_ONE, "0 or 1" },
 
@@ -472,48 +441,37 @@ public class XPATHErrorResources extends ListResourceBundle {
             { ER_STR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
                     "str() not supported by XRTreeFragSelectWrapper" },
 
-            { ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS,
-                    "fsb() not supported for XStringForChars" },
+            { ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS, "fsb() not supported for XStringForChars" },
 
-            { ER_COULD_NOT_FIND_VAR,
-                    "Could not find variable with the name of {0}" },
+            { ER_COULD_NOT_FIND_VAR, "Could not find variable with the name of {0}" },
 
             { ER_XSTRINGFORCHARS_CANNOT_TAKE_STRING,
                     "XStringForChars can not take a string for an argument" },
 
-            { ER_FASTSTRINGBUFFER_CANNOT_BE_NULL,
-                    "The FastStringBuffer argument can not be null" },
+            { ER_FASTSTRINGBUFFER_CANNOT_BE_NULL, "The FastStringBuffer argument can not be null" },
 
             { ER_TWO_OR_THREE, "2 or 3" },
 
-            { ER_VARIABLE_ACCESSED_BEFORE_BIND,
-                    "Variable accessed before it is bound!" },
+            { ER_VARIABLE_ACCESSED_BEFORE_BIND, "Variable accessed before it is bound!" },
 
-            { ER_FSB_CANNOT_TAKE_STRING,
-                    "XStringForFSB can not take a string for an argument!" },
+            { ER_FSB_CANNOT_TAKE_STRING, "XStringForFSB can not take a string for an argument!" },
 
-            { ER_SETTING_WALKER_ROOT_TO_NULL,
-                    "\n !!!! Error! Setting the root of a walker to null!!!" },
+            { ER_SETTING_WALKER_ROOT_TO_NULL, "\n !!!! Error! Setting the root of a walker to null!!!" },
 
-            { ER_NODESETDTM_CANNOT_ITERATE,
-                    "This NodeSetDTM can not iterate to a previous node!" },
+            { ER_NODESETDTM_CANNOT_ITERATE, "This NodeSetDTM can not iterate to a previous node!" },
 
-            { ER_NODESET_CANNOT_ITERATE,
-                    "This NodeSet can not iterate to a previous node!" },
+            { ER_NODESET_CANNOT_ITERATE, "This NodeSet can not iterate to a previous node!" },
 
-            { ER_NODESETDTM_CANNOT_INDEX,
-                    "This NodeSetDTM can not do indexing or counting functions!" },
+            { ER_NODESETDTM_CANNOT_INDEX, "This NodeSetDTM can not do indexing or counting functions!" },
 
-            { ER_NODESET_CANNOT_INDEX,
-                    "This NodeSet can not do indexing or counting functions!" },
+            { ER_NODESET_CANNOT_INDEX, "This NodeSet can not do indexing or counting functions!" },
 
             { ER_CANNOT_CALL_SETSHOULDCACHENODE,
                     "Can not call setShouldCacheNodes after nextNode has been called!" },
 
             { ER_ONLY_ALLOWS, "{0} only allows {1} arguments" },
 
-            { ER_UNKNOWN_STEP,
-                    "Programmer''s assertion in getNextStepPos: unknown stepType: {0}" },
+            { ER_UNKNOWN_STEP, "Programmer''s assertion in getNextStepPos: unknown stepType: {0}" },
 
             // Note to translators: A relative location path is a form of XPath
             // expression.
@@ -545,8 +503,7 @@ public class XPATHErrorResources extends ListResourceBundle {
             // The message indicates that syntactically such an expression was
             // expected
             // following the specified characters.
-            { ER_EXPECTED_LOC_STEP,
-                    "A location step was expected following the '/' or '//' token." },
+            { ER_EXPECTED_LOC_STEP, "A location step was expected following the '/' or '//' token." },
 
             // Note to translators: A node test is part of an XPath expression
             // that is
@@ -555,24 +512,21 @@ public class XPATHErrorResources extends ListResourceBundle {
             // consists of an NCName followed by a colon and an asterisk or that
             // consists
             // of a QName was expected, but was not found.
-            { ER_EXPECTED_NODE_TEST,
-                    "A node test that matches either NCName:* or QName was expected." },
+            { ER_EXPECTED_NODE_TEST, "A node test that matches either NCName:* or QName was expected." },
 
             // Note to translators: A step pattern is part of an XPath
             // expression.
             // The message indicates that syntactically such an expression was
             // expected,
             // but the specified character was found in the expression instead.
-            { ER_EXPECTED_STEP_PATTERN,
-                    "A step pattern was expected, but '/' was encountered." },
+            { ER_EXPECTED_STEP_PATTERN, "A step pattern was expected, but '/' was encountered." },
 
             // Note to translators: A relative path pattern is part of an XPath
             // expression.
             // The message indicates that syntactically such an expression was
             // expected,
             // but was not found.
-            { ER_EXPECTED_REL_PATH_PATTERN,
-                    "A relative path pattern was expected." },
+            { ER_EXPECTED_REL_PATH_PATTERN, "A relative path pattern was expected." },
 
             // Note to translators: The substitution text is the name of a data
             // type. The
@@ -601,8 +555,7 @@ public class XPATHErrorResources extends ListResourceBundle {
             // upon changed, so the iterator object that was being used to
             // traverse the
             // document has now become invalid.
-            { ER_DOC_MUTATED,
-                    "Document mutated since result was returned. Iterator is invalid." },
+            { ER_DOC_MUTATED, "Document mutated since result was returned. Iterator is invalid." },
 
             { ER_INVALID_XPATH_TYPE, "Invalid XPath type argument: {0}" },
 
@@ -611,8 +564,7 @@ public class XPATHErrorResources extends ListResourceBundle {
             { ER_INCOMPATIBLE_TYPES,
                     "The XPathResult of XPath expression ''{0}'' has an XPathResultType of {1} which cannot be coerced into the specified XPathResultType of {2}." },
 
-            { ER_NULL_RESOLVER,
-                    "Unable to resolve prefix with null prefix resolver." },
+            { ER_NULL_RESOLVER, "Unable to resolve prefix with null prefix resolver." },
 
             // Note to translators: The substitution text is the name of a data
             // type. The
@@ -656,8 +608,7 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             /** Field ER_RESOLVE_VARIABLE_RETURNS_NULL */
 
-            { ER_RESOLVE_VARIABLE_RETURNS_NULL,
-                    "resolveVariable for variable {0} returning null" },
+            { ER_RESOLVE_VARIABLE_RETURNS_NULL, "resolveVariable for variable {0} returning null" },
 
             /** Field ER_UNSUPPORTED_RETURN_TYPE */
 
@@ -665,13 +616,11 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             /** Field ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL */
 
-            { ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL,
-                    "Source and/or Return Type can not be null" },
+            { ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL, "Source and/or Return Type can not be null" },
 
             /** Field ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL */
 
-            { ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL,
-                    "Source and/or Return Type can not be null" },
+            { ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL, "Source and/or Return Type can not be null" },
 
             /** Field ER_ARG_CANNOT_BE_NULL */
 
@@ -689,23 +638,19 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             /** Field ER_OBJECT_MODEL_EMPTY */
 
-            { ER_FEATURE_NAME_NULL,
-                    "Trying to set a feature with a null name: {0}#setFeature( null, {1})" },
+            { ER_FEATURE_NAME_NULL, "Trying to set a feature with a null name: {0}#setFeature( null, {1})" },
 
             /** Field ER_FEATURE_UNKNOWN */
 
-            { ER_FEATURE_UNKNOWN,
-                    "Trying to set the unknown feature \"{0}\":{1}#setFeature({0},{2})" },
+            { ER_FEATURE_UNKNOWN, "Trying to set the unknown feature \"{0}\":{1}#setFeature({0},{2})" },
 
             /** Field ER_GETTING_NULL_FEATURE */
 
-            { ER_GETTING_NULL_FEATURE,
-                    "Trying to get a feature with a null name: {0}#getFeature(null)" },
+            { ER_GETTING_NULL_FEATURE, "Trying to get a feature with a null name: {0}#getFeature(null)" },
 
             /** Field ER_GETTING_NULL_FEATURE */
 
-            { ER_GETTING_UNKNOWN_FEATURE,
-                    "Trying to get the unknown feature \"{0}\":{1}#getFeature({0})" },
+            { ER_GETTING_UNKNOWN_FEATURE, "Trying to get the unknown feature \"{0}\":{1}#getFeature({0})" },
 
             { ER_SECUREPROCESSING_FEATURE,
                     "FEATURE_SECURE_PROCESSING: Cannot set the feature to false when security manager is present: {1}#setFeature({0},{2})" },
@@ -725,19 +670,16 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             // Warnings...
 
-            { WG_LOCALE_NAME_NOT_HANDLED,
-                    "locale name in the format-number function not yet handled!" },
+            { WG_LOCALE_NAME_NOT_HANDLED, "locale name in the format-number function not yet handled!" },
 
             { WG_PROPERTY_NOT_SUPPORTED, "XSL Property not supported: {0}" },
 
             { WG_DONT_DO_ANYTHING_WITH_NS,
                     "Do not currently do anything with namespace {0} in property: {1}" },
 
-            { WG_SECURITY_EXCEPTION,
-                    "SecurityException when trying to access XSL system property: {0}" },
+            { WG_SECURITY_EXCEPTION, "SecurityException when trying to access XSL system property: {0}" },
 
-            { WG_QUO_NO_LONGER_DEFINED,
-                    "Old syntax: quo(...) is no longer defined in XPath." },
+            { WG_QUO_NO_LONGER_DEFINED, "Old syntax: quo(...) is no longer defined in XPath." },
 
             { WG_NEED_DERIVED_OBJECT_TO_IMPLEMENT_NODETEST,
                     "XPath needs a derived object to implement nodeTest!" },
@@ -748,8 +690,7 @@ public class XPATHErrorResources extends ListResourceBundle {
 
             { WG_CANNOT_MAKE_URL_FROM, "Can not make URL from: {0}" },
 
-            { WG_EXPAND_ENTITIES_NOT_SUPPORTED,
-                    "-E option not supported for DTM parser" },
+            { WG_EXPAND_ENTITIES_NOT_SUPPORTED, "-E option not supported for DTM parser" },
 
             { WG_ILLEGAL_VARIABLE_REFERENCE,
                     "VariableReference given for variable out of context or without definition!  Name = {0}" },
@@ -757,29 +698,24 @@ public class XPATHErrorResources extends ListResourceBundle {
             { WG_UNSUPPORTED_ENCODING, "Unsupported encoding: {0}" },
 
             // Other miscellaneous text used inside the code...
-            { "ui_language", "en" }, { "help_language", "en" }, { "language",
-                    "en" }, { "BAD_CODE",
-                            "Parameter to createMessage was out of bounds" }, {
-                                    "FORMAT_FAILED",
-                                    "Exception thrown during messageFormat call" },
-            { "version", ">>>>>>> Xalan Version " }, { "version2", "<<<<<<<" },
-            { "yes", "yes" }, { "line", "Line #" }, { "column", "Column #" }, {
-                    "xsldone", "XSLProcessor: done" }, { "xpath_option",
-                            "xpath options: " }, { "optionIN",
-                                    "   [-in inputXMLURL]" }, { "optionSelect",
-                                            "   [-select xpath expression]" }, {
-                                                    "optionMatch",
-                                                    "   [-match match pattern (for match diagnostics)]" },
-            { "optionAnyExpr",
-                    "Or just an xpath expression will do a diagnostic dump" }, {
-                            "noParsermsg1", "XSL Process was not successful." },
-            { "noParsermsg2", "** Could not find parser **" }, { "noParsermsg3",
-                    "Please check your classpath." }, { "noParsermsg4",
-                            "If you don't have IBM's XML Parser for Java, you can download it from" },
-            { "noParsermsg5",
-                    "IBM's AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-            { "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
-            { "three", "3" }
+            { "ui_language", "en" }, { "help_language", "en" }, { "language", "en" }, { "BAD_CODE",
+                    "Parameter to createMessage was out of bounds" }, { "FORMAT_FAILED",
+                            "Exception thrown during messageFormat call" }, { "version",
+                                    ">>>>>>> Xalan Version " }, { "version2", "<<<<<<<" }, { "yes", "yes" }, {
+                                            "line", "Line #" }, { "column", "Column #" }, { "xsldone",
+                                                    "XSLProcessor: done" }, { "xpath_option",
+                                                            "xpath options: " }, { "optionIN",
+                                                                    "   [-in inputXMLURL]" }, {
+                                                                            "optionSelect",
+                                                                            "   [-select xpath expression]" },
+            { "optionMatch", "   [-match match pattern (for match diagnostics)]" }, { "optionAnyExpr",
+                    "Or just an xpath expression will do a diagnostic dump" }, { "noParsermsg1",
+                            "XSL Process was not successful." }, { "noParsermsg2",
+                                    "** Could not find parser **" }, { "noParsermsg3",
+                                            "Please check your classpath." }, { "noParsermsg4",
+                                                    "If you don't have IBM's XML Parser for Java, you can download it from" },
+            { "noParsermsg5", "IBM's AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" }, { "gtone",
+                    ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
 
     };
 

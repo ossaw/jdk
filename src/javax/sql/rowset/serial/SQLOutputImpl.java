@@ -57,31 +57,28 @@ public class SQLOutputImpl implements SQLOutput {
      * stream.
      *
      * @param attributes
-     *                   a <code>Vector</code> object containing the attributes
-     *                   of the
-     *                   UDT to be mapped to one or more objects in the Java
-     *                   programming language
-     *
+     *        a <code>Vector</code> object containing the attributes
+     *        of the
+     *        UDT to be mapped to one or more objects in the Java
+     *        programming language
      * @param map
-     *                   a <code>java.util.Map</code> object containing zero or
-     *                   more
-     *                   entries, with each entry consisting of 1) a
-     *                   <code>String</code> giving the fully qualified name of
-     *                   a UDT
-     *                   and 2) the <code>Class</code> object for the
-     *                   <code>SQLData</code> implementation that defines how
-     *                   the UDT
-     *                   is to be mapped
+     *        a <code>java.util.Map</code> object containing zero or
+     *        more
+     *        entries, with each entry consisting of 1) a
+     *        <code>String</code> giving the fully qualified name of
+     *        a UDT
+     *        and 2) the <code>Class</code> object for the
+     *        <code>SQLData</code> implementation that defines how
+     *        the UDT
+     *        is to be mapped
      * @throws SQLException
-     *                      if the <code>attributes</code> or the
-     *                      <code>map</code> is a
-     *                      <code>null</code> value
+     *         if the <code>attributes</code> or the
+     *         <code>map</code> is a
+     *         <code>null</code> value
      */
-    public SQLOutputImpl(Vector<?> attributes, Map<String, ?> map)
-            throws SQLException {
+    public SQLOutputImpl(Vector<?> attributes, Map<String, ?> map) throws SQLException {
         if ((attributes == null) || (map == null)) {
-            throw new SQLException("Cannot instantiate a SQLOutputImpl "
-                    + "instance with null parameters");
+            throw new SQLException("Cannot instantiate a SQLOutputImpl " + "instance with null parameters");
         }
         this.attribs = attributes;
         this.map = map;
@@ -100,13 +97,13 @@ public class SQLOutputImpl implements SQLOutput {
      * before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeString(String x) throws SQLException {
@@ -120,13 +117,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>BIT</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeBoolean(boolean x) throws SQLException {
@@ -139,13 +136,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>BIT</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeByte(byte x) throws SQLException {
@@ -158,13 +155,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>SMALLINT</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeShort(short x) throws SQLException {
@@ -177,13 +174,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>INTEGER</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeInt(int x) throws SQLException {
@@ -196,13 +193,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>BIGINT</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeLong(long x) throws SQLException {
@@ -215,13 +212,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>REAL</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeFloat(float x) throws SQLException {
@@ -234,13 +231,13 @@ public class SQLOutputImpl implements SQLOutput {
      * <code>DOUBLE</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeDouble(double x) throws SQLException {
@@ -253,13 +250,13 @@ public class SQLOutputImpl implements SQLOutput {
      * it to an SQL <code>NUMERIC</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeBigDecimal(java.math.BigDecimal x) throws SQLException {
@@ -273,13 +270,13 @@ public class SQLOutputImpl implements SQLOutput {
      * to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeBytes(byte[] x) throws SQLException {
@@ -292,13 +289,13 @@ public class SQLOutputImpl implements SQLOutput {
      * it to an SQL <code>DATE</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeDate(java.sql.Date x) throws SQLException {
@@ -311,13 +308,13 @@ public class SQLOutputImpl implements SQLOutput {
      * it to an SQL <code>TIME</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeTime(java.sql.Time x) throws SQLException {
@@ -330,13 +327,13 @@ public class SQLOutputImpl implements SQLOutput {
      * it to an SQL <code>TIMESTAMP</code> before returning it to the database.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeTimestamp(java.sql.Timestamp x) throws SQLException {
@@ -349,13 +346,13 @@ public class SQLOutputImpl implements SQLOutput {
      * database <code>CHAR</code> format.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeCharacterStream(java.io.Reader x) throws SQLException {
@@ -383,13 +380,13 @@ public class SQLOutputImpl implements SQLOutput {
      * database <code>CHAR</code> format.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeAsciiStream(java.io.InputStream x) throws SQLException {
@@ -417,13 +414,13 @@ public class SQLOutputImpl implements SQLOutput {
      * object.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeBinaryStream(java.io.InputStream x) throws SQLException {
@@ -469,14 +466,14 @@ public class SQLOutputImpl implements SQLOutput {
      * were listed in the SQL definition of the user-defined type.
      *
      * @param x
-     *          the object representing data of an SQL structured or distinct
-     *          type
+     *        the object representing data of an SQL structured or distinct
+     *        type
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeObject(SQLData x) throws SQLException {
@@ -507,13 +504,13 @@ public class SQLOutputImpl implements SQLOutput {
      * returning it to the database.
      *
      * @param x
-     *          an object representing an SQL <code>REF</code> value
+     *        an object representing an SQL <code>REF</code> value
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeRef(Ref x) throws SQLException {
@@ -531,13 +528,13 @@ public class SQLOutputImpl implements SQLOutput {
      * returning it to the database.
      *
      * @param x
-     *          an object representing an SQL <code>BLOB</code> value
+     *        an object representing an SQL <code>BLOB</code> value
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeBlob(Blob x) throws SQLException {
@@ -555,13 +552,13 @@ public class SQLOutputImpl implements SQLOutput {
      * returning it to the database.
      *
      * @param x
-     *          an object representing an SQL <code>CLOB</code> value
+     *        an object representing an SQL <code>CLOB</code> value
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeClob(Clob x) throws SQLException {
@@ -584,14 +581,14 @@ public class SQLOutputImpl implements SQLOutput {
      * programming language.
      *
      * @param x
-     *          an object representing the attributes of an SQL structured
-     *          type
+     *        an object representing the attributes of an SQL structured
+     *        type
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeStruct(Struct x) throws SQLException {
@@ -607,13 +604,13 @@ public class SQLOutputImpl implements SQLOutput {
      * before returning it to the database.
      *
      * @param x
-     *          an object representing an SQL <code>ARRAY</code> value
+     *        an object representing an SQL <code>ARRAY</code> value
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeArray(Array x) throws SQLException {
@@ -631,13 +628,13 @@ public class SQLOutputImpl implements SQLOutput {
      * SQL <code>DATALINK</code> value before return it to the database.
      *
      * @param url
-     *            an object representing a SQL <code>DATALINK</code> value
+     *        an object representing a SQL <code>DATALINK</code> value
      * @throws SQLException
-     *                      if the <code>SQLOutputImpl</code> object is in use
-     *                      by a
-     *                      <code>SQLData</code> object attempting to write the
-     *                      attribute
-     *                      values of a UDT to the database.
+     *         if the <code>SQLOutputImpl</code> object is in use
+     *         by a
+     *         <code>SQLData</code> object attempting to write the
+     *         attribute
+     *         values of a UDT to the database.
      */
     @SuppressWarnings("unchecked")
     public void writeURL(java.net.URL url) throws SQLException {
@@ -656,9 +653,9 @@ public class SQLOutputImpl implements SQLOutput {
      * on <code>NVARCHAR</code> values) when it sends it to the stream.
      *
      * @param x
-     *          the value to pass to the database
+     *        the value to pass to the database
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     @SuppressWarnings("unchecked")
@@ -670,11 +667,10 @@ public class SQLOutputImpl implements SQLOutput {
      * Writes an SQL <code>NCLOB</code> value to the stream.
      *
      * @param x
-     *          a <code>NClob</code> object representing data of an SQL
-     *          <code>NCLOB</code> value
-     *
+     *        a <code>NClob</code> object representing data of an SQL
+     *        <code>NCLOB</code> value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     @SuppressWarnings("unchecked")
@@ -686,11 +682,10 @@ public class SQLOutputImpl implements SQLOutput {
      * Writes an SQL <code>ROWID</code> value to the stream.
      *
      * @param x
-     *          a <code>RowId</code> object representing data of an SQL
-     *          <code>ROWID</code> value
-     *
+     *        a <code>RowId</code> object representing data of an SQL
+     *        <code>ROWID</code> value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     @SuppressWarnings("unchecked")
@@ -702,11 +697,10 @@ public class SQLOutputImpl implements SQLOutput {
      * Writes an SQL <code>XML</code> value to the stream.
      *
      * @param x
-     *          a <code>SQLXML</code> object representing data of an SQL
-     *          <code>XML</code> value
-     *
+     *        a <code>SQLXML</code> object representing data of an SQL
+     *        <code>XML</code> value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @since 1.6
      */
     @SuppressWarnings("unchecked")

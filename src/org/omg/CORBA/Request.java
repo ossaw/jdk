@@ -39,7 +39,6 @@ package org.omg.CORBA;
  * which is to be invoked.
  *
  * @see org.omg.CORBA.NamedValue
- *
  */
 
 public abstract class Request {
@@ -69,7 +68,6 @@ public abstract class Request {
      *
      * @return the <code>NVList</code> object containing the arguments for the
      *         method
-     *
      */
 
     public abstract NVList arguments();
@@ -88,7 +86,6 @@ public abstract class Request {
      * Retrieves the <code>Environment</code> object for this request. It
      * contains the exception that the method being invoked has thrown (after
      * the invocation returns).
-     *
      *
      * @return the <code>Environment</code> object for this request
      */
@@ -111,7 +108,6 @@ public abstract class Request {
      * contains context <code>String</code>s that need to be resolved and sent
      * with the invocation.
      *
-     *
      * @return the list of context strings whose values need to be resolved and
      *         sent with the invocation.
      */
@@ -133,8 +129,8 @@ public abstract class Request {
      * Sets this request's <code>Context</code> object to the one given.
      *
      * @param c
-     *          the new <code>Context</code> object to be used for resolving
-     *          context strings
+     *        the new <code>Context</code> object to be used for resolving
+     *        context strings
      */
 
     public abstract void ctx(Context c);
@@ -154,7 +150,7 @@ public abstract class Request {
      * <code>Request</code> object.
      *
      * @param name
-     *             the name of the argument being added
+     *        the name of the argument being added
      * @return an <code>Any</code> object that contains the value and typecode
      *         for the input argument added
      */
@@ -175,7 +171,7 @@ public abstract class Request {
      * <code>Request</code> object.
      *
      * @param name
-     *             the name of the argument being added
+     *        the name of the argument being added
      * @return an <code>Any</code> object that contains the value and typecode
      *         for the input/output argument added
      */
@@ -196,7 +192,7 @@ public abstract class Request {
      * object.
      *
      * @param name
-     *             the name of the argument being added
+     *        the name of the argument being added
      * @return an <code>Any</code> object that contains the value and typecode
      *         for the output argument added
      */
@@ -207,8 +203,8 @@ public abstract class Request {
      * Sets the typecode for the return value of the method.
      *
      * @param tc
-     *           the <code>TypeCode</code> object containing type information
-     *           for the return value
+     *        the <code>TypeCode</code> object containing type information
+     *        for the return value
      */
 
     public abstract void set_return_type(TypeCode tc);
@@ -265,13 +261,13 @@ public abstract class Request {
      * earlier with the <code>send_deferred</code> method.
      *
      * @exception WrongTransaction
-     *                             if the method <code>get_response</code> was
-     *                             invoked from a
-     *                             different transaction's scope than the one
-     *                             from which the
-     *                             request was originally sent. See the OMG
-     *                             Transaction
-     *                             Service specification for details.
+     *            if the method <code>get_response</code> was
+     *            invoked from a
+     *            different transaction's scope than the one
+     *            from which the
+     *            request was originally sent. See the OMG
+     *            Transaction
+     *            Service specification for details.
      */
 
     public abstract void get_response() throws WrongTransaction;

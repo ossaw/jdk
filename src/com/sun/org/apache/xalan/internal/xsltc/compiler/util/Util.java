@@ -127,8 +127,7 @@ public final class Util {
      * Replace a certain character in a string with a new substring.
      */
     public static String replace(String base, char ch, String str) {
-        return (base.indexOf(ch) < 0) ? base
-                : replace(base, String.valueOf(ch), new String[] { str });
+        return (base.indexOf(ch) < 0) ? base : replace(base, String.valueOf(ch), new String[] { str });
     }
 
     public static String replace(String base, String delim, String[] str) {
@@ -152,8 +151,7 @@ public final class Util {
      * Replace occurances of '.', '-', '/' and ':'
      */
     public static String escape(String input) {
-        return replace(input, ".-/:", new String[] { "$dot$", "$dash$",
-                "$slash$", "$colon$" });
+        return replace(input, ".-/:", new String[] { "$dot$", "$dash$", "$slash$", "$colon$" });
     }
 
     public static String getLocalName(String qname) {

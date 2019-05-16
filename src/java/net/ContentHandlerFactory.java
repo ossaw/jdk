@@ -24,8 +24,7 @@ public interface ContentHandlerFactory {
      * {@code URLStreamHandler}.
      *
      * @param mimetype
-     *                 the MIME type for which a content handler is desired.
-     * 
+     *        the MIME type for which a content handler is desired.
      * @return a new {@code ContentHandler} to read an object from a
      *         {@code URLStreamHandler}.
      * @see java.net.ContentHandler

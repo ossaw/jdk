@@ -7,9 +7,7 @@ package com.sun.jmx.snmp;
 
 /**
  * Reports an error which occurred during a get/set operation on a mib node.
- *
  * This exception includes a status error code as defined in the SNMP protocol.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -54,7 +52,7 @@ public class SnmpStatusException extends Exception implements SnmpDefinitions {
      * status error.
      * 
      * @param status
-     *               The error status.
+     *        The error status.
      */
     public SnmpStatusException(int status) {
         errorStatus = status;
@@ -65,9 +63,9 @@ public class SnmpStatusException extends Exception implements SnmpDefinitions {
      * status error and status index.
      * 
      * @param status
-     *               The error status.
+     *        The error status.
      * @param index
-     *               The error index.
+     *        The error index.
      */
     public SnmpStatusException(int status, int index) {
         errorStatus = status;
@@ -79,7 +77,7 @@ public class SnmpStatusException extends Exception implements SnmpDefinitions {
      * The error status is set to 0 (noError) and the index to -1.
      * 
      * @param s
-     *          The error message.
+     *        The error message.
      */
     public SnmpStatusException(String s) {
         super(s);
@@ -89,9 +87,9 @@ public class SnmpStatusException extends Exception implements SnmpDefinitions {
      * Constructs a new <CODE>SnmpStatusException</CODE> with an error index.
      * 
      * @param x
-     *              The original <CODE>SnmpStatusException</CODE>.
+     *        The original <CODE>SnmpStatusException</CODE>.
      * @param index
-     *              The error index.
+     *        The error index.
      */
     public SnmpStatusException(SnmpStatusException x, int index) {
         super(x.getMessage());

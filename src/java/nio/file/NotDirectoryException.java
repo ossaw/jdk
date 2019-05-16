@@ -19,7 +19,7 @@ public class NotDirectoryException extends FileSystemException {
      * Constructs an instance of this class.
      *
      * @param file
-     *             a string identifying the file or {@code null} if not known
+     *        a string identifying the file or {@code null} if not known
      */
     public NotDirectoryException(String file) {
         super(file);

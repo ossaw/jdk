@@ -34,8 +34,7 @@ class AclEntryImpl implements AclEntry, Serializable {
             addCommunity(en.nextElement());
         }
 
-        for (Enumeration<Permission> en = i.permissions(); en
-                .hasMoreElements();) {
+        for (Enumeration<Permission> en = i.permissions(); en.hasMoreElements();) {
             addPermission(en.nextElement());
         }
         if (i.isNegative())
@@ -55,7 +54,7 @@ class AclEntryImpl implements AclEntry, Serializable {
      * Constructs an ACL entry with a specified principal.
      *
      * @param p
-     *          the principal to be set for this entry.
+     *        the principal to be set for this entry.
      */
     public AclEntryImpl(Principal p) throws UnknownHostException {
         princ = p;
@@ -93,11 +92,10 @@ class AclEntryImpl implements AclEntry, Serializable {
      * multiple permissions.
      *
      * @param perm
-     *             the permission to be associated with the principal in this
-     *             entry
+     *        the permission to be associated with the principal in this
+     *        entry
      * @return true if the permission is removed, false if the permission was
      *         not part of this entry's permission set.
-     *
      */
     public boolean addPermission(java.security.acl.Permission perm) {
         if (permList.contains(perm))
@@ -110,7 +108,7 @@ class AclEntryImpl implements AclEntry, Serializable {
      * Removes the specified permission from this ACL entry.
      *
      * @param perm
-     *             the permission to be removed from this entry.
+     *        the permission to be removed from this entry.
      * @return true if the permission is removed, false if the permission was
      *         not part of this entry's permission set.
      */
@@ -126,7 +124,7 @@ class AclEntryImpl implements AclEntry, Serializable {
      * entry.
      *
      * @param perm
-     *             the permission to be checked for.
+     *        the permission to be checked for.
      * @return true if the permission is part of the permission set in this
      *         entry, false otherwise.
      */
@@ -150,7 +148,6 @@ class AclEntryImpl implements AclEntry, Serializable {
      * specified in the entry. Note: ACL entries are by default positive. An
      * entry becomes a negative entry only if this setNegativePermissions method
      * is called on it.
-     *
      * Not Implemented.
      */
     public void setNegativePermissions() {
@@ -173,7 +170,7 @@ class AclEntryImpl implements AclEntry, Serializable {
      * is returned, otherwise true is returned.
      *
      * @param p
-     *          the principal to be set for this entry.
+     *        the principal to be set for this entry.
      * @return true if the principal is set, false if there was already a
      *         principal set for this entry.
      */
@@ -207,8 +204,8 @@ class AclEntryImpl implements AclEntry, Serializable {
      * multiple communities.
      *
      * @param comm
-     *             the community to be associated with the principal in this
-     *             entry.
+     *        the community to be associated with the principal in this
+     *        entry.
      * @return true if the community was added, false if the community was
      *         already part of this entry's community set.
      */
@@ -223,7 +220,7 @@ class AclEntryImpl implements AclEntry, Serializable {
      * Removes the specified community from this ACL entry.
      *
      * @param comm
-     *             the community to be removed from this entry.
+     *        the community to be removed from this entry.
      * @return true if the community is removed, false if the community was not
      *         part of this entry's community set.
      */
@@ -239,7 +236,7 @@ class AclEntryImpl implements AclEntry, Serializable {
      * entry.
      *
      * @param comm
-     *             the community to be checked for.
+     *        the community to be checked for.
      * @return true if the community is part of the community set in this entry,
      *         false otherwise.
      */

@@ -12,12 +12,10 @@ import javax.xml.ws.Service;
 
 /**
  * This feature represents the use of MTOM with a web service.
- *
  * This feature can be used during the creation of SEI proxy, and
  * {@link javax.xml.ws.Dispatch} instances on the client side and
  * {@link Endpoint} instances on the server side. This feature cannot be used
  * for {@link Service} instance creation on the client side.
- *
  * <p>
  * The following describes the affects of this feature with respect to being
  * enabled or disabled:
@@ -62,7 +60,7 @@ public final class MTOMFeature extends WebServiceFeature {
      * Creates an <code>MTOMFeature</code>.
      *
      * @param enabled
-     *                specifies if this feature should be enabled or not
+     *        specifies if this feature should be enabled or not
      */
     public MTOMFeature(boolean enabled) {
         this.enabled = enabled;
@@ -74,18 +72,15 @@ public final class MTOMFeature extends WebServiceFeature {
      * enabled.
      *
      * @param threshold
-     *                  the size in bytes that binary data SHOULD be before
-     *                  being sent
-     *                  as an attachment.
-     *
+     *        the size in bytes that binary data SHOULD be before
+     *        being sent
+     *        as an attachment.
      * @throws WebServiceException
-     *                             if threshold is < 0
+     *         if threshold is < 0
      */
     public MTOMFeature(int threshold) {
         if (threshold < 0)
-            throw new WebServiceException(
-                    "MTOMFeature.threshold must be >= 0, actual value: "
-                            + threshold);
+            throw new WebServiceException("MTOMFeature.threshold must be >= 0, actual value: " + threshold);
         this.enabled = true;
         this.threshold = threshold;
     }
@@ -94,20 +89,17 @@ public final class MTOMFeature extends WebServiceFeature {
      * Creates an <code>MTOMFeature</code>.
      *
      * @param enabled
-     *                  specifies if this feature should be enabled or not
+     *        specifies if this feature should be enabled or not
      * @param threshold
-     *                  the size in bytes that binary data SHOULD be before
-     *                  being sent
-     *                  as an attachment.
-     *
+     *        the size in bytes that binary data SHOULD be before
+     *        being sent
+     *        as an attachment.
      * @throws WebServiceException
-     *                             if threshold is < 0
+     *         if threshold is < 0
      */
     public MTOMFeature(boolean enabled, int threshold) {
         if (threshold < 0)
-            throw new WebServiceException(
-                    "MTOMFeature.threshold must be >= 0, actual value: "
-                            + threshold);
+            throw new WebServiceException("MTOMFeature.threshold must be >= 0, actual value: " + threshold);
         this.enabled = enabled;
         this.threshold = threshold;
     }

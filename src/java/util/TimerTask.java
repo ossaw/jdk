@@ -76,12 +76,10 @@ public abstract class TimerTask implements Runnable {
      * never run. If the task has been scheduled for repeated execution, it will
      * never run again. (If the task is running when this call occurs, the task
      * will run to completion, but will never run again.)
-     *
      * <p>
      * Note that calling this method from within the <tt>run</tt> method of a
      * repeating timer task absolutely guarantees that the timer task will not
      * run again.
-     *
      * <p>
      * This method may be called repeatedly; the second and subsequent calls
      * have no effect.
@@ -107,7 +105,6 @@ public abstract class TimerTask implements Runnable {
      * <i>actual</i> execution of this task. (If this method is invoked while
      * task execution is in progress, the return value is the scheduled
      * execution time of the ongoing task execution.)
-     *
      * <p>
      * This method is typically invoked from within a task's run method, to
      * determine whether the current execution of the task is sufficiently
@@ -137,8 +134,7 @@ public abstract class TimerTask implements Runnable {
      */
     public long scheduledExecutionTime() {
         synchronized (lock) {
-            return (period < 0 ? nextExecutionTime + period
-                    : nextExecutionTime - period);
+            return (period < 0 ? nextExecutionTime + period : nextExecutionTime - period);
         }
     }
 }

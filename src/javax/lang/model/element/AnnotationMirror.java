@@ -11,7 +11,6 @@ import javax.lang.model.type.DeclaredType;
 /**
  * Represents an annotation. An annotation associates a value with each element
  * of an annotation type.
- *
  * <p>
  * Annotations should be compared using the {@code equals} method. There is no
  * guarantee that any particular annotation will always be represented by the
@@ -38,11 +37,9 @@ public interface AnnotationMirror {
      * included, not those that are implicitly assuming their default values.
      * The order of the map matches the order in which the values appear in the
      * annotation's source.
-     *
      * <p>
      * Note that an annotation mirror of a marker annotation type will by
      * definition have an empty map.
-     *
      * <p>
      * To fill in default values, use
      * {@link javax.lang.model.util.Elements#getElementValuesWithDefaults

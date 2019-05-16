@@ -55,7 +55,6 @@ package com.sun.org.apache.xerces.internal.impl.dtd.models;
  * A content model node.
  *
  * @xerces.internal
- *
  */
 public abstract class CMNode {
     // -------------------------------------------------------------------

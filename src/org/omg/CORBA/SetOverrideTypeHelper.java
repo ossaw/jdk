@@ -16,8 +16,7 @@ package org.omg.CORBA;
 abstract public class SetOverrideTypeHelper {
     private static String _id = "IDL:omg.org/CORBA/SetOverrideType:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CORBA.SetOverrideType that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CORBA.SetOverrideType that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -32,9 +31,8 @@ abstract public class SetOverrideTypeHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_enum_tc(
-                    org.omg.CORBA.SetOverrideTypeHelper.id(), "SetOverrideType",
-                    new String[] { "SET_OVERRIDE", "ADD_OVERRIDE" });
+            __typeCode = org.omg.CORBA.ORB.init().create_enum_tc(org.omg.CORBA.SetOverrideTypeHelper.id(),
+                    "SetOverrideType", new String[] { "SET_OVERRIDE", "ADD_OVERRIDE" });
         }
         return __typeCode;
     }
@@ -43,8 +41,7 @@ abstract public class SetOverrideTypeHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.SetOverrideType read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.SetOverrideType read(org.omg.CORBA.portable.InputStream istream) {
         return org.omg.CORBA.SetOverrideType.from_int(istream.read_long());
     }
 

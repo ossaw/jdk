@@ -22,10 +22,8 @@ package com.sun.org.apache.xml.internal.serializer.utils;
 /**
  * A very simple lookup table that stores a list of strings, the even number
  * strings being keys, and the odd number strings being values.
- *
  * This class is a copy of the one in com.sun.org.apache.xml.internal.utils. It
  * exists to cut the serializers dependancy on that package.
- *
  * This class is not a public API, it is only public so it can be used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -70,7 +68,7 @@ public final class StringToIntTable {
      * Construct a StringToIntTable, using the given block size.
      *
      * @param blocksize
-     *                  Size of block to allocate
+     *        Size of block to allocate
      */
     public StringToIntTable(int blocksize) {
 
@@ -93,9 +91,9 @@ public final class StringToIntTable {
      * Append a string onto the vector.
      *
      * @param key
-     *              String to append
+     *        String to append
      * @param value
-     *              The int value of the string
+     *        The int value of the string
      */
     public final void put(String key, int value) {
 
@@ -125,10 +123,8 @@ public final class StringToIntTable {
      * Tell if the table contains the given string.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return The String's int value
-     *
      */
     public final int get(String key) {
 
@@ -144,8 +140,7 @@ public final class StringToIntTable {
      * Tell if the table contains the given string. Ignore case.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return The string's int value
      */
     public final int getIgnoreCase(String key) {
@@ -165,8 +160,7 @@ public final class StringToIntTable {
      * Tell if the table contains the given string.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return True if the string is in the table
      */
     public final boolean contains(String key) {

@@ -26,8 +26,7 @@ final class ScrollPanePainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -48,8 +47,7 @@ final class ScrollPanePainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -144,16 +142,12 @@ final class ScrollPanePainter extends AbstractRegionPainter {
         path.lineTo(decodeX(0.4f), decodeY(2.6f));
         path.lineTo(decodeX(2.6f), decodeY(2.6f));
         path.lineTo(decodeX(2.6f), decodeY(0.4f));
-        path.curveTo(decodeAnchorX(2.5999999046325684f, 0.0f), decodeAnchorY(
-                0.4000000059604645f, 0.0f), decodeAnchorX(2.880000352859497f,
-                        0.09999999999999432f), decodeAnchorY(
-                                0.4000000059604645f, 0.0f), decodeX(2.8800004f),
-                decodeY(0.4f));
-        path.curveTo(decodeAnchorX(2.880000352859497f, 0.09999999999999432f),
-                decodeAnchorY(0.4000000059604645f, 0.0f), decodeAnchorX(
-                        2.880000352859497f, 0.0f), decodeAnchorY(
-                                2.879999876022339f, 0.0f), decodeX(2.8800004f),
-                decodeY(2.8799999f));
+        path.curveTo(decodeAnchorX(2.5999999046325684f, 0.0f), decodeAnchorY(0.4000000059604645f, 0.0f),
+                decodeAnchorX(2.880000352859497f, 0.09999999999999432f), decodeAnchorY(0.4000000059604645f,
+                        0.0f), decodeX(2.8800004f), decodeY(0.4f));
+        path.curveTo(decodeAnchorX(2.880000352859497f, 0.09999999999999432f), decodeAnchorY(
+                0.4000000059604645f, 0.0f), decodeAnchorX(2.880000352859497f, 0.0f), decodeAnchorY(
+                        2.879999876022339f, 0.0f), decodeX(2.8800004f), decodeY(2.8799999f));
         path.lineTo(decodeX(0.120000005f), decodeY(2.8799999f));
         path.lineTo(decodeX(0.120000005f), decodeY(0.120000005f));
         path.lineTo(decodeX(2.8800004f), decodeY(0.120000005f));

@@ -100,13 +100,11 @@ final class AncestorPattern extends RelativePathPattern {
          * The scope of this local var must be the entire method since a another
          * pattern may decide to jump back into the loop
          */
-        final LocalVariableGen local = methodGen.addLocalVariable2("app", Util
-                .getJCRefType(NODE_SIG), il.getEnd());
+        final LocalVariableGen local = methodGen.addLocalVariable2("app", Util.getJCRefType(NODE_SIG), il
+                .getEnd());
 
-        final com.sun.org.apache.bcel.internal.generic.Instruction loadLocal = new ILOAD(
-                local.getIndex());
-        final com.sun.org.apache.bcel.internal.generic.Instruction storeLocal = new ISTORE(
-                local.getIndex());
+        final com.sun.org.apache.bcel.internal.generic.Instruction loadLocal = new ILOAD(local.getIndex());
+        final com.sun.org.apache.bcel.internal.generic.Instruction storeLocal = new ISTORE(local.getIndex());
 
         if (_right instanceof StepPattern) {
             il.append(DUP);
@@ -124,8 +122,7 @@ final class AncestorPattern extends RelativePathPattern {
         }
 
         if (_left != null) {
-            final int getParent = cpg.addInterfaceMethodref(DOM_INTF,
-                    GET_PARENT, GET_PARENT_SIG);
+            final int getParent = cpg.addInterfaceMethodref(DOM_INTF, GET_PARENT, GET_PARENT_SIG);
             parent = il.append(new INVOKEINTERFACE(getParent, 2));
 
             il.append(DUP);
@@ -136,8 +133,7 @@ final class AncestorPattern extends RelativePathPattern {
             _left.translate(classGen, methodGen);
 
             final SyntaxTreeNode p = getParent();
-            if (p == null || p instanceof Instruction
-                    || p instanceof TopLevelElement) {
+            if (p == null || p instanceof Instruction || p instanceof TopLevelElement) {
                 // do nothing
             } else {
                 il.append(loadLocal);

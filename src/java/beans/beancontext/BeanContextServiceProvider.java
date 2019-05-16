@@ -36,28 +36,23 @@ public interface BeanContextServiceProvider {
      * instance of a service from this <code>BeanContextServiceProvider</code>.
      *
      * @param bcs
-     *                        The <code>BeanContextServices</code> associated
-     *                        with this
-     *                        particular request. This parameter enables the
-     *                        <code>BeanContextServiceProvider</code> to
-     *                        distinguish service
-     *                        requests from multiple sources.
-     *
+     *        The <code>BeanContextServices</code> associated
+     *        with this
+     *        particular request. This parameter enables the
+     *        <code>BeanContextServiceProvider</code> to
+     *        distinguish service
+     *        requests from multiple sources.
      * @param requestor
-     *                        The object requesting the service
-     *
+     *        The object requesting the service
      * @param serviceClass
-     *                        The service requested
-     *
+     *        The service requested
      * @param serviceSelector
-     *                        the service dependent parameter for a particular
-     *                        service, or
-     *                        <code>null</code> if not applicable.
-     *
+     *        the service dependent parameter for a particular
+     *        service, or
+     *        <code>null</code> if not applicable.
      * @return a reference to the requested service
      */
-    Object getService(BeanContextServices bcs, Object requestor,
-            Class serviceClass, Object serviceSelector);
+    Object getService(BeanContextServices bcs, Object requestor, Class serviceClass, Object serviceSelector);
 
     /**
      * Invoked by <code>BeanContextServices</code>, this method releases a
@@ -66,18 +61,15 @@ public interface BeanContextServiceProvider {
      * specified service.
      *
      * @param bcs
-     *                  the <code>BeanContextServices</code> associated with
-     *                  this
-     *                  particular release request
-     *
+     *        the <code>BeanContextServices</code> associated with
+     *        this
+     *        particular release request
      * @param requestor
-     *                  the object requesting the service to be released
-     *
+     *        the object requesting the service to be released
      * @param service
-     *                  the service that is to be released
+     *        the service that is to be released
      */
-    public void releaseService(BeanContextServices bcs, Object requestor,
-            Object service);
+    public void releaseService(BeanContextServices bcs, Object requestor, Object service);
 
     /**
      * Invoked by <code>BeanContextServices</code>, this method gets the current
@@ -88,11 +80,10 @@ public interface BeanContextServiceProvider {
      * implementations.
      *
      * @param bcs
-     *                     the <code>BeanContextServices</code> for this request
+     *        the <code>BeanContextServices</code> for this request
      * @param serviceClass
-     *                     the specified service
+     *        the specified service
      * @return the current service selectors for the specified serviceClass
      */
-    Iterator getCurrentServiceSelectors(BeanContextServices bcs,
-            Class serviceClass);
+    Iterator getCurrentServiceSelectors(BeanContextServices bcs, Class serviceClass);
 }

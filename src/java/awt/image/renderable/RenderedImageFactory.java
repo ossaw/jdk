@@ -29,7 +29,6 @@ public interface RenderedImageFactory {
      * (or chain of operations) for a given ParameterBlock and RenderingHints.
      * The RIF may also query any source images referenced by the ParameterBlock
      * for their dimensions, SampleModels, properties, etc., as necessary.
-     *
      * <p>
      * The create() method can return null if the RenderedImageFactory is not
      * capable of producing output for the given set of source images and
@@ -37,7 +36,6 @@ public interface RenderedImageFactory {
      * performing a 3x3 convolution on single-banded image data, and the source
      * image has multiple bands or the convolution Kernel is 5x5, null should be
      * returned.
-     *
      * <p>
      * Hints should be taken into account, but can be ignored. The created
      * RenderedImage may have a property identified by the String HINTS_OBSERVED
@@ -46,11 +44,11 @@ public interface RenderedImageFactory {
      * on the created RenderedImage may have such a property.
      *
      * @param paramBlock
-     *                   a ParameterBlock containing sources and parameters for
-     *                   the
-     *                   RenderedImage to be created.
+     *        a ParameterBlock containing sources and parameters for
+     *        the
+     *        RenderedImage to be created.
      * @param hints
-     *                   a RenderingHints object containing hints.
+     *        a RenderingHints object containing hints.
      * @return A RenderedImage containing the desired output.
      */
     RenderedImage create(ParameterBlock paramBlock, RenderingHints hints);

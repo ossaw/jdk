@@ -29,9 +29,7 @@ import org.xml.sax.SAXParseException;
  * This class wraps a SAX error handler in an XNI error handler.
  *
  * @see ErrorHandler
- *
  * @author Andy Clark, IBM
- *
  */
 public class ErrorHandlerWrapper implements XMLErrorHandler {
 
@@ -77,24 +75,22 @@ public class ErrorHandlerWrapper implements XMLErrorHandler {
      * most applications.
      *
      * @param domain
-     *                  The domain of the warning. The domain can be any string
-     *                  but is
-     *                  suggested to be a valid URI. The domain can be used to
-     *                  conveniently specify a web site location of the relevent
-     *                  specification or document pertaining to this warning.
+     *        The domain of the warning. The domain can be any string
+     *        but is
+     *        suggested to be a valid URI. The domain can be used to
+     *        conveniently specify a web site location of the relevent
+     *        specification or document pertaining to this warning.
      * @param key
-     *                  The warning key. This key can be any string and is
-     *                  implementation dependent.
+     *        The warning key. This key can be any string and is
+     *        implementation dependent.
      * @param exception
-     *                  Exception.
-     *
+     *        Exception.
      * @throws XNIException
-     *                      Thrown to signal that the parser should stop parsing
-     *                      the
-     *                      document.
+     *         Thrown to signal that the parser should stop parsing
+     *         the
+     *         document.
      */
-    public void warning(String domain, String key, XMLParseException exception)
-            throws XNIException {
+    public void warning(String domain, String key, XMLParseException exception) throws XNIException {
 
         if (fErrorHandler != null) {
             SAXParseException saxException = createSAXParseException(exception);
@@ -115,24 +111,22 @@ public class ErrorHandlerWrapper implements XMLErrorHandler {
      * document is invalid with respect to its grammar(s).
      *
      * @param domain
-     *                  The domain of the error. The domain can be any string
-     *                  but is
-     *                  suggested to be a valid URI. The domain can be used to
-     *                  conveniently specify a web site location of the relevent
-     *                  specification or document pertaining to this error.
+     *        The domain of the error. The domain can be any string
+     *        but is
+     *        suggested to be a valid URI. The domain can be used to
+     *        conveniently specify a web site location of the relevent
+     *        specification or document pertaining to this error.
      * @param key
-     *                  The error key. This key can be any string and is
-     *                  implementation dependent.
+     *        The error key. This key can be any string and is
+     *        implementation dependent.
      * @param exception
-     *                  Exception.
-     *
+     *        Exception.
      * @throws XNIException
-     *                      Thrown to signal that the parser should stop parsing
-     *                      the
-     *                      document.
+     *         Thrown to signal that the parser should stop parsing
+     *         the
+     *         document.
      */
-    public void error(String domain, String key, XMLParseException exception)
-            throws XNIException {
+    public void error(String domain, String key, XMLParseException exception) throws XNIException {
 
         if (fErrorHandler != null) {
             SAXParseException saxException = createSAXParseException(exception);
@@ -160,26 +154,24 @@ public class ErrorHandlerWrapper implements XMLErrorHandler {
      * exception, the continuing operation of the parser is undetermined.
      *
      * @param domain
-     *                  The domain of the fatal error. The domain can be any
-     *                  string
-     *                  but is suggested to be a valid URI. The domain can be
-     *                  used to
-     *                  conveniently specify a web site location of the relevent
-     *                  specification or document pertaining to this fatal
-     *                  error.
+     *        The domain of the fatal error. The domain can be any
+     *        string
+     *        but is suggested to be a valid URI. The domain can be
+     *        used to
+     *        conveniently specify a web site location of the relevent
+     *        specification or document pertaining to this fatal
+     *        error.
      * @param key
-     *                  The fatal error key. This key can be any string and is
-     *                  implementation dependent.
+     *        The fatal error key. This key can be any string and is
+     *        implementation dependent.
      * @param exception
-     *                  Exception.
-     *
+     *        Exception.
      * @throws XNIException
-     *                      Thrown to signal that the parser should stop parsing
-     *                      the
-     *                      document.
+     *         Thrown to signal that the parser should stop parsing
+     *         the
+     *         document.
      */
-    public void fatalError(String domain, String key,
-            XMLParseException exception) throws XNIException {
+    public void fatalError(String domain, String key, XMLParseException exception) throws XNIException {
 
         if (fErrorHandler != null) {
             SAXParseException saxException = createSAXParseException(exception);
@@ -200,17 +192,14 @@ public class ErrorHandlerWrapper implements XMLErrorHandler {
     //
 
     /** Creates a SAXParseException from an XMLParseException. */
-    protected static SAXParseException createSAXParseException(
-            XMLParseException exception) {
-        return new SAXParseException(exception.getMessage(), exception
-                .getPublicId(), exception.getExpandedSystemId(), exception
-                        .getLineNumber(), exception.getColumnNumber(), exception
-                                .getException());
+    protected static SAXParseException createSAXParseException(XMLParseException exception) {
+        return new SAXParseException(exception.getMessage(), exception.getPublicId(), exception
+                .getExpandedSystemId(), exception.getLineNumber(), exception.getColumnNumber(), exception
+                        .getException());
     } // createSAXParseException(XMLParseException):SAXParseException
 
     /** Creates an XMLParseException from a SAXParseException. */
-    protected static XMLParseException createXMLParseException(
-            SAXParseException exception) {
+    protected static XMLParseException createXMLParseException(SAXParseException exception) {
         final String fPublicId = exception.getPublicId();
         final String fExpandedSystemId = exception.getSystemId();
         final int fLineNumber = exception.getLineNumber();
@@ -252,8 +241,7 @@ public class ErrorHandlerWrapper implements XMLErrorHandler {
                 return null;
             }
         };
-        return new XMLParseException(location, exception.getMessage(),
-                exception);
+        return new XMLParseException(location, exception.getMessage(), exception);
     } // createXMLParseException(SAXParseException):XMLParseException
 
     /**

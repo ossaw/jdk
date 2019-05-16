@@ -34,7 +34,6 @@ import javax.naming.NamingEnumeration;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see DirContext#getAttributes
  * @see DirContext#modifyAttributes
  * @see DirContext#bind
@@ -66,10 +65,10 @@ public interface Attributes extends Cloneable, java.io.Serializable {
      * set.
      *
      * @param attrID
-     *               The non-null id of the attribute to retrieve. If this
-     *               attribute set ignores the character case of its attribute
-     *               ids,
-     *               the case of attrID is ignored.
+     *        The non-null id of the attribute to retrieve. If this
+     *        attribute set ignores the character case of its attribute
+     *        ids,
+     *        the case of attrID is ignored.
      * @return The attribute identified by attrID; null if not found.
      * @see #put
      * @see #remove
@@ -104,15 +103,15 @@ public interface Attributes extends Cloneable, java.io.Serializable {
      * Adds a new attribute to the attribute set.
      *
      * @param attrID
-     *               non-null The id of the attribute to add. If the attribute
-     *               set
-     *               ignores the character case of its attribute ids, the case
-     *               of
-     *               attrID is ignored.
+     *        non-null The id of the attribute to add. If the attribute
+     *        set
+     *        ignores the character case of its attribute ids, the case
+     *        of
+     *        attrID is ignored.
      * @param val
-     *               The possibly null value of the attribute to add. If null,
-     *               the
-     *               attribute does not have any values.
+     *        The possibly null value of the attribute to add. If null,
+     *        the
+     *        attribute does not have any values.
      * @return The Attribute with attrID that was previous in this attribute
      *         set; null if no such attribute existed.
      * @see #remove
@@ -123,9 +122,9 @@ public interface Attributes extends Cloneable, java.io.Serializable {
      * Adds a new attribute to the attribute set.
      *
      * @param attr
-     *             The non-null attribute to add. If the attribute set ignores
-     *             the character case of its attribute ids, the case of attr's
-     *             identifier is ignored.
+     *        The non-null attribute to add. If the attribute set ignores
+     *        the character case of its attribute ids, the case of attr's
+     *        identifier is ignored.
      * @return The Attribute with the same ID as attr that was previous in this
      *         attribute set; null if no such attribute existed.
      * @see #remove
@@ -137,11 +136,11 @@ public interface Attributes extends Cloneable, java.io.Serializable {
      * set. If the attribute does not exist, ignore.
      *
      * @param attrID
-     *               The non-null id of the attribute to remove. If the
-     *               attribute
-     *               set ignores the character case of its attribute ids, the
-     *               case
-     *               of attrID is ignored.
+     *        The non-null id of the attribute to remove. If the
+     *        attribute
+     *        set ignores the character case of its attribute ids, the
+     *        case
+     *        of attrID is ignored.
      * @return The Attribute with the same ID as attrID that was previous in the
      *         attribute set; null if no such attribute existed.
      */

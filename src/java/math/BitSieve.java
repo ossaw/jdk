@@ -10,7 +10,6 @@ package java.math;
  * and clearing of bits in a storage array. The size of the sieve is assumed to
  * be constant to reduce overhead. All the bits of a new bitSieve are zero, and
  * bits are removed from it by setting them.
- *
  * To reduce storage space and increase efficiency, no even numbers are
  * represented in the sieve (each bit in the sieve represents an odd number).
  * The relationship between the index of a bit and the number it represents is
@@ -168,16 +167,14 @@ class BitSieve {
     /**
      * Test probable primes in the sieve and return successful candidates.
      */
-    BigInteger retrieve(BigInteger initValue, int certainty,
-            java.util.Random random) {
+    BigInteger retrieve(BigInteger initValue, int certainty, java.util.Random random) {
         // Examine the sieve one long at a time to find possible primes
         int offset = 1;
         for (int i = 0; i < bits.length; i++) {
             long nextLong = ~bits[i];
             for (int j = 0; j < 64; j++) {
                 if ((nextLong & 1) == 1) {
-                    BigInteger candidate = initValue.add(BigInteger.valueOf(
-                            offset));
+                    BigInteger candidate = initValue.add(BigInteger.valueOf(offset));
                     if (candidate.primeToCertainty(certainty, random))
                         return candidate;
                 }

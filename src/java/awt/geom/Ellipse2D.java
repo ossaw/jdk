@@ -74,15 +74,15 @@ public abstract class Ellipse2D extends RectangularShape {
          * specified coordinates.
          *
          * @param x
-         *          the X coordinate of the upper-left corner of the framing
-         *          rectangle
+         *        the X coordinate of the upper-left corner of the framing
+         *        rectangle
          * @param y
-         *          the Y coordinate of the upper-left corner of the framing
-         *          rectangle
+         *        the Y coordinate of the upper-left corner of the framing
+         *        rectangle
          * @param w
-         *          the width of the framing rectangle
+         *        the width of the framing rectangle
          * @param h
-         *          the height of the framing rectangle
+         *        the height of the framing rectangle
          * @since 1.2
          */
         public Float(float x, float y, float w, float h) {
@@ -139,15 +139,15 @@ public abstract class Ellipse2D extends RectangularShape {
          * <code>Shape</code> to the specified rectangular values.
          *
          * @param x
-         *          the X coordinate of the upper-left corner of the specified
-         *          rectangular shape
+         *        the X coordinate of the upper-left corner of the specified
+         *        rectangular shape
          * @param y
-         *          the Y coordinate of the upper-left corner of the specified
-         *          rectangular shape
+         *        the Y coordinate of the upper-left corner of the specified
+         *        rectangular shape
          * @param w
-         *          the width of the specified rectangular shape
+         *        the width of the specified rectangular shape
          * @param h
-         *          the height of the specified rectangular shape
+         *        the height of the specified rectangular shape
          * @since 1.2
          */
         public void setFrame(float x, float y, float w, float h) {
@@ -238,15 +238,15 @@ public abstract class Ellipse2D extends RectangularShape {
          * specified coordinates.
          *
          * @param x
-         *          the X coordinate of the upper-left corner of the framing
-         *          rectangle
+         *        the X coordinate of the upper-left corner of the framing
+         *        rectangle
          * @param y
-         *          the Y coordinate of the upper-left corner of the framing
-         *          rectangle
+         *        the Y coordinate of the upper-left corner of the framing
+         *        rectangle
          * @param w
-         *          the width of the framing rectangle
+         *        the width of the framing rectangle
          * @param h
-         *          the height of the framing rectangle
+         *        the height of the framing rectangle
          * @since 1.2
          */
         public Double(double x, double y, double w, double h) {
@@ -412,8 +412,7 @@ public abstract class Ellipse2D extends RectangularShape {
      * @since 1.2
      */
     public boolean contains(double x, double y, double w, double h) {
-        return (contains(x, y) && contains(x + w, y) && contains(x, y + h)
-                && contains(x + w, y + h));
+        return (contains(x, y) && contains(x + w, y) && contains(x, y + h) && contains(x + w, y + h));
     }
 
     /**
@@ -424,9 +423,9 @@ public abstract class Ellipse2D extends RectangularShape {
      * not affect any iterations of that geometry that are already in process.
      * 
      * @param at
-     *           an optional <code>AffineTransform</code> to be applied to the
-     *           coordinates as they are returned in the iteration, or
-     *           <code>null</code> if untransformed coordinates are desired
+     *        an optional <code>AffineTransform</code> to be applied to the
+     *        coordinates as they are returned in the iteration, or
+     *        <code>null</code> if untransformed coordinates are desired
      * @return the <code>PathIterator</code> object that returns the geometry of
      *         the outline of this <code>Ellipse2D</code>, one segment at a
      *         time.
@@ -458,8 +457,8 @@ public abstract class Ellipse2D extends RectangularShape {
      * <code>Ellipse2D</code>.
      * 
      * @param obj
-     *            an <code>Object</code> to be compared with this
-     *            <code>Ellipse2D</code>.
+     *        an <code>Object</code> to be compared with this
+     *        <code>Ellipse2D</code>.
      * @return <code>true</code> if <code>obj</code> is an instance of
      *         <code>Ellipse2D</code> and has the same values;
      *         <code>false</code> otherwise.
@@ -471,9 +470,8 @@ public abstract class Ellipse2D extends RectangularShape {
         }
         if (obj instanceof Ellipse2D) {
             Ellipse2D e2d = (Ellipse2D) obj;
-            return ((getX() == e2d.getX()) && (getY() == e2d.getY())
-                    && (getWidth() == e2d.getWidth()) && (getHeight() == e2d
-                            .getHeight()));
+            return ((getX() == e2d.getX()) && (getY() == e2d.getY()) && (getWidth() == e2d.getWidth())
+                    && (getHeight() == e2d.getHeight()));
         }
         return false;
     }

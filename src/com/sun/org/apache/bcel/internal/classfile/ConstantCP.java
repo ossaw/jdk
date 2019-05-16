@@ -77,9 +77,9 @@ public abstract class ConstantCP extends Constant {
      * Initialize instance from file data.
      *
      * @param tag
-     *             Constant type tag
+     *        Constant type tag
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     ConstantCP(byte tag, DataInputStream file) throws IOException {
@@ -88,9 +88,9 @@ public abstract class ConstantCP extends Constant {
 
     /**
      * @param class_index
-     *                            Reference to the class containing the field
+     *        Reference to the class containing the field
      * @param name_and_type_index
-     *                            and the field signature
+     *        and the field signature
      */
     protected ConstantCP(byte tag, int class_index, int name_and_type_index) {
         super(tag);
@@ -102,7 +102,7 @@ public abstract class ConstantCP extends Constant {
      * Dump constant field reference to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -127,7 +127,7 @@ public abstract class ConstantCP extends Constant {
 
     /**
      * @param class_index
-     *                    points to Constant_class
+     *        points to Constant_class
      */
     public final void setClassIndex(int class_index) {
         this.class_index = class_index;
@@ -142,7 +142,7 @@ public abstract class ConstantCP extends Constant {
 
     /**
      * @param name_and_type_index
-     *                            points to Constant_NameAndType
+     *        points to Constant_NameAndType
      */
     public final void setNameAndTypeIndex(int name_and_type_index) {
         this.name_and_type_index = name_and_type_index;
@@ -152,7 +152,7 @@ public abstract class ConstantCP extends Constant {
      * @return String representation.
      */
     public final String toString() {
-        return super.toString() + "(class_index = " + class_index
-                + ", name_and_type_index = " + name_and_type_index + ")";
+        return super.toString() + "(class_index = " + class_index + ", name_and_type_index = "
+                + name_and_type_index + ")";
     }
 }

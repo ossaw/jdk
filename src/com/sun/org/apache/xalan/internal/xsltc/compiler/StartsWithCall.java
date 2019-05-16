@@ -55,8 +55,7 @@ final class StartsWithCall extends FunctionCall {
 
         // Check that the function was passed exactly two arguments
         if (argumentCount() != 2) {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.ILLEGAL_ARG_ERR, getName(),
-                    this);
+            ErrorMsg err = new ErrorMsg(ErrorMsg.ILLEGAL_ARG_ERR, getName(), this);
             throw new TypeCheckError(err);
         }
 
@@ -83,7 +82,6 @@ final class StartsWithCall extends FunctionCall {
         final InstructionList il = methodGen.getInstructionList();
         _base.translate(classGen, methodGen);
         _token.translate(classGen, methodGen);
-        il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_CLASS, "startsWith",
-                "(" + STRING_SIG + ")Z")));
+        il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_CLASS, "startsWith", "(" + STRING_SIG + ")Z")));
     }
 }

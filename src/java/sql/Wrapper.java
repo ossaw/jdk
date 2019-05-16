@@ -25,7 +25,6 @@ public interface Wrapper {
     /**
      * Returns an object that implements the given interface to allow access to
      * non-standard methods, or standard methods not exposed by the proxy.
-     *
      * If the receiver implements the interface then the result is the receiver
      * or a proxy for the receiver. If the receiver is a wrapper and the wrapped
      * object implements the interface then the result is the wrapped object or
@@ -34,11 +33,11 @@ public interface Wrapper {
      * for that result. If the receiver is not a wrapper and does not implement
      * the interface, then an <code>SQLException</code> is thrown.
      *
-     * @param       <T>
-     *              the type of the class modeled by this Class object
+     * @param <T>
+     *        the type of the class modeled by this Class object
      * @param iface
-     *              A Class defining an interface that the result must
-     *              implement.
+     *        A Class defining an interface that the result must
+     *        implement.
      * @return an object that implements the interface. May be a proxy for the
      *         actual implementing object.
      * @throws java.sql.SQLException
@@ -61,7 +60,7 @@ public interface Wrapper {
      * succeed.
      *
      * @param iface
-     *              a Class defining an interface.
+     *        a Class defining an interface.
      * @return true if this implements the interface or directly or indirectly
      *         wraps an object that does.
      * @throws java.sql.SQLException

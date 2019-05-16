@@ -30,19 +30,15 @@ import java.io.Serializable;
  *
  * @param <V>
  *        one of the super types of {@code JLayer}'s view component
- *
  * @see JLayer#setUI(LayerUI)
  * @see JLayer#setView(Component)
  * @see JLayer#getView()
  * @since 1.7
- *
  * @author Alexander Potochkin
  */
-public class LayerUI<V extends Component> extends ComponentUI implements
-        Serializable {
+public class LayerUI<V extends Component> extends ComponentUI implements Serializable {
 
-    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(
-            this);
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * Paints the specified component. Subclasses should override this method
@@ -52,9 +48,9 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * The default implementation paints the passed component as is.
      *
      * @param g
-     *          the {@code Graphics} context in which to paint
+     *        the {@code Graphics} context in which to paint
      * @param c
-     *          the component being painted
+     *        the component being painted
      */
     public void paint(Graphics g, JComponent c) {
         c.paint(g);
@@ -75,10 +71,9 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * <b>Note:</b> Events are processed only for displayable {@code JLayer}s.
      *
      * @param e
-     *          the event to be dispatched
+     *        the event to be dispatched
      * @param l
-     *          the layer this LayerUI is set to
-     *
+     *        the layer this LayerUI is set to
      * @see JLayer#setLayerEventMask(long)
      * @see Component#isDisplayable()
      * @see #processComponentEvent
@@ -154,16 +149,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code ComponentEvent} to be processed
+     *        the {@code ComponentEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
      */
-    protected void processComponentEvent(ComponentEvent e,
-            JLayer<? extends V> l) {}
+    protected void processComponentEvent(ComponentEvent e, JLayer<? extends V> l) {}
 
     /**
      * Processes focus events occurring on the {@link JLayer} or any of its
@@ -189,10 +182,9 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code FocusEvent} to be processed
+     *        the {@code FocusEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
@@ -223,10 +215,9 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code KeyEvent} to be processed
+     *        the {@code KeyEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
@@ -257,10 +248,9 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code MouseEvent} to be processed
+     *        the {@code MouseEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
@@ -291,16 +281,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code MouseEvent} to be processed
+     *        the {@code MouseEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
      */
-    protected void processMouseMotionEvent(MouseEvent e,
-            JLayer<? extends V> l) {}
+    protected void processMouseMotionEvent(MouseEvent e, JLayer<? extends V> l) {}
 
     /**
      * Processes mouse wheel event occurring on the {@link JLayer} or any of its
@@ -326,16 +314,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code MouseEvent} to be processed
+     *        the {@code MouseEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
      */
-    protected void processMouseWheelEvent(MouseWheelEvent e,
-            JLayer<? extends V> l) {}
+    protected void processMouseWheelEvent(MouseWheelEvent e, JLayer<? extends V> l) {}
 
     /**
      * Processes input event occurring on the {@link JLayer} or any of its
@@ -361,16 +347,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code InputMethodEvent} to be processed
+     *        the {@code InputMethodEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
      */
-    protected void processInputMethodEvent(InputMethodEvent e,
-            JLayer<? extends V> l) {}
+    protected void processInputMethodEvent(InputMethodEvent e, JLayer<? extends V> l) {}
 
     /**
      * Processes hierarchy event occurring on the {@link JLayer} or any of its
@@ -396,16 +380,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code HierarchyEvent} to be processed
+     *        the {@code HierarchyEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
      */
-    protected void processHierarchyEvent(HierarchyEvent e,
-            JLayer<? extends V> l) {}
+    protected void processHierarchyEvent(HierarchyEvent e, JLayer<? extends V> l) {}
 
     /**
      * Processes hierarchy bounds event occurring on the {@link JLayer} or any
@@ -431,23 +413,21 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * </pre>
      *
      * @param e
-     *          the {@code HierarchyEvent} to be processed
+     *        the {@code HierarchyEvent} to be processed
      * @param l
-     *          the layer this {@code LayerUI} instance is set to
-     *
+     *        the layer this {@code LayerUI} instance is set to
      * @see JLayer#setLayerEventMask(long)
      * @see #installUI(javax.swing.JComponent)
      * @see #uninstallUI(javax.swing.JComponent)
      */
-    protected void processHierarchyBoundsEvent(HierarchyEvent e,
-            JLayer<? extends V> l) {}
+    protected void processHierarchyBoundsEvent(HierarchyEvent e, JLayer<? extends V> l) {}
 
     /**
      * Invoked when {@link javax.swing.JLayer#updateUI()} is called by the
      * {@code JLayer} this {@code LayerUI} is set to.
      *
      * @param l
-     *          the {@code JLayer} which UI is updated
+     *        the {@code JLayer} which UI is updated
      */
     public void updateUI(JLayer<? extends V> l) {}
 
@@ -458,8 +438,8 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * {@code LayerUI}.
      *
      * @param c
-     *          the {@code JLayer} component where this UI delegate is being
-     *          installed
+     *        the {@code JLayer} component where this UI delegate is being
+     *        installed
      */
     public void installUI(JComponent c) {
         addPropertyChangeListener((JLayer) c);
@@ -473,7 +453,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * {@code LayerUI}.
      *
      * @param c
-     *          the component from which this UI delegate is being removed.
+     *        the component from which this UI delegate is being removed.
      */
     public void uninstallUI(JComponent c) {
         removePropertyChangeListener((JLayer) c);
@@ -487,7 +467,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * is performed.
      *
      * @param listener
-     *                 the property change listener to be added
+     *        the property change listener to be added
      * @see #removePropertyChangeListener
      * @see #getPropertyChangeListeners
      * @see #addPropertyChangeListener(String,
@@ -506,7 +486,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * is performed.
      *
      * @param listener
-     *                 the PropertyChangeListener to be removed
+     *        the PropertyChangeListener to be removed
      * @see #addPropertyChangeListener
      * @see #getPropertyChangeListeners
      * @see #removePropertyChangeListener(String, PropertyChangeListener)
@@ -537,15 +517,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * is thrown and no action is taken.
      *
      * @param propertyName
-     *                     one of the property names listed above
+     *        one of the property names listed above
      * @param listener
-     *                     the property change listener to be added
+     *        the property change listener to be added
      * @see #removePropertyChangeListener(String, PropertyChangeListener)
      * @see #getPropertyChangeListeners(String)
      * @see #addPropertyChangeListener(String, PropertyChangeListener)
      */
-    public void addPropertyChangeListener(String propertyName,
-            PropertyChangeListener listener) {
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
     }
 
@@ -559,17 +538,15 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * is thrown and no action is taken.
      *
      * @param propertyName
-     *                     a valid property name
+     *        a valid property name
      * @param listener
-     *                     the PropertyChangeListener to be removed
+     *        the PropertyChangeListener to be removed
      * @see #addPropertyChangeListener(String, PropertyChangeListener)
      * @see #getPropertyChangeListeners(String)
      * @see #removePropertyChangeListener(PropertyChangeListener)
      */
-    public void removePropertyChangeListener(String propertyName,
-            PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(propertyName,
-                listener);
+    public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
     }
 
     /**
@@ -577,7 +554,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * named property.
      *
      * @param propertyName
-     *                     The name of the property being listened to
+     *        The name of the property being listened to
      * @return all of the {@code PropertyChangeListener}s associated with the
      *         named property; if no such listeners have been added or if
      *         {@code propertyName} is {@code null}, an empty array is returned
@@ -585,8 +562,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * @see #removePropertyChangeListener(String, PropertyChangeListener)
      * @see #getPropertyChangeListeners
      */
-    public PropertyChangeListener[] getPropertyChangeListeners(
-            String propertyName) {
+    public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
         return propertyChangeSupport.getPropertyChangeListeners(propertyName);
     }
 
@@ -597,16 +573,14 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * PropertyChangeListeners.
      *
      * @param propertyName
-     *                     the property whose value has changed
+     *        the property whose value has changed
      * @param oldValue
-     *                     the property's previous value
+     *        the property's previous value
      * @param newValue
-     *                     the property's new value
+     *        the property's new value
      */
-    protected void firePropertyChange(String propertyName, Object oldValue,
-            Object newValue) {
-        propertyChangeSupport.firePropertyChange(propertyName, oldValue,
-                newValue);
+    protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+        propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
     }
 
     /**
@@ -615,12 +589,11 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * set to.
      *
      * @param evt
-     *            the PropertyChangeEvent generated by this {@code LayerUI}
+     *        the PropertyChangeEvent generated by this {@code LayerUI}
      * @param l
-     *            the {@code JLayer} this LayerUI is set to
+     *        the {@code JLayer} this LayerUI is set to
      */
-    public void applyPropertyChange(PropertyChangeEvent evt,
-            JLayer<? extends V> l) {}
+    public void applyPropertyChange(PropertyChangeEvent evt, JLayer<? extends V> l) {}
 
     /**
      * If the {@code JLayer}'s view component is not {@code null}, this calls
@@ -628,11 +601,11 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * implementation is called.
      *
      * @param c
-     *               {@code JLayer} to return baseline resize behavior for
+     *        {@code JLayer} to return baseline resize behavior for
      * @param width
-     *               the width to get the baseline for
+     *        the width to get the baseline for
      * @param height
-     *               the height to get the baseline for
+     *        the height to get the baseline for
      * @return baseline or a value &lt; 0 indicating there is no reasonable
      *         baseline
      */
@@ -650,12 +623,11 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * Otherwise, the default implementation is called.
      *
      * @param c
-     *          {@code JLayer} to return baseline resize behavior for
+     *        {@code JLayer} to return baseline resize behavior for
      * @return an enum indicating how the baseline changes as the component size
      *         changes
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-            JComponent c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
         JLayer l = (JLayer) c;
         if (l.getView() != null) {
             return l.getView().getBaselineResizeBehavior();
@@ -667,8 +639,8 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * Causes the passed instance of {@code JLayer} to lay out its components.
      *
      * @param l
-     *          the {@code JLayer} component where this UI delegate is being
-     *          installed
+     *        the {@code JLayer} component where this UI delegate is being
+     *        installed
      */
     public void doLayout(JLayer<? extends V> l) {
         Component view = l.getView();
@@ -687,7 +659,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * the default implementation is used.
      *
      * @param c
-     *          {@code JLayer} to return preferred size for
+     *        {@code JLayer} to return preferred size for
      * @return preferred size for the passed {@code JLayer}
      */
     public Dimension getPreferredSize(JComponent c) {
@@ -705,7 +677,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * default implementation is used.
      *
      * @param c
-     *          {@code JLayer} to return preferred size for
+     *        {@code JLayer} to return preferred size for
      * @return minimal size for the passed {@code JLayer}
      */
     public Dimension getMinimumSize(JComponent c) {
@@ -723,7 +695,7 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * default implementation is used.
      *
      * @param c
-     *          {@code JLayer} to return preferred size for
+     *        {@code JLayer} to return preferred size for
      * @return maximum size for the passed {@code JLayer}
      */
     public Dimension getMaximumSize(JComponent c) {
@@ -744,18 +716,16 @@ public class LayerUI<V extends Component> extends ComponentUI implements
      * {@link JComponent#paintImmediately(int, int, int, int)}.
      *
      * @param x
-     *               the x value of the region to be painted
+     *        the x value of the region to be painted
      * @param y
-     *               the y value of the region to be painted
+     *        the y value of the region to be painted
      * @param width
-     *               the width of the region to be painted
+     *        the width of the region to be painted
      * @param height
-     *               the height of the region to be painted
-     *
+     *        the height of the region to be painted
      * @see JComponent#paintImmediately(int, int, int, int)
      */
-    public void paintImmediately(int x, int y, int width, int height,
-            JLayer<? extends V> l) {
+    public void paintImmediately(int x, int y, int width, int height, JLayer<? extends V> l) {
         l.paintImmediately(x, y, width, height);
     }
 }

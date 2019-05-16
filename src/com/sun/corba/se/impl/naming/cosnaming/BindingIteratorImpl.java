@@ -41,7 +41,7 @@ public abstract class BindingIteratorImpl extends BindingIteratorPOA {
      * Create a binding iterator servant. runs the super constructor.
      * 
      * @param orb
-     *            an ORB object.
+     *        an ORB object.
      * @exception java.lang.Exception
      *            a Java exception.
      */
@@ -55,7 +55,7 @@ public abstract class BindingIteratorImpl extends BindingIteratorPOA {
      * whether there were more bindings.
      * 
      * @param b
-     *          The Binding as an out parameter.
+     *        The Binding as an out parameter.
      * @return true if there were more bindings.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
@@ -71,19 +71,17 @@ public abstract class BindingIteratorImpl extends BindingIteratorPOA {
      * whether there were more bindings.
      * 
      * @param how_many
-     *                 The number of requested bindings in the BindingList.
+     *        The number of requested bindings in the BindingList.
      * @param bl
-     *                 The BindingList as an out parameter.
+     *        The BindingList as an out parameter.
      * @return true if there were more bindings.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      * @see NextOne
      */
-    public synchronized boolean next_n(int how_many,
-            org.omg.CosNaming.BindingListHolder blh) {
+    public synchronized boolean next_n(int how_many, org.omg.CosNaming.BindingListHolder blh) {
         if (how_many == 0) {
-            throw new BAD_PARAM(" 'how_many' parameter is set to 0 which is"
-                    + " invalid");
+            throw new BAD_PARAM(" 'how_many' parameter is set to 0 which is" + " invalid");
         }
         return list(how_many, blh);
     }
@@ -94,9 +92,9 @@ public abstract class BindingIteratorImpl extends BindingIteratorPOA {
      * called from NamingContext.list() operation or this.next_n().
      * 
      * @param how_many
-     *                 The number of requested bindings in the BindingList.
+     *        The number of requested bindings in the BindingList.
      * @param bl
-     *                 The BindingList as an out parameter.
+     *        The BindingList as an out parameter.
      * @return true if there were more bindings.
      */
     public boolean list(int how_many, org.omg.CosNaming.BindingListHolder blh) {
@@ -143,7 +141,7 @@ public abstract class BindingIteratorImpl extends BindingIteratorPOA {
      * which this BindingIterator was created.
      * 
      * @param b
-     *          The Binding as an out parameter.
+     *        The Binding as an out parameter.
      * @return true if there were more bindings.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.

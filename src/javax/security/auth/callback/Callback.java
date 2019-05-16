@@ -12,7 +12,6 @@ package javax.security.auth.callback;
  * application to retrieve specific authentication data such as usernames and
  * passwords, or to display certain information, such as error and warning
  * messages.
- *
  * <p>
  * {@code Callback} implementations do not retrieve or display the information
  * requested by underlying security services. {@code Callback} implementations

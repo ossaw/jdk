@@ -17,15 +17,14 @@ import java.beans.*;
  * @author Steve Wilson
  * @since 1.7
  */
-public class SynthPanelUI extends BasicPanelUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthPanelUI extends BasicPanelUI implements PropertyChangeListener, SynthUI {
     private SynthStyle style;
 
     /**
      * Creates a new UI object for the given component.
      *
      * @param c
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent c) {
@@ -58,7 +57,7 @@ public class SynthPanelUI extends BasicPanelUI implements
      * Installs listeners into the panel.
      *
      * @param p
-     *          the {@code JPanel} object
+     *        the {@code JPanel} object
      */
     protected void installListeners(JPanel p) {
         p.addPropertyChangeListener(this);
@@ -68,7 +67,7 @@ public class SynthPanelUI extends BasicPanelUI implements
      * Uninstalls listeners from the panel.
      *
      * @param p
-     *          the {@code JPanel} object
+     *        the {@code JPanel} object
      */
     protected void uninstallListeners(JPanel p) {
         p.removePropertyChangeListener(this);
@@ -120,15 +119,14 @@ public class SynthPanelUI extends BasicPanelUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -136,8 +134,7 @@ public class SynthPanelUI extends BasicPanelUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintPanelBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintPanelBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -149,9 +146,9 @@ public class SynthPanelUI extends BasicPanelUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -166,9 +163,9 @@ public class SynthPanelUI extends BasicPanelUI implements
      * Paints the specified component. This implementation does nothing.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
@@ -179,8 +176,7 @@ public class SynthPanelUI extends BasicPanelUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintPanelBorder(context, g, x, y, w, h);
     }
 

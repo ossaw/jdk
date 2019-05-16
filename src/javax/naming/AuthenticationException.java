@@ -31,9 +31,9 @@ public class AuthenticationException extends NamingSecurityException {
      * explanation supplied. All other fields default to null.
      *
      * @param explanation
-     *                    A possibly null string containing additional detail
-     *                    about this
-     *                    exception.
+     *        A possibly null string containing additional detail
+     *        about this
+     *        exception.
      * @see java.lang.Throwable#getMessage
      */
     public AuthenticationException(String explanation) {

@@ -9,7 +9,6 @@ package javax.naming;
  * This exception is thrown when attempting to perform an operation for which
  * the client has no permission. The access control/permission model is dictated
  * by the directory/naming server.
- *
  * <p>
  * Synchronization and serialization issues that apply to NamingException apply
  * directly here.
@@ -25,7 +24,7 @@ public class NoPermissionException extends NamingSecurityException {
      * All other fields default to null.
      *
      * @param explanation
-     *                    Possibly null additional detail about this exception.
+     *        Possibly null additional detail about this exception.
      */
     public NoPermissionException(String explanation) {
         super(explanation);

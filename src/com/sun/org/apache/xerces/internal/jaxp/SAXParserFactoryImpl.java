@@ -38,7 +38,6 @@ import org.xml.sax.SAXNotSupportedException;
  *
  * @author Rajiv Mordani
  * @author Edwin Goei
- *
  * @version $Id: SAXParserFactoryImpl.java,v 1.9 2010-11-01 04:40:06 joehw Exp $
  */
 public class SAXParserFactoryImpl extends SAXParserFactory {
@@ -84,8 +83,7 @@ public class SAXParserFactoryImpl extends SAXParserFactory {
     /**
      * Common code for translating exceptions
      */
-    private SAXParserImpl newSAXParserImpl()
-            throws ParserConfigurationException, SAXNotRecognizedException,
+    private SAXParserImpl newSAXParserImpl() throws ParserConfigurationException, SAXNotRecognizedException,
             SAXNotSupportedException {
         SAXParserImpl saxParserImpl;
         try {
@@ -104,18 +102,16 @@ public class SAXParserFactoryImpl extends SAXParserFactory {
      * Sets the particular feature in the underlying implementation of
      * org.xml.sax.XMLReader.
      */
-    public void setFeature(String name, boolean value)
-            throws ParserConfigurationException, SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public void setFeature(String name, boolean value) throws ParserConfigurationException,
+            SAXNotRecognizedException, SAXNotSupportedException {
         if (name == null) {
             throw new NullPointerException();
         }
         // If this is the secure processing feature, save it then return.
         if (name.equals(XMLConstants.FEATURE_SECURE_PROCESSING)) {
             if (System.getSecurityManager() != null && (!value)) {
-                throw new ParserConfigurationException(SAXMessageFormatter
-                        .formatMessage(null, "jaxp-secureprocessing-feature",
-                                null));
+                throw new ParserConfigurationException(SAXMessageFormatter.formatMessage(null,
+                        "jaxp-secureprocessing-feature", null));
             }
             fSecureProcess = value;
             putInFeatures(name, value);
@@ -141,8 +137,8 @@ public class SAXParserFactoryImpl extends SAXParserFactory {
      * returns the particular property requested for in the underlying
      * implementation of org.xml.sax.XMLReader.
      */
-    public boolean getFeature(String name) throws ParserConfigurationException,
-            SAXNotRecognizedException, SAXNotSupportedException {
+    public boolean getFeature(String name) throws ParserConfigurationException, SAXNotRecognizedException,
+            SAXNotSupportedException {
         if (name == null) {
             throw new NullPointerException();
         }

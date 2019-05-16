@@ -35,13 +35,11 @@ import java.util.TreeMap;
  * therefore be handed a NimbusStyle from the look and feel from the
  * #getStyle(JComponent, Region) method.
  * </p>
- *
  * <p>
  * This class properly reads and retrieves values placed in the UIDefaults
  * according to the standard Nimbus naming conventions. It will create and
  * retrieve painters, fonts, colors, and other data stored there.
  * </p>
- *
  * <p>
  * NimbusStyle also supports the ability to override settings on a per component
  * basis. NimbusStyle checks the component's client property map for
@@ -49,7 +47,6 @@ import java.util.TreeMap;
  * UIDefaults, then the values in that defaults table will override the standard
  * Nimbus defaults in UIManager, but for that component instance only.
  * </p>
- *
  * <p>
  * Optionally, you may specify the client property
  * "Nimbus.Overrides.InheritDefaults". If true, this client property indicates
@@ -58,34 +55,29 @@ import java.util.TreeMap;
  * then only the defaults located in the component client property map will be
  * used. If not specified, it is assumed to be true.
  * </p>
- *
  * <p>
  * You must specify "Nimbus.Overrides" for "Nimbus.Overrides.InheritDefaults" to
  * have any effect. "Nimbus.Overrides" indicates whether there are any
  * overrides, while "Nimbus.Overrides.InheritDefaults" indicates whether those
  * overrides should first be initialized with the defaults from UIManager.
  * </p>
- *
  * <p>
  * The NimbusStyle is reloaded whenever a property change event is fired for a
  * component for "Nimbus.Overrides" or "Nimbus.Overrides.InheritDefaults". So
  * for example, setting a new UIDefaults on a component would cause the style to
  * be reloaded.
  * </p>
- *
  * <p>
  * The values are only read out of UIManager once, and then cached. If you need
  * to read the values again (for example, if the UI is being reloaded), then
  * discard this NimbusStyle and read a new one from NimbusLookAndFeel using
  * NimbusLookAndFeel.getStyle.
  * </p>
- *
  * <p>
  * The primary API of interest in this class for 3rd party component authors are
  * the three methods which retrieve painters: #getBackgroundPainter,
  * #getForegroundPainter, and #getBorderPainter.
  * </p>
- *
  * <p>
  * NimbusStyle allows you to specify custom states, or modify the order of
  * states. Synth (and thus Nimbus) has the concept of a "state". For example, a
@@ -93,7 +85,6 @@ import java.util.TreeMap;
  * "DISABLED" state. These are all "standard" states which are defined in synth,
  * and which apply to all synth Regions.
  * </p>
- *
  * <p>
  * Sometimes, however, you need to have a custom state. For example, you want
  * JButton to render differently if it's parent is a JToolbar. In Nimbus, you
@@ -109,7 +100,6 @@ import java.util.TreeMap;
  *     JButton[Toolbar].backgroundPainter = someOtherPaint
  * </code>
  * </pre>
- *
  * <p>
  * As you can see, the <code>JButton.States</code> entry lists the states that
  * the JButton style will support. You then specify the settings for each state.
@@ -143,7 +133,6 @@ public final class NimbusStyle extends SynthStyle {
      * The Color to return from getColorForState if it would otherwise have
      * returned null.
      * </p>
-     *
      * <p>
      * Returning null from getColorForState is a very bad thing, as it causes
      * the AWT peer for the component to install a SystemColor, which is not a
@@ -206,14 +195,14 @@ public final class NimbusStyle extends SynthStyle {
      * within this style.
      *
      * @param prefix
-     *               Something like Button or Slider.Thumb or
-     *               org.jdesktop.swingx.JXStatusBar or
-     *               ComboBox."ComboBox.arrowButton"
+     *        Something like Button or Slider.Thumb or
+     *        org.jdesktop.swingx.JXStatusBar or
+     *        ComboBox."ComboBox.arrowButton"
      * @param c
-     *               an optional reference to a component that this NimbusStyle
-     *               should be associated with. This is only used when the
-     *               component has Nimbus overrides registered in its client
-     *               properties and should be null otherwise.
+     *        an optional reference to a component that this NimbusStyle
+     *        should be associated with. This is only used when the
+     *        component has Nimbus overrides registered in its client
+     *        properties and should be null otherwise.
      */
     NimbusStyle(String prefix, JComponent c) {
         if (c != null) {
@@ -225,7 +214,6 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * Overridden to cause this style to populate itself with data from
      * UIDefaults, if necessary.
      */
@@ -254,8 +242,8 @@ public final class NimbusStyle extends SynthStyle {
         // any Nimbus.Overrides)
         values = new Values();
 
-        Map<String, Object> defaults = ((NimbusLookAndFeel) UIManager
-                .getLookAndFeel()).getDefaultsForPrefix(prefix);
+        Map<String, Object> defaults = ((NimbusLookAndFeel) UIManager.getLookAndFeel()).getDefaultsForPrefix(
+                prefix);
 
         // inspect the client properties for the key "Nimbus.Overrides". If the
         // value is an instance of UIDefaults, then these defaults are used
@@ -265,8 +253,7 @@ public final class NimbusStyle extends SynthStyle {
             // were GC'ed, we wouldn't be processing its style.
             Object o = component.get().getClientProperty("Nimbus.Overrides");
             if (o instanceof UIDefaults) {
-                Object i = component.get().getClientProperty(
-                        "Nimbus.Overrides.InheritDefaults");
+                Object i = component.get().getClientProperty("Nimbus.Overrides.InheritDefaults");
                 boolean inherit = i instanceof Boolean ? (Boolean) i : true;
                 UIDefaults d = (UIDefaults) o;
                 TreeMap<String, Object> map = new TreeMap<String, Object>();
@@ -471,8 +458,7 @@ public final class NimbusStyle extends SynthStyle {
         Collections.sort(runtimeStates, STATE_COMPARATOR);
 
         // finally, set the array of runtime states on the values object
-        values.states = runtimeStates.toArray(new RuntimeState[runtimeStates
-                .size()]);
+        values.states = runtimeStates.toArray(new RuntimeState[runtimeStates.size()]);
     }
 
     private Painter getPainter(Map<String, Object> defaults, String key) {
@@ -485,7 +471,6 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * Overridden to cause this style to populate itself with data from
      * UIDefaults, if necessary.
      */
@@ -507,8 +492,7 @@ public final class NimbusStyle extends SynthStyle {
             in.right = v.contentMargins.right;
             // Account for scale
             // The key "JComponent.sizeVariant" is used to match Apple's LAF
-            String scaleKey = (String) ctx.getComponent().getClientProperty(
-                    "JComponent.sizeVariant");
+            String scaleKey = (String) ctx.getComponent().getClientProperty("JComponent.sizeVariant");
             if (scaleKey != null) {
                 if (LARGE_KEY.equals(scaleKey)) {
                     in.bottom *= LARGE_SCALE;
@@ -533,12 +517,10 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * Overridden to cause this style to populate itself with data from
      * UIDefaults, if necessary.
      * </p>
-     *
      * <p>
      * In addition, NimbusStyle handles ColorTypes slightly differently from
      * Synth.
@@ -583,7 +565,6 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * Overridden to cause this style to populate itself with data from
      * UIDefaults, if necessary. If a value named "font" is not found in
      * UIDefaults, then the "defaultFont" font in UIDefaults will be returned
@@ -597,8 +578,7 @@ public final class NimbusStyle extends SynthStyle {
 
         // Account for scale
         // The key "JComponent.sizeVariant" is used to match Apple's LAF
-        String scaleKey = (String) ctx.getComponent().getClientProperty(
-                "JComponent.sizeVariant");
+        String scaleKey = (String) ctx.getComponent().getClientProperty("JComponent.sizeVariant");
         if (scaleKey != null) {
             if (LARGE_KEY.equals(scaleKey)) {
                 f = f.deriveFont(Math.round(f.getSize2D() * LARGE_SCALE));
@@ -613,7 +593,6 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * Returns the SynthPainter for this style, which ends up delegating to the
      * Painters installed in this style.
      */
@@ -624,7 +603,6 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * Overridden to cause this style to populate itself with data from
      * UIDefaults, if necessary. If opacity is not specified in UI defaults,
      * then it defaults to being non-opaque.
@@ -641,12 +619,10 @@ public final class NimbusStyle extends SynthStyle {
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * Overridden to cause this style to populate itself with data from
      * UIDefaults, if necessary.
      * </p>
-     *
      * <p>
      * Properties in UIDefaults may be specified in a chained manner. For
      * example:
@@ -657,7 +633,6 @@ public final class NimbusStyle extends SynthStyle {
      * Button.Enabled.foreground
      * Button.Enabled+Selected.background
      * </pre>
-     *
      * <p>
      * In this example, suppose you were in the Enabled+Selected state and
      * searched for "foreground". In this case, we first check for
@@ -665,13 +640,11 @@ public final class NimbusStyle extends SynthStyle {
      * fall back to the next valid state, in this case,
      * Button.Enabled.foreground, and have a match. So we return it.
      * </p>
-     *
      * <p>
      * Again, if we were in the state Enabled and looked for "background", we
      * wouldn't find it in Button.Enabled, or in Button, but would at the top
      * level in UIManager. So we return that value.
      * </p>
-     *
      * <p>
      * One special note: the "key" passed to this method could be of the form
      * "background" or "Button.background" where "Button" equals the prefix
@@ -681,7 +654,7 @@ public final class NimbusStyle extends SynthStyle {
      *
      * @param ctx
      * @param key
-     *            must not be null
+     *        must not be null
      */
     @Override
     public Object get(SynthContext ctx, Object key) {
@@ -702,8 +675,7 @@ public final class NimbusStyle extends SynthStyle {
             // Search exact matching states and then lesser matching states
             RuntimeState s = null;
             int[] lastIndex = new int[] { -1 };
-            while (obj == null && (s = getNextState(v.states, lastIndex,
-                    xstate)) != null) {
+            while (obj == null && (s = getNextState(v.states, lastIndex, xstate)) != null) {
                 obj = s.defaults.get(partialKey);
             }
             // Search Region Defaults
@@ -719,8 +691,7 @@ public final class NimbusStyle extends SynthStyle {
                 obj = super.get(ctx, fullKey);
             }
             // if all we got was a null, store this fact for later use
-            v.cache.put(new CacheKey(partialKey, xstate), obj == null ? NULL
-                    : obj);
+            v.cache.put(new CacheKey(partialKey, xstate), obj == null ? NULL : obj);
         }
         // return found object
         return obj == NULL ? null : obj;
@@ -732,7 +703,7 @@ public final class NimbusStyle extends SynthStyle {
      * fallback searching, as described in #get.
      *
      * @param ctx
-     *            The SynthContext. Must not be null.
+     *        The SynthContext. Must not be null.
      * @return The background painter associated for the given state, or null if
      *         none could be found.
      */
@@ -770,7 +741,7 @@ public final class NimbusStyle extends SynthStyle {
      * fallback searching, as described in #get.
      *
      * @param ctx
-     *            The SynthContext. Must not be null.
+     *        The SynthContext. Must not be null.
      * @return The foreground painter associated for the given state, or null if
      *         none could be found.
      */
@@ -808,7 +779,7 @@ public final class NimbusStyle extends SynthStyle {
      * fallback searching, as described in #get.
      *
      * @param ctx
-     *            The SynthContext. Must not be null.
+     *        The SynthContext. Must not be null.
      * @return The border painter associated for the given state, or null if
      *         none could be found.
      */
@@ -846,7 +817,7 @@ public final class NimbusStyle extends SynthStyle {
      * reoccurs as necessary.
      *
      * @param ctx
-     *            The SynthContext
+     *        The SynthContext
      * @return a non-null values reference
      */
     private Values getValues(SynthContext ctx) {
@@ -862,9 +833,9 @@ public final class NimbusStyle extends SynthStyle {
      * property "Nimbus.State".
      *
      * @param names
-     *              a non-null array of strings
+     *        a non-null array of strings
      * @param name
-     *              the name to look for in the array
+     *        the name to look for in the array
      * @return true or false based on whether the given name is in the array
      */
     private boolean contains(String[] names, String name) {
@@ -887,7 +858,6 @@ public final class NimbusStyle extends SynthStyle {
      * the SynthContext, in addition to custom states, to determine what this
      * extended state is.
      * </p>
-     *
      * <p>
      * In addition, this method checks the component in the given context for a
      * client property called "Nimbus.State". If one exists, then it will
@@ -896,7 +866,6 @@ public final class NimbusStyle extends SynthStyle {
      * in a specific state, regardless of what the "real" state of the component
      * is.
      * </p>
-     *
      * <p>
      * The string associated with "Nimbus.State" would be of the form:
      * 
@@ -963,7 +932,6 @@ public final class NimbusStyle extends SynthStyle {
      * context, but is less specific than the given "lastState". Essentially,
      * this allows you to search for the next best state.
      * </p>
-     *
      * <p>
      * For example, if you had the following three states:
      * 
@@ -981,7 +949,6 @@ public final class NimbusStyle extends SynthStyle {
      * be returned. If you call this method a third time and pass the index of
      * Enabled in as the <code>lastState</code>, then null would be returned.
      * </p>
-     *
      * <p>
      * The actual code path for determining the proper state is the same as in
      * Synth.
@@ -989,11 +956,10 @@ public final class NimbusStyle extends SynthStyle {
      *
      * @param ctx
      * @param lastState
-     *                  a 1 element array, allowing me to do pass-by-reference.
+     *        a 1 element array, allowing me to do pass-by-reference.
      * @return
      */
-    private RuntimeState getNextState(RuntimeState[] states, int[] lastState,
-            int xstate) {
+    private RuntimeState getNextState(RuntimeState[] states, int[] lastState, int xstate) {
         // Use the StateInfo with the most bits that matches that of state.
         // If there are none, then fallback to
         // the StateInfo with a state of 0, indicating it'll match anything.
@@ -1034,9 +1000,7 @@ public final class NimbusStyle extends SynthStyle {
             // -1
             // then we know to start from the end of the state array. Otherwise,
             // we start at the lastIndex - 1.
-            int lastStateIndex = lastState == null || lastState[0] == -1
-                    ? states.length
-                    : lastState[0];
+            int lastStateIndex = lastState == null || lastState[0] == -1 ? states.length : lastState[0];
 
             for (int counter = lastStateIndex - 1; counter >= 0; counter--) {
                 int oState = states[counter].state;
@@ -1054,8 +1018,7 @@ public final class NimbusStyle extends SynthStyle {
                     // This comes from BigInteger.bitCnt
                     int bitCount = oState;
                     bitCount -= (0xaaaaaaaa & bitCount) >>> 1;
-                    bitCount = (bitCount & 0x33333333) + ((bitCount >>> 2)
-                            & 0x33333333);
+                    bitCount = (bitCount & 0x33333333) + ((bitCount >>> 2) & 0x33333333);
                     bitCount = bitCount + (bitCount >>> 4) & 0x0f0f0f0f;
                     bitCount += bitCount >>> 8;
                     bitCount += bitCount >>> 16;
@@ -1145,7 +1108,6 @@ public final class NimbusStyle extends SynthStyle {
          * cache for later retrieval. The key is a concatenation of the property
          * being looked up, two dollar signs, and the extended state. So for
          * example:
-         *
          * foo.bar$$2353
          */
         Map<CacheKey, Object> cache = new HashMap<CacheKey, Object>();

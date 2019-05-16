@@ -61,8 +61,7 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class RET extends Instruction implements IndexedInstruction,
-        TypedInstruction {
+public class RET extends Instruction implements IndexedInstruction, TypedInstruction {
     private boolean wide;
     private int index; // index to local variable containg the return address
 
@@ -81,7 +80,7 @@ public class RET extends Instruction implements IndexedInstruction,
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         if (wide)
@@ -105,8 +104,7 @@ public class RET extends Instruction implements IndexedInstruction,
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         this.wide = wide;
 
         if (wide) {
@@ -157,7 +155,7 @@ public class RET extends Instruction implements IndexedInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitRET(this);

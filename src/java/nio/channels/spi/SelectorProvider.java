@@ -17,7 +17,6 @@ import sun.security.action.GetPropertyAction;
 
 /**
  * Service-provider class for selectors and selectable channels.
- *
  * <p>
  * A selector provider is a concrete subclass of this class that has a
  * zero-argument constructor and implements the abstract methods specified
@@ -25,7 +24,6 @@ import sun.security.action.GetPropertyAction;
  * system-wide default provider instance, which is returned by the
  * {@link #provider() provider} method. The first invocation of that method will
  * locate the default provider as specified below.
- *
  * <p>
  * The system-wide default provider is used by the static <tt>open</tt> methods
  * of the {@link java.nio.channels.DatagramChannel#open DatagramChannel},
@@ -37,12 +35,10 @@ import sun.security.action.GetPropertyAction;
  * System.inheritedChannel()} method. A program may make use of a provider other
  * than the default provider by instantiating that provider and then directly
  * invoking the <tt>open</tt> methods defined in this class.
- *
  * <p>
  * All of the methods in this class are safe for use by multiple concurrent
  * threads.
  * </p>
- *
  *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
@@ -58,9 +54,9 @@ public abstract class SelectorProvider {
      * Initializes a new instance of this class.
      *
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link RuntimePermission}<tt>("selectorProvider")</tt>
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link RuntimePermission}<tt>("selectorProvider")</tt>
      */
     protected SelectorProvider() {
         SecurityManager sm = System.getSecurityManager();
@@ -69,13 +65,11 @@ public abstract class SelectorProvider {
     }
 
     private static boolean loadProviderFromProperty() {
-        String cn = System.getProperty(
-                "java.nio.channels.spi.SelectorProvider");
+        String cn = System.getProperty("java.nio.channels.spi.SelectorProvider");
         if (cn == null)
             return false;
         try {
-            Class<?> c = Class.forName(cn, true, ClassLoader
-                    .getSystemClassLoader());
+            Class<?> c = Class.forName(cn, true, ClassLoader.getSystemClassLoader());
             provider = (SelectorProvider) c.newInstance();
             return true;
         } catch (ClassNotFoundException x) {
@@ -91,8 +85,8 @@ public abstract class SelectorProvider {
 
     private static boolean loadProviderAsService() {
 
-        ServiceLoader<SelectorProvider> sl = ServiceLoader.load(
-                SelectorProvider.class, ClassLoader.getSystemClassLoader());
+        ServiceLoader<SelectorProvider> sl = ServiceLoader.load(SelectorProvider.class, ClassLoader
+                .getSystemClassLoader());
         Iterator<SelectorProvider> i = sl.iterator();
         for (;;) {
             try {
@@ -113,14 +107,11 @@ public abstract class SelectorProvider {
     /**
      * Returns the system-wide default selector provider for this invocation of
      * the Java virtual machine.
-     *
      * <p>
      * The first invocation of this method locates the default provider object
      * as follows:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * If the system property <tt>java.nio.channels.spi.SelectorProvider</tt> is
@@ -129,7 +120,6 @@ public abstract class SelectorProvider {
      * fails then an unspecified error is thrown.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a provider class has been installed in a jar file that is visible to
@@ -141,7 +131,6 @@ public abstract class SelectorProvider {
      * fails then an unspecified error is thrown.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Finally, if no provider has been specified by any of the above means then
@@ -149,9 +138,7 @@ public abstract class SelectorProvider {
      * returned.
      * </p>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * Subsequent invocations of this method return the provider that was
      * returned by the first invocation.
@@ -163,18 +150,16 @@ public abstract class SelectorProvider {
         synchronized (lock) {
             if (provider != null)
                 return provider;
-            return AccessController.doPrivileged(
-                    new PrivilegedAction<SelectorProvider>() {
-                        public SelectorProvider run() {
-                            if (loadProviderFromProperty())
-                                return provider;
-                            if (loadProviderAsService())
-                                return provider;
-                            provider = sun.nio.ch.DefaultSelectorProvider
-                                    .create();
-                            return provider;
-                        }
-                    });
+            return AccessController.doPrivileged(new PrivilegedAction<SelectorProvider>() {
+                public SelectorProvider run() {
+                    if (loadProviderFromProperty())
+                        return provider;
+                    if (loadProviderAsService())
+                        return provider;
+                    provider = sun.nio.ch.DefaultSelectorProvider.create();
+                    return provider;
+                }
+            });
         }
     }
 
@@ -182,9 +167,8 @@ public abstract class SelectorProvider {
      * Opens a datagram channel.
      *
      * @return The new channel
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract DatagramChannel openDatagramChannel() throws IOException;
 
@@ -192,28 +176,23 @@ public abstract class SelectorProvider {
      * Opens a datagram channel.
      *
      * @param family
-     *               The protocol family
-     *
+     *        The protocol family
      * @return A new datagram channel
-     *
      * @throws UnsupportedOperationException
-     *                                       If the specified protocol family is
-     *                                       not supported
+     *         If the specified protocol family is
+     *         not supported
      * @throws IOException
-     *                                       If an I/O error occurs
-     *
+     *         If an I/O error occurs
      * @since 1.7
      */
-    public abstract DatagramChannel openDatagramChannel(ProtocolFamily family)
-            throws IOException;
+    public abstract DatagramChannel openDatagramChannel(ProtocolFamily family) throws IOException;
 
     /**
      * Opens a pipe.
      *
      * @return The new pipe
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract Pipe openPipe() throws IOException;
 
@@ -221,9 +200,8 @@ public abstract class SelectorProvider {
      * Opens a selector.
      *
      * @return The new selector
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract AbstractSelector openSelector() throws IOException;
 
@@ -231,27 +209,23 @@ public abstract class SelectorProvider {
      * Opens a server-socket channel.
      *
      * @return The new channel
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
-    public abstract ServerSocketChannel openServerSocketChannel()
-            throws IOException;
+    public abstract ServerSocketChannel openServerSocketChannel() throws IOException;
 
     /**
      * Opens a socket channel.
      *
      * @return The new channel
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract SocketChannel openSocketChannel() throws IOException;
 
     /**
      * Returns the channel inherited from the entity that created this Java
      * virtual machine.
-     *
      * <p>
      * On many operating systems a process, such as a Java virtual machine, can
      * be started in a manner that allows the process to inherit a channel from
@@ -262,14 +236,11 @@ public abstract class SelectorProvider {
      * request arrives on an associated network port. In this example, the
      * process that is started, inherits a channel representing a network
      * socket.
-     *
      * <p>
      * In cases where the inherited channel represents a network socket then the
      * {@link java.nio.channels.Channel Channel} type returned by this method is
      * determined as follows:
-     *
      * <ul>
-     *
      * <li>
      * <p>
      * If the inherited channel represents a stream-oriented connected socket
@@ -278,7 +249,6 @@ public abstract class SelectorProvider {
      * socket address, and connected to a peer.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If the inherited channel represents a stream-oriented listening socket
@@ -287,7 +257,6 @@ public abstract class SelectorProvider {
      * blocking mode, and bound to a socket address.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If the inherited channel is a datagram-oriented socket then a
@@ -296,28 +265,22 @@ public abstract class SelectorProvider {
      * to a socket address.
      * </p>
      * </li>
-     *
      * </ul>
-     *
      * <p>
      * In addition to the network-oriented channels described, this method may
      * return other kinds of channels in the future.
-     *
      * <p>
      * The first invocation of this method creates the channel that is returned.
      * Subsequent invocations of this method return the same channel.
      * </p>
      *
      * @return The inherited channel, if any, otherwise <tt>null</tt>.
-     *
      * @throws IOException
-     *                           If an I/O error occurs
-     *
+     *         If an I/O error occurs
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link RuntimePermission}<tt>("inheritedChannel")</tt>
-     *
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link RuntimePermission}<tt>("inheritedChannel")</tt>
      * @since 1.5
      */
     public Channel inheritedChannel() throws IOException {

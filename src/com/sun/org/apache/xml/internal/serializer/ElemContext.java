@@ -36,10 +36,8 @@ package com.sun.org.apache.xml.internal.serializer;
  * depth 2. Then "B1" stackframe is popped. When the stack frame for "B2" is
  * pushed, this implementation re-uses the old stack fram object used by "B1" to
  * be efficient at not creating too many of these object.
- *
  * This is by no means a public class, and neither are its fields or methods,
  * they are all helper fields for a serializer.
- *
  * The purpose of this class is to be more consistent with pushing information
  * when a new element is being serialized and more quickly restoring the old
  * information about the parent element with a simple pop() when the child
@@ -91,7 +89,6 @@ final class ElemContext {
      * The next element "stack frame". This value will only be set once as
      * deeper stack frames are not deleted when popped off, but are rather
      * re-used when a push is required.
-     *
      * This makes for very fast pushing and popping of stack frames because very
      * few stack frame objects are ever created, they are mostly re-used. This
      * re-use saves object creation but it also means that connections between
@@ -113,7 +110,6 @@ final class ElemContext {
 
     /**
      * Constructor to create the root of the element contexts.
-     *
      */
     ElemContext() {
         // this assignment means can never pop this context off
@@ -124,15 +120,14 @@ final class ElemContext {
 
     /**
      * Constructor to create the "stack frame" for a given element depth.
-     *
      * This implementation will re-use the context at each depth. If a documents
      * deepest element depth is N then there will be (N+1) such objects created,
      * no more than that.
      *
      * @param previous
-     *                 The "stack frame" corresponding to the new elements
-     *                 parent
-     *                 element.
+     *        The "stack frame" corresponding to the new elements
+     *        parent
+     *        element.
      */
     private ElemContext(final ElemContext previous) {
         m_prev = previous;
@@ -183,18 +178,17 @@ final class ElemContext {
      * information gathered about the element.
      * 
      * @param uri
-     *                  The URI for the namespace for the element name, can be
-     *                  null if
-     *                  it is not yet known.
+     *        The URI for the namespace for the element name, can be
+     *        null if
+     *        it is not yet known.
      * @param localName
-     *                  The local name of the element (no prefix), can be null.
+     *        The local name of the element (no prefix), can be null.
      * @param qName
-     *                  The qualified name (with prefix, if any) of the element,
-     *                  this
-     *                  parameter is required.
+     *        The qualified name (with prefix, if any) of the element,
+     *        this
+     *        parameter is required.
      */
-    final ElemContext push(final String uri, final String localName,
-            final String qName) {
+    final ElemContext push(final String uri, final String localName, final String qName) {
         ElemContext frame = this.m_next;
         if (frame == null) {
             /*

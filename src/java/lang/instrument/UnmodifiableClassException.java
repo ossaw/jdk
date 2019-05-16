@@ -30,7 +30,7 @@ public class UnmodifiableClassException extends Exception {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public UnmodifiableClassException(String s) {
         super(s);

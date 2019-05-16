@@ -24,7 +24,6 @@ package javax.naming.ldap;
  * @author Rosanna Lee
  * @author Scott Seligman
  * @author Vincent Ryan
- *
  * @see ControlFactory
  * @since 1.3
  */
@@ -63,7 +62,6 @@ public interface Control extends java.io.Serializable {
      * Retrieves the ASN.1 BER encoded value of the LDAP control. The result is
      * the raw BER bytes including the tag and length of the control's value. It
      * does not include the controls OID or criticality.
-     *
      * Null is returned if the value is absent.
      *
      * @return A possibly null byte array representing the ASN.1 BER encoded

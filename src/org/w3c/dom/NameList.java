@@ -32,7 +32,7 @@ public interface NameList {
      * Returns the <code>index</code>th name item in the collection.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The name at the <code>index</code>th position in the
      *         <code>NameList</code>, or <code>null</code> if there is no name
      *         for the specified index or if the index is out of range.
@@ -43,7 +43,7 @@ public interface NameList {
      * Returns the <code>index</code>th namespaceURI item in the collection.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The namespace URI at the <code>index</code>th position in the
      *         <code>NameList</code>, or <code>null</code> if there is no name
      *         for the specified index or if the index is out of range.
@@ -60,7 +60,7 @@ public interface NameList {
      * Test if a name is part of this <code>NameList</code>.
      * 
      * @param str
-     *            The name to look for.
+     *        The name to look for.
      * @return <code>true</code> if the name has been found, <code>false</code>
      *         otherwise.
      */
@@ -70,9 +70,9 @@ public interface NameList {
      * Test if the pair namespaceURI/name is part of this <code>NameList</code>.
      * 
      * @param namespaceURI
-     *                     The namespace URI to look for.
+     *        The namespace URI to look for.
      * @param name
-     *                     The name to look for.
+     *        The name to look for.
      * @return <code>true</code> if the pair namespaceURI/name has been found,
      *         <code>false</code> otherwise.
      */

@@ -9,11 +9,9 @@ package javax.lang.model.element;
  * The <i>nesting kind</i> of a type element. Type elements come in four
  * varieties: top-level, member, local, and anonymous. <i>Nesting kind</i> is a
  * non-standard term used here to denote this classification.
- *
  * <p>
  * Note that it is possible additional nesting kinds will be added in future
  * versions of the platform.
- *
  * <p>
  * <b>Example:</b> The classes below are annotated with their nesting kind.
  * <blockquote>
@@ -38,12 +36,11 @@ package javax.lang.model.element;
  *         class LocalClass {}
  *         ;
  *
- *         Class&lt;?&gt;[] classes = { NestingExamples.class, MemberClass1.class,
- *                 MemberClass2.class, LocalClass.class };
+ *         Class&lt;?&gt;[] classes = { NestingExamples.class, MemberClass1.class, MemberClass2.class,
+ *                 LocalClass.class };
  *
  *         for (Class&lt;?&gt; clazz : classes) {
- *             System.out.format("%s is %s%n", clazz.getName(), clazz
- *                     .getAnnotation(Nesting.class).value());
+ *             System.out.format("%s is %s%n", clazz.getName(), clazz.getAnnotation(Nesting.class).value());
  *         }
  *     }
  * }

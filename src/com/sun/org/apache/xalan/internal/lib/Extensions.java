@@ -55,7 +55,6 @@ public class Extensions {
 
     /**
      * Constructor Extensions
-     *
      */
     private Extensions() {} // Make sure class cannot be instantiated
 
@@ -76,12 +75,11 @@ public class Extensions {
      * <code>XRTreeFrag</code>.
      * 
      * @param myProcessor
-     *                    Context passed by the extension processor
+     *        Context passed by the extension processor
      * @param rtf
-     *                    Argument in the stylesheet to the nodeset extension
-     *                    function
-     *
-     *                    NEEDSDOC ($objectName$) @return
+     *        Argument in the stylesheet to the nodeset extension
+     *        function
+     *        NEEDSDOC ($objectName$) @return
      */
     public static NodeSet nodeset(ExpressionContext myProcessor, Object rtf) {
 
@@ -93,8 +91,7 @@ public class Extensions {
             if (rtf instanceof String) {
                 textNodeValue = (String) rtf;
             } else if (rtf instanceof Boolean) {
-                textNodeValue = new XBoolean(((Boolean) rtf).booleanValue())
-                        .str();
+                textNodeValue = new XBoolean(((Boolean) rtf).booleanValue()).str();
             } else if (rtf instanceof Double) {
                 textNodeValue = new XNumber(((Double) rtf).doubleValue()).str();
             } else {
@@ -118,11 +115,10 @@ public class Extensions {
      * Returns the intersection of two node-sets.
      *
      * @param nl1
-     *            NodeList for first node-set
+     *        NodeList for first node-set
      * @param nl2
-     *            NodeList for second node-set
+     *        NodeList for second node-set
      * @return a NodeList containing the nodes in nl1 that are also in nl2
-     *
      *         Note: The usage of this extension function in the xalan namespace
      *         is deprecated. Please use the same function in the EXSLT sets
      *         extension (http://exslt.org/sets).
@@ -135,11 +131,10 @@ public class Extensions {
      * Returns the difference between two node-sets.
      *
      * @param nl1
-     *            NodeList for first node-set
+     *        NodeList for first node-set
      * @param nl2
-     *            NodeList for second node-set
+     *        NodeList for second node-set
      * @return a NodeList containing the nodes in nl1 that are not in nl2
-     *
      *         Note: The usage of this extension function in the xalan namespace
      *         is deprecated. Please use the same function in the EXSLT sets
      *         extension (http://exslt.org/sets).
@@ -152,11 +147,10 @@ public class Extensions {
      * Returns node-set containing distinct string values.
      *
      * @param nl
-     *           NodeList for node-set
+     *        NodeList for node-set
      * @return a NodeList with nodes from nl containing distinct string values.
      *         In other words, if more than one node in nl contains the same
      *         string value, only include the first such node found.
-     *
      *         Note: The usage of this extension function in the xalan namespace
      *         is deprecated. Please use the same function in the EXSLT sets
      *         extension (http://exslt.org/sets).
@@ -169,9 +163,9 @@ public class Extensions {
      * Returns true if both node-sets contain the same set of nodes.
      *
      * @param nl1
-     *            NodeList for first node-set
+     *        NodeList for first node-set
      * @param nl2
-     *            NodeList for second node-set
+     *        NodeList for second node-set
      * @return true if nl1 and nl2 contain exactly the same set of nodes.
      */
     public static boolean hasSameNodes(NodeList nl1, NodeList nl2) {
@@ -199,24 +193,22 @@ public class Extensions {
      * argument appeared in place of the evaluate function call at compile time.
      *
      * @param myContext
-     *                  an <code>ExpressionContext</code> passed in by the
-     *                  extension
-     *                  mechanism. This must be an XPathContext.
+     *        an <code>ExpressionContext</code> passed in by the
+     *        extension
+     *        mechanism. This must be an XPathContext.
      * @param xpathExpr
-     *                  The XPath expression to be evaluated.
+     *        The XPath expression to be evaluated.
      * @return the XObject resulting from evaluating the XPath
-     *
      * @throws SAXNotSupportedException
-     *
-     *                                  Note: The usage of this extension
-     *                                  function in the xalan
-     *                                  namespace is deprecated. Please use the
-     *                                  same function in the
-     *                                  EXSLT dynamic extension
-     *                                  (http://exslt.org/dynamic).
+     *         Note: The usage of this extension
+     *         function in the xalan
+     *         namespace is deprecated. Please use the
+     *         same function in the
+     *         EXSLT dynamic extension
+     *         (http://exslt.org/dynamic).
      */
-    public static XObject evaluate(ExpressionContext myContext,
-            String xpathExpr) throws SAXNotSupportedException {
+    public static XObject evaluate(ExpressionContext myContext, String xpathExpr)
+            throws SAXNotSupportedException {
         return ExsltDynamic.evaluate(myContext, xpathExpr);
     }
 
@@ -226,14 +218,13 @@ public class Extensions {
      * determined by a call to <code>StringTokenizer</code>. If the first
      * argument is an empty string or contains only delimiters, the result will
      * be an empty NodeSet.
-     *
      * Contributed to XalanJ1 by
      * <a href="mailto:benoit.cerrina@writeme.com">Benoit Cerrina</a>.
      *
      * @param toTokenize
-     *                   The string to be split into text tokens.
+     *        The string to be split into text tokens.
      * @param delims
-     *                   The delimiters to use.
+     *        The delimiters to use.
      * @return a NodeSet as described above.
      */
     public static NodeList tokenize(String toTokenize, String delims) {
@@ -259,12 +250,11 @@ public class Extensions {
      * (&#x20). Tokens are determined by a call to <code>StringTokenizer</code>.
      * If the first argument is an empty string or contains only delimiters, the
      * result will be an empty NodeSet.
-     *
      * Contributed to XalanJ1 by
      * <a href="mailto:benoit.cerrina@writeme.com">Benoit Cerrina</a>.
      *
      * @param toTokenize
-     *                   The string to be split into text tokens.
+     *        The string to be split into text tokens.
      * @return a NodeSet as described above.
      */
     public static NodeList tokenize(String toTokenize) {
@@ -274,7 +264,6 @@ public class Extensions {
     /**
      * Return a Node of basic debugging information from the EnvironmentCheck
      * utility about the Java environment.
-     *
      * <p>
      * Simply calls the
      * {@link com.sun.org.apache.xalan.internal.xslt.EnvironmentCheck} utility
@@ -286,7 +275,6 @@ public class Extensions {
      * <a href="http://xml.apache.org/commons/">http://xml.apache.org/commons/
      * </a>.
      * </p>
-     *
      * <p>
      * We throw a WrappedRuntimeException in the unlikely case that reading
      * information from the environment throws us an exception. (Is this really
@@ -294,9 +282,9 @@ public class Extensions {
      * </p>
      *
      * @param myContext
-     *                  an <code>ExpressionContext</code> passed in by the
-     *                  extension
-     *                  mechanism. This must be an XPathContext.
+     *        an <code>ExpressionContext</code> passed in by the
+     *        extension
+     *        mechanism. This must be an XPathContext.
      * @return a Node as described above.
      */
     public static Node checkEnvironment(ExpressionContext myContext) {
@@ -315,13 +303,11 @@ public class Extensions {
             // If reflection failed, fallback to our internal EnvironmentCheck
             EnvironmentCheck envChecker = new EnvironmentCheck();
             Map<String, Object> h = envChecker.getEnvironmentHash();
-            resultNode = factoryDocument.createElement(
-                    "checkEnvironmentExtension");
+            resultNode = factoryDocument.createElement("checkEnvironmentExtension");
             envChecker.appendEnvironmentReport(resultNode, factoryDocument, h);
             envChecker = null;
         } catch (Exception e) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    e);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(e);
         }
 
         return resultNode;
@@ -331,43 +317,37 @@ public class Extensions {
      * Private worker method to attempt to use org.apache.env.Which.
      *
      * @param myContext
-     *                        an <code>ExpressionContext</code> passed in by the
-     *                        extension
-     *                        mechanism. This must be an XPathContext.
+     *        an <code>ExpressionContext</code> passed in by the
+     *        extension
+     *        mechanism. This must be an XPathContext.
      * @param factoryDocument
-     *                        providing createElement services, etc.
+     *        providing createElement services, etc.
      * @return a Node with environment info; null if any error
      */
-    private static Node checkEnvironmentUsingWhich(ExpressionContext myContext,
-            Document factoryDocument) {
+    private static Node checkEnvironmentUsingWhich(ExpressionContext myContext, Document factoryDocument) {
         final String WHICH_CLASSNAME = "org.apache.env.Which";
         final String WHICH_METHODNAME = "which";
-        final Class WHICH_METHOD_ARGS[] = { java.util.Hashtable.class,
-                java.lang.String.class, java.lang.String.class };
+        final Class WHICH_METHOD_ARGS[] = { java.util.Hashtable.class, java.lang.String.class,
+                java.lang.String.class };
         try {
             // Use reflection to try to find xml-commons utility 'Which'
-            Class clazz = ObjectFactory.findProviderClass(WHICH_CLASSNAME,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(WHICH_CLASSNAME, true);
             if (null == clazz)
                 return null;
 
             // Fully qualify names since this is the only method they're used in
-            java.lang.reflect.Method method = clazz.getMethod(WHICH_METHODNAME,
-                    WHICH_METHOD_ARGS);
+            java.lang.reflect.Method method = clazz.getMethod(WHICH_METHODNAME, WHICH_METHOD_ARGS);
             Hashtable report = new Hashtable();
 
             // Call the method with our Hashtable, common options, and ignore
             // return value
-            Object[] methodArgs = { report,
-                    "XmlCommons;Xalan;Xerces;Crimson;Ant", "" };
+            Object[] methodArgs = { report, "XmlCommons;Xalan;Xerces;Crimson;Ant", "" };
             Object returnValue = method.invoke(null, methodArgs);
 
             // Create a parent to hold the report and append hash to it
-            Node resultNode = factoryDocument.createElement(
-                    "checkEnvironmentExtension");
-            com.sun.org.apache.xml.internal.utils.Hashtree2Node
-                    .appendHashToNode(report, "whichReport", resultNode,
-                            factoryDocument);
+            Node resultNode = factoryDocument.createElement("checkEnvironmentExtension");
+            com.sun.org.apache.xml.internal.utils.Hashtree2Node.appendHashToNode(report, "whichReport",
+                    resultNode, factoryDocument);
 
             return resultNode;
         } catch (Throwable t) {
@@ -382,15 +362,13 @@ public class Extensions {
     private static Document getDocument() {
         try {
             if (System.getSecurityManager() == null) {
-                return DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                        .newDocument();
+                return DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
             } else {
-                return DocumentBuilderFactory.newInstance(JDK_DEFAULT_DOM, null)
-                        .newDocumentBuilder().newDocument();
+                return DocumentBuilderFactory.newInstance(JDK_DEFAULT_DOM, null).newDocumentBuilder()
+                        .newDocument();
             }
         } catch (ParserConfigurationException pce) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    pce);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(pce);
         }
     }
 }

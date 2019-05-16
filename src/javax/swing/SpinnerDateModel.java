@@ -61,12 +61,10 @@ import java.io.Serializable;
  * @see SpinnerListModel
  * @see SpinnerNumberModel
  * @see Calendar#add
- *
  * @author Hans Muller
  * @since 1.4
  */
-public class SpinnerDateModel extends AbstractSpinnerModel implements
-        Serializable {
+public class SpinnerDateModel extends AbstractSpinnerModel implements Serializable {
     private Comparable start, end;
     private Calendar value;
     private int calendarField;
@@ -114,58 +112,54 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      * IllegalArgumentException is thrown.
      *
      * @param value
-     *                      the current (non <code>null</code>) value of the
-     *                      model
+     *        the current (non <code>null</code>) value of the
+     *        model
      * @param start
-     *                      the first date in the sequence or <code>null</code>
+     *        the first date in the sequence or <code>null</code>
      * @param end
-     *                      the last date in the sequence or <code>null</code>
+     *        the last date in the sequence or <code>null</code>
      * @param calendarField
-     *                      one of
-     *                      <ul>
-     *                      <li><code>Calendar.ERA</code>
-     *                      <li><code>Calendar.YEAR</code>
-     *                      <li><code>Calendar.MONTH</code>
-     *                      <li><code>Calendar.WEEK_OF_YEAR</code>
-     *                      <li><code>Calendar.WEEK_OF_MONTH</code>
-     *                      <li><code>Calendar.DAY_OF_MONTH</code>
-     *                      <li><code>Calendar.DAY_OF_YEAR</code>
-     *                      <li><code>Calendar.DAY_OF_WEEK</code>
-     *                      <li><code>Calendar.DAY_OF_WEEK_IN_MONTH</code>
-     *                      <li><code>Calendar.AM_PM</code>
-     *                      <li><code>Calendar.HOUR</code>
-     *                      <li><code>Calendar.HOUR_OF_DAY</code>
-     *                      <li><code>Calendar.MINUTE</code>
-     *                      <li><code>Calendar.SECOND</code>
-     *                      <li><code>Calendar.MILLISECOND</code>
-     *                      </ul>
-     *
+     *        one of
+     *        <ul>
+     *        <li><code>Calendar.ERA</code>
+     *        <li><code>Calendar.YEAR</code>
+     *        <li><code>Calendar.MONTH</code>
+     *        <li><code>Calendar.WEEK_OF_YEAR</code>
+     *        <li><code>Calendar.WEEK_OF_MONTH</code>
+     *        <li><code>Calendar.DAY_OF_MONTH</code>
+     *        <li><code>Calendar.DAY_OF_YEAR</code>
+     *        <li><code>Calendar.DAY_OF_WEEK</code>
+     *        <li><code>Calendar.DAY_OF_WEEK_IN_MONTH</code>
+     *        <li><code>Calendar.AM_PM</code>
+     *        <li><code>Calendar.HOUR</code>
+     *        <li><code>Calendar.HOUR_OF_DAY</code>
+     *        <li><code>Calendar.MINUTE</code>
+     *        <li><code>Calendar.SECOND</code>
+     *        <li><code>Calendar.MILLISECOND</code>
+     *        </ul>
      * @throws IllegalArgumentException
-     *                                  if <code>value</code> or
-     *                                  <code>calendarField</code> are
-     *                                  <code>null</code>, if
-     *                                  <code>calendarField</code> isn't valid,
-     *                                  or if the following expression is false:
-     *                                  <code>(start &lt;= value &lt;= end)</code>.
-     *
+     *         if <code>value</code> or
+     *         <code>calendarField</code> are
+     *         <code>null</code>, if
+     *         <code>calendarField</code> isn't valid,
+     *         or if the following expression is false:
+     *         <code>(start &lt;= value &lt;= end)</code>.
      * @see Calendar#add
      * @see #setValue
      * @see #setStart
      * @see #setEnd
      * @see #setCalendarField
      */
-    public SpinnerDateModel(Date value, Comparable start, Comparable end,
-            int calendarField) {
+    public SpinnerDateModel(Date value, Comparable start, Comparable end, int calendarField) {
         if (value == null) {
             throw new IllegalArgumentException("value is null");
         }
         if (!calendarFieldOK(calendarField)) {
             throw new IllegalArgumentException("invalid calendarField");
         }
-        if (!(((start == null) || (start.compareTo(value) <= 0))
-                && ((end == null) || (end.compareTo(value) >= 0)))) {
-            throw new IllegalArgumentException(
-                    "(start <= value <= end) is false");
+        if (!(((start == null) || (start.compareTo(value) <= 0)) && ((end == null) || (end.compareTo(
+                value) >= 0)))) {
+            throw new IllegalArgumentException("(start <= value <= end) is false");
         }
         this.value = Calendar.getInstance();
         this.start = start;
@@ -220,14 +214,13 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      * has changed.
      *
      * @param start
-     *              defines the first date in the sequence
+     *        defines the first date in the sequence
      * @see #getStart
      * @see #setEnd
      * @see #addChangeListener
      */
     public void setStart(Comparable start) {
-        if ((start == null) ? (this.start != null)
-                : !start.equals(this.start)) {
+        if ((start == null) ? (this.start != null) : !start.equals(this.start)) {
             this.start = start;
             fireStateChanged();
         }
@@ -261,7 +254,7 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      * changed.
      *
      * @param end
-     *            defines the last date in the sequence
+     *        defines the last date in the sequence
      * @see #getEnd
      * @see #setStart
      * @see #addChangeListener
@@ -297,28 +290,27 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      * subclass and ignore the setCalendarField calls.
      *
      * @param calendarField
-     *                      one of
-     *                      <ul>
-     *                      <li><code>Calendar.ERA</code>
-     *                      <li><code>Calendar.YEAR</code>
-     *                      <li><code>Calendar.MONTH</code>
-     *                      <li><code>Calendar.WEEK_OF_YEAR</code>
-     *                      <li><code>Calendar.WEEK_OF_MONTH</code>
-     *                      <li><code>Calendar.DAY_OF_MONTH</code>
-     *                      <li><code>Calendar.DAY_OF_YEAR</code>
-     *                      <li><code>Calendar.DAY_OF_WEEK</code>
-     *                      <li><code>Calendar.DAY_OF_WEEK_IN_MONTH</code>
-     *                      <li><code>Calendar.AM_PM</code>
-     *                      <li><code>Calendar.HOUR</code>
-     *                      <li><code>Calendar.HOUR_OF_DAY</code>
-     *                      <li><code>Calendar.MINUTE</code>
-     *                      <li><code>Calendar.SECOND</code>
-     *                      <li><code>Calendar.MILLISECOND</code>
-     *                      </ul>
-     *                      <p>
-     *                      This method fires a <code>ChangeEvent</code> if the
-     *                      <code>calendarField</code> has changed.
-     *
+     *        one of
+     *        <ul>
+     *        <li><code>Calendar.ERA</code>
+     *        <li><code>Calendar.YEAR</code>
+     *        <li><code>Calendar.MONTH</code>
+     *        <li><code>Calendar.WEEK_OF_YEAR</code>
+     *        <li><code>Calendar.WEEK_OF_MONTH</code>
+     *        <li><code>Calendar.DAY_OF_MONTH</code>
+     *        <li><code>Calendar.DAY_OF_YEAR</code>
+     *        <li><code>Calendar.DAY_OF_WEEK</code>
+     *        <li><code>Calendar.DAY_OF_WEEK_IN_MONTH</code>
+     *        <li><code>Calendar.AM_PM</code>
+     *        <li><code>Calendar.HOUR</code>
+     *        <li><code>Calendar.HOUR_OF_DAY</code>
+     *        <li><code>Calendar.MINUTE</code>
+     *        <li><code>Calendar.SECOND</code>
+     *        <li><code>Calendar.MILLISECOND</code>
+     *        </ul>
+     *        <p>
+     *        This method fires a <code>ChangeEvent</code> if the
+     *        <code>calendarField</code> has changed.
      * @see #getCalendarField
      * @see #getNextValue
      * @see #getPreviousValue
@@ -353,7 +345,6 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      *
      * @return the next <code>Date</code> in the sequence, or <code>null</code>
      *         if the next date is after <code>end</code>.
-     *
      * @see SpinnerModel#getNextValue
      * @see #getPreviousValue
      * @see #setCalendarField
@@ -373,7 +364,6 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      * @return the previous <code>Date</code> in the sequence, or
      *         <code>null</code> if the previous date is before
      *         <code>start</code>
-     *
      * @see SpinnerModel#getPreviousValue
      * @see #getNextValue
      * @see #setCalendarField
@@ -423,12 +413,12 @@ public class SpinnerDateModel extends AbstractSpinnerModel implements
      * has changed.
      *
      * @param value
-     *              the current (non <code>null</code>) <code>Date</code> for
-     *              this
-     *              sequence
+     *        the current (non <code>null</code>) <code>Date</code> for
+     *        this
+     *        sequence
      * @throws IllegalArgumentException
-     *                                  if value is <code>null</code> or not a
-     *                                  <code>Date</code>
+     *         if value is <code>null</code> or not a
+     *         <code>Date</code>
      * @see #getDate
      * @see #getValue
      * @see #addChangeListener

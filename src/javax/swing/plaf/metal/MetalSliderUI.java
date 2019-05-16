@@ -85,12 +85,9 @@ public class MetalSliderUI extends BasicSliderUI {
 
     public void installUI(JComponent c) {
         trackWidth = ((Integer) UIManager.get("Slider.trackWidth")).intValue();
-        tickLength = safeLength = ((Integer) UIManager.get(
-                "Slider.majorTickLength")).intValue();
-        horizThumbIcon = SAFE_HORIZ_THUMB_ICON = UIManager.getIcon(
-                "Slider.horizontalThumbIcon");
-        vertThumbIcon = SAFE_VERT_THUMB_ICON = UIManager.getIcon(
-                "Slider.verticalThumbIcon");
+        tickLength = safeLength = ((Integer) UIManager.get("Slider.majorTickLength")).intValue();
+        horizThumbIcon = SAFE_HORIZ_THUMB_ICON = UIManager.getIcon("Slider.horizontalThumbIcon");
+        vertThumbIcon = SAFE_VERT_THUMB_ICON = UIManager.getIcon("Slider.verticalThumbIcon");
 
         super.installUI(c);
 
@@ -103,13 +100,11 @@ public class MetalSliderUI extends BasicSliderUI {
         prepareFilledSliderField();
     }
 
-    protected PropertyChangeListener createPropertyChangeListener(
-            JSlider slider) {
+    protected PropertyChangeListener createPropertyChangeListener(JSlider slider) {
         return new MetalPropertyListener();
     }
 
-    protected class MetalPropertyListener extends
-            BasicSliderUI.PropertyChangeHandler {
+    protected class MetalPropertyListener extends BasicSliderUI.PropertyChangeHandler {
         public void propertyChange(PropertyChangeEvent e) { // listen for slider
                                                             // fill
             super.propertyChange(e);
@@ -156,8 +151,7 @@ public class MetalSliderUI extends BasicSliderUI {
             trackRight = trackRect.width - 1;
         } else {
             if (MetalUtils.isLeftToRight(slider)) {
-                trackLeft = (trackRect.width - getThumbOverhang())
-                        - getTrackWidth();
+                trackLeft = (trackRect.width - getThumbOverhang()) - getTrackWidth();
                 trackRight = (trackRect.width - getThumbOverhang()) - 1;
             } else {
                 trackLeft = getThumbOverhang();
@@ -165,8 +159,8 @@ public class MetalSliderUI extends BasicSliderUI {
             }
             trackBottom = trackRect.height - 1;
         }
-        return new Rectangle(trackRect.x + trackLeft, trackRect.y + trackTop,
-                trackRight - trackLeft, trackBottom - trackTop);
+        return new Rectangle(trackRect.x + trackLeft, trackRect.y + trackTop, trackRight - trackLeft,
+                trackBottom - trackTop);
     }
 
     public void paintTrack(Graphics g) {
@@ -174,8 +168,7 @@ public class MetalSliderUI extends BasicSliderUI {
             oceanPaintTrack(g);
             return;
         }
-        Color trackColor = !slider.isEnabled() ? MetalLookAndFeel
-                .getControlShadow() : slider.getForeground();
+        Color trackColor = !slider.isEnabled() ? MetalLookAndFeel.getControlShadow() : slider.getForeground();
 
         boolean leftToRight = MetalUtils.isLeftToRight(slider);
 
@@ -193,8 +186,7 @@ public class MetalSliderUI extends BasicSliderUI {
             trackRight = trackRect.width - 1;
         } else {
             if (leftToRight) {
-                trackLeft = (trackRect.width - getThumbOverhang())
-                        - getTrackWidth();
+                trackLeft = (trackRect.width - getThumbOverhang()) - getTrackWidth();
                 trackRight = (trackRect.width - getThumbOverhang()) - 1;
             } else {
                 trackLeft = getThumbOverhang();
@@ -205,22 +197,18 @@ public class MetalSliderUI extends BasicSliderUI {
 
         if (slider.isEnabled()) {
             g.setColor(MetalLookAndFeel.getControlDarkShadow());
-            g.drawRect(trackLeft, trackTop, (trackRight - trackLeft) - 1,
-                    (trackBottom - trackTop) - 1);
+            g.drawRect(trackLeft, trackTop, (trackRight - trackLeft) - 1, (trackBottom - trackTop) - 1);
 
             g.setColor(MetalLookAndFeel.getControlHighlight());
             g.drawLine(trackLeft + 1, trackBottom, trackRight, trackBottom);
             g.drawLine(trackRight, trackTop + 1, trackRight, trackBottom);
 
             g.setColor(MetalLookAndFeel.getControlShadow());
-            g.drawLine(trackLeft + 1, trackTop + 1, trackRight - 2, trackTop
-                    + 1);
-            g.drawLine(trackLeft + 1, trackTop + 1, trackLeft + 1, trackBottom
-                    - 2);
+            g.drawLine(trackLeft + 1, trackTop + 1, trackRight - 2, trackTop + 1);
+            g.drawLine(trackLeft + 1, trackTop + 1, trackLeft + 1, trackBottom - 2);
         } else {
             g.setColor(MetalLookAndFeel.getControlShadow());
-            g.drawRect(trackLeft, trackTop, (trackRight - trackLeft) - 1,
-                    (trackBottom - trackTop) - 1);
+            g.drawRect(trackLeft, trackTop, (trackRight - trackLeft) - 1, (trackBottom - trackTop) - 1);
         }
 
         // Draw the fill
@@ -236,29 +224,25 @@ public class MetalSliderUI extends BasicSliderUI {
                 middleOfThumb -= trackRect.x; // To compensate for the
                                               // g.translate()
                 fillTop = !slider.isEnabled() ? trackTop : trackTop + 1;
-                fillBottom = !slider.isEnabled() ? trackBottom - 1
-                        : trackBottom - 2;
+                fillBottom = !slider.isEnabled() ? trackBottom - 1 : trackBottom - 2;
 
                 if (!drawInverted()) {
                     fillLeft = !slider.isEnabled() ? trackLeft : trackLeft + 1;
                     fillRight = middleOfThumb;
                 } else {
                     fillLeft = middleOfThumb;
-                    fillRight = !slider.isEnabled() ? trackRight - 1
-                            : trackRight - 2;
+                    fillRight = !slider.isEnabled() ? trackRight - 1 : trackRight - 2;
                 }
             } else {
                 middleOfThumb = thumbRect.y + (thumbRect.height / 2);
                 middleOfThumb -= trackRect.y; // To compensate for the
                                               // g.translate()
                 fillLeft = !slider.isEnabled() ? trackLeft : trackLeft + 1;
-                fillRight = !slider.isEnabled() ? trackRight - 1
-                        : trackRight - 2;
+                fillRight = !slider.isEnabled() ? trackRight - 1 : trackRight - 2;
 
                 if (!drawInverted()) {
                     fillTop = middleOfThumb;
-                    fillBottom = !slider.isEnabled() ? trackBottom - 1
-                            : trackBottom - 2;
+                    fillBottom = !slider.isEnabled() ? trackBottom - 1 : trackBottom - 2;
                 } else {
                     fillTop = !slider.isEnabled() ? trackTop : trackTop + 1;
                     fillBottom = middleOfThumb;
@@ -271,12 +255,10 @@ public class MetalSliderUI extends BasicSliderUI {
                 g.drawLine(fillLeft, fillTop, fillLeft, fillBottom);
 
                 g.setColor(MetalLookAndFeel.getControlShadow());
-                g.fillRect(fillLeft + 1, fillTop + 1, fillRight - fillLeft,
-                        fillBottom - fillTop);
+                g.fillRect(fillLeft + 1, fillTop + 1, fillRight - fillLeft, fillBottom - fillTop);
             } else {
                 g.setColor(MetalLookAndFeel.getControlShadow());
-                g.fillRect(fillLeft, fillTop, fillRight - fillLeft, fillBottom
-                        - fillTop);
+                g.fillRect(fillLeft, fillTop, fillRight - fillLeft, fillBottom - fillTop);
             }
         }
 
@@ -286,8 +268,7 @@ public class MetalSliderUI extends BasicSliderUI {
     private void oceanPaintTrack(Graphics g) {
         boolean leftToRight = MetalUtils.isLeftToRight(slider);
         boolean drawInverted = drawInverted();
-        Color sliderAltTrackColor = (Color) UIManager.get(
-                "Slider.altTrackColor");
+        Color sliderAltTrackColor = (Color) UIManager.get("Slider.altTrackColor");
 
         // Translate to the origin of the painting rectangle
         Rectangle paintRect = getPaintTrackRect();
@@ -305,16 +286,14 @@ public class MetalSliderUI extends BasicSliderUI {
                 int fillMaxX;
 
                 if (middleOfThumb > 0) {
-                    g.setColor(drawInverted ? MetalLookAndFeel
-                            .getControlDarkShadow()
+                    g.setColor(drawInverted ? MetalLookAndFeel.getControlDarkShadow()
                             : MetalLookAndFeel.getPrimaryControlDarkShadow());
 
                     g.drawRect(0, 0, middleOfThumb - 1, h - 1);
                 }
 
                 if (middleOfThumb < w) {
-                    g.setColor(drawInverted ? MetalLookAndFeel
-                            .getPrimaryControlDarkShadow()
+                    g.setColor(drawInverted ? MetalLookAndFeel.getPrimaryControlDarkShadow()
                             : MetalLookAndFeel.getControlDarkShadow());
 
                     g.drawRect(middleOfThumb, 0, w - middleOfThumb - 1, h - 1);
@@ -355,33 +334,28 @@ public class MetalSliderUI extends BasicSliderUI {
 
                 if (middleOfThumb < w) {
                     if (drawInverted && filledSlider) {
-                        g.fillRect(middleOfThumb, 0, w - middleOfThumb - 1, h
-                                - 1);
+                        g.fillRect(middleOfThumb, 0, w - middleOfThumb - 1, h - 1);
                     } else {
-                        g.drawRect(middleOfThumb, 0, w - middleOfThumb - 1, h
-                                - 1);
+                        g.drawRect(middleOfThumb, 0, w - middleOfThumb - 1, h - 1);
                     }
                 }
             }
         } else {
-            int middleOfThumb = thumbRect.y + (thumbRect.height / 2)
-                    - paintRect.y;
+            int middleOfThumb = thumbRect.y + (thumbRect.height / 2) - paintRect.y;
 
             if (slider.isEnabled()) {
                 int fillMinY;
                 int fillMaxY;
 
                 if (middleOfThumb > 0) {
-                    g.setColor(drawInverted ? MetalLookAndFeel
-                            .getPrimaryControlDarkShadow()
+                    g.setColor(drawInverted ? MetalLookAndFeel.getPrimaryControlDarkShadow()
                             : MetalLookAndFeel.getControlDarkShadow());
 
                     g.drawRect(0, 0, w - 1, middleOfThumb - 1);
                 }
 
                 if (middleOfThumb < h) {
-                    g.setColor(drawInverted ? MetalLookAndFeel
-                            .getControlDarkShadow()
+                    g.setColor(drawInverted ? MetalLookAndFeel.getControlDarkShadow()
                             : MetalLookAndFeel.getPrimaryControlDarkShadow());
 
                     g.drawRect(0, middleOfThumb, w - 1, h - middleOfThumb - 1);
@@ -410,14 +384,11 @@ public class MetalSliderUI extends BasicSliderUI {
                         g.setColor(leftToRight ? MetalLookAndFeel.getWhite()
                                 : MetalLookAndFeel.getPrimaryControlShadow());
                         g.drawLine(1, fillMinY, 1, fillMaxY);
-                        g.setColor(leftToRight ? sliderAltTrackColor
-                                : MetalLookAndFeel.getControlShadow());
+                        g.setColor(leftToRight ? sliderAltTrackColor : MetalLookAndFeel.getControlShadow());
                         g.drawLine(2, fillMinY, 2, fillMaxY);
-                        g.setColor(leftToRight ? MetalLookAndFeel
-                                .getControlShadow() : sliderAltTrackColor);
+                        g.setColor(leftToRight ? MetalLookAndFeel.getControlShadow() : sliderAltTrackColor);
                         g.drawLine(3, fillMinY, 3, fillMaxY);
-                        g.setColor(leftToRight ? MetalLookAndFeel
-                                .getPrimaryControlShadow()
+                        g.setColor(leftToRight ? MetalLookAndFeel.getPrimaryControlShadow()
                                 : MetalLookAndFeel.getWhite());
                         g.drawLine(4, fillMinY, 4, fillMaxY);
                     }
@@ -435,11 +406,9 @@ public class MetalSliderUI extends BasicSliderUI {
 
                 if (middleOfThumb < h) {
                     if (!drawInverted && filledSlider) {
-                        g.fillRect(0, middleOfThumb, w - 1, h - middleOfThumb
-                                - 1);
+                        g.fillRect(0, middleOfThumb, w - 1, h - middleOfThumb - 1);
                     } else {
-                        g.drawRect(0, middleOfThumb, w - 1, h - middleOfThumb
-                                - 1);
+                        g.drawRect(0, middleOfThumb, w - 1, h - middleOfThumb - 1);
                     }
                 }
             }
@@ -470,8 +439,8 @@ public class MetalSliderUI extends BasicSliderUI {
      * to determine the tick area rectangle.
      */
     public int getTickLength() {
-        return slider.getOrientation() == JSlider.HORIZONTAL ? safeLength
-                + TICK_BUFFER + 1 : safeLength + TICK_BUFFER + 3;
+        return slider.getOrientation() == JSlider.HORIZONTAL ? safeLength + TICK_BUFFER + 1
+                : safeLength + TICK_BUFFER + 3;
     }
 
     /**
@@ -513,24 +482,18 @@ public class MetalSliderUI extends BasicSliderUI {
         scrollByUnit(dir);
     }
 
-    protected void paintMinorTickForHorizSlider(Graphics g,
-            Rectangle tickBounds, int x) {
-        g.setColor(slider.isEnabled() ? slider.getForeground()
-                : MetalLookAndFeel.getControlShadow());
+    protected void paintMinorTickForHorizSlider(Graphics g, Rectangle tickBounds, int x) {
+        g.setColor(slider.isEnabled() ? slider.getForeground() : MetalLookAndFeel.getControlShadow());
         g.drawLine(x, TICK_BUFFER, x, TICK_BUFFER + (safeLength / 2));
     }
 
-    protected void paintMajorTickForHorizSlider(Graphics g,
-            Rectangle tickBounds, int x) {
-        g.setColor(slider.isEnabled() ? slider.getForeground()
-                : MetalLookAndFeel.getControlShadow());
+    protected void paintMajorTickForHorizSlider(Graphics g, Rectangle tickBounds, int x) {
+        g.setColor(slider.isEnabled() ? slider.getForeground() : MetalLookAndFeel.getControlShadow());
         g.drawLine(x, TICK_BUFFER, x, TICK_BUFFER + (safeLength - 1));
     }
 
-    protected void paintMinorTickForVertSlider(Graphics g, Rectangle tickBounds,
-            int y) {
-        g.setColor(slider.isEnabled() ? slider.getForeground()
-                : MetalLookAndFeel.getControlShadow());
+    protected void paintMinorTickForVertSlider(Graphics g, Rectangle tickBounds, int y) {
+        g.setColor(slider.isEnabled() ? slider.getForeground() : MetalLookAndFeel.getControlShadow());
 
         if (MetalUtils.isLeftToRight(slider)) {
             g.drawLine(TICK_BUFFER, y, TICK_BUFFER + (safeLength / 2), y);
@@ -539,10 +502,8 @@ public class MetalSliderUI extends BasicSliderUI {
         }
     }
 
-    protected void paintMajorTickForVertSlider(Graphics g, Rectangle tickBounds,
-            int y) {
-        g.setColor(slider.isEnabled() ? slider.getForeground()
-                : MetalLookAndFeel.getControlShadow());
+    protected void paintMajorTickForVertSlider(Graphics g, Rectangle tickBounds, int y) {
+        g.setColor(slider.isEnabled() ? slider.getForeground() : MetalLookAndFeel.getControlShadow());
 
         if (MetalUtils.isLeftToRight(slider)) {
             g.drawLine(TICK_BUFFER, y, TICK_BUFFER + safeLength, y);

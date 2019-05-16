@@ -125,29 +125,24 @@ public class ORBSingleton extends ORB {
         return sun.corba.OutputStreamFactory.newEncapsOutputStream(this);
     }
 
-    public TypeCode create_struct_tc(String id, String name,
-            StructMember[] members) {
+    public TypeCode create_struct_tc(String id, String name, StructMember[] members) {
         return new TypeCodeImpl(this, TCKind._tk_struct, id, name, members);
     }
 
-    public TypeCode create_union_tc(String id, String name,
-            TypeCode discriminator_type, UnionMember[] members) {
-        return new TypeCodeImpl(this, TCKind._tk_union, id, name,
-                discriminator_type, members);
+    public TypeCode create_union_tc(String id, String name, TypeCode discriminator_type,
+            UnionMember[] members) {
+        return new TypeCodeImpl(this, TCKind._tk_union, id, name, discriminator_type, members);
     }
 
     public TypeCode create_enum_tc(String id, String name, String[] members) {
         return new TypeCodeImpl(this, TCKind._tk_enum, id, name, members);
     }
 
-    public TypeCode create_alias_tc(String id, String name,
-            TypeCode original_type) {
-        return new TypeCodeImpl(this, TCKind._tk_alias, id, name,
-                original_type);
+    public TypeCode create_alias_tc(String id, String name, TypeCode original_type) {
+        return new TypeCodeImpl(this, TCKind._tk_alias, id, name, original_type);
     }
 
-    public TypeCode create_exception_tc(String id, String name,
-            StructMember[] members) {
+    public TypeCode create_exception_tc(String id, String name, StructMember[] members) {
         return new TypeCodeImpl(this, TCKind._tk_except, id, name, members);
     }
 
@@ -179,8 +174,7 @@ public class ORBSingleton extends ORB {
         return new TypeCodeImpl(this, TCKind._tk_native, id, name);
     }
 
-    public org.omg.CORBA.TypeCode create_abstract_interface_tc(String id,
-            String name) {
+    public org.omg.CORBA.TypeCode create_abstract_interface_tc(String id, String name) {
         return new TypeCodeImpl(this, TCKind._tk_abstract_interface, id, name);
     }
 
@@ -190,21 +184,17 @@ public class ORBSingleton extends ORB {
 
     // orbos 98-01-18: Objects By Value -- begin
 
-    public org.omg.CORBA.TypeCode create_value_tc(String id, String name,
-            short type_modifier, TypeCode concrete_base,
-            ValueMember[] members) {
-        return new TypeCodeImpl(this, TCKind._tk_value, id, name, type_modifier,
-                concrete_base, members);
+    public org.omg.CORBA.TypeCode create_value_tc(String id, String name, short type_modifier,
+            TypeCode concrete_base, ValueMember[] members) {
+        return new TypeCodeImpl(this, TCKind._tk_value, id, name, type_modifier, concrete_base, members);
     }
 
     public org.omg.CORBA.TypeCode create_recursive_tc(String id) {
         return new TypeCodeImpl(this, id);
     }
 
-    public org.omg.CORBA.TypeCode create_value_box_tc(String id, String name,
-            TypeCode boxed_type) {
-        return new TypeCodeImpl(this, TCKind._tk_value_box, id, name,
-                boxed_type);
+    public org.omg.CORBA.TypeCode create_value_box_tc(String id, String name, TypeCode boxed_type) {
+        return new TypeCodeImpl(this, TCKind._tk_value_box, id, name, boxed_type);
     }
 
     public TypeCode get_primitive_tc(TCKind tckind) {
@@ -226,13 +216,11 @@ public class ORBSingleton extends ORB {
         return new NVListImpl(this, count);
     }
 
-    public org.omg.CORBA.NVList create_operation_list(
-            org.omg.CORBA.Object oper) {
+    public org.omg.CORBA.NVList create_operation_list(org.omg.CORBA.Object oper) {
         throw wrapper.genericNoImpl();
     }
 
-    public org.omg.CORBA.NamedValue create_named_value(String s, Any any,
-            int flags) {
+    public org.omg.CORBA.NamedValue create_named_value(String s, Any any, int flags) {
         return new NamedValueImpl(this, s, any, flags);
     }
 
@@ -264,13 +252,11 @@ public class ORBSingleton extends ORB {
         throw wrapper.genericNoImpl();
     }
 
-    public org.omg.CORBA.Object resolve_initial_references(String identifier)
-            throws InvalidName {
+    public org.omg.CORBA.Object resolve_initial_references(String identifier) throws InvalidName {
         throw wrapper.genericNoImpl();
     }
 
-    public void register_initial_reference(String id, org.omg.CORBA.Object obj)
-            throws InvalidName {
+    public void register_initial_reference(String id, org.omg.CORBA.Object obj) throws InvalidName {
         throw wrapper.genericNoImpl();
     }
 
@@ -298,8 +284,7 @@ public class ORBSingleton extends ORB {
         throw new SecurityException("ORBSingleton: access denied");
     }
 
-    public java.rmi.Remote string_to_remote(String s)
-            throws java.rmi.RemoteException {
+    public java.rmi.Remote string_to_remote(String s) throws java.rmi.RemoteException {
         throw new SecurityException("ORBSingleton: access denied");
     }
 
@@ -339,8 +324,8 @@ public class ORBSingleton extends ORB {
         throw new SecurityException("ORBSingleton: access denied");
     }
 
-    public org.omg.CORBA.portable.ValueFactory register_value_factory(
-            String repositoryID, org.omg.CORBA.portable.ValueFactory factory) {
+    public org.omg.CORBA.portable.ValueFactory register_value_factory(String repositoryID,
+            org.omg.CORBA.portable.ValueFactory factory) {
         throw new SecurityException("ORBSingleton: access denied");
     }
 
@@ -348,8 +333,7 @@ public class ORBSingleton extends ORB {
         throw new SecurityException("ORBSingleton: access denied");
     }
 
-    public org.omg.CORBA.portable.ValueFactory lookup_value_factory(
-            String repositoryID) {
+    public org.omg.CORBA.portable.ValueFactory lookup_value_factory(String repositoryID) {
         throw new SecurityException("ORBSingleton: access denied");
     }
 
@@ -528,8 +512,7 @@ public class ORBSingleton extends ORB {
         return getFullORB().getClientDelegateFactory();
     }
 
-    public void setCorbaContactInfoListFactory(
-            CorbaContactInfoListFactory factory) {}
+    public void setCorbaContactInfoListFactory(CorbaContactInfoListFactory factory) {}
 
     public CorbaContactInfoListFactory getCorbaContactInfoListFactory() {
         return getFullORB().getCorbaContactInfoListFactory();

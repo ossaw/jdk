@@ -64,8 +64,7 @@ import java.util.Objects;
  * @see LocalVariable
  * @see MethodGen
  */
-public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
-        Cloneable, java.io.Serializable {
+public class LocalVariableGen implements InstructionTargeter, NamedAndTyped, Cloneable, java.io.Serializable {
     private final int index;
     private String name;
     private Type type;
@@ -77,19 +76,19 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
      * user.
      *
      * @param index
-     *              index of local variable
+     *        index of local variable
      * @param name
-     *              its name
+     *        its name
      * @param type
-     *              its type
+     *        its type
      * @param start
-     *              from where the instruction is valid (null means from the
-     *              start)
+     *        from where the instruction is valid (null means from the
+     *        start)
      * @param end
-     *              until where the instruction is valid (null means to the end)
+     *        until where the instruction is valid (null means to the end)
      */
-    public LocalVariableGen(int index, String name, Type type,
-            InstructionHandle start, InstructionHandle end) {
+    public LocalVariableGen(int index, String name, Type type, InstructionHandle start,
+            InstructionHandle end) {
         if ((index < 0) || (index > Constants.MAX_SHORT))
             throw new ClassGenException("Invalid index index: " + index);
 
@@ -102,20 +101,18 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
 
     /**
      * Get LocalVariable object.
-     *
      * This relies on that the instruction list has already been dumped to byte
      * code or or that the `setPositions' methods has been called for the
      * instruction list.
-     *
      * Note that for local variables whose scope end at the last instruction of
      * the method's code, the JVM specification is ambiguous: both a
      * start_pc+length ending at the last instruction and start_pc+length ending
      * at first index beyond the end of the code are valid.
      *
      * @param il
-     *           instruction list (byte code) which this variable belongs to
+     *        instruction list (byte code) which this variable belongs to
      * @param cp
-     *           constant pool
+     *        constant pool
      */
     public LocalVariable getLocalVariable(ConstantPoolGen cp) {
         int start_pc = start.getPosition();
@@ -127,8 +124,7 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
         int name_index = cp.addUtf8(name);
         int signature_index = cp.addUtf8(type.getSignature());
 
-        return new LocalVariable(start_pc, length, name_index, signature_index,
-                index, cp.getConstantPool());
+        return new LocalVariable(start_pc, length, name_index, signature_index, index, cp.getConstantPool());
     }
 
     public int getIndex() {
@@ -237,13 +233,12 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
 
     /**
      * @param old_ih
-     *               old target, either start or end
+     *        old target, either start or end
      * @param new_ih
-     *               new target
+     *        new target
      */
     @Override
-    public void updateTarget(InstructionHandle old_ih,
-            InstructionHandle new_ih) {
+    public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
         boolean targeted = false;
 
         if (start == old_ih) {
@@ -257,8 +252,7 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
         }
 
         if (!targeted)
-            throw new ClassGenException("Not targeting " + old_ih + ", but {"
-                    + start + ", " + end + "}");
+            throw new ClassGenException("Not targeting " + old_ih + ", but {" + start + ", " + end + "}");
     }
 
     /**
@@ -296,8 +290,7 @@ public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
 
     @Override
     public String toString() {
-        return "LocalVariableGen(" + name + ", " + type + ", " + start + ", "
-                + end + ")";
+        return "LocalVariableGen(" + name + ", " + type + ", " + start + ", " + end + ")";
     }
 
     @Override

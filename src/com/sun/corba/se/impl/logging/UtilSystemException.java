@@ -42,14 +42,13 @@ public class UtilSystemException extends LogWrapperBase {
     };
 
     public static UtilSystemException get(ORB orb, String logDomain) {
-        UtilSystemException wrapper = (UtilSystemException) orb.getLogWrapper(
-                logDomain, "UTIL", factory);
+        UtilSystemException wrapper = (UtilSystemException) orb.getLogWrapper(logDomain, "UTIL", factory);
         return wrapper;
     }
 
     public static UtilSystemException get(String logDomain) {
-        UtilSystemException wrapper = (UtilSystemException) ORB
-                .staticGetLogWrapper(logDomain, "UTIL", factory);
+        UtilSystemException wrapper = (UtilSystemException) ORB.staticGetLogWrapper(logDomain, "UTIL",
+                factory);
         return wrapper;
     }
 
@@ -57,20 +56,16 @@ public class UtilSystemException extends LogWrapperBase {
     // BAD_OPERATION
     ///////////////////////////////////////////////////////////
 
-    public static final int STUB_FACTORY_COULD_NOT_MAKE_STUB = SUNVMCID.value
-            + 1401;
+    public static final int STUB_FACTORY_COULD_NOT_MAKE_STUB = SUNVMCID.value + 1401;
 
-    public BAD_OPERATION stubFactoryCouldNotMakeStub(CompletionStatus cs,
-            Throwable t) {
-        BAD_OPERATION exc = new BAD_OPERATION(STUB_FACTORY_COULD_NOT_MAKE_STUB,
-                cs);
+    public BAD_OPERATION stubFactoryCouldNotMakeStub(CompletionStatus cs, Throwable t) {
+        BAD_OPERATION exc = new BAD_OPERATION(STUB_FACTORY_COULD_NOT_MAKE_STUB, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "UTIL.stubFactoryCouldNotMakeStub", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.FINE, "UTIL.stubFactoryCouldNotMakeStub", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -88,20 +83,17 @@ public class UtilSystemException extends LogWrapperBase {
         return stubFactoryCouldNotMakeStub(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int ERROR_IN_MAKE_STUB_FROM_REPOSITORY_ID = SUNVMCID.value
-            + 1402;
+    public static final int ERROR_IN_MAKE_STUB_FROM_REPOSITORY_ID = SUNVMCID.value + 1402;
 
-    public BAD_OPERATION errorInMakeStubFromRepositoryId(CompletionStatus cs,
-            Throwable t) {
-        BAD_OPERATION exc = new BAD_OPERATION(
-                ERROR_IN_MAKE_STUB_FROM_REPOSITORY_ID, cs);
+    public BAD_OPERATION errorInMakeStubFromRepositoryId(CompletionStatus cs, Throwable t) {
+        BAD_OPERATION exc = new BAD_OPERATION(ERROR_IN_MAKE_STUB_FROM_REPOSITORY_ID, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "UTIL.errorInMakeStubFromRepositoryId",
-                    parameters, UtilSystemException.class, exc);
+            doLog(Level.FINE, "UTIL.errorInMakeStubFromRepositoryId", parameters, UtilSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -112,29 +104,24 @@ public class UtilSystemException extends LogWrapperBase {
     }
 
     public BAD_OPERATION errorInMakeStubFromRepositoryId(Throwable t) {
-        return errorInMakeStubFromRepositoryId(CompletionStatus.COMPLETED_NO,
-                t);
+        return errorInMakeStubFromRepositoryId(CompletionStatus.COMPLETED_NO, t);
     }
 
     public BAD_OPERATION errorInMakeStubFromRepositoryId() {
-        return errorInMakeStubFromRepositoryId(CompletionStatus.COMPLETED_NO,
-                null);
+        return errorInMakeStubFromRepositoryId(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int CLASS_CAST_EXCEPTION_IN_LOAD_STUB = SUNVMCID.value
-            + 1403;
+    public static final int CLASS_CAST_EXCEPTION_IN_LOAD_STUB = SUNVMCID.value + 1403;
 
-    public BAD_OPERATION classCastExceptionInLoadStub(CompletionStatus cs,
-            Throwable t) {
-        BAD_OPERATION exc = new BAD_OPERATION(CLASS_CAST_EXCEPTION_IN_LOAD_STUB,
-                cs);
+    public BAD_OPERATION classCastExceptionInLoadStub(CompletionStatus cs, Throwable t) {
+        BAD_OPERATION exc = new BAD_OPERATION(CLASS_CAST_EXCEPTION_IN_LOAD_STUB, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "UTIL.classCastExceptionInLoadStub", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.FINE, "UTIL.classCastExceptionInLoadStub", parameters, UtilSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -149,8 +136,7 @@ public class UtilSystemException extends LogWrapperBase {
     }
 
     public BAD_OPERATION classCastExceptionInLoadStub() {
-        return classCastExceptionInLoadStub(CompletionStatus.COMPLETED_NO,
-                null);
+        return classCastExceptionInLoadStub(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int EXCEPTION_IN_LOAD_STUB = SUNVMCID.value + 1404;
@@ -162,8 +148,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "UTIL.exceptionInLoadStub", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.FINE, "UTIL.exceptionInLoadStub", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -194,8 +179,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.noPoa", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.noPoa", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -222,8 +206,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "UTIL.connectWrongOrb", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.FINE, "UTIL.connectWrongOrb", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -250,8 +233,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.connectNoTie", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.connectNoTie", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -278,8 +260,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.connectTieWrongOrb", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.connectTieWrongOrb", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -306,8 +287,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.connectTieNoServant", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.connectTieNoServant", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -327,8 +307,7 @@ public class UtilSystemException extends LogWrapperBase {
 
     public static final int LOAD_TIE_FAILED = SUNVMCID.value + 1407;
 
-    public BAD_PARAM loadTieFailed(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public BAD_PARAM loadTieFailed(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_PARAM exc = new BAD_PARAM(LOAD_TIE_FAILED, cs);
         if (t != null)
             exc.initCause(t);
@@ -336,8 +315,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.FINE, "UTIL.loadTieFailed", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.FINE, "UTIL.loadTieFailed", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -368,8 +346,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.badHexDigit", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.badHexDigit", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -400,8 +377,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.unableLocateValueHelper", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.unableLocateValueHelper", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -421,8 +397,7 @@ public class UtilSystemException extends LogWrapperBase {
 
     public static final int INVALID_INDIRECTION = SUNVMCID.value + 1403;
 
-    public MARSHAL invalidIndirection(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public MARSHAL invalidIndirection(CompletionStatus cs, Throwable t, Object arg0) {
         MARSHAL exc = new MARSHAL(INVALID_INDIRECTION, cs);
         if (t != null)
             exc.initCause(t);
@@ -430,8 +405,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "UTIL.invalidIndirection", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.invalidIndirection", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -455,8 +429,7 @@ public class UtilSystemException extends LogWrapperBase {
 
     public static final int OBJECT_NOT_CONNECTED = SUNVMCID.value + 1401;
 
-    public INV_OBJREF objectNotConnected(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INV_OBJREF objectNotConnected(CompletionStatus cs, Throwable t, Object arg0) {
         INV_OBJREF exc = new INV_OBJREF(OBJECT_NOT_CONNECTED, cs);
         if (t != null)
             exc.initCause(t);
@@ -464,8 +437,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "UTIL.objectNotConnected", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.objectNotConnected", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -485,8 +457,7 @@ public class UtilSystemException extends LogWrapperBase {
 
     public static final int COULD_NOT_LOAD_STUB = SUNVMCID.value + 1402;
 
-    public INV_OBJREF couldNotLoadStub(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INV_OBJREF couldNotLoadStub(CompletionStatus cs, Throwable t, Object arg0) {
         INV_OBJREF exc = new INV_OBJREF(COULD_NOT_LOAD_STUB, cs);
         if (t != null)
             exc.initCause(t);
@@ -494,8 +465,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "UTIL.couldNotLoadStub", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.couldNotLoadStub", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -515,8 +485,7 @@ public class UtilSystemException extends LogWrapperBase {
 
     public static final int OBJECT_NOT_EXPORTED = SUNVMCID.value + 1403;
 
-    public INV_OBJREF objectNotExported(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INV_OBJREF objectNotExported(CompletionStatus cs, Throwable t, Object arg0) {
         INV_OBJREF exc = new INV_OBJREF(OBJECT_NOT_EXPORTED, cs);
         if (t != null)
             exc.initCause(t);
@@ -524,8 +493,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "UTIL.objectNotExported", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.objectNotExported", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -549,8 +517,8 @@ public class UtilSystemException extends LogWrapperBase {
 
     public static final int ERROR_SET_OBJECT_FIELD = SUNVMCID.value + 1401;
 
-    public INTERNAL errorSetObjectField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetObjectField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_OBJECT_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -560,33 +528,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetObjectField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetObjectField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetObjectField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetObjectField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetObjectField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetObjectField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetObjectField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetObjectField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetObjectField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetObjectField(Object arg0, Object arg1, Object arg2) {
-        return errorSetObjectField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetObjectField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_BOOLEAN_FIELD = SUNVMCID.value + 1402;
 
-    public INTERNAL errorSetBooleanField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetBooleanField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_BOOLEAN_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -596,34 +559,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetBooleanField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetBooleanField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetBooleanField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetBooleanField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetBooleanField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetBooleanField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetBooleanField(CompletionStatus.COMPLETED_NO, t, arg0,
-                arg1, arg2);
+    public INTERNAL errorSetBooleanField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetBooleanField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetBooleanField(Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetBooleanField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+    public INTERNAL errorSetBooleanField(Object arg0, Object arg1, Object arg2) {
+        return errorSetBooleanField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_BYTE_FIELD = SUNVMCID.value + 1403;
 
-    public INTERNAL errorSetByteField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetByteField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_BYTE_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -633,33 +590,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetByteField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetByteField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetByteField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetByteField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetByteField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetByteField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetByteField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetByteField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetByteField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetByteField(Object arg0, Object arg1, Object arg2) {
-        return errorSetByteField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetByteField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_CHAR_FIELD = SUNVMCID.value + 1404;
 
-    public INTERNAL errorSetCharField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetCharField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_CHAR_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -669,33 +621,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetCharField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetCharField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetCharField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetCharField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetCharField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetCharField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetCharField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetCharField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetCharField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetCharField(Object arg0, Object arg1, Object arg2) {
-        return errorSetCharField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetCharField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_SHORT_FIELD = SUNVMCID.value + 1405;
 
-    public INTERNAL errorSetShortField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetShortField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_SHORT_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -705,33 +652,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetShortField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetShortField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetShortField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetShortField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetShortField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetShortField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetShortField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetShortField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetShortField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetShortField(Object arg0, Object arg1, Object arg2) {
-        return errorSetShortField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetShortField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_INT_FIELD = SUNVMCID.value + 1406;
 
-    public INTERNAL errorSetIntField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetIntField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_INT_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -741,33 +683,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetIntField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetIntField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetIntField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetIntField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetIntField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetIntField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetIntField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetIntField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetIntField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetIntField(Object arg0, Object arg1, Object arg2) {
-        return errorSetIntField(CompletionStatus.COMPLETED_NO, null, arg0, arg1,
-                arg2);
+        return errorSetIntField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_LONG_FIELD = SUNVMCID.value + 1407;
 
-    public INTERNAL errorSetLongField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetLongField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_LONG_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -777,33 +714,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetLongField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetLongField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetLongField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetLongField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetLongField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetLongField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetLongField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetLongField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetLongField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetLongField(Object arg0, Object arg1, Object arg2) {
-        return errorSetLongField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetLongField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_FLOAT_FIELD = SUNVMCID.value + 1408;
 
-    public INTERNAL errorSetFloatField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetFloatField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_FLOAT_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -813,33 +745,28 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetFloatField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetFloatField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetFloatField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetFloatField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetFloatField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetFloatField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetFloatField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetFloatField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetFloatField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetFloatField(Object arg0, Object arg1, Object arg2) {
-        return errorSetFloatField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetFloatField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ERROR_SET_DOUBLE_FIELD = SUNVMCID.value + 1409;
 
-    public INTERNAL errorSetDoubleField(CompletionStatus cs, Throwable t,
-            Object arg0, Object arg1, Object arg2) {
+    public INTERNAL errorSetDoubleField(CompletionStatus cs, Throwable t, Object arg0, Object arg1,
+            Object arg2) {
         INTERNAL exc = new INTERNAL(ERROR_SET_DOUBLE_FIELD, cs);
         if (t != null)
             exc.initCause(t);
@@ -849,33 +776,27 @@ public class UtilSystemException extends LogWrapperBase {
             parameters[0] = arg0;
             parameters[1] = arg1;
             parameters[2] = arg2;
-            doLog(Level.WARNING, "UTIL.errorSetDoubleField", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.errorSetDoubleField", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public INTERNAL errorSetDoubleField(CompletionStatus cs, Object arg0,
-            Object arg1, Object arg2) {
+    public INTERNAL errorSetDoubleField(CompletionStatus cs, Object arg0, Object arg1, Object arg2) {
         return errorSetDoubleField(cs, null, arg0, arg1, arg2);
     }
 
-    public INTERNAL errorSetDoubleField(Throwable t, Object arg0, Object arg1,
-            Object arg2) {
-        return errorSetDoubleField(CompletionStatus.COMPLETED_NO, t, arg0, arg1,
-                arg2);
+    public INTERNAL errorSetDoubleField(Throwable t, Object arg0, Object arg1, Object arg2) {
+        return errorSetDoubleField(CompletionStatus.COMPLETED_NO, t, arg0, arg1, arg2);
     }
 
     public INTERNAL errorSetDoubleField(Object arg0, Object arg1, Object arg2) {
-        return errorSetDoubleField(CompletionStatus.COMPLETED_NO, null, arg0,
-                arg1, arg2);
+        return errorSetDoubleField(CompletionStatus.COMPLETED_NO, null, arg0, arg1, arg2);
     }
 
     public static final int ILLEGAL_FIELD_ACCESS = SUNVMCID.value + 1410;
 
-    public INTERNAL illegalFieldAccess(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INTERNAL illegalFieldAccess(CompletionStatus cs, Throwable t, Object arg0) {
         INTERNAL exc = new INTERNAL(ILLEGAL_FIELD_ACCESS, cs);
         if (t != null)
             exc.initCause(t);
@@ -883,8 +804,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "UTIL.illegalFieldAccess", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.illegalFieldAccess", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -902,19 +822,17 @@ public class UtilSystemException extends LogWrapperBase {
         return illegalFieldAccess(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
-    public static final int BAD_BEGIN_UNMARSHAL_CUSTOM_VALUE = SUNVMCID.value
-            + 1411;
+    public static final int BAD_BEGIN_UNMARSHAL_CUSTOM_VALUE = SUNVMCID.value + 1411;
 
-    public INTERNAL badBeginUnmarshalCustomValue(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL badBeginUnmarshalCustomValue(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(BAD_BEGIN_UNMARSHAL_CUSTOM_VALUE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.badBeginUnmarshalCustomValue",
-                    parameters, UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.badBeginUnmarshalCustomValue", parameters, UtilSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -929,14 +847,12 @@ public class UtilSystemException extends LogWrapperBase {
     }
 
     public INTERNAL badBeginUnmarshalCustomValue() {
-        return badBeginUnmarshalCustomValue(CompletionStatus.COMPLETED_NO,
-                null);
+        return badBeginUnmarshalCustomValue(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int CLASS_NOT_FOUND = SUNVMCID.value + 1412;
 
-    public INTERNAL classNotFound(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public INTERNAL classNotFound(CompletionStatus cs, Throwable t, Object arg0) {
         INTERNAL exc = new INTERNAL(CLASS_NOT_FOUND, cs);
         if (t != null)
             exc.initCause(t);
@@ -944,8 +860,7 @@ public class UtilSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "UTIL.classNotFound", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.classNotFound", parameters, UtilSystemException.class, exc);
         }
 
         return exc;
@@ -976,8 +891,7 @@ public class UtilSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "UTIL.unknownSysex", parameters,
-                    UtilSystemException.class, exc);
+            doLog(Level.WARNING, "UTIL.unknownSysex", parameters, UtilSystemException.class, exc);
         }
 
         return exc;

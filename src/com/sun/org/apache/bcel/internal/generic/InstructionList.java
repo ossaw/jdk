@@ -66,7 +66,6 @@ import java.util.ArrayList;
  * returned upon append/insert operations. They give the user (read only) access
  * to the list structure, such that it can be traversed and manipulated in a
  * controlled way.
- *
  * A list is finally dumped to a byte code array with
  * <a href="#getByteCode()">getByteCode</a>.
  *
@@ -90,7 +89,7 @@ public class InstructionList implements Serializable {
      * Create instruction list containing one instruction.
      * 
      * @param i
-     *          initial instruction
+     *        initial instruction
      */
     public InstructionList(Instruction i) {
         append(i);
@@ -100,7 +99,7 @@ public class InstructionList implements Serializable {
      * Create instruction list containing one instruction.
      * 
      * @param i
-     *          initial instruction
+     *        initial instruction
      */
     public InstructionList(BranchInstruction i) {
         append(i);
@@ -111,7 +110,7 @@ public class InstructionList implements Serializable {
      * list, i.e., it becomes empty.
      *
      * @param c
-     *          compound instruction (list)
+     *        compound instruction (list)
      */
     public InstructionList(CompoundInstruction c) {
         append(c.getInstructionList());
@@ -129,19 +128,18 @@ public class InstructionList implements Serializable {
      * position (byte code offset).
      *
      * @param ihs
-     *               array of instruction handles, i.e.
-     *               il.getInstructionHandles()
+     *        array of instruction handles, i.e.
+     *        il.getInstructionHandles()
      * @param pos
-     *               array of positions corresponding to ihs, i.e.
-     *               il.getInstructionPositions()
+     *        array of positions corresponding to ihs, i.e.
+     *        il.getInstructionPositions()
      * @param count
-     *               length of arrays
+     *        length of arrays
      * @param target
-     *               target position to search for
+     *        target position to search for
      * @return target position's instruction handle if available
      */
-    public static InstructionHandle findHandle(InstructionHandle[] ihs,
-            int[] pos, int count, int target) {
+    public static InstructionHandle findHandle(InstructionHandle[] ihs, int[] pos, int count, int target) {
         int l = 0, r = count - 1;
 
         /*
@@ -168,7 +166,7 @@ public class InstructionList implements Serializable {
      * or setPositions() has been called before this method.
      *
      * @param pos
-     *            byte code position to search for
+     *        byte code position to search for
      * @return target position's instruction handle if available
      */
     public InstructionHandle findHandle(int pos) {
@@ -180,7 +178,7 @@ public class InstructionList implements Serializable {
      * Initialize instruction list from byte array.
      *
      * @param code
-     *             byte array containing the instructions
+     *        byte array containing the instructions
      */
     public InstructionList(byte[] code) {
         ByteSequence bytes = new ByteSequence(code);
@@ -239,8 +237,7 @@ public class InstructionList implements Serializable {
                 InstructionHandle ih = findHandle(ihs, pos, count, target);
 
                 if (ih == null) // Search failed
-                    throw new ClassGenException(
-                            "Couldn't find target for branch: " + bi);
+                    throw new ClassGenException("Couldn't find target for branch: " + bi);
 
                 bi.setTarget(ih); // Update target
 
@@ -255,8 +252,7 @@ public class InstructionList implements Serializable {
                         ih = findHandle(ihs, pos, count, target);
 
                         if (ih == null) // Search failed
-                            throw new ClassGenException(
-                                    "Couldn't find target for switch: " + bi);
+                            throw new ClassGenException("Couldn't find target for switch: " + bi);
 
                         s.setTarget(j, ih); // Update target
                     }
@@ -270,9 +266,9 @@ public class InstructionList implements Serializable {
      * Consumes argument list, i.e., it becomes empty.
      *
      * @param ih
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param il
-     *           Instruction list to append to this one
+     *        Instruction list to append to this one
      * @return instruction handle pointing to the <B>first</B> appended
      *         instruction
      */
@@ -307,9 +303,9 @@ public class InstructionList implements Serializable {
      * argument list, i.e., it becomes empty.
      *
      * @param i
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param il
-     *           Instruction list to append to this one
+     *        Instruction list to append to this one
      * @return instruction handle pointing to the <B>first</B> appended
      *         instruction
      */
@@ -317,8 +313,7 @@ public class InstructionList implements Serializable {
         InstructionHandle ih;
 
         if ((ih = findInstruction2(i)) == null) // Also applies for empty list
-            throw new ClassGenException("Instruction " + i
-                    + " is not contained in this list.");
+            throw new ClassGenException("Instruction " + i + " is not contained in this list.");
 
         return append(ih, il);
     }
@@ -328,7 +323,7 @@ public class InstructionList implements Serializable {
      * empty.
      *
      * @param il
-     *           list to append to end of this list
+     *        list to append to end of this list
      * @return instruction handle of the <B>first</B> appended instruction
      */
     public InstructionHandle append(InstructionList il) {
@@ -354,7 +349,7 @@ public class InstructionList implements Serializable {
      * Append an instruction to the end of this list.
      *
      * @param ih
-     *           instruction to append
+     *        instruction to append
      */
     private void append(InstructionHandle ih) {
         if (isEmpty()) {
@@ -374,7 +369,7 @@ public class InstructionList implements Serializable {
      * Append an instruction to the end of this list.
      *
      * @param i
-     *          instruction to append
+     *        instruction to append
      * @return instruction handle of the appended instruction
      */
     public InstructionHandle append(Instruction i) {
@@ -388,7 +383,7 @@ public class InstructionList implements Serializable {
      * Append a branch instruction to the end of this list.
      *
      * @param i
-     *          branch instruction to append
+     *        branch instruction to append
      * @return branch instruction handle of the appended instruction
      */
     public BranchHandle append(BranchInstruction i) {
@@ -403,9 +398,9 @@ public class InstructionList implements Serializable {
      * in this list of course!
      *
      * @param i
-     *          Instruction in list
+     *        Instruction in list
      * @param j
-     *          Instruction to append after i in list
+     *        Instruction to append after i in list
      * @return instruction handle of the first appended instruction
      */
     public InstructionHandle append(Instruction i, Instruction j) {
@@ -416,9 +411,9 @@ public class InstructionList implements Serializable {
      * Append a compound instruction, after instruction i.
      *
      * @param i
-     *          Instruction in list
+     *        Instruction in list
      * @param c
-     *          The composite instruction (containing an InstructionList)
+     *        The composite instruction (containing an InstructionList)
      * @return instruction handle of the first appended instruction
      */
     public InstructionHandle append(Instruction i, CompoundInstruction c) {
@@ -429,7 +424,7 @@ public class InstructionList implements Serializable {
      * Append a compound instruction.
      *
      * @param c
-     *          The composite instruction (containing an InstructionList)
+     *        The composite instruction (containing an InstructionList)
      * @return instruction handle of the first appended instruction
      */
     public InstructionHandle append(CompoundInstruction c) {
@@ -440,13 +435,12 @@ public class InstructionList implements Serializable {
      * Append a compound instruction.
      *
      * @param ih
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param c
-     *           The composite instruction (containing an InstructionList)
+     *        The composite instruction (containing an InstructionList)
      * @return instruction handle of the first appended instruction
      */
-    public InstructionHandle append(InstructionHandle ih,
-            CompoundInstruction c) {
+    public InstructionHandle append(InstructionHandle ih, CompoundInstruction c) {
         return append(ih, c.getInstructionList());
     }
 
@@ -455,9 +449,9 @@ public class InstructionList implements Serializable {
      * list.
      *
      * @param ih
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param i
-     *           Instruction to append
+     *        Instruction to append
      * @return instruction handle pointing to the <B>first</B> appended
      *         instruction
      */
@@ -470,9 +464,9 @@ public class InstructionList implements Serializable {
      * list.
      *
      * @param ih
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param i
-     *           Instruction to append
+     *        Instruction to append
      * @return instruction handle pointing to the <B>first</B> appended
      *         instruction
      */
@@ -491,9 +485,9 @@ public class InstructionList implements Serializable {
      * Consumes argument list, i.e., it becomes empty.
      *
      * @param i
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param il
-     *           Instruction list to insert
+     *        Instruction list to insert
      * @return instruction handle of the first inserted instruction
      */
     public InstructionHandle insert(InstructionHandle ih, InstructionList il) {
@@ -526,7 +520,7 @@ public class InstructionList implements Serializable {
      * Insert another list.
      *
      * @param il
-     *           list to insert before start of this list
+     *        list to insert before start of this list
      * @return instruction handle of the first inserted instruction
      */
     public InstructionHandle insert(InstructionList il) {
@@ -541,7 +535,7 @@ public class InstructionList implements Serializable {
      * Insert an instruction at start of this list.
      *
      * @param ih
-     *           instruction to insert
+     *        instruction to insert
      */
     private void insert(InstructionHandle ih) {
         if (isEmpty()) {
@@ -562,9 +556,9 @@ public class InstructionList implements Serializable {
      * argument list, i.e., it becomes empty.
      *
      * @param i
-     *           where to append the instruction list
+     *        where to append the instruction list
      * @param il
-     *           Instruction list to insert
+     *        Instruction list to insert
      * @return instruction handle pointing to the first inserted instruction,
      *         i.e., il.getStart()
      */
@@ -572,8 +566,7 @@ public class InstructionList implements Serializable {
         InstructionHandle ih;
 
         if ((ih = findInstruction1(i)) == null)
-            throw new ClassGenException("Instruction " + i
-                    + " is not contained in this list.");
+            throw new ClassGenException("Instruction " + i + " is not contained in this list.");
 
         return insert(ih, il);
     }
@@ -582,7 +575,7 @@ public class InstructionList implements Serializable {
      * Insert an instruction at start of this list.
      *
      * @param i
-     *          instruction to insert
+     *        instruction to insert
      * @return instruction handle of the inserted instruction
      */
     public InstructionHandle insert(Instruction i) {
@@ -596,7 +589,7 @@ public class InstructionList implements Serializable {
      * Insert a branch instruction at start of this list.
      *
      * @param i
-     *          branch instruction to insert
+     *        branch instruction to insert
      * @return branch instruction handle of the appended instruction
      */
     public BranchHandle insert(BranchInstruction i) {
@@ -610,9 +603,9 @@ public class InstructionList implements Serializable {
      * in this list of course!
      *
      * @param i
-     *          Instruction in list
+     *        Instruction in list
      * @param j
-     *          Instruction to insert before i in list
+     *        Instruction to insert before i in list
      * @return instruction handle of the first inserted instruction
      */
     public InstructionHandle insert(Instruction i, Instruction j) {
@@ -623,9 +616,9 @@ public class InstructionList implements Serializable {
      * Insert a compound instruction before instruction i.
      *
      * @param i
-     *          Instruction in list
+     *        Instruction in list
      * @param c
-     *          The composite instruction (containing an InstructionList)
+     *        The composite instruction (containing an InstructionList)
      * @return instruction handle of the first inserted instruction
      */
     public InstructionHandle insert(Instruction i, CompoundInstruction c) {
@@ -636,7 +629,7 @@ public class InstructionList implements Serializable {
      * Insert a compound instruction.
      *
      * @param c
-     *          The composite instruction (containing an InstructionList)
+     *        The composite instruction (containing an InstructionList)
      * @return instruction handle of the first inserted instruction
      */
     public InstructionHandle insert(CompoundInstruction c) {
@@ -648,9 +641,9 @@ public class InstructionList implements Serializable {
      * list.
      *
      * @param ih
-     *           where to insert to the instruction list
+     *        where to insert to the instruction list
      * @param i
-     *           Instruction to insert
+     *        Instruction to insert
      * @return instruction handle of the first inserted instruction
      */
     public InstructionHandle insert(InstructionHandle ih, Instruction i) {
@@ -661,13 +654,12 @@ public class InstructionList implements Serializable {
      * Insert a compound instruction.
      *
      * @param ih
-     *           where to insert the instruction list
+     *        where to insert the instruction list
      * @param c
-     *           The composite instruction (containing an InstructionList)
+     *        The composite instruction (containing an InstructionList)
      * @return instruction handle of the first inserted instruction
      */
-    public InstructionHandle insert(InstructionHandle ih,
-            CompoundInstruction c) {
+    public InstructionHandle insert(InstructionHandle ih, CompoundInstruction c) {
         return insert(ih, c.getInstructionList());
     }
 
@@ -676,9 +668,9 @@ public class InstructionList implements Serializable {
      * list.
      *
      * @param ih
-     *           where to insert to the instruction list
+     *        where to insert to the instruction list
      * @param i
-     *           Instruction to insert
+     *        Instruction to insert
      * @return instruction handle of the first inserted instruction
      */
     public BranchHandle insert(InstructionHandle ih, BranchInstruction i) {
@@ -700,31 +692,28 @@ public class InstructionList implements Serializable {
      * their targets.
      *
      * @param start
-     *               of moved block
+     *        of moved block
      * @param end
-     *               of moved block
+     *        of moved block
      * @param target
-     *               of moved block
+     *        of moved block
      */
-    public void move(InstructionHandle start, InstructionHandle end,
-            InstructionHandle target) {
+    public void move(InstructionHandle start, InstructionHandle end, InstructionHandle target) {
         // Step 1: Check constraints
 
         if ((start == null) || (end == null))
-            throw new ClassGenException("Invalid null handle: From " + start
-                    + " to " + end);
+            throw new ClassGenException("Invalid null handle: From " + start + " to " + end);
 
         if ((target == start) || (target == end))
-            throw new ClassGenException("Invalid range: From " + start + " to "
-                    + end + " contains target " + target);
+            throw new ClassGenException("Invalid range: From " + start + " to " + end + " contains target "
+                    + target);
 
         for (InstructionHandle ih = start; ih != end.next; ih = ih.next) {
             if (ih == null) // At end of list, end not found yet
-                throw new ClassGenException("Invalid range: From " + start
-                        + " to " + end);
+                throw new ClassGenException("Invalid range: From " + start + " to " + end);
             else if (ih == target) // target may be null
-                throw new ClassGenException("Invalid range: From " + start
-                        + " to " + end + " contains target " + target);
+                throw new ClassGenException("Invalid range: From " + start + " to " + end
+                        + " contains target " + target);
         }
 
         // Step 2: Temporarily remove the given instructions from the list
@@ -764,9 +753,9 @@ public class InstructionList implements Serializable {
      * Move a single instruction (handle) to a new location.
      *
      * @param ih
-     *               moved instruction
+     *        moved instruction
      * @param target
-     *               new location of moved instruction
+     *        new location of moved instruction
      */
     public void move(InstructionHandle ih, InstructionHandle target) {
         move(ih, ih, target);
@@ -778,12 +767,11 @@ public class InstructionList implements Serializable {
      * handles is still being targeted.
      *
      * @param prev
-     *             where to start deleting (predecessor, exclusive)
+     *        where to start deleting (predecessor, exclusive)
      * @param next
-     *             where to end deleting (successor, exclusive)
+     *        where to end deleting (successor, exclusive)
      */
-    private void remove(InstructionHandle prev, InstructionHandle next)
-            throws TargetLostException {
+    private void remove(InstructionHandle prev, InstructionHandle next) throws TargetLostException {
         InstructionHandle first, last; // First and last deleted instruction
 
         if ((prev == null) && (next == null)) { // singleton list
@@ -832,8 +820,7 @@ public class InstructionList implements Serializable {
         buf.append("}");
 
         if (!target_vec.isEmpty()) {
-            InstructionHandle[] targeted = new InstructionHandle[target_vec
-                    .size()];
+            InstructionHandle[] targeted = new InstructionHandle[target_vec.size()];
             target_vec.toArray(targeted);
             throw new TargetLostException(targeted, buf.toString());
         }
@@ -844,7 +831,7 @@ public class InstructionList implements Serializable {
      * must not be reused!
      *
      * @param ih
-     *           instruction (handle) to remove
+     *        instruction (handle) to remove
      */
     public void delete(InstructionHandle ih) throws TargetLostException {
         remove(ih.prev, ih.next);
@@ -855,14 +842,13 @@ public class InstructionList implements Serializable {
      * must not be reused!
      *
      * @param i
-     *          instruction to remove
+     *        instruction to remove
      */
     public void delete(Instruction i) throws TargetLostException {
         InstructionHandle ih;
 
         if ((ih = findInstruction1(i)) == null)
-            throw new ClassGenException("Instruction " + i
-                    + " is not contained in this list.");
+            throw new ClassGenException("Instruction " + i + " is not contained in this list.");
         delete(ih);
     }
 
@@ -873,12 +859,11 @@ public class InstructionList implements Serializable {
      * reused!
      *
      * @param from
-     *             where to start deleting (inclusive)
+     *        where to start deleting (inclusive)
      * @param to
-     *             where to end deleting (inclusive)
+     *        where to end deleting (inclusive)
      */
-    public void delete(InstructionHandle from, InstructionHandle to)
-            throws TargetLostException {
+    public void delete(InstructionHandle from, InstructionHandle to) throws TargetLostException {
         remove(from.prev, to.next);
     }
 
@@ -889,21 +874,18 @@ public class InstructionList implements Serializable {
      * reused!
      *
      * @param from
-     *             where to start deleting (inclusive)
+     *        where to start deleting (inclusive)
      * @param to
-     *             where to end deleting (inclusive)
+     *        where to end deleting (inclusive)
      */
-    public void delete(Instruction from, Instruction to)
-            throws TargetLostException {
+    public void delete(Instruction from, Instruction to) throws TargetLostException {
         InstructionHandle from_ih, to_ih;
 
         if ((from_ih = findInstruction1(from)) == null)
-            throw new ClassGenException("Instruction " + from
-                    + " is not contained in this list.");
+            throw new ClassGenException("Instruction " + from + " is not contained in this list.");
 
         if ((to_ih = findInstruction2(to)) == null)
-            throw new ClassGenException("Instruction " + to
-                    + " is not contained in this list.");
+            throw new ClassGenException("Instruction " + to + " is not contained in this list.");
         delete(from_ih, to_ih);
     }
 
@@ -911,7 +893,7 @@ public class InstructionList implements Serializable {
      * Search for given Instruction reference, start at beginning of list.
      *
      * @param i
-     *          instruction to search for
+     *        instruction to search for
      * @return instruction found on success, null otherwise
      */
     private InstructionHandle findInstruction1(Instruction i) {
@@ -926,7 +908,7 @@ public class InstructionList implements Serializable {
      * Search for given Instruction reference, start at end of list
      *
      * @param i
-     *          instruction to search for
+     *        instruction to search for
      * @return instruction found on success, null otherwise
      */
     private InstructionHandle findInstruction2(Instruction i) {
@@ -961,8 +943,8 @@ public class InstructionList implements Serializable {
      * i.e., make the list ready to be dumped.
      *
      * @param check
-     *              Perform sanity checks, e.g. if all targeted instructions
-     *              really belong to this list
+     *        Perform sanity checks, e.g. if all targeted instructions
+     *        really belong to this list
      */
     public void setPositions(boolean check) {
         int max_additional_bytes = 0, additional_bytes = 0;
@@ -978,12 +960,10 @@ public class InstructionList implements Serializable {
 
                 if (i instanceof BranchInstruction) { // target instruction
                                                       // within list?
-                    Instruction inst = ((BranchInstruction) i)
-                            .getTarget().instruction;
+                    Instruction inst = ((BranchInstruction) i).getTarget().instruction;
                     if (!contains(inst))
-                        throw new ClassGenException("Branch target of "
-                                + Constants.OPCODE_NAMES[i.opcode] + ":" + inst
-                                + " not in instruction list");
+                        throw new ClassGenException("Branch target of " + Constants.OPCODE_NAMES[i.opcode]
+                                + ":" + inst + " not in instruction list");
 
                     if (i instanceof Select) {
                         InstructionHandle[] targets = ((Select) i).getTargets();
@@ -992,15 +972,14 @@ public class InstructionList implements Serializable {
                             inst = targets[j].instruction;
                             if (!contains(inst))
                                 throw new ClassGenException("Branch target of "
-                                        + Constants.OPCODE_NAMES[i.opcode] + ":"
-                                        + inst + " not in instruction list");
+                                        + Constants.OPCODE_NAMES[i.opcode] + ":" + inst
+                                        + " not in instruction list");
                         }
                     }
 
                     if (!(ih instanceof BranchHandle))
-                        throw new ClassGenException("Branch instruction "
-                                + Constants.OPCODE_NAMES[i.opcode] + ":" + inst
-                                + " not contained in BranchHandle.");
+                        throw new ClassGenException("Branch instruction " + Constants.OPCODE_NAMES[i.opcode]
+                                + ":" + inst + " not contained in BranchHandle.");
 
                 }
             }
@@ -1043,8 +1022,7 @@ public class InstructionList implements Serializable {
          * within this list.
          */
         for (InstructionHandle ih = start; ih != null; ih = ih.next)
-            additional_bytes += ih.updatePosition(additional_bytes,
-                    max_additional_bytes);
+            additional_bytes += ih.updatePosition(additional_bytes, max_additional_bytes);
 
         /*
          * Pass 3: Update position numbers (which may have changed due to the
@@ -1116,7 +1094,7 @@ public class InstructionList implements Serializable {
 
     /**
      * @param verbose
-     *                toggle output format
+     *        toggle output format
      * @return String containing all instructions in this list.
      */
     public String toString(boolean verbose) {
@@ -1241,8 +1219,7 @@ public class InstructionList implements Serializable {
      * Replace all references to the old constant pool with references to the
      * new constant pool
      */
-    public void replaceConstantPool(ConstantPoolGen old_cp,
-            ConstantPoolGen new_cp) {
+    public void replaceConstantPool(ConstantPoolGen old_cp, ConstantPoolGen new_cp) {
         for (InstructionHandle ih = start; ih != null; ih = ih.next) {
             Instruction i = ih.instruction;
 
@@ -1310,12 +1287,11 @@ public class InstructionList implements Serializable {
      * targets of branch instructions.
      *
      * @param old_target
-     *                   the old target instruction handle
+     *        the old target instruction handle
      * @param new_target
-     *                   the new target instruction handle
+     *        the new target instruction handle
      */
-    public void redirectBranches(InstructionHandle old_target,
-            InstructionHandle new_target) {
+    public void redirectBranches(InstructionHandle old_target, InstructionHandle new_target) {
         for (InstructionHandle ih = start; ih != null; ih = ih.next) {
             Instruction i = ih.getInstruction();
 
@@ -1341,15 +1317,15 @@ public class InstructionList implements Serializable {
      * Redirect all references of local variables from old_target to new_target.
      *
      * @param lg
-     *                   array of local variables
+     *        array of local variables
      * @param old_target
-     *                   the old target instruction handle
+     *        the old target instruction handle
      * @param new_target
-     *                   the new target instruction handle
+     *        the new target instruction handle
      * @see MethodGen
      */
-    public void redirectLocalVariables(LocalVariableGen[] lg,
-            InstructionHandle old_target, InstructionHandle new_target) {
+    public void redirectLocalVariables(LocalVariableGen[] lg, InstructionHandle old_target,
+            InstructionHandle new_target) {
         for (int i = 0; i < lg.length; i++) {
             InstructionHandle start = lg[i].getStart();
             InstructionHandle end = lg[i].getEnd();
@@ -1367,15 +1343,15 @@ public class InstructionList implements Serializable {
      * new_target.
      *
      * @param exceptions
-     *                   array of exception handlers
+     *        array of exception handlers
      * @param old_target
-     *                   the old target instruction handle
+     *        the old target instruction handle
      * @param new_target
-     *                   the new target instruction handle
+     *        the new target instruction handle
      * @see MethodGen
      */
-    public void redirectExceptionHandlers(CodeExceptionGen[] exceptions,
-            InstructionHandle old_target, InstructionHandle new_target) {
+    public void redirectExceptionHandlers(CodeExceptionGen[] exceptions, InstructionHandle old_target,
+            InstructionHandle new_target) {
         for (int i = 0; i < exceptions.length; i++) {
             if (exceptions[i].getStartPC() == old_target)
                 exceptions[i].setStartPC(new_target);

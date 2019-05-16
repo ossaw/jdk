@@ -10,7 +10,6 @@ import java.nio.ByteBuffer;
 
 /**
  * A channel that can read bytes into a sequence of buffers.
- *
  * <p>
  * A <i>scattering</i> read operation reads, in a single invocation, a sequence
  * of bytes into one or more of a given sequence of buffers. Scattering reads
@@ -19,7 +18,6 @@ import java.nio.ByteBuffer;
  * headers followed by a variable-length body. Similar <i>gathering</i> write
  * operations are defined in the {@link GatheringByteChannel} interface.
  * </p>
- *
  *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
@@ -31,12 +29,10 @@ public interface ScatteringByteChannel extends ReadableByteChannel {
     /**
      * Reads a sequence of bytes from this channel into a subsequence of the
      * given buffers.
-     *
      * <p>
      * An invocation of this method attempts to read up to <i>r</i> bytes from
      * this channel, where <i>r</i> is the total number of bytes remaining the
      * specified subsequence of the given buffer array, that is,
-     *
      * <blockquote>
      * 
      * <pre>
@@ -46,9 +42,7 @@ public interface ScatteringByteChannel extends ReadableByteChannel {
      * </pre>
      * 
      * </blockquote>
-     *
      * at the moment that this method is invoked.
-     *
      * <p>
      * Suppose that a byte sequence of length <i>n</i> is read, where <tt>0</tt>
      * &nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;<i>r</i>. Up
@@ -60,7 +54,6 @@ public interface ScatteringByteChannel extends ReadableByteChannel {
      * transferred into each buffer, hence the final position of each updated
      * buffer, except the last updated buffer, is guaranteed to be equal to that
      * buffer's limit.
-     *
      * <p>
      * This method may be invoked at any time. If another thread has already
      * initiated a read operation upon this channel, however, then an invocation
@@ -68,61 +61,49 @@ public interface ScatteringByteChannel extends ReadableByteChannel {
      * </p>
      *
      * @param dsts
-     *               The buffers into which bytes are to be transferred
-     *
+     *        The buffers into which bytes are to be transferred
      * @param offset
-     *               The offset within the buffer array of the first buffer into
-     *               which bytes are to be transferred; must be non-negative and
-     *               no
-     *               larger than <tt>dsts.length</tt>
-     *
+     *        The offset within the buffer array of the first buffer into
+     *        which bytes are to be transferred; must be non-negative and
+     *        no
+     *        larger than <tt>dsts.length</tt>
      * @param length
-     *               The maximum number of buffers to be accessed; must be
-     *               non-negative and no larger than <tt>dsts.length</tt>
-     *               &nbsp;-&nbsp;<tt>offset</tt>
-     *
+     *        The maximum number of buffers to be accessed; must be
+     *        non-negative and no larger than <tt>dsts.length</tt>
+     *        &nbsp;-&nbsp;<tt>offset</tt>
      * @return The number of bytes read, possibly zero, or <tt>-1</tt> if the
      *         channel has reached end-of-stream
-     *
      * @throws IndexOutOfBoundsException
-     *                                     If the preconditions on the
-     *                                     <tt>offset</tt> and
-     *                                     <tt>length</tt> parameters do not
-     *                                     hold
-     *
+     *         If the preconditions on the
+     *         <tt>offset</tt> and
+     *         <tt>length</tt> parameters do not
+     *         hold
      * @throws NonReadableChannelException
-     *                                     If this channel was not opened for
-     *                                     reading
-     *
+     *         If this channel was not opened for
+     *         reading
      * @throws ClosedChannelException
-     *                                     If this channel is closed
-     *
+     *         If this channel is closed
      * @throws AsynchronousCloseException
-     *                                     If another thread closes this channel
-     *                                     while the read
-     *                                     operation is in progress
-     *
+     *         If another thread closes this channel
+     *         while the read
+     *         operation is in progress
      * @throws ClosedByInterruptException
-     *                                     If another thread interrupts the
-     *                                     current thread while the
-     *                                     read operation is in progress,
-     *                                     thereby closing the channel
-     *                                     and setting the current thread's
-     *                                     interrupt status
-     *
+     *         If another thread interrupts the
+     *         current thread while the
+     *         read operation is in progress,
+     *         thereby closing the channel
+     *         and setting the current thread's
+     *         interrupt status
      * @throws IOException
-     *                                     If some other I/O error occurs
+     *         If some other I/O error occurs
      */
-    public long read(ByteBuffer[] dsts, int offset, int length)
-            throws IOException;
+    public long read(ByteBuffer[] dsts, int offset, int length) throws IOException;
 
     /**
      * Reads a sequence of bytes from this channel into the given buffers.
-     *
      * <p>
      * An invocation of this method of the form <tt>c.read(dsts)</tt> behaves in
      * exactly the same manner as the invocation
-     *
      * <blockquote>
      * 
      * <pre>
@@ -132,33 +113,27 @@ public interface ScatteringByteChannel extends ReadableByteChannel {
      * </blockquote>
      *
      * @param dsts
-     *             The buffers into which bytes are to be transferred
-     *
+     *        The buffers into which bytes are to be transferred
      * @return The number of bytes read, possibly zero, or <tt>-1</tt> if the
      *         channel has reached end-of-stream
-     *
      * @throws NonReadableChannelException
-     *                                     If this channel was not opened for
-     *                                     reading
-     *
+     *         If this channel was not opened for
+     *         reading
      * @throws ClosedChannelException
-     *                                     If this channel is closed
-     *
+     *         If this channel is closed
      * @throws AsynchronousCloseException
-     *                                     If another thread closes this channel
-     *                                     while the read
-     *                                     operation is in progress
-     *
+     *         If another thread closes this channel
+     *         while the read
+     *         operation is in progress
      * @throws ClosedByInterruptException
-     *                                     If another thread interrupts the
-     *                                     current thread while the
-     *                                     read operation is in progress,
-     *                                     thereby closing the channel
-     *                                     and setting the current thread's
-     *                                     interrupt status
-     *
+     *         If another thread interrupts the
+     *         current thread while the
+     *         read operation is in progress,
+     *         thereby closing the channel
+     *         and setting the current thread's
+     *         interrupt status
      * @throws IOException
-     *                                     If some other I/O error occurs
+     *         If some other I/O error occurs
      */
     public long read(ByteBuffer[] dsts) throws IOException;
 

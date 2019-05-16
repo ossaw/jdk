@@ -18,7 +18,6 @@ public interface Result {
     /**
      * The name of the processing instruction that is sent if the result tree
      * disables output escaping.
-     *
      * <p>
      * Normally, result tree serialization escapes & and < (and possibly other
      * characters) when outputting text nodes. This ensures that the output is
@@ -29,7 +28,6 @@ public interface Result {
      * If a processing instruction is sent with this name, serialization should
      * be output without any escaping.
      * </p>
-     *
      * <p>
      * Result DOM trees may also have PI_DISABLE_OUTPUT_ESCAPING and
      * PI_ENABLE_OUTPUT_ESCAPING inserted into the tree.
@@ -52,7 +50,6 @@ public interface Result {
 
     /**
      * Set the system identifier for this Result.
-     *
      * <p>
      * If the Result is not to be written to a file, the system identifier is
      * optional. The application may still want to provide one, however, for use
@@ -61,7 +58,7 @@ public interface Result {
      * </p>
      *
      * @param systemId
-     *                 The system identifier as a URI string.
+     *        The system identifier as a URI string.
      */
     public void setSystemId(String systemId);
 

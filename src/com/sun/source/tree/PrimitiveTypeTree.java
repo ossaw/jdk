@@ -9,7 +9,6 @@ import javax.lang.model.type.TypeKind;
 
 /**
  * A tree node for a primitive type.
- *
  * For example:
  * 
  * <pre>
@@ -17,7 +16,6 @@ import javax.lang.model.type.TypeKind;
  * </pre>
  *
  * @jls section 4.2
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

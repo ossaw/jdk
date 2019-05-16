@@ -14,7 +14,6 @@ package java.math;
  * it represents. A mutable number allows calculations to occur on the same
  * number without having to create a new number for every step of the
  * calculation as occurs with BigIntegers.
- *
  * Note that SignedMutableBigIntegers only support signed addition and
  * subtraction. All other operations occur as with MutableBigIntegers.
  *

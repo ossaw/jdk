@@ -33,9 +33,9 @@ public class UnknownTypeException extends UnknownEntityException {
      * of {@link TypeVisitor} may pass in their additional parameter.
      *
      * @param t
-     *          the unknown type, may be {@code null}
+     *        the unknown type, may be {@code null}
      * @param p
-     *          an additional parameter, may be {@code null}
+     *        an additional parameter, may be {@code null}
      */
     public UnknownTypeException(TypeMirror t, Object p) {
         super("Unknown type: " + t);

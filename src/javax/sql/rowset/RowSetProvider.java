@@ -85,19 +85,16 @@ public class RowSetProvider {
      * </li>
      * <li>Platform default <code>RowSetFactory</code> instance.</li>
      * </ul>
-     *
      * <p>
      * Once an application has obtained a reference to a {@code RowSetFactory},
      * it can use the factory to obtain RowSet instances.
      * </p>
      *
      * @return New instance of a <code>RowSetFactory</code>
-     *
      * @throws SQLException
-     *                      if the default factory class cannot be loaded,
-     *                      instantiated.
-     *                      The cause will be set to actual Exception
-     *
+     *         if the default factory class cannot be loaded,
+     *         instantiated.
+     *         The cause will be set to actual Exception
      * @see ServiceLoader
      * @since 1.7
      */
@@ -110,12 +107,11 @@ public class RowSetProvider {
             factoryClassName = getSystemProperty(ROWSET_FACTORY_NAME);
             if (factoryClassName != null) {
                 trace("Found system property, value=" + factoryClassName);
-                factory = (RowSetFactory) ReflectUtil.newInstance(
-                        getFactoryClass(factoryClassName, null, true));
+                factory = (RowSetFactory) ReflectUtil.newInstance(getFactoryClass(factoryClassName, null,
+                        true));
             }
         } catch (Exception e) {
-            throw new SQLException("RowSetFactory: " + factoryClassName
-                    + " could not be instantiated: ", e);
+            throw new SQLException("RowSetFactory: " + factoryClassName + " could not be instantiated: ", e);
         }
 
         // Check to see if we found the RowSetFactory via a System property
@@ -124,8 +120,7 @@ public class RowSetProvider {
             // look it up via the ServiceLoader API and if not found, use the
             // Java SE default.
             factory = loadViaServiceLoader();
-            factory = factory == null ? newFactory(ROWSET_FACTORY_IMPL, null)
-                    : factory;
+            factory = factory == null ? newFactory(ROWSET_FACTORY_IMPL, null) : factory;
         }
         return (factory);
     }
@@ -137,7 +132,6 @@ public class RowSetProvider {
      * providers in the classpath. It gives more control to the application as
      * it can specify which provider should be loaded.
      * </p>
-     *
      * <p>
      * Once an application has obtained a reference to a
      * <code>RowSetFactory</code> it can use the factory to obtain RowSet
@@ -145,31 +139,25 @@ public class RowSetProvider {
      * </p>
      *
      * @param factoryClassName
-     *                         fully qualified factory class name that provides
-     *                         an
-     *                         implementation of
-     *                         <code>javax.sql.rowset.RowSetFactory</code>.
-     *
+     *        fully qualified factory class name that provides
+     *        an
+     *        implementation of
+     *        <code>javax.sql.rowset.RowSetFactory</code>.
      * @param cl
-     *                         <code>ClassLoader</code> used to load the factory
-     *                         class. If
-     *                         <code>null</code> current <code>Thread</code>'s
-     *                         context
-     *                         classLoader is used to load the factory class.
-     *
+     *        <code>ClassLoader</code> used to load the factory
+     *        class. If
+     *        <code>null</code> current <code>Thread</code>'s
+     *        context
+     *        classLoader is used to load the factory class.
      * @return New instance of a <code>RowSetFactory</code>
-     *
      * @throws SQLException
-     *                      if <code>factoryClassName</code> is
-     *                      <code>null</code>, or the
-     *                      factory class cannot be loaded, instantiated.
-     *
+     *         if <code>factoryClassName</code> is
+     *         <code>null</code>, or the
+     *         factory class cannot be loaded, instantiated.
      * @see #newFactory()
-     *
      * @since 1.7
      */
-    public static RowSetFactory newFactory(String factoryClassName,
-            ClassLoader cl) throws SQLException {
+    public static RowSetFactory newFactory(String factoryClassName, ClassLoader cl) throws SQLException {
 
         trace("***In newInstance()");
 
@@ -183,21 +171,16 @@ public class RowSetProvider {
         }
 
         try {
-            Class<?> providerClass = getFactoryClass(factoryClassName, cl,
-                    false);
-            RowSetFactory instance = (RowSetFactory) providerClass
-                    .newInstance();
+            Class<?> providerClass = getFactoryClass(factoryClassName, cl, false);
+            RowSetFactory instance = (RowSetFactory) providerClass.newInstance();
             if (debug) {
-                trace("Created new instance of " + providerClass
-                        + " using ClassLoader: " + cl);
+                trace("Created new instance of " + providerClass + " using ClassLoader: " + cl);
             }
             return instance;
         } catch (ClassNotFoundException x) {
-            throw new SQLException("Provider " + factoryClassName
-                    + " not found", x);
+            throw new SQLException("Provider " + factoryClassName + " not found", x);
         } catch (Exception x) {
-            throw new SQLException("Provider " + factoryClassName
-                    + " could not be instantiated: " + x, x);
+            throw new SQLException("Provider " + factoryClassName + " could not be instantiated: " + x, x);
         }
     }
 
@@ -205,37 +188,34 @@ public class RowSetProvider {
      * Returns the class loader to be used.
      * @return The ClassLoader to use.
      */
-    static private ClassLoader getContextClassLoader()
-            throws SecurityException {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<ClassLoader>() {
+    static private ClassLoader getContextClassLoader() throws SecurityException {
+        return AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
 
-                    public ClassLoader run() {
-                        ClassLoader cl = null;
+            public ClassLoader run() {
+                ClassLoader cl = null;
 
-                        cl = Thread.currentThread().getContextClassLoader();
+                cl = Thread.currentThread().getContextClassLoader();
 
-                        if (cl == null) {
-                            cl = ClassLoader.getSystemClassLoader();
-                        }
+                if (cl == null) {
+                    cl = ClassLoader.getSystemClassLoader();
+                }
 
-                        return cl;
-                    }
-                });
+                return cl;
+            }
+        });
     }
 
     /**
      * Attempt to load a class using the class loader supplied. If that fails
      * and fall back is enabled, the current (i.e. bootstrap) class loader is
      * tried.
-     *
      * If the class loader supplied is <code>null</code>, first try using the
      * context class loader followed by the current class loader.
      * 
      * @return The class which was loaded
      */
-    static private Class<?> getFactoryClass(String factoryClassName,
-            ClassLoader cl, boolean doFallback) throws ClassNotFoundException {
+    static private Class<?> getFactoryClass(String factoryClassName, ClassLoader cl, boolean doFallback)
+            throws ClassNotFoundException {
         try {
             if (cl == null) {
                 cl = getContextClassLoader();
@@ -250,8 +230,7 @@ public class RowSetProvider {
         } catch (ClassNotFoundException e) {
             if (doFallback) {
                 // Use current class loader
-                return Class.forName(factoryClassName, true, RowSetFactory.class
-                        .getClassLoader());
+                return Class.forName(factoryClassName, true, RowSetFactory.class.getClassLoader());
             } else {
                 throw e;
             }
@@ -267,17 +246,14 @@ public class RowSetProvider {
         RowSetFactory theFactory = null;
         try {
             trace("***in loadViaServiceLoader():");
-            for (RowSetFactory factory : ServiceLoader.load(
-                    javax.sql.rowset.RowSetFactory.class)) {
-                trace(" Loading done by the java.util.ServiceLoader :" + factory
-                        .getClass().getName());
+            for (RowSetFactory factory : ServiceLoader.load(javax.sql.rowset.RowSetFactory.class)) {
+                trace(" Loading done by the java.util.ServiceLoader :" + factory.getClass().getName());
                 theFactory = factory;
                 break;
             }
         } catch (ServiceConfigurationError e) {
-            throw new SQLException(
-                    "RowSetFactory: Error locating RowSetFactory using Service "
-                            + "Loader API: " + e, e);
+            throw new SQLException("RowSetFactory: Error locating RowSetFactory using Service "
+                    + "Loader API: " + e, e);
         }
         return theFactory;
 
@@ -288,20 +264,19 @@ public class RowSetProvider {
      * occurs, just return NULL
      * 
      * @param propName
-     *                 - System property to retrieve
+     *        - System property to retrieve
      * @return The System property value or NULL if the property does not exist
      *         or a {@code SecurityException} occurs.
      */
     static private String getSystemProperty(final String propName) {
         String property = null;
         try {
-            property = AccessController.doPrivileged(
-                    new PrivilegedAction<String>() {
+            property = AccessController.doPrivileged(new PrivilegedAction<String>() {
 
-                        public String run() {
-                            return System.getProperty(propName);
-                        }
-                    }, null, new PropertyPermission(propName, "read"));
+                public String run() {
+                    return System.getProperty(propName);
+                }
+            }, null, new PropertyPermission(propName, "read"));
         } catch (SecurityException se) {
             trace("error getting " + propName + ":  " + se);
             if (debug) {
@@ -316,7 +291,7 @@ public class RowSetProvider {
      * -Djavax.sql.rowset.RowSetFactory.debug is set
      * 
      * @param msg
-     *            - The debug message to display
+     *        - The debug message to display
      */
     private static void trace(String msg) {
         if (debug) {

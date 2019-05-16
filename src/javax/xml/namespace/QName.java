@@ -20,12 +20,10 @@ import javax.xml.XMLConstants;
  * XML</a>, <a href="http://www.w3.org/XML/xml-names-19990114-errata">Namespaces
  * in XML Errata</a>.
  * </p>
- *
  * <p>
  * The value of a <code>QName</code> contains a <strong>Namespace URI</strong>,
  * <strong>local part</strong> and <strong>prefix</strong>.
  * </p>
- *
  * <p>
  * The prefix is included in <code>QName</code> to retain lexical information
  * <strong><em>when present</em></strong> in an
@@ -35,7 +33,6 @@ import javax.xml.XMLConstants;
  * code are defined using <strong><em>only</em></strong> the Namespace URI and
  * local part.
  * </p>
- *
  * <p>
  * If not specified, the Namespace URI is set to
  * {@link javax.xml.XMLConstants#NULL_NS_URI XMLConstants.NULL_NS_URI}. If not
@@ -43,7 +40,6 @@ import javax.xml.XMLConstants;
  * {@link javax.xml.XMLConstants#DEFAULT_NS_PREFIX
  * XMLConstants.DEFAULT_NS_PREFIX}.
  * </p>
- *
  * <p>
  * <code>QName</code> is immutable.
  * </p>
@@ -65,20 +61,16 @@ public class QName implements Serializable {
      * <p>
      * Stream Unique Identifier.
      * </p>
-     *
      * <p>
      * Due to a historical defect, QName was released with multiple
      * serialVersionUID values even though its serialization was the same.
      * </p>
-     *
      * <p>
      * To workaround this issue, serialVersionUID is set with either a default
      * value or a compatibility value. To use the compatiblity value, set the
      * system property:
      * </p>
-     *
      * <code>com.sun.xml.namespace.QName.useCompatibleSerialVersionUID=1.0</code>
-     *
      * <p>
      * This workaround was inspired by classes in the javax.management package,
      * e.g. ObjectName, etc. See CR6267224 for original defect report.
@@ -106,16 +98,15 @@ public class QName implements Serializable {
     static {
         try {
             // use a privileged block as reading a system property
-            String valueUseCompatibleSerialVersionUID = (String) AccessController
-                    .doPrivileged(new PrivilegedAction() {
+            String valueUseCompatibleSerialVersionUID = (String) AccessController.doPrivileged(
+                    new PrivilegedAction() {
                         public Object run() {
                             return System.getProperty(
                                     "com.sun.xml.namespace.QName.useCompatibleSerialVersionUID");
                         }
                     });
             useDefaultSerialVersionUID = (valueUseCompatibleSerialVersionUID != null
-                    && valueUseCompatibleSerialVersionUID.equals("1.0")) ? false
-                            : true;
+                    && valueUseCompatibleSerialVersionUID.equals("1.0")) ? false : true;
         } catch (Exception exception) {
             // use default if any Exceptions
             useDefaultSerialVersionUID = true;
@@ -155,7 +146,6 @@ public class QName implements Serializable {
      * <code>QName</code> constructor specifying the Namespace URI and local
      * part.
      * </p>
-     *
      * <p>
      * If the Namespace URI is <code>null</code>, it is set to
      * {@link javax.xml.XMLConstants#NULL_NS_URI XMLConstants.NULL_NS_URI}. This
@@ -166,19 +156,16 @@ public class QName implements Serializable {
      * {@link javax.xml.XMLConstants#NULL_NS_URI XMLConstants.NULL_NS_URI} value
      * is the preferred coding style.
      * </p>
-     *
      * <p>
      * If the local part is <code>null</code> an
      * <code>IllegalArgumentException</code> is thrown. A local part of "" is
      * allowed to preserve compatible behavior with QName 1.0.
      * </p>
-     *
      * <p>
      * When using this constructor, the prefix is set to
      * {@link javax.xml.XMLConstants#DEFAULT_NS_PREFIX
      * XMLConstants.DEFAULT_NS_PREFIX}.
      * </p>
-     *
      * <p>
      * The Namespace URI is not validated as a
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">URI reference</a>. The
@@ -189,14 +176,12 @@ public class QName implements Serializable {
      * </p>
      *
      * @param namespaceURI
-     *                     Namespace URI of the <code>QName</code>
+     *        Namespace URI of the <code>QName</code>
      * @param localPart
-     *                     local part of the <code>QName</code>
-     *
+     *        local part of the <code>QName</code>
      * @throws IllegalArgumentException
-     *                                  When <code>localPart</code> is
-     *                                  <code>null</code>
-     *
+     *         When <code>localPart</code> is
+     *         <code>null</code>
      * @see #QName(String namespaceURI, String localPart, String prefix)
      *      QName(String namespaceURI, String localPart, String prefix)
      */
@@ -209,7 +194,6 @@ public class QName implements Serializable {
      * <code>QName</code> constructor specifying the Namespace URI, local part
      * and prefix.
      * </p>
-     *
      * <p>
      * If the Namespace URI is <code>null</code>, it is set to
      * {@link javax.xml.XMLConstants#NULL_NS_URI XMLConstants.NULL_NS_URI}. This
@@ -220,13 +204,11 @@ public class QName implements Serializable {
      * {@link javax.xml.XMLConstants#NULL_NS_URI XMLConstants.NULL_NS_URI} value
      * is the preferred coding style.
      * </p>
-     *
      * <p>
      * If the local part is <code>null</code> an
      * <code>IllegalArgumentException</code> is thrown. A local part of "" is
      * allowed to preserve compatible behavior with QName 1.0.
      * </p>
-     *
      * <p>
      * If the prefix is <code>null</code>, an
      * <code>IllegalArgumentException</code> is thrown. Use
@@ -234,7 +216,6 @@ public class QName implements Serializable {
      * XMLConstants.DEFAULT_NS_PREFIX} to explicitly indicate that no prefix is
      * present or the prefix is not relevant.
      * </p>
-     *
      * <p>
      * The Namespace URI is not validated as a
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">URI reference</a>. The
@@ -245,16 +226,15 @@ public class QName implements Serializable {
      * </p>
      *
      * @param namespaceURI
-     *                     Namespace URI of the <code>QName</code>
+     *        Namespace URI of the <code>QName</code>
      * @param localPart
-     *                     local part of the <code>QName</code>
+     *        local part of the <code>QName</code>
      * @param prefix
-     *                     prefix of the <code>QName</code>
-     *
+     *        prefix of the <code>QName</code>
      * @throws IllegalArgumentException
-     *                                  When <code>localPart</code> or
-     *                                  <code>prefix</code> is
-     *                                  <code>null</code>
+     *         When <code>localPart</code> or
+     *         <code>prefix</code> is
+     *         <code>null</code>
      */
     public QName(String namespaceURI, String localPart, String prefix) {
 
@@ -269,15 +249,13 @@ public class QName implements Serializable {
         // local part is required.
         // "" is allowed to preserve compatibility with QName 1.0
         if (localPart == null) {
-            throw new IllegalArgumentException(
-                    "local part cannot be \"null\" when creating a QName");
+            throw new IllegalArgumentException("local part cannot be \"null\" when creating a QName");
         }
         this.localPart = localPart;
 
         // prefix is required
         if (prefix == null) {
-            throw new IllegalArgumentException(
-                    "prefix cannot be \"null\" when creating a QName");
+            throw new IllegalArgumentException("prefix cannot be \"null\" when creating a QName");
         }
         this.prefix = prefix;
     }
@@ -286,20 +264,17 @@ public class QName implements Serializable {
      * <p>
      * <code>QName</code> constructor specifying the local part.
      * </p>
-     *
      * <p>
      * If the local part is <code>null</code> an
      * <code>IllegalArgumentException</code> is thrown. A local part of "" is
      * allowed to preserve compatible behavior with QName 1.0.
      * </p>
-     *
      * <p>
      * When using this constructor, the Namespace URI is set to
      * {@link javax.xml.XMLConstants#NULL_NS_URI XMLConstants.NULL_NS_URI} and
      * the prefix is set to {@link javax.xml.XMLConstants#DEFAULT_NS_PREFIX
      * XMLConstants.DEFAULT_NS_PREFIX}.
      * </p>
-     *
      * <p>
      * <em>In an XML context, all Element and Attribute names exist
      * in the context of a Namespace. Making this explicit during the
@@ -310,7 +285,6 @@ public class QName implements Serializable {
      * {@link #QName(String namespaceURI, String localPart, String prefix)} are
      * preferred.</em>
      * </p>
-     *
      * <p>
      * The local part is not validated as a
      * <a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a> as
@@ -319,20 +293,17 @@ public class QName implements Serializable {
      * </p>
      *
      * @param localPart
-     *                  local part of the <code>QName</code>
-     *
+     *        local part of the <code>QName</code>
      * @throws IllegalArgumentException
-     *                                  When <code>localPart</code> is
-     *                                  <code>null</code>
-     *
+     *         When <code>localPart</code> is
+     *         <code>null</code>
      * @see #QName(String namespaceURI, String localPart) QName(String
      *      namespaceURI, String localPart)
      * @see #QName(String namespaceURI, String localPart, String prefix)
      *      QName(String namespaceURI, String localPart, String prefix)
      */
     public QName(String localPart) {
-        this(XMLConstants.NULL_NS_URI, localPart,
-                XMLConstants.DEFAULT_NS_PREFIX);
+        this(XMLConstants.NULL_NS_URI, localPart, XMLConstants.DEFAULT_NS_PREFIX);
     }
 
     /**
@@ -361,7 +332,6 @@ public class QName implements Serializable {
      * <p>
      * Get the prefix of this <code>QName</code>.
      * </p>
-     *
      * <p>
      * The prefix assigned to a <code>QName</code> might <strong>
      * <em>NOT</em></strong> be valid in a different context. For example, a
@@ -381,12 +351,10 @@ public class QName implements Serializable {
      * Test this <code>QName</code> for equality with another
      * <code>Object</code>.
      * </p>
-     *
      * <p>
      * If the <code>Object</code> to be tested is not a <code>QName</code> or is
      * <code>null</code>, then this method returns <code>false</code>.
      * </p>
-     *
      * <p>
      * Two <code>QName</code>s are considered equal if and only if both the
      * Namespace URI and local part are equal. This method uses
@@ -394,16 +362,15 @@ public class QName implements Serializable {
      * local part. The prefix is <strong><em>NOT</em></strong> used to determine
      * equality.
      * </p>
-     *
      * <p>
      * This method satisfies the general contract of
      * {@link java.lang.Object#equals(Object) Object.equals(Object)}
      * </p>
      *
      * @param objectToTest
-     *                     the <code>Object</code> to test for equality with
-     *                     this
-     *                     <code>QName</code>
+     *        the <code>Object</code> to test for equality with
+     *        this
+     *        <code>QName</code>
      * @return <code>true</code> if the given <code>Object</code> is equal to
      *         this <code>QName</code> else <code>false</code>
      */
@@ -418,21 +385,18 @@ public class QName implements Serializable {
 
         QName qName = (QName) objectToTest;
 
-        return localPart.equals(qName.localPart) && namespaceURI.equals(
-                qName.namespaceURI);
+        return localPart.equals(qName.localPart) && namespaceURI.equals(qName.namespaceURI);
     }
 
     /**
      * <p>
      * Generate the hash code for this <code>QName</code>.
      * </p>
-     *
      * <p>
      * The hash code is calculated using both the Namespace URI and the local
      * part of the <code>QName</code>. The prefix is <strong>
      * <em>NOT</em></strong> used to calculate the hash code.
      * </p>
-     *
      * <p>
      * This method satisfies the general contract of
      * {@link java.lang.Object#hashCode() Object.hashCode()}.
@@ -448,7 +412,6 @@ public class QName implements Serializable {
      * <p>
      * <code>String</code> representation of this <code>QName</code>.
      * </p>
-     *
      * <p>
      * The commonly accepted way of representing a <code>QName</code> as a
      * <code>String</code> was
@@ -462,12 +425,10 @@ public class QName implements Serializable {
      * returned. An appropriate use of this method is for debugging or logging
      * for human consumption.
      * </p>
-     *
      * <p>
      * Note the prefix value is <strong><em>NOT</em></strong> returned as part
      * of the <code>String</code> representation.
      * </p>
-     *
      * <p>
      * This method satisfies the general contract of
      * {@link java.lang.Object#toString() Object.toString()}.
@@ -488,18 +449,15 @@ public class QName implements Serializable {
      * <code>QName</code> derived from parsing the formatted <code>String</code>
      * .
      * </p>
-     *
      * <p>
      * If the <code>String</code> is <code>null</code> or does not conform to
      * {@link #toString() QName.toString()} formatting, an
      * <code>IllegalArgumentException</code> is thrown.
      * </p>
-     *
      * <p>
      * <em>The <code>String</code> <strong>MUST</strong> be in the form returned
      * by {@link #toString() QName.toString()}.</em>
      * </p>
-     *
      * <p>
      * The commonly accepted way of representing a <code>QName</code> as a
      * <code>String</code> was
@@ -512,14 +470,12 @@ public class QName implements Serializable {
      * <code>.equals(XMLConstants.NULL_NS_URI)</code>, only the local part
      * should be provided.
      * </p>
-     *
      * <p>
      * The prefix value <strong><em>CANNOT</em></strong> be represented in the
      * <code>String</code> and will be set to
      * {@link javax.xml.XMLConstants#DEFAULT_NS_PREFIX
      * XMLConstants.DEFAULT_NS_PREFIX}.
      * </p>
-     *
      * <p>
      * This method does not do full validation of the resulting
      * <code>QName</code>.
@@ -533,14 +489,12 @@ public class QName implements Serializable {
      * </p>
      *
      * @param qNameAsString
-     *                      <code>String</code> representation of the
-     *                      <code>QName</code>
-     *
+     *        <code>String</code> representation of the
+     *        <code>QName</code>
      * @throws IllegalArgumentException
-     *                                  When <code>qNameAsString</code> is
-     *                                  <code>null</code> or
-     *                                  malformed
-     *
+     *         When <code>qNameAsString</code> is
+     *         <code>null</code> or
+     *         malformed
      * @return <code>QName</code> corresponding to the given <code>String</code>
      * @see #toString() QName.toString()
      */
@@ -548,41 +502,34 @@ public class QName implements Serializable {
 
         // null is not valid
         if (qNameAsString == null) {
-            throw new IllegalArgumentException(
-                    "cannot create QName from \"null\" or \"\" String");
+            throw new IllegalArgumentException("cannot create QName from \"null\" or \"\" String");
         }
 
         // "" local part is valid to preserve compatible behavior with QName 1.0
         if (qNameAsString.length() == 0) {
-            return new QName(XMLConstants.NULL_NS_URI, qNameAsString,
-                    XMLConstants.DEFAULT_NS_PREFIX);
+            return new QName(XMLConstants.NULL_NS_URI, qNameAsString, XMLConstants.DEFAULT_NS_PREFIX);
         }
 
         // local part only?
         if (qNameAsString.charAt(0) != '{') {
-            return new QName(XMLConstants.NULL_NS_URI, qNameAsString,
-                    XMLConstants.DEFAULT_NS_PREFIX);
+            return new QName(XMLConstants.NULL_NS_URI, qNameAsString, XMLConstants.DEFAULT_NS_PREFIX);
         }
 
         // Namespace URI improperly specified?
         if (qNameAsString.startsWith("{" + XMLConstants.NULL_NS_URI + "}")) {
-            throw new IllegalArgumentException(
-                    "Namespace URI .equals(XMLConstants.NULL_NS_URI), "
-                            + ".equals(\"" + XMLConstants.NULL_NS_URI + "\"), "
-                            + "only the local part, " + "\"" + qNameAsString
-                                    .substring(2 + XMLConstants.NULL_NS_URI
-                                            .length()) + "\", "
-                            + "should be provided.");
+            throw new IllegalArgumentException("Namespace URI .equals(XMLConstants.NULL_NS_URI), "
+                    + ".equals(\"" + XMLConstants.NULL_NS_URI + "\"), " + "only the local part, " + "\""
+                    + qNameAsString.substring(2 + XMLConstants.NULL_NS_URI.length()) + "\", "
+                    + "should be provided.");
         }
 
         // Namespace URI and local part specified
         int endOfNamespaceURI = qNameAsString.indexOf('}');
         if (endOfNamespaceURI == -1) {
-            throw new IllegalArgumentException("cannot create QName from \""
-                    + qNameAsString + "\", missing closing \"}\"");
+            throw new IllegalArgumentException("cannot create QName from \"" + qNameAsString
+                    + "\", missing closing \"}\"");
         }
-        return new QName(qNameAsString.substring(1, endOfNamespaceURI),
-                qNameAsString.substring(endOfNamespaceURI + 1),
-                XMLConstants.DEFAULT_NS_PREFIX);
+        return new QName(qNameAsString.substring(1, endOfNamespaceURI), qNameAsString.substring(
+                endOfNamespaceURI + 1), XMLConstants.DEFAULT_NS_PREFIX);
     }
 }

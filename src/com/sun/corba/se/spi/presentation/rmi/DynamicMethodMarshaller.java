@@ -17,7 +17,6 @@ import com.sun.corba.se.spi.orb.ORB;
 
 /**
  * Used to read and write arguments and results for a particular method.
- *
  */
 public interface DynamicMethodMarshaller {
     /**

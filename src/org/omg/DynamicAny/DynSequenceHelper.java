@@ -14,8 +14,7 @@ package org.omg.DynamicAny;
 abstract public class DynSequenceHelper {
     private static String _id = "IDL:omg.org/DynamicAny/DynSequence:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.DynamicAny.DynSequence that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.DynamicAny.DynSequence that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -30,8 +29,8 @@ abstract public class DynSequenceHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.DynamicAny.DynSequenceHelper.id(), "DynSequence");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.DynamicAny.DynSequenceHelper
+                    .id(), "DynSequence");
         }
         return __typeCode;
     }
@@ -40,8 +39,7 @@ abstract public class DynSequenceHelper {
         return _id;
     }
 
-    public static org.omg.DynamicAny.DynSequence read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.DynamicAny.DynSequence read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -50,8 +48,7 @@ abstract public class DynSequenceHelper {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static org.omg.DynamicAny.DynSequence narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.DynamicAny.DynSequence narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.DynamicAny.DynSequence)
@@ -67,8 +64,7 @@ abstract public class DynSequenceHelper {
         }
     }
 
-    public static org.omg.DynamicAny.DynSequence unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.DynamicAny.DynSequence unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.DynamicAny.DynSequence)

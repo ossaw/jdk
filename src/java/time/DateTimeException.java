@@ -37,7 +37,6 @@ package java.time;
  * manipulating date-time objects.
  *
  * @implSpec This class is intended for use in a single thread.
- *
  * @since 1.8
  */
 public class DateTimeException extends RuntimeException {
@@ -51,7 +50,7 @@ public class DateTimeException extends RuntimeException {
      * Constructs a new date-time exception with the specified message.
      *
      * @param message
-     *                the message to use for this exception, may be null
+     *        the message to use for this exception, may be null
      */
     public DateTimeException(String message) {
         super(message);
@@ -62,9 +61,9 @@ public class DateTimeException extends RuntimeException {
      * cause.
      *
      * @param message
-     *                the message to use for this exception, may be null
+     *        the message to use for this exception, may be null
      * @param cause
-     *                the cause of the exception, may be null
+     *        the cause of the exception, may be null
      */
     public DateTimeException(String message, Throwable cause) {
         super(message, cause);

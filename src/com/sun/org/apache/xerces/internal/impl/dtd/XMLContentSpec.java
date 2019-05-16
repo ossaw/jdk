@@ -99,7 +99,6 @@ package com.sun.org.apache.xerces.internal.impl.dtd;
  * content models.
  *
  * @xerces.internal
- *
  */
 public class XMLContentSpec {
 
@@ -217,8 +216,7 @@ public class XMLContentSpec {
      * Constructs a content spec from the values specified by the given content
      * spec provider and identifier.
      */
-    public XMLContentSpec(XMLContentSpec.Provider provider,
-            int contentSpecIndex) {
+    public XMLContentSpec(XMLContentSpec.Provider provider, int contentSpecIndex) {
         setValues(provider, contentSpecIndex);
     }
 
@@ -252,8 +250,7 @@ public class XMLContentSpec {
      * provider and identifier. If the specified content spec cannot be
      * provided, the values of this content spec are cleared.
      */
-    public void setValues(XMLContentSpec.Provider provider,
-            int contentSpecIndex) {
+    public void setValues(XMLContentSpec.Provider provider, int contentSpecIndex) {
         if (!provider.getContentSpec(contentSpecIndex, this)) {
             clear();
         }
@@ -302,17 +299,15 @@ public class XMLContentSpec {
          * information for a unique identifier.
          *
          * @param contentSpecIndex
-         *                         The content spec identifier. All content spec
-         *                         "nodes" have
-         *                         a unique identifier.
+         *        The content spec identifier. All content spec
+         *        "nodes" have
+         *        a unique identifier.
          * @param contentSpec
-         *                         The content spec struct to fill in with the
-         *                         information.
-         *
+         *        The content spec struct to fill in with the
+         *        information.
          * @return Returns true if the contentSpecIndex was found.
          */
-        public boolean getContentSpec(int contentSpecIndex,
-                XMLContentSpec contentSpec);
+        public boolean getContentSpec(int contentSpecIndex, XMLContentSpec contentSpec);
 
     } // interface Provider
 

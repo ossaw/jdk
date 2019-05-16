@@ -8,14 +8,7 @@
 package java.nio;
 
 /**
- * 
  * A read/write HeapLongBuffer.
- * 
- * 
- * 
- * 
- * 
- * 
  */
 
 class HeapLongBuffer extends LongBuffer {
@@ -44,8 +37,7 @@ class HeapLongBuffer extends LongBuffer {
 
     }
 
-    protected HeapLongBuffer(long[] buf, int mark, int pos, int lim, int cap,
-            int off) {
+    protected HeapLongBuffer(long[] buf, int mark, int pos, int lim, int cap, int off) {
 
         super(mark, pos, lim, cap, buf, off);
         /*
@@ -55,19 +47,18 @@ class HeapLongBuffer extends LongBuffer {
     }
 
     public LongBuffer slice() {
-        return new HeapLongBuffer(hb, -1, 0, this.remaining(), this.remaining(),
-                this.position() + offset);
+        return new HeapLongBuffer(hb, -1, 0, this.remaining(), this.remaining(), this.position() + offset);
     }
 
     public LongBuffer duplicate() {
-        return new HeapLongBuffer(hb, this.markValue(), this.position(), this
-                .limit(), this.capacity(), offset);
+        return new HeapLongBuffer(hb, this.markValue(), this.position(), this.limit(), this.capacity(),
+                offset);
     }
 
     public LongBuffer asReadOnlyBuffer() {
 
-        return new HeapLongBufferR(hb, this.markValue(), this.position(), this
-                .limit(), this.capacity(), offset);
+        return new HeapLongBufferR(hb, this.markValue(), this.position(), this.limit(), this.capacity(),
+                offset);
 
     }
 
@@ -134,8 +125,7 @@ class HeapLongBuffer extends LongBuffer {
             int n = sb.remaining();
             if (n > remaining())
                 throw new BufferOverflowException();
-            System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()),
-                    n);
+            System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()), n);
             sb.position(sb.position() + n);
             position(position() + n);
         } else if (src.isDirect()) {

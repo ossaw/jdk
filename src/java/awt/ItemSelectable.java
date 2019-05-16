@@ -28,7 +28,7 @@ public interface ItemSelectable {
      * thrown and no action is performed.
      *
      * @param l
-     *          the listener to receive events
+     *        the listener to receive events
      * @see ItemEvent
      */
     public void addItemListener(ItemListener l);
@@ -38,7 +38,7 @@ public interface ItemSelectable {
      * exception is thrown and no action is performed.
      *
      * @param l
-     *          the listener being removed
+     *        the listener being removed
      * @see ItemEvent
      */
     public void removeItemListener(ItemListener l);

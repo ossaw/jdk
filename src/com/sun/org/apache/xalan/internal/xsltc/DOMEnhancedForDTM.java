@@ -28,7 +28,6 @@ package com.sun.org.apache.xalan.internal.xsltc;
  * implementations, rather than hard-wiring XSLTC to SAXImpl.
  *
  * @author Joseph Kesselman
- *
  */
 public interface DOMEnhancedForDTM extends DOM {
     public short[] getMapping(String[] names, String[] uris, int[] types);

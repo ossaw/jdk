@@ -152,14 +152,12 @@ public final class URLPermission extends Permission {
      * is as specified above.
      *
      * @param url
-     *                the url string
-     *
+     *        the url string
      * @param actions
-     *                the actions string
-     *
+     *        the actions string
      * @exception IllegalArgumentException
-     *                                     if url is invalid or if actions
-     *                                     contains white-space.
+     *            if url is invalid or if actions
+     *            contains white-space.
      */
     public URLPermission(String url, String actions) {
         super(url);
@@ -170,8 +168,7 @@ public final class URLPermission extends Permission {
         parseURI(getName());
         int colon = actions.indexOf(':');
         if (actions.lastIndexOf(':') != colon) {
-            throw new IllegalArgumentException("Invalid actions string: \""
-                    + actions + "\"");
+            throw new IllegalArgumentException("Invalid actions string: \"" + actions + "\"");
         }
 
         String methods, headers;
@@ -200,11 +197,10 @@ public final class URLPermission extends Permission {
      * follows: URLPermission(url, "*:*")
      *
      * @param url
-     *            the url string
-     *
+     *        the url string
      * @throws IllegalArgumentException
-     *                                  if url does not result in a valid
-     *                                  {@link URI}
+     *         if url does not result in a valid
+     *         {@link URI}
      */
     public URLPermission(String url) {
         this(url, "*:*");
@@ -299,8 +295,8 @@ public final class URLPermission extends Permission {
 
         URLPermission that = (URLPermission) p;
 
-        if (!this.methods.get(0).equals("*") && Collections.indexOfSubList(
-                this.methods, that.methods) == -1) {
+        if (!this.methods.get(0).equals("*") && Collections.indexOfSubList(this.methods,
+                that.methods) == -1) {
             return false;
         }
 
@@ -308,9 +304,8 @@ public final class URLPermission extends Permission {
             return false;
         }
 
-        if (!this.requestHeaders.isEmpty() && !this.requestHeaders.get(0)
-                .equals("*") && Collections.indexOfSubList(this.requestHeaders,
-                        that.requestHeaders) == -1) {
+        if (!this.requestHeaders.isEmpty() && !this.requestHeaders.get(0).equals("*") && Collections
+                .indexOfSubList(this.requestHeaders, that.requestHeaders) == -1) {
             return false;
         }
 
@@ -386,8 +381,8 @@ public final class URLPermission extends Permission {
      * the url string.
      */
     public int hashCode() {
-        return getActions().hashCode() + scheme.hashCode() + authority
-                .hashCode() + (path == null ? 0 : path.hashCode());
+        return getActions().hashCode() + scheme.hashCode() + authority.hashCode() + (path == null ? 0
+                : path.hashCode());
     }
 
     private List<String> normalizeMethods(String methods) {
@@ -401,9 +396,7 @@ public final class URLPermission extends Permission {
                     l.add(s);
                 b = new StringBuilder();
             } else if (c == ' ' || c == '\t') {
-                throw new IllegalArgumentException(
-                        "White space not allowed in methods: \"" + methods
-                                + "\"");
+                throw new IllegalArgumentException("White space not allowed in methods: \"" + methods + "\"");
             } else {
                 if (c >= 'a' && c <= 'z') {
                     c += 'A' - 'a';
@@ -430,9 +423,7 @@ public final class URLPermission extends Permission {
                 }
                 b.append(c);
             } else if (c == ' ' || c == '\t') {
-                throw new IllegalArgumentException(
-                        "White space not allowed in headers: \"" + headers
-                                + "\"");
+                throw new IllegalArgumentException("White space not allowed in headers: \"" + headers + "\"");
             } else if (c == '-') {
                 capitalizeNext = true;
                 b.append(c);
@@ -457,16 +448,14 @@ public final class URLPermission extends Permission {
         int len = url.length();
         int delim = url.indexOf(':');
         if (delim == -1 || delim + 1 == len) {
-            throw new IllegalArgumentException("Invalid URL string: \"" + url
-                    + "\"");
+            throw new IllegalArgumentException("Invalid URL string: \"" + url + "\"");
         }
         scheme = url.substring(0, delim).toLowerCase();
         this.ssp = url.substring(delim + 1);
 
         if (!ssp.startsWith("//")) {
             if (!ssp.equals("*")) {
-                throw new IllegalArgumentException("Invalid URL string: \""
-                        + url + "\"");
+                throw new IllegalArgumentException("Invalid URL string: \"" + url + "\"");
             }
             this.authority = new Authority(scheme, "*");
             return;
@@ -500,8 +489,7 @@ public final class URLPermission extends Permission {
     /**
      * restore the state of this object from stream
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         ObjectInputStream.GetField fields = s.readFields();
         String actions = (String) fields.get("actions", null);
 

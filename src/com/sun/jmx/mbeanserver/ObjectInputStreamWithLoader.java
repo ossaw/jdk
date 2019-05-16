@@ -23,20 +23,18 @@ class ObjectInputStreamWithLoader extends ObjectInputStream {
 
     /**
      * @exception IOException
-     *                                     Signals that an I/O exception of some
-     *                                     sort has occurred.
+     *            Signals that an I/O exception of some
+     *            sort has occurred.
      * @exception StreamCorruptedException
-     *                                     The object stream is corrupt.
+     *            The object stream is corrupt.
      */
-    public ObjectInputStreamWithLoader(InputStream in, ClassLoader theLoader)
-            throws IOException {
+    public ObjectInputStreamWithLoader(InputStream in, ClassLoader theLoader) throws IOException {
         super(in);
         this.loader = theLoader;
     }
 
     @Override
-    protected Class<?> resolveClass(ObjectStreamClass aClass)
-            throws IOException, ClassNotFoundException {
+    protected Class<?> resolveClass(ObjectStreamClass aClass) throws IOException, ClassNotFoundException {
         if (loader == null) {
             return super.resolveClass(aClass);
         } else {

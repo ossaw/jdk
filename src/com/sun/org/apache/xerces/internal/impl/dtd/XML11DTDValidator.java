@@ -58,7 +58,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLComponentManager;
  * This allows the validator to correctlyhandle XML 1.1 documents.
  *
  * @xerces.internal
- *
  * @author Neil Graham
  */
 public class XML11DTDValidator extends XMLDTDValidator {
@@ -85,8 +84,7 @@ public class XML11DTDValidator extends XMLDTDValidator {
     // will try and use...
     public void reset(XMLComponentManager manager) {
         XMLDTDValidator curr = null;
-        if ((curr = (XMLDTDValidator) manager.getProperty(
-                DTD_VALIDATOR_PROPERTY)) != null && curr != this) {
+        if ((curr = (XMLDTDValidator) manager.getProperty(DTD_VALIDATOR_PROPERTY)) != null && curr != this) {
             fGrammarBucket = curr.getGrammarBucket();
         }
         super.reset(manager);
@@ -99,14 +97,10 @@ public class XML11DTDValidator extends XMLDTDValidator {
 
             try {
                 fValID = fDatatypeValidatorFactory.getBuiltInDV("XML11ID");
-                fValIDRef = fDatatypeValidatorFactory.getBuiltInDV(
-                        "XML11IDREF");
-                fValIDRefs = fDatatypeValidatorFactory.getBuiltInDV(
-                        "XML11IDREFS");
-                fValNMTOKEN = fDatatypeValidatorFactory.getBuiltInDV(
-                        "XML11NMTOKEN");
-                fValNMTOKENS = fDatatypeValidatorFactory.getBuiltInDV(
-                        "XML11NMTOKENS");
+                fValIDRef = fDatatypeValidatorFactory.getBuiltInDV("XML11IDREF");
+                fValIDRefs = fDatatypeValidatorFactory.getBuiltInDV("XML11IDREFS");
+                fValNMTOKEN = fDatatypeValidatorFactory.getBuiltInDV("XML11NMTOKEN");
+                fValNMTOKENS = fDatatypeValidatorFactory.getBuiltInDV("XML11NMTOKENS");
 
             } catch (Exception e) {
                 // should never happen

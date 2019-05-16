@@ -75,15 +75,13 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * message is a class name. Used for internal errors in the
                  * processor.
                  */
-                { BasisLibrary.RUN_TIME_INTERNAL_ERR,
-                        "Internt exekveringsfel i ''{0}''" },
+                { BasisLibrary.RUN_TIME_INTERNAL_ERR, "Internt exekveringsfel i ''{0}''" },
 
                 /*
                  * Note to translators: <xsl:copy> is a keyword that should not
                  * be translated.
                  */
-                { BasisLibrary.RUN_TIME_COPY_ERR,
-                        "Exekveringsexekveringsfel av <xsl:copy>." },
+                { BasisLibrary.RUN_TIME_COPY_ERR, "Exekveringsexekveringsfel av <xsl:copy>." },
 
                 /*
                  * Note to translators: The substitution text refers to data
@@ -91,8 +89,7 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Ogiltig konvertering fr\u00E5n ''{0}'' till ''{1}''." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Ogiltig konvertering fr\u00E5n ''{0}'' till ''{1}''." },
 
                 /*
                  * Note to translators: This message is displayed if the
@@ -107,8 +104,7 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * are compared for equality, but the data type of one of the
                  * values is unknown.
                  */
-                { BasisLibrary.EQUALITY_EXPR_ERR,
-                        "Ok\u00E4nd argumenttyp i likhetsuttryck." },
+                { BasisLibrary.EQUALITY_EXPR_ERR, "Ok\u00E4nd argumenttyp i likhetsuttryck." },
 
                 /*
                  * Note to translators: The substitution text for {0} will be a
@@ -133,8 +129,7 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * error situation in XSLTC. The processor was unable to create
                  * a copy of an iterator. (See definition of iterator above.)
                  */
-                { BasisLibrary.ITERATOR_CLONE_ERR,
-                        "Kan inte klona iteratorn ''{0}''." },
+                { BasisLibrary.ITERATOR_CLONE_ERR, "Kan inte klona iteratorn ''{0}''." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -142,8 +137,7 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "Iteratorn f\u00F6r axeln ''{0}'' underst\u00F6ds inte." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "Iteratorn f\u00F6r axeln ''{0}'' underst\u00F6ds inte." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -161,8 +155,7 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "Attributet ''{0}'' finns utanf\u00F6r elementet." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "Attributet ''{0}'' finns utanf\u00F6r elementet." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -211,16 +204,14 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * Note to translators: The substitution text is the URI that
                  * was in error.
                  */
-                { BasisLibrary.CANT_RESOLVE_RELATIVE_URI_ERR,
-                        "Kunde inte matcha URI-referensen ''{0}''." },
+                { BasisLibrary.CANT_RESOLVE_RELATIVE_URI_ERR, "Kunde inte matcha URI-referensen ''{0}''." },
 
                 /*
                  * Note to translators: The stylesheet contained an element that
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "XSL-elementet ''{0}'' st\u00F6ds inte" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "XSL-elementet ''{0}'' st\u00F6ds inte" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -228,8 +219,7 @@ public class ErrorMessages_sv extends ListResourceBundle {
                  * but XSLTC does not recognize the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { BasisLibrary.UNSUPPORTED_EXT_ERR,
-                        "XSLTC-till\u00E4gget ''{0}'' \u00E4r ok\u00E4nt" },
+                { BasisLibrary.UNSUPPORTED_EXT_ERR, "XSLTC-till\u00E4gget ''{0}'' \u00E4r ok\u00E4nt" },
 
                 /*
                  * Note to translators: This error message is produced if the

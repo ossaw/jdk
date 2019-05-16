@@ -24,16 +24,14 @@ package org.omg.PortableServer;
 abstract public class ServantLocatorHelper {
     private static String _id = "IDL:omg.org/PortableServer/ServantLocator:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.PortableServer.ServantLocator that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.PortableServer.ServantLocator that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.PortableServer.ServantLocator extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.PortableServer.ServantLocator extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -42,8 +40,7 @@ abstract public class ServantLocatorHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.PortableServer.ServantLocatorHelper.id(),
-                    "ServantLocator");
+                    org.omg.PortableServer.ServantLocatorHelper.id(), "ServantLocator");
         }
         return __typeCode;
     }
@@ -52,8 +49,7 @@ abstract public class ServantLocatorHelper {
         return _id;
     }
 
-    public static org.omg.PortableServer.ServantLocator read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.PortableServer.ServantLocator read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -62,8 +58,7 @@ abstract public class ServantLocatorHelper {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static org.omg.PortableServer.ServantLocator narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.PortableServer.ServantLocator narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.PortableServer.ServantLocator)
@@ -79,8 +74,7 @@ abstract public class ServantLocatorHelper {
         }
     }
 
-    public static org.omg.PortableServer.ServantLocator unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.PortableServer.ServantLocator unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.PortableServer.ServantLocator)

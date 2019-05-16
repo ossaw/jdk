@@ -20,16 +20,13 @@ import sun.security.action.GetPropertyAction;
  * runtime. When a remote object is exported, it is assigned an object
  * identifier either implicitly or explicitly, depending on the API used to
  * export.
- *
  * <p>
  * The {@link #ObjID()} constructor can be used to generate a unique object
  * identifier. Such an <code>ObjID</code> is unique over time with respect to
  * the host it is generated on.
- *
  * The {@link #ObjID(int)} constructor can be used to create a "well-known"
  * object identifier. The scope of a well-known <code>ObjID</code> depends on
  * the RMI runtime it is exported to.
- *
  * <p>
  * An <code>ObjID</code> instance contains an object number (of type
  * <code>long</code>) and an address space identifier (of type {@link UID}). In
@@ -37,7 +34,6 @@ import sun.security.action.GetPropertyAction;
  * respect to a given host over time. In a well-known <code>ObjID</code>, the
  * address space identifier is equivalent to one returned by invoking the
  * {@link UID#UID(short)} constructor with the value zero.
- *
  * <p>
  * If the system property <code>java.rmi.server.randomIDs</code> is defined to
  * equal the string <code>"true"</code> (case insensitive), then the
@@ -83,7 +79,6 @@ public final class ObjID implements Serializable {
 
     /**
      * Generates a unique object identifier.
-     *
      * <p>
      * If the system property <code>java.rmi.server.randomIDs</code> is defined
      * to equal the string <code>"true"</code> (case insensitive), then this
@@ -107,13 +102,12 @@ public final class ObjID implements Serializable {
 
     /**
      * Creates a "well-known" object identifier.
-     *
      * <p>
      * An <code>ObjID</code> created via this constructor will not clash with
      * any <code>ObjID</code>s generated via the no-arg constructor.
      *
      * @param objNum
-     *               object number for well-known object identifier
+     *        object number for well-known object identifier
      */
     public ObjID(int objNum) {
         space = new UID((short) 0);
@@ -131,7 +125,6 @@ public final class ObjID implements Serializable {
     /**
      * Marshals a binary representation of this <code>ObjID</code> to an
      * <code>ObjectOutput</code> instance.
-     *
      * <p>
      * Specifically, this method first invokes the given stream's
      * {@link ObjectOutput#writeLong(long)} method with this object identifier's
@@ -139,12 +132,11 @@ public final class ObjID implements Serializable {
      * invoking its {@link UID#write(DataOutput)} method with the stream.
      *
      * @param out
-     *            the <code>ObjectOutput</code> instance to write this
-     *            <code>ObjID</code> to
-     *
+     *        the <code>ObjectOutput</code> instance to write this
+     *        <code>ObjID</code> to
      * @throws IOException
-     *                     if an I/O error occurs while performing this
-     *                     operation
+     *         if an I/O error occurs while performing this
+     *         operation
      */
     public void write(ObjectOutput out) throws IOException {
         out.writeLong(objNum);
@@ -154,7 +146,6 @@ public final class ObjID implements Serializable {
     /**
      * Constructs and returns a new <code>ObjID</code> instance by unmarshalling
      * a binary representation from an <code>ObjectInput</code> instance.
-     *
      * <p>
      * Specifically, this method first invokes the given stream's
      * {@link ObjectInput#readLong()} method to read an object number, then it
@@ -164,14 +155,12 @@ public final class ObjID implements Serializable {
      * space identifier that were read from the stream.
      *
      * @param in
-     *           the <code>ObjectInput</code> instance to read
-     *           <code>ObjID</code> from
-     *
+     *        the <code>ObjectInput</code> instance to read
+     *        <code>ObjID</code> from
      * @return unmarshalled <code>ObjID</code> instance
-     *
      * @throws IOException
-     *                     if an I/O error occurs while performing this
-     *                     operation
+     *         if an I/O error occurs while performing this
+     *         operation
      */
     public static ObjID read(ObjectInput in) throws IOException {
         long num = in.readLong();
@@ -191,14 +180,12 @@ public final class ObjID implements Serializable {
 
     /**
      * Compares the specified object with this <code>ObjID</code> for equality.
-     *
      * This method returns <code>true</code> if and only if the specified object
      * is an <code>ObjID</code> instance with the same object number and address
      * space identifier as this one.
      *
      * @param obj
-     *            the object to compare this <code>ObjID</code> to
-     *
+     *        the object to compare this <code>ObjID</code> to
      * @return <code>true</code> if the given object is equivalent to this one,
      *         and <code>false</code> otherwise
      */
@@ -226,8 +213,7 @@ public final class ObjID implements Serializable {
     }
 
     private static boolean useRandomIDs() {
-        String value = AccessController.doPrivileged(new GetPropertyAction(
-                "java.rmi.server.randomIDs"));
+        String value = AccessController.doPrivileged(new GetPropertyAction("java.rmi.server.randomIDs"));
         return value == null ? true : Boolean.parseBoolean(value);
     }
 }

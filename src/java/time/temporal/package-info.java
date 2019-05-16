@@ -44,7 +44,6 @@
  * <li>Date-time adjustment functions</li>
  * <li>Different definitions of weeks</li>
  * </ul>
- *
  * <h3>Fields and Units</h3>
  * <p>
  * Dates and times are expressed in terms of fields and units. A unit is used to
@@ -82,7 +81,6 @@
  * {@code date.get(ChronoField.ALIGNED_WEEK_OF_MONTH)}. The fields also provide
  * access to the range of valid values.
  * </p>
- *
  * <h3>Adjustment and Query</h3>
  * <p>
  * A key part of the date-time problem space is adjusting a date to a new,
@@ -110,7 +108,6 @@
  * Applications can also define queries by implementing
  * {@link java.time.temporal.TemporalQuery}.
  * </p>
- *
  * <h3>Weeks</h3>
  * <p>
  * Different locales have different definitions of the week. For example, in
@@ -123,7 +120,6 @@
  * This defines a year based on whole Monday to Monday weeks. This is modeled in
  * {@link java.time.temporal.IsoFields}.
  * </p>
- *
  * <h3>Package specification</h3>
  * <p>
  * Unless otherwise noted, passing a null argument to a constructor or method in

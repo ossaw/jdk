@@ -36,8 +36,8 @@ public interface IIOPProxy {
      * Returns the ORB associated with the given stub
      *
      * @throws UnsupportedOperationException
-     *                                       if the object does not support the
-     *                                       operation that was invoked
+     *         if the object does not support the
+     *         operation that was invoked
      */
     Object getOrb(Object stub);
 

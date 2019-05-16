@@ -10,7 +10,6 @@ package javax.management;
  * relations.
  * 
  * @serial include
- *
  * @since 1.5
  */
 class BetweenQueryExp extends QueryEval implements QueryExp {
@@ -73,20 +72,17 @@ class BetweenQueryExp extends QueryEval implements QueryExp {
      * Applies the BetweenQueryExp on an MBean.
      *
      * @param name
-     *             The name of the MBean on which the BetweenQueryExp will be
-     *             applied.
-     *
+     *        The name of the MBean on which the BetweenQueryExp will be
+     *        applied.
      * @return True if the query was successfully applied to the MBean, false
      *         otherwise.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public boolean apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public boolean apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         ValueExp val1 = exp1.apply(name);
         ValueExp val2 = exp2.apply(name);
         ValueExp val3 = exp3.apply(name);

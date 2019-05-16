@@ -10,7 +10,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for a type parameter.
- *
  * For example:
  * 
  * <pre>
@@ -22,7 +21,6 @@ import javax.lang.model.element.Name;
  * </pre>
  *
  * @jls section 4.4
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6
@@ -35,7 +33,6 @@ public interface TypeParameterTree extends Tree {
 
     /**
      * Return annotations on the type parameter declaration.
-     *
      * Annotations need Target meta-annotations of
      * {@link java.lang.annotation.ElementType#TYPE_PARAMETER} or
      * {@link java.lang.annotation.ElementType#TYPE_USE} to appear in this

@@ -26,8 +26,8 @@ import java.security.Security;
  * like: <blockquote>
  * 
  * <pre>
- * SaslClient sc = Sasl.createSaslClient(mechanisms, authorizationId, protocol,
- *         serverName, props, callbackHandler);
+ * SaslClient sc = Sasl.createSaslClient(mechanisms, authorizationId, protocol, serverName, props,
+ *         callbackHandler);
  * </pre>
  * 
  * </blockquote> It can then proceed to use the instance to create an
@@ -37,14 +37,12 @@ import java.security.Security;
  * <blockquote>
  * 
  * <pre>
- * SaslServer ss = Sasl.createSaslServer(mechanism, protocol, serverName, props,
- *         callbackHandler);
+ * SaslServer ss = Sasl.createSaslServer(mechanism, protocol, serverName, props, callbackHandler);
  * </pre>
  * 
  * </blockquote>
  *
  * @since 1.5
- *
  * @author Rosanna Lee
  * @author Rob Weltman
  */
@@ -63,7 +61,6 @@ public class Sasl {
      * <li>{@code "auth-conf"} - authentication plus integrity and
      * confidentiality protection</li>
      * </ul>
-     *
      * The order of the list specifies the preference order of the client or
      * server. If this property is absent, the default qop is {@code "auth"}.
      * The value of this constant is {@code "javax.security.sasl.qop"}.
@@ -143,15 +140,12 @@ public class Sasl {
      * including, but not limited to, lack of mechanism support for reuse,
      * expiration of reusable information, and the peer's refusal to support
      * reuse.
-     *
      * The property's default value is "false". The value of this constant is
      * "javax.security.sasl.reuse".
-     *
      * Note that all other parameters and properties required to create a SASL
      * client/server instance must be provided regardless of whether this
      * property has been supplied. That is, you cannot supply any less
      * information in anticipation of reuse.
-     *
      * Mechanism implementations that support reuse might allow customization of
      * its implementation, for factors such as cache size, timeouts, and
      * criteria for reusability. Such customizations are
@@ -239,13 +233,11 @@ public class Sasl {
 
     /**
      * Creates a {@code SaslClient} using the parameters supplied.
-     *
      * This method uses the <a href=
      * "{@docRoot}/../technotes/guides/security/crypto/CryptoSpec.html#Provider"
      * >JCA Security Provider Framework</a>, described in the
      * "Java Cryptography Architecture API Specification &amp; Reference", for
      * locating and selecting a {@code SaslClient} implementation.
-     *
      * First, it obtains an ordered list of {@code SaslClientFactory} instances
      * from the registered security providers for the "SaslClientFactory"
      * service and the specified SASL mechanism(s). It then invokes
@@ -259,7 +251,6 @@ public class Sasl {
      * {@code SaslClientFactory.}<em>{@code mechanism_name}</em> <br>
      * and values that are class names of implementations of
      * {@code javax.security.sasl.SaslClientFactory}.
-     *
      * For example, a provider that contains a factory class,
      * {@code com.wiz.sasl.digest.ClientFactory}, that supports the "DIGEST-MD5"
      * mechanism would register the following entry with the JCA:
@@ -271,83 +262,77 @@ public class Sasl {
      * providers.
      *
      * @param mechanisms
-     *                        The non-null list of mechanism names to try. Each
-     *                        is the
-     *                        IANA-registered name of a SASL mechanism. (e.g.
-     *                        "GSSAPI",
-     *                        "CRAM-MD5").
+     *        The non-null list of mechanism names to try. Each
+     *        is the
+     *        IANA-registered name of a SASL mechanism. (e.g.
+     *        "GSSAPI",
+     *        "CRAM-MD5").
      * @param authorizationId
-     *                        The possibly null protocol-dependent
-     *                        identification to be used
-     *                        for authorization. If null or empty, the server
-     *                        derives an
-     *                        authorization ID from the client's authentication
-     *                        credentials.
-     *                        When the SASL authentication completes
-     *                        successfully, the
-     *                        specified entity is granted access.
-     *
+     *        The possibly null protocol-dependent
+     *        identification to be used
+     *        for authorization. If null or empty, the server
+     *        derives an
+     *        authorization ID from the client's authentication
+     *        credentials.
+     *        When the SASL authentication completes
+     *        successfully, the
+     *        specified entity is granted access.
      * @param protocol
-     *                        The non-null string name of the protocol for which
-     *                        the
-     *                        authentication is being performed (e.g., "ldap").
-     *
+     *        The non-null string name of the protocol for which
+     *        the
+     *        authentication is being performed (e.g., "ldap").
      * @param serverName
-     *                        The non-null fully-qualified host name of the
-     *                        server to
-     *                        authenticate to.
-     *
+     *        The non-null fully-qualified host name of the
+     *        server to
+     *        authenticate to.
      * @param props
-     *                        The possibly null set of properties used to select
-     *                        the SASL
-     *                        mechanism and to configure the authentication
-     *                        exchange of the
-     *                        selected mechanism. For example, if {@code props}
-     *                        contains the
-     *                        {@code Sasl.POLICY_NOPLAINTEXT} property with the
-     *                        value
-     *                        {@code "true"}, then the selected SASL mechanism
-     *                        must not be
-     *                        susceptible to simple plain passive attacks. In
-     *                        addition to
-     *                        the standard properties declared in this class,
-     *                        other,
-     *                        possibly mechanism-specific, properties can be
-     *                        included.
-     *                        Properties not relevant to the selected mechanism
-     *                        are ignored,
-     *                        including any map entries with non-String keys.
-     *
+     *        The possibly null set of properties used to select
+     *        the SASL
+     *        mechanism and to configure the authentication
+     *        exchange of the
+     *        selected mechanism. For example, if {@code props}
+     *        contains the
+     *        {@code Sasl.POLICY_NOPLAINTEXT} property with the
+     *        value
+     *        {@code "true"}, then the selected SASL mechanism
+     *        must not be
+     *        susceptible to simple plain passive attacks. In
+     *        addition to
+     *        the standard properties declared in this class,
+     *        other,
+     *        possibly mechanism-specific, properties can be
+     *        included.
+     *        Properties not relevant to the selected mechanism
+     *        are ignored,
+     *        including any map entries with non-String keys.
      * @param cbh
-     *                        The possibly null callback handler to used by the
-     *                        SASL
-     *                        mechanisms to get further information from the
-     *                        application/library to complete the
-     *                        authentication. For
-     *                        example, a SASL mechanism might require the
-     *                        authentication ID,
-     *                        password and realm from the caller. The
-     *                        authentication ID is
-     *                        requested by using a {@code NameCallback}. The
-     *                        password is
-     *                        requested by using a {@code PasswordCallback}. The
-     *                        realm is
-     *                        requested by using a {@code RealmChoiceCallback}
-     *                        if there is a
-     *                        list of realms to choose from, and by using a
-     *                        {@code RealmCallback} if the realm must be
-     *                        entered.
-     *
+     *        The possibly null callback handler to used by the
+     *        SASL
+     *        mechanisms to get further information from the
+     *        application/library to complete the
+     *        authentication. For
+     *        example, a SASL mechanism might require the
+     *        authentication ID,
+     *        password and realm from the caller. The
+     *        authentication ID is
+     *        requested by using a {@code NameCallback}. The
+     *        password is
+     *        requested by using a {@code PasswordCallback}. The
+     *        realm is
+     *        requested by using a {@code RealmChoiceCallback}
+     *        if there is a
+     *        list of realms to choose from, and by using a
+     *        {@code RealmCallback} if the realm must be
+     *        entered.
      * @return A possibly null {@code SaslClient} created using the parameters
      *         supplied. If null, cannot find a {@code SaslClientFactory} that
      *         will produce one.
      * @exception SaslException
-     *                          If cannot create a {@code SaslClient} because of
-     *                          an error.
+     *            If cannot create a {@code SaslClient} because of
+     *            an error.
      */
-    public static SaslClient createSaslClient(String[] mechanisms,
-            String authorizationId, String protocol, String serverName,
-            Map<String, ?> props, CallbackHandler cbh) throws SaslException {
+    public static SaslClient createSaslClient(String[] mechanisms, String authorizationId, String protocol,
+            String serverName, Map<String, ?> props, CallbackHandler cbh) throws SaslException {
 
         SaslClient mech = null;
         SaslClientFactory fac;
@@ -371,8 +356,8 @@ public class Sasl {
 
                 fac = (SaslClientFactory) loadFactory(provs[j], className);
                 if (fac != null) {
-                    mech = fac.createSaslClient(new String[] { mechanisms[i] },
-                            authorizationId, protocol, serverName, props, cbh);
+                    mech = fac.createSaslClient(new String[] { mechanisms[i] }, authorizationId, protocol,
+                            serverName, props, cbh);
                     if (mech != null) {
                         return mech;
                     }
@@ -383,8 +368,7 @@ public class Sasl {
         return null;
     }
 
-    private static Object loadFactory(Provider p, String className)
-            throws SaslException {
+    private static Object loadFactory(Provider p, String className) throws SaslException {
         try {
             /*
              * Load the implementation class with the same class loader that was
@@ -411,13 +395,11 @@ public class Sasl {
 
     /**
      * Creates a {@code SaslServer} for the specified mechanism.
-     *
      * This method uses the <a href=
      * "{@docRoot}/../technotes/guides/security/crypto/CryptoSpec.html#Provider"
      * >JCA Security Provider Framework</a>, described in the
      * "Java Cryptography Architecture API Specification &amp; Reference", for
      * locating and selecting a {@code SaslServer} implementation.
-     *
      * First, it obtains an ordered list of {@code SaslServerFactory} instances
      * from the registered security providers for the "SaslServerFactory"
      * service and the specified mechanism. It then invokes
@@ -431,7 +413,6 @@ public class Sasl {
      * {@code SaslServerFactory.}<em>{@code mechanism_name}</em> <br>
      * and values that are class names of implementations of
      * {@code javax.security.sasl.SaslServerFactory}.
-     *
      * For example, a provider that contains a factory class,
      * {@code com.wiz.sasl.digest.ServerFactory}, that supports the "DIGEST-MD5"
      * mechanism would register the following entry with the JCA:
@@ -443,65 +424,61 @@ public class Sasl {
      * providers.
      *
      * @param mechanism
-     *                   The non-null mechanism name. It must be an
-     *                   IANA-registered
-     *                   name of a SASL mechanism. (e.g. "GSSAPI", "CRAM-MD5").
+     *        The non-null mechanism name. It must be an
+     *        IANA-registered
+     *        name of a SASL mechanism. (e.g. "GSSAPI", "CRAM-MD5").
      * @param protocol
-     *                   The non-null string name of the protocol for which the
-     *                   authentication is being performed (e.g., "ldap").
+     *        The non-null string name of the protocol for which the
+     *        authentication is being performed (e.g., "ldap").
      * @param serverName
-     *                   The fully qualified host name of the server, or null if
-     *                   the
-     *                   server is not bound to any specific host name. If the
-     *                   mechanism does not allow an unbound server, a
-     *                   {@code SaslException} will be thrown.
+     *        The fully qualified host name of the server, or null if
+     *        the
+     *        server is not bound to any specific host name. If the
+     *        mechanism does not allow an unbound server, a
+     *        {@code SaslException} will be thrown.
      * @param props
-     *                   The possibly null set of properties used to select the
-     *                   SASL
-     *                   mechanism and to configure the authentication exchange
-     *                   of the
-     *                   selected mechanism. For example, if {@code props}
-     *                   contains the
-     *                   {@code Sasl.POLICY_NOPLAINTEXT} property with the value
-     *                   {@code "true"}, then the selected SASL mechanism must
-     *                   not be
-     *                   susceptible to simple plain passive attacks. In
-     *                   addition to
-     *                   the standard properties declared in this class, other,
-     *                   possibly mechanism-specific, properties can be
-     *                   included.
-     *                   Properties not relevant to the selected mechanism are
-     *                   ignored,
-     *                   including any map entries with non-String keys.
-     *
+     *        The possibly null set of properties used to select the
+     *        SASL
+     *        mechanism and to configure the authentication exchange
+     *        of the
+     *        selected mechanism. For example, if {@code props}
+     *        contains the
+     *        {@code Sasl.POLICY_NOPLAINTEXT} property with the value
+     *        {@code "true"}, then the selected SASL mechanism must
+     *        not be
+     *        susceptible to simple plain passive attacks. In
+     *        addition to
+     *        the standard properties declared in this class, other,
+     *        possibly mechanism-specific, properties can be
+     *        included.
+     *        Properties not relevant to the selected mechanism are
+     *        ignored,
+     *        including any map entries with non-String keys.
      * @param cbh
-     *                   The possibly null callback handler to used by the SASL
-     *                   mechanisms to get further information from the
-     *                   application/library to complete the authentication. For
-     *                   example, a SASL mechanism might require the
-     *                   authentication ID,
-     *                   password and realm from the caller. The authentication
-     *                   ID is
-     *                   requested by using a {@code NameCallback}. The password
-     *                   is
-     *                   requested by using a {@code PasswordCallback}. The
-     *                   realm is
-     *                   requested by using a {@code RealmChoiceCallback} if
-     *                   there is a
-     *                   list of realms to choose from, and by using a
-     *                   {@code RealmCallback} if the realm must be entered.
-     *
+     *        The possibly null callback handler to used by the SASL
+     *        mechanisms to get further information from the
+     *        application/library to complete the authentication. For
+     *        example, a SASL mechanism might require the
+     *        authentication ID,
+     *        password and realm from the caller. The authentication
+     *        ID is
+     *        requested by using a {@code NameCallback}. The password
+     *        is
+     *        requested by using a {@code PasswordCallback}. The
+     *        realm is
+     *        requested by using a {@code RealmChoiceCallback} if
+     *        there is a
+     *        list of realms to choose from, and by using a
+     *        {@code RealmCallback} if the realm must be entered.
      * @return A possibly null {@code SaslServer} created using the parameters
      *         supplied. If null, cannot find a {@code SaslServerFactory} that
      *         will produce one.
      * @exception SaslException
-     *                          If cannot create a {@code SaslServer} because of
-     *                          an error.
+     *            If cannot create a {@code SaslServer} because of
+     *            an error.
      **/
-    public static SaslServer createSaslServer(String mechanism, String protocol,
-            String serverName, Map<String, ?> props,
-            javax.security.auth.callback.CallbackHandler cbh)
-            throws SaslException {
+    public static SaslServer createSaslServer(String mechanism, String protocol, String serverName,
+            Map<String, ?> props, javax.security.auth.callback.CallbackHandler cbh) throws SaslException {
 
         SaslServer mech = null;
         SaslServerFactory fac;
@@ -518,13 +495,11 @@ public class Sasl {
         for (int j = 0; provs != null && j < provs.length; j++) {
             className = provs[j].getProperty(mechFilter);
             if (className == null) {
-                throw new SaslException("Provider does not support "
-                        + mechFilter);
+                throw new SaslException("Provider does not support " + mechFilter);
             }
             fac = (SaslServerFactory) loadFactory(provs[j], className);
             if (fac != null) {
-                mech = fac.createSaslServer(mechanism, protocol, serverName,
-                        props, cbh);
+                mech = fac.createSaslServer(mechanism, protocol, serverName, props, cbh);
                 if (mech != null) {
                     return mech;
                 }
@@ -583,8 +558,7 @@ public class Sasl {
     private static Set<Object> getFactories(String serviceName) {
         HashSet<Object> result = new HashSet<Object>();
 
-        if ((serviceName == null) || (serviceName.length() == 0) || (serviceName
-                .endsWith("."))) {
+        if ((serviceName == null) || (serviceName.length() == 0) || (serviceName.endsWith("."))) {
             return result;
         }
 
@@ -596,8 +570,7 @@ public class Sasl {
             classes.clear();
 
             // Check the keys for each provider.
-            for (Enumeration<Object> e = providers[i].keys(); e
-                    .hasMoreElements();) {
+            for (Enumeration<Object> e = providers[i].keys(); e.hasMoreElements();) {
                 String currentKey = (String) e.nextElement();
                 if (currentKey.startsWith(serviceName)) {
                     // We should skip the currentKey if it contains a
@@ -615,8 +588,7 @@ public class Sasl {
                                 if (fac != null) {
                                     result.add(fac);
                                 }
-                            } catch (Exception ignore) {
-                            }
+                            } catch (Exception ignore) {}
                         }
                     }
                 }

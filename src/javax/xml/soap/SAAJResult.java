@@ -14,7 +14,6 @@ import javax.xml.transform.dom.DOMResult;
  * should be avoided in almost all cases.
  *
  * @author XWS-Security Development Team
- *
  * @since SAAJ 1.3
  */
 public class SAAJResult extends DOMResult {
@@ -32,9 +31,8 @@ public class SAAJResult extends DOMResult {
      * {@link DOMResult#getNode()} is not guaranteed to be well-formed.
      *
      * @throws SOAPException
-     *                       if there is a problem creating a
-     *                       <code>SOAPMessage</code>
-     *
+     *         if there is a problem creating a
+     *         <code>SOAPMessage</code>
      * @since SAAJ 1.3
      */
     public SAAJResult() throws SOAPException {
@@ -57,15 +55,13 @@ public class SAAJResult extends DOMResult {
      * {@link DOMResult#getNode()} is not guaranteed to be well-formed.
      *
      * @param protocol
-     *                 - the name of the SOAP protocol that the resulting SAAJ
-     *                 tree
-     *                 should support
-     *
+     *        - the name of the SOAP protocol that the resulting SAAJ
+     *        tree
+     *        should support
      * @throws SOAPException
-     *                       if a <code>SOAPMessage</code> supporting the
-     *                       specified
-     *                       protocol cannot be created
-     *
+     *         if a <code>SOAPMessage</code> supporting the
+     *         specified
+     *         protocol cannot be created
      * @since SAAJ 1.3
      */
     public SAAJResult(String protocol) throws SOAPException {
@@ -83,10 +79,9 @@ public class SAAJResult extends DOMResult {
      * specification.
      *
      * @param message
-     *                - the message whose <code>SOAPPart</code> will be
-     *                populated as
-     *                a result of some transformation or marshalling operation
-     *
+     *        - the message whose <code>SOAPPart</code> will be
+     *        populated as
+     *        a result of some transformation or marshalling operation
      * @since SAAJ 1.3
      */
     public SAAJResult(SOAPMessage message) {
@@ -102,8 +97,7 @@ public class SAAJResult extends DOMResult {
      * means outside of the SAAJ specification.
      *
      * @param rootNode
-     *                 - the root to which the results will be appended
-     *
+     *        - the root to which the results will be appended
      * @since SAAJ 1.3
      */
     public SAAJResult(SOAPElement rootNode) {

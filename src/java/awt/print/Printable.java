@@ -35,24 +35,20 @@ import java.awt.Graphics;
  * <ul>
  * <li>The printing system may request a page index more than once. On each
  * occasion equal PageFormat parameters will be supplied.
- *
  * <li>The printing system will call <code>Printable.print(..)</code> with page
  * indexes which increase monotonically, although as noted above, the
  * <code>Printable</code> should expect multiple calls for a page index and that
  * page indexes may be skipped, when page ranges are specified by the client, or
  * by a user through a print dialog.
- *
  * <li>If multiple collated copies of a document are requested, and the printer
  * cannot natively support this, then the document may be imaged multiple times.
  * Printing will start each copy from the lowest print stream page index page.
- *
  * <li>With the exception of re-imaging an entire document for multiple collated
  * copies, the increasing page index order means that when page N is requested
  * if a client needs to calculate page break position, it may safely discard any
  * state related to pages &lt; N, and make current that for page N. "State"
  * usually is just the calculated position in the document that corresponds to
  * the start of the page.
- *
  * <li>When called by the printing system the <code>Printable</code> must
  * inspect and honour the supplied PageFormat parameter as well as the page
  * index. The format of the page to be drawn is specified by the supplied
@@ -61,7 +57,6 @@ import java.awt.Graphics;
  * key to correct printing behaviour, and it has the implication that the client
  * has the responsibility of tracking what content belongs on the specified
  * page.
- *
  * <li>When the <code>Printable</code> is obtained from a client-supplied
  * <code>Pageable</code> then the client may provide different PageFormats for
  * each page index. Calculations of page breaks must account for this.
@@ -102,17 +97,16 @@ public interface Printable {
      * {@link PrinterException}.
      * 
      * @param graphics
-     *                   the context into which the page is drawn
+     *        the context into which the page is drawn
      * @param pageFormat
-     *                   the size and orientation of the page being drawn
+     *        the size and orientation of the page being drawn
      * @param pageIndex
-     *                   the zero based index of the page to be drawn
+     *        the zero based index of the page to be drawn
      * @return PAGE_EXISTS if the page is rendered successfully or NO_SUCH_PAGE
      *         if <code>pageIndex</code> specifies a non-existent page.
      * @exception java.awt.print.PrinterException
      *            thrown when the print job is terminated.
      */
-    int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
-            throws PrinterException;
+    int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException;
 
 }

@@ -16,8 +16,7 @@ import org.xml.sax.ext.LexicalHandler;
  * A TransformerHandler listens for SAX ContentHandler parse events and
  * transforms them to a Result.
  */
-public interface TransformerHandler extends ContentHandler, LexicalHandler,
-        DTDHandler {
+public interface TransformerHandler extends ContentHandler, LexicalHandler, DTDHandler {
 
     /**
      * <p>
@@ -26,11 +25,10 @@ public interface TransformerHandler extends ContentHandler, LexicalHandler,
      * </p>
      *
      * @param result
-     *               A <code>Result</code> instance, should not be
-     *               <code>null</code>.
-     *
+     *        A <code>Result</code> instance, should not be
+     *        <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if result is invalid for some reason.
+     *         if result is invalid for some reason.
      */
     public void setResult(Result result) throws IllegalArgumentException;
 
@@ -39,7 +37,7 @@ public interface TransformerHandler extends ContentHandler, LexicalHandler,
      * resolved.
      * 
      * @param systemID
-     *                 Base URI for the source tree.
+     *        Base URI for the source tree.
      */
     public void setSystemId(String systemID);
 

@@ -8,9 +8,8 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl
-        implements com.sun.corba.se.PortableActivationIDL.Locator,
-        org.omg.CORBA.portable.InvokeHandler {
+public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl implements
+        com.sun.corba.se.PortableActivationIDL.Locator, org.omg.CORBA.portable.InvokeHandler {
 
     // Constructors
     public _LocatorImplBase() {}
@@ -23,14 +22,12 @@ public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl
         _methods.put("getServerPortForType", new java.lang.Integer(3));
     }
 
-    public org.omg.CORBA.portable.OutputStream _invoke(String $method,
-            org.omg.CORBA.portable.InputStream in,
+    public org.omg.CORBA.portable.OutputStream _invoke(String $method, org.omg.CORBA.portable.InputStream in,
             org.omg.CORBA.portable.ResponseHandler $rh) {
         org.omg.CORBA.portable.OutputStream out = null;
         java.lang.Integer __method = (java.lang.Integer) _methods.get($method);
         if (__method == null)
-            throw new org.omg.CORBA.BAD_OPERATION(0,
-                    org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+            throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
 
         switch (__method.intValue()) {
 
@@ -43,26 +40,22 @@ public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl
             case 0: // PortableActivationIDL/Locator/locateServer
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
                     String endPoint = in.read_string();
                     com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerType $result = null;
                     $result = this.locateServer(serverId, endPoint);
                     out = $rh.createReply();
-                    com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper
-                            .write(out, $result);
+                    com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerTypeHelper.write(
+                            out, $result);
                 } catch (com.sun.corba.se.PortableActivationIDL.NoSuchEndPoint $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.NoSuchEndPointHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.NoSuchEndPointHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerHeldDown $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerHeldDownHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerHeldDownHelper.write(out, $ex);
                 }
                 break;
             }
@@ -75,27 +68,22 @@ public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl
             case 1: // PortableActivationIDL/Locator/locateServerForORB
             {
                 try {
-                    String serverId = org.omg.PortableInterceptor.ServerIdHelper
-                            .read(in);
-                    String orbId = org.omg.PortableInterceptor.ORBIdHelper.read(
-                            in);
+                    String serverId = org.omg.PortableInterceptor.ServerIdHelper.read(in);
+                    String orbId = org.omg.PortableInterceptor.ORBIdHelper.read(in);
                     com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerORB $result = null;
                     $result = this.locateServerForORB(serverId, orbId);
                     out = $rh.createReply();
-                    com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerORBHelper
-                            .write(out, $result);
+                    com.sun.corba.se.PortableActivationIDL.LocatorPackage.ServerLocationPerORBHelper.write(
+                            out, $result);
                 } catch (com.sun.corba.se.PortableActivationIDL.InvalidORBid $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.InvalidORBidHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.InvalidORBidHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerNotRegistered $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerNotRegisteredHelper.write(out, $ex);
                 } catch (com.sun.corba.se.PortableActivationIDL.ServerHeldDown $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.ServerHeldDownHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.ServerHeldDownHelper.write(out, $ex);
                 }
                 break;
             }
@@ -113,8 +101,7 @@ public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl
                     out.write_long($result);
                 } catch (com.sun.corba.se.PortableActivationIDL.NoSuchEndPoint $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.NoSuchEndPointHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.NoSuchEndPointHelper.write(out, $ex);
                 }
                 break;
             }
@@ -135,15 +122,13 @@ public abstract class _LocatorImplBase extends org.omg.CORBA.portable.ObjectImpl
                     out.write_long($result);
                 } catch (com.sun.corba.se.PortableActivationIDL.NoSuchEndPoint $ex) {
                     out = $rh.createExceptionReply();
-                    com.sun.corba.se.PortableActivationIDL.NoSuchEndPointHelper
-                            .write(out, $ex);
+                    com.sun.corba.se.PortableActivationIDL.NoSuchEndPointHelper.write(out, $ex);
                 }
                 break;
             }
 
             default:
-                throw new org.omg.CORBA.BAD_OPERATION(0,
-                        org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+                throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
 
         return out;

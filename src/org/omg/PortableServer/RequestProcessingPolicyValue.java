@@ -21,8 +21,7 @@ package org.omg.PortableServer;
  * registered with the POA using the set_servant_manager operation, the servant
  * manager is given the opportunity to locate a servant or raise an exception.
  */
-public class RequestProcessingPolicyValue implements
-        org.omg.CORBA.portable.IDLEntity {
+public class RequestProcessingPolicyValue implements org.omg.CORBA.portable.IDLEntity {
     private int __value;
     private static int __size = 3;
     private static org.omg.PortableServer.RequestProcessingPolicyValue[] __array = new org.omg.PortableServer.RequestProcessingPolicyValue[__size];
@@ -41,8 +40,7 @@ public class RequestProcessingPolicyValue implements
         return __value;
     }
 
-    public static org.omg.PortableServer.RequestProcessingPolicyValue from_int(
-            int value) {
+    public static org.omg.PortableServer.RequestProcessingPolicyValue from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

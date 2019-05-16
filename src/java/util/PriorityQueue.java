@@ -15,41 +15,35 @@ import java.util.function.Consumer;
  * priority queue does not permit {@code null} elements. A priority queue
  * relying on natural ordering also does not permit insertion of non-comparable
  * objects (doing so may result in {@code ClassCastException}).
- *
  * <p>
  * The <em>head</em> of this queue is the <em>least</em> element with respect to
  * the specified ordering. If multiple elements are tied for least value, the
  * head is one of those elements -- ties are broken arbitrarily. The queue
  * retrieval operations {@code poll}, {@code remove}, {@code peek}, and
  * {@code element} access the element at the head of the queue.
- *
  * <p>
  * A priority queue is unbounded, but has an internal <i>capacity</i> governing
  * the size of an array used to store the elements on the queue. It is always at
  * least as large as the queue size. As elements are added to a priority queue,
  * its capacity grows automatically. The details of the growth policy are not
  * specified.
- *
  * <p>
  * This class and its iterator implement all of the <em>optional</em> methods of
  * the {@link Collection} and {@link Iterator} interfaces. The Iterator provided
  * in method {@link #iterator()} is <em>not</em> guaranteed to traverse the
  * elements of the priority queue in any particular order. If you need ordered
  * traversal, consider using {@code Arrays.sort(pq.toArray())}.
- *
  * <p>
  * <strong>Note that this implementation is not synchronized.</strong> Multiple
  * threads should not access a {@code PriorityQueue} instance concurrently if
  * any of the threads modifies the queue. Instead, use the thread-safe
  * {@link java.util.concurrent.PriorityBlockingQueue} class.
- *
  * <p>
  * Implementation note: this implementation provides O(log(n)) time for the
  * enqueuing and dequeuing methods ({@code offer}, {@code poll},
  * {@code remove()} and {@code add}); linear time for the {@code remove(Object)}
  * and {@code contains(Object)} methods; and constant time for the retrieval
  * methods ({@code peek}, {@code element}, and {@code size}).
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -60,8 +54,7 @@ import java.util.function.Consumer;
  * @param <E>
  *        the type of elements held in this collection
  */
-public class PriorityQueue<E> extends AbstractQueue<E> implements
-        java.io.Serializable {
+public class PriorityQueue<E> extends AbstractQueue<E> implements java.io.Serializable {
 
     private static final long serialVersionUID = -7720805057305804111L;
 
@@ -109,10 +102,10 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * ordering}.
      *
      * @param initialCapacity
-     *                        the initial capacity for this priority queue
+     *        the initial capacity for this priority queue
      * @throws IllegalArgumentException
-     *                                  if {@code initialCapacity} is less than
-     *                                  1
+     *         if {@code initialCapacity} is less than
+     *         1
      */
     public PriorityQueue(int initialCapacity) {
         this(initialCapacity, null);
@@ -123,11 +116,11 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * whose elements are ordered according to the specified comparator.
      *
      * @param comparator
-     *                   the comparator that will be used to order this priority
-     *                   queue.
-     *                   If {@code null}, the {@linkplain Comparable natural
-     *                   ordering}
-     *                   of the elements will be used.
+     *        the comparator that will be used to order this priority
+     *        queue.
+     *        If {@code null}, the {@linkplain Comparable natural
+     *        ordering}
+     *        of the elements will be used.
      * @since 1.8
      */
     public PriorityQueue(Comparator<? super E> comparator) {
@@ -139,19 +132,18 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * orders its elements according to the specified comparator.
      *
      * @param initialCapacity
-     *                        the initial capacity for this priority queue
+     *        the initial capacity for this priority queue
      * @param comparator
-     *                        the comparator that will be used to order this
-     *                        priority queue.
-     *                        If {@code null}, the {@linkplain Comparable
-     *                        natural ordering}
-     *                        of the elements will be used.
+     *        the comparator that will be used to order this
+     *        priority queue.
+     *        If {@code null}, the {@linkplain Comparable
+     *        natural ordering}
+     *        of the elements will be used.
      * @throws IllegalArgumentException
-     *                                  if {@code initialCapacity} is less than
-     *                                  1
+     *         if {@code initialCapacity} is less than
+     *         1
      */
-    public PriorityQueue(int initialCapacity,
-            Comparator<? super E> comparator) {
+    public PriorityQueue(int initialCapacity, Comparator<? super E> comparator) {
         // Note: This restriction of at least one is not actually needed,
         // but continues for 1.5 compatibility
         if (initialCapacity < 1)
@@ -169,16 +161,16 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * natural ordering} of its elements.
      *
      * @param c
-     *          the collection whose elements are to be placed into this
-     *          priority queue
+     *        the collection whose elements are to be placed into this
+     *        priority queue
      * @throws ClassCastException
-     *                              if elements of the specified collection
-     *                              cannot be compared to
-     *                              one another according to the priority
-     *                              queue's ordering
+     *         if elements of the specified collection
+     *         cannot be compared to
+     *         one another according to the priority
+     *         queue's ordering
      * @throws NullPointerException
-     *                              if the specified collection or any of its
-     *                              elements are null
+     *         if the specified collection or any of its
+     *         elements are null
      */
     @SuppressWarnings("unchecked")
     public PriorityQueue(Collection<? extends E> c) {
@@ -202,16 +194,16 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * ordering as the given priority queue.
      *
      * @param c
-     *          the priority queue whose elements are to be placed into this
-     *          priority queue
+     *        the priority queue whose elements are to be placed into this
+     *        priority queue
      * @throws ClassCastException
-     *                              if elements of {@code c} cannot be compared
-     *                              to one another
-     *                              according to {@code c}'s ordering
+     *         if elements of {@code c} cannot be compared
+     *         to one another
+     *         according to {@code c}'s ordering
      * @throws NullPointerException
-     *                              if the specified priority queue or any of
-     *                              its elements are
-     *                              null
+     *         if the specified priority queue or any of
+     *         its elements are
+     *         null
      */
     @SuppressWarnings("unchecked")
     public PriorityQueue(PriorityQueue<? extends E> c) {
@@ -225,16 +217,16 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * ordering as the given sorted set.
      *
      * @param c
-     *          the sorted set whose elements are to be placed into this
-     *          priority queue
+     *        the sorted set whose elements are to be placed into this
+     *        priority queue
      * @throws ClassCastException
-     *                              if elements of the specified sorted set
-     *                              cannot be compared to
-     *                              one another according to the sorted set's
-     *                              ordering
+     *         if elements of the specified sorted set
+     *         cannot be compared to
+     *         one another according to the sorted set's
+     *         ordering
      * @throws NullPointerException
-     *                              if the specified sorted set or any of its
-     *                              elements are null
+     *         if the specified sorted set or any of its
+     *         elements are null
      */
     @SuppressWarnings("unchecked")
     public PriorityQueue(SortedSet<? extends E> c) {
@@ -269,7 +261,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * Initializes queue array with elements from the given Collection.
      *
      * @param c
-     *          the collection
+     *        the collection
      */
     private void initFromCollection(Collection<? extends E> c) {
         initElementsFromCollection(c);
@@ -287,13 +279,12 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * Increases the capacity of the array.
      *
      * @param minCapacity
-     *                    the desired minimum capacity
+     *        the desired minimum capacity
      */
     private void grow(int minCapacity) {
         int oldCapacity = queue.length;
         // Double size if small; else grow by 50%
-        int newCapacity = oldCapacity + ((oldCapacity < 64) ? (oldCapacity + 2)
-                : (oldCapacity >> 1));
+        int newCapacity = oldCapacity + ((oldCapacity < 64) ? (oldCapacity + 2) : (oldCapacity >> 1));
         // overflow-conscious code
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
@@ -303,8 +294,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
     private static int hugeCapacity(int minCapacity) {
         if (minCapacity < 0) // overflow
             throw new OutOfMemoryError();
-        return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE
-                : MAX_ARRAY_SIZE;
+        return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
     }
 
     /**
@@ -312,13 +302,13 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      *
      * @return {@code true} (as specified by {@link Collection#add})
      * @throws ClassCastException
-     *                              if the specified element cannot be compared
-     *                              with elements
-     *                              currently in this priority queue according
-     *                              to the priority
-     *                              queue's ordering
+     *         if the specified element cannot be compared
+     *         with elements
+     *         currently in this priority queue according
+     *         to the priority
+     *         queue's ordering
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean add(E e) {
         return offer(e);
@@ -329,13 +319,13 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      *
      * @return {@code true} (as specified by {@link Queue#offer})
      * @throws ClassCastException
-     *                              if the specified element cannot be compared
-     *                              with elements
-     *                              currently in this priority queue according
-     *                              to the priority
-     *                              queue's ordering
+     *         if the specified element cannot be compared
+     *         with elements
+     *         currently in this priority queue according
+     *         to the priority
+     *         queue's ordering
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offer(E e) {
         if (e == null)
@@ -374,7 +364,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * element (or equivalently, if this queue changed as a result of the call).
      *
      * @param o
-     *          element to be removed from this queue, if present
+     *        element to be removed from this queue, if present
      * @return {@code true} if this queue changed as a result of the call
      */
     public boolean remove(Object o) {
@@ -392,7 +382,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * iterator.remove.
      *
      * @param o
-     *          element to be removed from this queue, if present
+     *        element to be removed from this queue, if present
      * @return {@code true} if removed
      */
     boolean removeEq(Object o) {
@@ -411,7 +401,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * least one element {@code e} such that {@code o.equals(e)}.
      *
      * @param o
-     *          object to be checked for containment in this queue
+     *        object to be checked for containment in this queue
      * @return {@code true} if this queue contains the specified element
      */
     public boolean contains(Object o) {
@@ -421,12 +411,10 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
     /**
      * Returns an array containing all of the elements in this queue. The
      * elements are in no particular order.
-     *
      * <p>
      * The returned array will be "safe" in that no references to it are
      * maintained by this queue. (In other words, this method must allocate a
      * new array). The caller is thus free to modify the returned array.
-     *
      * <p>
      * This method acts as bridge between array-based and collection-based APIs.
      *
@@ -443,18 +431,15 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * the specified array, it is returned therein. Otherwise, a new array is
      * allocated with the runtime type of the specified array and the size of
      * this queue.
-     *
      * <p>
      * If the queue fits in the specified array with room to spare (i.e., the
      * array has more elements than the queue), the element in the array
      * immediately following the end of the collection is set to {@code null}.
-     *
      * <p>
      * Like the {@link #toArray()} method, this method acts as bridge between
      * array-based and collection-based APIs. Further, this method allows
      * precise control over the runtime type of the output array, and may, under
      * certain circumstances, be used to save allocation costs.
-     *
      * <p>
      * Suppose {@code x} is a queue known to contain only strings. The following
      * code can be used to dump the queue into a newly allocated array of
@@ -471,17 +456,17 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * {@code toArray()}.
      *
      * @param a
-     *          the array into which the elements of the queue are to be
-     *          stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose.
+     *        the array into which the elements of the queue are to be
+     *        stored, if it is big enough; otherwise, a new array of the
+     *        same runtime type is allocated for this purpose.
      * @return an array containing all of the elements in this queue
      * @throws ArrayStoreException
-     *                              if the runtime type of the specified array
-     *                              is not a supertype
-     *                              of the runtime type of every element in this
-     *                              queue
+     *         if the runtime type of the specified array
+     *         is not a supertype
+     *         of the runtime type of every element in this
+     *         queue
      * @throws NullPointerException
-     *                              if the specified array is null
+     *         if the specified array is null
      */
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
@@ -526,7 +511,6 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
          * that require a siftup instead of a siftdown.) We must visit all of
          * the elements in this list to complete the iteration. We do this after
          * we've completed the "normal" iteration.
-         *
          * We expect that most iterations, even those involving removals, will
          * not need to store elements in this field.
          */
@@ -546,8 +530,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
         private int expectedModCount = modCount;
 
         public boolean hasNext() {
-            return cursor < size || (forgetMeNot != null && !forgetMeNot
-                    .isEmpty());
+            return cursor < size || (forgetMeNot != null && !forgetMeNot.isEmpty());
         }
 
         @SuppressWarnings("unchecked")
@@ -619,7 +602,6 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
 
     /**
      * Removes the ith element from queue.
-     *
      * Normally this method leaves the elements at up to i-1, inclusive,
      * untouched. Under these circumstances, it returns null. Occasionally, in
      * order to maintain the heap invariant, it must swap a later element of the
@@ -652,15 +634,14 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * Inserts item x at position k, maintaining heap invariant by promoting x
      * up the tree until it is greater than or equal to its parent, or is the
      * root.
-     *
      * To simplify and speed up coercions and comparisons. the Comparable and
      * Comparator versions are separated into different methods that are
      * otherwise identical. (Similarly for siftDown.)
      *
      * @param k
-     *          the position to fill
+     *        the position to fill
      * @param x
-     *          the item to insert
+     *        the item to insert
      */
     private void siftUp(int k, E x) {
         if (comparator != null)
@@ -702,9 +683,9 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * or is a leaf.
      *
      * @param k
-     *          the position to fill
+     *        the position to fill
      * @param x
-     *          the item to insert
+     *        the item to insert
      */
     private void siftDown(int k, E x) {
         if (comparator != null)
@@ -721,8 +702,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
             int child = (k << 1) + 1; // assume left child is least
             Object c = queue[child];
             int right = child + 1;
-            if (right < size && ((Comparable<? super E>) c).compareTo(
-                    (E) queue[right]) > 0)
+            if (right < size && ((Comparable<? super E>) c).compareTo((E) queue[right]) > 0)
                 c = queue[child = right];
             if (key.compareTo((E) c) <= 0)
                 break;
@@ -778,10 +758,9 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      *             (int), followed by all of its elements (each an
      *             {@code Object}) in the proper order.
      * @param s
-     *          the stream
+     *        the stream
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         // Write out element count, and any hidden stuff
         s.defaultWriteObject();
 
@@ -798,10 +777,9 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * deserializes it).
      *
      * @param s
-     *          the stream
+     *        the stream
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         // Read in size, and any hidden stuff
         s.defaultReadObject();
 
@@ -823,7 +801,6 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@link Spliterator} over the elements in this
      * queue.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#SIZED},
      * {@link Spliterator#SUBSIZED}, and {@link Spliterator#NONNULL}. Overriding
@@ -848,8 +825,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
         private int expectedModCount; // initialized when fence set
 
         /** Creates new spliterator covering the given range */
-        PriorityQueueSpliterator(PriorityQueue<E> pq, int origin, int fence,
-                int expectedModCount) {
+        PriorityQueueSpliterator(PriorityQueue<E> pq, int origin, int fence, int expectedModCount) {
             this.pq = pq;
             this.index = origin;
             this.fence = fence;
@@ -868,8 +844,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
         public PriorityQueueSpliterator<E> trySplit() {
             int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
             return (lo >= mid) ? null
-                    : new PriorityQueueSpliterator<E>(pq, lo, index = mid,
-                            expectedModCount);
+                    : new PriorityQueueSpliterator<E>(pq, lo, index = mid, expectedModCount);
         }
 
         @SuppressWarnings("unchecked")
@@ -924,8 +899,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
         }
 
         public int characteristics() {
-            return Spliterator.SIZED | Spliterator.SUBSIZED
-                    | Spliterator.NONNULL;
+            return Spliterator.SIZED | Spliterator.SUBSIZED | Spliterator.NONNULL;
         }
     }
 }

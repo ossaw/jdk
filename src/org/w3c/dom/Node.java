@@ -191,11 +191,11 @@ public interface Node {
      * including if the node is read-only.
      * 
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised when it would return
-     *                         more
-     *                         characters than fit in a <code>DOMString</code>
-     *                         variable
-     *                         on the implementation platform.
+     *            DOMSTRING_SIZE_ERR: Raised when it would return
+     *            more
+     *            characters than fit in a <code>DOMString</code>
+     *            variable
+     *            on the implementation platform.
      */
     public String getNodeValue() throws DOMException;
 
@@ -205,10 +205,10 @@ public interface Node {
      * including if the node is read-only.
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly and if it is not defined to be
-     *                         <code>null</code>.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly and if it is not defined to be
+     *            <code>null</code>.
      */
     public void setNodeValue(String nodeValue) throws DOMException;
 
@@ -284,47 +284,46 @@ public interface Node {
      * <b>Note:</b> Inserting a node before itself is implementation dependent.
      * 
      * @param newChild
-     *                 The node to insert.
+     *        The node to insert.
      * @param refChild
-     *                 The reference node, i.e., the node before which the new
-     *                 node
-     *                 must be inserted.
+     *        The reference node, i.e., the node before which the new
+     *        node
+     *        must be inserted.
      * @return The node being inserted.
      * @exception DOMException
-     *                         HIERARCHY_REQUEST_ERR: Raised if this node is of
-     *                         a type
-     *                         that does not allow children of the type of the
-     *                         <code>newChild</code> node, or if the node to
-     *                         insert is
-     *                         one of this node's ancestors or this node itself,
-     *                         or if
-     *                         this node is of type <code>Document</code> and
-     *                         the DOM
-     *                         application attempts to insert a second
-     *                         <code>DocumentType</code> or <code>Element</code>
-     *                         node.
-     *                         <br>
-     *                         WRONG_DOCUMENT_ERR: Raised if
-     *                         <code>newChild</code> was
-     *                         created from a different document than the one
-     *                         that
-     *                         created this node. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly or if the parent of the node being
-     *                         inserted is
-     *                         readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if <code>refChild</code> is
-     *                         not a
-     *                         child of this node. <br>
-     *                         NOT_SUPPORTED_ERR: if this node is of type
-     *                         <code>Document</code>, this exception might be
-     *                         raised if
-     *                         the DOM implementation doesn't support the
-     *                         insertion of a
-     *                         <code>DocumentType</code> or <code>Element</code>
-     *                         node.
-     *
+     *            HIERARCHY_REQUEST_ERR: Raised if this node is of
+     *            a type
+     *            that does not allow children of the type of the
+     *            <code>newChild</code> node, or if the node to
+     *            insert is
+     *            one of this node's ancestors or this node itself,
+     *            or if
+     *            this node is of type <code>Document</code> and
+     *            the DOM
+     *            application attempts to insert a second
+     *            <code>DocumentType</code> or <code>Element</code>
+     *            node.
+     *            <br>
+     *            WRONG_DOCUMENT_ERR: Raised if
+     *            <code>newChild</code> was
+     *            created from a different document than the one
+     *            that
+     *            created this node. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly or if the parent of the node being
+     *            inserted is
+     *            readonly. <br>
+     *            NOT_FOUND_ERR: Raised if <code>refChild</code> is
+     *            not a
+     *            child of this node. <br>
+     *            NOT_SUPPORTED_ERR: if this node is of type
+     *            <code>Document</code>, this exception might be
+     *            raised if
+     *            the DOM implementation doesn't support the
+     *            insertion of a
+     *            <code>DocumentType</code> or <code>Element</code>
+     *            node.
      * @since DOM Level 3
      */
     public Node insertBefore(Node newChild, Node refChild) throws DOMException;
@@ -341,43 +340,42 @@ public interface Node {
      * <b>Note:</b> Replacing a node with itself is implementation dependent.
      * 
      * @param newChild
-     *                 The new node to put in the child list.
+     *        The new node to put in the child list.
      * @param oldChild
-     *                 The node being replaced in the list.
+     *        The node being replaced in the list.
      * @return The node replaced.
      * @exception DOMException
-     *                         HIERARCHY_REQUEST_ERR: Raised if this node is of
-     *                         a type
-     *                         that does not allow children of the type of the
-     *                         <code>newChild</code> node, or if the node to put
-     *                         in is
-     *                         one of this node's ancestors or this node itself,
-     *                         or if
-     *                         this node is of type <code>Document</code> and
-     *                         the result
-     *                         of the replacement operation would add a second
-     *                         <code>DocumentType</code> or <code>Element</code>
-     *                         on the
-     *                         <code>Document</code> node. <br>
-     *                         WRONG_DOCUMENT_ERR: Raised if
-     *                         <code>newChild</code> was
-     *                         created from a different document than the one
-     *                         that
-     *                         created this node. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         or the
-     *                         parent of the new node is readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if <code>oldChild</code> is
-     *                         not a
-     *                         child of this node. <br>
-     *                         NOT_SUPPORTED_ERR: if this node is of type
-     *                         <code>Document</code>, this exception might be
-     *                         raised if
-     *                         the DOM implementation doesn't support the
-     *                         replacement of
-     *                         the <code>DocumentType</code> child or
-     *                         <code>Element</code> child.
-     *
+     *            HIERARCHY_REQUEST_ERR: Raised if this node is of
+     *            a type
+     *            that does not allow children of the type of the
+     *            <code>newChild</code> node, or if the node to put
+     *            in is
+     *            one of this node's ancestors or this node itself,
+     *            or if
+     *            this node is of type <code>Document</code> and
+     *            the result
+     *            of the replacement operation would add a second
+     *            <code>DocumentType</code> or <code>Element</code>
+     *            on the
+     *            <code>Document</code> node. <br>
+     *            WRONG_DOCUMENT_ERR: Raised if
+     *            <code>newChild</code> was
+     *            created from a different document than the one
+     *            that
+     *            created this node. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            or the
+     *            parent of the new node is readonly. <br>
+     *            NOT_FOUND_ERR: Raised if <code>oldChild</code> is
+     *            not a
+     *            child of this node. <br>
+     *            NOT_SUPPORTED_ERR: if this node is of type
+     *            <code>Document</code>, this exception might be
+     *            raised if
+     *            the DOM implementation doesn't support the
+     *            replacement of
+     *            the <code>DocumentType</code> child or
+     *            <code>Element</code> child.
      * @since DOM Level 3
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException;
@@ -387,23 +385,22 @@ public interface Node {
      * of children, and returns it.
      * 
      * @param oldChild
-     *                 The node being removed.
+     *        The node being removed.
      * @return The node removed.
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NOT_FOUND_ERR: Raised if <code>oldChild</code> is
-     *                         not a
-     *                         child of this node. <br>
-     *                         NOT_SUPPORTED_ERR: if this node is of type
-     *                         <code>Document</code>, this exception might be
-     *                         raised if
-     *                         the DOM implementation doesn't support the
-     *                         removal of the
-     *                         <code>DocumentType</code> child or the
-     *                         <code>Element</code> child.
-     *
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NOT_FOUND_ERR: Raised if <code>oldChild</code> is
+     *            not a
+     *            child of this node. <br>
+     *            NOT_SUPPORTED_ERR: if this node is of type
+     *            <code>Document</code>, this exception might be
+     *            raised if
+     *            the DOM implementation doesn't support the
+     *            removal of the
+     *            <code>DocumentType</code> child or the
+     *            <code>Element</code> child.
      * @since DOM Level 3
      */
     public Node removeChild(Node oldChild) throws DOMException;
@@ -414,45 +411,44 @@ public interface Node {
      * first removed.
      * 
      * @param newChild
-     *                 The node to add.If it is a <code>DocumentFragment</code>
-     *                 object, the entire contents of the document fragment are
-     *                 moved
-     *                 into the child list of this node
+     *        The node to add.If it is a <code>DocumentFragment</code>
+     *        object, the entire contents of the document fragment are
+     *        moved
+     *        into the child list of this node
      * @return The node added.
      * @exception DOMException
-     *                         HIERARCHY_REQUEST_ERR: Raised if this node is of
-     *                         a type
-     *                         that does not allow children of the type of the
-     *                         <code>newChild</code> node, or if the node to
-     *                         append is
-     *                         one of this node's ancestors or this node itself,
-     *                         or if
-     *                         this node is of type <code>Document</code> and
-     *                         the DOM
-     *                         application attempts to append a second
-     *                         <code>DocumentType</code> or <code>Element</code>
-     *                         node.
-     *                         <br>
-     *                         WRONG_DOCUMENT_ERR: Raised if
-     *                         <code>newChild</code> was
-     *                         created from a different document than the one
-     *                         that
-     *                         created this node. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly or if the previous parent of the node
-     *                         being
-     *                         inserted is readonly. <br>
-     *                         NOT_SUPPORTED_ERR: if the <code>newChild</code>
-     *                         node is a
-     *                         child of the <code>Document</code> node, this
-     *                         exception
-     *                         might be raised if the DOM implementation doesn't
-     *                         support
-     *                         the removal of the <code>DocumentType</code>
-     *                         child or
-     *                         <code>Element</code> child.
-     *
+     *            HIERARCHY_REQUEST_ERR: Raised if this node is of
+     *            a type
+     *            that does not allow children of the type of the
+     *            <code>newChild</code> node, or if the node to
+     *            append is
+     *            one of this node's ancestors or this node itself,
+     *            or if
+     *            this node is of type <code>Document</code> and
+     *            the DOM
+     *            application attempts to append a second
+     *            <code>DocumentType</code> or <code>Element</code>
+     *            node.
+     *            <br>
+     *            WRONG_DOCUMENT_ERR: Raised if
+     *            <code>newChild</code> was
+     *            created from a different document than the one
+     *            that
+     *            created this node. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly or if the previous parent of the node
+     *            being
+     *            inserted is readonly. <br>
+     *            NOT_SUPPORTED_ERR: if the <code>newChild</code>
+     *            node is a
+     *            child of the <code>Document</code> node, this
+     *            exception
+     *            might be raised if the DOM implementation doesn't
+     *            support
+     *            the removal of the <code>DocumentType</code>
+     *            child or
+     *            <code>Element</code> child.
      * @since DOM Level 3
      */
     public Node appendChild(Node newChild) throws DOMException;
@@ -495,10 +491,10 @@ public interface Node {
      * dependent.
      * 
      * @param deep
-     *             If <code>true</code>, recursively clone the subtree under the
-     *             specified node; if <code>false</code>, clone only the node
-     *             itself (and its attributes, if it is an
-     *             <code>Element</code>).
+     *        If <code>true</code>, recursively clone the subtree under the
+     *        specified node; if <code>false</code>, clone only the node
+     *        itself (and its attributes, if it is an
+     *        <code>Element</code>).
      * @return The duplicate node.
      */
     public Node cloneNode(boolean deep);
@@ -533,12 +529,11 @@ public interface Node {
      * that feature is supported by this node, as specified in .
      * 
      * @param feature
-     *                The name of the feature to test.
+     *        The name of the feature to test.
      * @param version
-     *                This is the version number of the feature to test.
+     *        This is the version number of the feature to test.
      * @return Returns <code>true</code> if the specified feature is supported
      *         on this node, <code>false</code> otherwise.
-     *
      * @since DOM Level 2
      */
     public boolean isSupported(String feature, String version);
@@ -609,43 +604,42 @@ public interface Node {
      * interface, this is always <code>null</code>.
      * 
      * @exception DOMException
-     *                         INVALID_CHARACTER_ERR: Raised if the specified
-     *                         prefix
-     *                         contains an illegal character according to the
-     *                         XML version
-     *                         in use specified in the
-     *                         <code>Document.xmlVersion</code>
-     *                         attribute. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly. <br>
-     *                         NAMESPACE_ERR: Raised if the specified
-     *                         <code>prefix</code>
-     *                         is malformed per the Namespaces in XML
-     *                         specification, if
-     *                         the <code>namespaceURI</code> of this node is
-     *                         <code>null</code>, if the specified prefix is
-     *                         "xml" and
-     *                         the <code>namespaceURI</code> of this node is
-     *                         different
-     *                         from "
-     *                         <a href='http://www.w3.org/XML/1998/namespace'>
-     *                         http://www
-     *                         .w3.org/XML/1998/namespace</a>
-     *                         ", if this node is an attribute and the specified
-     *                         prefix is "
-     *                         xmlns" and the <code>namespaceURI</code> of this
-     *                         node is
-     *                         different from
-     *                         "<a href=
-     *                         'http://www.w3.org/2000/xmlns/'>http://www.w3.org/2000/xmlns/</a>"
-     *                         , or if this node is an attribute and the
-     *                         <code>qualifiedName</code> of this node is
-     *                         "xmlns" [
-     *                         <a href=
-     *                         'http://www.w3.org/TR/1999/REC-xml-names-19990114/'>XML
-     *                         Namespaces</a>] .
-     *
+     *            INVALID_CHARACTER_ERR: Raised if the specified
+     *            prefix
+     *            contains an illegal character according to the
+     *            XML version
+     *            in use specified in the
+     *            <code>Document.xmlVersion</code>
+     *            attribute. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly. <br>
+     *            NAMESPACE_ERR: Raised if the specified
+     *            <code>prefix</code>
+     *            is malformed per the Namespaces in XML
+     *            specification, if
+     *            the <code>namespaceURI</code> of this node is
+     *            <code>null</code>, if the specified prefix is
+     *            "xml" and
+     *            the <code>namespaceURI</code> of this node is
+     *            different
+     *            from "
+     *            <a href='http://www.w3.org/XML/1998/namespace'>
+     *            http://www
+     *            .w3.org/XML/1998/namespace</a>
+     *            ", if this node is an attribute and the specified
+     *            prefix is "
+     *            xmlns" and the <code>namespaceURI</code> of this
+     *            node is
+     *            different from
+     *            "<a href=
+     *            'http://www.w3.org/2000/xmlns/'>http://www.w3.org/2000/xmlns/</a>"
+     *            , or if this node is an attribute and the
+     *            <code>qualifiedName</code> of this node is
+     *            "xmlns" [
+     *            <a href=
+     *            'http://www.w3.org/TR/1999/REC-xml-names-19990114/'>XML
+     *            Namespaces</a>] .
      * @since DOM Level 2
      */
     public void setPrefix(String prefix) throws DOMException;
@@ -666,7 +660,6 @@ public interface Node {
      * 
      * @return Returns <code>true</code> if this node has any attributes,
      *         <code>false</code> otherwise.
-     *
      * @since DOM Level 2
      */
     public boolean hasAttributes();
@@ -722,17 +715,16 @@ public interface Node {
      * their position in the document and according to the document order.
      * 
      * @param other
-     *              The node to compare against the reference node.
+     *        The node to compare against the reference node.
      * @return Returns how the node is positioned relatively to the reference
      *         node.
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: when the compared nodes are
-     *                         from
-     *                         different DOM implementations that do not
-     *                         coordinate to
-     *                         return consistent implementation-specific
-     *                         results.
-     *
+     *            NOT_SUPPORTED_ERR: when the compared nodes are
+     *            from
+     *            different DOM implementations that do not
+     *            coordinate to
+     *            return consistent implementation-specific
+     *            results.
      * @since DOM Level 3
      */
     public short compareDocumentPosition(Node other) throws DOMException;
@@ -778,12 +770,11 @@ public interface Node {
      * </table>
      * 
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised when it would return
-     *                         more
-     *                         characters than fit in a <code>DOMString</code>
-     *                         variable
-     *                         on the implementation platform.
-     *
+     *            DOMSTRING_SIZE_ERR: Raised when it would return
+     *            more
+     *            characters than fit in a <code>DOMString</code>
+     *            variable
+     *            on the implementation platform.
      * @since DOM Level 3
      */
     public String getTextContent() throws DOMException;
@@ -829,10 +820,9 @@ public interface Node {
      * </table>
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly.
-     *
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly.
      * @since DOM Level 3
      */
     public void setTextContent(String textContent) throws DOMException;
@@ -848,10 +838,9 @@ public interface Node {
      * same effect.
      * 
      * @param other
-     *              The node to test against.
+     *        The node to test against.
      * @return Returns <code>true</code> if the nodes are the same,
      *         <code>false</code> otherwise.
-     *
      * @since DOM Level 3
      */
     public boolean isSameNode(Node other);
@@ -863,12 +852,11 @@ public interface Node {
      * See for details on the algorithm used by this method.
      * 
      * @param namespaceURI
-     *                     The namespace URI to look for.
+     *        The namespace URI to look for.
      * @return Returns an associated namespace prefix if found or
      *         <code>null</code> if none is found. If more than one prefix are
      *         associated to the namespace prefix, the returned namespace prefix
      *         is implementation dependent.
-     *
      * @since DOM Level 3
      */
     public String lookupPrefix(String namespaceURI);
@@ -878,11 +866,10 @@ public interface Node {
      * default namespace or not.
      * 
      * @param namespaceURI
-     *                     The namespace URI to look for.
+     *        The namespace URI to look for.
      * @return Returns <code>true</code> if the specified
      *         <code>namespaceURI</code> is the default namespace,
      *         <code>false</code> otherwise.
-     *
      * @since DOM Level 3
      */
     public boolean isDefaultNamespace(String namespaceURI);
@@ -893,12 +880,11 @@ public interface Node {
      * See for details on the algorithm used by this method.
      * 
      * @param prefix
-     *               The prefix to look for. If this parameter is
-     *               <code>null</code>
-     *               , the method will return the default namespace URI if any.
+     *        The prefix to look for. If this parameter is
+     *        <code>null</code>
+     *        , the method will return the default namespace URI if any.
      * @return Returns the associated namespace URI or <code>null</code> if none
      *         is found.
-     *
      * @since DOM Level 3
      */
     public String lookupNamespaceURI(String prefix);
@@ -954,10 +940,9 @@ public interface Node {
      * to be updated accordingly.
      * 
      * @param arg
-     *            The node to compare equality with.
+     *        The node to compare equality with.
      * @return Returns <code>true</code> if the nodes are equal,
      *         <code>false</code> otherwise.
-     *
      * @since DOM Level 3
      */
     public boolean isEqualNode(Node arg);
@@ -971,13 +956,13 @@ public interface Node {
      * support the <code>Node</code> interface.
      * 
      * @param feature
-     *                The name of the feature requested. Note that any plus sign
-     *                "+"
-     *                prepended to the name of the feature will be ignored since
-     *                it
-     *                is not significant in the context of this method.
+     *        The name of the feature requested. Note that any plus sign
+     *        "+"
+     *        prepended to the name of the feature will be ignored since
+     *        it
+     *        is not significant in the context of this method.
      * @param version
-     *                This is the version number of the feature to test.
+     *        This is the version number of the feature to test.
      * @return Returns an object which implements the specialized APIs of the
      *         specified feature and version, if any, or <code>null</code> if
      *         there is no object which implements interfaces associated with
@@ -986,7 +971,6 @@ public interface Node {
      *         delegate to the primary core <code>Node</code> and not return
      *         results inconsistent with the primary core <code>Node</code> such
      *         as attributes, childNodes, etc.
-     *
      * @since DOM Level 3
      */
     public Object getFeature(String feature, String version);
@@ -997,17 +981,16 @@ public interface Node {
      * same key.
      * 
      * @param key
-     *                The key to associate the object to.
+     *        The key to associate the object to.
      * @param data
-     *                The object to associate to the given key, or
-     *                <code>null</code>
-     *                to remove any existing association to that key.
+     *        The object to associate to the given key, or
+     *        <code>null</code>
+     *        to remove any existing association to that key.
      * @param handler
-     *                The handler to associate to that key, or
-     *                <code>null</code>.
+     *        The handler to associate to that key, or
+     *        <code>null</code>.
      * @return Returns the <code>DOMUserData</code> previously associated to the
      *         given key on this node, or <code>null</code> if there was none.
-     *
      * @since DOM Level 3
      */
     public Object setUserData(String key, Object data, UserDataHandler handler);
@@ -1018,10 +1001,9 @@ public interface Node {
      * the same key.
      * 
      * @param key
-     *            The key the object is associated to.
+     *        The key the object is associated to.
      * @return Returns the <code>DOMUserData</code> associated to the given key
      *         on this node, or <code>null</code> if there was none.
-     *
      * @since DOM Level 3
      */
     public Object getUserData(String key);

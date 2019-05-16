@@ -366,13 +366,10 @@ public final class Stylesheet extends SyntaxTreeNode {
             int min = getImportPrecedence();
 
             // Recursively examine all imported/included stylesheets.
-            final int inclImpCount = (_includedStylesheets != null)
-                    ? _includedStylesheets.size()
-                    : 0;
+            final int inclImpCount = (_includedStylesheets != null) ? _includedStylesheets.size() : 0;
 
             for (int i = 0; i < inclImpCount; i++) {
-                int prec = ((Stylesheet) _includedStylesheets.elementAt(i))
-                        .getMinimumDescendantPrecedence();
+                int prec = ((Stylesheet) _includedStylesheets.elementAt(i)).getMinimumDescendantPrecedence();
 
                 if (prec < min) {
                     min = prec;
@@ -482,9 +479,9 @@ public final class Stylesheet extends SyntaxTreeNode {
      * Adds a single prefix mapping to this syntax tree node.
      * 
      * @param prefix
-     *               Namespace prefix.
+     *        Namespace prefix.
      * @param uri
-     *               Namespace URI.
+     *        Namespace URI.
      */
     protected void addPrefixMapping(String prefix, String uri) {
         if (prefix.equals(EMPTYSTRING) && uri.equals(XHTML_URI))
@@ -514,8 +511,7 @@ public final class Stylesheet extends SyntaxTreeNode {
 
     public void declareExtensionPrefixes(Parser parser) {
         final SymbolTable stable = parser.getSymbolTable();
-        final String extensionPrefixes = getAttribute(
-                "extension-element-prefixes");
+        final String extensionPrefixes = getAttribute("extension-element-prefixes");
         extensionURI(extensionPrefixes, stable);
     }
 
@@ -568,8 +564,7 @@ public final class Stylesheet extends SyntaxTreeNode {
     public final void parseOwnChildren(Parser parser) {
         final SymbolTable stable = parser.getSymbolTable();
         final String excludePrefixes = getAttribute("exclude-result-prefixes");
-        final String extensionPrefixes = getAttribute(
-                "extension-element-prefixes");
+        final String extensionPrefixes = getAttribute("extension-element-prefixes");
 
         // Exclude XSLT uri
         stable.pushExcludedNamespacesContext();
@@ -584,8 +579,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         // variables and/or parameters before we parse the other elements
         for (int i = 0; i < count; i++) {
             SyntaxTreeNode child = contents.get(i);
-            if ((child instanceof VariableBase)
-                    || (child instanceof NamespaceAlias)) {
+            if ((child instanceof VariableBase) || (child instanceof NamespaceAlias)) {
                 parser.getSymbolTable().setCurrentNode(child);
                 child.parseContents(parser);
             }
@@ -594,8 +588,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         // Now go through all the other top-level elements...
         for (int i = 0; i < count; i++) {
             SyntaxTreeNode child = contents.get(i);
-            if (!(child instanceof VariableBase)
-                    && !(child instanceof NamespaceAlias)) {
+            if (!(child instanceof VariableBase) && !(child instanceof NamespaceAlias)) {
                 parser.getSymbolTable().setCurrentNode(child);
                 child.parseContents(parser);
             }
@@ -638,8 +631,7 @@ public final class Stylesheet extends SyntaxTreeNode {
             Mode mode = _modes.get(modeName.getStringRep());
             if (mode == null) {
                 final String suffix = Integer.toString(_nextModeSerial++);
-                _modes.put(modeName.getStringRep(), mode = new Mode(modeName,
-                        this, suffix));
+                _modes.put(modeName.getStringRep(), mode = new Mode(modeName, this, suffix));
             }
             return mode;
         }
@@ -665,18 +657,17 @@ public final class Stylesheet extends SyntaxTreeNode {
     }
 
     private void addDOMField(ClassGenerator classGen) {
-        final FieldGen fgen = new FieldGen(ACC_PUBLIC, Util.getJCRefType(
-                DOM_INTF_SIG), DOM_FIELD, classGen.getConstantPool());
+        final FieldGen fgen = new FieldGen(ACC_PUBLIC, Util.getJCRefType(DOM_INTF_SIG), DOM_FIELD, classGen
+                .getConstantPool());
         classGen.addField(fgen.getField());
     }
 
     /**
      * Add a static field
      */
-    private void addStaticField(ClassGenerator classGen, String type,
-            String name) {
-        final FieldGen fgen = new FieldGen(ACC_PROTECTED | ACC_STATIC, Util
-                .getJCRefType(type), name, classGen.getConstantPool());
+    private void addStaticField(ClassGenerator classGen, String type, String name) {
+        final FieldGen fgen = new FieldGen(ACC_PROTECTED | ACC_STATIC, Util.getJCRefType(type), name, classGen
+                .getConstantPool());
         classGen.addField(fgen.getField());
 
     }
@@ -688,9 +679,8 @@ public final class Stylesheet extends SyntaxTreeNode {
         _className = getXSLTC().getClassName();
 
         // Define a new class by extending TRANSLET_CLASS
-        final ClassGenerator classGen = new ClassGenerator(_className,
-                TRANSLET_CLASS, Constants.EMPTYSTRING, ACC_PUBLIC | ACC_SUPER,
-                null, this);
+        final ClassGenerator classGen = new ClassGenerator(_className, TRANSLET_CLASS, Constants.EMPTYSTRING,
+                ACC_PUBLIC | ACC_SUPER, null, this);
 
         addDOMField(classGen);
 
@@ -744,22 +734,19 @@ public final class Stylesheet extends SyntaxTreeNode {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = new InstructionList();
 
-        final MethodGenerator staticConst = new MethodGenerator(ACC_PUBLIC
-                | ACC_STATIC,
-                com.sun.org.apache.bcel.internal.generic.Type.VOID, null, null,
-                "<clinit>", _className, il, cpg);
+        final MethodGenerator staticConst = new MethodGenerator(ACC_PUBLIC | ACC_STATIC,
+                com.sun.org.apache.bcel.internal.generic.Type.VOID, null, null, "<clinit>", _className, il,
+                cpg);
 
         addStaticField(classGen, "[" + STRING_SIG, STATIC_NAMES_ARRAY_FIELD);
         addStaticField(classGen, "[" + STRING_SIG, STATIC_URIS_ARRAY_FIELD);
         addStaticField(classGen, "[I", STATIC_TYPES_ARRAY_FIELD);
-        addStaticField(classGen, "[" + STRING_SIG,
-                STATIC_NAMESPACE_ARRAY_FIELD);
+        addStaticField(classGen, "[" + STRING_SIG, STATIC_NAMESPACE_ARRAY_FIELD);
         // Create fields of type char[] that will contain literal text from
         // the stylesheet.
         final int charDataFieldCount = getXSLTC().getCharacterDataCount();
         for (int i = 0; i < charDataFieldCount; i++) {
-            addStaticField(classGen, STATIC_CHAR_DATA_FIELD_SIG,
-                    STATIC_CHAR_DATA_FIELD + i);
+            addStaticField(classGen, STATIC_CHAR_DATA_FIELD_SIG, STATIC_CHAR_DATA_FIELD + i);
         }
 
         // Put the names array into the translet - used for dom/translet mapping
@@ -797,8 +784,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         staticConst.markChunkStart();
         il.append(new PUSH(cpg, size));
         il.append(new ANEWARRAY(cpg.addClass(STRING)));
-        int namesArrayRef = cpg.addFieldref(_className,
-                STATIC_NAMES_ARRAY_FIELD, NAMES_INDEX_SIG);
+        int namesArrayRef = cpg.addFieldref(_className, STATIC_NAMES_ARRAY_FIELD, NAMES_INDEX_SIG);
         il.append(new PUTSTATIC(namesArrayRef));
         staticConst.markChunkEnd();
 
@@ -815,8 +801,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         staticConst.markChunkStart();
         il.append(new PUSH(cpg, size));
         il.append(new ANEWARRAY(cpg.addClass(STRING)));
-        int urisArrayRef = cpg.addFieldref(_className, STATIC_URIS_ARRAY_FIELD,
-                URIS_INDEX_SIG);
+        int urisArrayRef = cpg.addFieldref(_className, STATIC_URIS_ARRAY_FIELD, URIS_INDEX_SIG);
         il.append(new PUTSTATIC(urisArrayRef));
         staticConst.markChunkEnd();
 
@@ -833,8 +818,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         staticConst.markChunkStart();
         il.append(new PUSH(cpg, size));
         il.append(new NEWARRAY(BasicType.INT));
-        int typesArrayRef = cpg.addFieldref(_className,
-                STATIC_TYPES_ARRAY_FIELD, TYPES_INDEX_SIG);
+        int typesArrayRef = cpg.addFieldref(_className, STATIC_TYPES_ARRAY_FIELD, TYPES_INDEX_SIG);
         il.append(new PUTSTATIC(typesArrayRef));
         staticConst.markChunkEnd();
 
@@ -852,8 +836,8 @@ public final class Stylesheet extends SyntaxTreeNode {
         staticConst.markChunkStart();
         il.append(new PUSH(cpg, namespaces.size()));
         il.append(new ANEWARRAY(cpg.addClass(STRING)));
-        int namespaceArrayRef = cpg.addFieldref(_className,
-                STATIC_NAMESPACE_ARRAY_FIELD, NAMESPACE_INDEX_SIG);
+        int namespaceArrayRef = cpg.addFieldref(_className, STATIC_NAMESPACE_ARRAY_FIELD,
+                NAMESPACE_INDEX_SIG);
         il.append(new PUTSTATIC(namespaceArrayRef));
         staticConst.markChunkEnd();
 
@@ -874,8 +858,8 @@ public final class Stylesheet extends SyntaxTreeNode {
             staticConst.markChunkStart();
             il.append(new PUSH(cpg, getXSLTC().getCharacterData(i)));
             il.append(new INVOKEVIRTUAL(toCharArray));
-            il.append(new PUTSTATIC(cpg.addFieldref(_className,
-                    STATIC_CHAR_DATA_FIELD + i, STATIC_CHAR_DATA_FIELD_SIG)));
+            il.append(new PUTSTATIC(cpg.addFieldref(_className, STATIC_CHAR_DATA_FIELD + i,
+                    STATIC_CHAR_DATA_FIELD_SIG)));
             staticConst.markChunkEnd();
         }
 
@@ -894,57 +878,48 @@ public final class Stylesheet extends SyntaxTreeNode {
         final InstructionList il = new InstructionList();
 
         final MethodGenerator constructor = new MethodGenerator(ACC_PUBLIC,
-                com.sun.org.apache.bcel.internal.generic.Type.VOID, null, null,
-                "<init>", _className, il, cpg);
+                com.sun.org.apache.bcel.internal.generic.Type.VOID, null, null, "<init>", _className, il,
+                cpg);
 
         // Call the constructor in the AbstractTranslet superclass
         il.append(classGen.loadTranslet());
-        il.append(new INVOKESPECIAL(cpg.addMethodref(TRANSLET_CLASS, "<init>",
-                "()V")));
+        il.append(new INVOKESPECIAL(cpg.addMethodref(TRANSLET_CLASS, "<init>", "()V")));
 
         constructor.markChunkStart();
         il.append(classGen.loadTranslet());
-        il.append(new GETSTATIC(cpg.addFieldref(_className,
-                STATIC_NAMES_ARRAY_FIELD, NAMES_INDEX_SIG)));
-        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, NAMES_INDEX,
-                NAMES_INDEX_SIG)));
+        il.append(new GETSTATIC(cpg.addFieldref(_className, STATIC_NAMES_ARRAY_FIELD, NAMES_INDEX_SIG)));
+        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, NAMES_INDEX, NAMES_INDEX_SIG)));
 
         il.append(classGen.loadTranslet());
-        il.append(new GETSTATIC(cpg.addFieldref(_className,
-                STATIC_URIS_ARRAY_FIELD, URIS_INDEX_SIG)));
-        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, URIS_INDEX,
-                URIS_INDEX_SIG)));
+        il.append(new GETSTATIC(cpg.addFieldref(_className, STATIC_URIS_ARRAY_FIELD, URIS_INDEX_SIG)));
+        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, URIS_INDEX, URIS_INDEX_SIG)));
         constructor.markChunkEnd();
 
         constructor.markChunkStart();
         il.append(classGen.loadTranslet());
-        il.append(new GETSTATIC(cpg.addFieldref(_className,
-                STATIC_TYPES_ARRAY_FIELD, TYPES_INDEX_SIG)));
-        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, TYPES_INDEX,
-                TYPES_INDEX_SIG)));
+        il.append(new GETSTATIC(cpg.addFieldref(_className, STATIC_TYPES_ARRAY_FIELD, TYPES_INDEX_SIG)));
+        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, TYPES_INDEX, TYPES_INDEX_SIG)));
         constructor.markChunkEnd();
 
         constructor.markChunkStart();
         il.append(classGen.loadTranslet());
-        il.append(new GETSTATIC(cpg.addFieldref(_className,
-                STATIC_NAMESPACE_ARRAY_FIELD, NAMESPACE_INDEX_SIG)));
-        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, NAMESPACE_INDEX,
+        il.append(new GETSTATIC(cpg.addFieldref(_className, STATIC_NAMESPACE_ARRAY_FIELD,
                 NAMESPACE_INDEX_SIG)));
+        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, NAMESPACE_INDEX, NAMESPACE_INDEX_SIG)));
         constructor.markChunkEnd();
 
         constructor.markChunkStart();
         il.append(classGen.loadTranslet());
         il.append(new PUSH(cpg, AbstractTranslet.CURRENT_TRANSLET_VERSION));
-        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS,
-                TRANSLET_VERSION_INDEX, TRANSLET_VERSION_INDEX_SIG)));
+        il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, TRANSLET_VERSION_INDEX,
+                TRANSLET_VERSION_INDEX_SIG)));
         constructor.markChunkEnd();
 
         if (_hasIdCall) {
             constructor.markChunkStart();
             il.append(classGen.loadTranslet());
             il.append(new PUSH(cpg, Boolean.TRUE));
-            il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS,
-                    HASIDCALL_INDEX, HASIDCALL_INDEX_SIG)));
+            il.append(new PUTFIELD(cpg.addFieldref(TRANSLET_CLASS, HASIDCALL_INDEX, HASIDCALL_INDEX_SIG)));
             constructor.markChunkEnd();
         }
 
@@ -973,7 +948,6 @@ public final class Stylesheet extends SyntaxTreeNode {
      * Compile a topLevel() method into the output class. This method is called
      * from transform() to handle all non-template top-level elements. Returns
      * the signature of the topLevel() method.
-     *
      * Global variables/params and keys are first sorted to resolve dependencies
      * between them. The XSLT 1.0 spec does not allow a key to depend on a
      * variable. However, for compatibility with Xalan interpretive, that type
@@ -985,23 +959,18 @@ public final class Stylesheet extends SyntaxTreeNode {
 
         final ConstantPoolGen cpg = classGen.getConstantPool();
 
-        final com.sun.org.apache.bcel.internal.generic.Type[] argTypes = { Util
-                .getJCRefType(DOM_INTF_SIG), Util.getJCRefType(
-                        NODE_ITERATOR_SIG), Util.getJCRefType(
-                                TRANSLET_OUTPUT_SIG) };
+        final com.sun.org.apache.bcel.internal.generic.Type[] argTypes = { Util.getJCRefType(DOM_INTF_SIG),
+                Util.getJCRefType(NODE_ITERATOR_SIG), Util.getJCRefType(TRANSLET_OUTPUT_SIG) };
 
-        final String[] argNames = { DOCUMENT_PNAME, ITERATOR_PNAME,
-                TRANSLET_OUTPUT_PNAME };
+        final String[] argNames = { DOCUMENT_PNAME, ITERATOR_PNAME, TRANSLET_OUTPUT_PNAME };
 
         final InstructionList il = new InstructionList();
 
         final MethodGenerator toplevel = new MethodGenerator(ACC_PUBLIC,
-                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes,
-                argNames, "topLevel", _className, il, classGen
-                        .getConstantPool());
+                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes, argNames, "topLevel",
+                _className, il, classGen.getConstantPool());
 
-        toplevel.addException(
-                "com.sun.org.apache.xalan.internal.xsltc.TransletException");
+        toplevel.addException("com.sun.org.apache.xalan.internal.xsltc.TransletException");
 
         // Define and initialize 'current' variable with the root node
         final LocalVariableGen current = toplevel.addLocalVariable("current",
@@ -1010,8 +979,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         final int setFilter = cpg.addInterfaceMethodref(DOM_INTF, "setFilter",
                 "(Lcom/sun/org/apache/xalan/internal/xsltc/StripFilter;)V");
 
-        final int gitr = cpg.addInterfaceMethodref(DOM_INTF, "getIterator", "()"
-                + NODE_ITERATOR_SIG);
+        final int gitr = cpg.addInterfaceMethodref(DOM_INTF, "getIterator", "()" + NODE_ITERATOR_SIG);
         il.append(toplevel.loadDOM());
         il.append(new INVOKEINTERFACE(gitr, 1));
         il.append(toplevel.nextNode());
@@ -1033,8 +1001,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         // Translate vars/params and keys in the right order
         final int count = varDepElements.size();
         for (int i = 0; i < count; i++) {
-            final TopLevelElement tle = (TopLevelElement) varDepElements
-                    .elementAt(i);
+            final TopLevelElement tle = (TopLevelElement) varDepElements.elementAt(i);
             tle.translate(classGen, toplevel);
             if (tle instanceof Key) {
                 final Key key = (Key) tle;
@@ -1073,8 +1040,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         // Compute max locals + stack and add method to class
         classGen.addMethod(toplevel);
 
-        return ("(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG
-                + ")V");
+        return ("(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG + ")V");
     }
 
     /**
@@ -1099,8 +1065,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         while (input.size() > 0) {
             boolean changed = false;
             for (int i = 0; i < input.size();) {
-                final TopLevelElement vde = (TopLevelElement) input.elementAt(
-                        i);
+                final TopLevelElement vde = (TopLevelElement) input.elementAt(i);
                 final Vector dep = vde.getDependencies();
                 if (dep == null || result.containsAll(dep)) {
                     result.addElement(vde);
@@ -1113,8 +1078,7 @@ public final class Stylesheet extends SyntaxTreeNode {
 
             // If nothing was changed in this pass then we have a circular ref
             if (!changed) {
-                ErrorMsg err = new ErrorMsg(ErrorMsg.CIRCULAR_VARIABLE_ERR,
-                        input.toString(), this);
+                ErrorMsg err = new ErrorMsg(ErrorMsg.CIRCULAR_VARIABLE_ERR, input.toString(), this);
                 getParser().reportError(Constants.ERROR, err);
                 return (result);
             }
@@ -1140,24 +1104,19 @@ public final class Stylesheet extends SyntaxTreeNode {
     private String compileBuildKeys(ClassGenerator classGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
 
-        final com.sun.org.apache.bcel.internal.generic.Type[] argTypes = { Util
-                .getJCRefType(DOM_INTF_SIG), Util.getJCRefType(
-                        NODE_ITERATOR_SIG), Util.getJCRefType(
-                                TRANSLET_OUTPUT_SIG),
+        final com.sun.org.apache.bcel.internal.generic.Type[] argTypes = { Util.getJCRefType(DOM_INTF_SIG),
+                Util.getJCRefType(NODE_ITERATOR_SIG), Util.getJCRefType(TRANSLET_OUTPUT_SIG),
                 com.sun.org.apache.bcel.internal.generic.Type.INT };
 
-        final String[] argNames = { DOCUMENT_PNAME, ITERATOR_PNAME,
-                TRANSLET_OUTPUT_PNAME, "current" };
+        final String[] argNames = { DOCUMENT_PNAME, ITERATOR_PNAME, TRANSLET_OUTPUT_PNAME, "current" };
 
         final InstructionList il = new InstructionList();
 
         final MethodGenerator buildKeys = new MethodGenerator(ACC_PUBLIC,
-                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes,
-                argNames, "buildKeys", _className, il, classGen
-                        .getConstantPool());
+                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes, argNames, "buildKeys",
+                _className, il, classGen.getConstantPool());
 
-        buildKeys.addException(
-                "com.sun.org.apache.xalan.internal.xsltc.TransletException");
+        buildKeys.addException("com.sun.org.apache.xalan.internal.xsltc.TransletException");
 
         final Iterator<SyntaxTreeNode> elements = elements();
         while (elements.hasNext()) {
@@ -1180,8 +1139,7 @@ public final class Stylesheet extends SyntaxTreeNode {
 
         classGen.addMethod(buildKeys.getMethod());
 
-        return ("(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG
-                + "I)V");
+        return ("(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG + "I)V");
     }
 
     /**
@@ -1208,25 +1166,20 @@ public final class Stylesheet extends SyntaxTreeNode {
 
         final InstructionList il = new InstructionList();
         final MethodGenerator transf = new MethodGenerator(ACC_PUBLIC,
-                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes,
-                argNames, "transform", _className, il, classGen
-                        .getConstantPool());
-        transf.addException(
-                "com.sun.org.apache.xalan.internal.xsltc.TransletException");
+                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes, argNames, "transform",
+                _className, il, classGen.getConstantPool());
+        transf.addException("com.sun.org.apache.xalan.internal.xsltc.TransletException");
 
         // call resetPrefixIndex at the beginning of transform
-        final int check = cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                "resetPrefixIndex", "()V");
+        final int check = cpg.addMethodref(BASIS_LIBRARY_CLASS, "resetPrefixIndex", "()V");
         il.append(new INVOKESTATIC(check));
 
         // Define and initialize current with the root node
         final LocalVariableGen current = transf.addLocalVariable("current",
                 com.sun.org.apache.bcel.internal.generic.Type.INT, null, null);
         final String applyTemplatesSig = classGen.getApplyTemplatesSig();
-        final int applyTemplates = cpg.addMethodref(getClassName(),
-                "applyTemplates", applyTemplatesSig);
-        final int domField = cpg.addFieldref(getClassName(), DOM_FIELD,
-                DOM_INTF_SIG);
+        final int applyTemplates = cpg.addMethodref(getClassName(), "applyTemplates", applyTemplatesSig);
+        final int domField = cpg.addFieldref(getClassName(), DOM_FIELD, DOM_INTF_SIG);
 
         // push translet for PUTFIELD
         il.append(classGen.loadTranslet());
@@ -1239,13 +1192,12 @@ public final class Stylesheet extends SyntaxTreeNode {
 
         il.append(classGen.loadTranslet());
         il.append(transf.loadDOM());
-        il.append(new INVOKEVIRTUAL(cpg.addMethodref(TRANSLET_CLASS,
-                "makeDOMAdapter", "(" + DOM_INTF_SIG + ")" + DOM_ADAPTER_SIG)));
+        il.append(new INVOKEVIRTUAL(cpg.addMethodref(TRANSLET_CLASS, "makeDOMAdapter", "(" + DOM_INTF_SIG
+                + ")" + DOM_ADAPTER_SIG)));
         // DOMAdapter is on the stack
 
         if (isMultiDocument()) {
-            final int init = cpg.addMethodref(MULTI_DOM_CLASS, "<init>", "("
-                    + DOM_INTF_SIG + ")V");
+            final int init = cpg.addMethodref(MULTI_DOM_CLASS, "<init>", "(" + DOM_INTF_SIG + ")V");
             il.append(new INVOKESPECIAL(init));
             // MultiDOM is on the stack
         }
@@ -1254,8 +1206,7 @@ public final class Stylesheet extends SyntaxTreeNode {
         il.append(new PUTFIELD(domField));
 
         // continue with globals initialization
-        final int gitr = cpg.addInterfaceMethodref(DOM_INTF, "getIterator", "()"
-                + NODE_ITERATOR_SIG);
+        final int gitr = cpg.addInterfaceMethodref(DOM_INTF, "getIterator", "()" + NODE_ITERATOR_SIG);
         il.append(transf.loadDOM());
         il.append(new INVOKEINTERFACE(gitr, 1));
         il.append(transf.nextNode());
@@ -1264,8 +1215,8 @@ public final class Stylesheet extends SyntaxTreeNode {
         // Transfer the output settings to the output post-processor
         il.append(classGen.loadTranslet());
         il.append(transf.loadHandler());
-        final int index = cpg.addMethodref(TRANSLET_CLASS,
-                "transferOutputSettings", "(" + OUTPUT_HANDLER_SIG + ")V");
+        final int index = cpg.addMethodref(TRANSLET_CLASS, "transferOutputSettings", "(" + OUTPUT_HANDLER_SIG
+                + ")V");
         il.append(new INVOKEVIRTUAL(index));
 
         /*
@@ -1274,8 +1225,7 @@ public final class Stylesheet extends SyntaxTreeNode {
          * However, this method is still needed by the LoadDocument class.
          */
         final String keySig = compileBuildKeys(classGen);
-        final int keyIdx = cpg.addMethodref(getClassName(), "buildKeys",
-                keySig);
+        final int keyIdx = cpg.addMethodref(getClassName(), "buildKeys", keySig);
 
         // Look for top-level elements that need handling
         final Iterator<SyntaxTreeNode> toplevel = elements();
@@ -1283,8 +1233,7 @@ public final class Stylesheet extends SyntaxTreeNode {
             // Compile method for handling top-level elements
             final String topLevelSig = compileTopLevel(classGen);
             // Get a reference to that method
-            final int topLevelIdx = cpg.addMethodref(getClassName(), "topLevel",
-                    topLevelSig);
+            final int topLevelIdx = cpg.addMethodref(getClassName(), "topLevel", topLevelSig);
             // Push all parameters on the stack and call topLevel()
             il.append(classGen.loadTranslet()); // The 'this' pointer
             il.append(classGen.loadTranslet());
@@ -1376,8 +1325,7 @@ public final class Stylesheet extends SyntaxTreeNode {
             templates.addAll(_templates);
             int size = _includedStylesheets.size();
             for (int i = 0; i < size; i++) {
-                Stylesheet included = (Stylesheet) _includedStylesheets
-                        .elementAt(i);
+                Stylesheet included = (Stylesheet) _includedStylesheets.elementAt(i);
                 templates.addAll(included.getAllValidTemplates());
             }
             // templates.addAll(_templates);

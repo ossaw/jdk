@@ -55,11 +55,9 @@ package com.sun.org.apache.bcel.internal.generic;
  * SIPUSH, BIPUSH, ICONST, etc.
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
- * 
  * @see ICONST
  * @see SIPUSH
  */
-public interface ConstantPushInstruction extends PushInstruction,
-        TypedInstruction {
+public interface ConstantPushInstruction extends PushInstruction, TypedInstruction {
     public Number getValue();
 }

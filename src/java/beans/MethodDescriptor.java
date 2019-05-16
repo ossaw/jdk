@@ -30,7 +30,7 @@ public class MethodDescriptor extends FeatureDescriptor {
      * Constructs a <code>MethodDescriptor</code> from a <code>Method</code>.
      *
      * @param method
-     *               The low-level method information.
+     *        The low-level method information.
      */
     public MethodDescriptor(Method method) {
         this(method, null);
@@ -41,18 +41,15 @@ public class MethodDescriptor extends FeatureDescriptor {
      * providing descriptive information for each of the method's parameters.
      *
      * @param method
-     *                             The low-level method information.
+     *        The low-level method information.
      * @param parameterDescriptors
-     *                             Descriptive information for each of the
-     *                             method's parameters.
+     *        Descriptive information for each of the
+     *        method's parameters.
      */
-    public MethodDescriptor(Method method,
-            ParameterDescriptor parameterDescriptors[]) {
+    public MethodDescriptor(Method method, ParameterDescriptor parameterDescriptors[]) {
         setName(method.getName());
         setMethod(method);
-        this.parameterDescriptors = (parameterDescriptors != null)
-                ? parameterDescriptors.clone()
-                : null;
+        this.parameterDescriptors = (parameterDescriptors != null) ? parameterDescriptors.clone() : null;
     }
 
     /**
@@ -80,8 +77,7 @@ public class MethodDescriptor extends FeatureDescriptor {
                         }
                     }
                 } else {
-                    method = Introspector.findMethod(cls, name, params.length,
-                            params);
+                    method = Introspector.findMethod(cls, name, params.length, params);
                 }
                 setMethod(method);
             }
@@ -122,8 +118,7 @@ public class MethodDescriptor extends FeatureDescriptor {
         Class<?>[] clss = new Class<?>[params.size()];
 
         for (int i = 0; i < params.size(); i++) {
-            Reference<? extends Class<?>> ref = (Reference<? extends Class<?>>) params
-                    .get(i);
+            Reference<? extends Class<?>> ref = (Reference<? extends Class<?>>) params.get(i);
             Class<?> cls = ref.get();
             if (cls == null) {
                 return null;
@@ -142,8 +137,7 @@ public class MethodDescriptor extends FeatureDescriptor {
      *         array if the parameter names aren't known.
      */
     public ParameterDescriptor[] getParameterDescriptors() {
-        return (this.parameterDescriptors != null) ? this.parameterDescriptors
-                .clone() : null;
+        return (this.parameterDescriptors != null) ? this.parameterDescriptors.clone() : null;
     }
 
     private static Method resolve(Method oldMethod, Method newMethod) {
@@ -153,8 +147,7 @@ public class MethodDescriptor extends FeatureDescriptor {
         if (newMethod == null) {
             return oldMethod;
         }
-        return !oldMethod.isSynthetic() && newMethod.isSynthetic() ? oldMethod
-                : newMethod;
+        return !oldMethod.isSynthetic() && newMethod.isSynthetic() ? oldMethod : newMethod;
     }
 
     /*
@@ -199,8 +192,7 @@ public class MethodDescriptor extends FeatureDescriptor {
             int len = old.parameterDescriptors.length;
             parameterDescriptors = new ParameterDescriptor[len];
             for (int i = 0; i < len; i++) {
-                parameterDescriptors[i] = new ParameterDescriptor(
-                        old.parameterDescriptors[i]);
+                parameterDescriptors[i] = new ParameterDescriptor(old.parameterDescriptors[i]);
             }
         }
     }

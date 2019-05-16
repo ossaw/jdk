@@ -22,7 +22,6 @@ import java.util.Locale;
  * @see ThrowsTag
  * @see SerialFieldTag
  * @see Doc#tags()
- *
  */
 public interface Tag {
 
@@ -48,7 +47,6 @@ public interface Tag {
      * Return the kind of this tag. For most tags,
      * <code>kind()&nbsp;==&nbsp;name()</code>; the following table lists those
      * cases where there is more than one tag of a given kind:
-     *
      * <table border="1" cellpadding="4" cellspacing="0" summary="related tags">
      * <tr>
      * <th>{@code kind()  }</th>

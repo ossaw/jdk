@@ -60,8 +60,7 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  * @see TABLESWITCH
  * @see InstructionList
  */
-public abstract class Select extends BranchInstruction implements
-        VariableLengthInstruction, StackProducer {
+public abstract class Select extends BranchInstruction implements VariableLengthInstruction, StackProducer {
     protected int[] match; // matches, i.e., case 1: ...
     protected int[] indices; // target offsets
     protected InstructionHandle[] targets; // target objects in instruction list
@@ -80,14 +79,13 @@ public abstract class Select extends BranchInstruction implements
      * same length of course.
      *
      * @param match
-     *                array of matching values
+     *        array of matching values
      * @param targets
-     *                instruction targets
+     *        instruction targets
      * @param target
-     *                default instruction target
+     *        default instruction target
      */
-    Select(short opcode, int[] match, InstructionHandle[] targets,
-            InstructionHandle target) {
+    Select(short opcode, int[] match, InstructionHandle[] targets, InstructionHandle target) {
         super(opcode, target);
 
         this.targets = targets;
@@ -98,8 +96,7 @@ public abstract class Select extends BranchInstruction implements
         this.match = match;
 
         if ((match_length = match.length) != targets.length)
-            throw new ClassGenException(
-                    "Match and target array have not the same length");
+            throw new ClassGenException("Match and target array have not the same length");
 
         indices = new int[match_length];
     }
@@ -107,7 +104,6 @@ public abstract class Select extends BranchInstruction implements
     /**
      * Since this is a variable length instruction, it may shift the following
      * instructions which then need to update their position.
-     *
      * Called by InstructionList.setPositions when setting the position for
      * every instruction. In the presence of variable length instructions
      * `setPositions' performs multiple passes over the instruction list to
@@ -115,11 +111,11 @@ public abstract class Select extends BranchInstruction implements
      * function.
      *
      * @param offset
-     *                   additional offset caused by preceding (variable length)
-     *                   instructions
+     *        additional offset caused by preceding (variable length)
+     *        instructions
      * @param max_offset
-     *                   the maximum offset that may be caused by these
-     *                   instructions
+     *        the maximum offset that may be caused by these
+     *        instructions
      * @return additional offset caused by possible change of this instruction's
      *         length
      */
@@ -143,7 +139,7 @@ public abstract class Select extends BranchInstruction implements
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     @Override
     public void dump(DataOutputStream out) throws IOException {
@@ -160,8 +156,7 @@ public abstract class Select extends BranchInstruction implements
      * Read needed data (e.g. index) from file.
      */
     @Override
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         padding = (4 - (bytes.getIndex() % 4)) % 4; // Compute number of pad
                                                     // bytes
 
@@ -188,8 +183,8 @@ public abstract class Select extends BranchInstruction implements
                 if (targets[i] != null)
                     s = targets[i].getInstruction().toString();
 
-                buf.append("(").append(match[i]).append(", ").append(s).append(
-                        " = {").append(indices[i]).append("})");
+                buf.append("(").append(match[i]).append(", ").append(s).append(" = {").append(indices[i])
+                        .append("})");
             }
         } else
             buf.append(" ...");
@@ -208,13 +203,12 @@ public abstract class Select extends BranchInstruction implements
 
     /**
      * @param old_ih
-     *               old target
+     *        old target
      * @param new_ih
-     *               new target
+     *        new target
      */
     @Override
-    public void updateTarget(InstructionHandle old_ih,
-            InstructionHandle new_ih) {
+    public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
         boolean targeted = false;
 
         if (target == old_ih) {

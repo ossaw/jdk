@@ -8,8 +8,7 @@ package com.sun.corba.se.PortableActivationIDL.LocatorPackage;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class ServerLocationPerORB implements
-        org.omg.CORBA.portable.IDLEntity {
+public final class ServerLocationPerORB implements org.omg.CORBA.portable.IDLEntity {
     public String hostname = null;
     public com.sun.corba.se.PortableActivationIDL.EndPointInfo ports[] = null;
 

@@ -25,7 +25,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier;
  * resource.
  *
  * @author Andy Clark
- *
  */
 public class XMLResourceIdentifierImpl implements XMLResourceIdentifier {
 
@@ -59,38 +58,36 @@ public class XMLResourceIdentifierImpl implements XMLResourceIdentifier {
      * Constructs a resource identifier.
      *
      * @param publicId
-     *                         The public identifier.
+     *        The public identifier.
      * @param literalSystemId
-     *                         The literal system identifier.
+     *        The literal system identifier.
      * @param baseSystemId
-     *                         The base system identifier.
+     *        The base system identifier.
      * @param expandedSystemId
-     *                         The expanded system identifier.
+     *        The expanded system identifier.
      */
-    public XMLResourceIdentifierImpl(String publicId, String literalSystemId,
-            String baseSystemId, String expandedSystemId) {
-        setValues(publicId, literalSystemId, baseSystemId, expandedSystemId,
-                null);
+    public XMLResourceIdentifierImpl(String publicId, String literalSystemId, String baseSystemId,
+            String expandedSystemId) {
+        setValues(publicId, literalSystemId, baseSystemId, expandedSystemId, null);
     } // <init>(String,String,String,String)
 
     /**
      * Constructs a resource identifier.
      *
      * @param publicId
-     *                         The public identifier.
+     *        The public identifier.
      * @param literalSystemId
-     *                         The literal system identifier.
+     *        The literal system identifier.
      * @param baseSystemId
-     *                         The base system identifier.
+     *        The base system identifier.
      * @param expandedSystemId
-     *                         The expanded system identifier.
+     *        The expanded system identifier.
      * @param namespace
-     *                         The namespace.
+     *        The namespace.
      */
-    public XMLResourceIdentifierImpl(String publicId, String literalSystemId,
-            String baseSystemId, String expandedSystemId, String namespace) {
-        setValues(publicId, literalSystemId, baseSystemId, expandedSystemId,
-                namespace);
+    public XMLResourceIdentifierImpl(String publicId, String literalSystemId, String baseSystemId,
+            String expandedSystemId, String namespace) {
+        setValues(publicId, literalSystemId, baseSystemId, expandedSystemId, namespace);
     } // <init>(String,String,String,String,String)
 
     //
@@ -98,15 +95,14 @@ public class XMLResourceIdentifierImpl implements XMLResourceIdentifier {
     //
 
     /** Sets the values of the resource identifier. */
-    public void setValues(String publicId, String literalSystemId,
-            String baseSystemId, String expandedSystemId) {
-        setValues(publicId, literalSystemId, baseSystemId, expandedSystemId,
-                null);
+    public void setValues(String publicId, String literalSystemId, String baseSystemId,
+            String expandedSystemId) {
+        setValues(publicId, literalSystemId, baseSystemId, expandedSystemId, null);
     } // setValues(String,String,String,String)
 
     /** Sets the values of the resource identifier. */
-    public void setValues(String publicId, String literalSystemId,
-            String baseSystemId, String expandedSystemId, String namespace) {
+    public void setValues(String publicId, String literalSystemId, String baseSystemId,
+            String expandedSystemId, String namespace) {
         fPublicId = publicId;
         fLiteralSystemId = literalSystemId;
         fBaseSystemId = baseSystemId;

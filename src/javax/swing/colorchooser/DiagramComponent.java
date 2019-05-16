@@ -14,8 +14,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JComponent;
 
-final class DiagramComponent extends JComponent implements MouseListener,
-        MouseMotionListener {
+final class DiagramComponent extends JComponent implements MouseListener, MouseMotionListener {
 
     private final ColorPanel panel;
     private final boolean diagram;
@@ -41,15 +40,14 @@ final class DiagramComponent extends JComponent implements MouseListener,
         this.width = getWidth() - this.insets.left - this.insets.right;
         this.height = getHeight() - this.insets.top - this.insets.bottom;
 
-        boolean update = (this.image == null) || (this.width != this.image
-                .getWidth()) || (this.height != this.image.getHeight());
+        boolean update = (this.image == null) || (this.width != this.image.getWidth())
+                || (this.height != this.image.getHeight());
         if (update) {
             int size = this.width * this.height;
             if ((this.array == null) || (this.array.length < size)) {
                 this.array = new int[size];
             }
-            this.image = new BufferedImage(this.width, this.height,
-                    BufferedImage.TYPE_INT_RGB);
+            this.image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_RGB);
         }
         {
             float dx = 1.0f / (float) (this.width - 1);
@@ -71,27 +69,21 @@ final class DiagramComponent extends JComponent implements MouseListener,
                 }
             }
         }
-        this.image.setRGB(0, 0, this.width, this.height, this.array, 0,
-                this.width);
-        g.drawImage(this.image, this.insets.left, this.insets.top, this.width,
-                this.height, this);
+        this.image.setRGB(0, 0, this.width, this.height, this.array, 0, this.width);
+        g.drawImage(this.image, this.insets.left, this.insets.top, this.width, this.height, this);
         if (isEnabled()) {
             this.width--;
             this.height--;
             g.setXORMode(Color.WHITE);
             g.setColor(Color.BLACK);
             if (this.diagram) {
-                int x = getValue(this.panel.getValueX(), this.insets.left,
-                        this.width);
-                int y = getValue(this.panel.getValueY(), this.insets.top,
-                        this.height);
+                int x = getValue(this.panel.getValueX(), this.insets.left, this.width);
+                int y = getValue(this.panel.getValueY(), this.insets.top, this.height);
                 g.drawLine(x - 8, y, x + 8, y);
                 g.drawLine(x, y - 8, x, y + 8);
             } else {
-                int z = getValue(this.panel.getValueZ(), this.insets.top,
-                        this.height);
-                g.drawLine(this.insets.left, z, this.insets.left + this.width,
-                        z);
+                int z = getValue(this.panel.getValueZ(), this.insets.top, this.height);
+                g.drawLine(this.insets.left, z, this.insets.left + this.width, z);
             }
             g.setPaintMode();
         }

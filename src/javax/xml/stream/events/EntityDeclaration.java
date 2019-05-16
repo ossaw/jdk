@@ -10,7 +10,6 @@ package javax.xml.stream.events;
 
 /**
  * An interface for handling Entity Declarations
- *
  * This interface is used to record and report unparsed entity declarations.
  *
  * @version 1.0

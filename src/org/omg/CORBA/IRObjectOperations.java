@@ -59,11 +59,11 @@ public interface IRObjectOperations {
      * with the minor code 1.
      * 
      * @exception BAD_INV_ORDER
-     *                          if this method is invoked on a repository or
-     *                          <code>PrimitiveDef</code>, or if an attempt to
-     *                          destroy an
-     *                          object would leave the repository in an
-     *                          incoherent state
+     *            if this method is invoked on a repository or
+     *            <code>PrimitiveDef</code>, or if an attempt to
+     *            destroy an
+     *            object would leave the repository in an
+     *            incoherent state
      */
     void destroy();
 } // interface IRObjectOperations

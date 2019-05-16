@@ -17,7 +17,6 @@ import java.util.EventListener;
  * further documentation.
  *
  * @see java.awt.event.WindowListener
- *
  * @author Thomas Ball
  */
 public interface InternalFrameListener extends EventListener {

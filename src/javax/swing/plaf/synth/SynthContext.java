@@ -30,8 +30,7 @@ public class SynthContext {
         return getContext(c, SynthLookAndFeel.getRegion(c), style, state);
     }
 
-    static SynthContext getContext(JComponent component, Region region,
-            SynthStyle style, int state) {
+    static SynthContext getContext(JComponent component, Region region, SynthStyle style, int state) {
         SynthContext context = queue.poll();
         if (context == null) {
             context = new SynthContext();
@@ -52,21 +51,19 @@ public class SynthContext {
      * a SynthContext, though some methods will take one.
      *
      * @param component
-     *                  JComponent
+     *        JComponent
      * @param region
-     *                  Identifies the portion of the JComponent
+     *        Identifies the portion of the JComponent
      * @param style
-     *                  Style associated with the component
+     *        Style associated with the component
      * @param state
-     *                  State of the component as defined in SynthConstants.
+     *        State of the component as defined in SynthConstants.
      * @throws NullPointerException
-     *                              if component, region of style is null.
+     *         if component, region of style is null.
      */
-    public SynthContext(JComponent component, Region region, SynthStyle style,
-            int state) {
+    public SynthContext(JComponent component, Region region, SynthStyle style, int state) {
         if (component == null || region == null || style == null) {
-            throw new NullPointerException(
-                    "You must supply a non-null component, region and style");
+            throw new NullPointerException("You must supply a non-null component, region and style");
         }
         reset(component, region, style, state);
     }
@@ -129,8 +126,7 @@ public class SynthContext {
     /**
      * Resets the state of the Context.
      */
-    void reset(JComponent component, Region region, SynthStyle style,
-            int state) {
+    void reset(JComponent component, Region region, SynthStyle style, int state) {
         this.component = component;
         this.region = region;
         this.style = style;

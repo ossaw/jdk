@@ -56,7 +56,6 @@ package com.sun.org.apache.bcel.internal.generic;
  * PUSH instruction takes an arbitray argument and produces the appropiate code
  * at dump time (ICONST, LDC, BIPUSH, ...). Also you can use the SWITCH
  * instruction as a useful template for either LOOKUPSWITCH or TABLESWITCH.
- *
  * The interface provides the possibilty for the user to write `templates' or
  * `macros' for such reuseable code patterns.
  *

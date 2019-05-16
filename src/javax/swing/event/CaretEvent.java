@@ -25,7 +25,7 @@ public abstract class CaretEvent extends EventObject {
      * Creates a new CaretEvent object.
      *
      * @param source
-     *               the object responsible for the event
+     *        the object responsible for the event
      */
     public CaretEvent(Object source) {
         super(source);

@@ -43,12 +43,11 @@ public class OneStepIteratorForward extends ChildTestIterator {
      * Create a OneStepIterator object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
-     *
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @throws javax.xml.transform.TransformerException
      */
     OneStepIteratorForward(Compiler compiler, int opPos, int analysis)
@@ -64,8 +63,7 @@ public class OneStepIteratorForward extends ChildTestIterator {
      * Create a OneStepIterator object that will just traverse the self axes.
      *
      * @param axis
-     *             One of the com.sun.org.apache.xml.internal.dtm.Axis integers.
-     *
+     *        One of the com.sun.org.apache.xml.internal.dtm.Axis integers.
      * @throws javax.xml.transform.TransformerException
      */
     public OneStepIteratorForward(int axis) {
@@ -80,7 +78,7 @@ public class OneStepIteratorForward extends ChildTestIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);
@@ -132,8 +130,8 @@ public class OneStepIteratorForward extends ChildTestIterator {
      * Get the next node via getFirstAttribute && getNextAttribute.
      */
     protected int getNextNode() {
-        m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(
-                m_context) : m_traverser.next(m_context, m_lastFetched);
+        m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(m_context)
+                : m_traverser.next(m_context, m_lastFetched);
         return m_lastFetched;
     }
 

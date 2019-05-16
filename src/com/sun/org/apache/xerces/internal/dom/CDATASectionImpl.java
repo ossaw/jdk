@@ -41,7 +41,6 @@ import org.w3c.dom.Node;
  * CDATA does not participate in Element.normalize() processing.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class CDATASectionImpl extends TextImpl implements CDATASection {

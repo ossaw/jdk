@@ -16,7 +16,6 @@ import java.awt.dnd.DropTarget;
  * </p>
  *
  * @since 1.2
- *
  */
 
 public interface DropTargetPeer {
@@ -25,7 +24,7 @@ public interface DropTargetPeer {
      * Add the DropTarget to the System
      *
      * @param dt
-     *           The DropTarget effected
+     *        The DropTarget effected
      */
 
     void addDropTarget(DropTarget dt);
@@ -34,7 +33,7 @@ public interface DropTargetPeer {
      * Remove the DropTarget from the system
      *
      * @param dt
-     *           The DropTarget effected
+     *        The DropTarget effected
      */
 
     void removeDropTarget(DropTarget dt);

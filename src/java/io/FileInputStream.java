@@ -11,7 +11,6 @@ import sun.nio.ch.FileChannelImpl;
 /**
  * A <code>FileInputStream</code> obtains input bytes from a file in a file
  * system. What files are available depends on the host environment.
- *
  * <p>
  * <code>FileInputStream</code> is meant for reading streams of raw bytes such
  * as image data. For reading streams of characters, consider using
@@ -53,18 +52,18 @@ public class FileInputStream extends InputStream {
      * <code>FileNotFoundException</code> is thrown.
      *
      * @param name
-     *             the system-dependent file name.
+     *        the system-dependent file name.
      * @exception FileNotFoundException
-     *                                  if the file does not exist, is a
-     *                                  directory rather than a
-     *                                  regular file, or for some other reason
-     *                                  cannot be opened
-     *                                  for reading.
+     *            if the file does not exist, is a
+     *            directory rather than a
+     *            regular file, or for some other reason
+     *            cannot be opened
+     *            for reading.
      * @exception SecurityException
-     *                                  if a security manager exists and its
-     *                                  <code>checkRead</code> method denies
-     *                                  read access to the
-     *                                  file.
+     *            if a security manager exists and its
+     *            <code>checkRead</code> method denies
+     *            read access to the
+     *            file.
      * @see java.lang.SecurityManager#checkRead(java.lang.String)
      */
     public FileInputStream(String name) throws FileNotFoundException {
@@ -86,18 +85,18 @@ public class FileInputStream extends InputStream {
      * <code>FileNotFoundException</code> is thrown.
      *
      * @param file
-     *             the file to be opened for reading.
+     *        the file to be opened for reading.
      * @exception FileNotFoundException
-     *                                  if the file does not exist, is a
-     *                                  directory rather than a
-     *                                  regular file, or for some other reason
-     *                                  cannot be opened
-     *                                  for reading.
+     *            if the file does not exist, is a
+     *            directory rather than a
+     *            regular file, or for some other reason
+     *            cannot be opened
+     *            for reading.
      * @exception SecurityException
-     *                                  if a security manager exists and its
-     *                                  <code>checkRead</code> method denies
-     *                                  read access to the
-     *                                  file.
+     *            if a security manager exists and its
+     *            <code>checkRead</code> method denies
+     *            read access to the
+     *            file.
      * @see java.io.File#getPath()
      * @see java.lang.SecurityManager#checkRead(java.lang.String)
      */
@@ -138,12 +137,12 @@ public class FileInputStream extends InputStream {
      * <code>IOException</code> is thrown.
      *
      * @param fdObj
-     *              the file descriptor to be opened for reading.
+     *        the file descriptor to be opened for reading.
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkRead</code>
-     *                           method denies read access to the file
-     *                           descriptor.
+     *         if a security manager exists and its
+     *         <code>checkRead</code>
+     *         method denies read access to the file
+     *         descriptor.
      * @see SecurityManager#checkRead(java.io.FileDescriptor)
      */
     public FileInputStream(FileDescriptor fdObj) {
@@ -168,7 +167,7 @@ public class FileInputStream extends InputStream {
      * Opens the specified file for reading.
      * 
      * @param name
-     *             the name of the file
+     *        the name of the file
      */
     private native void open0(String name) throws FileNotFoundException;
 
@@ -177,7 +176,7 @@ public class FileInputStream extends InputStream {
      * Opens the specified file for reading.
      * 
      * @param name
-     *             the name of the file
+     *        the name of the file
      */
     private void open(String name) throws FileNotFoundException {
         open0(name);
@@ -190,7 +189,7 @@ public class FileInputStream extends InputStream {
      * @return the next byte of data, or <code>-1</code> if the end of the file
      *         is reached.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public int read() throws IOException {
         return read0();
@@ -202,13 +201,13 @@ public class FileInputStream extends InputStream {
      * Reads a subarray as a sequence of bytes.
      * 
      * @param b
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset in the data
+     *        the start offset in the data
      * @param len
-     *            the number of bytes that are written
+     *        the number of bytes that are written
      * @exception IOException
-     *                        If an I/O error has occurred.
+     *            If an I/O error has occurred.
      */
     private native int readBytes(byte b[], int off, int len) throws IOException;
 
@@ -217,12 +216,12 @@ public class FileInputStream extends InputStream {
      * into an array of bytes. This method blocks until some input is available.
      *
      * @param b
-     *          the buffer into which the data is read.
+     *        the buffer into which the data is read.
      * @return the total number of bytes read into the buffer, or
      *         <code>-1</code> if there is no more data because the end of the
      *         file has been reached.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public int read(byte b[]) throws IOException {
         return readBytes(b, 0, b.length);
@@ -235,25 +234,25 @@ public class FileInputStream extends InputStream {
      * is returned.
      *
      * @param b
-     *            the buffer into which the data is read.
+     *        the buffer into which the data is read.
      * @param off
-     *            the start offset in the destination array <code>b</code>
+     *        the start offset in the destination array <code>b</code>
      * @param len
-     *            the maximum number of bytes read.
+     *        the maximum number of bytes read.
      * @return the total number of bytes read into the buffer, or
      *         <code>-1</code> if there is no more data because the end of the
      *         file has been reached.
      * @exception NullPointerException
-     *                                      If <code>b</code> is
-     *                                      <code>null</code>.
+     *            If <code>b</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                      If <code>off</code> is negative,
-     *                                      <code>len</code> is
-     *                                      negative, or <code>len</code> is
-     *                                      greater than
-     *                                      <code>b.length - off</code>
+     *            If <code>off</code> is negative,
+     *            <code>len</code> is
+     *            negative, or <code>len</code> is
+     *            greater than
+     *            <code>b.length - off</code>
      * @exception IOException
-     *                                      if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public int read(byte b[], int off, int len) throws IOException {
         return readBytes(b, off, len);
@@ -262,7 +261,6 @@ public class FileInputStream extends InputStream {
     /**
      * Skips over and discards <code>n</code> bytes of data from the input
      * stream.
-     *
      * <p>
      * The <code>skip</code> method may, for a variety of reasons, end up
      * skipping over some smaller number of bytes, possibly <code>0</code>. If
@@ -271,7 +269,6 @@ public class FileInputStream extends InputStream {
      * position, an <code>IOException</code> is thrown. The actual number of
      * bytes skipped is returned. If it skips forwards, it returns a positive
      * value. If it skips backwards, it returns a negative value.
-     *
      * <p>
      * This method may skip more bytes than what are remaining in the backing
      * file. This produces no exception and the number of bytes skipped may
@@ -280,12 +277,12 @@ public class FileInputStream extends InputStream {
      * result in -1 indicating the end of the file.
      *
      * @param n
-     *          the number of bytes to be skipped.
+     *        the number of bytes to be skipped.
      * @return the actual number of bytes skipped.
      * @exception IOException
-     *                        if n is negative, if the stream does not support
-     *                        seek, or
-     *                        if an I/O error occurs.
+     *            if n is negative, if the stream does not support
+     *            seek, or
+     *            if an I/O error occurs.
      */
     public native long skip(long n) throws IOException;
 
@@ -296,7 +293,6 @@ public class FileInputStream extends InputStream {
      * position is beyond EOF. The next invocation might be the same thread or
      * another thread. A single read or skip of this many bytes will not block,
      * but may read or skip fewer bytes.
-     *
      * <p>
      * In some cases, a non-blocking read (or skip) may appear to be blocked
      * when it is merely slow, for example when reading large files over slow
@@ -305,23 +301,21 @@ public class FileInputStream extends InputStream {
      * @return an estimate of the number of remaining bytes that can be read (or
      *         skipped over) from this input stream without blocking.
      * @exception IOException
-     *                        if this file input stream has been closed by
-     *                        calling
-     *                        {@code close} or an I/O error occurs.
+     *            if this file input stream has been closed by
+     *            calling
+     *            {@code close} or an I/O error occurs.
      */
     public native int available() throws IOException;
 
     /**
      * Closes this file input stream and releases any system resources
      * associated with the stream.
-     *
      * <p>
      * If this stream has an associated channel then the channel is closed as
      * well.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      * @revised 1.4
      * @spec JSR-51
      */
@@ -350,7 +344,7 @@ public class FileInputStream extends InputStream {
      *
      * @return the file descriptor object associated with this stream.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FileDescriptor
      */
     public final FileDescriptor getFD() throws IOException {
@@ -363,7 +357,6 @@ public class FileInputStream extends InputStream {
     /**
      * Returns the unique {@link java.nio.channels.FileChannel FileChannel}
      * object associated with this file input stream.
-     *
      * <p>
      * The initial {@link java.nio.channels.FileChannel#position() position} of
      * the returned channel will be equal to the number of bytes read from the
@@ -372,7 +365,6 @@ public class FileInputStream extends InputStream {
      * reading, will change this stream's file position.
      *
      * @return the file channel associated with this file input stream
-     *
      * @since 1.4
      * @spec JSR-51
      */
@@ -398,7 +390,7 @@ public class FileInputStream extends InputStream {
      * called when there are no more references to it.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FileInputStream#close()
      */
     protected void finalize() throws IOException {

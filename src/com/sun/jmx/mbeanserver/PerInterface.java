@@ -26,8 +26,8 @@ import static com.sun.jmx.mbeanserver.Util.*;
  * @since 1.6
  */
 final class PerInterface<M> {
-    PerInterface(Class<?> mbeanInterface, MBeanIntrospector<M> introspector,
-            MBeanAnalyzer<M> analyzer, MBeanInfo mbeanInfo) {
+    PerInterface(Class<?> mbeanInterface, MBeanIntrospector<M> introspector, MBeanAnalyzer<M> analyzer,
+            MBeanInfo mbeanInfo) {
         this.mbeanInterface = mbeanInterface;
         this.introspector = introspector;
         this.mbeanInfo = mbeanInfo;
@@ -46,9 +46,8 @@ final class PerInterface<M> {
         return introspector.isMXBean();
     }
 
-    Object getAttribute(Object resource, String attribute, Object cookie)
-            throws AttributeNotFoundException, MBeanException,
-            ReflectionException {
+    Object getAttribute(Object resource, String attribute, Object cookie) throws AttributeNotFoundException,
+            MBeanException, ReflectionException {
 
         final M cm = getters.get(attribute);
         if (cm == null) {
@@ -62,9 +61,8 @@ final class PerInterface<M> {
         return introspector.invokeM(cm, resource, (Object[]) null, cookie);
     }
 
-    void setAttribute(Object resource, String attribute, Object value,
-            Object cookie) throws AttributeNotFoundException,
-            InvalidAttributeValueException, MBeanException,
+    void setAttribute(Object resource, String attribute, Object value, Object cookie)
+            throws AttributeNotFoundException, InvalidAttributeValueException, MBeanException,
             ReflectionException {
 
         final M cm = setters.get(attribute);
@@ -79,15 +77,13 @@ final class PerInterface<M> {
         introspector.invokeSetter(attribute, cm, resource, value, cookie);
     }
 
-    Object invoke(Object resource, String operation, Object[] params,
-            String[] signature, Object cookie) throws MBeanException,
-            ReflectionException {
+    Object invoke(Object resource, String operation, Object[] params, String[] signature, Object cookie)
+            throws MBeanException, ReflectionException {
 
         final List<MethodAndSig> list = ops.get(operation);
         if (list == null) {
             final String msg = "No such operation: " + operation;
-            return noSuchMethod(msg, resource, operation, params, signature,
-                    cookie);
+            return noSuchMethod(msg, resource, operation, params, signature, cookie);
         }
         if (signature == null)
             signature = new String[0];
@@ -102,15 +98,12 @@ final class PerInterface<M> {
             final String badSig = sigString(signature);
             final String msg;
             if (list.size() == 1) { // helpful exception message
-                msg = "Signature mismatch for operation " + operation + ": "
-                        + badSig + " should be " + sigString(list.get(
-                                0).signature);
+                msg = "Signature mismatch for operation " + operation + ": " + badSig + " should be "
+                        + sigString(list.get(0).signature);
             } else {
-                msg = "Operation " + operation + " exists but not with "
-                        + "this signature: " + badSig;
+                msg = "Operation " + operation + " exists but not with " + "this signature: " + badSig;
             }
-            return noSuchMethod(msg, resource, operation, params, signature,
-                    cookie);
+            return noSuchMethod(msg, resource, operation, params, signature, cookie);
         }
         return introspector.invokeM(found.method, resource, params, cookie);
     }
@@ -134,15 +127,12 @@ final class PerInterface<M> {
      * implementation could potentially break code that sets and unsets the
      * property at different times.
      */
-    private Object noSuchMethod(String msg, Object resource, String operation,
-            Object[] params, String[] signature, Object cookie)
-            throws MBeanException, ReflectionException {
+    private Object noSuchMethod(String msg, Object resource, String operation, Object[] params,
+            String[] signature, Object cookie) throws MBeanException, ReflectionException {
 
         // Construct the exception that we will probably throw
-        final NoSuchMethodException nsme = new NoSuchMethodException(operation
-                + sigString(signature));
-        final ReflectionException exception = new ReflectionException(nsme,
-                msg);
+        final NoSuchMethodException nsme = new NoSuchMethodException(operation + sigString(signature));
+        final ReflectionException exception = new ReflectionException(nsme, msg);
 
         if (introspector.isMXBean())
             throw exception; // No compatibility requirement here
@@ -177,13 +167,10 @@ final class PerInterface<M> {
         if (rest != 0) {
             String attrName = operation.substring(rest);
             M method = methods.get(attrName);
-            if (method != null && introspector.getName(method).equals(
-                    operation)) {
+            if (method != null && introspector.getName(method).equals(operation)) {
                 String[] msig = introspector.getSignature(method);
-                if ((signature == null && msig.length == 0) || Arrays.equals(
-                        signature, msig)) {
-                    return introspector.invokeM(method, resource, params,
-                            cookie);
+                if ((signature == null && msig.length == 0) || Arrays.equals(signature, msig)) {
+                    return introspector.invokeM(method, resource, params, cookie);
                 }
             }
         }

@@ -33,9 +33,9 @@ public class WrongNumberArgsException extends Exception {
      * Constructor WrongNumberArgsException
      *
      * @param argsExpected
-     *                     Error message that tells the number of arguments that
-     *                     were
-     *                     expected.
+     *        Error message that tells the number of arguments that
+     *        were
+     *        expected.
      */
     public WrongNumberArgsException(String argsExpected) {
 

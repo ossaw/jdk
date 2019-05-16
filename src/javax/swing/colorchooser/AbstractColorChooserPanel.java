@@ -125,15 +125,14 @@ public abstract class AbstractColorChooserPanel extends JPanel {
      * sure to call <code>super</code>.
      * 
      * @param enclosingChooser
-     *                         the panel to be added
+     *        the panel to be added
      * @exception RuntimeException
-     *                             if the chooser panel has already been
-     *                             installed
+     *            if the chooser panel has already been
+     *            installed
      */
     public void installChooserPanel(JColorChooser enclosingChooser) {
         if (chooser != null) {
-            throw new RuntimeException(
-                    "This chooser panel is already installed");
+            throw new RuntimeException("This chooser panel is already installed");
         }
         chooser = enclosingChooser;
         chooser.addPropertyChangeListener("enabled", enabledListener);
@@ -181,7 +180,7 @@ public abstract class AbstractColorChooserPanel extends JPanel {
      * Draws the panel.
      * 
      * @param g
-     *          the <code>Graphics</code> object
+     *        the <code>Graphics</code> object
      */
     public void paint(Graphics g) {
         super.paint(g);
@@ -192,11 +191,11 @@ public abstract class AbstractColorChooserPanel extends JPanel {
      * map to a valid <code>Integer</code>, <code>default</code> is returned.
      *
      * @param key
-     *                     an <code>Object</code> specifying the int
+     *        an <code>Object</code> specifying the int
      * @param defaultValue
-     *                     Returned value if <code>key</code> is not available,
-     *                     or is not
-     *                     an Integer
+     *        Returned value if <code>key</code> is not available,
+     *        or is not
+     *        an Integer
      * @return the int
      */
     int getInt(Object key, int defaultValue) {
@@ -208,8 +207,7 @@ public abstract class AbstractColorChooserPanel extends JPanel {
         if (value instanceof String) {
             try {
                 return Integer.parseInt((String) value);
-            } catch (NumberFormatException nfe) {
-            }
+            } catch (NumberFormatException nfe) {}
         }
         return defaultValue;
     }

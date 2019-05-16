@@ -38,8 +38,7 @@ public class POAPolicyMediatorImpl_R_UDS extends POAPolicyMediatorBase_R {
             throw poa.invocationWrapper().policyMediatorBadPolicyInFactory();
     }
 
-    protected java.lang.Object internalGetServant(byte[] id, String operation)
-            throws ForwardRequest {
+    protected java.lang.Object internalGetServant(byte[] id, String operation) throws ForwardRequest {
         Servant servant = internalIdToServant(id);
         if (servant == null)
             servant = defaultServant;
@@ -58,8 +57,7 @@ public class POAPolicyMediatorImpl_R_UDS extends POAPolicyMediatorBase_R {
         throw new WrongPolicy();
     }
 
-    public void setServantManager(ServantManager servantManager)
-            throws WrongPolicy {
+    public void setServantManager(ServantManager servantManager) throws WrongPolicy {
         throw new WrongPolicy();
     }
 

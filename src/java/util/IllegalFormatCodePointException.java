@@ -9,7 +9,6 @@ package java.util;
  * Unchecked exception thrown when a character with an invalid Unicode code
  * point as defined by {@link Character#isValidCodePoint} is passed to the
  * {@link Formatter}.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method or
  * constructor in this class will cause a {@link NullPointerException} to be
@@ -28,7 +27,7 @@ public class IllegalFormatCodePointException extends IllegalFormatException {
      * point as defined by {@link Character#isValidCodePoint}.
      *
      * @param c
-     *          The illegal Unicode code point
+     *        The illegal Unicode code point
      */
     public IllegalFormatCodePointException(int c) {
         this.c = c;

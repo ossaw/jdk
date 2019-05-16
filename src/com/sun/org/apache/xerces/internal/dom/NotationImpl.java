@@ -40,7 +40,6 @@ import org.w3c.dom.Notation;
  * Level 1 of the DOM does not support editing Notation contents.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class NotationImpl extends NodeImpl implements Notation {
@@ -141,10 +140,8 @@ public class NotationImpl extends NodeImpl implements Notation {
     public void setPublicId(String id) {
 
         if (isReadOnly()) {
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "NO_MODIFICATION_ALLOWED_ERR", null));
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, DOMMessageFormatter
+                    .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NO_MODIFICATION_ALLOWED_ERR", null));
         }
         if (needsSyncData()) {
             synchronizeData();
@@ -160,10 +157,8 @@ public class NotationImpl extends NodeImpl implements Notation {
     public void setSystemId(String id) {
 
         if (isReadOnly()) {
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "NO_MODIFICATION_ALLOWED_ERR", null));
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, DOMMessageFormatter
+                    .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NO_MODIFICATION_ALLOWED_ERR", null));
         }
         if (needsSyncData()) {
             synchronizeData();

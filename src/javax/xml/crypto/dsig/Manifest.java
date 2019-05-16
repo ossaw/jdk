@@ -34,8 +34,7 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * List references = Collections.singletonList(factory.newReference(
- *         "#reference-1", DigestMethod.SHA1));
+ * List references = Collections.singletonList(factory.newReference("#reference-1", DigestMethod.SHA1));
  * Manifest manifest = factory.newManifest(references, "manifest-1");
  * </pre>
  *

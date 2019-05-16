@@ -48,7 +48,6 @@ import javax.management.openmbean.TabularType;
  * &#64;MXBean(true)
  * public interface Whatsit2Interface {}
  * </pre>
- * 
  * <p>
  * The following interfaces are not MXBean interfaces:
  * </p>
@@ -63,7 +62,6 @@ import javax.management.openmbean.TabularType;
  * </pre>
  * 
  * <h3 id="MXBean-spec">MXBean specification</h3>
- * 
  * <p>
  * The MXBean concept provides a simple way to code an MBean that only
  * references a predefined set of types, the ones defined by
@@ -72,13 +70,11 @@ import javax.management.openmbean.TabularType;
  * requirement that the client have access to <em>model-specific classes</em>
  * representing the types of your MBeans.
  * </p>
- * 
  * <p>
  * The concepts are easier to understand by comparison with the Standard MBean
  * concept. Here is how a managed object might be represented as a Standard
  * MBean, and as an MXBean:
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Standard Bean vs. MXBean">
  * <tr>
  * <th>Standard MBean</th>
@@ -109,14 +105,12 @@ MemoryUsage getUsage();
  * </td>
  * </tr>
  * </table>
- * 
  * <p>
  * As you can see, the definitions are very similar. The only difference is that
  * the convention for naming the interface is to use <code><em>Something</em>
  * MXBean</code> for MXBeans, rather than <code><em>Something</em>MBean</code>
  * for Standard MBeans.
  * </p>
- * 
  * <p>
  * In this managed object, there is an attribute called <code>Usage</code> of
  * type {@link MemoryUsage}. The point of an attribute like this is that it
@@ -127,11 +121,9 @@ MemoryUsage getUsage();
  * get values seen at different times that were not consistent. We might get a
  * <code>used</code> value that was greater than the <code>max</code> value.
  * </p>
- * 
  * <p>
  * So, we might define <code>MemoryUsage</code> like this:
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Standard Bean vs. MXBean">
  * <tr>
  * <th>Standard MBean</th>
@@ -172,7 +164,6 @@ long getMax() {...}
  * </td>
  * </tr>
  * </table>
- * 
  * <p>
  * The definitions are the same in the two cases, except that with the MXBean,
  * <code>MemoryUsage</code> no longer needs to be marked
@@ -180,7 +171,6 @@ long getMax() {...}
  * added a {@code @ConstructorProperties} annotation to link the constructor
  * parameters to the corresponding getters. We will see more about this below.
  * </p>
- * 
  * <p>
  * <code>MemoryUsage</code> is a <em>model-specific class</em>. With Standard
  * MBeans, a client of the MBean Server cannot access the <code>Usage</code>
@@ -191,7 +181,6 @@ long getMax() {...}
  * in the Java language. Then there may not be any way to tell the client what a
  * <code>MemoryUsage</code> looks like.
  * </p>
- * 
  * <p>
  * This is where MXBeans differ from Standard MBeans. Although we define the
  * management interface in almost exactly the same way, the MXBean framework
@@ -202,12 +191,10 @@ long getMax() {...}
  * standard {@link javax.management.openmbean} package, it is possible to build
  * data structures of arbitrary complexity using only standard classes.
  * </p>
- * 
  * <p>
  * This becomes clearer if we compare what the clients of the two models might
  * look like:
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Standard Bean vs. MXBean">
  * <tr>
  * <th>Standard MBean</th>
@@ -239,14 +226,12 @@ mbeanServer.getAttribute(objectName, "Usage");
  * 
  * </td>
  * </table>
- * 
  * <p>
  * For attributes with simple types like <code>String</code>, the code is the
  * same. But for attributes with complex types, the Standard MBean code requires
  * the client to know the model-specific class <code>MemoryUsage</code>, while
  * the MXBean code requires no non-standard classes.
  * </p>
- * 
  * <p>
  * The client code shown here is slightly more complicated for the MXBean
  * client. But, if the client does in fact know the model, here the interface
@@ -255,7 +240,6 @@ mbeanServer.getAttribute(objectName, "Usage");
  * managed objects when you know the model beforehand, regardless of whether you
  * are using Standard MBeans or MXBeans:
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Standard Bean vs. MXBean">
  * <tr>
  * <th>Standard MBean</th>
@@ -294,12 +278,10 @@ long used = usage.getUsed();
  * </td>
  * </tr>
  * </table>
- * 
  * <p>
  * Implementing the MemoryPool object works similarly for both Standard MBeans
  * and MXBeans.
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Standard Bean vs. MXBean">
  * <tr>
  * <th>Standard MBean</th>
@@ -332,12 +314,10 @@ public MemoryUsage getUsage() {...}
  * </td>
  * </tr>
  * </table>
- * 
  * <p>
  * Registering the MBean in the MBean Server works in the same way in both
  * cases:
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Standard Bean vs. MXBean">
  * <tr>
  * <th>Standard MBean</th>
@@ -368,70 +348,54 @@ registerMBean}(pool, objectName);
  * </td>
  * </tr>
  * </table>
- * 
- * 
  * <h2 id="mxbean-def">Definition of an MXBean</h2>
- * 
  * <p>
  * An MXBean is a kind of MBean. An MXBean object can be registered directly in
  * the MBean Server, or it can be used as an argument to {@link StandardMBean}
  * and the resultant MBean registered in the MBean Server.
  * </p>
- * 
  * <p>
  * When an object is registered in the MBean Server using the
  * {@code registerMBean} or {@code createMBean} methods of the
  * {@link MBeanServer} interface, the object's class is examined to determine
  * what type of MBean it is:
  * </p>
- * 
  * <ul>
  * <li>If the class implements the interface {@link DynamicMBean} then the MBean
  * is a Dynamic MBean. Note that the class {@code StandardMBean} implements this
  * interface, so this case applies to a Standard MBean or MXBean created using
  * the class {@code StandardMBean}.</li>
- * 
  * <li>Otherwise, if the class matches the Standard MBean naming conventions,
  * then the MBean is a Standard MBean.</li>
- * 
  * <li>Otherwise, it may be an MXBean. The set of interfaces implemented by the
  * object is examined for interfaces that:
- * 
  * <ul>
  * <li>have a class name <code><em>S</em>MXBean</code> where
  * <code><em>S</em></code> is any non-empty string, and do not have an
  * annotation {@code @MXBean(false)}; and/or</li>
  * <li>have an annotation {@code @MXBean(true)} or just {@code @MXBean}.</li>
  * </ul>
- * 
  * If there is exactly one such interface, or if there is one such interface
  * that is a subinterface of all the others, then the object is an MXBean. The
  * interface in question is the <em>MXBean interface</em>. In the example above,
  * the MXBean interface is {@code MemoryPoolMXBean}.
- * 
  * <li>If none of these conditions is met, the MBean is invalid and the attempt
  * to register it will generate {@link NotCompliantMBeanException}.
  * </ul>
- * 
  * <p>
  * Every Java type that appears as the parameter or return type of a method in
  * an MXBean interface must be <em>convertible</em> using the rules below.
  * Additionally, parameters must be <em>reconstructible</em> as defined below.
  * </p>
- * 
  * <p>
  * An attempt to construct an MXBean that does not conform to the above rules
  * will produce an exception.
  * </p>
- * 
- * 
  * <h2 id="naming-conv">Naming conventions</h2>
- * 
  * <p>
  * The same naming conventions are applied to the methods in an MXBean as in a
  * Standard MBean:
  * </p>
- * 
  * <ol>
  * <li>A method <code><em>T</em> get<em>N</em>()</code>, where
  * <code><em>T</em></code> is a Java type (not <code>void</code>) and
@@ -440,27 +404,22 @@ registerMBean}(pool, objectName);
  * type of the attribute are determined by the mapping rules below. The method
  * {@code final Class getClass()} inherited from {@code
  Object} is ignored when looking for getters.</li>
- * 
  * <li>A method <code>boolean is<em>N</em>()</code> specifies that there is a
  * readable attribute called <code><em>N</em></code> with Java type
  * <code>boolean</code> and Open type <code>SimpleType.Boolean</code>.</li>
- * 
  * <li>A method <code>void set<em>N</em>(<em>T</em> x)</code> specifies that
  * there is a writeable attribute called <code><em>N</em></code>. The Java type
  * and Open type of the attribute are determined by the mapping rules below. (Of
  * course, the name <code>x</code> of the parameter is irrelevant.)</li>
- * 
  * <li>Every other method specifies that there is an operation with the same
  * name as the method. The Java type and Open type of the return value and of
  * each parameter are determined by the mapping rules below.</li>
  * </ol>
- * 
  * <p>
  * The rules for <code>get<em>N</em></code> and <code>is<em>N</em></code>
  * collectively define the notion of a <em>getter</em>. The rule for
  * <code>set<em>N</em></code> defines the notion of a <em>setter</em>.
  * </p>
- * 
  * <p>
  * It is an error for there to be two getters with the same name, or two setters
  * with the same name. If there is a getter and a setter for the same name, then
@@ -468,10 +427,7 @@ registerMBean}(pool, objectName);
  * attribute is read/write. If there is only a getter or only a setter, the
  * attribute is read-only or write-only respectively.
  * </p>
- * 
- * 
  * <h2 id="mapping-rules">Type mapping rules</h2>
- * 
  * <p>
  * An MXBean is a kind of Open MBean, as defined by the
  * {@link javax.management.openmbean} package. This means that the types of
@@ -480,12 +436,10 @@ registerMBean}(pool, objectName);
  * of {@link javax.management.openmbean.OpenType}. MXBeans achieve this by
  * mapping Java types into Open Types.
  * </p>
- * 
  * <p>
  * For every Java type <em>J</em>, the MXBean mapping is described by the
  * following information:
  * </p>
- * 
  * <ul>
  * <li>The corresponding Open Type, <em>opentype(J)</em>. This is an instance of
  * a subclass of {@link javax.management.openmbean.OpenType}.</li>
@@ -496,11 +450,9 @@ registerMBean}(pool, objectName);
  * <li>How a value is converted from type <em>opendata(J)</em> to type
  * <em>J</em>, if it can be.</li>
  * </ul>
- * 
  * <p>
  * For example, for the Java type {@code List<String>}:
  * </p>
- * 
  * <ul>
  * <li>The Open Type, <em>opentype(</em>{@code
    List<String>}<em>)</em>, is {@link ArrayType}<code>(1, </code>
@@ -513,13 +465,11 @@ registerMBean}(pool, objectName);
  * <li>A {@code String[]} can be converted to a {@code List<String>} using
  * {@link Arrays#asList Arrays.asList}.</li>
  * </ul>
- * 
  * <p>
  * If no mapping rules exist to derive <em>opentype(J)</em> from <em>J</em>,
  * then <em>J</em> cannot be the type of a method parameter or return value in
  * an MXBean interface.
  * </p>
- * 
  * <p id="reconstructible-def">
  * If there is a way to convert <em>opendata(J)</em> back to <em>J</em> then we
  * say that <em>J</em> is <em>reconstructible</em>. All method parameters in an
@@ -530,18 +480,15 @@ registerMBean}(pool, objectName);
  * JMX.newMXBeanProxy}, it is the return values of the methods in the MXBean
  * interface that must be reconstructible.
  * </p>
- * 
  * <p>
  * Null values are allowed for all Java types and Open Types, except primitive
  * Java types where they are not possible. When converting from type <em>J</em>
  * to type <em>opendata(J)</em> or from type <em>opendata(J)</em> to type
  * <em>J</em>, a null value is mapped to a null value.
  * </p>
- * 
  * <p>
  * The following table summarizes the type mapping rules.
  * </p>
- * 
  * <table border="1" cellpadding="5" summary="Type Mapping Rules">
  * <tr>
  * <th>Java type <em>J</em></th>
@@ -610,14 +557,10 @@ registerMBean}(pool, objectName);
  * (see below)</td>
  * <td>{@link CompositeData}</td> </tbody>
  * </table>
- * 
  * <p>
  * The following sections give further details of these rules.
  * </p>
- * 
- * 
  * <h3>Mappings for primitive types</h3>
- * 
  * <p>
  * The 8 primitive Java types ({@code boolean}, {@code byte}, {@code short},
  * {@code int}, {@code
@@ -629,7 +572,6 @@ registerMBean}(pool, objectName);
  * <em>)</em> is {@code
  java.lang.Long}.
  * </p>
- * 
  * <p>
  * An array of primitive type such as {@code long[]} can be represented directly
  * as an Open Type. Thus, <em>openType(</em>{@code
@@ -638,17 +580,13 @@ registerMBean}(pool, objectName);
  * {@code long[]}<em>)</em> is {@code
  long[]}.
  * </p>
- * 
  * <p>
  * In practice, the difference between a plain {@code int} and {@code
    Integer}, etc, does not show up because operations in the JMX API are always
  * on Java objects, not primitives. However, the difference <em>does</em> show
  * up with arrays.
  * </p>
- * 
- * 
  * <h3>Mappings for collections ({@code List<}<em>E</em>{@code >} etc)</h3>
- * 
  * <p>
  * A {@code List<}<em>E</em>{@code >} or {@code
    Set<}<em>E</em>{@code >}, such as {@code List<String>} or {@code
@@ -656,7 +594,6 @@ Set<ObjectName>}, is mapped in the same way as an array of the same element
  * type, such as {@code String[]} or {@code
  ObjectName[]}.
  * </p>
- * 
  * <p>
  * A {@code SortedSet<}<em>E</em>{@code >} is also mapped in the same way as an
  * <em>E</em>{@code []}, but it is only convertible if <em>E</em> is a class or
@@ -668,7 +605,6 @@ Set<ObjectName>}, is mapped in the same way as an array of the same element
  * {@code IllegalArgumentException} if it has a non-null
  * {@link java.util.SortedSet#comparator() comparator()}.
  * </p>
- * 
  * <p>
  * A {@code List<}<em>E</em>{@code >} is reconstructed as a
  * {@code java.util.ArrayList<}<em>E</em>{@code >}; a {@code Set<}<em>E</em>
@@ -676,10 +612,7 @@ Set<ObjectName>}, is mapped in the same way as an array of the same element
  * {@code SortedSet<}<em>E</em>{@code >} as a {@code java.util.TreeSet<}
  * <em>E</em>{@code >}.
  * </p>
- * 
- * 
  * <h3>Mappings for maps ({@code Map<}<em>K</em>,<em>V</em>{@code >} etc)</h3>
- * 
  * <p>
  * A {@code Map<}<em>K</em>,<em>V</em>{@code >} or {@code
    SortedMap<}<em>K</em>,<em>V</em>{@code >}, for example {@code
@@ -689,7 +622,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * the Open Type of {@code value} is <em>opentype(V)</em>. The index of the
  * {@code TabularType} is the single item {@code key}.
  * </p>
- * 
  * <p>
  * For example, the {@code TabularType} for a {@code
    Map<String,ObjectName>} might be constructed with code like this:
@@ -698,18 +630,13 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * <pre>
  * String typeName = "java.util.Map&lt;java.lang.String, javax.management.ObjectName&gt;";
  * String[] keyValue = new String[] { "key", "value" };
- * OpenType[] openTypes = new OpenType[] { SimpleType.STRING,
- *         SimpleType.OBJECTNAME };
- * CompositeType rowType = new CompositeType(typeName, typeName, keyValue,
- *         keyValue, openTypes);
- * TabularType tabularType = new TabularType(typeName, typeName, rowType,
- *         new String[] { "key" });
+ * OpenType[] openTypes = new OpenType[] { SimpleType.STRING, SimpleType.OBJECTNAME };
+ * CompositeType rowType = new CompositeType(typeName, typeName, keyValue, keyValue, openTypes);
+ * TabularType tabularType = new TabularType(typeName, typeName, rowType, new String[] { "key" });
  * </pre>
- * 
  * <p>
  * The {@code typeName} here is determined by the <a href="#type-names"> type
  * name rules</a> detailed below.
- * 
  * <p>
  * A {@code SortedMap<}<em>K</em>,<em>V</em>{@code >} is mapped in the same way,
  * but it is only convertible if <em>K</em> is a class or interface that
@@ -719,30 +646,24 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  IllegalArgumentException} if it has a non-null
  * {@link java.util.SortedMap#comparator() comparator()}.
  * </p>
- * 
  * <p>
  * A {@code Map<}<em>K</em>,<em>V</em>{@code >} is reconstructed as a
  * {@code java.util.HashMap<}<em>K</em>,<em>V</em>{@code >}; a
  * {@code SortedMap<}<em>K</em>,<em>V</em>{@code >} as a
  * {@code java.util.TreeMap<}<em>K</em>,<em>V</em>{@code >}.
  * </p>
- * 
  * <p>
  * {@code TabularData} is an interface. The concrete class that is used to
  * represent a {@code Map<}<em>K</em>,<em>V</em>{@code >} as Open Data is
  * {@link TabularDataSupport}, or another class implementing {@code
  TabularData} that serializes as {@code TabularDataSupport}.
  * </p>
- * 
- * 
  * <h3 id="mxbean-map">Mappings for MXBean interfaces</h3>
- * 
  * <p>
  * An MXBean interface, or a type referenced within an MXBean interface, can
  * reference another MXBean interface, <em>J</em>. Then <em>opentype(J)</em> is
  * {@code SimpleType.OBJECTNAME} and <em>opendata(J)</em> is {@code ObjectName}.
  * </p>
- * 
  * <p>
  * For example, suppose you have two MXBean interfaces like this:
  * </p>
@@ -756,7 +677,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  *     public ProductMXBean getProduct();
  * }
  * </pre>
- * 
  * <p>
  * The object implementing the {@code ModuleMXBean} interface returns from its
  * {@code getProduct} method an object implementing the {@code ProductMXBean}
@@ -764,7 +684,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  ProductMXBean} objects must both be registered as MXBeans in the same MBean
  * Server.
  * </p>
- * 
  * <p>
  * The method {@code ModuleMXBean.getProduct()} defines an attribute called
  * {@code Product}. The Open Type for this attribute is
@@ -772,7 +691,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * will be the name under which the referenced {@code ProductMXBean} is
  * registered in the MBean Server.
  * </p>
- * 
  * <p>
  * If you make an MXBean proxy for a {@code ModuleMXBean} and call its
  * {@code getProduct()} method, the proxy will map the {@code ObjectName} back
@@ -787,7 +705,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * by a call to {@code JMX.newMXBeanProxy} with the same parameters, or it may
  * create a new proxy.
  * </p>
- * 
  * <p>
  * The reverse mapping is illustrated by the following change to the
  * {@code ModuleMXBean} interface:
@@ -800,7 +717,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  *     public void setProduct(ProductMXBean c);
  * }
  * </pre>
- * 
  * <p>
  * The presence of the {@code setProduct} method now means that the
  * {@code Product} attribute is read/write. As before, the value of this
@@ -809,7 +725,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * that the {@code setProduct} method expects. This object will be an MXBean
  * proxy for the given {@code ObjectName} in the same MBean Server.
  * </p>
- * 
  * <p>
  * If you make an MXBean proxy for a {@code ModuleMXBean} and call its
  * {@code setProduct} method, the proxy will map its {@code ProductMXBean}
@@ -823,7 +738,6 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * {@link java.lang.reflect.Proxy Proxy} with an invocation handler that is
  * {@link MBeanServerInvocationHandler} or a subclass.
  * </p>
- * 
  * <p>
  * If the same MXBean were registered under two different {@code ObjectName}s, a
  * reference to that MXBean from another MXBean would be ambiguous. Therefore,
@@ -834,43 +748,32 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * because it does not work well for MBeans that are
  * {@link NotificationBroadcaster}s.
  * </p>
- * 
  * <h3 id="composite-map">Mappings for other types</h3>
- * 
  * <p>
  * Given a Java class or interface <em>J</em> that does not match the other
  * rules in the table above, the MXBean framework will attempt to map it to a
  * {@link CompositeType} as follows. The type name of this {@code CompositeType}
  * is determined by the <a href="#type-names"> type name rules</a> below.
  * </p>
- * 
  * <p>
  * The class is examined for getters using the conventions
  * <a href="#naming-conv">above</a>. (Getters must be public instance methods.)
  * If there are no getters, or if any getter has a type that is not convertible,
  * then <em>J</em> is not convertible.
  * </p>
- * 
  * <p>
  * If there is at least one getter and every getter has a convertible type, then
  * <em>opentype(J)</em> is a {@code
  CompositeType} with one item for every getter. If the getter is
- * 
  * <blockquote> <code><em>T</em> get<em>Name</em>()</code> </blockquote>
- * 
  * then the item in the {@code CompositeType} is called {@code name} and has
  * type <em>opentype(T)</em>. For example, if the item is
- * 
  * <blockquote> <code>String getOwner()</code> </blockquote>
- * 
  * then the item is called {@code owner} and has Open Type {@code
  SimpleType.STRING}. If the getter is
- * 
  * <blockquote> <code>boolean is<em>Name</em>()</code> </blockquote>
- * 
  * then the item in the {@code CompositeType} is called {@code name} and has
  * type {@code SimpleType.BOOLEAN}.
- * 
  * <p>
  * Notice that the first character (or code point) is converted to lower case.
  * This follows the Java Beans convention, which for historical reasons is
@@ -880,13 +783,11 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * {@code
  getOwner} defines a property or item called {@code owner}.
  * </p>
- * 
  * <p>
  * If two methods produce the same item name (for example, {@code
    getOwner} and {@code isOwner}, or {@code getOwner} and {@code
 getowner}) then the type is not convertible.
  * </p>
- * 
  * <p>
  * When the Open Type is {@code CompositeType}, the corresponding mapped Java
  * type (<em>opendata(J)</em>) is {@link CompositeData}. The mapping from an
@@ -898,16 +799,13 @@ getowner}) then the type is not convertible.
  * calling the getter for each item and converting it to the corresponding Open
  * Data type. Thus, a getter such as
  * </p>
- * 
  * <blockquote> {@code List<String> getNames()} </blockquote>
- * 
  * <p>
  * will have been mapped to an item with name "{@code names}" and Open Type
  * {@code ArrayType(1, SimpleType.STRING)}. The conversion to
  * {@code CompositeData} will call {@code getNames()} and convert the resultant
  * {@code List<String>} into a {@code String[]} for the item "{@code names}".
  * </p>
- * 
  * <p>
  * {@code CompositeData} is an interface. The concrete class that is used to
  * represent a type as Open Data is {@link CompositeDataSupport}, or another
@@ -915,11 +813,8 @@ getowner}) then the type is not convertible.
  CompositeData} that serializes as {@code
  CompositeDataSupport}.
  * </p>
- * 
- * 
  * <h4>Reconstructing an instance of Java type <em>J</em> from a
  * {@code CompositeData}</h4>
- * 
  * <p>
  * If <em>opendata(J)</em> is {@code CompositeData} for a Java type <em>J</em>,
  * then either an instance of <em>J</em> can be reconstructed from a
@@ -927,15 +822,12 @@ getowner}) then the type is not convertible.
  * the {@code CompositeData} is not reconstructible, then <em>J</em> is not
  * reconstructible either.
  * </p>
- * 
  * <p>
  * For any given <em>J</em>, the following rules are consulted to determine how
  * to reconstruct instances of <em>J</em> from {@code CompositeData}. The first
  * applicable rule in the list is the one that will be used.
  * </p>
- * 
  * <ol>
- * 
  * <li>
  * <p>
  * If <em>J</em> has a method<br>
@@ -943,7 +835,6 @@ getowner}) then the type is not convertible.
  * then that method is called to reconstruct an instance of <em>J</em>.
  * </p>
  * </li>
- * 
  * <li>
  * <p>
  * Otherwise, if <em>J</em> has at least one public constructor with a
@@ -957,7 +848,6 @@ getowner}) then the type is not convertible.
  * {@code ConstructorProperties} annotation (these may correspond to information
  * that is not needed to reconstruct the object).
  * </p>
- * 
  * <p>
  * An instance of <em>J</em> is reconstructed by calling a constructor with the
  * appropriate reconstructed items from the {@code CompositeData}. The
@@ -969,7 +859,6 @@ getowner}) then the type is not convertible.
  * as items in the {@code CompositeData}. If no constructor is applicable, then
  * the attempt to reconstruct <em>J</em> fails.
  * </p>
- * 
  * <p>
  * For any possible combination of properties, it must be the case that either
  * (a) there are no applicable constructors, or (b) there is exactly one
@@ -980,7 +869,6 @@ getowner}) then the type is not convertible.
  * reconstructible.
  * </p>
  * </li>
- * 
  * <li>
  * <p>
  * Otherwise, if <em>J</em> has a public no-arg constructor, and for every
@@ -994,14 +882,12 @@ getowner}) then the type is not convertible.
  * {@code public void setNames(List<String> names)}<br>
  * for this rule to apply.
  * </p>
- * 
  * <p>
  * If the {@code CompositeData} came from an earlier version of <em>J</em>, some
  * items might not be present. In this case, the corresponding setters will not
  * be called.
  * </p>
  * </li>
- * 
  * <li>
  * <p>
  * Otherwise, if <em>J</em> is an interface that has no methods other than
@@ -1011,14 +897,12 @@ getowner}) then the type is not convertible.
  CompositeData} being converted.
  * </p>
  * </li>
- * 
  * <li>
  * <p>
  * Otherwise, <em>J</em> is not reconstructible.
  * </p>
  * </li>
  * </ol>
- * 
  * <p>
  * Rule 2 is not applicable to subset Profiles of Java SE that do not include
  * the {@code java.beans} package. When targeting a runtime that does not
@@ -1027,13 +911,11 @@ getowner}) then the type is not convertible.
  * a public constructor and the {@code ConstructorProperties} annotation, then
  * <em>J</em> is not reconstructible unless another rule applies.
  * </p>
- * 
  * <p>
  * Here are examples showing different ways to code a type {@code
    NamedNumber} that consists of an {@code int} and a {@code
 String}. In each case, the {@code CompositeType} looks like this:
  * </p>
- * 
  * <blockquote>
  * 
  * <pre>
@@ -1048,10 +930,8 @@ new OpenType[] {SimpleType.INTEGER,
  * </pre>
  * 
  * </blockquote>
- * 
  * <ol>
  * <li>Static {@code from} method:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -1072,10 +952,8 @@ private final String name;
  * </pre>
  * 
  * </blockquote></li>
- * 
  * <li>Public constructor with <code>&#64;ConstructorProperties</code>
  * annotation:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -1093,9 +971,7 @@ private final String name;
  * </pre>
  * 
  * </blockquote></li>
- * 
  * <li>Setter for every getter:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -1111,9 +987,7 @@ private String name;
  * </pre>
  * 
  * </blockquote></li>
- * 
  * <li>Interface with only getters:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -1126,7 +1000,6 @@ private String name;
  * 
  * </blockquote></li>
  * </ol>
- * 
  * <p>
  * It is usually better for classes that simply represent a collection of data
  * to be <em>immutable</em>. An instance of an immutable class cannot be changed
@@ -1135,10 +1008,7 @@ private String name;
  * thread-safety and security. So the approach using setters should generally be
  * avoided if possible.
  * </p>
- * 
- * 
  * <h3>Recursive types</h3>
- * 
  * <p>
  * Recursive (self-referential) types cannot be used in MXBean interfaces. This
  * is a consequence of the immutability of {@link CompositeType}. For example,
@@ -1153,7 +1023,6 @@ public interface <b>Node</b> {
  public <b>Node</b> getNext();
 }
  * </pre>
- * 
  * <p>
  * It is always possible to rewrite recursive types like this so they are no
  * longer recursive. Doing so may require introducing new types. For example:
@@ -1171,7 +1040,6 @@ public interface Node {
  * </pre>
  * 
  * <h3>MBeanInfo contents for an MXBean</h3>
- * 
  * <p>
  * An MXBean is a type of Open MBean. However, for compatibility reasons, its
  * {@link MBeanInfo} is not an {@link OpenMBeanInfo}. In particular, when the
@@ -1184,7 +1052,6 @@ public interface Node {
  * even though the mapping rules above specify that the <em>opendata</em>
  * mapping is the wrapped type ({@code Integer} etc).
  * </p>
- * 
  * <p>
  * The array of public constructors returned by
  * {@link MBeanInfo#getConstructors()} for an MXBean that is directly registered
@@ -1196,7 +1063,6 @@ public interface Node {
  * constructor parameters are not subject to MXBean mapping rules and do not
  * have a corresponding {@code OpenType}.
  * </p>
- * 
  * <p>
  * The array of notification types returned by
  * {@link MBeanInfo#getNotifications()} for an MXBean that is directly
@@ -1209,7 +1075,6 @@ public interface Node {
  * {@link StandardMBean} or {@link StandardEmitterMBean} class is derived in the
  * same way as for Standard MBeans.
  * </p>
- * 
  * <p>
  * The {@link Descriptor} for all of the {@code MBeanAttributeInfo},
  * {@code MBeanParameterInfo}, and {@code MBeanOperationInfo} objects contained
@@ -1219,42 +1084,33 @@ public interface Node {
  * {@code getDescriptor().getField("openType")} will be
  * {@link SimpleType#INTEGER}.
  * </p>
- * 
  * <p>
  * The {@code Descriptor} for each of these objects will also have a field
  * {@code originalType} that is a string representing the Java type that
  * appeared in the MXBean interface. The format of this string is described in
  * the section <a href="#type-names">Type Names</a> below.
  * </p>
- * 
  * <p>
  * The {@code Descriptor} for the {@code MBeanInfo} will have a field
  * {@code mxbean} whose value is the string "{@code true}".
  * </p>
- * 
- * 
  * <h3 id="type-names">Type Names</h3>
- * 
  * <p>
  * Sometimes the unmapped type <em>T</em> of a method parameter or return value
  * in an MXBean must be represented as a string. If <em>T</em> is a non-generic
  * type, this string is the value returned by {@link Class#getName()}. Otherwise
  * it is the value of <em>genericstring(T)</em>, defined as follows:
- * 
  * <ul>
- * 
  * <li>If <em>T</em> is a non-generic non-array type, <em>genericstring(T)</em>
  * is the value returned by {@link Class#getName()}, for example {@code "int"}
  * or {@code
  "java.lang.String"}.
- * 
  * <li>If <em>T</em> is an array <em>E[]</em>, <em>genericstring(T)</em> is
  * <em>genericstring(E)</em> followed by {@code "[]"}. For example,
  * <em>genericstring({@code int[]})</em> is {@code "int[]"}, and
  * <em>genericstring({@code
  List<String>[][]})</em> is {@code
  "java.util.List<java.lang.String>[][]"}.
- * 
  * <li>Otherwise, <em>T</em> is a parameterized type such as {@code
  List<String>} and <em>genericstring(T)</em> consists of the following: the
  * fully-qualified name of the parameterized type as returned by
@@ -1263,18 +1119,14 @@ public interface Node {
  * if there is a second type parameter <em>B</em> then {@code ", "} (a comma and
  * a single space) followed by <em>genericstring(B)</em>; a right angle bracket
  * ({@code ">"}).
- * 
  * </ul>
- * 
  * <p>
  * Note that if a method returns {@code int[]}, this will be represented by the
  * string {@code "[I"} returned by {@code
  Class.getName()}, but if a method returns {@code List<int[]>}, this will be
  * represented by the string {@code
  "java.util.List<int[]>"}.
- * 
  * <h3>Exceptions</h3>
- * 
  * <p>
  * A problem with mapping <em>from</em> Java types <em>to</em> Open types is
  * signaled with an {@link OpenDataException}. This can happen when an MXBean
@@ -1286,7 +1138,6 @@ public interface Node {
  String[]} if the {@code SortedSet} has a non-null {@code
  Comparator}.
  * </p>
- * 
  * <p>
  * A problem with mapping <em>to</em> Java types <em>from</em> Open types is
  * signaled with an {@link InvalidObjectException}. This can happen when an
@@ -1297,7 +1148,6 @@ public interface Node {
  * from a method in an MXBean proxy), for example from a String to an Enum if
  * there is no Enum constant with that name.
  * </p>
- * 
  * <p>
  * Depending on the context, the {@code OpenDataException} or
  * {@code InvalidObjectException} may be wrapped in another exception such as

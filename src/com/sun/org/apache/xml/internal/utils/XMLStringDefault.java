@@ -42,24 +42,20 @@ public class XMLStringDefault implements XMLString {
      * may well occur for a single call to this method.
      *
      * @param ch
-     *           A non-null reference to a ContentHandler.
-     *
+     *        A non-null reference to a ContentHandler.
      * @throws org.xml.sax.SAXException
      */
-    public void dispatchCharactersEvents(org.xml.sax.ContentHandler ch)
-            throws org.xml.sax.SAXException {}
+    public void dispatchCharactersEvents(org.xml.sax.ContentHandler ch) throws org.xml.sax.SAXException {}
 
     /**
      * Directly call the comment method on the passed LexicalHandler for the
      * string-value.
      *
      * @param lh
-     *           A non-null reference to a LexicalHandler.
-     *
+     *        A non-null reference to a LexicalHandler.
      * @throws org.xml.sax.SAXException
      */
-    public void dispatchAsComment(org.xml.sax.ext.LexicalHandler lh)
-            throws org.xml.sax.SAXException {}
+    public void dispatchAsComment(org.xml.sax.ext.LexicalHandler lh) throws org.xml.sax.SAXException {}
 
     /**
      * Conditionally trim all leading and trailing whitespace in the specified
@@ -71,15 +67,14 @@ public class XMLStringDefault implements XMLString {
      * formatting object.
      *
      * @param trimHead
-     *                                Trim leading whitespace?
+     *        Trim leading whitespace?
      * @param trimTail
-     *                                Trim trailing whitespace?
+     *        Trim trailing whitespace?
      * @param doublePunctuationSpaces
-     *                                Use double spaces for punctuation?
+     *        Use double spaces for punctuation?
      * @return The trimmed string.
      */
-    public XMLString fixWhiteSpace(boolean trimHead, boolean trimTail,
-            boolean doublePunctuationSpaces) {
+    public XMLString fixWhiteSpace(boolean trimHead, boolean trimTail, boolean doublePunctuationSpaces) {
         return new XMLStringDefault(m_str.trim());
     }
 
@@ -100,13 +95,13 @@ public class XMLStringDefault implements XMLString {
      * and so on, as for array indexing.
      *
      * @param index
-     *              the index of the character.
+     *        the index of the character.
      * @return the character at the specified index of this string. The first
      *         character is at index <code>0</code>.
      * @exception IndexOutOfBoundsException
-     *                                      if the <code>index</code> argument
-     *                                      is negative or not less
-     *                                      than the length of this string.
+     *            if the <code>index</code> argument
+     *            is negative or not less
+     *            than the length of this string.
      */
     public char charAt(int index) {
         return m_str.charAt(index);
@@ -116,33 +111,33 @@ public class XMLStringDefault implements XMLString {
      * Copies characters from this string into the destination character array.
      *
      * @param srcBegin
-     *                 index of the first character in the string to copy.
+     *        index of the first character in the string to copy.
      * @param srcEnd
-     *                 index after the last character in the string to copy.
+     *        index after the last character in the string to copy.
      * @param dst
-     *                 the destination array.
+     *        the destination array.
      * @param dstBegin
-     *                 the start offset in the destination array.
+     *        the start offset in the destination array.
      * @exception IndexOutOfBoundsException
-     *                                      If any of the following is true:
-     *                                      <ul>
-     *                                      <li><code>srcBegin</code> is
-     *                                      negative.
-     *                                      <li><code>srcBegin</code> is greater
-     *                                      than
-     *                                      <code>srcEnd</code>
-     *                                      <li><code>srcEnd</code> is greater
-     *                                      than the length of this
-     *                                      string
-     *                                      <li><code>dstBegin</code> is
-     *                                      negative
-     *                                      <li><code>dstBegin+(srcEnd-srcBegin)</code>
-     *                                      is larger than
-     *                                      <code>dst.length</code>
-     *                                      </ul>
+     *            If any of the following is true:
+     *            <ul>
+     *            <li><code>srcBegin</code> is
+     *            negative.
+     *            <li><code>srcBegin</code> is greater
+     *            than
+     *            <code>srcEnd</code>
+     *            <li><code>srcEnd</code> is greater
+     *            than the length of this
+     *            string
+     *            <li><code>dstBegin</code> is
+     *            negative
+     *            <li><code>dstBegin+(srcEnd-srcBegin)</code>
+     *            is larger than
+     *            <code>dst.length</code>
+     *            </ul>
      * @exception NullPointerException
-     *                                      if <code>dst</code> is
-     *                                      <code>null</code>
+     *            if <code>dst</code> is
+     *            <code>null</code>
      */
     public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
         int destIndex = dstBegin;
@@ -158,7 +153,7 @@ public class XMLStringDefault implements XMLString {
      * characters as this object.
      *
      * @param obj2
-     *             the object to compare this <code>String</code> against.
+     *        the object to compare this <code>String</code> against.
      * @return <code>true</code> if the <code>String</code>s are equal;
      *         <code>false</code> otherwise.
      * @see java.lang.String#compareTo(java.lang.String)
@@ -175,7 +170,7 @@ public class XMLStringDefault implements XMLString {
      * characters as this object.
      *
      * @param anObject
-     *                 the object to compare this <code>String</code> against.
+     *        the object to compare this <code>String</code> against.
      * @return <code>true</code> if the <code>String </code>are equal;
      *         <code>false</code> otherwise.
      * @see java.lang.String#compareTo(java.lang.String)
@@ -192,7 +187,7 @@ public class XMLStringDefault implements XMLString {
      * characters as this object.
      *
      * @param anObject
-     *                 the object to compare this <code>String</code> against.
+     *        the object to compare this <code>String</code> against.
      * @return <code>true</code> if the <code>String </code>are equal;
      *         <code>false</code> otherwise.
      * @see java.lang.String#compareTo(java.lang.String)
@@ -209,9 +204,9 @@ public class XMLStringDefault implements XMLString {
      * two strings are equal ignoring case.
      *
      * @param anotherString
-     *                      the <code>String</code> to compare this
-     *                      <code>String</code>
-     *                      against.
+     *        the <code>String</code> to compare this
+     *        <code>String</code>
+     *        against.
      * @return <code>true</code> if the argument is not <code>null</code> and
      *         the <code>String</code>s are equal, ignoring case;
      *         <code>false</code> otherwise.
@@ -227,7 +222,7 @@ public class XMLStringDefault implements XMLString {
      * Compares two strings lexicographically.
      *
      * @param anotherString
-     *                      the <code>String</code> to be compared.
+     *        the <code>String</code> to be compared.
      * @return the value <code>0</code> if the argument string is equal to this
      *         string; a value less than <code>0</code> if this string is
      *         lexicographically less than the string argument; and a value
@@ -252,7 +247,7 @@ public class XMLStringDefault implements XMLString {
      * ordering.
      *
      * @param str
-     *            the <code>String</code> to be compared.
+     *        the <code>String</code> to be compared.
      * @return a negative integer, zero, or a positive integer as the the
      *         specified String is greater than, equal to, or less than this
      *         String, ignoring case considerations.
@@ -268,9 +263,9 @@ public class XMLStringDefault implements XMLString {
      * specified index.
      *
      * @param prefix
-     *                the prefix.
+     *        the prefix.
      * @param toffset
-     *                where to begin looking in the string.
+     *        where to begin looking in the string.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a prefix of the substring of this object starting at
      *         index <code>toffset</code>; <code>false</code> otherwise. The
@@ -294,9 +289,9 @@ public class XMLStringDefault implements XMLString {
      * specified index.
      *
      * @param prefix
-     *                the prefix.
+     *        the prefix.
      * @param toffset
-     *                where to begin looking in the string.
+     *        where to begin looking in the string.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a prefix of the substring of this object starting at
      *         index <code>toffset</code>; <code>false</code> otherwise. The
@@ -319,7 +314,7 @@ public class XMLStringDefault implements XMLString {
      * Tests if this string starts with the specified prefix.
      *
      * @param prefix
-     *               the prefix.
+     *        the prefix.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a prefix of the character sequence represented by
      *         this string; <code>false</code> otherwise. Note also that
@@ -338,7 +333,7 @@ public class XMLStringDefault implements XMLString {
      * Tests if this string starts with the specified prefix.
      *
      * @param prefix
-     *               the prefix.
+     *        the prefix.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a prefix of the character sequence represented by
      *         this string; <code>false</code> otherwise. Note also that
@@ -357,7 +352,7 @@ public class XMLStringDefault implements XMLString {
      * Tests if this string ends with the specified suffix.
      *
      * @param suffix
-     *               the suffix.
+     *        the suffix.
      * @return <code>true</code> if the character sequence represented by the
      *         argument is a suffix of the character sequence represented by
      *         this object; <code>false</code> otherwise. Note that the result
@@ -405,7 +400,7 @@ public class XMLStringDefault implements XMLString {
      * string, then <code>-1</code> is returned.
      *
      * @param ch
-     *           a character.
+     *        a character.
      * @return the index of the first occurrence of the character in the
      *         character sequence represented by this object, or <code>-1</code>
      *         if the character does not occur.
@@ -438,9 +433,9 @@ public class XMLStringDefault implements XMLString {
      * <code>-1</code> is returned.
      *
      * @param ch
-     *                  a character.
+     *        a character.
      * @param fromIndex
-     *                  the index to start the search from.
+     *        the index to start the search from.
      * @return the index of the first occurrence of the character in the
      *         character sequence represented by this object that is greater
      *         than or equal to <code>fromIndex</code>, or <code>-1</code> if
@@ -463,7 +458,7 @@ public class XMLStringDefault implements XMLString {
      * last character.
      *
      * @param ch
-     *           a character.
+     *        a character.
      * @return the index of the last occurrence of the character in the
      *         character sequence represented by this object, or <code>-1</code>
      *         if the character does not occur.
@@ -485,19 +480,19 @@ public class XMLStringDefault implements XMLString {
      * </blockquote> is true.
      *
      * @param ch
-     *                  a character.
+     *        a character.
      * @param fromIndex
-     *                  the index to start the search from. There is no
-     *                  restriction on
-     *                  the value of <code>fromIndex</code>. If it is greater
-     *                  than or
-     *                  equal to the length of this string, it has the same
-     *                  effect as
-     *                  if it were equal to one less than the length of this
-     *                  string:
-     *                  this entire string may be searched. If it is negative,
-     *                  it has
-     *                  the same effect as if it were -1: -1 is returned.
+     *        the index to start the search from. There is no
+     *        restriction on
+     *        the value of <code>fromIndex</code>. If it is greater
+     *        than or
+     *        equal to the length of this string, it has the same
+     *        effect as
+     *        if it were equal to one less than the length of this
+     *        string:
+     *        this entire string may be searched. If it is negative,
+     *        it has
+     *        the same effect as if it were -1: -1 is returned.
      * @return the index of the last occurrence of the character in the
      *         character sequence represented by this object that is less than
      *         or equal to <code>fromIndex</code>, or <code>-1</code> if the
@@ -519,7 +514,7 @@ public class XMLStringDefault implements XMLString {
      * </blockquote> is <code>true</code>.
      *
      * @param str
-     *            any string.
+     *        any string.
      * @return if the string argument occurs as a substring within this object,
      *         then the index of the first character of the first such substring
      *         is returned; if it does not occur as a substring, <code>-1</code>
@@ -543,7 +538,7 @@ public class XMLStringDefault implements XMLString {
      * </blockquote> is <code>true</code>.
      *
      * @param str
-     *            any string.
+     *        any string.
      * @return if the string argument occurs as a substring within this object,
      *         then the index of the first character of the first such substring
      *         is returned; if it does not occur as a substring, <code>-1</code>
@@ -573,9 +568,9 @@ public class XMLStringDefault implements XMLString {
      * <code>-1</code> is returned.
      *
      * @param str
-     *                  the substring to search for.
+     *        the substring to search for.
      * @param fromIndex
-     *                  the index to start the search from.
+     *        the index to start the search from.
      * @return If the string argument occurs as a substring within this object
      *         at a starting index no smaller than <code>fromIndex</code>, then
      *         the index of the first character of the first such substring is
@@ -601,7 +596,7 @@ public class XMLStringDefault implements XMLString {
      * </blockquote> is true.
      *
      * @param str
-     *            the substring to search for.
+     *        the substring to search for.
      * @return if the string argument occurs one or more times as a substring
      *         within this object, then the index of the first character of the
      *         last such substring is returned. If it does not occur as a
@@ -618,19 +613,19 @@ public class XMLStringDefault implements XMLString {
      * specified substring.
      *
      * @param str
-     *                  the substring to search for.
+     *        the substring to search for.
      * @param fromIndex
-     *                  the index to start the search from. There is no
-     *                  restriction on
-     *                  the value of fromIndex. If it is greater than the length
-     *                  of
-     *                  this string, it has the same effect as if it were equal
-     *                  to the
-     *                  length of this string: this entire string may be
-     *                  searched. If
-     *                  it is negative, it has the same effect as if it were -1:
-     *                  -1 is
-     *                  returned.
+     *        the index to start the search from. There is no
+     *        restriction on
+     *        the value of fromIndex. If it is greater than the length
+     *        of
+     *        this string, it has the same effect as if it were equal
+     *        to the
+     *        length of this string: this entire string may be
+     *        searched. If
+     *        it is negative, it has the same effect as if it were -1:
+     *        -1 is
+     *        returned.
      * @return If the string argument occurs one or more times as a substring
      *         within this object at a starting index no greater than
      *         <code>fromIndex</code>, then the index of the first character of
@@ -660,13 +655,13 @@ public class XMLStringDefault implements XMLString {
      * </blockquote>
      *
      * @param beginIndex
-     *                   the beginning index, inclusive.
+     *        the beginning index, inclusive.
      * @return the specified substring.
      * @exception IndexOutOfBoundsException
-     *                                      if <code>beginIndex</code> is
-     *                                      negative or larger than the
-     *                                      length of this <code>String</code>
-     *                                      object.
+     *            if <code>beginIndex</code> is
+     *            negative or larger than the
+     *            length of this <code>String</code>
+     *            object.
      */
     public XMLString substring(int beginIndex) {
         return new XMLStringDefault(m_str.substring(beginIndex));
@@ -679,18 +674,18 @@ public class XMLStringDefault implements XMLString {
      * substring is <code>endIndex-beginIndex</code>.
      *
      * @param beginIndex
-     *                   the beginning index, inclusive.
+     *        the beginning index, inclusive.
      * @param endIndex
-     *                   the ending index, exclusive.
+     *        the ending index, exclusive.
      * @return the specified substring.
      * @exception IndexOutOfBoundsException
-     *                                      if the <code>beginIndex</code> is
-     *                                      negative, or
-     *                                      <code>endIndex</code> is larger than
-     *                                      the length of this
-     *                                      <code>String</code> object, or
-     *                                      <code>beginIndex</code> is
-     *                                      larger than <code>endIndex</code>.
+     *            if the <code>beginIndex</code> is
+     *            negative, or
+     *            <code>endIndex</code> is larger than
+     *            the length of this
+     *            <code>String</code> object, or
+     *            <code>beginIndex</code> is
+     *            larger than <code>endIndex</code>.
      */
     public XMLString substring(int beginIndex, int endIndex) {
         return new XMLStringDefault(m_str.substring(beginIndex, endIndex));
@@ -700,8 +695,8 @@ public class XMLStringDefault implements XMLString {
      * Concatenates the specified string to the end of this string.
      *
      * @param str
-     *            the <code>String</code> that is concatenated to the end of
-     *            this <code>String</code>.
+     *        the <code>String</code> that is concatenated to the end of
+     *        this <code>String</code>.
      * @return a string that represents the concatenation of this object's
      *         characters followed by the string argument's characters.
      * @exception java.lang.NullPointerException
@@ -716,7 +711,7 @@ public class XMLStringDefault implements XMLString {
      * using the rules of the given <code>Locale</code>.
      *
      * @param locale
-     *               use the case transformation rules for this locale
+     *        use the case transformation rules for this locale
      * @return the String, converted to lowercase.
      * @see java.lang.Character#toLowerCase(char)
      * @see java.lang.String#toUpperCase(Locale)
@@ -744,7 +739,7 @@ public class XMLStringDefault implements XMLString {
      * using the rules of the given locale.
      * 
      * @param locale
-     *               use the case transformation rules for this locale
+     *        use the case transformation rules for this locale
      * @return the String, converted to uppercase.
      * @see java.lang.Character#toUpperCase(char)
      * @see java.lang.String#toLowerCase(Locale)
@@ -757,7 +752,6 @@ public class XMLStringDefault implements XMLString {
      * Converts all of the characters in this <code>String</code> to upper case
      * using the rules of the default locale, which is returned by
      * <code>Locale.getDefault</code>.
-     *
      * <p>
      * If no character in this string has a different uppercase version, based
      * on calling the <code>toUpperCase</code> method defined by

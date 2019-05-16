@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -66,7 +64,7 @@ public interface CipherData {
      * Sets the <code>CipherData</code>'s value.
      *
      * @param value
-     *              the value of the <code>CipherData</code>.
+     *        the value of the <code>CipherData</code>.
      * @throws XMLEncryptionException
      */
     void setCipherValue(CipherValue value) throws XMLEncryptionException;
@@ -84,10 +82,9 @@ public interface CipherData {
      * Sets the <code>CipherData</code>'s reference.
      *
      * @param reference
-     *                  an external location containing the encrypted octet
-     *                  sequence.
+     *        an external location containing the encrypted octet
+     *        sequence.
      * @throws XMLEncryptionException
      */
-    void setCipherReference(CipherReference reference)
-            throws XMLEncryptionException;
+    void setCipherReference(CipherReference reference) throws XMLEncryptionException;
 }

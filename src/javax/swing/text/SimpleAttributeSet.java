@@ -25,8 +25,7 @@ import java.util.LinkedHashMap;
  *
  * @author Tim Prinzing
  */
-public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
-        Cloneable {
+public class SimpleAttributeSet implements MutableAttributeSet, Serializable, Cloneable {
     private static final long serialVersionUID = -6631553454711782652L;
 
     /**
@@ -34,8 +33,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      */
     public static final AttributeSet EMPTY = new EmptyAttributeSet();
 
-    private transient LinkedHashMap<Object, Object> table = new LinkedHashMap<>(
-            3);
+    private transient LinkedHashMap<Object, Object> table = new LinkedHashMap<>(3);
 
     /**
      * Creates a new attribute set.
@@ -46,7 +44,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Creates a new attribute set based on a supplied set of attributes.
      *
      * @param source
-     *               the set of attributes
+     *        the set of attributes
      */
     public SimpleAttributeSet(AttributeSet source) {
         addAttributes(source);
@@ -74,7 +72,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Tells whether a given attribute is defined.
      *
      * @param attrName
-     *                 the attribute name
+     *        the attribute name
      * @return true if the attribute is defined
      */
     public boolean isDefined(Object attrName) {
@@ -85,12 +83,11 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Compares two attribute sets.
      *
      * @param attr
-     *             the second attribute set
+     *        the second attribute set
      * @return true if the sets are equal, false otherwise
      */
     public boolean isEqual(AttributeSet attr) {
-        return ((getAttributeCount() == attr.getAttributeCount())
-                && containsAttributes(attr));
+        return ((getAttributeCount() == attr.getAttributeCount()) && containsAttributes(attr));
     }
 
     /**
@@ -115,7 +112,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Gets the value of an attribute.
      *
      * @param name
-     *             the attribute name
+     *        the attribute name
      * @return the value
      */
     public Object getAttribute(Object name) {
@@ -134,9 +131,9 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * name/value pair.
      *
      * @param name
-     *              the name
+     *        the name
      * @param value
-     *              the value
+     *        the value
      * @return true if the name/value pair is in the list
      */
     public boolean containsAttribute(Object name, Object value) {
@@ -148,7 +145,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * pairs.
      *
      * @param attributes
-     *                   the attribute list
+     *        the attribute list
      * @return true if the list contains all the name/value pairs
      */
     public boolean containsAttributes(AttributeSet attributes) {
@@ -167,9 +164,9 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Adds an attribute to the list.
      *
      * @param name
-     *              the attribute name
+     *        the attribute name
      * @param value
-     *              the attribute value
+     *        the attribute value
      */
     public void addAttribute(Object name, Object value) {
         table.put(name, value);
@@ -179,7 +176,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Adds a set of attributes to the list.
      *
      * @param attributes
-     *                   the set of attributes to add
+     *        the set of attributes to add
      */
     public void addAttributes(AttributeSet attributes) {
         Enumeration names = attributes.getAttributeNames();
@@ -193,7 +190,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Removes an attribute from the list.
      *
      * @param name
-     *             the attribute name
+     *        the attribute name
      */
     public void removeAttribute(Object name) {
         table.remove(name);
@@ -203,7 +200,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Removes a set of attributes from the list.
      *
      * @param names
-     *              the set of names to remove
+     *        the set of names to remove
      */
     public void removeAttributes(Enumeration<?> names) {
         while (names.hasMoreElements())
@@ -214,7 +211,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Removes a set of attributes from the list.
      *
      * @param attributes
-     *                   the set of attributes to remove
+     *        the set of attributes to remove
      */
     public void removeAttributes(AttributeSet attributes) {
         if (attributes == this) {
@@ -245,7 +242,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * Sets the resolving parent.
      *
      * @param parent
-     *               the parent
+     *        the parent
      */
     public void setResolveParent(AttributeSet parent) {
         addAttribute(StyleConstants.ResolveAttribute, parent);
@@ -283,7 +280,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
      * <code>true</code> if the object is an equivalent set of attributes.
      * 
      * @param obj
-     *            the object to compare this attribute set with
+     *        the object to compare this attribute set with
      * @return <code>true</code> if the objects are equal; <code>false</code>
      *         otherwise
      */
@@ -324,8 +321,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
         StyleContext.writeAttributeSet(s, this);
     }
 
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
         table = new LinkedHashMap<>(3);
         StyleContext.readAttributeSet(s, this);
@@ -377,8 +373,7 @@ public class SimpleAttributeSet implements MutableAttributeSet, Serializable,
             if (this == obj) {
                 return true;
             }
-            return ((obj instanceof AttributeSet) && (((AttributeSet) obj)
-                    .getAttributeCount() == 0));
+            return ((obj instanceof AttributeSet) && (((AttributeSet) obj).getAttributeCount() == 0));
         }
 
         public int hashCode() {

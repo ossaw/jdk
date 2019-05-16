@@ -21,7 +21,6 @@ import java.util.Map;
  * The <code>{@link AudioSystem}</code> class includes methods for determining
  * the format of an audio file, obtaining an audio input stream from an audio
  * file, and writing an audio file from an audio input stream.
- *
  * <p>
  * An <code>AudioFileFormat</code> object can include a set of properties. A
  * property is a pair of key and value: the key is of type <code>String</code>,
@@ -29,11 +28,9 @@ import java.util.Map;
  * additional informational meta data (like a author, copyright, or file
  * duration). Properties are optional information, and file reader and file
  * writer implementations are not required to provide or recognize properties.
- *
  * <p>
  * The following table lists some common properties that should be used in
  * implementations:
- *
  * <table border=1>
  * <caption>Audio File Format Properties</caption>
  * <tr>
@@ -72,7 +69,6 @@ import java.util.Map;
  * <td>an arbitrary text</td>
  * </tr>
  * </table>
- *
  *
  * @author David Rivas
  * @author Kara Kytle
@@ -113,20 +109,18 @@ public class AudioFileFormat {
      * information about an audio file or about supported audio file formats.
      * 
      * @param type
-     *                    the type of the audio file
+     *        the type of the audio file
      * @param byteLength
-     *                    the length of the file in bytes, or
-     *                    <code>AudioSystem.NOT_SPECIFIED</code>
+     *        the length of the file in bytes, or
+     *        <code>AudioSystem.NOT_SPECIFIED</code>
      * @param format
-     *                    the format of the audio data contained in the file
+     *        the format of the audio data contained in the file
      * @param frameLength
-     *                    the audio data length in sample frames, or
-     *                    <code>AudioSystem.NOT_SPECIFIED</code>
-     *
+     *        the audio data length in sample frames, or
+     *        <code>AudioSystem.NOT_SPECIFIED</code>
      * @see #getType
      */
-    protected AudioFileFormat(Type type, int byteLength, AudioFormat format,
-            int frameLength) {
+    protected AudioFileFormat(Type type, int byteLength, AudioFormat format, int frameLength) {
 
         this.type = type;
         this.byteLength = byteLength;
@@ -141,12 +135,12 @@ public class AudioFileFormat {
      * file.
      * 
      * @param type
-     *                    the type of the audio file
+     *        the type of the audio file
      * @param format
-     *                    the format of the audio data contained in the file
+     *        the format of the audio data contained in the file
      * @param frameLength
-     *                    the audio data length in sample frames, or
-     *                    <code>AudioSystem.NOT_SPECIFIED</code>
+     *        the audio data length in sample frames, or
+     *        <code>AudioSystem.NOT_SPECIFIED</code>
      */
     public AudioFileFormat(Type type, AudioFormat format, int frameLength) {
 
@@ -160,20 +154,18 @@ public class AudioFileFormat {
      * to prevent any changes to it.
      *
      * @param type
-     *                    the type of the audio file
+     *        the type of the audio file
      * @param format
-     *                    the format of the audio data contained in the file
+     *        the format of the audio data contained in the file
      * @param frameLength
-     *                    the audio data length in sample frames, or
-     *                    <code>AudioSystem.NOT_SPECIFIED</code>
+     *        the audio data length in sample frames, or
+     *        <code>AudioSystem.NOT_SPECIFIED</code>
      * @param properties
-     *                    a <code>Map&lt;String,Object&gt;</code> object with
-     *                    properties
-     *
+     *        a <code>Map&lt;String,Object&gt;</code> object with
+     *        properties
      * @since 1.5
      */
-    public AudioFileFormat(Type type, AudioFormat format, int frameLength,
-            Map<String, Object> properties) {
+    public AudioFileFormat(Type type, AudioFormat format, int frameLength, Map<String, Object> properties) {
         this(type, AudioSystem.NOT_SPECIFIED, format, frameLength);
         this.properties = new HashMap<String, Object>(properties);
     }
@@ -183,7 +175,6 @@ public class AudioFileFormat {
      * .
      * 
      * @return the audio file type
-     *
      * @see Type#WAVE
      * @see Type#AU
      * @see Type#AIFF
@@ -232,7 +223,6 @@ public class AudioFileFormat {
      * @return a <code>Map&lt;String,Object&gt;</code> object containing all
      *         properties. If no properties are recognized, an empty map is
      *         returned.
-     *
      * @see #getProperty(String)
      * @since 1.5
      */
@@ -249,16 +239,14 @@ public class AudioFileFormat {
     /**
      * Obtain the property value specified by the key. The concept of properties
      * is further explained in the {@link AudioFileFormat class description}.
-     *
      * <p>
      * If the specified property is not defined for a particular file format,
      * this method returns <code>null</code>.
      *
      * @param key
-     *            the key of the desired property
+     *        the key of the desired property
      * @return the value of the property with the specified key, or
      *         <code>null</code> if the property does not exist.
-     *
      * @see #properties()
      * @since 1.5
      */
@@ -281,8 +269,7 @@ public class AudioFileFormat {
         // $$fb2002-11-01: fix for 4672864: AudioFileFormat.toString() throws
         // unexpected NullPointerException
         if (type != null) {
-            buf.append(type.toString() + " (." + type.getExtension()
-                    + ") file");
+            buf.append(type.toString() + " (." + type.getExtension() + ") file");
         } else {
             buf.append("unknown file format");
         }
@@ -351,10 +338,10 @@ public class AudioFileFormat {
          * Constructs a file type.
          * 
          * @param name
-         *                  the string that names the file type
+         *        the string that names the file type
          * @param extension
-         *                  the string that commonly marks the file type without
-         *                  leading dot.
+         *        the string that commonly marks the file type without
+         *        leading dot.
          */
         public Type(String name, String extension) {
 

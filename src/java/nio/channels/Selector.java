@@ -12,7 +12,6 @@ import java.util.Set;
 
 /**
  * A multiplexor of {@link SelectableChannel} objects.
- *
  * <p>
  * A selector may be created by invoking the {@link #open open} method of this
  * class, which will use the system's default
@@ -21,16 +20,12 @@ import java.util.Set;
  * {@link java.nio.channels.spi.SelectorProvider#openSelector openSelector}
  * method of a custom selector provider. A selector remains open until it is
  * closed via its {@link #close close} method.
- *
  * <a name="ks"></a>
- *
  * <p>
  * A selectable channel's registration with a selector is represented by a
  * {@link SelectionKey} object. A selector maintains three sets of selection
  * keys:
- *
  * <ul>
- *
  * <li>
  * <p>
  * The <i>key set</i> contains the keys representing the current channel
@@ -38,7 +33,6 @@ import java.util.Set;
  * keys} method.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The <i>selected-key set</i> is the set of keys such that each key's channel
@@ -48,7 +42,6 @@ import java.util.Set;
  * always a subset of the key set.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The <i>cancelled-key</i> set is the set of keys that have been cancelled but
@@ -56,25 +49,20 @@ import java.util.Set;
  * accessible. The cancelled-key set is always a subset of the key set.
  * </p>
  * </li>
- *
  * </ul>
- *
  * <p>
  * All three sets are empty in a newly-created selector.
- *
  * <p>
  * A key is added to a selector's key set as a side effect of registering a
  * channel via the channel's {@link SelectableChannel#register(Selector,int)
  * register} method. Cancelled keys are removed from the key set during
  * selection operations. The key set itself is not directly modifiable.
- *
  * <p>
  * A key is added to its selector's cancelled-key set when it is cancelled,
  * whether by closing its channel or by invoking its {@link SelectionKey#cancel
  * cancel} method. Cancelling a key will cause its channel to be deregistered
  * during the next selection operation, at which time the key will removed from
  * all of the selector's key sets.
- *
  * <a name="sks"></a>
  * <p>
  * Keys are added to the selected-key set by selection operations. A key may be
@@ -86,20 +74,15 @@ import java.util.Set;
  * particular, removed as a side effect of selection operations. Keys may not be
  * added directly to the selected-key set.
  * </p>
- *
- *
  * <a name="selop"></a>
  * <h2>Selection</h2>
- *
  * <p>
  * During each selection operation, keys may be added to and removed from a
  * selector's selected-key set and may be removed from its key and cancelled-key
  * sets. Selection is performed by the {@link #select()}, {@link #select(long)},
  * and {@link #selectNow()} methods, and involves three steps:
  * </p>
- *
  * <ol>
- *
  * <li>
  * <p>
  * Each key in the cancelled-key set is removed from each key set of which it is
@@ -107,7 +90,6 @@ import java.util.Set;
  * set empty.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The underlying operating system is queried for an update as to the readiness
@@ -116,9 +98,7 @@ import java.util.Set;
  * channel that is ready for at least one such operation, one of the following
  * two actions is performed:
  * </p>
- *
  * <ol>
- *
  * <li>
  * <p>
  * If the channel's key is not already in the selected-key set then it is added
@@ -127,7 +107,6 @@ import java.util.Set;
  * information previously recorded in the ready set is discarded.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * Otherwise the channel's key is already in the selected-key set, so its
@@ -138,70 +117,54 @@ import java.util.Set;
  * ready set.
  * </p>
  * </li>
- *
  * </ol>
- *
  * If all of the keys in the key set at the start of this step have empty
  * interest sets then neither the selected-key set nor any of the keys'
  * ready-operation sets will be updated.
- *
  * <li>
  * <p>
  * If any keys were added to the cancelled-key set while step (2) was in
  * progress then they are processed as in step (1).
  * </p>
  * </li>
- *
  * </ol>
- *
  * <p>
  * Whether or not a selection operation blocks to wait for one or more channels
  * to become ready, and if so for how long, is the only essential difference
  * between the three selection methods.
  * </p>
- *
- *
  * <h2>Concurrency</h2>
- *
  * <p>
  * Selectors are themselves safe for use by multiple concurrent threads; their
  * key sets, however, are not.
- *
  * <p>
  * The selection operations synchronize on the selector itself, on the key set,
  * and on the selected-key set, in that order. They also synchronize on the
  * cancelled-key set during steps (1) and (3) above.
- *
  * <p>
  * Changes made to the interest sets of a selector's keys while a selection
  * operation is in progress have no effect upon that operation; they will be
  * seen by the next selection operation.
- *
  * <p>
  * Keys may be cancelled and channels may be closed at any time. Hence the
  * presence of a key in one or more of a selector's key sets does not imply that
  * the key is valid or that its channel is open. Application code should be
  * careful to synchronize and check these conditions as necessary if there is
  * any possibility that another thread will cancel a key or close a channel.
- *
  * <p>
  * A thread blocked in one of the {@link #select()} or {@link #select(long)}
  * methods may be interrupted by some other thread in one of three ways:
- *
  * <ul>
- *
  * <li>
  * <p>
  * By invoking the selector's {@link #wakeup wakeup} method,
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * By invoking the selector's {@link #close close} method, or
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * By invoking the blocked thread's {@link java.lang.Thread#interrupt()
@@ -209,15 +172,11 @@ import java.util.Set;
  * selector's {@link #wakeup wakeup} method will be invoked.
  * </p>
  * </li>
- *
  * </ul>
- *
  * <p>
  * The {@link #close close} method synchronizes on the selector and all three
  * key sets in the same order as in a selection operation.
- *
  * <a name="ksc"></a>
- *
  * <p>
  * A selector's key and selected-key sets are not, in general, safe for use by
  * multiple concurrent threads. If such a thread might modify one of these sets
@@ -229,11 +188,9 @@ import java.util.Set;
  * {@link java.util.ConcurrentModificationException} will be thrown.
  * </p>
  *
- *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
  * @since 1.4
- *
  * @see SelectableChannel
  * @see SelectionKey
  */
@@ -247,7 +204,6 @@ public abstract class Selector implements Closeable {
 
     /**
      * Opens a selector.
-     *
      * <p>
      * The new selector is created by invoking the
      * {@link java.nio.channels.spi.SelectorProvider#openSelector openSelector}
@@ -256,9 +212,8 @@ public abstract class Selector implements Closeable {
      * </p>
      *
      * @return A new selector
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public static Selector open() throws IOException {
         return SelectorProvider.provider().openSelector();
@@ -280,52 +235,44 @@ public abstract class Selector implements Closeable {
 
     /**
      * Returns this selector's key set.
-     *
      * <p>
      * The key set is not directly modifiable. A key is removed only after it
      * has been cancelled and its channel has been deregistered. Any attempt to
      * modify the key set will cause an {@link UnsupportedOperationException} to
      * be thrown.
-     *
      * <p>
      * The key set is <a href="#ksc">not thread-safe</a>.
      * </p>
      *
      * @return This selector's key set
-     *
      * @throws ClosedSelectorException
-     *                                 If this selector is closed
+     *         If this selector is closed
      */
     public abstract Set<SelectionKey> keys();
 
     /**
      * Returns this selector's selected-key set.
-     *
      * <p>
      * Keys may be removed from, but not directly added to, the selected-key
      * set. Any attempt to add an object to the key set will cause an
      * {@link UnsupportedOperationException} to be thrown.
-     *
      * <p>
      * The selected-key set is <a href="#ksc">not thread-safe</a>.
      * </p>
      *
      * @return This selector's selected-key set
-     *
      * @throws ClosedSelectorException
-     *                                 If this selector is closed
+     *         If this selector is closed
      */
     public abstract Set<SelectionKey> selectedKeys();
 
     /**
      * Selects a set of keys whose corresponding channels are ready for I/O
      * operations.
-     *
      * <p>
      * This method performs a non-blocking <a href="#selop">selection
      * operation</a>. If no channels have become selectable since the previous
      * selection operation then this method immediately returns zero.
-     *
      * <p>
      * Invoking this method clears the effect of any previous invocations of the
      * {@link #wakeup wakeup} method.
@@ -333,56 +280,47 @@ public abstract class Selector implements Closeable {
      *
      * @return The number of keys, possibly zero, whose ready-operation sets
      *         were updated by the selection operation
-     *
      * @throws IOException
-     *                                 If an I/O error occurs
-     *
+     *         If an I/O error occurs
      * @throws ClosedSelectorException
-     *                                 If this selector is closed
+     *         If this selector is closed
      */
     public abstract int selectNow() throws IOException;
 
     /**
      * Selects a set of keys whose corresponding channels are ready for I/O
      * operations.
-     *
      * <p>
      * This method performs a blocking <a href="#selop">selection operation</a>.
      * It returns only after at least one channel is selected, this selector's
      * {@link #wakeup wakeup} method is invoked, the current thread is
      * interrupted, or the given timeout period expires, whichever comes first.
-     *
      * <p>
      * This method does not offer real-time guarantees: It schedules the timeout
      * as if by invoking the {@link Object#wait(long)} method.
      * </p>
      *
      * @param timeout
-     *                If positive, block for up to <tt>timeout</tt>
-     *                milliseconds,
-     *                more or less, while waiting for a channel to become ready;
-     *                if
-     *                zero, block indefinitely; must not be negative
-     *
+     *        If positive, block for up to <tt>timeout</tt>
+     *        milliseconds,
+     *        more or less, while waiting for a channel to become ready;
+     *        if
+     *        zero, block indefinitely; must not be negative
      * @return The number of keys, possibly zero, whose ready-operation sets
      *         were updated
-     *
      * @throws IOException
-     *                                  If an I/O error occurs
-     *
+     *         If an I/O error occurs
      * @throws ClosedSelectorException
-     *                                  If this selector is closed
-     *
+     *         If this selector is closed
      * @throws IllegalArgumentException
-     *                                  If the value of the timeout argument is
-     *                                  negative
+     *         If the value of the timeout argument is
+     *         negative
      */
     public abstract int select(long timeout) throws IOException;
 
     /**
      * Selects a set of keys whose corresponding channels are ready for I/O
      * operations.
-     *
      * <p>
      * This method performs a blocking <a href="#selop">selection operation</a>.
      * It returns only after at least one channel is selected, this selector's
@@ -392,19 +330,16 @@ public abstract class Selector implements Closeable {
      *
      * @return The number of keys, possibly zero, whose ready-operation sets
      *         were updated
-     *
      * @throws IOException
-     *                                 If an I/O error occurs
-     *
+     *         If an I/O error occurs
      * @throws ClosedSelectorException
-     *                                 If this selector is closed
+     *         If this selector is closed
      */
     public abstract int select() throws IOException;
 
     /**
      * Causes the first selection operation that has not yet returned to return
      * immediately.
-     *
      * <p>
      * If another thread is currently blocked in an invocation of the
      * {@link #select()} or {@link #select(long)} methods then that invocation
@@ -415,7 +350,6 @@ public abstract class Selector implements Closeable {
      * non-zero. Subsequent invocations of the {@link #select()} or
      * {@link #select(long)} methods will block as usual unless this method is
      * invoked again in the meantime.
-     *
      * <p>
      * Invoking this method more than once between two successive selection
      * operations has the same effect as invoking it just once.
@@ -427,21 +361,17 @@ public abstract class Selector implements Closeable {
 
     /**
      * Closes this selector.
-     *
      * <p>
      * If a thread is currently blocked in one of this selector's selection
      * methods then it is interrupted as if by invoking the selector's
      * {@link #wakeup wakeup} method.
-     *
      * <p>
      * Any uncancelled keys still associated with this selector are invalidated,
      * their channels are deregistered, and any other resources associated with
      * this selector are released.
-     *
      * <p>
      * If this selector is already closed then invoking this method has no
      * effect.
-     *
      * <p>
      * After a selector is closed, any further attempt to use it, except by
      * invoking this method or the {@link #wakeup wakeup} method, will cause a
@@ -449,7 +379,7 @@ public abstract class Selector implements Closeable {
      * </p>
      *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract void close() throws IOException;
 

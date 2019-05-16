@@ -71,19 +71,13 @@ class RoundRectIterator implements PathIterator {
     // 4 values for each point {v0, v1, v2, v3}:
     // point = (x + v0 * w + v1 * arcWidth,
     // y + v2 * h + v3 * arcHeight);
-    private static double ctrlpts[][] = { { 0.0, 0.0, 0.0, 0.5 }, { 0.0, 0.0,
-            1.0, -0.5 }, { 0.0, 0.0, 1.0, -acv, 0.0, acv, 1.0, 0.0, 0.0, 0.5,
-                    1.0, 0.0 }, { 1.0, -0.5, 1.0, 0.0 }, { 1.0, -acv, 1.0, 0.0,
-                            1.0, 0.0, 1.0, -acv, 1.0, 0.0, 1.0, -0.5 }, { 1.0,
-                                    0.0, 0.0, 0.5 }, { 1.0, 0.0, 0.0, acv, 1.0,
-                                            -acv, 0.0, 0.0, 1.0, -0.5, 0.0,
-                                            0.0 }, { 0.0, 0.5, 0.0, 0.0 }, {
-                                                    0.0, acv, 0.0, 0.0, 0.0,
-                                                    0.0, 0.0, acv, 0.0, 0.0,
-                                                    0.0, 0.5 }, {}, };
-    private static int types[] = { SEG_MOVETO, SEG_LINETO, SEG_CUBICTO,
-            SEG_LINETO, SEG_CUBICTO, SEG_LINETO, SEG_CUBICTO, SEG_LINETO,
-            SEG_CUBICTO, SEG_CLOSE, };
+    private static double ctrlpts[][] = { { 0.0, 0.0, 0.0, 0.5 }, { 0.0, 0.0, 1.0, -0.5 }, { 0.0, 0.0, 1.0,
+            -acv, 0.0, acv, 1.0, 0.0, 0.0, 0.5, 1.0, 0.0 }, { 1.0, -0.5, 1.0, 0.0 }, { 1.0, -acv, 1.0, 0.0,
+                    1.0, 0.0, 1.0, -acv, 1.0, 0.0, 1.0, -0.5 }, { 1.0, 0.0, 0.0, 0.5 }, { 1.0, 0.0, 0.0, acv,
+                            1.0, -acv, 0.0, 0.0, 1.0, -0.5, 0.0, 0.0 }, { 0.0, 0.5, 0.0, 0.0 }, { 0.0, acv,
+                                    0.0, 0.0, 0.0, 0.0, 0.0, acv, 0.0, 0.0, 0.0, 0.5 }, {}, };
+    private static int types[] = { SEG_MOVETO, SEG_LINETO, SEG_CUBICTO, SEG_LINETO, SEG_CUBICTO, SEG_LINETO,
+            SEG_CUBICTO, SEG_LINETO, SEG_CUBICTO, SEG_CLOSE, };
 
     /**
      * Returns the coordinates and type of the current path segment in the
@@ -103,8 +97,7 @@ class RoundRectIterator implements PathIterator {
      */
     public int currentSegment(float[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "roundrect iterator out of bounds");
+            throw new NoSuchElementException("roundrect iterator out of bounds");
         }
         double ctrls[] = ctrlpts[index];
         int nc = 0;
@@ -136,8 +129,7 @@ class RoundRectIterator implements PathIterator {
      */
     public int currentSegment(double[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "roundrect iterator out of bounds");
+            throw new NoSuchElementException("roundrect iterator out of bounds");
         }
         double ctrls[] = ctrlpts[index];
         int nc = 0;

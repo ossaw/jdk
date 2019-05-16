@@ -106,11 +106,9 @@ public class XPointerFramework {
         if (fDefaultXPointerSchema == null) {
             getDefaultSchema();
         }
-        if (fDefaultXPointerSchema.getXpointerSchemaName().equalsIgnoreCase(
-                fSchemaPointerName[i])) {
+        if (fDefaultXPointerSchema.getXpointerSchemaName().equalsIgnoreCase(fSchemaPointerName[i])) {
             fDefaultXPointerSchema.reset();
-            fDefaultXPointerSchema.setXPointerSchemaPointer(
-                    fSchemaPointerURI[i]);
+            fDefaultXPointerSchema.setXPointerSchemaPointer(fSchemaPointerURI[i]);
             fCountSchemaName = ++i;
             return getDefaultSchema();
         }
@@ -123,10 +121,8 @@ public class XPointerFramework {
 
         for (; fSchemaPointerName[i] != null; i++) {
             for (int j = 0; j < fschemalength; j++) {
-                if (fSchemaPointerName[i].equalsIgnoreCase(fXPointerSchema[j]
-                        .getXpointerSchemaName())) {
-                    fXPointerSchema[j].setXPointerSchemaPointer(
-                            fSchemaPointerURI[i]);
+                if (fSchemaPointerName[i].equalsIgnoreCase(fXPointerSchema[j].getXpointerSchemaName())) {
+                    fXPointerSchema[j].setXPointerSchemaPointer(fSchemaPointerURI[i]);
                     fCountSchemaName = ++i;
                     return fXPointerSchema[j];
                 }
@@ -159,8 +155,7 @@ public class XPointerFramework {
         if (index <= 0)
             return;
 
-        fSchemaPointerName[schemapointerindex++] = fSchemaPointer.substring(0,
-                index++).trim();
+        fSchemaPointerName[schemapointerindex++] = fSchemaPointer.substring(0, index++).trim();
         lastindex = index;
         String tempURI = null;
         count++;
@@ -173,12 +168,11 @@ public class XPointerFramework {
                 count--;
             if (count == 0) {
                 tempURI = fSchemaPointer.substring(lastindex, index).trim();
-                fSchemaPointerURI[schemapointerURIindex++] = getEscapedURI(
-                        tempURI);
+                fSchemaPointerURI[schemapointerURIindex++] = getEscapedURI(tempURI);
                 lastindex = index;
                 if ((index = fSchemaPointer.indexOf('(', lastindex)) != -1) {
-                    fSchemaPointerName[schemapointerindex++] = fSchemaPointer
-                            .substring(lastindex + 1, index).trim();
+                    fSchemaPointerName[schemapointerindex++] = fSchemaPointer.substring(lastindex + 1, index)
+                            .trim();
                     count++;
                     lastindex = index + 1;
                 } else {

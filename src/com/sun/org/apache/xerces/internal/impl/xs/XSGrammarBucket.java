@@ -26,7 +26,6 @@ import java.util.Vector;
  * A class used to hold the internal schema grammar set for the current instance
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @version $Id: XSGrammarBucket.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
@@ -58,7 +57,7 @@ public class XSGrammarBucket {
      * already in the bucket.
      *
      * @param grammar
-     *                the grammar to put in the registry
+     *        the grammar to put in the registry
      */
     public void putGrammar(SchemaGrammar grammar) {
         if (grammar.getTargetNamespace() == null)
@@ -74,9 +73,9 @@ public class XSGrammarBucket {
      * added, it's an error, and no grammar will be added into the bucket.
      *
      * @param grammar
-     *                the grammar to put in the registry
+     *        the grammar to put in the registry
      * @param deep
-     *                whether to add imported grammars
+     *        whether to add imported grammars
      * @return whether the process succeeded
      */
     public boolean putGrammar(SchemaGrammar grammar, boolean deep) {
@@ -146,17 +145,16 @@ public class XSGrammarBucket {
      * added, no grammar will be added into the bucket.
      *
      * @param grammar
-     *                       the grammar to put in the registry
+     *        the grammar to put in the registry
      * @param deep
-     *                       whether to add imported grammars
+     *        whether to add imported grammars
      * @param ignoreConflict
-     *                       whether to ignore grammars that already exist in
-     *                       the grammar
-     *                       bucket or not - including 'grammar' parameter.
+     *        whether to ignore grammars that already exist in
+     *        the grammar
+     *        bucket or not - including 'grammar' parameter.
      * @return whether the process succeeded
      */
-    public boolean putGrammar(SchemaGrammar grammar, boolean deep,
-            boolean ignoreConflict) {
+    public boolean putGrammar(SchemaGrammar grammar, boolean deep, boolean ignoreConflict) {
         if (!ignoreConflict) {
             return putGrammar(grammar, deep);
         }
@@ -227,8 +225,7 @@ public class XSGrammarBucket {
         SchemaGrammar[] grammars = new SchemaGrammar[count];
         // get grammars with target namespace
         int i = 0;
-        for (Map.Entry<String, SchemaGrammar> entry : fGrammarRegistry
-                .entrySet()) {
+        for (Map.Entry<String, SchemaGrammar> entry : fGrammarRegistry.entrySet()) {
             grammars[i++] = entry.getValue();
         }
 

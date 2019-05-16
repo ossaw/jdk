@@ -30,9 +30,7 @@ import com.sun.org.apache.xerces.internal.xs.XSObjectList;
  * Containts a list of XSObject's.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: XSObjectListImpl.java,v 1.7 2010-11-01 04:40:06 joehw Exp $
  */
 public class XSObjectListImpl extends AbstractList implements XSObjectList {
@@ -40,8 +38,7 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
     /**
      * An immutable empty list.
      */
-    public static final XSObjectListImpl EMPTY_LIST = new XSObjectListImpl(
-            new XSObject[0], 0);
+    public static final XSObjectListImpl EMPTY_LIST = new XSObjectListImpl(new XSObject[0], 0);
     private static final ListIterator EMPTY_ITERATOR = new ListIterator() {
         public boolean hasNext() {
             return false;
@@ -96,9 +93,9 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
      * Construct an XSObjectList implementation
      *
      * @param array
-     *               the data array
+     *        the data array
      * @param length
-     *               the number of elements
+     *        the number of elements
      */
     public XSObjectListImpl(XSObject[] array, int length) {
         fArray = array;
@@ -119,7 +116,7 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
      * nodes in the list, this returns <code>null</code>.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The XSObject at the <code>index</code>th position in the
      *         <code>XSObjectList</code>, or <code>null</code> if that is not a
      *         valid index.

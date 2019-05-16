@@ -14,7 +14,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see LinkRef
  * @since 1.3
  */
@@ -25,9 +24,9 @@ public class LinkLoopException extends LinkException {
      * the other fields are initialized to null.
      * 
      * @param explanation
-     *                    A possibly null string containing additional detail
-     *                    about this
-     *                    exception.
+     *        A possibly null string containing additional detail
+     *        about this
+     *        exception.
      * @see java.lang.Throwable#getMessage
      */
     public LinkLoopException(String explanation) {

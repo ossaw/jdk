@@ -23,8 +23,7 @@ import java.util.function.Predicate;
  * <pre>
  * {
  *     &#64;code
- *     int sum = widgets.stream().filter(w -> w.getColor() == RED).mapToInt(
- *             w -> w.getWeight()).sum();
+ *     int sum = widgets.stream().filter(w -> w.getColor() == RED).mapToInt(w -> w.getWeight()).sum();
  * }
  * </pre>
  *
@@ -44,11 +43,9 @@ import java.util.function.Predicate;
  * @see DoubleStream
  * @see <a href="package-summary.html">java.util.stream</a>
  */
-public interface BaseStream<T, S extends BaseStream<T, S>> extends
-        AutoCloseable {
+public interface BaseStream<T, S extends BaseStream<T, S>> extends AutoCloseable {
     /**
      * Returns an iterator for the elements of this stream.
-     *
      * <p>
      * This is a <a href="package-summary.html#StreamOps">terminal operation</a>
      * .
@@ -59,7 +56,6 @@ public interface BaseStream<T, S extends BaseStream<T, S>> extends
 
     /**
      * Returns a spliterator for the elements of this stream.
-     *
      * <p>
      * This is a <a href="package-summary.html#StreamOps">terminal operation</a>
      * .
@@ -81,7 +77,6 @@ public interface BaseStream<T, S extends BaseStream<T, S>> extends
      * Returns an equivalent stream that is sequential. May return itself,
      * either because the stream was already sequential, or because the
      * underlying stream state was modified to be sequential.
-     *
      * <p>
      * This is an <a href="package-summary.html#StreamOps">intermediate
      * operation</a>.
@@ -94,7 +89,6 @@ public interface BaseStream<T, S extends BaseStream<T, S>> extends
      * Returns an equivalent stream that is parallel. May return itself, either
      * because the stream was already parallel, or because the underlying stream
      * state was modified to be parallel.
-     *
      * <p>
      * This is an <a href="package-summary.html#StreamOps">intermediate
      * operation</a>.
@@ -108,7 +102,6 @@ public interface BaseStream<T, S extends BaseStream<T, S>> extends
      * <a href="package-summary.html#Ordering">unordered</a>. May return itself,
      * either because the stream was already unordered, or because the
      * underlying stream state was modified to be unordered.
-     *
      * <p>
      * This is an <a href="package-summary.html#StreamOps">intermediate
      * operation</a>.
@@ -127,13 +120,12 @@ public interface BaseStream<T, S extends BaseStream<T, S>> extends
      * that exception as suppressed exceptions (unless one of the remaining
      * exceptions is the same exception as the first exception, since an
      * exception cannot suppress itself.) May return itself.
-     *
      * <p>
      * This is an <a href="package-summary.html#StreamOps">intermediate
      * operation</a>.
      *
      * @param closeHandler
-     *                     A task to execute when the stream is closed
+     *        A task to execute when the stream is closed
      * @return a stream with a handler that is run if the stream is closed
      */
     S onClose(Runnable closeHandler);

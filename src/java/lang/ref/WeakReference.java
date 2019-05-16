@@ -9,7 +9,6 @@ package java.lang.ref;
  * Weak reference objects, which do not prevent their referents from being made
  * finalizable, finalized, and then reclaimed. Weak references are most often
  * used to implement canonicalizing mappings.
- *
  * <p>
  * Suppose that the garbage collector determines at a certain point in time that
  * an object is <a href="package-summary.html#reachability">weakly reachable</a>
@@ -31,7 +30,7 @@ public class WeakReference<T> extends Reference<T> {
      * reference is not registered with any queue.
      *
      * @param referent
-     *                 object the new weak reference will refer to
+     *        object the new weak reference will refer to
      */
     public WeakReference(T referent) {
         super(referent);
@@ -42,11 +41,11 @@ public class WeakReference<T> extends Reference<T> {
      * registered with the given queue.
      *
      * @param referent
-     *                 object the new weak reference will refer to
+     *        object the new weak reference will refer to
      * @param q
-     *                 the queue with which the reference is to be registered,
-     *                 or
-     *                 <tt>null</tt> if registration is not required
+     *        the queue with which the reference is to be registered,
+     *        or
+     *        <tt>null</tt> if registration is not required
      */
     public WeakReference(T referent, ReferenceQueue<? super T> q) {
         super(referent, q);

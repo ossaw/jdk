@@ -86,8 +86,7 @@ public class WindowsMenuBarUI extends BasicMenuBarUI {
             installWindowListener();
             hierarchyListener = new HierarchyListener() {
                 public void hierarchyChanged(HierarchyEvent e) {
-                    if ((e.getChangeFlags()
-                            & HierarchyEvent.DISPLAYABILITY_CHANGED) != 0) {
+                    if ((e.getChangeFlags() & HierarchyEvent.DISPLAYABILITY_CHANGED) != 0) {
                         if (menuBar.isDisplayable()) {
                             installWindowListener();
                         } else {
@@ -120,8 +119,7 @@ public class WindowsMenuBarUI extends BasicMenuBarUI {
             JMenuBar menuBar = (JMenuBar) e.getSource();
             JMenu menu = menuBar.getMenu(0);
             if (menu != null) {
-                MenuSelectionManager msm = MenuSelectionManager
-                        .defaultManager();
+                MenuSelectionManager msm = MenuSelectionManager.defaultManager();
                 MenuElement path[] = new MenuElement[2];
                 path[0] = (MenuElement) menuBar;
                 path[1] = (MenuElement) menu;
@@ -153,7 +151,7 @@ public class WindowsMenuBarUI extends BasicMenuBarUI {
      * Checks if component belongs to an active window.
      * 
      * @param c
-     *          component to check
+     *        component to check
      * @return true if component belongs to an active window
      */
     static boolean isActive(JComponent c) {

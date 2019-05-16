@@ -63,7 +63,6 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * Sets <code>alive</code> to false. Note that this is a one way operation;
      * dead edits cannot be resurrected. Sending <code>undo</code> or
      * <code>redo</code> to a dead edit results in an exception being thrown.
-     *
      * <p>
      * Typically an edit is killed when it is consolidated by another edit's
      * <code>addEdit</code> or <code>replaceEdit</code> method, or when it is
@@ -80,8 +79,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * edit. Override should begin with a call to super.
      *
      * @exception CannotUndoException
-     *                                if <code>canUndo</code> returns
-     *                                <code>false</code>
+     *            if <code>canUndo</code> returns
+     *            <code>false</code>
      * @see #canUndo
      */
     public void undo() throws CannotUndoException {
@@ -97,7 +96,6 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      *
      * @return true if this edit is <code>alive</code> and
      *         <code>hasBeenDone</code> is <code>true</code>
-     *
      * @see #die
      * @see #undo
      * @see #redo
@@ -113,8 +111,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * should begin with a call to super.
      *
      * @exception CannotRedoException
-     *                                if <code>canRedo</code> returns
-     *                                <code>false</code>
+     *            if <code>canRedo</code> returns
+     *            <code>false</code>
      * @see #canRedo
      */
     public void redo() throws CannotRedoException {
@@ -142,9 +140,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * This default implementation returns false.
      *
      * @param anEdit
-     *               the edit to be added
+     *        the edit to be added
      * @return false
-     *
      * @see UndoableEdit#addEdit
      */
     public boolean addEdit(UndoableEdit anEdit) {
@@ -155,9 +152,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * This default implementation returns false.
      *
      * @param anEdit
-     *               the edit to replace
+     *        the edit to replace
      * @return false
-     *
      * @see UndoableEdit#replaceEdit
      */
     public boolean replaceEdit(UndoableEdit anEdit) {
@@ -182,7 +178,6 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * of the operation this edit represents.
      *
      * @return the empty string ""
-     *
      * @see #getUndoPresentationName
      * @see #getRedoPresentationName
      */
@@ -207,8 +202,7 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
     public String getUndoPresentationName() {
         String name = getPresentationName();
         if (!"".equals(name)) {
-            name = UIManager.getString("AbstractUndoableEdit.undoText") + " "
-                    + name;
+            name = UIManager.getString("AbstractUndoableEdit.undoText") + " " + name;
         } else {
             name = UIManager.getString("AbstractUndoableEdit.undoText");
         }
@@ -233,8 +227,7 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
     public String getRedoPresentationName() {
         String name = getPresentationName();
         if (!"".equals(name)) {
-            name = UIManager.getString("AbstractUndoableEdit.redoText") + " "
-                    + name;
+            name = UIManager.getString("AbstractUndoableEdit.redoText") + " " + name;
         } else {
             name = UIManager.getString("AbstractUndoableEdit.redoText");
         }
@@ -248,7 +241,6 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
      * @return a String representation of this object
      */
     public String toString() {
-        return super.toString() + " hasBeenDone: " + hasBeenDone + " alive: "
-                + alive;
+        return super.toString() + " hasBeenDone: " + hasBeenDone + " alive: " + alive;
     }
 }

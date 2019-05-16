@@ -12,7 +12,6 @@ package javax.naming.ldap;
  * <p>
  * This class implements the LDAPv3 Request Control for ManageDsaIT as defined
  * in <a href="http://www.ietf.org/rfc/rfc3296.txt">RFC 3296</a>.
- *
  * The control has no control value.
  *
  * @since 1.5
@@ -39,7 +38,7 @@ final public class ManageReferralControl extends BasicControl {
      * Constructs a ManageReferral control.
      *
      * @param criticality
-     *                    The control's criticality setting.
+     *        The control's criticality setting.
      */
     public ManageReferralControl(boolean criticality) {
         super(OID, criticality, null);

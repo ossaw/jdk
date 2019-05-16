@@ -41,8 +41,7 @@ class StandardMBeanIntrospector extends MBeanIntrospector<Method> {
     }
 
     @Override
-    MBeanAnalyzer<Method> getAnalyzer(Class<?> mbeanInterface)
-            throws NotCompliantMBeanException {
+    MBeanAnalyzer<Method> getAnalyzer(Class<?> mbeanInterface) throws NotCompliantMBeanException {
         return MBeanAnalyzer.analyzer(mbeanInterface, this);
     }
 
@@ -84,9 +83,8 @@ class StandardMBeanIntrospector extends MBeanIntrospector<Method> {
     void checkMethod(Method m) {}
 
     @Override
-    Object invokeM2(Method m, Object target, Object[] args, Object cookie)
-            throws InvocationTargetException, IllegalAccessException,
-            MBeanException {
+    Object invokeM2(Method m, Object target, Object[] args, Object cookie) throws InvocationTargetException,
+            IllegalAccessException, MBeanException {
         return MethodUtil.invoke(m, target, args);
     }
 
@@ -96,21 +94,18 @@ class StandardMBeanIntrospector extends MBeanIntrospector<Method> {
     }
 
     @Override
-    MBeanAttributeInfo getMBeanAttributeInfo(String attributeName,
-            Method getter, Method setter) {
+    MBeanAttributeInfo getMBeanAttributeInfo(String attributeName, Method getter, Method setter) {
 
         final String description = "Attribute exposed for management";
         try {
-            return new MBeanAttributeInfo(attributeName, description, getter,
-                    setter);
+            return new MBeanAttributeInfo(attributeName, description, getter, setter);
         } catch (IntrospectionException e) {
             throw new RuntimeException(e); // should not happen
         }
     }
 
     @Override
-    MBeanOperationInfo getMBeanOperationInfo(String operationName,
-            Method operation) {
+    MBeanOperationInfo getMBeanOperationInfo(String operationName, Method operation) {
         final String description = "Operation exposed for management";
         return new MBeanOperationInfo(description, operation);
     }
@@ -128,8 +123,7 @@ class StandardMBeanIntrospector extends MBeanIntrospector<Method> {
     @Override
     Descriptor getMBeanDescriptor(Class<?> resourceClass) {
         boolean immutable = isDefinitelyImmutableInfo(resourceClass);
-        return new ImmutableDescriptor("mxbean=false", "immutableInfo="
-                + immutable);
+        return new ImmutableDescriptor("mxbean=false", "immutableInfo=" + immutable);
     }
 
     /*

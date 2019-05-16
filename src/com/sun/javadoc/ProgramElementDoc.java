@@ -12,7 +12,6 @@ package com.sun.javadoc;
  *
  * @see MemberDoc
  * @see ClassDoc
- *
  * @author Robert Field
  */
 public interface ProgramElementDoc extends Doc {

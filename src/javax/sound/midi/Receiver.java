@@ -14,7 +14,6 @@ package javax.sound.midi;
  * @see MidiDevice
  * @see Synthesizer
  * @see Transmitter
- *
  * @author Kara Kytle
  */
 public interface Receiver extends AutoCloseable {
@@ -25,18 +24,17 @@ public interface Receiver extends AutoCloseable {
      * not supported by this receiver, the time-stamp value should be -1.
      * 
      * @param message
-     *                  the MIDI message to send
+     *        the MIDI message to send
      * @param timeStamp
-     *                  the time-stamp for the message, in microseconds.
+     *        the time-stamp for the message, in microseconds.
      * @throws IllegalStateException
-     *                               if the receiver is closed
+     *         if the receiver is closed
      */
     public void send(MidiMessage message, long timeStamp);
 
     /**
      * Indicates that the application has finished using the receiver, and that
      * limited resources it requires may be released or made available.
-     *
      * <p>
      * If the creation of this <code>Receiver</code> resulted in implicitly
      * opening the underlying device, the device is implicitly closed by this

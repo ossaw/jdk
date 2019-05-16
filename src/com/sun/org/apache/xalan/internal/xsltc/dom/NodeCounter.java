@@ -57,12 +57,9 @@ public abstract class NodeCounter {
     private int _nFormats = 0;
 
     private final static String[] Thousands = { "", "m", "mm", "mmm" };
-    private final static String[] Hundreds = { "", "c", "cc", "ccc", "cd", "d",
-            "dc", "dcc", "dccc", "cm" };
-    private final static String[] Tens = { "", "x", "xx", "xxx", "xl", "l",
-            "lx", "lxx", "lxxx", "xc" };
-    private final static String[] Ones = { "", "i", "ii", "iii", "iv", "v",
-            "vi", "vii", "viii", "ix" };
+    private final static String[] Hundreds = { "", "c", "cc", "ccc", "cd", "d", "dc", "dcc", "dccc", "cm" };
+    private final static String[] Tens = { "", "x", "xx", "xxx", "xl", "l", "lx", "lxx", "lxxx", "xc" };
+    private final static String[] Ones = { "", "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix" };
 
     private StringBuilder _tempBuffer = new StringBuilder();
 
@@ -71,15 +68,13 @@ public abstract class NodeCounter {
      */
     protected boolean _hasFrom;
 
-    protected NodeCounter(Translet translet, DOM document,
-            DTMAxisIterator iterator) {
+    protected NodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
         _translet = translet;
         _document = document;
         _iterator = iterator;
     }
 
-    protected NodeCounter(Translet translet, DOM document,
-            DTMAxisIterator iterator, boolean hasFrom) {
+    protected NodeCounter(Translet translet, DOM document, DTMAxisIterator iterator, boolean hasFrom) {
         _translet = translet;
         _document = document;
         _iterator = iterator;
@@ -104,8 +99,8 @@ public abstract class NodeCounter {
     /**
      * Sets formatting fields before calling formatNumbers().
      */
-    protected void setFormatting(String format, String lang, String letterValue,
-            String groupSep, String groupSize) {
+    protected void setFormatting(String format, String lang, String letterValue, String groupSep,
+            String groupSize) {
         _lang = lang;
         _groupSep = groupSep;
         _letterValue = letterValue;
@@ -121,7 +116,7 @@ public abstract class NodeCounter {
      * of throwing an Exception which is expensive.
      *
      * @param s
-     *          A String to be parsed into an int.
+     *        A String to be parsed into an int.
      * @return Either an int represented by the incoming String s, or 0 if the
      *         parsing is not successful.
      */
@@ -263,8 +258,8 @@ public abstract class NodeCounter {
      * and count patterns. This position is converted into a string based on the
      * arguments passed.
      */
-    public String getCounter(String format, String lang, String letterValue,
-            String groupSep, String groupSize) {
+    public String getCounter(String format, String lang, String letterValue, String groupSep,
+            String groupSize) {
         setFormatting(format, lang, letterValue, groupSep, groupSize);
         return getCounter();
     }
@@ -412,8 +407,7 @@ public abstract class NodeCounter {
         if (n <= 0 || n > 4000) {
             return "" + n;
         }
-        return Thousands[n / 1000] + Hundreds[(n / 100) % 10] + Tens[(n / 10)
-                % 10] + Ones[n % 10];
+        return Thousands[n / 1000] + Hundreds[(n / 100) % 10] + Tens[(n / 10) % 10] + Ones[n % 10];
     }
 
 }

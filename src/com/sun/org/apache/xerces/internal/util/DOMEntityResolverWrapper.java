@@ -35,7 +35,6 @@ import java.io.StringReader;
  * This class wraps DOM entity resolver to XNI entity resolver.
  *
  * @see LSResourceResolver
- *
  * @author Gopal Sharma, SUN MicroSystems Inc.
  * @author Elena Litani, IBM
  * @author Ramesh Mandava, Sun Microsystems
@@ -96,29 +95,25 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
      * this method should return null.
      *
      * @param resourceIdentifier
-     *                           description of the resource to be revsoved
+     *        description of the resource to be revsoved
      * @throws XNIException
-     *                      Thrown on general error.
+     *         Thrown on general error.
      * @throws IOException
-     *                      Thrown if resolved entity stream cannot be opened or
-     *                      some
-     *                      other i/o error occurs.
+     *         Thrown if resolved entity stream cannot be opened or
+     *         some
+     *         other i/o error occurs.
      */
-    public XMLInputSource resolveEntity(
-            XMLResourceIdentifier resourceIdentifier) throws XNIException,
+    public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier) throws XNIException,
             IOException {
         // resolve entity using DOM entity resolver
         if (fEntityResolver != null) {
             // For entity resolution the type of the resource would be XML TYPE
             // DOM L3 LS spec mention only the XML 1.0 recommendation right now
-            LSInput inputSource = resourceIdentifier == null ? fEntityResolver
-                    .resolveResource(null, null, null, null, null)
-                    : fEntityResolver.resolveResource(getType(
-                            resourceIdentifier), resourceIdentifier
-                                    .getNamespace(), resourceIdentifier
-                                            .getPublicId(), resourceIdentifier
-                                                    .getLiteralSystemId(),
-                            resourceIdentifier.getBaseSystemId());
+            LSInput inputSource = resourceIdentifier == null ? fEntityResolver.resolveResource(null, null,
+                    null, null, null)
+                    : fEntityResolver.resolveResource(getType(resourceIdentifier), resourceIdentifier
+                            .getNamespace(), resourceIdentifier.getPublicId(), resourceIdentifier
+                                    .getLiteralSystemId(), resourceIdentifier.getBaseSystemId());
             if (inputSource != null) {
                 String publicId = inputSource.getPublicId();
                 String systemId = inputSource.getSystemId();
@@ -133,8 +128,7 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
                  * following order: characterStream, byteStream, stringData,
                  * systemId, publicId.
                  */
-                XMLInputSource xmlInputSource = new XMLInputSource(publicId,
-                        systemId, baseSystemId);
+                XMLInputSource xmlInputSource = new XMLInputSource(publicId, systemId, baseSystemId);
 
                 if (charStream != null) {
                     xmlInputSource.setCharacterStream(charStream);
@@ -157,8 +151,7 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
     private String getType(XMLResourceIdentifier resourceIdentifier) {
         if (resourceIdentifier instanceof XMLGrammarDescription) {
             XMLGrammarDescription desc = (XMLGrammarDescription) resourceIdentifier;
-            if (XMLGrammarDescription.XML_SCHEMA.equals(desc
-                    .getGrammarType())) {
+            if (XMLGrammarDescription.XML_SCHEMA.equals(desc.getGrammarType())) {
                 return XSD_TYPE;
             }
         }

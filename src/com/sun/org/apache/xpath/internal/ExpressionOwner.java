@@ -35,7 +35,7 @@ public interface ExpressionOwner {
      * Set the raw expression object for this object.
      *
      * @param exp
-     *            the raw Expression object, which should not normally be null.
+     *        the raw Expression object, which should not normally be null.
      */
     public void setExpression(Expression exp);
 

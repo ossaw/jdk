@@ -11,9 +11,7 @@ package java.security.spec;
  * @see KeySpec
  * @see ECPoint
  * @see ECParameterSpec
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class ECPublicKeySpec implements KeySpec {
@@ -25,16 +23,16 @@ public class ECPublicKeySpec implements KeySpec {
      * Creates a new ECPublicKeySpec with the specified parameter values.
      * 
      * @param w
-     *               the public point.
+     *        the public point.
      * @param params
-     *               the associated elliptic curve domain parameters.
+     *        the associated elliptic curve domain parameters.
      * @exception NullPointerException
-     *                                     if {@code w} or {@code params} is
-     *                                     null.
+     *            if {@code w} or {@code params} is
+     *            null.
      * @exception IllegalArgumentException
-     *                                     if {@code w} is point at infinity,
-     *                                     i.e.
-     *                                     ECPoint.POINT_INFINITY
+     *            if {@code w} is point at infinity,
+     *            i.e.
+     *            ECPoint.POINT_INFINITY
      */
     public ECPublicKeySpec(ECPoint w, ECParameterSpec params) {
         if (w == null) {

@@ -51,8 +51,7 @@ public abstract class PrintServiceLookup {
     }
 
     private static Services getServicesForContext() {
-        Services services = (Services) AppContext.getAppContext().get(
-                Services.class);
+        Services services = (Services) AppContext.getAppContext().get(Services.class);
         if (services == null) {
             services = new Services();
             AppContext.getAppContext().put(Services.class, services);
@@ -85,19 +84,17 @@ public abstract class PrintServiceLookup {
      * {@link DocFlavor}.
      *
      * @param flavor
-     *                   the flavor to print. If null, this constraint is not
-     *                   used.
+     *        the flavor to print. If null, this constraint is not
+     *        used.
      * @param attributes
-     *                   attributes that the print service must support. If null
-     *                   this
-     *                   constraint is not used.
-     *
+     *        attributes that the print service must support. If null
+     *        this
+     *        constraint is not used.
      * @return array of matching <code>PrintService</code> objects representing
      *         print services that support the specified flavor attributes. If
      *         no services match, the array is zero-length.
      */
-    public static final PrintService[] lookupPrintServices(DocFlavor flavor,
-            AttributeSet attributes) {
+    public static final PrintService[] lookupPrintServices(DocFlavor flavor, AttributeSet attributes) {
         ArrayList list = getServices(flavor, attributes);
         return (PrintService[]) (list.toArray(new PrintService[list.size()]));
     }
@@ -113,25 +110,22 @@ public abstract class PrintServiceLookup {
      * service may be able to do this more efficiently.
      *
      * @param flavors
-     *                   the flavors to print. If null or empty this constraint
-     *                   is not
-     *                   used. Otherwise return only multidoc print services
-     *                   that can
-     *                   print all specified doc flavors.
+     *        the flavors to print. If null or empty this constraint
+     *        is not
+     *        used. Otherwise return only multidoc print services
+     *        that can
+     *        print all specified doc flavors.
      * @param attributes
-     *                   attributes that the print service must support. If null
-     *                   this
-     *                   constraint is not used.
-     *
+     *        attributes that the print service must support. If null
+     *        this
+     *        constraint is not used.
      * @return array of matching {@link MultiDocPrintService} objects. If no
      *         services match, the array is zero-length.
-     *
      */
-    public static final MultiDocPrintService[] lookupMultiDocPrintServices(
-            DocFlavor[] flavors, AttributeSet attributes) {
+    public static final MultiDocPrintService[] lookupMultiDocPrintServices(DocFlavor[] flavors,
+            AttributeSet attributes) {
         ArrayList list = getMultiDocServices(flavors, attributes);
-        return (MultiDocPrintService[]) list.toArray(
-                new MultiDocPrintService[list.size()]);
+        return (MultiDocPrintService[]) list.toArray(new MultiDocPrintService[list.size()]);
     }
 
     /**
@@ -161,8 +155,7 @@ public abstract class PrintServiceLookup {
                 if (service != null) {
                     return service;
                 }
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         return null;
     }
@@ -176,7 +169,7 @@ public abstract class PrintServiceLookup {
      * <p>
      *
      * @param sp
-     *           an implementation of a lookup service.
+     *        an implementation of a lookup service.
      * @return <code>true</code> if the new lookup service is newly registered;
      *         <code>false</code> otherwise.
      */
@@ -189,8 +182,7 @@ public abstract class PrintServiceLookup {
                     if (lus.getClass() == sp.getClass()) {
                         return false;
                     }
-                } catch (Exception e) {
-                }
+                } catch (Exception e) {}
             }
             getListOfLookupServices().add(sp);
             return true;
@@ -211,7 +203,7 @@ public abstract class PrintServiceLookup {
      * method will return false.
      * 
      * @param service
-     *                an implementation of a print service.
+     *        an implementation of a print service.
      * @return <code>true</code> if the service is newly registered;
      *         <code>false</code> otherwise.
      */
@@ -248,15 +240,14 @@ public abstract class PrintServiceLookup {
      * advantage of the capabilities of lookup services for the print services.
      *
      * @param flavor
-     *                   of document required. If null it is ignored.
+     *        of document required. If null it is ignored.
      * @param attributes
-     *                   required to be supported. If null this constraint is
-     *                   not used.
+     *        required to be supported. If null this constraint is
+     *        not used.
      * @return array of matching PrintServices. If no services match, the array
      *         is zero-length.
      */
-    public abstract PrintService[] getPrintServices(DocFlavor flavor,
-            AttributeSet attributes);
+    public abstract PrintService[] getPrintServices(DocFlavor flavor, AttributeSet attributes);
 
     /**
      * Not called directly by applications. Implemented by a service provider,
@@ -278,15 +269,15 @@ public abstract class PrintServiceLookup {
      * <p>
      *
      * @param flavors
-     *                   of documents required. If null or empty it is ignored.
+     *        of documents required. If null or empty it is ignored.
      * @param attributes
-     *                   required to be supported. If null this constraint is
-     *                   not used.
+     *        required to be supported. If null this constraint is
+     *        not used.
      * @return array of matching PrintServices. If no services match, the array
      *         is zero-length.
      */
-    public abstract MultiDocPrintService[] getMultiDocPrintServices(
-            DocFlavor[] flavors, AttributeSet attributes);
+    public abstract MultiDocPrintService[] getMultiDocPrintServices(DocFlavor[] flavors,
+            AttributeSet attributes);
 
     /**
      * Not called directly by applications. Implemented by a service provider,
@@ -306,38 +297,33 @@ public abstract class PrintServiceLookup {
                 listOfLookupServices = initListOfLookupServices();
             }
             try {
-                java.security.AccessController.doPrivileged(
-                        new java.security.PrivilegedExceptionAction() {
-                            public Object run() {
-                                Iterator<PrintServiceLookup> iterator = ServiceLoader
-                                        .load(PrintServiceLookup.class)
-                                        .iterator();
-                                ArrayList los = getListOfLookupServices();
-                                while (iterator.hasNext()) {
-                                    try {
-                                        los.add(iterator.next());
-                                    } catch (ServiceConfigurationError err) {
-                                        /* In the applet case, we continue */
-                                        if (System
-                                                .getSecurityManager() != null) {
-                                            err.printStackTrace();
-                                        } else {
-                                            throw err;
-                                        }
-                                    }
+                java.security.AccessController.doPrivileged(new java.security.PrivilegedExceptionAction() {
+                    public Object run() {
+                        Iterator<PrintServiceLookup> iterator = ServiceLoader.load(PrintServiceLookup.class)
+                                .iterator();
+                        ArrayList los = getListOfLookupServices();
+                        while (iterator.hasNext()) {
+                            try {
+                                los.add(iterator.next());
+                            } catch (ServiceConfigurationError err) {
+                                /* In the applet case, we continue */
+                                if (System.getSecurityManager() != null) {
+                                    err.printStackTrace();
+                                } else {
+                                    throw err;
                                 }
-                                return null;
                             }
-                        });
-            } catch (java.security.PrivilegedActionException e) {
-            }
+                        }
+                        return null;
+                    }
+                });
+            } catch (java.security.PrivilegedActionException e) {}
 
             return listOfLookupServices;
         }
     }
 
-    private static ArrayList getServices(DocFlavor flavor,
-            AttributeSet attributes) {
+    private static ArrayList getServices(DocFlavor flavor, AttributeSet attributes) {
 
         ArrayList listOfServices = new ArrayList();
         Iterator psIterator = getAllLookupServices().iterator();
@@ -348,8 +334,7 @@ public abstract class PrintServiceLookup {
                 if (flavor == null && attributes == null) {
                     try {
                         services = lus.getPrintServices();
-                    } catch (Throwable tr) {
-                    }
+                    } catch (Throwable tr) {}
                 } else {
                     services = lus.getPrintServices(flavor, attributes);
                 }
@@ -359,8 +344,7 @@ public abstract class PrintServiceLookup {
                 for (int i = 0; i < services.length; i++) {
                     listOfServices.add(services[i]);
                 }
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         /* add any directly registered services */
         ArrayList registeredServices = null;
@@ -370,19 +354,17 @@ public abstract class PrintServiceLookup {
                 security.checkPrintJobAccess();
             }
             registeredServices = getRegisteredServices();
-        } catch (SecurityException se) {
-        }
+        } catch (SecurityException se) {}
         if (registeredServices != null) {
-            PrintService[] services = (PrintService[]) registeredServices
-                    .toArray(new PrintService[registeredServices.size()]);
+            PrintService[] services = (PrintService[]) registeredServices.toArray(
+                    new PrintService[registeredServices.size()]);
             for (int i = 0; i < services.length; i++) {
                 if (!listOfServices.contains(services[i])) {
                     if (flavor == null && attributes == null) {
                         listOfServices.add(services[i]);
-                    } else if (((flavor != null && services[i]
-                            .isDocFlavorSupported(flavor)) || flavor == null)
-                            && null == services[i].getUnsupportedAttributes(
-                                    flavor, attributes)) {
+                    } else if (((flavor != null && services[i].isDocFlavorSupported(flavor))
+                            || flavor == null) && null == services[i].getUnsupportedAttributes(flavor,
+                                    attributes)) {
                         listOfServices.add(services[i]);
                     }
                 }
@@ -391,24 +373,21 @@ public abstract class PrintServiceLookup {
         return listOfServices;
     }
 
-    private static ArrayList getMultiDocServices(DocFlavor[] flavors,
-            AttributeSet attributes) {
+    private static ArrayList getMultiDocServices(DocFlavor[] flavors, AttributeSet attributes) {
 
         ArrayList listOfServices = new ArrayList();
         Iterator psIterator = getAllLookupServices().iterator();
         while (psIterator.hasNext()) {
             try {
                 PrintServiceLookup lus = (PrintServiceLookup) psIterator.next();
-                MultiDocPrintService[] services = lus.getMultiDocPrintServices(
-                        flavors, attributes);
+                MultiDocPrintService[] services = lus.getMultiDocPrintServices(flavors, attributes);
                 if (services == null) {
                     continue;
                 }
                 for (int i = 0; i < services.length; i++) {
                     listOfServices.add(services[i]);
                 }
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         /* add any directly registered services */
         ArrayList registeredServices = null;
@@ -418,14 +397,12 @@ public abstract class PrintServiceLookup {
                 security.checkPrintJobAccess();
             }
             registeredServices = getRegisteredServices();
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         if (registeredServices != null) {
-            PrintService[] services = (PrintService[]) registeredServices
-                    .toArray(new PrintService[registeredServices.size()]);
+            PrintService[] services = (PrintService[]) registeredServices.toArray(
+                    new PrintService[registeredServices.size()]);
             for (int i = 0; i < services.length; i++) {
-                if (services[i] instanceof MultiDocPrintService
-                        && !listOfServices.contains(services[i])) {
+                if (services[i] instanceof MultiDocPrintService && !listOfServices.contains(services[i])) {
                     if (flavors == null || flavors.length == 0) {
                         listOfServices.add(services[i]);
                     } else {
@@ -433,8 +410,7 @@ public abstract class PrintServiceLookup {
                         for (int f = 0; f < flavors.length; f++) {
                             if (services[i].isDocFlavorSupported(flavors[f])) {
 
-                                if (services[i].getUnsupportedAttributes(
-                                        flavors[f], attributes) != null) {
+                                if (services[i].getUnsupportedAttributes(flavors[f], attributes) != null) {
                                     supported = false;
                                     break;
                                 }

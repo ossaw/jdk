@@ -90,8 +90,7 @@ final class ColorPanel extends JPanel implements ActionListener {
             this.y = (this.z != 2) ? 2 : 1;
             this.x = (this.z != 0) ? 0 : 1;
             getParent().repaint();
-        } catch (NumberFormatException exception) {
-        }
+        } catch (NumberFormatException exception) {}
     }
 
     void buildPanel() {
@@ -108,23 +107,15 @@ final class ColorPanel extends JPanel implements ActionListener {
                 JLabel label = (JLabel) object;
                 label.setText(text);
             }
-            this.spinners[i].setRange(this.model.getMinimum(i), this.model
-                    .getMaximum(i));
+            this.spinners[i].setRange(this.model.getMinimum(i), this.model.getMaximum(i));
             this.spinners[i].setValue(this.values[i]);
-            this.spinners[i].getSlider().getAccessibleContext()
-                    .setAccessibleName(text);
-            this.spinners[i].getSpinner().getAccessibleContext()
-                    .setAccessibleName(text);
-            DefaultEditor editor = (DefaultEditor) this.spinners[i].getSpinner()
-                    .getEditor();
-            editor.getTextField().getAccessibleContext().setAccessibleName(
-                    text);
-            this.spinners[i].getSlider().getAccessibleContext()
-                    .setAccessibleDescription(text);
-            this.spinners[i].getSpinner().getAccessibleContext()
-                    .setAccessibleDescription(text);
-            editor.getTextField().getAccessibleContext()
-                    .setAccessibleDescription(text);
+            this.spinners[i].getSlider().getAccessibleContext().setAccessibleName(text);
+            this.spinners[i].getSpinner().getAccessibleContext().setAccessibleName(text);
+            DefaultEditor editor = (DefaultEditor) this.spinners[i].getSpinner().getEditor();
+            editor.getTextField().getAccessibleContext().setAccessibleName(text);
+            this.spinners[i].getSlider().getAccessibleContext().setAccessibleDescription(text);
+            this.spinners[i].getSpinner().getAccessibleContext().setAccessibleDescription(text);
+            editor.getTextField().getAccessibleContext().setAccessibleDescription(text);
         }
     }
 
@@ -198,7 +189,6 @@ final class ColorPanel extends JPanel implements ActionListener {
 
     private void setDefaultValue(int index) {
         float value = this.model.getDefault(index);
-        this.values[index] = (value < 0.0f) ? this.spinners[index].getValue()
-                : value;
+        this.values[index] = (value < 0.0f) ? this.spinners[index].getValue() : value;
     }
 }

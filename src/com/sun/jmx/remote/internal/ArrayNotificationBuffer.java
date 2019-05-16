@@ -81,8 +81,7 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
             1);
     private final Collection<ShareBuffer> sharers = new HashSet<ShareBuffer>(1);
 
-    public static NotificationBuffer getNotificationBuffer(MBeanServer mbs,
-            Map<String, ?> env) {
+    public static NotificationBuffer getNotificationBuffer(MBeanServer mbs, Map<String, ?> env) {
 
         if (env == null)
             env = Collections.emptyMap();
@@ -180,13 +179,10 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
             addSharer(this);
         }
 
-        public NotificationResult fetchNotifications(
-                NotificationBufferFilter filter, long startSequenceNumber,
-                long timeout, int maxNotifications)
-                throws InterruptedException {
+        public NotificationResult fetchNotifications(NotificationBufferFilter filter,
+                long startSequenceNumber, long timeout, int maxNotifications) throws InterruptedException {
             NotificationBuffer buf = ArrayNotificationBuffer.this;
-            return buf.fetchNotifications(filter, startSequenceNumber, timeout,
-                    maxNotifications);
+            return buf.fetchNotifications(filter, startSequenceNumber, timeout, maxNotifications);
         }
 
         public void dispose() {
@@ -233,73 +229,68 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
      * <p>
      * Fetch notifications that match the given listeners.
      * </p>
-     *
      * <p>
      * The operation only considers notifications with a sequence number at
      * least <code>startSequenceNumber</code>. It will take no longer than
      * <code>timeout</code>, and will return no more than
      * <code>maxNotifications</code> different notifications.
      * </p>
-     *
      * <p>
      * If there are no notifications matching the criteria, the operation will
      * block until one arrives, subject to the timeout.
      * </p>
      *
      * @param filter
-     *                            an object that will add notifications to a
-     *                            {@code List<TargetedNotification>} if they
-     *                            match the current
-     *                            listeners with their filters.
+     *        an object that will add notifications to a
+     *        {@code List<TargetedNotification>} if they
+     *        match the current
+     *        listeners with their filters.
      * @param startSequenceNumber
-     *                            the first sequence number to consider.
+     *        the first sequence number to consider.
      * @param timeout
-     *                            the maximum time to wait. May be 0 to indicate
-     *                            not to wait if
-     *                            there are no notifications.
+     *        the maximum time to wait. May be 0 to indicate
+     *        not to wait if
+     *        there are no notifications.
      * @param maxNotifications
-     *                            the maximum number of notifications to return.
-     *                            May be 0 to
-     *                            indicate a wait for eligible notifications
-     *                            that will return a
-     *                            usable <code>nextSequenceNumber</code>. The
-     *                            {@link TargetedNotification} array in the
-     *                            returned
-     *                            {@link NotificationResult} may contain more
-     *                            than this number
-     *                            of elements but will not contain more than
-     *                            this number of
-     *                            different notifications.
+     *        the maximum number of notifications to return.
+     *        May be 0 to
+     *        indicate a wait for eligible notifications
+     *        that will return a
+     *        usable <code>nextSequenceNumber</code>. The
+     *        {@link TargetedNotification} array in the
+     *        returned
+     *        {@link NotificationResult} may contain more
+     *        than this number
+     *        of elements but will not contain more than
+     *        this number of
+     *        different notifications.
      */
-    public NotificationResult fetchNotifications(
-            NotificationBufferFilter filter, long startSequenceNumber,
+    public NotificationResult fetchNotifications(NotificationBufferFilter filter, long startSequenceNumber,
             long timeout, int maxNotifications) throws InterruptedException {
 
         logger.trace("fetchNotifications", "starts");
 
         if (startSequenceNumber < 0 || isDisposed()) {
             synchronized (this) {
-                return new NotificationResult(earliestSequenceNumber(),
-                        nextSequenceNumber(), new TargetedNotification[0]);
+                return new NotificationResult(earliestSequenceNumber(), nextSequenceNumber(),
+                        new TargetedNotification[0]);
             }
         }
 
         // Check arg validity
-        if (filter == null || startSequenceNumber < 0 || timeout < 0
-                || maxNotifications < 0) {
+        if (filter == null || startSequenceNumber < 0 || timeout < 0 || maxNotifications < 0) {
             logger.trace("fetchNotifications", "Bad args");
             throw new IllegalArgumentException("Bad args to fetch");
         }
 
         if (logger.debugOn()) {
-            logger.trace("fetchNotifications", "filter=" + filter
-                    + "; startSeq=" + startSequenceNumber + "; timeout="
-                    + timeout + "; max=" + maxNotifications);
+            logger.trace("fetchNotifications", "filter=" + filter + "; startSeq=" + startSequenceNumber
+                    + "; timeout=" + timeout + "; max=" + maxNotifications);
         }
 
         if (startSequenceNumber > nextSequenceNumber()) {
-            final String msg = "Start sequence number too big: "
-                    + startSequenceNumber + " > " + nextSequenceNumber();
+            final String msg = "Start sequence number too big: " + startSequenceNumber + " > "
+                    + nextSequenceNumber();
             logger.trace("fetchNotifications", msg);
             throw new IllegalArgumentException(msg);
         }
@@ -350,13 +341,11 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                 if (earliestSeq < 0) {
                     earliestSeq = earliestSequenceNumber();
                     if (logger.debugOn()) {
-                        logger.debug("fetchNotifications", "earliestSeq="
-                                + earliestSeq);
+                        logger.debug("fetchNotifications", "earliestSeq=" + earliestSeq);
                     }
                     if (nextSeq < earliestSeq) {
                         nextSeq = earliestSeq;
-                        logger.debug("fetchNotifications",
-                                "nextSeq=earliestSeq");
+                        logger.debug("fetchNotifications", "nextSeq=earliestSeq");
                     }
                 } else
                     earliestSeq = earliestSequenceNumber();
@@ -368,9 +357,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                  * return now so the caller can see this next time it calls.
                  */
                 if (nextSeq < earliestSeq) {
-                    logger.trace("fetchNotifications", "nextSeq=" + nextSeq
-                            + " < " + "earliestSeq=" + earliestSeq
-                            + " so may have lost notifs");
+                    logger.trace("fetchNotifications", "nextSeq=" + nextSeq + " < " + "earliestSeq="
+                            + earliestSeq + " so may have lost notifs");
                     break;
                 }
 
@@ -380,15 +368,12 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                     // overloaded
                     if (!(filter instanceof ServerNotifForwarder.NotifForwarderBufferFilter)) {
                         try {
-                            ServerNotifForwarder.checkMBeanPermission(
-                                    this.mBeanServer, candidate.getObjectName(),
-                                    "addNotificationListener");
-                        } catch (InstanceNotFoundException
-                                | SecurityException e) {
+                            ServerNotifForwarder.checkMBeanPermission(this.mBeanServer, candidate
+                                    .getObjectName(), "addNotificationListener");
+                        } catch (InstanceNotFoundException | SecurityException e) {
                             if (logger.debugOn()) {
-                                logger.debug("fetchNotifications", "candidate: "
-                                        + candidate + " skipped. exception "
-                                        + e);
+                                logger.debug("fetchNotifications", "candidate: " + candidate
+                                        + " skipped. exception " + e);
                             }
                             ++nextSeq;
                             continue;
@@ -396,10 +381,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                     }
 
                     if (logger.debugOn()) {
-                        logger.debug("fetchNotifications", "candidate: "
-                                + candidate);
-                        logger.debug("fetchNotifications", "nextSeq now "
-                                + nextSeq);
+                        logger.debug("fetchNotifications", "candidate: " + candidate);
+                        logger.debug("fetchNotifications", "nextSeq now " + nextSeq);
                     }
                 } else {
                     /*
@@ -408,8 +391,7 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                      * to arrive, with timeout.
                      */
                     if (notifs.size() > 0) {
-                        logger.debug("fetchNotifications",
-                                "no more notifs but have some so don't wait");
+                        logger.debug("fetchNotifications", "no more notifs but have some so don't wait");
                         break;
                     }
                     long toWait = endTime - System.currentTimeMillis();
@@ -421,16 +403,13 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                     /* dispose called */
                     if (isDisposed()) {
                         if (logger.debugOn())
-                            logger.debug("fetchNotifications",
-                                    "dispose callled, no wait");
-                        return new NotificationResult(earliestSequenceNumber(),
-                                nextSequenceNumber(),
+                            logger.debug("fetchNotifications", "dispose callled, no wait");
+                        return new NotificationResult(earliestSequenceNumber(), nextSequenceNumber(),
                                 new TargetedNotification[0]);
                     }
 
                     if (logger.debugOn())
-                        logger.debug("fetchNotifications", "wait(" + toWait
-                                + ")");
+                        logger.debug("fetchNotifications", "wait(" + toWait + ")");
                     wait(toWait);
 
                     continue;
@@ -457,8 +436,7 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
                  * knew they weren't.
                  */
                 if (maxNotifications <= 0) {
-                    logger.debug("fetchNotifications",
-                            "reached maxNotifications");
+                    logger.debug("fetchNotifications", "reached maxNotifications");
                     break;
                 }
                 --maxNotifications;
@@ -474,8 +452,7 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         int nnotifs = notifs.size();
         TargetedNotification[] resultNotifs = new TargetedNotification[nnotifs];
         notifs.toArray(resultNotifs);
-        NotificationResult nr = new NotificationResult(earliestSeq, nextSeq,
-                resultNotifs);
+        NotificationResult nr = new NotificationResult(earliestSeq, nextSeq, resultNotifs);
         if (logger.debugOn())
             logger.debug("fetchNotifications", nr.toString());
         logger.trace("fetchNotifications", "ends");
@@ -498,9 +475,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         while (queue.size() >= queueSize) {
             dropNotification();
             if (logger.debugOn()) {
-                logger.debug("addNotification",
-                        "dropped oldest notif, earliestSeq="
-                                + earliestSequenceNumber);
+                logger.debug("addNotification", "dropped oldest notif, earliestSeq="
+                        + earliestSequenceNumber);
             }
         }
         queue.add(notif);
@@ -518,8 +494,7 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
     synchronized NamedNotification notificationAt(long seqNo) {
         long index = seqNo - earliestSequenceNumber;
         if (index < 0 || index > Integer.MAX_VALUE) {
-            final String msg = "Bad sequence number: " + seqNo + " (earliest "
-                    + earliestSequenceNumber + ")";
+            final String msg = "Bad sequence number: " + seqNo + " (earliest " + earliestSequenceNumber + ")";
             logger.trace("notificationAt", msg);
             throw new IllegalArgumentException(msg);
         }
@@ -582,8 +557,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         }
 
         try {
-            addNotificationListener(MBeanServerDelegate.DELEGATE_NAME,
-                    creationListener, creationFilter, null);
+            addNotificationListener(MBeanServerDelegate.DELEGATE_NAME, creationListener, creationFilter,
+                    null);
             logger.debug("createListeners", "added creationListener");
         } catch (Exception e) {
             final String msg = "Can't add listener to MBean server delegate: ";
@@ -638,42 +613,35 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         }
     }
 
-    private void addNotificationListener(final ObjectName name,
-            final NotificationListener listener,
-            final NotificationFilter filter, final Object handback)
+    private void addNotificationListener(final ObjectName name, final NotificationListener listener,
+            final NotificationFilter filter, final Object handback) throws Exception {
+        try {
+            AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
+                public Void run() throws InstanceNotFoundException {
+                    mBeanServer.addNotificationListener(name, listener, filter, handback);
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            throw extractException(e);
+        }
+    }
+
+    private void removeNotificationListener(final ObjectName name, final NotificationListener listener)
             throws Exception {
         try {
-            AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Void>() {
-                        public Void run() throws InstanceNotFoundException {
-                            mBeanServer.addNotificationListener(name, listener,
-                                    filter, handback);
-                            return null;
-                        }
-                    });
+            AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
+                public Void run() throws Exception {
+                    mBeanServer.removeNotificationListener(name, listener);
+                    return null;
+                }
+            });
         } catch (Exception e) {
             throw extractException(e);
         }
     }
 
-    private void removeNotificationListener(final ObjectName name,
-            final NotificationListener listener) throws Exception {
-        try {
-            AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Void>() {
-                        public Void run() throws Exception {
-                            mBeanServer.removeNotificationListener(name,
-                                    listener);
-                            return null;
-                        }
-                    });
-        } catch (Exception e) {
-            throw extractException(e);
-        }
-    }
-
-    private Set<ObjectName> queryNames(final ObjectName name,
-            final QueryExp query) {
+    private Set<ObjectName> queryNames(final ObjectName name, final QueryExp query) {
         PrivilegedAction<Set<ObjectName>> act = new PrivilegedAction<Set<ObjectName>>() {
             public Set<ObjectName> run() {
                 return mBeanServer.queryNames(name, query);
@@ -688,8 +656,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         }
     }
 
-    private static boolean isInstanceOf(final MBeanServer mbs,
-            final ObjectName name, final String className) {
+    private static boolean isInstanceOf(final MBeanServer mbs, final ObjectName name,
+            final String className) {
         PrivilegedExceptionAction<Boolean> act = new PrivilegedExceptionAction<Boolean>() {
             public Boolean run() throws InstanceNotFoundException {
                 return mbs.isInstanceOf(name, className);
@@ -740,8 +708,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
     private class BufferListener implements NotificationListener {
         public void handleNotification(Notification notif, Object handback) {
             if (logger.debugOn()) {
-                logger.debug("BufferListener.handleNotification", "notif="
-                        + notif + "; handback=" + handback);
+                logger.debug("BufferListener.handleNotification", "notif=" + notif + "; handback="
+                        + handback);
             }
             ObjectName name = (ObjectName) handback;
             addNotification(new NamedNotification(name, notif));
@@ -750,8 +718,7 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
 
     private final NotificationListener bufferListener = new BufferListener();
 
-    private static class BroadcasterQuery extends QueryEval implements
-            QueryExp {
+    private static class BroadcasterQuery extends QueryEval implements QueryExp {
         private static final long serialVersionUID = 7378487660587592048L;
 
         public boolean apply(final ObjectName name) {
@@ -780,16 +747,14 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         checkNoLocks();
         logger.debug("destroyListeners", "starts");
         try {
-            removeNotificationListener(MBeanServerDelegate.DELEGATE_NAME,
-                    creationListener);
+            removeNotificationListener(MBeanServerDelegate.DELEGATE_NAME, creationListener);
         } catch (Exception e) {
             logger.warning("remove listener from MBeanServer delegate", e);
         }
         Set<ObjectName> names = queryNames(null, broadcasterQuery);
         for (final ObjectName name : names) {
             if (logger.debugOn())
-                logger.debug("destroyListeners", "remove listener from "
-                        + name);
+                logger.debug("destroyListeners", "remove listener from " + name);
             removeBufferListener(name);
         }
         logger.debug("destroyListeners", "ends");
@@ -811,8 +776,8 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
         return e;
     }
 
-    private static final ClassLogger logger = new ClassLogger(
-            "javax.management.remote.misc", "ArrayNotificationBuffer");
+    private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
+            "ArrayNotificationBuffer");
 
     private final MBeanServer mBeanServer;
     private final ArrayQueue<NamedNotification> queue;
@@ -821,6 +786,5 @@ public class ArrayNotificationBuffer implements NotificationBuffer {
     private long nextSequenceNumber;
     private Set<ObjectName> createdDuringQuery;
 
-    static final String broadcasterClass = NotificationBroadcaster.class
-            .getName();
+    static final String broadcasterClass = NotificationBroadcaster.class.getName();
 }

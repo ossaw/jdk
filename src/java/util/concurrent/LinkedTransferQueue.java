@@ -27,7 +27,6 @@ import java.util.function.Consumer;
  * <em>head</em> of the queue is that element that has been on the queue the
  * longest time for some producer. The <em>tail</em> of the queue is that
  * element that has been on the queue the shortest time for some producer.
- *
  * <p>
  * Beware that, unlike in most collections, the {@code size} method is
  * <em>NOT</em> a constant-time operation. Because of the asynchronous nature of
@@ -38,18 +37,15 @@ import java.util.function.Consumer;
  * and {@code toArray} are <em>not</em> guaranteed to be performed atomically.
  * For example, an iterator operating concurrently with an {@code addAll}
  * operation might view only some of the added elements.
- *
  * <p>
  * This class and its iterator implement all of the <em>optional</em> methods of
  * the {@link Collection} and {@link Iterator} interfaces.
- *
  * <p>
  * Memory consistency effects: As with other concurrent collections, actions in
  * a thread prior to placing an object into a {@code LinkedTransferQueue}
  * <a href="package-summary.html#MemoryVisibility"><i>happen-before</i></a>
  * actions subsequent to the access or removal of that element from the
  * {@code LinkedTransferQueue} in another thread.
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -60,8 +56,8 @@ import java.util.function.Consumer;
  * @param <E>
  *        the type of elements held in this collection
  */
-public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
-        TransferQueue<E>, java.io.Serializable {
+public class LinkedTransferQueue<E> extends AbstractQueue<E> implements TransferQueue<E>,
+        java.io.Serializable {
     private static final long serialVersionUID = -3223113410248163686L;
 
     /*
@@ -307,8 +303,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      */
 
     /** True if on multiprocessor */
-    private static final boolean MP = Runtime.getRuntime()
-            .availableProcessors() > 1;
+    private static final boolean MP = Runtime.getRuntime().availableProcessors() > 1;
 
     /**
      * The number of times to spin (with randomly interspersed calls to
@@ -437,12 +432,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
             try {
                 UNSAFE = sun.misc.Unsafe.getUnsafe();
                 Class<?> k = Node.class;
-                itemOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                        "item"));
-                nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                        "next"));
-                waiterOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                        "waiter"));
+                itemOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("item"));
+                nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("next"));
+                waiterOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("waiter"));
             } catch (Exception e) {
                 throw new Error(e);
             }
@@ -489,23 +481,24 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * Implements all queuing methods. See above for explanation.
      *
      * @param e
-     *                 the item or null for take
+     *        the item or null for take
      * @param haveData
-     *                 true if this is a put, else a take
+     *        true if this is a put, else a take
      * @param how
-     *                 NOW, ASYNC, SYNC, or TIMED
+     *        NOW, ASYNC, SYNC, or TIMED
      * @param nanos
-     *                 timeout in nanosecs, used only if mode is TIMED
+     *        timeout in nanosecs, used only if mode is TIMED
      * @return an item if matched, else e
      * @throws NullPointerException
-     *                              if haveData mode but e is null
+     *         if haveData mode but e is null
      */
     private E xfer(E e, boolean haveData, int how, long nanos) {
         if (haveData && (e == null))
             throw new NullPointerException();
         Node s = null; // the node to append, if needed
 
-        retry: for (;;) { // restart on append race
+        retry:
+        for (;;) { // restart on append race
 
             for (Node h = head, p = h; p != null;) { // find & match first node
                 boolean isData = p.isData;
@@ -520,8 +513,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
                                 h.forgetNext();
                                 break;
                             } // advance and retry
-                            if ((h = head) == null || (q = h.next) == null || !q
-                                    .isMatched())
+                            if ((h = head) == null || (q = h.next) == null || !q.isMatched())
                                 break; // unless slack < 2
                         }
                         LockSupport.unpark(p.waiter);
@@ -549,9 +541,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * Tries to append node s as tail.
      *
      * @param s
-     *                 the node to append
+     *        the node to append
      * @param haveData
-     *                 true if appending in data mode
+     *        true if appending in data mode
      * @return null on failure due to losing race with append in different mode,
      *         else s's predecessor, or s itself if no predecessor
      */
@@ -570,8 +562,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
                 p = p.next; // re-read on CAS failure
             else {
                 if (p != t) { // update if slack now >= 2
-                    while ((tail != t || !casTail(t, s)) && (t = tail) != null
-                            && (s = t.next) != null && // advance and retry
+                    while ((tail != t || !casTail(t, s)) && (t = tail) != null && (s = t.next) != null && // advance and retry
                             (s = s.next) != null && s != t)
                         ;
                 }
@@ -584,18 +575,18 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * Spins/yields/blocks until node s is matched or caller gives up.
      *
      * @param s
-     *              the waiting node
+     *        the waiting node
      * @param pred
-     *              the predecessor of s, or s itself if it has no predecessor,
-     *              or
-     *              null if unknown (the null case does not occur in any current
-     *              calls but may in possible future extensions)
+     *        the predecessor of s, or s itself if it has no predecessor,
+     *        or
+     *        null if unknown (the null case does not occur in any current
+     *        calls but may in possible future extensions)
      * @param e
-     *              the comparison value for checking match
+     *        the comparison value for checking match
      * @param timed
-     *              if true, wait only until timeout elapses
+     *        if true, wait only until timeout elapses
      * @param nanos
-     *              timeout in nanosecs, used only if timed is true
+     *        timeout in nanosecs, used only if timed is true
      * @return matched item, or e if unmatched on interrupt or timeout
      */
     private E awaitMatch(Node s, Node pred, E e, boolean timed, long nanos) {
@@ -611,8 +602,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
                 s.forgetContents(); // avoid garbage
                 return LinkedTransferQueue.<E>cast(item);
             }
-            if ((w.isInterrupted() || (timed && nanos <= 0)) && s.casItem(e,
-                    s)) { // cancel
+            if ((w.isInterrupted() || (timed && nanos <= 0)) && s.casItem(e, s)) { // cancel
                 unsplice(pred, s);
                 return e;
             }
@@ -760,8 +750,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
                 lastPred = null; // at start of list
             else {
                 Node s, n; // help with removal of lastPred.next
-                while ((s = b.next) != null && s != b && s.isMatched()
-                        && (n = s.next) != null && n != s)
+                while ((s = b.next) != null && s != b && s.isMatched() && (n = s.next) != null && n != s)
                     b.casNext(s, n);
             }
 
@@ -842,8 +831,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
             final LinkedTransferQueue<E> q = this.queue;
             int b = batch;
             int n = (b <= 0) ? 1 : (b >= MAX_BATCH) ? MAX_BATCH : b + 1;
-            if (!exhausted && ((p = current) != null || (p = q
-                    .firstDataNode()) != null) && p.next != null) {
+            if (!exhausted && ((p = current) != null || (p = q.firstDataNode()) != null) && p.next != null) {
                 Object[] a = new Object[n];
                 int i = 0;
                 do {
@@ -857,8 +845,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
                     exhausted = true;
                 if (i > 0) {
                     batch = i;
-                    return Spliterators.spliterator(a, 0, i, Spliterator.ORDERED
-                            | Spliterator.NONNULL | Spliterator.CONCURRENT);
+                    return Spliterators.spliterator(a, 0, i, Spliterator.ORDERED | Spliterator.NONNULL
+                            | Spliterator.CONCURRENT);
                 }
             }
             return null;
@@ -870,8 +858,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
             if (action == null)
                 throw new NullPointerException();
             final LinkedTransferQueue<E> q = this.queue;
-            if (!exhausted && ((p = current) != null || (p = q
-                    .firstDataNode()) != null)) {
+            if (!exhausted && ((p = current) != null || (p = q.firstDataNode()) != null)) {
                 exhausted = true;
                 do {
                     Object e = p.item;
@@ -889,8 +876,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
             if (action == null)
                 throw new NullPointerException();
             final LinkedTransferQueue<E> q = this.queue;
-            if (!exhausted && ((p = current) != null || (p = q
-                    .firstDataNode()) != null)) {
+            if (!exhausted && ((p = current) != null || (p = q.firstDataNode()) != null)) {
                 Object e;
                 do {
                     if ((e = p.item) == p)
@@ -913,25 +899,21 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
         }
 
         public int characteristics() {
-            return Spliterator.ORDERED | Spliterator.NONNULL
-                    | Spliterator.CONCURRENT;
+            return Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT;
         }
     }
 
     /**
      * Returns a {@link Spliterator} over the elements in this queue.
-     *
      * <p>
      * The returned spliterator is
      * <a href="package-summary.html#Weakly"><i>weakly consistent</i></a>.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#CONCURRENT},
      * {@link Spliterator#ORDERED}, and {@link Spliterator#NONNULL}.
      *
      * @implNote The {@code Spliterator} implements {@code trySplit} to permit
      *           limited parallelism.
-     *
      * @return a {@code Spliterator} over the elements in this queue
      * @since 1.8
      */
@@ -946,10 +928,10 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * predecessor.
      *
      * @param pred
-     *             a node that was at one time known to be the predecessor of s,
-     *             or null or s itself if s is/was at head
+     *        a node that was at one time known to be the predecessor of s,
+     *        or null or s itself if s is/was at head
      * @param s
-     *             the node to be unspliced
+     *        the node to be unspliced
      */
     final void unsplice(Node pred, Node s) {
         s.forgetContents(); // forget unneeded fields
@@ -961,8 +943,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
          */
         if (pred != null && pred != s && pred.next == s) {
             Node n = s.next;
-            if (n == null || (n != s && pred.casNext(s, n) && pred
-                    .isMatched())) {
+            if (n == null || (n != s && pred.casNext(s, n) && pred.isMatched())) {
                 for (;;) { // check if at, or could be, head
                     Node h = head;
                     if (h == pred || h == s || h == null)
@@ -1018,8 +999,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
             for (Node pred = null, p = head; p != null;) {
                 Object item = p.item;
                 if (p.isData) {
-                    if (item != null && item != p && e.equals(item) && p
-                            .tryMatchData()) {
+                    if (item != null && item != p && e.equals(item) && p.tryMatchData()) {
                         unsplice(pred, p);
                         return true;
                     }
@@ -1046,10 +1026,10 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * iterator.
      *
      * @param c
-     *          the collection of elements to initially contain
+     *        the collection of elements to initially contain
      * @throws NullPointerException
-     *                              if the specified collection or any of its
-     *                              elements are null
+     *         if the specified collection or any of its
+     *         elements are null
      */
     public LinkedTransferQueue(Collection<? extends E> c) {
         this();
@@ -1061,7 +1041,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * unbounded, this method will never block.
      *
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void put(E e) {
         xfer(e, true, ASYNC, 0);
@@ -1075,7 +1055,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      *         {@link java.util.concurrent.BlockingQueue#offer(Object,long,TimeUnit)
      *         BlockingQueue.offer})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offer(E e, long timeout, TimeUnit unit) {
         xfer(e, true, ASYNC, 0);
@@ -1088,7 +1068,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      *
      * @return {@code true} (as specified by {@link Queue#offer})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean offer(E e) {
         xfer(e, true, ASYNC, 0);
@@ -1102,7 +1082,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      *
      * @return {@code true} (as specified by {@link Collection#add})
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean add(E e) {
         xfer(e, true, ASYNC, 0);
@@ -1111,7 +1091,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
 
     /**
      * Transfers the element to a waiting consumer immediately, if possible.
-     *
      * <p>
      * More precisely, transfers the specified element immediately if there
      * exists a consumer already waiting to receive it (in {@link #take} or
@@ -1119,7 +1098,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * {@code false} without enqueuing the element.
      *
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public boolean tryTransfer(E e) {
         return xfer(e, true, NOW, 0) == null;
@@ -1127,7 +1106,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
 
     /**
      * Transfers the element to a consumer, waiting if necessary to do so.
-     *
      * <p>
      * More precisely, transfers the specified element immediately if there
      * exists a consumer already waiting to receive it (in {@link #take} or
@@ -1136,7 +1114,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * by a consumer.
      *
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
     public void transfer(E e) throws InterruptedException {
         if (xfer(e, true, SYNC, 0) != null) {
@@ -1148,7 +1126,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
     /**
      * Transfers the element to a consumer if it is possible to do so before the
      * timeout elapses.
-     *
      * <p>
      * More precisely, transfers the specified element immediately if there
      * exists a consumer already waiting to receive it (in {@link #take} or
@@ -1158,10 +1135,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * before the element can be transferred.
      *
      * @throws NullPointerException
-     *                              if the specified element is null
+     *         if the specified element is null
      */
-    public boolean tryTransfer(E e, long timeout, TimeUnit unit)
-            throws InterruptedException {
+    public boolean tryTransfer(E e, long timeout, TimeUnit unit) throws InterruptedException {
         if (xfer(e, true, TIMED, unit.toNanos(timeout)) == null)
             return true;
         if (!Thread.interrupted())
@@ -1190,9 +1166,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
 
     /**
      * @throws NullPointerException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public int drainTo(Collection<? super E> c) {
         if (c == null)
@@ -1209,9 +1185,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
 
     /**
      * @throws NullPointerException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public int drainTo(Collection<? super E> c, int maxElements) {
         if (c == null)
@@ -1229,7 +1205,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
     /**
      * Returns an iterator over the elements in this queue in proper sequence.
      * The elements will be returned in order from first (head) to last (tail).
-     *
      * <p>
      * The returned iterator is <a href="package-summary.html#Weakly"><i>weakly
      * consistent</i></a>.
@@ -1265,7 +1240,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * Returns the number of elements in this queue. If this queue contains more
      * than {@code Integer.MAX_VALUE} elements, returns
      * {@code Integer.MAX_VALUE}.
-     *
      * <p>
      * Beware that, unlike in most collections, this method is <em>NOT</em> a
      * constant-time operation. Because of the asynchronous nature of these
@@ -1290,7 +1264,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * equivalently, if this queue changed as a result of the call).
      *
      * @param o
-     *          element to be removed from this queue, if present
+     *        element to be removed from this queue, if present
      * @return {@code true} if this queue changed as a result of the call
      */
     public boolean remove(Object o) {
@@ -1303,7 +1277,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * least one element {@code e} such that {@code o.equals(e)}.
      *
      * @param o
-     *          object to be checked for containment in this queue
+     *        object to be checked for containment in this queue
      * @return {@code true} if this queue contains the specified element
      */
     public boolean contains(Object o) {
@@ -1336,14 +1310,13 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * Saves this queue to a stream (that is, serializes it).
      *
      * @param s
-     *          the stream
+     *        the stream
      * @throws java.io.IOException
      *         if an I/O error occurs
      * @serialData All of the elements (each an {@code E}) in the proper order,
      *             followed by a null
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         s.defaultWriteObject();
         for (E e : this)
             s.writeObject(e);
@@ -1355,15 +1328,14 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
      * Reconstitutes this queue from a stream (that is, deserializes it).
      * 
      * @param s
-     *          the stream
+     *        the stream
      * @throws ClassNotFoundException
-     *                                if the class of a serialized object could
-     *                                not be found
-     * @throws                        java.io.IOException
-     *                                if an I/O error occurs
+     *         if the class of a serialized object could
+     *         not be found
+     * @throws java.io.IOException
+     *         if an I/O error occurs
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         s.defaultReadObject();
         for (;;) {
             @SuppressWarnings("unchecked")
@@ -1387,8 +1359,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
             Class<?> k = LinkedTransferQueue.class;
             headOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("head"));
             tailOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("tail"));
-            sweepVotesOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
-                    "sweepVotes"));
+            sweepVotesOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("sweepVotes"));
         } catch (Exception e) {
             throw new Error(e);
         }

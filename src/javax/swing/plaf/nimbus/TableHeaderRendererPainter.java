@@ -32,8 +32,7 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -41,53 +40,30 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
     // by a particular instance of TableHeaderRendererPainter would be created.
     // For the moment at least,
     // however, all are created for each instance.
-    private Color color1 = decodeColor("nimbusBorder", -0.013888836f,
-            5.823001E-4f, -0.12941176f, 0);
-    private Color color2 = decodeColor("nimbusBlueGrey", -0.01111114f,
-            -0.08625447f, 0.062745094f, 0);
-    private Color color3 = decodeColor("nimbusBlueGrey", -0.013888836f,
-            -0.028334536f, -0.17254901f, 0);
-    private Color color4 = decodeColor("nimbusBlueGrey", -0.013888836f,
-            -0.029445238f, -0.16470587f, 0);
-    private Color color5 = decodeColor("nimbusBlueGrey", -0.02020204f,
-            -0.053531498f, 0.011764705f, 0);
-    private Color color6 = decodeColor("nimbusBlueGrey", 0.055555582f,
-            -0.10655806f, 0.24313724f, 0);
-    private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.08455229f,
-            0.1607843f, 0);
-    private Color color8 = decodeColor("nimbusBlueGrey", 0.0f, -0.07016757f,
-            0.12941176f, 0);
-    private Color color9 = decodeColor("nimbusBlueGrey", 0.0f, -0.07466974f,
-            0.23921567f, 0);
+    private Color color1 = decodeColor("nimbusBorder", -0.013888836f, 5.823001E-4f, -0.12941176f, 0);
+    private Color color2 = decodeColor("nimbusBlueGrey", -0.01111114f, -0.08625447f, 0.062745094f, 0);
+    private Color color3 = decodeColor("nimbusBlueGrey", -0.013888836f, -0.028334536f, -0.17254901f, 0);
+    private Color color4 = decodeColor("nimbusBlueGrey", -0.013888836f, -0.029445238f, -0.16470587f, 0);
+    private Color color5 = decodeColor("nimbusBlueGrey", -0.02020204f, -0.053531498f, 0.011764705f, 0);
+    private Color color6 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.10655806f, 0.24313724f, 0);
+    private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.08455229f, 0.1607843f, 0);
+    private Color color8 = decodeColor("nimbusBlueGrey", 0.0f, -0.07016757f, 0.12941176f, 0);
+    private Color color9 = decodeColor("nimbusBlueGrey", 0.0f, -0.07466974f, 0.23921567f, 0);
     private Color color10 = decodeColor("nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-    private Color color11 = decodeColor("nimbusBlueGrey", 0.055555582f,
-            -0.10658931f, 0.25098038f, 0);
-    private Color color12 = decodeColor("nimbusBlueGrey", 0.0f, -0.08613607f,
-            0.21960783f, 0);
-    private Color color13 = decodeColor("nimbusBlueGrey", 0.0f, -0.07333623f,
-            0.20392156f, 0);
-    private Color color14 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
-            0.25490195f, 0);
-    private Color color15 = decodeColor("nimbusBlueGrey", -0.00505054f,
-            -0.05960039f, 0.10196078f, 0);
-    private Color color16 = decodeColor("nimbusBlueGrey", 0.0f, -0.017742813f,
-            0.015686274f, 0);
-    private Color color17 = decodeColor("nimbusBlueGrey", -0.0027777553f,
-            -0.0018306673f, -0.02352941f, 0);
-    private Color color18 = decodeColor("nimbusBlueGrey", 0.0055555105f,
-            -0.020436227f, 0.12549019f, 0);
-    private Color color19 = decodeColor("nimbusBase", -0.023096085f,
-            -0.62376213f, 0.4352941f, 0);
-    private Color color20 = decodeColor("nimbusBase", -0.0012707114f,
-            -0.50901747f, 0.31764704f, 0);
-    private Color color21 = decodeColor("nimbusBase", -0.002461195f,
-            -0.47139505f, 0.2862745f, 0);
-    private Color color22 = decodeColor("nimbusBase", -0.0051222444f,
-            -0.49103343f, 0.372549f, 0);
-    private Color color23 = decodeColor("nimbusBase", -8.738637E-4f,
-            -0.49872798f, 0.3098039f, 0);
-    private Color color24 = decodeColor("nimbusBase", -2.2029877E-4f,
-            -0.4916465f, 0.37647057f, 0);
+    private Color color11 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.10658931f, 0.25098038f, 0);
+    private Color color12 = decodeColor("nimbusBlueGrey", 0.0f, -0.08613607f, 0.21960783f, 0);
+    private Color color13 = decodeColor("nimbusBlueGrey", 0.0f, -0.07333623f, 0.20392156f, 0);
+    private Color color14 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
+    private Color color15 = decodeColor("nimbusBlueGrey", -0.00505054f, -0.05960039f, 0.10196078f, 0);
+    private Color color16 = decodeColor("nimbusBlueGrey", 0.0f, -0.017742813f, 0.015686274f, 0);
+    private Color color17 = decodeColor("nimbusBlueGrey", -0.0027777553f, -0.0018306673f, -0.02352941f, 0);
+    private Color color18 = decodeColor("nimbusBlueGrey", 0.0055555105f, -0.020436227f, 0.12549019f, 0);
+    private Color color19 = decodeColor("nimbusBase", -0.023096085f, -0.62376213f, 0.4352941f, 0);
+    private Color color20 = decodeColor("nimbusBase", -0.0012707114f, -0.50901747f, 0.31764704f, 0);
+    private Color color21 = decodeColor("nimbusBase", -0.002461195f, -0.47139505f, 0.2862745f, 0);
+    private Color color22 = decodeColor("nimbusBase", -0.0051222444f, -0.49103343f, 0.372549f, 0);
+    private Color color23 = decodeColor("nimbusBase", -8.738637E-4f, -0.49872798f, 0.3098039f, 0);
+    private Color color24 = decodeColor("nimbusBase", -2.2029877E-4f, -0.4916465f, 0.37647057f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -99,8 +75,7 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -297,12 +272,10 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.14441223f, 0.43703705f,
-                        0.59444445f, 0.75185186f, 0.8759259f, 1.0f },
-                new Color[] { color2, decodeColor(color2, color3, 0.5f), color3,
-                        decodeColor(color3, color4, 0.5f), color4, decodeColor(
-                                color4, color5, 0.5f), color5 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.14441223f, 0.43703705f, 0.59444445f, 0.75185186f, 0.8759259f, 1.0f }, new Color[] {
+                        color2, decodeColor(color2, color3, 0.5f), color3, decodeColor(color3, color4, 0.5f),
+                        color4, decodeColor(color4, color5, 0.5f), color5 });
     }
 
     private Paint decodeGradient2(Shape s) {
@@ -311,12 +284,10 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.07147767f, 0.2888889f,
-                        0.5490909f, 0.7037037f, 0.8518518f, 1.0f },
-                new Color[] { color6, decodeColor(color6, color7, 0.5f), color7,
-                        decodeColor(color7, color8, 0.5f), color8, decodeColor(
-                                color8, color9, 0.5f), color9 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.07147767f, 0.2888889f, 0.5490909f, 0.7037037f, 0.8518518f, 1.0f }, new Color[] {
+                        color6, decodeColor(color6, color7, 0.5f), color7, decodeColor(color7, color8, 0.5f),
+                        color8, decodeColor(color8, color9, 0.5f), color9 });
     }
 
     private Paint decodeGradient3(Shape s) {
@@ -325,12 +296,10 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.07147767f, 0.2888889f,
-                        0.5490909f, 0.7037037f, 0.7919203f, 0.88013697f },
-                new Color[] { color11, decodeColor(color11, color12, 0.5f),
-                        color12, decodeColor(color12, color13, 0.5f), color13,
-                        decodeColor(color13, color14, 0.5f), color14 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.07147767f, 0.2888889f, 0.5490909f, 0.7037037f, 0.7919203f, 0.88013697f },
+                new Color[] { color11, decodeColor(color11, color12, 0.5f), color12, decodeColor(color12,
+                        color13, 0.5f), color13, decodeColor(color13, color14, 0.5f), color14 });
     }
 
     private Paint decodeGradient4(Shape s) {
@@ -339,12 +308,10 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.07147767f, 0.2888889f,
-                        0.5490909f, 0.7037037f, 0.8518518f, 1.0f },
-                new Color[] { color15, decodeColor(color15, color16, 0.5f),
-                        color16, decodeColor(color16, color17, 0.5f), color17,
-                        decodeColor(color17, color18, 0.5f), color18 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.07147767f, 0.2888889f, 0.5490909f, 0.7037037f, 0.8518518f, 1.0f }, new Color[] {
+                        color15, decodeColor(color15, color16, 0.5f), color16, decodeColor(color16, color17,
+                                0.5f), color17, decodeColor(color17, color18, 0.5f), color18 });
     }
 
     private Paint decodeGradient5(Shape s) {
@@ -353,12 +320,10 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.08049711f, 0.32534248f,
-                        0.56267816f, 0.7037037f, 0.83986557f, 0.97602737f },
-                new Color[] { color19, decodeColor(color19, color20, 0.5f),
-                        color20, decodeColor(color20, color21, 0.5f), color21,
-                        decodeColor(color21, color22, 0.5f), color22 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.08049711f, 0.32534248f, 0.56267816f, 0.7037037f, 0.83986557f, 0.97602737f },
+                new Color[] { color19, decodeColor(color19, color20, 0.5f), color20, decodeColor(color20,
+                        color21, 0.5f), color21, decodeColor(color21, color22, 0.5f), color22 });
     }
 
     private Paint decodeGradient6(Shape s) {
@@ -367,12 +332,10 @@ final class TableHeaderRendererPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.07147767f, 0.2888889f,
-                        0.5490909f, 0.7037037f, 0.8518518f, 1.0f },
-                new Color[] { color19, decodeColor(color19, color23, 0.5f),
-                        color23, decodeColor(color23, color21, 0.5f), color21,
-                        decodeColor(color21, color24, 0.5f), color24 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.07147767f, 0.2888889f, 0.5490909f, 0.7037037f, 0.8518518f, 1.0f }, new Color[] {
+                        color19, decodeColor(color19, color23, 0.5f), color23, decodeColor(color23, color21,
+                                0.5f), color21, decodeColor(color21, color24, 0.5f), color24 });
     }
 
 }

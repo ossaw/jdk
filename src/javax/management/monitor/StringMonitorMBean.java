@@ -12,7 +12,6 @@ import javax.management.ObjectName;
 /**
  * Exposes the remote management interface of the string monitor MBean.
  *
- *
  * @since 1.5
  */
 public interface StringMonitorMBean extends MonitorMBean {
@@ -44,10 +43,9 @@ public interface StringMonitorMBean extends MonitorMBean {
      * Gets the derived gauge for the specified MBean.
      *
      * @param object
-     *               the MBean for which the derived gauge is to be returned
+     *        the MBean for which the derived gauge is to be returned
      * @return The derived gauge for the specified MBean if this MBean is in the
      *         set of observed MBeans, or <code>null</code> otherwise.
-     *
      */
     public String getDerivedGauge(ObjectName object);
 
@@ -55,11 +53,10 @@ public interface StringMonitorMBean extends MonitorMBean {
      * Gets the derived gauge timestamp for the specified MBean.
      *
      * @param object
-     *               the MBean for which the derived gauge timestamp is to be
-     *               returned
+     *        the MBean for which the derived gauge timestamp is to be
+     *        returned
      * @return The derived gauge timestamp for the specified MBean if this MBean
      *         is in the set of observed MBeans, or <code>null</code> otherwise.
-     *
      */
     public long getDerivedGaugeTimeStamp(ObjectName object);
 
@@ -67,7 +64,6 @@ public interface StringMonitorMBean extends MonitorMBean {
      * Gets the string to compare with the observed attribute.
      *
      * @return The string value.
-     *
      * @see #setStringToCompare
      */
     public String getStringToCompare();
@@ -76,21 +72,18 @@ public interface StringMonitorMBean extends MonitorMBean {
      * Sets the string to compare with the observed attribute.
      *
      * @param value
-     *              The string value.
+     *        The string value.
      * @exception java.lang.IllegalArgumentException
      *            The specified string to compare is null.
-     *
      * @see #getStringToCompare
      */
-    public void setStringToCompare(String value)
-            throws java.lang.IllegalArgumentException;
+    public void setStringToCompare(String value) throws java.lang.IllegalArgumentException;
 
     /**
      * Gets the matching notification's on/off switch value.
      *
      * @return <CODE>true</CODE> if the string monitor notifies when matching,
      *         <CODE>false</CODE> otherwise.
-     *
      * @see #setNotifyMatch
      */
     public boolean getNotifyMatch();
@@ -99,8 +92,7 @@ public interface StringMonitorMBean extends MonitorMBean {
      * Sets the matching notification's on/off switch value.
      *
      * @param value
-     *              The matching notification's on/off switch value.
-     *
+     *        The matching notification's on/off switch value.
      * @see #getNotifyMatch
      */
     public void setNotifyMatch(boolean value);
@@ -110,7 +102,6 @@ public interface StringMonitorMBean extends MonitorMBean {
      *
      * @return <CODE>true</CODE> if the string monitor notifies when differing,
      *         <CODE>false</CODE> otherwise.
-     *
      * @see #setNotifyDiffer
      */
     public boolean getNotifyDiffer();
@@ -119,8 +110,7 @@ public interface StringMonitorMBean extends MonitorMBean {
      * Sets the differing notification's on/off switch value.
      *
      * @param value
-     *              The differing notification's on/off switch value.
-     *
+     *        The differing notification's on/off switch value.
      * @see #getNotifyDiffer
      */
     public void setNotifyDiffer(boolean value);

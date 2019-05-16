@@ -30,27 +30,21 @@ import org.w3c.dom.traversal.NodeFilter;
 /**
  * <code>DTMNodeIterator</code> gives us an implementation of the
  * DTMNodeIterator which returns DOM nodes.
- *
  * Please note that this is not necessarily equivlaent to a DOM NodeIterator
  * operating over the same document. In particular:
  * <ul>
- *
  * <li>If there are several Text nodes in logical succession (ie, across
  * CDATASection and EntityReference boundaries), we will return only the first;
  * the caller is responsible for stepping through them. (%REVIEW% Provide a
  * convenience routine here to assist, pending proposed DOM Level 3
  * getAdjacentText() operation?)</li>
- *
  * <li>Since the whole XPath/XSLT architecture assumes that the source document
  * is not altered while we're working with it, we do not promise to implement
  * the DOM NodeIterator's "maintain current position" response to document
  * mutation.</li>
- *
  * <li>Since our design for XPath NodeIterators builds a stateful filter
  * directly into the traversal object, getNodeFilter() is not supported.</li>
- *
  * </ul>
- *
  * <p>
  * State: In progress!!
  * </p>
@@ -70,8 +64,7 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
         try {
             dtm_iter = (DTMIterator) dtmIterator.clone();
         } catch (CloneNotSupportedException cnse) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    cnse);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(cnse);
         }
     }
 
@@ -110,7 +103,6 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
 
     /**
      * Return a handle to the filter used to screen nodes.
-     *
      * This is ill-defined in Xalan's usage of Nodeiterator, where we have built
      * stateful XPath-based filtering directly into the traversal object. We
      * could return something which supports the NodeFilter interface and allows
@@ -119,9 +111,9 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
      * -- and just isn't all that useful.
      *
      * @throws DOMException
-     *                      -- NOT_SUPPORTED_ERROR because I can't think of
-     *                      anything more
-     *                      useful to do in this case
+     *         -- NOT_SUPPORTED_ERROR because I can't think of
+     *         anything more
+     *         useful to do in this case
      */
     public NodeFilter getFilter() {
         throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
@@ -146,11 +138,10 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
     /**
      * @return the next node in the set and advance the position of the iterator
      *         in the set.
-     *
      * @throws DOMException
-     *                      - INVALID_STATE_ERR Raised if this method is called
-     *                      after the
-     *                      detach method was invoked.
+     *         - INVALID_STATE_ERR Raised if this method is called
+     *         after the
+     *         detach method was invoked.
      */
     public Node nextNode() throws DOMException {
         if (!valid)
@@ -165,11 +156,10 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
     /**
      * @return the next previous in the set and advance the position of the
      *         iterator in the set.
-     *
      * @throws DOMException
-     *                      - INVALID_STATE_ERR Raised if this method is called
-     *                      after the
-     *                      detach method was invoked.
+     *         - INVALID_STATE_ERR Raised if this method is called
+     *         after the
+     *         detach method was invoked.
      */
     public Node previousNode() {
         if (!valid)

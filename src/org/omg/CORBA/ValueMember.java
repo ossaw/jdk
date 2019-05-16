@@ -84,35 +84,34 @@ public final class ValueMember implements org.omg.CORBA.portable.IDLEntity {
      * values.
      *
      * @param __name
-     *                     The name of the <code>value</code> member described
-     *                     by this
-     *                     <code>ValueMember</code> object.
+     *        The name of the <code>value</code> member described
+     *        by this
+     *        <code>ValueMember</code> object.
      * @param __id
-     *                     The repository ID of the <code>value</code> member
-     *                     described
-     *                     by this <code>ValueMember</code> object;
+     *        The repository ID of the <code>value</code> member
+     *        described
+     *        by this <code>ValueMember</code> object;
      * @param __defined_in
-     *                     The repository ID of the <code>value</code> in which
-     *                     this
-     *                     member is defined.
+     *        The repository ID of the <code>value</code> in which
+     *        this
+     *        member is defined.
      * @param __version
-     *                     The version of the <code>value</code> in which this
-     *                     member is
-     *                     defined.
+     *        The version of the <code>value</code> in which this
+     *        member is
+     *        defined.
      * @param __type
-     *                     The type of of this <code>value</code> member.
+     *        The type of of this <code>value</code> member.
      * @param __type_def
-     *                     The typedef that represents the IDL type of the
-     *                     <code>value</code> member described by this
-     *                     <code>ValueMember</code> object.
+     *        The typedef that represents the IDL type of the
+     *        <code>value</code> member described by this
+     *        <code>ValueMember</code> object.
      * @param __access
-     *                     The type of access (public, private) for the
-     *                     <code>value</code> member described by this
-     *                     <code>ValueMember</code> object.
+     *        The type of access (public, private) for the
+     *        <code>value</code> member described by this
+     *        <code>ValueMember</code> object.
      */
-    public ValueMember(String __name, String __id, String __defined_in,
-            String __version, org.omg.CORBA.TypeCode __type,
-            org.omg.CORBA.IDLType __type_def, short __access) {
+    public ValueMember(String __name, String __id, String __defined_in, String __version,
+            org.omg.CORBA.TypeCode __type, org.omg.CORBA.IDLType __type_def, short __access) {
         name = __name;
         id = __id;
         defined_in = __defined_in;

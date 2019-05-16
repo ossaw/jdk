@@ -90,8 +90,8 @@ class PatternEntry {
 
     // ===== privates =====
 
-    void addToBuffer(StringBuffer toAddTo, boolean showExtension,
-            boolean showWhiteSpace, PatternEntry lastEntry) {
+    void addToBuffer(StringBuffer toAddTo, boolean showExtension, boolean showWhiteSpace,
+            PatternEntry lastEntry) {
         if (showWhiteSpace && toAddTo.length() > 0)
             if (strength == Collator.PRIMARY || lastEntry != null)
                 toAddTo.append('\n');
@@ -201,7 +201,8 @@ class PatternEntry {
 
             boolean inChars = true;
             boolean inQuote = false;
-            mainLoop: while (i < pattern.length()) {
+            mainLoop:
+            while (i < pattern.length()) {
                 char ch = pattern.charAt(i);
                 if (inQuote) {
                     if (ch == '\'') {
@@ -262,19 +263,12 @@ class PatternEntry {
                             break;
                         default:
                             if (newStrength == UNSET) {
-                                throw new ParseException(
-                                        "missing char (=,;<&) : " + pattern
-                                                .substring(i, (i + 10 < pattern
-                                                        .length()) ? i + 10
-                                                                : pattern
-                                                                        .length()),
-                                        i);
+                                throw new ParseException("missing char (=,;<&) : " + pattern.substring(i, (i
+                                        + 10 < pattern.length()) ? i + 10 : pattern.length()), i);
                             }
-                            if (PatternEntry.isSpecialChar(ch)
-                                    && (inQuote == false))
-                                throw new ParseException(
-                                        "Unquoted punctuation character : "
-                                                + Integer.toString(ch, 16), i);
+                            if (PatternEntry.isSpecialChar(ch) && (inQuote == false))
+                                throw new ParseException("Unquoted punctuation character : " + Integer
+                                        .toString(ch, 16), i);
                             if (inChars) {
                                 newChars.append(ch);
                             } else {
@@ -287,9 +281,8 @@ class PatternEntry {
             if (newStrength == UNSET)
                 return null;
             if (newChars.length() == 0) {
-                throw new ParseException("missing chars (=,;<&): " + pattern
-                        .substring(i, (i + 10 < pattern.length()) ? i + 10
-                                : pattern.length()), i);
+                throw new ParseException("missing chars (=,;<&): " + pattern.substring(i, (i + 10 < pattern
+                        .length()) ? i + 10 : pattern.length()), i);
             }
 
             return new PatternEntry(newStrength, newChars, newExtension);
@@ -302,10 +295,9 @@ class PatternEntry {
     }
 
     static boolean isSpecialChar(char ch) {
-        return ((ch == '\u0020') || ((ch <= '\u002F') && (ch >= '\u0022'))
-                || ((ch <= '\u003F') && (ch >= '\u003A')) || ((ch <= '\u0060')
-                        && (ch >= '\u005B')) || ((ch <= '\u007E')
-                                && (ch >= '\u007B')));
+        return ((ch == '\u0020') || ((ch <= '\u002F') && (ch >= '\u0022')) || ((ch <= '\u003F')
+                && (ch >= '\u003A')) || ((ch <= '\u0060') && (ch >= '\u005B')) || ((ch <= '\u007E')
+                        && (ch >= '\u007B')));
     }
 
     static final int RESET = -2;

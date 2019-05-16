@@ -55,10 +55,10 @@ public class ResolveResult implements java.io.Serializable {
      * object and the remaining unresolved component.
      *
      * @param robj
-     *              The non-null object resolved to.
+     *        The non-null object resolved to.
      * @param rcomp
-     *              The single remaining name component that has yet to be
-     *              resolved. Cannot be null (but can be empty).
+     *        The single remaining name component that has yet to be
+     *        resolved. Cannot be null (but can be empty).
      */
     public ResolveResult(Object robj, String rcomp) {
         resolvedObj = robj;
@@ -75,9 +75,9 @@ public class ResolveResult implements java.io.Serializable {
      * Object and the remaining name.
      *
      * @param robj
-     *              The non-null Object resolved to.
+     *        The non-null Object resolved to.
      * @param rname
-     *              The non-null remaining name that has yet to be resolved.
+     *        The non-null remaining name that has yet to be resolved.
      */
     public ResolveResult(Object robj, Name rname) {
         resolvedObj = robj;
@@ -113,7 +113,7 @@ public class ResolveResult implements java.io.Serializable {
      * <code>name</code> and vice versa.
      *
      * @param name
-     *             The name to set remaining name to. Cannot be null.
+     *        The name to set remaining name to. Cannot be null.
      * @see #getRemainingName
      * @see #appendRemainingName
      * @see #appendRemainingComponent
@@ -131,7 +131,7 @@ public class ResolveResult implements java.io.Serializable {
      * Adds components to the end of remaining name.
      *
      * @param name
-     *             The components to add. Can be null.
+     *        The components to add. Can be null.
      * @see #getRemainingName
      * @see #setRemainingName
      * @see #appendRemainingComponent
@@ -157,7 +157,7 @@ public class ResolveResult implements java.io.Serializable {
      * Adds a single component to the end of remaining name.
      *
      * @param name
-     *             The component to add. Can be null.
+     *        The component to add. Can be null.
      * @see #getRemainingName
      * @see #appendRemainingName
      */
@@ -177,8 +177,8 @@ public class ResolveResult implements java.io.Serializable {
      * Sets the resolved Object field of this result to obj.
      *
      * @param obj
-     *            The object to use for setting the resolved obj field. Cannot
-     *            be null.
+     *        The object to use for setting the resolved obj field. Cannot
+     *        be null.
      * @see #getResolvedObj
      */
     public void setResolvedObj(Object obj) {

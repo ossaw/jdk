@@ -53,8 +53,7 @@ final class PositionCall extends FunctionCall {
             il.append(new ILOAD(POSITION_INDEX));
         } else {
             final ConstantPoolGen cpg = classGen.getConstantPool();
-            final int index = cpg.addInterfaceMethodref(NODE_ITERATOR,
-                    "getPosition", "()I");
+            final int index = cpg.addInterfaceMethodref(NODE_ITERATOR, "getPosition", "()I");
 
             il.append(methodGen.loadIterator());
             il.append(new INVOKEINTERFACE(index, 1));

@@ -24,13 +24,11 @@ import java.awt.image.*;
  * cropped in resolution-independent terms. Then, it can be rendered for various
  * specific contexts, such as a draft preview, a high-quality screen display, or
  * a printer, each in an optimal fashion.
- *
  * <p>
  * A RenderedImage is returned from a RenderableImage via the createRendering()
  * method, which takes a RenderContext. The RenderContext specifies how the
  * RenderedImage should be constructed. Note that it is not possible to extract
  * pixels directly from a RenderableImage.
- *
  * <p>
  * The createDefaultRendering() and createScaledRendering() methods are
  * convenience methods that construct an appropriate RenderContext internally.
@@ -63,7 +61,7 @@ public interface RenderableImage {
      * is not recognized, java.awt.Image.UndefinedProperty will be returned.
      *
      * @param name
-     *             the name of the property to get, as a String.
+     *        the name of the property to get, as a String.
      * @return a reference to the property Object, or the value
      *         java.awt.Image.UndefinedProperty.
      */
@@ -125,13 +123,11 @@ public interface RenderableImage {
      * in pixels. The RenderContext is built automatically with an appropriate
      * usr2dev transform and an area of interest of the full image. All the
      * rendering hints come from hints passed in.
-     *
      * <p>
      * If w == 0, it will be taken to equal
      * Math.round(h*(getWidth()/getHeight())). Similarly, if h == 0, it will be
      * taken to equal Math.round(w*(getHeight()/getWidth())). One of w or h must
      * be non-zero or else an IllegalArgumentException will be thrown.
-     *
      * <p>
      * The created RenderedImage may have a property identified by the String
      * HINTS_OBSERVED to indicate which RenderingHints were used to create the
@@ -140,11 +136,11 @@ public interface RenderableImage {
      * property.
      *
      * @param w
-     *              the width of rendered image in pixels, or 0.
+     *        the width of rendered image in pixels, or 0.
      * @param h
-     *              the height of rendered image in pixels, or 0.
+     *        the height of rendered image in pixels, or 0.
      * @param hints
-     *              a RenderingHints object containing hints.
+     *        a RenderingHints object containing hints.
      * @return a RenderedImage containing the rendered data.
      */
     RenderedImage createScaledRendering(int w, int h, RenderingHints hints);
@@ -164,7 +160,6 @@ public interface RenderableImage {
      * Creates a RenderedImage that represented a rendering of this image using
      * a given RenderContext. This is the most general way to obtain a rendering
      * of a RenderableImage.
-     *
      * <p>
      * The created RenderedImage may have a property identified by the String
      * HINTS_OBSERVED to indicate which RenderingHints (from the RenderContext)
@@ -173,7 +168,7 @@ public interface RenderableImage {
      * have such a property.
      *
      * @param renderContext
-     *                      the RenderContext to use to produce the rendering.
+     *        the RenderContext to use to produce the rendering.
      * @return a RenderedImage containing the rendered data.
      */
     RenderedImage createRendering(RenderContext renderContext);

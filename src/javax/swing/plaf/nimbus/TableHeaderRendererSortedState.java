@@ -16,7 +16,6 @@ class TableHeaderRendererSortedState extends State {
     protected boolean isInState(JComponent c) {
 
         String sortOrder = (String) c.getClientProperty("Table.sortOrder");
-        return sortOrder != null && ("ASCENDING".equals(sortOrder)
-                || "DESCENDING".equals(sortOrder));
+        return sortOrder != null && ("ASCENDING".equals(sortOrder) || "DESCENDING".equals(sortOrder));
     }
 }

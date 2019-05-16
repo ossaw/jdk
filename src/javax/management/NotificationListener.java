@@ -18,15 +18,15 @@ public interface NotificationListener extends java.util.EventListener {
      * broadcaster.
      *
      * @param notification
-     *                     The notification.
+     *        The notification.
      * @param handback
-     *                     An opaque object which helps the listener to
-     *                     associate
-     *                     information regarding the MBean emitter. This object
-     *                     is passed
-     *                     to the addNotificationListener call and resent,
-     *                     without
-     *                     modification, to the listener.
+     *        An opaque object which helps the listener to
+     *        associate
+     *        information regarding the MBean emitter. This object
+     *        is passed
+     *        to the addNotificationListener call and resent,
+     *        without
+     *        modification, to the listener.
      */
     public void handleNotification(Notification notification, Object handback);
 }

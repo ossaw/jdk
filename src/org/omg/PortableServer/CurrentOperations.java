@@ -29,26 +29,22 @@ public interface CurrentOperations extends org.omg.CORBA.CurrentOperations {
      * is called.
      *
      * @return The poa implementing the object
-     * 
      * @exception NoContext
-     *                      is raised when the operation is outside the context
-     *                      of a
-     *                      POA-dispatched operation
+     *            is raised when the operation is outside the context
+     *            of a
+     *            POA-dispatched operation
      */
-    org.omg.PortableServer.POA get_POA()
-            throws org.omg.PortableServer.CurrentPackage.NoContext;
+    org.omg.PortableServer.POA get_POA() throws org.omg.PortableServer.CurrentPackage.NoContext;
 
     /**
      * Returns the ObjectId identifying the object in whose context it is
      * called.
      *
      * @return the ObjectId of the object
-     *
      * @exception NoContext
-     *                      is raised when the operation is called outside the
-     *                      context
-     *                      of a POA-dispatched operation.
+     *            is raised when the operation is called outside the
+     *            context
+     *            of a POA-dispatched operation.
      */
-    byte[] get_object_id()
-            throws org.omg.PortableServer.CurrentPackage.NoContext;
+    byte[] get_object_id() throws org.omg.PortableServer.CurrentPackage.NoContext;
 } // interface CurrentOperations

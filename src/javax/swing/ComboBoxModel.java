@@ -16,7 +16,6 @@ package javax.swing;
  *
  * @param <E>
  *        the type of the elements of this model
- *
  * @author Arnaud Weber
  */
 public interface ComboBoxModel<E> extends ListModel<E> {
@@ -27,8 +26,8 @@ public interface ComboBoxModel<E> extends ListModel<E> {
      * changed.
      *
      * @param anItem
-     *               the list object to select or <code>null</code> to clear the
-     *               selection
+     *        the list object to select or <code>null</code> to clear the
+     *        selection
      */
     void setSelectedItem(Object anItem);
 

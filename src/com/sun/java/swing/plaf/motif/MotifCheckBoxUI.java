@@ -37,8 +37,7 @@ public class MotifCheckBoxUI extends MotifRadioButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent c) {
         AppContext appContext = AppContext.getAppContext();
-        MotifCheckBoxUI motifCheckBoxUI = (MotifCheckBoxUI) appContext.get(
-                MOTIF_CHECK_BOX_UI_KEY);
+        MotifCheckBoxUI motifCheckBoxUI = (MotifCheckBoxUI) appContext.get(MOTIF_CHECK_BOX_UI_KEY);
         if (motifCheckBoxUI == null) {
             motifCheckBoxUI = new MotifCheckBoxUI();
             appContext.put(MOTIF_CHECK_BOX_UI_KEY, motifCheckBoxUI);

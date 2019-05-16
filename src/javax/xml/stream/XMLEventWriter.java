@@ -13,9 +13,7 @@ import javax.xml.stream.util.XMLEventConsumer;
 import javax.xml.namespace.NamespaceContext;
 
 /**
- *
  * This is the top level interface for writing XML documents.
- *
  * Instances of this interface are not required to validate the form of the XML.
  *
  * @version 1.0
@@ -147,7 +145,7 @@ public interface XMLEventWriter extends XMLEventConsumer {
      * </table>
      * 
      * @param event
-     *              the event to be added
+     *        the event to be added
      * @throws XMLStreamException
      */
     public void add(XMLEvent event) throws XMLStreamException;
@@ -159,7 +157,7 @@ public interface XMLEventWriter extends XMLEventConsumer {
      * events in an event reader and call add on each event.
      *
      * @param reader
-     *               the event stream to add to the output
+     *        the event stream to add to the output
      * @throws XMLStreamException
      */
 
@@ -169,7 +167,7 @@ public interface XMLEventWriter extends XMLEventConsumer {
      * Gets the prefix the uri is bound to
      * 
      * @param uri
-     *            the uri to look up
+     *        the uri to look up
      * @throws XMLStreamException
      */
     public String getPrefix(String uri) throws XMLStreamException;
@@ -181,9 +179,9 @@ public interface XMLEventWriter extends XMLEventConsumer {
      * scope.
      * 
      * @param prefix
-     *               the prefix to bind to the uri
+     *        the prefix to bind to the uri
      * @param uri
-     *               the uri to bind to the prefix
+     *        the uri to bind to the prefix
      * @throws XMLStreamException
      */
     public void setPrefix(String prefix, String uri) throws XMLStreamException;
@@ -195,7 +193,7 @@ public interface XMLEventWriter extends XMLEventConsumer {
      * scope.
      * 
      * @param uri
-     *            the uri to bind to the default namespace
+     *        the uri to bind to the default namespace
      * @throws XMLStreamException
      */
     public void setDefaultNamespace(String uri) throws XMLStreamException;
@@ -208,11 +206,10 @@ public interface XMLEventWriter extends XMLEventConsumer {
      * method as the root context for resolving namespaces.
      * 
      * @param context
-     *                the namespace context to use for this writer
+     *        the namespace context to use for this writer
      * @throws XMLStreamException
      */
-    public void setNamespaceContext(NamespaceContext context)
-            throws XMLStreamException;
+    public void setNamespaceContext(NamespaceContext context) throws XMLStreamException;
 
     /**
      * Returns the current namespace context.

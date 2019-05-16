@@ -31,7 +31,6 @@ import com.sun.org.apache.xml.internal.utils.IntVector;
  * values, so the integers can be used to reliably and uniquely identify (and
  * when necessary retrieve) the strings.
  * </p>
- *
  * <p>
  * Design Priorities:
  * <ul>
@@ -43,14 +42,12 @@ import com.sun.org.apache.xml.internal.utils.IntVector;
  * string pools won't exceed about 2000 entries.</li>
  * </ul>
  * </p>
- *
  * <p>
  * Implementation detail: A standard Hashtable is relatively inefficient when
  * looking up primitive int values, especially when we're already maintaining an
  * int-to-string vector. So I'm maintaining a simple hash chain within this
  * class.
  * </p>
- *
  * <p>
  * NOTE: There is nothing in the code that has a real dependency upon String. It
  * would work with any object type that implements reliable .hashCode() and
@@ -58,7 +55,6 @@ import com.sun.org.apache.xml.internal.utils.IntVector;
  * but this could trivially be turned into a general ObjectPool if one was
  * needed.
  * </p>
- *
  * <p>
  * Status: Passed basic test in main().
  * </p>
@@ -74,7 +70,7 @@ public class DTMStringPool {
      * Create a DTMStringPool using the given chain size
      *
      * @param chainSize
-     *                  The size of the hash chain vector
+     *        The size of the hash chain vector
      */
     public DTMStringPool(int chainSize) {
         m_intToString = new Vector();
@@ -101,8 +97,7 @@ public class DTMStringPool {
      * @throws java.lang.ArrayIndexOutOfBoundsException
      *         if index doesn't map to a string.
      */
-    public String indexToString(int i)
-            throws java.lang.ArrayIndexOutOfBoundsException {
+    public String indexToString(int i) throws java.lang.ArrayIndexOutOfBoundsException {
         if (i == NULL)
             return null;
         return (String) m_intToString.elementAt(i);
@@ -147,20 +142,16 @@ public class DTMStringPool {
      * new unique strings are encountered.
      */
     public static void _main(String[] args) {
-        String[] word = { "Zero", "One", "Two", "Three", "Four", "Five", "Six",
-                "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen",
-                "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
-                "Nineteen", "Twenty", "Twenty-One", "Twenty-Two",
-                "Twenty-Three", "Twenty-Four", "Twenty-Five", "Twenty-Six",
-                "Twenty-Seven", "Twenty-Eight", "Twenty-Nine", "Thirty",
-                "Thirty-One", "Thirty-Two", "Thirty-Three", "Thirty-Four",
-                "Thirty-Five", "Thirty-Six", "Thirty-Seven", "Thirty-Eight",
-                "Thirty-Nine" };
+        String[] word = { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+                "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+                "Eighteen", "Nineteen", "Twenty", "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four",
+                "Twenty-Five", "Twenty-Six", "Twenty-Seven", "Twenty-Eight", "Twenty-Nine", "Thirty",
+                "Thirty-One", "Thirty-Two", "Thirty-Three", "Thirty-Four", "Thirty-Five", "Thirty-Six",
+                "Thirty-Seven", "Thirty-Eight", "Thirty-Nine" };
 
         DTMStringPool pool = new DTMStringPool();
 
-        System.out.println(
-                "If no complaints are printed below, we passed initial test.");
+        System.out.println("If no complaints are printed below, we passed initial test.");
 
         for (int pass = 0; pass <= 1; ++pass) {
             int i;
@@ -168,22 +159,19 @@ public class DTMStringPool {
             for (i = 0; i < word.length; ++i) {
                 int j = pool.stringToIndex(word[i]);
                 if (j != i)
-                    System.out.println("\tMismatch populating pool: assigned "
-                            + j + " for create " + i);
+                    System.out.println("\tMismatch populating pool: assigned " + j + " for create " + i);
             }
 
             for (i = 0; i < word.length; ++i) {
                 int j = pool.stringToIndex(word[i]);
                 if (j != i)
-                    System.out.println("\tMismatch in stringToIndex: returned "
-                            + j + " for lookup " + i);
+                    System.out.println("\tMismatch in stringToIndex: returned " + j + " for lookup " + i);
             }
 
             for (i = 0; i < word.length; ++i) {
                 String w = pool.indexToString(i);
                 if (!word[i].equals(w))
-                    System.out.println("\tMismatch in indexToString: returned"
-                            + w + " for lookup " + i);
+                    System.out.println("\tMismatch in indexToString: returned" + w + " for lookup " + i);
             }
 
             pool.removeAllElements();

@@ -50,7 +50,6 @@ import javax.accessibility.*;
  *
  * @beaninfo attribute: isContainer false description: A component within a
  *           group of menu items which can be selected.
- *
  * @author Georges Saab
  * @author David Karlton
  * @see ButtonGroup
@@ -73,8 +72,8 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * Creates a <code>JRadioButtonMenuItem</code> with an icon.
      *
      * @param icon
-     *             the <code>Icon</code> to display on the
-     *             <code>JRadioButtonMenuItem</code>
+     *        the <code>Icon</code> to display on the
+     *        <code>JRadioButtonMenuItem</code>
      */
     public JRadioButtonMenuItem(Icon icon) {
         this(null, icon, false);
@@ -84,7 +83,7 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * Creates a <code>JRadioButtonMenuItem</code> with text.
      *
      * @param text
-     *             the text of the <code>JRadioButtonMenuItem</code>
+     *        the text of the <code>JRadioButtonMenuItem</code>
      */
     public JRadioButtonMenuItem(String text) {
         this(text, null, false);
@@ -95,9 +94,8 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * <code>Action</code> supplied.
      *
      * @param a
-     *          the <code>Action</code> on which to base the radio button menu
-     *          item
-     *
+     *        the <code>Action</code> on which to base the radio button menu
+     *        item
      * @since 1.3
      */
     public JRadioButtonMenuItem(Action a) {
@@ -110,9 +108,9 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * <code>Icon</code>.
      *
      * @param text
-     *             the text of the <code>JRadioButtonMenuItem</code>
+     *        the text of the <code>JRadioButtonMenuItem</code>
      * @param icon
-     *             the icon to display on the <code>JRadioButtonMenuItem</code>
+     *        the icon to display on the <code>JRadioButtonMenuItem</code>
      */
     public JRadioButtonMenuItem(String text, Icon icon) {
         this(text, icon, false);
@@ -123,9 +121,9 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * state.
      *
      * @param text
-     *                 the text of the <code>CheckBoxMenuItem</code>
+     *        the text of the <code>CheckBoxMenuItem</code>
      * @param selected
-     *                 the selected state of the <code>CheckBoxMenuItem</code>
+     *        the selected state of the <code>CheckBoxMenuItem</code>
      */
     public JRadioButtonMenuItem(String text, boolean selected) {
         this(text);
@@ -137,10 +135,10 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * state, but no text.
      *
      * @param icon
-     *                 the image that the button should display
+     *        the image that the button should display
      * @param selected
-     *                 if true, the button is initially selected; otherwise, the
-     *                 button is initially unselected
+     *        if true, the button is initially selected; otherwise, the
+     *        button is initially unselected
      */
     public JRadioButtonMenuItem(Icon icon, boolean selected) {
         this(null, icon, selected);
@@ -151,9 +149,9 @@ public class JRadioButtonMenuItem extends JMenuItem implements Accessible {
      * selection state. All other constructors defer to this one.
      *
      * @param text
-     *             the string displayed on the radio button
+     *        the string displayed on the radio button
      * @param icon
-     *             the image that the button should display
+     *        the image that the button should display
      */
     public JRadioButtonMenuItem(String text, Icon icon, boolean selected) {
         super(text, icon);

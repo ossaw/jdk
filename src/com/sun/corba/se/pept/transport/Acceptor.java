@@ -17,7 +17,6 @@ import com.sun.corba.se.pept.transport.EventHandler;
  * The <b><em>primary</em></b> PEPt server-side plug-in point and enabler for
  * <b><em>altenate encodings, protocols and transports</em></b>.
  * </p>
- *
  * <p>
  * <code>Acceptor</code> is a <em>factory</em> for client-side artifacts used to
  * receive a message (and possibly send a response).
@@ -28,10 +27,8 @@ import com.sun.corba.se.pept.transport.EventHandler;
 public interface Acceptor {
     /**
      * Used to initialize an <code>Acceptor</code>.
-     *
      * For example, initialization may mean to create a
      * {@link java.nio.channels.ServerSocketChannel ServerSocketChannel}.
-     *
      * Note: this must be prepared to be be called multiple times.
      *
      * @return <code>true</code> when it performs initializatin actions
@@ -58,7 +55,6 @@ public interface Acceptor {
     /**
      * Set the {@link com.sun.corba.se.pept.transport.Inbound.ConnectionCache
      * InboundConnectionCache} to be used by this <code>Acceptor</code>.
-     *
      * PEPt uses separate caches for each type of <code>Acceptor</code> as given
      * by {@link #getConnectionCacheType}. {@link #setConnectionCache} and
      * {@link #getConnectionCache} support an optimzation to avoid hashing to
@@ -71,7 +67,6 @@ public interface Acceptor {
     /**
      * Get the {@link com.sun.corba.se.pept.transport.Inbound.ConnectionCache
      * InboundConnectionCache} used by this <code>Acceptor</code>
-     *
      * PEPt uses separate caches for each type of <code>Acceptor</code> as given
      * by {@link #getConnectionCacheType}. {@link #setConnectionCache} and
      * {@link #getConnectionCache} support an optimzation to avoid hashing to
@@ -86,7 +81,6 @@ public interface Acceptor {
      * Used to determine if the <code>Acceptor</code> should register with
      * {@link com.sun.corba.se.pept.transport.Selector Selector} to handle
      * accept events.
-     *
      * For example, this may be <em>false</em> in the case of Solaris Doors
      * which do not actively listen.
      *
@@ -98,11 +92,9 @@ public interface Acceptor {
 
     /**
      * Accept a connection request.
-     *
      * This is called either when the selector gets an accept event for this
      * <code>Acceptor</code> or by a
      * {@link com.sun.corba.se.pept.transport.ListenerThread ListenerThread}.
-     *
      * It results in a {@link com.sun.corba.se.pept.transport.Connection
      * Connection} being created.
      */
@@ -136,8 +128,7 @@ public interface Acceptor {
      * @return {@link com.sun.corba.se.pept.protocol.MessageMeidator
      *         MessageMediator}
      */
-    public MessageMediator createMessageMediator(Broker xbroker,
-            Connection xconnection);
+    public MessageMediator createMessageMediator(Broker xbroker, Connection xconnection);
 
     // REVISIT: Identical to ContactInfo method. Refactor into base interface.
 
@@ -152,8 +143,8 @@ public interface Acceptor {
      *         MessageMediator}
      */
 
-    public MessageMediator finishCreatingMessageMediator(Broker broker,
-            Connection xconnection, MessageMediator messageMediator);
+    public MessageMediator finishCreatingMessageMediator(Broker broker, Connection xconnection,
+            MessageMediator messageMediator);
 
     /**
      * Used to get a {@link com.sun.corba.se.pept.encoding.InputObject
@@ -162,8 +153,7 @@ public interface Acceptor {
      *
      * @return {@link com.sun.corba.se.pept.encoding.InputObject InputObject}
      */
-    public InputObject createInputObject(Broker broker,
-            MessageMediator messageMediator);
+    public InputObject createInputObject(Broker broker, MessageMediator messageMediator);
 
     /**
      * Used to get a {@link com.sun.corba.se.pept.encoding.OutputObject
@@ -172,8 +162,7 @@ public interface Acceptor {
      *
      * @return {@link com.sun.corba.se.pept.encoding.OutputObject OutputObject}
      */
-    public OutputObject createOutputObject(Broker broker,
-            MessageMediator messageMediator);
+    public OutputObject createOutputObject(Broker broker, MessageMediator messageMediator);
 
     //
     // Usage dictates implementation equals and hashCode.

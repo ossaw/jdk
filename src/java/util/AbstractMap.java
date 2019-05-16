@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 /**
  * This class provides a skeletal implementation of the <tt>Map</tt> interface,
  * to minimize the effort required to implement this interface.
- *
  * <p>
  * To implement an unmodifiable map, the programmer needs only to extend this
  * class and provide an implementation for the <tt>entrySet</tt> method, which
@@ -18,24 +17,20 @@ import java.util.Map.Entry;
  * in turn, be implemented atop <tt>AbstractSet</tt>. This set should not
  * support the <tt>add</tt> or <tt>remove</tt> methods, and its iterator should
  * not support the <tt>remove</tt> method.
- *
  * <p>
  * To implement a modifiable map, the programmer must additionally override this
  * class's <tt>put</tt> method (which otherwise throws an
  * <tt>UnsupportedOperationException</tt>), and the iterator returned by
  * <tt>entrySet().iterator()</tt> must additionally implement its
  * <tt>remove</tt> method.
- *
  * <p>
  * The programmer should generally provide a void (no argument) and map
  * constructor, as per the recommendation in the <tt>Map</tt> interface
  * specification.
- *
  * <p>
  * The documentation for each non-abstract method in this class describes its
  * implementation in detail. Each of these methods may be overridden if the map
  * being implemented admits a more efficient implementation.
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -45,7 +40,6 @@ import java.util.Map.Entry;
  *        the type of keys maintained by this map
  * @param <V>
  *        the type of mapped values
- *
  * @author Josh Bloch
  * @author Neal Gafter
  * @see Map
@@ -89,11 +83,10 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           without finding such an entry, <tt>false</tt> is returned. Note
      *           that this implementation requires linear time in the size of
      *           the map.
-     *
      * @throws ClassCastException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public boolean containsValue(Object value) {
         Iterator<Entry<K, V>> i = entrySet().iterator();
@@ -122,11 +115,10 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           finding such an entry, <tt>false</tt> is returned. Note that
      *           this implementation requires linear time in the size of the
      *           map; many implementations will override this method.
-     *
      * @throws ClassCastException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public boolean containsKey(Object key) {
         Iterator<Map.Entry<K, V>> i = entrySet().iterator();
@@ -155,11 +147,10 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           without finding such an entry, <tt>null</tt> is returned. Note
      *           that this implementation requires linear time in the size of
      *           the map; many implementations will override this method.
-     *
      * @throws ClassCastException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      */
     public V get(Object key) {
         Iterator<Entry<K, V>> i = entrySet().iterator();
@@ -186,15 +177,14 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *
      * @implSpec This implementation always throws an
      *           <tt>UnsupportedOperationException</tt>.
-     *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ClassCastException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public V put(K key, V value) {
         throw new UnsupportedOperationException();
@@ -212,19 +202,17 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           an entry, <tt>null</tt> is returned. Note that this
      *           implementation requires linear time in the size of the map;
      *           many implementations will override this method.
-     *
      *           <p>
      *           Note that this implementation throws an
      *           <tt>UnsupportedOperationException</tt> if the <tt>entrySet</tt>
      *           iterator does not support the <tt>remove</tt> method and this
      *           map contains a mapping for the specified key.
-     *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ClassCastException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public V remove(Object key) {
         Iterator<Entry<K, V>> i = entrySet().iterator();
@@ -260,21 +248,19 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           <tt>entrySet()</tt> collection, and calls this map's
      *           <tt>put</tt> operation once for each entry returned by the
      *           iteration.
-     *
      *           <p>
      *           Note that this implementation throws an
      *           <tt>UnsupportedOperationException</tt> if this map does not
      *           support the <tt>put</tt> operation and the specified map is
      *           nonempty.
-     *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws ClassCastException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void putAll(Map<? extends K, ? extends V> m) {
         for (Map.Entry<? extends K, ? extends V> e : m.entrySet())
@@ -285,14 +271,12 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      * {@inheritDoc}
      *
      * @implSpec This implementation calls <tt>entrySet().clear()</tt>.
-     *
      *           <p>
      *           Note that this implementation throws an
      *           <tt>UnsupportedOperationException</tt> if the <tt>entrySet</tt>
      *           does not support the <tt>clear</tt> operation.
-     *
      * @throws UnsupportedOperationException
-     *                                       {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void clear() {
         entrySet().clear();
@@ -304,13 +288,11 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      * Each of these fields are initialized to contain an instance of the
      * appropriate view the first time this view is requested. The views are
      * stateless, so there's no reason to create more than one of each.
-     *
      * <p>
      * Since there is no synchronization performed while accessing these fields,
      * it is expected that java.util.Map view classes using these fields have no
      * non-final fields (or any fields at all except for outer-this). Adhering
      * to this rule would make the races on these fields benign.
-     *
      * <p>
      * It is also imperative that implementations read the field only once, as
      * in:
@@ -340,7 +322,6 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           The <tt>size</tt> method delegates to this map's <tt>size</tt>
      *           method and the <tt>contains</tt> method delegates to this map's
      *           <tt>containsKey</tt> method.
-     *
      *           <p>
      *           The set is created the first time this method is called, and
      *           returned in response to all subsequent calls. No
@@ -399,7 +380,6 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           iterator. The <tt>size</tt> method delegates to this map's
      *           <tt>size</tt> method and the <tt>contains</tt> method delegates
      *           to this map's <tt>containsValue</tt> method.
-     *
      *           <p>
      *           The collection is created the first time this method is called,
      *           and returned in response to all subsequent calls. No
@@ -472,9 +452,8 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *           map contains. If the specified map fails to contain such a
      *           mapping, <tt>false</tt> is returned. If the iteration
      *           completes, <tt>true</tt> is returned.
-     *
      * @param o
-     *          object to be compared for equality with this map
+     *        object to be compared for equality with this map
      * @return <tt>true</tt> if the specified object is equal to this map
      */
     public boolean equals(Object o) {
@@ -521,7 +500,6 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      * @implSpec This implementation iterates over <tt>entrySet()</tt>, calling
      *           {@link Map.Entry#hashCode hashCode()} on each element (entry)
      *           in the set, and adding up the results.
-     *
      * @return the hash code value for this map
      * @see Map.Entry#hashCode()
      * @see Object#equals(Object)
@@ -583,7 +561,6 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
     /**
      * Utility method for SimpleEntry and SimpleImmutableEntry. Test for
      * equality, checking for nulls.
-     *
      * NB: Do not replace with Object.equals until JDK-8015417 is resolved.
      */
     private static boolean eq(Object o1, Object o2) {
@@ -606,8 +583,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *
      * @since 1.6
      */
-    public static class SimpleEntry<K, V> implements Entry<K, V>,
-            java.io.Serializable {
+    public static class SimpleEntry<K, V> implements Entry<K, V>, java.io.Serializable {
         private static final long serialVersionUID = -8499721149061103585L;
 
         private final K key;
@@ -618,9 +594,9 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * specified value.
          *
          * @param key
-         *              the key represented by this entry
+         *        the key represented by this entry
          * @param value
-         *              the value represented by this entry
+         *        the value represented by this entry
          */
         public SimpleEntry(K key, V value) {
             this.key = key;
@@ -632,7 +608,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * entry.
          *
          * @param entry
-         *              the entry to copy
+         *        the entry to copy
          */
         public SimpleEntry(Entry<? extends K, ? extends V> entry) {
             this.key = entry.getKey();
@@ -662,7 +638,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * value.
          *
          * @param value
-         *              new value to be stored in this entry
+         *        new value to be stored in this entry
          * @return the old value corresponding to the entry
          */
         public V setValue(V value) {
@@ -678,17 +654,15 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * {@code e1} and {@code e2} represent the same mapping if
          * 
          * <pre>
-         * (e1.getKey() == null ? e2.getKey() == null
-         *         : e1.getKey().equals(e2.getKey())) &amp;&amp; (e1.getValue() == null ? e2
-         *                 .getValue() == null
-         *                 : e1.getValue().equals(e2.getValue()))
+         * (e1.getKey() == null ? e2.getKey() == null : e1.getKey().equals(e2.getKey())) &amp;&amp; (e1.getValue() == null
+         *         ? e2.getValue() == null : e1.getValue().equals(e2.getValue()))
          * </pre>
          * 
          * This ensures that the {@code equals} method works properly across
          * different implementations of the {@code Map.Entry} interface.
          *
          * @param o
-         *          object to be compared for equality with this map entry
+         *        object to be compared for equality with this map entry
          * @return {@code true} if the specified object is equal to this map
          *         entry
          * @see #hashCode
@@ -705,9 +679,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * map entry {@code e} is defined to be:
          * 
          * <pre>
-         * (e.getKey() == null ? 0 : e.getKey().hashCode()) ^ (e.getValue() == null
-         *         ? 0
-         *         : e.getValue().hashCode())
+         * (e.getKey() == null ? 0 : e.getKey().hashCode()) ^ (e.getValue() == null ? 0 : e.getValue().hashCode())
          * </pre>
          * 
          * This ensures that {@code e1.equals(e2)} implies that
@@ -719,8 +691,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * @see #equals
          */
         public int hashCode() {
-            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0
-                    : value.hashCode());
+            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0 : value.hashCode());
         }
 
         /**
@@ -744,8 +715,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      *
      * @since 1.6
      */
-    public static class SimpleImmutableEntry<K, V> implements Entry<K, V>,
-            java.io.Serializable {
+    public static class SimpleImmutableEntry<K, V> implements Entry<K, V>, java.io.Serializable {
         private static final long serialVersionUID = 7138329143949025153L;
 
         private final K key;
@@ -756,9 +726,9 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * specified value.
          *
          * @param key
-         *              the key represented by this entry
+         *        the key represented by this entry
          * @param value
-         *              the value represented by this entry
+         *        the value represented by this entry
          */
         public SimpleImmutableEntry(K key, V value) {
             this.key = key;
@@ -770,7 +740,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * entry.
          *
          * @param entry
-         *              the entry to copy
+         *        the entry to copy
          */
         public SimpleImmutableEntry(Entry<? extends K, ? extends V> entry) {
             this.key = entry.getKey();
@@ -802,10 +772,10 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * <i>immutable</i> map entry.
          *
          * @param value
-         *              new value to be stored in this entry
+         *        new value to be stored in this entry
          * @return (Does not return)
          * @throws UnsupportedOperationException
-         *                                       always
+         *         always
          */
         public V setValue(V value) {
             throw new UnsupportedOperationException();
@@ -818,17 +788,15 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * {@code e1} and {@code e2} represent the same mapping if
          * 
          * <pre>
-         * (e1.getKey() == null ? e2.getKey() == null
-         *         : e1.getKey().equals(e2.getKey())) &amp;&amp; (e1.getValue() == null ? e2
-         *                 .getValue() == null
-         *                 : e1.getValue().equals(e2.getValue()))
+         * (e1.getKey() == null ? e2.getKey() == null : e1.getKey().equals(e2.getKey())) &amp;&amp; (e1.getValue() == null
+         *         ? e2.getValue() == null : e1.getValue().equals(e2.getValue()))
          * </pre>
          * 
          * This ensures that the {@code equals} method works properly across
          * different implementations of the {@code Map.Entry} interface.
          *
          * @param o
-         *          object to be compared for equality with this map entry
+         *        object to be compared for equality with this map entry
          * @return {@code true} if the specified object is equal to this map
          *         entry
          * @see #hashCode
@@ -845,9 +813,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * map entry {@code e} is defined to be:
          * 
          * <pre>
-         * (e.getKey() == null ? 0 : e.getKey().hashCode()) ^ (e.getValue() == null
-         *         ? 0
-         *         : e.getValue().hashCode())
+         * (e.getKey() == null ? 0 : e.getKey().hashCode()) ^ (e.getValue() == null ? 0 : e.getValue().hashCode())
          * </pre>
          * 
          * This ensures that {@code e1.equals(e2)} implies that
@@ -859,8 +825,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
          * @see #equals
          */
         public int hashCode() {
-            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0
-                    : value.hashCode());
+            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0 : value.hashCode());
         }
 
         /**

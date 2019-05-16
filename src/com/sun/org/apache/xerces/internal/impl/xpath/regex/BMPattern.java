@@ -23,7 +23,6 @@ import java.text.CharacterIterator;
  * Boyer-Moore searcher.
  *
  * @xerces.internal
- *
  */
 public class BMPattern {
     char[] pattern;
@@ -63,7 +62,6 @@ public class BMPattern {
     }
 
     /**
-     *
      * @return -1 if <var>iterator</var> does not contain this pattern.
      */
     public int matches(CharacterIterator iterator, int start, int limit) {
@@ -91,7 +89,6 @@ public class BMPattern {
     }
 
     /**
-     *
      * @return -1 if <var>str</var> does not contain this pattern.
      */
     public int matches(String str, int start, int limit) {
@@ -120,7 +117,6 @@ public class BMPattern {
     }
 
     /**
-     *
      * @return -1 if <var>chars</char> does not contain this pattern.
      */
     public int matches(char[] chars, int start, int limit) {
@@ -163,8 +159,7 @@ public class BMPattern {
                 if (ch1 != ch2) {
                     ch1 = Character.toUpperCase(ch1);
                     ch2 = Character.toUpperCase(ch2);
-                    if (ch1 != ch2 && Character.toLowerCase(ch1) != Character
-                            .toLowerCase(ch2))
+                    if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2))
                         break;
                 }
                 if (pindex == 0)
@@ -192,8 +187,7 @@ public class BMPattern {
                 if (ch1 != ch2) {
                     ch1 = Character.toUpperCase(ch1);
                     ch2 = Character.toUpperCase(ch2);
-                    if (ch1 != ch2 && Character.toLowerCase(ch1) != Character
-                            .toLowerCase(ch2))
+                    if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2))
                         break;
                 }
                 if (pindex == 0)
@@ -221,8 +215,7 @@ public class BMPattern {
                 if (ch1 != ch2) {
                     ch1 = Character.toUpperCase(ch1);
                     ch2 = Character.toUpperCase(ch2);
-                    if (ch1 != ch2 && Character.toLowerCase(ch1) != Character
-                            .toLowerCase(ch2))
+                    if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2))
                         break;
                 }
                 if (pindex == 0)

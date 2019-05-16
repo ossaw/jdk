@@ -22,11 +22,9 @@ import java.util.EventListener;
  *
  * @param <E>
  *        the type of the elements of this model
- *
  * @author Hans Muller
  */
-public abstract class AbstractListModel<E> implements ListModel<E>,
-        Serializable {
+public abstract class AbstractListModel<E> implements ListModel<E>, Serializable {
     protected EventListenerList listenerList = new EventListenerList();
 
     /**
@@ -34,7 +32,7 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      * data model occurs.
      *
      * @param l
-     *          the <code>ListDataListener</code> to be added
+     *        the <code>ListDataListener</code> to be added
      */
     public void addListDataListener(ListDataListener l) {
         listenerList.add(ListDataListener.class, l);
@@ -45,7 +43,7 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      * the data model occurs.
      *
      * @param l
-     *          the <code>ListDataListener</code> to be removed
+     *        the <code>ListDataListener</code> to be removed
      */
     public void removeListDataListener(ListDataListener l) {
         listenerList.remove(ListDataListener.class, l);
@@ -57,10 +55,8 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      *
      * @return all of this model's <code>ListDataListener</code>s, or an empty
      *         array if no list data listeners are currently registered
-     *
      * @see #addListDataListener
      * @see #removeListDataListener
-     *
      * @since 1.4
      */
     public ListDataListener[] getListDataListeners() {
@@ -75,11 +71,11 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      * to index1.
      *
      * @param source
-     *               the <code>ListModel</code> that changed, typically "this"
+     *        the <code>ListModel</code> that changed, typically "this"
      * @param index0
-     *               one end of the new interval
+     *        one end of the new interval
      * @param index1
-     *               the other end of the new interval
+     *        the other end of the new interval
      * @see EventListenerList
      * @see DefaultListModel
      */
@@ -90,8 +86,7 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == ListDataListener.class) {
                 if (e == null) {
-                    e = new ListDataEvent(source,
-                            ListDataEvent.CONTENTS_CHANGED, index0, index1);
+                    e = new ListDataEvent(source, ListDataEvent.CONTENTS_CHANGED, index0, index1);
                 }
                 ((ListDataListener) listeners[i + 1]).contentsChanged(e);
             }
@@ -106,11 +101,11 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      * index1.
      *
      * @param source
-     *               the <code>ListModel</code> that changed, typically "this"
+     *        the <code>ListModel</code> that changed, typically "this"
      * @param index0
-     *               one end of the new interval
+     *        one end of the new interval
      * @param index1
-     *               the other end of the new interval
+     *        the other end of the new interval
      * @see EventListenerList
      * @see DefaultListModel
      */
@@ -121,8 +116,7 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == ListDataListener.class) {
                 if (e == null) {
-                    e = new ListDataEvent(source, ListDataEvent.INTERVAL_ADDED,
-                            index0, index1);
+                    e = new ListDataEvent(source, ListDataEvent.INTERVAL_ADDED, index0, index1);
                 }
                 ((ListDataListener) listeners[i + 1]).intervalAdded(e);
             }
@@ -137,13 +131,13 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      * less than or equal to <code>index1</code>.
      *
      * @param source
-     *               the <code>ListModel</code> that changed, typically "this"
+     *        the <code>ListModel</code> that changed, typically "this"
      * @param index0
-     *               one end of the removed interval, including
-     *               <code>index0</code>
+     *        one end of the removed interval, including
+     *        <code>index0</code>
      * @param index1
-     *               the other end of the removed interval, including
-     *               <code>index1</code>
+     *        the other end of the removed interval, including
+     *        <code>index1</code>
      * @see EventListenerList
      * @see DefaultListModel
      */
@@ -154,8 +148,7 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == ListDataListener.class) {
                 if (e == null) {
-                    e = new ListDataEvent(source,
-                            ListDataEvent.INTERVAL_REMOVED, index0, index1);
+                    e = new ListDataEvent(source, ListDataEvent.INTERVAL_REMOVED, index0, index1);
                 }
                 ((ListDataListener) listeners[i + 1]).intervalRemoved(e);
             }
@@ -174,28 +167,25 @@ public abstract class AbstractListModel<E> implements ListModel<E>,
      * with the following code:
      *
      * <pre>
-     * ListDataListener[] ldls = (ListDataListener[]) (m.getListeners(
-     *         ListDataListener.class));
+     * ListDataListener[] ldls = (ListDataListener[]) (m.getListeners(ListDataListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this model, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getListDataListeners
-     *
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {

@@ -26,7 +26,6 @@ import sun.security.x509.X509CRLImpl;
  * Abstract class for an X.509 Certificate Revocation List (CRL). A CRL is a
  * time-stamped list identifying revoked certificates. It is signed by a
  * Certificate Authority (CA) and made freely available in a public repository.
- *
  * <p>
  * Each revoked certificate is identified in a CRL by its certificate serial
  * number. When a certificate-using system uses a certificate (e.g., for
@@ -86,8 +85,6 @@ import sun.security.x509.X509CRLImpl;
  * </pre>
  *
  * @author Hemma Prafullchandra
- *
- *
  * @see CRL
  * @see CertificateFactory
  * @see X509Extension
@@ -110,8 +107,7 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * encoded form is retrieved and compared with the encoded form of this CRL.
      *
      * @param other
-     *              the object to test for equality with this CRL.
-     *
+     *        the object to test for equality with this CRL.
      * @return true iff the encoded forms of the two CRLs match, false
      *         otherwise.
      */
@@ -155,7 +151,7 @@ public abstract class X509CRL extends CRL implements X509Extension {
      *
      * @return the encoded form of this certificate
      * @exception CRLException
-     *                         if an encoding error occurs.
+     *            if an encoding error occurs.
      */
     public abstract byte[] getEncoded() throws CRLException;
 
@@ -164,22 +160,20 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * to the given public key.
      *
      * @param key
-     *            the PublicKey used to carry out the verification.
-     *
+     *        the PublicKey used to carry out the verification.
      * @exception NoSuchAlgorithmException
-     *                                     on unsupported signature algorithms.
+     *            on unsupported signature algorithms.
      * @exception InvalidKeyException
-     *                                     on incorrect key.
+     *            on incorrect key.
      * @exception NoSuchProviderException
-     *                                     if there's no default provider.
+     *            if there's no default provider.
      * @exception SignatureException
-     *                                     on signature errors.
+     *            on signature errors.
      * @exception CRLException
-     *                                     on encoding errors.
+     *            on encoding errors.
      */
-    public abstract void verify(PublicKey key) throws CRLException,
-            NoSuchAlgorithmException, InvalidKeyException,
-            NoSuchProviderException, SignatureException;
+    public abstract void verify(PublicKey key) throws CRLException, NoSuchAlgorithmException,
+            InvalidKeyException, NoSuchProviderException, SignatureException;
 
     /**
      * Verifies that this CRL was signed using the private key that corresponds
@@ -187,53 +181,49 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * engine supplied by the given provider.
      *
      * @param key
-     *                    the PublicKey used to carry out the verification.
+     *        the PublicKey used to carry out the verification.
      * @param sigProvider
-     *                    the name of the signature provider.
-     *
+     *        the name of the signature provider.
      * @exception NoSuchAlgorithmException
-     *                                     on unsupported signature algorithms.
+     *            on unsupported signature algorithms.
      * @exception InvalidKeyException
-     *                                     on incorrect key.
+     *            on incorrect key.
      * @exception NoSuchProviderException
-     *                                     on incorrect provider.
+     *            on incorrect provider.
      * @exception SignatureException
-     *                                     on signature errors.
+     *            on signature errors.
      * @exception CRLException
-     *                                     on encoding errors.
+     *            on encoding errors.
      */
-    public abstract void verify(PublicKey key, String sigProvider)
-            throws CRLException, NoSuchAlgorithmException, InvalidKeyException,
-            NoSuchProviderException, SignatureException;
+    public abstract void verify(PublicKey key, String sigProvider) throws CRLException,
+            NoSuchAlgorithmException, InvalidKeyException, NoSuchProviderException, SignatureException;
 
     /**
      * Verifies that this CRL was signed using the private key that corresponds
      * to the given public key. This method uses the signature verification
      * engine supplied by the given provider. Note that the specified Provider
      * object does not have to be registered in the provider list.
-     *
      * This method was added to version 1.8 of the Java Platform Standard
      * Edition. In order to maintain backwards compatibility with existing
      * service providers, this method is not {@code abstract} and it provides a
      * default implementation.
      *
      * @param key
-     *                    the PublicKey used to carry out the verification.
+     *        the PublicKey used to carry out the verification.
      * @param sigProvider
-     *                    the signature provider.
-     *
+     *        the signature provider.
      * @exception NoSuchAlgorithmException
-     *                                     on unsupported signature algorithms.
+     *            on unsupported signature algorithms.
      * @exception InvalidKeyException
-     *                                     on incorrect key.
+     *            on incorrect key.
      * @exception SignatureException
-     *                                     on signature errors.
+     *            on signature errors.
      * @exception CRLException
-     *                                     on encoding errors.
+     *            on encoding errors.
      * @since 1.8
      */
-    public void verify(PublicKey key, Provider sigProvider) throws CRLException,
-            NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+    public void verify(PublicKey key, Provider sigProvider) throws CRLException, NoSuchAlgorithmException,
+            InvalidKeyException, SignatureException {
         X509CRLImpl.verify(this, key, sigProvider);
     }
 
@@ -259,11 +249,9 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * {@linkplain #getIssuerX500Principal()}. This method returns the
      * {@code issuer} as an implementation specific Principal object, which
      * should not be relied upon by portable code.
-     *
      * <p>
      * Gets the {@code issuer} (issuer distinguished name) value from the CRL.
      * The issuer name identifies the entity that signed (and issued) the CRL.
-     *
      * <p>
      * The issuer name field contains an X.500 distinguished name (DN). The
      * ASN.1 definition for this is:
@@ -337,9 +325,9 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * Gets the CRL entry, if any, with the given certificate serialNumber.
      *
      * @param serialNumber
-     *                     the serial number of the certificate for which a CRL
-     *                     entry is
-     *                     to be looked up
+     *        the serial number of the certificate for which a CRL
+     *        entry is
+     *        to be looked up
      * @return the entry with the given serial number, or null if no such entry
      *         exists in this CRL.
      * @see X509CRLEntry
@@ -348,7 +336,6 @@ public abstract class X509CRL extends CRL implements X509Extension {
 
     /**
      * Get the CRL entry, if any, for the given certificate.
-     *
      * <p>
      * This method can be used to lookup CRL entries in indirect CRLs, that
      * means CRLs that contain entries from issuers other than the CRL issuer.
@@ -357,13 +344,12 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * should override this method.
      *
      * @param certificate
-     *                    the certificate for which a CRL entry is to be looked
-     *                    up
+     *        the certificate for which a CRL entry is to be looked
+     *        up
      * @return the entry for the given certificate, or null if no such entry
      *         exists in this CRL.
      * @exception NullPointerException
-     *                                 if certificate is null
-     *
+     *            if certificate is null
      * @since 1.5
      */
     public X509CRLEntry getRevokedCertificate(X509Certificate certificate) {
@@ -390,7 +376,7 @@ public abstract class X509CRL extends CRL implements X509Extension {
      *
      * @return the DER-encoded CRL information.
      * @exception CRLException
-     *                         if an encoding error occurs.
+     *            if an encoding error occurs.
      */
     public abstract byte[] getTBSCertList() throws CRLException;
 
@@ -420,7 +406,6 @@ public abstract class X509CRL extends CRL implements X509Extension {
      *                             -- registered for use with the
      *                             -- algorithm object identifier value
      * </pre>
-     *
      * <p>
      * The algorithm name is determined from the {@code algorithm} OID string.
      *
@@ -436,7 +421,6 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * <a href="http://www.ietf.org/rfc/rfc3279.txt">RFC 3279: Algorithms and
      * Identifiers for the Internet X.509 Public Key Infrastructure Certificate
      * and CRL Profile</a>.
-     *
      * <p>
      * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
      * definitions.
@@ -453,7 +437,6 @@ public abstract class X509CRL extends CRL implements X509Extension {
      * {@link java.security.AlgorithmParameters AlgorithmParameters} and
      * instantiate with the name returned by {@link #getSigAlgName()
      * getSigAlgName}.
-     *
      * <p>
      * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
      * definitions.

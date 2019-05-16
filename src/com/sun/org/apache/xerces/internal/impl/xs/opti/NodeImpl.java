@@ -19,9 +19,7 @@ package com.sun.org.apache.xerces.internal.impl.xs.opti;
 
 /**
  * @xerces.internal
- *
  * @author Rahul Srivastava, Sun Microsystems Inc.
- *
  */
 public class NodeImpl extends DefaultNode {
 
@@ -34,8 +32,7 @@ public class NodeImpl extends DefaultNode {
 
     public NodeImpl() {}
 
-    public NodeImpl(String prefix, String localpart, String rawname, String uri,
-            short nodeType) {
+    public NodeImpl(String prefix, String localpart, String rawname, String uri, short nodeType) {
         this.prefix = prefix;
         this.localpart = localpart;
         this.rawname = rawname;

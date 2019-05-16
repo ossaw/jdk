@@ -22,8 +22,6 @@ import java.net.InetAddress;
  * {@link com.sun.jmx.snmp.SnmpPduBulk SnmpPduBulk}). <BR>
  * The <CODE>SnmpPduPacket</CODE> class defines the attributes common to every
  * form of SNMP packets.
- *
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -31,7 +29,6 @@ import java.net.InetAddress;
  * 
  * @see SnmpMessage
  * @see SnmpPduFactory
- *
  */
 
 public abstract class SnmpPduPacket extends SnmpPdu implements Serializable {

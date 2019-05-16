@@ -89,16 +89,14 @@ public class INSURLOperationImpl implements Operation {
         if ((str.length() & 1) == 1)
             throw wrapper.badStringifiedIorLen();
 
-        byte[] buf = new byte[(str.length() - ORBConstants.STRINGIFY_PREFIX
-                .length()) / NIBBLES_PER_BYTE];
+        byte[] buf = new byte[(str.length() - ORBConstants.STRINGIFY_PREFIX.length()) / NIBBLES_PER_BYTE];
         for (int i = ORBConstants.STRINGIFY_PREFIX.length(), j = 0; i < str
                 .length(); i += NIBBLES_PER_BYTE, j++) {
-            buf[j] = (byte) ((ORBUtility.hexOf(str.charAt(i)) << UN_SHIFT)
-                    & 0xF0);
+            buf[j] = (byte) ((ORBUtility.hexOf(str.charAt(i)) << UN_SHIFT) & 0xF0);
             buf[j] |= (byte) (ORBUtility.hexOf(str.charAt(i + 1)) & 0x0F);
         }
-        EncapsInputStream s = EncapsInputStreamFactory.newEncapsInputStream(orb,
-                buf, buf.length, orb.getORBData().getGIOPVersion());
+        EncapsInputStream s = EncapsInputStreamFactory.newEncapsInputStream(orb, buf, buf.length, orb
+                .getORBData().getGIOPVersion());
         s.consumeEndian();
         return s.read_Object();
     }
@@ -135,13 +133,11 @@ public class INSURLOperationImpl implements Operation {
      *
      * @return the CORBA.Object if resolution is successful
      */
-    private org.omg.CORBA.Object resolveCorbaloc(
-            CorbalocURL theCorbaLocObject) {
+    private org.omg.CORBA.Object resolveCorbaloc(CorbalocURL theCorbaLocObject) {
         org.omg.CORBA.Object result = null;
         // If RIR flag is true use the Bootstrap protocol
         if (theCorbaLocObject.getRIRFlag()) {
-            result = bootstrapResolver.resolve(theCorbaLocObject
-                    .getKeyString());
+            result = bootstrapResolver.resolve(theCorbaLocObject.getKeyString());
         } else {
             result = getIORUsingCorbaloc(theCorbaLocObject);
         }
@@ -165,14 +161,12 @@ public class INSURLOperationImpl implements Operation {
                 theNamingContext = getDefaultRootNamingContext();
             } else {
                 // Case 2 of corbaname: ::hostname#
-                org.omg.CORBA.Object corbalocResult = getIORUsingCorbaloc(
-                        theCorbaName);
+                org.omg.CORBA.Object corbalocResult = getIORUsingCorbaloc(theCorbaName);
                 if (corbalocResult == null) {
                     return null;
                 }
 
-                theNamingContext = NamingContextExtHelper.narrow(
-                        corbalocResult);
+                theNamingContext = NamingContextExtHelper.narrow(corbalocResult);
             }
 
             String StringifiedName = theCorbaName.getStringifiedName();
@@ -207,29 +201,24 @@ public class INSURLOperationImpl implements Operation {
             return null;
         }
 
-        ObjectKey key = orb.getObjectKeyFactory().create(theKeyString
-                .getBytes());
+        ObjectKey key = orb.getObjectKeyFactory().create(theKeyString.getBytes());
         IORTemplate iortemp = IORFactories.makeIORTemplate(key.getTemplate());
         java.util.Iterator iterator = theEndpointInfo.iterator();
         while (iterator.hasNext()) {
             IIOPEndpointInfo element = (IIOPEndpointInfo) iterator.next();
-            IIOPAddress addr = IIOPFactories.makeIIOPAddress(orb, element
-                    .getHost(), element.getPort());
-            GIOPVersion giopVersion = GIOPVersion.getInstance((byte) element
-                    .getMajor(), (byte) element.getMinor());
+            IIOPAddress addr = IIOPFactories.makeIIOPAddress(orb, element.getHost(), element.getPort());
+            GIOPVersion giopVersion = GIOPVersion.getInstance((byte) element.getMajor(), (byte) element
+                    .getMinor());
             IIOPProfileTemplate profileTemplate = null;
             if (giopVersion.equals(GIOPVersion.V1_0)) {
-                profileTemplate = IIOPFactories.makeIIOPProfileTemplate(orb,
-                        giopVersion, addr);
+                profileTemplate = IIOPFactories.makeIIOPProfileTemplate(orb, giopVersion, addr);
                 profileList1_0.add(profileTemplate);
             } else {
                 if (profileMap.get(giopVersion) == null) {
-                    profileTemplate = IIOPFactories.makeIIOPProfileTemplate(orb,
-                            giopVersion, addr);
+                    profileTemplate = IIOPFactories.makeIIOPProfileTemplate(orb, giopVersion, addr);
                     profileMap.put(giopVersion, profileTemplate);
                 } else {
-                    profileTemplate = (IIOPProfileTemplate) profileMap.get(
-                            giopVersion);
+                    profileTemplate = (IIOPProfileTemplate) profileMap.get(giopVersion);
                     AlternateIIOPAddressComponent iiopAddressComponent = IIOPFactories
                             .makeAlternateIIOPAddressComponent(addr);
                     profileTemplate.add(iiopAddressComponent);
@@ -238,8 +227,7 @@ public class INSURLOperationImpl implements Operation {
         }
 
         GIOPVersion giopVersion = orb.getORBData().getGIOPVersion();
-        IIOPProfileTemplate pTemplate = (IIOPProfileTemplate) profileMap.get(
-                giopVersion);
+        IIOPProfileTemplate pTemplate = (IIOPProfileTemplate) profileMap.get(giopVersion);
         if (pTemplate != null) {
             iortemp.add(pTemplate); // Add profile for GIOP version used by this
                                     // ORB
@@ -263,8 +251,7 @@ public class INSURLOperationImpl implements Operation {
         // Add the profiles in the sorted order
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            IIOPProfileTemplate pt = (IIOPProfileTemplate) profileMap.get(iter
-                    .next());
+            IIOPProfileTemplate pt = (IIOPProfileTemplate) profileMap.get(iter.next());
             iortemp.add(pt);
         }
 
@@ -283,14 +270,13 @@ public class INSURLOperationImpl implements Operation {
      *
      * @return the org.omg.COSNaming.NamingContextExt if resolution is
      *         successful
-     *
      */
     private NamingContextExt getDefaultRootNamingContext() {
         synchronized (rootContextCacheLock) {
             if (rootNamingContextExt == null) {
                 try {
-                    rootNamingContextExt = NamingContextExtHelper.narrow(orb
-                            .getLocalResolver().resolve("NameService"));
+                    rootNamingContextExt = NamingContextExtHelper.narrow(orb.getLocalResolver().resolve(
+                            "NameService"));
                 } catch (Exception e) {
                     rootNamingContextExt = null;
                 }

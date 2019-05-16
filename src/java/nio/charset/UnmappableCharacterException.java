@@ -22,7 +22,7 @@ public class UnmappableCharacterException extends CharacterCodingException {
      * Constructs an {@code UnmappableCharacterException} with the given length.
      * 
      * @param inputLength
-     *                    the length of the input
+     *        the length of the input
      */
     public UnmappableCharacterException(int inputLength) {
         this.inputLength = inputLength;

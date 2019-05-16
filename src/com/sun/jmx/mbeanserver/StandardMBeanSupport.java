@@ -26,28 +26,28 @@ public class StandardMBeanSupport extends MBeanSupport<Method> {
      * </p>
      *
      * @param resource
-     *                           the underlying resource for the new MBean.
+     *        the underlying resource for the new MBean.
      * @param mbeanInterfaceType
-     *                           the class or interface to be used to determine
-     *                           the MBean's
-     *                           management interface. An interface if this is a
-     *                           classic
-     *                           Standard MBean; a class if this is a
-     *                           {@code @ManagedResource}.
-     * @param                    <T>
-     *                           a type parameter that allows the compiler to
-     *                           check that
-     *                           {@code resource} implements
-     *                           {@code mbeanInterfaceType},
-     *                           provided that {@code mbeanInterfaceType} is a
-     *                           class constant
-     *                           like {@code SomeMBean.class}.
+     *        the class or interface to be used to determine
+     *        the MBean's
+     *        management interface. An interface if this is a
+     *        classic
+     *        Standard MBean; a class if this is a
+     *        {@code @ManagedResource}.
+     * @param <T>
+     *        a type parameter that allows the compiler to
+     *        check that
+     *        {@code resource} implements
+     *        {@code mbeanInterfaceType},
+     *        provided that {@code mbeanInterfaceType} is a
+     *        class constant
+     *        like {@code SomeMBean.class}.
      * @throws IllegalArgumentException
-     *                                  if {@code resource} is null or if it
-     *                                  does not implement the
-     *                                  class {@code mbeanInterfaceType} or if
-     *                                  that class is not a
-     *                                  valid Standard MBean interface.
+     *         if {@code resource} is null or if it
+     *         does not implement the
+     *         class {@code mbeanInterfaceType} or if
+     *         that class is not a
+     *         valid Standard MBean interface.
      */
     public <T> StandardMBeanSupport(T resource, Class<T> mbeanInterfaceType)
             throws NotCompliantMBeanException {
@@ -81,9 +81,8 @@ public class StandardMBeanSupport extends MBeanSupport<Method> {
         Class<?> resourceClass = getResource().getClass();
         if (StandardMBeanIntrospector.isDefinitelyImmutableInfo(resourceClass))
             return mbi;
-        return new MBeanInfo(mbi.getClassName(), mbi.getDescription(), mbi
-                .getAttributes(), mbi.getConstructors(), mbi.getOperations(),
-                MBeanIntrospector.findNotifications(getResource()), mbi
-                        .getDescriptor());
+        return new MBeanInfo(mbi.getClassName(), mbi.getDescription(), mbi.getAttributes(), mbi
+                .getConstructors(), mbi.getOperations(), MBeanIntrospector.findNotifications(getResource()),
+                mbi.getDescriptor());
     }
 }

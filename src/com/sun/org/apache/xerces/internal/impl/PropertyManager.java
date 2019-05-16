@@ -68,8 +68,7 @@ public class PropertyManager {
         HashMap properties = propertyManager.getProperties();
         supportedProps.putAll(properties);
         fSecurityManager = (XMLSecurityManager) getProperty(SECURITY_MANAGER);
-        fSecurityPropertyMgr = (XMLSecurityPropertyManager) getProperty(
-                XML_SECURITY_PROPERTY_MANAGER);
+        fSecurityPropertyMgr = (XMLSecurityPropertyManager) getProperty(XML_SECURITY_PROPERTY_MANAGER);
     }
 
     private HashMap getProperties() {
@@ -79,16 +78,13 @@ public class PropertyManager {
     /**
      * Important point: 1. We are not exposing Xerces namespace property.
      * Application should configure namespace through Stax specific property.
-     *
      */
     private void initConfigurableReaderProperties() {
         // spec default values
         supportedProps.put(XMLInputFactory.IS_NAMESPACE_AWARE, Boolean.TRUE);
         supportedProps.put(XMLInputFactory.IS_VALIDATING, Boolean.FALSE);
-        supportedProps.put(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES,
-                Boolean.TRUE);
-        supportedProps.put(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES,
-                Boolean.TRUE);
+        supportedProps.put(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, Boolean.TRUE);
+        supportedProps.put(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.TRUE);
         supportedProps.put(XMLInputFactory.IS_COALESCING, Boolean.FALSE);
         supportedProps.put(XMLInputFactory.SUPPORT_DTD, Boolean.TRUE);
         supportedProps.put(XMLInputFactory.REPORTER, null);
@@ -99,30 +95,24 @@ public class PropertyManager {
         // zephyr (implementation) specific properties which can be set by the
         // application.
         // interning is always done
-        supportedProps.put(Constants.SAX_FEATURE_PREFIX
-                + Constants.STRING_INTERNING_FEATURE, new Boolean(true));
-        // recognizing java encoding names by default
-        supportedProps.put(Constants.XERCES_FEATURE_PREFIX
-                + Constants.ALLOW_JAVA_ENCODINGS_FEATURE, new Boolean(true));
-        // in stax mode, namespace declarations are not added as attributes
-        supportedProps.put(Constants.ADD_NAMESPACE_DECL_AS_ATTRIBUTE,
-                Boolean.FALSE);
-        supportedProps.put(Constants.READER_IN_DEFINED_STATE, new Boolean(
+        supportedProps.put(Constants.SAX_FEATURE_PREFIX + Constants.STRING_INTERNING_FEATURE, new Boolean(
                 true));
+        // recognizing java encoding names by default
+        supportedProps.put(Constants.XERCES_FEATURE_PREFIX + Constants.ALLOW_JAVA_ENCODINGS_FEATURE,
+                new Boolean(true));
+        // in stax mode, namespace declarations are not added as attributes
+        supportedProps.put(Constants.ADD_NAMESPACE_DECL_AS_ATTRIBUTE, Boolean.FALSE);
+        supportedProps.put(Constants.READER_IN_DEFINED_STATE, new Boolean(true));
         supportedProps.put(Constants.REUSE_INSTANCE, new Boolean(true));
-        supportedProps.put(Constants.ZEPHYR_PROPERTY_PREFIX
-                + Constants.STAX_REPORT_CDATA_EVENT, new Boolean(false));
-        supportedProps.put(Constants.ZEPHYR_PROPERTY_PREFIX
-                + Constants.IGNORE_EXTERNAL_DTD, Boolean.FALSE);
-        supportedProps.put(Constants.XERCES_FEATURE_PREFIX
-                + Constants.WARN_ON_DUPLICATE_ATTDEF_FEATURE, new Boolean(
-                        false));
-        supportedProps.put(Constants.XERCES_FEATURE_PREFIX
-                + Constants.WARN_ON_DUPLICATE_ENTITYDEF_FEATURE, new Boolean(
-                        false));
-        supportedProps.put(Constants.XERCES_FEATURE_PREFIX
-                + Constants.WARN_ON_UNDECLARED_ELEMDEF_FEATURE, new Boolean(
-                        false));
+        supportedProps.put(Constants.ZEPHYR_PROPERTY_PREFIX + Constants.STAX_REPORT_CDATA_EVENT, new Boolean(
+                false));
+        supportedProps.put(Constants.ZEPHYR_PROPERTY_PREFIX + Constants.IGNORE_EXTERNAL_DTD, Boolean.FALSE);
+        supportedProps.put(Constants.XERCES_FEATURE_PREFIX + Constants.WARN_ON_DUPLICATE_ATTDEF_FEATURE,
+                new Boolean(false));
+        supportedProps.put(Constants.XERCES_FEATURE_PREFIX + Constants.WARN_ON_DUPLICATE_ENTITYDEF_FEATURE,
+                new Boolean(false));
+        supportedProps.put(Constants.XERCES_FEATURE_PREFIX + Constants.WARN_ON_UNDECLARED_ELEMDEF_FEATURE,
+                new Boolean(false));
 
         fSecurityManager = new XMLSecurityManager(true);
         supportedProps.put(SECURITY_MANAGER, fSecurityManager);
@@ -131,8 +121,7 @@ public class PropertyManager {
     }
 
     private void initWriterProps() {
-        supportedProps.put(XMLOutputFactory.IS_REPAIRING_NAMESPACES,
-                Boolean.FALSE);
+        supportedProps.put(XMLOutputFactory.IS_REPAIRING_NAMESPACES, Boolean.FALSE);
         // default value of escaping characters is 'true'
         supportedProps.put(Constants.ESCAPE_CHARACTERS, Boolean.TRUE);
         supportedProps.put(Constants.REUSE_INSTANCE, new Boolean(true));
@@ -142,10 +131,9 @@ public class PropertyManager {
      * public void reset(){ supportedProps.clear() ; }
      */
     public boolean containsProperty(String property) {
-        return supportedProps.containsKey(property) || (fSecurityManager != null
-                && fSecurityManager.getIndex(property) > -1)
-                || (fSecurityPropertyMgr != null && fSecurityPropertyMgr
-                        .getIndex(property) > -1);
+        return supportedProps.containsKey(property) || (fSecurityManager != null && fSecurityManager.getIndex(
+                property) > -1) || (fSecurityPropertyMgr != null && fSecurityPropertyMgr.getIndex(
+                        property) > -1);
     }
 
     public Object getProperty(String property) {
@@ -156,27 +144,20 @@ public class PropertyManager {
         String equivalentProperty = null;
         if (property == XMLInputFactory.IS_NAMESPACE_AWARE || property.equals(
                 XMLInputFactory.IS_NAMESPACE_AWARE)) {
-            equivalentProperty = Constants.XERCES_FEATURE_PREFIX
-                    + Constants.NAMESPACES_FEATURE;
+            equivalentProperty = Constants.XERCES_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
         } else if (property == XMLInputFactory.IS_VALIDATING || property.equals(
                 XMLInputFactory.IS_VALIDATING)) {
-            if ((value instanceof Boolean) && ((Boolean) value)
-                    .booleanValue()) {
-                throw new java.lang.IllegalArgumentException(
-                        "true value of isValidating not supported");
+            if ((value instanceof Boolean) && ((Boolean) value).booleanValue()) {
+                throw new java.lang.IllegalArgumentException("true value of isValidating not supported");
             }
-        } else if (property == STRING_INTERNING || property.equals(
-                STRING_INTERNING)) {
-            if ((value instanceof Boolean) && !((Boolean) value)
-                    .booleanValue()) {
-                throw new java.lang.IllegalArgumentException("false value of "
-                        + STRING_INTERNING + "feature is not supported");
+        } else if (property == STRING_INTERNING || property.equals(STRING_INTERNING)) {
+            if ((value instanceof Boolean) && !((Boolean) value).booleanValue()) {
+                throw new java.lang.IllegalArgumentException("false value of " + STRING_INTERNING
+                        + "feature is not supported");
             }
-        } else if (property == XMLInputFactory.RESOLVER || property.equals(
-                XMLInputFactory.RESOLVER)) {
+        } else if (property == XMLInputFactory.RESOLVER || property.equals(XMLInputFactory.RESOLVER)) {
             // add internal stax property
-            supportedProps.put(Constants.XERCES_PROPERTY_PREFIX
-                    + Constants.STAX_ENTITY_RESOLVER_PROPERTY,
+            supportedProps.put(Constants.XERCES_PROPERTY_PREFIX + Constants.STAX_ENTITY_RESOLVER_PROPERTY,
                     new StaxEntityResolverWrapper((XMLResolver) value));
         }
 
@@ -186,8 +167,7 @@ public class PropertyManager {
          * XMLSecurityManager
          */
         if (property.equals(Constants.SECURITY_MANAGER)) {
-            fSecurityManager = XMLSecurityManager.convert(value,
-                    fSecurityManager);
+            fSecurityManager = XMLSecurityManager.convert(value, fSecurityManager);
             supportedProps.put(Constants.SECURITY_MANAGER, fSecurityManager);
             return;
         }
@@ -197,8 +177,7 @@ public class PropertyManager {
             } else {
                 fSecurityPropertyMgr = (XMLSecurityPropertyManager) value;
             }
-            supportedProps.put(Constants.XML_SECURITY_PROPERTY_MANAGER,
-                    fSecurityPropertyMgr);
+            supportedProps.put(Constants.XML_SECURITY_PROPERTY_MANAGER, fSecurityPropertyMgr);
             return;
         }
 
@@ -206,9 +185,8 @@ public class PropertyManager {
         if (fSecurityManager == null || !fSecurityManager.setLimit(property,
                 XMLSecurityManager.State.APIPROPERTY, value)) {
             // check if the property is managed by security property manager
-            if (fSecurityPropertyMgr == null || !fSecurityPropertyMgr.setValue(
-                    property, XMLSecurityPropertyManager.State.APIPROPERTY,
-                    value)) {
+            if (fSecurityPropertyMgr == null || !fSecurityPropertyMgr.setValue(property,
+                    XMLSecurityPropertyManager.State.APIPROPERTY, value)) {
                 // fall back to the existing property manager
                 supportedProps.put(property, value);
             }

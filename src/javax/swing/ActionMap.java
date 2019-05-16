@@ -31,7 +31,6 @@ import java.util.Set;
  * some of the methods will cause a StackOverflowError to be thrown.
  *
  * @see InputMap
- *
  * @author Scott Violet
  * @since 1.3
  */
@@ -51,7 +50,7 @@ public class ActionMap implements Serializable {
      * Sets this <code>ActionMap</code>'s parent.
      *
      * @param map
-     *            the <code>ActionMap</code> that is the parent of this one
+     *        the <code>ActionMap</code> that is the parent of this one
      */
     public void setParent(ActionMap map) {
         this.parent = map;
@@ -94,8 +93,7 @@ public class ActionMap implements Serializable {
      * <code>ActionMap</code> if the binding is not locally defined.
      */
     public Action get(Object key) {
-        Action value = (arrayTable == null) ? null
-                : (Action) arrayTable.get(key);
+        Action value = (arrayTable == null) ? null : (Action) arrayTable.get(key);
 
         if (value == null) {
             ActionMap parent = getParent();
@@ -197,8 +195,7 @@ public class ActionMap implements Serializable {
         ArrayTable.writeArrayTable(s, arrayTable);
     }
 
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
         for (int counter = s.readInt() - 1; counter >= 0; counter--) {
             put(s.readObject(), (Action) s.readObject());

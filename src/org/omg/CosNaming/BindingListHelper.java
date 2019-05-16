@@ -14,8 +14,7 @@ package org.omg.CosNaming;
 abstract public class BindingListHelper {
     private static String _id = "IDL:omg.org/CosNaming/BindingList:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CosNaming.Binding[] that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CosNaming.Binding[] that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -31,11 +30,9 @@ abstract public class BindingListHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CosNaming.BindingHelper.type();
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CosNaming.BindingListHelper.id(), "BindingList",
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CosNaming.BindingListHelper.id(),
+                    "BindingList", __typeCode);
         }
         return __typeCode;
     }
@@ -44,8 +41,7 @@ abstract public class BindingListHelper {
         return _id;
     }
 
-    public static org.omg.CosNaming.Binding[] read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CosNaming.Binding[] read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.CosNaming.Binding value[] = null;
         int _len0 = istream.read_long();
         value = new org.omg.CosNaming.Binding[_len0];
@@ -54,8 +50,7 @@ abstract public class BindingListHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CosNaming.Binding[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CosNaming.Binding[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
             org.omg.CosNaming.BindingHelper.write(ostream, value[_i0]);

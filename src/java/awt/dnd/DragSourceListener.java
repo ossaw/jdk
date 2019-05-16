@@ -37,7 +37,7 @@ public interface DragSourceListener extends EventListener {
      * </UL>
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     void dragEnter(DragSourceDragEvent dsde);
 
@@ -53,7 +53,7 @@ public interface DragSourceListener extends EventListener {
      * </UL>
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     void dragOver(DragSourceDragEvent dsde);
 
@@ -64,7 +64,7 @@ public interface DragSourceListener extends EventListener {
      * keyboard modifiers that the user is interacting with.
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     void dropActionChanged(DragSourceDragEvent dsde);
 
@@ -87,7 +87,7 @@ public interface DragSourceListener extends EventListener {
      * </UL>
      *
      * @param dse
-     *            the <code>DragSourceEvent</code>
+     *        the <code>DragSourceEvent</code>
      */
     void dragExit(DragSourceEvent dse);
 
@@ -101,7 +101,7 @@ public interface DragSourceListener extends EventListener {
      * resources become invalid.
      *
      * @param dsde
-     *             the <code>DragSourceDropEvent</code>
+     *        the <code>DragSourceDropEvent</code>
      */
     void dragDropEnd(DragSourceDropEvent dsde);
 }

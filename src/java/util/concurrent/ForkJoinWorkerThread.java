@@ -48,9 +48,9 @@ public class ForkJoinWorkerThread extends Thread {
      * Creates a ForkJoinWorkerThread operating in the given pool.
      *
      * @param pool
-     *             the pool this thread works in
+     *        the pool this thread works in
      * @throws NullPointerException
-     *                              if pool is null
+     *         if pool is null
      */
     protected ForkJoinWorkerThread(ForkJoinPool pool) {
         // Use a placeholder until a useful name can be set in registerWorker
@@ -62,8 +62,7 @@ public class ForkJoinWorkerThread extends Thread {
     /**
      * Version for InnocuousForkJoinWorkerThread
      */
-    ForkJoinWorkerThread(ForkJoinPool pool, ThreadGroup threadGroup,
-            AccessControlContext acc) {
+    ForkJoinWorkerThread(ForkJoinPool pool, ThreadGroup threadGroup, AccessControlContext acc) {
         super(threadGroup, null, "aForkJoinWorkerThread");
         U.putOrderedObject(this, INHERITEDACCESSCONTROLCONTEXT, acc);
         eraseThreadLocals(); // clear before registering
@@ -109,9 +108,9 @@ public class ForkJoinWorkerThread extends Thread {
      * the end of the overridden method.
      *
      * @param exception
-     *                  the exception causing this thread to abort due to an
-     *                  unrecoverable error, or {@code null} if completed
-     *                  normally
+     *        the exception causing this thread to abort due to an
+     *        unrecoverable error, or {@code null} if completed
+     *        normally
      */
     protected void onTermination(Throwable exception) {}
 
@@ -163,12 +162,10 @@ public class ForkJoinWorkerThread extends Thread {
         try {
             U = sun.misc.Unsafe.getUnsafe();
             Class<?> tk = Thread.class;
-            THREADLOCALS = U.objectFieldOffset(tk.getDeclaredField(
-                    "threadLocals"));
-            INHERITABLETHREADLOCALS = U.objectFieldOffset(tk.getDeclaredField(
-                    "inheritableThreadLocals"));
-            INHERITEDACCESSCONTROLCONTEXT = U.objectFieldOffset(tk
-                    .getDeclaredField("inheritedAccessControlContext"));
+            THREADLOCALS = U.objectFieldOffset(tk.getDeclaredField("threadLocals"));
+            INHERITABLETHREADLOCALS = U.objectFieldOffset(tk.getDeclaredField("inheritableThreadLocals"));
+            INHERITEDACCESSCONTROLCONTEXT = U.objectFieldOffset(tk.getDeclaredField(
+                    "inheritedAccessControlContext"));
 
         } catch (Exception e) {
             throw new Error(e);
@@ -180,8 +177,7 @@ public class ForkJoinWorkerThread extends Thread {
      * user-defined ThreadGroup, and erases all ThreadLocals after running each
      * top-level task.
      */
-    static final class InnocuousForkJoinWorkerThread extends
-            ForkJoinWorkerThread {
+    static final class InnocuousForkJoinWorkerThread extends ForkJoinWorkerThread {
         /** The ThreadGroup for all InnocuousForkJoinWorkerThreads */
         private static final ThreadGroup innocuousThreadGroup = createThreadGroup();
 
@@ -223,13 +219,11 @@ public class ForkJoinWorkerThread extends Thread {
                 Class<?> gk = ThreadGroup.class;
                 long tg = u.objectFieldOffset(tk.getDeclaredField("group"));
                 long gp = u.objectFieldOffset(gk.getDeclaredField("parent"));
-                ThreadGroup group = (ThreadGroup) u.getObject(Thread
-                        .currentThread(), tg);
+                ThreadGroup group = (ThreadGroup) u.getObject(Thread.currentThread(), tg);
                 while (group != null) {
                     ThreadGroup parent = (ThreadGroup) u.getObject(group, gp);
                     if (parent == null)
-                        return new ThreadGroup(group,
-                                "InnocuousForkJoinWorkerThreadGroup");
+                        return new ThreadGroup(group, "InnocuousForkJoinWorkerThreadGroup");
                     group = parent;
                 }
             } catch (Exception e) {

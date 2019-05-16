@@ -53,7 +53,6 @@ import java.io.IOException;
  *
  * @beaninfo attribute: isContainer false description: A component which can
  *           display it's state as selected or deselected.
- *
  * @see ButtonGroup
  * @see JCheckBox
  * @author Jeff Dinkins
@@ -78,7 +77,7 @@ public class JRadioButton extends JToggleButton implements Accessible {
      * no text.
      *
      * @param icon
-     *             the image that the button should display
+     *        the image that the button should display
      */
     public JRadioButton(Icon icon) {
         this(null, icon, false);
@@ -100,10 +99,10 @@ public class JRadioButton extends JToggleButton implements Accessible {
      * no text.
      *
      * @param icon
-     *                 the image that the button should display
+     *        the image that the button should display
      * @param selected
-     *                 if true, the button is initially selected; otherwise, the
-     *                 button is initially unselected
+     *        if true, the button is initially selected; otherwise, the
+     *        button is initially unselected
      */
     public JRadioButton(Icon icon, boolean selected) {
         this(null, icon, selected);
@@ -113,7 +112,7 @@ public class JRadioButton extends JToggleButton implements Accessible {
      * Creates an unselected radio button with the specified text.
      *
      * @param text
-     *             the string displayed on the radio button
+     *        the string displayed on the radio button
      */
     public JRadioButton(String text) {
         this(text, null, false);
@@ -123,10 +122,10 @@ public class JRadioButton extends JToggleButton implements Accessible {
      * Creates a radio button with the specified text and selection state.
      *
      * @param text
-     *                 the string displayed on the radio button
+     *        the string displayed on the radio button
      * @param selected
-     *                 if true, the button is initially selected; otherwise, the
-     *                 button is initially unselected
+     *        if true, the button is initially selected; otherwise, the
+     *        button is initially unselected
      */
     public JRadioButton(String text, boolean selected) {
         this(text, null, selected);
@@ -137,9 +136,9 @@ public class JRadioButton extends JToggleButton implements Accessible {
      * initially unselected.
      *
      * @param text
-     *             the string displayed on the radio button
+     *        the string displayed on the radio button
      * @param icon
-     *             the image that the button should display
+     *        the image that the button should display
      */
     public JRadioButton(String text, Icon icon) {
         this(text, icon, false);
@@ -150,9 +149,9 @@ public class JRadioButton extends JToggleButton implements Accessible {
      * state.
      *
      * @param text
-     *             the string displayed on the radio button
+     *        the string displayed on the radio button
      * @param icon
-     *             the image that the button should display
+     *        the image that the button should display
      */
     public JRadioButton(String text, Icon icon, boolean selected) {
         super(text, icon, selected);

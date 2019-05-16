@@ -19,12 +19,10 @@ import javax.net.ssl.SSLSocketFactory;
  * An <code>SslRMIClientSocketFactory</code> instance is used by the RMI runtime
  * in order to obtain client sockets for RMI calls via SSL.
  * </p>
- *
  * <p>
  * This class implements <code>RMIClientSocketFactory</code> over the Secure
  * Sockets Layer (SSL) or Transport Layer Security (TLS) protocols.
  * </p>
- *
  * <p>
  * This class creates SSL sockets using the default
  * <code>SSLSocketFactory</code> (see {@link SSLSocketFactory#getDefault}). All
@@ -35,7 +33,6 @@ import javax.net.ssl.SSLSocketFactory;
  * {@link #equals(Object) equals} and {@link #hashCode() hashCode} may also need
  * to be overridden.
  * </p>
- *
  * <p>
  * If the system property <code>javax.rmi.ssl.client.enabledCipherSuites</code>
  * is specified, the {@link #createSocket(String,int)} method will call
@@ -43,7 +40,6 @@ import javax.net.ssl.SSLSocketFactory;
  * socket. The value of this system property is a string that is a
  * comma-separated list of SSL/TLS cipher suites to enable.
  * </p>
- *
  * <p>
  * If the system property <code>javax.rmi.ssl.client.enabledProtocols</code> is
  * specified, the {@link #createSocket(String,int)} method will call
@@ -56,8 +52,7 @@ import javax.net.ssl.SSLSocketFactory;
  * @see javax.rmi.ssl.SslRMIServerSocketFactory
  * @since 1.5
  */
-public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
-        Serializable {
+public class SslRMIClientSocketFactory implements RMIClientSocketFactory, Serializable {
 
     /**
      * <p>
@@ -84,7 +79,6 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
      * <p>
      * Creates an SSL socket.
      * </p>
-     *
      * <p>
      * If the system property
      * <code>javax.rmi.ssl.client.enabledCipherSuites</code> is specified, this
@@ -92,7 +86,6 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
      * before returning the socket. The value of this system property is a
      * string that is a comma-separated list of SSL/TLS cipher suites to enable.
      * </p>
-     *
      * <p>
      * If the system property <code>javax.rmi.ssl.client.enabledProtocols</code>
      * is specified, this method will call
@@ -107,12 +100,10 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
         final SocketFactory sslSocketFactory = getDefaultClientSocketFactory();
         // Create the SSLSocket
         //
-        final SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(
-                host, port);
+        final SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(host, port);
         // Set the SSLSocket Enabled Cipher Suites
         //
-        final String enabledCipherSuites = System.getProperty(
-                "javax.rmi.ssl.client.enabledCipherSuites");
+        final String enabledCipherSuites = System.getProperty("javax.rmi.ssl.client.enabledCipherSuites");
         if (enabledCipherSuites != null) {
             StringTokenizer st = new StringTokenizer(enabledCipherSuites, ",");
             int tokens = st.countTokens();
@@ -123,14 +114,12 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
             try {
                 sslSocket.setEnabledCipherSuites(enabledCipherSuitesList);
             } catch (IllegalArgumentException e) {
-                throw (IOException) new IOException(e.getMessage()).initCause(
-                        e);
+                throw (IOException) new IOException(e.getMessage()).initCause(e);
             }
         }
         // Set the SSLSocket Enabled Protocols
         //
-        final String enabledProtocols = System.getProperty(
-                "javax.rmi.ssl.client.enabledProtocols");
+        final String enabledProtocols = System.getProperty("javax.rmi.ssl.client.enabledProtocols");
         if (enabledProtocols != null) {
             StringTokenizer st = new StringTokenizer(enabledProtocols, ",");
             int tokens = st.countTokens();
@@ -141,8 +130,7 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
             try {
                 sslSocket.setEnabledProtocols(enabledProtocolsList);
             } catch (IllegalArgumentException e) {
-                throw (IOException) new IOException(e.getMessage()).initCause(
-                        e);
+                throw (IOException) new IOException(e.getMessage()).initCause(e);
             }
         }
         // Return the preconfigured SSLSocket
@@ -154,13 +142,11 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
      * <p>
      * Indicates whether some other object is "equal to" this one.
      * </p>
-     *
      * <p>
      * Because all instances of this class are functionally equivalent (they all
      * use the default <code>SSLSocketFactory</code>), this method simply
      * returns <code>this.getClass().equals(obj.getClass())</code>.
      * </p>
-     *
      * <p>
      * A subclass should override this method (as well as {@link #hashCode()})
      * if its instances are not all functionally equivalent.

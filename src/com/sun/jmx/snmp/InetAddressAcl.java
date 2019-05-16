@@ -34,8 +34,7 @@ public interface InetAddressAcl {
      * Checks whether or not the specified host has <CODE>READ</CODE> access.
      *
      * @param address
-     *                The host address to check.
-     *
+     *        The host address to check.
      * @return <CODE>true</CODE> if the host has read permission,
      *         <CODE>false</CODE> otherwise.
      */
@@ -46,10 +45,9 @@ public interface InetAddressAcl {
      * <CODE>READ</CODE> access.
      *
      * @param address
-     *                  The host address to check.
+     *        The host address to check.
      * @param community
-     *                  The community associated with the host.
-     *
+     *        The community associated with the host.
      * @return <CODE>true</CODE> if the pair (host, community) has read
      *         permission, <CODE>false</CODE> otherwise.
      */
@@ -59,8 +57,7 @@ public interface InetAddressAcl {
      * Checks whether or not a community string is defined.
      *
      * @param community
-     *                  The community to check.
-     *
+     *        The community to check.
      * @return <CODE>true</CODE> if the community is known, <CODE>false</CODE>
      *         otherwise.
      */
@@ -70,8 +67,7 @@ public interface InetAddressAcl {
      * Checks whether or not the specified host has <CODE>WRITE</CODE> access.
      *
      * @param address
-     *                The host address to check.
-     *
+     *        The host address to check.
      * @return <CODE>true</CODE> if the host has write permission,
      *         <CODE>false</CODE> otherwise.
      */
@@ -82,10 +78,9 @@ public interface InetAddressAcl {
      * <CODE>WRITE</CODE> access.
      *
      * @param address
-     *                  The host address to check.
+     *        The host address to check.
      * @param community
-     *                  The community associated with the host.
-     *
+     *        The community associated with the host.
      * @return <CODE>true</CODE> if the pair (host, community) has write
      *         permission, <CODE>false</CODE> otherwise.
      */
@@ -103,8 +98,7 @@ public interface InetAddressAcl {
      * Returns an enumeration of trap communities for a given host.
      *
      * @param address
-     *                The address of the host.
-     *
+     *        The address of the host.
      * @return An enumeration of trap communities for a given host (enumeration
      *         of <CODE>String</CODE>).
      */
@@ -122,8 +116,7 @@ public interface InetAddressAcl {
      * Returns an enumeration of inform communities for a given host.
      *
      * @param address
-     *                The address of the host.
-     *
+     *        The address of the host.
      * @return An enumeration of inform communities for a given host
      *         (enumeration of <CODE>String</CODE>).
      */

@@ -17,7 +17,6 @@ import static java.lang.annotation.ElementType.METHOD;
 /**
  * <p>
  * Maps a JavaBean property to a map of wildcard attributes.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -28,19 +27,16 @@ import static java.lang.annotation.ElementType.METHOD;
  * <li>JavaBean property</li>
  * <li>non static, non transient field</li>
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * The usage is subject to the following constraints:
  * <ul>
  * <li>At most one field or property in a class can be annotated with
  * <tt>&#64;XmlAnyAttribute</tt>.</li>
  * <li>The type of the property or the field must <tt>java.util.Map</tt></li>
  * </ul>
- *
  * <p>
  * While processing attributes to be unmarshalled into a value class, each
  * attribute that is not statically associated with another JavaBean property,
@@ -53,5 +49,4 @@ import static java.lang.annotation.ElementType.METHOD;
  */
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
-public @interface XmlAnyAttribute {
-}
+public @interface XmlAnyAttribute {}

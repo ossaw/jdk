@@ -14,11 +14,9 @@ import javax.lang.model.element.*;
  * error messages, warnings, and other notices. Elements, annotations, and
  * annotation values can be passed to provide a location hint for the message.
  * However, such location hints may be unavailable or only approximate.
- *
  * <p>
  * Printing a message with an {@linkplain javax.tools.Diagnostic.Kind#ERROR
  * error kind} will {@linkplain RoundEnvironment#errorRaised raise an error}.
- *
  * <p>
  * Note that the messages &quot;printed&quot; by methods in this interface may
  * or may not appear as textual output to a location like {@link System#out} or
@@ -36,9 +34,9 @@ public interface Messager {
      * Prints a message of the specified kind.
      *
      * @param kind
-     *             the kind of message
+     *        the kind of message
      * @param msg
-     *             the message, or an empty string if none
+     *        the message, or an empty string if none
      */
     void printMessage(Diagnostic.Kind kind, CharSequence msg);
 
@@ -46,11 +44,11 @@ public interface Messager {
      * Prints a message of the specified kind at the location of the element.
      *
      * @param kind
-     *             the kind of message
+     *        the kind of message
      * @param msg
-     *             the message, or an empty string if none
+     *        the message, or an empty string if none
      * @param e
-     *             the element to use as a position hint
+     *        the element to use as a position hint
      */
     void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e);
 
@@ -59,32 +57,31 @@ public interface Messager {
      * mirror of the annotated element.
      *
      * @param kind
-     *             the kind of message
+     *        the kind of message
      * @param msg
-     *             the message, or an empty string if none
+     *        the message, or an empty string if none
      * @param e
-     *             the annotated element
+     *        the annotated element
      * @param a
-     *             the annotation to use as a position hint
+     *        the annotation to use as a position hint
      */
-    void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e,
-            AnnotationMirror a);
+    void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e, AnnotationMirror a);
 
     /**
      * Prints a message of the specified kind at the location of the annotation
      * value inside the annotation mirror of the annotated element.
      *
      * @param kind
-     *             the kind of message
+     *        the kind of message
      * @param msg
-     *             the message, or an empty string if none
+     *        the message, or an empty string if none
      * @param e
-     *             the annotated element
+     *        the annotated element
      * @param a
-     *             the annotation containing the annotation value
+     *        the annotation containing the annotation value
      * @param v
-     *             the annotation value to use as a position hint
+     *        the annotation value to use as a position hint
      */
-    void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e,
-            AnnotationMirror a, AnnotationValue v);
+    void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e, AnnotationMirror a,
+            AnnotationValue v);
 }

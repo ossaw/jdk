@@ -12,7 +12,6 @@ package java.util.concurrent;
 
 /**
  * A recursive result-bearing {@link ForkJoinTask}.
- *
  * <p>
  * For a classic example, here is a task computing Fibonacci numbers:
  *

@@ -22,7 +22,6 @@ import java.util.concurrent.locks.LockSupport;
  * object on return. An Exchanger may be viewed as a bidirectional form of a
  * {@link SynchronousQueue}. Exchangers may be useful in applications such as
  * genetic algorithms and pipeline designs.
- *
  * <p>
  * <b>Sample Usage:</b> Here are the highlights of a class that uses an
  * {@code Exchanger} to swap buffers between threads so that the thread filling
@@ -68,7 +67,6 @@ import java.util.concurrent.locks.LockSupport;
  *   }
  * }}
  * </pre>
- *
  * <p>
  * Memory consistency effects: For each pair of threads that successfully
  * exchange objects via an {@code Exchanger}, actions prior to the
@@ -299,11 +297,11 @@ public class Exchanger<V> {
      * Exchange function when arenas enabled. See above for explanation.
      *
      * @param item
-     *              the (non-null) item to exchange
+     *        the (non-null) item to exchange
      * @param timed
-     *              true if the wait is timed
+     *        true if the wait is timed
      * @param ns
-     *              if timed, the maximum wait time, else 0L
+     *        if timed, the maximum wait time, else 0L
      * @return the other thread's item; or null if interrupted; or TIMED_OUT if
      *         timed and timed out
      */
@@ -344,8 +342,8 @@ public class Exchanger<V> {
                                 Thread.yield(); // two yields per wait
                         } else if (U.getObjectVolatile(a, j) != p)
                             spins = SPINS; // releaser hasn't set match yet
-                        else if (!t.isInterrupted() && m == 0 && (!timed
-                                || (ns = end - System.nanoTime()) > 0L)) {
+                        else if (!t.isInterrupted() && m == 0 && (!timed || (ns = end - System
+                                .nanoTime()) > 0L)) {
                             U.putObject(t, BLOCKER, this); // emulate
                                                            // LockSupport
                             p.parked = t; // minimize window
@@ -353,11 +351,9 @@ public class Exchanger<V> {
                                 U.park(false, ns);
                             p.parked = null;
                             U.putObject(t, BLOCKER, null);
-                        } else if (U.getObjectVolatile(a, j) == p && U
-                                .compareAndSwapObject(a, j, p, null)) {
+                        } else if (U.getObjectVolatile(a, j) == p && U.compareAndSwapObject(a, j, p, null)) {
                             if (m != 0) // try to shrink
-                                U.compareAndSwapInt(this, BOUND, b, b + SEQ
-                                        - 1);
+                                U.compareAndSwapInt(this, BOUND, b, b + SEQ - 1);
                             p.item = null;
                             p.hash = h;
                             i = p.index >>>= 1; // descend
@@ -375,8 +371,8 @@ public class Exchanger<V> {
                     p.bound = b;
                     p.collides = 0;
                     i = (i != m || m == 0) ? m : m - 1;
-                } else if ((c = p.collides) < m || m == FULL || !U
-                        .compareAndSwapInt(this, BOUND, b, b + SEQ + 1)) {
+                } else if ((c = p.collides) < m || m == FULL || !U.compareAndSwapInt(this, BOUND, b, b + SEQ
+                        + 1)) {
                     p.collides = c + 1;
                     i = (i == 0) ? m : i - 1; // cyclically traverse
                 } else
@@ -390,11 +386,11 @@ public class Exchanger<V> {
      * Exchange function used until arenas enabled. See above for explanation.
      *
      * @param item
-     *              the item to exchange
+     *        the item to exchange
      * @param timed
-     *              true if the wait is timed
+     *        true if the wait is timed
      * @param ns
-     *              if timed, the maximum wait time, else 0L
+     *        if timed, the maximum wait time, else 0L
      * @return the other thread's item; or null if either the arena was enabled
      *         or the thread was interrupted before completion; or TIMED_OUT if
      *         timed and timed out
@@ -417,8 +413,7 @@ public class Exchanger<V> {
                     return v;
                 }
                 // create arena on contention, but continue until slot null
-                if (NCPU > 1 && bound == 0 && U.compareAndSwapInt(this, BOUND,
-                        0, SEQ))
+                if (NCPU > 1 && bound == 0 && U.compareAndSwapInt(this, BOUND, 0, SEQ))
                     arena = new Node[(FULL + 2) << ASHIFT];
             } else if (arena != null)
                 return null; // caller must reroute to arenaExchange
@@ -446,8 +441,7 @@ public class Exchanger<V> {
                     Thread.yield();
             } else if (slot != p)
                 spins = SPINS;
-            else if (!t.isInterrupted() && arena == null && (!timed || (ns = end
-                    - System.nanoTime()) > 0L)) {
+            else if (!t.isInterrupted() && arena == null && (!timed || (ns = end - System.nanoTime()) > 0L)) {
                 U.putObject(t, BLOCKER, this);
                 p.parked = t;
                 if (slot == p)
@@ -476,13 +470,11 @@ public class Exchanger<V> {
      * Waits for another thread to arrive at this exchange point (unless the
      * current thread is {@linkplain Thread#interrupt interrupted}), and then
      * transfers the given object to it, receiving its object in return.
-     *
      * <p>
      * If another thread is already waiting at the exchange point then it is
      * resumed for thread scheduling purposes and receives the object passed in
      * by the current thread. The current thread returns immediately, receiving
      * the object passed to the exchange by that other thread.
-     *
      * <p>
      * If no other thread is already waiting at the exchange then the current
      * thread is disabled for thread scheduling purposes and lies dormant until
@@ -503,19 +495,18 @@ public class Exchanger<V> {
      * interrupted status is cleared.
      *
      * @param x
-     *          the object to exchange
+     *        the object to exchange
      * @return the object provided by the other thread
      * @throws InterruptedException
-     *                              if the current thread was interrupted while
-     *                              waiting
+     *         if the current thread was interrupted while
+     *         waiting
      */
     @SuppressWarnings("unchecked")
     public V exchange(V x) throws InterruptedException {
         Object v;
         Object item = (x == null) ? NULL_ITEM : x; // translate null args
-        if ((arena != null || (v = slotExchange(item, false, 0L)) == null)
-                && ((Thread.interrupted() || // disambiguates null return
-                        (v = arenaExchange(item, false, 0L)) == null)))
+        if ((arena != null || (v = slotExchange(item, false, 0L)) == null) && ((Thread.interrupted() || // disambiguates null return
+                (v = arenaExchange(item, false, 0L)) == null)))
             throw new InterruptedException();
         return (v == NULL_ITEM) ? null : (V) v;
     }
@@ -525,13 +516,11 @@ public class Exchanger<V> {
      * current thread is {@linkplain Thread#interrupt interrupted} or the
      * specified waiting time elapses), and then transfers the given object to
      * it, receiving its object in return.
-     *
      * <p>
      * If another thread is already waiting at the exchange point then it is
      * resumed for thread scheduling purposes and receives the object passed in
      * by the current thread. The current thread returns immediately, receiving
      * the object passed to the exchange by that other thread.
-     *
      * <p>
      * If no other thread is already waiting at the exchange then the current
      * thread is disabled for thread scheduling purposes and lies dormant until
@@ -551,36 +540,33 @@ public class Exchanger<V> {
      * </ul>
      * then {@link InterruptedException} is thrown and the current thread's
      * interrupted status is cleared.
-     *
      * <p>
      * If the specified waiting time elapses then {@link TimeoutException} is
      * thrown. If the time is less than or equal to zero, the method will not
      * wait at all.
      *
      * @param x
-     *                the object to exchange
+     *        the object to exchange
      * @param timeout
-     *                the maximum time to wait
+     *        the maximum time to wait
      * @param unit
-     *                the time unit of the {@code timeout} argument
+     *        the time unit of the {@code timeout} argument
      * @return the object provided by the other thread
      * @throws InterruptedException
-     *                              if the current thread was interrupted while
-     *                              waiting
+     *         if the current thread was interrupted while
+     *         waiting
      * @throws TimeoutException
-     *                              if the specified waiting time elapses before
-     *                              another thread
-     *                              enters the exchange
+     *         if the specified waiting time elapses before
+     *         another thread
+     *         enters the exchange
      */
     @SuppressWarnings("unchecked")
-    public V exchange(V x, long timeout, TimeUnit unit)
-            throws InterruptedException, TimeoutException {
+    public V exchange(V x, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
         Object v;
         Object item = (x == null) ? NULL_ITEM : x;
         long ns = unit.toNanos(timeout);
-        if ((arena != null || (v = slotExchange(item, true, ns)) == null)
-                && ((Thread.interrupted() || (v = arenaExchange(item, true,
-                        ns)) == null)))
+        if ((arena != null || (v = slotExchange(item, true, ns)) == null) && ((Thread.interrupted()
+                || (v = arenaExchange(item, true, ns)) == null)))
             throw new InterruptedException();
         if (v == TIMED_OUT)
             throw new TimeoutException();

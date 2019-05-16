@@ -23,10 +23,10 @@ public interface AdapterActivatorOperations {
      * for the target POA to exist.
      * 
      * @param parent
-     *               indicates the parent POA for the POA that needs to be
-     *               created.
+     *        indicates the parent POA for the POA that needs to be
+     *        created.
      * @param name
-     *               identifies the name of the POA relative to the parent.
+     *        identifies the name of the POA relative to the parent.
      * @return returns TRUE if the POA was created or FALSE otherwise.
      */
     boolean unknown_adapter(org.omg.PortableServer.POA parent, String name);

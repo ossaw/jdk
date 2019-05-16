@@ -61,13 +61,10 @@ package com.sun.org.apache.xerces.internal.xni;
  * @see <a href=
  *      "../../../../../xerces2/com/sun/org/apache/xerces/internal/util/SymbolTable.html">
  *      com.sun.org.apache.xerces.internal.util.SymbolTable</a>
- *
  * @author Andy Clark, IBM
- *
  *         Better performance patch for the equals method by Daniel Petersson:
  *         refer to jaxp issue 61; == were used to compare strings
  * @author Joe Wang, Oracle
- *
  * @version $Id: QName.java,v 1.6 2010/03/18 19:32:31 joehw Exp $
  */
 public class QName implements Cloneable {
@@ -122,7 +119,7 @@ public class QName implements Cloneable {
      * Convenience method to set the values of the qname components.
      *
      * @param QName
-     *              The qualified name to be copied.
+     *        The qualified name to be copied.
      */
     public void setValues(QName qname) {
         prefix = qname.prefix;
@@ -135,16 +132,15 @@ public class QName implements Cloneable {
      * Convenience method to set the values of the qname components.
      *
      * @param prefix
-     *                  The qname prefix. (e.g. "a")
+     *        The qname prefix. (e.g. "a")
      * @param localpart
-     *                  The qname localpart. (e.g. "foo")
+     *        The qname localpart. (e.g. "foo")
      * @param rawname
-     *                  The qname rawname. (e.g. "a:foo")
+     *        The qname rawname. (e.g. "a:foo")
      * @param uri
-     *                  The URI binding. (e.g. "http://foo.com/mybinding")
+     *        The URI binding. (e.g. "http://foo.com/mybinding")
      */
-    public void setValues(String prefix, String localpart, String rawname,
-            String uri) {
+    public void setValues(String prefix, String localpart, String rawname, String uri) {
         this.prefix = prefix;
         this.localpart = localpart;
         this.rawname = rawname;
@@ -175,8 +171,7 @@ public class QName implements Cloneable {
     /** Returns the hashcode for this object. */
     public int hashCode() {
         if (uri != null) {
-            return uri.hashCode() + ((localpart != null) ? localpart.hashCode()
-                    : 0);
+            return uri.hashCode() + ((localpart != null) ? localpart.hashCode() : 0);
         }
         return (rawname != null) ? rawname.hashCode() : 0;
     } // hashCode():int
@@ -190,8 +185,7 @@ public class QName implements Cloneable {
         if (object != null && object instanceof QName) {
             QName qname = (QName) object;
             if (qname.uri != null) {
-                return qname.localpart.equals(localpart) && qname.uri.equals(
-                        uri);
+                return qname.localpart.equals(localpart) && qname.uri.equals(uri);
             } else if (uri == null) {
                 return rawname.equals(qname.rawname);
             }

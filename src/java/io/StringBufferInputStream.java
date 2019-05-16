@@ -46,7 +46,7 @@ public class StringBufferInputStream extends InputStream {
      * Creates a string input stream to read data from the specified string.
      *
      * @param s
-     *          the underlying input buffer.
+     *        the underlying input buffer.
      */
     public StringBufferInputStream(String s) {
         this.buffer = s;
@@ -79,11 +79,11 @@ public class StringBufferInputStream extends InputStream {
      * input stream's buffer into the byte array argument.
      *
      * @param b
-     *            the buffer into which the data is read.
+     *        the buffer into which the data is read.
      * @param off
-     *            the start offset of the data.
+     *        the start offset of the data.
      * @param len
-     *            the maximum number of bytes read.
+     *        the maximum number of bytes read.
      * @return the total number of bytes read into the buffer, or
      *         <code>-1</code> if there is no more data because the end of the
      *         stream has been reached.
@@ -91,8 +91,8 @@ public class StringBufferInputStream extends InputStream {
     public synchronized int read(byte b[], int off, int len) {
         if (b == null) {
             throw new NullPointerException();
-        } else if ((off < 0) || (off > b.length) || (len < 0) || ((off
-                + len) > b.length) || ((off + len) < 0)) {
+        } else if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) > b.length) || ((off
+                + len) < 0)) {
             throw new IndexOutOfBoundsException();
         }
         if (pos >= count) {
@@ -118,7 +118,7 @@ public class StringBufferInputStream extends InputStream {
      * might be skipped if the end of the input stream is reached.
      *
      * @param n
-     *          the number of bytes to be skipped.
+     *        the number of bytes to be skipped.
      * @return the actual number of bytes skipped.
      */
     public synchronized long skip(long n) {

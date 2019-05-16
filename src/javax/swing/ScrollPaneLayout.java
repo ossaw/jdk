@@ -30,11 +30,9 @@ import java.io.Serializable;
  *
  * @see JScrollPane
  * @see JViewport
- *
  * @author Hans Muller
  */
-public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
-        Serializable {
+public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants, Serializable {
 
     /**
      * The scrollpane's viewport child. Default is an empty
@@ -168,9 +166,9 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * from its parent.
      *
      * @param oldC
-     *             the <code>Component</code> to replace
+     *        the <code>Component</code> to replace
      * @param newC
-     *             the <code>Component</code> to add
+     *        the <code>Component</code> to add
      * @return the <code>newC</code>
      */
     protected Component addSingletonComponent(Component oldC, Component newC) {
@@ -196,11 +194,11 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * </ul>
      *
      * @param s
-     *          the component identifier
+     *        the component identifier
      * @param c
-     *          the the component to be added
+     *        the the component to be added
      * @exception IllegalArgumentException
-     *                                     if <code>s</code> is an invalid key
+     *            if <code>s</code> is an invalid key
      */
     public void addLayoutComponent(String s, Component c) {
         if (s.equals(VIEWPORT)) {
@@ -230,7 +228,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * Removes the specified component from the layout.
      *
      * @param c
-     *          the component to remove
+     *        the component to remove
      */
     public void removeLayoutComponent(Component c) {
         if (c == viewport) {
@@ -276,11 +274,11 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * 1.0.2 (and earlier) versions of this class.
      *
      * @param x
-     *          an integer giving the display policy
+     *        an integer giving the display policy
      * @exception IllegalArgumentException
-     *                                     if <code>x</code> is an invalid
-     *                                     vertical scroll bar
-     *                                     policy, as listed above
+     *            if <code>x</code> is an invalid
+     *            vertical scroll bar
+     *            policy, as listed above
      */
     public void setVerticalScrollBarPolicy(int x) {
         switch (x) {
@@ -290,8 +288,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
                 vsbPolicy = x;
                 break;
             default:
-                throw new IllegalArgumentException(
-                        "invalid verticalScrollBarPolicy");
+                throw new IllegalArgumentException("invalid verticalScrollBarPolicy");
         }
     }
 
@@ -317,11 +314,11 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * 1.0.2 (and earlier) versions of this class.
      *
      * @param x
-     *          an int giving the display policy
+     *        an int giving the display policy
      * @exception IllegalArgumentException
-     *                                     if <code>x</code> is not a valid
-     *                                     horizontal scrollbar
-     *                                     policy, as listed above
+     *            if <code>x</code> is not a valid
+     *            horizontal scrollbar
+     *            policy, as listed above
      */
     public void setHorizontalScrollBarPolicy(int x) {
         switch (x) {
@@ -331,8 +328,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
                 hsbPolicy = x;
                 break;
             default:
-                throw new IllegalArgumentException(
-                        "invalid horizontalScrollBarPolicy");
+                throw new IllegalArgumentException("invalid horizontalScrollBarPolicy");
         }
     }
 
@@ -396,7 +392,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * Returns the <code>Component</code> at the specified corner.
      * 
      * @param key
-     *            the <code>String</code> specifying the corner
+     *        the <code>String</code> specifying the corner
      * @return the <code>Component</code> at the specified corner, as defined in
      *         {@link ScrollPaneConstants}; if <code>key</code> is not one of
      *         the four corners, <code>null</code> is returned
@@ -427,7 +423,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * the colHeader is calculated as part of the preferred size.
      *
      * @param parent
-     *               the <code>Container</code> that will be laid out
+     *        the <code>Container</code> that will be laid out
      * @return a <code>Dimension</code> object specifying the preferred size of
      *         the viewport and any scrollbars
      * @see ViewportLayout
@@ -518,8 +514,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
             } else if ((viewSize != null) && (extentSize != null)) {
                 boolean canScroll = true;
                 if (view instanceof Scrollable) {
-                    canScroll = !((Scrollable) view)
-                            .getScrollableTracksViewportHeight();
+                    canScroll = !((Scrollable) view).getScrollableTracksViewportHeight();
                 }
                 if (canScroll && (viewSize.height > extentSize.height)) {
                     prefWidth += vsb.getPreferredSize().width;
@@ -533,8 +528,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
             } else if ((viewSize != null) && (extentSize != null)) {
                 boolean canScroll = true;
                 if (view instanceof Scrollable) {
-                    canScroll = !((Scrollable) view)
-                            .getScrollableTracksViewportWidth();
+                    canScroll = !((Scrollable) view).getScrollableTracksViewportWidth();
                 }
                 if (canScroll && (viewSize.width > extentSize.width)) {
                     prefHeight += hsb.getPreferredSize().height;
@@ -552,7 +546,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * size of the scrollbars whose displayPolicy isn't NEVER.
      *
      * @param parent
-     *               the <code>Container</code> that will be laid out
+     *        the <code>Container</code> that will be laid out
      * @return a <code>Dimension</code> object specifying the minimum size
      */
     public Dimension minimumLayoutSize(Container parent) {
@@ -629,24 +623,18 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * <ul>
      * <li>The row header, if present and visible, gets its preferred width and
      * the viewport's height.
-     *
      * <li>The column header, if present and visible, gets its preferred height
      * and the viewport's width.
-     *
      * <li>If a vertical scrollbar is needed, i.e. if the viewport's extent
      * height is smaller than its view height or if the
      * <code>displayPolicy</code> is ALWAYS, it's treated like the row header
      * with respect to its dimensions and is made visible.
-     *
      * <li>If a horizontal scrollbar is needed, it is treated like the column
      * header (see the paragraph above regarding the vertical scrollbar).
-     *
      * <li>If the scrollpane has a non-<code>null</code>
      * <code>viewportBorder</code>, then space is allocated for that.
-     *
      * <li>The viewport gets the space available after accounting for the
      * previous constraints.
-     *
      * <li>The corner components, if provided, are aligned with the ends of the
      * scrollbars and headers. If there is a vertical scrollbar, the right
      * corners appear; if there is a horizontal scrollbar, the lower corners
@@ -655,7 +643,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * </ul>
      *
      * @param parent
-     *               the <code>Container</code> to lay out
+     *        the <code>Container</code> to lay out
      */
     public void layoutContainer(Container parent) {
         /*
@@ -688,8 +676,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
         Rectangle colHeadR = new Rectangle(0, availR.y, 0, 0);
 
         if ((colHead != null) && (colHead.isVisible())) {
-            int colHeadHeight = Math.min(availR.height, colHead
-                    .getPreferredSize().height);
+            int colHeadHeight = Math.min(availR.height, colHead.getPreferredSize().height);
             colHeadR.height = colHeadHeight;
             availR.y += colHeadHeight;
             availR.height -= colHeadHeight;
@@ -704,8 +691,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
         Rectangle rowHeadR = new Rectangle(0, 0, 0, 0);
 
         if ((rowHead != null) && (rowHead.isVisible())) {
-            int rowHeadWidth = Math.min(availR.width, rowHead
-                    .getPreferredSize().width);
+            int rowHeadWidth = Math.min(availR.width, rowHead.getPreferredSize().width);
             rowHeadR.width = rowHeadWidth;
             availR.width -= rowHeadWidth;
             if (leftToRight) {
@@ -754,11 +740,10 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
          */
 
         Component view = (viewport != null) ? viewport.getView() : null;
-        Dimension viewPrefSize = (view != null) ? view.getPreferredSize()
-                : new Dimension(0, 0);
+        Dimension viewPrefSize = (view != null) ? view.getPreferredSize() : new Dimension(0, 0);
 
-        Dimension extentSize = (viewport != null) ? viewport.toViewCoordinates(
-                availR.getSize()) : new Dimension(0, 0);
+        Dimension extentSize = (viewport != null) ? viewport.toViewCoordinates(availR.getSize())
+                : new Dimension(0, 0);
 
         boolean viewTracksViewportWidth = false;
         boolean viewTracksViewportHeight = false;
@@ -791,8 +776,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
         } else if (vsbPolicy == VERTICAL_SCROLLBAR_NEVER) {
             vsbNeeded = false;
         } else { // vsbPolicy == VERTICAL_SCROLLBAR_AS_NEEDED
-            vsbNeeded = !viewTracksViewportHeight
-                    && (viewPrefSize.height > extentSize.height);
+            vsbNeeded = !viewTracksViewportHeight && (viewPrefSize.height > extentSize.height);
         }
 
         if ((vsb != null) && vsbNeeded) {
@@ -815,8 +799,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
         } else if (hsbPolicy == HORIZONTAL_SCROLLBAR_NEVER) {
             hsbNeeded = false;
         } else { // hsbPolicy == HORIZONTAL_SCROLLBAR_AS_NEEDED
-            hsbNeeded = !viewTracksViewportWidth
-                    && (viewPrefSize.width > extentSize.width);
+            hsbNeeded = !viewTracksViewportWidth && (viewPrefSize.width > extentSize.width);
         }
 
         if ((hsb != null) && hsbNeeded) {
@@ -829,8 +812,7 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
              * hasn't been done so already. Of course we don't bother with any
              * of this if the vsbPolicy is NEVER.
              */
-            if ((vsb != null) && !vsbNeeded
-                    && (vsbPolicy != VERTICAL_SCROLLBAR_NEVER)) {
+            if ((vsb != null) && !vsbNeeded && (vsbPolicy != VERTICAL_SCROLLBAR_NEVER)) {
 
                 extentSize = viewport.toViewCoordinates(availR.getSize());
                 vsbNeeded = viewPrefSize.height > extentSize.height;
@@ -857,36 +839,29 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
                 boolean oldHSBNeeded = hsbNeeded;
                 boolean oldVSBNeeded = vsbNeeded;
                 viewTracksViewportWidth = sv.getScrollableTracksViewportWidth();
-                viewTracksViewportHeight = sv
-                        .getScrollableTracksViewportHeight();
+                viewTracksViewportHeight = sv.getScrollableTracksViewportHeight();
                 if (vsb != null && vsbPolicy == VERTICAL_SCROLLBAR_AS_NEEDED) {
                     boolean newVSBNeeded = !viewTracksViewportHeight
                             && (viewPrefSize.height > extentSize.height);
                     if (newVSBNeeded != vsbNeeded) {
                         vsbNeeded = newVSBNeeded;
-                        adjustForVSB(vsbNeeded, availR, vsbR, vpbInsets,
-                                leftToRight);
-                        extentSize = viewport.toViewCoordinates(availR
-                                .getSize());
+                        adjustForVSB(vsbNeeded, availR, vsbR, vpbInsets, leftToRight);
+                        extentSize = viewport.toViewCoordinates(availR.getSize());
                     }
                 }
-                if (hsb != null
-                        && hsbPolicy == HORIZONTAL_SCROLLBAR_AS_NEEDED) {
+                if (hsb != null && hsbPolicy == HORIZONTAL_SCROLLBAR_AS_NEEDED) {
                     boolean newHSBbNeeded = !viewTracksViewportWidth
                             && (viewPrefSize.width > extentSize.width);
                     if (newHSBbNeeded != hsbNeeded) {
                         hsbNeeded = newHSBbNeeded;
                         adjustForHSB(hsbNeeded, availR, hsbR, vpbInsets);
-                        if ((vsb != null) && !vsbNeeded
-                                && (vsbPolicy != VERTICAL_SCROLLBAR_NEVER)) {
+                        if ((vsb != null) && !vsbNeeded && (vsbPolicy != VERTICAL_SCROLLBAR_NEVER)) {
 
-                            extentSize = viewport.toViewCoordinates(availR
-                                    .getSize());
+                            extentSize = viewport.toViewCoordinates(availR.getSize());
                             vsbNeeded = viewPrefSize.height > extentSize.height;
 
                             if (vsbNeeded) {
-                                adjustForVSB(true, availR, vsbR, vpbInsets,
-                                        leftToRight);
+                                adjustForVSB(true, availR, vsbR, vpbInsets, leftToRight);
                             }
                         }
                     }
@@ -927,10 +902,8 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
 
         if (vsb != null) {
             if (vsbNeeded) {
-                if (colHead != null && UIManager.getBoolean(
-                        "ScrollPane.fillUpperCorner")) {
-                    if ((leftToRight && upperRight == null) || (!leftToRight
-                            && upperLeft == null)) {
+                if (colHead != null && UIManager.getBoolean("ScrollPane.fillUpperCorner")) {
+                    if ((leftToRight && upperRight == null) || (!leftToRight && upperLeft == null)) {
                         // This is used primarily for GTK L&F, which needs to
                         // extend the vertical scrollbar to fill the upper
                         // corner near the column header. Note that we skip
@@ -949,10 +922,8 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
 
         if (hsb != null) {
             if (hsbNeeded) {
-                if (rowHead != null && UIManager.getBoolean(
-                        "ScrollPane.fillLowerCorner")) {
-                    if ((leftToRight && lowerLeft == null) || (!leftToRight
-                            && lowerRight == null)) {
+                if (rowHead != null && UIManager.getBoolean("ScrollPane.fillLowerCorner")) {
+                    if ((leftToRight && lowerLeft == null) || (!leftToRight && lowerRight == null)) {
                         // This is used primarily for GTK L&F, which needs to
                         // extend the horizontal scrollbar to fill the lower
                         // corner near the row header. Note that we skip
@@ -972,23 +943,23 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
         }
 
         if (lowerLeft != null) {
-            lowerLeft.setBounds(leftToRight ? rowHeadR.x : vsbR.x, hsbR.y,
-                    leftToRight ? rowHeadR.width : vsbR.width, hsbR.height);
+            lowerLeft.setBounds(leftToRight ? rowHeadR.x : vsbR.x, hsbR.y, leftToRight ? rowHeadR.width
+                    : vsbR.width, hsbR.height);
         }
 
         if (lowerRight != null) {
-            lowerRight.setBounds(leftToRight ? vsbR.x : rowHeadR.x, hsbR.y,
-                    leftToRight ? vsbR.width : rowHeadR.width, hsbR.height);
+            lowerRight.setBounds(leftToRight ? vsbR.x : rowHeadR.x, hsbR.y, leftToRight ? vsbR.width
+                    : rowHeadR.width, hsbR.height);
         }
 
         if (upperLeft != null) {
-            upperLeft.setBounds(leftToRight ? rowHeadR.x : vsbR.x, colHeadR.y,
-                    leftToRight ? rowHeadR.width : vsbR.width, colHeadR.height);
+            upperLeft.setBounds(leftToRight ? rowHeadR.x : vsbR.x, colHeadR.y, leftToRight ? rowHeadR.width
+                    : vsbR.width, colHeadR.height);
         }
 
         if (upperRight != null) {
-            upperRight.setBounds(leftToRight ? vsbR.x : rowHeadR.x, colHeadR.y,
-                    leftToRight ? vsbR.width : rowHeadR.width, colHeadR.height);
+            upperRight.setBounds(leftToRight ? vsbR.x : rowHeadR.x, colHeadR.y, leftToRight ? vsbR.width
+                    : rowHeadR.width, colHeadR.height);
         }
     }
 
@@ -1000,12 +971,11 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * when <code>wantsVSB</code> has changed, eg you shouldn't invoke
      * adjustForVSB(true) twice.
      */
-    private void adjustForVSB(boolean wantsVSB, Rectangle available,
-            Rectangle vsbR, Insets vpbInsets, boolean leftToRight) {
+    private void adjustForVSB(boolean wantsVSB, Rectangle available, Rectangle vsbR, Insets vpbInsets,
+            boolean leftToRight) {
         int oldWidth = vsbR.width;
         if (wantsVSB) {
-            int vsbWidth = Math.max(0, Math.min(vsb.getPreferredSize().width,
-                    available.width));
+            int vsbWidth = Math.max(0, Math.min(vsb.getPreferredSize().width, available.width));
 
             available.width -= vsbWidth;
             vsbR.width = vsbWidth;
@@ -1029,12 +999,10 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
      * when <code>wantsHSB</code> has changed, eg you shouldn't invoked
      * adjustForHSB(true) twice.
      */
-    private void adjustForHSB(boolean wantsHSB, Rectangle available,
-            Rectangle hsbR, Insets vpbInsets) {
+    private void adjustForHSB(boolean wantsHSB, Rectangle available, Rectangle hsbR, Insets vpbInsets) {
         int oldHeight = hsbR.height;
         if (wantsHSB) {
-            int hsbHeight = Math.max(0, Math.min(available.height, hsb
-                    .getPreferredSize().height));
+            int hsbHeight = Math.max(0, Math.min(available.height, hsb.getPreferredSize().height));
 
             available.height -= hsbHeight;
             hsbR.y = available.y + available.height + vpbInsets.bottom;
@@ -1060,6 +1028,5 @@ public class ScrollPaneLayout implements LayoutManager, ScrollPaneConstants,
     /**
      * The UI resource version of <code>ScrollPaneLayout</code>.
      */
-    public static class UIResource extends ScrollPaneLayout implements
-            javax.swing.plaf.UIResource {}
+    public static class UIResource extends ScrollPaneLayout implements javax.swing.plaf.UIResource {}
 }

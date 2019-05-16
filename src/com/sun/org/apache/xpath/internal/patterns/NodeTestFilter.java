@@ -28,11 +28,10 @@ public interface NodeTestFilter {
     /**
      * Set the node test for this filter.
      *
-     *
      * @param nodeTest
-     *                 Reference to a NodeTest that may be used to predetermine
-     *                 what
-     *                 nodes to return.
+     *        Reference to a NodeTest that may be used to predetermine
+     *        what
+     *        nodes to return.
      */
     void setNodeTest(NodeTest nodeTest);
 }

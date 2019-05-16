@@ -21,7 +21,7 @@ public class NotSerializableException extends ObjectStreamException {
      * Constructs a NotSerializableException object with message string.
      *
      * @param classname
-     *                  Class of the instance being serialized/deserialized.
+     *        Class of the instance being serialized/deserialized.
      */
     public NotSerializableException(String classname) {
         super(classname);

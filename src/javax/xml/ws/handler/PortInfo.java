@@ -38,7 +38,6 @@ public interface PortInfo {
      * Gets the URI identifying the binding used by the port being accessed.
      *
      * @return String The binding identifier for the port.
-     *
      * @see javax.xml.ws.Binding
      **/
     public String getBindingID();

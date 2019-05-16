@@ -29,9 +29,9 @@ public class EventObject implements java.io.Serializable {
      * Constructs a prototypical Event.
      *
      * @param source
-     *               The object on which the Event initially occurred.
+     *        The object on which the Event initially occurred.
      * @exception IllegalArgumentException
-     *                                     if source is null.
+     *            if source is null.
      */
     public EventObject(Object source) {
         if (source == null)

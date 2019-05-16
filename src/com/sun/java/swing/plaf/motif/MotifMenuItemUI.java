@@ -50,8 +50,7 @@ public class MotifMenuItemUI extends BasicMenuItemUI {
 
         public void stateChanged(ChangeEvent e) {
             JMenuItem c = (JMenuItem) e.getSource();
-            LookAndFeel.installProperty(c, "borderPainted", Boolean.valueOf(c
-                    .isArmed() || c.isSelected()));
+            LookAndFeel.installProperty(c, "borderPainted", Boolean.valueOf(c.isArmed() || c.isSelected()));
         }
     }
 
@@ -59,18 +58,15 @@ public class MotifMenuItemUI extends BasicMenuItemUI {
         public void mouseClicked(MouseEvent e) {}
 
         public void mousePressed(MouseEvent e) {
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             manager.setSelectedPath(getPath());
         }
 
         public void mouseReleased(MouseEvent e) {
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             JMenuItem menuItem = (JMenuItem) e.getComponent();
             Point p = e.getPoint();
-            if (p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0
-                    && p.y < menuItem.getHeight()) {
+            if (p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0 && p.y < menuItem.getHeight()) {
                 manager.clearSelectedPath();
                 menuItem.doClick(0);
             } else {

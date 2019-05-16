@@ -22,8 +22,7 @@ package java.util.concurrent;
  * @param <V>
  *        The result type returned by this Future's {@code get} method
  */
-public interface RunnableScheduledFuture<V> extends RunnableFuture<V>,
-        ScheduledFuture<V> {
+public interface RunnableScheduledFuture<V> extends RunnableFuture<V>, ScheduledFuture<V> {
 
     /**
      * Returns {@code true} if this task is periodic. A periodic task may re-run

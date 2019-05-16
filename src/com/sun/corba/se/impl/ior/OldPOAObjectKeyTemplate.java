@@ -24,8 +24,7 @@ public final class OldPOAObjectKeyTemplate extends OldObjectKeyTemplateBase {
     /**
      * This constructor reads the template ONLY from the stream
      */
-    public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid,
-            InputStream is) {
+    public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is) {
         this(orb, magic, scid, is.read_long(), is.read_long(), is.read_long());
     }
 
@@ -33,16 +32,13 @@ public final class OldPOAObjectKeyTemplate extends OldObjectKeyTemplateBase {
      * This constructor reads a complete ObjectKey (template and Id) from the
      * stream.
      */
-    public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is,
-            OctetSeqHolder osh) {
+    public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is, OctetSeqHolder osh) {
         this(orb, magic, scid, is);
         osh.value = readObjectKey(is);
     }
 
-    public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, int serverid,
-            int orbid, int poaid) {
-        super(orb, magic, scid, serverid, Integer.toString(orbid),
-                new ObjectAdapterIdNumber(poaid));
+    public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, int serverid, int orbid, int poaid) {
+        super(orb, magic, scid, serverid, Integer.toString(orbid), new ObjectAdapterIdNumber(poaid));
     }
 
     public void writeTemplate(OutputStream os) {

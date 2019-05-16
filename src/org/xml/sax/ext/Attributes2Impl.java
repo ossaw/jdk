@@ -16,15 +16,12 @@ import org.xml.sax.helpers.AttributesImpl;
 /**
  * SAX2 extension helper for additional Attributes information, implementing the
  * {@link Attributes2} interface.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
  * </blockquote>
- *
  * <p>
  * This is not part of core-only SAX2 distributions.
  * </p>
- *
  * <p>
  * The <em>specified</em> flag for each attribute will always be true, unless it
  * has been set to false in the copy constructor or using {@link #setSpecified}.
@@ -57,14 +54,13 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      * values are defaulted to assume no DTD was used, unless there is evidence
      * to the contrary (such as attributes with type other than CDATA, which
      * must have been <em>declared</em>).
-     *
      * <p>
      * This constructor is especially useful inside a
      * {@link org.xml.sax.ContentHandler#startElement startElement} event.
      * </p>
      *
      * @param atts
-     *             The existing Attributes object.
+     *        The existing Attributes object.
      */
     public Attributes2Impl(Attributes atts) {
         super(atts);
@@ -80,8 +76,7 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
     // javadoc mostly from interface
     public boolean isDeclared(int index) {
         if (index < 0 || index >= getLength())
-            throw new ArrayIndexOutOfBoundsException("No attribute at index: "
-                    + index);
+            throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
         return declared[index];
     }
 
@@ -93,8 +88,8 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
         int index = getIndex(uri, localName);
 
         if (index < 0)
-            throw new IllegalArgumentException("No such attribute: local="
-                    + localName + ", namespace=" + uri);
+            throw new IllegalArgumentException("No such attribute: local=" + localName + ", namespace="
+                    + uri);
         return declared[index];
     }
 
@@ -114,15 +109,14 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      * Returns the current value of an attribute's "specified" flag.
      *
      * @param index
-     *              The attribute index (zero-based).
+     *        The attribute index (zero-based).
      * @return current flag value
      * @exception java.lang.ArrayIndexOutOfBoundsException
      *            When the supplied index does not identify an attribute.
      */
     public boolean isSpecified(int index) {
         if (index < 0 || index >= getLength())
-            throw new ArrayIndexOutOfBoundsException("No attribute at index: "
-                    + index);
+            throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
         return specified[index];
     }
 
@@ -130,11 +124,11 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      * Returns the current value of an attribute's "specified" flag.
      *
      * @param uri
-     *                  The Namespace URI, or the empty string if the name has
-     *                  no
-     *                  Namespace URI.
+     *        The Namespace URI, or the empty string if the name has
+     *        no
+     *        Namespace URI.
      * @param localName
-     *                  The attribute's local name.
+     *        The attribute's local name.
      * @return current flag value
      * @exception java.lang.IllegalArgumentException
      *            When the supplied names do not identify an attribute.
@@ -143,8 +137,8 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
         int index = getIndex(uri, localName);
 
         if (index < 0)
-            throw new IllegalArgumentException("No such attribute: local="
-                    + localName + ", namespace=" + uri);
+            throw new IllegalArgumentException("No such attribute: local=" + localName + ", namespace="
+                    + uri);
         return specified[index];
     }
 
@@ -152,7 +146,7 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      * Returns the current value of an attribute's "specified" flag.
      *
      * @param qName
-     *              The XML qualified (prefixed) name.
+     *        The XML qualified (prefixed) name.
      * @return current flag value
      * @exception java.lang.IllegalArgumentException
      *            When the supplied name does not identify an attribute.
@@ -201,7 +195,6 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
     /**
      * Add an attribute to the end of the list, setting its "specified" flag to
      * true. To set that flag's value to false, use {@link #setSpecified}.
-     *
      * <p>
      * Unless the attribute <em>type</em> is CDATA, this attribute is marked as
      * being declared in the DTD. To set that flag's value to true for CDATA
@@ -209,8 +202,7 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      *
      * @see AttributesImpl#addAttribute
      */
-    public void addAttribute(String uri, String localName, String qName,
-            String type, String value) {
+    public void addAttribute(String uri, String localName, String qName, String type, String value) {
         super.addAttribute(uri, localName, qName, type, value);
 
         int length = getLength();
@@ -239,10 +231,8 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 
         super.removeAttribute(index);
         if (index != origMax) {
-            System.arraycopy(declared, index + 1, declared, index, origMax
-                    - index);
-            System.arraycopy(specified, index + 1, specified, index, origMax
-                    - index);
+            System.arraycopy(declared, index + 1, declared, index, origMax - index);
+            System.arraycopy(specified, index + 1, specified, index, origMax - index);
         }
     }
 
@@ -252,17 +242,16 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      * whose type is changed to or from CDATA.
      *
      * @param index
-     *              The index of the attribute (zero-based).
+     *        The index of the attribute (zero-based).
      * @param value
-     *              The desired flag value.
+     *        The desired flag value.
      * @exception java.lang.ArrayIndexOutOfBoundsException
      *            When the supplied index does not identify an attribute.
      * @see #setType
      */
     public void setDeclared(int index, boolean value) {
         if (index < 0 || index >= getLength())
-            throw new ArrayIndexOutOfBoundsException("No attribute at index: "
-                    + index);
+            throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
         declared[index] = value;
     }
 
@@ -272,16 +261,15 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
      * with the copy constructor.
      *
      * @param index
-     *              The index of the attribute (zero-based).
+     *        The index of the attribute (zero-based).
      * @param value
-     *              The desired flag value.
+     *        The desired flag value.
      * @exception java.lang.ArrayIndexOutOfBoundsException
      *            When the supplied index does not identify an attribute.
      */
     public void setSpecified(int index, boolean value) {
         if (index < 0 || index >= getLength())
-            throw new ArrayIndexOutOfBoundsException("No attribute at index: "
-                    + index);
+            throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
         specified[index] = value;
     }
 }

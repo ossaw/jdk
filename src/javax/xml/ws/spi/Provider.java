@@ -36,8 +36,7 @@ public abstract class Provider {
      * implementation class.
      **/
     // Using two strings so that package renaming doesn't change it
-    static final String DEFAULT_JAXWSPROVIDER = "com.sun"
-            + ".xml.internal.ws.spi.ProviderImpl";
+    static final String DEFAULT_JAXWSPROVIDER = "com.sun" + ".xml.internal.ws.spi.ProviderImpl";
 
     /**
      * Take advantage of Java SE 6's java.util.ServiceLoader API. Using
@@ -67,7 +66,6 @@ public abstract class Provider {
     protected Provider() {}
 
     /**
-     *
      * Creates a new provider object.
      * <p>
      * The algorithm used to locate the provider subclass to use consists of the
@@ -88,35 +86,29 @@ public abstract class Provider {
      * as the name of the implementation class.</li>
      * <li>Finally, a default implementation class name is used.</li>
      * </ul>
-     *
      */
     public static Provider provider() {
         try {
             Object provider = getProviderUsingServiceLoader();
             if (provider == null) {
-                provider = FactoryFinder.find(JAXWSPROVIDER_PROPERTY,
-                        DEFAULT_JAXWSPROVIDER);
+                provider = FactoryFinder.find(JAXWSPROVIDER_PROPERTY, DEFAULT_JAXWSPROVIDER);
             }
             if (!(provider instanceof Provider)) {
                 Class pClass = Provider.class;
-                String classnameAsResource = pClass.getName().replace('.', '/')
-                        + ".class";
+                String classnameAsResource = pClass.getName().replace('.', '/') + ".class";
                 ClassLoader loader = pClass.getClassLoader();
                 if (loader == null) {
                     loader = ClassLoader.getSystemClassLoader();
                 }
                 URL targetTypeURL = loader.getResource(classnameAsResource);
-                throw new LinkageError("ClassCastException: attempting to cast"
-                        + provider.getClass().getClassLoader().getResource(
-                                classnameAsResource) + "to" + targetTypeURL
-                                        .toString());
+                throw new LinkageError("ClassCastException: attempting to cast" + provider.getClass()
+                        .getClassLoader().getResource(classnameAsResource) + "to" + targetTypeURL.toString());
             }
             return (Provider) provider;
         } catch (WebServiceException ex) {
             throw ex;
         } catch (Exception ex) {
-            throw new WebServiceException(
-                    "Unable to createEndpointReference Provider", ex);
+            throw new WebServiceException("Unable to createEndpointReference Provider", ex);
         }
     }
 
@@ -126,16 +118,14 @@ public abstract class Provider {
             try {
                 loader = loadMethod.invoke(null, Provider.class);
             } catch (Exception e) {
-                throw new WebServiceException(
-                        "Cannot invoke java.util.ServiceLoader#load()", e);
+                throw new WebServiceException("Cannot invoke java.util.ServiceLoader#load()", e);
             }
 
             Iterator<Provider> it;
             try {
                 it = (Iterator<Provider>) iteratorMethod.invoke(loader);
             } catch (Exception e) {
-                throw new WebServiceException(
-                        "Cannot invoke java.util.ServiceLoader#iterator()", e);
+                throw new WebServiceException("Cannot invoke java.util.ServiceLoader#iterator()", e);
             }
             return it.hasNext() ? it.next() : null;
         }
@@ -147,118 +137,106 @@ public abstract class Provider {
      * <p>
      * 
      * @param wsdlDocumentLocation
-     *                             A URL pointing to the WSDL document for the
-     *                             service, or
-     *                             <code>null</code> if there isn't one.
+     *        A URL pointing to the WSDL document for the
+     *        service, or
+     *        <code>null</code> if there isn't one.
      * @param serviceName
-     *                             The qualified name of the service.
+     *        The qualified name of the service.
      * @param serviceClass
-     *                             The service class, which MUST be either
-     *                             <code>javax.xml.ws.Service</code> or a
-     *                             subclass thereof.
+     *        The service class, which MUST be either
+     *        <code>javax.xml.ws.Service</code> or a
+     *        subclass thereof.
      * @return The newly created service delegate.
      */
-    public abstract ServiceDelegate createServiceDelegate(
-            java.net.URL wsdlDocumentLocation, QName serviceName,
-            Class<? extends Service> serviceClass);
+    public abstract ServiceDelegate createServiceDelegate(java.net.URL wsdlDocumentLocation,
+            QName serviceName, Class<? extends Service> serviceClass);
 
     /**
      * Creates a service delegate object.
      * <p>
      * 
      * @param wsdlDocumentLocation
-     *                             A URL pointing to the WSDL document for the
-     *                             service, or
-     *                             <code>null</code> if there isn't one.
+     *        A URL pointing to the WSDL document for the
+     *        service, or
+     *        <code>null</code> if there isn't one.
      * @param serviceName
-     *                             The qualified name of the service.
+     *        The qualified name of the service.
      * @param serviceClass
-     *                             The service class, which MUST be either
-     *                             <code>javax.xml.ws.Service</code> or a
-     *                             subclass thereof.
+     *        The service class, which MUST be either
+     *        <code>javax.xml.ws.Service</code> or a
+     *        subclass thereof.
      * @param features
-     *                             Web Service features that must be configured
-     *                             on the service.
-     *                             If the provider doesn't understand a feature,
-     *                             it must throw a
-     *                             WebServiceException.
+     *        Web Service features that must be configured
+     *        on the service.
+     *        If the provider doesn't understand a feature,
+     *        it must throw a
+     *        WebServiceException.
      * @return The newly created service delegate.
-     *
      * @since JAX-WS 2.2
      */
-    public ServiceDelegate createServiceDelegate(
-            java.net.URL wsdlDocumentLocation, QName serviceName,
-            Class<? extends Service> serviceClass,
-            WebServiceFeature... features) {
+    public ServiceDelegate createServiceDelegate(java.net.URL wsdlDocumentLocation, QName serviceName,
+            Class<? extends Service> serviceClass, WebServiceFeature... features) {
         throw new UnsupportedOperationException(
                 "JAX-WS 2.2 implementation must override this default behaviour.");
     }
 
     /**
-     *
      * Creates an endpoint object with the provided binding and implementation
      * object.
      *
      * @param bindingId
-     *                    A URI specifying the desired binding (e.g. SOAP/HTTP)
+     *        A URI specifying the desired binding (e.g. SOAP/HTTP)
      * @param implementor
-     *                    A service implementation object to which incoming
-     *                    requests
-     *                    will be dispatched. The corresponding class MUST be
-     *                    annotated
-     *                    with all the necessary Web service annotations.
+     *        A service implementation object to which incoming
+     *        requests
+     *        will be dispatched. The corresponding class MUST be
+     *        annotated
+     *        with all the necessary Web service annotations.
      * @return The newly created endpoint.
      */
-    public abstract Endpoint createEndpoint(String bindingId,
-            Object implementor);
+    public abstract Endpoint createEndpoint(String bindingId, Object implementor);
 
     /**
      * Creates and publishes an endpoint object with the specified address and
      * implementation object.
      *
      * @param address
-     *                    A URI specifying the address and transport/protocol to
-     *                    use. A
-     *                    http: URI MUST result in the SOAP 1.1/HTTP binding
-     *                    being used.
-     *                    Implementations may support other URI schemes.
+     *        A URI specifying the address and transport/protocol to
+     *        use. A
+     *        http: URI MUST result in the SOAP 1.1/HTTP binding
+     *        being used.
+     *        Implementations may support other URI schemes.
      * @param implementor
-     *                    A service implementation object to which incoming
-     *                    requests
-     *                    will be dispatched. The corresponding class MUST be
-     *                    annotated
-     *                    with all the necessary Web service annotations.
+     *        A service implementation object to which incoming
+     *        requests
+     *        will be dispatched. The corresponding class MUST be
+     *        annotated
+     *        with all the necessary Web service annotations.
      * @return The newly created endpoint.
      */
-    public abstract Endpoint createAndPublishEndpoint(String address,
-            Object implementor);
+    public abstract Endpoint createAndPublishEndpoint(String address, Object implementor);
 
     /**
      * read an EndpointReference from the infoset contained in
      * <code>eprInfoset</code>.
      *
      * @param eprInfoset
-     *                   infoset for EndpointReference
-     *
+     *        infoset for EndpointReference
      * @return the <code>EndpointReference</code> unmarshalled from
      *         <code>eprInfoset</code>. This method never returns
      *         <code>null</code>.
-     *
      * @throws WebServiceException
-     *                              If there is an error creating the
-     *                              <code>EndpointReference</code> from the
-     *                              specified
-     *                              <code>eprInfoset</code>.
-     *
+     *         If there is an error creating the
+     *         <code>EndpointReference</code> from the
+     *         specified
+     *         <code>eprInfoset</code>.
      * @throws NullPointerException
-     *                              If the <code>null</code>
-     *                              <code>eprInfoset</code> value is
-     *                              given.
-     *
+     *         If the <code>null</code>
+     *         <code>eprInfoset</code> value is
+     *         given.
      * @since JAX-WS 2.1
      **/
-    public abstract EndpointReference readEndpointReference(
-            javax.xml.transform.Source eprInfoset);
+    public abstract EndpointReference readEndpointReference(javax.xml.transform.Source eprInfoset);
 
     /**
      * The getPort method returns a proxy. If there are any reference parameters
@@ -277,48 +255,44 @@ public abstract class Provider {
      * <code>endpointReference</code> MUST contain an implementation understood
      * <code>serviceName</code> metadata.
      *
-     *
      * @param endpointReference
-     *                                 the EndpointReference that will be
-     *                                 invoked by the returned
-     *                                 proxy.
+     *        the EndpointReference that will be
+     *        invoked by the returned
+     *        proxy.
      * @param serviceEndpointInterface
-     *                                 Service endpoint interface
+     *        Service endpoint interface
      * @param features
-     *                                 A list of WebServiceFeatures to configure
-     *                                 on the proxy.
-     *                                 Supported features not in the
-     *                                 <code>features
-     *                </code>       parameter will have their default values.
+     *        A list of WebServiceFeatures to configure
+     *        on the proxy.
+     *        Supported features not in the
+     *        <code>features
+     *                </code> parameter will have their default values.
      * @return Object Proxy instance that supports the specified service
      *         endpoint interface
      * @throws WebServiceException
-     *                             <UL>
-     *                             <LI>If there is an error during creation of
-     *                             the proxy
-     *                             <LI>If there is any missing WSDL metadata as
-     *                             required by this
-     *                             method}
-     *                             <LI>If this <code>endpointReference</code> is
-     *                             illegal
-     *                             <LI>If an illegal
-     *                             <code>serviceEndpointInterface</code> is
-     *                             specified
-     *                             <LI>If a feature is enabled that is not
-     *                             compatible with this
-     *                             port or is unsupported.
-     *                             </UL>
-     *
+     *         <UL>
+     *         <LI>If there is an error during creation of
+     *         the proxy
+     *         <LI>If there is any missing WSDL metadata as
+     *         required by this
+     *         method}
+     *         <LI>If this <code>endpointReference</code> is
+     *         illegal
+     *         <LI>If an illegal
+     *         <code>serviceEndpointInterface</code> is
+     *         specified
+     *         <LI>If a feature is enabled that is not
+     *         compatible with this
+     *         port or is unsupported.
+     *         </UL>
      * @see WebServiceFeature
-     *
      * @since JAX-WS 2.1
      **/
-    public abstract <T> T getPort(EndpointReference endpointReference,
-            Class<T> serviceEndpointInterface, WebServiceFeature... features);
+    public abstract <T> T getPort(EndpointReference endpointReference, Class<T> serviceEndpointInterface,
+            WebServiceFeature... features);
 
     /**
      * Factory method to create a <code>W3CEndpointReference</code>.
-     *
      * <p>
      * This method can be used to create a <code>W3CEndpointReference</code> for
      * any endpoint by specifying the <code>address</code> property along with
@@ -335,68 +309,64 @@ public abstract class Provider {
      * be thrown.
      *
      * @param address
-     *                             Specifies the address of the target endpoint
+     *        Specifies the address of the target endpoint
      * @param serviceName
-     *                             Qualified name of the service in the WSDL.
+     *        Qualified name of the service in the WSDL.
      * @param portName
-     *                             Qualified name of the endpoint in the WSDL.
+     *        Qualified name of the endpoint in the WSDL.
      * @param metadata
-     *                             A list of elements that should be added to
-     *                             the
-     *                             <code>W3CEndpointReference</code> instances
-     *                             <code>wsa:metadata</code> element.
+     *        A list of elements that should be added to
+     *        the
+     *        <code>W3CEndpointReference</code> instances
+     *        <code>wsa:metadata</code> element.
      * @param wsdlDocumentLocation
-     *                             URL for the WSDL document location for the
-     *                             service.
+     *        URL for the WSDL document location for the
+     *        service.
      * @param referenceParameters
-     *                             Reference parameters to be associated with
-     *                             the returned
-     *                             <code>EndpointReference</code> instance.
-     *
+     *        Reference parameters to be associated with
+     *        the returned
+     *        <code>EndpointReference</code> instance.
      * @return the <code>W3CEndpointReference</code> created from
      *         <code>serviceName</code>, <code>portName</code>,
      *         <code>metadata</code>, <code>wsdlDocumentLocation</code> and
      *         <code>referenceParameters</code>. This method never returns
      *         <code>null</code>.
-     *
-     * @throws                     java.lang.IllegalStateException
-     *                             <ul>
-     *                             <li>If the <code>address</code>,
-     *                             <code>serviceName</code> and
-     *                             <code>portName</code> are all
-     *                             <code>null</code>.
-     *                             <li>If the <code>serviceName</code> service
-     *                             is
-     *                             <code>null</code> and the
-     *                             <code>portName</code> is NOT
-     *                             <code>null</code>.
-     *                             <li>If the <code>address</code> property is
-     *                             <code>null</code>
-     *                             and the <code>serviceName</code> and
-     *                             <code>portName</code> do
-     *                             not specify a valid endpoint published by the
-     *                             same Java EE
-     *                             application.
-     *                             <li>If the <code>serviceName</code>is NOT
-     *                             <code>null</code>
-     *                             and is not present in the specified WSDL.
-     *                             <li>If the <code>portName</code> port is not
-     *                             <code>null</code> and it is not present in
-     *                             <code>serviceName</code> service in the WSDL.
-     *                             <li>If the <code>wsdlDocumentLocation</code>
-     *                             is NOT
-     *                             <code>null</code> and does not represent a
-     *                             valid WSDL.
-     *                             </ul>
+     * @throws java.lang.IllegalStateException
+     *         <ul>
+     *         <li>If the <code>address</code>,
+     *         <code>serviceName</code> and
+     *         <code>portName</code> are all
+     *         <code>null</code>.
+     *         <li>If the <code>serviceName</code> service
+     *         is
+     *         <code>null</code> and the
+     *         <code>portName</code> is NOT
+     *         <code>null</code>.
+     *         <li>If the <code>address</code> property is
+     *         <code>null</code>
+     *         and the <code>serviceName</code> and
+     *         <code>portName</code> do
+     *         not specify a valid endpoint published by the
+     *         same Java EE
+     *         application.
+     *         <li>If the <code>serviceName</code>is NOT
+     *         <code>null</code>
+     *         and is not present in the specified WSDL.
+     *         <li>If the <code>portName</code> port is not
+     *         <code>null</code> and it is not present in
+     *         <code>serviceName</code> service in the WSDL.
+     *         <li>If the <code>wsdlDocumentLocation</code>
+     *         is NOT
+     *         <code>null</code> and does not represent a
+     *         valid WSDL.
+     *         </ul>
      * @throws WebServiceException
-     *                             If an error occurs while creating the
-     *                             <code>W3CEndpointReference</code>.
-     *
+     *         If an error occurs while creating the
+     *         <code>W3CEndpointReference</code>.
      * @since JAX-WS 2.1
      */
-    public abstract W3CEndpointReference createW3CEndpointReference(
-            String address, QName serviceName, QName portName,
-            List<Element> metadata, String wsdlDocumentLocation,
+    public abstract W3CEndpointReference createW3CEndpointReference(String address, QName serviceName,
+            QName portName, List<Element> metadata, String wsdlDocumentLocation,
             List<Element> referenceParameters);
 
     /**
@@ -404,7 +374,6 @@ public abstract class Provider {
      * method, a <code>W3CEndpointReference</code> instance can be created with
      * extension elements, and attributes. <code>Provider</code> implementations
      * must override the default implementation.
-     *
      * <p>
      * This method can be used to create a <code>W3CEndpointReference</code> for
      * any endpoint by specifying the <code>address</code> property along with
@@ -421,86 +390,82 @@ public abstract class Provider {
      * be thrown.
      *
      * @param address
-     *                             Specifies the address of the target endpoint
+     *        Specifies the address of the target endpoint
      * @param interfaceName
-     *                             the <code>wsam:InterfaceName</code> element
-     *                             in the
-     *                             <code>wsa:Metadata</code> element.
+     *        the <code>wsam:InterfaceName</code> element
+     *        in the
+     *        <code>wsa:Metadata</code> element.
      * @param serviceName
-     *                             Qualified name of the service in the WSDL.
+     *        Qualified name of the service in the WSDL.
      * @param portName
-     *                             Qualified name of the endpoint in the WSDL.
+     *        Qualified name of the endpoint in the WSDL.
      * @param metadata
-     *                             A list of elements that should be added to
-     *                             the
-     *                             <code>W3CEndpointReference</code> instances
-     *                             <code>wsa:metadata</code> element.
+     *        A list of elements that should be added to
+     *        the
+     *        <code>W3CEndpointReference</code> instances
+     *        <code>wsa:metadata</code> element.
      * @param wsdlDocumentLocation
-     *                             URL for the WSDL document location for the
-     *                             service.
+     *        URL for the WSDL document location for the
+     *        service.
      * @param referenceParameters
-     *                             Reference parameters to be associated with
-     *                             the returned
-     *                             <code>EndpointReference</code> instance.
+     *        Reference parameters to be associated with
+     *        the returned
+     *        <code>EndpointReference</code> instance.
      * @param elements
-     *                             extension elements to be associated with the
-     *                             returned
-     *                             <code>EndpointReference</code> instance.
+     *        extension elements to be associated with the
+     *        returned
+     *        <code>EndpointReference</code> instance.
      * @param attributes
-     *                             extension attributes to be associated with
-     *                             the returned
-     *                             <code>EndpointReference</code> instance.
-     *
+     *        extension attributes to be associated with
+     *        the returned
+     *        <code>EndpointReference</code> instance.
      * @return the <code>W3CEndpointReference</code> created from
      *         <code>serviceName</code>, <code>portName</code>,
      *         <code>metadata</code>, <code>wsdlDocumentLocation</code> and
      *         <code>referenceParameters</code>. This method never returns
      *         <code>null</code>.
-     *
-     * @throws                     java.lang.IllegalStateException
-     *                             <ul>
-     *                             <li>If the <code>address</code>,
-     *                             <code>serviceName</code> and
-     *                             <code>portName</code> are all
-     *                             <code>null</code>.
-     *                             <li>If the <code>serviceName</code> service
-     *                             is
-     *                             <code>null</code> and the
-     *                             <code>portName</code> is NOT
-     *                             <code>null</code>.
-     *                             <li>If the <code>address</code> property is
-     *                             <code>null</code>
-     *                             and the <code>serviceName</code> and
-     *                             <code>portName</code> do
-     *                             not specify a valid endpoint published by the
-     *                             same Java EE
-     *                             application.
-     *                             <li>If the <code>serviceName</code>is NOT
-     *                             <code>null</code>
-     *                             and is not present in the specified WSDL.
-     *                             <li>If the <code>portName</code> port is not
-     *                             <code>null</code> and it is not present in
-     *                             <code>serviceName</code> service in the WSDL.
-     *                             <li>If the <code>wsdlDocumentLocation</code>
-     *                             is NOT
-     *                             <code>null</code> and does not represent a
-     *                             valid WSDL.
-     *                             <li>If the <code>wsdlDocumentLocation</code>
-     *                             is NOT
-     *                             <code>null</code> but wsdli:wsdlLocation's
-     *                             namespace name
-     *                             cannot be got from the available metadata.
-     *                             </ul>
+     * @throws java.lang.IllegalStateException
+     *         <ul>
+     *         <li>If the <code>address</code>,
+     *         <code>serviceName</code> and
+     *         <code>portName</code> are all
+     *         <code>null</code>.
+     *         <li>If the <code>serviceName</code> service
+     *         is
+     *         <code>null</code> and the
+     *         <code>portName</code> is NOT
+     *         <code>null</code>.
+     *         <li>If the <code>address</code> property is
+     *         <code>null</code>
+     *         and the <code>serviceName</code> and
+     *         <code>portName</code> do
+     *         not specify a valid endpoint published by the
+     *         same Java EE
+     *         application.
+     *         <li>If the <code>serviceName</code>is NOT
+     *         <code>null</code>
+     *         and is not present in the specified WSDL.
+     *         <li>If the <code>portName</code> port is not
+     *         <code>null</code> and it is not present in
+     *         <code>serviceName</code> service in the WSDL.
+     *         <li>If the <code>wsdlDocumentLocation</code>
+     *         is NOT
+     *         <code>null</code> and does not represent a
+     *         valid WSDL.
+     *         <li>If the <code>wsdlDocumentLocation</code>
+     *         is NOT
+     *         <code>null</code> but wsdli:wsdlLocation's
+     *         namespace name
+     *         cannot be got from the available metadata.
+     *         </ul>
      * @throws WebServiceException
-     *                             If an error occurs while creating the
-     *                             <code>W3CEndpointReference</code>.
+     *         If an error occurs while creating the
+     *         <code>W3CEndpointReference</code>.
      * @since JAX-WS 2.2
      */
-    public W3CEndpointReference createW3CEndpointReference(String address,
-            QName interfaceName, QName serviceName, QName portName,
-            List<Element> metadata, String wsdlDocumentLocation,
-            List<Element> referenceParameters, List<Element> elements,
-            Map<QName, String> attributes) {
+    public W3CEndpointReference createW3CEndpointReference(String address, QName interfaceName,
+            QName serviceName, QName portName, List<Element> metadata, String wsdlDocumentLocation,
+            List<Element> referenceParameters, List<Element> elements, Map<QName, String> attributes) {
         throw new UnsupportedOperationException(
                 "JAX-WS 2.2 implementation must override this default behaviour.");
     }
@@ -511,22 +476,22 @@ public abstract class Provider {
      * implementations must override the default implementation.
      *
      * @param address
-     *                    A URI specifying the address and transport/protocol to
-     *                    use. A
-     *                    http: URI MUST result in the SOAP 1.1/HTTP binding
-     *                    being used.
-     *                    Implementations may support other URI schemes.
+     *        A URI specifying the address and transport/protocol to
+     *        use. A
+     *        http: URI MUST result in the SOAP 1.1/HTTP binding
+     *        being used.
+     *        Implementations may support other URI schemes.
      * @param implementor
-     *                    A service implementation object to which incoming
-     *                    requests
-     *                    will be dispatched. The corresponding class MUST be
-     *                    annotated
-     *                    with all the necessary Web service annotations.
+     *        A service implementation object to which incoming
+     *        requests
+     *        will be dispatched. The corresponding class MUST be
+     *        annotated
+     *        with all the necessary Web service annotations.
      * @param features
-     *                    A list of WebServiceFeatures to configure on the
-     *                    endpoint.
-     *                    Supported features not in the <code>features
-     *        </code>  parameter will have their default values.
+     *        A list of WebServiceFeatures to configure on the
+     *        endpoint.
+     *        Supported features not in the <code>features
+     *        </code> parameter will have their default values.
      * @return The newly created endpoint.
      * @since JAX-WS 2.2
      */
@@ -542,23 +507,22 @@ public abstract class Provider {
      * must override the default implementation.
      *
      * @param bindingId
-     *                    A URI specifying the desired binding (e.g. SOAP/HTTP)
+     *        A URI specifying the desired binding (e.g. SOAP/HTTP)
      * @param implementor
-     *                    A service implementation object to which incoming
-     *                    requests
-     *                    will be dispatched. The corresponding class MUST be
-     *                    annotated
-     *                    with all the necessary Web service annotations.
+     *        A service implementation object to which incoming
+     *        requests
+     *        will be dispatched. The corresponding class MUST be
+     *        annotated
+     *        with all the necessary Web service annotations.
      * @param features
-     *                    A list of WebServiceFeatures to configure on the
-     *                    endpoint.
-     *                    Supported features not in the <code>features
-     *        </code>  parameter will have their default values.
+     *        A list of WebServiceFeatures to configure on the
+     *        endpoint.
+     *        Supported features not in the <code>features
+     *        </code> parameter will have their default values.
      * @return The newly created endpoint.
      * @since JAX-WS 2.2
      */
-    public Endpoint createEndpoint(String bindingId, Object implementor,
-            WebServiceFeature... features) {
+    public Endpoint createEndpoint(String bindingId, Object implementor, WebServiceFeature... features) {
         throw new UnsupportedOperationException(
                 "JAX-WS 2.2 implementation must override this default behaviour.");
     }
@@ -570,26 +534,26 @@ public abstract class Provider {
      * override the default implementation.
      *
      * @param bindingId
-     *                         A URI specifying the desired binding (e.g.
-     *                         SOAP/HTTP). Can be
-     *                         null.
+     *        A URI specifying the desired binding (e.g.
+     *        SOAP/HTTP). Can be
+     *        null.
      * @param implementorClass
-     *                         A service implementation class that MUST be
-     *                         annotated with all
-     *                         the necessary Web service annotations.
+     *        A service implementation class that MUST be
+     *        annotated with all
+     *        the necessary Web service annotations.
      * @param invoker
-     *                         that does the actual invocation on the service
-     *                         instance.
+     *        that does the actual invocation on the service
+     *        instance.
      * @param features
-     *                         A list of WebServiceFeatures to configure on the
-     *                         endpoint.
-     *                         Supported features not in the <code>features
-     *        </code>       parameter will have their default values.
+     *        A list of WebServiceFeatures to configure on the
+     *        endpoint.
+     *        Supported features not in the <code>features
+     *        </code> parameter will have their default values.
      * @return The newly created endpoint.
      * @since JAX-WS 2.2
      */
-    public Endpoint createEndpoint(String bindingId, Class<?> implementorClass,
-            Invoker invoker, WebServiceFeature... features) {
+    public Endpoint createEndpoint(String bindingId, Class<?> implementorClass, Invoker invoker,
+            WebServiceFeature... features) {
         throw new UnsupportedOperationException(
                 "JAX-WS 2.2 implementation must override this default behaviour.");
     }

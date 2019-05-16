@@ -49,8 +49,7 @@ final class AttributeValueTemplate extends AttributeValue {
     final static int IN_EXPR_DQUOTES = 3;
     final static String DELIMITER = "\uFFFE"; // A Unicode nonchar
 
-    public AttributeValueTemplate(String value, Parser parser,
-            SyntaxTreeNode parent) {
+    public AttributeValueTemplate(String value, Parser parser, SyntaxTreeNode parent) {
         setParent(parent);
         setParser(parser);
 
@@ -106,8 +105,7 @@ final class AttributeValueTemplate extends AttributeValue {
                             case IN_EXPR:
                             case IN_EXPR_SQUOTES:
                             case IN_EXPR_DQUOTES:
-                                reportError(getParent(), parser,
-                                        ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
+                                reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
                                 break;
                         }
                         break;
@@ -119,9 +117,7 @@ final class AttributeValueTemplate extends AttributeValue {
                                     buffer.append(lookahead); // replace }} by }
                                     lookahead = null;
                                 } else {
-                                    reportError(getParent(), parser,
-                                            ErrorMsg.ATTR_VAL_TEMPLATE_ERR,
-                                            text);
+                                    reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
                                 }
                                 break;
                             case IN_EXPR:
@@ -173,8 +169,7 @@ final class AttributeValueTemplate extends AttributeValue {
 
         // Must be in OUT_EXPR at the end of parsing
         if (state != OUT_EXPR) {
-            reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR,
-                    text);
+            reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
         }
 
         /*
@@ -225,14 +220,11 @@ final class AttributeValueTemplate extends AttributeValue {
         } else {
             final ConstantPoolGen cpg = classGen.getConstantPool();
             final InstructionList il = methodGen.getInstructionList();
-            final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS,
-                    "<init>", "()V");
-            final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(
-                    STRING_BUFFER_CLASS, "append", "(" + STRING_SIG + ")"
-                            + STRING_BUFFER_SIG));
+            final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS, "<init>", "()V");
+            final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(STRING_BUFFER_CLASS, "append", "("
+                    + STRING_SIG + ")" + STRING_BUFFER_SIG));
 
-            final int toString = cpg.addMethodref(STRING_BUFFER_CLASS,
-                    "toString", "()" + STRING_SIG);
+            final int toString = cpg.addMethodref(STRING_BUFFER_CLASS, "toString", "()" + STRING_SIG);
             il.append(new NEW(cpg.addClass(STRING_BUFFER_CLASS)));
             il.append(DUP);
             il.append(new INVOKESPECIAL(initBuffer));

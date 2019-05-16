@@ -23,15 +23,13 @@ import com.sun.jmx.snmp.SnmpStatusException;
  * all <CODE>SnmpPeer</CODE> objects that share the parameter object.
  *
  * @see com.sun.jmx.snmp.SnmpPeer
- *
  *      <p>
  *      <b>This API is a Sun Microsystems internal API and is subject to change
  *      without notice.</b>
  *      </p>
  */
 
-public class SnmpParameters extends SnmpParams implements Cloneable,
-        Serializable {
+public class SnmpParameters extends SnmpParams implements Cloneable, Serializable {
     private static final long serialVersionUID = -1822462497931733790L;
 
     /**
@@ -51,9 +49,9 @@ public class SnmpParameters extends SnmpParams implements Cloneable,
      * community string to use is "public".
      *
      * @param rdc
-     *            community string to use for <CODE>get</CODE> operations.
+     *        community string to use for <CODE>get</CODE> operations.
      * @param wrc
-     *            community string to use for <CODE>set</CODE> operations.
+     *        community string to use for <CODE>set</CODE> operations.
      */
     public SnmpParameters(String rdc, String wrc) {
         _readCommunity = rdc;
@@ -66,11 +64,11 @@ public class SnmpParameters extends SnmpParams implements Cloneable,
      * the specification of the read/write/inform community strings.
      *
      * @param rdc
-     *               community string to use for <CODE>get</CODE> operations.
+     *        community string to use for <CODE>get</CODE> operations.
      * @param wrc
-     *               community string to use for <CODE>set</CODE> operations.
+     *        community string to use for <CODE>set</CODE> operations.
      * @param inform
-     *               community string to use for <CODE>inform</CODE> requests.
+     *        community string to use for <CODE>inform</CODE> requests.
      */
     public SnmpParameters(String rdc, String wrc, String inform) {
         _readCommunity = rdc;
@@ -92,7 +90,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable,
      * operations.
      * 
      * @param read
-     *             The community string.
+     *        The community string.
      */
     public synchronized void setRdCommunity(String read) {
         if (read == null)
@@ -114,7 +112,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable,
      * Sets the community to be used when issuing <CODE>set</CODE> operations.
      * 
      * @param write
-     *              The community string.
+     *        The community string.
      */
     public void setWrCommunity(String write) {
         _writeCommunity = write;
@@ -134,7 +132,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable,
      * requests.
      * 
      * @param inform
-     *               The community string.
+     *        The community string.
      */
     public void setInformCommunity(String inform) {
         if (inform == null)
@@ -160,7 +158,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable,
      * community.
      * 
      * @param obj
-     *            The object to compare <CODE>this</CODE> with.
+     *        The object to compare <CODE>this</CODE> with.
      * @return <CODE>true</CODE> if <CODE>this</CODE> and the specified object
      *         are equal, <CODE>false</CODE> otherwise.
      */

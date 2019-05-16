@@ -9,7 +9,6 @@ package com.sun.security.auth.module;
  * <p>
  * This class implementation retrieves and makes available Solaris
  * UID/GID/groups information for the current user.
- *
  */
 @jdk.Exported
 public class SolarisSystem {
@@ -32,7 +31,6 @@ public class SolarisSystem {
 
     /**
      * Get the username for the current Solaris user.
-     *
      * <p>
      *
      * @return the username for the current Solaris user.
@@ -43,7 +41,6 @@ public class SolarisSystem {
 
     /**
      * Get the UID for the current Solaris user.
-     *
      * <p>
      *
      * @return the UID for the current Solaris user.
@@ -54,7 +51,6 @@ public class SolarisSystem {
 
     /**
      * Get the GID for the current Solaris user.
-     *
      * <p>
      *
      * @return the GID for the current Solaris user.
@@ -65,7 +61,6 @@ public class SolarisSystem {
 
     /**
      * Get the supplementary groups for the current Solaris user.
-     *
      * <p>
      *
      * @return the supplementary groups for the current Solaris user.

@@ -33,8 +33,8 @@ public interface MonitoringManager extends Closeable {
      * <p>
      *
      * @param MonitoredObject
-     *                        ...
-     *                        </p>
+     *        ...
+     *        </p>
      */
     public MonitoredObject getRootMonitoredObject();
 
@@ -44,7 +44,6 @@ public interface MonitoringManager extends Closeable {
      * MBean. This will result in triaging initialize to all the
      * MonitoredObjects and it's Monitored Attributes.
      * </p>
-     *
      */
     public void clearState();
 

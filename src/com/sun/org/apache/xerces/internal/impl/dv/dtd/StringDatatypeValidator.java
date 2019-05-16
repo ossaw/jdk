@@ -34,7 +34,6 @@ import com.sun.org.apache.xerces.internal.impl.dv.*;
  * </P>
  *
  * @xerces.internal
- *
  */
 public class StringDatatypeValidator implements DatatypeValidator {
 
@@ -46,16 +45,15 @@ public class StringDatatypeValidator implements DatatypeValidator {
      * validation exception is thrown.
      *
      * @param content
-     *                the string value that needs to be validated
+     *        the string value that needs to be validated
      * @param context
-     *                the validation context
+     *        the validation context
      * @throws InvalidDatatypeException
-     *                                  if the content is invalid according to
-     *                                  the rules for the
-     *                                  validators
+     *         if the content is invalid according to
+     *         the rules for the
+     *         validators
      * @see InvalidDatatypeValueException
      */
-    public void validate(String content, ValidationContext context)
-            throws InvalidDatatypeValueException {}
+    public void validate(String content, ValidationContext context) throws InvalidDatatypeValueException {}
 
 }

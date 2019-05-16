@@ -58,7 +58,7 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param msg
-     *            to print
+     *        to print
      */
     private static void debugPrintln(String msg) {
         if (debug) {
@@ -80,10 +80,10 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param loader
-     *               to be used to load resource and {@link XPathFactory}
-     *               implementations during the resolution process. If this
-     *               parameter is null, the default system class loader will be
-     *               used.
+     *        to be used to load resource and {@link XPathFactory}
+     *        implementations during the resolution process. If this
+     *        parameter is null, the default system class loader will be
+     *        used.
      */
     public XPathFactoryFinder(ClassLoader loader) {
         this.classLoader = loader;
@@ -95,8 +95,7 @@ class XPathFactoryFinder {
     private void debugDisplayClassLoader() {
         try {
             if (classLoader == ss.getContextClassLoader()) {
-                debugPrintln("using thread context class loader (" + classLoader
-                        + ") for search");
+                debugPrintln("using thread context class loader (" + classLoader + ") for search");
                 return;
             }
         } catch (Throwable unused) {
@@ -104,8 +103,7 @@ class XPathFactoryFinder {
         }
 
         if (classLoader == ClassLoader.getSystemClassLoader()) {
-            debugPrintln("using system class loader (" + classLoader
-                    + ") for search");
+            debugPrintln("using system class loader (" + classLoader + ") for search");
             return;
         }
 
@@ -118,22 +116,18 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param uri
-     *            Identifies the underlying object model.
-     *
+     *        Identifies the underlying object model.
      * @return <code>null</code> if the callee fails to create one.
-     *
      * @throws NullPointerException
-     *                              If the parameter is null.
+     *         If the parameter is null.
      */
-    public XPathFactory newFactory(String uri)
-            throws XPathFactoryConfigurationException {
+    public XPathFactory newFactory(String uri) throws XPathFactoryConfigurationException {
         if (uri == null) {
             throw new NullPointerException();
         }
         XPathFactory f = _newFactory(uri);
         if (f != null) {
-            debugPrintln("factory '" + f.getClass().getName()
-                    + "' was found for " + uri);
+            debugPrintln("factory '" + f.getClass().getName() + "' was found for " + uri);
         } else {
             debugPrintln("unable to find a factory for " + uri);
         }
@@ -146,12 +140,10 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param uri
-     *            identifies the object model.
-     *
+     *        identifies the object model.
      * @return {@link XPathFactory} for the given object model.
      */
-    private XPathFactory _newFactory(String uri)
-            throws XPathFactoryConfigurationException {
+    private XPathFactory _newFactory(String uri) throws XPathFactoryConfigurationException {
         XPathFactory xpathFactory = null;
 
         String propertyName = SERVICE_CLASS.getName() + ":" + uri;
@@ -170,15 +162,13 @@ class XPathFactoryFinder {
                 debugPrintln("The property is undefined.");
         } catch (Throwable t) {
             if (debug) {
-                debugPrintln("failed to look up system property '"
-                        + propertyName + "'");
+                debugPrintln("failed to look up system property '" + propertyName + "'");
                 t.printStackTrace();
             }
         }
 
         String javah = ss.getSystemProperty("java.home");
-        String configFile = javah + File.separator + "lib" + File.separator
-                + "jaxp.properties";
+        String configFile = javah + File.separator + "lib" + File.separator + "jaxp.properties";
 
         // try to read from $java.home/lib/jaxp.properties
         try {
@@ -194,10 +184,8 @@ class XPathFactoryFinder {
                     }
                 }
             }
-            final String factoryClassName = cacheProps.getProperty(
-                    propertyName);
-            debugPrintln("found " + factoryClassName
-                    + " in $java.home/jaxp.properties");
+            final String factoryClassName = cacheProps.getProperty(propertyName);
+            debugPrintln("found " + factoryClassName + " in $java.home/jaxp.properties");
 
             if (factoryClassName != null) {
                 xpathFactory = createInstance(factoryClassName, true);
@@ -226,11 +214,8 @@ class XPathFactoryFinder {
 
         // platform default
         if (uri.equals(XPathFactory.DEFAULT_OBJECT_MODEL_URI)) {
-            debugPrintln(
-                    "attempting to use the platform default W3C DOM XPath lib");
-            return createInstance(
-                    "com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl",
-                    true);
+            debugPrintln("attempting to use the platform default W3C DOM XPath lib");
+            return createInstance("com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl", true);
         }
 
         debugPrintln("all things were tried, but none was found. bailing out.");
@@ -243,7 +228,7 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param className
-     *                  Name of class to create.
+     *        Name of class to create.
      * @return Created class or <code>null</code>.
      */
     private Class<?> createClass(String className) {
@@ -279,12 +264,10 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param className
-     *                  fully qualified class name to be instantiated.
-     *
+     *        fully qualified class name to be instantiated.
      * @return null if it fails. Error messages will be printed by this method.
      */
-    XPathFactory createInstance(String className)
-            throws XPathFactoryConfigurationException {
+    XPathFactory createInstance(String className) throws XPathFactoryConfigurationException {
         return createInstance(className, false);
     }
 
@@ -337,21 +320,19 @@ class XPathFactoryFinder {
      * Try to construct using newXPathFactoryNoServiceLoader method if
      * available.
      */
-    private static XPathFactory newInstanceNoServiceLoader(
-            Class<?> providerClass) throws XPathFactoryConfigurationException {
+    private static XPathFactory newInstanceNoServiceLoader(Class<?> providerClass)
+            throws XPathFactoryConfigurationException {
         // Retain maximum compatibility if no security manager.
         if (System.getSecurityManager() == null) {
             return null;
         }
         try {
-            Method creationMethod = providerClass.getDeclaredMethod(
-                    "newXPathFactoryNoServiceLoader");
+            Method creationMethod = providerClass.getDeclaredMethod("newXPathFactoryNoServiceLoader");
             final int modifiers = creationMethod.getModifiers();
 
             // Do not call "newXPathFactoryNoServiceLoader" if it's
             // not public static.
-            if (!Modifier.isStatic(modifiers) || !Modifier.isPublic(
-                    modifiers)) {
+            if (!Modifier.isStatic(modifiers) || !Modifier.isPublic(modifiers)) {
                 return null;
             }
 
@@ -359,14 +340,12 @@ class XPathFactoryFinder {
             // declared to return an instance of XPathFactory.
             final Class<?> returnType = creationMethod.getReturnType();
             if (SERVICE_CLASS.isAssignableFrom(returnType)) {
-                return SERVICE_CLASS.cast(creationMethod.invoke(null,
-                        (Object[]) null));
+                return SERVICE_CLASS.cast(creationMethod.invoke(null, (Object[]) null));
             } else {
                 // Should not happen since
                 // XPathFactoryImpl.newXPathFactoryNoServiceLoader is
                 // declared to return XPathFactory.
-                throw new ClassCastException(returnType + " cannot be cast to "
-                        + SERVICE_CLASS);
+                throw new ClassCastException(returnType + " cannot be cast to " + SERVICE_CLASS);
             }
         } catch (ClassCastException e) {
             throw new XPathFactoryConfigurationException(e);
@@ -378,8 +357,8 @@ class XPathFactoryFinder {
     }
 
     // Call isObjectModelSupportedBy with initial context.
-    private boolean isObjectModelSupportedBy(final XPathFactory factory,
-            final String objectModel, AccessControlContext acc) {
+    private boolean isObjectModelSupportedBy(final XPathFactory factory, final String objectModel,
+            AccessControlContext acc) {
         return AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
             public Boolean run() {
                 return factory.isObjectModelSupported(objectModel);
@@ -392,12 +371,12 @@ class XPathFactoryFinder {
      * object model using the ServiceLoader.
      *
      * @param objectModel
-     *                    URI of object model to support.
+     *        URI of object model to support.
      * @return An XPathFactory supporting the specified object model, or null if
      *         none is found.
      * @throws XPathFactoryConfigurationException
-     *                                            if a configuration error is
-     *                                            found.
+     *         if a configuration error is
+     *         found.
      */
     private XPathFactory findServiceProvider(final String objectModel)
             throws XPathFactoryConfigurationException {
@@ -406,22 +385,19 @@ class XPathFactoryFinder {
         // store current context.
         final AccessControlContext acc = AccessController.getContext();
         try {
-            return AccessController.doPrivileged(
-                    new PrivilegedAction<XPathFactory>() {
-                        public XPathFactory run() {
-                            final ServiceLoader<XPathFactory> loader = ServiceLoader
-                                    .load(SERVICE_CLASS);
-                            for (XPathFactory factory : loader) {
-                                // restore initial context to call
-                                // factory.isObjectModelSupportedBy
-                                if (isObjectModelSupportedBy(factory,
-                                        objectModel, acc)) {
-                                    return factory;
-                                }
-                            }
-                            return null; // no factory found.
+            return AccessController.doPrivileged(new PrivilegedAction<XPathFactory>() {
+                public XPathFactory run() {
+                    final ServiceLoader<XPathFactory> loader = ServiceLoader.load(SERVICE_CLASS);
+                    for (XPathFactory factory : loader) {
+                        // restore initial context to call
+                        // factory.isObjectModelSupportedBy
+                        if (isObjectModelSupportedBy(factory, objectModel, acc)) {
+                            return factory;
                         }
-                    });
+                    }
+                    return null; // no factory found.
+                }
+            });
         } catch (ServiceConfigurationError error) {
             throw new XPathFactoryConfigurationException(error);
         }
@@ -439,10 +415,9 @@ class XPathFactoryFinder {
      * </p>
      *
      * @param classname
-     *                  the fully qualified name of the class to search for
+     *        the fully qualified name of the class to search for
      * @param loader
-     *                  the classloader to search
-     *
+     *        the classloader to search
      * @return the source location of the resource, or null if it wasn't found
      */
     private static String which(String classname, ClassLoader loader) {

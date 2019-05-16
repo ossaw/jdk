@@ -38,8 +38,7 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobPriority extends IntegerSyntax implements
-        PrintRequestAttribute, PrintJobAttribute {
+public final class JobPriority extends IntegerSyntax implements PrintRequestAttribute, PrintJobAttribute {
 
     private static final long serialVersionUID = -4599900369040602769L;
 
@@ -47,12 +46,11 @@ public final class JobPriority extends IntegerSyntax implements
      * Construct a new job priority attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 1 or greater than 100.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 1 or greater than 100.
      */
     public JobPriority(int value) {
         super(value, 1, 100);
@@ -70,8 +68,7 @@ public final class JobPriority extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this job priority
      *         attribute, false otherwise.
      */

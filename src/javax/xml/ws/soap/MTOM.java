@@ -27,7 +27,6 @@ import javax.xml.ws.WebServiceProvider;
  * a proxy instance is created. The injected SEI proxy, and endpoint MUST honor
  * the values of the <code>MTOM</code> annotation.
  * <p>
- *
  * This annotation's behaviour is defined by the corresponding feature
  * {@link MTOMFeature}.
  *

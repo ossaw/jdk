@@ -64,11 +64,9 @@ import java.util.Objects;
  * might be described as 'the clocks will move back one hour tonight at 2am'.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
-public final class ZoneOffsetTransition implements
-        Comparable<ZoneOffsetTransition>, Serializable {
+public final class ZoneOffsetTransition implements Comparable<ZoneOffsetTransition>, Serializable {
 
     /**
      * Serialization version.
@@ -95,24 +93,24 @@ public final class ZoneOffsetTransition implements
      * This factory is only intended for use when creating {@link ZoneRules}.
      *
      * @param transition
-     *                     the transition date-time at the transition, which
-     *                     never
-     *                     actually occurs, expressed local to the before
-     *                     offset, not
-     *                     null
+     *        the transition date-time at the transition, which
+     *        never
+     *        actually occurs, expressed local to the before
+     *        offset, not
+     *        null
      * @param offsetBefore
-     *                     the offset before the transition, not null
+     *        the offset before the transition, not null
      * @param offsetAfter
-     *                     the offset at and after the transition, not null
+     *        the offset at and after the transition, not null
      * @return the transition, not null
      * @throws IllegalArgumentException
-     *                                  if {@code offsetBefore} and
-     *                                  {@code offsetAfter} are equal, or
-     *                                  {@code transition.getNano()} returns
-     *                                  non-zero value
+     *         if {@code offsetBefore} and
+     *         {@code offsetAfter} are equal, or
+     *         {@code transition.getNano()} returns
+     *         non-zero value
      */
-    public static ZoneOffsetTransition of(LocalDateTime transition,
-            ZoneOffset offsetBefore, ZoneOffset offsetAfter) {
+    public static ZoneOffsetTransition of(LocalDateTime transition, ZoneOffset offsetBefore,
+            ZoneOffset offsetAfter) {
         Objects.requireNonNull(transition, "transition");
         Objects.requireNonNull(offsetBefore, "offsetBefore");
         Objects.requireNonNull(offsetAfter, "offsetAfter");
@@ -129,15 +127,14 @@ public final class ZoneOffsetTransition implements
      * Creates an instance defining a transition between two offsets.
      *
      * @param transition
-     *                     the transition date-time with the offset before the
-     *                     transition, not null
+     *        the transition date-time with the offset before the
+     *        transition, not null
      * @param offsetBefore
-     *                     the offset before the transition, not null
+     *        the offset before the transition, not null
      * @param offsetAfter
-     *                     the offset at and after the transition, not null
+     *        the offset at and after the transition, not null
      */
-    ZoneOffsetTransition(LocalDateTime transition, ZoneOffset offsetBefore,
-            ZoneOffset offsetAfter) {
+    ZoneOffsetTransition(LocalDateTime transition, ZoneOffset offsetBefore, ZoneOffset offsetAfter) {
         this.transition = transition;
         this.offsetBefore = offsetBefore;
         this.offsetAfter = offsetAfter;
@@ -147,16 +144,14 @@ public final class ZoneOffsetTransition implements
      * Creates an instance from epoch-second and offsets.
      *
      * @param epochSecond
-     *                     the transition epoch-second
+     *        the transition epoch-second
      * @param offsetBefore
-     *                     the offset before the transition, not null
+     *        the offset before the transition, not null
      * @param offsetAfter
-     *                     the offset at and after the transition, not null
+     *        the offset at and after the transition, not null
      */
-    ZoneOffsetTransition(long epochSecond, ZoneOffset offsetBefore,
-            ZoneOffset offsetAfter) {
-        this.transition = LocalDateTime.ofEpochSecond(epochSecond, 0,
-                offsetBefore);
+    ZoneOffsetTransition(long epochSecond, ZoneOffset offsetBefore, ZoneOffset offsetAfter) {
+        this.transition = LocalDateTime.ofEpochSecond(epochSecond, 0, offsetBefore);
         this.offsetBefore = offsetBefore;
         this.offsetAfter = offsetAfter;
     }
@@ -166,13 +161,12 @@ public final class ZoneOffsetTransition implements
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     /**
@@ -205,9 +199,9 @@ public final class ZoneOffsetTransition implements
      * Writes the state to the stream.
      *
      * @param out
-     *            the output stream, not null
+     *        the output stream, not null
      * @throws IOException
-     *                     if an error occurs
+     *         if an error occurs
      */
     void writeExternal(DataOutput out) throws IOException {
         Ser.writeEpochSec(toEpochSecond(), out);
@@ -219,10 +213,10 @@ public final class ZoneOffsetTransition implements
      * Reads the state from the stream.
      *
      * @param in
-     *           the input stream, not null
+     *        the input stream, not null
      * @return the created object, not null
      * @throws IOException
-     *                     if an error occurs
+     *         if an error occurs
      */
     static ZoneOffsetTransition readExternal(DataInput in) throws IOException {
         long epochSecond = Ser.readEpochSec(in);
@@ -339,8 +333,7 @@ public final class ZoneOffsetTransition implements
      * @return the duration in seconds
      */
     private int getDurationSeconds() {
-        return getOffsetAfter().getTotalSeconds() - getOffsetBefore()
-                .getTotalSeconds();
+        return getOffsetAfter().getTotalSeconds() - getOffsetBefore().getTotalSeconds();
     }
 
     /**
@@ -354,8 +347,7 @@ public final class ZoneOffsetTransition implements
      * @return true if this transition is a gap, false if it is an overlap
      */
     public boolean isGap() {
-        return getOffsetAfter().getTotalSeconds() > getOffsetBefore()
-                .getTotalSeconds();
+        return getOffsetAfter().getTotalSeconds() > getOffsetBefore().getTotalSeconds();
     }
 
     /**
@@ -369,8 +361,7 @@ public final class ZoneOffsetTransition implements
      * @return true if this transition is an overlap, false if it is a gap
      */
     public boolean isOverlap() {
-        return getOffsetAfter().getTotalSeconds() < getOffsetBefore()
-                .getTotalSeconds();
+        return getOffsetAfter().getTotalSeconds() < getOffsetBefore().getTotalSeconds();
     }
 
     /**
@@ -381,13 +372,11 @@ public final class ZoneOffsetTransition implements
      * if the offset is either the before or after offset.
      *
      * @param offset
-     *               the offset to check, null returns false
+     *        the offset to check, null returns false
      * @return true if the offset is valid during the transition
      */
     public boolean isValidOffset(ZoneOffset offset) {
-        return isGap() ? false
-                : (getOffsetBefore().equals(offset) || getOffsetAfter().equals(
-                        offset));
+        return isGap() ? false : (getOffsetBefore().equals(offset) || getOffsetAfter().equals(offset));
     }
 
     /**
@@ -413,7 +402,7 @@ public final class ZoneOffsetTransition implements
      * making this order inconsistent with equals.
      *
      * @param transition
-     *                   the transition to compare to, not null
+     *        the transition to compare to, not null
      * @return the comparator value, negative if less, positive if greater
      */
     @Override
@@ -428,7 +417,7 @@ public final class ZoneOffsetTransition implements
      * The entire state of the object is compared.
      *
      * @param other
-     *              the other object to compare to, null returns false
+     *        the other object to compare to, null returns false
      * @return true if equal
      */
     @Override
@@ -438,8 +427,8 @@ public final class ZoneOffsetTransition implements
         }
         if (other instanceof ZoneOffsetTransition) {
             ZoneOffsetTransition d = (ZoneOffsetTransition) other;
-            return transition.equals(d.transition) && offsetBefore.equals(
-                    d.offsetBefore) && offsetAfter.equals(d.offsetAfter);
+            return transition.equals(d.transition) && offsetBefore.equals(d.offsetBefore) && offsetAfter
+                    .equals(d.offsetAfter);
         }
         return false;
     }
@@ -451,8 +440,8 @@ public final class ZoneOffsetTransition implements
      */
     @Override
     public int hashCode() {
-        return transition.hashCode() ^ offsetBefore.hashCode() ^ Integer
-                .rotateLeft(offsetAfter.hashCode(), 16);
+        return transition.hashCode() ^ offsetBefore.hashCode() ^ Integer.rotateLeft(offsetAfter.hashCode(),
+                16);
     }
 
     // -----------------------------------------------------------------------
@@ -464,9 +453,8 @@ public final class ZoneOffsetTransition implements
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("Transition[").append(isGap() ? "Gap" : "Overlap").append(
-                " at ").append(transition).append(offsetBefore).append(" to ")
-                .append(offsetAfter).append(']');
+        buf.append("Transition[").append(isGap() ? "Gap" : "Overlap").append(" at ").append(transition)
+                .append(offsetBefore).append(" to ").append(offsetAfter).append(']');
         return buf.toString();
     }
 

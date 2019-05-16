@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
  * that take no {@link java.util.ResourceBundle.Control} instance can be
  * modified with {@code
  * ResourceBundleControlProvider} implementations.
- *
  * <p>
  * Provider implementations must be packaged using the
  * <a href="../../../../technotes/guides/extensions/index.html">Java Extension
@@ -40,11 +39,11 @@ public interface ResourceBundleControlProvider {
      * {@code baseName} isn't handled by this provider.
      *
      * @param baseName
-     *                 the base name of the resource bundle
+     *        the base name of the resource bundle
      * @return a {@code ResourceBundle.Control} instance, or {@code null} if the
      *         given {@code baseName} is not applicable to this provider.
      * @throws NullPointerException
-     *                              if {@code baseName} is {@code null}
+     *         if {@code baseName} is {@code null}
      */
     public ResourceBundle.Control getControl(String baseName);
 }

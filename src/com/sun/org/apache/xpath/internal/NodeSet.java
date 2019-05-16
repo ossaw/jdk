@@ -39,14 +39,12 @@ import org.w3c.dom.traversal.NodeIterator;
  * that implement iterators must override runTo(int index), in order that they
  * may run the iteration to the given index.
  * </p>
- *
  * <p>
  * Note that we directly implement the DOM's NodeIterator interface. We do not
  * emulate all the behavior of the standard NodeIterator. In particular, we do
  * not guarantee to present a "live view" of the document ... but in XSLT, the
  * source document should never be mutated, so this should never be an issue.
  * </p>
- *
  * <p>
  * Thought: Should NodeSet really implement NodeList and NodeIterator, or should
  * there be specific subclasses of it which do so? The advantage of doing it all
@@ -56,8 +54,7 @@ import org.w3c.dom.traversal.NodeIterator;
  * 
  * @xsl.usage advanced
  */
-public class NodeSet implements NodeList, NodeIterator, Cloneable,
-        ContextNodeList {
+public class NodeSet implements NodeList, NodeIterator, Cloneable, ContextNodeList {
 
     /**
      * Create an empty nodelist.
@@ -71,7 +68,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Create an empty, using the given block size.
      *
      * @param blocksize
-     *                  Size of blocks to allocate
+     *        Size of blocks to allocate
      */
     public NodeSet(int blocksize) {
         m_blocksize = blocksize;
@@ -82,7 +79,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Create a NodeSet, and copy the members of the given nodelist into it.
      *
      * @param nodelist
-     *                 List of Nodes to be made members of the new set.
+     *        List of Nodes to be made members of the new set.
      */
     public NodeSet(NodeList nodelist) {
 
@@ -95,7 +92,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Create a NodeSet, and copy the members of the given NodeSet into it.
      *
      * @param nodelist
-     *                 Set of Nodes to be made members of the new set.
+     *        Set of Nodes to be made members of the new set.
      */
     public NodeSet(NodeSet nodelist) {
 
@@ -108,7 +105,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Create a NodeSet, and copy the members of the given NodeIterator into it.
      *
      * @param ni
-     *           Iterator which yields Nodes to be made members of the new set.
+     *        Iterator which yields Nodes to be made members of the new set.
      */
     public NodeSet(NodeIterator ni) {
 
@@ -121,7 +118,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Create a NodeSet which contains the given Node.
      *
      * @param node
-     *             Single node to be added to the new set.
+     *        Single node to be added to the new set.
      */
     public NodeSet(Node node) {
 
@@ -144,11 +141,10 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      *
      * @return a new NodeSet of the same type, having the same state... except
      *         that the reset() operation has been called.
-     *
      * @throws CloneNotSupportedException
-     *                                    if this subclass of NodeSet does not
-     *                                    support the clone()
-     *                                    operation.
+     *         if this subclass of NodeSet does not
+     *         support the clone()
+     *         operation.
      */
     public NodeIterator cloneWithReset() throws CloneNotSupportedException {
 
@@ -228,9 +224,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * @return The next <code>Node</code> in the set being iterated over, or
      *         <code>null</code> if there are no more members in that set.
      * @throws DOMException
-     *                      INVALID_STATE_ERR: Raised if this method is called
-     *                      after the
-     *                      <code>detach</code> method was invoked.
+     *         INVALID_STATE_ERR: Raised if this method is called
+     *         after the
+     *         <code>detach</code> method was invoked.
      */
     public Node nextNode() throws DOMException {
 
@@ -251,13 +247,13 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * @return The previous <code>Node</code> in the set being iterated over, or
      *         <code>null</code> if there are no more members in that set.
      * @throws DOMException
-     *                          INVALID_STATE_ERR: Raised if this method is
-     *                          called after the
-     *                          <code>detach</code> method was invoked.
+     *         INVALID_STATE_ERR: Raised if this method is
+     *         called after the
+     *         <code>detach</code> method was invoked.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a cached type,
-     *                          and hence
-     *                          doesn't know what the previous node was.
+     *         thrown if this NodeSet is not of a cached type,
+     *         and hence
+     *         doesn't know what the previous node was.
      */
     public Node previousNode() throws DOMException {
 
@@ -311,13 +307,13 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * end.
      *
      * @param index
-     *              Position to advance (or retreat) to, with 0 requesting the
-     *              reset ("fresh") position and -1 (or indeed any out-of-bounds
-     *              value) requesting the final position.
+     *        Position to advance (or retreat) to, with 0 requesting the
+     *        reset ("fresh") position and -1 (or indeed any out-of-bounds
+     *        value) requesting the final position.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not one of the types
-     *                          which supports
-     *                          indexing/counting.
+     *         thrown if this NodeSet is not one of the types
+     *         which supports
+     *         indexing/counting.
      */
     public void runTo(int index) {
 
@@ -343,11 +339,10 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Returns the <code>index</code>th item in the collection. If
      * <code>index</code> is greater than or equal to the number of nodes in the
      * list, this returns <code>null</code>.
-     *
      * TODO: What happens if index is out of range?
      *
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The node at the <code>index</code>th position in the
      *         <code>NodeList</code>, or <code>null</code> if that is not a
      *         valid index.
@@ -379,9 +374,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * operation
      *
      * @param n
-     *          Node to be added
+     *        Node to be added
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void addNode(Node n) {
 
@@ -400,12 +395,12 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Insert a node at a given position.
      *
      * @param n
-     *            Node to be added
+     *        Node to be added
      * @param pos
-     *            Offset at which the node is to be inserted, with 0 being the
-     *            first position.
+     *        Offset at which the node is to be inserted, with 0 being the
+     *        first position.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void insertNode(Node n, int pos) {
 
@@ -424,9 +419,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Remove a node.
      *
      * @param n
-     *          Node to be added
+     *        Node to be added
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void removeNode(Node n) {
 
@@ -446,10 +441,10 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * node is null, don't add it.
      *
      * @param nodelist
-     *                 List of nodes which should now be referenced by this
-     *                 NodeSet.
+     *        List of nodes which should now be referenced by this
+     *        NodeSet.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void addNodes(NodeList nodelist) {
 
@@ -483,7 +478,6 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * genuine node references will be copied; nulls appearing in the source
      * NodeSet will not be added to this one.
      * </p>
-     *
      * <p>
      * In case you're wondering why this function is needed: NodeSet implements
      * both NodeIterator and NodeList. If this method isn't provided, Java can't
@@ -492,9 +486,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * </p>
      *
      * @param ns
-     *           NodeSet whose members should be merged into this NodeSet.
+     *        NodeSet whose members should be merged into this NodeSet.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void addNodes(NodeSet ns) {
 
@@ -514,9 +508,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * references are not added.
      *
      * @param iterator
-     *                 NodeIterator which yields the nodes to be added.
+     *        NodeIterator which yields the nodes to be added.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void addNodes(NodeIterator iterator) {
 
@@ -545,11 +539,11 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * node is null, don't add it.
      *
      * @param nodelist
-     *                 List of nodes to be added
+     *        List of nodes to be added
      * @param support
-     *                 The XPath runtime context.
+     *        The XPath runtime context.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public void addNodesInDocOrder(NodeList nodelist, XPathContext support) {
 
@@ -577,14 +571,13 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * node is null, don't add it.
      *
      * @param iterator
-     *                 NodeIterator which yields the nodes to be added.
+     *        NodeIterator which yields the nodes to be added.
      * @param support
-     *                 The XPath runtime context.
+     *        The XPath runtime context.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
-    public void addNodesInDocOrder(NodeIterator iterator,
-            XPathContext support) {
+    public void addNodesInDocOrder(NodeIterator iterator, XPathContext support) {
 
         if (!m_mutable)
             throw new RuntimeException(XSLMessages.createXPATHMessage(
@@ -605,22 +598,21 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Add the node list to this node set in document order.
      *
      * @param start
-     *                  index.
+     *        index.
      * @param end
-     *                  index.
+     *        index.
      * @param testIndex
-     *                  index.
+     *        index.
      * @param nodelist
-     *                  The nodelist to add.
+     *        The nodelist to add.
      * @param support
-     *                  The XPath runtime context.
-     *
+     *        The XPath runtime context.
      * @return false always.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
-    private boolean addNodesInDocOrder(int start, int end, int testIndex,
-            NodeList nodelist, XPathContext support) {
+    private boolean addNodesInDocOrder(int start, int end, int testIndex, NodeList nodelist,
+            XPathContext support) {
 
         if (!m_mutable)
             throw new RuntimeException(XSLMessages.createXPATHMessage(
@@ -649,12 +641,10 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
                 testIndex--;
 
                 if (testIndex > 0) {
-                    boolean foundPrev = addNodesInDocOrder(0, i, testIndex,
-                            nodelist, support);
+                    boolean foundPrev = addNodesInDocOrder(0, i, testIndex, nodelist, support);
 
                     if (!foundPrev) {
-                        addNodesInDocOrder(i, size() - 1, testIndex, nodelist,
-                                support);
+                        addNodesInDocOrder(i, size() - 1, testIndex, nodelist, support);
                     }
                 }
 
@@ -674,17 +664,16 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * order.
      * 
      * @param node
-     *                The node to be added.
+     *        The node to be added.
      * @param test
-     *                true if we should test for doc order
+     *        true if we should test for doc order
      * @param support
-     *                The XPath runtime context.
+     *        The XPath runtime context.
      * @return insertIndex.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
-    public int addNodeInDocOrder(Node node, boolean test,
-            XPathContext support) {
+    public int addNodeInDocOrder(Node node, boolean test, XPathContext support) {
 
         if (!m_mutable)
             throw new RuntimeException(XSLMessages.createXPATHMessage(
@@ -750,13 +739,12 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * order.
      * 
      * @param node
-     *                The node to be added.
+     *        The node to be added.
      * @param support
-     *                The XPath runtime context.
-     *
+     *        The XPath runtime context.
      * @return The index where it was inserted.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a mutable type.
+     *         thrown if this NodeSet is not of a mutable type.
      */
     public int addNodeInDocOrder(Node node, XPathContext support) {
 
@@ -792,11 +780,11 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Set the current position in the node set.
      * 
      * @param i
-     *          Must be a valid index.
+     *        Must be a valid index.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a cached type,
-     *                          and thus
-     *                          doesn't permit indexed access.
+     *         thrown if this NodeSet is not of a cached type,
+     *         and thus
+     *         doesn't permit indexed access.
      */
     public void setCurrentPos(int i) {
 
@@ -820,9 +808,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      *
      * @return the last fetched node.
      * @throws RuntimeException
-     *                          thrown if this NodeSet is not of a cached type,
-     *                          and thus
-     *                          doesn't permit indexed access.
+     *         thrown if this NodeSet is not of a cached type,
+     *         and thus
+     *         doesn't permit indexed access.
      */
     public Node getCurrentNode() {
 
@@ -857,7 +845,6 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
     /**
      * Get whether or not this is a cached node set.
      *
-     *
      * @return True if this list is cached.
      */
     public boolean getShouldCacheNodes() {
@@ -870,19 +857,18 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * to nextNode is made, to ensure that all nodes are cached.
      *
      * @param b
-     *          true if this node set should be cached.
+     *        true if this node set should be cached.
      * @throws RuntimeException
-     *                          thrown if an attempt is made to request caching
-     *                          after we've
-     *                          already begun stepping through the nodes in this
-     *                          set.
+     *         thrown if an attempt is made to request caching
+     *         after we've
+     *         already begun stepping through the nodes in this
+     *         set.
      */
     public void setShouldCacheNodes(boolean b) {
 
         if (!isFresh())
             throw new RuntimeException(XSLMessages.createXPATHMessage(
-                    XPATHErrorResources.ER_CANNOT_CALL_SETSHOULDCACHENODE,
-                    null)); // "Can
+                    XPATHErrorResources.ER_CANNOT_CALL_SETSHOULDCACHENODE, null)); // "Can
                                                                                                                                              // not
                                                                                                                                              // call
                                                                                                                                              // setShouldCacheNodes
@@ -938,7 +924,6 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Get a cloned LocPathIterator.
      *
      * @return A clone of this
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
@@ -967,7 +952,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Append a Node onto the vector.
      *
      * @param value
-     *              Node to add to the vector
+     *        Node to add to the vector
      */
     public void addElement(Node value) {
         if (!m_mutable)
@@ -1002,7 +987,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Append a Node onto the vector.
      *
      * @param value
-     *              Node to add to the vector
+     *        Node to add to the vector
      */
     public final void push(Node value) {
 
@@ -1079,8 +1064,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * @return Node at the top of the stack or null if stack is empty.
      */
     public final Node peepOrNull() {
-        return ((null != m_map) && (m_firstFree > 0)) ? m_map[m_firstFree - 1]
-                : null;
+        return ((null != m_map) && (m_firstFree > 0)) ? m_map[m_firstFree - 1] : null;
     }
 
     /**
@@ -1088,9 +1072,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * TransformerImpl, pushElemTemplateElement. Performance critical.
      *
      * @param v1
-     *           First node to add to vector
+     *        First node to add to vector
      * @param v2
-     *           Second node to add to vector
+     *        Second node to add to vector
      */
     public final void pushPair(Node v1, Node v2) {
 
@@ -1130,7 +1114,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * TransformerImpl, pushElemTemplateElement. Performance critical.
      *
      * @param n
-     *          Node to set at the tail of vector
+     *        Node to set at the tail of vector
      */
     public final void setTail(Node n) {
         m_map[m_firstFree - 1] = n;
@@ -1141,7 +1125,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * TransformerImpl, pushElemTemplateElement. Performance critical.
      *
      * @param n
-     *          Node to set
+     *        Node to set
      */
     public final void setTailSub1(Node n) {
         m_map[m_firstFree - 2] = n;
@@ -1176,9 +1160,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * had previously.
      *
      * @param value
-     *              Node to insert
+     *        Node to insert
      * @param at
-     *              Position where to insert
+     *        Position where to insert
      */
     public void insertElementAt(Node value, int at) {
         if (!m_mutable)
@@ -1215,7 +1199,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Append the nodes to the list.
      *
      * @param nodes
-     *              NodeVector to append to this list
+     *        NodeVector to append to this list
      */
     public void appendNodes(NodeSet nodes) {
 
@@ -1264,8 +1248,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * an index one smaller than the value it had previously.
      *
      * @param s
-     *          Node to remove from the list
-     *
+     *        Node to remove from the list
      * @return True if the node was successfully removed
      */
     public boolean removeElement(Node s) {
@@ -1285,8 +1268,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
 
             if ((null != node) && node.equals(s)) {
                 if (i < m_firstFree - 1)
-                    System.arraycopy(m_map, i + 1, m_map, i, m_firstFree - i
-                            - 1);
+                    System.arraycopy(m_map, i + 1, m_map, i, m_firstFree - i - 1);
 
                 m_firstFree--;
                 m_map[m_firstFree] = null;
@@ -1304,7 +1286,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * downward to have an index one smaller than the value it had previously.
      *
      * @param i
-     *          Index of node to remove
+     *        Index of node to remove
      */
     public void removeElementAt(int i) {
 
@@ -1326,14 +1308,13 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
     /**
      * Sets the component at the specified index of this vector to be the
      * specified object. The previous component at that position is discarded.
-     *
      * The index must be a value greater than or equal to 0 and less than the
      * current size of the vector.
      *
      * @param node
-     *              Node to set
+     *        Node to set
      * @param index
-     *              Index of where to set the node
+     *        Index of where to set the node
      */
     public void setElementAt(Node node, int index) {
         if (!m_mutable)
@@ -1356,8 +1337,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Get the nth element.
      *
      * @param i
-     *          Index of node to get
-     *
+     *        Index of node to get
      * @return Node at specified index
      */
     public Node elementAt(int i) {
@@ -1372,8 +1352,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * Tell if the table contains the given node.
      *
      * @param s
-     *          Node to look for
-     *
+     *        Node to look for
      * @return True if the given node was found.
      */
     public boolean contains(Node s) {
@@ -1397,9 +1376,9 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * search at index, and testing for equality using the equals method.
      *
      * @param elem
-     *              Node to look for
+     *        Node to look for
      * @param index
-     *              Index of where to start the search
+     *        Index of where to start the search
      * @return the index of the first occurrence of the object argument in this
      *         vector at position index or later in the vector; returns -1 if
      *         the object is not found.
@@ -1425,7 +1404,7 @@ public class NodeSet implements NodeList, NodeIterator, Cloneable,
      * search at index, and testing for equality using the equals method.
      *
      * @param elem
-     *             Node to look for
+     *        Node to look for
      * @return the index of the first occurrence of the object argument in this
      *         vector at position index or later in the vector; returns -1 if
      *         the object is not found.

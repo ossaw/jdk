@@ -7,7 +7,6 @@ package javax.xml.bind.annotation.adapters;
 
 /**
  * {@link XmlAdapter} to handle <tt>xs:normalizedString</tt>.
- *
  * <p>
  * Replaces any tab, CR, and LF by a whitespace character ' ', as specified in
  * <a href="http://www.w3.org/TR/xmlschema-2/#rf-whiteSpace">the whitespace
@@ -50,7 +49,6 @@ public final class NormalizedStringAdapter extends XmlAdapter<String, String> {
 
     /**
      * No-op.
-     *
      * Just return the same string given as the parameter.
      */
     public String marshal(String s) {

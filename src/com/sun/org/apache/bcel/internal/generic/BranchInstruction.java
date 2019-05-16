@@ -61,8 +61,7 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  * @see InstructionList
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class BranchInstruction extends Instruction implements
-        InstructionTargeter {
+public abstract class BranchInstruction extends Instruction implements InstructionTargeter {
     protected int index; // Branch target relative to this instruction
     protected InstructionHandle target; // Target object in instruction list
     protected int position; // Byte code offset
@@ -77,9 +76,9 @@ public abstract class BranchInstruction extends Instruction implements
      * Common super constructor
      * 
      * @param opcodee
-     *                Instruction opcode
+     *        Instruction opcode
      * @param target
-     *                instruction to branch to
+     *        instruction to branch to
      */
     protected BranchInstruction(short opcode, InstructionHandle target) {
         super(opcode, (short) 3);
@@ -90,7 +89,7 @@ public abstract class BranchInstruction extends Instruction implements
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     @Override
     public void dump(DataOutputStream out) throws IOException {
@@ -99,28 +98,25 @@ public abstract class BranchInstruction extends Instruction implements
         index = getTargetOffset();
 
         if (Math.abs(index) >= 32767) // too large for short
-            throw new ClassGenException(
-                    "Branch target offset too large for short");
+            throw new ClassGenException("Branch target offset too large for short");
 
         out.writeShort(index); // May be negative, i.e., point backwards
     }
 
     /**
      * @param target
-     *               branch target
+     *        branch target
      * @return the offset to `target' relative to this instruction
      */
     protected int getTargetOffset(InstructionHandle target) {
         if (target == null)
-            throw new ClassGenException("Target of " + super.toString(true)
-                    + " is invalid null handle");
+            throw new ClassGenException("Target of " + super.toString(true) + " is invalid null handle");
 
         int t = target.getPosition();
 
         if (t < 0)
-            throw new ClassGenException(
-                    "Invalid branch target position offset for "
-                            + super.toString(true) + ":" + t + ":" + target);
+            throw new ClassGenException("Invalid branch target position offset for " + super.toString(true)
+                    + ":" + t + ":" + target);
 
         return t - position;
     }
@@ -140,11 +136,11 @@ public abstract class BranchInstruction extends Instruction implements
      * function.
      *
      * @param offset
-     *                   additional offset caused by preceding (variable length)
-     *                   instructions
+     *        additional offset caused by preceding (variable length)
+     *        instructions
      * @param max_offset
-     *                   the maximum offset that may be caused by these
-     *                   instructions
+     *        the maximum offset that may be caused by these
+     *        instructions
      * @return additional offset caused by possible change of this instruction's
      *         length
      */
@@ -155,13 +151,12 @@ public abstract class BranchInstruction extends Instruction implements
 
     /**
      * Long output format:
-     *
      * &lt;position in byte code&gt; &lt;name of opcode&gt; "["&lt;opcode
      * number&gt;"]" "("&lt;length of instruction&gt;")" "&lt;"&lt;target
      * instruction&gt;"&gt;" "@"&lt;branch target offset&gt;
      *
      * @param verbose
-     *                long/short format switch
+     *        long/short format switch
      * @return mnemonic for instruction
      */
     @Override
@@ -194,14 +189,13 @@ public abstract class BranchInstruction extends Instruction implements
      * InstructionHandle is done in InstructionList(byte[]).
      *
      * @param bytes
-     *              input stream
+     *        input stream
      * @param wide
-     *              wide prefix?
+     *        wide prefix?
      * @see InstructionList
      */
     @Override
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         length = 3;
         index = bytes.readShort();
     }
@@ -224,7 +218,7 @@ public abstract class BranchInstruction extends Instruction implements
      * Set branch target
      * 
      * @param target
-     *               branch target
+     *        branch target
      */
     public final void setTarget(InstructionHandle target) {
         notifyTargetChanging(this.target, this);
@@ -236,8 +230,7 @@ public abstract class BranchInstruction extends Instruction implements
      * Used by BranchInstruction, LocalVariableGen, CodeExceptionGen. Must be
      * called before the target is actually changed in the InstructionTargeter.
      */
-    static void notifyTargetChanging(InstructionHandle old_ih,
-            InstructionTargeter t) {
+    static void notifyTargetChanging(InstructionHandle old_ih, InstructionTargeter t) {
         if (old_ih != null) {
             old_ih.removeTargeter(t);
         }
@@ -247,8 +240,7 @@ public abstract class BranchInstruction extends Instruction implements
      * Used by BranchInstruction, LocalVariableGen, CodeExceptionGen. Must be
      * called after the target is actually changed in the InstructionTargeter.
      */
-    static void notifyTargetChanged(InstructionHandle new_ih,
-            InstructionTargeter t) {
+    static void notifyTargetChanged(InstructionHandle new_ih, InstructionTargeter t) {
         if (new_ih != null) {
             new_ih.addTargeter(t);
         }
@@ -256,18 +248,16 @@ public abstract class BranchInstruction extends Instruction implements
 
     /**
      * @param old_ih
-     *               old target
+     *        old target
      * @param new_ih
-     *               new target
+     *        new target
      */
     @Override
-    public void updateTarget(InstructionHandle old_ih,
-            InstructionHandle new_ih) {
+    public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
         if (target == old_ih)
             setTarget(new_ih);
         else
-            throw new ClassGenException("Not targeting " + old_ih + ", but "
-                    + target);
+            throw new ClassGenException("Not targeting " + old_ih + ", but " + target);
     }
 
     /**

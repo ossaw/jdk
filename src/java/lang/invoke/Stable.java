@@ -46,5 +46,4 @@ import java.lang.annotation.*;
 /* package-private */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@interface Stable {
-}
+@interface Stable {}

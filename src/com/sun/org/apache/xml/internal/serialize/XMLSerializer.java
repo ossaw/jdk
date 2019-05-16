@@ -139,8 +139,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * first.
      */
     public XMLSerializer(OutputFormat format) {
-        super(format != null ? format
-                : new OutputFormat(Method.XML, null, false));
+        super(format != null ? format : new OutputFormat(Method.XML, null, false));
         _format.setMethod(Method.XML);
     }
 
@@ -150,13 +149,12 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * output format.
      *
      * @param writer
-     *               The writer to use
+     *        The writer to use
      * @param format
-     *               The output format to use, null for the default
+     *        The output format to use, null for the default
      */
     public XMLSerializer(Writer writer, OutputFormat format) {
-        super(format != null ? format
-                : new OutputFormat(Method.XML, null, false));
+        super(format != null ? format : new OutputFormat(Method.XML, null, false));
         _format.setMethod(Method.XML);
         setOutputCharStream(writer);
     }
@@ -167,27 +165,24 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * default output format.
      *
      * @param output
-     *               The output stream to use
+     *        The output stream to use
      * @param format
-     *               The output format to use, null for the default
+     *        The output format to use, null for the default
      */
     public XMLSerializer(OutputStream output, OutputFormat format) {
-        super(format != null ? format
-                : new OutputFormat(Method.XML, null, false));
+        super(format != null ? format : new OutputFormat(Method.XML, null, false));
         _format.setMethod(Method.XML);
         setOutputByteStream(output);
     }
 
     public void setOutputFormat(OutputFormat format) {
-        super.setOutputFormat(format != null ? format
-                : new OutputFormat(Method.XML, null, false));
+        super.setOutputFormat(format != null ? format : new OutputFormat(Method.XML, null, false));
     }
 
     /**
      * This methods turns on namespace fixup algorithm during DOM serialization.
      * 
      * @see org.w3c.dom.ls.DOMSerializer
-     *
      * @param namespaces
      */
     public void setNamespaces(boolean namespaces) {
@@ -203,8 +198,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
     // SAX content handler serializing methods //
     // -----------------------------------------//
 
-    public void startElement(String namespaceURI, String localName,
-            String rawName, Attributes attrs) throws SAXException {
+    public void startElement(String namespaceURI, String localName, String rawName, Attributes attrs)
+            throws SAXException {
         int i;
         boolean preserveSpace;
         ElementState state;
@@ -213,14 +208,12 @@ public class XMLSerializer extends BaseMarkupSerializer {
         boolean addNSAttr = false;
 
         if (DEBUG) {
-            System.out.println("==>startElement(" + namespaceURI + ","
-                    + localName + "," + rawName + ")");
+            System.out.println("==>startElement(" + namespaceURI + "," + localName + "," + rawName + ")");
         }
 
         try {
             if (_printer == null) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.SERIALIZER_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
                         "NoWriterSupplied", null);
                 throw new IllegalStateException(msg);
             }
@@ -232,9 +225,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                 // the document's DOCTYPE. Space preserving defaults
                 // to that of the output format.
                 if (!_started)
-                    startDocument((localName == null || localName.length() == 0)
-                            ? rawName
-                            : localName);
+                    startDocument((localName == null || localName.length() == 0) ? rawName : localName);
             } else {
                 // For any other element, if first in parent, then
                 // close parent's opening tag and use the parnet's
@@ -249,8 +240,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
                 // Indent this element on a new line if the first
                 // content of the parent element or immediately
                 // following an element or a comment
-                if (_indenting && !state.preserveSpace && (state.empty
-                        || state.afterElement || state.afterComment))
+                if (_indenting && !state.preserveSpace && (state.empty || state.afterElement
+                        || state.afterComment))
                     _printer.breakLine();
             }
             preserveSpace = state.preserveSpace;
@@ -264,9 +255,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
             // This only happens in endElement().
             if (rawName == null || rawName.length() == 0) {
                 if (localName == null) {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.SERIALIZER_DOMAIN, "NoName",
-                            null);
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                            "NoName", null);
                     throw new SAXException(msg);
                 }
                 if (namespaceURI != null && !namespaceURI.equals("")) {
@@ -299,10 +289,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
                         name = attrs.getLocalName(i);
                         attrURI = attrs.getURI(i);
-                        if ((attrURI != null && attrURI.length() != 0)
-                                && (namespaceURI == null || namespaceURI
-                                        .length() == 0 || !attrURI.equals(
-                                                namespaceURI))) {
+                        if ((attrURI != null && attrURI.length() != 0) && (namespaceURI == null
+                                || namespaceURI.length() == 0 || !attrURI.equals(namespaceURI))) {
                             prefix = getPrefix(attrURI);
                             if (prefix != null && prefix.length() > 0)
                                 name = prefix + ":" + name;
@@ -352,10 +340,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
             // Now it's time to enter a new element state
             // with the tag name and space preserving.
             // We still do not change the curent element state.
-            state = enterElementState(namespaceURI, localName, rawName,
-                    preserveSpace);
-            name = (localName == null || localName.length() == 0) ? rawName
-                    : namespaceURI + "^" + localName;
+            state = enterElementState(namespaceURI, localName, rawName, preserveSpace);
+            name = (localName == null || localName.length() == 0) ? rawName : namespaceURI + "^" + localName;
             state.doCData = _format.isCDataElement(name);
             state.unescaped = _format.isNonEscapingElement(name);
         } catch (IOException except) {
@@ -363,8 +349,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    public void endElement(String namespaceURI, String localName,
-            String rawName) throws SAXException {
+    public void endElement(String namespaceURI, String localName, String rawName) throws SAXException {
         try {
             endElementIO(namespaceURI, localName, rawName);
         } catch (IOException except) {
@@ -372,8 +357,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    public void endElementIO(String namespaceURI, String localName,
-            String rawName) throws IOException {
+    public void endElementIO(String namespaceURI, String localName, String rawName) throws IOException {
         ElementState state;
         if (DEBUG) {
             System.out.println("==>endElement: " + rawName);
@@ -392,8 +376,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
             // This element is not empty and that last content was
             // another element, so print a line break before that
             // last element and this element's closing tag.
-            if (_indenting && !state.preserveSpace && (state.afterElement
-                    || state.afterComment))
+            if (_indenting && !state.preserveSpace && (state.afterElement || state.afterComment))
                 _printer.breakLine();
             _printer.printText("</");
             _printer.printText(state.rawName);
@@ -413,8 +396,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
     // SAX document handler serializing methods //
     // ------------------------------------------//
 
-    public void startElement(String tagName, AttributeList attrs)
-            throws SAXException {
+    public void startElement(String tagName, AttributeList attrs) throws SAXException {
         int i;
         boolean preserveSpace;
         ElementState state;
@@ -427,8 +409,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
         try {
             if (_printer == null) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.SERIALIZER_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
                         "NoWriterSupplied", null);
                 throw new IllegalStateException(msg);
             }
@@ -455,8 +436,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
                 // Indent this element on a new line if the first
                 // content of the parent element or immediately
                 // following an element.
-                if (_indenting && !state.preserveSpace && (state.empty
-                        || state.afterElement || state.afterComment))
+                if (_indenting && !state.preserveSpace && (state.empty || state.afterElement
+                        || state.afterComment))
                     _printer.breakLine();
             }
             preserveSpace = state.preserveSpace;
@@ -550,8 +531,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     buffer.append(format_encoding);
                     buffer.append('"');
                 }
-                if (_format.getStandalone() && _docTypeSystemId == null
-                        && _docTypePublicId == null)
+                if (_format.getStandalone() && _docTypeSystemId == null && _docTypePublicId == null)
                     buffer.append(" standalone=\"yes\"");
                 buffer.append("?>");
                 _printer.printText(buffer);
@@ -633,8 +613,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
         }
 
         if (DEBUG) {
-            System.out.println("==>startElement: " + elem.getNodeName() + " ns="
-                    + elem.getNamespaceURI());
+            System.out.println("==>startElement: " + elem.getNodeName() + " ns=" + elem.getNamespaceURI());
         }
         tagName = elem.getTagName();
         state = getElementState();
@@ -661,8 +640,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
             // Indent this element on a new line if the first
             // content of the parent element or immediately
             // following an element.
-            if (_indenting && !state.preserveSpace && (state.empty
-                    || state.afterElement || state.afterComment))
+            if (_indenting && !state.preserveSpace && (state.empty || state.afterElement
+                    || state.afterComment))
                 _printer.breakLine();
         }
 
@@ -722,28 +701,21 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
                     if (value.equals(NamespaceContext.XMLNS_URI)) {
                         if (fDOMErrorHandler != null) {
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.XML_DOMAIN,
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
                                     "CantBindXMLNS", null);
-                            modifyDOMError(msg, DOMError.SEVERITY_ERROR, null,
-                                    attr);
-                            boolean continueProcess = fDOMErrorHandler
-                                    .handleError(fDOMError);
+                            modifyDOMError(msg, DOMError.SEVERITY_ERROR, null, attr);
+                            boolean continueProcess = fDOMErrorHandler.handleError(fDOMError);
                             if (!continueProcess) {
                                 // stop the namespace fixup and validation
-                                throw new RuntimeException(DOMMessageFormatter
-                                        .formatMessage(
-                                                DOMMessageFormatter.SERIALIZER_DOMAIN,
-                                                "SerializationStopped", null));
+                                throw new RuntimeException(DOMMessageFormatter.formatMessage(
+                                        DOMMessageFormatter.SERIALIZER_DOMAIN, "SerializationStopped", null));
                             }
                         }
                     } else {
                         prefix = attr.getPrefix();
-                        prefix = (prefix == null || prefix.length() == 0)
-                                ? XMLSymbols.EMPTY_STRING
+                        prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                                 : fSymbolTable.addSymbol(prefix);
-                        String localpart = fSymbolTable.addSymbol(attr
-                                .getLocalName());
+                        String localpart = fSymbolTable.addSymbol(attr.getLocalName());
                         if (prefix == XMLSymbols.PREFIX_XMLNS) { // xmlns:prefix
                             value = fSymbolTable.addSymbol(value);
                             // record valid decl
@@ -758,8 +730,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                             // empty prefix is always bound ("" or some string)
 
                             value = fSymbolTable.addSymbol(value);
-                            fNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING,
-                                    value);
+                            fNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING, value);
                             continue;
                         }
                     } // end-else: valid declaration
@@ -778,8 +749,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
             // REVISIT: this could be removed if we always convert empty string
             // to null
             // for the namespaces.
-            if ((uri != null && prefix != null) && uri.length() == 0 && prefix
-                    .length() != 0) {
+            if ((uri != null && prefix != null) && uri.length() == 0 && prefix.length() != 0) {
                 // uri is an empty string and element has some prefix
                 // the namespace alg later will fix up the namespace attributes
                 // remove element prefix
@@ -826,8 +796,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
             if (uri != null) { // Element has a namespace
                 uri = fSymbolTable.addSymbol(uri);
-                prefix = (prefix == null || prefix.length() == 0)
-                        ? XMLSymbols.EMPTY_STRING
+                prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                         : fSymbolTable.addSymbol(prefix);
                 if (fNSBinder.getURI(prefix) == uri) {
                     // The xmlns:prefix=namespace or xmlns="default" was
@@ -852,20 +821,14 @@ public class XMLSerializer extends BaseMarkupSerializer {
                 if (elem.getLocalName() == null) {
                     // DOM Level 1 node!
                     if (fDOMErrorHandler != null) {
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "NullLocalElementName", new Object[] { elem
-                                        .getNodeName() });
-                        modifyDOMError(msg, DOMError.SEVERITY_ERROR, null,
-                                elem);
-                        boolean continueProcess = fDOMErrorHandler.handleError(
-                                fDOMError);
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                "NullLocalElementName", new Object[] { elem.getNodeName() });
+                        modifyDOMError(msg, DOMError.SEVERITY_ERROR, null, elem);
+                        boolean continueProcess = fDOMErrorHandler.handleError(fDOMError);
                         // REVISIT: should we terminate upon request?
                         if (!continueProcess) {
-                            throw new RuntimeException(DOMMessageFormatter
-                                    .formatMessage(
-                                            DOMMessageFormatter.SERIALIZER_DOMAIN,
-                                            "SerializationStopped", null));
+                            throw new RuntimeException(DOMMessageFormatter.formatMessage(
+                                    DOMMessageFormatter.SERIALIZER_DOMAIN, "SerializationStopped", null));
                         }
                     }
                 } else { // uri=null and no colon (DOM L2 node)
@@ -875,13 +838,10 @@ public class XMLSerializer extends BaseMarkupSerializer {
                         // there is a default namespace decl that is bound to
                         // non-zero length uri, output xmlns=""
                         if (fNamespacePrefixes) {
-                            printNamespaceAttr(XMLSymbols.EMPTY_STRING,
-                                    XMLSymbols.EMPTY_STRING);
+                            printNamespaceAttr(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
                         }
-                        fLocalNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING,
-                                XMLSymbols.EMPTY_STRING);
-                        fNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING,
-                                XMLSymbols.EMPTY_STRING);
+                        fLocalNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
+                        fNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
                     }
                 }
             }
@@ -908,8 +868,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                 }
 
                 if (DEBUG) {
-                    System.out.println("==>process attribute: " + attr
-                            .getNodeName());
+                    System.out.println("==>process attribute: " + attr.getNodeName());
                 }
                 // make sure that value is never null.
                 if (value == null) {
@@ -918,10 +877,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
                 if (uri != null) { // attribute has namespace !=null
                     prefix = attr.getPrefix();
-                    prefix = prefix == null ? XMLSymbols.EMPTY_STRING
-                            : fSymbolTable.addSymbol(prefix);
-                    String localpart = fSymbolTable.addSymbol(attr
-                            .getLocalName());
+                    prefix = prefix == null ? XMLSymbols.EMPTY_STRING : fSymbolTable.addSymbol(prefix);
+                    String localpart = fSymbolTable.addSymbol(attr.getLocalName());
 
                     // ---------------------------------------------------
                     // print namespace declarations namespace declarations
@@ -929,8 +886,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     if (uri != null && uri.equals(NamespaceContext.XMLNS_URI)) {
                         // check if we need to output this declaration
                         prefix = attr.getPrefix();
-                        prefix = (prefix == null || prefix.length() == 0)
-                                ? XMLSymbols.EMPTY_STRING
+                        prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                                 : fSymbolTable.addSymbol(prefix);
                         localpart = fSymbolTable.addSymbol(attr.getLocalName());
                         if (prefix == XMLSymbols.PREFIX_XMLNS) { // xmlns:prefix
@@ -959,8 +915,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                                     // for the attribute.
                                     // final: <elem xmlns:xx="foo" NS1:attr=""
                                     // xmlns:NS1="bar"/>
-                                    fLocalNSBinder.declarePrefix(localpart,
-                                            value);
+                                    fLocalNSBinder.declarePrefix(localpart, value);
                                 }
                             } else {
                                 // REVISIT: issue error on invalid declarations
@@ -971,15 +926,13 @@ public class XMLSerializer extends BaseMarkupSerializer {
                             // empty prefix is always bound ("" or some string)
 
                             uri = fNSBinder.getURI(XMLSymbols.EMPTY_STRING);
-                            localUri = fLocalNSBinder.getURI(
-                                    XMLSymbols.EMPTY_STRING);
+                            localUri = fLocalNSBinder.getURI(XMLSymbols.EMPTY_STRING);
                             value = fSymbolTable.addSymbol(value);
                             if (localUri == null) {
                                 // declaration was not printed while fixing
                                 // element namespace binding
                                 if (fNamespacePrefixes) {
-                                    printNamespaceAttr(XMLSymbols.EMPTY_STRING,
-                                            value);
+                                    printNamespaceAttr(XMLSymbols.EMPTY_STRING, value);
                                 }
                                 // case 4 does not apply here since attributes
                                 // can't use
@@ -994,8 +947,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     // find if for this prefix a URI was already declared
                     String declaredURI = fNSBinder.getURI(prefix);
 
-                    if (prefix == XMLSymbols.EMPTY_STRING
-                            || declaredURI != uri) {
+                    if (prefix == XMLSymbols.EMPTY_STRING || declaredURI != uri) {
                         // attribute has no prefix (default namespace decl does
                         // not apply to attributes)
                         // OR
@@ -1009,20 +961,16 @@ public class XMLSerializer extends BaseMarkupSerializer {
                         // in the scope
                         String declaredPrefix = fNSBinder.getPrefix(uri);
 
-                        if (declaredPrefix != null
-                                && declaredPrefix != XMLSymbols.EMPTY_STRING) {
+                        if (declaredPrefix != null && declaredPrefix != XMLSymbols.EMPTY_STRING) {
                             // use the prefix that was found
                             prefix = declaredPrefix;
                             name = prefix + ":" + localpart;
                         } else {
                             if (DEBUG) {
-                                System.out.println(
-                                        "==> cound not find prefix for the attribute: "
-                                                + prefix);
+                                System.out.println("==> cound not find prefix for the attribute: " + prefix);
                             }
 
-                            if (prefix != XMLSymbols.EMPTY_STRING
-                                    && fLocalNSBinder.getURI(prefix) == null) {
+                            if (prefix != XMLSymbols.EMPTY_STRING && fLocalNSBinder.getURI(prefix) == null) {
                                 // the current prefix is not null and it has no
                                 // in scope declaration
 
@@ -1033,11 +981,9 @@ public class XMLSerializer extends BaseMarkupSerializer {
                                 // make sure this prefix is not declared in the
                                 // current scope.
                                 int counter = 1;
-                                prefix = fSymbolTable.addSymbol(PREFIX
-                                        + counter++);
+                                prefix = fSymbolTable.addSymbol(PREFIX + counter++);
                                 while (fLocalNSBinder.getURI(prefix) != null) {
-                                    prefix = fSymbolTable.addSymbol(PREFIX
-                                            + counter++);
+                                    prefix = fSymbolTable.addSymbol(PREFIX + counter++);
                                 }
                                 name = prefix + ":" + localpart;
                             }
@@ -1053,26 +999,19 @@ public class XMLSerializer extends BaseMarkupSerializer {
                         // change prefix for this attribute
                     }
 
-                    printAttribute(name, (value == null)
-                            ? XMLSymbols.EMPTY_STRING
-                            : value, attr.getSpecified(), attr);
+                    printAttribute(name, (value == null) ? XMLSymbols.EMPTY_STRING : value, attr
+                            .getSpecified(), attr);
                 } else { // attribute uri == null
                     if (attr.getLocalName() == null) {
                         if (fDOMErrorHandler != null) {
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.DOM_DOMAIN,
-                                    "NullLocalAttrName", new Object[] { attr
-                                            .getNodeName() });
-                            modifyDOMError(msg, DOMError.SEVERITY_ERROR, null,
-                                    attr);
-                            boolean continueProcess = fDOMErrorHandler
-                                    .handleError(fDOMError);
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                    "NullLocalAttrName", new Object[] { attr.getNodeName() });
+                            modifyDOMError(msg, DOMError.SEVERITY_ERROR, null, attr);
+                            boolean continueProcess = fDOMErrorHandler.handleError(fDOMError);
                             if (!continueProcess) {
                                 // stop the namespace fixup and validation
-                                throw new RuntimeException(DOMMessageFormatter
-                                        .formatMessage(
-                                                DOMMessageFormatter.SERIALIZER_DOMAIN,
-                                                "SerializationStopped", null));
+                                throw new RuntimeException(DOMMessageFormatter.formatMessage(
+                                        DOMMessageFormatter.SERIALIZER_DOMAIN, "SerializationStopped", null));
                             }
                         }
                         printAttribute(name, value, attr.getSpecified(), attr);
@@ -1131,8 +1070,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * @exception IOException
      */
 
-    private void printNamespaceAttr(String prefix, String uri)
-            throws IOException {
+    private void printNamespaceAttr(String prefix, String uri) throws IOException {
         _printer.printSpace();
         if (prefix == XMLSymbols.EMPTY_STRING) {
             if (DEBUG) {
@@ -1141,8 +1079,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
             _printer.printText(XMLSymbols.PREFIX_XMLNS);
         } else {
             if (DEBUG) {
-                System.out.println("=>add xmlns:" + prefix + "=\"" + uri
-                        + "\" declaration");
+                System.out.println("=>add xmlns:" + prefix + "=\"" + uri + "\" declaration");
             }
             _printer.printText("xmlns:" + prefix);
         }
@@ -1159,12 +1096,11 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * @param isSpecified
      * @exception IOException
      */
-    private void printAttribute(String name, String value, boolean isSpecified,
-            Attr attr) throws IOException {
+    private void printAttribute(String name, String value, boolean isSpecified, Attr attr)
+            throws IOException {
 
         if (isSpecified || (features & DOMSerializerImpl.DISCARDDEFAULT) == 0) {
-            if (fDOMFilter != null && (fDOMFilter.getWhatToShow()
-                    & NodeFilter.SHOW_ATTRIBUTE) != 0) {
+            if (fDOMFilter != null && (fDOMFilter.getWhatToShow() & NodeFilter.SHOW_ATTRIBUTE) != 0) {
                 short code = fDOMFilter.acceptNode(attr);
                 switch (code) {
                     case NodeFilter.FILTER_REJECT:
@@ -1216,7 +1152,6 @@ public class XMLSerializer extends BaseMarkupSerializer {
     /**
      * Retrieve and remove the namespaces declarations from the list of
      * attributes.
-     *
      */
     private Attributes extractNamespaces(Attributes attrs) throws SAXException {
         AttributesImpl attrsOnly;
@@ -1264,8 +1199,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                 if (++i < length) {
                     surrogates(ch, source.charAt(i));
                 } else {
-                    fatalError("The character '" + (char) ch
-                            + "' is an invalid XML character");
+                    fatalError("The character '" + (char) ch + "' is an invalid XML character");
                 }
                 continue;
             }
@@ -1298,16 +1232,14 @@ public class XMLSerializer extends BaseMarkupSerializer {
             // character sequence "]]>" can't appear in content, therefore
             // we should escape '>'
             _printer.printText("&gt;");
-        } else if (ch == '\n' || ch == '\t' || (ch >= ' ' && _encodingInfo
-                .isPrintable((char) ch))) {
+        } else if (ch == '\n' || ch == '\t' || (ch >= ' ' && _encodingInfo.isPrintable((char) ch))) {
             _printer.printText((char) ch);
         } else {
             printHex(ch);
         }
     }
 
-    protected void printText(String text, boolean preserveSpace,
-            boolean unescaped) throws IOException {
+    protected void printText(String text, boolean preserveSpace, boolean unescaped) throws IOException {
         int index;
         char ch;
         int length = text.length();
@@ -1323,8 +1255,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     if (++index < length) {
                         surrogates(ch, text.charAt(index));
                     } else {
-                        fatalError("The character '" + (char) ch
-                                + "' is an invalid XML character");
+                        fatalError("The character '" + (char) ch + "' is an invalid XML character");
                     }
                     continue;
                 }
@@ -1346,8 +1277,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     if (++index < length) {
                         surrogates(ch, text.charAt(index));
                     } else {
-                        fatalError("The character '" + (char) ch
-                                + "' is an invalid XML character");
+                        fatalError("The character '" + (char) ch + "' is an invalid XML character");
                     }
                     continue;
                 }
@@ -1360,8 +1290,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    protected void printText(char[] chars, int start, int length,
-            boolean preserveSpace, boolean unescaped) throws IOException {
+    protected void printText(char[] chars, int start, int length, boolean preserveSpace, boolean unescaped)
+            throws IOException {
         int index;
         char ch;
 
@@ -1377,8 +1307,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     if (length-- > 0) {
                         surrogates(ch, chars[start++]);
                     } else {
-                        fatalError("The character '" + (char) ch
-                                + "' is an invalid XML character");
+                        fatalError("The character '" + (char) ch + "' is an invalid XML character");
                     }
                     continue;
                 }
@@ -1400,8 +1329,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     if (length-- > 0) {
                         surrogates(ch, chars[start++]);
                     } else {
-                        fatalError("The character '" + (char) ch
-                                + "' is an invalid XML character");
+                        fatalError("The character '" + (char) ch + "' is an invalid XML character");
                     }
                     continue;
                 }
@@ -1418,48 +1346,39 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * prefixes.
      *
      * @param node
-     *             The node to check for unbound namespace prefices
+     *        The node to check for unbound namespace prefices
      */
-    protected void checkUnboundNamespacePrefixedNode(Node node)
-            throws IOException {
+    protected void checkUnboundNamespacePrefixedNode(Node node) throws IOException {
 
         if (fNamespaces) {
 
             if (DEBUG) {
                 System.out.println("==>serializeNode(" + node.getNodeName()
                         + ") [Entity Reference - Namespaces on]");
-                System.out.println("==>Declared Prefix Count: " + fNSBinder
-                        .getDeclaredPrefixCount());
+                System.out.println("==>Declared Prefix Count: " + fNSBinder.getDeclaredPrefixCount());
                 System.out.println("==>Node Name: " + node.getNodeName());
-                System.out.println("==>First Child Node Name: " + node
-                        .getFirstChild().getNodeName());
-                System.out.println("==>First Child Node Prefix: " + node
-                        .getFirstChild().getPrefix());
-                System.out.println("==>First Child Node NamespaceURI: " + node
-                        .getFirstChild().getNamespaceURI());
+                System.out.println("==>First Child Node Name: " + node.getFirstChild().getNodeName());
+                System.out.println("==>First Child Node Prefix: " + node.getFirstChild().getPrefix());
+                System.out.println("==>First Child Node NamespaceURI: " + node.getFirstChild()
+                        .getNamespaceURI());
             }
 
             Node child, next;
             for (child = node.getFirstChild(); child != null; child = next) {
                 next = child.getNextSibling();
                 if (DEBUG) {
-                    System.out.println("==>serializeNode(" + child.getNodeName()
-                            + ") [Child Node]");
-                    System.out.println("==>serializeNode(" + child.getPrefix()
-                            + ") [Child Node Prefix]");
+                    System.out.println("==>serializeNode(" + child.getNodeName() + ") [Child Node]");
+                    System.out.println("==>serializeNode(" + child.getPrefix() + ") [Child Node Prefix]");
                 }
 
                 // If a NamespaceURI is not declared for the current
                 // node's prefix, raise a fatal error.
                 String prefix = child.getPrefix();
-                prefix = (prefix == null || prefix.length() == 0)
-                        ? XMLSymbols.EMPTY_STRING
+                prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                         : fSymbolTable.addSymbol(prefix);
                 if (fNSBinder.getURI(prefix) == null && prefix != null) {
-                    fatalError("The replacement text of the entity node '"
-                            + node.getNodeName()
-                            + "' contains an element node '" + child
-                                    .getNodeName()
+                    fatalError("The replacement text of the entity node '" + node.getNodeName()
+                            + "' contains an element node '" + child.getNodeName()
                             + "' with an undeclared prefix '" + prefix + "'.");
                 }
 
@@ -1470,20 +1389,13 @@ public class XMLSerializer extends BaseMarkupSerializer {
                     for (int i = 0; i < attrs.getLength(); i++) {
 
                         String attrPrefix = attrs.item(i).getPrefix();
-                        attrPrefix = (attrPrefix == null || attrPrefix
-                                .length() == 0) ? XMLSymbols.EMPTY_STRING
-                                        : fSymbolTable.addSymbol(attrPrefix);
-                        if (fNSBinder.getURI(attrPrefix) == null
-                                && attrPrefix != null) {
-                            fatalError(
-                                    "The replacement text of the entity node '"
-                                            + node.getNodeName()
-                                            + "' contains an element node '"
-                                            + child.getNodeName()
-                                            + "' with an attribute '" + attrs
-                                                    .item(i).getNodeName()
-                                            + "' an undeclared prefix '"
-                                            + attrPrefix + "'.");
+                        attrPrefix = (attrPrefix == null || attrPrefix.length() == 0)
+                                ? XMLSymbols.EMPTY_STRING : fSymbolTable.addSymbol(attrPrefix);
+                        if (fNSBinder.getURI(attrPrefix) == null && attrPrefix != null) {
+                            fatalError("The replacement text of the entity node '" + node.getNodeName()
+                                    + "' contains an element node '" + child.getNodeName()
+                                    + "' with an attribute '" + attrs.item(i).getNodeName()
+                                    + "' an undeclared prefix '" + attrPrefix + "'.");
                         }
 
                     }
@@ -1503,8 +1415,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
             fNSBinder.reset();
             // during serialization always have a mapping to empty string
             // so we assume there is a declaration.
-            fNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING,
-                    XMLSymbols.EMPTY_STRING);
+            fNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
         }
         return true;
     }

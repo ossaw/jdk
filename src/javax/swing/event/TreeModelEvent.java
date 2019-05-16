@@ -91,35 +91,33 @@ public class TreeModelEvent extends EventObject {
      * </ul>
      *
      * @param source
-     *                     the Object responsible for generating the event
-     *                     (typically the
-     *                     creator of the event object passes <code>this</code>
-     *                     for its
-     *                     value)
+     *        the Object responsible for generating the event
+     *        (typically the
+     *        creator of the event object passes <code>this</code>
+     *        for its
+     *        value)
      * @param path
-     *                     an array of Object identifying the path to the parent
-     *                     of the
-     *                     modified item(s), where the first element of the
-     *                     array is the
-     *                     Object stored at the root node and the last element
-     *                     is the
-     *                     Object stored at the parent node
+     *        an array of Object identifying the path to the parent
+     *        of the
+     *        modified item(s), where the first element of the
+     *        array is the
+     *        Object stored at the root node and the last element
+     *        is the
+     *        Object stored at the parent node
      * @param childIndices
-     *                     an array of <code>int</code> that specifies the index
-     *                     values
-     *                     of the removed items. The indices must be in sorted
-     *                     order,
-     *                     from lowest to highest
+     *        an array of <code>int</code> that specifies the index
+     *        values
+     *        of the removed items. The indices must be in sorted
+     *        order,
+     *        from lowest to highest
      * @param children
-     *                     an array of Object containing the inserted, removed,
-     *                     or
-     *                     changed objects
+     *        an array of Object containing the inserted, removed,
+     *        or
+     *        changed objects
      * @see TreePath
      */
-    public TreeModelEvent(Object source, Object[] path, int[] childIndices,
-            Object[] children) {
-        this(source, (path == null) ? null : new TreePath(path), childIndices,
-                children);
+    public TreeModelEvent(Object source, Object[] path, int[] childIndices, Object[] children) {
+        this(source, (path == null) ? null : new TreePath(path), childIndices, children);
     }
 
     /**
@@ -129,28 +127,26 @@ public class TreeModelEvent extends EventObject {
      * objects, see <code>TreeModelEvent(Object,Object[],int[],Object[])</code>.
      *
      * @param source
-     *                     the Object responsible for generating the event
-     *                     (typically the
-     *                     creator of the event object passes <code>this</code>
-     *                     for its
-     *                     value)
+     *        the Object responsible for generating the event
+     *        (typically the
+     *        creator of the event object passes <code>this</code>
+     *        for its
+     *        value)
      * @param path
-     *                     a TreePath object that identifies the path to the
-     *                     parent of
-     *                     the modified item(s)
+     *        a TreePath object that identifies the path to the
+     *        parent of
+     *        the modified item(s)
      * @param childIndices
-     *                     an array of <code>int</code> that specifies the index
-     *                     values
-     *                     of the modified items
+     *        an array of <code>int</code> that specifies the index
+     *        values
+     *        of the modified items
      * @param children
-     *                     an array of Object containing the inserted, removed,
-     *                     or
-     *                     changed objects
-     *
+     *        an array of Object containing the inserted, removed,
+     *        or
+     *        changed objects
      * @see #TreeModelEvent(Object,Object[],int[],Object[])
      */
-    public TreeModelEvent(Object source, TreePath path, int[] childIndices,
-            Object[] children) {
+    public TreeModelEvent(Object source, TreePath path, int[] childIndices, Object[] children) {
         super(source);
         this.path = path;
         this.childIndices = childIndices;
@@ -168,17 +164,17 @@ public class TreeModelEvent extends EventObject {
      * immediate children are visible. </blockquote>
      *
      * @param source
-     *               the Object responsible for generating the event (typically
-     *               the
-     *               creator of the event object passes <code>this</code> for
-     *               its
-     *               value)
+     *        the Object responsible for generating the event (typically
+     *        the
+     *        creator of the event object passes <code>this</code> for
+     *        its
+     *        value)
      * @param path
-     *               an array of Object identifying the path to the root of the
-     *               modified subtree, where the first element of the array is
-     *               the
-     *               object stored at the root node and the last element is the
-     *               object stored at the changed node
+     *        an array of Object identifying the path to the root of the
+     *        modified subtree, where the first element of the array is
+     *        the
+     *        object stored at the root node and the last element is the
+     *        object stored at the changed node
      * @see TreePath
      */
     public TreeModelEvent(Object source, Object[] path) {
@@ -192,20 +188,19 @@ public class TreeModelEvent extends EventObject {
      * <code>TreeModelEvent(Object,Object[])</code>.
      *
      * @param source
-     *               the Object responsible for generating the event (typically
-     *               the
-     *               creator of the event object passes <code>this</code> for
-     *               its
-     *               value)
+     *        the Object responsible for generating the event (typically
+     *        the
+     *        creator of the event object passes <code>this</code> for
+     *        its
+     *        value)
      * @param path
-     *               a TreePath object that identifies the path to the change.
-     *               In
-     *               the DefaultTreeModel, this object contains an array of
-     *               user-data objects, but a subclass of TreePath could use
-     *               some
-     *               totally different mechanism -- for example, a node ID
-     *               number
-     *
+     *        a TreePath object that identifies the path to the change.
+     *        In
+     *        the DefaultTreeModel, this object contains an array of
+     *        user-data objects, but a subclass of TreePath could use
+     *        some
+     *        totally different mechanism -- for example, a node ID
+     *        number
      * @see #TreeModelEvent(Object,Object[])
      */
     public TreeModelEvent(Object source, TreePath path) {
@@ -295,8 +290,7 @@ public class TreeModelEvent extends EventObject {
     public String toString() {
         StringBuffer retBuffer = new StringBuffer();
 
-        retBuffer.append(getClass().getName() + " " + Integer.toString(
-                hashCode()));
+        retBuffer.append(getClass().getName() + " " + Integer.toString(hashCode()));
         if (path != null)
             retBuffer.append(" path " + path);
         if (childIndices != null) {

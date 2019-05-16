@@ -7,7 +7,6 @@ package java.awt;
 /**
  * Defines an interface for classes that know how to layout Containers based on
  * a layout constraints object.
- *
  * This interface extends the LayoutManager interface to deal with layouts
  * explicitly in terms of constraint objects that specify how and where
  * components should be added to the layout.
@@ -18,7 +17,6 @@ package java.awt;
  *
  * @see LayoutManager
  * @see Container
- *
  * @author Jonni Kanerva
  */
 public interface LayoutManager2 extends LayoutManager {
@@ -28,9 +26,9 @@ public interface LayoutManager2 extends LayoutManager {
      * constraint object.
      * 
      * @param comp
-     *                    the component to be added
+     *        the component to be added
      * @param constraints
-     *                    where/how the component is added to the layout.
+     *        where/how the component is added to the layout.
      */
     void addLayoutComponent(Component comp, Object constraints);
 

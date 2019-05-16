@@ -37,8 +37,7 @@ class SentEvent extends AWTEvent implements ActiveEvent {
     }
 
     SentEvent(AWTEvent nested, AppContext toNotify) {
-        super((nested != null) ? nested.getSource()
-                : Toolkit.getDefaultToolkit(), ID);
+        super((nested != null) ? nested.getSource() : Toolkit.getDefaultToolkit(), ID);
         this.nested = nested;
         this.toNotify = toNotify;
     }

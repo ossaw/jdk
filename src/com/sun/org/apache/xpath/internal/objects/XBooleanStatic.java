@@ -39,7 +39,7 @@ public class XBooleanStatic extends XBoolean {
      * Construct a XBooleanStatic object.
      *
      * @param b
-     *          The value of the object
+     *        The value of the object
      */
     public XBooleanStatic(boolean b) {
 
@@ -52,18 +52,15 @@ public class XBooleanStatic extends XBoolean {
      * Tell if two objects are functionally equal.
      *
      * @param obj2
-     *             Object to compare to this
-     *
+     *        Object to compare to this
      * @return True if the two objects are equal
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public boolean equals(XObject obj2) {
         try {
             return m_val == obj2.bool();
         } catch (javax.xml.transform.TransformerException te) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    te);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
         }
     }
 }

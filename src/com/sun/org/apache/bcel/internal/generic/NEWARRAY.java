@@ -63,8 +63,7 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class NEWARRAY extends Instruction implements AllocationInstruction,
-        ExceptionThrower, StackProducer {
+public class NEWARRAY extends Instruction implements AllocationInstruction, ExceptionThrower, StackProducer {
     private byte type;
 
     /**
@@ -86,7 +85,7 @@ public class NEWARRAY extends Instruction implements AllocationInstruction,
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         out.writeByte(opcode);
@@ -111,15 +110,13 @@ public class NEWARRAY extends Instruction implements AllocationInstruction,
      * @return mnemonic for instruction
      */
     public String toString(boolean verbose) {
-        return super.toString(verbose) + " "
-                + com.sun.org.apache.bcel.internal.Constants.TYPE_NAMES[type];
+        return super.toString(verbose) + " " + com.sun.org.apache.bcel.internal.Constants.TYPE_NAMES[type];
     }
 
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         type = bytes.readByte();
         length = 2;
     }
@@ -136,7 +133,7 @@ public class NEWARRAY extends Instruction implements AllocationInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitAllocationInstruction(this);

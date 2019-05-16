@@ -19,8 +19,7 @@ public final class Void {
      * the keyword {@code void}.
      */
     @SuppressWarnings("unchecked")
-    public static final Class<Void> TYPE = (Class<Void>) Class
-            .getPrimitiveClass("void");
+    public static final Class<Void> TYPE = (Class<Void>) Class.getPrimitiveClass("void");
 
     /*
      * The Void class cannot be instantiated.

@@ -81,18 +81,15 @@ final class RelationalExpr extends Expression {
     }
 
     public boolean hasReferenceArgs() {
-        return _left.getType() instanceof ReferenceType || _right
-                .getType() instanceof ReferenceType;
+        return _left.getType() instanceof ReferenceType || _right.getType() instanceof ReferenceType;
     }
 
     public boolean hasNodeArgs() {
-        return _left.getType() instanceof NodeType || _right
-                .getType() instanceof NodeType;
+        return _left.getType() instanceof NodeType || _right.getType() instanceof NodeType;
     }
 
     public boolean hasNodeSetArgs() {
-        return _left.getType() instanceof NodeSetType || _right
-                .getType() instanceof NodeSetType;
+        return _left.getType() instanceof NodeSetType || _right.getType() instanceof NodeSetType;
     }
 
     public Type typeCheck(SymbolTable stable) throws TypeCheckError {
@@ -100,8 +97,7 @@ final class RelationalExpr extends Expression {
         Type tright = _right.typeCheck(stable);
 
         // bug fix # 2838, cast to reals if both are result tree fragments
-        if (tleft instanceof ResultTreeType
-                && tright instanceof ResultTreeType) {
+        if (tleft instanceof ResultTreeType && tright instanceof ResultTreeType) {
             _right = new CastExpr(_right, Type.Real);
             _left = new CastExpr(_left, Type.Real);
             return _type = Type.Boolean;
@@ -150,8 +146,7 @@ final class RelationalExpr extends Expression {
                 _left = temp;
                 _op = (_op == Operators.GT) ? Operators.LT
                         : (_op == Operators.LT) ? Operators.GT
-                                : (_op == Operators.GE) ? Operators.LE
-                                        : Operators.GE;
+                                : (_op == Operators.GE) ? Operators.LE : Operators.GE;
                 tright = _right.getType();
             }
 
@@ -183,8 +178,8 @@ final class RelationalExpr extends Expression {
         }
 
         // Lookup the table of primops to find the best match
-        MethodType ptype = lookupPrimop(stable, Operators.getOpNames(_op),
-                new MethodType(Type.Void, tleft, tright));
+        MethodType ptype = lookupPrimop(stable, Operators.getOpNames(_op), new MethodType(Type.Void, tleft,
+                tright));
 
         if (ptype != null) {
             Type arg1 = (Type) ptype.argsType().elementAt(0);
@@ -214,9 +209,8 @@ final class RelationalExpr extends Expression {
             il.append(new PUSH(cpg, _op));
             il.append(methodGen.loadDOM());
 
-            int index = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare", "("
-                    + _left.getType().toSignature() + _right.getType()
-                            .toSignature() + "I" + DOM_INTF_SIG + ")Z");
+            int index = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare", "(" + _left.getType().toSignature()
+                    + _right.getType().toSignature() + "I" + DOM_INTF_SIG + ")Z");
             il.append(new INVOKESTATIC(index));
         } else {
             translateDesynthesized(classGen, methodGen);
@@ -224,8 +218,7 @@ final class RelationalExpr extends Expression {
         }
     }
 
-    public void translateDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
         if (hasNodeSetArgs() || hasReferenceArgs()) {
             translate(classGen, methodGen);
             desynthesize(classGen, methodGen);
@@ -242,8 +235,7 @@ final class RelationalExpr extends Expression {
             Type tleft = _left.getType();
 
             if (tleft instanceof RealType) {
-                il.append(tleft.CMP(_op == Operators.LT
-                        || _op == Operators.LE));
+                il.append(tleft.CMP(_op == Operators.LT || _op == Operators.LE));
                 tleft = Type.Int;
                 tozero = true;
             }
@@ -266,8 +258,7 @@ final class RelationalExpr extends Expression {
                     break;
 
                 default:
-                    ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_RELAT_OP_ERR,
-                            this);
+                    ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_RELAT_OP_ERR, this);
                     getParser().reportError(Constants.FATAL, msg);
             }
 

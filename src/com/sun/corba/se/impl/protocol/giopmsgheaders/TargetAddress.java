@@ -70,8 +70,7 @@ public final class TargetAddress implements org.omg.CORBA.portable.IDLEntity {
         return ___ior;
     }
 
-    public void ior(
-            com.sun.corba.se.impl.protocol.giopmsgheaders.IORAddressingInfo value) {
+    public void ior(com.sun.corba.se.impl.protocol.giopmsgheaders.IORAddressingInfo value) {
         __discriminator = com.sun.corba.se.impl.protocol.giopmsgheaders.ReferenceAddr.value;
         ___ior = value;
         __uninitialized = false;

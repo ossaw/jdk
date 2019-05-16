@@ -24,7 +24,7 @@ public class UnexpectedException extends RemoteException {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      */
     public UnexpectedException(String s) {
@@ -36,9 +36,9 @@ public class UnexpectedException extends RemoteException {
      * message and nested exception.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the nested exception
+     *        the nested exception
      * @since JDK1.1
      */
     public UnexpectedException(String s, Exception ex) {

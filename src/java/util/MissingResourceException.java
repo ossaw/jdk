@@ -32,11 +32,11 @@ public class MissingResourceException extends RuntimeException {
      * detail message is a String that describes this particular exception.
      * 
      * @param s
-     *                  the detail message
+     *        the detail message
      * @param className
-     *                  the name of the resource class
+     *        the name of the resource class
      * @param key
-     *                  the key for the missing resource.
+     *        the key for the missing resource.
      */
     public MissingResourceException(String s, String className, String key) {
         super(s);
@@ -51,20 +51,19 @@ public class MissingResourceException extends RuntimeException {
      * <code>ResourceBundle.getBundle</code>.
      *
      * @param message
-     *                  the detail message
+     *        the detail message
      * @param className
-     *                  the name of the resource class
+     *        the name of the resource class
      * @param key
-     *                  the key for the missing resource.
+     *        the key for the missing resource.
      * @param cause
-     *                  the cause (which is saved for later retrieval by the
-     *                  {@link Throwable.getCause()} method). (A null value is
-     *                  permitted, and indicates that the cause is nonexistent
-     *                  or
-     *                  unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link Throwable.getCause()} method). (A null value is
+     *        permitted, and indicates that the cause is nonexistent
+     *        or
+     *        unknown.)
      */
-    MissingResourceException(String message, String className, String key,
-            Throwable cause) {
+    MissingResourceException(String message, String className, String key, Throwable cause) {
         super(message, cause);
         this.className = className;
         this.key = key;

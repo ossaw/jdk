@@ -41,7 +41,7 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param dt
-     *           the DropTarget to associate with
+     *        the DropTarget to associate with
      */
 
     DropTargetContext(DropTarget dt) {
@@ -80,7 +80,7 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param dtcp
-     *             the <code>DropTargetContextPeer</code>
+     *        the <code>DropTargetContextPeer</code>
      */
 
     public void addNotify(DropTargetContextPeer dtcp) {
@@ -102,7 +102,7 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param actions
-     *                an <code>int</code> representing the supported action(s)
+     *        an <code>int</code> representing the supported action(s)
      */
 
     protected void setTargetActions(int actions) {
@@ -127,8 +127,7 @@ public class DropTargetContext implements Serializable {
 
     protected int getTargetActions() {
         DropTargetContextPeer peer = getDropTargetContextPeer();
-        return ((peer != null) ? peer.getTargetActions()
-                : dropTarget.getDefaultActions());
+        return ((peer != null) ? peer.getTargetActions() : dropTarget.getDefaultActions());
     }
 
     /**
@@ -137,14 +136,13 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param success
-     *                true for success, false if not
-     *                <P>
+     *        true for success, false if not
+     *        <P>
      * @throws InvalidDnDOperationException
-     *                                      if a drop is not outstanding/extant
+     *         if a drop is not outstanding/extant
      */
 
-    public void dropComplete(boolean success)
-            throws InvalidDnDOperationException {
+    public void dropComplete(boolean success) throws InvalidDnDOperationException {
         DropTargetContextPeer peer = getDropTargetContextPeer();
         if (peer != null) {
             peer.dropComplete(success);
@@ -156,7 +154,7 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param dragOperation
-     *                      the supported action(s)
+     *        the supported action(s)
      */
 
     protected void acceptDrag(int dragOperation) {
@@ -184,7 +182,7 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param dropOperation
-     *                      the supported action(s)
+     *        the supported action(s)
      */
 
     protected void acceptDrop(int dropOperation) {
@@ -241,8 +239,8 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @param df
-     *           the <code>DataFlavor</code>
-     *           <P>
+     *        the <code>DataFlavor</code>
+     *        <P>
      * @return if the <code>DataFlavor</code> specified is supported
      */
 
@@ -255,13 +253,12 @@ public class DropTargetContext implements Serializable {
      * <P>
      * 
      * @throws InvalidDnDOperationException
-     *                                      if a drag is not outstanding/extant
-     *                                      <P>
+     *         if a drag is not outstanding/extant
+     *         <P>
      * @return the <code>Transferable</code>
      */
 
-    protected Transferable getTransferable()
-            throws InvalidDnDOperationException {
+    protected Transferable getTransferable() throws InvalidDnDOperationException {
         DropTargetContextPeer peer = getDropTargetContextPeer();
         if (peer == null) {
             throw new InvalidDnDOperationException();
@@ -295,14 +292,13 @@ public class DropTargetContext implements Serializable {
      * Creates a TransferableProxy to proxy for the specified Transferable.
      *
      * @param t
-     *              the <tt>Transferable</tt> to be proxied
+     *        the <tt>Transferable</tt> to be proxied
      * @param local
-     *              <tt>true</tt> if <tt>t</tt> represents the result of a local
-     *              drag-n-drop operation.
+     *        <tt>true</tt> if <tt>t</tt> represents the result of a local
+     *        drag-n-drop operation.
      * @return the new <tt>TransferableProxy</tt> instance.
      */
-    protected Transferable createTransferableProxy(Transferable t,
-            boolean local) {
+    protected Transferable createTransferableProxy(Transferable t, boolean local) {
         return new TransferableProxy(t, local);
     }
 
@@ -330,11 +326,11 @@ public class DropTargetContext implements Serializable {
          * <p>
          * 
          * @param t
-         *              the <code>Transferable</code> object
+         *        the <code>Transferable</code> object
          * @param local
-         *              <code>true</code>, if <code>t</code> represents the
-         *              result
-         *              of local drag-n-drop operation
+         *        <code>true</code>, if <code>t</code> represents the
+         *        result
+         *        of local drag-n-drop operation
          */
         TransferableProxy(Transferable t, boolean local) {
             proxy = new sun.awt.datatransfer.TransferableProxy(t, local);
@@ -359,7 +355,7 @@ public class DropTargetContext implements Serializable {
          * encapsulated transferable.
          * 
          * @param flavor
-         *               the requested flavor for the data
+         *        the requested flavor for the data
          * @return <code>true</code> if the data flavor is supported,
          *         <code>false</code> otherwise
          */
@@ -376,17 +372,16 @@ public class DropTargetContext implements Serializable {
          * in application/x-java-serialized-object data flavor.
          *
          * @param df
-         *           the requested flavor for the data
+         *        the requested flavor for the data
          * @throws IOException
-         *                                    if the data is no longer available
-         *                                    in the requested
-         *                                    flavor.
+         *         if the data is no longer available
+         *         in the requested
+         *         flavor.
          * @throws UnsupportedFlavorException
-         *                                    if the requested data flavor is
-         *                                    not supported.
+         *         if the requested data flavor is
+         *         not supported.
          */
-        public Object getTransferData(DataFlavor df)
-                throws UnsupportedFlavorException, IOException {
+        public Object getTransferData(DataFlavor df) throws UnsupportedFlavorException, IOException {
             return proxy.getTransferData(df);
         }
 

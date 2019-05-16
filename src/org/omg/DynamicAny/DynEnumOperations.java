@@ -24,12 +24,11 @@ public interface DynEnumOperations extends org.omg.DynamicAny.DynAnyOperations {
      * identifier is passed in the value parameter.
      *
      * @exception InvalidValue
-     *                         If value contains a string that is not a valid
-     *                         IDL
-     *                         identifier for the corresponding enumerated type
+     *            If value contains a string that is not a valid
+     *            IDL
+     *            identifier for the corresponding enumerated type
      */
-    void set_as_string(String value)
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
+    void set_as_string(String value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Returns the value of the DynEnum as the enumerated value's ordinal value.
@@ -42,11 +41,10 @@ public interface DynEnumOperations extends org.omg.DynamicAny.DynAnyOperations {
      * Sets the value of the DynEnum as the enumerated value's ordinal value.
      *
      * @exception InvalidValue
-     *                         If value contains a value that is outside the
-     *                         range of
-     *                         ordinal values for the corresponding enumerated
-     *                         type
+     *            If value contains a value that is outside the
+     *            range of
+     *            ordinal values for the corresponding enumerated
+     *            type
      */
-    void set_as_ulong(int value)
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
+    void set_as_ulong(int value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 } // interface DynEnumOperations

@@ -37,7 +37,7 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
      * Creates a UI object for a JTextArea.
      *
      * @param ta
-     *           a text area
+     *        a text area
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent ta) {
@@ -104,15 +104,14 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -120,8 +119,7 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintTextAreaBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintTextAreaBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -130,9 +128,9 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
      * Paints the specified component.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
@@ -141,7 +139,6 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
 
     /**
      * {@inheritDoc}
-     *
      * Overridden to do nothing.
      */
     @Override
@@ -153,8 +150,7 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintTextAreaBorder(context, g, x, y, w, h);
     }
 
@@ -166,7 +162,7 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
      * <em>WrapLine</em> or the <em>WrapStyleWord</em> property changes.
      *
      * @param evt
-     *            the property change event
+     *        the property change event
      */
     @Override
     protected void propertyChange(PropertyChangeEvent evt) {

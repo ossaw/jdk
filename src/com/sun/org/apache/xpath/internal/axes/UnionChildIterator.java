@@ -50,9 +50,9 @@ public class UnionChildIterator extends ChildTestIterator {
      * Add a node test to the union list.
      *
      * @param test
-     *             reference to a NodeTest, which will be added directly to the
-     *             list of node tests (in other words, it will not be cloned).
-     *             The parent of this test will be set to this object.
+     *        reference to a NodeTest, which will be added directly to the
+     *        list of node tests (in other words, it will not be cloned).
+     *        The parent of this test will be set to this object.
      */
     public void addNodeTest(PredicatedNodeTest test) {
 
@@ -79,13 +79,13 @@ public class UnionChildIterator extends ChildTestIterator {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);
@@ -103,7 +103,7 @@ public class UnionChildIterator extends ChildTestIterator {
      * called directly from user code.
      * 
      * @param n
-     *          The node to check to see if it passes the filter or not.
+     *        The node to check to see if it passes the filter or not.
      * @return a constant to determine whether the node is accepted, rejected,
      *         or skipped, as defined above .
      */

@@ -28,8 +28,7 @@ import javax.print.attribute.SupportedValuesAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobPrioritySupported extends IntegerSyntax implements
-        SupportedValuesAttribute {
+public final class JobPrioritySupported extends IntegerSyntax implements SupportedValuesAttribute {
 
     private static final long serialVersionUID = 2564840378013555894L;
 
@@ -38,12 +37,11 @@ public final class JobPrioritySupported extends IntegerSyntax implements
      * value.
      *
      * @param value
-     *              Number of different job priority levels supported.
-     *
+     *        Number of different job priority levels supported.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 1 or greater than 100.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 1 or greater than 100.
      */
     public JobPrioritySupported(int value) {
         super(value, 1, 100);
@@ -61,8 +59,7 @@ public final class JobPrioritySupported extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this job priority
      *         supported attribute, false otherwise.
      */

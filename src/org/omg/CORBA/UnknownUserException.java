@@ -40,8 +40,8 @@ public final class UnknownUserException extends UserException {
      * given <code>Any</code> object.
      *
      * @param a
-     *          an <code>Any</code> object that contains a user exception
-     *          returned by the server
+     *        an <code>Any</code> object that contains a user exception
+     *        returned by the server
      */
     public UnknownUserException(Any a) {
         super();

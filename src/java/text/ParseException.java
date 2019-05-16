@@ -33,9 +33,9 @@ public class ParseException extends Exception {
      * A detail message is a String that describes this particular exception.
      *
      * @param s
-     *                    the detail message
+     *        the detail message
      * @param errorOffset
-     *                    the position where the error is found while parsing.
+     *        the position where the error is found while parsing.
      */
     public ParseException(String s, int errorOffset) {
         super(s);

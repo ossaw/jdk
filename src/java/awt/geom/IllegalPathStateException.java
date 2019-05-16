@@ -10,7 +10,6 @@ package java.awt.geom;
  * thrown if an operation is performed on a path that is in an illegal state
  * with respect to the particular operation being performed, such as appending a
  * path segment to a {@link GeneralPath} without an initial moveto.
- *
  */
 
 public class IllegalPathStateException extends RuntimeException {
@@ -27,7 +26,7 @@ public class IllegalPathStateException extends RuntimeException {
      * detail message.
      * 
      * @param s
-     *          the detail message
+     *        the detail message
      * @since 1.2
      */
     public IllegalPathStateException(String s) {

@@ -15,8 +15,7 @@ package org.omg.CORBA;
  * Usage:
  * 
  * <PRE>
- * NVList props = myContext.get_values("_USER", CTX_RESTRICT_SCOPE.value,
- *         "id*");
+ * NVList props = myContext.get_values("_USER", CTX_RESTRICT_SCOPE.value, "id*");
  * </PRE>
  *
  * @see org.omg.CORBA.Context#get_values(String, int, String)

@@ -131,8 +131,7 @@ public class BasicDesktopIconUI extends DesktopIconUI {
         Border border = frame.getBorder();
 
         if (border != null) {
-            dim.height += border.getBorderInsets(frame).bottom + border
-                    .getBorderInsets(frame).top;
+            dim.height += border.getBorderInsets(frame).bottom + border.getBorderInsets(frame).top;
         }
         return dim;
     }
@@ -159,13 +158,11 @@ public class BasicDesktopIconUI extends DesktopIconUI {
     public void deiconize() {
         try {
             frame.setIcon(false);
-        } catch (PropertyVetoException e2) {
-        }
+        } catch (PropertyVetoException e2) {}
     }
 
     /**
      * Listens for mouse movements and acts on them.
-     *
      * This class should be treated as a &quot;protected&quot; inner class.
      * Instantiate it only within subclasses of {@code BasicDesktopIconUI}.
      */
@@ -193,8 +190,7 @@ public class BasicDesktopIconUI extends DesktopIconUI {
         }
 
         public void mousePressed(MouseEvent e) {
-            Point p = SwingUtilities.convertPoint((Component) e.getSource(), e
-                    .getX(), e.getY(), null);
+            Point p = SwingUtilities.convertPoint((Component) e.getSource(), e.getX(), e.getY(), null);
             __x = e.getX();
             __y = e.getY();
             _x = p.x;
@@ -209,11 +205,9 @@ public class BasicDesktopIconUI extends DesktopIconUI {
 
             try {
                 frame.setSelected(true);
-            } catch (PropertyVetoException e1) {
-            }
+            } catch (PropertyVetoException e1) {}
             if (desktopIcon.getParent() instanceof JLayeredPane) {
-                ((JLayeredPane) desktopIcon.getParent()).moveToFront(
-                        desktopIcon);
+                ((JLayeredPane) desktopIcon.getParent()).moveToFront(desktopIcon);
             }
 
             if (e.getClickCount() > 1) {
@@ -233,8 +227,7 @@ public class BasicDesktopIconUI extends DesktopIconUI {
             int deltaY;
             Dimension min;
             Dimension max;
-            p = SwingUtilities.convertPoint((Component) e.getSource(), e.getX(),
-                    e.getY(), null);
+            p = SwingUtilities.convertPoint((Component) e.getSource(), e.getX(), e.getY(), null);
 
             Insets i = desktopIcon.getInsets();
             int pWidth, pHeight;
@@ -262,14 +255,12 @@ public class BasicDesktopIconUI extends DesktopIconUI {
                 DesktopManager dm = d.getDesktopManager();
                 dm.dragFrame(desktopIcon, newX, newY);
             } else {
-                moveAndRepaint(desktopIcon, newX, newY, desktopIcon.getWidth(),
-                        desktopIcon.getHeight());
+                moveAndRepaint(desktopIcon, newX, newY, desktopIcon.getWidth(), desktopIcon.getHeight());
             }
             return;
         }
 
-        public void moveAndRepaint(JComponent f, int newX, int newY,
-                int newWidth, int newHeight) {
+        public void moveAndRepaint(JComponent f, int newX, int newY, int newWidth, int newHeight) {
             Rectangle r = f.getBounds();
             f.setBounds(newX, newY, newWidth, newHeight);
             SwingUtilities.computeUnion(newX, newY, newWidth, newHeight, r);

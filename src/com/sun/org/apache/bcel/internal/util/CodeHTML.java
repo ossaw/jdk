@@ -58,7 +58,6 @@ import java.util.BitSet;
  * Convert code into HTML file.
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
- *
  */
 final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
     private String class_name; // name of current class
@@ -69,16 +68,14 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
     private ConstantHTML constant_html;
     private static boolean wide = false;
 
-    CodeHTML(String dir, String class_name, Method[] methods,
-            ConstantPool constant_pool, ConstantHTML constant_html)
-            throws IOException {
+    CodeHTML(String dir, String class_name, Method[] methods, ConstantPool constant_pool,
+            ConstantHTML constant_html) throws IOException {
         this.class_name = class_name;
         this.methods = methods;
         this.constant_pool = constant_pool;
         this.constant_html = constant_html;
 
-        file = new PrintWriter(new FileOutputStream(dir + class_name
-                + "_code.html"));
+        file = new PrintWriter(new FileOutputStream(dir + class_name + "_code.html"));
         file.println("<HTML><BODY BGCOLOR=\"#C0C0C0\">");
 
         for (int i = 0; i < methods.length; i++)
@@ -92,11 +89,10 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
      * Disassemble a stream of byte codes and return the string representation.
      *
      * @param stream
-     *               data input stream
+     *        data input stream
      * @return String representation of byte code
      */
-    private final String codeToHTML(ByteSequence bytes, int method_number)
-            throws IOException {
+    private final String codeToHTML(ByteSequence bytes, int method_number) throws IOException {
         short opcode = (short) bytes.readUnsignedByte();
         StringBuffer buf;
         String name, signature;
@@ -105,8 +101,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
         int[] jump_table;
         int no_pad_bytes = 0, offset;
 
-        buf = new StringBuffer("<TT>" + OPCODE_NAMES[opcode]
-                + "</TT></TD><TD>");
+        buf = new StringBuffer("<TT>" + OPCODE_NAMES[opcode] + "</TT></TD><TD>");
 
         /*
          * Special case: Skip (0-3) padding bytes, i.e., the following bytes are
@@ -144,12 +139,10 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
 
                 // Print target and default indices in second row
                 for (int i = 0; i < jump_table.length; i++)
-                    buf.append("<TD><A HREF=\"#code" + method_number + "@"
-                            + jump_table[i] + "\">" + jump_table[i]
-                            + "</A></TD>");
-                buf.append("<TD><A HREF=\"#code" + method_number + "@"
-                        + default_offset + "\">" + default_offset
-                        + "</A></TD></TR>\n</TABLE>\n");
+                    buf.append("<TD><A HREF=\"#code" + method_number + "@" + jump_table[i] + "\">"
+                            + jump_table[i] + "</A></TD>");
+                buf.append("<TD><A HREF=\"#code" + method_number + "@" + default_offset + "\">"
+                        + default_offset + "</A></TD></TR>\n</TABLE>\n");
 
                 break;
 
@@ -175,12 +168,10 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
 
                 // Print target and default indices in second row
                 for (int i = 0; i < npairs; i++)
-                    buf.append("<TD><A HREF=\"#code" + method_number + "@"
-                            + jump_table[i] + "\">" + jump_table[i]
-                            + "</A></TD>");
-                buf.append("<TD><A HREF=\"#code" + method_number + "@"
-                        + default_offset + "\">" + default_offset
-                        + "</A></TD></TR>\n</TABLE>\n");
+                    buf.append("<TD><A HREF=\"#code" + method_number + "@" + jump_table[i] + "\">"
+                            + jump_table[i] + "</A></TD>");
+                buf.append("<TD><A HREF=\"#code" + method_number + "@" + default_offset + "\">"
+                        + default_offset + "</A></TD></TR>\n</TABLE>\n");
                 break;
 
             /*
@@ -209,8 +200,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
 
                 index = (int) (bytes.getIndex() + bytes.readShort() - 1);
 
-                buf.append("<A HREF=\"#code" + method_number + "@" + index
-                        + "\">" + index + "</A>");
+                buf.append("<A HREF=\"#code" + method_number + "@" + index + "\">" + index + "</A>");
                 break;
 
             /*
@@ -219,8 +209,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
             case GOTO_W:
             case JSR_W:
                 int windex = bytes.getIndex() + bytes.readInt() - 1;
-                buf.append("<A HREF=\"#code" + method_number + "@" + windex
-                        + "\">" + windex + "</A>");
+                buf.append("<A HREF=\"#code" + method_number + "@" + windex + "\">" + windex + "</A>");
                 break;
 
             /*
@@ -261,8 +250,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
              * Array of basic type.
              */
             case NEWARRAY:
-                buf.append("<FONT COLOR=\"#00FF00\">" + TYPE_NAMES[bytes
-                        .readByte()] + "</FONT>");
+                buf.append("<FONT COLOR=\"#00FF00\">" + TYPE_NAMES[bytes.readByte()] + "</FONT>");
                 break;
 
             /*
@@ -273,25 +261,20 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
             case PUTFIELD:
             case PUTSTATIC:
                 index = bytes.readShort();
-                ConstantFieldref c1 = (ConstantFieldref) constant_pool
-                        .getConstant(index, CONSTANT_Fieldref);
+                ConstantFieldref c1 = (ConstantFieldref) constant_pool.getConstant(index, CONSTANT_Fieldref);
 
                 class_index = c1.getClassIndex();
-                name = constant_pool.getConstantString(class_index,
-                        CONSTANT_Class);
+                name = constant_pool.getConstantString(class_index, CONSTANT_Class);
                 name = Utility.compactClassName(name, false);
 
                 index = c1.getNameAndTypeIndex();
-                String field_name = constant_pool.constantToString(index,
-                        CONSTANT_NameAndType);
+                String field_name = constant_pool.constantToString(index, CONSTANT_NameAndType);
 
                 if (name.equals(class_name)) { // Local field
-                    buf.append("<A HREF=\"" + class_name + "_methods.html#field"
-                            + field_name + "\" TARGET=Methods>" + field_name
-                            + "</A>\n");
+                    buf.append("<A HREF=\"" + class_name + "_methods.html#field" + field_name
+                            + "\" TARGET=Methods>" + field_name + "</A>\n");
                 } else
-                    buf.append(constant_html.referenceConstant(class_index)
-                            + "." + field_name);
+                    buf.append(constant_html.referenceConstant(class_index) + "." + field_name);
 
                 break;
 
@@ -319,15 +302,15 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
                     int nargs = bytes.readUnsignedByte(); // Redundant
                     int reserved = bytes.readUnsignedByte(); // Reserved
 
-                    ConstantInterfaceMethodref c = (ConstantInterfaceMethodref) constant_pool
-                            .getConstant(m_index, CONSTANT_InterfaceMethodref);
+                    ConstantInterfaceMethodref c = (ConstantInterfaceMethodref) constant_pool.getConstant(
+                            m_index, CONSTANT_InterfaceMethodref);
 
                     class_index = c.getClassIndex();
                     str = constant_pool.constantToString(c);
                     index = c.getNameAndTypeIndex();
                 } else {
-                    ConstantMethodref c = (ConstantMethodref) constant_pool
-                            .getConstant(m_index, CONSTANT_Methodref);
+                    ConstantMethodref c = (ConstantMethodref) constant_pool.getConstant(m_index,
+                            CONSTANT_Methodref);
                     class_index = c.getClassIndex();
 
                     str = constant_pool.constantToString(c);
@@ -335,23 +318,18 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
                 }
 
                 name = Class2HTML.referenceClass(class_index);
-                str = Class2HTML.toHTML(constant_pool.constantToString(
-                        constant_pool.getConstant(index,
-                                CONSTANT_NameAndType)));
+                str = Class2HTML.toHTML(constant_pool.constantToString(constant_pool.getConstant(index,
+                        CONSTANT_NameAndType)));
 
                 // Get signature, i.e., types
-                ConstantNameAndType c2 = (ConstantNameAndType) constant_pool
-                        .getConstant(index, CONSTANT_NameAndType);
-                signature = constant_pool.constantToString(c2
-                        .getSignatureIndex(), CONSTANT_Utf8);
-                String[] args = Utility.methodSignatureArgumentTypes(signature,
-                        false);
-                String type = Utility.methodSignatureReturnType(signature,
-                        false);
+                ConstantNameAndType c2 = (ConstantNameAndType) constant_pool.getConstant(index,
+                        CONSTANT_NameAndType);
+                signature = constant_pool.constantToString(c2.getSignatureIndex(), CONSTANT_Utf8);
+                String[] args = Utility.methodSignatureArgumentTypes(signature, false);
+                String type = Utility.methodSignatureReturnType(signature, false);
 
-                buf.append(name + ".<A HREF=\"" + class_name + "_cp.html#cp"
-                        + m_index + "\" TARGET=ConstantPool>" + str + "</A>"
-                        + "(");
+                buf.append(name + ".<A HREF=\"" + class_name + "_cp.html#cp" + m_index
+                        + "\" TARGET=ConstantPool>" + str + "</A>" + "(");
 
                 // List arguments
                 for (int i = 0; i < args.length; i++) {
@@ -372,20 +350,16 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
             case LDC2_W:
                 index = bytes.readShort();
 
-                buf.append("<A HREF=\"" + class_name + "_cp.html#cp" + index
-                        + "\" TARGET=\"ConstantPool\">" + Class2HTML.toHTML(
-                                constant_pool.constantToString(index,
-                                        constant_pool.getConstant(index)
-                                                .getTag())) + "</a>");
+                buf.append("<A HREF=\"" + class_name + "_cp.html#cp" + index + "\" TARGET=\"ConstantPool\">"
+                        + Class2HTML.toHTML(constant_pool.constantToString(index, constant_pool.getConstant(
+                                index).getTag())) + "</a>");
                 break;
 
             case LDC:
                 index = bytes.readUnsignedByte();
-                buf.append("<A HREF=\"" + class_name + "_cp.html#cp" + index
-                        + "\" TARGET=\"ConstantPool\">" + Class2HTML.toHTML(
-                                constant_pool.constantToString(index,
-                                        constant_pool.getConstant(index)
-                                                .getTag())) + "</a>");
+                buf.append("<A HREF=\"" + class_name + "_cp.html#cp" + index + "\" TARGET=\"ConstantPool\">"
+                        + Class2HTML.toHTML(constant_pool.constantToString(index, constant_pool.getConstant(
+                                index).getTag())) + "</a>");
                 break;
 
             /*
@@ -403,8 +377,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
             case MULTIANEWARRAY:
                 index = bytes.readShort();
                 int dimensions = bytes.readByte();
-                buf.append(constant_html.referenceConstant(index) + ":"
-                        + dimensions + "-dimensional");
+                buf.append(constant_html.referenceConstant(index) + ":" + dimensions + "-dimensional");
                 break;
 
             /*
@@ -439,8 +412,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
                                 break;
 
                             default: // Never reached
-                                System.err.println(
-                                        "Unreachable default case reached!");
+                                System.err.println("Unreachable default case reached!");
                                 System.exit(-1);
                         }
                         buf.append("&nbsp;");
@@ -456,8 +428,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
      * Find all target addresses in code, so that they can be marked with &lt;A
      * NAME = ...&gt;. Target addresses are kept in an BitSet object.
      */
-    private final void findGotos(ByteSequence bytes, Method method, Code code)
-            throws IOException {
+    private final void findGotos(ByteSequence bytes, Method method, Code code) throws IOException {
         int index;
         goto_set = new BitSet(bytes.available());
         int opcode;
@@ -481,8 +452,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
             Attribute[] attributes = code.getAttributes();
             for (int i = 0; i < attributes.length; i++) {
                 if (attributes[i].getTag() == ATTR_LOCAL_VARIABLE_TABLE) {
-                    LocalVariable[] vars = ((LocalVariableTable) attributes[i])
-                            .getLocalVariableTable();
+                    LocalVariable[] vars = ((LocalVariableTable) attributes[i]).getLocalVariableTable();
 
                     for (int j = 0; j < vars.length; j++) {
                         int start = vars[j].getStartPC();
@@ -583,8 +553,7 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
     /**
      * Write a single method with the byte code associated with it.
      */
-    private void writeMethod(Method method, int method_number)
-            throws IOException {
+    private void writeMethod(Method method, int method_number) throws IOException {
         // Get raw signature
         String signature = method.getSignature();
         // Get array of strings containing the argument types
@@ -600,11 +569,9 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
         // Get the method's attributes, the Code Attribute in particular
         Attribute[] attributes = method.getAttributes();
 
-        file.print("<P><B><FONT COLOR=\"#FF0000\">" + access + "</FONT>&nbsp;"
-                + "<A NAME=method" + method_number + ">" + Class2HTML
-                        .referenceType(type) + "</A>&nbsp<A HREF=\""
-                + class_name + "_methods.html#method" + method_number
-                + "\" TARGET=Methods>" + html_name + "</A>(");
+        file.print("<P><B><FONT COLOR=\"#FF0000\">" + access + "</FONT>&nbsp;" + "<A NAME=method"
+                + method_number + ">" + Class2HTML.referenceType(type) + "</A>&nbsp<A HREF=\"" + class_name
+                + "_methods.html#method" + method_number + "\" TARGET=Methods>" + html_name + "</A>(");
 
         for (int i = 0; i < args.length; i++) {
             file.print(Class2HTML.referenceType(args[i]));
@@ -623,10 +590,8 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
                 byte tag = attributes[i].getTag();
 
                 if (tag != ATTR_UNKNOWN)
-                    file.print("<LI><A HREF=\"" + class_name
-                            + "_attributes.html#method" + method_number + "@"
-                            + i + "\" TARGET=Attributes>" + ATTRIBUTE_NAMES[tag]
-                            + "</A></LI>\n");
+                    file.print("<LI><A HREF=\"" + class_name + "_attributes.html#method" + method_number + "@"
+                            + i + "\" TARGET=Attributes>" + ATTRIBUTE_NAMES[tag] + "</A></LI>\n");
                 else
                     file.print("<LI>" + attributes[i] + "</LI>");
 
@@ -638,9 +603,8 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
                     file.print("<UL>");
                     for (int j = 0; j < attributes2.length; j++) {
                         tag = attributes2[j].getTag();
-                        file.print("<LI><A HREF=\"" + class_name
-                                + "_attributes.html#" + "method" + method_number
-                                + "@" + i + "@" + j + "\" TARGET=Attributes>"
+                        file.print("<LI><A HREF=\"" + class_name + "_attributes.html#" + "method"
+                                + method_number + "@" + i + "@" + j + "\" TARGET=Attributes>"
                                 + ATTRIBUTE_NAMES[tag] + "</A></LI>\n");
 
                     }
@@ -660,9 +624,8 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
             findGotos(stream, method, c);
             stream.reset();
 
-            file.println(
-                    "<TABLE BORDER=0><TR><TH ALIGN=LEFT>Byte<BR>offset</TH>"
-                            + "<TH ALIGN=LEFT>Instruction</TH><TH ALIGN=LEFT>Argument</TH>");
+            file.println("<TABLE BORDER=0><TR><TH ALIGN=LEFT>Byte<BR>offset</TH>"
+                    + "<TH ALIGN=LEFT>Instruction</TH><TH ALIGN=LEFT>Argument</TH>");
 
             for (int i = 0; stream.available() > 0; i++) {
                 int offset = stream.getIndex();
@@ -674,18 +637,15 @@ final class CodeHTML implements com.sun.org.apache.bcel.internal.Constants {
                  * etc. Defining an anchor for every line is very inefficient!
                  */
                 if (goto_set.get(offset))
-                    anchor = "<A NAME=code" + method_number + "@" + offset
-                            + "></A>";
+                    anchor = "<A NAME=code" + method_number + "@" + offset + "></A>";
 
                 String anchor2;
                 if (stream.getIndex() == code.length) // last loop
-                    anchor2 = "<A NAME=code" + method_number + "@" + code.length
-                            + ">" + offset + "</A>";
+                    anchor2 = "<A NAME=code" + method_number + "@" + code.length + ">" + offset + "</A>";
                 else
                     anchor2 = "" + offset;
 
-                file.println("<TR VALIGN=TOP><TD>" + anchor2 + "</TD><TD>"
-                        + anchor + str + "</TR>");
+                file.println("<TR VALIGN=TOP><TD>" + anchor2 + "</TD><TD>" + anchor + str + "</TR>");
             }
 
             // Mark last line, may be targetted from Attributes window

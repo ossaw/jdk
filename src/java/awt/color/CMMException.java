@@ -23,7 +23,7 @@ public class CMMException extends java.lang.RuntimeException {
      * Constructs a CMMException with the specified detail message.
      * 
      * @param s
-     *          the specified detail message
+     *        the specified detail message
      */
     public CMMException(String s) {
         super(s);

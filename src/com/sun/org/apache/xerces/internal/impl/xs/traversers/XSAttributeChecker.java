@@ -51,17 +51,14 @@ import org.w3c.dom.Element;
  * invalid attribute value - return compiled values for attriute values -
  * provide default value for missing optional attributes - provide default value
  * for incorrect attribute values
- *
  * But it's the caller's responsibility to check whether a required attribute is
  * present.
- *
  * Things need revisiting: - Whether to return non-schema attributes/values - Do
  * we need to update NamespaceScope and ErrorReporter when reset()? - Should
  * have the datatype validators return compiled value - use symbol table instead
  * of many maps
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @version $Id: XSAttributeChecker.java,v 1.12 2010-11-01 04:40:02 joehw Exp $
  */
@@ -122,38 +119,22 @@ public class XSAttributeChecker {
 
     private static final XIntPool fXIntPool = new XIntPool();
     // constants to return
-    private static final XInt INT_QUALIFIED = fXIntPool.getXInt(
-            SchemaSymbols.FORM_QUALIFIED);
-    private static final XInt INT_UNQUALIFIED = fXIntPool.getXInt(
-            SchemaSymbols.FORM_UNQUALIFIED);
-    private static final XInt INT_EMPTY_SET = fXIntPool.getXInt(
-            XSConstants.DERIVATION_NONE);
-    private static final XInt INT_ANY_STRICT = fXIntPool.getXInt(
-            XSWildcardDecl.PC_STRICT);
-    private static final XInt INT_ANY_LAX = fXIntPool.getXInt(
-            XSWildcardDecl.PC_LAX);
-    private static final XInt INT_ANY_SKIP = fXIntPool.getXInt(
-            XSWildcardDecl.PC_SKIP);
-    private static final XInt INT_ANY_ANY = fXIntPool.getXInt(
-            XSWildcardDecl.NSCONSTRAINT_ANY);
-    private static final XInt INT_ANY_LIST = fXIntPool.getXInt(
-            XSWildcardDecl.NSCONSTRAINT_LIST);
-    private static final XInt INT_ANY_NOT = fXIntPool.getXInt(
-            XSWildcardDecl.NSCONSTRAINT_NOT);
-    private static final XInt INT_USE_OPTIONAL = fXIntPool.getXInt(
-            SchemaSymbols.USE_OPTIONAL);
-    private static final XInt INT_USE_REQUIRED = fXIntPool.getXInt(
-            SchemaSymbols.USE_REQUIRED);
-    private static final XInt INT_USE_PROHIBITED = fXIntPool.getXInt(
-            SchemaSymbols.USE_PROHIBITED);
-    private static final XInt INT_WS_PRESERVE = fXIntPool.getXInt(
-            XSSimpleType.WS_PRESERVE);
-    private static final XInt INT_WS_REPLACE = fXIntPool.getXInt(
-            XSSimpleType.WS_REPLACE);
-    private static final XInt INT_WS_COLLAPSE = fXIntPool.getXInt(
-            XSSimpleType.WS_COLLAPSE);
-    private static final XInt INT_UNBOUNDED = fXIntPool.getXInt(
-            SchemaSymbols.OCCURRENCE_UNBOUNDED);
+    private static final XInt INT_QUALIFIED = fXIntPool.getXInt(SchemaSymbols.FORM_QUALIFIED);
+    private static final XInt INT_UNQUALIFIED = fXIntPool.getXInt(SchemaSymbols.FORM_UNQUALIFIED);
+    private static final XInt INT_EMPTY_SET = fXIntPool.getXInt(XSConstants.DERIVATION_NONE);
+    private static final XInt INT_ANY_STRICT = fXIntPool.getXInt(XSWildcardDecl.PC_STRICT);
+    private static final XInt INT_ANY_LAX = fXIntPool.getXInt(XSWildcardDecl.PC_LAX);
+    private static final XInt INT_ANY_SKIP = fXIntPool.getXInt(XSWildcardDecl.PC_SKIP);
+    private static final XInt INT_ANY_ANY = fXIntPool.getXInt(XSWildcardDecl.NSCONSTRAINT_ANY);
+    private static final XInt INT_ANY_LIST = fXIntPool.getXInt(XSWildcardDecl.NSCONSTRAINT_LIST);
+    private static final XInt INT_ANY_NOT = fXIntPool.getXInt(XSWildcardDecl.NSCONSTRAINT_NOT);
+    private static final XInt INT_USE_OPTIONAL = fXIntPool.getXInt(SchemaSymbols.USE_OPTIONAL);
+    private static final XInt INT_USE_REQUIRED = fXIntPool.getXInt(SchemaSymbols.USE_REQUIRED);
+    private static final XInt INT_USE_PROHIBITED = fXIntPool.getXInt(SchemaSymbols.USE_PROHIBITED);
+    private static final XInt INT_WS_PRESERVE = fXIntPool.getXInt(XSSimpleType.WS_PRESERVE);
+    private static final XInt INT_WS_REPLACE = fXIntPool.getXInt(XSSimpleType.WS_REPLACE);
+    private static final XInt INT_WS_COLLAPSE = fXIntPool.getXInt(XSSimpleType.WS_COLLAPSE);
+    private static final XInt INT_UNBOUNDED = fXIntPool.getXInt(SchemaSymbols.OCCURRENCE_UNBOUNDED);
 
     // used to store the map from element name to attribute list
     // for 14 global elements
@@ -183,30 +164,23 @@ public class XSAttributeChecker {
         // step 5: register all datatype validators for new types
         SchemaGrammar grammar = SchemaGrammar.SG_SchemaNS;
         // anyURI
-        fExtraDVs[DT_ANYURI] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_ANYURI);
+        fExtraDVs[DT_ANYURI] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_ANYURI);
         // ID
-        fExtraDVs[DT_ID] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_ID);
+        fExtraDVs[DT_ID] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_ID);
         // QName
-        fExtraDVs[DT_QNAME] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_QNAME);
+        fExtraDVs[DT_QNAME] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_QNAME);
         // string
-        fExtraDVs[DT_STRING] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_STRING);
+        fExtraDVs[DT_STRING] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_STRING);
         // token
-        fExtraDVs[DT_TOKEN] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_TOKEN);
+        fExtraDVs[DT_TOKEN] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_TOKEN);
         // NCName
-        fExtraDVs[DT_NCNAME] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_NCNAME);
+        fExtraDVs[DT_NCNAME] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_NCNAME);
         // xpath = a subset of XPath expression
         fExtraDVs[DT_XPATH] = fExtraDVs[DT_STRING];
         // xpath = a subset of XPath expression
         fExtraDVs[DT_XPATH] = fExtraDVs[DT_STRING];
         // language
-        fExtraDVs[DT_LANGUAGE] = (XSSimpleType) grammar.getGlobalTypeDecl(
-                SchemaSymbols.ATTVAL_LANGUAGE);
+        fExtraDVs[DT_LANGUAGE] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_LANGUAGE);
     }
 
     protected static final int DT_BLOCK = -1;
@@ -281,107 +255,72 @@ public class XSAttributeChecker {
 
         // step 3: store all these attributes in an array
         OneAttr[] allAttrs = new OneAttr[attCount];
-        allAttrs[ATT_ABSTRACT_D] = new OneAttr(SchemaSymbols.ATT_ABSTRACT,
-                DT_BOOLEAN, ATTIDX_ABSTRACT, Boolean.FALSE);
-        allAttrs[ATT_ATTRIBUTE_FD_D] = new OneAttr(
-                SchemaSymbols.ATT_ATTRIBUTEFORMDEFAULT, DT_FORM,
+        allAttrs[ATT_ABSTRACT_D] = new OneAttr(SchemaSymbols.ATT_ABSTRACT, DT_BOOLEAN, ATTIDX_ABSTRACT,
+                Boolean.FALSE);
+        allAttrs[ATT_ATTRIBUTE_FD_D] = new OneAttr(SchemaSymbols.ATT_ATTRIBUTEFORMDEFAULT, DT_FORM,
                 ATTIDX_AFORMDEFAULT, INT_UNQUALIFIED);
-        allAttrs[ATT_BASE_R] = new OneAttr(SchemaSymbols.ATT_BASE, DT_QNAME,
-                ATTIDX_BASE, null);
-        allAttrs[ATT_BASE_N] = new OneAttr(SchemaSymbols.ATT_BASE, DT_QNAME,
-                ATTIDX_BASE, null);
-        allAttrs[ATT_BLOCK_N] = new OneAttr(SchemaSymbols.ATT_BLOCK, DT_BLOCK,
-                ATTIDX_BLOCK, null);
-        allAttrs[ATT_BLOCK1_N] = new OneAttr(SchemaSymbols.ATT_BLOCK, DT_BLOCK1,
-                ATTIDX_BLOCK, null);
-        allAttrs[ATT_BLOCK_D_D] = new OneAttr(SchemaSymbols.ATT_BLOCKDEFAULT,
-                DT_BLOCK, ATTIDX_BLOCKDEFAULT, INT_EMPTY_SET);
-        allAttrs[ATT_DEFAULT_N] = new OneAttr(SchemaSymbols.ATT_DEFAULT,
-                DT_STRING, ATTIDX_DEFAULT, null);
-        allAttrs[ATT_ELEMENT_FD_D] = new OneAttr(
-                SchemaSymbols.ATT_ELEMENTFORMDEFAULT, DT_FORM,
+        allAttrs[ATT_BASE_R] = new OneAttr(SchemaSymbols.ATT_BASE, DT_QNAME, ATTIDX_BASE, null);
+        allAttrs[ATT_BASE_N] = new OneAttr(SchemaSymbols.ATT_BASE, DT_QNAME, ATTIDX_BASE, null);
+        allAttrs[ATT_BLOCK_N] = new OneAttr(SchemaSymbols.ATT_BLOCK, DT_BLOCK, ATTIDX_BLOCK, null);
+        allAttrs[ATT_BLOCK1_N] = new OneAttr(SchemaSymbols.ATT_BLOCK, DT_BLOCK1, ATTIDX_BLOCK, null);
+        allAttrs[ATT_BLOCK_D_D] = new OneAttr(SchemaSymbols.ATT_BLOCKDEFAULT, DT_BLOCK, ATTIDX_BLOCKDEFAULT,
+                INT_EMPTY_SET);
+        allAttrs[ATT_DEFAULT_N] = new OneAttr(SchemaSymbols.ATT_DEFAULT, DT_STRING, ATTIDX_DEFAULT, null);
+        allAttrs[ATT_ELEMENT_FD_D] = new OneAttr(SchemaSymbols.ATT_ELEMENTFORMDEFAULT, DT_FORM,
                 ATTIDX_EFORMDEFAULT, INT_UNQUALIFIED);
-        allAttrs[ATT_FINAL_N] = new OneAttr(SchemaSymbols.ATT_FINAL, DT_FINAL,
-                ATTIDX_FINAL, null);
-        allAttrs[ATT_FINAL1_N] = new OneAttr(SchemaSymbols.ATT_FINAL, DT_FINAL1,
-                ATTIDX_FINAL, null);
-        allAttrs[ATT_FINAL_D_D] = new OneAttr(SchemaSymbols.ATT_FINALDEFAULT,
-                DT_FINAL2, ATTIDX_FINALDEFAULT, INT_EMPTY_SET);
-        allAttrs[ATT_FIXED_N] = new OneAttr(SchemaSymbols.ATT_FIXED, DT_STRING,
-                ATTIDX_FIXED, null);
-        allAttrs[ATT_FIXED_D] = new OneAttr(SchemaSymbols.ATT_FIXED, DT_BOOLEAN,
-                ATTIDX_FIXED, Boolean.FALSE);
-        allAttrs[ATT_FORM_N] = new OneAttr(SchemaSymbols.ATT_FORM, DT_FORM,
-                ATTIDX_FORM, null);
-        allAttrs[ATT_ID_N] = new OneAttr(SchemaSymbols.ATT_ID, DT_ID, ATTIDX_ID,
+        allAttrs[ATT_FINAL_N] = new OneAttr(SchemaSymbols.ATT_FINAL, DT_FINAL, ATTIDX_FINAL, null);
+        allAttrs[ATT_FINAL1_N] = new OneAttr(SchemaSymbols.ATT_FINAL, DT_FINAL1, ATTIDX_FINAL, null);
+        allAttrs[ATT_FINAL_D_D] = new OneAttr(SchemaSymbols.ATT_FINALDEFAULT, DT_FINAL2, ATTIDX_FINALDEFAULT,
+                INT_EMPTY_SET);
+        allAttrs[ATT_FIXED_N] = new OneAttr(SchemaSymbols.ATT_FIXED, DT_STRING, ATTIDX_FIXED, null);
+        allAttrs[ATT_FIXED_D] = new OneAttr(SchemaSymbols.ATT_FIXED, DT_BOOLEAN, ATTIDX_FIXED, Boolean.FALSE);
+        allAttrs[ATT_FORM_N] = new OneAttr(SchemaSymbols.ATT_FORM, DT_FORM, ATTIDX_FORM, null);
+        allAttrs[ATT_ID_N] = new OneAttr(SchemaSymbols.ATT_ID, DT_ID, ATTIDX_ID, null);
+        allAttrs[ATT_ITEMTYPE_N] = new OneAttr(SchemaSymbols.ATT_ITEMTYPE, DT_QNAME, ATTIDX_ITEMTYPE, null);
+        allAttrs[ATT_MAXOCCURS_D] = new OneAttr(SchemaSymbols.ATT_MAXOCCURS, DT_MAXOCCURS, ATTIDX_MAXOCCURS,
+                fXIntPool.getXInt(1));
+        allAttrs[ATT_MAXOCCURS1_D] = new OneAttr(SchemaSymbols.ATT_MAXOCCURS, DT_MAXOCCURS1, ATTIDX_MAXOCCURS,
+                fXIntPool.getXInt(1));
+        allAttrs[ATT_MEMBER_T_N] = new OneAttr(SchemaSymbols.ATT_MEMBERTYPES, DT_MEMBERTYPES,
+                ATTIDX_MEMBERTYPES, null);
+        allAttrs[ATT_MINOCCURS_D] = new OneAttr(SchemaSymbols.ATT_MINOCCURS, DT_NONNEGINT, ATTIDX_MINOCCURS,
+                fXIntPool.getXInt(1));
+        allAttrs[ATT_MINOCCURS1_D] = new OneAttr(SchemaSymbols.ATT_MINOCCURS, DT_MINOCCURS1, ATTIDX_MINOCCURS,
+                fXIntPool.getXInt(1));
+        allAttrs[ATT_MIXED_D] = new OneAttr(SchemaSymbols.ATT_MIXED, DT_BOOLEAN, ATTIDX_MIXED, Boolean.FALSE);
+        allAttrs[ATT_MIXED_N] = new OneAttr(SchemaSymbols.ATT_MIXED, DT_BOOLEAN, ATTIDX_MIXED, null);
+        allAttrs[ATT_NAME_R] = new OneAttr(SchemaSymbols.ATT_NAME, DT_NCNAME, ATTIDX_NAME, null);
+        allAttrs[ATT_NAMESPACE_D] = new OneAttr(SchemaSymbols.ATT_NAMESPACE, DT_NAMESPACE, ATTIDX_NAMESPACE,
+                INT_ANY_ANY);
+        allAttrs[ATT_NAMESPACE_N] = new OneAttr(SchemaSymbols.ATT_NAMESPACE, DT_ANYURI, ATTIDX_NAMESPACE,
                 null);
-        allAttrs[ATT_ITEMTYPE_N] = new OneAttr(SchemaSymbols.ATT_ITEMTYPE,
-                DT_QNAME, ATTIDX_ITEMTYPE, null);
-        allAttrs[ATT_MAXOCCURS_D] = new OneAttr(SchemaSymbols.ATT_MAXOCCURS,
-                DT_MAXOCCURS, ATTIDX_MAXOCCURS, fXIntPool.getXInt(1));
-        allAttrs[ATT_MAXOCCURS1_D] = new OneAttr(SchemaSymbols.ATT_MAXOCCURS,
-                DT_MAXOCCURS1, ATTIDX_MAXOCCURS, fXIntPool.getXInt(1));
-        allAttrs[ATT_MEMBER_T_N] = new OneAttr(SchemaSymbols.ATT_MEMBERTYPES,
-                DT_MEMBERTYPES, ATTIDX_MEMBERTYPES, null);
-        allAttrs[ATT_MINOCCURS_D] = new OneAttr(SchemaSymbols.ATT_MINOCCURS,
-                DT_NONNEGINT, ATTIDX_MINOCCURS, fXIntPool.getXInt(1));
-        allAttrs[ATT_MINOCCURS1_D] = new OneAttr(SchemaSymbols.ATT_MINOCCURS,
-                DT_MINOCCURS1, ATTIDX_MINOCCURS, fXIntPool.getXInt(1));
-        allAttrs[ATT_MIXED_D] = new OneAttr(SchemaSymbols.ATT_MIXED, DT_BOOLEAN,
-                ATTIDX_MIXED, Boolean.FALSE);
-        allAttrs[ATT_MIXED_N] = new OneAttr(SchemaSymbols.ATT_MIXED, DT_BOOLEAN,
-                ATTIDX_MIXED, null);
-        allAttrs[ATT_NAME_R] = new OneAttr(SchemaSymbols.ATT_NAME, DT_NCNAME,
-                ATTIDX_NAME, null);
-        allAttrs[ATT_NAMESPACE_D] = new OneAttr(SchemaSymbols.ATT_NAMESPACE,
-                DT_NAMESPACE, ATTIDX_NAMESPACE, INT_ANY_ANY);
-        allAttrs[ATT_NAMESPACE_N] = new OneAttr(SchemaSymbols.ATT_NAMESPACE,
-                DT_ANYURI, ATTIDX_NAMESPACE, null);
-        allAttrs[ATT_NILLABLE_D] = new OneAttr(SchemaSymbols.ATT_NILLABLE,
-                DT_BOOLEAN, ATTIDX_NILLABLE, Boolean.FALSE);
-        allAttrs[ATT_PROCESS_C_D] = new OneAttr(
-                SchemaSymbols.ATT_PROCESSCONTENTS, DT_PROCESSCONTENTS,
+        allAttrs[ATT_NILLABLE_D] = new OneAttr(SchemaSymbols.ATT_NILLABLE, DT_BOOLEAN, ATTIDX_NILLABLE,
+                Boolean.FALSE);
+        allAttrs[ATT_PROCESS_C_D] = new OneAttr(SchemaSymbols.ATT_PROCESSCONTENTS, DT_PROCESSCONTENTS,
                 ATTIDX_PROCESSCONTENTS, INT_ANY_STRICT);
-        allAttrs[ATT_PUBLIC_R] = new OneAttr(SchemaSymbols.ATT_PUBLIC, DT_TOKEN,
-                ATTIDX_PUBLIC, null);
-        allAttrs[ATT_REF_R] = new OneAttr(SchemaSymbols.ATT_REF, DT_QNAME,
-                ATTIDX_REF, null);
-        allAttrs[ATT_REFER_R] = new OneAttr(SchemaSymbols.ATT_REFER, DT_QNAME,
-                ATTIDX_REFER, null);
-        allAttrs[ATT_SCHEMA_L_R] = new OneAttr(SchemaSymbols.ATT_SCHEMALOCATION,
-                DT_ANYURI, ATTIDX_SCHEMALOCATION, null);
-        allAttrs[ATT_SCHEMA_L_N] = new OneAttr(SchemaSymbols.ATT_SCHEMALOCATION,
-                DT_ANYURI, ATTIDX_SCHEMALOCATION, null);
-        allAttrs[ATT_SOURCE_N] = new OneAttr(SchemaSymbols.ATT_SOURCE,
-                DT_ANYURI, ATTIDX_SOURCE, null);
-        allAttrs[ATT_SUBSTITUTION_G_N] = new OneAttr(
-                SchemaSymbols.ATT_SUBSTITUTIONGROUP, DT_QNAME, ATTIDX_SUBSGROUP,
-                null);
-        allAttrs[ATT_SYSTEM_N] = new OneAttr(SchemaSymbols.ATT_SYSTEM,
-                DT_ANYURI, ATTIDX_SYSTEM, null);
-        allAttrs[ATT_TARGET_N_N] = new OneAttr(
-                SchemaSymbols.ATT_TARGETNAMESPACE, DT_ANYURI,
+        allAttrs[ATT_PUBLIC_R] = new OneAttr(SchemaSymbols.ATT_PUBLIC, DT_TOKEN, ATTIDX_PUBLIC, null);
+        allAttrs[ATT_REF_R] = new OneAttr(SchemaSymbols.ATT_REF, DT_QNAME, ATTIDX_REF, null);
+        allAttrs[ATT_REFER_R] = new OneAttr(SchemaSymbols.ATT_REFER, DT_QNAME, ATTIDX_REFER, null);
+        allAttrs[ATT_SCHEMA_L_R] = new OneAttr(SchemaSymbols.ATT_SCHEMALOCATION, DT_ANYURI,
+                ATTIDX_SCHEMALOCATION, null);
+        allAttrs[ATT_SCHEMA_L_N] = new OneAttr(SchemaSymbols.ATT_SCHEMALOCATION, DT_ANYURI,
+                ATTIDX_SCHEMALOCATION, null);
+        allAttrs[ATT_SOURCE_N] = new OneAttr(SchemaSymbols.ATT_SOURCE, DT_ANYURI, ATTIDX_SOURCE, null);
+        allAttrs[ATT_SUBSTITUTION_G_N] = new OneAttr(SchemaSymbols.ATT_SUBSTITUTIONGROUP, DT_QNAME,
+                ATTIDX_SUBSGROUP, null);
+        allAttrs[ATT_SYSTEM_N] = new OneAttr(SchemaSymbols.ATT_SYSTEM, DT_ANYURI, ATTIDX_SYSTEM, null);
+        allAttrs[ATT_TARGET_N_N] = new OneAttr(SchemaSymbols.ATT_TARGETNAMESPACE, DT_ANYURI,
                 ATTIDX_TARGETNAMESPACE, null);
-        allAttrs[ATT_TYPE_N] = new OneAttr(SchemaSymbols.ATT_TYPE, DT_QNAME,
-                ATTIDX_TYPE, null);
-        allAttrs[ATT_USE_D] = new OneAttr(SchemaSymbols.ATT_USE, DT_USE,
-                ATTIDX_USE, INT_USE_OPTIONAL);
-        allAttrs[ATT_VALUE_NNI_N] = new OneAttr(SchemaSymbols.ATT_VALUE,
-                DT_NONNEGINT, ATTIDX_VALUE, null);
-        allAttrs[ATT_VALUE_PI_N] = new OneAttr(SchemaSymbols.ATT_VALUE,
-                DT_POSINT, ATTIDX_VALUE, null);
-        allAttrs[ATT_VALUE_STR_N] = new OneAttr(SchemaSymbols.ATT_VALUE,
-                DT_STRING, ATTIDX_VALUE, null);
-        allAttrs[ATT_VALUE_WS_N] = new OneAttr(SchemaSymbols.ATT_VALUE,
-                DT_WHITESPACE, ATTIDX_VALUE, null);
-        allAttrs[ATT_VERSION_N] = new OneAttr(SchemaSymbols.ATT_VERSION,
-                DT_TOKEN, ATTIDX_VERSION, null);
-        allAttrs[ATT_XML_LANG] = new OneAttr(SchemaSymbols.ATT_XML_LANG,
-                DT_LANGUAGE, ATTIDX_XML_LANG, null);
-        allAttrs[ATT_XPATH_R] = new OneAttr(SchemaSymbols.ATT_XPATH, DT_XPATH,
-                ATTIDX_XPATH, null);
-        allAttrs[ATT_XPATH1_R] = new OneAttr(SchemaSymbols.ATT_XPATH, DT_XPATH1,
-                ATTIDX_XPATH, null);
+        allAttrs[ATT_TYPE_N] = new OneAttr(SchemaSymbols.ATT_TYPE, DT_QNAME, ATTIDX_TYPE, null);
+        allAttrs[ATT_USE_D] = new OneAttr(SchemaSymbols.ATT_USE, DT_USE, ATTIDX_USE, INT_USE_OPTIONAL);
+        allAttrs[ATT_VALUE_NNI_N] = new OneAttr(SchemaSymbols.ATT_VALUE, DT_NONNEGINT, ATTIDX_VALUE, null);
+        allAttrs[ATT_VALUE_PI_N] = new OneAttr(SchemaSymbols.ATT_VALUE, DT_POSINT, ATTIDX_VALUE, null);
+        allAttrs[ATT_VALUE_STR_N] = new OneAttr(SchemaSymbols.ATT_VALUE, DT_STRING, ATTIDX_VALUE, null);
+        allAttrs[ATT_VALUE_WS_N] = new OneAttr(SchemaSymbols.ATT_VALUE, DT_WHITESPACE, ATTIDX_VALUE, null);
+        allAttrs[ATT_VERSION_N] = new OneAttr(SchemaSymbols.ATT_VERSION, DT_TOKEN, ATTIDX_VERSION, null);
+        allAttrs[ATT_XML_LANG] = new OneAttr(SchemaSymbols.ATT_XML_LANG, DT_LANGUAGE, ATTIDX_XML_LANG, null);
+        allAttrs[ATT_XPATH_R] = new OneAttr(SchemaSymbols.ATT_XPATH, DT_XPATH, ATTIDX_XPATH, null);
+        allAttrs[ATT_XPATH1_R] = new OneAttr(SchemaSymbols.ATT_XPATH, DT_XPATH1, ATTIDX_XPATH, null);
 
         // step 4: for each element, make a list of possible attributes
         Container attrList;
@@ -451,8 +390,7 @@ public class XSAttributeChecker {
         // nillable = boolean : false
         attrList.put(SchemaSymbols.ATT_NILLABLE, allAttrs[ATT_NILLABLE_D]);
         // substitutionGroup = QName
-        attrList.put(SchemaSymbols.ATT_SUBSTITUTIONGROUP,
-                allAttrs[ATT_SUBSTITUTION_G_N]);
+        attrList.put(SchemaSymbols.ATT_SUBSTITUTIONGROUP, allAttrs[ATT_SUBSTITUTION_G_N]);
         // type = QName
         attrList.put(SchemaSymbols.ATT_TYPE, allAttrs[ATT_TYPE_N]);
         fEleAttrsMapG.put(SchemaSymbols.ELT_ELEMENT, attrList);
@@ -567,8 +505,7 @@ public class XSAttributeChecker {
         // | ##local)) ) : ##any
         attrList.put(SchemaSymbols.ATT_NAMESPACE, allAttrs[ATT_NAMESPACE_D]);
         // processContents = (lax | skip | strict) : strict
-        attrList.put(SchemaSymbols.ATT_PROCESSCONTENTS,
-                allAttrs[ATT_PROCESS_C_D]);
+        attrList.put(SchemaSymbols.ATT_PROCESSCONTENTS, allAttrs[ATT_PROCESS_C_D]);
         fEleAttrsMapL.put(SchemaSymbols.ELT_ANYATTRIBUTE, attrList);
 
         // for element "complexContent" - local
@@ -641,8 +578,7 @@ public class XSAttributeChecker {
         // | ##local)) ) : ##any
         attrList.put(SchemaSymbols.ATT_NAMESPACE, allAttrs[ATT_NAMESPACE_D]);
         // processContents = (lax | skip | strict) : strict
-        attrList.put(SchemaSymbols.ATT_PROCESSCONTENTS,
-                allAttrs[ATT_PROCESS_C_D]);
+        attrList.put(SchemaSymbols.ATT_PROCESSCONTENTS, allAttrs[ATT_PROCESS_C_D]);
         fEleAttrsMapL.put(SchemaSymbols.ELT_ANY, attrList);
 
         // for element "unique" - local
@@ -745,22 +681,19 @@ public class XSAttributeChecker {
         // for element "schema" - global
         attrList = Container.getContainer(8);
         // attributeFormDefault = (qualified | unqualified) : unqualified
-        attrList.put(SchemaSymbols.ATT_ATTRIBUTEFORMDEFAULT,
-                allAttrs[ATT_ATTRIBUTE_FD_D]);
+        attrList.put(SchemaSymbols.ATT_ATTRIBUTEFORMDEFAULT, allAttrs[ATT_ATTRIBUTE_FD_D]);
         // blockDefault = (#all | List of (extension | restriction |
         // substitution)) : ''
         attrList.put(SchemaSymbols.ATT_BLOCKDEFAULT, allAttrs[ATT_BLOCK_D_D]);
         // elementFormDefault = (qualified | unqualified) : unqualified
-        attrList.put(SchemaSymbols.ATT_ELEMENTFORMDEFAULT,
-                allAttrs[ATT_ELEMENT_FD_D]);
+        attrList.put(SchemaSymbols.ATT_ELEMENTFORMDEFAULT, allAttrs[ATT_ELEMENT_FD_D]);
         // finalDefault = (#all | List of (extension | restriction | list |
         // union)) : ''
         attrList.put(SchemaSymbols.ATT_FINALDEFAULT, allAttrs[ATT_FINAL_D_D]);
         // id = ID
         attrList.put(SchemaSymbols.ATT_ID, allAttrs[ATT_ID_N]);
         // targetNamespace = anyURI
-        attrList.put(SchemaSymbols.ATT_TARGETNAMESPACE,
-                allAttrs[ATT_TARGET_N_N]);
+        attrList.put(SchemaSymbols.ATT_TARGETNAMESPACE, allAttrs[ATT_TARGET_N_N]);
         // version = token
         attrList.put(SchemaSymbols.ATT_VERSION, allAttrs[ATT_VERSION_N]);
         // xml:lang = language
@@ -772,8 +705,7 @@ public class XSAttributeChecker {
         // id = ID
         attrList.put(SchemaSymbols.ATT_ID, allAttrs[ATT_ID_N]);
         // schemaLocation = anyURI
-        attrList.put(SchemaSymbols.ATT_SCHEMALOCATION,
-                allAttrs[ATT_SCHEMA_L_R]);
+        attrList.put(SchemaSymbols.ATT_SCHEMALOCATION, allAttrs[ATT_SCHEMA_L_R]);
         fEleAttrsMapG.put(SchemaSymbols.ELT_INCLUDE, attrList);
         // for element "redefine" - global
         fEleAttrsMapG.put(SchemaSymbols.ELT_REDEFINE, attrList);
@@ -785,8 +717,7 @@ public class XSAttributeChecker {
         // namespace = anyURI
         attrList.put(SchemaSymbols.ATT_NAMESPACE, allAttrs[ATT_NAMESPACE_N]);
         // schemaLocation = anyURI
-        attrList.put(SchemaSymbols.ATT_SCHEMALOCATION,
-                allAttrs[ATT_SCHEMA_L_N]);
+        attrList.put(SchemaSymbols.ATT_SCHEMALOCATION, allAttrs[ATT_SCHEMA_L_N]);
         fEleAttrsMapG.put(SchemaSymbols.ELT_IMPORT, attrList);
 
         // for element "length" - local
@@ -890,15 +821,14 @@ public class XSAttributeChecker {
      * call <code>returnAttrArray</code> to return that array.
      *
      * @param element
-     *                  which element to check
+     *        which element to check
      * @param isGlobal
-     *                  whether a child of &lt;schema&gt; or &lt;redefine&gt;
+     *        whether a child of &lt;schema&gt; or &lt;redefine&gt;
      * @param schemaDoc
-     *                  the document where the element lives in
+     *        the document where the element lives in
      * @return an array containing attribute values
      */
-    public Object[] checkAttributes(Element element, boolean isGlobal,
-            XSDocumentInfo schemaDoc) {
+    public Object[] checkAttributes(Element element, boolean isGlobal, XSDocumentInfo schemaDoc) {
         return checkAttributes(element, isGlobal, schemaDoc, false);
     }
 
@@ -911,17 +841,17 @@ public class XSAttributeChecker {
      * as a QName later.
      *
      * @param element
-     *                    which element to check
+     *        which element to check
      * @param isGlobal
-     *                    whether a child of &lt;schema&gt; or &lt;redefine&gt;
+     *        whether a child of &lt;schema&gt; or &lt;redefine&gt;
      * @param schemaDoc
-     *                    the document where the element lives in
+     *        the document where the element lives in
      * @param enumAsQName
-     *                    whether to tread enumeration value as QName
+     *        whether to tread enumeration value as QName
      * @return an array containing attribute values
      */
-    public Object[] checkAttributes(Element element, boolean isGlobal,
-            XSDocumentInfo schemaDoc, boolean enumAsQName) {
+    public Object[] checkAttributes(Element element, boolean isGlobal, XSDocumentInfo schemaDoc,
+            boolean enumAsQName) {
         if (element == null)
             return null;
 
@@ -935,8 +865,7 @@ public class XSAttributeChecker {
         String elName = DOMUtil.getLocalName(element);
 
         if (!SchemaSymbols.URI_SCHEMAFORSCHEMA.equals(uri)) {
-            reportSchemaError("s4s-elt-schema-ns", new Object[] { elName },
-                    element);
+            reportSchemaError("s4s-elt-schema-ns", new Object[] { elName }, element);
         }
 
         Map eleAttrsMap = fEleAttrsMapG;
@@ -967,8 +896,7 @@ public class XSAttributeChecker {
             // should never gets here.
             // when this method is called, the call already knows that
             // the element can appear.
-            reportSchemaError("s4s-elt-invalid", new Object[] { elName },
-                    element);
+            reportSchemaError("s4s-elt-invalid", new Object[] { elName }, element);
             return null;
         }
 
@@ -1000,10 +928,8 @@ public class XSAttributeChecker {
                 // attribute.
                 // Set the URI for this attribute to null so that we process it
                 // like any other schema attribute.
-                else if (SchemaSymbols.ATT_XML_LANG.equals(attrName)
-                        && (SchemaSymbols.ELT_SCHEMA.equals(elName)
-                                || SchemaSymbols.ELT_DOCUMENTATION.equals(
-                                        elName))) {
+                else if (SchemaSymbols.ATT_XML_LANG.equals(attrName) && (SchemaSymbols.ELT_SCHEMA.equals(
+                        elName) || SchemaSymbols.ELT_DOCUMENTATION.equals(elName))) {
                     attrURI = null;
                 }
             }
@@ -1014,15 +940,13 @@ public class XSAttributeChecker {
                 // attributes with schema namespace are not allowed
                 // and not allowed on "document" and "appInfo"
                 if (attrURI.equals(SchemaSymbols.URI_SCHEMAFORSCHEMA)) {
-                    reportSchemaError("s4s-att-not-allowed", new Object[] {
-                            elName, attrName }, element);
+                    reportSchemaError("s4s-att-not-allowed", new Object[] { elName, attrName }, element);
                 } else {
                     if (attrValues[ATTIDX_NONSCHEMA] == null) {
                         // these are usually small
                         attrValues[ATTIDX_NONSCHEMA] = new Vector(4, 2);
                     }
-                    ((Vector) attrValues[ATTIDX_NONSCHEMA]).addElement(
-                            attrName);
+                    ((Vector) attrValues[ATTIDX_NONSCHEMA]).addElement(attrName);
                     ((Vector) attrValues[ATTIDX_NONSCHEMA]).addElement(attrVal);
                     // for attributes from other namespace
                     // store them in a list, and TRY to validate them after
@@ -1049,8 +973,7 @@ public class XSAttributeChecker {
             // check whether this attribute is allowed
             OneAttr oneAttr = attrList.get(attrName);
             if (oneAttr == null) {
-                reportSchemaError("s4s-att-not-allowed", new Object[] { elName,
-                        attrName }, element);
+                reportSchemaError("s4s-att-not-allowed", new Object[] { elName, attrName }, element);
                 continue;
             }
 
@@ -1063,17 +986,14 @@ public class XSAttributeChecker {
                 // no checking on xpath needs to be done here.
                 // xpath values are validated in xpath parser
                 if (oneAttr.dvIndex >= 0) {
-                    if (oneAttr.dvIndex != DT_STRING
-                            && oneAttr.dvIndex != DT_XPATH
+                    if (oneAttr.dvIndex != DT_STRING && oneAttr.dvIndex != DT_XPATH
                             && oneAttr.dvIndex != DT_XPATH1) {
                         XSSimpleType dv = fExtraDVs[oneAttr.dvIndex];
-                        Object avalue = dv.validate(attrVal,
-                                schemaDoc.fValidationContext, null);
+                        Object avalue = dv.validate(attrVal, schemaDoc.fValidationContext, null);
                         // kludge to handle chameleon includes/redefines...
                         if (oneAttr.dvIndex == DT_QNAME) {
                             QName qname = (QName) avalue;
-                            if (qname.prefix == XMLSymbols.EMPTY_STRING
-                                    && qname.uri == null
+                            if (qname.prefix == XMLSymbols.EMPTY_STRING && qname.uri == null
                                     && schemaDoc.fIsChameleonSchema)
                                 qname.uri = schemaDoc.fTargetNamespace;
                         }
@@ -1082,12 +1002,12 @@ public class XSAttributeChecker {
                         attrValues[oneAttr.valueIndex] = attrVal;
                     }
                 } else {
-                    attrValues[oneAttr.valueIndex] = validate(attrValues,
-                            attrName, attrVal, oneAttr.dvIndex, schemaDoc);
+                    attrValues[oneAttr.valueIndex] = validate(attrValues, attrName, attrVal, oneAttr.dvIndex,
+                            schemaDoc);
                 }
             } catch (InvalidDatatypeValueException ide) {
-                reportSchemaError("s4s-att-invalid-value", new Object[] {
-                        elName, attrName, ide.getMessage() }, element);
+                reportSchemaError("s4s-att-invalid-value", new Object[] { elName, attrName, ide
+                        .getMessage() }, element);
                 if (oneAttr.dfltValue != null)
                     // attrValues.put(attrName, oneAttr.dfltValue);
                     attrValues[oneAttr.valueIndex] = oneAttr.dfltValue;
@@ -1096,8 +1016,7 @@ public class XSAttributeChecker {
             // For "enumeration", and type is possible to be a QName, we need
             // to return namespace context for later QName resolution.
             if (elName.equals(SchemaSymbols.ELT_ENUMERATION) && enumAsQName) {
-                attrValues[ATTIDX_ENUMNSDECLS] = new SchemaNamespaceSupport(
-                        schemaDoc.fNamespaceSupport);
+                attrValues[ATTIDX_ENUMNSDECLS] = new SchemaNamespaceSupport(schemaDoc.fNamespaceSupport);
             }
         }
 
@@ -1136,30 +1055,23 @@ public class XSAttributeChecker {
                     // other cases.
 
                     // Determine if constant-space algorithm can be applied
-                    final boolean optimize = (localName.equals("element")
-                            || localName.equals("any")) && (element
-                                    .getNextSibling() == null) && (element
-                                            .getPreviousSibling() == null)
-                            && (element.getParentNode().getLocalName().equals(
-                                    "sequence"));
+                    final boolean optimize = (localName.equals("element") || localName.equals("any"))
+                            && (element.getNextSibling() == null) && (element.getPreviousSibling() == null)
+                            && (element.getParentNode().getLocalName().equals("sequence"));
 
                     if (!optimize) {
                         // Revisit :: IMO this is not right place to check
                         // maxOccurNodeLimit.
-                        int maxOccurNodeLimit = fSchemaHandler.fSecurityManager
-                                .getLimit(
-                                        XMLSecurityManager.Limit.MAX_OCCUR_NODE_LIMIT);
-                        if (max > maxOccurNodeLimit
-                                && !fSchemaHandler.fSecurityManager.isNoLimit(
-                                        maxOccurNodeLimit)) {
-                            reportSchemaFatalError("MaxOccurLimit",
-                                    new Object[] { new Integer(
-                                            maxOccurNodeLimit) }, element);
+                        int maxOccurNodeLimit = fSchemaHandler.fSecurityManager.getLimit(
+                                XMLSecurityManager.Limit.MAX_OCCUR_NODE_LIMIT);
+                        if (max > maxOccurNodeLimit && !fSchemaHandler.fSecurityManager.isNoLimit(
+                                maxOccurNodeLimit)) {
+                            reportSchemaFatalError("MaxOccurLimit", new Object[] { new Integer(
+                                    maxOccurNodeLimit) }, element);
 
                             // reset max values in case processing continues on
                             // error
-                            attrValues[ATTIDX_MAXOCCURS] = fXIntPool.getXInt(
-                                    maxOccurNodeLimit);
+                            attrValues[ATTIDX_MAXOCCURS] = fXIntPool.getXInt(maxOccurNodeLimit);
                             // new Integer(maxOccurNodeLimit);
                             max = maxOccurNodeLimit;
                         }
@@ -1167,9 +1079,8 @@ public class XSAttributeChecker {
                 }
 
                 if (min > max) {
-                    reportSchemaError("p-props-correct.2.1", new Object[] {
-                            elName, attrValues[ATTIDX_MINOCCURS],
-                            attrValues[ATTIDX_MAXOCCURS] }, element);
+                    reportSchemaError("p-props-correct.2.1", new Object[] { elName,
+                            attrValues[ATTIDX_MINOCCURS], attrValues[ATTIDX_MAXOCCURS] }, element);
                     attrValues[ATTIDX_MINOCCURS] = attrValues[ATTIDX_MAXOCCURS];
                 }
             }
@@ -1178,9 +1089,8 @@ public class XSAttributeChecker {
         return attrValues;
     }
 
-    private Object validate(Object[] attrValues, String attr, String ivalue,
-            int dvIndex, XSDocumentInfo schemaDoc)
-            throws InvalidDatatypeValueException {
+    private Object validate(Object[] attrValues, String attr, String ivalue, int dvIndex,
+            XSDocumentInfo schemaDoc) throws InvalidDatatypeValueException {
         if (ivalue == null)
             return null;
 
@@ -1196,16 +1106,14 @@ public class XSAttributeChecker {
 
         switch (dvIndex) {
             case DT_BOOLEAN:
-                if (value.equals(SchemaSymbols.ATTVAL_FALSE) || value.equals(
-                        SchemaSymbols.ATTVAL_FALSE_0)) {
+                if (value.equals(SchemaSymbols.ATTVAL_FALSE) || value.equals(SchemaSymbols.ATTVAL_FALSE_0)) {
                     retValue = Boolean.FALSE;
-                } else if (value.equals(SchemaSymbols.ATTVAL_TRUE) || value
-                        .equals(SchemaSymbols.ATTVAL_TRUE_1)) {
+                } else if (value.equals(SchemaSymbols.ATTVAL_TRUE) || value.equals(
+                        SchemaSymbols.ATTVAL_TRUE_1)) {
                     retValue = Boolean.TRUE;
                 } else {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.1", new Object[] { value,
-                                    "boolean" });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { value,
+                            "boolean" });
                 }
                 break;
             case DT_NONNEGINT:
@@ -1214,14 +1122,12 @@ public class XSAttributeChecker {
                         value = value.substring(1);
                     retValue = fXIntPool.getXInt(Integer.parseInt(value));
                 } catch (NumberFormatException e) {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.1", new Object[] { value,
-                                    "nonNegativeInteger" });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { value,
+                            "nonNegativeInteger" });
                 }
                 if (((XInt) retValue).intValue() < 0)
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.1", new Object[] { value,
-                                    "nonNegativeInteger" });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { value,
+                            "nonNegativeInteger" });
                 break;
             case DT_POSINT:
                 try {
@@ -1229,21 +1135,18 @@ public class XSAttributeChecker {
                         value = value.substring(1);
                     retValue = fXIntPool.getXInt(Integer.parseInt(value));
                 } catch (NumberFormatException e) {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.1", new Object[] { value,
-                                    "positiveInteger" });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { value,
+                            "positiveInteger" });
                 }
                 if (((XInt) retValue).intValue() <= 0)
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.1", new Object[] { value,
-                                    "positiveInteger" });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { value,
+                            "positiveInteger" });
                 break;
             case DT_BLOCK:
                 // block = (#all | List of (extension | restriction | substitution))
                 choice = 0;
                 if (value.equals(SchemaSymbols.ATTVAL_POUNDALL)) {
-                    choice = XSConstants.DERIVATION_SUBSTITUTION
-                            | XSConstants.DERIVATION_EXTENSION
+                    choice = XSConstants.DERIVATION_SUBSTITUTION | XSConstants.DERIVATION_EXTENSION
                             | XSConstants.DERIVATION_RESTRICTION;
                 } else {
                     StringTokenizer t = new StringTokenizer(value, " \n\t\r");
@@ -1252,17 +1155,13 @@ public class XSAttributeChecker {
 
                         if (token.equals(SchemaSymbols.ATTVAL_EXTENSION)) {
                             choice |= XSConstants.DERIVATION_EXTENSION;
-                        } else if (token.equals(
-                                SchemaSymbols.ATTVAL_RESTRICTION)) {
+                        } else if (token.equals(SchemaSymbols.ATTVAL_RESTRICTION)) {
                             choice |= XSConstants.DERIVATION_RESTRICTION;
-                        } else if (token.equals(
-                                SchemaSymbols.ATTVAL_SUBSTITUTION)) {
+                        } else if (token.equals(SchemaSymbols.ATTVAL_SUBSTITUTION)) {
                             choice |= XSConstants.DERIVATION_SUBSTITUTION;
                         } else {
-                            throw new InvalidDatatypeValueException(
-                                    "cvc-datatype-valid.1.2.3", new Object[] {
-                                            value,
-                                            "(#all | List of (extension | restriction | substitution))" });
+                            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] {
+                                    value, "(#all | List of (extension | restriction | substitution))" });
                         }
                     }
                 }
@@ -1285,10 +1184,8 @@ public class XSAttributeChecker {
                     // finalDefault="extension restriction".
                     // if finalDefault="#all", final on any simple type would be
                     // "extension restriction list union".
-                    choice = XSConstants.DERIVATION_SUBSTITUTION
-                            | XSConstants.DERIVATION_EXTENSION
-                            | XSConstants.DERIVATION_RESTRICTION
-                            | XSConstants.DERIVATION_LIST
+                    choice = XSConstants.DERIVATION_SUBSTITUTION | XSConstants.DERIVATION_EXTENSION
+                            | XSConstants.DERIVATION_RESTRICTION | XSConstants.DERIVATION_LIST
                             | XSConstants.DERIVATION_UNION;
                 } else {
                     StringTokenizer t = new StringTokenizer(value, " \n\t\r");
@@ -1297,14 +1194,11 @@ public class XSAttributeChecker {
 
                         if (token.equals(SchemaSymbols.ATTVAL_EXTENSION)) {
                             choice |= XSConstants.DERIVATION_EXTENSION;
-                        } else if (token.equals(
-                                SchemaSymbols.ATTVAL_RESTRICTION)) {
+                        } else if (token.equals(SchemaSymbols.ATTVAL_RESTRICTION)) {
                             choice |= XSConstants.DERIVATION_RESTRICTION;
                         } else {
-                            throw new InvalidDatatypeValueException(
-                                    "cvc-datatype-valid.1.2.3", new Object[] {
-                                            value,
-                                            "(#all | List of (extension | restriction))" });
+                            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] {
+                                    value, "(#all | List of (extension | restriction))" });
                         }
                     }
                 }
@@ -1320,10 +1214,8 @@ public class XSAttributeChecker {
                     // everything: substitution/externsion/restriction/list/union.
                     // would this be a problem?
                     // same reason as above DT_BLOCK1/DT_FINAL
-                    choice = XSConstants.DERIVATION_SUBSTITUTION
-                            | XSConstants.DERIVATION_EXTENSION
-                            | XSConstants.DERIVATION_RESTRICTION
-                            | XSConstants.DERIVATION_LIST
+                    choice = XSConstants.DERIVATION_SUBSTITUTION | XSConstants.DERIVATION_EXTENSION
+                            | XSConstants.DERIVATION_RESTRICTION | XSConstants.DERIVATION_LIST
                             | XSConstants.DERIVATION_UNION;
                 } else {
                     StringTokenizer t = new StringTokenizer(value, " \n\t\r");
@@ -1334,14 +1226,11 @@ public class XSAttributeChecker {
                             choice |= XSConstants.DERIVATION_LIST;
                         } else if (token.equals(SchemaSymbols.ATTVAL_UNION)) {
                             choice |= XSConstants.DERIVATION_UNION;
-                        } else if (token.equals(
-                                SchemaSymbols.ATTVAL_RESTRICTION)) {
+                        } else if (token.equals(SchemaSymbols.ATTVAL_RESTRICTION)) {
                             choice |= XSConstants.DERIVATION_RESTRICTION;
                         } else {
-                            throw new InvalidDatatypeValueException(
-                                    "cvc-datatype-valid.1.2.3", new Object[] {
-                                            value,
-                                            "(#all | List of (list | union | restriction))" });
+                            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] {
+                                    value, "(#all | List of (list | union | restriction))" });
                         }
                     }
                 }
@@ -1358,10 +1247,8 @@ public class XSAttributeChecker {
                     // everything: substitution/externsion/restriction/list/union.
                     // would this be a problem?
                     // same reason as above DT_BLOCK1/DT_FINAL
-                    choice = XSConstants.DERIVATION_SUBSTITUTION
-                            | XSConstants.DERIVATION_EXTENSION
-                            | XSConstants.DERIVATION_RESTRICTION
-                            | XSConstants.DERIVATION_LIST
+                    choice = XSConstants.DERIVATION_SUBSTITUTION | XSConstants.DERIVATION_EXTENSION
+                            | XSConstants.DERIVATION_RESTRICTION | XSConstants.DERIVATION_LIST
                             | XSConstants.DERIVATION_UNION;
                 } else {
                     StringTokenizer t = new StringTokenizer(value, " \n\t\r");
@@ -1370,18 +1257,15 @@ public class XSAttributeChecker {
 
                         if (token.equals(SchemaSymbols.ATTVAL_EXTENSION)) {
                             choice |= XSConstants.DERIVATION_EXTENSION;
-                        } else if (token.equals(
-                                SchemaSymbols.ATTVAL_RESTRICTION)) {
+                        } else if (token.equals(SchemaSymbols.ATTVAL_RESTRICTION)) {
                             choice |= XSConstants.DERIVATION_RESTRICTION;
                         } else if (token.equals(SchemaSymbols.ATTVAL_LIST)) {
                             choice |= XSConstants.DERIVATION_LIST;
                         } else if (token.equals(SchemaSymbols.ATTVAL_UNION)) {
                             choice |= XSConstants.DERIVATION_UNION;
                         } else {
-                            throw new InvalidDatatypeValueException(
-                                    "cvc-datatype-valid.1.2.3", new Object[] {
-                                            value,
-                                            "(#all | List of (extension | restriction | list | union))" });
+                            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] {
+                                    value, "(#all | List of (extension | restriction | list | union))" });
                         }
                     }
                 }
@@ -1394,9 +1278,8 @@ public class XSAttributeChecker {
                 else if (value.equals(SchemaSymbols.ATTVAL_UNQUALIFIED))
                     retValue = INT_UNQUALIFIED;
                 else
-                    throw new InvalidDatatypeValueException(
-                            "cvc-enumeration-valid", new Object[] { value,
-                                    "(qualified | unqualified)" });
+                    throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { value,
+                            "(qualified | unqualified)" });
                 break;
             case DT_MAXOCCURS:
                 // maxOccurs = (nonNegativeInteger | unbounded)
@@ -1404,13 +1287,10 @@ public class XSAttributeChecker {
                     retValue = INT_UNBOUNDED;
                 } else {
                     try {
-                        retValue = validate(attrValues, attr, value,
-                                DT_NONNEGINT, schemaDoc);
+                        retValue = validate(attrValues, attr, value, DT_NONNEGINT, schemaDoc);
                     } catch (NumberFormatException e) {
-                        throw new InvalidDatatypeValueException(
-                                "cvc-datatype-valid.1.2.3", new Object[] {
-                                        value,
-                                        "(nonNegativeInteger | unbounded)" });
+                        throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] {
+                                value, "(nonNegativeInteger | unbounded)" });
                     }
                 }
                 break;
@@ -1419,9 +1299,8 @@ public class XSAttributeChecker {
                 if (value.equals("1"))
                     retValue = fXIntPool.getXInt(1);
                 else
-                    throw new InvalidDatatypeValueException(
-                            "cvc-enumeration-valid", new Object[] { value,
-                                    "(1)" });
+                    throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { value,
+                            "(1)" });
                 break;
             case DT_MEMBERTYPES:
                 // memberTypes = List of QName
@@ -1430,20 +1309,18 @@ public class XSAttributeChecker {
                     StringTokenizer t = new StringTokenizer(value, " \n\t\r");
                     while (t.hasMoreTokens()) {
                         String token = t.nextToken();
-                        QName qname = (QName) fExtraDVs[DT_QNAME].validate(
-                                token, schemaDoc.fValidationContext, null);
+                        QName qname = (QName) fExtraDVs[DT_QNAME].validate(token,
+                                schemaDoc.fValidationContext, null);
                         // kludge to handle chameleon includes/redefines...
-                        if (qname.prefix == XMLSymbols.EMPTY_STRING
-                                && qname.uri == null
+                        if (qname.prefix == XMLSymbols.EMPTY_STRING && qname.uri == null
                                 && schemaDoc.fIsChameleonSchema)
                             qname.uri = schemaDoc.fTargetNamespace;
                         memberType.addElement(qname);
                     }
                     retValue = memberType;
                 } catch (InvalidDatatypeValueException ide) {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.2", new Object[] { value,
-                                    "(List of QName)" });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.2", new Object[] { value,
+                            "(List of QName)" });
                 }
                 break;
             case DT_MINOCCURS1:
@@ -1453,9 +1330,8 @@ public class XSAttributeChecker {
                 else if (value.equals("1"))
                     retValue = fXIntPool.getXInt(1);
                 else
-                    throw new InvalidDatatypeValueException(
-                            "cvc-enumeration-valid", new Object[] { value,
-                                    "(0 | 1)" });
+                    throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { value,
+                            "(0 | 1)" });
                 break;
             case DT_NAMESPACE:
                 // namespace = ((##any | ##other) | List of (anyURI |
@@ -1477,24 +1353,20 @@ public class XSAttributeChecker {
                     fNamespaceList.removeAllElements();
 
                     // tokenize
-                    StringTokenizer tokens = new StringTokenizer(value,
-                            " \n\t\r");
+                    StringTokenizer tokens = new StringTokenizer(value, " \n\t\r");
                     String token;
                     String tempNamespace;
                     try {
                         while (tokens.hasMoreTokens()) {
                             token = tokens.nextToken();
-                            if (token.equals(
-                                    SchemaSymbols.ATTVAL_TWOPOUNDLOCAL)) {
+                            if (token.equals(SchemaSymbols.ATTVAL_TWOPOUNDLOCAL)) {
                                 tempNamespace = null;
-                            } else if (token.equals(
-                                    SchemaSymbols.ATTVAL_TWOPOUNDTARGETNS)) {
+                            } else if (token.equals(SchemaSymbols.ATTVAL_TWOPOUNDTARGETNS)) {
                                 tempNamespace = schemaDoc.fTargetNamespace;
                             } else {
                                 // we have found namespace URI here
                                 // need to add it to the symbol table
-                                fExtraDVs[DT_ANYURI].validate(token,
-                                        schemaDoc.fValidationContext, null);
+                                fExtraDVs[DT_ANYURI].validate(token, schemaDoc.fValidationContext, null);
                                 tempNamespace = fSymbolTable.addSymbol(token);
                             }
 
@@ -1504,10 +1376,9 @@ public class XSAttributeChecker {
                             }
                         }
                     } catch (InvalidDatatypeValueException ide) {
-                        throw new InvalidDatatypeValueException(
-                                "cvc-datatype-valid.1.2.3", new Object[] {
-                                        value,
-                                        "((##any | ##other) | List of (anyURI | (##targetNamespace | ##local)) )" });
+                        throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] {
+                                value,
+                                "((##any | ##other) | List of (anyURI | (##targetNamespace | ##local)) )" });
                     }
 
                     // convert the vector to an array
@@ -1526,9 +1397,8 @@ public class XSAttributeChecker {
                 else if (value.equals(SchemaSymbols.ATTVAL_SKIP))
                     retValue = INT_ANY_SKIP;
                 else
-                    throw new InvalidDatatypeValueException(
-                            "cvc-enumeration-valid", new Object[] { value,
-                                    "(lax | skip | strict)" });
+                    throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { value,
+                            "(lax | skip | strict)" });
                 break;
             case DT_USE:
                 // use = (optional | prohibited | required)
@@ -1539,9 +1409,8 @@ public class XSAttributeChecker {
                 else if (value.equals(SchemaSymbols.ATTVAL_PROHIBITED))
                     retValue = INT_USE_PROHIBITED;
                 else
-                    throw new InvalidDatatypeValueException(
-                            "cvc-enumeration-valid", new Object[] { value,
-                                    "(optional | prohibited | required)" });
+                    throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { value,
+                            "(optional | prohibited | required)" });
                 break;
             case DT_WHITESPACE:
                 // value = preserve | replace | collapse
@@ -1552,9 +1421,8 @@ public class XSAttributeChecker {
                 else if (value.equals(SchemaSymbols.ATTVAL_COLLAPSE))
                     retValue = INT_WS_COLLAPSE;
                 else
-                    throw new InvalidDatatypeValueException(
-                            "cvc-enumeration-valid", new Object[] { value,
-                                    "(preserve | replace | collapse)" });
+                    throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { value,
+                            "(preserve | replace | collapse)" });
                 break;
         }
 
@@ -1612,8 +1480,8 @@ public class XSAttributeChecker {
                     // guess we need to save that in the vectors too.
                     dv.validate((String) values.elementAt(i + 1), null, null);
                 } catch (InvalidDatatypeValueException ide) {
-                    reportSchemaError("s4s-att-invalid-value", new Object[] {
-                            elName, attrName, ide.getMessage() }, null);
+                    reportSchemaError("s4s-att-invalid-value", new Object[] { elName, attrName, ide
+                            .getMessage() }, null);
                 }
             }
         }
@@ -1714,8 +1582,7 @@ public class XSAttributeChecker {
         // if 1. the pool is full; 2. the array is null;
         // 3. the array is of wrong size; 4. the array is already returned
         // then we can't accept this array to be returned
-        if (fPoolPos == 0 || attrArray == null
-                || attrArray.length != ATTIDX_COUNT
+        if (fPoolPos == 0 || attrArray == null || attrArray.length != ATTIDX_COUNT
                 || ((Boolean) attrArray[ATTIDX_ISRETURNED]).booleanValue()) {
             return;
         }
@@ -1729,8 +1596,7 @@ public class XSAttributeChecker {
         fArrayPool[--fPoolPos] = attrArray;
     }
 
-    public void resolveNamespace(Element element, Attr[] attrs,
-            SchemaNamespaceSupport nsSupport) {
+    public void resolveNamespace(Element element, Attr[] attrs, SchemaNamespaceSupport nsSupport) {
         // push the namespace context
         nsSupport.pushContext();
 

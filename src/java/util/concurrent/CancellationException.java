@@ -30,7 +30,7 @@ public class CancellationException extends IllegalStateException {
      * message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public CancellationException(String message) {
         super(message);

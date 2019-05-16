@@ -23,8 +23,7 @@ public final class NotFound extends org.omg.CORBA.UserException {
         rest_of_name = _rest_of_name;
     } // ctor
 
-    public NotFound(String $reason,
-            org.omg.CosNaming.NamingContextPackage.NotFoundReason _why,
+    public NotFound(String $reason, org.omg.CosNaming.NamingContextPackage.NotFoundReason _why,
             org.omg.CosNaming.NameComponent[] _rest_of_name) {
         super(NotFoundHelper.id() + "  " + $reason);
         why = _why;

@@ -31,7 +31,7 @@ public class NoSuchElementException extends RuntimeException {
      * <tt>getMessage</tt> method.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NoSuchElementException(String s) {
         super(s);

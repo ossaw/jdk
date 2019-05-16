@@ -20,7 +20,6 @@ import java.lang.annotation.AnnotationFormatError;
 /**
  * {@code Constructor} provides information about, and access to, a single
  * constructor for a class.
- *
  * <p>
  * {@code Constructor} permits widening conversions to occur when matching the
  * actual parameters to newInstance() with the underlying constructor's formal
@@ -29,13 +28,11 @@ import java.lang.annotation.AnnotationFormatError;
  *
  * @param <T>
  *        the class in which the constructor is declared
- *
  * @see Member
  * @see java.lang.Class
  * @see java.lang.Class#getConstructors()
  * @see java.lang.Class#getConstructor(Class[])
  * @see java.lang.Class#getDeclaredConstructors()
- *
  * @author Kenneth Russell
  * @author Nakul Saraiya
  */
@@ -65,8 +62,7 @@ public final class Constructor<T> extends Executable {
         // lazily initialize repository if necessary
         if (genericInfo == null) {
             // create and cache generic info repository
-            genericInfo = ConstructorRepository.make(getSignature(),
-                    getFactory());
+            genericInfo = ConstructorRepository.make(getSignature(), getFactory());
         }
         return genericInfo; // return cached repository
     }
@@ -93,9 +89,8 @@ public final class Constructor<T> extends Executable {
      * of these objects in Java code from the java.lang package via
      * sun.reflect.LangReflectAccess.
      */
-    Constructor(Class<T> declaringClass, Class<?>[] parameterTypes,
-            Class<?>[] checkedExceptions, int modifiers, int slot,
-            String signature, byte[] annotations, byte[] parameterAnnotations) {
+    Constructor(Class<T> declaringClass, Class<?>[] parameterTypes, Class<?>[] checkedExceptions,
+            int modifiers, int slot, String signature, byte[] annotations, byte[] parameterAnnotations) {
         this.clazz = declaringClass;
         this.parameterTypes = parameterTypes;
         this.exceptionTypes = checkedExceptions;
@@ -120,12 +115,10 @@ public final class Constructor<T> extends Executable {
         // objects be fabricated for each reflective call on Class
         // objects.)
         if (this.root != null)
-            throw new IllegalArgumentException(
-                    "Can not copy a non-root Constructor");
+            throw new IllegalArgumentException("Can not copy a non-root Constructor");
 
-        Constructor<T> res = new Constructor<>(clazz, parameterTypes,
-                exceptionTypes, modifiers, slot, signature, annotations,
-                parameterAnnotations);
+        Constructor<T> res = new Constructor<>(clazz, parameterTypes, exceptionTypes, modifiers, slot,
+                signature, annotations, parameterAnnotations);
         res.root = this;
         // Might as well eagerly propagate this if already present
         res.constructorAccessor = constructorAccessor;
@@ -171,15 +164,14 @@ public final class Constructor<T> extends Executable {
      * {@inheritDoc}
      * 
      * @throws GenericSignatureFormatError
-     *                                     {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public TypeVariable<Constructor<T>>[] getTypeParameters() {
         if (getSignature() != null) {
-            return (TypeVariable<Constructor<T>>[]) getGenericInfo()
-                    .getTypeParameters();
+            return (TypeVariable<Constructor<T>>[]) getGenericInfo().getTypeParameters();
         } else
             return (TypeVariable<Constructor<T>>[]) new TypeVariable[0];
     }
@@ -205,11 +197,11 @@ public final class Constructor<T> extends Executable {
      * {@inheritDoc}
      * 
      * @throws GenericSignatureFormatError
-     *                                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws TypeNotPresentException
-     *                                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws MalformedParameterizedTypeException
-     *                                             {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
@@ -229,11 +221,11 @@ public final class Constructor<T> extends Executable {
      * {@inheritDoc}
      * 
      * @throws GenericSignatureFormatError
-     *                                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws TypeNotPresentException
-     *                                             {@inheritDoc}
+     *         {@inheritDoc}
      * @throws MalformedParameterizedTypeException
-     *                                             {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
@@ -275,7 +267,6 @@ public final class Constructor<T> extends Executable {
      * <pre>
      *    public java.util.Hashtable(int,float)
      * </pre>
-     *
      * <p>
      * The only possible modifiers for constructors are the access modifiers
      * {@code public}, {@code protected} or {@code private}. Only one of these
@@ -285,8 +276,7 @@ public final class Constructor<T> extends Executable {
      * @jls 8.8.3. Constructor Modifiers
      */
     public String toString() {
-        return sharedToString(Modifier.constructorModifiers(), false,
-                parameterTypes, exceptionTypes);
+        return sharedToString(Modifier.constructorModifiers(), false, parameterTypes, exceptionTypes);
     }
 
     @Override
@@ -301,11 +291,9 @@ public final class Constructor<T> extends Executable {
      * constructor's type parameters, if any, followed by the fully-qualified
      * name of the declaring class, followed by a parenthesized, comma-separated
      * list of the constructor's generic formal parameter types.
-     *
      * If this constructor was declared to take a variable number of arguments,
      * instead of denoting the last parameter as "<tt><i>Type</i>[]</tt>", it is
      * denoted as "<tt><i>Type</i>...</tt>".
-     *
      * A space is used to separate access modifiers from one another and from
      * the type parameters or return type. If there are no type parameters, the
      * type parameter list is elided; if the type parameter list is present, a
@@ -313,7 +301,6 @@ public final class Constructor<T> extends Executable {
      * declared to throw exceptions, the parameter list is followed by a space,
      * followed by the word "{@code throws}" followed by a comma-separated list
      * of the thrown exception types.
-     *
      * <p>
      * The only possible modifiers for constructors are the access modifiers
      * {@code public}, {@code protected} or {@code private}. Only one of these
@@ -321,7 +308,6 @@ public final class Constructor<T> extends Executable {
      *
      * @return a string describing this {@code Constructor}, include type
      *         parameters
-     *
      * @since 1.5
      * @jls 8.8.3. Constructor Modifiers
      */
@@ -342,69 +328,62 @@ public final class Constructor<T> extends Executable {
      * parameters are automatically unwrapped to match primitive formal
      * parameters, and both primitive and reference parameters are subject to
      * method invocation conversions as necessary.
-     *
      * <p>
      * If the number of formal parameters required by the underlying constructor
      * is 0, the supplied {@code initargs} array may be of length 0 or null.
-     *
      * <p>
      * If the constructor's declaring class is an inner class in a non-static
      * context, the first argument to the constructor needs to be the enclosing
      * instance; see section 15.9.3 of <cite>The Java&trade; Language
      * Specification</cite>.
-     *
      * <p>
      * If the required access and argument checks succeed and the instantiation
      * will proceed, the constructor's declaring class is initialized if it has
      * not already been initialized.
-     *
      * <p>
      * If the constructor completes normally, returns the newly created and
      * initialized instance.
      *
      * @param initargs
-     *                 array of objects to be passed as arguments to the
-     *                 constructor
-     *                 call; values of primitive types are wrapped in a wrapper
-     *                 object of the appropriate type (e.g. a {@code float} in a
-     *                 {@link java.lang.Float Float})
-     *
+     *        array of objects to be passed as arguments to the
+     *        constructor
+     *        call; values of primitive types are wrapped in a wrapper
+     *        object of the appropriate type (e.g. a {@code float} in a
+     *        {@link java.lang.Float Float})
      * @return a new object created by calling the constructor this object
      *         represents
-     *
      * @exception IllegalAccessException
-     *                                        if this {@code Constructor} object
-     *                                        is enforcing Java
-     *                                        language access control and the
-     *                                        underlying constructor is
-     *                                        inaccessible.
+     *            if this {@code Constructor} object
+     *            is enforcing Java
+     *            language access control and the
+     *            underlying constructor is
+     *            inaccessible.
      * @exception IllegalArgumentException
-     *                                        if the number of actual and formal
-     *                                        parameters differ; if
-     *                                        an unwrapping conversion for
-     *                                        primitive arguments fails; or
-     *                                        if, after possible unwrapping, a
-     *                                        parameter value cannot be
-     *                                        converted to the corresponding
-     *                                        formal parameter type by a
-     *                                        method invocation conversion; if
-     *                                        this constructor pertains
-     *                                        to an enum type.
+     *            if the number of actual and formal
+     *            parameters differ; if
+     *            an unwrapping conversion for
+     *            primitive arguments fails; or
+     *            if, after possible unwrapping, a
+     *            parameter value cannot be
+     *            converted to the corresponding
+     *            formal parameter type by a
+     *            method invocation conversion; if
+     *            this constructor pertains
+     *            to an enum type.
      * @exception InstantiationException
-     *                                        if the class that declares the
-     *                                        underlying constructor
-     *                                        represents an abstract class.
+     *            if the class that declares the
+     *            underlying constructor
+     *            represents an abstract class.
      * @exception InvocationTargetException
-     *                                        if the underlying constructor
-     *                                        throws an exception.
+     *            if the underlying constructor
+     *            throws an exception.
      * @exception ExceptionInInitializerError
-     *                                        if the initialization provoked by
-     *                                        this method fails.
+     *            if the initialization provoked by
+     *            this method fails.
      */
     @CallerSensitive
-    public T newInstance(Object... initargs) throws InstantiationException,
-            IllegalAccessException, IllegalArgumentException,
-            InvocationTargetException {
+    public T newInstance(Object... initargs) throws InstantiationException, IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException {
         if (!override) {
             if (!Reflection.quickCheckMemberAccess(clazz, modifiers)) {
                 Class<?> caller = Reflection.getCallerClass();
@@ -412,8 +391,7 @@ public final class Constructor<T> extends Executable {
             }
         }
         if ((clazz.getModifiers() & Modifier.ENUM) != 0)
-            throw new IllegalArgumentException(
-                    "Cannot reflectively create enum objects");
+            throw new IllegalArgumentException("Cannot reflectively create enum objects");
         ConstructorAccessor ca = constructorAccessor; // read volatile
         if (ca == null) {
             ca = acquireConstructorAccessor();
@@ -502,7 +480,7 @@ public final class Constructor<T> extends Executable {
      * {@inheritDoc}
      * 
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
@@ -525,25 +503,21 @@ public final class Constructor<T> extends Executable {
      */
     @Override
     public Annotation[][] getParameterAnnotations() {
-        return sharedGetParameterAnnotations(parameterTypes,
-                parameterAnnotations);
+        return sharedGetParameterAnnotations(parameterTypes, parameterAnnotations);
     }
 
     @Override
     void handleParameterNumberMismatch(int resultLength, int numParameters) {
         Class<?> declaringClass = getDeclaringClass();
-        if (declaringClass.isEnum() || declaringClass.isAnonymousClass()
-                || declaringClass.isLocalClass())
+        if (declaringClass.isEnum() || declaringClass.isAnonymousClass() || declaringClass.isLocalClass())
             return; // Can't do reliable parameter counting
         else {
             if (!declaringClass.isMemberClass() || // top-level
             // Check for the enclosing instance parameter for
             // non-static member classes
-                    (declaringClass.isMemberClass() && ((declaringClass
-                            .getModifiers() & Modifier.STATIC) == 0)
-                            && resultLength + 1 != numParameters)) {
-                throw new AnnotationFormatError(
-                        "Parameter annotations don't match number of parameters");
+                    (declaringClass.isMemberClass() && ((declaringClass.getModifiers()
+                            & Modifier.STATIC) == 0) && resultLength + 1 != numParameters)) {
+                throw new AnnotationFormatError("Parameter annotations don't match number of parameters");
             }
         }
     }
@@ -568,11 +542,8 @@ public final class Constructor<T> extends Executable {
         if (getDeclaringClass().getEnclosingClass() == null)
             return super.getAnnotatedReceiverType();
 
-        return TypeAnnotationParser.buildAnnotatedType(
-                getTypeAnnotationBytes0(), sun.misc.SharedSecrets
-                        .getJavaLangAccess().getConstantPool(
-                                getDeclaringClass()), this, getDeclaringClass(),
-                getDeclaringClass().getEnclosingClass(),
-                TypeAnnotation.TypeAnnotationTarget.METHOD_RECEIVER);
+        return TypeAnnotationParser.buildAnnotatedType(getTypeAnnotationBytes0(), sun.misc.SharedSecrets
+                .getJavaLangAccess().getConstantPool(getDeclaringClass()), this, getDeclaringClass(),
+                getDeclaringClass().getEnclosingClass(), TypeAnnotation.TypeAnnotationTarget.METHOD_RECEIVER);
     }
 }

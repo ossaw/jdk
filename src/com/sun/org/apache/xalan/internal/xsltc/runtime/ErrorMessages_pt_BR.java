@@ -75,15 +75,13 @@ public class ErrorMessages_pt_BR extends ListResourceBundle {
                  * message is a class name. Used for internal errors in the
                  * processor.
                  */
-                { BasisLibrary.RUN_TIME_INTERNAL_ERR,
-                        "Erro interno de runtime em ''{0}''" },
+                { BasisLibrary.RUN_TIME_INTERNAL_ERR, "Erro interno de runtime em ''{0}''" },
 
                 /*
                  * Note to translators: <xsl:copy> is a keyword that should not
                  * be translated.
                  */
-                { BasisLibrary.RUN_TIME_COPY_ERR,
-                        "Erro de runtime ao executar <xsl:copy>." },
+                { BasisLibrary.RUN_TIME_COPY_ERR, "Erro de runtime ao executar <xsl:copy>." },
 
                 /*
                  * Note to translators: The substitution text refers to data
@@ -91,8 +89,7 @@ public class ErrorMessages_pt_BR extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Convers\u00E3o inv\u00E1lida de ''{0}'' para ''{1}''." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Convers\u00E3o inv\u00E1lida de ''{0}'' para ''{1}''." },
 
                 /*
                  * Note to translators: This message is displayed if the
@@ -142,8 +139,7 @@ public class ErrorMessages_pt_BR extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "Iterador do eixo ''{0}'' n\u00E3o suportado." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "Iterador do eixo ''{0}'' n\u00E3o suportado." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -161,8 +157,7 @@ public class ErrorMessages_pt_BR extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "Atributo ''{0}'' fora do elemento." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "Atributo ''{0}'' fora do elemento." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -219,8 +214,7 @@ public class ErrorMessages_pt_BR extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "Elemento XSL ''{0}'' n\u00E3o suportado" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "Elemento XSL ''{0}'' n\u00E3o suportado" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -228,8 +222,7 @@ public class ErrorMessages_pt_BR extends ListResourceBundle {
                  * but XSLTC does not recognize the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { BasisLibrary.UNSUPPORTED_EXT_ERR,
-                        "Extens\u00E3o ''{0}'' de XSLTC n\u00E3o reconhecida" },
+                { BasisLibrary.UNSUPPORTED_EXT_ERR, "Extens\u00E3o ''{0}'' de XSLTC n\u00E3o reconhecida" },
 
                 /*
                  * Note to translators: This error message is produced if the

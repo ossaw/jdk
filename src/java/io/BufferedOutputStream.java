@@ -32,7 +32,7 @@ public class BufferedOutputStream extends FilterOutputStream {
      * underlying output stream.
      *
      * @param out
-     *            the underlying output stream.
+     *        the underlying output stream.
      */
     public BufferedOutputStream(OutputStream out) {
         this(out, 8192);
@@ -43,11 +43,11 @@ public class BufferedOutputStream extends FilterOutputStream {
      * underlying output stream with the specified buffer size.
      *
      * @param out
-     *             the underlying output stream.
+     *        the underlying output stream.
      * @param size
-     *             the buffer size.
+     *        the buffer size.
      * @exception IllegalArgumentException
-     *                                     if size &lt;= 0.
+     *            if size &lt;= 0.
      */
     public BufferedOutputStream(OutputStream out, int size) {
         super(out);
@@ -69,9 +69,9 @@ public class BufferedOutputStream extends FilterOutputStream {
      * Writes the specified byte to this buffered output stream.
      *
      * @param b
-     *          the byte to be written.
+     *        the byte to be written.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public synchronized void write(int b) throws IOException {
         if (count >= buf.length) {
@@ -83,7 +83,6 @@ public class BufferedOutputStream extends FilterOutputStream {
     /**
      * Writes <code>len</code> bytes from the specified byte array starting at
      * offset <code>off</code> to this buffered output stream.
-     *
      * <p>
      * Ordinarily this method stores bytes from the given array into this
      * stream's buffer, flushing the buffer to the underlying output stream as
@@ -93,16 +92,15 @@ public class BufferedOutputStream extends FilterOutputStream {
      * <code>BufferedOutputStream</code>s will not copy data unnecessarily.
      *
      * @param b
-     *            the data.
+     *        the data.
      * @param off
-     *            the start offset in the data.
+     *        the start offset in the data.
      * @param len
-     *            the number of bytes to write.
+     *        the number of bytes to write.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
-    public synchronized void write(byte b[], int off, int len)
-            throws IOException {
+    public synchronized void write(byte b[], int off, int len) throws IOException {
         if (len >= buf.length) {
             /*
              * If the request length exceeds the size of the output buffer,
@@ -125,7 +123,7 @@ public class BufferedOutputStream extends FilterOutputStream {
      * bytes to be written out to the underlying output stream.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      * @see java.io.FilterOutputStream#out
      */
     public synchronized void flush() throws IOException {

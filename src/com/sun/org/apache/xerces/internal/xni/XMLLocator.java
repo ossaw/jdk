@@ -21,7 +21,6 @@ package com.sun.org.apache.xerces.internal.xni;
  * Location information.
  *
  * @author Andy Clark, IBM
- *
  */
 public interface XMLLocator {
 

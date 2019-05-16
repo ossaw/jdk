@@ -15,7 +15,6 @@ import org.xml.sax.SAXException;
  * Security Manager.
  *
  * @author Joe Wang Oracle Corp.
- *
  */
 public final class XMLSecurityManager {
 
@@ -25,11 +24,10 @@ public final class XMLSecurityManager {
      * properties, and jaxp api properties
      */
     public static enum State {
-    // this order reflects the overriding order
+        // this order reflects the overriding order
 
-    DEFAULT("default"), FSP("FEATURE_SECURE_PROCESSING"), JAXPDOTPROPERTIES(
-            "jaxp.properties"), SYSTEMPROPERTY("system property"), APIPROPERTY(
-                    "property");
+        DEFAULT("default"), FSP("FEATURE_SECURE_PROCESSING"), JAXPDOTPROPERTIES("jaxp.properties"),
+        SYSTEMPROPERTY("system property"), APIPROPERTY("property");
 
         final String literal;
 
@@ -47,32 +45,23 @@ public final class XMLSecurityManager {
      */
     public static enum Limit {
 
-        ENTITY_EXPANSION_LIMIT("EntityExpansionLimit",
-                XalanConstants.JDK_ENTITY_EXPANSION_LIMIT,
-                XalanConstants.SP_ENTITY_EXPANSION_LIMIT, 0, 64000),
-        MAX_OCCUR_NODE_LIMIT("MaxOccurLimit",
-                XalanConstants.JDK_MAX_OCCUR_LIMIT,
-                XalanConstants.SP_MAX_OCCUR_LIMIT, 0, 5000),
-        ELEMENT_ATTRIBUTE_LIMIT("ElementAttributeLimit",
-                XalanConstants.JDK_ELEMENT_ATTRIBUTE_LIMIT,
-                XalanConstants.SP_ELEMENT_ATTRIBUTE_LIMIT, 0, 10000),
-        TOTAL_ENTITY_SIZE_LIMIT("TotalEntitySizeLimit",
-                XalanConstants.JDK_TOTAL_ENTITY_SIZE_LIMIT,
-                XalanConstants.SP_TOTAL_ENTITY_SIZE_LIMIT, 0, 50000000),
-        GENERAL_ENTITY_SIZE_LIMIT("MaxEntitySizeLimit",
-                XalanConstants.JDK_GENERAL_ENTITY_SIZE_LIMIT,
-                XalanConstants.SP_GENERAL_ENTITY_SIZE_LIMIT, 0, 0),
-        PARAMETER_ENTITY_SIZE_LIMIT("MaxEntitySizeLimit",
-                XalanConstants.JDK_PARAMETER_ENTITY_SIZE_LIMIT,
-                XalanConstants.SP_PARAMETER_ENTITY_SIZE_LIMIT, 0, 1000000),
-        MAX_ELEMENT_DEPTH_LIMIT("MaxElementDepthLimit",
-                XalanConstants.JDK_MAX_ELEMENT_DEPTH,
-                XalanConstants.SP_MAX_ELEMENT_DEPTH, 0, 0), MAX_NAME_LIMIT(
-                        "MaxXMLNameLimit", XalanConstants.JDK_XML_NAME_LIMIT,
-                        XalanConstants.SP_XML_NAME_LIMIT, 1000, 1000),
-        ENTITY_REPLACEMENT_LIMIT("EntityReplacementLimit",
-                XalanConstants.JDK_ENTITY_REPLACEMENT_LIMIT,
-                XalanConstants.SP_ENTITY_REPLACEMENT_LIMIT, 0, 3000000);
+        ENTITY_EXPANSION_LIMIT("EntityExpansionLimit", XalanConstants.JDK_ENTITY_EXPANSION_LIMIT,
+                XalanConstants.SP_ENTITY_EXPANSION_LIMIT, 0, 64000), MAX_OCCUR_NODE_LIMIT("MaxOccurLimit",
+                        XalanConstants.JDK_MAX_OCCUR_LIMIT, XalanConstants.SP_MAX_OCCUR_LIMIT, 0, 5000),
+        ELEMENT_ATTRIBUTE_LIMIT("ElementAttributeLimit", XalanConstants.JDK_ELEMENT_ATTRIBUTE_LIMIT,
+                XalanConstants.SP_ELEMENT_ATTRIBUTE_LIMIT, 0, 10000), TOTAL_ENTITY_SIZE_LIMIT(
+                        "TotalEntitySizeLimit", XalanConstants.JDK_TOTAL_ENTITY_SIZE_LIMIT,
+                        XalanConstants.SP_TOTAL_ENTITY_SIZE_LIMIT, 0, 50000000), GENERAL_ENTITY_SIZE_LIMIT(
+                                "MaxEntitySizeLimit", XalanConstants.JDK_GENERAL_ENTITY_SIZE_LIMIT,
+                                XalanConstants.SP_GENERAL_ENTITY_SIZE_LIMIT, 0, 0),
+        PARAMETER_ENTITY_SIZE_LIMIT("MaxEntitySizeLimit", XalanConstants.JDK_PARAMETER_ENTITY_SIZE_LIMIT,
+                XalanConstants.SP_PARAMETER_ENTITY_SIZE_LIMIT, 0, 1000000), MAX_ELEMENT_DEPTH_LIMIT(
+                        "MaxElementDepthLimit", XalanConstants.JDK_MAX_ELEMENT_DEPTH,
+                        XalanConstants.SP_MAX_ELEMENT_DEPTH, 0, 0), MAX_NAME_LIMIT("MaxXMLNameLimit",
+                                XalanConstants.JDK_XML_NAME_LIMIT, XalanConstants.SP_XML_NAME_LIMIT, 1000,
+                                1000), ENTITY_REPLACEMENT_LIMIT("EntityReplacementLimit",
+                                        XalanConstants.JDK_ENTITY_REPLACEMENT_LIMIT,
+                                        XalanConstants.SP_ENTITY_REPLACEMENT_LIMIT, 0, 3000000);
 
         final String key;
         final String apiProperty;
@@ -80,8 +69,7 @@ public final class XMLSecurityManager {
         final int defaultValue;
         final int secureValue;
 
-        Limit(String key, String apiProperty, String systemProperty, int value,
-                int secureValue) {
+        Limit(String key, String apiProperty, String systemProperty, int value, int secureValue) {
             this.key = key;
             this.apiProperty = apiProperty;
             this.systemProperty = systemProperty;
@@ -90,13 +78,11 @@ public final class XMLSecurityManager {
         }
 
         public boolean equalsAPIPropertyName(String propertyName) {
-            return (propertyName == null) ? false
-                    : apiProperty.equals(propertyName);
+            return (propertyName == null) ? false : apiProperty.equals(propertyName);
         }
 
         public boolean equalsSystemPropertyName(String propertyName) {
-            return (propertyName == null) ? false
-                    : systemProperty.equals(propertyName);
+            return (propertyName == null) ? false : systemProperty.equals(propertyName);
         }
 
         public String key() {
@@ -127,8 +113,7 @@ public final class XMLSecurityManager {
 
         ENTITY_EXPANSION_LIMIT(XalanConstants.SP_ENTITY_EXPANSION_LIMIT,
                 XalanConstants.ENTITY_EXPANSION_LIMIT), MAX_OCCUR_NODE_LIMIT(
-                        XalanConstants.SP_MAX_OCCUR_LIMIT,
-                        XalanConstants.MAX_OCCUR_LIMIT),
+                        XalanConstants.SP_MAX_OCCUR_LIMIT, XalanConstants.MAX_OCCUR_LIMIT),
         ELEMENT_ATTRIBUTE_LIMIT(XalanConstants.SP_ELEMENT_ATTRIBUTE_LIMIT,
                 XalanConstants.ELEMENT_ATTRIBUTE_LIMIT);
         final String newName;
@@ -214,11 +199,11 @@ public final class XMLSecurityManager {
      * Set limit by property name and state
      * 
      * @param propertyName
-     *                     property name
+     *        property name
      * @param state
-     *                     the state of the property
+     *        the state of the property
      * @param value
-     *                     the value of the property
+     *        the value of the property
      * @return true if the property is managed by the security manager; false if
      *         otherwise.
      */
@@ -235,11 +220,11 @@ public final class XMLSecurityManager {
      * Set the value for a specific limit.
      *
      * @param limit
-     *              the limit
+     *        the limit
      * @param state
-     *              the state of the property
+     *        the state of the property
      * @param value
-     *              the value of the property
+     *        the value of the property
      */
     public void setLimit(Limit limit, State state, int value) {
         setLimit(limit.ordinal(), state, value);
@@ -249,11 +234,11 @@ public final class XMLSecurityManager {
      * Set the value of a property by its index
      *
      * @param index
-     *              the index of the property
+     *        the index of the property
      * @param state
-     *              the state of the property
+     *        the state of the property
      * @param value
-     *              the value of the property
+     *        the value of the property
      */
     public void setLimit(int index, State state, Object value) {
         if (index == indexEntityCountInfo) {
@@ -266,8 +251,7 @@ public final class XMLSecurityManager {
                 if (temp < 0) {
                     temp = 0;
                 }
-            } catch (NumberFormatException e) {
-            }
+            } catch (NumberFormatException e) {}
             setLimit(index, state, temp);
         }
     }
@@ -276,11 +260,11 @@ public final class XMLSecurityManager {
      * Set the value of a property by its index
      *
      * @param index
-     *              the index of the property
+     *        the index of the property
      * @param state
-     *              the state of the property
+     *        the state of the property
      * @param value
-     *              the value of the property
+     *        the value of the property
      */
     public void setLimit(int index, State state, int value) {
         if (index == indexEntityCountInfo) {
@@ -300,7 +284,7 @@ public final class XMLSecurityManager {
      * Return the value of the specified property.
      *
      * @param propertyName
-     *                     the property name
+     *        the property name
      * @return the value of the property as a string. If a property is managed
      *         by this manager, its value shall not be null.
      */
@@ -317,7 +301,7 @@ public final class XMLSecurityManager {
      * Return the value of a property by its ordinal
      *
      * @param limit
-     *              the property
+     *        the property
      * @return value of a property
      */
     public String getLimitValueAsString(Limit limit) {
@@ -328,7 +312,7 @@ public final class XMLSecurityManager {
      * Return the value of the specified property
      *
      * @param limit
-     *              the property
+     *        the property
      * @return the value of the property
      */
     public int getLimit(Limit limit) {
@@ -339,7 +323,7 @@ public final class XMLSecurityManager {
      * Return the value of a property by its ordinal
      *
      * @param index
-     *              the index of a property
+     *        the index of a property
      * @return value of a property
      */
     public int getLimitByIndex(int index) {
@@ -350,7 +334,7 @@ public final class XMLSecurityManager {
      * Return the value of a property by its index
      *
      * @param index
-     *              the index of a property
+     *        the index of a property
      * @return limit of a property as a string
      */
     public String getLimitValueByIndex(int index) {
@@ -365,7 +349,7 @@ public final class XMLSecurityManager {
      * Return the state of the limit property
      *
      * @param limit
-     *              the limit
+     *        the limit
      * @return the state of the limit property
      */
     public State getState(Limit limit) {
@@ -376,7 +360,7 @@ public final class XMLSecurityManager {
      * Return the state of the limit property
      *
      * @param limit
-     *              the limit
+     *        the limit
      * @return the state of the limit property
      */
     public String getStateLiteral(Limit limit) {
@@ -387,7 +371,7 @@ public final class XMLSecurityManager {
      * Get the index by property name
      *
      * @param propertyName
-     *                     property name
+     *        property name
      * @return the index of the property if found; return -1 if not
      */
     public int getIndex(String propertyName) {
@@ -445,18 +429,16 @@ public final class XMLSecurityManager {
      * feature/property.
      *
      * @param parserClassName
-     *                        the name of the parser class
+     *        the name of the parser class
      * @param propertyName
-     *                        the property name
+     *        the property name
      * @param exception
-     *                        the exception thrown by the parser
+     *        the exception thrown by the parser
      */
-    public static void printWarning(String parserClassName, String propertyName,
-            SAXException exception) {
+    public static void printWarning(String parserClassName, String propertyName, SAXException exception) {
         String key = parserClassName + ":" + propertyName;
         if (printedWarnings.addIfAbsent(key)) {
-            System.err.println("Warning: " + parserClassName + ": " + exception
-                    .getMessage());
+            System.err.println("Warning: " + parserClassName + ": " + exception.getMessage());
         }
     }
 
@@ -464,9 +446,9 @@ public final class XMLSecurityManager {
      * Read from system properties, or those in jaxp.properties
      *
      * @param property
-     *                        the type of the property
+     *        the type of the property
      * @param sysPropertyName
-     *                        the name of system property
+     *        the name of system property
      */
     private boolean getSystemProperty(Limit limit, String sysPropertyName) {
         try {
@@ -485,9 +467,7 @@ public final class XMLSecurityManager {
             }
         } catch (NumberFormatException e) {
             // invalid setting
-            throw new NumberFormatException(
-                    "Invalid setting for system property: " + limit
-                            .systemProperty());
+            throw new NumberFormatException("Invalid setting for system property: " + limit.systemProperty());
         }
         return false;
     }

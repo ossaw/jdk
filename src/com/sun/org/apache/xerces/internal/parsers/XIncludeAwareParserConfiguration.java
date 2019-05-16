@@ -35,7 +35,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
  * and provides support for XInclude. This is the default Xerces configuration.
  *
  * @author Michael Glavassevich, IBM
- *
  * @version $Id: XIncludeAwareParserConfiguration.java,v 1.5 2010-11-01 04:40:10
  *          joehw Exp $
  */
@@ -96,7 +95,7 @@ public class XIncludeAwareParserConfiguration extends XML11Configuration {
      * Constructs a parser configuration using the specified symbol table.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      */
     public XIncludeAwareParserConfiguration(SymbolTable symbolTable) {
         this(symbolTable, null, null);
@@ -108,12 +107,11 @@ public class XIncludeAwareParserConfiguration extends XML11Configuration {
      * <p>
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                    The grammar pool to use.
+     *        The grammar pool to use.
      */
-    public XIncludeAwareParserConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public XIncludeAwareParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null);
     } // <init>(SymbolTable,XMLGrammarPool)
 
@@ -123,23 +121,22 @@ public class XIncludeAwareParserConfiguration extends XML11Configuration {
      * <p>
      *
      * @param symbolTable
-     *                       The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                       The grammar pool to use.
+     *        The grammar pool to use.
      * @param parentSettings
-     *                       The parent settings.
+     *        The parent settings.
      */
-    public XIncludeAwareParserConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+    public XIncludeAwareParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
+            XMLComponentManager parentSettings) {
         super(symbolTable, grammarPool, parentSettings);
 
-        final String[] recognizedFeatures = { ALLOW_UE_AND_NOTATION_EVENTS,
-                XINCLUDE_FIXUP_BASE_URIS, XINCLUDE_FIXUP_LANGUAGE };
+        final String[] recognizedFeatures = { ALLOW_UE_AND_NOTATION_EVENTS, XINCLUDE_FIXUP_BASE_URIS,
+                XINCLUDE_FIXUP_LANGUAGE };
         addRecognizedFeatures(recognizedFeatures);
 
         // add default recognized properties
-        final String[] recognizedProperties = { XINCLUDE_HANDLER,
-                NAMESPACE_CONTEXT };
+        final String[] recognizedProperties = { XINCLUDE_HANDLER, NAMESPACE_CONTEXT };
         addRecognizedProperties(recognizedProperties);
 
         setFeature(ALLOW_UE_AND_NOTATION_EVENTS, true);
@@ -274,8 +271,7 @@ public class XIncludeAwareParserConfiguration extends XML11Configuration {
         }
     } // configureXML11Pipeline()
 
-    public FeatureState getFeatureState(String featureId)
-            throws XMLConfigurationException {
+    public FeatureState getFeatureState(String featureId) throws XMLConfigurationException {
         if (featureId.equals(PARSER_SETTINGS)) {
             return FeatureState.is(fConfigUpdated);
         } else if (featureId.equals(XINCLUDE_FEATURE)) {
@@ -285,8 +281,7 @@ public class XIncludeAwareParserConfiguration extends XML11Configuration {
 
     } // getFeature(String):boolean
 
-    public void setFeature(String featureId, boolean state)
-            throws XMLConfigurationException {
+    public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
         if (featureId.equals(XINCLUDE_FEATURE)) {
             fXIncludeEnabled = state;
             fConfigUpdated = true;

@@ -20,7 +20,6 @@ import java.util.Locale;
  * the <code>java.text</code> and <code>java.util</code> packages use
  * implementations of the provider interfaces to offer support for locales
  * beyond the set of locales supported by the Java runtime environment itself.
- *
  * <h3>Packaging of Locale Sensitive Service Provider Implementations</h3>
  * Implementations of these locale sensitive services are packaged using the
  * <a href="../../../../technotes/guides/extensions/index.html">Java Extension
@@ -136,7 +135,6 @@ public abstract class LocaleServiceProvider {
      * can provide localized objects or names. This information is used to
      * compose {@code getAvailableLocales()} values of the locale-dependent
      * services, such as {@code DateFormat.getAvailableLocales()}.
-     *
      * <p>
      * The array returned by this method should not include two or more
      * {@code Locale} objects only differing in their extensions.
@@ -151,7 +149,6 @@ public abstract class LocaleServiceProvider {
      * locale service provider. The given {@code locale} may contain
      * <a href="../Locale.html#def_extensions">extensions</a> that should be
      * taken into account for the support determination.
-     *
      * <p>
      * The default implementation returns {@code true} if the given
      * {@code locale} is equal to any of the available {@code Locale}s returned
@@ -166,11 +163,11 @@ public abstract class LocaleServiceProvider {
      * and in that case, extensions for numbering systems should be ignored.
      *
      * @param locale
-     *               a {@code Locale} to be tested
+     *        a {@code Locale} to be tested
      * @return {@code true} if the given {@code locale} is supported by this
      *         provider; {@code false} otherwise.
      * @throws NullPointerException
-     *                              if the given {@code locale} is {@code null}
+     *         if the given {@code locale} is {@code null}
      * @see Locale#hasExtensions()
      * @see Locale#stripExtensions()
      * @since 1.8

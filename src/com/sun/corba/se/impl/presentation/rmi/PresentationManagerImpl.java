@@ -57,13 +57,11 @@ public final class PresentationManagerImpl implements PresentationManager {
     // PresentationManager interface
     ////////////////////////////////////////////////////////////////////////////////
 
-    public synchronized DynamicMethodMarshaller getDynamicMethodMarshaller(
-            Method method) {
+    public synchronized DynamicMethodMarshaller getDynamicMethodMarshaller(Method method) {
         if (method == null)
             return null;
 
-        DynamicMethodMarshaller result = (DynamicMethodMarshaller) methodToDMM
-                .get(method);
+        DynamicMethodMarshaller result = (DynamicMethodMarshaller) methodToDMM.get(method);
         if (result == null) {
             result = new DynamicMethodMarshallerImpl(method);
             methodToDMM.put(method, result);
@@ -103,8 +101,7 @@ public final class PresentationManagerImpl implements PresentationManager {
             Class[] interfaces = getInterfaces(rootSet);
             nameTranslator = IDLNameTranslatorImpl.get(interfaces);
             typeIds = makeTypeIds(root, gr, rootSet);
-            ihfactory = new InvocationHandlerFactoryImpl(
-                    PresentationManagerImpl.this, this);
+            ihfactory = new InvocationHandlerFactoryImpl(PresentationManagerImpl.this, this);
             dictionary = new HashMap();
         }
 
@@ -129,16 +126,14 @@ public final class PresentationManagerImpl implements PresentationManager {
         }
     }
 
-    public PresentationManager.StubFactoryFactory getStubFactoryFactory(
-            boolean isDynamic) {
+    public PresentationManager.StubFactoryFactory getStubFactoryFactory(boolean isDynamic) {
         if (isDynamic)
             return dynamicStubFactoryFactory;
         else
             return staticStubFactoryFactory;
     }
 
-    public void setStubFactoryFactory(boolean isDynamic,
-            PresentationManager.StubFactoryFactory sff) {
+    public void setStubFactoryFactory(boolean isDynamic, PresentationManager.StubFactoryFactory sff) {
         if (isDynamic)
             dynamicStubFactoryFactory = sff;
         else
@@ -246,8 +241,7 @@ public final class PresentationManagerImpl implements PresentationManager {
             Class[] interfaces = interf.getInterfaces();
             for (int ctr = 0; ctr < interfaces.length; ctr++) {
                 Class cls = interfaces[ctr];
-                if (Remote.class.isAssignableFrom(cls) && !Remote.class.equals(
-                        cls))
+                if (Remote.class.isAssignableFrom(cls) && !Remote.class.equals(cls))
                     result.add(new NodeImpl(cls));
             }
 

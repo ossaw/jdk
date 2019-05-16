@@ -34,7 +34,7 @@ public class AlreadyBoundException extends java.lang.Exception {
      * detail message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      */
     public AlreadyBoundException(String s) {

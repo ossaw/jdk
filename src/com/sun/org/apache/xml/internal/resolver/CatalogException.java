@@ -22,16 +22,13 @@ package com.sun.org.apache.xml.internal.resolver;
 
 /**
  * Signal Catalog exception.
- *
  * <p>
  * This exception is thrown if an error occurs loading a catalog file.
  * </p>
  *
  * @see Catalog
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  */
 public class CatalogException extends Exception {
     /** A wrapper around another exception */
@@ -61,9 +58,9 @@ public class CatalogException extends Exception {
      * Create a new CatalogException.
      *
      * @param type
-     *                The exception type
+     *        The exception type
      * @param message
-     *                The error or warning message.
+     *        The error or warning message.
      */
     public CatalogException(int type, String message) {
         super(message);
@@ -75,7 +72,7 @@ public class CatalogException extends Exception {
      * Create a new CatalogException.
      *
      * @param type
-     *             The exception type
+     *        The exception type
      */
     public CatalogException(int type) {
         super("Catalog Exception " + type);
@@ -85,14 +82,13 @@ public class CatalogException extends Exception {
 
     /**
      * Create a new CatalogException wrapping an existing exception.
-     *
      * <p>
      * The existing exception will be embedded in the new one, and its message
      * will become the default message for the CatalogException.
      * </p>
      *
      * @param e
-     *          The exception to be wrapped in a CatalogException.
+     *        The exception to be wrapped in a CatalogException.
      */
     public CatalogException(Exception e) {
         super();
@@ -102,16 +98,15 @@ public class CatalogException extends Exception {
 
     /**
      * Create a new CatalogException from an existing exception.
-     *
      * <p>
      * The existing exception will be embedded in the new one, but the new
      * exception will have its own message.
      * </p>
      *
      * @param message
-     *                The detail message.
+     *        The detail message.
      * @param e
-     *                The exception to be wrapped in a CatalogException.
+     *        The exception to be wrapped in a CatalogException.
      */
     public CatalogException(String message, Exception e) {
         super(message);
@@ -121,7 +116,6 @@ public class CatalogException extends Exception {
 
     /**
      * Return a detail message for this exception.
-     *
      * <p>
      * If there is an embedded exception, and if the CatalogException has no
      * detail message of its own, this method will return the detail message

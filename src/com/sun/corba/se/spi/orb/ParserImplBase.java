@@ -84,8 +84,7 @@ public abstract class ParserImplBase {
 
             try {
                 AccessController.doPrivileged(new PrivilegedExceptionAction() {
-                    public Object run() throws IllegalAccessException,
-                            IllegalArgumentException {
+                    public Object run() throws IllegalAccessException, IllegalArgumentException {
                         Field field = getAnyField(name);
                         field.setAccessible(true);
                         field.set(ParserImplBase.this, value);
@@ -95,8 +94,7 @@ public abstract class ParserImplBase {
             } catch (PrivilegedActionException exc) {
                 // Since exc wraps the actual exception, use exc.getCause()
                 // instead of exc.
-                throw wrapper.errorSettingField(exc.getCause(), name, value
-                        .toString());
+                throw wrapper.errorSettingField(exc.getCause(), name, value.toString());
             }
         }
 

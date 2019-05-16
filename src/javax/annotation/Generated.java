@@ -32,8 +32,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 @Documented
 @Retention(SOURCE)
-@Target({ PACKAGE, TYPE, ANNOTATION_TYPE, METHOD, CONSTRUCTOR, FIELD,
-        LOCAL_VARIABLE, PARAMETER })
+@Target({ PACKAGE, TYPE, ANNOTATION_TYPE, METHOD, CONSTRUCTOR, FIELD, LOCAL_VARIABLE, PARAMETER })
 public @interface Generated {
     /**
      * The value element MUST have the name of the code generator. The

@@ -41,7 +41,7 @@ public class TruncatedFileException extends RuntimeException {
      * decoded BufferedImage.
      *
      * @param bi
-     *           the partially decoded BufferedImage (may be null).
+     *        the partially decoded BufferedImage (may be null).
      * @since 1.2
      */
     public TruncatedFileException(BufferedImage bi) {
@@ -55,7 +55,7 @@ public class TruncatedFileException extends RuntimeException {
      * decoded Raster
      *
      * @param ras
-     *            the partially decoded Raster (may be null).
+     *        the partially decoded Raster (may be null).
      * @since 1.2
      */
     public TruncatedFileException(Raster ras) {

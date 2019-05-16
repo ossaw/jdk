@@ -14,16 +14,13 @@ import java.beans.PropertyChangeListener;
  * <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/tree.html">How to
  * Use Trees</a> in <em>The Java Tutorial.</em>
- *
  * <p>
  * The state of the tree selection is characterized by a set of TreePaths, and
  * optionally a set of integers. The mapping from TreePath to integer is done by
  * way of an instance of RowMapper. It is not necessary for a TreeSelectionModel
  * to have a RowMapper to correctly operate, but without a RowMapper
  * <code>getSelectionRows</code> will return null.
- *
  * <p>
- *
  * A TreeSelectionModel can be configured to allow only one path (
  * <code>SINGLE_TREE_SELECTION</code>) a number of contiguous paths (
  * <code>CONTIGUOUS_TREE_SELECTION</code>) or a number of discontiguous paths (
@@ -32,9 +29,7 @@ import java.beans.PropertyChangeListener;
  * <code>CONTIGUOUS_TREE_SELECTION</code> and
  * <code>DISCONTIGUOUS_TREE_SELECTION</code> behave the same, that is they allow
  * any number of paths to be contained in the TreeSelectionModel.
- *
  * <p>
- *
  * For a selection model of <code>CONTIGUOUS_TREE_SELECTION</code> any time the
  * paths are changed (<code>setSelectionPath</code>,
  * <code>addSelectionPath</code> ...) the TreePaths are again checked to make
@@ -42,9 +37,7 @@ import java.beans.PropertyChangeListener;
  * <code>resetRowSelection</code>. How a set of discontiguous TreePaths is
  * mapped to a contiguous set is left to implementors of this interface to
  * enforce a particular policy.
- *
  * <p>
- *
  * Implementations should combine duplicate TreePaths that are added to the
  * selection. For example, the following code
  * 
@@ -55,9 +48,7 @@ import java.beans.PropertyChangeListener;
  * 
  * should result in only one path being selected: <code>treePath</code>, and not
  * two copies of <code>treePath</code>.
- *
  * <p>
- *
  * The lead TreePath is the last path that was added (or set). The lead row is
  * then the row that corresponds to the TreePath as determined from the
  * RowMapper.
@@ -108,7 +99,7 @@ public interface TreeSelectionModel {
      * has the same effect as invoking <code>clearSelection</code>.
      *
      * @param path
-     *             new path to select
+     *        new path to select
      */
     void setSelectionPath(TreePath path);
 
@@ -118,7 +109,7 @@ public interface TreeSelectionModel {
      * has the same effect as invoking <code>clearSelection</code>.
      *
      * @param paths
-     *              new selection
+     *        new selection
      */
     void setSelectionPaths(TreePath[] paths);
 
@@ -128,7 +119,7 @@ public interface TreeSelectionModel {
      * <code>path</code> is null.
      *
      * @param path
-     *             the new path to add to the current selection
+     *        the new path to add to the current selection
      */
     void addSelectionPath(TreePath path);
 
@@ -138,7 +129,7 @@ public interface TreeSelectionModel {
      * has no effect if <code>paths</code> is null.
      *
      * @param paths
-     *              the new paths to add to the current selection
+     *        the new paths to add to the current selection
      */
     void addSelectionPaths(TreePath[] paths);
 
@@ -148,7 +139,7 @@ public interface TreeSelectionModel {
      * <code>path</code> is null.
      *
      * @param path
-     *             the path to remove from the selection
+     *        the path to remove from the selection
      */
     void removeSelectionPath(TreePath path);
 
@@ -158,7 +149,7 @@ public interface TreeSelectionModel {
      * notified. This method has no effect if <code>paths</code> is null.
      *
      * @param paths
-     *              the path to remove from the selection
+     *        the path to remove from the selection
      */
     void removeSelectionPaths(TreePath[] paths);
 
@@ -262,7 +253,7 @@ public interface TreeSelectionModel {
      * A PropertyChangeEvent will get fired when the selection mode changes.
      *
      * @param listener
-     *                 the PropertyChangeListener to be added
+     *        the PropertyChangeListener to be added
      */
     void addPropertyChangeListener(PropertyChangeListener listener);
 
@@ -271,7 +262,7 @@ public interface TreeSelectionModel {
      * PropertyChangeListener that was registered for all properties.
      *
      * @param listener
-     *                 the PropertyChangeListener to be removed
+     *        the PropertyChangeListener to be removed
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
 
@@ -280,7 +271,7 @@ public interface TreeSelectionModel {
      * selected TreePaths changes.
      *
      * @param x
-     *          the new listener to be added
+     *        the new listener to be added
      */
     void addTreeSelectionListener(TreeSelectionListener x);
 
@@ -289,7 +280,7 @@ public interface TreeSelectionModel {
      * of selected TreePaths changes.
      *
      * @param x
-     *          the listener to remove
+     *        the listener to remove
      */
     void removeTreeSelectionListener(TreeSelectionListener x);
 }

@@ -99,7 +99,6 @@ package java.util.concurrent;
  * {@link ThreadPoolExecutor} class provides an extensible thread pool
  * implementation. The {@link Executors} class provides convenient factory
  * methods for these Executors.
- *
  * <p>
  * Memory consistency effects: Actions in a thread prior to submitting a
  * {@code Runnable} object to an {@code Executor}
@@ -117,12 +116,12 @@ public interface Executor {
      * the discretion of the {@code Executor} implementation.
      *
      * @param command
-     *                the runnable task
+     *        the runnable task
      * @throws RejectedExecutionException
-     *                                    if this task cannot be accepted for
-     *                                    execution
+     *         if this task cannot be accepted for
+     *         execution
      * @throws NullPointerException
-     *                                    if command is null
+     *         if command is null
      */
     void execute(Runnable command);
 }

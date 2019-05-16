@@ -66,7 +66,7 @@ public final class ConstantDouble extends Constant implements ConstantObject {
 
     /**
      * @param bytes
-     *              Data
+     *        Data
      */
     public ConstantDouble(double bytes) {
         super(Constants.CONSTANT_Double);
@@ -84,7 +84,7 @@ public final class ConstantDouble extends Constant implements ConstantObject {
      * Initialize instance from file data.
      *
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     ConstantDouble(DataInputStream file) throws IOException {
@@ -97,7 +97,7 @@ public final class ConstantDouble extends Constant implements ConstantObject {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantDouble(this);
@@ -107,7 +107,7 @@ public final class ConstantDouble extends Constant implements ConstantObject {
      * Dump constant double to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {

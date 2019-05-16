@@ -76,10 +76,9 @@ public class HTMLWriter extends AbstractWriter {
      * Creates a new HTMLWriter.
      *
      * @param w
-     *            a Writer
+     *        a Writer
      * @param doc
-     *            an HTMLDocument
-     *
+     *        an HTMLDocument
      */
     public HTMLWriter(Writer w, HTMLDocument doc) {
         this(w, doc, 0, doc.getLength());
@@ -89,13 +88,13 @@ public class HTMLWriter extends AbstractWriter {
      * Creates a new HTMLWriter.
      *
      * @param w
-     *            a Writer
+     *        a Writer
      * @param doc
-     *            an HTMLDocument
+     *        an HTMLDocument
      * @param pos
-     *            the document location from which to fetch the content
+     *        the document location from which to fetch the content
      * @param len
-     *            the amount to write out
+     *        the amount to write out
      */
     public HTMLWriter(Writer w, HTMLDocument doc, int pos, int len) {
         super(w, doc, pos, len);
@@ -108,11 +107,10 @@ public class HTMLWriter extends AbstractWriter {
      * tags and its attributes.
      *
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
-     *
+     *            if pos represents an invalid location
+     *            within the document.
      */
     public void write() throws IOException, BadLocationException {
         ElementIterator it = getElementIterator();
@@ -145,8 +143,7 @@ public class HTMLWriter extends AbstractWriter {
 
                 if (indentNeedsIncrementing(current, next)) {
                     incrIndent();
-                } else if (current.getParentElement() != next
-                        .getParentElement()) {
+                } else if (current.getParentElement() != next.getParentElement()) {
                     /*
                      * next and current are not siblings so emit end tags for
                      * items on the stack until the item on top of the stack, is
@@ -160,16 +157,15 @@ public class HTMLWriter extends AbstractWriter {
                         blockElementStack.pop();
                         if (!synthesizedElement(top)) {
                             AttributeSet attrs = top.getAttributes();
-                            if (!matchNameAttribute(attrs, HTML.Tag.PRE)
-                                    && !isFormElementWithContent(attrs)) {
+                            if (!matchNameAttribute(attrs, HTML.Tag.PRE) && !isFormElementWithContent(
+                                    attrs)) {
                                 decrIndent();
                             }
                             endTag(top);
                         }
                         top = blockElementStack.peek();
                     }
-                } else if (current.getParentElement() == next
-                        .getParentElement()) {
+                } else if (current.getParentElement() == next.getParentElement()) {
                     /*
                      * if next and current are siblings the indent level is
                      * correct. But, we need to make sure that if current is on
@@ -182,8 +178,7 @@ public class HTMLWriter extends AbstractWriter {
                     }
                 }
             }
-            if (!next.isLeaf() || isFormElementWithContent(next
-                    .getAttributes())) {
+            if (!next.isLeaf() || isFormElementWithContent(next.getAttributes())) {
                 blockElementStack.push(next);
                 startTag(next);
             } else {
@@ -207,8 +202,7 @@ public class HTMLWriter extends AbstractWriter {
             current = blockElementStack.pop();
             if (!synthesizedElement(current)) {
                 AttributeSet attrs = current.getAttributes();
-                if (!matchNameAttribute(attrs, HTML.Tag.PRE)
-                        && !isFormElementWithContent(attrs)) {
+                if (!matchNameAttribute(attrs, HTML.Tag.PRE) && !isFormElementWithContent(attrs)) {
                     decrIndent();
                 }
                 endTag(current);
@@ -228,10 +222,9 @@ public class HTMLWriter extends AbstractWriter {
      * with a key of type HTML.Attribute.ENDTAG.
      *
      * @param attr
-     *             an AttributeSet
+     *        an AttributeSet
      * @exception IOException
-     *                        on any I/O error
-     *
+     *            on any I/O error
      */
     protected void writeAttributes(AttributeSet attr) throws IOException {
         // translate css attributes to html
@@ -241,8 +234,7 @@ public class HTMLWriter extends AbstractWriter {
         Enumeration names = convAttr.getAttributeNames();
         while (names.hasMoreElements()) {
             Object name = names.nextElement();
-            if (name instanceof HTML.Tag || name instanceof StyleConstants
-                    || name == HTML.Attribute.ENDTAG) {
+            if (name instanceof HTML.Tag || name instanceof StyleConstants || name == HTML.Attribute.ENDTAG) {
                 continue;
             }
             write(" " + name + "=\"" + convAttr.getAttribute(name) + "\"");
@@ -254,15 +246,14 @@ public class HTMLWriter extends AbstractWriter {
      * tag).
      *
      * @param elem
-     *             an Element
+     *        an Element
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    protected void emptyTag(Element elem) throws BadLocationException,
-            IOException {
+    protected void emptyTag(Element elem) throws BadLocationException, IOException {
 
         if (!inContent && !inPre) {
             indentSmart();
@@ -284,17 +275,14 @@ public class HTMLWriter extends AbstractWriter {
                 indentSmart();
             }
 
-            Object nameTag = (attr != null) ? attr.getAttribute(
-                    StyleConstants.NameAttribute) : null;
-            Object endTag = (attr != null) ? attr.getAttribute(
-                    HTML.Attribute.ENDTAG) : null;
+            Object nameTag = (attr != null) ? attr.getAttribute(StyleConstants.NameAttribute) : null;
+            Object endTag = (attr != null) ? attr.getAttribute(HTML.Attribute.ENDTAG) : null;
 
             boolean outputEndTag = false;
             // If an instance of an UNKNOWN Tag, or an instance of a
             // tag that is only visible during editing
             //
-            if (nameTag != null && endTag != null && (endTag instanceof String)
-                    && endTag.equals("true")) {
+            if (nameTag != null && endTag != null && (endTag instanceof String) && endTag.equals("true")) {
                 outputEndTag = true;
             }
 
@@ -330,7 +318,7 @@ public class HTMLWriter extends AbstractWriter {
      * Determines if the HTML.Tag associated with the element is a block tag.
      *
      * @param attr
-     *             an AttributeSet
+     *        an AttributeSet
      * @return true if tag is block tag, false otherwise.
      */
     protected boolean isBlockTag(AttributeSet attr) {
@@ -346,12 +334,11 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out a start tag for the element. Ignores all synthesized elements.
      *
      * @param elem
-     *             an Element
+     *        an Element
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
-    protected void startTag(Element elem) throws IOException,
-            BadLocationException {
+    protected void startTag(Element elem) throws IOException, BadLocationException {
 
         if (synthesizedElement(elem)) {
             return;
@@ -432,17 +419,15 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out text that is contained in a TEXTAREA form element.
      *
      * @param attr
-     *             an AttributeSet
+     *        an AttributeSet
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    protected void textAreaContent(AttributeSet attr)
-            throws BadLocationException, IOException {
-        Document doc = (Document) attr.getAttribute(
-                StyleConstants.ModelAttribute);
+    protected void textAreaContent(AttributeSet attr) throws BadLocationException, IOException {
+        Document doc = (Document) attr.getAttribute(StyleConstants.ModelAttribute);
         if (doc != null && doc.getLength() > 0) {
             if (segment == null) {
                 segment = new Segment();
@@ -469,12 +454,12 @@ public class HTMLWriter extends AbstractWriter {
      * then only the appropriate range of text is written out.
      *
      * @param elem
-     *             an Element
+     *        an Element
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
     protected void text(Element elem) throws BadLocationException, IOException {
         int start = Math.max(getStartOffset(), elem.getStartOffset());
@@ -509,9 +494,9 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out the content of the SELECT form element.
      *
      * @param attr
-     *             the AttributeSet associated with the form element
+     *        the AttributeSet associated with the form element
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void selectContent(AttributeSet attr) throws IOException {
         Object model = attr.getAttribute(StyleConstants.ModelAttribute);
@@ -538,10 +523,9 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out the content of the Option form element.
      * 
      * @param option
-     *               an Option
+     *        an Option
      * @exception IOException
-     *                        on any I/O error
-     *
+     *            on any I/O error
      */
     protected void writeOption(Option option) throws IOException {
 
@@ -549,8 +533,7 @@ public class HTMLWriter extends AbstractWriter {
         write('<');
         write("option");
         // PENDING: should this be changed to check for null first?
-        Object value = option.getAttributes().getAttribute(
-                HTML.Attribute.VALUE);
+        Object value = option.getAttributes().getAttribute(HTML.Attribute.VALUE);
         if (value != null) {
             write(" value=" + value);
         }
@@ -568,9 +551,9 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out an end tag for the element.
      *
      * @param elem
-     *             an Element
+     *        an Element
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void endTag(Element elem) throws IOException {
         if (synthesizedElement(elem)) {
@@ -603,15 +586,14 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out comments.
      *
      * @param elem
-     *             an Element
+     *        an Element
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
-    protected void comment(Element elem) throws BadLocationException,
-            IOException {
+    protected void comment(Element elem) throws BadLocationException, IOException {
         AttributeSet as = elem.getAttributes();
         if (matchNameAttribute(as, HTML.Tag.COMMENT)) {
             Object comment = as.getAttribute(HTML.Attribute.COMMENT);
@@ -627,12 +609,12 @@ public class HTMLWriter extends AbstractWriter {
      * Writes out comment string.
      *
      * @param string
-     *               the comment
+     *        the comment
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document.
+     *            if pos represents an invalid location
+     *            within the document.
      */
     void writeComment(String string) throws IOException {
         write("<!--");
@@ -649,13 +631,11 @@ public class HTMLWriter extends AbstractWriter {
      * under the property HTMLDocument.AdditionalComments.
      */
     void writeAdditionalComments() throws IOException {
-        Object comments = getDocument().getProperty(
-                HTMLDocument.AdditionalComments);
+        Object comments = getDocument().getProperty(HTMLDocument.AdditionalComments);
 
         if (comments instanceof Vector) {
             Vector v = (Vector) comments;
-            for (int counter = 0, maxCounter = v
-                    .size(); counter < maxCounter; counter++) {
+            for (int counter = 0, maxCounter = v.size(); counter < maxCounter; counter++) {
                 writeComment(v.elementAt(counter).toString());
             }
         }
@@ -693,7 +673,7 @@ public class HTMLWriter extends AbstractWriter {
      * corresponding end tags can be written out.
      *
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
     protected void writeEmbeddedTags(AttributeSet attr) throws IOException {
 
@@ -725,13 +705,11 @@ public class HTMLWriter extends AbstractWriter {
      * Searches the attribute set for a tag, both of which are passed in as a
      * parameter. Returns true if no match is found and false otherwise.
      */
-    private boolean noMatchForTagInAttributes(AttributeSet attr, HTML.Tag t,
-            Object tagValue) {
+    private boolean noMatchForTagInAttributes(AttributeSet attr, HTML.Tag t, Object tagValue) {
         if (attr != null && attr.isDefined(t)) {
             Object newValue = attr.getAttribute(t);
 
-            if ((tagValue == null) ? (newValue == null)
-                    : (newValue != null && tagValue.equals(newValue))) {
+            if ((tagValue == null) ? (newValue == null) : (newValue != null && tagValue.equals(newValue))) {
                 return false;
             }
         }
@@ -744,10 +722,9 @@ public class HTMLWriter extends AbstractWriter {
      * and a corresponding end tag is written out.
      *
      * @exception IOException
-     *                        on any I/O error
+     *            on any I/O error
      */
-    protected void closeOutUnwantedEmbeddedTags(AttributeSet attr)
-            throws IOException {
+    protected void closeOutUnwantedEmbeddedTags(AttributeSet attr) throws IOException {
 
         tagsToRemove.removeAllElements();
 
@@ -802,8 +779,7 @@ public class HTMLWriter extends AbstractWriter {
      * or SELECT. If true, returns true else false
      */
     private boolean isFormElementWithContent(AttributeSet attr) {
-        return matchNameAttribute(attr, HTML.Tag.TEXTAREA)
-                || matchNameAttribute(attr, HTML.Tag.SELECT);
+        return matchNameAttribute(attr, HTML.Tag.TEXTAREA) || matchNameAttribute(attr, HTML.Tag.SELECT);
     }
 
     /**
@@ -887,8 +863,8 @@ public class HTMLWriter extends AbstractWriter {
                 while (styles.hasMoreElements()) {
                     String name = (String) styles.nextElement();
                     // Don't write out the default style.
-                    if (!StyleContext.DEFAULT_STYLE.equals(name) && writeStyle(
-                            name, sheet.getStyle(name), outputStyle)) {
+                    if (!StyleContext.DEFAULT_STYLE.equals(name) && writeStyle(name, sheet.getStyle(name),
+                            outputStyle)) {
                         outputStyle = true;
                     }
                 }
@@ -904,8 +880,7 @@ public class HTMLWriter extends AbstractWriter {
      * not a style has been output yet. This will return true if a style is
      * written.
      */
-    boolean writeStyle(String name, Style style, boolean outputStyle)
-            throws IOException {
+    boolean writeStyle(String name, Style style, boolean outputStyle) throws IOException {
         boolean didOutputStyle = false;
         Enumeration attributes = style.getAttributeNames();
         if (attributes != null) {
@@ -1011,8 +986,7 @@ public class HTMLWriter extends AbstractWriter {
      * tag/attribute. Other CSS attributes will be placed in an HTML style
      * attribute.
      */
-    private static void convertToHTML32(AttributeSet from,
-            MutableAttributeSet to) {
+    private static void convertToHTML32(AttributeSet from, MutableAttributeSet to) {
         if (from == null) {
             return;
         }
@@ -1021,17 +995,15 @@ public class HTMLWriter extends AbstractWriter {
         while (keys.hasMoreElements()) {
             Object key = keys.nextElement();
             if (key instanceof CSS.Attribute) {
-                if ((key == CSS.Attribute.FONT_FAMILY)
-                        || (key == CSS.Attribute.FONT_SIZE)
+                if ((key == CSS.Attribute.FONT_FAMILY) || (key == CSS.Attribute.FONT_SIZE)
                         || (key == CSS.Attribute.COLOR)) {
 
                     createFontAttribute((CSS.Attribute) key, from, to);
                 } else if (key == CSS.Attribute.FONT_WEIGHT) {
                     // add a bold tag is weight is bold
-                    CSS.FontWeight weightValue = (CSS.FontWeight) from
-                            .getAttribute(CSS.Attribute.FONT_WEIGHT);
-                    if ((weightValue != null) && (weightValue
-                            .getValue() > 400)) {
+                    CSS.FontWeight weightValue = (CSS.FontWeight) from.getAttribute(
+                            CSS.Attribute.FONT_WEIGHT);
+                    if ((weightValue != null) && (weightValue.getValue() > 400)) {
                         addAttribute(to, HTML.Tag.B, SimpleAttributeSet.EMPTY);
                     }
                 } else if (key == CSS.Attribute.FONT_STYLE) {
@@ -1045,22 +1017,18 @@ public class HTMLWriter extends AbstractWriter {
                         addAttribute(to, HTML.Tag.U, SimpleAttributeSet.EMPTY);
                     }
                     if (decor.indexOf("line-through") >= 0) {
-                        addAttribute(to, HTML.Tag.STRIKE,
-                                SimpleAttributeSet.EMPTY);
+                        addAttribute(to, HTML.Tag.STRIKE, SimpleAttributeSet.EMPTY);
                     }
                 } else if (key == CSS.Attribute.VERTICAL_ALIGN) {
                     String vAlign = from.getAttribute(key).toString();
                     if (vAlign.indexOf("sup") >= 0) {
-                        addAttribute(to, HTML.Tag.SUP,
-                                SimpleAttributeSet.EMPTY);
+                        addAttribute(to, HTML.Tag.SUP, SimpleAttributeSet.EMPTY);
                     }
                     if (vAlign.indexOf("sub") >= 0) {
-                        addAttribute(to, HTML.Tag.SUB,
-                                SimpleAttributeSet.EMPTY);
+                        addAttribute(to, HTML.Tag.SUB, SimpleAttributeSet.EMPTY);
                     }
                 } else if (key == CSS.Attribute.TEXT_ALIGN) {
-                    addAttribute(to, HTML.Attribute.ALIGN, from.getAttribute(
-                            key).toString());
+                    addAttribute(to, HTML.Attribute.ALIGN, from.getAttribute(key).toString());
                 } else {
                     // default is to store in a HTML style attribute
                     if (value.length() > 0) {
@@ -1085,16 +1053,13 @@ public class HTMLWriter extends AbstractWriter {
      * Add an attribute only if it doesn't exist so that we don't loose
      * information replacing it with SimpleAttributeSet.EMPTY
      */
-    private static void addAttribute(MutableAttributeSet to, Object key,
-            Object value) {
+    private static void addAttribute(MutableAttributeSet to, Object key, Object value) {
         Object attr = to.getAttribute(key);
         if (attr == null || attr == SimpleAttributeSet.EMPTY) {
             to.addAttribute(key, value);
         } else {
-            if (attr instanceof MutableAttributeSet
-                    && value instanceof AttributeSet) {
-                ((MutableAttributeSet) attr).addAttributes(
-                        (AttributeSet) value);
+            if (attr instanceof MutableAttributeSet && value instanceof AttributeSet) {
+                ((MutableAttributeSet) attr).addAttributes((AttributeSet) value);
             }
         }
     }
@@ -1104,10 +1069,8 @@ public class HTMLWriter extends AbstractWriter {
      * attribute should be a MutableAttributeSet so that the attributes can be
      * updated as they are discovered.
      */
-    private static void createFontAttribute(CSS.Attribute a, AttributeSet from,
-            MutableAttributeSet to) {
-        MutableAttributeSet fontAttr = (MutableAttributeSet) to.getAttribute(
-                HTML.Tag.FONT);
+    private static void createFontAttribute(CSS.Attribute a, AttributeSet from, MutableAttributeSet to) {
+        MutableAttributeSet fontAttr = (MutableAttributeSet) to.getAttribute(HTML.Tag.FONT);
         if (fontAttr == null) {
             fontAttr = new SimpleAttributeSet();
             to.addAttribute(HTML.Tag.FONT, fontAttr);
@@ -1127,8 +1090,7 @@ public class HTMLWriter extends AbstractWriter {
      * Copies the given AttributeSet to a new set, converting any CSS attributes
      * found to arguments of an HTML style attribute.
      */
-    private static void convertToHTML40(AttributeSet from,
-            MutableAttributeSet to) {
+    private static void convertToHTML40(AttributeSet from, MutableAttributeSet to) {
         Enumeration keys = from.getAttributeNames();
         String value = "";
         while (keys.hasMoreElements()) {
@@ -1171,8 +1133,7 @@ public class HTMLWriter extends AbstractWriter {
      * 
      * @since 1.3
      */
-    protected void output(char[] chars, int start, int length)
-            throws IOException {
+    protected void output(char[] chars, int start, int length) throws IOException {
         if (!replaceEntities) {
             super.output(chars, start, length);
             return;

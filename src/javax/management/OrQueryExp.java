@@ -10,7 +10,6 @@ package javax.management;
  * of relational expressions.
  * 
  * @serial include
- *
  * @since 1.5
  */
 class OrQueryExp extends QueryEval implements QueryExp {
@@ -59,26 +58,22 @@ class OrQueryExp extends QueryEval implements QueryExp {
      * Applies the OrQueryExp on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the OrQueryExp will be
-     *             applied.
-     *
+     *        The name of the MBean on which the OrQueryExp will be
+     *        applied.
      * @return True if the query was successfully applied to the MBean, false
      *         otherwise.
-     *
-     *
      * @exception BadStringOperationException
-     *                                          The string passed to the method
-     *                                          is invalid.
+     *            The string passed to the method
+     *            is invalid.
      * @exception BadBinaryOpValueExpException
-     *                                          The expression passed to the
-     *                                          method is invalid.
+     *            The expression passed to the
+     *            method is invalid.
      * @exception BadAttributeValueExpException
-     *                                          The attribute value passed to
-     *                                          the method is invalid.
+     *            The attribute value passed to
+     *            the method is invalid.
      */
-    public boolean apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public boolean apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         return exp1.apply(name) || exp2.apply(name);
     }
 

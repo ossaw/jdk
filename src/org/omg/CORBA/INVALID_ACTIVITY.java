@@ -32,7 +32,7 @@ public final class INVALID_ACTIVITY extends SystemException {
      * message.
      *
      * @param detailMessage
-     *                      string containing a detailed message.
+     *        string containing a detailed message.
      */
     public INVALID_ACTIVITY(String detailMessage) {
         this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
@@ -43,9 +43,9 @@ public final class INVALID_ACTIVITY extends SystemException {
      * minor code and completion status.
      *
      * @param minorCode
-     *                         minor code.
+     *        minor code.
      * @param completionStatus
-     *                         completion status.
+     *        completion status.
      */
     public INVALID_ACTIVITY(int minorCode, CompletionStatus completionStatus) {
         this("", minorCode, completionStatus);
@@ -56,14 +56,13 @@ public final class INVALID_ACTIVITY extends SystemException {
      * message, minor code, and completion status.
      *
      * @param detailMessage
-     *                         string containing a detailed message.
+     *        string containing a detailed message.
      * @param minorCode
-     *                         minor code.
+     *        minor code.
      * @param completionStatus
-     *                         completion status.
+     *        completion status.
      */
-    public INVALID_ACTIVITY(String detailMessage, int minorCode,
-            CompletionStatus completionStatus) {
+    public INVALID_ACTIVITY(String detailMessage, int minorCode, CompletionStatus completionStatus) {
         super(detailMessage, minorCode, completionStatus);
     }
 }

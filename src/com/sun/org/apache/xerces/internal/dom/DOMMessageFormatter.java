@@ -26,7 +26,6 @@ import java.util.ResourceBundle;
  * Used to format DOM error messages, using the system locale.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @version $Id: DOMMessageFormatter.java,v 1.6 2010-11-01 04:39:38 joehw Exp $
  */
@@ -49,30 +48,27 @@ public class DOMMessageFormatter {
      * information.
      *
      * @param domain
-     *                  domain from which error string is to come.
+     *        domain from which error string is to come.
      * @param key
-     *                  The message key.
+     *        The message key.
      * @param arguments
-     *                  The message replacement text arguments. The order of the
-     *                  arguments must match that of the placeholders in the
-     *                  actual
-     *                  message.
-     *
+     *        The message replacement text arguments. The order of the
+     *        arguments must match that of the placeholders in the
+     *        actual
+     *        message.
      * @return the formatted message.
-     *
      * @throws MissingResourceException
-     *                                  Thrown if the message with the specified
-     *                                  key cannot be found.
+     *         Thrown if the message with the specified
+     *         key cannot be found.
      */
-    public static String formatMessage(String domain, String key,
-            Object[] arguments) throws MissingResourceException {
+    public static String formatMessage(String domain, String key, Object[] arguments)
+            throws MissingResourceException {
         ResourceBundle resourceBundle = getResourceBundle(domain);
         if (resourceBundle == null) {
             init();
             resourceBundle = getResourceBundle(domain);
             if (resourceBundle == null)
-                throw new MissingResourceException("Unknown domain" + domain,
-                        null, key);
+                throw new MissingResourceException("Unknown domain" + domain, null, key);
         }
         // format message
         String msg;
@@ -115,8 +111,7 @@ public class DOMMessageFormatter {
             return domResourceBundle;
         else if (domain == XML_DOMAIN || domain.equals(XML_DOMAIN))
             return xmlResourceBundle;
-        else if (domain == SERIALIZER_DOMAIN || domain.equals(
-                SERIALIZER_DOMAIN))
+        else if (domain == SERIALIZER_DOMAIN || domain.equals(SERIALIZER_DOMAIN))
             return serResourceBundle;
         return null;
     }
@@ -127,14 +122,11 @@ public class DOMMessageFormatter {
     public static void init() {
         if (locale != null) {
             domResourceBundle = SecuritySupport.getResourceBundle(
-                    "com.sun.org.apache.xerces.internal.impl.msg.DOMMessages",
-                    locale);
+                    "com.sun.org.apache.xerces.internal.impl.msg.DOMMessages", locale);
             serResourceBundle = SecuritySupport.getResourceBundle(
-                    "com.sun.org.apache.xerces.internal.impl.msg.XMLSerializerMessages",
-                    locale);
+                    "com.sun.org.apache.xerces.internal.impl.msg.XMLSerializerMessages", locale);
             xmlResourceBundle = SecuritySupport.getResourceBundle(
-                    "com.sun.org.apache.xerces.internal.impl.msg.XMLMessages",
-                    locale);
+                    "com.sun.org.apache.xerces.internal.impl.msg.XMLMessages", locale);
         } else {
             domResourceBundle = SecuritySupport.getResourceBundle(
                     "com.sun.org.apache.xerces.internal.impl.msg.DOMMessages");

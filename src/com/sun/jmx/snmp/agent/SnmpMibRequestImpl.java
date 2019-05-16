@@ -17,37 +17,34 @@ import com.sun.jmx.snmp.SnmpEngine;
  * a SNMP request that involves a specific MIB. One instance of this class will
  * be created for every MIB involved in a SNMP request, and will be passed to
  * the SnmpMibAgent in charge of handling that MIB.
- *
  * Instances of this class are allocated by the SNMP engine. You will never need
  * to use this class directly. You will only access instances of this class
  * through their SnmpMibRequest interface.
- *
  */
 final class SnmpMibRequestImpl implements SnmpMibRequest {
 
     /**
      * @param engine
-     *                        The local engine.
+     *        The local engine.
      * @param reqPdu
-     *                        The received pdu.
+     *        The received pdu.
      * @param vblist
-     *                        The vector of SnmpVarBind objects in which the MIB
-     *                        concerned
-     *                        by this request is involved.
+     *        The vector of SnmpVarBind objects in which the MIB
+     *        concerned
+     *        by this request is involved.
      * @param protocolVersion
-     *                        The protocol version of the SNMP request.
+     *        The protocol version of the SNMP request.
      * @param userData
-     *                        User allocated contextual data. This object must
-     *                        be allocated
-     *                        on a per SNMP request basis through the
-     *                        SnmpUserDataFactory
-     *                        registered with the SnmpAdaptorServer, and is
-     *                        handed back to
-     *                        the user through SnmpMibRequest objects.
+     *        User allocated contextual data. This object must
+     *        be allocated
+     *        on a per SNMP request basis through the
+     *        SnmpUserDataFactory
+     *        registered with the SnmpAdaptorServer, and is
+     *        handed back to
+     *        the user through SnmpMibRequest objects.
      */
-    public SnmpMibRequestImpl(SnmpEngine engine, SnmpPdu reqPdu,
-            Vector<SnmpVarBind> vblist, int protocolVersion, Object userData,
-            String principal, int securityLevel, int securityModel,
+    public SnmpMibRequestImpl(SnmpEngine engine, SnmpPdu reqPdu, Vector<SnmpVarBind> vblist,
+            int protocolVersion, Object userData, String principal, int securityLevel, int securityModel,
             byte[] contextName, byte[] accessContextName) {
         varbinds = vblist;
         version = protocolVersion;

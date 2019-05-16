@@ -27,14 +27,12 @@ package java.awt.event;
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/windowlistener.html">
  *      Tutorial: Writing a Window Listener</a>
- *
  * @author Carl Quinn
  * @author Amy Fowler
  * @author David Mendenhall
  * @since 1.1
  */
-public abstract class WindowAdapter implements WindowListener,
-        WindowStateListener, WindowFocusListener {
+public abstract class WindowAdapter implements WindowListener, WindowStateListener, WindowFocusListener {
     /**
      * Invoked when a window has been opened.
      */

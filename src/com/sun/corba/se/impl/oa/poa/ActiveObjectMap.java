@@ -68,8 +68,7 @@ public abstract class ActiveObjectMap {
         this.poa = poa;
     }
 
-    public static ActiveObjectMap create(POAImpl poa,
-            boolean multipleIDsAllowed) {
+    public static ActiveObjectMap create(POAImpl poa, boolean multipleIDsAllowed) {
         if (multipleIDsAllowed)
             return new MultipleObjectMap(poa);
         else

@@ -29,7 +29,6 @@ import sun.reflect.misc.MethodUtil;
  * the target and an array of argument values.
  *
  * @since 1.4
- *
  * @author Philip Milne
  */
 public class Statement {
@@ -61,12 +60,12 @@ public class Statement {
      * {@code arguments} property.
      *
      * @param target
-     *                   the target object of this statement
+     *        the target object of this statement
      * @param methodName
-     *                   the name of the method to invoke on the specified
-     *                   target
+     *        the name of the method to invoke on the specified
+     *        target
      * @param arguments
-     *                   the array of arguments to invoke the specified method
+     *        the array of arguments to invoke the specified method
      */
     @ConstructorProperties({ "target", "methodName", "arguments" })
     public Statement(Object target, String methodName, Object[] arguments) {
@@ -111,7 +110,6 @@ public class Statement {
     /**
      * The {@code execute} method finds a method whose name is the same as the
      * {@code methodName} property, and invokes the method on the target.
-     *
      * When the target's class defines many methods with the given name the
      * implementation should choose the most specific method using the algorithm
      * specified in the Java Language Specification (15.11). The dynamic class
@@ -134,18 +132,17 @@ public class Statement {
      * </ul>
      *
      * @throws NullPointerException
-     *                               if the value of the {@code target} or
-     *                               {@code methodName}
-     *                               property is {@code null}
+     *         if the value of the {@code target} or
+     *         {@code methodName}
+     *         property is {@code null}
      * @throws NoSuchMethodException
-     *                               if a matching method is not found
+     *         if a matching method is not found
      * @throws SecurityException
-     *                               if a security manager exists and it denies
-     *                               the method
-     *                               invocation
+     *         if a security manager exists and it denies
+     *         the method
+     *         invocation
      * @throws Exception
-     *                               that is thrown by the invoked method
-     *
+     *         that is thrown by the invoked method
      * @see java.lang.reflect.Method
      */
     public void execute() throws Exception {
@@ -158,12 +155,11 @@ public class Statement {
             throw new SecurityException("AccessControlContext is not set");
         }
         try {
-            return AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Object>() {
-                        public Object run() throws Exception {
-                            return invokeInternal();
-                        }
-                    }, acc);
+            return AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
+                public Object run() throws Exception {
+                    return invokeInternal();
+                }
+            }, acc);
         } catch (PrivilegedActionException exception) {
             throw exception.getException();
         }
@@ -174,8 +170,8 @@ public class Statement {
         String methodName = getMethodName();
 
         if (target == null || methodName == null) {
-            throw new NullPointerException((target == null ? "target"
-                    : "methodName") + " should not be null");
+            throw new NullPointerException((target == null ? "target" : "methodName")
+                    + " should not be null");
         }
 
         Object[] arguments = getArguments();
@@ -190,8 +186,7 @@ public class Statement {
         }
         Class<?>[] argClasses = new Class<?>[arguments.length];
         for (int i = 0; i < arguments.length; i++) {
-            argClasses[i] = (arguments[i] == null) ? null
-                    : arguments[i].getClass();
+            argClasses[i] = (arguments[i] == null) ? null : arguments[i].getClass();
         }
 
         AccessibleObject m = null;
@@ -210,10 +205,8 @@ public class Statement {
             }
             // Provide a short form for array instantiation by faking an
             // nary-constructor.
-            if (methodName.equals("newInstance") && ((Class) target)
-                    .isArray()) {
-                Object result = Array.newInstance(((Class) target)
-                        .getComponentType(), arguments.length);
+            if (methodName.equals("newInstance") && ((Class) target).isArray()) {
+                Object result = Array.newInstance(((Class) target).getComponentType(), arguments.length);
                 for (int i = 0; i < arguments.length; i++) {
                     Array.set(result, i, arguments[i]);
                 }
@@ -225,13 +218,11 @@ public class Statement {
                 // for Java's primitive types have a String constructor so we
                 // fake such a constructor here so that this special case can be
                 // ignored elsewhere.
-                if (target == Character.class && arguments.length == 1
-                        && argClasses[0] == String.class) {
+                if (target == Character.class && arguments.length == 1 && argClasses[0] == String.class) {
                     return new Character(((String) arguments[0]).charAt(0));
                 }
                 try {
-                    m = ConstructorFinder.findConstructor((Class) target,
-                            argClasses);
+                    m = ConstructorFinder.findConstructor((Class) target, argClasses);
                 } catch (NoSuchMethodException exception) {
                     m = null;
                 }
@@ -252,8 +243,7 @@ public class Statement {
              * methods of the objects themselves and we reinstate this rule
              * (perhaps temporarily) by special-casing arrays.
              */
-            if (target.getClass().isArray() && (methodName.equals("set")
-                    || methodName.equals("get"))) {
+            if (target.getClass().isArray() && (methodName.equals("set") || methodName.equals("get"))) {
                 int index = ((Integer) arguments[0]).intValue();
                 if (methodName.equals("get")) {
                     return Array.get(target, index);
@@ -272,8 +262,8 @@ public class Statement {
                     return ((Constructor) m).newInstance(arguments);
                 }
             } catch (IllegalAccessException iae) {
-                throw new Exception("Statement cannot invoke: " + methodName
-                        + " on " + target.getClass(), iae);
+                throw new Exception("Statement cannot invoke: " + methodName + " on " + target.getClass(),
+                        iae);
             } catch (InvocationTargetException ite) {
                 Throwable te = ite.getTargetException();
                 if (te instanceof Exception) {
@@ -313,8 +303,7 @@ public class Statement {
         if (arguments == null) {
             arguments = emptyArray;
         }
-        StringBuffer result = new StringBuffer(instanceName(target) + "."
-                + methodName + "(");
+        StringBuffer result = new StringBuffer(instanceName(target) + "." + methodName + "(");
         int n = arguments.length;
         for (int i = 0; i < n; i++) {
             result.append(instanceName(arguments[i]));

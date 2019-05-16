@@ -512,34 +512,19 @@ public class Event implements java.io.Serializable {
     /* table for mapping old Event action keys to KeyEvent virtual keys. */
     private static final int actionKeyCodes[][] = {
             /* virtual key action key */
-            { KeyEvent.VK_HOME, Event.HOME }, { KeyEvent.VK_END, Event.END }, {
-                    KeyEvent.VK_PAGE_UP, Event.PGUP }, { KeyEvent.VK_PAGE_DOWN,
-                            Event.PGDN }, { KeyEvent.VK_UP, Event.UP }, {
-                                    KeyEvent.VK_DOWN, Event.DOWN }, {
-                                            KeyEvent.VK_LEFT, Event.LEFT }, {
-                                                    KeyEvent.VK_RIGHT,
-                                                    Event.RIGHT }, {
-                                                            KeyEvent.VK_F1,
-                                                            Event.F1 }, {
-                                                                    KeyEvent.VK_F2,
-                                                                    Event.F2 },
-            { KeyEvent.VK_F3, Event.F3 }, { KeyEvent.VK_F4, Event.F4 }, {
-                    KeyEvent.VK_F5, Event.F5 }, { KeyEvent.VK_F6, Event.F6 }, {
-                            KeyEvent.VK_F7, Event.F7 }, { KeyEvent.VK_F8,
-                                    Event.F8 }, { KeyEvent.VK_F9, Event.F9 }, {
-                                            KeyEvent.VK_F10, Event.F10 }, {
-                                                    KeyEvent.VK_F11,
-                                                    Event.F11 }, {
-                                                            KeyEvent.VK_F12,
-                                                            Event.F12 }, {
-                                                                    KeyEvent.VK_PRINTSCREEN,
-                                                                    Event.PRINT_SCREEN },
-            { KeyEvent.VK_SCROLL_LOCK, Event.SCROLL_LOCK }, {
-                    KeyEvent.VK_CAPS_LOCK, Event.CAPS_LOCK }, {
-                            KeyEvent.VK_NUM_LOCK, Event.NUM_LOCK }, {
-                                    KeyEvent.VK_PAUSE, Event.PAUSE }, {
-                                            KeyEvent.VK_INSERT,
-                                            Event.INSERT } };
+            { KeyEvent.VK_HOME, Event.HOME }, { KeyEvent.VK_END, Event.END }, { KeyEvent.VK_PAGE_UP,
+                    Event.PGUP }, { KeyEvent.VK_PAGE_DOWN, Event.PGDN }, { KeyEvent.VK_UP, Event.UP }, {
+                            KeyEvent.VK_DOWN, Event.DOWN }, { KeyEvent.VK_LEFT, Event.LEFT }, {
+                                    KeyEvent.VK_RIGHT, Event.RIGHT }, { KeyEvent.VK_F1, Event.F1 }, {
+                                            KeyEvent.VK_F2, Event.F2 }, { KeyEvent.VK_F3, Event.F3 }, {
+                                                    KeyEvent.VK_F4, Event.F4 }, { KeyEvent.VK_F5, Event.F5 },
+            { KeyEvent.VK_F6, Event.F6 }, { KeyEvent.VK_F7, Event.F7 }, { KeyEvent.VK_F8, Event.F8 }, {
+                    KeyEvent.VK_F9, Event.F9 }, { KeyEvent.VK_F10, Event.F10 }, { KeyEvent.VK_F11,
+                            Event.F11 }, { KeyEvent.VK_F12, Event.F12 }, { KeyEvent.VK_PRINTSCREEN,
+                                    Event.PRINT_SCREEN }, { KeyEvent.VK_SCROLL_LOCK, Event.SCROLL_LOCK }, {
+                                            KeyEvent.VK_CAPS_LOCK, Event.CAPS_LOCK }, { KeyEvent.VK_NUM_LOCK,
+                                                    Event.NUM_LOCK }, { KeyEvent.VK_PAUSE, Event.PAUSE }, {
+                                                            KeyEvent.VK_INSERT, Event.INSERT } };
 
     /**
      * This field controls whether or not the event is sent back down to the
@@ -580,24 +565,23 @@ public class Event implements java.io.Serializable {
      * keyboard key, state of the modifier keys, and argument.
      * 
      * @param target
-     *                  the target component.
+     *        the target component.
      * @param when
-     *                  the time stamp.
+     *        the time stamp.
      * @param id
-     *                  the event type.
+     *        the event type.
      * @param x
-     *                  the <i>x</i> coordinate.
+     *        the <i>x</i> coordinate.
      * @param y
-     *                  the <i>y</i> coordinate.
+     *        the <i>y</i> coordinate.
      * @param key
-     *                  the key pressed in a keyboard event.
+     *        the key pressed in a keyboard event.
      * @param modifiers
-     *                  the state of the modifier keys.
+     *        the state of the modifier keys.
      * @param arg
-     *                  the specified argument.
+     *        the specified argument.
      */
-    public Event(Object target, long when, int id, int x, int y, int key,
-            int modifiers, Object arg) {
+    public Event(Object target, long when, int id, int x, int y, int key, int modifiers, Object arg) {
         this.target = target;
         this.when = when;
         this.id = id;
@@ -640,22 +624,21 @@ public class Event implements java.io.Serializable {
      * <code>null</code>.
      * 
      * @param target
-     *                  the target component.
+     *        the target component.
      * @param when
-     *                  the time stamp.
+     *        the time stamp.
      * @param id
-     *                  the event type.
+     *        the event type.
      * @param x
-     *                  the <i>x</i> coordinate.
+     *        the <i>x</i> coordinate.
      * @param y
-     *                  the <i>y</i> coordinate.
+     *        the <i>y</i> coordinate.
      * @param key
-     *                  the key pressed in a keyboard event.
+     *        the key pressed in a keyboard event.
      * @param modifiers
-     *                  the state of the modifier keys.
+     *        the state of the modifier keys.
      */
-    public Event(Object target, long when, int id, int x, int y, int key,
-            int modifiers) {
+    public Event(Object target, long when, int id, int x, int y, int key, int modifiers) {
         this(target, when, id, x, y, key, modifiers, null);
     }
 
@@ -668,11 +651,11 @@ public class Event implements java.io.Serializable {
      * component, event type, and argument.
      * 
      * @param target
-     *               the target component.
+     *        the target component.
      * @param id
-     *               the event type.
+     *        the event type.
      * @param arg
-     *               the specified argument.
+     *        the specified argument.
      */
     public Event(Object target, int id, Object arg) {
         this(target, 0, id, 0, 0, 0, 0, arg);
@@ -692,9 +675,9 @@ public class Event implements java.io.Serializable {
      * a region in the case of an expose event.
      * 
      * @param dx
-     *           the distance to translate the <i>x</i> coordinate.
+     *        the distance to translate the <i>x</i> coordinate.
      * @param dy
-     *           the distance to translate the <i>y</i> coordinate.
+     *        the distance to translate the <i>y</i> coordinate.
      */
     public void translate(int dx, int dy) {
         this.x += dx;

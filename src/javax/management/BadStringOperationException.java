@@ -26,7 +26,7 @@ public class BadStringOperationException extends Exception {
      * detail message.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public BadStringOperationException(String message) {
         this.op = message;

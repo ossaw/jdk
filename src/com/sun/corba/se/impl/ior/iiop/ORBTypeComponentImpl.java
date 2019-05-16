@@ -16,8 +16,7 @@ import org.omg.CORBA_2_3.portable.OutputStream;
 /**
  * @author Ken Cavanaugh
  */
-public class ORBTypeComponentImpl extends TaggedComponentBase implements
-        ORBTypeComponent {
+public class ORBTypeComponentImpl extends TaggedComponentBase implements ORBTypeComponent {
     private int ORBType;
 
     public boolean equals(Object obj) {

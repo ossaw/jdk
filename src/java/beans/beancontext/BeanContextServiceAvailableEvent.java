@@ -26,9 +26,9 @@ public class BeanContextServiceAvailableEvent extends BeanContextEvent {
      * Construct a <code>BeanContextAvailableServiceEvent</code>.
      * 
      * @param bcs
-     *            The context in which the service has become available
+     *        The context in which the service has become available
      * @param sc
-     *            A <code>Class</code> reference to the newly available service
+     *        A <code>Class</code> reference to the newly available service
      */
     public BeanContextServiceAvailableEvent(BeanContextServices bcs, Class sc) {
         super((BeanContext) bcs);
@@ -60,8 +60,7 @@ public class BeanContextServiceAvailableEvent extends BeanContextEvent {
      * @return the current selectors available from the service
      */
     public Iterator getCurrentServiceSelectors() {
-        return ((BeanContextServices) getSource()).getCurrentServiceSelectors(
-                serviceClass);
+        return ((BeanContextServices) getSource()).getCurrentServiceSelectors(serviceClass);
     }
 
     /*

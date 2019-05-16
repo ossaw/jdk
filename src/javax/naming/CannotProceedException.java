@@ -47,7 +47,6 @@ public class CannotProceedException extends NamingException {
      * setRemainingName().
      * 
      * @serial
-     *
      * @see #getRemainingNewName
      * @see #setRemainingNewName
      */
@@ -62,7 +61,6 @@ public class CannotProceedException extends NamingException {
      * setEnvironment().
      * 
      * @serial
-     *
      * @see #getEnvironment
      * @see #setEnvironment
      */
@@ -79,7 +77,6 @@ public class CannotProceedException extends NamingException {
      * it should be accessed and updated using getAltName() and setAltName().
      * 
      * @serial
-     *
      * @see #getAltName
      * @see #setAltName
      * @see #altNameCtx
@@ -98,7 +95,6 @@ public class CannotProceedException extends NamingException {
      * setAltNameCtx().
      * 
      * @serial
-     *
      * @see #getAltNameCtx
      * @see #setAltNameCtx
      * @see #altName
@@ -111,10 +107,10 @@ public class CannotProceedException extends NamingException {
      * All unspecified fields default to null.
      *
      * @param explanation
-     *                    A possibly null string containing additional detail
-     *                    about this
-     *                    exception. If null, this exception has no detail
-     *                    message.
+     *        A possibly null string containing additional detail
+     *        about this
+     *        exception. If null, this exception has no detail
+     *        message.
      * @see java.lang.Throwable#getMessage
      */
     public CannotProceedException(String explanation) {
@@ -146,9 +142,9 @@ public class CannotProceedException extends NamingException {
      * called.
      * 
      * @param environment
-     *                    A possibly null environment property set. null means
-     *                    no
-     *                    environment is being recorded for this exception.
+     *        A possibly null environment property set. null means
+     *        no
+     *        environment is being recorded for this exception.
      * @see #getEnvironment
      */
     public void setEnvironment(Hashtable<?, ?> environment) {
@@ -162,7 +158,6 @@ public class CannotProceedException extends NamingException {
      * @return The possibly null part of the new name that has not been
      *         resolved. It is a composite name. It can be null, which means the
      *         remaining new name field has not been set.
-     *
      * @see #setRemainingNewName
      */
     public Name getRemainingNewName() {
@@ -183,10 +178,9 @@ public class CannotProceedException extends NamingException {
      * vice versa.
      *
      * @param newName
-     *                The possibly null name to set the "remaining new name" to.
-     *                If
-     *                null, it sets the remaining name field to null.
-     *
+     *        The possibly null name to set the "remaining new name" to.
+     *        If
+     *        null, it sets the remaining name field to null.
      * @see #getRemainingNewName
      */
     public void setRemainingNewName(Name newName) {
@@ -205,7 +199,6 @@ public class CannotProceedException extends NamingException {
      * @return The name of the resolved object, relative to
      *         <code>altNameCtx</code>. It is a composite name. If null, then no
      *         name is specified.
-     *
      * @see #setAltName
      * @see #getAltNameCtx
      * @see javax.naming.spi.ObjectFactory#getObjectInstance
@@ -218,11 +211,10 @@ public class CannotProceedException extends NamingException {
      * Sets the <code>altName</code> field of this exception.
      *
      * @param altName
-     *                The name of the resolved object, relative to
-     *                <code>altNameCtx</code>. It is a composite name. If null,
-     *                then
-     *                no name is specified.
-     *
+     *        The name of the resolved object, relative to
+     *        <code>altNameCtx</code>. It is a composite name. If null,
+     *        then
+     *        no name is specified.
      * @see #getAltName
      * @see #setAltNameCtx
      */
@@ -238,7 +230,6 @@ public class CannotProceedException extends NamingException {
      *
      * @return The context relative to which <code>altName</code> is named. If
      *         null, then the default initial context is implied.
-     *
      * @see #setAltNameCtx
      * @see #getAltName
      * @see javax.naming.spi.ObjectFactory#getObjectInstance
@@ -251,10 +242,9 @@ public class CannotProceedException extends NamingException {
      * Sets the <code>altNameCtx</code> field of this exception.
      *
      * @param altNameCtx
-     *                   The context relative to which <code>altName</code> is
-     *                   named.
-     *                   If null, then the default initial context is implied.
-     *
+     *        The context relative to which <code>altName</code> is
+     *        named.
+     *        If null, then the default initial context is implied.
      * @see #getAltNameCtx
      * @see #setAltName
      */

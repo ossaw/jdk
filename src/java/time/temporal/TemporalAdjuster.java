@@ -68,7 +68,6 @@ import java.time.DateTimeException;
  *
  * @implSpec This interface places no restrictions on the mutability of
  *           implementations, however immutability is strongly recommended.
- *
  * @see TemporalAdjusters
  * @since 1.8
  */
@@ -115,15 +114,14 @@ public interface TemporalAdjuster {
      *           <p>
      *           This method may be called from multiple threads in parallel. It
      *           must be thread-safe when invoked.
-     *
      * @param temporal
-     *                 the temporal object to adjust, not null
+     *        the temporal object to adjust, not null
      * @return an object of the same observable type with the adjustment made,
      *         not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     Temporal adjustInto(Temporal temporal);
 

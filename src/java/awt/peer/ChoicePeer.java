@@ -8,7 +8,6 @@ import java.awt.Choice;
 
 /**
  * The peer interface for {@link Choice}.
- *
  * The peer interfaces are intended only for use in porting the AWT. They are
  * not intended for use by application developers, and developers should not
  * implement peers nor invoke any of the peer methods directly on the peer
@@ -21,10 +20,9 @@ public interface ChoicePeer extends ComponentPeer {
      * {@code index}.
      *
      * @param item
-     *              the label to be added to the list
+     *        the label to be added to the list
      * @param index
-     *              the index where to add the item
-     *
+     *        the index where to add the item
      * @see Choice#add(String)
      */
     void add(String item, int index);
@@ -33,8 +31,7 @@ public interface ChoicePeer extends ComponentPeer {
      * Removes the item at index {@code index} from the combo box list.
      *
      * @param index
-     *              the index where to remove the item
-     *
+     *        the index where to remove the item
      * @see Choice#remove(int)
      */
     void remove(int index);
@@ -50,8 +47,7 @@ public interface ChoicePeer extends ComponentPeer {
      * Selects the item at index {@code index}.
      *
      * @param index
-     *              the index which should be selected
-     *
+     *        the index which should be selected
      * @see Choice#select(int)
      */
     void select(int index);

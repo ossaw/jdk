@@ -12,7 +12,6 @@ import javax.swing.event.*;
  * The <code>TableModel</code> interface specifies the methods the
  * <code>JTable</code> will use to interrogate a tabular data model.
  * <p>
- *
  * The <code>JTable</code> can be set up to display any data model which
  * implements the <code>TableModel</code> interface with a couple of lines of
  * code:
@@ -22,7 +21,6 @@ import javax.swing.event.*;
  * JTable table = new JTable(myData);
  * </pre>
  * <p>
- *
  * For further documentation, see <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/table.html#data">
  * Creating a Table Model</a> in <em>The Java Tutorial</em>.
@@ -58,7 +56,7 @@ public interface TableModel {
      * need to be unique; two columns in a table can have the same name.
      *
      * @param columnIndex
-     *                    the index of the column
+     *        the index of the column
      * @return the name of the column
      */
     public String getColumnName(int columnIndex);
@@ -69,7 +67,7 @@ public interface TableModel {
      * renderer and editor for the column.
      *
      * @param columnIndex
-     *                    the index of the column
+     *        the index of the column
      * @return the common ancestor class of the object values in the model.
      */
     public Class<?> getColumnClass(int columnIndex);
@@ -80,9 +78,9 @@ public interface TableModel {
      * on the cell will not change the value of that cell.
      *
      * @param rowIndex
-     *                    the row whose value to be queried
+     *        the row whose value to be queried
      * @param columnIndex
-     *                    the column whose value to be queried
+     *        the column whose value to be queried
      * @return true if the cell is editable
      * @see #setValueAt
      */
@@ -93,9 +91,9 @@ public interface TableModel {
      * <code>rowIndex</code>.
      *
      * @param rowIndex
-     *                    the row whose value is to be queried
+     *        the row whose value is to be queried
      * @param columnIndex
-     *                    the column whose value is to be queried
+     *        the column whose value is to be queried
      * @return the value Object at the specified cell
      */
     public Object getValueAt(int rowIndex, int columnIndex);
@@ -105,11 +103,11 @@ public interface TableModel {
      * <code>rowIndex</code> to <code>aValue</code>.
      *
      * @param aValue
-     *                    the new value
+     *        the new value
      * @param rowIndex
-     *                    the row whose value is to be changed
+     *        the row whose value is to be changed
      * @param columnIndex
-     *                    the column whose value is to be changed
+     *        the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
@@ -120,7 +118,7 @@ public interface TableModel {
      * data model occurs.
      *
      * @param l
-     *          the TableModelListener
+     *        the TableModelListener
      */
     public void addTableModelListener(TableModelListener l);
 
@@ -129,7 +127,7 @@ public interface TableModel {
      * the data model occurs.
      *
      * @param l
-     *          the TableModelListener
+     *        the TableModelListener
      */
     public void removeTableModelListener(TableModelListener l);
 }

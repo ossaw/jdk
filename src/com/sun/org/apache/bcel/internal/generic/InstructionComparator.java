@@ -82,14 +82,12 @@ public interface InstructionComparator {
                 } else if (i1 instanceof BranchInstruction) {
                     return ((BranchInstruction) i1).target == ((BranchInstruction) i2).target;
                 } else if (i1 instanceof ConstantPushInstruction) {
-                    return ((ConstantPushInstruction) i1).getValue().equals(
-                            ((ConstantPushInstruction) i2).getValue());
+                    return ((ConstantPushInstruction) i1).getValue().equals(((ConstantPushInstruction) i2)
+                            .getValue());
                 } else if (i1 instanceof IndexedInstruction) {
-                    return ((IndexedInstruction) i1)
-                            .getIndex() == ((IndexedInstruction) i2).getIndex();
+                    return ((IndexedInstruction) i1).getIndex() == ((IndexedInstruction) i2).getIndex();
                 } else if (i1 instanceof NEWARRAY) {
-                    return ((NEWARRAY) i1).getTypecode() == ((NEWARRAY) i2)
-                            .getTypecode();
+                    return ((NEWARRAY) i1).getTypecode() == ((NEWARRAY) i2).getTypecode();
                 } else {
                     return true;
                 }

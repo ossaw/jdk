@@ -30,7 +30,6 @@ public final class FactoryEnumeration {
      * the Class object is replaced by an instance of the Class itself;
      * eventually, the list contains only a list of factory instances and no
      * more updates are required.
-     *
      * <p>
      * Both Class objects and factories are wrapped in weak references so as not
      * to prevent GC of the class loader. Each weak reference is tagged with the
@@ -38,16 +37,14 @@ public final class FactoryEnumeration {
      * cleared.
      *
      * @param factories
-     *                  A non-null list
+     *        A non-null list
      * @param loader
-     *                  The class loader of the list's contents
-     *
-     *                  This internal method is used with Thread Context Class
-     *                  Loader
-     *                  (TCCL), please don't expose this method as public.
+     *        The class loader of the list's contents
+     *        This internal method is used with Thread Context Class
+     *        Loader
+     *        (TCCL), please don't expose this method as public.
      */
-    FactoryEnumeration(List<NamedWeakReference<Object>> factories,
-            ClassLoader loader) {
+    FactoryEnumeration(List<NamedWeakReference<Object>> factories, ClassLoader loader) {
         this.factories = factories;
         this.loader = loader;
     }
@@ -74,18 +71,15 @@ public final class FactoryEnumeration {
                 factories.set(posn - 1, ref); // replace Class object or null
                 return answer;
             } catch (ClassNotFoundException e) {
-                NamingException ne = new NamingException(
-                        "No longer able to load " + className);
+                NamingException ne = new NamingException("No longer able to load " + className);
                 ne.setRootCause(e);
                 throw ne;
             } catch (InstantiationException e) {
-                NamingException ne = new NamingException("Cannot instantiate "
-                        + answer);
+                NamingException ne = new NamingException("Cannot instantiate " + answer);
                 ne.setRootCause(e);
                 throw ne;
             } catch (IllegalAccessException e) {
-                NamingException ne = new NamingException("Cannot access "
-                        + answer);
+                NamingException ne = new NamingException("Cannot access " + answer);
                 ne.setRootCause(e);
                 throw ne;
             }

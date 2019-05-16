@@ -13,5 +13,4 @@ import java.lang.annotation.*;
 /* non-public */
 @Target({ ElementType.METHOD, ElementType.CONSTRUCTOR })
 @Retention(RetentionPolicy.RUNTIME)
-@interface ForceInline {
-}
+@interface ForceInline {}

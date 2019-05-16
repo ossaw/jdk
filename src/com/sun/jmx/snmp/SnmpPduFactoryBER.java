@@ -67,11 +67,10 @@ public class SnmpPduFactoryBER implements SnmpPduFactory, Serializable {
      * <CODE>SnmpPdu</CODE>.
      *
      * @param msg
-     *            The SNMP message to be decoded.
+     *        The SNMP message to be decoded.
      * @return The resulting SNMP PDU packet.
      * @exception SnmpStatusException
-     *                                If the encoding is invalid.
-     *
+     *            If the encoding is invalid.
      * @since 1.5
      */
     public SnmpPdu decodeSnmpPdu(SnmpMsg msg) throws SnmpStatusException {
@@ -85,23 +84,22 @@ public class SnmpPduFactoryBER implements SnmpPduFactory, Serializable {
      * aborted.
      *
      * @param p
-     *                      The <CODE>SnmpPdu</CODE> to be encoded.
+     *        The <CODE>SnmpPdu</CODE> to be encoded.
      * @param maxDataLength
-     *                      The size limit of the resulting encoding.
+     *        The size limit of the resulting encoding.
      * @return Null or a fully encoded <CODE>SnmpMsg</CODE>.
      * @exception SnmpStatusException
-     *                                If <CODE>pdu</CODE> contains illegal
-     *                                values and cannot be
-     *                                encoded.
+     *            If <CODE>pdu</CODE> contains illegal
+     *            values and cannot be
+     *            encoded.
      * @exception SnmpTooBigException
-     *                                If the resulting encoding does not fit
-     *                                into
-     *                                <CODE>maxPktSize</CODE> bytes.
-     *
+     *            If the resulting encoding does not fit
+     *            into
+     *            <CODE>maxPktSize</CODE> bytes.
      * @since 1.5
      */
-    public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
-            throws SnmpStatusException, SnmpTooBigException {
+    public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength) throws SnmpStatusException,
+            SnmpTooBigException {
         switch (p.version) {
             case SnmpDefinitions.snmpVersionOne:
             case SnmpDefinitions.snmpVersionTwo: {

@@ -84,9 +84,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
  * </ul>
  *
  * @xerces.internal
- *
  * @author Andy Clark, IBM
- *
  * @version $Id: XMLNamespaceBinder.java,v 1.4 2010-11-01 04:39:41 joehw Exp $
  */
 public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
@@ -98,8 +96,7 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     // feature identifiers
 
     /** Feature identifier: namespaces. */
-    protected static final String NAMESPACES = Constants.SAX_FEATURE_PREFIX
-            + Constants.NAMESPACES_FEATURE;
+    protected static final String NAMESPACES = Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
 
     // property identifiers
 
@@ -120,8 +117,7 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     private static final Boolean[] FEATURE_DEFAULTS = { null, };
 
     /** Recognized properties. */
-    private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE,
-            ERROR_REPORTER, };
+    private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, ERROR_REPORTER, };
 
     /** Property defaults. */
     private static final Object[] PROPERTY_DEFAULTS = { null, null, };
@@ -183,12 +179,11 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * to the registered document handler or passes all document events.
      *
      * @param onlyPassPrefixMappingEvents
-     *                                    True to pass only the prefix mapping
-     *                                    events; false to pass all
-     *                                    events.
+     *        True to pass only the prefix mapping
+     *        events; false to pass all
+     *        events.
      */
-    public void setOnlyPassPrefixMappingEvents(
-            boolean onlyPassPrefixMappingEvents) {
+    public void setOnlyPassPrefixMappingEvents(boolean onlyPassPrefixMappingEvents) {
         fOnlyPassPrefixMappingEvents = onlyPassPrefixMappingEvents;
     } // setOnlyPassPrefixMappingEvents(boolean)
 
@@ -210,27 +205,24 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * any features and properties that affect the operation of the component.
      *
      * @param componentManager
-     *                         The component manager.
-     *
+     *        The component manager.
      * @throws SAXException
-     *                      Thrown by component on initialization error. For
-     *                      example, if
-     *                      a feature or property is required for the operation
-     *                      of the
-     *                      component, the component manager may throw a
-     *                      SAXNotRecognizedException or a
-     *                      SAXNotSupportedException.
+     *         Thrown by component on initialization error. For
+     *         example, if
+     *         a feature or property is required for the operation
+     *         of the
+     *         component, the component manager may throw a
+     *         SAXNotRecognizedException or a
+     *         SAXNotSupportedException.
      */
-    public void reset(XMLComponentManager componentManager)
-            throws XNIException {
+    public void reset(XMLComponentManager componentManager) throws XNIException {
 
         // features
         fNamespaces = componentManager.getFeature(NAMESPACES, true);
 
         // Xerces properties
         fSymbolTable = (SymbolTable) componentManager.getProperty(SYMBOL_TABLE);
-        fErrorReporter = (XMLErrorReporter) componentManager.getProperty(
-                ERROR_REPORTER);
+        fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
 
     } // reset(XMLComponentManager)
 
@@ -251,19 +243,17 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * not affect the operation of the component.
      *
      * @param featureId
-     *                  The feature identifier.
+     *        The feature identifier.
      * @param state
-     *                  The state of the feature.
-     *
+     *        The state of the feature.
      * @throws SAXNotRecognizedException
-     *                                   The component should not throw this
-     *                                   exception.
+     *         The component should not throw this
+     *         exception.
      * @throws SAXNotSupportedException
-     *                                   The component should not throw this
-     *                                   exception.
+     *         The component should not throw this
+     *         exception.
      */
-    public void setFeature(String featureId, boolean state)
-            throws XMLConfigurationException {} // setFeature(String,boolean)
+    public void setFeature(String featureId, boolean state) throws XMLConfigurationException {} // setFeature(String,boolean)
 
     /**
      * Returns a list of property identifiers that are recognized by this
@@ -280,20 +270,17 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * @param propertyId
      * @param value
      */
-    public void setProperty(String propertyId, Object value)
-            throws XMLConfigurationException {
+    public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
         // Xerces properties
         if (propertyId.startsWith(Constants.XERCES_PROPERTY_PREFIX)) {
-            final int suffixLength = propertyId.length()
-                    - Constants.XERCES_PROPERTY_PREFIX.length();
+            final int suffixLength = propertyId.length() - Constants.XERCES_PROPERTY_PREFIX.length();
 
-            if (suffixLength == Constants.SYMBOL_TABLE_PROPERTY.length()
-                    && propertyId.endsWith(Constants.SYMBOL_TABLE_PROPERTY)) {
+            if (suffixLength == Constants.SYMBOL_TABLE_PROPERTY.length() && propertyId.endsWith(
+                    Constants.SYMBOL_TABLE_PROPERTY)) {
                 fSymbolTable = (SymbolTable) value;
-            } else if (suffixLength == Constants.ERROR_REPORTER_PROPERTY
-                    .length() && propertyId.endsWith(
-                            Constants.ERROR_REPORTER_PROPERTY)) {
+            } else if (suffixLength == Constants.ERROR_REPORTER_PROPERTY.length() && propertyId.endsWith(
+                    Constants.ERROR_REPORTER_PROPERTY)) {
                 fErrorReporter = (XMLErrorReporter) value;
             }
             return;
@@ -306,8 +293,7 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * not want to report a default value for this feature.
      *
      * @param featureId
-     *                  The feature identifier.
-     *
+     *        The feature identifier.
      * @since Xerces 2.2.0
      */
     public Boolean getFeatureDefault(String featureId) {
@@ -324,8 +310,7 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * not want to report a default value for this property.
      *
      * @param propertyId
-     *                   The property identifier.
-     *
+     *        The property identifier.
      * @since Xerces 2.2.0
      */
     public Object getPropertyDefault(String propertyId) {
@@ -372,30 +357,27 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * appearing as part of attribute values.
      *
      * @param name
-     *                   The name of the general entity.
+     *        The name of the general entity.
      * @param identifier
-     *                   The resource identifier.
+     *        The resource identifier.
      * @param encoding
-     *                   The auto-detected IANA encoding name of the entity
-     *                   stream.
-     *                   This value will be null in those situations where the
-     *                   entity
-     *                   encoding is not auto-detected (e.g. internal entities
-     *                   or a
-     *                   document entity that is parsed from a java.io.Reader).
+     *        The auto-detected IANA encoding name of the entity
+     *        stream.
+     *        This value will be null in those situations where the
+     *        entity
+     *        encoding is not auto-detected (e.g. internal entities
+     *        or a
+     *        document entity that is parsed from a java.io.Reader).
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void startGeneralEntity(String name,
-            XMLResourceIdentifier identifier, String encoding,
+    public void startGeneralEntity(String name, XMLResourceIdentifier identifier, String encoding,
             Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
-            fDocumentHandler.startGeneralEntity(name, identifier, encoding,
-                    augs);
+            fDocumentHandler.startGeneralEntity(name, identifier, encoding, augs);
         }
     } // startEntity(String,String,String,String,String)
 
@@ -411,18 +393,16 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * appearing as part of attribute values.
      *
      * @param version
-     *                 The XML version, or null if not specified.
+     *        The XML version, or null if not specified.
      * @param encoding
-     *                 The IANA encoding name of the entity.
+     *        The IANA encoding name of the entity.
      * @param augs
-     *                 Additional information that may include infoset
-     *                 augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void textDecl(String version, String encoding, Augmentations augs)
-            throws XNIException {
+    public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.textDecl(version, encoding, augs);
         }
@@ -432,43 +412,40 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * The start of the document.
      *
      * @param locator
-     *                         The system identifier of the entity if the entity
-     *                         is external,
-     *                         null otherwise.
+     *        The system identifier of the entity if the entity
+     *        is external,
+     *        null otherwise.
      * @param encoding
-     *                         The auto-detected IANA encoding name of the
-     *                         entity stream.
-     *                         This value will be null in those situations where
-     *                         the entity
-     *                         encoding is not auto-detected (e.g. internal
-     *                         entities or a
-     *                         document entity that is parsed from a
-     *                         java.io.Reader).
+     *        The auto-detected IANA encoding name of the
+     *        entity stream.
+     *        This value will be null in those situations where
+     *        the entity
+     *        encoding is not auto-detected (e.g. internal
+     *        entities or a
+     *        document entity that is parsed from a
+     *        java.io.Reader).
      * @param namespaceContext
-     *                         The namespace context in effect at the start of
-     *                         this document.
-     *                         This object represents the current context.
-     *                         Implementors of
-     *                         this class are responsible for copying the
-     *                         namespace bindings
-     *                         from the the current context (and its parent
-     *                         contexts) if that
-     *                         information is important.
+     *        The namespace context in effect at the start of
+     *        this document.
+     *        This object represents the current context.
+     *        Implementors of
+     *        this class are responsible for copying the
+     *        namespace bindings
+     *        from the the current context (and its parent
+     *        contexts) if that
+     *        information is important.
      * @param augs
-     *                         Additional information that may include infoset
-     *                         augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void startDocument(XMLLocator locator, String encoding,
-            NamespaceContext namespaceContext, Augmentations augs)
-            throws XNIException {
+    public void startDocument(XMLLocator locator, String encoding, NamespaceContext namespaceContext,
+            Augmentations augs) throws XNIException {
         fNamespaceContext = namespaceContext;
 
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
-            fDocumentHandler.startDocument(locator, encoding, namespaceContext,
-                    augs);
+            fDocumentHandler.startDocument(locator, encoding, namespaceContext, augs);
         }
     } // startDocument(XMLLocator,String)
 
@@ -477,21 +454,20 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * this method will be called immediately following the startDocument call.
      *
      * @param version
-     *                   The XML version.
+     *        The XML version.
      * @param encoding
-     *                   The IANA encoding name of the document, or null if not
-     *                   specified.
+     *        The IANA encoding name of the document, or null if not
+     *        specified.
      * @param standalone
-     *                   The standalone value, or null if not specified.
+     *        The standalone value, or null if not specified.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void xmlDecl(String version, String encoding, String standalone,
-            Augmentations augs) throws XNIException {
+    public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
+            throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.xmlDecl(version, encoding, standalone, augs);
         }
@@ -501,23 +477,22 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * Notifies of the presence of the DOCTYPE line in the document.
      *
      * @param rootElement
-     *                    The name of the root element.
+     *        The name of the root element.
      * @param publicId
-     *                    The public identifier if an external DTD or null if
-     *                    the
-     *                    external DTD is specified using SYSTEM.
+     *        The public identifier if an external DTD or null if
+     *        the
+     *        external DTD is specified using SYSTEM.
      * @param systemId
-     *                    The system identifier if an external DTD, null
-     *                    otherwise.
+     *        The system identifier if an external DTD, null
+     *        otherwise.
      * @param augs
-     *                    Additional information that may include infoset
-     *                    augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void doctypeDecl(String rootElement, String publicId,
-            String systemId, Augmentations augs) throws XNIException {
+    public void doctypeDecl(String rootElement, String publicId, String systemId, Augmentations augs)
+            throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.doctypeDecl(rootElement, publicId, systemId, augs);
         }
@@ -527,15 +502,13 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * A comment.
      *
      * @param text
-     *             The text in the comment.
+     *        The text in the comment.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @throws XNIException
-     *                      Thrown by application to signal an error.
+     *         Thrown by application to signal an error.
      */
-    public void comment(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void comment(XMLString text, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.comment(text, augs);
         }
@@ -553,18 +526,16 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * for parsing the data.
      *
      * @param target
-     *               The target.
+     *        The target.
      * @param data
-     *               The data or null if none specified.
+     *        The data or null if none specified.
      * @param augs
-     *               Additional information that may include infoset
-     *               augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void processingInstruction(String target, XMLString data,
-            Augmentations augs) throws XNIException {
+    public void processingInstruction(String target, XMLString data, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.processingInstruction(target, data, augs);
         }
@@ -580,18 +551,17 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * method.
      *
      * @param element
-     *                   The name of the element.
+     *        The name of the element.
      * @param attributes
-     *                   The element attributes.
+     *        The element attributes.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void startElement(QName element, XMLAttributes attributes,
-            Augmentations augs) throws XNIException {
+    public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
 
         if (fNamespaces) {
             handleStartElement(element, attributes, augs, false);
@@ -605,18 +575,17 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * An empty element.
      *
      * @param element
-     *                   The name of the element.
+     *        The name of the element.
      * @param attributes
-     *                   The element attributes.
+     *        The element attributes.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void emptyElement(QName element, XMLAttributes attributes,
-            Augmentations augs) throws XNIException {
+    public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
 
         if (fNamespaces) {
             handleStartElement(element, attributes, augs, true);
@@ -631,15 +600,13 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * Character content.
      *
      * @param text
-     *             The content.
+     *        The content.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void characters(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void characters(XMLString text, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.characters(text, augs);
         }
@@ -653,15 +620,13 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * document are ignorable based on the element content model.
      *
      * @param text
-     *             The ignorable whitespace.
+     *        The ignorable whitespace.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void ignorableWhitespace(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.ignorableWhitespace(text, augs);
         }
@@ -671,16 +636,14 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * The end of an element.
      *
      * @param element
-     *                The name of the element.
+     *        The name of the element.
      * @param augs
-     *                Additional information that may include infoset
-     *                augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void endElement(QName element, Augmentations augs)
-            throws XNIException {
+    public void endElement(QName element, Augmentations augs) throws XNIException {
 
         if (fNamespaces) {
             handleEndElement(element, augs, false);
@@ -694,10 +657,9 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * The start of a CDATA section.
      * 
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
     public void startCDATA(Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -709,10 +671,9 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * The end of a CDATA section.
      * 
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
     public void endCDATA(Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -724,10 +685,9 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * The end of the document.
      * 
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
     public void endDocument(Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -742,15 +702,13 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * appearing as part of attribute values.
      *
      * @param name
-     *             The name of the entity.
+     *        The name of the entity.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void endGeneralEntity(String name, Augmentations augs)
-            throws XNIException {
+    public void endGeneralEntity(String name, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
             fDocumentHandler.endGeneralEntity(name, augs);
         }
@@ -761,16 +719,15 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     //
 
     /** Handles start element. */
-    protected void handleStartElement(QName element, XMLAttributes attributes,
-            Augmentations augs, boolean isEmpty) throws XNIException {
+    protected void handleStartElement(QName element, XMLAttributes attributes, Augmentations augs,
+            boolean isEmpty) throws XNIException {
 
         // add new namespace context
         fNamespaceContext.pushContext();
 
         if (element.prefix == XMLSymbols.PREFIX_XMLNS) {
-            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                    "ElementXMLNSPrefix", new Object[] { element.rawname },
-                    XMLErrorReporter.SEVERITY_FATAL_ERROR);
+            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementXMLNSPrefix", new Object[] {
+                    element.rawname }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
         }
 
         // search for new namespace bindings
@@ -780,35 +737,28 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
             String prefix = attributes.getPrefix(i);
             // when it's of form xmlns="..." or xmlns:prefix="...",
             // it's a namespace declaration. but prefix:xmlns="..." isn't.
-            if (prefix == XMLSymbols.PREFIX_XMLNS
-                    || prefix == XMLSymbols.EMPTY_STRING
-                            && localpart == XMLSymbols.PREFIX_XMLNS) {
+            if (prefix == XMLSymbols.PREFIX_XMLNS || prefix == XMLSymbols.EMPTY_STRING
+                    && localpart == XMLSymbols.PREFIX_XMLNS) {
 
                 // get the internalized value of this attribute
                 String uri = fSymbolTable.addSymbol(attributes.getValue(i));
 
                 // 1. "xmlns" can't be bound to any namespace
-                if (prefix == XMLSymbols.PREFIX_XMLNS
-                        && localpart == XMLSymbols.PREFIX_XMLNS) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "CantBindXMLNS", new Object[] { attributes.getQName(
-                                    i) },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                if (prefix == XMLSymbols.PREFIX_XMLNS && localpart == XMLSymbols.PREFIX_XMLNS) {
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
+                            new Object[] { attributes.getQName(i) }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // 2. the namespace for "xmlns" can't be bound to any prefix
                 if (uri == NamespaceContext.XMLNS_URI) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "CantBindXMLNS", new Object[] { attributes.getQName(
-                                    i) },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
+                            new Object[] { attributes.getQName(i) }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // 3. "xml" can't be bound to any other namespace than it's own
                 if (localpart == XMLSymbols.PREFIX_XML) {
                     if (uri != NamespaceContext.XML_URI) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
                                 new Object[] { attributes.getQName(i) },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
@@ -816,15 +766,13 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
                 // 4. the namespace for "xml" can't be bound to any other prefix
                 else {
                     if (uri == NamespaceContext.XML_URI) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
                                 new Object[] { attributes.getQName(i) },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                 }
 
-                prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart
-                        : XMLSymbols.EMPTY_STRING;
+                prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart : XMLSymbols.EMPTY_STRING;
 
                 // http://www.w3.org/TR/1999/REC-xml-names-19990114/#dt-prefix
                 // We should only report an error if there is a prefix,
@@ -834,51 +782,42 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
                 // making this test into a method call to reuse code
                 // should be acceptable. - NG
                 if (prefixBoundToNullURI(uri, localpart)) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "EmptyPrefixedAttName", new Object[] { attributes
-                                    .getQName(i) },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "EmptyPrefixedAttName",
+                            new Object[] { attributes.getQName(i) }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     continue;
                 }
 
                 // declare prefix in context
-                fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri
-                        : null);
+                fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri : null);
 
             }
         }
 
         // bind the element
-        String prefix = element.prefix != null ? element.prefix
-                : XMLSymbols.EMPTY_STRING;
+        String prefix = element.prefix != null ? element.prefix : XMLSymbols.EMPTY_STRING;
         element.uri = fNamespaceContext.getURI(prefix);
         if (element.prefix == null && element.uri != null) {
             element.prefix = XMLSymbols.EMPTY_STRING;
         }
         if (element.prefix != null && element.uri == null) {
-            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                    "ElementPrefixUnbound", new Object[] { element.prefix,
-                            element.rawname },
-                    XMLErrorReporter.SEVERITY_FATAL_ERROR);
+            fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementPrefixUnbound",
+                    new Object[] { element.prefix, element.rawname }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
         }
 
         // bind the attributes
         for (int i = 0; i < length; i++) {
             attributes.getName(i, fAttributeQName);
-            String aprefix = fAttributeQName.prefix != null
-                    ? fAttributeQName.prefix
+            String aprefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
                     : XMLSymbols.EMPTY_STRING;
             String arawname = fAttributeQName.rawname;
             if (arawname == XMLSymbols.PREFIX_XMLNS) {
-                fAttributeQName.uri = fNamespaceContext.getURI(
-                        XMLSymbols.PREFIX_XMLNS);
+                fAttributeQName.uri = fNamespaceContext.getURI(XMLSymbols.PREFIX_XMLNS);
                 attributes.setName(i, fAttributeQName);
             } else if (aprefix != XMLSymbols.EMPTY_STRING) {
                 fAttributeQName.uri = fNamespaceContext.getURI(aprefix);
                 if (fAttributeQName.uri == null) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "AttributePrefixUnbound", new Object[] {
-                                    element.rawname, arawname, aprefix },
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributePrefixUnbound",
+                            new Object[] { element.rawname, arawname, aprefix },
                             XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
                 attributes.setName(i, fAttributeQName);
@@ -898,9 +837,8 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
                 String blocalpart = attributes.getLocalName(j);
                 String buri = attributes.getURI(j);
                 if (alocalpart == blocalpart && auri == buri) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "AttributeNSNotUnique", new Object[] {
-                                    element.rawname, alocalpart, auri },
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributeNSNotUnique",
+                            new Object[] { element.rawname, alocalpart, auri },
                             XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
             }
@@ -918,12 +856,10 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     } // handleStartElement(QName,XMLAttributes,boolean)
 
     /** Handles end element. */
-    protected void handleEndElement(QName element, Augmentations augs,
-            boolean isEmpty) throws XNIException {
+    protected void handleEndElement(QName element, Augmentations augs, boolean isEmpty) throws XNIException {
 
         // bind element
-        String eprefix = element.prefix != null ? element.prefix
-                : XMLSymbols.EMPTY_STRING;
+        String eprefix = element.prefix != null ? element.prefix : XMLSymbols.EMPTY_STRING;
         element.uri = fNamespaceContext.getURI(eprefix);
         if (element.uri != null) {
             element.prefix = eprefix;
@@ -944,8 +880,7 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     // returns true iff the given prefix is bound to "" *and*
     // this is disallowed by the version of XML namespaces in use.
     protected boolean prefixBoundToNullURI(String uri, String localpart) {
-        return (uri == XMLSymbols.EMPTY_STRING
-                && localpart != XMLSymbols.PREFIX_XMLNS);
+        return (uri == XMLSymbols.EMPTY_STRING && localpart != XMLSymbols.PREFIX_XMLNS);
     } // prefixBoundToNullURI(String, String): boolean
 
 } // class XMLNamespaceBinder

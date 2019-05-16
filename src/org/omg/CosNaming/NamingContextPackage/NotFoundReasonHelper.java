@@ -22,8 +22,7 @@ abstract public class NotFoundReasonHelper {
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.CosNaming.NamingContextPackage.NotFoundReason extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.CosNaming.NamingContextPackage.NotFoundReason extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -32,10 +31,8 @@ abstract public class NotFoundReasonHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_enum_tc(
-                    org.omg.CosNaming.NamingContextPackage.NotFoundReasonHelper
-                            .id(), "NotFoundReason", new String[] {
-                                    "missing_node", "not_context",
-                                    "not_object" });
+                    org.omg.CosNaming.NamingContextPackage.NotFoundReasonHelper.id(), "NotFoundReason",
+                    new String[] { "missing_node", "not_context", "not_object" });
         }
         return __typeCode;
     }
@@ -46,8 +43,7 @@ abstract public class NotFoundReasonHelper {
 
     public static org.omg.CosNaming.NamingContextPackage.NotFoundReason read(
             org.omg.CORBA.portable.InputStream istream) {
-        return org.omg.CosNaming.NamingContextPackage.NotFoundReason.from_int(
-                istream.read_long());
+        return org.omg.CosNaming.NamingContextPackage.NotFoundReason.from_int(istream.read_long());
     }
 
     public static void write(org.omg.CORBA.portable.OutputStream ostream,

@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,11 +34,9 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
 /**
  * <code>XMLCipherInput</code> is used to wrap input passed into the XMLCipher
  * encryption operations.
- *
  * In decryption mode, it takes a <code>CipherData</code> object and allows
  * callers to dereference the CipherData into the encrypted bytes that it
  * actually represents. This takes care of all base64 encoding etc.
- *
  * While primarily an internal class, this can be used by applications to
  * quickly and easily retrieve the encrypted bytes from an EncryptedType object
  *
@@ -48,8 +44,8 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
  */
 public class XMLCipherInput {
 
-    private static java.util.logging.Logger logger = java.util.logging.Logger
-            .getLogger(XMLCipherInput.class.getName());
+    private static java.util.logging.Logger logger = java.util.logging.Logger.getLogger(XMLCipherInput.class
+            .getName());
 
     /** The data we are working with */
     private CipherData cipherData;
@@ -63,9 +59,9 @@ public class XMLCipherInput {
      * Constructor for processing encrypted octets
      *
      * @param data
-     *             The <code>CipherData</code> object to read the bytes from
+     *        The <code>CipherData</code> object to read the bytes from
      * @throws XMLEncryptionException
-     *                                {@link XMLEncryptionException}
+     *         {@link XMLEncryptionException}
      */
     public XMLCipherInput(CipherData data) throws XMLEncryptionException {
         cipherData = data;
@@ -79,10 +75,10 @@ public class XMLCipherInput {
      * Constructor for processing encrypted octets
      *
      * @param input
-     *              The <code>EncryptedType</code> object to read the bytes
-     *              from.
+     *        The <code>EncryptedType</code> object to read the bytes
+     *        from.
      * @throws XMLEncryptionException
-     *                                {@link XMLEncryptionException}
+     *         {@link XMLEncryptionException}
      */
     public XMLCipherInput(EncryptedType input) throws XMLEncryptionException {
         cipherData = ((input == null) ? null : input.getCipherData());
@@ -124,8 +120,7 @@ public class XMLCipherInput {
         if (cipherData.getDataType() == CipherData.REFERENCE_TYPE) {
             // Fun time!
             if (logger.isLoggable(java.util.logging.Level.FINE)) {
-                logger.log(java.util.logging.Level.FINE,
-                        "Found a reference type CipherData");
+                logger.log(java.util.logging.Level.FINE, "Found a reference type CipherData");
             }
             CipherReference cr = cipherData.getCipherReference();
 
@@ -136,8 +131,7 @@ public class XMLCipherInput {
             XMLSignatureInput input = null;
 
             try {
-                ResourceResolver resolver = ResourceResolver.getInstance(
-                        uriAttr, null, secureValidation);
+                ResourceResolver resolver = ResourceResolver.getInstance(uriAttr, null, secureValidation);
                 input = resolver.resolve(uriAttr, null, secureValidation);
             } catch (ResourceResolverException ex) {
                 throw new XMLEncryptionException("empty", ex);
@@ -145,13 +139,12 @@ public class XMLCipherInput {
 
             if (input != null) {
                 if (logger.isLoggable(java.util.logging.Level.FINE)) {
-                    logger.log(java.util.logging.Level.FINE,
-                            "Managed to resolve URI \"" + cr.getURI() + "\"");
+                    logger.log(java.util.logging.Level.FINE, "Managed to resolve URI \"" + cr.getURI()
+                            + "\"");
                 }
             } else {
                 if (logger.isLoggable(java.util.logging.Level.FINE)) {
-                    logger.log(java.util.logging.Level.FINE,
-                            "Failed to resolve URI \"" + cr.getURI() + "\"");
+                    logger.log(java.util.logging.Level.FINE, "Failed to resolve URI \"" + cr.getURI() + "\"");
                 }
             }
 
@@ -159,8 +152,7 @@ public class XMLCipherInput {
             Transforms transforms = cr.getTransforms();
             if (transforms != null) {
                 if (logger.isLoggable(java.util.logging.Level.FINE)) {
-                    logger.log(java.util.logging.Level.FINE,
-                            "Have transforms in cipher reference");
+                    logger.log(java.util.logging.Level.FINE, "Have transforms in cipher reference");
                 }
                 try {
                     com.sun.org.apache.xml.internal.security.transforms.Transforms dsTransforms = transforms
@@ -182,16 +174,13 @@ public class XMLCipherInput {
 
             // retrieve the cipher text
         } else if (cipherData.getDataType() == CipherData.VALUE_TYPE) {
-            base64EncodedEncryptedOctets = cipherData.getCipherValue()
-                    .getValue();
+            base64EncodedEncryptedOctets = cipherData.getCipherValue().getValue();
         } else {
-            throw new XMLEncryptionException(
-                    "CipherData.getDataType() returned unexpected value");
+            throw new XMLEncryptionException("CipherData.getDataType() returned unexpected value");
         }
 
         if (logger.isLoggable(java.util.logging.Level.FINE)) {
-            logger.log(java.util.logging.Level.FINE, "Encrypted octets:\n"
-                    + base64EncodedEncryptedOctets);
+            logger.log(java.util.logging.Level.FINE, "Encrypted octets:\n" + base64EncodedEncryptedOctets);
         }
 
         try {

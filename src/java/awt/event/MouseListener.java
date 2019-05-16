@@ -24,13 +24,11 @@ import java.util.EventListener;
  * listener object is invoked, and the <code>MouseEvent</code> is passed to it.
  *
  * @author Carl Quinn
- *
  * @see MouseAdapter
  * @see MouseEvent
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html">
  *      Tutorial: Writing a Mouse Listener</a>
- *
  * @since 1.1
  */
 public interface MouseListener extends EventListener {

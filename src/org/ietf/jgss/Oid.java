@@ -15,16 +15,13 @@ import sun.security.util.ObjectIdentifier;
  * This class represents Universal Object Identifiers (Oids) and their
  * associated operations.
  * <p>
- *
  * Oids are hierarchically globally-interpretable identifiers used within the
  * GSS-API framework to identify mechanisms and name formats.
  * <p>
- *
  * The structure and encoding of Oids is defined in ISOIEC-8824 and ISOIEC-8825.
  * For example the Oid representation of Kerberos V5 mechanism is
  * "1.2.840.113554.1.2.2"
  * <p>
- *
  * The GSSName name class contains public static Oid objects representing the
  * standard name types defined in GSS-API.
  *
@@ -41,11 +38,11 @@ public class Oid {
      * components.
      *
      * @param strOid
-     *               the dot separated string representation of the oid. For
-     *               instance, "1.2.840.113554.1.2.2".
+     *        the dot separated string representation of the oid. For
+     *        instance, "1.2.840.113554.1.2.2".
      * @exception GSSException
-     *                         may be thrown when the string is incorrectly
-     *                         formatted
+     *            may be thrown when the string is incorrectly
+     *            formatted
      */
     public Oid(String strOid) throws GSSException {
 
@@ -53,9 +50,8 @@ public class Oid {
             oid = new ObjectIdentifier(strOid);
             derEncoding = null;
         } catch (Exception e) {
-            throw new GSSException(GSSException.FAILURE,
-                    "Improperly formatted Object Identifier String - "
-                            + strOid);
+            throw new GSSException(GSSException.FAILURE, "Improperly formatted Object Identifier String - "
+                    + strOid);
         }
     }
 
@@ -66,11 +62,11 @@ public class Oid {
      * in functionality to its byte array counterpart.
      *
      * @param derOid
-     *               stream containing the DER encoded oid
+     *        stream containing the DER encoded oid
      * @exception GSSException
-     *                         may be thrown when the DER encoding does not
-     *                         follow the
-     *                         prescribed format.
+     *            may be thrown when the DER encoding does not
+     *            follow the
+     *            prescribed format.
      */
     public Oid(InputStream derOid) throws GSSException {
         try {
@@ -78,8 +74,7 @@ public class Oid {
             derEncoding = derVal.toByteArray();
             oid = derVal.getOID();
         } catch (IOException e) {
-            throw new GSSException(GSSException.FAILURE,
-                    "Improperly formatted ASN.1 DER encoding for Oid");
+            throw new GSSException(GSSException.FAILURE, "Improperly formatted ASN.1 DER encoding for Oid");
         }
     }
 
@@ -90,11 +85,11 @@ public class Oid {
      * in functionality to its InputStream conterpart.
      *
      * @param data
-     *             byte array containing the DER encoded oid
+     *        byte array containing the DER encoded oid
      * @exception GSSException
-     *                         may be thrown when the DER encoding does not
-     *                         follow the
-     *                         prescribed format.
+     *            may be thrown when the DER encoding does not
+     *            follow the
+     *            prescribed format.
      */
     public Oid(byte[] data) throws GSSException {
         try {
@@ -102,8 +97,7 @@ public class Oid {
             derEncoding = derVal.toByteArray();
             oid = derVal.getOID();
         } catch (IOException e) {
-            throw new GSSException(GSSException.FAILURE,
-                    "Improperly formatted ASN.1 DER encoding for Oid");
+            throw new GSSException(GSSException.FAILURE, "Improperly formatted ASN.1 DER encoding for Oid");
         }
     }
 
@@ -138,7 +132,7 @@ public class Oid {
      * @return <code>true</code> if the two Oid objects represent the same
      *         value, <code>false</code> otherwise.
      * @param other
-     *              the Oid object that has to be compared to this one
+     *        the Oid object that has to be compared to this one
      */
     public boolean equals(Object other) {
 
@@ -160,7 +154,7 @@ public class Oid {
      *
      * @return byte array containing the DER encoding of this oid object.
      * @exception GSSException
-     *                         may be thrown when the oid can't be encoded
+     *            may be thrown when the oid can't be encoded
      */
     public byte[] getDER() throws GSSException {
 
@@ -182,7 +176,7 @@ public class Oid {
      * supplied Oid array.
      *
      * @param oids
-     *             the array of Oid's to search
+     *        the array of Oid's to search
      * @return true if the array contains this Oid value, false otherwise
      */
     public boolean containedIn(Oid[] oids) {

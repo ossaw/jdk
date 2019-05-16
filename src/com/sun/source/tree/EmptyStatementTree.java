@@ -7,7 +7,6 @@ package com.sun.source.tree;
 
 /**
  * A tree node for an empty (skip) statement.
- *
  * For example:
  * 
  * <pre>
@@ -15,7 +14,6 @@ package com.sun.source.tree;
  * </pre>
  *
  * @jls section 14.6
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

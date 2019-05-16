@@ -19,7 +19,6 @@ import javax.activation.DataHandler;
 /**
  * Disable consideration of XOP encoding for datatypes that are bound to
  * base64-encoded binary data in XML.
- *
  * <p>
  * When XOP encoding is enabled as described in
  * {@link AttachmentMarshaller#isXOPPackage()}, this annotation disables
@@ -37,5 +36,4 @@ import javax.activation.DataHandler;
  */
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD, TYPE })
-public @interface XmlInlineBinaryData {
-}
+public @interface XmlInlineBinaryData {}

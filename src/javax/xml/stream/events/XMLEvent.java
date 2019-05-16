@@ -147,7 +147,6 @@ public interface XMLEvent extends javax.xml.stream.XMLStreamConstants {
     /**
      * This method will write the XMLEvent as per the XML 1.0 specification as
      * Unicode characters. No indentation or whitespace should be outputted.
-     *
      * Any user defined event type SHALL have this method called when being
      * written to on an output stream. Built in Event types MUST implement this
      * method, but implementations MAY choose not call these methods for
@@ -156,11 +155,10 @@ public interface XMLEvent extends javax.xml.stream.XMLStreamConstants {
      * expressed.
      *
      * @param writer
-     *               The writer that will output the data
+     *        The writer that will output the data
      * @throws XMLStreamException
-     *                            if there is a fatal error writing the event
+     *         if there is a fatal error writing the event
      */
-    public void writeAsEncodedUnicode(Writer writer)
-            throws javax.xml.stream.XMLStreamException;
+    public void writeAsEncodedUnicode(Writer writer) throws javax.xml.stream.XMLStreamException;
 
 }

@@ -61,7 +61,6 @@ import java.io.*;
  *
  * @see com.sun.org.apache.bcel.internal.util.Repository
  * @see com.sun.org.apache.bcel.internal.util.SyntheticRepository
- *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class Repository {
@@ -78,8 +77,7 @@ public abstract class Repository {
     /**
      * Set repository instance to be used for class loading
      */
-    public static void setRepository(
-            com.sun.org.apache.bcel.internal.util.Repository rep) {
+    public static void setRepository(com.sun.org.apache.bcel.internal.util.Repository rep) {
         _repository = rep;
     }
 

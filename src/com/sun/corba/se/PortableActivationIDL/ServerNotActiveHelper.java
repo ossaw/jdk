@@ -19,8 +19,7 @@ abstract public class ServerNotActiveHelper {
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.ServerNotActive extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.PortableActivationIDL.ServerNotActive extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -32,22 +31,18 @@ abstract public class ServerNotActiveHelper {
             synchronized (org.omg.CORBA.TypeCode.class) {
                 if (__typeCode == null) {
                     if (__active) {
-                        return org.omg.CORBA.ORB.init().create_recursive_tc(
-                                _id);
+                        return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
                     }
                     __active = true;
                     org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[1];
                     org.omg.CORBA.TypeCode _tcOf_members0 = null;
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
-                            0);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
                     _tcOf_members0 = org.omg.CORBA.ORB.init().create_alias_tc(
-                            org.omg.PortableInterceptor.ServerIdHelper.id(),
-                            "ServerId", _tcOf_members0);
-                    _members0[0] = new org.omg.CORBA.StructMember("serverId",
-                            _tcOf_members0, null);
+                            org.omg.PortableInterceptor.ServerIdHelper.id(), "ServerId", _tcOf_members0);
+                    _members0[0] = new org.omg.CORBA.StructMember("serverId", _tcOf_members0, null);
                     __typeCode = org.omg.CORBA.ORB.init().create_exception_tc(
-                            com.sun.corba.se.PortableActivationIDL.ServerNotActiveHelper
-                                    .id(), "ServerNotActive", _members0);
+                            com.sun.corba.se.PortableActivationIDL.ServerNotActiveHelper.id(),
+                            "ServerNotActive", _members0);
                     __active = false;
                 }
             }

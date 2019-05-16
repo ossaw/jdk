@@ -48,9 +48,9 @@ public final class StringHolder implements Streamable {
      * <code>value</code> field initialized to the given <code>String</code>.
      * 
      * @param initial
-     *                the <code>String</code> with which to initialize the
-     *                <code>value</code> field of the newly-created
-     *                <code>StringHolder</code> object
+     *        the <code>String</code> with which to initialize the
+     *        <code>value</code> field of the newly-created
+     *        <code>StringHolder</code> object
      */
     public StringHolder(String initial) {
         value = initial;
@@ -61,7 +61,7 @@ public final class StringHolder implements Streamable {
      * <code>value</code> field of this <code>StringHolder</code> object.
      *
      * @param input
-     *              the InputStream containing CDR formatted data from the wire.
+     *        the InputStream containing CDR formatted data from the wire.
      */
     public void _read(InputStream input) {
         value = input.read_string();
@@ -72,7 +72,7 @@ public final class StringHolder implements Streamable {
      * output stream <code>output</code>.
      *
      * @param output
-     *               the OutputStream which will contain the CDR formatted data.
+     *        the OutputStream which will contain the CDR formatted data.
      */
     public void _write(OutputStream output) {
         output.write_string(value);

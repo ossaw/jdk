@@ -13,7 +13,6 @@ package javax.imageio.metadata;
  * regard for how the controller obtains values (<i>i.e.</i>, whether the
  * controller puts up a GUI or merely computes a set of values is irrelevant to
  * this interface).
- *
  * <p>
  * Within the <code>activate</code> method, a controller obtains initial values
  * by querying the <code>IIOMetadata</code> object's settings, either using the
@@ -23,12 +22,10 @@ package javax.imageio.metadata;
  * plug-in specific interface. In general, applications may expect that when the
  * <code>activate</code> method returns <code>true</code>, the
  * <code>IIOMetadata</code> object is ready for use in a write operation.
- *
  * <p>
  * Vendors may choose to provide GUIs for the <code>IIOMetadata</code>
  * subclasses they define for a particular plug-in. These can be set up as
  * default controllers in the corresponding <code>IIOMetadata</code> subclasses.
- *
  * <p>
  * Alternatively, an algorithmic process such as a database lookup or the
  * parsing of a command line could be used as a controller, in which case the
@@ -41,7 +38,6 @@ package javax.imageio.metadata;
  * @see IIOMetadata#getDefaultController
  * @see IIOMetadata#hasController
  * @see IIOMetadata#activateController
- *
  */
 public interface IIOMetadataController {
 
@@ -53,15 +49,13 @@ public interface IIOMetadataController {
      * canceled the operation).
      *
      * @param metadata
-     *                 the <code>IIOMetadata</code> object to be modified.
-     *
+     *        the <code>IIOMetadata</code> object to be modified.
      * @return <code>true</code> if the <code>IIOMetadata</code> has been
      *         modified, <code>false</code> otherwise.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>metadata</code> is
-     *                                     <code>null</code> or is not an
-     *                                     instance of the correct class.
+     *            if <code>metadata</code> is
+     *            <code>null</code> or is not an
+     *            instance of the correct class.
      */
     boolean activate(IIOMetadata metadata);
 }

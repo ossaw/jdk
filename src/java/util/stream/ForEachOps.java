@@ -21,13 +21,11 @@ import java.util.function.LongConsumer;
  * (elements are provided to the {@code Consumer} as soon as they are
  * available), and ordered traversal (elements are provided to the
  * {@code Consumer} in encounter order.)
- *
  * <p>
  * Elements are provided to the {@code Consumer} on whatever thread and whatever
  * order they become available. For ordered traversals, it is guaranteed that
  * processing an element <em>happens-before</em> processing subsequent elements
  * in the encounter order.
- *
  * <p>
  * Exceptions occurring as a result of sending an element to the
  * {@code Consumer} will be relayed to the caller and traversal will be
@@ -44,16 +42,15 @@ final class ForEachOps {
      * of a stream.
      *
      * @param action
-     *                the {@code Consumer} that receives all elements of a
-     *                stream
+     *        the {@code Consumer} that receives all elements of a
+     *        stream
      * @param ordered
-     *                whether an ordered traversal is requested
-     * @param         <T>
-     *                the type of the stream elements
+     *        whether an ordered traversal is requested
+     * @param <T>
+     *        the type of the stream elements
      * @return the {@code TerminalOp} instance
      */
-    public static <T> TerminalOp<T, Void> makeRef(Consumer<? super T> action,
-            boolean ordered) {
+    public static <T> TerminalOp<T, Void> makeRef(Consumer<? super T> action, boolean ordered) {
         Objects.requireNonNull(action);
         return new ForEachOp.OfRef<>(action, ordered);
     }
@@ -63,14 +60,13 @@ final class ForEachOps {
      * of an {@code IntStream}.
      *
      * @param action
-     *                the {@code IntConsumer} that receives all elements of a
-     *                stream
+     *        the {@code IntConsumer} that receives all elements of a
+     *        stream
      * @param ordered
-     *                whether an ordered traversal is requested
+     *        whether an ordered traversal is requested
      * @return the {@code TerminalOp} instance
      */
-    public static TerminalOp<Integer, Void> makeInt(IntConsumer action,
-            boolean ordered) {
+    public static TerminalOp<Integer, Void> makeInt(IntConsumer action, boolean ordered) {
         Objects.requireNonNull(action);
         return new ForEachOp.OfInt(action, ordered);
     }
@@ -80,14 +76,13 @@ final class ForEachOps {
      * of a {@code LongStream}.
      *
      * @param action
-     *                the {@code LongConsumer} that receives all elements of a
-     *                stream
+     *        the {@code LongConsumer} that receives all elements of a
+     *        stream
      * @param ordered
-     *                whether an ordered traversal is requested
+     *        whether an ordered traversal is requested
      * @return the {@code TerminalOp} instance
      */
-    public static TerminalOp<Long, Void> makeLong(LongConsumer action,
-            boolean ordered) {
+    public static TerminalOp<Long, Void> makeLong(LongConsumer action, boolean ordered) {
         Objects.requireNonNull(action);
         return new ForEachOp.OfLong(action, ordered);
     }
@@ -97,14 +92,13 @@ final class ForEachOps {
      * of a {@code DoubleStream}.
      *
      * @param action
-     *                the {@code DoubleConsumer} that receives all elements of a
-     *                stream
+     *        the {@code DoubleConsumer} that receives all elements of a
+     *        stream
      * @param ordered
-     *                whether an ordered traversal is requested
+     *        whether an ordered traversal is requested
      * @return the {@code TerminalOp} instance
      */
-    public static TerminalOp<Double, Void> makeDouble(DoubleConsumer action,
-            boolean ordered) {
+    public static TerminalOp<Double, Void> makeDouble(DoubleConsumer action, boolean ordered) {
         Objects.requireNonNull(action);
         return new ForEachOp.OfDouble(action, ordered);
     }
@@ -114,7 +108,6 @@ final class ForEachOps {
      * output to itself as a {@code TerminalSink}. Elements will be sent in
      * whatever thread they become available. If the traversal is unordered,
      * they will be sent independent of the stream's encounter order.
-     *
      * <p>
      * This terminal operation is stateless. For parallel evaluation, each leaf
      * instance of a {@code ForEachTask} will send elements to the same
@@ -123,8 +116,7 @@ final class ForEachOps {
      * @param <T>
      *        the output type of the stream pipeline
      */
-    static abstract class ForEachOp<T> implements TerminalOp<T, Void>,
-            TerminalSink<T, Void> {
+    static abstract class ForEachOp<T> implements TerminalOp<T, Void>, TerminalSink<T, Void> {
         private final boolean ordered;
 
         protected ForEachOp(boolean ordered) {
@@ -139,19 +131,16 @@ final class ForEachOps {
         }
 
         @Override
-        public <S> Void evaluateSequential(PipelineHelper<T> helper,
-                Spliterator<S> spliterator) {
+        public <S> Void evaluateSequential(PipelineHelper<T> helper, Spliterator<S> spliterator) {
             return helper.wrapAndCopyInto(this, spliterator).get();
         }
 
         @Override
-        public <S> Void evaluateParallel(PipelineHelper<T> helper,
-                Spliterator<S> spliterator) {
+        public <S> Void evaluateParallel(PipelineHelper<T> helper, Spliterator<S> spliterator) {
             if (ordered)
                 new ForEachOrderedTask<>(helper, spliterator, this).invoke();
             else
-                new ForEachTask<>(helper, spliterator, helper.wrapSink(this))
-                        .invoke();
+                new ForEachTask<>(helper, spliterator, helper.wrapSink(this)).invoke();
             return null;
         }
 
@@ -180,8 +169,7 @@ final class ForEachOps {
         }
 
         /** Implementation class for {@code IntStream} */
-        static final class OfInt extends ForEachOp<Integer> implements
-                Sink.OfInt {
+        static final class OfInt extends ForEachOp<Integer> implements Sink.OfInt {
             final IntConsumer consumer;
 
             OfInt(IntConsumer consumer, boolean ordered) {
@@ -201,8 +189,7 @@ final class ForEachOps {
         }
 
         /** Implementation class for {@code LongStream} */
-        static final class OfLong extends ForEachOp<Long> implements
-                Sink.OfLong {
+        static final class OfLong extends ForEachOp<Long> implements Sink.OfLong {
             final LongConsumer consumer;
 
             OfLong(LongConsumer consumer, boolean ordered) {
@@ -222,8 +209,7 @@ final class ForEachOps {
         }
 
         /** Implementation class for {@code DoubleStream} */
-        static final class OfDouble extends ForEachOp<Double> implements
-                Sink.OfDouble {
+        static final class OfDouble extends ForEachOp<Double> implements Sink.OfDouble {
             final DoubleConsumer consumer;
 
             OfDouble(DoubleConsumer consumer, boolean ordered) {
@@ -251,8 +237,7 @@ final class ForEachOps {
         private final PipelineHelper<T> helper;
         private long targetSize;
 
-        ForEachTask(PipelineHelper<T> helper, Spliterator<S> spliterator,
-                Sink<S> sink) {
+        ForEachTask(PipelineHelper<T> helper, Spliterator<S> spliterator, Sink<S> sink) {
             super(null);
             this.sink = sink;
             this.helper = helper;
@@ -273,16 +258,13 @@ final class ForEachOps {
             Spliterator<S> rightSplit = spliterator, leftSplit;
             long sizeEstimate = rightSplit.estimateSize(), sizeThreshold;
             if ((sizeThreshold = targetSize) == 0L)
-                targetSize = sizeThreshold = AbstractTask.suggestTargetSize(
-                        sizeEstimate);
-            boolean isShortCircuit = StreamOpFlag.SHORT_CIRCUIT.isKnown(helper
-                    .getStreamAndOpFlags());
+                targetSize = sizeThreshold = AbstractTask.suggestTargetSize(sizeEstimate);
+            boolean isShortCircuit = StreamOpFlag.SHORT_CIRCUIT.isKnown(helper.getStreamAndOpFlags());
             boolean forkRight = false;
             Sink<S> taskSink = sink;
             ForEachTask<S, T> task = this;
             while (!isShortCircuit || !taskSink.cancellationRequested()) {
-                if (sizeEstimate <= sizeThreshold || (leftSplit = rightSplit
-                        .trySplit()) == null) {
+                if (sizeEstimate <= sizeThreshold || (leftSplit = rightSplit.trySplit()) == null) {
                     task.helper.copyInto(taskSink, rightSplit);
                     break;
                 }
@@ -349,22 +331,18 @@ final class ForEachOps {
         private final ForEachOrderedTask<S, T> leftPredecessor;
         private Node<T> node;
 
-        protected ForEachOrderedTask(PipelineHelper<T> helper,
-                Spliterator<S> spliterator, Sink<T> action) {
+        protected ForEachOrderedTask(PipelineHelper<T> helper, Spliterator<S> spliterator, Sink<T> action) {
             super(null);
             this.helper = helper;
             this.spliterator = spliterator;
-            this.targetSize = AbstractTask.suggestTargetSize(spliterator
-                    .estimateSize());
+            this.targetSize = AbstractTask.suggestTargetSize(spliterator.estimateSize());
             // Size map to avoid concurrent re-sizes
-            this.completionMap = new ConcurrentHashMap<>(Math.max(16,
-                    AbstractTask.LEAF_TARGET << 1));
+            this.completionMap = new ConcurrentHashMap<>(Math.max(16, AbstractTask.LEAF_TARGET << 1));
             this.action = action;
             this.leftPredecessor = null;
         }
 
-        ForEachOrderedTask(ForEachOrderedTask<S, T> parent,
-                Spliterator<S> spliterator,
+        ForEachOrderedTask(ForEachOrderedTask<S, T> parent, Spliterator<S> spliterator,
                 ForEachOrderedTask<S, T> leftPredecessor) {
             super(parent);
             this.helper = parent.helper;
@@ -384,12 +362,10 @@ final class ForEachOps {
             Spliterator<S> rightSplit = task.spliterator, leftSplit;
             long sizeThreshold = task.targetSize;
             boolean forkRight = false;
-            while (rightSplit.estimateSize() > sizeThreshold
-                    && (leftSplit = rightSplit.trySplit()) != null) {
-                ForEachOrderedTask<S, T> leftChild = new ForEachOrderedTask<>(
-                        task, leftSplit, task.leftPredecessor);
-                ForEachOrderedTask<S, T> rightChild = new ForEachOrderedTask<>(
-                        task, rightSplit, leftChild);
+            while (rightSplit.estimateSize() > sizeThreshold && (leftSplit = rightSplit.trySplit()) != null) {
+                ForEachOrderedTask<S, T> leftChild = new ForEachOrderedTask<>(task, leftSplit,
+                        task.leftPredecessor);
+                ForEachOrderedTask<S, T> rightChild = new ForEachOrderedTask<>(task, rightSplit, leftChild);
 
                 // Fork the parent task
                 // Completion of the left and right children "happens-before"
@@ -413,8 +389,7 @@ final class ForEachOps {
                     leftChild.addToPendingCount(1);
                     // Update association of left-predecessor to left-most
                     // leaf node of right subtree
-                    if (task.completionMap.replace(task.leftPredecessor, task,
-                            leftChild)) {
+                    if (task.completionMap.replace(task.leftPredecessor, task, leftChild)) {
                         // If replaced, adjust the pending count of the parent
                         // to complete when its children complete
                         task.addToPendingCount(-1);
@@ -453,8 +428,8 @@ final class ForEachOps {
                 // for use when completion occurs
                 @SuppressWarnings("unchecked")
                 IntFunction<T[]> generator = size -> (T[]) new Object[size];
-                Node.Builder<T> nb = task.helper.makeNodeBuilder(task.helper
-                        .exactOutputSizeIfKnown(rightSplit), generator);
+                Node.Builder<T> nb = task.helper.makeNodeBuilder(task.helper.exactOutputSizeIfKnown(
+                        rightSplit), generator);
                 task.node = task.helper.wrapAndCopyInto(nb, rightSplit).build();
                 task.spliterator = null;
             }
@@ -477,8 +452,7 @@ final class ForEachOps {
             // "happens-before" completion of the associated left-most leaf task
             // of right subtree (if any, which can be this task's right sibling)
             //
-            ForEachOrderedTask<S, T> leftDescendant = completionMap.remove(
-                    this);
+            ForEachOrderedTask<S, T> leftDescendant = completionMap.remove(this);
             if (leftDescendant != null)
                 leftDescendant.tryComplete();
         }

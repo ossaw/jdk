@@ -7,7 +7,6 @@ package javax.lang.model.element;
 
 /**
  * The {@code kind} of an element.
- *
  * <p>
  * Note that it is possible additional element kinds will be added to
  * accommodate new, currently unknown, language structures added to future

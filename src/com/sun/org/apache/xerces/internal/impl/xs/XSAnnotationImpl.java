@@ -65,17 +65,16 @@ public class XSAnnotationImpl implements XSAnnotation {
      * specified document handler.
      * 
      * @param target
-     *                   A target pointer to the annotation target object, i.e.
-     *                   <code>org.w3c.dom.Document</code>,
-     *                   <code>org.xml.sax.ContentHandler</code>.
+     *        A target pointer to the annotation target object, i.e.
+     *        <code>org.w3c.dom.Document</code>,
+     *        <code>org.xml.sax.ContentHandler</code>.
      * @param targetType
-     *                   A target type.
+     *        A target type.
      * @return If the <code>target</code> is recognized type and supported by
      *         this implementation return true, otherwise return false.
      */
     public boolean writeAnnotation(Object target, short targetType) {
-        if (targetType == XSAnnotation.W3C_DOM_ELEMENT
-                || targetType == XSAnnotation.W3C_DOM_DOCUMENT) {
+        if (targetType == XSAnnotation.W3C_DOM_ELEMENT || targetType == XSAnnotation.W3C_DOM_DOCUMENT) {
             writeToDOM((Node) target, targetType);
             return true;
         } else if (targetType == SAX_CONTENTHANDLER) {
@@ -149,8 +148,8 @@ public class XSAnnotationImpl implements XSAnnotation {
     // this creates the new Annotation element as the first child
     // of the Node
     private synchronized void writeToDOM(Node target, short type) {
-        Document futureOwner = (type == XSAnnotation.W3C_DOM_ELEMENT) ? target
-                .getOwnerDocument() : (Document) target;
+        Document futureOwner = (type == XSAnnotation.W3C_DOM_ELEMENT) ? target.getOwnerDocument()
+                : (Document) target;
         DOMParser parser = fGrammar.getDOMParser();
         StringReader aReader = new StringReader(fData);
         InputSource aSource = new InputSource(aReader);

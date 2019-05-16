@@ -18,7 +18,6 @@ package javax.naming.ldap;
  * 
  * It comprises an optional object identifier and an optional ASN.1 BER encoded
  * value.
- *
  * <p>
  * The methods in this class can be used by the application to get low level
  * information about the extended operation response. However, typically, the
@@ -42,8 +41,7 @@ package javax.naming.ldap;
  * </blockquote> A program would use then these classes as follows: <blockquote>
  * 
  * <pre>
- * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(
- *         new GetTimeRequest());
+ * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(new GetTimeRequest());
  * java.util.Date now = resp.getDate();
  * </pre>
  * 
@@ -52,7 +50,6 @@ package javax.naming.ldap;
  * @author Rosanna Lee
  * @author Scott Seligman
  * @author Vincent Ryan
- *
  * @see ExtendedRequest
  * @since 1.3
  */

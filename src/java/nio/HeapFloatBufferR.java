@@ -8,14 +8,10 @@
 package java.nio;
 
 /**
- * 
- * 
- * 
  * A read-only HeapFloatBuffer. This class extends the corresponding read/write
  * class, overriding the mutation methods to throw a
  * {@link ReadOnlyBufferException} and overriding the view-buffer methods to
  * return an instance of this class rather than of the superclass.
- * 
  */
 
 class HeapFloatBufferR extends HeapFloatBuffer {
@@ -43,8 +39,7 @@ class HeapFloatBufferR extends HeapFloatBuffer {
 
     }
 
-    protected HeapFloatBufferR(float[] buf, int mark, int pos, int lim, int cap,
-            int off) {
+    protected HeapFloatBufferR(float[] buf, int mark, int pos, int lim, int cap, int off) {
 
         super(buf, mark, pos, lim, cap, off);
         this.isReadOnly = true;
@@ -52,13 +47,12 @@ class HeapFloatBufferR extends HeapFloatBuffer {
     }
 
     public FloatBuffer slice() {
-        return new HeapFloatBufferR(hb, -1, 0, this.remaining(), this
-                .remaining(), this.position() + offset);
+        return new HeapFloatBufferR(hb, -1, 0, this.remaining(), this.remaining(), this.position() + offset);
     }
 
     public FloatBuffer duplicate() {
-        return new HeapFloatBufferR(hb, this.markValue(), this.position(), this
-                .limit(), this.capacity(), offset);
+        return new HeapFloatBufferR(hb, this.markValue(), this.position(), this.limit(), this.capacity(),
+                offset);
     }
 
     public FloatBuffer asReadOnlyBuffer() {

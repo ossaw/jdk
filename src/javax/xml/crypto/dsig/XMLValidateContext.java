@@ -12,7 +12,6 @@ import javax.xml.crypto.XMLCryptoContext;
 /**
  * Contains context information for validating XML Signatures. This interface is
  * primarily intended for type-safety.
- *
  * <p>
  * Note that <code>XMLValidateContext</code> instances can contain information
  * and state specific to the XML signature structure it is used with. The

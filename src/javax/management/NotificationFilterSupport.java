@@ -32,7 +32,6 @@ import java.util.Vector;
  * notifications the type of which equals/starts with "my_example.my_type".
  *
  * @see javax.management.NotificationBroadcaster#addNotificationListener
- *
  * @since 1.5
  */
 public class NotificationFilterSupport implements NotificationFilter {
@@ -54,12 +53,11 @@ public class NotificationFilterSupport implements NotificationFilter {
      * <CODE>true</CODE>.
      *
      * @param notification
-     *                     The notification to be sent.
+     *        The notification to be sent.
      * @return <CODE>true</CODE> if the notification should be sent to the
      *         listener, <CODE>false</CODE> otherwise.
      */
-    public synchronized boolean isNotificationEnabled(
-            Notification notification) {
+    public synchronized boolean isNotificationEnabled(Notification notification) {
 
         String type = notification.getType();
 
@@ -97,18 +95,16 @@ public class NotificationFilterSupport implements NotificationFilter {
      * </PRE>
      * 
      * </BLOCKQUOTE>
-     *
      * Note that: <BLOCKQUOTE><CODE>
      * myFilter.enableType("my_example.*");
      * </CODE></BLOCKQUOTE> will no match any notification type.
      *
      * @param prefix
-     *               The prefix.
+     *        The prefix.
      * @exception java.lang.IllegalArgumentException
      *            The prefix parameter is null.
      */
-    public synchronized void enableType(String prefix)
-            throws IllegalArgumentException {
+    public synchronized void enableType(String prefix) throws IllegalArgumentException {
 
         if (prefix == null) {
             throw new IllegalArgumentException("The prefix cannot be null.");
@@ -124,7 +120,7 @@ public class NotificationFilterSupport implements NotificationFilter {
      * this method has no effect.
      *
      * @param prefix
-     *               The prefix.
+     *        The prefix.
      */
     public synchronized void disableType(String prefix) {
         enabledTypes.remove(prefix);

@@ -34,25 +34,21 @@ public interface WhitespaceStrippingElementMatcher {
      * 
      * @see <a href="http://www.w3.org/TR/xslt#strip">strip in XSLT
      *      Specification</a>
-     *
      * @param support
-     *                      The XPath runtime state.
+     *        The XPath runtime state.
      * @param targetElement
-     *                      Element to check
-     *
+     *        Element to check
      * @return true if the whitespace should be stripped.
-     *
      * @throws TransformerException
      */
-    public boolean shouldStripWhiteSpace(XPathContext support,
-            Element targetElement) throws TransformerException;
+    public boolean shouldStripWhiteSpace(XPathContext support, Element targetElement)
+            throws TransformerException;
 
     /**
      * Get information about whether or not whitespace can be stripped.
      * 
      * @see <a href="http://www.w3.org/TR/xslt#strip">strip in XSLT
      *      Specification</a>
-     *
      * @return true if the whitespace can be stripped.
      */
     public boolean canStripWhiteSpace();

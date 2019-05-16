@@ -15,7 +15,6 @@ import java.util.*;
  *         A Convenient class provided to help users extend and implement only
  *         getValue(), if there is no need to clear the state and the attribute
  *         is not writable.
- *
  *         </p>
  */
 public abstract class MonitoredAttributeBase implements MonitoredAttribute {
@@ -67,12 +66,10 @@ public abstract class MonitoredAttributeBase implements MonitoredAttribute {
      */
     public void setValue(Object value) {
         if (!attributeInfo.isWritable()) {
-            throw new IllegalStateException("The Attribute " + name
-                    + " is not Writable...");
+            throw new IllegalStateException("The Attribute " + name + " is not Writable...");
         }
-        throw new IllegalStateException(
-                "The method implementation is not provided for the attribute "
-                        + name);
+        throw new IllegalStateException("The method implementation is not provided for the attribute "
+                + name);
     }
 
     /**

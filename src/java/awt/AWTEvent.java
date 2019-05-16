@@ -33,7 +33,6 @@ import java.security.AccessController;
  *
  * @see Component#enableEvents
  * @see Toolkit#addAWTEventListener
- *
  * @see java.awt.event.ActionEvent
  * @see java.awt.event.AdjustmentEvent
  * @see java.awt.event.ComponentEvent
@@ -49,14 +48,12 @@ import java.security.AccessController;
  * @see java.awt.event.PaintEvent
  * @see java.awt.event.TextEvent
  * @see java.awt.event.WindowEvent
- *
  * @author Carl Quinn
  * @author Amy Fowler
  * @since 1.1
  */
 public abstract class AWTEvent extends EventObject {
-    private static final PlatformLogger log = PlatformLogger.getLogger(
-            "java.awt.AWTEvent");
+    private static final PlatformLogger log = PlatformLogger.getLogger("java.awt.AWTEvent");
     private byte bdata[];
 
     /**
@@ -83,16 +80,14 @@ public abstract class AWTEvent extends EventObject {
     /*
      * The event's AccessControlContext.
      */
-    private transient volatile AccessControlContext acc = AccessController
-            .getContext();
+    private transient volatile AccessControlContext acc = AccessController.getContext();
 
     /*
      * Returns the acc this event was constructed with.
      */
     final AccessControlContext getAccessControlContext() {
         if (acc == null) {
-            throw new SecurityException(
-                    "AWTEvent is missing AccessControlContext");
+            throw new SecurityException("AWTEvent is missing AccessControlContext");
         }
         return acc;
     }
@@ -268,13 +263,12 @@ public abstract class AWTEvent extends EventObject {
 
     private static synchronized Field get_InputEvent_CanAccessSystemClipboard() {
         if (inputEvent_CanAccessSystemClipboard_Field == null) {
-            inputEvent_CanAccessSystemClipboard_Field = java.security.AccessController
-                    .doPrivileged(new java.security.PrivilegedAction<Field>() {
+            inputEvent_CanAccessSystemClipboard_Field = java.security.AccessController.doPrivileged(
+                    new java.security.PrivilegedAction<Field>() {
                         public Field run() {
                             Field field = null;
                             try {
-                                field = InputEvent.class.getDeclaredField(
-                                        "canAccessSystemClipboard");
+                                field = InputEvent.class.getDeclaredField("canAccessSystemClipboard");
                                 field.setAccessible(true);
                                 return field;
                             } catch (SecurityException e) {
@@ -308,7 +302,7 @@ public abstract class AWTEvent extends EventObject {
      * Constructs an AWTEvent object from the parameters of a 1.0-style event.
      * 
      * @param event
-     *              the old-style event
+     *        the old-style event
      */
     public AWTEvent(Event event) {
         this(event.target, event.id);
@@ -318,9 +312,9 @@ public abstract class AWTEvent extends EventObject {
      * Constructs an AWTEvent object with the specified source object and type.
      *
      * @param source
-     *               the object where the event originated
+     *        the object where the event originated
      * @param id
-     *               the event type
+     *        the event type
      */
     public AWTEvent(Object source, int id) {
         super(source);
@@ -346,7 +340,7 @@ public abstract class AWTEvent extends EventObject {
      * client use.
      *
      * @param newSource
-     *                  the new Object to which the event should be dispatched
+     *        the new Object to which the event should be dispatched
      * @since 1.4
      */
     public void setSource(Object newSource) {
@@ -357,8 +351,7 @@ public abstract class AWTEvent extends EventObject {
         Component comp = null;
         if (newSource instanceof Component) {
             comp = (Component) newSource;
-            while (comp != null && comp.peer != null
-                    && (comp.peer instanceof LightweightPeer)) {
+            while (comp != null && comp.peer != null && (comp.peer instanceof LightweightPeer)) {
                 comp = comp.parent;
             }
         }
@@ -393,8 +386,7 @@ public abstract class AWTEvent extends EventObject {
         } else if (source instanceof MenuComponent) {
             srcName = ((MenuComponent) source).getName();
         }
-        return getClass().getName() + "[" + paramString() + "] on "
-                + (srcName != null ? srcName : source);
+        return getClass().getName() + "[" + paramString() + "] on " + (srcName != null ? srcName : source);
     }
 
     /**
@@ -445,7 +437,6 @@ public abstract class AWTEvent extends EventObject {
      * Converts a new event to an old one (used for compatibility). If the new
      * event cannot be converted (because no old equivalent exists) then this
      * returns null.
-     *
      * Note: this method is here instead of in each individual new event class
      * in java.awt.event because we don't want to make it public and it needs to
      * be called from java.awt.
@@ -459,19 +450,16 @@ public abstract class AWTEvent extends EventObject {
             case KeyEvent.KEY_RELEASED:
                 KeyEvent ke = (KeyEvent) this;
                 if (ke.isActionKey()) {
-                    newid = (id == KeyEvent.KEY_PRESSED ? Event.KEY_ACTION
-                            : Event.KEY_ACTION_RELEASE);
+                    newid = (id == KeyEvent.KEY_PRESSED ? Event.KEY_ACTION : Event.KEY_ACTION_RELEASE);
                 }
                 int keyCode = ke.getKeyCode();
-                if (keyCode == KeyEvent.VK_SHIFT
-                        || keyCode == KeyEvent.VK_CONTROL
+                if (keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_CONTROL
                         || keyCode == KeyEvent.VK_ALT) {
                     return null; // suppress modifier keys in old event model.
                 }
                 // no mask for button1 existed in old Event - strip it out
-                return new Event(src, ke.getWhen(), newid, 0, 0, Event
-                        .getOldEventKey(ke), (ke.getModifiers()
-                                & ~InputEvent.BUTTON1_MASK));
+                return new Event(src, ke.getWhen(), newid, 0, 0, Event.getOldEventKey(ke), (ke.getModifiers()
+                        & ~InputEvent.BUTTON1_MASK));
 
             case MouseEvent.MOUSE_PRESSED:
             case MouseEvent.MOUSE_RELEASED:
@@ -481,9 +469,8 @@ public abstract class AWTEvent extends EventObject {
             case MouseEvent.MOUSE_EXITED:
                 MouseEvent me = (MouseEvent) this;
                 // no mask for button1 existed in old Event - strip it out
-                Event olde = new Event(src, me.getWhen(), newid, me.getX(), me
-                        .getY(), 0, (me.getModifiers()
-                                & ~InputEvent.BUTTON1_MASK));
+                Event olde = new Event(src, me.getWhen(), newid, me.getX(), me.getY(), 0, (me.getModifiers()
+                        & ~InputEvent.BUTTON1_MASK));
                 olde.clickCount = me.getClickCount();
                 return olde;
 
@@ -501,8 +488,7 @@ public abstract class AWTEvent extends EventObject {
             case ComponentEvent.COMPONENT_MOVED:
                 if (src instanceof Frame || src instanceof Dialog) {
                     Point p = ((Component) src).getLocation();
-                    return new Event(src, 0, Event.WINDOW_MOVED, p.x, p.y, 0,
-                            0);
+                    return new Event(src, 0, Event.WINDOW_MOVED, p.x, p.y, 0, 0);
                 }
                 break;
 
@@ -516,15 +502,13 @@ public abstract class AWTEvent extends EventObject {
                 } else {
                     cmd = ae.getActionCommand();
                 }
-                return new Event(src, 0, newid, 0, 0, 0, ae.getModifiers(),
-                        cmd);
+                return new Event(src, 0, newid, 0, 0, 0, ae.getModifiers(), cmd);
 
             case ItemEvent.ITEM_STATE_CHANGED:
                 ItemEvent ie = (ItemEvent) this;
                 Object arg;
                 if (src instanceof List) {
-                    newid = (ie.getStateChange() == ItemEvent.SELECTED
-                            ? Event.LIST_SELECT
+                    newid = (ie.getStateChange() == ItemEvent.SELECTED ? Event.LIST_SELECT
                             : Event.LIST_DESELECT);
                     arg = ie.getItem();
                 } else {
@@ -533,8 +517,7 @@ public abstract class AWTEvent extends EventObject {
                         arg = ie.getItem();
 
                     } else { // Checkbox
-                        arg = Boolean.valueOf(ie
-                                .getStateChange() == ItemEvent.SELECTED);
+                        arg = Boolean.valueOf(ie.getStateChange() == ItemEvent.SELECTED);
                     }
                 }
                 return new Event(src, newid, arg);
@@ -587,9 +570,7 @@ public abstract class AWTEvent extends EventObject {
                     field.setBoolean(that, b);
                 } catch (IllegalAccessException e) {
                     if (log.isLoggable(PlatformLogger.Level.FINE)) {
-                        log.fine(
-                                "AWTEvent.copyPrivateDataInto() got IllegalAccessException ",
-                                e);
+                        log.fine("AWTEvent.copyPrivateDataInto() got IllegalAccessException ", e);
                     }
                 }
             }
@@ -605,9 +586,7 @@ public abstract class AWTEvent extends EventObject {
                     field.setBoolean(this, false);
                 } catch (IllegalAccessException e) {
                     if (log.isLoggable(PlatformLogger.Level.FINE)) {
-                        log.fine(
-                                "AWTEvent.dispatched() got IllegalAccessException ",
-                                e);
+                        log.fine("AWTEvent.dispatched() got IllegalAccessException ", e);
                     }
                 }
             }

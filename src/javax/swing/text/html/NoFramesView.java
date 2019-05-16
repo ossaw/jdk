@@ -22,9 +22,9 @@ class NoFramesView extends BlockView {
      * number of elements. By default this view is not visible.
      *
      * @param elem
-     *             the element to create a view for
+     *        the element to create a view for
      * @param axis
-     *             either View.X_AXIS or View.Y_AXIS
+     *        either View.X_AXIS or View.Y_AXIS
      */
     public NoFramesView(Element elem, int axis) {
         super(elem, axis);
@@ -36,9 +36,9 @@ class NoFramesView extends BlockView {
      * superclass.
      *
      * @param g
-     *                   the rendering surface to use
+     *        the rendering surface to use
      * @param allocation
-     *                   the allocated region to render into
+     *        the allocated region to render into
      * @see #isVisible
      * @see text.ParagraphView#paint
      */
@@ -61,7 +61,7 @@ class NoFramesView extends BlockView {
      * processing.
      *
      * @param p
-     *          the parent View.
+     *        the parent View.
      * @see BlockView#setParent
      */
     public void setParent(View p) {
@@ -99,7 +99,7 @@ class NoFramesView extends BlockView {
      * span. axis.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into; typically the
      *         view is told to render into the span that is returned, although
      *         there is no guarantee; the parent may choose to resize or break
@@ -119,8 +119,8 @@ class NoFramesView extends BlockView {
      * minimum span.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the minimum span the view can be rendered into
      * @see text.ParagraphView#getMinimumSpan
      */
@@ -137,8 +137,8 @@ class NoFramesView extends BlockView {
      * maximum span.
      *
      * @param axis
-     *             may be either <code>View.X_AXIS</code> or
-     *             <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @return the maximum span the view can be rendered into
      * @see text.ParagraphView#getMaximumSpan
      */

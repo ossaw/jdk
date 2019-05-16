@@ -15,7 +15,6 @@ import sun.java2d.cmm.Profile;
 import sun.java2d.cmm.ProfileDeferralInfo;
 
 /**
- *
  * A subclass of the ICC_Profile class which represents profiles which meet the
  * following criteria: the color space type of the profile is TYPE_GRAY and the
  * profile includes the grayTRCTag and mediaWhitePointTag tags. Examples of this
@@ -81,14 +80,13 @@ public class ICC_ProfileGray extends ICC_Profile {
     
     &nbsp;                         gamma
     &nbsp;        PCSY = deviceGray
-     * 
      * </pre>
      * 
      * @return the gamma value as a float.
      * @exception ProfileDataException
-     *                                 if the profile does not specify the TRC
-     *                                 as a single gamma
-     *                                 value.
+     *            if the profile does not specify the TRC
+     *            as a single gamma
+     *            value.
      */
     public float getGamma() {
         float theGamma;
@@ -112,8 +110,8 @@ public class ICC_ProfileGray extends ICC_Profile {
      * 
      * @return a short array representing the TRC.
      * @exception ProfileDataException
-     *                                 if the profile does not specify the TRC
-     *                                 as a table.
+     *            if the profile does not specify the TRC
+     *            as a table.
      */
     public short[] getTRC() {
         short[] theTRC;

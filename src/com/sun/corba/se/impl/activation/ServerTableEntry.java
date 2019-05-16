@@ -5,7 +5,6 @@
 package com.sun.corba.se.impl.activation;
 
 /**
- *
  * @author Anita Jindal
  * @since JDK1.2
  */
@@ -79,8 +78,8 @@ public class ServerTableEntry {
     private ActivationSystemException wrapper;
 
     public String toString() {
-        return "ServerTableEntry[" + "state=" + printState() + " serverId="
-                + serverId + " activateRetryCount=" + activateRetryCount + "]";
+        return "ServerTableEntry[" + "state=" + printState() + " serverId=" + serverId
+                + " activateRetryCount=" + activateRetryCount + "]";
     }
 
     // get the string needed to make the activation command
@@ -93,9 +92,8 @@ public class ServerTableEntry {
         pathSep = System.getProperty("path.separator");
     }
 
-    ServerTableEntry(ActivationSystemException wrapper, int serverId,
-            ServerDef serverDef, int initialPort, String dbDirName,
-            boolean verify, boolean debug) {
+    ServerTableEntry(ActivationSystemException wrapper, int serverId, ServerDef serverDef, int initialPort,
+            String dbDirName, boolean verify, boolean debug) {
         this.wrapper = wrapper;
         this.serverId = serverId;
         this.serverDef = serverDef;
@@ -119,12 +117,10 @@ public class ServerTableEntry {
 
                         // add ORB properties
                         "-Dioser=" + System.getProperty("ioser") + " " + "-D"
-                        + ORBConstants.INITIAL_PORT_PROPERTY + "=" + initialPort
-                        + " " + "-D" + ORBConstants.DB_DIR_PROPERTY + "="
-                        + dbDirName + " " + "-D"
-                        + ORBConstants.ACTIVATED_PROPERTY + "=true " + "-D"
-                        + ORBConstants.SERVER_ID_PROPERTY + "=" + serverId + " "
-                        + "-D" + ORBConstants.SERVER_NAME_PROPERTY + "="
+                        + ORBConstants.INITIAL_PORT_PROPERTY + "=" + initialPort + " " + "-D"
+                        + ORBConstants.DB_DIR_PROPERTY + "=" + dbDirName + " " + "-D"
+                        + ORBConstants.ACTIVATED_PROPERTY + "=true " + "-D" + ORBConstants.SERVER_ID_PROPERTY
+                        + "=" + serverId + " " + "-D" + ORBConstants.SERVER_NAME_PROPERTY + "="
                         + serverDef.serverName + " " +
                         // we need to pass in the verify flag, so that the
                         // server is not
@@ -132,25 +128,20 @@ public class ServerTableEntry {
                         // during registration
                         // into the RepositoryImpl
 
-                        (verify ? "-D" + ORBConstants.SERVER_DEF_VERIFY_PROPERTY
-                                + "=true " : "") +
+                        (verify ? "-D" + ORBConstants.SERVER_DEF_VERIFY_PROPERTY + "=true " : "") +
 
                         // add classpath to the server
-                        "-classpath " + classPath + (serverDef.serverClassPath
-                                .equals("") == true ? "" : pathSep)
-                        + serverDef.serverClassPath +
+                        "-classpath " + classPath + (serverDef.serverClassPath.equals("") == true ? ""
+                                : pathSep) + serverDef.serverClassPath +
 
                         // add server class name and arguments
-                        " com.sun.corba.se.impl.activation.ServerMain "
-                        + serverDef.serverArgs
+                        " com.sun.corba.se.impl.activation.ServerMain " + serverDef.serverArgs
 
                         // Add the debug flag, if any
                         + (debug ? " -debug" : "");
 
         if (debug)
-            System.out.println(
-                    "ServerTableEntry constructed with activation command "
-                            + activationCmd);
+            System.out.println("ServerTableEntry constructed with activation command " + activationCmd);
     }
 
     /**
@@ -165,13 +156,11 @@ public class ServerTableEntry {
             process = Runtime.getRuntime().exec(activationCmd);
             int result = process.waitFor();
             if (debug)
-                printDebug("verify", "returns " + ServerMain.printResult(
-                        result));
+                printDebug("verify", "returns " + ServerMain.printResult(result));
             return result;
         } catch (Exception e) {
             if (debug)
-                printDebug("verify",
-                        "returns unknown error because of exception " + e);
+                printDebug("verify", "returns unknown error because of exception " + e);
             return ServerMain.UNKNOWN_ERROR;
         }
     }
@@ -218,8 +207,7 @@ public class ServerTableEntry {
         }
     }
 
-    synchronized void registerPorts(String orbId, EndPointInfo[] endpointList)
-            throws ORBAlreadyRegistered {
+    synchronized void registerPorts(String orbId, EndPointInfo[] endpointList) throws ORBAlreadyRegistered {
 
         // find if the ORB is already registered, then throw an exception
         if (orbAndPortInfo.containsKey(orbId)) {
@@ -231,11 +219,9 @@ public class ServerTableEntry {
         EndPointInfo[] serverListenerPorts = new EndPointInfo[numListenerPorts];
 
         for (int i = 0; i < numListenerPorts; i++) {
-            serverListenerPorts[i] = new EndPointInfo(
-                    endpointList[i].endpointType, endpointList[i].port);
+            serverListenerPorts[i] = new EndPointInfo(endpointList[i].endpointType, endpointList[i].port);
             if (debug)
-                System.out.println("registering type: "
-                        + serverListenerPorts[i].endpointType + "  port  "
+                System.out.println("registering type: " + serverListenerPorts[i].endpointType + "  port  "
                         + serverListenerPorts[i].port);
         }
 
@@ -369,15 +355,13 @@ public class ServerTableEntry {
         return false;
     }
 
-    synchronized ORBPortInfo[] lookup(String endpointType)
-            throws ServerHeldDown {
+    synchronized ORBPortInfo[] lookup(String endpointType) throws ServerHeldDown {
         while ((state == ACTIVATING) || (state == ACTIVATED)) {
             try {
                 wait(waitTime);
                 if (!isValid())
                     break;
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         ORBPortInfo[] orbAndPortList = null;
 
@@ -392,18 +376,15 @@ public class ServerTableEntry {
                 while (setORBids.hasNext()) {
                     String orbId = (String) setORBids.next();
                     // get an entry corresponding to orbId
-                    EndPointInfo[] serverListenerPorts = (EndPointInfo[]) orbAndPortInfo
-                            .get(orbId);
+                    EndPointInfo[] serverListenerPorts = (EndPointInfo[]) orbAndPortInfo.get(orbId);
                     port = -1;
                     // return the port corresponding to the endpointType
                     for (i = 0; i < serverListenerPorts.length; i++) {
                         if (debug)
-                            System.out.println("lookup num-ports "
-                                    + serverListenerPorts.length + "   "
-                                    + serverListenerPorts[i].endpointType
-                                    + "   " + serverListenerPorts[i].port);
-                        if ((serverListenerPorts[i].endpointType).equals(
-                                endpointType)) {
+                            System.out.println("lookup num-ports " + serverListenerPorts.length + "   "
+                                    + serverListenerPorts[i].endpointType + "   "
+                                    + serverListenerPorts[i].port);
+                        if ((serverListenerPorts[i].endpointType).equals(endpointType)) {
                             port = serverListenerPorts[i].port;
                             break;
                         }
@@ -423,15 +404,13 @@ public class ServerTableEntry {
         throw new ServerHeldDown(serverId);
     }
 
-    synchronized EndPointInfo[] lookupForORB(String orbId)
-            throws ServerHeldDown, InvalidORBid {
+    synchronized EndPointInfo[] lookupForORB(String orbId) throws ServerHeldDown, InvalidORBid {
         while ((state == ACTIVATING) || (state == ACTIVATED)) {
             try {
                 wait(waitTime);
                 if (!isValid())
                     break;
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         EndPointInfo[] portList = null;
 
@@ -440,19 +419,15 @@ public class ServerTableEntry {
             try {
 
                 // get an entry corresponding to orbId
-                EndPointInfo[] serverListenerPorts = (EndPointInfo[]) orbAndPortInfo
-                        .get(orbId);
+                EndPointInfo[] serverListenerPorts = (EndPointInfo[]) orbAndPortInfo.get(orbId);
 
                 portList = new EndPointInfo[serverListenerPorts.length];
                 // return the port corresponding to the endpointType
                 for (int i = 0; i < serverListenerPorts.length; i++) {
                     if (debug)
-                        System.out.println("lookup num-ports "
-                                + serverListenerPorts.length + "   "
-                                + serverListenerPorts[i].endpointType + "   "
-                                + serverListenerPorts[i].port);
-                    portList[i] = new EndPointInfo(
-                            serverListenerPorts[i].endpointType,
+                        System.out.println("lookup num-ports " + serverListenerPorts.length + "   "
+                                + serverListenerPorts[i].endpointType + "   " + serverListenerPorts[i].port);
+                    portList[i] = new EndPointInfo(serverListenerPorts[i].endpointType,
                             serverListenerPorts[i].port);
                 }
             } catch (NoSuchElementException e) {

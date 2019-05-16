@@ -39,14 +39,11 @@ import org.w3c.dom.DOMException;
  * additional information. This is _NOT_ a full DOM implementation, and
  * shouldn't be one since it sits alongside the DOM rather than becoming part of
  * the DOM model.
- *
  * (This used to be an internal class within DOM2DTM. Moved out because I need
  * to perform an instanceof operation on it to support a temporary workaround in
  * DTMManagerDefault.)
- *
  * %REVIEW% What if the DOM2DTM was built around a DocumentFragment and there
  * isn't a single root element? I think this fails that case...
- *
  * %REVIEW% An alternative solution would be to create the node _only_ in DTM
  * space, but given how DOM2DTM is currently written I think this is simplest.
  */
@@ -57,8 +54,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
     String prefix, uri, nodename;
     int handle;
 
-    DOM2DTMdefaultNamespaceDeclarationNode(Element pseudoparent, String prefix,
-            String uri, int handle) {
+    DOM2DTMdefaultNamespaceDeclarationNode(Element pseudoparent, String prefix, String uri, int handle) {
         this.pseudoparent = pseudoparent;
         this.prefix = prefix;
         this.uri = uri;
@@ -215,8 +211,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
     /**
      * @see or.gw3c.dom.TypeInfo#isDerivedFrom(String,String,int)
      */
-    public boolean isDerivedFrom(String ns, String localName,
-            int derivationMethod) {
+    public boolean isDerivedFrom(String ns, String localName, int derivationMethod) {
         return false;
     }
 
@@ -234,20 +229,19 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * same key.
      * 
      * @param key
-     *                The key to associate the object to.
+     *        The key to associate the object to.
      * @param data
-     *                The object to associate to the given key, or
-     *                <code>null</code>
-     *                to remove any existing association to that key.
+     *        The object to associate to the given key, or
+     *        <code>null</code>
+     *        to remove any existing association to that key.
      * @param handler
-     *                The handler to associate to that key, or
-     *                <code>null</code>.
+     *        The handler to associate to that key, or
+     *        <code>null</code>.
      * @return Returns the <code>DOMObject</code> previously associated to the
      *         given key on this node, or <code>null</code> if there was none.
      * @since DOM Level 3
      */
-    public Object setUserData(String key, Object data,
-            UserDataHandler handler) {
+    public Object setUserData(String key, Object data, UserDataHandler handler) {
         return getOwnerDocument().setUserData(key, data, handler);
     }
 
@@ -257,7 +251,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * the same key.
      * 
      * @param key
-     *            The key the object is associated to.
+     *        The key the object is associated to.
      * @return Returns the <code>DOMObject</code> associated to the given key on
      *         this node, or <code>null</code> if there was none.
      * @since DOM Level 3
@@ -273,14 +267,14 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * necessarily expected to, as discussed in Mixed DOM implementations.
      * 
      * @param feature
-     *                The name of the feature requested (case-insensitive).
+     *        The name of the feature requested (case-insensitive).
      * @param version
-     *                This is the version number of the feature to test. If the
-     *                version is <code>null</code> or the empty string,
-     *                supporting
-     *                any version of the feature will cause the method to return
-     *                an
-     *                object that supports at least one version of the feature.
+     *        This is the version number of the feature to test. If the
+     *        version is <code>null</code> or the empty string,
+     *        supporting
+     *        any version of the feature will cause the method to return
+     *        an
+     *        object that supports at least one version of the feature.
      * @return Returns an object which implements the specialized APIs of the
      *         specified feature and version, if any, or <code>null</code> if
      *         there is no object which implements interfaces associated with
@@ -333,12 +327,12 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * nodes.
      * 
      * @param arg
-     *             The node to compare equality with.
+     *        The node to compare equality with.
      * @param deep
-     *             If <code>true</code>, recursively compare the subtrees; if
-     *             <code>false</code>, compare only the nodes themselves (and
-     *             its
-     *             attributes, if it is an <code>Element</code>).
+     *        If <code>true</code>, recursively compare the subtrees; if
+     *        <code>false</code>, compare only the nodes themselves (and
+     *        its
+     *        attributes, if it is an <code>Element</code>).
      * @return If the nodes, and possibly subtrees are equal, <code>true</code>
      *         otherwise <code>false</code>.
      * @since DOM Level 3
@@ -421,8 +415,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
                     if (specifiedPrefix == null && prefix == specifiedPrefix) {
                         // looking for default namespace
                         return namespace;
-                    } else if (prefix != null && prefix.equals(
-                            specifiedPrefix)) {
+                    } else if (prefix != null && prefix.equals(specifiedPrefix)) {
                         // non default namespace
                         return namespace;
                     }
@@ -435,17 +428,14 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
                         String attrPrefix = attr.getPrefix();
                         String value = attr.getNodeValue();
                         namespace = attr.getNamespaceURI();
-                        if (namespace != null && namespace.equals(
-                                "http://www.w3.org/2000/xmlns/")) {
+                        if (namespace != null && namespace.equals("http://www.w3.org/2000/xmlns/")) {
                             // at this point we are dealing with DOM Level 2 nodes
                             // only
-                            if (specifiedPrefix == null && attr.getNodeName()
-                                    .equals("xmlns")) {
+                            if (specifiedPrefix == null && attr.getNodeName().equals("xmlns")) {
                                 // default namespace
                                 return value;
-                            } else if (attrPrefix != null && attrPrefix.equals(
-                                    "xmlns") && attr.getLocalName().equals(
-                                            specifiedPrefix)) {
+                            } else if (attrPrefix != null && attrPrefix.equals("xmlns") && attr.getLocalName()
+                                    .equals(specifiedPrefix)) {
                                 // non default namespace
                                 return value;
                             }
@@ -474,8 +464,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
                 return null;
             case Node.ATTRIBUTE_NODE: {
                 if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
-                    return getOwnerElement().lookupNamespaceURI(
-                            specifiedPrefix);
+                    return getOwnerElement().lookupNamespaceURI(specifiedPrefix);
 
                 }
                 return null;
@@ -497,7 +486,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * <code>namespaceURI</code> is the default namespace or not.
      * 
      * @param namespaceURI
-     *                     The namespace URI to look for.
+     *        The namespace URI to look for.
      * @return <code>true</code> if the specified <code>namespaceURI</code> is
      *         the default namespace, <code>false</code> otherwise.
      * @since DOM Level 3
@@ -536,7 +525,6 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
     }
 
     /**
-     *
      * DOM Level 3 - Experimental: Look up the prefix associated to the given
      * namespace URI, starting from this node.
      *
@@ -599,7 +587,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * method on either reference always has exactly the same effect.
      * 
      * @param other
-     *              The node to test against.
+     *        The node to test against.
      * @return Returns <code>true</code> if the nodes are the same,
      *         <code>false</code> otherwise.
      * @since DOM Level 3
@@ -646,15 +634,15 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * </table>
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly.
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised when it would return
-     *                         more
-     *                         characters than fit in a <code>DOMString</code>
-     *                         variable
-     *                         on the implementation platform.
+     *            DOMSTRING_SIZE_ERR: Raised when it would return
+     *            more
+     *            characters than fit in a <code>DOMString</code>
+     *            variable
+     *            on the implementation platform.
      * @since DOM Level 3
      */
     public void setTextContent(String textContent) throws DOMException {
@@ -698,15 +686,15 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * </table>
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly.
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised when it would return
-     *                         more
-     *                         characters than fit in a <code>DOMString</code>
-     *                         variable
-     *                         on the implementation platform.
+     *            DOMSTRING_SIZE_ERR: Raised when it would return
+     *            more
+     *            characters than fit in a <code>DOMString</code>
+     *            variable
+     *            on the implementation platform.
      * @since DOM Level 3
      */
     public String getTextContent() throws DOMException {
@@ -718,7 +706,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
      * document.
      * 
      * @param other
-     *              The node to compare against this node.
+     *        The node to compare against this node.
      * @return Returns how the given node is positioned relatively to this node.
      * @since DOM Level 3
      */

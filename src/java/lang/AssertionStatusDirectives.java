@@ -30,7 +30,6 @@ class AssertionStatusDirectives {
      * <tt>classes[i]</tt> should have assertions enabled; a value of
      * <tt>false</tt> indicates that it should have classes disabled. This array
      * must have the same number of elements as <tt>classes</tt>.
-     *
      * <p>
      * In the case of conflicting directives for the same class, the last
      * directive for a given class wins. In other words, if a string <tt>s</tt>
@@ -56,7 +55,6 @@ class AssertionStatusDirectives {
      * enabled; a value of <tt>false</tt> indicates that it should have
      * assertions disabled. This array must have the same number of elements as
      * <tt>packages</tt>.
-     *
      * In the case of conflicting directives for the same package-tree, the last
      * directive for a given package-tree wins. In other words, if a string
      * <tt>s</tt> appears multiple times in the <tt>packages</tt> array and

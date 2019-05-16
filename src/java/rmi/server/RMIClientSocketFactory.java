@@ -15,18 +15,15 @@ import java.net.*;
  * created/exported via the constructors or <code>exportObject</code> methods of
  * <code>java.rmi.server.UnicastRemoteObject</code> and
  * <code>java.rmi.activation.Activatable</code> .
- *
  * <p>
  * An <code>RMIClientSocketFactory</code> instance associated with a remote
  * object will be downloaded to clients when the remote object's reference is
  * transmitted in an RMI call. This <code>RMIClientSocketFactory</code> will be
  * used to create connections to the remote object for remote method calls.
- *
  * <p>
  * An <code>RMIClientSocketFactory</code> instance can also be associated with a
  * remote object registry so that clients can use custom socket communication
  * with a remote object registry.
- *
  * <p>
  * An implementation of this interface should be serializable and should
  * implement {@link Object#equals} to return <code>true</code> when passed an
@@ -48,12 +45,12 @@ public interface RMIClientSocketFactory {
      * Create a client socket connected to the specified host and port.
      * 
      * @param host
-     *             the host name
+     *        the host name
      * @param port
-     *             the port number
+     *        the port number
      * @return a socket connected to the specified host and port.
      * @exception IOException
-     *                        if an I/O error occurs during socket creation
+     *            if an I/O error occurs during socket creation
      * @since 1.2
      */
     public Socket createSocket(String host, int port) throws IOException;

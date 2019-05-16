@@ -21,7 +21,6 @@ package com.sun.org.apache.xml.internal.dtm;
 
 /**
  * Simple implementation of DOMException.
- *
  * %REVIEW% Several classes were implementing this internally; it makes more
  * sense to have one shared version.
  * 
@@ -42,7 +41,6 @@ public class DTMDOMException extends org.w3c.dom.DOMException {
 
     /**
      * Constructor DTMDOMException
-     *
      *
      * @param code
      */

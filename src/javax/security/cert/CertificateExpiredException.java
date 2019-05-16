@@ -9,7 +9,6 @@ package javax.security.cert;
  * Certificate Expired Exception. This is thrown whenever the current
  * {@code Date} or the specified {@code Date} is after the {@code notAfter}
  * date/time specified in the validity period of the certificate.
- *
  * <p>
  * <em>Note: The classes in the package {@code javax.security.cert}
  * exist for compatibility with earlier versions of the
@@ -39,7 +38,7 @@ public class CertificateExpiredException extends CertificateException {
      * exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public CertificateExpiredException(String message) {
         super(message);

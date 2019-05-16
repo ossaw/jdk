@@ -19,8 +19,8 @@ public interface ListDataListener extends EventListener {
      * in the data model. The new interval includes both index0 and index1.
      *
      * @param e
-     *          a <code>ListDataEvent</code> encapsulating the event
-     *          information
+     *        a <code>ListDataEvent</code> encapsulating the event
+     *        information
      */
     void intervalAdded(ListDataEvent e);
 
@@ -29,8 +29,8 @@ public interface ListDataListener extends EventListener {
      * from the data model. The interval includes both index0 and index1.
      *
      * @param e
-     *          a <code>ListDataEvent</code> encapsulating the event
-     *          information
+     *        a <code>ListDataEvent</code> encapsulating the event
+     *        information
      */
     void intervalRemoved(ListDataEvent e);
 
@@ -41,8 +41,8 @@ public interface ListDataListener extends EventListener {
      * change.
      *
      * @param e
-     *          a <code>ListDataEvent</code> encapsulating the event
-     *          information
+     *        a <code>ListDataEvent</code> encapsulating the event
+     *        information
      */
     void contentsChanged(ListDataEvent e);
 }

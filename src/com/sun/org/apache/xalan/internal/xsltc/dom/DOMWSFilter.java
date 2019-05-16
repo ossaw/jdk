@@ -52,9 +52,8 @@ public class DOMWSFilter implements DTMWSFilter {
      * the <code>StripFilter</code> interface.
      *
      * @param translet
-     *                 A translet that also implements the StripFilter
-     *                 interface.
-     *
+     *        A translet that also implements the StripFilter
+     *        interface.
      * @see com.sun.org.apache.xml.internal.dtm.DTMWSFilter
      * @see com.sun.org.apache.xalan.internal.xsltc.StripFilter
      */
@@ -74,9 +73,9 @@ public class DOMWSFilter implements DTMWSFilter {
      * from user code.
      *
      * @param node
-     *             int handle of the node.
+     *        int handle of the node.
      * @param dtm
-     *             the DTM that owns this node
+     *        the DTM that owns this node
      * @return one of <code>NOTSTRIP</code>, <code>STRIP</code> or
      *         <code>INHERIT</code>.
      */
@@ -94,9 +93,8 @@ public class DOMWSFilter implements DTMWSFilter {
                 } else {
                     mapping = m_mappings.get(dtm);
                     if (mapping == null) {
-                        mapping = mappableDOM.getMapping(m_translet
-                                .getNamesArray(), m_translet.getUrisArray(),
-                                m_translet.getTypesArray());
+                        mapping = mappableDOM.getMapping(m_translet.getNamesArray(), m_translet
+                                .getUrisArray(), m_translet.getTypesArray());
                         m_mappings.put(dtm, mapping);
                         m_currentDTM = dtm;
                         m_currentMapping = mapping;

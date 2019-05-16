@@ -8,14 +8,12 @@ package org.omg.PortableInterceptor;
  * 9:58:52 PM PDT
  */
 
-public final class IORInterceptor_3_0Holder implements
-        org.omg.CORBA.portable.Streamable {
+public final class IORInterceptor_3_0Holder implements org.omg.CORBA.portable.Streamable {
     public org.omg.PortableInterceptor.IORInterceptor_3_0 value = null;
 
     public IORInterceptor_3_0Holder() {}
 
-    public IORInterceptor_3_0Holder(
-            org.omg.PortableInterceptor.IORInterceptor_3_0 initialValue) {
+    public IORInterceptor_3_0Holder(org.omg.PortableInterceptor.IORInterceptor_3_0 initialValue) {
         value = initialValue;
     }
 

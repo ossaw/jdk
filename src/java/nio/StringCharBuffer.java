@@ -20,19 +20,16 @@ class StringCharBuffer // package-private
     }
 
     public CharBuffer slice() {
-        return new StringCharBuffer(str, -1, 0, this.remaining(), this
-                .remaining(), offset + this.position());
+        return new StringCharBuffer(str, -1, 0, this.remaining(), this.remaining(), offset + this.position());
     }
 
-    private StringCharBuffer(CharSequence s, int mark, int pos, int limit,
-            int cap, int offset) {
+    private StringCharBuffer(CharSequence s, int mark, int pos, int limit, int cap, int offset) {
         super(mark, pos, limit, cap, null, offset);
         str = s;
     }
 
     public CharBuffer duplicate() {
-        return new StringCharBuffer(str, markValue(), position(), limit(),
-                capacity(), offset);
+        return new StringCharBuffer(str, markValue(), position(), limit(), capacity(), offset);
     }
 
     public CharBuffer asReadOnlyBuffer() {
@@ -76,8 +73,8 @@ class StringCharBuffer // package-private
     public final CharBuffer subSequence(int start, int end) {
         try {
             int pos = position();
-            return new StringCharBuffer(str, -1, pos + checkIndex(start, pos),
-                    pos + checkIndex(end, pos), capacity(), offset);
+            return new StringCharBuffer(str, -1, pos + checkIndex(start, pos), pos + checkIndex(end, pos),
+                    capacity(), offset);
         } catch (IllegalArgumentException x) {
             throw new IndexOutOfBoundsException();
         }

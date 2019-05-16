@@ -23,7 +23,6 @@ package com.sun.jmx.snmp;
  * It's possible to implement your own <CODE>SnmpPduFactory</CODE> object and to
  * add authentication and/or encryption to the default encoding/decoding
  * process.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -32,7 +31,6 @@ package com.sun.jmx.snmp;
  * @see SnmpPduFactory
  * @see SnmpPduPacket
  * @see SnmpMessage
- *
  */
 
 public interface SnmpPduFactory {
@@ -43,11 +41,10 @@ public interface SnmpPduFactory {
      * message will be considered unsafe and will be dropped.
      *
      * @param msg
-     *            The <CODE>SnmpMsg</CODE> to be decoded.
+     *        The <CODE>SnmpMsg</CODE> to be decoded.
      * @return Null or a fully initialized <CODE>SnmpPdu</CODE>.
      * @exception SnmpStatusException
-     *                                If the encoding is invalid.
-     *
+     *            If the encoding is invalid.
      * @since 1.5
      */
     public SnmpPdu decodeSnmpPdu(SnmpMsg msg) throws SnmpStatusException;
@@ -59,21 +56,20 @@ public interface SnmpPduFactory {
      * aborted.
      *
      * @param p
-     *                      The <CODE>SnmpPdu</CODE> to be encoded.
+     *        The <CODE>SnmpPdu</CODE> to be encoded.
      * @param maxDataLength
-     *                      The size limit of the resulting encoding.
+     *        The size limit of the resulting encoding.
      * @return Null or a fully encoded <CODE>SnmpMsg</CODE>.
      * @exception SnmpStatusException
-     *                                If <CODE>pdu</CODE> contains illegal
-     *                                values and cannot be
-     *                                encoded.
+     *            If <CODE>pdu</CODE> contains illegal
+     *            values and cannot be
+     *            encoded.
      * @exception SnmpTooBigException
-     *                                If the resulting encoding does not fit
-     *                                into
-     *                                <CODE>maxPktSize</CODE> bytes.
-     *
+     *            If the resulting encoding does not fit
+     *            into
+     *            <CODE>maxPktSize</CODE> bytes.
      * @since 1.5
      */
-    public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
-            throws SnmpStatusException, SnmpTooBigException;
+    public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength) throws SnmpStatusException,
+            SnmpTooBigException;
 }

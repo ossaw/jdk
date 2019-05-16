@@ -50,8 +50,7 @@ public final class ObjectFactory {
             String val = SecuritySupport.getSystemProperty("xerces.debug");
             // Allow simply setting the prop to turn on debug
             return (val != null && (!"false".equals(val)));
-        } catch (SecurityException se) {
-        }
+        } catch (SecurityException se) {}
         return false;
     } // isDebugEnabled()
 
@@ -127,8 +126,7 @@ public final class ObjectFactory {
      * ObjectFactory by default or bootclassloader when Security Manager is in
      * place
      */
-    public static Object newInstance(String className, boolean doFallback)
-            throws ConfigurationError {
+    public static Object newInstance(String className, boolean doFallback) throws ConfigurationError {
         if (System.getSecurityManager() != null) {
             return newInstance(className, null, doFallback);
         } else {
@@ -139,22 +137,19 @@ public final class ObjectFactory {
     /**
      * Create an instance of a class using the specified ClassLoader
      */
-    public static Object newInstance(String className, ClassLoader cl,
-            boolean doFallback) throws ConfigurationError {
+    public static Object newInstance(String className, ClassLoader cl, boolean doFallback)
+            throws ConfigurationError {
         // assert(className != null);
         try {
             Class providerClass = findProviderClass(className, cl, doFallback);
             Object instance = providerClass.newInstance();
             if (DEBUG)
-                debugPrintln("created new instance of " + providerClass
-                        + " using ClassLoader: " + cl);
+                debugPrintln("created new instance of " + providerClass + " using ClassLoader: " + cl);
             return instance;
         } catch (ClassNotFoundException x) {
-            throw new ConfigurationError("Provider " + className + " not found",
-                    x);
+            throw new ConfigurationError("Provider " + className + " not found", x);
         } catch (Exception x) {
-            throw new ConfigurationError("Provider " + className
-                    + " could not be instantiated: " + x, x);
+            throw new ConfigurationError("Provider " + className + " could not be instantiated: " + x, x);
         }
     }
 
@@ -162,24 +157,22 @@ public final class ObjectFactory {
      * Find a Class using the same classloader for the ObjectFactory by default
      * or bootclassloader when Security Manager is in place
      */
-    public static Class findProviderClass(String className, boolean doFallback)
-            throws ClassNotFoundException, ConfigurationError {
+    public static Class findProviderClass(String className, boolean doFallback) throws ClassNotFoundException,
+            ConfigurationError {
         return findProviderClass(className, findClassLoader(), doFallback);
     }
 
     /**
      * Find a Class using the specified ClassLoader
      */
-    public static Class findProviderClass(String className, ClassLoader cl,
-            boolean doFallback) throws ClassNotFoundException,
-            ConfigurationError {
+    public static Class findProviderClass(String className, ClassLoader cl, boolean doFallback)
+            throws ClassNotFoundException, ConfigurationError {
         // throw security exception if the calling thread is not allowed to
         // access the package
         // restrict the access to package as speicified in java.security policy
         SecurityManager security = System.getSecurityManager();
         if (security != null) {
-            if (className.startsWith(JAXP_INTERNAL) || className.startsWith(
-                    STAX_INTERNAL)) {
+            if (className.startsWith(JAXP_INTERNAL) || className.startsWith(STAX_INTERNAL)) {
                 cl = null;
             } else {
                 final int lastDot = className.lastIndexOf(".");
@@ -192,8 +185,7 @@ public final class ObjectFactory {
         Class providerClass;
         if (cl == null) {
             // use the bootstrap ClassLoader.
-            providerClass = Class.forName(className, false, ObjectFactory.class
-                    .getClassLoader());
+            providerClass = Class.forName(className, false, ObjectFactory.class.getClassLoader());
         } else {
             try {
                 providerClass = cl.loadClass(className);

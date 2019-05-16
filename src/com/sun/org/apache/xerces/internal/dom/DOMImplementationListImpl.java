@@ -27,7 +27,6 @@ import org.w3c.dom.DOMImplementation;
  * </p>
  *
  * @xerces.internal
- *
  * @author Neil Delima, IBM
  * @since DOM Level 3 Core
  */
@@ -54,7 +53,7 @@ public class DOMImplementationListImpl implements DOMImplementationList {
      * Returns the indexth item in the collection.
      *
      * @param index
-     *              The index of the DOMImplemetation from the list to return.
+     *        The index of the DOMImplemetation from the list to return.
      */
     public DOMImplementation item(int index) {
         try {

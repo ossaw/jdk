@@ -23,8 +23,7 @@ class DirectShortBufferS
     protected static final Unsafe unsafe = Bits.unsafe();
 
     // Cached array base offset
-    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
-            short[].class);
+    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(short[].class);
 
     // Cached unaligned-access capability
     protected static final boolean unaligned = Bits.unaligned();
@@ -69,14 +68,14 @@ class DirectShortBufferS
     }
 
     public ShortBuffer duplicate() {
-        return new DirectShortBufferS(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectShortBufferS(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
     }
 
     public ShortBuffer asReadOnlyBuffer() {
 
-        return new DirectShortBufferRS(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectShortBufferRS(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
 
     }
 
@@ -108,12 +107,10 @@ class DirectShortBufferS
                 throw new BufferUnderflowException();
 
             if (order() != ByteOrder.nativeOrder())
-                Bits.copyToShortArray(ix(pos), dst, (long) offset << 1,
-                        (long) length << 1);
+                Bits.copyToShortArray(ix(pos), dst, (long) offset << 1, (long) length << 1);
             else
 
-                Bits.copyToArray(ix(pos), dst, arrayBaseOffset,
-                        (long) offset << 1, (long) length << 1);
+                Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 1, (long) length << 1);
             position(pos + length);
         } else {
             super.get(dst, offset, length);
@@ -187,12 +184,10 @@ class DirectShortBufferS
                 throw new BufferOverflowException();
 
             if (order() != ByteOrder.nativeOrder())
-                Bits.copyFromShortArray(src, (long) offset << 1, ix(pos),
-                        (long) length << 1);
+                Bits.copyFromShortArray(src, (long) offset << 1, ix(pos), (long) length << 1);
             else
 
-                Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 1, ix(
-                        pos), (long) length << 1);
+                Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 1, ix(pos), (long) length << 1);
             position(pos + length);
         } else {
             super.put(src, offset, length);
@@ -226,8 +221,7 @@ class DirectShortBufferS
 
     public ByteOrder order() {
 
-        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
-                ? ByteOrder.LITTLE_ENDIAN
+        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
                 : ByteOrder.BIG_ENDIAN);
 
     }

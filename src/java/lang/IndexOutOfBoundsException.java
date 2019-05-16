@@ -30,7 +30,7 @@ public class IndexOutOfBoundsException extends RuntimeException {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IndexOutOfBoundsException(String s) {
         super(s);

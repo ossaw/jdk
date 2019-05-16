@@ -41,16 +41,14 @@ public interface RelationType extends Serializable {
      * (null if not found).
      *
      * @param roleInfoName
-     *                     role info name
-     *
+     *        role info name
      * @return RoleInfo object providing role definition does not exist
-     *
      * @exception IllegalArgumentException
-     *                                      if null parameter
+     *            if null parameter
      * @exception RoleInfoNotFoundException
-     *                                      if no role info with that name in
-     *                                      relation type.
+     *            if no role info with that name in
+     *            relation type.
      */
-    public RoleInfo getRoleInfo(String roleInfoName)
-            throws IllegalArgumentException, RoleInfoNotFoundException;
+    public RoleInfo getRoleInfo(String roleInfoName) throws IllegalArgumentException,
+            RoleInfoNotFoundException;
 }

@@ -90,8 +90,8 @@ final class SlotAllocator {
                 return;
             }
         }
-        String state = "Variable slot allocation error" + "(size=" + size
-                + ", slot=" + slot + ", limit=" + limit + ")";
+        String state = "Variable slot allocation error" + "(size=" + size + ", slot=" + slot + ", limit="
+                + limit + ")";
         ErrorMsg err = new ErrorMsg(ErrorMsg.INTERNAL_ERR, state);
         throw new Error(err.toString());
     }

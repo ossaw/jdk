@@ -87,7 +87,6 @@ import java.util.Enumeration;
  * </pre>
  *
  * @see ImageProducer
- *
  * @author Jim Graham
  * @author Animation capabilities inspired by the MemoryAnimationSource class
  *         written by Garth Dickie
@@ -109,21 +108,20 @@ public class MemoryImageSource implements ImageProducer {
      * produce data for an Image object.
      * 
      * @param w
-     *             the width of the rectangle of pixels
+     *        the width of the rectangle of pixels
      * @param h
-     *             the height of the rectangle of pixels
+     *        the height of the rectangle of pixels
      * @param cm
-     *             the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pix
-     *             an array of pixels
+     *        an array of pixels
      * @param off
-     *             the offset into the array of where to store the first pixel
+     *        the offset into the array of where to store the first pixel
      * @param scan
-     *             the distance from one row of pixels to the next in the array
+     *        the distance from one row of pixels to the next in the array
      * @see java.awt.Component#createImage
      */
-    public MemoryImageSource(int w, int h, ColorModel cm, byte[] pix, int off,
-            int scan) {
+    public MemoryImageSource(int w, int h, ColorModel cm, byte[] pix, int off, int scan) {
         initialize(w, h, cm, (Object) pix, off, scan, null);
     }
 
@@ -132,25 +130,25 @@ public class MemoryImageSource implements ImageProducer {
      * produce data for an Image object.
      * 
      * @param w
-     *              the width of the rectangle of pixels
+     *        the width of the rectangle of pixels
      * @param h
-     *              the height of the rectangle of pixels
+     *        the height of the rectangle of pixels
      * @param cm
-     *              the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pix
-     *              an array of pixels
+     *        an array of pixels
      * @param off
-     *              the offset into the array of where to store the first pixel
+     *        the offset into the array of where to store the first pixel
      * @param scan
-     *              the distance from one row of pixels to the next in the array
+     *        the distance from one row of pixels to the next in the array
      * @param props
-     *              a list of properties that the <code>ImageProducer</code>
-     *              uses
-     *              to process an image
+     *        a list of properties that the <code>ImageProducer</code>
+     *        uses
+     *        to process an image
      * @see java.awt.Component#createImage
      */
-    public MemoryImageSource(int w, int h, ColorModel cm, byte[] pix, int off,
-            int scan, Hashtable<?, ?> props) {
+    public MemoryImageSource(int w, int h, ColorModel cm, byte[] pix, int off, int scan,
+            Hashtable<?, ?> props) {
         initialize(w, h, cm, (Object) pix, off, scan, props);
     }
 
@@ -159,21 +157,20 @@ public class MemoryImageSource implements ImageProducer {
      * produce data for an Image object.
      * 
      * @param w
-     *             the width of the rectangle of pixels
+     *        the width of the rectangle of pixels
      * @param h
-     *             the height of the rectangle of pixels
+     *        the height of the rectangle of pixels
      * @param cm
-     *             the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pix
-     *             an array of pixels
+     *        an array of pixels
      * @param off
-     *             the offset into the array of where to store the first pixel
+     *        the offset into the array of where to store the first pixel
      * @param scan
-     *             the distance from one row of pixels to the next in the array
+     *        the distance from one row of pixels to the next in the array
      * @see java.awt.Component#createImage
      */
-    public MemoryImageSource(int w, int h, ColorModel cm, int[] pix, int off,
-            int scan) {
+    public MemoryImageSource(int w, int h, ColorModel cm, int[] pix, int off, int scan) {
         initialize(w, h, cm, (Object) pix, off, scan, null);
     }
 
@@ -182,30 +179,29 @@ public class MemoryImageSource implements ImageProducer {
      * produce data for an Image object.
      * 
      * @param w
-     *              the width of the rectangle of pixels
+     *        the width of the rectangle of pixels
      * @param h
-     *              the height of the rectangle of pixels
+     *        the height of the rectangle of pixels
      * @param cm
-     *              the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pix
-     *              an array of pixels
+     *        an array of pixels
      * @param off
-     *              the offset into the array of where to store the first pixel
+     *        the offset into the array of where to store the first pixel
      * @param scan
-     *              the distance from one row of pixels to the next in the array
+     *        the distance from one row of pixels to the next in the array
      * @param props
-     *              a list of properties that the <code>ImageProducer</code>
-     *              uses
-     *              to process an image
+     *        a list of properties that the <code>ImageProducer</code>
+     *        uses
+     *        to process an image
      * @see java.awt.Component#createImage
      */
-    public MemoryImageSource(int w, int h, ColorModel cm, int[] pix, int off,
-            int scan, Hashtable<?, ?> props) {
+    public MemoryImageSource(int w, int h, ColorModel cm, int[] pix, int off, int scan,
+            Hashtable<?, ?> props) {
         initialize(w, h, cm, (Object) pix, off, scan, props);
     }
 
-    private void initialize(int w, int h, ColorModel cm, Object pix, int off,
-            int scan, Hashtable props) {
+    private void initialize(int w, int h, ColorModel cm, Object pix, int off, int scan, Hashtable props) {
         width = w;
         height = h;
         model = cm;
@@ -223,21 +219,20 @@ public class MemoryImageSource implements ImageProducer {
      * default RGB ColorModel to produce data for an Image object.
      * 
      * @param w
-     *             the width of the rectangle of pixels
+     *        the width of the rectangle of pixels
      * @param h
-     *             the height of the rectangle of pixels
+     *        the height of the rectangle of pixels
      * @param pix
-     *             an array of pixels
+     *        an array of pixels
      * @param off
-     *             the offset into the array of where to store the first pixel
+     *        the offset into the array of where to store the first pixel
      * @param scan
-     *             the distance from one row of pixels to the next in the array
+     *        the distance from one row of pixels to the next in the array
      * @see java.awt.Component#createImage
      * @see ColorModel#getRGBdefault
      */
     public MemoryImageSource(int w, int h, int pix[], int off, int scan) {
-        initialize(w, h, ColorModel.getRGBdefault(), (Object) pix, off, scan,
-                null);
+        initialize(w, h, ColorModel.getRGBdefault(), (Object) pix, off, scan, null);
     }
 
     /**
@@ -245,26 +240,24 @@ public class MemoryImageSource implements ImageProducer {
      * default RGB ColorModel to produce data for an Image object.
      * 
      * @param w
-     *              the width of the rectangle of pixels
+     *        the width of the rectangle of pixels
      * @param h
-     *              the height of the rectangle of pixels
+     *        the height of the rectangle of pixels
      * @param pix
-     *              an array of pixels
+     *        an array of pixels
      * @param off
-     *              the offset into the array of where to store the first pixel
+     *        the offset into the array of where to store the first pixel
      * @param scan
-     *              the distance from one row of pixels to the next in the array
+     *        the distance from one row of pixels to the next in the array
      * @param props
-     *              a list of properties that the <code>ImageProducer</code>
-     *              uses
-     *              to process an image
+     *        a list of properties that the <code>ImageProducer</code>
+     *        uses
+     *        to process an image
      * @see java.awt.Component#createImage
      * @see ColorModel#getRGBdefault
      */
-    public MemoryImageSource(int w, int h, int pix[], int off, int scan,
-            Hashtable<?, ?> props) {
-        initialize(w, h, ColorModel.getRGBdefault(), (Object) pix, off, scan,
-                props);
+    public MemoryImageSource(int w, int h, int pix[], int off, int scan, Hashtable<?, ?> props) {
+        initialize(w, h, ColorModel.getRGBdefault(), (Object) pix, off, scan, props);
     }
 
     /**
@@ -272,10 +265,10 @@ public class MemoryImageSource implements ImageProducer {
      * this image.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @throws NullPointerException
-     *                              if the specified <code>ImageConsumer</code>
-     *                              is null
+     *         if the specified <code>ImageConsumer</code>
+     *         is null
      * @see ImageConsumer
      */
     public synchronized void addConsumer(ImageConsumer ic) {
@@ -287,8 +280,7 @@ public class MemoryImageSource implements ImageProducer {
             initConsumer(ic);
             sendPixels(ic, 0, 0, width, height);
             if (isConsumer(ic)) {
-                ic.imageComplete(animating ? ImageConsumer.SINGLEFRAMEDONE
-                        : ImageConsumer.STATICIMAGEDONE);
+                ic.imageComplete(animating ? ImageConsumer.SINGLEFRAMEDONE : ImageConsumer.STATICIMAGEDONE);
                 if (!animating && isConsumer(ic)) {
                     ic.imageComplete(ImageConsumer.IMAGEERROR);
                     removeConsumer(ic);
@@ -306,7 +298,7 @@ public class MemoryImageSource implements ImageProducer {
      * interested in data for this image.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @return <code>true</code> if the <code>ImageConsumer</code> is on the
      *         list; <code>false</code> otherwise.
      * @see ImageConsumer
@@ -320,7 +312,7 @@ public class MemoryImageSource implements ImageProducer {
      * for this image.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @see ImageConsumer
      */
     public synchronized void removeConsumer(ImageConsumer ic) {
@@ -333,8 +325,8 @@ public class MemoryImageSource implements ImageProducer {
      * ImageConsumer interface.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code> image data through
-     *           the ImageConsumer interface.
+     *        the specified <code>ImageConsumer</code> image data through
+     *        the ImageConsumer interface.
      * @see ImageConsumer
      */
     public void startProduction(ImageConsumer ic) {
@@ -346,7 +338,7 @@ public class MemoryImageSource implements ImageProducer {
      * more time in top-down, left-right order.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @see ImageConsumer
      */
     public void requestTopDownLeftRightResend(ImageConsumer ic) {
@@ -366,7 +358,7 @@ public class MemoryImageSource implements ImageProducer {
      * available when it connected.
      * 
      * @param animated
-     *                 <code>true</code> if the image is a multi-frame animation
+     *        <code>true</code> if the image is a multi-frame animation
      */
     public synchronized void setAnimated(boolean animated) {
         this.animating = animated;
@@ -394,9 +386,9 @@ public class MemoryImageSource implements ImageProducer {
      * ImageConsumers will receive the correct pixel delivery hints.
      * 
      * @param fullbuffers
-     *                    <code>true</code> if the complete pixel buffer should
-     *                    always
-     *                    be sent
+     *        <code>true</code> if the complete pixel buffer should
+     *        always
+     *        be sent
      * @see #setAnimated
      */
     public synchronized void setFullBufferUpdates(boolean fullbuffers) {
@@ -408,8 +400,7 @@ public class MemoryImageSource implements ImageProducer {
             Enumeration enum_ = theConsumers.elements();
             while (enum_.hasMoreElements()) {
                 ImageConsumer ic = (ImageConsumer) enum_.nextElement();
-                ic.setHints(fullbuffers ? (ImageConsumer.TOPDOWNLEFTRIGHT
-                        | ImageConsumer.COMPLETESCANLINES)
+                ic.setHints(fullbuffers ? (ImageConsumer.TOPDOWNLEFTRIGHT | ImageConsumer.COMPLETESCANLINES)
                         : ImageConsumer.RANDOMPIXELORDER);
             }
         }
@@ -439,15 +430,15 @@ public class MemoryImageSource implements ImageProducer {
      * buffer will always be sent.
      * 
      * @param x
-     *          the x coordinate of the upper left corner of the rectangle of
-     *          pixels to be sent
+     *        the x coordinate of the upper left corner of the rectangle of
+     *        pixels to be sent
      * @param y
-     *          the y coordinate of the upper left corner of the rectangle of
-     *          pixels to be sent
+     *        the y coordinate of the upper left corner of the rectangle of
+     *        pixels to be sent
      * @param w
-     *          the width of the rectangle of pixels to be sent
+     *        the width of the rectangle of pixels to be sent
      * @param h
-     *          the height of the rectangle of pixels to be sent
+     *        the height of the rectangle of pixels to be sent
      * @see #newPixels(int, int, int, int, boolean)
      * @see ImageConsumer
      * @see #setAnimated
@@ -468,27 +459,26 @@ public class MemoryImageSource implements ImageProducer {
      * buffer will always be sent.
      * 
      * @param x
-     *                    the x coordinate of the upper left corner of the
-     *                    rectangle of
-     *                    pixels to be sent
+     *        the x coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to be sent
      * @param y
-     *                    the y coordinate of the upper left corner of the
-     *                    rectangle of
-     *                    pixels to be sent
+     *        the y coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to be sent
      * @param w
-     *                    the width of the rectangle of pixels to be sent
+     *        the width of the rectangle of pixels to be sent
      * @param h
-     *                    the height of the rectangle of pixels to be sent
+     *        the height of the rectangle of pixels to be sent
      * @param framenotify
-     *                    <code>true</code> if the consumers should be sent a
-     *                    {@link ImageConsumer#SINGLEFRAMEDONE SINGLEFRAMEDONE}
-     *                    notification
+     *        <code>true</code> if the consumers should be sent a
+     *        {@link ImageConsumer#SINGLEFRAMEDONE SINGLEFRAMEDONE}
+     *        notification
      * @see ImageConsumer
      * @see #setAnimated
      * @see #setFullBufferUpdates
      */
-    public synchronized void newPixels(int x, int y, int w, int h,
-            boolean framenotify) {
+    public synchronized void newPixels(int x, int y, int w, int h, boolean framenotify) {
         if (animating) {
             if (fullbuffers) {
                 x = y = 0;
@@ -533,19 +523,18 @@ public class MemoryImageSource implements ImageProducer {
      * are currently interested in the data for this image.
      * 
      * @param newpix
-     *                 the new pixel array
+     *        the new pixel array
      * @param newmodel
-     *                 the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param offset
-     *                 the offset into the array
+     *        the offset into the array
      * @param scansize
-     *                 the distance from one row of pixels to the next in the
-     *                 array
+     *        the distance from one row of pixels to the next in the
+     *        array
      * @see #newPixels(int, int, int, int, boolean)
      * @see #setAnimated
      */
-    public synchronized void newPixels(byte[] newpix, ColorModel newmodel,
-            int offset, int scansize) {
+    public synchronized void newPixels(byte[] newpix, ColorModel newmodel, int offset, int scansize) {
         this.pixels = newpix;
         this.model = newmodel;
         this.pixeloffset = offset;
@@ -560,19 +549,18 @@ public class MemoryImageSource implements ImageProducer {
      * are currently interested in the data for this image.
      * 
      * @param newpix
-     *                 the new pixel array
+     *        the new pixel array
      * @param newmodel
-     *                 the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param offset
-     *                 the offset into the array
+     *        the offset into the array
      * @param scansize
-     *                 the distance from one row of pixels to the next in the
-     *                 array
+     *        the distance from one row of pixels to the next in the
+     *        array
      * @see #newPixels(int, int, int, int, boolean)
      * @see #setAnimated
      */
-    public synchronized void newPixels(int[] newpix, ColorModel newmodel,
-            int offset, int scansize) {
+    public synchronized void newPixels(int[] newpix, ColorModel newmodel, int offset, int scansize) {
         this.pixels = newpix;
         this.model = newmodel;
         this.pixeloffset = offset;
@@ -591,14 +579,10 @@ public class MemoryImageSource implements ImageProducer {
             ic.setColorModel(model);
         }
         if (isConsumer(ic)) {
-            ic.setHints(animating ? (fullbuffers
-                    ? (ImageConsumer.TOPDOWNLEFTRIGHT
-                            | ImageConsumer.COMPLETESCANLINES)
-                    : ImageConsumer.RANDOMPIXELORDER)
-                    : (ImageConsumer.TOPDOWNLEFTRIGHT
-                            | ImageConsumer.COMPLETESCANLINES
-                            | ImageConsumer.SINGLEPASS
-                            | ImageConsumer.SINGLEFRAME));
+            ic.setHints(animating ? (fullbuffers ? (ImageConsumer.TOPDOWNLEFTRIGHT
+                    | ImageConsumer.COMPLETESCANLINES) : ImageConsumer.RANDOMPIXELORDER)
+                    : (ImageConsumer.TOPDOWNLEFTRIGHT | ImageConsumer.COMPLETESCANLINES
+                            | ImageConsumer.SINGLEPASS | ImageConsumer.SINGLEFRAME));
         }
     }
 
@@ -606,11 +590,9 @@ public class MemoryImageSource implements ImageProducer {
         int off = pixeloffset + pixelscan * y + x;
         if (isConsumer(ic)) {
             if (pixels instanceof byte[]) {
-                ic.setPixels(x, y, w, h, model, ((byte[]) pixels), off,
-                        pixelscan);
+                ic.setPixels(x, y, w, h, model, ((byte[]) pixels), off, pixelscan);
             } else {
-                ic.setPixels(x, y, w, h, model, ((int[]) pixels), off,
-                        pixelscan);
+                ic.setPixels(x, y, w, h, model, ((int[]) pixels), off, pixelscan);
             }
         }
     }

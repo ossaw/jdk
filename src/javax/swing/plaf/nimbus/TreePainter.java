@@ -33,8 +33,7 @@ final class TreePainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -42,56 +41,32 @@ final class TreePainter extends AbstractRegionPainter {
     // by a particular instance of TreePainter would be created. For the moment
     // at least,
     // however, all are created for each instance.
-    private Color color1 = decodeColor("nimbusBlueGrey", 0.007936537f,
-            -0.065654516f, -0.13333333f, 0);
+    private Color color1 = decodeColor("nimbusBlueGrey", 0.007936537f, -0.065654516f, -0.13333333f, 0);
     private Color color2 = new Color(97, 98, 102, 255);
-    private Color color3 = decodeColor("nimbusBlueGrey", -0.032679737f,
-            -0.043332636f, 0.24705881f, 0);
-    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
-            0.25490195f, 0);
-    private Color color5 = decodeColor("nimbusBase", 0.0077680945f,
-            -0.51781034f, 0.3490196f, 0);
-    private Color color6 = decodeColor("nimbusBase", 0.013940871f, -0.599277f,
-            0.41960782f, 0);
-    private Color color7 = decodeColor("nimbusBase", 0.004681647f, -0.4198052f,
-            0.14117646f, 0);
-    private Color color8 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
-            0.45098037f, -127);
-    private Color color9 = decodeColor("nimbusBlueGrey", 0.0f, 0.0f, -0.21f,
-            -99);
-    private Color color10 = decodeColor("nimbusBase", 2.9569864E-4f,
-            -0.45978838f, 0.2980392f, 0);
-    private Color color11 = decodeColor("nimbusBase", 0.0015952587f,
-            -0.34848025f, 0.18823528f, 0);
-    private Color color12 = decodeColor("nimbusBase", 0.0015952587f,
-            -0.30844158f, 0.09803921f, 0);
-    private Color color13 = decodeColor("nimbusBase", 0.0015952587f,
-            -0.27329817f, 0.035294116f, 0);
-    private Color color14 = decodeColor("nimbusBase", 0.004681647f, -0.6198413f,
-            0.43921566f, 0);
-    private Color color15 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
-            0.45098037f, -125);
-    private Color color16 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
-            0.45098037f, -50);
-    private Color color17 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
-            0.45098037f, -100);
-    private Color color18 = decodeColor("nimbusBase", 0.0012094378f,
-            -0.23571429f, -0.0784314f, 0);
-    private Color color19 = decodeColor("nimbusBase", 2.9569864E-4f,
-            -0.115166366f, -0.2627451f, 0);
-    private Color color20 = decodeColor("nimbusBase", 0.0027436614f, -0.335015f,
-            0.011764705f, 0);
-    private Color color21 = decodeColor("nimbusBase", 0.0024294257f,
-            -0.3857143f, 0.031372547f, 0);
-    private Color color22 = decodeColor("nimbusBase", 0.0018081069f,
-            -0.3595238f, -0.13725492f, 0);
+    private Color color3 = decodeColor("nimbusBlueGrey", -0.032679737f, -0.043332636f, 0.24705881f, 0);
+    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
+    private Color color5 = decodeColor("nimbusBase", 0.0077680945f, -0.51781034f, 0.3490196f, 0);
+    private Color color6 = decodeColor("nimbusBase", 0.013940871f, -0.599277f, 0.41960782f, 0);
+    private Color color7 = decodeColor("nimbusBase", 0.004681647f, -0.4198052f, 0.14117646f, 0);
+    private Color color8 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, -127);
+    private Color color9 = decodeColor("nimbusBlueGrey", 0.0f, 0.0f, -0.21f, -99);
+    private Color color10 = decodeColor("nimbusBase", 2.9569864E-4f, -0.45978838f, 0.2980392f, 0);
+    private Color color11 = decodeColor("nimbusBase", 0.0015952587f, -0.34848025f, 0.18823528f, 0);
+    private Color color12 = decodeColor("nimbusBase", 0.0015952587f, -0.30844158f, 0.09803921f, 0);
+    private Color color13 = decodeColor("nimbusBase", 0.0015952587f, -0.27329817f, 0.035294116f, 0);
+    private Color color14 = decodeColor("nimbusBase", 0.004681647f, -0.6198413f, 0.43921566f, 0);
+    private Color color15 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, -125);
+    private Color color16 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, -50);
+    private Color color17 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, -100);
+    private Color color18 = decodeColor("nimbusBase", 0.0012094378f, -0.23571429f, -0.0784314f, 0);
+    private Color color19 = decodeColor("nimbusBase", 2.9569864E-4f, -0.115166366f, -0.2627451f, 0);
+    private Color color20 = decodeColor("nimbusBase", 0.0027436614f, -0.335015f, 0.011764705f, 0);
+    private Color color21 = decodeColor("nimbusBase", 0.0024294257f, -0.3857143f, 0.031372547f, 0);
+    private Color color22 = decodeColor("nimbusBase", 0.0018081069f, -0.3595238f, -0.13725492f, 0);
     private Color color23 = new Color(255, 200, 0, 255);
-    private Color color24 = decodeColor("nimbusBase", 0.004681647f,
-            -0.33496243f, -0.027450979f, 0);
-    private Color color25 = decodeColor("nimbusBase", 0.0019934773f, -0.361378f,
-            -0.10588238f, 0);
-    private Color color26 = decodeColor("nimbusBlueGrey", -0.6111111f,
-            -0.110526316f, -0.34509805f, 0);
+    private Color color24 = decodeColor("nimbusBase", 0.004681647f, -0.33496243f, -0.027450979f, 0);
+    private Color color25 = decodeColor("nimbusBase", 0.0019934773f, -0.361378f, -0.10588238f, 0);
+    private Color color26 = decodeColor("nimbusBlueGrey", -0.6111111f, -0.110526316f, -0.34509805f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -103,8 +78,7 @@ final class TreePainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -572,10 +546,9 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.046296295f * w) + x, (0.9675926f * h) + y,
-                (0.4861111f * w) + x, (0.5324074f * h) + y, new float[] { 0.0f,
-                        0.5f, 1.0f }, new Color[] { color3, decodeColor(color3,
-                                color4, 0.5f), color4 });
+        return decodeGradient((0.046296295f * w) + x, (0.9675926f * h) + y, (0.4861111f * w) + x, (0.5324074f
+                * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] { color3, decodeColor(color3, color4,
+                        0.5f), color4 });
     }
 
     private Paint decodeGradient2(Shape s) {
@@ -584,9 +557,8 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color5, decodeColor(color5, color6, 0.5f), color6 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color5, decodeColor(color5, color6, 0.5f), color6 });
     }
 
     private Paint decodeGradient3(Shape s) {
@@ -595,14 +567,10 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.04191617f, 0.10329342f,
-                        0.16467066f, 0.24550897f, 0.3263473f, 0.6631737f,
-                        1.0f }, new Color[] { color10, decodeColor(color10,
-                                color11, 0.5f), color11, decodeColor(color11,
-                                        color12, 0.5f), color12, decodeColor(
-                                                color12, color13, 0.5f),
-                                color13 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.04191617f, 0.10329342f, 0.16467066f, 0.24550897f, 0.3263473f, 0.6631737f, 1.0f },
+                new Color[] { color10, decodeColor(color10, color11, 0.5f), color11, decodeColor(color11,
+                        color12, 0.5f), color12, decodeColor(color12, color13, 0.5f), color13 });
     }
 
     private Paint decodeGradient4(Shape s) {
@@ -611,9 +579,8 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color5, decodeColor(color5, color14, 0.5f), color14 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color5, decodeColor(color5, color14, 0.5f), color14 });
     }
 
     private Paint decodeGradient5(Shape s) {
@@ -622,10 +589,8 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color18, decodeColor(color18, color19, 0.5f),
-                        color19 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color18, decodeColor(color18, color19, 0.5f), color19 });
     }
 
     private Paint decodeGradient6(Shape s) {
@@ -634,11 +599,9 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.12724552f, 0.25449103f,
-                        0.62724555f, 1.0f }, new Color[] { color20, decodeColor(
-                                color20, color21, 0.5f), color21, decodeColor(
-                                        color21, color22, 0.5f), color22 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.12724552f, 0.25449103f, 0.62724555f, 1.0f }, new Color[] { color20, decodeColor(
+                        color20, color21, 0.5f), color21, decodeColor(color21, color22, 0.5f), color22 });
     }
 
     private Paint decodeGradient7(Shape s) {
@@ -647,10 +610,8 @@ final class TreePainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
-                        color24, decodeColor(color24, color25, 0.5f),
-                        color25 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.5f, 1.0f }, new Color[] { color24, decodeColor(color24, color25, 0.5f), color25 });
     }
 
 }

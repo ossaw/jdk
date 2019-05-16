@@ -467,7 +467,6 @@ import java.util.Map;
  *
  * @author TAMURA Kent, IBM
  * @author Andy Clark, IBM
- *
  */
 public class EncodingMap {
 
@@ -661,8 +660,7 @@ public class EncodingMap {
         aIANA2JavaMap.put("CCSID01149", "Cp1149");
         aIANA2JavaMap.put("EUC-JP", "EUCJIS");
         aIANA2JavaMap.put("CSEUCPKDFMTJAPANESE", "EUCJIS");
-        aIANA2JavaMap.put("EXTENDED_UNIX_CODE_PACKED_FORMAT_FOR_JAPANESE",
-                "EUCJIS");
+        aIANA2JavaMap.put("EXTENDED_UNIX_CODE_PACKED_FORMAT_FOR_JAPANESE", "EUCJIS");
         aIANA2JavaMap.put("EUC-KR", "KSC5601");
         aIANA2JavaMap.put("CSEUCKR", "KSC5601");
         aIANA2JavaMap.put("KS_C_5601-1987", "KS_C_5601-1987");
@@ -963,7 +961,7 @@ public class EncodingMap {
      * Returns the Java encoding name for the specified IANA encoding name.
      *
      * @param ianaEncoding
-     *                     The IANA encoding name.
+     *        The IANA encoding name.
      */
     public static String getIANA2JavaMapping(String ianaEncoding) {
         return fIANA2JavaMap.get(ianaEncoding);
@@ -973,7 +971,7 @@ public class EncodingMap {
      * Returns the IANA encoding name for the specified Java encoding name.
      *
      * @param javaEncoding
-     *                     The Java encoding name.
+     *        The Java encoding name.
      */
     public static String getJava2IANAMapping(String javaEncoding) {
         return fJava2IANAMap.get(javaEncoding);

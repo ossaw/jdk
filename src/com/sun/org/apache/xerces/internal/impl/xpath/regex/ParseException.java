@@ -19,7 +19,6 @@ package com.sun.org.apache.xerces.internal.impl.xpath.regex;
 
 /**
  * @xerces.internal
- *
  * @author TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;
  */
 public class ParseException extends RuntimeException {
@@ -41,7 +40,6 @@ public class ParseException extends RuntimeException {
     }
 
     /**
-     *
      * @return -1 if location information is not available.
      */
     public int getLocation() {

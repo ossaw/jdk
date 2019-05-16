@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -190,8 +188,7 @@ public class RFC2253Parser {
 
         if (value.startsWith("\"")) {
             StringBuilder sb = new StringBuilder();
-            StringReader sr = new StringReader(value.substring(1, value.length()
-                    - 1));
+            StringReader sr = new StringReader(value.substring(1, value.length() - 1));
             int i = 0;
             char c;
 
@@ -200,8 +197,8 @@ public class RFC2253Parser {
 
                 // the following char is defined at 4.Relationship with RFC1779
                 // and LDAPv2 inrfc2253
-                if ((c == ',') || (c == '=') || (c == '+') || (c == '<')
-                        || (c == '>') || (c == '#') || (c == ';')) {
+                if ((c == ',') || (c == '=') || (c == '+') || (c == '<') || (c == '>') || (c == '#')
+                        || (c == ';')) {
                     sb.append('\\');
                 }
 
@@ -279,10 +276,9 @@ public class RFC2253Parser {
                 char c2 = (char) sr.read();
 
                 // 65 (A) 97 (a)
-                if ((((c1 >= 48) && (c1 <= 57)) || ((c1 >= 65) && (c1 <= 70))
-                        || ((c1 >= 97) && (c1 <= 102))) && (((c2 >= 48)
-                                && (c2 <= 57)) || ((c2 >= 65) && (c2 <= 70))
-                                || ((c2 >= 97) && (c2 <= 102)))) {
+                if ((((c1 >= 48) && (c1 <= 57)) || ((c1 >= 65) && (c1 <= 70)) || ((c1 >= 97) && (c1 <= 102)))
+                        && (((c2 >= 48) && (c2 <= 57)) || ((c2 >= 65) && (c2 <= 70)) || ((c2 >= 97)
+                                && (c2 <= 102)))) {
                     char ch = (char) Byte.parseByte("" + c1 + c2, 16);
 
                     sb.append(ch);
@@ -410,8 +406,7 @@ public class RFC2253Parser {
      * @param replace
      * @return normalized string
      */
-    static String removeWSandReplace(String str, String symbol,
-            String replace) {
+    static String removeWSandReplace(String str, String symbol, String replace) {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         int l = 0;
@@ -467,8 +462,8 @@ public class RFC2253Parser {
         String trimed = str.trim();
         int i = str.indexOf(trimed) + trimed.length();
 
-        if ((str.length() > i) && trimed.endsWith("\\") && !trimed.endsWith(
-                "\\\\") && (str.charAt(i) == ' ')) {
+        if ((str.length() > i) && trimed.endsWith("\\") && !trimed.endsWith("\\\\") && (str.charAt(
+                i) == ' ')) {
             trimed = trimed + " ";
         }
 

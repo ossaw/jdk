@@ -35,7 +35,7 @@ public class ArrayStoreException extends RuntimeException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public ArrayStoreException(String s) {
         super(s);

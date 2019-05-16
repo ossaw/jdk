@@ -47,7 +47,7 @@ public final class BoolStack implements Cloneable {
      * Construct a IntVector, using the given block size.
      *
      * @param size
-     *             array size to allocate
+     *        array size to allocate
      */
     public BoolStack(int size) {
 
@@ -67,7 +67,6 @@ public final class BoolStack implements Cloneable {
 
     /**
      * Clears the stack.
-     *
      */
     public final void clear() {
         m_index = -1;
@@ -76,9 +75,8 @@ public final class BoolStack implements Cloneable {
     /**
      * Pushes an item onto the top of this stack.
      *
-     *
      * @param val
-     *            the boolean to be pushed onto this stack.
+     *        the boolean to be pushed onto this stack.
      * @return the <code>item</code> argument.
      */
     public final boolean push(boolean val) {
@@ -95,7 +93,7 @@ public final class BoolStack implements Cloneable {
      *
      * @return The object at the top of this stack.
      * @throws EmptyStackException
-     *                             if this stack is empty.
+     *         if this stack is empty.
      */
     public final boolean pop() {
         return m_values[m_index--];
@@ -104,7 +102,6 @@ public final class BoolStack implements Cloneable {
     /**
      * Removes the object at the top of this stack and returns the next object
      * at the top as the value of this function.
-     *
      *
      * @return Next object to the top or false if none there
      */
@@ -118,9 +115,8 @@ public final class BoolStack implements Cloneable {
     /**
      * Set the item at the top of this stack
      *
-     *
      * @param b
-     *          Object to set at the top of this stack
+     *        Object to set at the top of this stack
      */
     public final void setTop(boolean b) {
         m_values[m_index] = b;
@@ -132,7 +128,7 @@ public final class BoolStack implements Cloneable {
      *
      * @return the object at the top of this stack.
      * @throws EmptyStackException
-     *                             if this stack is empty.
+     *         if this stack is empty.
      */
     public final boolean peek() {
         return m_values[m_index];
@@ -170,7 +166,6 @@ public final class BoolStack implements Cloneable {
 
     /**
      * Grows the size of the stack
-     *
      */
     private void grow() {
 

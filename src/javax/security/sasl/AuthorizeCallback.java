@@ -13,7 +13,6 @@ import javax.security.auth.callback.Callback;
  * another entity (identified by an authorization id).
  *
  * @since 1.5
- *
  * @author Rosanna Lee
  * @author Rob Weltman
  */
@@ -52,9 +51,9 @@ public class AuthorizeCallback implements Callback, java.io.Serializable {
      * Constructs an instance of {@code AuthorizeCallback}.
      *
      * @param authnID
-     *                The (authenticated) authentication id.
+     *        The (authenticated) authentication id.
      * @param authzID
-     *                The authorization id.
+     *        The authorization id.
      */
     public AuthorizeCallback(String authnID, String authzID) {
         authenticationID = authnID;
@@ -95,8 +94,8 @@ public class AuthorizeCallback implements Callback, java.io.Serializable {
      * Sets whether the authorization is allowed.
      * 
      * @param ok
-     *           {@code true} if authorization is allowed; {@code false}
-     *           otherwise
+     *        {@code true} if authorization is allowed; {@code false}
+     *        otherwise
      * @see #isAuthorized
      * @see #setAuthorizedID(java.lang.String)
      */
@@ -125,7 +124,7 @@ public class AuthorizeCallback implements Callback, java.io.Serializable {
      * be canonicalized for the environment in which it will be used.
      * 
      * @param id
-     *           The id of the authorized user.
+     *        The id of the authorized user.
      * @see #setAuthorized(boolean)
      * @see #getAuthorizedID
      */

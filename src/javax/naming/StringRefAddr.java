@@ -13,18 +13,15 @@ package javax.naming;
  * based on the agreement of three parties: the client that uses the address,
  * the object/server that can be reached using the address, and the
  * administrator or program that creates the address.
- *
  * <p>
  * An example of a string reference address is a host name. Another example of a
  * string reference address is a URL.
- *
  * <p>
  * A string reference address is immutable: once created, it cannot be changed.
  * Multithreaded access to a single StringRefAddr need not be synchronized.
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see RefAddr
  * @see BinaryRefAddr
  * @since 1.3
@@ -43,11 +40,11 @@ public class StringRefAddr extends RefAddr {
      * contents.
      *
      * @param addrType
-     *                 A non-null string describing the type of the address.
+     *        A non-null string describing the type of the address.
      * @param addr
-     *                 The possibly null contents of the address in the form of
-     *                 a
-     *                 string.
+     *        The possibly null contents of the address in the form of
+     *        a
+     *        string.
      */
     public StringRefAddr(String addrType, String addr) {
         super(addrType);

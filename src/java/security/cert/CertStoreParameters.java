@@ -20,7 +20,6 @@ package java.security.cert;
  * parameters needed may vary between different types of {@code CertStore}s.
  *
  * @see CertStore#getInstance
- *
  * @since 1.4
  * @author Steve Hanna
  */

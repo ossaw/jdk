@@ -44,7 +44,6 @@ import java.time.ZoneOffset;
  * The shared serialization delegate for this package.
  *
  * @implNote This class is mutable and should be created once per serialization.
- *
  * @serial include
  * @since 1.8
  */
@@ -76,9 +75,9 @@ final class Ser implements Externalizable {
      * Creates an instance for serialization.
      *
      * @param type
-     *               the type
+     *        the type
      * @param object
-     *               the object
+     *        the object
      */
     Ser(byte type, Object object) {
         this.type = type;
@@ -93,7 +92,6 @@ final class Ser implements Externalizable {
      *             byte in the stream. Refer to each class {@code writeReplace}
      *             serialized form for the value of the type and sequence of
      *             values for the type.
-     *
      *             <ul>
      *             <li><a href=
      *             "../../../serialized-form.html#java.time.zone.ZoneRules">
@@ -105,9 +103,8 @@ final class Ser implements Externalizable {
      *             "../../../serialized-form.html#java.time.zone.ZoneOffsetTransitionRule">
      *             ZoneOffsetTransitionRule.writeReplace</a>
      *             </ul>
-     *
      * @param out
-     *            the data stream to write to, not null
+     *        the data stream to write to, not null
      */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
@@ -118,8 +115,7 @@ final class Ser implements Externalizable {
         writeInternal(ZRULES, object, out);
     }
 
-    private static void writeInternal(byte type, Object object, DataOutput out)
-            throws IOException {
+    private static void writeInternal(byte type, Object object, DataOutput out) throws IOException {
         out.writeByte(type);
         switch (type) {
             case ZRULES:
@@ -145,7 +141,6 @@ final class Ser implements Externalizable {
      *             corresponding static factory for the type to create a new
      *             instance. That instance is returned as the de-serialized
      *             {@code Ser} object.
-     *
      *             <ul>
      *             <li><a href=
      *             "../../../serialized-form.html#java.time.zone.ZoneRules">
@@ -161,23 +156,20 @@ final class Ser implements Externalizable {
      *             {@code ZoneOffsetTransitionRule.of(month, dom, dow, time, timeEndOfDay, timeDefinition, standardOffset, offsetBefore, offsetAfter);}
      *             </ul>
      * @param in
-     *           the data to read, not null
+     *        the data to read, not null
      */
     @Override
-    public void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         type = in.readByte();
         object = readInternal(type, in);
     }
 
-    static Object read(DataInput in) throws IOException,
-            ClassNotFoundException {
+    static Object read(DataInput in) throws IOException, ClassNotFoundException {
         byte type = in.readByte();
         return readInternal(type, in);
     }
 
-    private static Object readInternal(byte type, DataInput in)
-            throws IOException, ClassNotFoundException {
+    private static Object readInternal(byte type, DataInput in) throws IOException, ClassNotFoundException {
         switch (type) {
             case ZRULES:
                 return ZoneRules.readExternal(in);
@@ -204,14 +196,13 @@ final class Ser implements Externalizable {
      * Writes the state to the stream.
      *
      * @param offset
-     *               the offset, not null
+     *        the offset, not null
      * @param out
-     *               the output stream, not null
+     *        the output stream, not null
      * @throws IOException
-     *                     if an error occurs
+     *         if an error occurs
      */
-    static void writeOffset(ZoneOffset offset, DataOutput out)
-            throws IOException {
+    static void writeOffset(ZoneOffset offset, DataOutput out) throws IOException {
         final int offsetSecs = offset.getTotalSeconds();
         int offsetByte = offsetSecs % 900 == 0 ? offsetSecs / 900 : 127; // compress
                                                                          // to
@@ -228,10 +219,10 @@ final class Ser implements Externalizable {
      * Reads the state from the stream.
      *
      * @param in
-     *           the input stream, not null
+     *        the input stream, not null
      * @return the created object, not null
      * @throws IOException
-     *                     if an error occurs
+     *         if an error occurs
      */
     static ZoneOffset readOffset(DataInput in) throws IOException {
         int offsetByte = in.readByte();
@@ -244,21 +235,19 @@ final class Ser implements Externalizable {
      * Writes the state to the stream.
      *
      * @param epochSec
-     *                 the epoch seconds, not null
+     *        the epoch seconds, not null
      * @param out
-     *                 the output stream, not null
+     *        the output stream, not null
      * @throws IOException
-     *                     if an error occurs
+     *         if an error occurs
      */
-    static void writeEpochSec(long epochSec, DataOutput out)
-            throws IOException {
-        if (epochSec >= -4575744000L && epochSec < 10413792000L && epochSec
-                % 900 == 0) { // quarter
-                                                                                                  // hours
-                                                                                                  // between
-                                                                                                  // 1825
-                                                                                                  // and
-                                                                                                  // 2300
+    static void writeEpochSec(long epochSec, DataOutput out) throws IOException {
+        if (epochSec >= -4575744000L && epochSec < 10413792000L && epochSec % 900 == 0) { // quarter
+                                                                                          // hours
+                                                                                          // between
+                                                                                          // 1825
+                                                                                          // and
+                                                                                          // 2300
             int store = (int) ((epochSec + 4575744000L) / 900);
             out.writeByte((store >>> 16) & 255);
             out.writeByte((store >>> 8) & 255);
@@ -273,10 +262,10 @@ final class Ser implements Externalizable {
      * Reads the state from the stream.
      *
      * @param in
-     *           the input stream, not null
+     *        the input stream, not null
      * @return the epoch seconds, not null
      * @throws IOException
-     *                     if an error occurs
+     *         if an error occurs
      */
     static long readEpochSec(DataInput in) throws IOException {
         int hiByte = in.readByte() & 255;

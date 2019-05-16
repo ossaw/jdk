@@ -71,10 +71,8 @@ import sun.corba.SharedSecrets;
 public final class ORBUtility {
     private ORBUtility() {}
 
-    private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-            CORBALogDomains.UTIL);
-    private static OMGSystemException omgWrapper = OMGSystemException.get(
-            CORBALogDomains.UTIL);
+    private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.UTIL);
+    private static OMGSystemException omgWrapper = OMGSystemException.get(CORBALogDomains.UTIL);
 
     private static StructMember[] members = null;
 
@@ -82,31 +80,25 @@ public final class ORBUtility {
         if (members == null) {
             members = new StructMember[3];
             members[0] = new StructMember("id", orb.create_string_tc(0), null);
-            members[1] = new StructMember("minor", orb.get_primitive_tc(
-                    TCKind.tk_long), null);
-            members[2] = new StructMember("completed", orb.get_primitive_tc(
-                    TCKind.tk_long), null);
+            members[1] = new StructMember("minor", orb.get_primitive_tc(TCKind.tk_long), null);
+            members[2] = new StructMember("completed", orb.get_primitive_tc(TCKind.tk_long), null);
         }
         return members;
     }
 
-    private static TypeCode getSystemExceptionTypeCode(ORB orb, String repID,
-            String name) {
+    private static TypeCode getSystemExceptionTypeCode(ORB orb, String repID, String name) {
         synchronized (TypeCode.class) {
-            return orb.create_exception_tc(repID, name, systemExceptionMembers(
-                    orb));
+            return orb.create_exception_tc(repID, name, systemExceptionMembers(orb));
         }
     }
 
     private static boolean isSystemExceptionTypeCode(TypeCode type, ORB orb) {
         StructMember[] systemExceptionMembers = systemExceptionMembers(orb);
         try {
-            return (type.kind().value() == TCKind._tk_except && type
-                    .member_count() == 3 && type.member_type(0).equal(
-                            systemExceptionMembers[0].type) && type.member_type(
-                                    1).equal(systemExceptionMembers[1].type)
-                    && type.member_type(2).equal(
-                            systemExceptionMembers[2].type));
+            return (type.kind().value() == TCKind._tk_except && type.member_count() == 3 && type.member_type(
+                    0).equal(systemExceptionMembers[0].type) && type.member_type(1).equal(
+                            systemExceptionMembers[1].type) && type.member_type(2).equal(
+                                    systemExceptionMembers[2].type));
         } catch (BadKind ex) {
             return false;
         } catch (org.omg.CORBA.TypeCodePackage.Bounds ex) {
@@ -118,7 +110,7 @@ public final class ORBUtility {
      * Static method for writing a CORBA standard exception to an Any.
      * 
      * @param any
-     *            The Any to write the SystemException into.
+     *        The Any to write the SystemException into.
      */
     public static void insertSystemException(SystemException ex, Any any) {
         OutputStream out = any.create_output_stream();
@@ -128,8 +120,7 @@ public final class ORBUtility {
         out.write_string(repID);
         out.write_long(ex.minor);
         out.write_long(ex.completed.value());
-        any.read_value(out.create_input_stream(), getSystemExceptionTypeCode(
-                orb, repID, name));
+        any.read_value(out.create_input_stream(), getSystemExceptionTypeCode(orb, repID, name));
     }
 
     public static SystemException extractSystemException(Any any) {
@@ -147,12 +138,11 @@ public final class ORBUtility {
     public static ValueHandler createValueHandler() {
         ValueHandler vh;
         try {
-            vh = AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<ValueHandler>() {
-                        public ValueHandler run() throws Exception {
-                            return Util.createValueHandler();
-                        }
-                    });
+            vh = AccessController.doPrivileged(new PrivilegedExceptionAction<ValueHandler>() {
+                public ValueHandler run() throws Exception {
+                    return Util.createValueHandler();
+                }
+            });
         } catch (PrivilegedActionException e) {
             throw new InternalError(e.getMessage());
         }
@@ -181,9 +171,9 @@ public final class ORBUtility {
      * array[offset+3] is the least-significant-byte.
      * 
      * @param array
-     *               The array of bytes.
+     *        The array of bytes.
      * @param offset
-     *               The offset from which to start unmarshalling.
+     *        The offset from which to start unmarshalling.
      */
     public static int bytesToInt(byte[] array, int offset) {
         int b1, b2, b3, b4;
@@ -202,9 +192,9 @@ public final class ORBUtility {
      * the least-significant-byte.
      * 
      * @param array
-     *               The array of bytes.
+     *        The array of bytes.
      * @param offset
-     *               The offset from which to start marshalling.
+     *        The offset from which to start marshalling.
      */
     public static void intToBytes(int value, byte[] array, int offset) {
         array[offset++] = (byte) ((value >>> 24) & 0xFF);
@@ -240,10 +230,9 @@ public final class ORBUtility {
      * Static method for writing a CORBA standard exception to a stream.
      * 
      * @param strm
-     *             The OutputStream to use for marshaling.
+     *        The OutputStream to use for marshaling.
      */
-    public static void writeSystemException(SystemException ex,
-            OutputStream strm) {
+    public static void writeSystemException(SystemException ex, OutputStream strm) {
         String s;
 
         s = repositoryIdOf(ex.getClass().getName());
@@ -256,13 +245,13 @@ public final class ORBUtility {
      * Static method for reading a CORBA standard exception from a stream.
      * 
      * @param strm
-     *             The InputStream to use for unmarshaling.
+     *        The InputStream to use for unmarshaling.
      */
     public static SystemException readSystemException(InputStream strm) {
         try {
             String name = classNameOf(strm.read_string());
-            SystemException ex = (SystemException) SharedSecrets
-                    .getJavaCorbaAccess().loadClass(name).newInstance();
+            SystemException ex = (SystemException) SharedSecrets.getJavaCorbaAccess().loadClass(name)
+                    .newInstance();
             ex.minor = strm.read_long();
             ex.completed = CompletionStatus.from_int(strm.read_long());
             return ex;
@@ -277,7 +266,7 @@ public final class ORBUtility {
      * class for an marshaled as the value of its repository Id.
      * 
      * @param repositoryId
-     *                     The repository Id for which we want a class name.
+     *        The repository Id for which we want a class name.
      */
     public static String classNameOf(String repositoryId) {
         String className = null;
@@ -293,7 +282,7 @@ public final class ORBUtility {
      * Return true if this repositoryId is a SystemException.
      * 
      * @param repositoryId
-     *                     The repository Id to check.
+     *        The repository Id to check.
      */
     public static boolean isSystemException(String repositoryId) {
         String className = null;
@@ -319,13 +308,10 @@ public final class ORBUtility {
 
         if (orb.getORBData().isJavaSerializationEnabled()) {
             IIOPProfile prof = ior.getProfile();
-            IIOPProfileTemplate profTemp = (IIOPProfileTemplate) prof
-                    .getTaggedProfileTemplate();
-            java.util.Iterator iter = profTemp.iteratorById(
-                    ORBConstants.TAG_JAVA_SERIALIZATION_ID);
+            IIOPProfileTemplate profTemp = (IIOPProfileTemplate) prof.getTaggedProfileTemplate();
+            java.util.Iterator iter = profTemp.iteratorById(ORBConstants.TAG_JAVA_SERIALIZATION_ID);
             if (iter.hasNext()) {
-                JavaSerializationComponent jc = (JavaSerializationComponent) iter
-                        .next();
+                JavaSerializationComponent jc = (JavaSerializationComponent) iter.next();
                 byte jcVersion = jc.javaSerializationVersion();
                 if (jcVersion >= Message.JAVA_ENC_VERSION) {
                     return Message.JAVA_ENC_VERSION;
@@ -346,7 +332,7 @@ public final class ORBUtility {
      * exception.
      * 
      * @param name
-     *             The class name of the system exception.
+     *        The class name of the system exception.
      */
     public static String repositoryIdOf(String name) {
         String id;
@@ -366,58 +352,32 @@ public final class ORBUtility {
         //
         // construct repositoryId -> className hashtable
         //
-        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_CONTEXT:1.0",
-                "org.omg.CORBA.BAD_CONTEXT");
-        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_INV_ORDER:1.0",
-                "org.omg.CORBA.BAD_INV_ORDER");
-        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_OPERATION:1.0",
-                "org.omg.CORBA.BAD_OPERATION");
-        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_PARAM:1.0",
-                "org.omg.CORBA.BAD_PARAM");
-        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_TYPECODE:1.0",
-                "org.omg.CORBA.BAD_TYPECODE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/COMM_FAILURE:1.0",
-                "org.omg.CORBA.COMM_FAILURE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/DATA_CONVERSION:1.0",
-                "org.omg.CORBA.DATA_CONVERSION");
-        exceptionClassNames.put("IDL:omg.org/CORBA/IMP_LIMIT:1.0",
-                "org.omg.CORBA.IMP_LIMIT");
-        exceptionClassNames.put("IDL:omg.org/CORBA/INTF_REPOS:1.0",
-                "org.omg.CORBA.INTF_REPOS");
-        exceptionClassNames.put("IDL:omg.org/CORBA/INTERNAL:1.0",
-                "org.omg.CORBA.INTERNAL");
-        exceptionClassNames.put("IDL:omg.org/CORBA/INV_FLAG:1.0",
-                "org.omg.CORBA.INV_FLAG");
-        exceptionClassNames.put("IDL:omg.org/CORBA/INV_IDENT:1.0",
-                "org.omg.CORBA.INV_IDENT");
-        exceptionClassNames.put("IDL:omg.org/CORBA/INV_OBJREF:1.0",
-                "org.omg.CORBA.INV_OBJREF");
-        exceptionClassNames.put("IDL:omg.org/CORBA/MARSHAL:1.0",
-                "org.omg.CORBA.MARSHAL");
-        exceptionClassNames.put("IDL:omg.org/CORBA/NO_MEMORY:1.0",
-                "org.omg.CORBA.NO_MEMORY");
-        exceptionClassNames.put("IDL:omg.org/CORBA/FREE_MEM:1.0",
-                "org.omg.CORBA.FREE_MEM");
-        exceptionClassNames.put("IDL:omg.org/CORBA/NO_IMPLEMENT:1.0",
-                "org.omg.CORBA.NO_IMPLEMENT");
-        exceptionClassNames.put("IDL:omg.org/CORBA/NO_PERMISSION:1.0",
-                "org.omg.CORBA.NO_PERMISSION");
-        exceptionClassNames.put("IDL:omg.org/CORBA/NO_RESOURCES:1.0",
-                "org.omg.CORBA.NO_RESOURCES");
-        exceptionClassNames.put("IDL:omg.org/CORBA/NO_RESPONSE:1.0",
-                "org.omg.CORBA.NO_RESPONSE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/OBJ_ADAPTER:1.0",
-                "org.omg.CORBA.OBJ_ADAPTER");
-        exceptionClassNames.put("IDL:omg.org/CORBA/INITIALIZE:1.0",
-                "org.omg.CORBA.INITIALIZE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/PERSIST_STORE:1.0",
-                "org.omg.CORBA.PERSIST_STORE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/TRANSIENT:1.0",
-                "org.omg.CORBA.TRANSIENT");
-        exceptionClassNames.put("IDL:omg.org/CORBA/UNKNOWN:1.0",
-                "org.omg.CORBA.UNKNOWN");
-        exceptionClassNames.put("IDL:omg.org/CORBA/OBJECT_NOT_EXIST:1.0",
-                "org.omg.CORBA.OBJECT_NOT_EXIST");
+        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_CONTEXT:1.0", "org.omg.CORBA.BAD_CONTEXT");
+        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_INV_ORDER:1.0", "org.omg.CORBA.BAD_INV_ORDER");
+        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_OPERATION:1.0", "org.omg.CORBA.BAD_OPERATION");
+        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_PARAM:1.0", "org.omg.CORBA.BAD_PARAM");
+        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_TYPECODE:1.0", "org.omg.CORBA.BAD_TYPECODE");
+        exceptionClassNames.put("IDL:omg.org/CORBA/COMM_FAILURE:1.0", "org.omg.CORBA.COMM_FAILURE");
+        exceptionClassNames.put("IDL:omg.org/CORBA/DATA_CONVERSION:1.0", "org.omg.CORBA.DATA_CONVERSION");
+        exceptionClassNames.put("IDL:omg.org/CORBA/IMP_LIMIT:1.0", "org.omg.CORBA.IMP_LIMIT");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INTF_REPOS:1.0", "org.omg.CORBA.INTF_REPOS");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INTERNAL:1.0", "org.omg.CORBA.INTERNAL");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INV_FLAG:1.0", "org.omg.CORBA.INV_FLAG");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INV_IDENT:1.0", "org.omg.CORBA.INV_IDENT");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INV_OBJREF:1.0", "org.omg.CORBA.INV_OBJREF");
+        exceptionClassNames.put("IDL:omg.org/CORBA/MARSHAL:1.0", "org.omg.CORBA.MARSHAL");
+        exceptionClassNames.put("IDL:omg.org/CORBA/NO_MEMORY:1.0", "org.omg.CORBA.NO_MEMORY");
+        exceptionClassNames.put("IDL:omg.org/CORBA/FREE_MEM:1.0", "org.omg.CORBA.FREE_MEM");
+        exceptionClassNames.put("IDL:omg.org/CORBA/NO_IMPLEMENT:1.0", "org.omg.CORBA.NO_IMPLEMENT");
+        exceptionClassNames.put("IDL:omg.org/CORBA/NO_PERMISSION:1.0", "org.omg.CORBA.NO_PERMISSION");
+        exceptionClassNames.put("IDL:omg.org/CORBA/NO_RESOURCES:1.0", "org.omg.CORBA.NO_RESOURCES");
+        exceptionClassNames.put("IDL:omg.org/CORBA/NO_RESPONSE:1.0", "org.omg.CORBA.NO_RESPONSE");
+        exceptionClassNames.put("IDL:omg.org/CORBA/OBJ_ADAPTER:1.0", "org.omg.CORBA.OBJ_ADAPTER");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INITIALIZE:1.0", "org.omg.CORBA.INITIALIZE");
+        exceptionClassNames.put("IDL:omg.org/CORBA/PERSIST_STORE:1.0", "org.omg.CORBA.PERSIST_STORE");
+        exceptionClassNames.put("IDL:omg.org/CORBA/TRANSIENT:1.0", "org.omg.CORBA.TRANSIENT");
+        exceptionClassNames.put("IDL:omg.org/CORBA/UNKNOWN:1.0", "org.omg.CORBA.UNKNOWN");
+        exceptionClassNames.put("IDL:omg.org/CORBA/OBJECT_NOT_EXIST:1.0", "org.omg.CORBA.OBJECT_NOT_EXIST");
 
         // SystemExceptions from OMG Transactions Service Spec
         exceptionClassNames.put("IDL:omg.org/CORBA/INVALID_TRANSACTION:1.0",
@@ -428,32 +388,25 @@ public final class ORBUtility {
                 "org.omg.CORBA.TRANSACTION_ROLLEDBACK");
 
         // from portability RTF 98-07-01.txt
-        exceptionClassNames.put("IDL:omg.org/CORBA/INV_POLICY:1.0",
-                "org.omg.CORBA.INV_POLICY");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INV_POLICY:1.0", "org.omg.CORBA.INV_POLICY");
 
         // from orbrev/00-09-01 (CORBA 2.4 Draft Specification)
         exceptionClassNames.put("IDL:omg.org/CORBA/TRANSACTION_UNAVAILABLE:1.0",
                 "org.omg.CORBA.TRANSACTION_UNAVAILABLE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/TRANSACTION_MODE:1.0",
-                "org.omg.CORBA.TRANSACTION_MODE");
+        exceptionClassNames.put("IDL:omg.org/CORBA/TRANSACTION_MODE:1.0", "org.omg.CORBA.TRANSACTION_MODE");
 
         // Exception types introduced between CORBA 2.4 and 3.0
         exceptionClassNames.put("IDL:omg.org/CORBA/CODESET_INCOMPATIBLE:1.0",
                 "org.omg.CORBA.CODESET_INCOMPATIBLE");
-        exceptionClassNames.put("IDL:omg.org/CORBA/REBIND:1.0",
-                "org.omg.CORBA.REBIND");
-        exceptionClassNames.put("IDL:omg.org/CORBA/TIMEOUT:1.0",
-                "org.omg.CORBA.TIMEOUT");
-        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_QOS:1.0",
-                "org.omg.CORBA.BAD_QOS");
+        exceptionClassNames.put("IDL:omg.org/CORBA/REBIND:1.0", "org.omg.CORBA.REBIND");
+        exceptionClassNames.put("IDL:omg.org/CORBA/TIMEOUT:1.0", "org.omg.CORBA.TIMEOUT");
+        exceptionClassNames.put("IDL:omg.org/CORBA/BAD_QOS:1.0", "org.omg.CORBA.BAD_QOS");
 
         // Exception types introduced in CORBA 3.0
-        exceptionClassNames.put("IDL:omg.org/CORBA/INVALID_ACTIVITY:1.0",
-                "org.omg.CORBA.INVALID_ACTIVITY");
+        exceptionClassNames.put("IDL:omg.org/CORBA/INVALID_ACTIVITY:1.0", "org.omg.CORBA.INVALID_ACTIVITY");
         exceptionClassNames.put("IDL:omg.org/CORBA/ACTIVITY_COMPLETED:1.0",
                 "org.omg.CORBA.ACTIVITY_COMPLETED");
-        exceptionClassNames.put("IDL:omg.org/CORBA/ACTIVITY_REQUIRED:1.0",
-                "org.omg.CORBA.ACTIVITY_REQUIRED");
+        exceptionClassNames.put("IDL:omg.org/CORBA/ACTIVITY_REQUIRED:1.0", "org.omg.CORBA.ACTIVITY_REQUIRED");
 
         //
         // construct className -> repositoryId hashtable
@@ -470,8 +423,7 @@ public final class ORBUtility {
                 cName = (String) exceptionClassNames.get(rId);
                 exceptionRepositoryIds.put(cName, rId);
             }
-        } catch (NoSuchElementException e) {
-        }
+        } catch (NoSuchElementException e) {}
     }
 
     /**
@@ -575,14 +527,11 @@ public final class ORBUtility {
     }
 
     private static String formatStackTraceElement(StackTraceElement ste) {
-        return compressClassName(ste.getClassName()) + "." + ste.getMethodName()
-                + (ste.isNativeMethod() ? "(Native Method)"
-                        : (ste.getFileName() != null && ste.getLineNumber() >= 0
-                                ? "(" + ste.getFileName() + ":" + ste
-                                        .getLineNumber() + ")"
-                                : (ste.getFileName() != null ? "(" + ste
-                                        .getFileName() + ")"
-                                        : "(Unknown Source)")));
+        return compressClassName(ste.getClassName()) + "." + ste.getMethodName() + (ste.isNativeMethod()
+                ? "(Native Method)"
+                : (ste.getFileName() != null && ste.getLineNumber() >= 0 ? "(" + ste.getFileName() + ":" + ste
+                        .getLineNumber() + ")"
+                        : (ste.getFileName() != null ? "(" + ste.getFileName() + ")" : "(Unknown Source)")));
     }
 
     private static void printStackTrace(StackTraceElement[] trace) {
@@ -599,13 +548,13 @@ public final class ORBUtility {
     // Implements all dprint calls in this package.
     //
     public static synchronized void dprint(java.lang.Object obj, String msg) {
-        System.out.println(compressClassName(obj.getClass().getName()) + "("
-                + getThreadName(Thread.currentThread()) + "): " + msg);
+        System.out.println(compressClassName(obj.getClass().getName()) + "(" + getThreadName(Thread
+                .currentThread()) + "): " + msg);
     }
 
     public static synchronized void dprint(String className, String msg) {
-        System.out.println(compressClassName(className) + "(" + getThreadName(
-                Thread.currentThread()) + "): " + msg);
+        System.out.println(compressClassName(className) + "(" + getThreadName(Thread.currentThread()) + "): "
+                + msg);
     }
 
     public synchronized void dprint(String msg) {
@@ -619,17 +568,15 @@ public final class ORBUtility {
         printStackTrace(thr.getStackTrace());
     }
 
-    public static synchronized void dprint(java.lang.Object caller, String msg,
-            Throwable t) {
-        System.out.println(compressClassName(caller.getClass().getName()) + '('
-                + Thread.currentThread() + "): " + msg);
+    public static synchronized void dprint(java.lang.Object caller, String msg, Throwable t) {
+        System.out.println(compressClassName(caller.getClass().getName()) + '(' + Thread.currentThread()
+                + "): " + msg);
 
         if (t != null)
             printStackTrace(t.getStackTrace());
     }
 
-    public static String[] concatenateStringArrays(String[] arr1,
-            String[] arr2) {
+    public static String[] concatenateStringArrays(String[] arr1, String[] arr2) {
         String[] result = new String[arr1.length + arr2.length];
 
         for (int ctr = 0; ctr < arr1.length; ctr++)
@@ -643,19 +590,15 @@ public final class ORBUtility {
 
     /**
      * Throws the CORBA equivalent of a java.io.NotSerializableException
-     *
      * Duplicated from util/Utility for Pure ORB reasons. There are two reasons
      * for this:
-     *
      * 1) We can't introduce dependencies on the util version from outside of
      * the io/util packages since it will not exist in the pure ORB build
      * running on JDK 1.3.x.
-     *
      * 2) We need to pick up the correct minor code from OMGSystemException.
      */
     public static void throwNotSerializableForCorba(String className) {
-        throw omgWrapper.notSerializable(CompletionStatus.COMPLETED_MAYBE,
-                className);
+        throw omgWrapper.notSerializable(CompletionStatus.COMPLETED_MAYBE, className);
     }
 
     /**
@@ -664,12 +607,11 @@ public final class ORBUtility {
     public static byte getMaxStreamFormatVersion() {
         ValueHandler vh;
         try {
-            vh = AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<ValueHandler>() {
-                        public ValueHandler run() throws Exception {
-                            return Util.createValueHandler();
-                        }
-                    });
+            vh = AccessController.doPrivileged(new PrivilegedExceptionAction<ValueHandler>() {
+                public ValueHandler run() throws Exception {
+                    return Util.createValueHandler();
+                }
+            });
         } catch (PrivilegedActionException e) {
             throw new InternalError(e.getMessage());
         }
@@ -677,14 +619,12 @@ public final class ORBUtility {
         if (!(vh instanceof javax.rmi.CORBA.ValueHandlerMultiFormat))
             return ORBConstants.STREAM_FORMAT_VERSION_1;
         else
-            return ((ValueHandlerMultiFormat) vh)
-                    .getMaximumStreamFormatVersion();
+            return ((ValueHandlerMultiFormat) vh).getMaximumStreamFormatVersion();
     }
 
     public static CorbaClientDelegate makeClientDelegate(IOR ior) {
         ORB orb = ior.getORB();
-        CorbaContactInfoList ccil = orb.getCorbaContactInfoListFactory().create(
-                ior);
+        CorbaContactInfoList ccil = orb.getCorbaContactInfoListFactory().create(ior);
         CorbaClientDelegate del = orb.getClientDelegateFactory().create(ccil);
         return del;
     }
@@ -707,13 +647,13 @@ public final class ORBUtility {
      * 
      * @return IOR the IOR that represents this objref. This will never be null.
      * @exception BAD_OPERATION
-     *                          (from oi._get_delegate) if obj is a normal
-     *                          objref, but
-     *                          does not have a delegate set.
+     *            (from oi._get_delegate) if obj is a normal
+     *            objref, but
+     *            does not have a delegate set.
      * @exception BAD_PARAM
-     *                          if obj is a local object, or else was created by
-     *                          a foreign
-     *                          ORB.
+     *            if obj is a local object, or else was created by
+     *            a foreign
+     *            ORB.
      */
     public static IOR getIOR(org.omg.CORBA.Object obj) {
         if (obj == null)
@@ -764,13 +704,13 @@ public final class ORBUtility {
      * 
      * @return IOR the IOR that represents this objref. This will never be null.
      * @exception BAD_OPERATION
-     *                          if the object could not be connected, if a
-     *                          connection
-     *                          attempt was needed.
+     *            if the object could not be connected, if a
+     *            connection
+     *            attempt was needed.
      * @exception BAD_PARAM
-     *                          if obj is a local object, or else was created by
-     *                          a foreign
-     *                          ORB.
+     *            if obj is a local object, or else was created by
+     *            a foreign
+     *            ORB.
      */
     public static IOR connectAndGetIOR(ORB orb, org.omg.CORBA.Object obj) {
         IOR result;
@@ -833,21 +773,20 @@ public final class ORBUtility {
         // (java.io.FilePermission <<ALL FILES>> ...)
         // (java.io.FilePermission /var/tmp//- ...)
 
-        String result = (String) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public java.lang.Object run() {
-                        StringBuffer sb = new StringBuffer(500);
-                        ProtectionDomain pd = cl.getProtectionDomain();
-                        Policy policy = Policy.getPolicy();
-                        PermissionCollection pc = policy.getPermissions(pd);
-                        sb.append("\nPermissionCollection ");
-                        sb.append(pc.toString());
-                        // Don't need to add 'Protection Domain' string, it's
-                        // in ProtectionDomain.toString() already.
-                        sb.append(pd.toString());
-                        return sb.toString();
-                    }
-                });
+        String result = (String) AccessController.doPrivileged(new PrivilegedAction() {
+            public java.lang.Object run() {
+                StringBuffer sb = new StringBuffer(500);
+                ProtectionDomain pd = cl.getProtectionDomain();
+                Policy policy = Policy.getPolicy();
+                PermissionCollection pc = policy.getPermissions(pd);
+                sb.append("\nPermissionCollection ");
+                sb.append(pc.toString());
+                // Don't need to add 'Protection Domain' string, it's
+                // in ProtectionDomain.toString() already.
+                sb.append(pd.toString());
+                return sb.toString();
+            }
+        });
         return result;
     }
 }

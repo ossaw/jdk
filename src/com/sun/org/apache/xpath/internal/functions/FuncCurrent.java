@@ -43,25 +43,22 @@ public class FuncCurrent extends Function {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         SubContextList subContextList = xctxt.getCurrentNodeList();
         int currentNode = DTM.NULL;
 
         if (null != subContextList) {
             if (subContextList instanceof PredicatedNodeTest) {
-                LocPathIterator iter = ((PredicatedNodeTest) subContextList)
-                        .getLocPathIterator();
+                LocPathIterator iter = ((PredicatedNodeTest) subContextList).getLocPathIterator();
                 currentNode = iter.getCurrentContextNode();
             } else if (subContextList instanceof StepPattern) {
-                throw new RuntimeException(XSLMessages.createMessage(
-                        XSLTErrorResources.ER_PROCESSOR_ERROR, null));
+                throw new RuntimeException(XSLMessages.createMessage(XSLTErrorResources.ER_PROCESSOR_ERROR,
+                        null));
             }
         } else {
             // not predicate => ContextNode == CurrentNode

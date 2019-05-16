@@ -26,7 +26,6 @@ import java.awt.AWTEvent;
  * @see java.awt.AWTEvent
  * @see java.awt.Toolkit#addAWTEventListener
  * @see java.awt.Toolkit#removeAWTEventListener
- *
  * @author Fred Ecks
  * @since 1.2
  */

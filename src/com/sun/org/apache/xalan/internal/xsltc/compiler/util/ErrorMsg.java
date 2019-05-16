@@ -176,8 +176,7 @@ public final class ErrorMsg {
 
     static {
         _bundle = SecuritySupport.getResourceBundle(
-                "com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMessages",
-                Locale.getDefault());
+                "com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMessages", Locale.getDefault());
     }
 
     public ErrorMsg(String code) {
@@ -231,8 +230,7 @@ public final class ErrorMsg {
         _params[0] = param1;
     }
 
-    public ErrorMsg(String code, Object param1, Object param2,
-            SyntaxTreeNode node) {
+    public ErrorMsg(String code, Object param1, Object param2, SyntaxTreeNode node) {
         _code = code;
         _url = getFileName(node);
         _line = node.getLineNumber();
@@ -273,8 +271,8 @@ public final class ErrorMsg {
      * the error string.
      */
     public String toString() {
-        String suffix = (_params == null) ? (null != _code ? getErrorMessage()
-                : _message) : MessageFormat.format(getErrorMessage(), _params);
+        String suffix = (_params == null) ? (null != _code ? getErrorMessage() : _message)
+                : MessageFormat.format(getErrorMessage(), _params);
         return formatLine() + suffix;
     }
 

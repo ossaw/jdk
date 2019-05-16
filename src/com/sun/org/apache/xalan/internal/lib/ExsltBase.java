@@ -33,7 +33,7 @@ public abstract class ExsltBase {
      * Return the string value of a Node
      *
      * @param n
-     *          The Node.
+     *        The Node.
      * @return The string value of the Node
      */
     protected static String toString(Node n) {
@@ -59,7 +59,7 @@ public abstract class ExsltBase {
      * is not a valid number.
      *
      * @param n
-     *          The Node.
+     *        The Node.
      * @return The number value of the Node
      */
     protected static double toNumber(Node n) {

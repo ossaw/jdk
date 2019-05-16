@@ -47,29 +47,27 @@ abstract class Effect {
      * effect type is.
      *
      * @param src
-     *            The source image for applying the effect to
+     *        The source image for applying the effect to
      * @param dst
-     *            The dstination image to paint effect result into. If this is
-     *            null then a new image will be created
+     *        The dstination image to paint effect result into. If this is
+     *        null then a new image will be created
      * @param w
-     *            The width of the src image to apply effect to, this allow the
-     *            src and dst buffers to be bigger than the area the need effect
-     *            applied to it
+     *        The width of the src image to apply effect to, this allow the
+     *        src and dst buffers to be bigger than the area the need effect
+     *        applied to it
      * @param h
-     *            The height of the src image to apply effect to, this allow the
-     *            src and dst buffers to be bigger than the area the need effect
-     *            applied to it
+     *        The height of the src image to apply effect to, this allow the
+     *        src and dst buffers to be bigger than the area the need effect
+     *        applied to it
      * @return The result of appl
      */
-    abstract BufferedImage applyEffect(BufferedImage src, BufferedImage dst,
-            int w, int h);
+    abstract BufferedImage applyEffect(BufferedImage src, BufferedImage dst, int w, int h);
 
     // =================================================================================================================
     // Static data cache
 
     protected static ArrayCache getArrayCache() {
-        ArrayCache cache = (ArrayCache) AppContext.getAppContext().get(
-                ArrayCache.class);
+        ArrayCache cache = (ArrayCache) AppContext.getAppContext().get(ArrayCache.class);
         if (cache == null) {
             cache = new ArrayCache();
             AppContext.getAppContext().put(ArrayCache.class, cache);
@@ -85,8 +83,7 @@ abstract class Effect {
 
         protected int[] getTmpIntArray(int size) {
             int[] tmp;
-            if (tmpIntArray == null || (tmp = tmpIntArray.get()) == null
-                    || tmp.length < size) {
+            if (tmpIntArray == null || (tmp = tmpIntArray.get()) == null || tmp.length < size) {
                 // create new array
                 tmp = new int[size];
                 tmpIntArray = new SoftReference<int[]>(tmp);
@@ -96,8 +93,7 @@ abstract class Effect {
 
         protected byte[] getTmpByteArray1(int size) {
             byte[] tmp;
-            if (tmpByteArray1 == null || (tmp = tmpByteArray1.get()) == null
-                    || tmp.length < size) {
+            if (tmpByteArray1 == null || (tmp = tmpByteArray1.get()) == null || tmp.length < size) {
                 // create new array
                 tmp = new byte[size];
                 tmpByteArray1 = new SoftReference<byte[]>(tmp);
@@ -107,8 +103,7 @@ abstract class Effect {
 
         protected byte[] getTmpByteArray2(int size) {
             byte[] tmp;
-            if (tmpByteArray2 == null || (tmp = tmpByteArray2.get()) == null
-                    || tmp.length < size) {
+            if (tmpByteArray2 == null || (tmp = tmpByteArray2.get()) == null || tmp.length < size) {
                 // create new array
                 tmp = new byte[size];
                 tmpByteArray2 = new SoftReference<byte[]>(tmp);
@@ -118,8 +113,7 @@ abstract class Effect {
 
         protected byte[] getTmpByteArray3(int size) {
             byte[] tmp;
-            if (tmpByteArray3 == null || (tmp = tmpByteArray3.get()) == null
-                    || tmp.length < size) {
+            if (tmpByteArray3 == null || (tmp = tmpByteArray3.get()) == null || tmp.length < size) {
                 // create new array
                 tmp = new byte[size];
                 tmpByteArray3 = new SoftReference<byte[]>(tmp);

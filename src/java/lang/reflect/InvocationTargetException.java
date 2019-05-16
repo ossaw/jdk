@@ -8,7 +8,6 @@ package java.lang.reflect;
 /**
  * InvocationTargetException is a checked exception that wraps an exception
  * thrown by an invoked method or constructor.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "target exception" that is
@@ -31,7 +30,6 @@ public class InvocationTargetException extends ReflectiveOperationException {
      * target) constructor was used to instantiate the object
      *
      * @serial
-     *
      */
     private Throwable target;
 
@@ -47,7 +45,7 @@ public class InvocationTargetException extends ReflectiveOperationException {
      * Constructs a InvocationTargetException with a target exception.
      *
      * @param target
-     *               the target exception
+     *        the target exception
      */
     public InvocationTargetException(Throwable target) {
         super((Throwable) null); // Disallow initCause
@@ -59,9 +57,9 @@ public class InvocationTargetException extends ReflectiveOperationException {
      * detail message.
      *
      * @param target
-     *               the target exception
+     *        the target exception
      * @param s
-     *               the detail message
+     *        the detail message
      */
     public InvocationTargetException(Throwable target, String s) {
         super(s, null); // Disallow initCause
@@ -70,7 +68,6 @@ public class InvocationTargetException extends ReflectiveOperationException {
 
     /**
      * Get the thrown target exception.
-     *
      * <p>
      * This method predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of

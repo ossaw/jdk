@@ -59,8 +59,7 @@ public class Constants {
      * about this publisher and product.</li>
      * </ul>
      */
-    public static final String S_VENDOR = "Apache Software Foundation",
-            S_VENDORURL = "http://xml.apache.org";
+    public static final String S_VENDOR = "Apache Software Foundation", S_VENDORURL = "http://xml.apache.org";
 
     /**
      * S_BUILTIN_EXTENSIONS_URL is a mnemonic for the XML Namespace
@@ -94,8 +93,7 @@ public class Constants {
      * EXSLT extension namespaces.
      */
     public static final String S_EXSLT_COMMON_URL = "http://exslt.org/common",
-            S_EXSLT_MATH_URL = "http://exslt.org/math",
-            S_EXSLT_SETS_URL = "http://exslt.org/sets",
+            S_EXSLT_MATH_URL = "http://exslt.org/math", S_EXSLT_SETS_URL = "http://exslt.org/sets",
             S_EXSLT_DATETIME_URL = "http://exslt.org/dates-and-times",
             S_EXSLT_FUNCTIONS_URL = "http://exslt.org/functions",
             S_EXSLT_DYNAMIC_URL = "http://exslt.org/dynamic",

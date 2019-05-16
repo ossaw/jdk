@@ -58,13 +58,11 @@ import org.w3c.dom.UserDataHandler;
  * <p>
  * This class doesn't directly support mutation events, however, it notifies the
  * document when mutations are performed so that the document class do so.
- *
  * <p>
  * <b>WARNING</b>: Some of the code here is partially duplicated in AttrImpl, be
  * careful to keep these two classes in sync!
  *
  * @xerces.internal
- *
  * @author Arnaud Le Hors, IBM
  * @author Joe Kesselman, IBM
  * @author Andy Clark, IBM
@@ -256,40 +254,34 @@ public abstract class ParentNode extends ChildNode {
      * implicitly removes them from their previous parent.
      *
      * @param newChild
-     *                 The Node to be moved to our subtree. As a convenience
-     *                 feature,
-     *                 inserting a DocumentNode will instead insert all its
-     *                 children.
-     *
+     *        The Node to be moved to our subtree. As a convenience
+     *        feature,
+     *        inserting a DocumentNode will instead insert all its
+     *        children.
      * @param refChild
-     *                 Current child which newChild should be placed immediately
-     *                 before. If refChild is null, the insertion occurs after
-     *                 all
-     *                 existing Nodes, like appendChild().
-     *
+     *        Current child which newChild should be placed immediately
+     *        before. If refChild is null, the insertion occurs after
+     *        all
+     *        existing Nodes, like appendChild().
      * @return newChild, in its new state (relocated, or emptied in the case of
      *         DocumentNode.)
-     *
      * @throws DOMException(HIERARCHY_REQUEST_ERR)
-     *                                                   if newChild is of a
-     *                                                   type that shouldn't be
-     *                                                   a child of this
-     *                                                   node, or if newChild is
-     *                                                   an ancestor of this
-     *                                                   node.
-     *
+     *         if newChild is of a
+     *         type that shouldn't be
+     *         a child of this
+     *         node, or if newChild is
+     *         an ancestor of this
+     *         node.
      * @throws DOMException(WRONG_DOCUMENT_ERR)
-     *                                                   if newChild has a
-     *                                                   different owner
-     *                                                   document than we do.
-     *
+     *         if newChild has a
+     *         different owner
+     *         document than we do.
      * @throws DOMException(NOT_FOUND_ERR)
-     *                                                   if refChild is not a
-     *                                                   child of this node.
-     *
+     *         if refChild is not a
+     *         child of this node.
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if this node is
-     *                                                   read-only.
+     *         if this node is
+     *         read-only.
      */
     public Node insertBefore(Node newChild, Node refChild) throws DOMException {
         // Tail-call; optimizer should be able to do good things with.
@@ -302,8 +294,7 @@ public abstract class ParentNode extends ChildNode {
      * insertBefore operation allows us to do so. It is not intended for use by
      * application programs.
      */
-    Node internalInsertBefore(Node newChild, Node refChild, boolean replace)
-            throws DOMException {
+    Node internalInsertBefore(Node newChild, Node refChild, boolean replace) throws DOMException {
 
         boolean errorChecking = ownerDocument.errorChecking;
 
@@ -330,11 +321,9 @@ public abstract class ParentNode extends ChildNode {
                         kid != null; kid = kid.getNextSibling()) {
 
                     if (!ownerDocument.isKidOK(this, kid)) {
-                        throw new DOMException(
-                                DOMException.HIERARCHY_REQUEST_ERR,
-                                DOMMessageFormatter.formatMessage(
-                                        DOMMessageFormatter.DOM_DOMAIN,
-                                        "HIERARCHY_REQUEST_ERR", null));
+                        throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, DOMMessageFormatter
+                                .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
+                                        null));
                     }
                 }
             }
@@ -359,30 +348,21 @@ public abstract class ParentNode extends ChildNode {
 
         if (errorChecking) {
             if (isReadOnly()) {
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "NO_MODIFICATION_ALLOWED_ERR", null));
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, DOMMessageFormatter
+                        .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NO_MODIFICATION_ALLOWED_ERR", null));
             }
-            if (newChild.getOwnerDocument() != ownerDocument
-                    && newChild != ownerDocument) {
-                throw new DOMException(DOMException.WRONG_DOCUMENT_ERR,
-                        DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "WRONG_DOCUMENT_ERR", null));
+            if (newChild.getOwnerDocument() != ownerDocument && newChild != ownerDocument) {
+                throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, DOMMessageFormatter.formatMessage(
+                        DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR", null));
             }
             if (!ownerDocument.isKidOK(this, newChild)) {
-                throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR,
-                        DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "HIERARCHY_REQUEST_ERR", null));
+                throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, DOMMessageFormatter.formatMessage(
+                        DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR", null));
             }
             // refChild must be a child of this node (or null)
             if (refChild != null && refChild.getParentNode() != this) {
-                throw new DOMException(DOMException.NOT_FOUND_ERR,
-                        DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
-                                null));
+                throw new DOMException(DOMException.NOT_FOUND_ERR, DOMMessageFormatter.formatMessage(
+                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null));
             }
 
             // Prevent cycles in the tree
@@ -390,15 +370,12 @@ public abstract class ParentNode extends ChildNode {
             // and actually cannot be this
             if (ownerDocument.ancestorChecking) {
                 boolean treeSafe = true;
-                for (NodeImpl a = this; treeSafe && a != null; a = a
-                        .parentNode()) {
+                for (NodeImpl a = this; treeSafe && a != null; a = a.parentNode()) {
                     treeSafe = newChild != a;
                 }
                 if (!treeSafe) {
-                    throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR,
-                            DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.DOM_DOMAIN,
-                                    "HIERARCHY_REQUEST_ERR", null));
+                    throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, DOMMessageFormatter
+                            .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR", null));
                 }
             }
         }
@@ -489,14 +466,12 @@ public abstract class ParentNode extends ChildNode {
      * so it may be re-inserted elsewhere.
      *
      * @return oldChild, in its new state (removed).
-     *
      * @throws DOMException(NOT_FOUND_ERR)
-     *                                                   if oldChild is not a
-     *                                                   child of this node.
-     *
+     *         if oldChild is not a
+     *         child of this node.
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if this node is
-     *                                                   read-only.
+     *         if this node is
+     *         read-only.
      */
     public Node removeChild(Node oldChild) throws DOMException {
         // Tail-call, should be optimizable
@@ -509,22 +484,17 @@ public abstract class ParentNode extends ChildNode {
      * removeChild operation allows us to do so. It is not intended for use by
      * application programs.
      */
-    Node internalRemoveChild(Node oldChild, boolean replace)
-            throws DOMException {
+    Node internalRemoveChild(Node oldChild, boolean replace) throws DOMException {
 
         CoreDocumentImpl ownerDocument = ownerDocument();
         if (ownerDocument.errorChecking) {
             if (isReadOnly()) {
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "NO_MODIFICATION_ALLOWED_ERR", null));
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, DOMMessageFormatter
+                        .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NO_MODIFICATION_ALLOWED_ERR", null));
             }
             if (oldChild != null && oldChild.getParentNode() != this) {
-                throw new DOMException(DOMException.NOT_FOUND_ERR,
-                        DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
-                                null));
+                throw new DOMException(DOMException.NOT_FOUND_ERR, DOMMessageFormatter.formatMessage(
+                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null));
             }
         }
 
@@ -600,26 +570,22 @@ public abstract class ParentNode extends ChildNode {
      * Equivalent to inserting newChild before oldChild, then removing oldChild.
      *
      * @return oldChild, in its new state (removed).
-     *
      * @throws DOMException(HIERARCHY_REQUEST_ERR)
-     *                                                   if newChild is of a
-     *                                                   type that shouldn't be
-     *                                                   a child of this
-     *                                                   node, or if newChild is
-     *                                                   one of our ancestors.
-     *
+     *         if newChild is of a
+     *         type that shouldn't be
+     *         a child of this
+     *         node, or if newChild is
+     *         one of our ancestors.
      * @throws DOMException(WRONG_DOCUMENT_ERR)
-     *                                                   if newChild has a
-     *                                                   different owner
-     *                                                   document than we do.
-     *
+     *         if newChild has a
+     *         different owner
+     *         document than we do.
      * @throws DOMException(NOT_FOUND_ERR)
-     *                                                   if oldChild is not a
-     *                                                   child of this node.
-     *
+     *         if oldChild is not a
+     *         child of this node.
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if this node is
-     *                                                   read-only.
+     *         if this node is
+     *         read-only.
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
         // If Mutation Events are being generated, this operation might
@@ -651,8 +617,7 @@ public abstract class ParentNode extends ChildNode {
         if (child != null) {
             Node next = child.getNextSibling();
             if (next == null) {
-                return hasTextContent(child) ? ((NodeImpl) child)
-                        .getTextContent() : "";
+                return hasTextContent(child) ? ((NodeImpl) child).getTextContent() : "";
             }
             if (fBufferStr == null) {
                 fBufferStr = new StringBuffer();
@@ -679,9 +644,8 @@ public abstract class ParentNode extends ChildNode {
     // internal method returning whether to take the given node's text content
     final boolean hasTextContent(Node child) {
         return child.getNodeType() != Node.COMMENT_NODE && child
-                .getNodeType() != Node.PROCESSING_INSTRUCTION_NODE && (child
-                        .getNodeType() != Node.TEXT_NODE || ((TextImpl) child)
-                                .isIgnorableWhitespace() == false);
+                .getNodeType() != Node.PROCESSING_INSTRUCTION_NODE && (child.getNodeType() != Node.TEXT_NODE
+                        || ((TextImpl) child).isIgnorableWhitespace() == false);
     }
 
     /*
@@ -727,8 +691,7 @@ public abstract class ParentNode extends ChildNode {
             int l;
             ChildNode n;
             // start from the cached node if we have one
-            if (fNodeListCache.fChildIndex != -1
-                    && fNodeListCache.fChild != null) {
+            if (fNodeListCache.fChildIndex != -1 && fNodeListCache.fChild != null) {
                 l = fNodeListCache.fChildIndex;
                 n = fNodeListCache.fChild;
             } else {
@@ -760,7 +723,7 @@ public abstract class ParentNode extends ChildNode {
      * of bounds. Use to implement NodeList.item().
      * 
      * @param index
-     *              int
+     *        int
      */
     private Node nodeListItem(int index) {
 
@@ -824,7 +787,7 @@ public abstract class ParentNode extends ChildNode {
      * 
      * @return org.w3c.dom.Node
      * @param index
-     *              int
+     *        int
      */
     public Node item(int index) {
         return nodeListItem(index);
@@ -969,10 +932,9 @@ public abstract class ParentNode extends ChildNode {
      * </ul>
      *
      * @param insertedChild
-     *                      the child node that was inserted into this node
-     *
+     *        the child node that was inserted into this node
      * @throws NullPointerException
-     *                              if the inserted child is <code>null</code>
+     *         if the inserted child is <code>null</code>
      */
     void checkNormalizationAfterInsert(ChildNode insertedChild) {
         // See if insertion caused this node to be unnormalized.
@@ -981,8 +943,8 @@ public abstract class ParentNode extends ChildNode {
             ChildNode next = insertedChild.nextSibling;
             // If an adjacent sibling of the new child is a text node,
             // flag this node as unnormalized.
-            if ((prev != null && prev.getNodeType() == Node.TEXT_NODE)
-                    || (next != null && next.getNodeType() == Node.TEXT_NODE)) {
+            if ((prev != null && prev.getNodeType() == Node.TEXT_NODE) || (next != null && next
+                    .getNodeType() == Node.TEXT_NODE)) {
                 isNormalized(false);
             }
         } else {
@@ -1003,15 +965,14 @@ public abstract class ParentNode extends ChildNode {
      * </ul>
      *
      * @param previousSibling
-     *                        the previous sibling of the removed child, or
-     *                        <code>null</code>
+     *        the previous sibling of the removed child, or
+     *        <code>null</code>
      */
     void checkNormalizationAfterRemove(ChildNode previousSibling) {
         // See if removal caused this node to be unnormalized.
         // If the adjacent siblings of the removed child were both text nodes,
         // flag this node as unnormalized.
-        if (previousSibling != null && previousSibling
-                .getNodeType() == Node.TEXT_NODE) {
+        if (previousSibling != null && previousSibling.getNodeType() == Node.TEXT_NODE) {
 
             ChildNode next = previousSibling.nextSibling;
             if (next != null && next.getNodeType() == Node.TEXT_NODE) {
@@ -1037,8 +998,7 @@ public abstract class ParentNode extends ChildNode {
     } // writeObject(ObjectOutputStream)
 
     /** Deserialize object. */
-    private void readObject(ObjectInputStream ois)
-            throws ClassNotFoundException, IOException {
+    private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
 
         // perform default deseralization
         ois.defaultReadObject();

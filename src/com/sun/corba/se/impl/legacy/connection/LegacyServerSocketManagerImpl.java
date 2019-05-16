@@ -37,15 +37,13 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
 import com.sun.corba.se.impl.transport.SocketOrChannelAcceptorImpl;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-public class LegacyServerSocketManagerImpl implements
-        LegacyServerSocketManager {
+public class LegacyServerSocketManagerImpl implements LegacyServerSocketManager {
     protected ORB orb;
     private ORBUtilSystemException wrapper;
 
     public LegacyServerSocketManagerImpl(ORB orb) {
         this.orb = orb;
-        wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_TRANSPORT);
+        wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
     }
 
     ////////////////////////////////////////////////////
@@ -67,23 +65,19 @@ public class LegacyServerSocketManagerImpl implements
             // this is a user-activated server
             return orb.getORBData().getPersistentServerPort();
         } else {
-            throw wrapper.persistentServerportNotSet(
-                    CompletionStatus.COMPLETED_MAYBE);
+            throw wrapper.persistentServerportNotSet(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 
     // Only used by PI IORInfoImpl.
-    public synchronized int legacyGetTransientOrPersistentServerPort(
-            String socketType) {
-        return legacyGetServerPort(socketType, orb.getORBData()
-                .getServerIsORBActivated());
+    public synchronized int legacyGetTransientOrPersistentServerPort(String socketType) {
+        return legacyGetServerPort(socketType, orb.getORBData().getServerIsORBActivated());
     }
 
     // Used in RepositoryImpl, ServerManagerImpl, POAImpl,
     // POAPolicyMediatorBase, TOAImpl.
     // To get either default or bootnaming endpoint.
-    public synchronized LegacyServerSocketEndPointInfo legacyGetEndpoint(
-            String name) {
+    public synchronized LegacyServerSocketEndPointInfo legacyGetEndpoint(String name) {
         Iterator iterator = getAcceptorIterator();
         while (iterator.hasNext()) {
             LegacyServerSocketEndPointInfo endPoint = cast(iterator.next());
@@ -129,8 +123,7 @@ public class LegacyServerSocketManagerImpl implements
     }
 
     private Iterator getAcceptorIterator() {
-        Collection acceptors = orb.getCorbaTransportManager().getAcceptors(null,
-                null);
+        Collection acceptors = orb.getCorbaTransportManager().getAcceptors(null, null);
         if (acceptors != null) {
             return acceptors.iterator();
         }

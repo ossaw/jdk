@@ -18,7 +18,6 @@ package java.lang;
  * <p>
  * Applications should throw instances of this class to indicate other illegal
  * uses of the {@code null} object.
- *
  * {@code NullPointerException} objects may be constructed by the virtual
  * machine as if
  * {@linkplain Throwable#Throwable(String, Throwable, boolean, boolean)
@@ -42,7 +41,7 @@ public class NullPointerException extends RuntimeException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NullPointerException(String s) {
         super(s);

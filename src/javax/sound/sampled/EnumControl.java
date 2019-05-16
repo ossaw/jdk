@@ -51,12 +51,12 @@ public abstract class EnumControl extends Control {
      * Constructs a new enumerated control object with the given parameters.
      *
      * @param type
-     *               the type of control represented this enumerated control
-     *               object
+     *        the type of control represented this enumerated control
+     *        object
      * @param values
-     *               the set of possible values for the control
+     *        the set of possible values for the control
      * @param value
-     *               the initial control value
+     *        the initial control value
      */
     protected EnumControl(Type type, Object[] values, Object value) {
 
@@ -75,16 +75,15 @@ public abstract class EnumControl extends Control {
      * be open before they can be affected by setting a value.
      * 
      * @param value
-     *              the desired new value
+     *        the desired new value
      * @throws IllegalArgumentException
-     *                                  if the value indicated does not fall
-     *                                  within the allowable
-     *                                  range
+     *         if the value indicated does not fall
+     *         within the allowable
+     *         range
      */
     public void setValue(Object value) {
         if (!isValueSupported(value)) {
-            throw new IllegalArgumentException("Requested value " + value
-                    + " is not supported.");
+            throw new IllegalArgumentException("Requested value " + value + " is not supported.");
         }
 
         this.value = value;
@@ -119,7 +118,7 @@ public abstract class EnumControl extends Control {
      * Indicates whether the value specified is supported.
      * 
      * @param value
-     *              the value for which support is queried
+     *        the value for which support is queried
      * @return <code>true</code> if the value is supported, otherwise
      *         <code>false</code>
      */
@@ -156,7 +155,6 @@ public abstract class EnumControl extends Control {
      * common types.
      *
      * @see EnumControl
-     *
      * @author Kara Kytle
      * @since 1.3
      */
@@ -179,7 +177,7 @@ public abstract class EnumControl extends Control {
          * Constructs a new enumerated control type.
          * 
          * @param name
-         *             the name of the new enumerated control type
+         *        the name of the new enumerated control type
          */
         protected Type(String name) {
             super(name);

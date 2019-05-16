@@ -80,11 +80,10 @@ public abstract class InputVerifier {
      * argument's input.
      *
      * @param input
-     *              the JComponent to verify
+     *        the JComponent to verify
      * @return <code>true</code> when valid, <code>false</code> when invalid
      * @see JComponent#setInputVerifier
      * @see JComponent#getInputVerifier
-     *
      */
 
     public abstract boolean verify(JComponent input);
@@ -98,11 +97,10 @@ public abstract class InputVerifier {
      * <code>false</code>, then the focus remains in the argument component.
      *
      * @param input
-     *              the JComponent to verify
+     *        the JComponent to verify
      * @return <code>true</code> when valid, <code>false</code> when invalid
      * @see JComponent#setInputVerifier
      * @see JComponent#getInputVerifier
-     *
      */
 
     public boolean shouldYieldFocus(JComponent input) {

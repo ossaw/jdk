@@ -60,7 +60,7 @@ public class DTD implements DTDConstants {
      * Creates a new DTD with the specified name.
      * 
      * @param name
-     *             the name, as a <code>String</code> of the new DTD
+     *        the name, as a <code>String</code> of the new DTD
      */
     protected DTD(String name) {
         this.name = name;
@@ -104,7 +104,7 @@ public class DTD implements DTDConstants {
      * returns <code>false</code>.
      *
      * @param name
-     *             the requested <code>String</code>
+     *        the requested <code>String</code>
      * @return <code>true</code> if <code>name</code> exists as part of the DTD,
      *         otherwise returns <code>false</code>
      */
@@ -117,7 +117,7 @@ public class DTD implements DTDConstants {
      * exist.
      *
      * @param name
-     *             the requested <code>String</code>
+     *        the requested <code>String</code>
      * @return the <code>Element</code> corresponding to <code>name</code>,
      *         which may be newly created
      */
@@ -135,7 +135,7 @@ public class DTD implements DTDConstants {
      * Gets an element by index.
      *
      * @param index
-     *              the requested index
+     *        the requested index
      * @return the <code>Element</code> corresponding to <code>index</code>
      */
     public Element getElement(int index) {
@@ -148,11 +148,11 @@ public class DTD implements DTDConstants {
      * returned; otherwise a new <code>Entity</code> is created and is returned.
      *
      * @param name
-     *             the name of the <code>Entity</code> as a <code>String</code>
+     *        the name of the <code>Entity</code> as a <code>String</code>
      * @param type
-     *             the type of the <code>Entity</code>
+     *        the type of the <code>Entity</code>
      * @param data
-     *             the <code>Entity</code>'s data
+     *        the <code>Entity</code>'s data
      * @return the <code>Entity</code> requested or a new <code>Entity</code> if
      *         not found
      */
@@ -178,23 +178,22 @@ public class DTD implements DTDConstants {
      * If one doesn't exist, a new one is created and returned.
      *
      * @param name
-     *                  the name of the <code>Element</code>
+     *        the name of the <code>Element</code>
      * @param type
-     *                  the type of the <code>Element</code>
+     *        the type of the <code>Element</code>
      * @param omitStart
-     *                  <code>true</code> if start should be omitted
+     *        <code>true</code> if start should be omitted
      * @param omitEnd
-     *                  <code>true</code> if end should be omitted
+     *        <code>true</code> if end should be omitted
      * @param content
-     *                  the <code>ContentModel</code>
+     *        the <code>ContentModel</code>
      * @param atts
-     *                  the <code>AttributeList</code> specifying the
-     *                  <code>Element</code>
+     *        the <code>AttributeList</code> specifying the
+     *        <code>Element</code>
      * @return the <code>Element</code> specified
      */
-    public Element defineElement(String name, int type, boolean omitStart,
-            boolean omitEnd, ContentModel content, BitSet exclusions,
-            BitSet inclusions, AttributeList atts) {
+    public Element defineElement(String name, int type, boolean omitStart, boolean omitEnd,
+            ContentModel content, BitSet exclusions, BitSet inclusions, AttributeList atts) {
         Element e = getElement(name);
         e.type = type;
         e.oStart = omitStart;
@@ -210,10 +209,10 @@ public class DTD implements DTDConstants {
      * Defines attributes for an {@code Element}.
      *
      * @param name
-     *             the name of the <code>Element</code>
+     *        the name of the <code>Element</code>
      * @param atts
-     *             the <code>AttributeList</code> specifying the
-     *             <code>Element</code>
+     *        the <code>AttributeList</code> specifying the
+     *        <code>Element</code>
      */
     public void defineAttributes(String name, AttributeList atts) {
         Element e = getElement(name);
@@ -224,7 +223,7 @@ public class DTD implements DTDConstants {
      * Creates and returns a character <code>Entity</code>.
      * 
      * @param name
-     *             the entity's name
+     *        the entity's name
      * @return the new character <code>Entity</code>
      */
     public Entity defEntity(String name, int type, int ch) {
@@ -236,7 +235,7 @@ public class DTD implements DTDConstants {
      * Creates and returns an <code>Entity</code>.
      * 
      * @param name
-     *             the entity's name
+     *        the entity's name
      * @return the new <code>Entity</code>
      */
     protected Entity defEntity(String name, int type, String str) {
@@ -250,12 +249,11 @@ public class DTD implements DTDConstants {
      * Creates and returns an <code>Element</code>.
      * 
      * @param name
-     *             the element's name
+     *        the element's name
      * @return the new <code>Element</code>
      */
-    protected Element defElement(String name, int type, boolean omitStart,
-            boolean omitEnd, ContentModel content, String[] exclusions,
-            String[] inclusions, AttributeList atts) {
+    protected Element defElement(String name, int type, boolean omitStart, boolean omitEnd,
+            ContentModel content, String[] exclusions, String[] inclusions, AttributeList atts) {
         BitSet excl = null;
         if (exclusions != null && exclusions.length > 0) {
             excl = new BitSet();
@@ -274,24 +272,22 @@ public class DTD implements DTDConstants {
                 }
             }
         }
-        return defineElement(name, type, omitStart, omitEnd, content, excl,
-                incl, atts);
+        return defineElement(name, type, omitStart, omitEnd, content, excl, incl, atts);
     }
 
     /**
      * Creates and returns an <code>AttributeList</code>.
      * 
      * @param name
-     *             the attribute list's name
+     *        the attribute list's name
      * @return the new <code>AttributeList</code>
      */
-    protected AttributeList defAttributeList(String name, int type,
-            int modifier, String value, String values, AttributeList atts) {
+    protected AttributeList defAttributeList(String name, int type, int modifier, String value, String values,
+            AttributeList atts) {
         Vector<String> vals = null;
         if (values != null) {
             vals = new Vector<String>();
-            for (StringTokenizer s = new StringTokenizer(values, "|"); s
-                    .hasMoreTokens();) {
+            for (StringTokenizer s = new StringTokenizer(values, "|"); s.hasMoreTokens();) {
                 String str = s.nextToken();
                 if (str.length() > 0) {
                     vals.addElement(str);
@@ -305,11 +301,10 @@ public class DTD implements DTDConstants {
      * Creates and returns a new content model.
      * 
      * @param type
-     *             the type of the new content model
+     *        the type of the new content model
      * @return the new <code>ContentModel</code>
      */
-    protected ContentModel defContentModel(int type, Object obj,
-            ContentModel next) {
+    protected ContentModel defContentModel(int type, Object obj, ContentModel next) {
         return new ContentModel(type, obj, next);
     }
 
@@ -337,7 +332,7 @@ public class DTD implements DTDConstants {
      * in the name are converted to lowercase.
      *
      * @param name
-     *             the name of the DTD
+     *        the name of the DTD
      * @return the DTD which corresponds to <code>name</code>
      */
     public static DTD getDTD(String name) throws IOException {
@@ -352,8 +347,7 @@ public class DTD implements DTDConstants {
     private static Hashtable<String, DTD> getDtdHash() {
         AppContext appContext = AppContext.getAppContext();
 
-        Hashtable<String, DTD> result = (Hashtable<String, DTD>) appContext.get(
-                DTD_HASH_KEY);
+        Hashtable<String, DTD> result = (Hashtable<String, DTD>) appContext.get(DTD_HASH_KEY);
 
         if (result == null) {
             result = new Hashtable<String, DTD>();
@@ -368,11 +362,10 @@ public class DTD implements DTDConstants {
      * Recreates a DTD from an archived format.
      * 
      * @param in
-     *           the <code>DataInputStream</code> to read from
+     *        the <code>DataInputStream</code> to read from
      */
     public void read(DataInputStream in) throws IOException {
-        if (in.readInt() != FILE_VERSION) {
-        }
+        if (in.readInt() != FILE_VERSION) {}
 
         //
         // Read the list of names
@@ -404,13 +397,12 @@ public class DTD implements DTDConstants {
             String[] exclusions = readNameArray(in, names);
             String[] inclusions = readNameArray(in, names);
             AttributeList atts = readAttributeList(in, names);
-            defElement(names[nameId], type, ((flags & 0x01) != 0), ((flags
-                    & 0x02) != 0), m, exclusions, inclusions, atts);
+            defElement(names[nameId], type, ((flags & 0x01) != 0), ((flags & 0x02) != 0), m, exclusions,
+                    inclusions, atts);
         }
     }
 
-    private ContentModel readContentModel(DataInputStream in, String[] names)
-            throws IOException {
+    private ContentModel readContentModel(DataInputStream in, String[] names) throws IOException {
         byte flag = in.readByte();
         switch (flag) {
             case 0: // null
@@ -432,8 +424,7 @@ public class DTD implements DTDConstants {
         }
     }
 
-    private String[] readNameArray(DataInputStream in, String[] names)
-            throws IOException {
+    private String[] readNameArray(DataInputStream in, String[] names) throws IOException {
         int num = in.readShort();
         if (num == 0) {
             return null;
@@ -445,8 +436,7 @@ public class DTD implements DTDConstants {
         return result;
     }
 
-    private AttributeList readAttributeList(DataInputStream in, String[] names)
-            throws IOException {
+    private AttributeList readAttributeList(DataInputStream in, String[] names) throws IOException {
         AttributeList result = null;
         for (int num = in.readByte(); num > 0; --num) {
             short nameId = in.readShort();
@@ -462,8 +452,7 @@ public class DTD implements DTDConstants {
                     values.addElement(names[in.readShort()]);
                 }
             }
-            result = new AttributeList(names[nameId], type, modifier, value,
-                    values, result);
+            result = new AttributeList(names[nameId], type, modifier, value, values, result);
             // We reverse the order of the linked list by doing this, but
             // that order isn't important.
         }

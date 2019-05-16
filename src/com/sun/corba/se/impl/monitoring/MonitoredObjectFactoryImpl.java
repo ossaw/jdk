@@ -10,8 +10,7 @@ import com.sun.corba.se.spi.monitoring.MonitoredObject;
 
 public class MonitoredObjectFactoryImpl implements MonitoredObjectFactory {
 
-    public MonitoredObject createMonitoredObject(String name,
-            String description) {
+    public MonitoredObject createMonitoredObject(String name, String description) {
         return new MonitoredObjectImpl(name, description);
     }
 }

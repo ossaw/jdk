@@ -14,12 +14,10 @@ import org.xml.sax.Locator;
 
 /**
  * Provide an optional convenience implementation of Locator.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * This class is available mainly for application writers, who can use it to
  * make a persistent snapshot of a locator at any point during a document parse:
@@ -40,7 +38,6 @@ import org.xml.sax.Locator;
  *     Locator startloc = new LocatorImpl(locator);
  * }
  * </pre>
- *
  * <p>
  * Normally, parser writers will not use this class, since it is more efficient
  * to provide location information only when requested, rather than constantly
@@ -55,7 +52,6 @@ public class LocatorImpl implements Locator {
 
     /**
      * Zero-argument constructor.
-     *
      * <p>
      * This will not normally be useful, since the main purpose of this class is
      * to make a snapshot of an existing Locator.
@@ -65,7 +61,6 @@ public class LocatorImpl implements Locator {
 
     /**
      * Copy constructor.
-     *
      * <p>
      * Create a persistent copy of the current state of a locator. When the
      * original locator changes, this copy will still keep the original values
@@ -73,7 +68,7 @@ public class LocatorImpl implements Locator {
      * </p>
      *
      * @param locator
-     *                The locator to copy.
+     *        The locator to copy.
      */
     public LocatorImpl(Locator locator) {
         setPublicId(locator.getPublicId());
@@ -138,7 +133,7 @@ public class LocatorImpl implements Locator {
      * Set the public identifier for this locator.
      *
      * @param publicId
-     *                 The new public identifier, or null if none is available.
+     *        The new public identifier, or null if none is available.
      * @see #getPublicId
      */
     public void setPublicId(String publicId) {
@@ -149,7 +144,7 @@ public class LocatorImpl implements Locator {
      * Set the system identifier for this locator.
      *
      * @param systemId
-     *                 The new system identifier, or null if none is available.
+     *        The new system identifier, or null if none is available.
      * @see #getSystemId
      */
     public void setSystemId(String systemId) {
@@ -160,7 +155,7 @@ public class LocatorImpl implements Locator {
      * Set the line number for this locator (1-based).
      *
      * @param lineNumber
-     *                   The line number, or -1 if none is available.
+     *        The line number, or -1 if none is available.
      * @see #getLineNumber
      */
     public void setLineNumber(int lineNumber) {
@@ -171,7 +166,7 @@ public class LocatorImpl implements Locator {
      * Set the column number for this locator (1-based).
      *
      * @param columnNumber
-     *                     The column number, or -1 if none is available.
+     *        The column number, or -1 if none is available.
      * @see #getColumnNumber
      */
     public void setColumnNumber(int columnNumber) {

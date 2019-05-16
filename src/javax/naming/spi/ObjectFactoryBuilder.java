@@ -27,7 +27,6 @@ import javax.naming.NamingException;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see ObjectFactory
  * @see NamingManager#getObjectInstance
  * @see NamingManager#setObjectFactoryBuilder
@@ -42,16 +41,14 @@ public interface ObjectFactoryBuilder {
      * reference to a clone or copy.
      *
      * @param obj
-     *                    The possibly null object for which to create a
-     *                    factory.
+     *        The possibly null object for which to create a
+     *        factory.
      * @param environment
-     *                    Environment to use when creating the factory. Can be
-     *                    null.
+     *        Environment to use when creating the factory. Can be
+     *        null.
      * @return A non-null new instance of an ObjectFactory.
      * @exception NamingException
-     *                            If an object factory cannot be created.
-     *
+     *            If an object factory cannot be created.
      */
-    public ObjectFactory createObjectFactory(Object obj,
-            Hashtable<?, ?> environment) throws NamingException;
+    public ObjectFactory createObjectFactory(Object obj, Hashtable<?, ?> environment) throws NamingException;
 }

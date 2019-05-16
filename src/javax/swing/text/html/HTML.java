@@ -16,7 +16,6 @@ import javax.swing.text.StyleContext;
  *
  * @author Timothy Prinzing
  * @author Sunita Mani
- *
  */
 public class HTML {
 
@@ -36,7 +35,7 @@ public class HTML {
          * <code>false</code>.
          *
          * @param id
-         *           the id of the new tag
+         *        the id of the new tag
          */
         protected Tag(String id) {
             this(id, false, false);
@@ -48,15 +47,15 @@ public class HTML {
          * user.
          *
          * @param id
-         *                    the id of the new tag
+         *        the id of the new tag
          * @param causesBreak
-         *                    <code>true</code> if this tag causes a break to
-         *                    the flow
-         *                    of data
+         *        <code>true</code> if this tag causes a break to
+         *        the flow
+         *        of data
          * @param isBlock
-         *                    <code>true</code> if the tag is used to add
-         *                    structure to a
-         *                    document
+         *        <code>true</code> if the tag is used to add
+         *        structure to a
+         *        document
          */
         protected Tag(String id, boolean causesBreak, boolean isBlock) {
             name = id;
@@ -115,9 +114,8 @@ public class HTML {
          * @see HTMLDocument.HTMLReader.ParagraphAction
          */
         boolean isParagraph() {
-            return (this == P || this == IMPLIED || this == DT || this == H1
-                    || this == H2 || this == H3 || this == H4 || this == H5
-                    || this == H6);
+            return (this == P || this == IMPLIED || this == DT || this == H1 || this == H2 || this == H3
+                    || this == H4 || this == H5 || this == H6);
         }
 
         boolean blockTag;
@@ -231,14 +229,11 @@ public class HTML {
          */
         public static final Tag COMMENT = new Tag("comment");
 
-        static final Tag allTags[] = { A, ADDRESS, APPLET, AREA, B, BASE,
-                BASEFONT, BIG, BLOCKQUOTE, BODY, BR, CAPTION, CENTER, CITE,
-                CODE, DD, DFN, DIR, DIV, DL, DT, EM, FONT, FORM, FRAME,
-                FRAMESET, H1, H2, H3, H4, H5, H6, HEAD, HR, HTML, I, IMG, INPUT,
-                ISINDEX, KBD, LI, LINK, MAP, MENU, META, NOBR, NOFRAMES, OBJECT,
-                OL, OPTION, P, PARAM, PRE, SAMP, SCRIPT, SELECT, SMALL, SPAN,
-                STRIKE, S, STRONG, STYLE, SUB, SUP, TABLE, TD, TEXTAREA, TH,
-                TITLE, TR, TT, U, UL, VAR };
+        static final Tag allTags[] = { A, ADDRESS, APPLET, AREA, B, BASE, BASEFONT, BIG, BLOCKQUOTE, BODY, BR,
+                CAPTION, CENTER, CITE, CODE, DD, DFN, DIR, DIV, DL, DT, EM, FONT, FORM, FRAME, FRAMESET, H1,
+                H2, H3, H4, H5, H6, HEAD, HR, HTML, I, IMG, INPUT, ISINDEX, KBD, LI, LINK, MAP, MENU, META,
+                NOBR, NOFRAMES, OBJECT, OL, OPTION, P, PARAM, PRE, SAMP, SCRIPT, SELECT, SMALL, SPAN, STRIKE,
+                S, STRONG, STYLE, SUB, SUP, TABLE, TD, TEXTAREA, TH, TITLE, TR, TT, U, UL, VAR };
 
         static {
             // Force HTMLs static initialize to be loaded.
@@ -255,7 +250,7 @@ public class HTML {
          * <code>id</code>.
          * 
          * @param id
-         *           the id of the new tag
+         *        the id of the new tag
          */
         public UnknownTag(String id) {
             super(id);
@@ -275,7 +270,7 @@ public class HTML {
          * same name.
          *
          * @param obj
-         *            the object to compare this tag with
+         *        the object to compare this tag with
          * @return <code>true</code> if the objects are equal;
          *         <code>false</code> otherwise
          */
@@ -286,8 +281,7 @@ public class HTML {
             return false;
         }
 
-        private void writeObject(java.io.ObjectOutputStream s)
-                throws IOException {
+        private void writeObject(java.io.ObjectOutputStream s) throws IOException {
             s.defaultWriteObject();
             s.writeBoolean(blockTag);
             s.writeBoolean(breakTag);
@@ -295,8 +289,7 @@ public class HTML {
             s.writeObject(name);
         }
 
-        private void readObject(ObjectInputStream s)
-                throws ClassNotFoundException, IOException {
+        private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
             s.defaultReadObject();
             blockTag = s.readBoolean();
             breakTag = s.readBoolean();
@@ -315,7 +308,7 @@ public class HTML {
          * <code>id</code>.
          *
          * @param id
-         *           the id of the new <code>Attribute</code>
+         *        the id of the new <code>Attribute</code>
          */
         Attribute(String id) {
             name = id;
@@ -392,10 +385,8 @@ public class HTML {
         public static final Attribute ROWS = new Attribute("rows");
         public static final Attribute COLS = new Attribute("cols");
         public static final Attribute DUMMY = new Attribute("dummy");
-        public static final Attribute CELLSPACING = new Attribute(
-                "cellspacing");
-        public static final Attribute CELLPADDING = new Attribute(
-                "cellpadding");
+        public static final Attribute CELLSPACING = new Attribute("cellspacing");
+        public static final Attribute CELLPADDING = new Attribute("cellpadding");
         public static final Attribute VALIGN = new Attribute("valign");
         public static final Attribute HALIGN = new Attribute("halign");
         public static final Attribute NOWRAP = new Attribute("nowrap");
@@ -407,30 +398,23 @@ public class HTML {
         public static final Attribute LANGUAGE = new Attribute("language");
         public static final Attribute VERSION = new Attribute("version");
         public static final Attribute N = new Attribute("n");
-        public static final Attribute FRAMEBORDER = new Attribute(
-                "frameborder");
-        public static final Attribute MARGINWIDTH = new Attribute(
-                "marginwidth");
-        public static final Attribute MARGINHEIGHT = new Attribute(
-                "marginheight");
+        public static final Attribute FRAMEBORDER = new Attribute("frameborder");
+        public static final Attribute MARGINWIDTH = new Attribute("marginwidth");
+        public static final Attribute MARGINHEIGHT = new Attribute("marginheight");
         public static final Attribute SCROLLING = new Attribute("scrolling");
         public static final Attribute NORESIZE = new Attribute("noresize");
         public static final Attribute ENDTAG = new Attribute("endtag");
         public static final Attribute COMMENT = new Attribute("comment");
         static final Attribute MEDIA = new Attribute("media");
 
-        static final Attribute allAttributes[] = { FACE, COMMENT, SIZE, COLOR,
-                CLEAR, BACKGROUND, BGCOLOR, TEXT, LINK, VLINK, ALINK, WIDTH,
-                HEIGHT, ALIGN, NAME, HREF, REL, REV, TITLE, TARGET, SHAPE,
-                COORDS, ISMAP, NOHREF, ALT, ID, SRC, HSPACE, VSPACE, USEMAP,
-                LOWSRC, CODEBASE, CODE, ARCHIVE, VALUE, VALUETYPE, TYPE, CLASS,
-                STYLE, LANG, DIR, DECLARE, CLASSID, DATA, CODETYPE, STANDBY,
-                BORDER, SHAPES, NOSHADE, COMPACT, START, ACTION, METHOD,
-                ENCTYPE, CHECKED, MAXLENGTH, MULTIPLE, SELECTED, ROWS, COLS,
-                DUMMY, CELLSPACING, CELLPADDING, VALIGN, HALIGN, NOWRAP,
-                ROWSPAN, COLSPAN, PROMPT, HTTPEQUIV, CONTENT, LANGUAGE, VERSION,
-                N, FRAMEBORDER, MARGINWIDTH, MARGINHEIGHT, SCROLLING, NORESIZE,
-                MEDIA, ENDTAG };
+        static final Attribute allAttributes[] = { FACE, COMMENT, SIZE, COLOR, CLEAR, BACKGROUND, BGCOLOR,
+                TEXT, LINK, VLINK, ALINK, WIDTH, HEIGHT, ALIGN, NAME, HREF, REL, REV, TITLE, TARGET, SHAPE,
+                COORDS, ISMAP, NOHREF, ALT, ID, SRC, HSPACE, VSPACE, USEMAP, LOWSRC, CODEBASE, CODE, ARCHIVE,
+                VALUE, VALUETYPE, TYPE, CLASS, STYLE, LANG, DIR, DECLARE, CLASSID, DATA, CODETYPE, STANDBY,
+                BORDER, SHAPES, NOSHADE, COMPACT, START, ACTION, METHOD, ENCTYPE, CHECKED, MAXLENGTH,
+                MULTIPLE, SELECTED, ROWS, COLS, DUMMY, CELLSPACING, CELLPADDING, VALIGN, HALIGN, NOWRAP,
+                ROWSPAN, COLSPAN, PROMPT, HTTPEQUIV, CONTENT, LANGUAGE, VERSION, N, FRAMEBORDER, MARGINWIDTH,
+                MARGINHEIGHT, SCROLLING, NORESIZE, MEDIA, ENDTAG };
     }
 
     // The secret to 73, is that, given that the Hashtable contents
@@ -438,12 +422,10 @@ public class HTML {
     // that the hashtable grew to was determined, and then that very size
     // is used.
     //
-    private static final Hashtable<String, Tag> tagHashtable = new Hashtable<String, Tag>(
-            73);
+    private static final Hashtable<String, Tag> tagHashtable = new Hashtable<String, Tag>(73);
 
     /** Maps from StyleConstant key to HTML.Tag. */
-    private static final Hashtable<Object, Tag> scMapping = new Hashtable<Object, Tag>(
-            8);
+    private static final Hashtable<Object, Tag> scMapping = new Hashtable<Object, Tag>(8);
 
     static {
 
@@ -491,7 +473,7 @@ public class HTML {
      * well-known tags, then <code>null</code> will be returned.
      *
      * @param tagName
-     *                the <code>String</code> name requested
+     *        the <code>String</code> name requested
      * @return a tag constant corresponding to the <code>tagName</code>, or
      *         <code>null</code> if not found
      */
@@ -507,7 +489,7 @@ public class HTML {
      * <code>Tag</code> is found, returns <code>null</code>.
      *
      * @param sc
-     *           the <code>StyleConstants</code> key
+     *        the <code>StyleConstants</code> key
      * @return tag which corresponds to <code>sc</code>, or <code>null</code> if
      *         not found
      */
@@ -520,15 +502,14 @@ public class HTML {
      * string, and this is a convenience method to convert to an actual integer.
      *
      * @param attr
-     *             the set of attributes to use to try to fetch a value
+     *        the set of attributes to use to try to fetch a value
      * @param key
-     *             the key to use to fetch the value
+     *        the key to use to fetch the value
      * @param def
-     *             the default value to use if the attribute isn't defined or
-     *             there is an error converting to an integer
+     *        the default value to use if the attribute isn't defined or
+     *        there is an error converting to an integer
      */
-    public static int getIntegerAttributeValue(AttributeSet attr, Attribute key,
-            int def) {
+    public static int getIntegerAttributeValue(AttributeSet attr, Attribute key, int def) {
         int value = def;
         String istr = (String) attr.getAttribute(key);
         if (istr != null) {
@@ -547,14 +528,12 @@ public class HTML {
     public static final String NULL_ATTRIBUTE_VALUE = "#DEFAULT";
 
     // size determined similar to size of tagHashtable
-    private static final Hashtable<String, Attribute> attHashtable = new Hashtable<String, Attribute>(
-            77);
+    private static final Hashtable<String, Attribute> attHashtable = new Hashtable<String, Attribute>(77);
 
     static {
 
         for (int i = 0; i < Attribute.allAttributes.length; i++) {
-            attHashtable.put(Attribute.allAttributes[i].toString(),
-                    Attribute.allAttributes[i]);
+            attHashtable.put(Attribute.allAttributes[i].toString(), Attribute.allAttributes[i]);
         }
     }
 
@@ -565,8 +544,7 @@ public class HTML {
      */
     public static Attribute[] getAllAttributeKeys() {
         Attribute[] attributes = new Attribute[Attribute.allAttributes.length];
-        System.arraycopy(Attribute.allAttributes, 0, attributes, 0,
-                Attribute.allAttributes.length);
+        System.arraycopy(Attribute.allAttributes, 0, attributes, 0, Attribute.allAttributes.length);
         return attributes;
     }
 
@@ -586,7 +564,7 @@ public class HTML {
      * <code>null</code> will be returned.
      *
      * @param attName
-     *                the <code>String</code> requested
+     *        the <code>String</code> requested
      * @return the <code>Attribute</code> corresponding to <code>attName</code>
      */
     public static Attribute getAttributeKey(String attName) {

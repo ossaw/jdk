@@ -38,14 +38,14 @@ public class ActivationSystemException extends LogWrapperBase {
     };
 
     public static ActivationSystemException get(ORB orb, String logDomain) {
-        ActivationSystemException wrapper = (ActivationSystemException) orb
-                .getLogWrapper(logDomain, "ACTIVATION", factory);
+        ActivationSystemException wrapper = (ActivationSystemException) orb.getLogWrapper(logDomain,
+                "ACTIVATION", factory);
         return wrapper;
     }
 
     public static ActivationSystemException get(String logDomain) {
-        ActivationSystemException wrapper = (ActivationSystemException) ORB
-                .staticGetLogWrapper(logDomain, "ACTIVATION", factory);
+        ActivationSystemException wrapper = (ActivationSystemException) ORB.staticGetLogWrapper(logDomain,
+                "ACTIVATION", factory);
         return wrapper;
     }
 
@@ -62,8 +62,8 @@ public class ActivationSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "ACTIVATION.cannotReadRepositoryDb",
-                    parameters, ActivationSystemException.class, exc);
+            doLog(Level.WARNING, "ACTIVATION.cannotReadRepositoryDb", parameters,
+                    ActivationSystemException.class, exc);
         }
 
         return exc;
@@ -90,8 +90,8 @@ public class ActivationSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "ACTIVATION.cannotAddInitialNaming",
-                    parameters, ActivationSystemException.class, exc);
+            doLog(Level.WARNING, "ACTIVATION.cannotAddInitialNaming", parameters,
+                    ActivationSystemException.class, exc);
         }
 
         return exc;
@@ -122,8 +122,8 @@ public class ActivationSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "ACTIVATION.cannotWriteRepositoryDb",
-                    parameters, ActivationSystemException.class, exc);
+            doLog(Level.WARNING, "ACTIVATION.cannotWriteRepositoryDb", parameters,
+                    ActivationSystemException.class, exc);
         }
 
         return exc;
@@ -141,19 +141,17 @@ public class ActivationSystemException extends LogWrapperBase {
         return cannotWriteRepositoryDb(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int SERVER_NOT_EXPECTED_TO_REGISTER = SUNVMCID.value
-            + 403;
+    public static final int SERVER_NOT_EXPECTED_TO_REGISTER = SUNVMCID.value + 403;
 
-    public INTERNAL serverNotExpectedToRegister(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL serverNotExpectedToRegister(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(SERVER_NOT_EXPECTED_TO_REGISTER, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "ACTIVATION.serverNotExpectedToRegister",
-                    parameters, ActivationSystemException.class, exc);
+            doLog(Level.WARNING, "ACTIVATION.serverNotExpectedToRegister", parameters,
+                    ActivationSystemException.class, exc);
         }
 
         return exc;
@@ -208,8 +206,8 @@ public class ActivationSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "ACTIVATION.serverNotRunning", parameters,
-                    ActivationSystemException.class, exc);
+            doLog(Level.WARNING, "ACTIVATION.serverNotRunning", parameters, ActivationSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -231,20 +229,17 @@ public class ActivationSystemException extends LogWrapperBase {
     // OBJECT_NOT_EXIST
     ///////////////////////////////////////////////////////////
 
-    public static final int ERROR_IN_BAD_SERVER_ID_HANDLER = SUNVMCID.value
-            + 401;
+    public static final int ERROR_IN_BAD_SERVER_ID_HANDLER = SUNVMCID.value + 401;
 
-    public OBJECT_NOT_EXIST errorInBadServerIdHandler(CompletionStatus cs,
-            Throwable t) {
-        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(
-                ERROR_IN_BAD_SERVER_ID_HANDLER, cs);
+    public OBJECT_NOT_EXIST errorInBadServerIdHandler(CompletionStatus cs, Throwable t) {
+        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(ERROR_IN_BAD_SERVER_ID_HANDLER, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "ACTIVATION.errorInBadServerIdHandler",
-                    parameters, ActivationSystemException.class, exc);
+            doLog(Level.WARNING, "ACTIVATION.errorInBadServerIdHandler", parameters,
+                    ActivationSystemException.class, exc);
         }
 
         return exc;

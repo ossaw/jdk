@@ -48,8 +48,7 @@ import com.sun.corba.se.spi.orbutil.proxy.LinkedInvocationHandler;
 
 import com.sun.corba.se.impl.corba.CORBAObjectImpl;
 
-public final class StubInvocationHandlerImpl implements
-        LinkedInvocationHandler {
+public final class StubInvocationHandlerImpl implements LinkedInvocationHandler {
     private transient PresentationManager.ClassData classData;
     private transient PresentationManager pm;
     private transient org.omg.CORBA.Object stub;
@@ -63,8 +62,7 @@ public final class StubInvocationHandlerImpl implements
         return self;
     }
 
-    public StubInvocationHandlerImpl(PresentationManager pm,
-            PresentationManager.ClassData classData,
+    public StubInvocationHandlerImpl(PresentationManager pm, PresentationManager.ClassData classData,
             org.omg.CORBA.Object stub) {
         SecurityManager s = System.getSecurityManager();
         if (s != null) {
@@ -84,8 +82,7 @@ public final class StubInvocationHandlerImpl implements
             ContactInfoList cil = cdel.getContactInfoList();
             if (cil instanceof CorbaContactInfoList) {
                 CorbaContactInfoList ccil = (CorbaContactInfoList) cil;
-                LocalClientRequestDispatcher lcrd = ccil
-                        .getLocalClientRequestDispatcher();
+                LocalClientRequestDispatcher lcrd = ccil.getLocalClientRequestDispatcher();
                 result = lcrd.useLocalInvocation(null);
             }
         }
@@ -98,13 +95,11 @@ public final class StubInvocationHandlerImpl implements
      * result in a remote invocation.
      * 
      * @param proxy
-     *              The proxy used for this class (null if not using
-     *              java.lang.reflect.Proxy)
+     *        The proxy used for this class (null if not using
+     *        java.lang.reflect.Proxy)
      */
-    public Object invoke(Object proxy, final Method method, Object[] args)
-            throws Throwable {
-        String giopMethodName = classData.getIDLNameTranslator().getIDLName(
-                method);
+    public Object invoke(Object proxy, final Method method, Object[] args) throws Throwable {
+        String giopMethodName = classData.getIDLNameTranslator().getIDLName(method);
         DynamicMethodMarshaller dmm = pm.getDynamicMethodMarshaller(method);
 
         Delegate delegate = null;
@@ -126,8 +121,7 @@ public final class StubInvocationHandlerImpl implements
                     dmm.writeArguments(out, args);
 
                     // finish invocation
-                    in = (org.omg.CORBA_2_3.portable.InputStream) delegate
-                            .invoke(stub, out);
+                    in = (org.omg.CORBA_2_3.portable.InputStream) delegate.invoke(stub, out);
 
                     // unmarshal result
                     return dmm.readResult(in);
@@ -144,8 +138,7 @@ public final class StubInvocationHandlerImpl implements
         } else {
             // local branch
             ORB orb = (ORB) delegate.orb(stub);
-            ServantObject so = delegate.servant_preinvoke(stub, giopMethodName,
-                    method.getDeclaringClass());
+            ServantObject so = delegate.servant_preinvoke(stub, giopMethodName, method.getDeclaringClass());
             if (so == null) {
                 return invoke(stub, method, args);
             }

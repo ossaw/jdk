@@ -18,8 +18,7 @@ import org.omg.CORBA.INTERNAL;
 /**
  * @author
  */
-public class TaggedProfileTemplateFactoryFinderImpl extends
-        IdentifiableFactoryFinderBase {
+public class TaggedProfileTemplateFactoryFinderImpl extends IdentifiableFactoryFinderBase {
     public TaggedProfileTemplateFactoryFinderImpl(ORB orb) {
         super(orb);
     }

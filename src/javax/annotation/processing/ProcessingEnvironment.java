@@ -16,7 +16,6 @@ import javax.lang.model.util.Types;
  * provide an annotation processor with an object implementing this interface}
  * so the processor can use facilities provided by the framework to write new
  * files, report error messages, and find other utilities.
- *
  * <p>
  * Third parties may wish to provide value-add wrappers around the facility
  * objects from this interface, for example a {@code Filer} extension that
@@ -42,7 +41,6 @@ public interface ProcessingEnvironment {
      * processing tool. Options are returned in the form of a map from option
      * name to option value. For an option with no value, the corresponding
      * value in the map is {@code null}.
-     *
      * <p>
      * See documentation of the particular tool infrastructure being used for
      * details on how to pass in processor-specific options. For example, a

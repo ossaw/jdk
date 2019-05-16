@@ -31,8 +31,7 @@ import javax.print.attribute.PrintRequestAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class RequestingUserName extends TextSyntax implements
-        PrintRequestAttribute {
+public final class RequestingUserName extends TextSyntax implements PrintRequestAttribute {
 
     private static final long serialVersionUID = -2683049894310331454L;
 
@@ -41,17 +40,16 @@ public final class RequestingUserName extends TextSyntax implements
      * and locale.
      *
      * @param userName
-     *                 User name.
+     *        User name.
      * @param locale
-     *                 Natural language of the text string. null is interpreted
-     *                 to
-     *                 mean the default locale as returned by
-     *                 <code>Locale.getDefault()</code>
-     *
+     *        Natural language of the text string. null is interpreted
+     *        to
+     *        mean the default locale as returned by
+     *        <code>Locale.getDefault()</code>
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>userName</CODE> is
-     *                                 null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>userName</CODE> is
+     *            null.
      */
     public RequestingUserName(String userName, Locale locale) {
         super(userName, locale);
@@ -71,8 +69,7 @@ public final class RequestingUserName extends TextSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this requesting user
      *         name attribute, false otherwise.
      */

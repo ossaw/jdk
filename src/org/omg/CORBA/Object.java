@@ -42,7 +42,7 @@ public interface Object {
      * given interface.
      *
      * @param repositoryIdentifier
-     *                             the interface to check against
+     *        the interface to check against
      * @return <code>true</code> if this object reference is an instance of a
      *         class that implements the interface; <code>false</code> otherwise
      */
@@ -58,8 +58,8 @@ public interface Object {
      * expensive.
      * 
      * @param other
-     *              the other object reference with which to check for
-     *              equivalence
+     *        the other object reference with which to check for
+     *        equivalence
      * @return <code>true</code> if this object reference is known to be
      *         equivalent to the given object reference. Note that
      *         <code>false</code> indicates only that the two object references
@@ -87,7 +87,7 @@ public interface Object {
      * references; however, both may still refer to the same CORBA object.
      *
      * @param maximum
-     *                the upper bound on the hash value returned by the ORB
+     *        the upper bound on the hash value returned by the ORB
      * @return the ORB-internal hash identifier for this object reference
      */
     int _hash(int maximum);
@@ -135,8 +135,8 @@ public interface Object {
      * Interface.
      *
      * @param operation
-     *                  the name of the method to be invoked using the
-     *                  <code>Request</code> instance
+     *        the name of the method to be invoked using the
+     *        <code>Request</code> instance
      * @return the newly-created <code>Request</code> instance
      */
     Request _request(String operation);
@@ -147,27 +147,25 @@ public interface Object {
      * return value.
      *
      * @param ctx
-     *                  a <code>Context</code> object containing a list of
-     *                  properties
+     *        a <code>Context</code> object containing a list of
+     *        properties
      * @param operation
-     *                  the name of the method to be invoked
+     *        the name of the method to be invoked
      * @param arg_list
-     *                  an <code>NVList</code> containing the actual arguments
-     *                  to the
-     *                  method being invoked
+     *        an <code>NVList</code> containing the actual arguments
+     *        to the
+     *        method being invoked
      * @param result
-     *                  a <code>NamedValue</code> object to serve as a container
-     *                  for
-     *                  the method's return value
+     *        a <code>NamedValue</code> object to serve as a container
+     *        for
+     *        the method's return value
      * @return the newly-created <code>Request</code> object
-     *
      * @see Request
      * @see NVList
      * @see NamedValue
      */
 
-    Request _create_request(Context ctx, String operation, NVList arg_list,
-            NamedValue result);
+    Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result);
 
     /**
      * Creates a <code>Request</code> instance initialized with the given
@@ -176,29 +174,28 @@ public interface Object {
      * needing to be resolved.
      *
      * @param ctx
-     *                  a <code>Context</code> object containing a list of
-     *                  properties
+     *        a <code>Context</code> object containing a list of
+     *        properties
      * @param operation
-     *                  the name of the method to be invoked
+     *        the name of the method to be invoked
      * @param arg_list
-     *                  an <code>NVList</code> containing the actual arguments
-     *                  to the
-     *                  method being invoked
+     *        an <code>NVList</code> containing the actual arguments
+     *        to the
+     *        method being invoked
      * @param result
-     *                  a <code>NamedValue</code> object to serve as a container
-     *                  for
-     *                  the method's return value
+     *        a <code>NamedValue</code> object to serve as a container
+     *        for
+     *        the method's return value
      * @param exclist
-     *                  an <code>ExceptionList</code> object containing a list
-     *                  of
-     *                  possible exceptions the method can throw
+     *        an <code>ExceptionList</code> object containing a list
+     *        of
+     *        possible exceptions the method can throw
      * @param ctxlist
-     *                  a <code>ContextList</code> object containing a list of
-     *                  context
-     *                  strings that need to be resolved and sent with the
-     *                  <code>Request</code> instance
+     *        a <code>ContextList</code> object containing a list of
+     *        context
+     *        strings that need to be resolved and sent with the
+     *        <code>Request</code> instance
      * @return the newly-created <code>Request</code> object
-     *
      * @see Request
      * @see NVList
      * @see NamedValue
@@ -206,15 +203,15 @@ public interface Object {
      * @see ContextList
      */
 
-    Request _create_request(Context ctx, String operation, NVList arg_list,
-            NamedValue result, ExceptionList exclist, ContextList ctxlist);
+    Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result,
+            ExceptionList exclist, ContextList ctxlist);
 
     /**
      * Returns the <code>Policy</code> object of the specified type which
      * applies to this object.
      *
      * @param policy_type
-     *                    the type of policy to be obtained
+     *        the type of policy to be obtained
      * @return A <code>Policy</code> object of the type specified by the
      *         policy_type parameter
      * @exception org.omg.CORBA.BAD_PARAM
@@ -245,20 +242,19 @@ public interface Object {
      * given <code>SetOverrideType</code> object.
      *
      * @param policies
-     *                 an array of <code>Policy</code> objects containing the
-     *                 policies to be added or to be used as replacements
+     *        an array of <code>Policy</code> objects containing the
+     *        policies to be added or to be used as replacements
      * @param set_add
-     *                 either <code>SetOverrideType.SET_OVERRIDE</code>,
-     *                 indicating
-     *                 that the given policies will replace any existing ones,
-     *                 or
-     *                 <code>SetOverrideType.ADD_OVERRIDE</code>, indicating
-     *                 that the
-     *                 given policies should be added to any existing ones
+     *        either <code>SetOverrideType.SET_OVERRIDE</code>,
+     *        indicating
+     *        that the given policies will replace any existing ones,
+     *        or
+     *        <code>SetOverrideType.ADD_OVERRIDE</code>, indicating
+     *        that the
+     *        given policies should be added to any existing ones
      * @return a new <code>Object</code> with the given policies replacing or
      *         added to those in this <code>Object</code>
      */
-    org.omg.CORBA.Object _set_policy_override(Policy[] policies,
-            SetOverrideType set_add);
+    org.omg.CORBA.Object _set_policy_override(Policy[] policies, SetOverrideType set_add);
 
 }

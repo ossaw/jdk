@@ -27,7 +27,6 @@ import java.util.Vector;
  * required.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  */
 public class ValidationManager {

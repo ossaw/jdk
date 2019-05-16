@@ -84,7 +84,7 @@ public class IFNONNULL extends IfInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackConsumer(this);

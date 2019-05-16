@@ -26,8 +26,7 @@ import com.sun.corba.se.impl.logging.POASystemException;
 import com.sun.corba.se.impl.logging.OMGSystemException;
 import com.sun.corba.se.impl.oa.poa.Policies;
 
-abstract public class ObjectAdapterBase extends org.omg.CORBA.LocalObject
-        implements ObjectAdapter {
+abstract public class ObjectAdapterBase extends org.omg.CORBA.LocalObject implements ObjectAdapter {
     private ORB orb;
 
     // Exception wrappers
@@ -47,14 +46,10 @@ abstract public class ObjectAdapterBase extends org.omg.CORBA.LocalObject
     public ObjectAdapterBase(ORB orb) {
         this.orb = orb;
         _iorWrapper = POASystemException.get(orb, CORBALogDomains.OA_IOR);
-        _lifecycleWrapper = POASystemException.get(orb,
-                CORBALogDomains.OA_LIFECYCLE);
-        _omgLifecycleWrapper = OMGSystemException.get(orb,
-                CORBALogDomains.OA_LIFECYCLE);
-        _invocationWrapper = POASystemException.get(orb,
-                CORBALogDomains.OA_INVOCATION);
-        _omgInvocationWrapper = OMGSystemException.get(orb,
-                CORBALogDomains.OA_INVOCATION);
+        _lifecycleWrapper = POASystemException.get(orb, CORBALogDomains.OA_LIFECYCLE);
+        _omgLifecycleWrapper = OMGSystemException.get(orb, CORBALogDomains.OA_LIFECYCLE);
+        _invocationWrapper = POASystemException.get(orb, CORBALogDomains.OA_INVOCATION);
+        _omgInvocationWrapper = OMGSystemException.get(orb, CORBALogDomains.OA_INVOCATION);
     }
 
     public final POASystemException iorWrapper() {
@@ -81,20 +76,18 @@ abstract public class ObjectAdapterBase extends org.omg.CORBA.LocalObject
      * This creates the complete template. When it is done, reference creation
      * can proceed.
      */
-    final public void initializeTemplate(ObjectKeyTemplate oktemp,
-            boolean notifyORB, Policies policies, String codebase,
-            String objectAdapterManagerId, ObjectAdapterId objectAdapterId) {
+    final public void initializeTemplate(ObjectKeyTemplate oktemp, boolean notifyORB, Policies policies,
+            String codebase, String objectAdapterManagerId, ObjectAdapterId objectAdapterId) {
         adapterId = oktemp.getAdapterId();
 
         iortemp = IORFactories.makeIORTemplate(oktemp);
 
         // This calls acceptors which create profiles and may
         // add tagged components to those profiles.
-        orb.getCorbaTransportManager().addToIORTemplate(iortemp, policies,
-                codebase, objectAdapterManagerId, objectAdapterId);
+        orb.getCorbaTransportManager().addToIORTemplate(iortemp, policies, codebase, objectAdapterManagerId,
+                objectAdapterId);
 
-        adapterTemplate = IORFactories.makeObjectReferenceTemplate(orb,
-                iortemp);
+        adapterTemplate = IORFactories.makeObjectReferenceTemplate(orb, iortemp);
         currentFactory = adapterTemplate;
 
         if (notifyORB) {

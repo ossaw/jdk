@@ -47,21 +47,18 @@ import org.w3c.dom.Node;
  * </pre>
  *
  * @see Serializer
- *
  * @xsl.usage general
- *
  */
 public interface DOMSerializer {
     /**
      * Serializes the DOM node. Throws an exception only if an I/O exception
      * occured while serializing.
-     *
      * This interface is a public API.
      *
      * @param node
-     *             the DOM node to serialize
+     *        the DOM node to serialize
      * @throws IOException
-     *                     if an I/O exception occured while serializing
+     *         if an I/O exception occured while serializing
      */
     public void serialize(Node node) throws IOException;
 }

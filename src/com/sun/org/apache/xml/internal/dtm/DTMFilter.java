@@ -116,7 +116,6 @@ public interface DTMFilter {
     public static final int SHOW_NOTATION = 0x00000800;
 
     /**
-     * 
      * This bit instructs the iterator to show namespace nodes, which are
      * modeled by DTM but not by the DOM. Make sure this does not conflict with
      * {@link org.w3c.dom.traversal.NodeFilter}.
@@ -145,9 +144,9 @@ public interface DTMFilter {
      * directly from user code.
      *
      * @param nodeHandle
-     *                   int Handle of the node.
+     *        int Handle of the node.
      * @param whatToShow
-     *                   one of SHOW_XXX values.
+     *        one of SHOW_XXX values.
      * @return one of FILTER_ACCEPT, FILTER_REJECT, or FILTER_SKIP.
      */
     public short acceptNode(int nodeHandle, int whatToShow);
@@ -160,13 +159,11 @@ public interface DTMFilter {
      * <p>
      * TODO: Should this be setNameMatch(expandedName) followed by accept()? Or
      * will we really be testing a different name at every invocation?
-     *
      * <p>
      * %REVIEW% Under what circumstances will this be used? The cases I've
      * considered are just as easy and just about as efficient if the name test
      * is performed in the DTMIterator... -- Joe
      * </p>
-     *
      * <p>
      * %REVIEW% Should that 0xFFFF have a mnemonic assigned to it? Also: This
      * representation is assuming the expanded name is indeed split into
@@ -179,16 +176,16 @@ public interface DTMFilter {
      * </p>
      *
      * @param nodeHandle
-     *                     int Handle of the node.
+     *        int Handle of the node.
      * @param whatToShow
-     *                     one of SHOW_XXX values.
+     *        one of SHOW_XXX values.
      * @param expandedName
-     *                     a value defining the exanded name as defined in the
-     *                     DTM
-     *                     interface. Wild cards will be defined by 0xFFFF in
-     *                     the
-     *                     namespace and/or localname portion of the
-     *                     expandedName.
+     *        a value defining the exanded name as defined in the
+     *        DTM
+     *        interface. Wild cards will be defined by 0xFFFF in
+     *        the
+     *        namespace and/or localname portion of the
+     *        expandedName.
      * @return one of FILTER_ACCEPT, FILTER_REJECT, or FILTER_SKIP.
      */
     public short acceptNode(int nodeHandle, int whatToShow, int expandedName);

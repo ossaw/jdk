@@ -60,8 +60,7 @@ class Map implements Serializable {
     public void removeArea(AttributeSet as) {
         if (as != null && areaAttributes != null) {
             int numAreas = (areas != null) ? areas.size() : 0;
-            for (int counter = areaAttributes.size()
-                    - 1; counter >= 0; counter--) {
+            for (int counter = areaAttributes.size() - 1; counter >= 0; counter--) {
                 if (areaAttributes.elementAt(counter).isEqual(as)) {
                     areaAttributes.removeElementAt(counter);
                     if (counter < numAreas) {
@@ -76,8 +75,7 @@ class Map implements Serializable {
      * Returns the AttributeSets representing the differet areas of the Map.
      */
     public AttributeSet[] getAreas() {
-        int numAttributes = (areaAttributes != null) ? areaAttributes.size()
-                : 0;
+        int numAttributes = (areaAttributes != null) ? areaAttributes.size() : 0;
         if (numAttributes != 0) {
             AttributeSet[] retValue = new AttributeSet[numAttributes];
 
@@ -94,8 +92,7 @@ class Map implements Serializable {
      * is found, the AttribueSet for it is returned.
      */
     public AttributeSet getArea(int x, int y, int width, int height) {
-        int numAttributes = (areaAttributes != null) ? areaAttributes.size()
-                : 0;
+        int numAttributes = (areaAttributes != null) ? areaAttributes.size() : 0;
 
         if (numAttributes > 0) {
             int numAreas = (areas != null) ? areas.size() : 0;
@@ -105,8 +102,7 @@ class Map implements Serializable {
             }
             for (int counter = 0; counter < numAttributes; counter++) {
                 if (counter >= numAreas) {
-                    areas.addElement(createRegionContainment(areaAttributes
-                            .elementAt(counter)));
+                    areas.addElement(createRegionContainment(areaAttributes.elementAt(counter)));
                 }
                 RegionContainment rc = areas.elementAt(counter);
                 if (rc != null && rc.contains(x, y, width, height)) {
@@ -121,8 +117,7 @@ class Map implements Serializable {
      * Creates and returns an instance of RegionContainment that can be used to
      * test if a particular point lies inside a region.
      */
-    protected RegionContainment createRegionContainment(
-            AttributeSet attributes) {
+    protected RegionContainment createRegionContainment(AttributeSet attributes) {
         Object shape = attributes.getAttribute(HTML.Attribute.SHAPE);
 
         if (shape == null) {
@@ -162,8 +157,7 @@ class Map implements Serializable {
             return null;
         }
 
-        StringTokenizer st = new StringTokenizer((String) stringCoords,
-                ", \t\n\r");
+        StringTokenizer st = new StringTokenizer((String) stringCoords, ", \t\n\r");
         int[] retValue = null;
         int numCoords = 0;
 
@@ -236,8 +230,7 @@ class Map implements Serializable {
         int y1;
 
         public RectangleRegionContainment(AttributeSet as) {
-            int[] coords = Map.extractCoords(as.getAttribute(
-                    HTML.Attribute.COORDS));
+            int[] coords = Map.extractCoords(as.getAttribute(HTML.Attribute.COORDS));
 
             percents = null;
             if (coords == null || coords.length != 4) {
@@ -252,8 +245,7 @@ class Map implements Serializable {
                     lastWidth = lastHeight = -1;
                     for (int counter = 0; counter < 4; counter++) {
                         if (coords[counter] < 0) {
-                            percents[counter] = Math.abs(coords[counter])
-                                    / 100.0f;
+                            percents[counter] = Math.abs(coords[counter]) / 100.0f;
                         } else {
                             percents[counter] = -1.0f;
                         }
@@ -293,8 +285,7 @@ class Map implements Serializable {
     /**
      * Used to test for containment in a polygon region.
      */
-    static class PolygonRegionContainment extends Polygon implements
-            RegionContainment {
+    static class PolygonRegionContainment extends Polygon implements RegionContainment {
         /**
          * If any value is a percent there will be an entry here for the percent
          * value. Use percentIndex to find out the index for it.
@@ -307,11 +298,9 @@ class Map implements Serializable {
         int lastHeight;
 
         public PolygonRegionContainment(AttributeSet as) {
-            int[] coords = Map.extractCoords(as.getAttribute(
-                    HTML.Attribute.COORDS));
+            int[] coords = Map.extractCoords(as.getAttribute(HTML.Attribute.COORDS));
 
-            if (coords == null || coords.length == 0 || coords.length
-                    % 2 != 0) {
+            if (coords == null || coords.length == 0 || coords.length % 2 != 0) {
                 throw new RuntimeException("Unable to parse polygon area");
             } else {
                 int numPercents = 0;
@@ -326,8 +315,7 @@ class Map implements Serializable {
                 if (numPercents > 0) {
                     percentIndexs = new int[numPercents];
                     percentValues = new float[numPercents];
-                    for (int counter = coords.length
-                            - 1, pCounter = 0; counter >= 0; counter--) {
+                    for (int counter = coords.length - 1, pCounter = 0; counter >= 0; counter--) {
                         if (coords[counter] < 0) {
                             percentValues[pCounter] = coords[counter] / -100.0f;
                             percentIndexs[pCounter] = counter;
@@ -350,8 +338,7 @@ class Map implements Serializable {
         }
 
         public boolean contains(int x, int y, int width, int height) {
-            if (percentValues == null || (lastWidth == width
-                    && lastHeight == height)) {
+            if (percentValues == null || (lastWidth == width && lastHeight == height)) {
                 return contains(x, y);
             }
             // Force the bounding box to be recalced.
@@ -360,16 +347,13 @@ class Map implements Serializable {
             lastHeight = height;
             float fWidth = (float) width;
             float fHeight = (float) height;
-            for (int counter = percentValues.length
-                    - 1; counter >= 0; counter--) {
+            for (int counter = percentValues.length - 1; counter >= 0; counter--) {
                 if (percentIndexs[counter] % 2 == 0) {
                     // x
-                    xpoints[percentIndexs[counter]
-                            / 2] = (int) (percentValues[counter] * fWidth);
+                    xpoints[percentIndexs[counter] / 2] = (int) (percentValues[counter] * fWidth);
                 } else {
                     // y
-                    ypoints[percentIndexs[counter]
-                            / 2] = (int) (percentValues[counter] * fHeight);
+                    ypoints[percentIndexs[counter] / 2] = (int) (percentValues[counter] * fHeight);
                 }
             }
             return contains(x, y);
@@ -394,8 +378,7 @@ class Map implements Serializable {
         int lastHeight;
 
         public CircleRegionContainment(AttributeSet as) {
-            int[] coords = Map.extractCoords(as.getAttribute(
-                    HTML.Attribute.COORDS));
+            int[] coords = Map.extractCoords(as.getAttribute(HTML.Attribute.COORDS));
 
             if (coords == null || coords.length != 3) {
                 throw new RuntimeException("Unable to parse circular area");
@@ -419,8 +402,7 @@ class Map implements Serializable {
         }
 
         public boolean contains(int x, int y, int width, int height) {
-            if (percentValues != null && (lastWidth != width
-                    || lastHeight != height)) {
+            if (percentValues != null && (lastWidth != width || lastHeight != height)) {
                 int newRad = Math.min(width, height) / 2;
 
                 lastWidth = width;
@@ -432,13 +414,11 @@ class Map implements Serializable {
                     this.y = (int) (percentValues[1] * height);
                 }
                 if (percentValues[2] != -1.0f) {
-                    radiusSquared = (int) (percentValues[2] * Math.min(width,
-                            height));
+                    radiusSquared = (int) (percentValues[2] * Math.min(width, height));
                     radiusSquared *= radiusSquared;
                 }
             }
-            return (((x - this.x) * (x - this.x) + (y - this.y) * (y
-                    - this.y)) <= radiusSquared);
+            return (((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y)) <= radiusSquared);
         }
     }
 

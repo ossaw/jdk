@@ -26,7 +26,6 @@ import com.sun.org.apache.xerces.internal.dom.DOMMessageFormatter;
  * Default serializer factory can construct serializers for the three markup
  * serializers (XML, HTML, XHTML ).
  *
- *
  * @author <a href="mailto:Scott_Boag/CAM/Lotus@lotus.com">Scott Boag</a>
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  */
@@ -36,12 +35,10 @@ final class SerializerFactoryImpl extends SerializerFactory {
 
     SerializerFactoryImpl(String method) {
         _method = method;
-        if (!_method.equals(Method.XML) && !_method.equals(Method.HTML)
-                && !_method.equals(Method.XHTML) && !_method.equals(
-                        Method.TEXT)) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "MethodNotSupported",
-                    new Object[] { method });
+        if (!_method.equals(Method.XML) && !_method.equals(Method.HTML) && !_method.equals(Method.XHTML)
+                && !_method.equals(Method.TEXT)) {
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "MethodNotSupported", new Object[] { method });
             throw new IllegalArgumentException(msg);
         }
     }
@@ -81,9 +78,8 @@ final class SerializerFactoryImpl extends SerializerFactory {
         } else if (_method.equals(Method.TEXT)) {
             return new TextSerializer();
         } else {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "MethodNotSupported",
-                    new Object[] { _method });
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "MethodNotSupported", new Object[] { _method });
             throw new IllegalStateException(msg);
         }
     }

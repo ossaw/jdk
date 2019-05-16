@@ -18,7 +18,6 @@ import java.io.Serializable;
  * same version of Swing. As of 1.4, support for long term storage of all
  * JavaBeans&trade; has been added to the <code>java.beans</code> package.
  * Please see {@link java.beans.XMLEncoder}.
- *
  */
 public class TabStop implements Serializable {
 
@@ -118,8 +117,10 @@ public class TabStop implements Serializable {
         }
         if (other instanceof TabStop) {
             TabStop o = (TabStop) other;
-            return ((alignment == o.alignment) && (leader == o.leader)
-                    && (position == o.position)); /* TODO: epsilon */
+            return ((alignment == o.alignment) && (leader == o.leader) && (position == o.position)); /*
+                                                                                                      * TODO:
+                                                                                                      * epsilon
+                                                                                                      */
         }
         return false;
     }

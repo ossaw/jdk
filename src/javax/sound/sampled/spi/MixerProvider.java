@@ -26,8 +26,8 @@ public abstract class MixerProvider {
      * {@code getMixerInfo} method.
      *
      * @param info
-     *             an info object that describes the mixer for which support is
-     *             queried
+     *        an info object that describes the mixer for which support is
+     *        queried
      * @return {@code true} if the specified mixer is supported, otherwise
      *         {@code false}
      * @see #getMixerInfo()
@@ -68,13 +68,13 @@ public abstract class MixerProvider {
      * test whether this {@code MixerProvider} supports a particular mixer.
      *
      * @param info
-     *             an info object that describes the desired mixer
+     *        an info object that describes the desired mixer
      * @return mixer instance
      * @throws IllegalArgumentException
-     *                                  if the info object specified does not
-     *                                  match the info object
-     *                                  for a mixer supported by this
-     *                                  MixerProvider.
+     *         if the info object specified does not
+     *         match the info object
+     *         for a mixer supported by this
+     *         MixerProvider.
      * @see #getMixerInfo()
      * @see #isMixerSupported(javax.sound.sampled.Mixer.Info)
      *      isMixerSupported(Mixer.Info)

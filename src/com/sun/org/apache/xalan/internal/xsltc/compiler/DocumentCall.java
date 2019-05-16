@@ -114,21 +114,19 @@ final class DocumentCall extends FunctionCall {
         final InstructionList il = methodGen.getInstructionList();
         final int ac = argumentCount();
 
-        final int domField = cpg.addFieldref(classGen.getClassName(), DOM_FIELD,
-                DOM_INTF_SIG);
+        final int domField = cpg.addFieldref(classGen.getClassName(), DOM_FIELD, DOM_INTF_SIG);
 
         String docParamList = null;
         if (ac == 1) {
             // documentF(Object,String,AbstractTranslet,DOM)
-            docParamList = "(" + OBJECT_SIG + STRING_SIG + TRANSLET_SIG
-                    + DOM_INTF_SIG + ")" + NODE_ITERATOR_SIG;
+            docParamList = "(" + OBJECT_SIG + STRING_SIG + TRANSLET_SIG + DOM_INTF_SIG + ")"
+                    + NODE_ITERATOR_SIG;
         } else { // ac == 2; ac < 1 or as >2 was tested in typeChec()
             // documentF(Object,DTMAxisIterator,String,AbstractTranslet,DOM)
-            docParamList = "(" + OBJECT_SIG + NODE_ITERATOR_SIG + STRING_SIG
-                    + TRANSLET_SIG + DOM_INTF_SIG + ")" + NODE_ITERATOR_SIG;
+            docParamList = "(" + OBJECT_SIG + NODE_ITERATOR_SIG + STRING_SIG + TRANSLET_SIG + DOM_INTF_SIG
+                    + ")" + NODE_ITERATOR_SIG;
         }
-        final int docIdx = cpg.addMethodref(LOAD_DOCUMENT_CLASS, "documentF",
-                docParamList);
+        final int docIdx = cpg.addMethodref(LOAD_DOCUMENT_CLASS, "documentF", docParamList);
 
         // The URI can be either a node-set or something else cast to a string
         _arg1.translate(classGen, methodGen);

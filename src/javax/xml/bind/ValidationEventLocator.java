@@ -7,7 +7,6 @@ package javax.xml.bind;
 
 /**
  * Encapsulate the location of a ValidationEvent.
- *
  * <p>
  * The <tt>ValidationEventLocator</tt> indicates where the <tt>ValidationEvent
  * </tt> occurred. Different fields will be set depending on the type of

@@ -12,12 +12,10 @@ import java.security.spec.AlgorithmParameterSpec;
  * parameters to be used with a certain algorithm. Parameter generators are
  * constructed using the {@code getInstance} factory methods (static methods
  * that return instances of a given class).
- *
  * <P>
  * The object that will generate the parameters can be initialized in two
  * different ways: in an algorithm-independent manner, or in an
  * algorithm-specific manner:
- *
  * <ul>
  * <li>The algorithm-independent approach uses the fact that all parameter
  * generators share the concept of a "size" and a source of randomness. The
@@ -27,7 +25,6 @@ import java.security.spec.AlgorithmParameterSpec;
  * the prime modulus (in bits). When using this approach, algorithm-specific
  * parameter generation values - if any - default to some standard values,
  * unless they can be derived from the specified size.
- *
  * <li>The other approach initializes a parameter generator object using
  * algorithm-specific semantics, which are represented by a set of
  * algorithm-specific parameter generation values. To generate Diffie-Hellman
@@ -35,14 +32,12 @@ import java.security.spec.AlgorithmParameterSpec;
  * consist of the size of the prime modulus and the size of the random exponent,
  * both specified in number of bits.
  * </ul>
- *
  * <P>
  * In case the client does not explicitly initialize the
  * AlgorithmParameterGenerator (via a call to an {@code init} method), each
  * provider must supply (and document) a default initialization. For example,
  * the Sun provider uses a default modulus prime size of 1024 bits for the
  * generation of DSA parameters.
- *
  * <p>
  * Every implementation of the Java platform is required to support the
  * following standard {@code AlgorithmParameterGenerator} algorithms and
@@ -60,11 +55,8 @@ import java.security.spec.AlgorithmParameterSpec;
  * supported.
  *
  * @author Jan Luehe
- *
- *
  * @see AlgorithmParameters
  * @see java.security.spec.AlgorithmParameterSpec
- *
  * @since 1.2
  */
 
@@ -83,14 +75,13 @@ public class AlgorithmParameterGenerator {
      * Creates an AlgorithmParameterGenerator object.
      *
      * @param paramGenSpi
-     *                    the delegate
+     *        the delegate
      * @param provider
-     *                    the provider
+     *        the provider
      * @param algorithm
-     *                    the algorithm
+     *        the algorithm
      */
-    protected AlgorithmParameterGenerator(
-            AlgorithmParameterGeneratorSpi paramGenSpi, Provider provider,
+    protected AlgorithmParameterGenerator(AlgorithmParameterGeneratorSpi paramGenSpi, Provider provider,
             String algorithm) {
         this.paramGenSpi = paramGenSpi;
         this.provider = provider;
@@ -110,46 +101,38 @@ public class AlgorithmParameterGenerator {
     /**
      * Returns an AlgorithmParameterGenerator object for generating a set of
      * parameters to be used with the specified algorithm.
-     *
      * <p>
      * This method traverses the list of registered security Providers, starting
      * with the most preferred Provider. A new AlgorithmParameterGenerator
      * object encapsulating the AlgorithmParameterGeneratorSpi implementation
      * from the first Provider that supports the specified algorithm is
      * returned.
-     *
      * <p>
      * Note that the list of registered providers may be retrieved via the
      * {@link Security#getProviders() Security.getProviders()} method.
      *
      * @param algorithm
-     *                  the name of the algorithm this parameter generator is
-     *                  associated with. See the AlgorithmParameterGenerator
-     *                  section
-     *                  in the <a href=
-     *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#AlgorithmParameterGenerator"
-     *                  > Java Cryptography Architecture Standard Algorithm Name
-     *                  Documentation</a> for information about standard
-     *                  algorithm
-     *                  names.
-     *
+     *        the name of the algorithm this parameter generator is
+     *        associated with. See the AlgorithmParameterGenerator
+     *        section
+     *        in the <a href=
+     *        "{@docRoot}/../technotes/guides/security/StandardNames.html#AlgorithmParameterGenerator"
+     *        > Java Cryptography Architecture Standard Algorithm Name
+     *        Documentation</a> for information about standard
+     *        algorithm
+     *        names.
      * @return the new AlgorithmParameterGenerator object.
-     *
      * @exception NoSuchAlgorithmException
-     *                                     if no Provider supports an
-     *                                     AlgorithmParameterGeneratorSpi
-     *                                     implementation for the specified
-     *                                     algorithm.
-     *
+     *            if no Provider supports an
+     *            AlgorithmParameterGeneratorSpi
+     *            implementation for the specified
+     *            algorithm.
      * @see Provider
      */
-    public static AlgorithmParameterGenerator getInstance(String algorithm)
-            throws NoSuchAlgorithmException {
+    public static AlgorithmParameterGenerator getInstance(String algorithm) throws NoSuchAlgorithmException {
         try {
-            Object[] objs = Security.getImpl(algorithm,
-                    "AlgorithmParameterGenerator", (String) null);
-            return new AlgorithmParameterGenerator(
-                    (AlgorithmParameterGeneratorSpi) objs[0],
+            Object[] objs = Security.getImpl(algorithm, "AlgorithmParameterGenerator", (String) null);
+            return new AlgorithmParameterGenerator((AlgorithmParameterGeneratorSpi) objs[0],
                     (Provider) objs[1], algorithm);
         } catch (NoSuchProviderException e) {
             throw new NoSuchAlgorithmException(algorithm + " not found");
@@ -159,67 +142,55 @@ public class AlgorithmParameterGenerator {
     /**
      * Returns an AlgorithmParameterGenerator object for generating a set of
      * parameters to be used with the specified algorithm.
-     *
      * <p>
      * A new AlgorithmParameterGenerator object encapsulating the
      * AlgorithmParameterGeneratorSpi implementation from the specified provider
      * is returned. The specified provider must be registered in the security
      * provider list.
-     *
      * <p>
      * Note that the list of registered providers may be retrieved via the
      * {@link Security#getProviders() Security.getProviders()} method.
      *
      * @param algorithm
-     *                  the name of the algorithm this parameter generator is
-     *                  associated with. See the AlgorithmParameterGenerator
-     *                  section
-     *                  in the <a href=
-     *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#AlgorithmParameterGenerator"
-     *                  > Java Cryptography Architecture Standard Algorithm Name
-     *                  Documentation</a> for information about standard
-     *                  algorithm
-     *                  names.
-     *
+     *        the name of the algorithm this parameter generator is
+     *        associated with. See the AlgorithmParameterGenerator
+     *        section
+     *        in the <a href=
+     *        "{@docRoot}/../technotes/guides/security/StandardNames.html#AlgorithmParameterGenerator"
+     *        > Java Cryptography Architecture Standard Algorithm Name
+     *        Documentation</a> for information about standard
+     *        algorithm
+     *        names.
      * @param provider
-     *                  the string name of the Provider.
-     *
+     *        the string name of the Provider.
      * @return the new AlgorithmParameterGenerator object.
-     *
      * @exception NoSuchAlgorithmException
-     *                                     if an AlgorithmParameterGeneratorSpi
-     *                                     implementation for
-     *                                     the specified algorithm is not
-     *                                     available from the
-     *                                     specified provider.
-     *
+     *            if an AlgorithmParameterGeneratorSpi
+     *            implementation for
+     *            the specified algorithm is not
+     *            available from the
+     *            specified provider.
      * @exception NoSuchProviderException
-     *                                     if the specified provider is not
-     *                                     registered in the
-     *                                     security provider list.
-     *
+     *            if the specified provider is not
+     *            registered in the
+     *            security provider list.
      * @exception IllegalArgumentException
-     *                                     if the provider name is null or
-     *                                     empty.
-     *
+     *            if the provider name is null or
+     *            empty.
      * @see Provider
      */
-    public static AlgorithmParameterGenerator getInstance(String algorithm,
-            String provider) throws NoSuchAlgorithmException,
-            NoSuchProviderException {
+    public static AlgorithmParameterGenerator getInstance(String algorithm, String provider)
+            throws NoSuchAlgorithmException, NoSuchProviderException {
         if (provider == null || provider.length() == 0)
             throw new IllegalArgumentException("missing provider");
-        Object[] objs = Security.getImpl(algorithm,
-                "AlgorithmParameterGenerator", provider);
-        return new AlgorithmParameterGenerator(
-                (AlgorithmParameterGeneratorSpi) objs[0], (Provider) objs[1],
+        Object[] objs = Security.getImpl(algorithm, "AlgorithmParameterGenerator", provider);
+        return new AlgorithmParameterGenerator((AlgorithmParameterGeneratorSpi) objs[0], (Provider) objs[1],
                 algorithm);
     }
 
     /**
      * Returns an AlgorithmParameterGenerator object for generating a set of
      * parameters to be used with the specified algorithm.
-     *
      * <p>
      * A new AlgorithmParameterGenerator object encapsulating the
      * AlgorithmParameterGeneratorSpi implementation from the specified Provider
@@ -227,44 +198,36 @@ public class AlgorithmParameterGenerator {
      * to be registered in the provider list.
      *
      * @param algorithm
-     *                  the string name of the algorithm this parameter
-     *                  generator is
-     *                  associated with. See the AlgorithmParameterGenerator
-     *                  section
-     *                  in the <a href=
-     *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#AlgorithmParameterGenerator"
-     *                  > Java Cryptography Architecture Standard Algorithm Name
-     *                  Documentation</a> for information about standard
-     *                  algorithm
-     *                  names.
-     *
+     *        the string name of the algorithm this parameter
+     *        generator is
+     *        associated with. See the AlgorithmParameterGenerator
+     *        section
+     *        in the <a href=
+     *        "{@docRoot}/../technotes/guides/security/StandardNames.html#AlgorithmParameterGenerator"
+     *        > Java Cryptography Architecture Standard Algorithm Name
+     *        Documentation</a> for information about standard
+     *        algorithm
+     *        names.
      * @param provider
-     *                  the Provider object.
-     *
+     *        the Provider object.
      * @return the new AlgorithmParameterGenerator object.
-     *
      * @exception NoSuchAlgorithmException
-     *                                     if an AlgorithmParameterGeneratorSpi
-     *                                     implementation for
-     *                                     the specified algorithm is not
-     *                                     available from the
-     *                                     specified Provider object.
-     *
+     *            if an AlgorithmParameterGeneratorSpi
+     *            implementation for
+     *            the specified algorithm is not
+     *            available from the
+     *            specified Provider object.
      * @exception IllegalArgumentException
-     *                                     if the specified provider is null.
-     *
+     *            if the specified provider is null.
      * @see Provider
-     *
      * @since 1.4
      */
-    public static AlgorithmParameterGenerator getInstance(String algorithm,
-            Provider provider) throws NoSuchAlgorithmException {
+    public static AlgorithmParameterGenerator getInstance(String algorithm, Provider provider)
+            throws NoSuchAlgorithmException {
         if (provider == null)
             throw new IllegalArgumentException("missing provider");
-        Object[] objs = Security.getImpl(algorithm,
-                "AlgorithmParameterGenerator", provider);
-        return new AlgorithmParameterGenerator(
-                (AlgorithmParameterGeneratorSpi) objs[0], (Provider) objs[1],
+        Object[] objs = Security.getImpl(algorithm, "AlgorithmParameterGenerator", provider);
+        return new AlgorithmParameterGenerator((AlgorithmParameterGeneratorSpi) objs[0], (Provider) objs[1],
                 algorithm);
     }
 
@@ -285,7 +248,7 @@ public class AlgorithmParameterGenerator {
      * {@code SecureRandom}, a system-provided source of randomness is used.)
      *
      * @param size
-     *             the size (number of bits).
+     *        the size (number of bits).
      */
     public final void init(int size) {
         paramGenSpi.engineInit(size, new SecureRandom());
@@ -296,9 +259,9 @@ public class AlgorithmParameterGenerator {
      * randomness.
      *
      * @param size
-     *               the size (number of bits).
+     *        the size (number of bits).
      * @param random
-     *               the source of randomness.
+     *        the source of randomness.
      */
     public final void init(int size, SecureRandom random) {
         paramGenSpi.engineInit(size, random);
@@ -313,18 +276,16 @@ public class AlgorithmParameterGenerator {
      * system-provided source of randomness is used.)
      *
      * @param genParamSpec
-     *                     the set of algorithm-specific parameter generation
-     *                     values.
-     *
+     *        the set of algorithm-specific parameter generation
+     *        values.
      * @exception InvalidAlgorithmParameterException
-     *                                               if the given parameter
-     *                                               generation values are
-     *                                               inappropriate
-     *                                               for this parameter
-     *                                               generator.
+     *            if the given parameter
+     *            generation values are
+     *            inappropriate
+     *            for this parameter
+     *            generator.
      */
-    public final void init(AlgorithmParameterSpec genParamSpec)
-            throws InvalidAlgorithmParameterException {
+    public final void init(AlgorithmParameterSpec genParamSpec) throws InvalidAlgorithmParameterException {
         paramGenSpi.engineInit(genParamSpec, new SecureRandom());
     }
 
@@ -333,20 +294,19 @@ public class AlgorithmParameterGenerator {
      * parameter generation values.
      *
      * @param genParamSpec
-     *                     the set of algorithm-specific parameter generation
-     *                     values.
+     *        the set of algorithm-specific parameter generation
+     *        values.
      * @param random
-     *                     the source of randomness.
-     *
+     *        the source of randomness.
      * @exception InvalidAlgorithmParameterException
-     *                                               if the given parameter
-     *                                               generation values are
-     *                                               inappropriate
-     *                                               for this parameter
-     *                                               generator.
+     *            if the given parameter
+     *            generation values are
+     *            inappropriate
+     *            for this parameter
+     *            generator.
      */
-    public final void init(AlgorithmParameterSpec genParamSpec,
-            SecureRandom random) throws InvalidAlgorithmParameterException {
+    public final void init(AlgorithmParameterSpec genParamSpec, SecureRandom random)
+            throws InvalidAlgorithmParameterException {
         paramGenSpi.engineInit(genParamSpec, random);
     }
 

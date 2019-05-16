@@ -51,7 +51,7 @@ public class EtchedBorder extends AbstractBorder {
      * paintBorder method.
      * 
      * @param etchType
-     *                 the type of etch to be drawn by the border
+     *        the type of etch to be drawn by the border
      */
     public EtchedBorder(int etchType) {
         this(etchType, null, null);
@@ -62,9 +62,9 @@ public class EtchedBorder extends AbstractBorder {
      * colors.
      * 
      * @param highlight
-     *                  the color to use for the etched highlight
+     *        the color to use for the etched highlight
      * @param shadow
-     *                  the color to use for the etched shadow
+     *        the color to use for the etched shadow
      */
     public EtchedBorder(Color highlight, Color shadow) {
         this(LOWERED, highlight, shadow);
@@ -75,11 +75,11 @@ public class EtchedBorder extends AbstractBorder {
      * shadow colors.
      * 
      * @param etchType
-     *                  the type of etch to be drawn by the border
+     *        the type of etch to be drawn by the border
      * @param highlight
-     *                  the color to use for the etched highlight
+     *        the color to use for the etched highlight
      * @param shadow
-     *                  the color to use for the etched shadow
+     *        the color to use for the etched shadow
      */
     @ConstructorProperties({ "etchType", "highlightColor", "shadowColor" })
     public EtchedBorder(int etchType, Color highlight, Color shadow) {
@@ -93,31 +93,28 @@ public class EtchedBorder extends AbstractBorder {
      * and size.
      * 
      * @param c
-     *               the component for which this border is being painted
+     *        the component for which this border is being painted
      * @param g
-     *               the paint graphics
+     *        the paint graphics
      * @param x
-     *               the x position of the painted border
+     *        the x position of the painted border
      * @param y
-     *               the y position of the painted border
+     *        the y position of the painted border
      * @param width
-     *               the width of the painted border
+     *        the width of the painted border
      * @param height
-     *               the height of the painted border
+     *        the height of the painted border
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         int w = width;
         int h = height;
 
         g.translate(x, y);
 
-        g.setColor(etchType == LOWERED ? getShadowColor(c)
-                : getHighlightColor(c));
+        g.setColor(etchType == LOWERED ? getShadowColor(c) : getHighlightColor(c));
         g.drawRect(0, 0, w - 2, h - 2);
 
-        g.setColor(etchType == LOWERED ? getHighlightColor(c)
-                : getShadowColor(c));
+        g.setColor(etchType == LOWERED ? getHighlightColor(c) : getShadowColor(c));
         g.drawLine(1, h - 3, 1, 1);
         g.drawLine(1, 1, w - 3, 1);
 
@@ -131,9 +128,9 @@ public class EtchedBorder extends AbstractBorder {
      * Reinitialize the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         insets.set(2, 2, 2, 2);
@@ -161,7 +158,7 @@ public class EtchedBorder extends AbstractBorder {
      * component's background color.
      * 
      * @param c
-     *          the component for which the highlight may be derived
+     *        the component for which the highlight may be derived
      * @since 1.3
      */
     public Color getHighlightColor(Component c) {
@@ -185,7 +182,7 @@ public class EtchedBorder extends AbstractBorder {
      * color.
      * 
      * @param c
-     *          the component for which the shadow may be derived
+     *        the component for which the shadow may be derived
      * @since 1.3
      */
     public Color getShadowColor(Component c) {

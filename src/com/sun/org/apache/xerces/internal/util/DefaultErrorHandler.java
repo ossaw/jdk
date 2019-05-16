@@ -27,7 +27,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLParseException;
  * Default error handler.
  *
  * @author Andy Clark, IBM
- *
  */
 public class DefaultErrorHandler implements XMLErrorHandler {
 
@@ -63,20 +62,17 @@ public class DefaultErrorHandler implements XMLErrorHandler {
     //
 
     /** Warning. */
-    public void warning(String domain, String key, XMLParseException ex)
-            throws XNIException {
+    public void warning(String domain, String key, XMLParseException ex) throws XNIException {
         printError("Warning", ex);
     } // warning(XMLParseException)
 
     /** Error. */
-    public void error(String domain, String key, XMLParseException ex)
-            throws XNIException {
+    public void error(String domain, String key, XMLParseException ex) throws XNIException {
         printError("Error", ex);
     } // error(XMLParseException)
 
     /** Fatal error. */
-    public void fatalError(String domain, String key, XMLParseException ex)
-            throws XNIException {
+    public void fatalError(String domain, String key, XMLParseException ex) throws XNIException {
         printError("Fatal Error", ex);
         throw ex;
     } // fatalError(XMLParseException)

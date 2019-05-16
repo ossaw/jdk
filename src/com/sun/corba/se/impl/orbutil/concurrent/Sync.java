@@ -26,7 +26,6 @@ package com.sun.corba.se.impl.orbutil.concurrent;
  * efficiency compared to the use of plain java monitor methods and locking, and
  * are sometimes (but by no means always) simpler to program with.
  * <p>
- *
  * Most Syncs are intended to be used primarily (although not exclusively) in
  * before/after constructions such as:
  * 
@@ -263,7 +262,6 @@ package com.sun.corba.se.impl.orbutil.concurrent;
  * (perhaps as part of a LayeredSync) in order to obtain callbacks before and
  * after each method invocation for a given class.
  * <p>
- * 
  * <p>
  * [<a href=
  * "http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html">
@@ -298,11 +296,11 @@ public interface Sync {
      * <p>
      * 
      * @param msecs
-     *              the number of milleseconds to wait. An argument less than or
-     *              equal to zero means not to wait at all. However, this may
-     *              still require access to a synchronization lock, which can
-     *              impose unbounded delay if there is a lot of contention among
-     *              threads.
+     *        the number of milleseconds to wait. An argument less than or
+     *        equal to zero means not to wait at all. However, this may
+     *        still require access to a synchronization lock, which can
+     *        impose unbounded delay if there is a lot of contention among
+     *        threads.
      * @return true if acquired
      **/
 

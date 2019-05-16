@@ -16,7 +16,6 @@ package javax.accessibility;
  *
  * @see Accessible
  * @see AccessibleContext
- *
  * @author Lynn Monsanto
  * @since 1.3
  */
@@ -37,7 +36,7 @@ public interface AccessibleIcon {
      * user to give an indication of the purpose of the icon.
      *
      * @param description
-     *                    the description of the icon
+     *        the description of the icon
      */
     public void setAccessibleIconDescription(String description);
 

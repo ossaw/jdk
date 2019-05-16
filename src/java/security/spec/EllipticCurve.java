@@ -15,9 +15,7 @@ import java.util.Arrays;
  * @see ECField
  * @see ECFieldFp
  * @see ECFieldF2m
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class EllipticCurve {
@@ -28,8 +26,7 @@ public class EllipticCurve {
     private final byte[] seed;
 
     // Check coefficient c is a valid element in ECField field.
-    private static void checkValidity(ECField field, BigInteger c,
-            String cName) {
+    private static void checkValidity(ECField field, BigInteger c, String cName) {
         // can only perform check if field is ECFieldFp or ECFieldF2m.
         if (field instanceof ECFieldFp) {
             BigInteger p = ((ECFieldFp) field).getP();
@@ -51,18 +48,18 @@ public class EllipticCurve {
      * and the coefficients {@code a} and {@code b}.
      * 
      * @param field
-     *              the finite field that this elliptic curve is over.
+     *        the finite field that this elliptic curve is over.
      * @param a
-     *              the first coefficient of this elliptic curve.
+     *        the first coefficient of this elliptic curve.
      * @param b
-     *              the second coefficient of this elliptic curve.
+     *        the second coefficient of this elliptic curve.
      * @exception NullPointerException
-     *                                     if {@code field}, {@code a}, or
-     *                                     {@code b} is null.
+     *            if {@code field}, {@code a}, or
+     *            {@code b} is null.
      * @exception IllegalArgumentException
-     *                                     if {@code a} or {@code b} is not null
-     *                                     and not in
-     *                                     {@code field}.
+     *            if {@code a} or {@code b} is not null
+     *            and not in
+     *            {@code field}.
      */
     public EllipticCurve(ECField field, BigInteger a, BigInteger b) {
         this(field, a, b, null);
@@ -74,25 +71,24 @@ public class EllipticCurve {
      * curve generation.
      * 
      * @param field
-     *              the finite field that this elliptic curve is over.
+     *        the finite field that this elliptic curve is over.
      * @param a
-     *              the first coefficient of this elliptic curve.
+     *        the first coefficient of this elliptic curve.
      * @param b
-     *              the second coefficient of this elliptic curve.
+     *        the second coefficient of this elliptic curve.
      * @param seed
-     *              the bytes used during curve generation for later validation.
-     *              Contents of this array are copied to protect against
-     *              subsequent modification.
+     *        the bytes used during curve generation for later validation.
+     *        Contents of this array are copied to protect against
+     *        subsequent modification.
      * @exception NullPointerException
-     *                                     if {@code field}, {@code a}, or
-     *                                     {@code b} is null.
+     *            if {@code field}, {@code a}, or
+     *            {@code b} is null.
      * @exception IllegalArgumentException
-     *                                     if {@code a} or {@code b} is not null
-     *                                     and not in
-     *                                     {@code field}.
+     *            if {@code a} or {@code b} is not null
+     *            and not in
+     *            {@code field}.
      */
-    public EllipticCurve(ECField field, BigInteger a, BigInteger b,
-            byte[] seed) {
+    public EllipticCurve(ECField field, BigInteger a, BigInteger b, byte[] seed) {
         if (field == null) {
             throw new NullPointerException("field is null");
         }
@@ -159,7 +155,7 @@ public class EllipticCurve {
      * Compares this elliptic curve for equality with the specified object.
      * 
      * @param obj
-     *            the object to be compared.
+     *        the object to be compared.
      * @return true if {@code obj} is an instance of EllipticCurve and the
      *         field, A, and B match, false otherwise.
      */
@@ -168,8 +164,7 @@ public class EllipticCurve {
             return true;
         if (obj instanceof EllipticCurve) {
             EllipticCurve curve = (EllipticCurve) obj;
-            if ((field.equals(curve.field)) && (a.equals(curve.a)) && (b.equals(
-                    curve.b))) {
+            if ((field.equals(curve.field)) && (a.equals(curve.a)) && (b.equals(curve.b))) {
                 return true;
             }
         }
@@ -189,7 +184,6 @@ public class EllipticCurve {
      *         </pre>
      */
     public int hashCode() {
-        return (field.hashCode() << 6 + (a.hashCode() << 4) + (b
-                .hashCode() << 2));
+        return (field.hashCode() << 6 + (a.hashCode() << 4) + (b.hashCode() << 2));
     }
 }

@@ -27,16 +27,16 @@ public abstract class CollatorProvider extends LocaleServiceProvider {
      * Returns a new <code>Collator</code> instance for the specified locale.
      * 
      * @param locale
-     *               the desired locale.
+     *        the desired locale.
      * @return the <code>Collator</code> for the desired locale.
      * @exception NullPointerException
-     *                                     if <code>locale</code> is null
+     *            if <code>locale</code> is null
      * @exception IllegalArgumentException
-     *                                     if <code>locale</code> isn't one of
-     *                                     the locales returned
-     *                                     from
-     *                                     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
-     *                                     getAvailableLocales()}.
+     *            if <code>locale</code> isn't one of
+     *            the locales returned
+     *            from
+     *            {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
+     *            getAvailableLocales()}.
      * @see java.text.Collator#getInstance(java.util.Locale)
      */
     public abstract Collator getInstance(Locale locale);

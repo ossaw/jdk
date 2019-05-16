@@ -105,13 +105,12 @@ public interface ExceptionConstants {
      * Pre-defined exception arrays according to chapters 5.1-5.4 of the Java
      * Virtual Machine Specification
      */
-    public static final Class[] EXCS_CLASS_AND_INTERFACE_RESOLUTION = {
-            NO_CLASS_DEF_FOUND_ERROR, CLASS_FORMAT_ERROR, VERIFY_ERROR,
-            ABSTRACT_METHOD_ERROR, EXCEPTION_IN_INITIALIZER_ERROR,
+    public static final Class[] EXCS_CLASS_AND_INTERFACE_RESOLUTION = { NO_CLASS_DEF_FOUND_ERROR,
+            CLASS_FORMAT_ERROR, VERIFY_ERROR, ABSTRACT_METHOD_ERROR, EXCEPTION_IN_INITIALIZER_ERROR,
             ILLEGAL_ACCESS_ERROR }; // Chapter 5.1
 
-    public static final Class[] EXCS_FIELD_AND_METHOD_RESOLUTION = {
-            NO_SUCH_FIELD_ERROR, ILLEGAL_ACCESS_ERROR, NO_SUCH_METHOD_ERROR }; // Chapter 5.2
+    public static final Class[] EXCS_FIELD_AND_METHOD_RESOLUTION = { NO_SUCH_FIELD_ERROR,
+            ILLEGAL_ACCESS_ERROR, NO_SUCH_METHOD_ERROR }; // Chapter 5.2
 
     public static final Class[] EXCS_INTERFACE_METHOD_RESOLUTION = new Class[0]; // Chapter
                                                                                  // 5.3

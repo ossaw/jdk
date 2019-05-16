@@ -72,8 +72,7 @@ public class BufferManagerWriteCollect extends BufferManagerWrite {
         // each time.
 
         // XREVISIT - Downcast
-        FragmentMessage header = ((CDROutputObject) outputObject)
-                .getMessageHeader().createFragmentMessage();
+        FragmentMessage header = ((CDROutputObject) outputObject).getMessageHeader().createFragmentMessage();
 
         header.write((CDROutputObject) outputObject);
     }
@@ -85,8 +84,7 @@ public class BufferManagerWriteCollect extends BufferManagerWrite {
 
         Iterator bufs = iterator();
 
-        Connection conn = ((OutputObject) outputObject).getMessageMediator()
-                .getConnection();
+        Connection conn = ((OutputObject) outputObject).getMessageMediator().getConnection();
 
         // With the collect strategy, we must lock the connection
         // while fragments are being sent. This is so that there are
@@ -137,7 +135,6 @@ public class BufferManagerWriteCollect extends BufferManagerWrite {
 
     /**
      * Close the BufferManagerWrite - do any outstanding cleanup.
-     *
      * For a BufferManagerWriteGrow any queued ByteBufferWithInfo must have its
      * ByteBuffer released to the ByteBufferPool.
      */

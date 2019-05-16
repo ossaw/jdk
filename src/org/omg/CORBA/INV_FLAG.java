@@ -32,7 +32,7 @@ public final class INV_FLAG extends SystemException {
      * message, a minor code of 0, and a completion state of COMPLETED_NO.
      * 
      * @param s
-     *          the String containing a detail message
+     *        the String containing a detail message
      */
     public INV_FLAG(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -43,11 +43,11 @@ public final class INV_FLAG extends SystemException {
      * code and completion status.
      * 
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  an instance of <code>CompletionStatus</code> indicating
-     *                  the
-     *                  completion status
+     *        an instance of <code>CompletionStatus</code> indicating
+     *        the
+     *        completion status
      */
     public INV_FLAG(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -59,13 +59,13 @@ public final class INV_FLAG extends SystemException {
      * that describes this particular exception.
      * 
      * @param s
-     *                  the String containing a detail message
+     *        the String containing a detail message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  an instance of <code>CompletionStatus</code> indicating
-     *                  the
-     *                  completion status
+     *        an instance of <code>CompletionStatus</code> indicating
+     *        the
+     *        completion status
      */
     public INV_FLAG(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);

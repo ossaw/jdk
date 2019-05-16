@@ -35,7 +35,7 @@ public class XMLCharacterRecognizer {
      * of <CODE>S</CODE></A> for details.
      * 
      * @param ch
-     *           Character to check as XML whitespace.
+     *        Character to check as XML whitespace.
      * @return =true if <var>ch</var> is XML whitespace; otherwise =false.
      */
     public static boolean isWhiteSpace(char ch) {
@@ -46,11 +46,11 @@ public class XMLCharacterRecognizer {
      * Tell if the string is whitespace.
      *
      * @param ch
-     *               Character array to check as XML whitespace.
+     *        Character array to check as XML whitespace.
      * @param start
-     *               Start index of characters in the array
+     *        Start index of characters in the array
      * @param length
-     *               Number of characters in the array
+     *        Number of characters in the array
      * @return True if the characters in the array are XML whitespace;
      *         otherwise, false.
      */
@@ -70,7 +70,7 @@ public class XMLCharacterRecognizer {
      * Tell if the string is whitespace.
      *
      * @param buf
-     *            StringBuffer to check as XML whitespace.
+     *        StringBuffer to check as XML whitespace.
      * @return True if characters in buffer are XML whitespace, false otherwise
      */
     public static boolean isWhiteSpace(StringBuffer buf) {
@@ -89,7 +89,7 @@ public class XMLCharacterRecognizer {
      * Tell if the string is whitespace.
      *
      * @param s
-     *          String to check as XML whitespace.
+     *        String to check as XML whitespace.
      * @return True if characters in buffer are XML whitespace, false otherwise
      */
     public static boolean isWhiteSpace(String s) {

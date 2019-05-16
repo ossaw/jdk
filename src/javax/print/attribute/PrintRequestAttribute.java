@@ -22,7 +22,6 @@ package javax.print.attribute;
  *
  * @see DocAttributeSet
  * @see PrintRequestAttributeSet
- *
  * @author Alan Kaminsky
  */
 

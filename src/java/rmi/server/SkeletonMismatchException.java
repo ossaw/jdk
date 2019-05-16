@@ -30,7 +30,7 @@ public class SkeletonMismatchException extends RemoteException {
      * detail message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      * @deprecated no replacement
      */

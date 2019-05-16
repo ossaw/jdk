@@ -16,7 +16,6 @@ import java.util.Set;
  * A set of <code>Object</code>s with pairwise orderings between them. The
  * <code>iterator</code> method provides the elements in topologically sorted
  * order. Elements participating in a cycle are not returned.
- *
  * Unlike the <code>SortedSet</code> and <code>SortedMap</code> interfaces,
  * which require their elements to implement the <code>Comparable</code>
  * interface, this class receives ordering information via its
@@ -27,7 +26,6 @@ import java.util.Set;
  * provider registry situation, an application might allow the user to set a
  * preference order for service provider objects supplied by a trusted vendor
  * over those supplied by another.
- *
  */
 class PartiallyOrderedSet extends AbstractSet {
 
@@ -121,8 +119,7 @@ class PartiallyOrderedSet extends AbstractSet {
         DigraphNode firstPONode = (DigraphNode) poNodes.get(first);
         DigraphNode secondPONode = (DigraphNode) poNodes.get(second);
 
-        return firstPONode.removeEdge(secondPONode) || secondPONode.removeEdge(
-                firstPONode);
+        return firstPONode.removeEdge(secondPONode) || secondPONode.removeEdge(firstPONode);
     }
 
     /**

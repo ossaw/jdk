@@ -74,8 +74,8 @@ public class ListenerThreadImpl implements ListenerThread, Work {
                     if (orb.transportDebugFlag) {
                         dprint(".doWork: Exception in accept: " + acceptor, t);
                     }
-                    orb.getTransportManager().getSelector(0).unregisterForEvent(
-                            getAcceptor().getEventHandler());
+                    orb.getTransportManager().getSelector(0).unregisterForEvent(getAcceptor()
+                            .getEventHandler());
                     getAcceptor().close();
                 }
             }

@@ -12,8 +12,7 @@ package org.omg.CORBA;
  * Thrown to indicate problems with parameter values passed to the
  * <code>ORB.create_policy</code> operation.
  */
-public final class PolicyErrorHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class PolicyErrorHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CORBA.PolicyError value = null;
 
     public PolicyErrorHolder() {}

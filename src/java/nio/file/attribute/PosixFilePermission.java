@@ -8,7 +8,6 @@ package java.nio.file.attribute;
 /**
  * Defines the bits for use with the {@link PosixFileAttributes#permissions()
  * permissions} attribute.
- *
  * <p>
  * The {@link PosixFilePermissions} class defines methods for manipulating set
  * of permissions.

@@ -75,8 +75,7 @@ class LoggingProxyImpl implements LoggingProxy {
     public Object parseLevel(String levelName) {
         Level level = Level.findLevel(levelName);
         if (level == null) {
-            throw new IllegalArgumentException("Unknown level \"" + levelName
-                    + "\"");
+            throw new IllegalArgumentException("Unknown level \"" + levelName + "\"");
         }
         return level;
     }

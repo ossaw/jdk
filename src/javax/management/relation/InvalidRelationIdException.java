@@ -27,7 +27,7 @@ public class InvalidRelationIdException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public InvalidRelationIdException(String message) {
         super(message);

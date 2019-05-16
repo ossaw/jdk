@@ -23,7 +23,6 @@ import sun.misc.JavaSecurityAccess;
 import sun.misc.SharedSecrets;
 
 /**
- *
  * <p>
  * This ProtectionDomain class encapsulates the characteristics of a domain,
  * which encloses a set of classes whose instances are granted a set of
@@ -48,28 +47,23 @@ public class ProtectionDomain {
         private JavaSecurityAccessImpl() {}
 
         @Override
-        public <T> T doIntersectionPrivilege(PrivilegedAction<T> action,
-                final AccessControlContext stack,
+        public <T> T doIntersectionPrivilege(PrivilegedAction<T> action, final AccessControlContext stack,
                 final AccessControlContext context) {
             if (action == null) {
                 throw new NullPointerException();
             }
 
-            return AccessController.doPrivileged(action, getCombinedACC(context,
-                    stack));
+            return AccessController.doPrivileged(action, getCombinedACC(context, stack));
         }
 
         @Override
-        public <T> T doIntersectionPrivilege(PrivilegedAction<T> action,
-                AccessControlContext context) {
-            return doIntersectionPrivilege(action, AccessController
-                    .getContext(), context);
+        public <T> T doIntersectionPrivilege(PrivilegedAction<T> action, AccessControlContext context) {
+            return doIntersectionPrivilege(action, AccessController.getContext(), context);
         }
 
-        private static AccessControlContext getCombinedACC(
-                AccessControlContext context, AccessControlContext stack) {
-            AccessControlContext acc = new AccessControlContext(context, stack
-                    .getCombiner(), true);
+        private static AccessControlContext getCombinedACC(AccessControlContext context,
+                AccessControlContext stack) {
+            AccessControlContext acc = new AccessControlContext(context, stack.getCombiner(), true);
 
             return new AccessControlContext(stack.getContext(), acc).optimize();
         }
@@ -116,18 +110,16 @@ public class ProtectionDomain {
      * not be consulted.
      *
      * @param codesource
-     *                    the codesource associated with this domain
+     *        the codesource associated with this domain
      * @param permissions
-     *                    the permissions granted to this domain
+     *        the permissions granted to this domain
      */
-    public ProtectionDomain(CodeSource codesource,
-            PermissionCollection permissions) {
+    public ProtectionDomain(CodeSource codesource, PermissionCollection permissions) {
         this.codesource = codesource;
         if (permissions != null) {
             this.permissions = permissions;
             this.permissions.setReadOnly();
-            if (permissions instanceof Permissions
-                    && ((Permissions) permissions).allPermission != null) {
+            if (permissions instanceof Permissions && ((Permissions) permissions).allPermission != null) {
                 hasAllPerm = true;
             }
         }
@@ -153,36 +145,33 @@ public class ProtectionDomain {
      * <p>
      *
      * @param codesource
-     *                    the CodeSource associated with this domain
+     *        the CodeSource associated with this domain
      * @param permissions
-     *                    the permissions granted to this domain
+     *        the permissions granted to this domain
      * @param classloader
-     *                    the ClassLoader associated with this domain
+     *        the ClassLoader associated with this domain
      * @param principals
-     *                    the array of Principals associated with this domain.
-     *                    The
-     *                    contents of the array are copied to protect against
-     *                    subsequent
-     *                    modification.
+     *        the array of Principals associated with this domain.
+     *        The
+     *        contents of the array are copied to protect against
+     *        subsequent
+     *        modification.
      * @see Policy#refresh
      * @see Policy#getPermissions(ProtectionDomain)
      * @since 1.4
      */
-    public ProtectionDomain(CodeSource codesource,
-            PermissionCollection permissions, ClassLoader classloader,
+    public ProtectionDomain(CodeSource codesource, PermissionCollection permissions, ClassLoader classloader,
             Principal[] principals) {
         this.codesource = codesource;
         if (permissions != null) {
             this.permissions = permissions;
             this.permissions.setReadOnly();
-            if (permissions instanceof Permissions
-                    && ((Permissions) permissions).allPermission != null) {
+            if (permissions instanceof Permissions && ((Permissions) permissions).allPermission != null) {
                 hasAllPerm = true;
             }
         }
         this.classloader = classloader;
-        this.principals = (principals != null ? principals.clone()
-                : new Principal[0]);
+        this.principals = (principals != null ? principals.clone() : new Principal[0]);
         staticPermissions = false;
     }
 
@@ -200,7 +189,6 @@ public class ProtectionDomain {
      * Returns the ClassLoader of this domain.
      * 
      * @return the ClassLoader of this domain which may be null.
-     *
      * @since 1.4
      */
     public final ClassLoader getClassLoader() {
@@ -212,7 +200,6 @@ public class ProtectionDomain {
      * 
      * @return a non-null array of principals for this domain. Returns a new
      *         array each time this method is called.
-     *
      * @since 1.4
      */
     public final Principal[] getPrincipals() {
@@ -252,8 +239,7 @@ public class ProtectionDomain {
      * <p>
      *
      * @param permission
-     *                   the Permission object to check.
-     *
+     *        the Permission object to check.
      * @return true if "permission" is implicit to this ProtectionDomain.
      */
     public boolean implies(Permission permission) {
@@ -264,8 +250,7 @@ public class ProtectionDomain {
             return true;
         }
 
-        if (!staticPermissions && Policy.getPolicyNoCheck().implies(this,
-                permission))
+        if (!staticPermissions && Policy.getPolicyNoCheck().implies(this, permission))
             return true;
         if (permissions != null)
             return permissions.implies(permission);
@@ -288,8 +273,7 @@ public class ProtectionDomain {
             StringBuilder palBuf = new StringBuilder("(principals ");
 
             for (int i = 0; i < principals.length; i++) {
-                palBuf.append(principals[i].getClass().getName() + " \""
-                        + principals[i].getName() + "\"");
+                palBuf.append(principals[i].getClass().getName() + " \"" + principals[i].getName() + "\"");
                 if (i < principals.length - 1)
                     palBuf.append(",\n");
                 else
@@ -300,23 +284,18 @@ public class ProtectionDomain {
 
         // Check if policy is set; we don't want to load
         // the policy prematurely here
-        PermissionCollection pc = Policy.isSet() && seeAllp()
-                ? mergePermissions()
-                : getPermissions();
+        PermissionCollection pc = Policy.isSet() && seeAllp() ? mergePermissions() : getPermissions();
 
-        return "ProtectionDomain " + " " + codesource + "\n" + " " + classloader
-                + "\n" + " " + pals + "\n" + " " + pc + "\n";
+        return "ProtectionDomain " + " " + codesource + "\n" + " " + classloader + "\n" + " " + pals + "\n"
+                + " " + pc + "\n";
     }
 
     /**
      * Return true (merge policy permissions) in the following cases:
-     *
      * . SecurityManager is null
-     *
      * . SecurityManager is not null, debug is not null, SecurityManager
      * impelmentation is in bootclasspath, Policy implementation is in
      * bootclasspath (the bootclasspath restrictions avoid recursion)
-     *
      * . SecurityManager is not null, debug is null, caller has Policy.getPolicy
      * permission
      */
@@ -327,8 +306,7 @@ public class ProtectionDomain {
             return true;
         } else {
             if (debug != null) {
-                if (sm.getClass().getClassLoader() == null && Policy
-                        .getPolicyNoCheck().getClass()
+                if (sm.getClass().getClassLoader() == null && Policy.getPolicyNoCheck().getClass()
                         .getClassLoader() == null) {
                     return true;
                 }
@@ -349,14 +327,13 @@ public class ProtectionDomain {
         if (staticPermissions)
             return permissions;
 
-        PermissionCollection perms = java.security.AccessController
-                .doPrivileged(
-                        new java.security.PrivilegedAction<PermissionCollection>() {
-                            public PermissionCollection run() {
-                                Policy p = Policy.getPolicyNoCheck();
-                                return p.getPermissions(ProtectionDomain.this);
-                            }
-                        });
+        PermissionCollection perms = java.security.AccessController.doPrivileged(
+                new java.security.PrivilegedAction<PermissionCollection>() {
+                    public PermissionCollection run() {
+                        Policy p = Policy.getPolicyNoCheck();
+                        return p.getPermissions(ProtectionDomain.this);
+                    }
+                });
 
         Permissions mergedPerms = new Permissions();
         int swag = 32;
@@ -406,8 +383,7 @@ public class ProtectionDomain {
                             // The equals() method on some permissions
                             // have some side effects so this manual
                             // comparison is sufficient.
-                            if (pdpName.equals(pp.getName()) && pdpActions
-                                    .equals(pp.getActions())) {
+                            if (pdpName.equals(pp.getName()) && pdpActions.equals(pp.getActions())) {
                                 plVector.remove(i);
                                 break;
                             }
@@ -440,24 +416,21 @@ public class ProtectionDomain {
     static final class Key {}
 
     static {
-        SharedSecrets.setJavaSecurityProtectionDomainAccess(
-                new JavaSecurityProtectionDomainAccess() {
-                    @Override
-                    public ProtectionDomainCache getProtectionDomainCache() {
-                        return new PDCache();
-                    }
+        SharedSecrets.setJavaSecurityProtectionDomainAccess(new JavaSecurityProtectionDomainAccess() {
+            @Override
+            public ProtectionDomainCache getProtectionDomainCache() {
+                return new PDCache();
+            }
 
-                    @Override
-                    public boolean getStaticPermissionsField(
-                            ProtectionDomain pd) {
-                        return pd.staticPermissions;
-                    }
-                });
+            @Override
+            public boolean getStaticPermissionsField(ProtectionDomain pd) {
+                return pd.staticPermissions;
+            }
+        });
     }
 
     /**
      * A cache of ProtectionDomains and their Permissions.
-     *
      * This class stores ProtectionDomains as weak keys in a ConcurrentHashMap
      * with additional support for checking and removing weak keys that are no
      * longer in use. There can be cases where the permission collection may
@@ -473,8 +446,7 @@ public class ProtectionDomain {
         @Override
         public void put(ProtectionDomain pd, PermissionCollection pc) {
             processQueue(queue, pdMap);
-            WeakProtectionDomainKey weakPd = new WeakProtectionDomainKey(pd,
-                    queue);
+            WeakProtectionDomainKey weakPd = new WeakProtectionDomainKey(pd, queue);
             pdMap.put(weakPd, new SoftReference<>(pc));
         }
 
@@ -559,8 +531,7 @@ public class ProtectionDomain {
 
             if (obj instanceof WeakProtectionDomainKey) {
                 Object referent = get();
-                return (referent != null)
-                        && (referent == ((WeakProtectionDomainKey) obj).get());
+                return (referent != null) && (referent == ((WeakProtectionDomainKey) obj).get());
             } else {
                 return false;
             }

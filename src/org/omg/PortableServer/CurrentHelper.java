@@ -29,8 +29,7 @@ package org.omg.PortableServer;
 abstract public class CurrentHelper {
     private static String _id = "IDL:omg.org/PortableServer/Current:2.3";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.PortableServer.Current that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.PortableServer.Current that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -45,8 +44,8 @@ abstract public class CurrentHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.PortableServer.CurrentHelper.id(), "Current");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.PortableServer.CurrentHelper
+                    .id(), "Current");
         }
         return __typeCode;
     }
@@ -55,8 +54,7 @@ abstract public class CurrentHelper {
         return _id;
     }
 
-    public static org.omg.PortableServer.Current read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.PortableServer.Current read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -65,8 +63,7 @@ abstract public class CurrentHelper {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static org.omg.PortableServer.Current narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.PortableServer.Current narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.PortableServer.Current)

@@ -17,7 +17,6 @@ package org.omg.PortableInterceptor;
  * result in a <code>BAD_INV_ORDER</code> being thrown with a standard minor
  * code of 14.
  * <p>
- *
  * <table border=1 summary="Shows the validity of each attribute or operation">
  * <thead>
  * <tr>
@@ -29,11 +28,9 @@ package org.omg.PortableInterceptor;
  * <th id="rec_oth">receive_other</th>
  * </tr>
  * </thead> <tbody>
- *
  * <tr>
  * <td id="ri" colspan=6><i>Inherited from RequestInfo:</i></td>
  * </tr>
- * 
  * <tr>
  * <th id="req_id">
  * <p align="left">
@@ -46,7 +43,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri req_id rec_ex">yes</td>
  * <td headers="ri req_id rec_oth">yes</td>
  * </tr>
- * 
  * <tr>
  * <th id="op">
  * <p align="left">
@@ -59,7 +55,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri op rec_ex">yes</td>
  * <td headers="ri op rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="arg">
  * <p align="left">
@@ -72,7 +67,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri arg rec_ex">no</td>
  * <td headers="ri arg rec_oth">no</td>
  * </tr>
- *
  * <tr>
  * <th id="exc">
  * <p align="left">
@@ -85,7 +79,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri exc rec_ex">yes</td>
  * <td headers="ri exc rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="con">
  * <p align="left">
@@ -98,7 +91,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri con rec_ex">yes</td>
  * <td headers="ri con rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="op_con">
  * <p align="left">
@@ -111,7 +103,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri op_con rec_ex">yes</td>
  * <td headers="ri op_con rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="result">
  * <p align="left">
@@ -124,7 +115,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri result rec_ex">no</td>
  * <td headers="ri result rec_oth">no</td>
  * </tr>
- *
  * <tr>
  * <th id="res_exp">
  * <p align="left">
@@ -137,7 +127,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri res_exp rec_ex">yes</td>
  * <td headers="ri res_exp rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="sync_sco">
  * <p align="left">
@@ -150,7 +139,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri sync_sco rec_ex">yes</td>
  * <td headers="ri sync_sco rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="rep_stat">
  * <p align="left">
@@ -163,7 +151,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri rep_stat rec_ex">yes</td>
  * <td headers="ri rep_stat rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="for_ref">
  * <p align="left">
@@ -176,7 +163,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri for_ref rec_ex">no</td>
  * <td headers="ri for_ref rec_oth">yes<sub>2</sub></td>
  * </tr>
- *
  * <tr>
  * <th id="get_slot">
  * <p align="left">
@@ -189,7 +175,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri get_slot rec_ex">yes</td>
  * <td headers="ri get_slot rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="grsc">
  * <p align="left">
@@ -202,7 +187,6 @@ package org.omg.PortableInterceptor;
  * <td headers="ri grsc rec_ex">yes</td>
  * <td headers="ri grsc rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="gpsc">
  * <p align="left">
@@ -215,11 +199,9 @@ package org.omg.PortableInterceptor;
  * <td headers="ri gpsc rec_ex">yes</td>
  * <td headers="ri gpsc rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <td id="cri" colspan=6><i>ClientRequestInfo-specific:</i></td>
  * </tr>
- *
  * <tr>
  * <th id="target">
  * <p align="left">
@@ -232,7 +214,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri target rec_ex">yes</td>
  * <td headers="cri target rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="eftarget">
  * <p align="left">
@@ -245,7 +226,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri eftarget rec_ex">yes</td>
  * <td headers="cri eftarget rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="efprof">
  * <p align="left">
@@ -258,7 +238,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri efprof rec_ex">yes</td>
  * <td headers="cri efprof rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="rxp">
  * <p align="left">
@@ -271,7 +250,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri rxp rec_ex">yes</td>
  * <td headers="cri rxp rec_oth">no</td>
  * </tr>
- *
  * <tr>
  * <th id="rei">
  * <p align="left">
@@ -284,7 +262,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri rei rec_ex">yes</td>
  * <td headers="cri rei rec_oth">no</td>
  * </tr>
- *
  * <tr>
  * <th id="gec">
  * <p align="left">
@@ -297,7 +274,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri gec rec_ex">yes</td>
  * <td headers="cri gec rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="gecs">
  * <p align="left">
@@ -310,7 +286,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri gecs rec_ex">yes</td>
  * <td headers="cri gecs rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="grpcy">
  * <p align="left">
@@ -323,7 +298,6 @@ package org.omg.PortableInterceptor;
  * <td headers="cri grpcy rec_ex">yes</td>
  * <td headers="cri grpcy rec_oth">yes</td>
  * </tr>
- *
  * <tr>
  * <th id="arsc">
  * <p align="left">
@@ -336,10 +310,8 @@ package org.omg.PortableInterceptor;
  * <td headers="cri arsc rec_ex">no</td>
  * <td headers="cri arsc rec_oth">no</td>
  * </tr>
- *
  * </tbody>
  * </table>
- *
  * <ol>
  * <li>When <code>ClientRequestInfo</code> is passed to
  * <code>send_request</code>, there is an entry in the list for every argument,
@@ -353,5 +325,4 @@ package org.omg.PortableInterceptor;
  * @see ClientRequestInterceptor
  */
 public interface ClientRequestInfo extends ClientRequestInfoOperations,
-        org.omg.PortableInterceptor.RequestInfo,
-        org.omg.CORBA.portable.IDLEntity {} // interface ClientRequestInfo
+        org.omg.PortableInterceptor.RequestInfo, org.omg.CORBA.portable.IDLEntity {} // interface ClientRequestInfo

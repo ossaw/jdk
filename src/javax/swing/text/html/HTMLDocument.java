@@ -29,7 +29,6 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * consulted for the details of the default structure created. The intent is
  * that the document be non-lossy (although reproducing the HTML format may
  * result in a different format).
- *
  * <p>
  * The document models only HTML, and makes no attempt to store view attributes
  * in it. The elements are identified by the
@@ -39,14 +38,12 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * <code>HTMLFactory</code> uses this attribute to determine what kind of view
  * to build.
  * </p>
- *
  * <p>
  * This document supports incremental loading. The <code>TokenThreshold</code>
  * property controls how much of the parse is buffered before trying to update
  * the element structure of the document. This property is set by the
  * <code>EditorKit</code> so that subclasses can disable it.
  * </p>
- *
  * <p>
  * The <code>Base</code> property determines the URL against which relative URLs
  * are resolved. By default, this will be the
@@ -55,22 +52,18 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * specified by that tag. Because the base URL is a property, it can of course
  * be set directly.
  * </p>
- *
  * <p>
  * The default content storage mechanism for this document is a gap buffer (
  * <code>GapContent</code>). Alternatives can be supplied by using the
  * constructor that takes a <code>Content</code> implementation.
  * </p>
- *
  * <h2>Modifying HTMLDocument</h2>
- *
  * <p>
  * In addition to the methods provided by Document and StyledDocument for
  * mutating an HTMLDocument, HTMLDocument provides a number of convenience
  * methods. The following methods can be used to insert HTML content into an
  * existing document.
  * </p>
- *
  * <ul>
  * <li>{@link #setInnerHTML(Element, String)}</li>
  * <li>{@link #setOuterHTML(Element, String)}</li>
@@ -79,7 +72,6 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * <li>{@link #insertBeforeEnd(Element, String)}</li>
  * <li>{@link #insertAfterEnd(Element, String)}</li>
  * </ul>
- *
  * <p>
  * The following examples illustrate using these methods. Each example assumes
  * the HTML document is initialized in the following way:
@@ -91,7 +83,6 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * p.setText("..."); // Document text is provided below.
  * HTMLDocument d = (HTMLDocument) p.getDocument();
  * </pre>
- *
  * <p>
  * With the following HTML content:
  * </p>
@@ -113,7 +104,6 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  *   &lt;/body&gt;
  * &lt;/html&gt;
  * </pre>
- *
  * <p>
  * All the methods for modifying an HTML document require an {@link Element}.
  * Elements can be obtained from an HTML document by using the method
@@ -124,21 +114,17 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * StyleConstants.NameAttribute, HTML.Tag.P)</code> returns the first paragraph
  * element.
  * </p>
- *
  * <p>
  * A convenient shortcut for locating elements is the method
  * {@link #getElement(String)}; returns an element whose <code>ID</code>
  * attribute matches the specified value. For example,
  * <code>d.getElement("BOX")</code> returns the <code>DIV</code> element.
  * </p>
- *
  * <p>
  * The {@link #getIterator(HTML.Tag t)} method can also be used for finding all
  * occurrences of the specified HTML tag in the document.
  * </p>
- *
  * <h3>Inserting elements</h3>
- *
  * <p>
  * Elements can be inserted before or after the existing children of any
  * non-leaf element by using the methods <code>insertAfterStart</code> and
@@ -151,7 +137,6 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * paragraph. The <code>DIV</code> block becomes the parent of the newly
  * inserted elements.
  * </p>
- *
  * <p>
  * Sibling elements can be inserted before or after any element by using the
  * methods <code>insertBeforeStart</code> and <code>insertAfterEnd</code>. For
@@ -163,9 +148,7 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * list after the <code>DIV</code> element. The newly inserted elements become
  * siblings of the <code>DIV</code> element.
  * </p>
- *
  * <h3>Replacing elements</h3>
- *
  * <p>
  * Elements and all their descendants can be replaced by using the methods
  * <code>setInnerHTML</code> and <code>setOuterHTML</code>. For example, if
@@ -176,14 +159,11 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * Item&lt;/li&gt;&lt;/ul&gt;")</code> replaces the <code>DIV</code> element
  * itself. In latter case the parent of the list is the <code>BODY</code>
  * element.
- *
  * <h3>Summary</h3>
- *
  * <p>
  * The following table shows the example document and the results of various
  * methods described above.
  * </p>
- *
  * <table border=1 cellspacing=0>
  * <tr>
  * <th>Example</th>
@@ -261,7 +241,6 @@ import static sun.swing.SwingUtilities2.IMPLIED_CR;
  * </td>
  * </tr>
  * </table>
- *
  * <p>
  * <strong>Warning:</strong> Serialized objects of this class will not be
  * compatible with future Swing releases. The current serialization support is
@@ -292,7 +271,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>HTMLDocument(Content, StyleSheet)</code>.
      *
      * @param styles
-     *               the styles
+     *        the styles
      */
     public HTMLDocument(StyleSheet styles) {
         this(new GapContent(BUFFER_SIZE_DEFAULT), styles);
@@ -303,9 +282,9 @@ public class HTMLDocument extends DefaultStyledDocument {
      * and the given style/attribute storage mechanism.
      *
      * @param c
-     *               the container for the content
+     *        the container for the content
      * @param styles
-     *               the styles
+     *        the styles
      */
     public HTMLDocument(Content c, StyleSheet styles) {
         super(c, styles);
@@ -320,7 +299,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * elements.)
      *
      * @param pos
-     *            the starting position
+     *        the starting position
      * @return the reader used by the parser to load the document
      */
     public HTMLEditorKit.ParserCallback getReader(int pos) {
@@ -344,23 +323,22 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>getReader(int, int, int, HTML.Tag, TRUE)</code>.
      *
      * @param popDepth
-     *                  the number of <code>ElementSpec.EndTagTypes</code> to
-     *                  generate
-     *                  before inserting
+     *        the number of <code>ElementSpec.EndTagTypes</code> to
+     *        generate
+     *        before inserting
      * @param pushDepth
-     *                  the number of <code>ElementSpec.StartTagTypes</code>
-     *                  with a
-     *                  direction of <code>ElementSpec.JoinNextDirection</code>
-     *                  that
-     *                  should be generated before inserting, but after the end
-     *                  tags
-     *                  have been generated
+     *        the number of <code>ElementSpec.StartTagTypes</code>
+     *        with a
+     *        direction of <code>ElementSpec.JoinNextDirection</code>
+     *        that
+     *        should be generated before inserting, but after the end
+     *        tags
+     *        have been generated
      * @param insertTag
-     *                  the first tag to start inserting into document
+     *        the first tag to start inserting into document
      * @return the reader used by the parser to load the document
      */
-    public HTMLEditorKit.ParserCallback getReader(int pos, int popDepth,
-            int pushDepth, HTML.Tag insertTag) {
+    public HTMLEditorKit.ParserCallback getReader(int pos, int popDepth, int pushDepth, HTML.Tag insertTag) {
         return getReader(pos, popDepth, pushDepth, insertTag, true);
     }
 
@@ -372,33 +350,32 @@ public class HTMLDocument extends DefaultStyledDocument {
      * character style elements, etc.).
      *
      * @param popDepth
-     *                        the number of <code>ElementSpec.EndTagTypes</code>
-     *                        to generate
-     *                        before inserting
+     *        the number of <code>ElementSpec.EndTagTypes</code>
+     *        to generate
+     *        before inserting
      * @param pushDepth
-     *                        the number of
-     *                        <code>ElementSpec.StartTagTypes</code> with a
-     *                        direction of
-     *                        <code>ElementSpec.JoinNextDirection</code> that
-     *                        should be generated before inserting, but after
-     *                        the end tags
-     *                        have been generated
+     *        the number of
+     *        <code>ElementSpec.StartTagTypes</code> with a
+     *        direction of
+     *        <code>ElementSpec.JoinNextDirection</code> that
+     *        should be generated before inserting, but after
+     *        the end tags
+     *        have been generated
      * @param insertTag
-     *                        the first tag to start inserting into document
+     *        the first tag to start inserting into document
      * @param insertInsertTag
-     *                        false if all the Elements after insertTag should
-     *                        be inserted;
-     *                        otherwise insertTag will be inserted
+     *        false if all the Elements after insertTag should
+     *        be inserted;
+     *        otherwise insertTag will be inserted
      * @return the reader used by the parser to load the document
      */
-    HTMLEditorKit.ParserCallback getReader(int pos, int popDepth, int pushDepth,
-            HTML.Tag insertTag, boolean insertInsertTag) {
+    HTMLEditorKit.ParserCallback getReader(int pos, int popDepth, int pushDepth, HTML.Tag insertTag,
+            boolean insertInsertTag) {
         Object desc = getProperty(Document.StreamDescriptionProperty);
         if (desc instanceof URL) {
             setBase((URL) desc);
         }
-        HTMLReader reader = new HTMLReader(pos, popDepth, pushDepth, insertTag,
-                insertInsertTag, false, true);
+        HTMLReader reader = new HTMLReader(pos, popDepth, pushDepth, insertTag, insertInsertTag, false, true);
         return reader;
     }
 
@@ -423,7 +400,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>u</code> as well as the base of the document.
      *
      * @param u
-     *          the desired base URL
+     *        the desired base URL
      */
     public void setBase(URL u) {
         base = u;
@@ -439,16 +416,15 @@ public class HTMLDocument extends DefaultStyledDocument {
      * the document is actually being altered).
      *
      * @param offset
-     *               the starting offset
+     *        the starting offset
      * @param data
-     *               the element data
+     *        the element data
      * @exception BadLocationException
-     *                                 if the given position does not represent
-     *                                 a valid location
-     *                                 in the associated document.
+     *            if the given position does not represent
+     *            a valid location
+     *            in the associated document.
      */
-    protected void insert(int offset, ElementSpec[] data)
-            throws BadLocationException {
+    protected void insert(int offset, ElementSpec[] data) throws BadLocationException {
         super.insert(offset, data);
     }
 
@@ -459,9 +435,9 @@ public class HTMLDocument extends DefaultStyledDocument {
      * the element buffer.
      *
      * @param chng
-     *             a description of the document change
+     *        a description of the document change
      * @param attr
-     *             the attributes
+     *        the attributes
      */
     protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
         if (attr == null) {
@@ -488,7 +464,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * in one burst.
      *
      * @param data
-     *             the new contents of the document
+     *        the new contents of the document
      */
     protected void create(ElementSpec[] data) {
         super.create(data);
@@ -503,16 +479,15 @@ public class HTMLDocument extends DefaultStyledDocument {
      * Concurrency in Swing</A> for more information.
      *
      * @param offset
-     *                the offset into the paragraph (must be at least 0)
+     *        the offset into the paragraph (must be at least 0)
      * @param length
-     *                the number of characters affected (must be at least 0)
+     *        the number of characters affected (must be at least 0)
      * @param s
-     *                the attributes
+     *        the attributes
      * @param replace
-     *                whether to replace existing attributes, or merge them
+     *        whether to replace existing attributes, or merge them
      */
-    public void setParagraphAttributes(int offset, int length, AttributeSet s,
-            boolean replace) {
+    public void setParagraphAttributes(int offset, int length, AttributeSet s, boolean replace) {
         try {
             writeLock();
             // Make sure we send out a change for the length of the paragraph.
@@ -521,8 +496,8 @@ public class HTMLDocument extends DefaultStyledDocument {
             offset = e.getStartOffset();
             e = getParagraphElement(end);
             length = Math.max(0, e.getEndOffset() - offset);
-            DefaultDocumentEvent changes = new DefaultDocumentEvent(offset,
-                    length, DocumentEvent.EventType.CHANGE);
+            DefaultDocumentEvent changes = new DefaultDocumentEvent(offset, length,
+                    DocumentEvent.EventType.CHANGE);
             AttributeSet sCopy = s.copyAttributes();
             int lastEnd = Integer.MAX_VALUE;
             for (int pos = offset; pos <= end; pos = lastEnd) {
@@ -532,10 +507,8 @@ public class HTMLDocument extends DefaultStyledDocument {
                 } else {
                     lastEnd = paragraph.getEndOffset();
                 }
-                MutableAttributeSet attr = (MutableAttributeSet) paragraph
-                        .getAttributes();
-                changes.addEdit(new AttributeUndoableEdit(paragraph, sCopy,
-                        replace));
+                MutableAttributeSet attr = (MutableAttributeSet) paragraph.getAttributes();
+                changes.addEdit(new AttributeUndoableEdit(paragraph, sCopy, replace));
                 if (replace) {
                     attr.removeAttributes(attr);
                 }
@@ -565,7 +538,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * over the input elements.
      *
      * @param t
-     *          the requested <code>HTML.Tag</code>
+     *        the requested <code>HTML.Tag</code>
      * @return the <code>Iterator</code> for the given HTML tag
      * @see javax.swing.text.html.HTML.Tag
      */
@@ -583,17 +556,16 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>HTMLDocument.RunElement</code>.
      *
      * @param parent
-     *               the parent element
+     *        the parent element
      * @param a
-     *               the attributes for the element
+     *        the attributes for the element
      * @param p0
-     *               the beginning of the range (must be at least 0)
+     *        the beginning of the range (must be at least 0)
      * @param p1
-     *               the end of the range (must be at least p0)
+     *        the end of the range (must be at least p0)
      * @return the new element
      */
-    protected Element createLeafElement(Element parent, AttributeSet a, int p0,
-            int p1) {
+    protected Element createLeafElement(Element parent, AttributeSet a, int p0, int p1) {
         return new RunElement(parent, a, p0, p1);
     }
 
@@ -603,9 +575,9 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>HTMLDocument.BlockElement</code>.
      *
      * @param parent
-     *               the parent element
+     *        the parent element
      * @param a
-     *               the attributes
+     *        the attributes
      * @return the element
      */
     protected Element createBranchElement(Element parent, AttributeSet a) {
@@ -632,8 +604,7 @@ public class HTMLDocument extends DefaultStyledDocument {
         BlockElement body = new BlockElement(html, a.copyAttributes());
         a.removeAttributes(a);
         a.addAttribute(StyleConstants.NameAttribute, HTML.Tag.P);
-        getStyleSheet().addCSSAttributeFromHTML(a, CSS.Attribute.MARGIN_TOP,
-                "0");
+        getStyleSheet().addCSSAttributeFromHTML(a, CSS.Attribute.MARGIN_TOP, "0");
         BlockElement paragraph = new BlockElement(body, a.copyAttributes());
         a.removeAttributes(a);
         a.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
@@ -654,7 +625,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * element structure.
      *
      * @param n
-     *          the number of tokens to buffer
+     *        the number of tokens to buffer
      */
     public void setTokenThreshold(int n) {
         putProperty(TokenThreshold, new Integer(n));
@@ -679,9 +650,9 @@ public class HTMLDocument extends DefaultStyledDocument {
      * unknown tags are put in the model, otherwise they are dropped.
      *
      * @param preservesTags
-     *                      true if unknown tags should be saved in the model,
-     *                      otherwise
-     *                      tags are dropped
+     *        true if unknown tags should be saved in the model,
+     *        otherwise
+     *        tags are dropped
      * @see javax.swing.text.html.HTML.Tag
      */
     public void setPreservesUnknownTags(boolean preservesTags) {
@@ -712,7 +683,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <li>_top
      * <li>a named frame
      * </ul>
-     *
      * If target is _self, the action is to change the value of the
      * <code>HTML.Attribute.SRC</code> attribute and fires a
      * <code>ChangedUpdate</code> event.
@@ -735,7 +705,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>ChangedUpdate</code> event is fired.
      *
      * @param e
-     *          the event
+     *        the event
      */
     public void processHTMLFrameHyperlinkEvent(HTMLFrameHyperlinkEvent e) {
         String frameName = e.getTarget();
@@ -778,8 +748,7 @@ public class HTMLDocument extends DefaultStyledDocument {
         while ((next = it.next()) != null) {
             AttributeSet attr = next.getAttributes();
             if (matchNameAttribute(attr, HTML.Tag.FRAME)) {
-                String frameTarget = (String) attr.getAttribute(
-                        HTML.Attribute.NAME);
+                String frameTarget = (String) attr.getAttribute(HTML.Attribute.NAME);
                 if (frameTarget != null && frameTarget.equals(frameName)) {
                     break;
                 }
@@ -793,9 +762,9 @@ public class HTMLDocument extends DefaultStyledDocument {
      * tag that is passed in as a parameter.
      *
      * @param attr
-     *             the attributes to be matched
+     *        the attributes to be matched
      * @param tag
-     *             the value to be matched
+     *        the value to be matched
      * @return true if there is a match, false otherwise
      * @see javax.swing.text.html.HTML.Attribute
      */
@@ -814,11 +783,11 @@ public class HTMLDocument extends DefaultStyledDocument {
      * Replaces a frameset branch Element with a frame leaf element.
      *
      * @param element
-     *                the frameset element to remove
+     *        the frameset element to remove
      * @param url
-     *                the value for the SRC attribute for the new frame that
-     *                will
-     *                replace the frameset
+     *        the value for the SRC attribute for the new frame that
+     *        will
+     *        replace the frameset
      */
     private void updateFrameSet(Element element, String url) {
         try {
@@ -843,19 +812,18 @@ public class HTMLDocument extends DefaultStyledDocument {
      * fires a <code>ChangedUpdate</code> event.
      *
      * @param element
-     *                a FRAME element whose SRC attribute will be updated
+     *        a FRAME element whose SRC attribute will be updated
      * @param url
-     *                a string specifying the new value for the SRC attribute
+     *        a string specifying the new value for the SRC attribute
      */
     private void updateFrame(Element element, String url) {
 
         try {
             writeLock();
-            DefaultDocumentEvent changes = new DefaultDocumentEvent(element
-                    .getStartOffset(), 1, DocumentEvent.EventType.CHANGE);
+            DefaultDocumentEvent changes = new DefaultDocumentEvent(element.getStartOffset(), 1,
+                    DocumentEvent.EventType.CHANGE);
             AttributeSet sCopy = element.getAttributes().copyAttributes();
-            MutableAttributeSet attr = (MutableAttributeSet) element
-                    .getAttributes();
+            MutableAttributeSet attr = (MutableAttributeSet) element.getAttributes();
             changes.addEdit(new AttributeUndoableEdit(element, sCopy, false));
             attr.removeAttribute(HTML.Attribute.SRC);
             attr.addAttribute(HTML.Attribute.SRC, url);
@@ -881,8 +849,8 @@ public class HTMLDocument extends DefaultStyledDocument {
      * frame.
      * 
      * @param frameDoc
-     *                 true if the document will be viewed in a frame, otherwise
-     *                 false
+     *        true if the document will be viewed in a frame, otherwise
+     *        false
      */
     void setFrameDocumentState(boolean frameDoc) {
         this.frameDocument = frameDoc;
@@ -893,7 +861,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * registered with the same name.
      *
      * @param map
-     *            the <code>Map</code> to be registered
+     *        the <code>Map</code> to be registered
      */
     void addMap(Map map) {
         String name = map.getName();
@@ -915,7 +883,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * Removes a previously registered map.
      * 
      * @param map
-     *            the <code>Map</code> to be removed
+     *        the <code>Map</code> to be removed
      */
     void removeMap(Map map) {
         String name = map.getName();
@@ -933,7 +901,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * Returns the Map associated with the given name.
      * 
      * @param name
-     *             the name of the desired <code>Map</code>
+     *        the name of the desired <code>Map</code>
      * @return the <code>Map</code> or <code>null</code> if it can't be found,
      *         or if <code>name</code> is <code>null</code>
      */
@@ -968,7 +936,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * explicitly specify the type. The default is text/css.
      * 
      * @param contentType
-     *                    the content type language for the style sheets
+     *        the content type language for the style sheets
      */
     /* public */
     void setDefaultStyleSheetType(String contentType) {
@@ -1000,8 +968,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * the parser accordingly.
      * 
      * @param parser
-     *               the parser to be used for text insertion
-     *
+     *        the parser to be used for text insertion
      * @since 1.3
      */
     public void setParser(HTMLEditorKit.Parser parser) {
@@ -1014,7 +981,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      * document.
      * 
      * @return the parser used for text insertion
-     *
      * @since 1.3
      */
     public HTMLEditorKit.Parser getParser() {
@@ -1029,11 +995,9 @@ public class HTMLDocument extends DefaultStyledDocument {
     /**
      * Replaces the children of the given element with the contents specified as
      * an HTML string.
-     *
      * <p>
      * This will be seen as at least two events, n inserts followed by a remove.
      * </p>
-     *
      * <p>
      * Consider the following structure (the <code>elem</code> parameter is
      * <b>in bold</b>).
@@ -1046,7 +1010,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      *      /  \
      *    &lt;p&gt;   &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Invoking <code>setInnerHTML(elem, "&lt;ul&gt;&lt;li&gt;")</code> results
      * in the following structure (new elements are <font color="red">in
@@ -1062,14 +1025,12 @@ public class HTMLDocument extends DefaultStyledDocument {
      *           \
      *           <font color="red">&lt;li&gt;</font>
      * </pre>
-     *
      * <p>
      * Parameter <code>elem</code> must not be a leaf element, otherwise an
      * <code>IllegalArgumentException</code> is thrown. If either
      * <code>elem</code> or <code>htmlText</code> parameter is <code>null</code>
      * , no changes are made to the document.
      * </p>
-     *
      * <p>
      * For this to work correctly, the document must have an
      * <code>HTMLEditorKit.Parser</code> set. This will be the case if the
@@ -1078,22 +1039,20 @@ public class HTMLDocument extends DefaultStyledDocument {
      * </p>
      *
      * @param elem
-     *                 the branch element whose children will be replaced
+     *        the branch element whose children will be replaced
      * @param htmlText
-     *                 the string to be parsed and assigned to <code>elem</code>
+     *        the string to be parsed and assigned to <code>elem</code>
      * @throws IllegalArgumentException
-     *                                  if <code>elem</code> is a leaf
+     *         if <code>elem</code> is a leaf
      * @throws IllegalStateException
-     *                                  if an <code>HTMLEditorKit.Parser</code>
-     *                                  has not been defined
+     *         if an <code>HTMLEditorKit.Parser</code>
+     *         has not been defined
      * @since 1.3
      */
-    public void setInnerHTML(Element elem, String htmlText)
-            throws BadLocationException, IOException {
+    public void setInnerHTML(Element elem, String htmlText) throws BadLocationException, IOException {
         verifyParser();
         if (elem != null && elem.isLeaf()) {
-            throw new IllegalArgumentException(
-                    "Can not set inner HTML of a leaf");
+            throw new IllegalArgumentException("Can not set inner HTML of a leaf");
         }
         if (elem != null && htmlText != null) {
             int oldCount = elem.getElementCount();
@@ -1101,8 +1060,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             insertHTML(elem, elem.getStartOffset(), htmlText, true);
             if (elem.getElementCount() > oldCount) {
                 // Elements were inserted, do the cleanup.
-                removeElements(elem, elem.getElementCount() - oldCount,
-                        oldCount);
+                removeElements(elem, elem.getElementCount() - oldCount, oldCount);
             }
         }
     }
@@ -1110,11 +1068,9 @@ public class HTMLDocument extends DefaultStyledDocument {
     /**
      * Replaces the given element in the parent with the contents specified as
      * an HTML string.
-     *
      * <p>
      * This will be seen as at least two events, n inserts followed by a remove.
      * </p>
-     *
      * <p>
      * When replacing a leaf this will attempt to make sure there is a newline
      * present if one is needed. This may result in an additional element being
@@ -1122,7 +1078,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      * contained a newline with &lt;img&gt; this would create two elements, one
      * for the image, and one for the newline.
      * </p>
-     *
      * <p>
      * If you try to replace the element at length you will most likely end up
      * with two elements, eg
@@ -1130,7 +1085,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      * "blah")</code> will result in two leaf elements at the end, one
      * representing 'blah', and the other representing the end element.
      * </p>
-     *
      * <p>
      * Consider the following structure (the <code>elem</code> parameter is
      * <b>in bold</b>).
@@ -1143,7 +1097,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      *      /  \
      *    &lt;p&gt;   &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Invoking <code>setOuterHTML(elem, "&lt;ul&gt;&lt;li&gt;")</code> results
      * in the following structure (new elements are <font color="red">in
@@ -1157,12 +1110,10 @@ public class HTMLDocument extends DefaultStyledDocument {
      *       \
      *       <font color="red">&lt;li&gt;</font>
      * </pre>
-     *
      * <p>
      * If either <code>elem</code> or <code>htmlText</code> parameter is
      * <code>null</code>, no changes are made to the document.
      * </p>
-     *
      * <p>
      * For this to work correctly, the document must have an
      * HTMLEditorKit.Parser set. This will be the case if the document was
@@ -1171,27 +1122,24 @@ public class HTMLDocument extends DefaultStyledDocument {
      * </p>
      *
      * @param elem
-     *                 the element to replace
+     *        the element to replace
      * @param htmlText
-     *                 the string to be parsed and inserted in place of
-     *                 <code>elem</code>
+     *        the string to be parsed and inserted in place of
+     *        <code>elem</code>
      * @throws IllegalStateException
-     *                               if an HTMLEditorKit.Parser has not been set
+     *         if an HTMLEditorKit.Parser has not been set
      * @since 1.3
      */
-    public void setOuterHTML(Element elem, String htmlText)
-            throws BadLocationException, IOException {
+    public void setOuterHTML(Element elem, String htmlText) throws BadLocationException, IOException {
         verifyParser();
-        if (elem != null && elem.getParentElement() != null
-                && htmlText != null) {
+        if (elem != null && elem.getParentElement() != null && htmlText != null) {
             int start = elem.getStartOffset();
             int end = elem.getEndOffset();
             int startLength = getLength();
             // We don't want a newline if elem is a leaf, and doesn't contain
             // a newline.
             boolean wantsNewline = !elem.isLeaf();
-            if (!wantsNewline && (end > startLength || getText(end - 1, 1)
-                    .charAt(0) == NEWLINE[0])) {
+            if (!wantsNewline && (end > startLength || getText(end - 1, 1).charAt(0) == NEWLINE[0])) {
                 wantsNewline = true;
             }
             Element parent = elem.getParentElement();
@@ -1200,8 +1148,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             // Remove old.
             int newLength = getLength();
             if (oldCount != parent.getElementCount()) {
-                int removeIndex = parent.getElementIndex(start + newLength
-                        - startLength);
+                int removeIndex = parent.getElementIndex(start + newLength - startLength);
                 removeElements(parent, removeIndex, 1);
             }
         }
@@ -1209,7 +1156,6 @@ public class HTMLDocument extends DefaultStyledDocument {
 
     /**
      * Inserts the HTML specified as a string at the start of the element.
-     *
      * <p>
      * Consider the following structure (the <code>elem</code> parameter is
      * <b>in bold</b>).
@@ -1222,7 +1168,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      *      /  \
      *    &lt;p&gt;   &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Invoking <code>insertAfterStart(elem,
      * "&lt;ul&gt;&lt;li&gt;")</code> results in the following structure (new
@@ -1238,19 +1183,16 @@ public class HTMLDocument extends DefaultStyledDocument {
      *     /
      *  <font color="red">&lt;li&gt;</font>
      * </pre>
-     *
      * <p>
      * Unlike the <code>insertBeforeStart</code> method, new elements become
      * <em>children</em> of the specified element, not siblings.
      * </p>
-     *
      * <p>
      * Parameter <code>elem</code> must not be a leaf element, otherwise an
      * <code>IllegalArgumentException</code> is thrown. If either
      * <code>elem</code> or <code>htmlText</code> parameter is <code>null</code>
      * , no changes are made to the document.
      * </p>
-     *
      * <p>
      * For this to work correctly, the document must have an
      * <code>HTMLEditorKit.Parser</code> set. This will be the case if the
@@ -1259,18 +1201,17 @@ public class HTMLDocument extends DefaultStyledDocument {
      * </p>
      *
      * @param elem
-     *                 the branch element to be the root for the new text
+     *        the branch element to be the root for the new text
      * @param htmlText
-     *                 the string to be parsed and assigned to <code>elem</code>
+     *        the string to be parsed and assigned to <code>elem</code>
      * @throws IllegalArgumentException
-     *                                  if <code>elem</code> is a leaf
+     *         if <code>elem</code> is a leaf
      * @throws IllegalStateException
-     *                                  if an HTMLEditorKit.Parser has not been
-     *                                  set on the document
+     *         if an HTMLEditorKit.Parser has not been
+     *         set on the document
      * @since 1.3
      */
-    public void insertAfterStart(Element elem, String htmlText)
-            throws BadLocationException, IOException {
+    public void insertAfterStart(Element elem, String htmlText) throws BadLocationException, IOException {
         verifyParser();
 
         if (elem == null || htmlText == null) {
@@ -1278,21 +1219,18 @@ public class HTMLDocument extends DefaultStyledDocument {
         }
 
         if (elem.isLeaf()) {
-            throw new IllegalArgumentException(
-                    "Can not insert HTML after start of a leaf");
+            throw new IllegalArgumentException("Can not insert HTML after start of a leaf");
         }
         insertHTML(elem, elem.getStartOffset(), htmlText, false);
     }
 
     /**
      * Inserts the HTML specified as a string at the end of the element.
-     *
      * <p>
      * If <code>elem</code>'s children are leaves, and the character at a
      * <code>elem.getEndOffset() - 1</code> is a newline, this will insert
      * before the newline so that there isn't text after the newline.
      * </p>
-     *
      * <p>
      * Consider the following structure (the <code>elem</code> parameter is
      * <b>in bold</b>).
@@ -1305,7 +1243,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      *      /  \
      *    &lt;p&gt;   &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Invoking <code>insertBeforeEnd(elem, "&lt;ul&gt;&lt;li&gt;")</code>
      * results in the following structure (new elements are <font color="red">in
@@ -1321,19 +1258,16 @@ public class HTMLDocument extends DefaultStyledDocument {
      *               \
      *               <font color="red">&lt;li&gt;</font>
      * </pre>
-     *
      * <p>
      * Unlike the <code>insertAfterEnd</code> method, new elements become
      * <em>children</em> of the specified element, not siblings.
      * </p>
-     *
      * <p>
      * Parameter <code>elem</code> must not be a leaf element, otherwise an
      * <code>IllegalArgumentException</code> is thrown. If either
      * <code>elem</code> or <code>htmlText</code> parameter is <code>null</code>
      * , no changes are made to the document.
      * </p>
-     *
      * <p>
      * For this to work correctly, the document must have an
      * <code>HTMLEditorKit.Parser</code> set. This will be the case if the
@@ -1342,27 +1276,25 @@ public class HTMLDocument extends DefaultStyledDocument {
      * </p>
      *
      * @param elem
-     *                 the element to be the root for the new text
+     *        the element to be the root for the new text
      * @param htmlText
-     *                 the string to be parsed and assigned to <code>elem</code>
+     *        the string to be parsed and assigned to <code>elem</code>
      * @throws IllegalArgumentException
-     *                                  if <code>elem</code> is a leaf
+     *         if <code>elem</code> is a leaf
      * @throws IllegalStateException
-     *                                  if an HTMLEditorKit.Parser has not been
-     *                                  set on the document
+     *         if an HTMLEditorKit.Parser has not been
+     *         set on the document
      * @since 1.3
      */
-    public void insertBeforeEnd(Element elem, String htmlText)
-            throws BadLocationException, IOException {
+    public void insertBeforeEnd(Element elem, String htmlText) throws BadLocationException, IOException {
         verifyParser();
         if (elem != null && elem.isLeaf()) {
-            throw new IllegalArgumentException(
-                    "Can not set inner HTML before end of leaf");
+            throw new IllegalArgumentException("Can not set inner HTML before end of leaf");
         }
         if (elem != null) {
             int offset = elem.getEndOffset();
-            if (elem.getElement(elem.getElementIndex(offset - 1)).isLeaf()
-                    && getText(offset - 1, 1).charAt(0) == NEWLINE[0]) {
+            if (elem.getElement(elem.getElementIndex(offset - 1)).isLeaf() && getText(offset - 1, 1).charAt(
+                    0) == NEWLINE[0]) {
                 offset--;
             }
             insertHTML(elem, offset, htmlText, false);
@@ -1372,7 +1304,6 @@ public class HTMLDocument extends DefaultStyledDocument {
     /**
      * Inserts the HTML specified as a string before the start of the given
      * element.
-     *
      * <p>
      * Consider the following structure (the <code>elem</code> parameter is
      * <b>in bold</b>).
@@ -1385,7 +1316,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      *      /  \
      *    &lt;p&gt;   &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Invoking <code>insertBeforeStart(elem,
      * "&lt;ul&gt;&lt;li&gt;")</code> results in the following structure (new
@@ -1399,17 +1329,14 @@ public class HTMLDocument extends DefaultStyledDocument {
      *       /    /  \
      *     <font color="red">&lt;li&gt;</font> &lt;p&gt;  &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Unlike the <code>insertAfterStart</code> method, new elements become
      * <em>siblings</em> of the specified element, not children.
      * </p>
-     *
      * <p>
      * If either <code>elem</code> or <code>htmlText</code> parameter is
      * <code>null</code>, no changes are made to the document.
      * </p>
-     *
      * <p>
      * For this to work correctly, the document must have an
      * <code>HTMLEditorKit.Parser</code> set. This will be the case if the
@@ -1418,17 +1345,16 @@ public class HTMLDocument extends DefaultStyledDocument {
      * </p>
      *
      * @param elem
-     *                 the element the content is inserted before
+     *        the element the content is inserted before
      * @param htmlText
-     *                 the string to be parsed and inserted before
-     *                 <code>elem</code>
+     *        the string to be parsed and inserted before
+     *        <code>elem</code>
      * @throws IllegalStateException
-     *                               if an HTMLEditorKit.Parser has not been set
-     *                               on the document
+     *         if an HTMLEditorKit.Parser has not been set
+     *         on the document
      * @since 1.3
      */
-    public void insertBeforeStart(Element elem, String htmlText)
-            throws BadLocationException, IOException {
+    public void insertBeforeStart(Element elem, String htmlText) throws BadLocationException, IOException {
         verifyParser();
         if (elem != null) {
             Element parent = elem.getParentElement();
@@ -1442,7 +1368,6 @@ public class HTMLDocument extends DefaultStyledDocument {
     /**
      * Inserts the HTML specified as a string after the the end of the given
      * element.
-     *
      * <p>
      * Consider the following structure (the <code>elem</code> parameter is
      * <b>in bold</b>).
@@ -1455,7 +1380,6 @@ public class HTMLDocument extends DefaultStyledDocument {
      *      /  \
      *    &lt;p&gt;   &lt;p&gt;
      * </pre>
-     *
      * <p>
      * Invoking <code>insertAfterEnd(elem, "&lt;ul&gt;&lt;li&gt;")</code>
      * results in the following structure (new elements are <font color="red">in
@@ -1469,17 +1393,14 @@ public class HTMLDocument extends DefaultStyledDocument {
      *       / \    \
      *     &lt;p&gt; &lt;p&gt;  <font color="red">&lt;li&gt;</font>
      * </pre>
-     *
      * <p>
      * Unlike the <code>insertBeforeEnd</code> method, new elements become
      * <em>siblings</em> of the specified element, not children.
      * </p>
-     *
      * <p>
      * If either <code>elem</code> or <code>htmlText</code> parameter is
      * <code>null</code>, no changes are made to the document.
      * </p>
-     *
      * <p>
      * For this to work correctly, the document must have an
      * <code>HTMLEditorKit.Parser</code> set. This will be the case if the
@@ -1488,17 +1409,16 @@ public class HTMLDocument extends DefaultStyledDocument {
      * </p>
      *
      * @param elem
-     *                 the element the content is inserted after
+     *        the element the content is inserted after
      * @param htmlText
-     *                 the string to be parsed and inserted after
-     *                 <code>elem</code>
+     *        the string to be parsed and inserted after
+     *        <code>elem</code>
      * @throws IllegalStateException
-     *                               if an HTMLEditorKit.Parser has not been set
-     *                               on the document
+     *         if an HTMLEditorKit.Parser has not been set
+     *         on the document
      * @since 1.3
      */
-    public void insertAfterEnd(Element elem, String htmlText)
-            throws BadLocationException, IOException {
+    public void insertAfterEnd(Element elem, String htmlText) throws BadLocationException, IOException {
         verifyParser();
         if (elem != null) {
             Element parent = elem.getParentElement();
@@ -1512,8 +1432,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 int offset = elem.getEndOffset();
                 if (offset > (getLength() + 1)) {
                     offset--;
-                } else if (elem.isLeaf() && getText(offset - 1, 1).charAt(
-                        0) == NEWLINE[0]) {
+                } else if (elem.isLeaf() && getText(offset - 1, 1).charAt(0) == NEWLINE[0]) {
                     offset--;
                 }
                 insertHTML(parent, offset, htmlText, false);
@@ -1535,7 +1454,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * This is not thread-safe.
      *
      * @param id
-     *           the string representing the desired <code>Attribute</code>
+     *        the string representing the desired <code>Attribute</code>
      * @return the element with the specified <code>Attribute</code> or
      *         <code>null</code> if it can't be found, or <code>null</code> if
      *         <code>id</code> is <code>null</code>
@@ -1555,11 +1474,11 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>null</code> if one isn't found. This is not thread-safe.
      *
      * @param e
-     *                  the root element where the search begins
+     *        the root element where the search begins
      * @param attribute
-     *                  the desired <code>Attribute</code>
+     *        the desired <code>Attribute</code>
      * @param value
-     *                  the values for the specified <code>Attribute</code>
+     *        the values for the specified <code>Attribute</code>
      * @return the element with the specified <code>Attribute</code> and the
      *         specified <code>value</code>, or <code>null</code> if it can't be
      *         found
@@ -1580,18 +1499,17 @@ public class HTMLDocument extends DefaultStyledDocument {
      * value that is an <code>AttributeSet</code> will also be checked.
      *
      * @param e
-     *                  the root element where the search begins
+     *        the root element where the search begins
      * @param attribute
-     *                  the desired <code>Attribute</code>
+     *        the desired <code>Attribute</code>
      * @param value
-     *                  the values for the specified <code>Attribute</code>
+     *        the values for the specified <code>Attribute</code>
      * @return the element with the specified <code>Attribute</code> and the
      *         specified <code>value</code>, or <code>null</code> if it can't be
      *         found
      * @see javax.swing.text.html.HTML.Attribute
      */
-    private Element getElement(Element e, Object attribute, Object value,
-            boolean searchLeafAttributes) {
+    private Element getElement(Element e, Object attribute, Object value, boolean searchLeafAttributes) {
         AttributeSet attr = e.getAttributes();
 
         if (attr != null && attr.isDefined(attribute)) {
@@ -1600,10 +1518,8 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
         }
         if (!e.isLeaf()) {
-            for (int counter = 0, maxCounter = e
-                    .getElementCount(); counter < maxCounter; counter++) {
-                Element retValue = getElement(e.getElement(counter), attribute,
-                        value, searchLeafAttributes);
+            for (int counter = 0, maxCounter = e.getElementCount(); counter < maxCounter; counter++) {
+                Element retValue = getElement(e.getElement(counter), attribute, value, searchLeafAttributes);
 
                 if (retValue != null) {
                     return retValue;
@@ -1616,13 +1532,10 @@ public class HTMLDocument extends DefaultStyledDocument {
             if (names != null) {
                 while (names.hasMoreElements()) {
                     Object name = names.nextElement();
-                    if ((name instanceof HTML.Tag) && (attr.getAttribute(
-                            name) instanceof AttributeSet)) {
+                    if ((name instanceof HTML.Tag) && (attr.getAttribute(name) instanceof AttributeSet)) {
 
-                        AttributeSet check = (AttributeSet) attr.getAttribute(
-                                name);
-                        if (check.isDefined(attribute) && value.equals(check
-                                .getAttribute(attribute))) {
+                        AttributeSet check = (AttributeSet) attr.getAttribute(name);
+                        if (check.isDefined(attribute) && value.equals(check.getAttribute(attribute))) {
                             return e;
                         }
                     }
@@ -1638,7 +1551,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * IllegalStateException.
      *
      * @throws IllegalStateException
-     *                               if the document does not have a Parser
+     *         if the document does not have a Parser
      */
     private void verifyParser() {
         if (getParser() == null) {
@@ -1661,9 +1574,8 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>html</code>. If <code>parent</code> is a leaf this can have
      * unexpected results.
      */
-    private void insertHTML(Element parent, int offset, String html,
-            boolean wantsTrailingNewline) throws BadLocationException,
-            IOException {
+    private void insertHTML(Element parent, int offset, String html, boolean wantsTrailingNewline)
+            throws BadLocationException, IOException {
         if (parent != null && html != null) {
             HTMLEditorKit.Parser parser = getParser();
             if (parser != null) {
@@ -1674,14 +1586,12 @@ public class HTMLDocument extends DefaultStyledDocument {
                 int push = 0;
 
                 if (parent.getStartOffset() > lastOffset) {
-                    while (commonParent != null && commonParent
-                            .getStartOffset() > lastOffset) {
+                    while (commonParent != null && commonParent.getStartOffset() > lastOffset) {
                         commonParent = commonParent.getParentElement();
                         push++;
                     }
                     if (commonParent == null) {
-                        throw new BadLocationException("No common parent",
-                                offset);
+                        throw new BadLocationException("No common parent", offset);
                     }
                 }
                 while (charElement != null && charElement != commonParent) {
@@ -1690,8 +1600,8 @@ public class HTMLDocument extends DefaultStyledDocument {
                 }
                 if (charElement != null) {
                     // Found it, do the insert.
-                    HTMLReader reader = new HTMLReader(offset, pop - 1, push,
-                            null, false, true, wantsTrailingNewline);
+                    HTMLReader reader = new HTMLReader(offset, pop - 1, push, null, false, true,
+                            wantsTrailingNewline);
 
                     parser.parse(new StringReader(html), reader, true);
                     reader.flush();
@@ -1710,8 +1620,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * character at <code>e.getStartOffset() - 1</code> is a newline and is of
      * length 1.
      */
-    private void removeElements(Element e, int index, int count)
-            throws BadLocationException {
+    private void removeElements(Element e, int index, int count) throws BadLocationException {
         writeLock();
         try {
             int start = e.getElement(index).getStartOffset();
@@ -1737,12 +1646,12 @@ public class HTMLDocument extends DefaultStyledDocument {
      * Element has to be recreated as after the content removal its offsets
      * become <code>start - 1</code> to <code>start - 1</code>.
      */
-    private void removeElementsAtEnd(Element e, int index, int count, int start,
-            int end) throws BadLocationException {
+    private void removeElementsAtEnd(Element e, int index, int count, int start, int end)
+            throws BadLocationException {
         // index must be > 0 otherwise no insert would have happened.
         boolean isLeaf = (e.getElement(index - 1).isLeaf());
-        DefaultDocumentEvent dde = new DefaultDocumentEvent(start - 1, end
-                - start + 1, DocumentEvent.EventType.REMOVE);
+        DefaultDocumentEvent dde = new DefaultDocumentEvent(start - 1, end - start + 1,
+                DocumentEvent.EventType.REMOVE);
 
         if (isLeaf) {
             Element endE = getCharacterElement(getLength());
@@ -1768,8 +1677,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
             newLineE = newLineE.getParentElement();
             replace(dde, e, index, count, start, end, false, false);
-            replace(dde, newLineE, newLineE.getElementCount() - 1, 1, start,
-                    end, true, true);
+            replace(dde, newLineE, newLineE.getElementCount() - 1, 1, start, end, true, true);
         }
         postRemoveUpdate(dde);
         dde.end();
@@ -1784,9 +1692,8 @@ public class HTMLDocument extends DefaultStyledDocument {
      * <code>start - 1</code> to <code>end - 1</code> is removed. If
      * <code>create</code> is true a new leaf is created of length 1.
      */
-    private void replace(DefaultDocumentEvent dde, Element e, int index,
-            int count, int start, int end, boolean remove, boolean create)
-            throws BadLocationException {
+    private void replace(DefaultDocumentEvent dde, Element e, int index, int count, int start, int end,
+            boolean remove, boolean create) throws BadLocationException {
         Element[] added;
         AttributeSet attrs = e.getElement(index).getAttributes();
         Element[] removed = new Element[count];
@@ -1807,15 +1714,14 @@ public class HTMLDocument extends DefaultStyledDocument {
             added = new Element[0];
         }
         dde.addEdit(new ElementEdit(e, index, removed, added));
-        ((AbstractDocument.BranchElement) e).replace(index, removed.length,
-                added);
+        ((AbstractDocument.BranchElement) e).replace(index, removed.length, added);
     }
 
     /**
      * Called to remove child Elements when the end is not touched.
      */
-    private void removeElements(Element e, int index, int count, int start,
-            int end) throws BadLocationException {
+    private void removeElements(Element e, int index, int count, int start, int end)
+            throws BadLocationException {
         Element[] removed = new Element[count];
         Element[] added = new Element[0];
         for (int counter = 0; counter < count; counter++) {
@@ -1823,8 +1729,7 @@ public class HTMLDocument extends DefaultStyledDocument {
         }
         DefaultDocumentEvent dde = new DefaultDocumentEvent(start, end - start,
                 DocumentEvent.EventType.REMOVE);
-        ((AbstractDocument.BranchElement) e).replace(index, removed.length,
-                added);
+        ((AbstractDocument.BranchElement) e).replace(index, removed.length, added);
         dde.addEdit(new ElementEdit(e, index, removed, added));
         UndoableEdit u = getContent().remove(start, end - start);
         if (u != null) {
@@ -1858,7 +1763,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * parameters passed into the fire method.
      *
      * @param e
-     *          the event
+     *        the event
      * @see EventListenerList
      */
     protected void fireChangedUpdate(DocumentEvent e) {
@@ -1871,7 +1776,7 @@ public class HTMLDocument extends DefaultStyledDocument {
      * parameters passed into the fire method.
      *
      * @param e
-     *          the event
+     *        the event
      * @see EventListenerList
      */
     protected void fireUndoableEditUpdate(UndoableEditEvent e) {
@@ -1967,8 +1872,8 @@ public class HTMLDocument extends DefaultStyledDocument {
 
     static {
         contentAttributeSet = new SimpleAttributeSet();
-        ((MutableAttributeSet) contentAttributeSet).addAttribute(
-                StyleConstants.NameAttribute, HTML.Tag.CONTENT);
+        ((MutableAttributeSet) contentAttributeSet).addAttribute(StyleConstants.NameAttribute,
+                HTML.Tag.CONTENT);
         NEWLINE = new char[1];
         NEWLINE[0] = '\n';
     }
@@ -2047,8 +1952,7 @@ public class HTMLDocument extends DefaultStyledDocument {
         public AttributeSet getAttributes() {
             Element elem = pos.current();
             if (elem != null) {
-                AttributeSet a = (AttributeSet) elem.getAttributes()
-                        .getAttribute(tag);
+                AttributeSet a = (AttributeSet) elem.getAttributes().getAttribute(tag);
                 if (a == null) {
                     a = elem.getAttributes();
                 }
@@ -2091,8 +1995,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 if (elem.getStartOffset() >= endOffset) {
                     AttributeSet a = pos.current().getAttributes();
 
-                    if (a.isDefined(tag) || a.getAttribute(
-                            StyleConstants.NameAttribute) == tag) {
+                    if (a.isDefined(tag) || a.getAttribute(StyleConstants.NameAttribute) == tag) {
 
                         // we found the next one
                         setEndOffset();
@@ -2126,7 +2029,7 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Moves the given iterator to the next leaf element.
          * 
          * @param iter
-         *             the iterator to be scanned
+         *        the iterator to be scanned
          */
         void nextLeaf(ElementIterator iter) {
             for (iter.next(); iter.current() != null; iter.next()) {
@@ -2147,8 +2050,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             ElementIterator fwd = (ElementIterator) pos.clone();
             for (nextLeaf(fwd); fwd.current() != null; nextLeaf(fwd)) {
                 Element e = fwd.current();
-                AttributeSet a1 = (AttributeSet) e.getAttributes().getAttribute(
-                        tag);
+                AttributeSet a1 = (AttributeSet) e.getAttributes().getAttribute(tag);
                 if ((a1 == null) || (!a1.equals(a0))) {
                     break;
                 }
@@ -2209,12 +2111,10 @@ public class HTMLDocument extends DefaultStyledDocument {
      * viewed read-only, and visible when the document is being edited. This is
      * useful to keep the model from losing information, and used to store
      * things like comments and unrecognized tags.
-     *
      * </dl>
      * <p>
      * Currently, &lt;APPLET&gt;, &lt;PARAM&gt;, &lt;MAP&gt;, &lt;AREA&gt;,
      * &lt;LINK&gt;, &lt;SCRIPT&gt; and &lt;STYLE&gt; are unsupported.
-     *
      * <p>
      * The assignment of the actions described is shown in the following table
      * for the tags defined in <code>HTML.Tag</code>.
@@ -2449,8 +2349,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             this(offset, 0, 0, null);
         }
 
-        public HTMLReader(int offset, int popDepth, int pushDepth,
-                HTML.Tag insertTag) {
+        public HTMLReader(int offset, int popDepth, int pushDepth, HTML.Tag insertTag) {
             this(offset, popDepth, pushDepth, insertTag, true, false, true);
         }
 
@@ -2462,9 +2361,8 @@ public class HTMLDocument extends DefaultStyledDocument {
          */
         // PENDING(sky): Add throws BadLocationException and remove
         // RuntimeException
-        HTMLReader(int offset, int popDepth, int pushDepth, HTML.Tag insertTag,
-                boolean insertInsertTag, boolean insertAfterImplied,
-                boolean wantsTrailingNewline) {
+        HTMLReader(int offset, int popDepth, int pushDepth, HTML.Tag insertTag, boolean insertInsertTag,
+                boolean insertAfterImplied, boolean wantsTrailingNewline) {
             emptyDocument = (getLength() == 0);
             isStyleCSS = "text/css".equals(getDefaultStyleSheetType());
             this.offset = offset;
@@ -2587,8 +2485,7 @@ public class HTMLDocument extends DefaultStyledDocument {
              */
             if (!emptyDocument && !midInsert) {
                 int targetOffset = Math.max(this.offset - 1, 0);
-                Element elem = HTMLDocument.this.getCharacterElement(
-                        targetOffset);
+                Element elem = HTMLDocument.this.getCharacterElement(targetOffset);
                 /* Going up by the left document structure path */
                 for (int i = 0; i <= this.popDepth; i++) {
                     elem = elem.getParentElement();
@@ -2600,8 +2497,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 }
                 AttributeSet attrs = elem.getAttributes();
                 if (attrs != null) {
-                    HTML.Tag tagToInsertInto = (HTML.Tag) attrs.getAttribute(
-                            StyleConstants.NameAttribute);
+                    HTML.Tag tagToInsertInto = (HTML.Tag) attrs.getAttribute(StyleConstants.NameAttribute);
                     if (tagToInsertInto != null) {
                         this.inParagraph = tagToInsertInto.isParagraph();
                     }
@@ -2614,8 +2510,7 @@ public class HTMLDocument extends DefaultStyledDocument {
          * parseBuffer to position future inserts into the body.
          */
         private void generateEndsSpecsForMidInsert() {
-            int count = heightToElementWithName(HTML.Tag.BODY, Math.max(0,
-                    offset - 1));
+            int count = heightToElementWithName(HTML.Tag.BODY, Math.max(0, offset - 1));
             boolean joinNext = false;
 
             if (count == -1 && offset > 0) {
@@ -2628,31 +2523,24 @@ public class HTMLDocument extends DefaultStyledDocument {
                 }
             }
             if (count == -1) {
-                throw new RuntimeException(
-                        "Must insert new content into body element-");
+                throw new RuntimeException("Must insert new content into body element-");
             }
             if (count != -1) {
                 // Insert a newline, if necessary.
                 try {
-                    if (!joinNext && offset > 0 && !getText(offset - 1, 1)
-                            .equals("\n")) {
+                    if (!joinNext && offset > 0 && !getText(offset - 1, 1).equals("\n")) {
                         SimpleAttributeSet newAttrs = new SimpleAttributeSet();
-                        newAttrs.addAttribute(StyleConstants.NameAttribute,
-                                HTML.Tag.CONTENT);
-                        ElementSpec spec = new ElementSpec(newAttrs,
-                                ElementSpec.ContentType, NEWLINE, 0, 1);
+                        newAttrs.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
+                        ElementSpec spec = new ElementSpec(newAttrs, ElementSpec.ContentType, NEWLINE, 0, 1);
                         parseBuffer.addElement(spec);
                     }
                     // Should never throw, but will catch anyway.
-                } catch (BadLocationException ble) {
-                }
+                } catch (BadLocationException ble) {}
                 while (count-- > 0) {
-                    parseBuffer.addElement(new ElementSpec(null,
-                            ElementSpec.EndTagType));
+                    parseBuffer.addElement(new ElementSpec(null, ElementSpec.EndTagType));
                 }
                 if (joinNext) {
-                    ElementSpec spec = new ElementSpec(null,
-                            ElementSpec.StartTagType);
+                    ElementSpec spec = new ElementSpec(null, ElementSpec.StartTagType);
 
                     spec.setDirection(ElementSpec.JoinNextDirection);
                     parseBuffer.addElement(spec);
@@ -2685,8 +2573,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             Element e = getCharacterElement(offset).getParentElement();
             int count = 0;
 
-            while (e != null && e.getAttributes().getAttribute(
-                    StyleConstants.NameAttribute) != name) {
+            while (e != null && e.getAttributes().getAttribute(StyleConstants.NameAttribute) != name) {
                 count++;
                 e = e.getParentElement();
             }
@@ -2707,8 +2594,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 Element[] pPath = getPathTo(length - 1);
                 int pLength = pPath.length;
                 if (pLength > 1 && pPath[1].getAttributes().getAttribute(
-                        StyleConstants.NameAttribute) == HTML.Tag.BODY
-                        && pPath[1].getEndOffset() == length) {
+                        StyleConstants.NameAttribute) == HTML.Tag.BODY && pPath[1].getEndOffset() == length) {
                     String lastText = getText(length - 1, 1);
                     DefaultDocumentEvent event;
                     Element[] added;
@@ -2720,25 +2606,19 @@ public class HTMLDocument extends DefaultStyledDocument {
                     index = pPath[0].getElementIndex(length);
                     removed[0] = pPath[0].getElement(index);
                     ((BranchElement) pPath[0]).replace(index, 1, added);
-                    ElementEdit firstEdit = new ElementEdit(pPath[0], index,
-                            removed, added);
+                    ElementEdit firstEdit = new ElementEdit(pPath[0], index, removed, added);
 
                     // Insert a new element to represent the end that the
                     // second body was representing.
                     SimpleAttributeSet sas = new SimpleAttributeSet();
-                    sas.addAttribute(StyleConstants.NameAttribute,
-                            HTML.Tag.CONTENT);
+                    sas.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
                     sas.addAttribute(IMPLIED_CR, Boolean.TRUE);
                     added = new Element[1];
-                    added[0] = createLeafElement(pPath[pLength - 1], sas,
-                            length, length + 1);
+                    added[0] = createLeafElement(pPath[pLength - 1], sas, length, length + 1);
                     index = pPath[pLength - 1].getElementCount();
-                    ((BranchElement) pPath[pLength - 1]).replace(index, 0,
-                            added);
-                    event = new DefaultDocumentEvent(length, 1,
-                            DocumentEvent.EventType.CHANGE);
-                    event.addEdit(new ElementEdit(pPath[pLength - 1], index,
-                            new Element[0], added));
+                    ((BranchElement) pPath[pLength - 1]).replace(index, 0, added);
+                    event = new DefaultDocumentEvent(length, 1, DocumentEvent.EventType.CHANGE);
+                    event.addEdit(new ElementEdit(pPath[pLength - 1], index, new Element[0], added));
                     event.addEdit(firstEdit);
                     event.end();
                     fireChangedUpdate(event);
@@ -2747,8 +2627,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                     if (lastText.equals("\n")) {
                         // We now have two \n's, one part of the Document.
                         // We need to remove one
-                        event = new DefaultDocumentEvent(length - 1, 1,
-                                DocumentEvent.EventType.REMOVE);
+                        event = new DefaultDocumentEvent(length - 1, 1, DocumentEvent.EventType.REMOVE);
                         removeUpdate(event);
                         UndoableEdit u = getContent().remove(length - 1, 1);
                         if (u != null) {
@@ -2758,12 +2637,10 @@ public class HTMLDocument extends DefaultStyledDocument {
                         // Mark the edit as done.
                         event.end();
                         fireRemoveUpdate(event);
-                        fireUndoableEditUpdate(new UndoableEditEvent(this,
-                                event));
+                        fireUndoableEditUpdate(new UndoableEditEvent(this, event));
                     }
                 }
-            } catch (BadLocationException ble) {
-            } finally {
+            } catch (BadLocationException ble) {} finally {
                 releaseLock();
             }
         }
@@ -2790,8 +2667,7 @@ public class HTMLDocument extends DefaultStyledDocument {
          */
         public void flush() throws BadLocationException {
             if (emptyDocument && !insertAfterImplied) {
-                if (HTMLDocument.this.getLength() > 0 || parseBuffer
-                        .size() > 0) {
+                if (HTMLDocument.this.getLength() > 0 || parseBuffer.size() > 0) {
                     flushBuffer(true);
                     adjustEndElement();
                 }
@@ -2810,18 +2686,15 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
 
             // see if complex glyph layout support is needed
-            if (HTMLDocument.this.getProperty(I18NProperty).equals(
-                    Boolean.FALSE)) {
+            if (HTMLDocument.this.getProperty(I18NProperty).equals(Boolean.FALSE)) {
                 // if a default direction of right-to-left has been specified,
                 // we want complex layout even if the text is all left to right.
                 Object d = getProperty(TextAttribute.RUN_DIRECTION);
-                if ((d != null) && (d.equals(
-                        TextAttribute.RUN_DIRECTION_RTL))) {
+                if ((d != null) && (d.equals(TextAttribute.RUN_DIRECTION_RTL))) {
                     HTMLDocument.this.putProperty(I18NProperty, Boolean.TRUE);
                 } else {
                     if (SwingUtilities2.isComplexLayout(data, 0, data.length)) {
-                        HTMLDocument.this.putProperty(I18NProperty,
-                                Boolean.TRUE);
+                        HTMLDocument.this.putProperty(I18NProperty, Boolean.TRUE);
                     }
                 }
             }
@@ -2901,8 +2774,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                     styles.addElement(new String(data));
                 }
             } else if (getPreservesUnknownTags()) {
-                if (inBlock == 0 && (foundInsertTag
-                        || insertTag != HTML.Tag.COMMENT)) {
+                if (inBlock == 0 && (foundInsertTag || insertTag != HTML.Tag.COMMENT)) {
                     // Comment outside of body, will not be able to show it,
                     // but can add it as a property on the Document.
                     addExternalComment(new String(data));
@@ -2964,8 +2836,7 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Callback from the parser. Route to the appropriate handler for the
          * tag.
          */
-        public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a,
-                int pos) {
+        public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a, int pos) {
             if (receivedEndHTML || (midInsert && !inBody)) {
                 return;
             }
@@ -3139,14 +3010,11 @@ public class HTMLDocument extends DefaultStyledDocument {
                 if (equiv != null) {
                     equiv = ((String) equiv).toLowerCase();
                     if (equiv.equals("content-style-type")) {
-                        String value = (String) a.getAttribute(
-                                HTML.Attribute.CONTENT);
+                        String value = (String) a.getAttribute(HTML.Attribute.CONTENT);
                         setDefaultStyleSheetType(value);
-                        isStyleCSS = "text/css".equals(
-                                getDefaultStyleSheetType());
+                        isStyleCSS = "text/css".equals(getDefaultStyleSheetType());
                     } else if (equiv.equals("default-style")) {
-                        defaultStyle = (String) a.getAttribute(
-                                HTML.Attribute.CONTENT);
+                        defaultStyle = (String) a.getAttribute(HTML.Attribute.CONTENT);
                     }
                 }
                 super.start(t, a);
@@ -3170,9 +3038,8 @@ public class HTMLDocument extends DefaultStyledDocument {
                 // This check of the insertTag is put in to avoid considering
                 // the implied-p that is generated for the head. This allows
                 // inserts for HR to work correctly.
-                if ((insertTag == null && !insertAfterImplied)
-                        || (insertTag == HTML.Tag.HEAD) || (insertAfterImplied
-                                && (foundInsertTag || !a.isDefined(IMPLIED)))) {
+                if ((insertTag == null && !insertAfterImplied) || (insertTag == HTML.Tag.HEAD)
+                        || (insertAfterImplied && (foundInsertTag || !a.isDefined(IMPLIED)))) {
                     super.start(t, a);
                 }
             }
@@ -3182,32 +3049,26 @@ public class HTMLDocument extends DefaultStyledDocument {
                 // See if there is a StyleSheet to link to.
                 if (styles != null) {
                     boolean isDefaultCSS = isStyleCSS;
-                    for (int counter = 0, maxCounter = styles
-                            .size(); counter < maxCounter;) {
+                    for (int counter = 0, maxCounter = styles.size(); counter < maxCounter;) {
                         Object value = styles.elementAt(counter);
                         if (value == HTML.Tag.LINK) {
-                            handleLink((AttributeSet) styles.elementAt(
-                                    ++counter));
+                            handleLink((AttributeSet) styles.elementAt(++counter));
                             counter++;
                         } else {
                             // Rule.
                             // First element gives type.
                             String type = (String) styles.elementAt(++counter);
-                            boolean isCSS = (type == null) ? isDefaultCSS
-                                    : type.equals("text/css");
-                            while (++counter < maxCounter && (styles.elementAt(
-                                    counter) instanceof String)) {
+                            boolean isCSS = (type == null) ? isDefaultCSS : type.equals("text/css");
+                            while (++counter < maxCounter && (styles.elementAt(counter) instanceof String)) {
                                 if (isCSS) {
-                                    addCSSRules((String) styles.elementAt(
-                                            counter));
+                                    addCSSRules((String) styles.elementAt(counter));
                                 }
                             }
                         }
                     }
                 }
-                if ((insertTag == null && !insertAfterImplied)
-                        || insertTag == HTML.Tag.HEAD || (insertAfterImplied
-                                && foundInsertTag)) {
+                if ((insertTag == null && !insertAfterImplied) || insertTag == HTML.Tag.HEAD
+                        || (insertAfterImplied && foundInsertTag)) {
                     super.end(t);
                 }
             }
@@ -3228,10 +3089,8 @@ public class HTMLDocument extends DefaultStyledDocument {
                 // title matches default style.
                 if (type.equals("text/css")) {
                     String rel = (String) attr.getAttribute(HTML.Attribute.REL);
-                    String title = (String) attr.getAttribute(
-                            HTML.Attribute.TITLE);
-                    String media = (String) attr.getAttribute(
-                            HTML.Attribute.MEDIA);
+                    String title = (String) attr.getAttribute(HTML.Attribute.TITLE);
+                    String media = (String) attr.getAttribute(HTML.Attribute.MEDIA);
                     if (media == null) {
                         media = "all";
                     } else {
@@ -3239,13 +3098,10 @@ public class HTMLDocument extends DefaultStyledDocument {
                     }
                     if (rel != null) {
                         rel = rel.toLowerCase();
-                        if ((media.indexOf("all") != -1 || media.indexOf(
-                                "screen") != -1) && (rel.equals("stylesheet")
-                                        || (rel.equals("alternate stylesheet")
-                                                && title.equals(
-                                                        defaultStyle)))) {
-                            linkCSSStyleSheet((String) attr.getAttribute(
-                                    HTML.Attribute.HREF));
+                        if ((media.indexOf("all") != -1 || media.indexOf("screen") != -1) && (rel.equals(
+                                "stylesheet") || (rel.equals("alternate stylesheet") && title.equals(
+                                        defaultStyle)))) {
+                            linkCSSStyleSheet((String) attr.getAttribute(HTML.Attribute.HREF));
                         }
                     }
                 }
@@ -3263,8 +3119,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 String rel = (String) a.getAttribute(HTML.Attribute.REL);
                 if (rel != null) {
                     rel = rel.toLowerCase();
-                    if (rel.equals("stylesheet") || rel.equals(
-                            "alternate stylesheet")) {
+                    if (rel.equals("stylesheet") || rel.equals("alternate stylesheet")) {
                         if (styles == null) {
                             styles = new Vector<Object>(3);
                         }
@@ -3406,57 +3261,41 @@ public class HTMLDocument extends DefaultStyledDocument {
                 charAttr.addAttribute(t, attr.copyAttributes());
                 StyleSheet sheet = getStyleSheet();
                 if (t == HTML.Tag.B) {
-                    sheet.addCSSAttribute(charAttr, CSS.Attribute.FONT_WEIGHT,
-                            "bold");
+                    sheet.addCSSAttribute(charAttr, CSS.Attribute.FONT_WEIGHT, "bold");
                 } else if (t == HTML.Tag.I) {
-                    sheet.addCSSAttribute(charAttr, CSS.Attribute.FONT_STYLE,
-                            "italic");
+                    sheet.addCSSAttribute(charAttr, CSS.Attribute.FONT_STYLE, "italic");
                 } else if (t == HTML.Tag.U) {
-                    Object v = charAttr.getAttribute(
-                            CSS.Attribute.TEXT_DECORATION);
+                    Object v = charAttr.getAttribute(CSS.Attribute.TEXT_DECORATION);
                     String value = "underline";
                     value = (v != null) ? value + "," + v.toString() : value;
-                    sheet.addCSSAttribute(charAttr,
-                            CSS.Attribute.TEXT_DECORATION, value);
+                    sheet.addCSSAttribute(charAttr, CSS.Attribute.TEXT_DECORATION, value);
                 } else if (t == HTML.Tag.STRIKE) {
-                    Object v = charAttr.getAttribute(
-                            CSS.Attribute.TEXT_DECORATION);
+                    Object v = charAttr.getAttribute(CSS.Attribute.TEXT_DECORATION);
                     String value = "line-through";
                     value = (v != null) ? value + "," + v.toString() : value;
-                    sheet.addCSSAttribute(charAttr,
-                            CSS.Attribute.TEXT_DECORATION, value);
+                    sheet.addCSSAttribute(charAttr, CSS.Attribute.TEXT_DECORATION, value);
                 } else if (t == HTML.Tag.SUP) {
-                    Object v = charAttr.getAttribute(
-                            CSS.Attribute.VERTICAL_ALIGN);
+                    Object v = charAttr.getAttribute(CSS.Attribute.VERTICAL_ALIGN);
                     String value = "sup";
                     value = (v != null) ? value + "," + v.toString() : value;
-                    sheet.addCSSAttribute(charAttr,
-                            CSS.Attribute.VERTICAL_ALIGN, value);
+                    sheet.addCSSAttribute(charAttr, CSS.Attribute.VERTICAL_ALIGN, value);
                 } else if (t == HTML.Tag.SUB) {
-                    Object v = charAttr.getAttribute(
-                            CSS.Attribute.VERTICAL_ALIGN);
+                    Object v = charAttr.getAttribute(CSS.Attribute.VERTICAL_ALIGN);
                     String value = "sub";
                     value = (v != null) ? value + "," + v.toString() : value;
-                    sheet.addCSSAttribute(charAttr,
-                            CSS.Attribute.VERTICAL_ALIGN, value);
+                    sheet.addCSSAttribute(charAttr, CSS.Attribute.VERTICAL_ALIGN, value);
                 } else if (t == HTML.Tag.FONT) {
-                    String color = (String) attr.getAttribute(
-                            HTML.Attribute.COLOR);
+                    String color = (String) attr.getAttribute(HTML.Attribute.COLOR);
                     if (color != null) {
-                        sheet.addCSSAttribute(charAttr, CSS.Attribute.COLOR,
-                                color);
+                        sheet.addCSSAttribute(charAttr, CSS.Attribute.COLOR, color);
                     }
-                    String face = (String) attr.getAttribute(
-                            HTML.Attribute.FACE);
+                    String face = (String) attr.getAttribute(HTML.Attribute.FACE);
                     if (face != null) {
-                        sheet.addCSSAttribute(charAttr,
-                                CSS.Attribute.FONT_FAMILY, face);
+                        sheet.addCSSAttribute(charAttr, CSS.Attribute.FONT_FAMILY, face);
                     }
-                    String size = (String) attr.getAttribute(
-                            HTML.Attribute.SIZE);
+                    String size = (String) attr.getAttribute(HTML.Attribute.SIZE);
                     if (size != null) {
-                        sheet.addCSSAttributeFromHTML(charAttr,
-                                CSS.Attribute.FONT_SIZE, size);
+                        sheet.addCSSAttributeFromHTML(charAttr, CSS.Attribute.FONT_SIZE, size);
                     }
                 }
             }
@@ -3514,8 +3353,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                         URL newBase = new URL(base, href);
                         setBase(newBase);
                         hasBaseTag = true;
-                    } catch (MalformedURLException ex) {
-                    }
+                    } catch (MalformedURLException ex) {}
                 }
                 baseTarget = (String) attr.getAttribute(HTML.Attribute.TARGET);
             }
@@ -3542,8 +3380,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 String value = (String) a.getAttribute(HTML.Attribute.VALUE);
                 if ((name != null) && (value != null)) {
                     ElementSpec objSpec = parseBuffer.lastElement();
-                    MutableAttributeSet objAttr = (MutableAttributeSet) objSpec
-                            .getAttributes();
+                    MutableAttributeSet objAttr = (MutableAttributeSet) objSpec.getAttributes();
                     objAttr.addAttribute(name, value);
                 }
             }
@@ -3596,14 +3433,12 @@ public class HTMLDocument extends DefaultStyledDocument {
          * <td>textarea
          * <td>{@link PlainDocument}
          * </table>
-         *
          */
         public class FormAction extends SpecialAction {
 
             public void start(HTML.Tag t, MutableAttributeSet attr) {
                 if (t == HTML.Tag.INPUT) {
-                    String type = (String) attr.getAttribute(
-                            HTML.Attribute.TYPE);
+                    String type = (String) attr.getAttribute(HTML.Attribute.TYPE);
                     /*
                      * if type is not defined the default is assumed to be text.
                      */
@@ -3615,25 +3450,20 @@ public class HTMLDocument extends DefaultStyledDocument {
                 } else if (t == HTML.Tag.TEXTAREA) {
                     inTextArea = true;
                     textAreaDocument = new TextAreaDocument();
-                    attr.addAttribute(StyleConstants.ModelAttribute,
-                            textAreaDocument);
+                    attr.addAttribute(StyleConstants.ModelAttribute, textAreaDocument);
                 } else if (t == HTML.Tag.SELECT) {
-                    int size = HTML.getIntegerAttributeValue(attr,
-                            HTML.Attribute.SIZE, 1);
-                    boolean multiple = attr.getAttribute(
-                            HTML.Attribute.MULTIPLE) != null;
+                    int size = HTML.getIntegerAttributeValue(attr, HTML.Attribute.SIZE, 1);
+                    boolean multiple = attr.getAttribute(HTML.Attribute.MULTIPLE) != null;
                     if ((size > 1) || multiple) {
                         OptionListModel<Option> m = new OptionListModel<Option>();
                         if (multiple) {
-                            m.setSelectionMode(
-                                    ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+                            m.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
                         }
                         selectModel = m;
                     } else {
                         selectModel = new OptionComboBoxModel<Option>();
                     }
-                    attr.addAttribute(StyleConstants.ModelAttribute,
-                            selectModel);
+                    attr.addAttribute(StyleConstants.ModelAttribute, selectModel);
 
                 }
 
@@ -3684,16 +3514,13 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
 
             void setModel(String type, MutableAttributeSet attr) {
-                if (type.equals("submit") || type.equals("reset") || type
-                        .equals("image")) {
+                if (type.equals("submit") || type.equals("reset") || type.equals("image")) {
 
                     // button model
-                    attr.addAttribute(StyleConstants.ModelAttribute,
-                            new DefaultButtonModel());
+                    attr.addAttribute(StyleConstants.ModelAttribute, new DefaultButtonModel());
                 } else if (type.equals("text") || type.equals("password")) {
                     // plain text model
-                    int maxLength = HTML.getIntegerAttributeValue(attr,
-                            HTML.Attribute.MAXLENGTH, -1);
+                    int maxLength = HTML.getIntegerAttributeValue(attr, HTML.Attribute.MAXLENGTH, -1);
                     Document doc;
 
                     if (maxLength > 0) {
@@ -3701,35 +3528,29 @@ public class HTMLDocument extends DefaultStyledDocument {
                     } else {
                         doc = new PlainDocument();
                     }
-                    String value = (String) attr.getAttribute(
-                            HTML.Attribute.VALUE);
+                    String value = (String) attr.getAttribute(HTML.Attribute.VALUE);
                     try {
                         doc.insertString(0, value, null);
-                    } catch (BadLocationException e) {
-                    }
+                    } catch (BadLocationException e) {}
                     attr.addAttribute(StyleConstants.ModelAttribute, doc);
                 } else if (type.equals("file")) {
                     // plain text model
-                    attr.addAttribute(StyleConstants.ModelAttribute,
-                            new PlainDocument());
+                    attr.addAttribute(StyleConstants.ModelAttribute, new PlainDocument());
                 } else if (type.equals("checkbox") || type.equals("radio")) {
                     JToggleButton.ToggleButtonModel model = new JToggleButton.ToggleButtonModel();
                     if (type.equals("radio")) {
-                        String name = (String) attr.getAttribute(
-                                HTML.Attribute.NAME);
+                        String name = (String) attr.getAttribute(HTML.Attribute.NAME);
                         if (radioButtonGroupsMap == null) { // fix for 4772743
                             radioButtonGroupsMap = new HashMap<String, ButtonGroup>();
                         }
-                        ButtonGroup radioButtonGroup = radioButtonGroupsMap.get(
-                                name);
+                        ButtonGroup radioButtonGroup = radioButtonGroupsMap.get(name);
                         if (radioButtonGroup == null) {
                             radioButtonGroup = new ButtonGroup();
                             radioButtonGroupsMap.put(name, radioButtonGroup);
                         }
                         model.setGroup(radioButtonGroup);
                     }
-                    boolean checked = (attr.getAttribute(
-                            HTML.Attribute.CHECKED) != null);
+                    boolean checked = (attr.getAttribute(HTML.Attribute.CHECKED) != null);
                     model.setSelected(checked);
                     attr.addAttribute(StyleConstants.ModelAttribute, model);
                 }
@@ -3773,8 +3594,7 @@ public class HTMLDocument extends DefaultStyledDocument {
          */
         protected void textAreaContent(char[] data) {
             try {
-                textAreaDocument.insertString(textAreaDocument.getLength(),
-                        new String(data), null);
+                textAreaDocument.insertString(textAreaDocument.getLength(), new String(data), null);
             } catch (BadLocationException e) {
                 // Should do something reasonable
             }
@@ -3821,8 +3641,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
             lastWasNewline = false;
             attr.addAttribute(StyleConstants.NameAttribute, t);
-            ElementSpec es = new ElementSpec(attr.copyAttributes(),
-                    ElementSpec.StartTagType);
+            ElementSpec es = new ElementSpec(attr.copyAttributes(), ElementSpec.StartTagType);
             parseBuffer.addElement(es);
         }
 
@@ -3860,8 +3679,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
             // an open/close with no content will be removed, so we
             // add a space of content to keep the element being formed.
-            ElementSpec prev = (parseBuffer.size() > 0) ? parseBuffer
-                    .lastElement() : null;
+            ElementSpec prev = (parseBuffer.size() > 0) ? parseBuffer.lastElement() : null;
             if (prev != null && prev.getType() == ElementSpec.StartTagType) {
                 char[] one = new char[1];
                 one[0] = ' ';
@@ -3875,11 +3693,11 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Adds some text with the current character attributes.
          *
          * @param data
-         *               the content to add
+         *        the content to add
          * @param offs
-         *               the initial offset
+         *        the initial offset
          * @param length
-         *               the length
+         *        the length
          */
         protected void addContent(char[] data, int offs, int length) {
             addContent(data, offs, length, true);
@@ -3889,17 +3707,16 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Adds some text with the current character attributes.
          *
          * @param data
-         *                                    the content to add
+         *        the content to add
          * @param offs
-         *                                    the initial offset
+         *        the initial offset
          * @param length
-         *                                    the length
+         *        the length
          * @param generateImpliedPIfNecessary
-         *                                    whether to generate implied
-         *                                    paragraphs
+         *        whether to generate implied
+         *        paragraphs
          */
-        protected void addContent(char[] data, int offs, int length,
-                boolean generateImpliedPIfNecessary) {
+        protected void addContent(char[] data, int offs, int length, boolean generateImpliedPIfNecessary) {
             if (!foundInsertTag) {
                 return;
             }
@@ -3910,11 +3727,9 @@ public class HTMLDocument extends DefaultStyledDocument {
                 impliedP = true;
             }
             emptyAnchor = false;
-            charAttr.addAttribute(StyleConstants.NameAttribute,
-                    HTML.Tag.CONTENT);
+            charAttr.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
             AttributeSet a = charAttr.copyAttributes();
-            ElementSpec es = new ElementSpec(a, ElementSpec.ContentType, data,
-                    offs, length);
+            ElementSpec es = new ElementSpec(a, ElementSpec.ContentType, data, offs, length);
             parseBuffer.addElement(es);
 
             if (parseBuffer.size() > threshold) {
@@ -3923,8 +3738,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                 }
                 try {
                     flushBuffer(false);
-                } catch (BadLocationException ble) {
-                }
+                } catch (BadLocationException ble) {}
             }
             if (length > 0) {
                 lastWasNewline = (data[offs + length - 1] == '\n');
@@ -3954,8 +3768,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             a.addAttribute(StyleConstants.NameAttribute, t);
             char[] one = new char[1];
             one[0] = ' ';
-            ElementSpec es = new ElementSpec(a.copyAttributes(),
-                    ElementSpec.ContentType, one, 0, 1);
+            ElementSpec es = new ElementSpec(a.copyAttributes(), ElementSpec.ContentType, one, 0, 1);
             parseBuffer.addElement(es);
             // Set this to avoid generating a newline for frames, frames
             // shouldn't have any content, and shouldn't need a newline.
@@ -3968,13 +3781,12 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Flushes the current parse buffer into the document.
          * 
          * @param endOfStream
-         *                    true if there is no more content to parser
+         *        true if there is no more content to parser
          */
         void flushBuffer(boolean endOfStream) throws BadLocationException {
             int oldLength = HTMLDocument.this.getLength();
             int size = parseBuffer.size();
-            if (endOfStream && (insertTag != null || insertAfterImplied)
-                    && size > 0) {
+            if (endOfStream && (insertTag != null || insertAfterImplied) && size > 0) {
                 adjustEndSpecsForPartialInsert();
                 size = parseBuffer.size();
             }
@@ -4002,41 +3814,36 @@ public class HTMLDocument extends DefaultStyledDocument {
                 // being read in, and existing hierarchy) may not match up.
                 // This attemps to clean it up.
                 int removeCounter = insertTagDepthDelta;
-                while (removeCounter < 0 && size >= 0 && parseBuffer.elementAt(
-                        size - 1).getType() == ElementSpec.EndTagType) {
+                while (removeCounter < 0 && size >= 0 && parseBuffer.elementAt(size - 1)
+                        .getType() == ElementSpec.EndTagType) {
                     parseBuffer.removeElementAt(--size);
                     removeCounter++;
                 }
             }
-            if (flushCount == 0 && (!insertAfterImplied
-                    || !wantsTrailingNewline)) {
+            if (flushCount == 0 && (!insertAfterImplied || !wantsTrailingNewline)) {
                 // If this starts with content (or popDepth > 0 &&
                 // pushDepth > 0) and ends with EndTagTypes, make sure
                 // the last content isn't a \n, otherwise will end up with
                 // an extra \n in the middle of content.
                 int index = 0;
                 if (pushDepth > 0) {
-                    if (parseBuffer.elementAt(0)
-                            .getType() == ElementSpec.ContentType) {
+                    if (parseBuffer.elementAt(0).getType() == ElementSpec.ContentType) {
                         index++;
                     }
                 }
                 index += (popDepth + pushDepth);
                 int cCount = 0;
                 int cStart = index;
-                while (index < size && parseBuffer.elementAt(index)
-                        .getType() == ElementSpec.ContentType) {
+                while (index < size && parseBuffer.elementAt(index).getType() == ElementSpec.ContentType) {
                     index++;
                     cCount++;
                 }
                 if (cCount > 1) {
-                    while (index < size && parseBuffer.elementAt(index)
-                            .getType() == ElementSpec.EndTagType) {
+                    while (index < size && parseBuffer.elementAt(index).getType() == ElementSpec.EndTagType) {
                         index++;
                     }
                     if (index == size) {
-                        char[] lastText = parseBuffer.elementAt(cStart + cCount
-                                - 1).getArray();
+                        char[] lastText = parseBuffer.elementAt(cStart + cCount - 1).getArray();
                         if (lastText.length == 1 && lastText[0] == NEWLINE[0]) {
                             index = cStart + cCount - 1;
                             while (size > index) {
@@ -4048,18 +3855,15 @@ public class HTMLDocument extends DefaultStyledDocument {
             }
             if (wantsTrailingNewline) {
                 // Make sure there is in fact a newline
-                for (int counter = parseBuffer.size()
-                        - 1; counter >= 0; counter--) {
+                for (int counter = parseBuffer.size() - 1; counter >= 0; counter--) {
                     ElementSpec spec = parseBuffer.elementAt(counter);
                     if (spec.getType() == ElementSpec.ContentType) {
                         if (spec.getArray()[spec.getLength() - 1] != '\n') {
                             SimpleAttributeSet attrs = new SimpleAttributeSet();
 
-                            attrs.addAttribute(StyleConstants.NameAttribute,
-                                    HTML.Tag.CONTENT);
-                            parseBuffer.insertElementAt(new ElementSpec(attrs,
-                                    ElementSpec.ContentType, NEWLINE, 0, 1),
-                                    counter + 1);
+                            attrs.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
+                            parseBuffer.insertElementAt(new ElementSpec(attrs, ElementSpec.ContentType,
+                                    NEWLINE, 0, 1), counter + 1);
                         }
                         break;
                     }
@@ -4099,11 +3903,9 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Returns true if can insert starting at <code>t</code>. This will
          * return false if the insert tag is set, and hasn't been found yet.
          */
-        private boolean canInsertTag(HTML.Tag t, AttributeSet attr,
-                boolean isBlockTag) {
+        private boolean canInsertTag(HTML.Tag t, AttributeSet attr, boolean isBlockTag) {
             if (!foundInsertTag) {
-                boolean needPImplied = ((t == HTML.Tag.IMPLIED)
-                        && (!inParagraph) && (!inPre));
+                boolean needPImplied = ((t == HTML.Tag.IMPLIED) && (!inParagraph) && (!inPre));
                 if (needPImplied && (nextTagAfterPImplied != null)) {
 
                     /*
@@ -4111,8 +3913,7 @@ public class HTMLDocument extends DefaultStyledDocument {
                      * foundInsertTag() call below and return true.
                      */
                     if (insertTag != null) {
-                        boolean nextTagIsInsertTag = isInsertTag(
-                                nextTagAfterPImplied);
+                        boolean nextTagIsInsertTag = isInsertTag(nextTagAfterPImplied);
                         if ((!nextTagIsInsertTag) || (!insertInsertTag)) {
                             return false;
                         }
@@ -4120,10 +3921,8 @@ public class HTMLDocument extends DefaultStyledDocument {
                     /*
                      * Proceed to foundInsertTag() call...
                      */
-                } else if ((insertTag != null && !isInsertTag(t))
-                        || (insertAfterImplied && (attr == null || attr
-                                .isDefined(IMPLIED)
-                                || t == HTML.Tag.IMPLIED))) {
+                } else if ((insertTag != null && !isInsertTag(t)) || (insertAfterImplied && (attr == null
+                        || attr.isDefined(IMPLIED) || t == HTML.Tag.IMPLIED))) {
                     return false;
                 }
 
@@ -4154,21 +3953,16 @@ public class HTMLDocument extends DefaultStyledDocument {
                             // Determine if we can use JoinPrevious, we can't
                             // if the Element has some attributes that are
                             // not meant to be duplicated.
-                            Element charElement = getCharacterElement(offset
-                                    - 1);
+                            Element charElement = getCharacterElement(offset - 1);
                             AttributeSet attrs = charElement.getAttributes();
 
-                            if (attrs.isDefined(
-                                    StyleConstants.ComposedTextAttribute)) {
+                            if (attrs.isDefined(StyleConstants.ComposedTextAttribute)) {
                                 joinP = false;
                             } else {
-                                Object name = attrs.getAttribute(
-                                        StyleConstants.NameAttribute);
+                                Object name = attrs.getAttribute(StyleConstants.NameAttribute);
                                 if (name instanceof HTML.Tag) {
                                     HTML.Tag tag = (HTML.Tag) name;
-                                    if (tag == HTML.Tag.IMG
-                                            || tag == HTML.Tag.HR
-                                            || tag == HTML.Tag.COMMENT
+                                    if (tag == HTML.Tag.IMG || tag == HTML.Tag.HR || tag == HTML.Tag.COMMENT
                                             || (tag instanceof HTML.UnknownTag)) {
                                         joinP = false;
                                     }
@@ -4180,35 +3974,29 @@ public class HTMLDocument extends DefaultStyledDocument {
                             // sure and set the name (otherwise it will be
                             // inherited).
                             newAttrs = new SimpleAttributeSet();
-                            ((SimpleAttributeSet) newAttrs).addAttribute(
-                                    StyleConstants.NameAttribute,
+                            ((SimpleAttributeSet) newAttrs).addAttribute(StyleConstants.NameAttribute,
                                     HTML.Tag.CONTENT);
                         }
-                        ElementSpec es = new ElementSpec(newAttrs,
-                                ElementSpec.ContentType, NEWLINE, 0,
+                        ElementSpec es = new ElementSpec(newAttrs, ElementSpec.ContentType, NEWLINE, 0,
                                 NEWLINE.length);
                         if (joinP) {
                             es.setDirection(ElementSpec.JoinPreviousDirection);
                         }
                         parseBuffer.addElement(es);
                     }
-                } catch (BadLocationException ble) {
-                }
+                } catch (BadLocationException ble) {}
             }
             // pops
             for (int counter = 0; counter < popDepth; counter++) {
-                parseBuffer.addElement(new ElementSpec(null,
-                        ElementSpec.EndTagType));
+                parseBuffer.addElement(new ElementSpec(null, ElementSpec.EndTagType));
             }
             // pushes
             for (int counter = 0; counter < pushDepth; counter++) {
-                ElementSpec es = new ElementSpec(null,
-                        ElementSpec.StartTagType);
+                ElementSpec es = new ElementSpec(null, ElementSpec.StartTagType);
                 es.setDirection(ElementSpec.JoinNextDirection);
                 parseBuffer.addElement(es);
             }
-            insertTagDepthDelta = depthTo(Math.max(0, offset - 1)) - popDepth
-                    + pushDepth - inBlock;
+            insertTagDepthDelta = depthTo(Math.max(0, offset - 1)) - popDepth + pushDepth - inBlock;
             if (isBlockTag) {
                 // A start spec will be added (for this tag), so we account
                 // for it here.
@@ -4352,17 +4140,16 @@ public class HTMLDocument extends DefaultStyledDocument {
          * (has no children).
          *
          * @param parent
-         *               the parent element
+         *        the parent element
          * @param a
-         *               the element attributes
+         *        the element attributes
          * @param offs0
-         *               the start offset (must be at least 0)
+         *        the start offset (must be at least 0)
          * @param offs1
-         *               the end offset (must be at least offs0)
+         *        the end offset (must be at least offs0)
          * @since 1.4
          */
-        public RunElement(Element parent, AttributeSet a, int offs0,
-                int offs1) {
+        public RunElement(Element parent, AttributeSet a, int offs0, int offs1) {
             super(parent, a, offs0, offs1);
         }
 
@@ -4400,9 +4187,9 @@ public class HTMLDocument extends DefaultStyledDocument {
          * Constructs a composite element that initially contains no children.
          *
          * @param parent
-         *               the parent element
+         *        the parent element
          * @param a
-         *               the attributes for the element
+         *        the attributes for the element
          * @since 1.4
          */
         public BlockElement(Element parent, AttributeSet a) {
@@ -4445,8 +4232,7 @@ public class HTMLDocument extends DefaultStyledDocument {
             this.maxLength = maxLength;
         }
 
-        public void insertString(int offset, String str, AttributeSet a)
-                throws BadLocationException {
+        public void insertString(int offset, String str, AttributeSet a) throws BadLocationException {
             if (str != null && str.length() + getLength() <= maxLength) {
                 super.insertString(offset, str, a);
             }

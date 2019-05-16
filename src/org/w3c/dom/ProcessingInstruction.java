@@ -50,9 +50,9 @@ public interface ProcessingInstruction extends Node {
      * preceding the <code>?&gt;</code>.
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly.
      */
     public void setData(String data) throws DOMException;
 

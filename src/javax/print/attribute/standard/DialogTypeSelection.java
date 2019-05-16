@@ -14,7 +14,6 @@ import javax.print.attribute.PrintRequestAttribute;
  * {@code NATIVE} is specified, then where available, a native platform dialog
  * is displayed. If {@code COMMON} is specified, a cross-platform print dialog
  * is displayed.
- *
  * This option to specify a native dialog for use with an IPP attribute set
  * provides a standard way to reflect back of the setting and option changes
  * made by a user to the calling application, and integrates the native dialog
@@ -26,10 +25,8 @@ import javax.print.attribute.PrintRequestAttribute;
  * <P>
  * 
  * @since 1.7
- *
  */
-public final class DialogTypeSelection extends EnumSyntax implements
-        PrintRequestAttribute {
+public final class DialogTypeSelection extends EnumSyntax implements PrintRequestAttribute {
 
     private static final long serialVersionUID = 7518682952133256029L;
 
@@ -48,7 +45,7 @@ public final class DialogTypeSelection extends EnumSyntax implements
      * integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected DialogTypeSelection(int value) {
         super(value);
@@ -56,8 +53,7 @@ public final class DialogTypeSelection extends EnumSyntax implements
 
     private static final String[] myStringTable = { "native", "common" };
 
-    private static final DialogTypeSelection[] myEnumValueTable = { NATIVE,
-            COMMON };
+    private static final DialogTypeSelection[] myEnumValueTable = { NATIVE, COMMON };
 
     /**
      * Returns the string table for class DialogTypeSelection.

@@ -28,11 +28,11 @@ public class JMXServerErrorException extends IOException {
      * detail message and nested error.
      *
      * @param s
-     *            the detail message.
+     *        the detail message.
      * @param err
-     *            the nested error. An instance of this class can be constructed
-     *            where this parameter is null, but the standard connectors will
-     *            never do so.
+     *        the nested error. An instance of this class can be constructed
+     *        where this parameter is null, but the standard connectors will
+     *        never do so.
      */
     public JMXServerErrorException(String s, Error err) {
         super(s);

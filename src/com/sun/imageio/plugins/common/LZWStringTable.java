@@ -190,9 +190,8 @@ public class LZWStringTable {
     public void dump(PrintStream out) {
         int i;
         for (i = 258; i < numStrings; ++i) {
-            out.println(" strNxt[" + i + "] = " + strNxt[i] + " strChr "
-                    + Integer.toHexString(strChr[i] & 0xFF) + " strLen "
-                    + Integer.toHexString(strLen[i]));
+            out.println(" strNxt[" + i + "] = " + strNxt[i] + " strChr " + Integer.toHexString(strChr[i]
+                    & 0xFF) + " strLen " + Integer.toHexString(strLen[i]));
         }
     }
 }

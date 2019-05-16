@@ -14,7 +14,6 @@ package com.sun.corba.se.spi.monitoring;
  *         User needs to define some special MonitoredAttributes like a
  *         Character type Monitored Attribute, they can use this factory to
  *         build the meta information.
- *
  *         </p>
  */
 
@@ -22,6 +21,6 @@ public interface MonitoredAttributeInfoFactory {
     /**
      * A Simple Factory Method to create the Monitored Attribute Info.
      */
-    MonitoredAttributeInfo createMonitoredAttributeInfo(String description,
-            Class type, boolean isWritable, boolean isStatistic);
+    MonitoredAttributeInfo createMonitoredAttributeInfo(String description, Class type, boolean isWritable,
+            boolean isStatistic);
 }
